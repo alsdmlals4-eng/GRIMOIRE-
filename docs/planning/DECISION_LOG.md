@@ -8,6 +8,8 @@
 - 상위 책임 원본: `docs/planning/SPELL_GAME_DESIGN.md`
 - 세계관 책임 원본: `docs/planning/WORLD_SETTING_CONCEPT.md`
 - 학교 육성 책임 원본: `docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md`
+- 주인공 배경 책임 원본: `docs/planning/WORLD_PROTAGONIST_BACKGROUND.md`
+- 선택형 상세 서사 책임 원본: `docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md`
 - 마법학교 성장 벤치마킹: `docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md`
 - 회로 시스템: `docs/planning/CIRCUIT_SYSTEM.md`
 - 마나 시스템: `docs/planning/MANA_SYSTEM.md`
@@ -18,15 +20,9 @@
 - 스톡 충전 대상 전환: `docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md`
 - 스톡 피격 일시정지: `docs/planning/STOCK_HIT_PAUSE_SYSTEM.md`
 - 상태이상–스톡 연동: `docs/planning/STATUS_EFFECT_STOCK_SYSTEM.md`
-- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26.md`
-- 최신 결정 추가 기록 B: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26B.md`
-- 최신 결정 추가 기록 C: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26C.md`
-- 최신 결정 추가 기록 D: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26D.md`
-- 최신 결정 추가 기록 E: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26E.md`
-- 최신 결정 추가 기록 F: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26F.md`
-- 최신 결정 추가 기록 G: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26G.md`
+- 결정 추가 기록 A~H: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26*.md`
 
-이 문서는 사용자와 합의한 결정, 수정, 폐기, 보류 상태를 추적한다. 최신 세부 결정은 추가 기록 문서와 각 책임 원본이 우선한다.
+이 문서는 사용자와 합의한 결정, 수정, 폐기와 보류 상태를 추적한다. 최신 세부 결정은 추가 기록 문서와 각 책임 원본이 우선한다.
 
 ---
 
@@ -71,11 +67,13 @@
 | GM-WORLD-01 | 세계관 기본 틀 | 마법학교+현장실습+성장 모험 | `DIRECTION_CONFIRMED` | 학교 허브와 외부 모험 연결 |
 | GM-WORLD-02 | 비밀학과 중심 서사 | 비밀학과는 제외 | `CONFIRMED` | 학습·모험·발견에 집중 |
 | GM-WORLD-03 | 콘텐츠 확장 방식 | 회로의 활용으로 자유롭게 추가 | `DIRECTION_CONFIRMED` | 기존 회로 응용과 현장 상황으로 확장 |
-| GM-WORLD-04 | 학교 규모 | 단일 명문학교+인근 도시·야외 지역 | `CONFIRMED` | 중심 허브를 깊게 만들고 외부 지역을 점진 확장 |
+| GM-WORLD-04 | 학교 규모 | 단일 명문학교+인근 도시·야외 지역 | `CONFIRMED` | 중심 허브를 깊게 만들고 외부 지역 점진 확장 |
 | GM-WORLD-05 | 학년 성장 | 학년 승급에 따라 자연스럽게 성장 | `DIRECTION_CONFIRMED` | 상위 회로·실습·시설·관계 해금 |
 | GM-WORLD-06 | 육성 구조 | 프린세스 메이커식 육성을 경량 결합 | `DIRECTION_CONFIRMED` | 학기 일정 선택이 능력·관계·활용 성향에 영향 |
-| GM-WORLD-07 | 주인공 입학 형태 | 정식 신입생 | `CONFIRMED` | 플레이어와 기초부터 학습하고 관계·학년 성장을 처음부터 축적 |
+| GM-WORLD-07 | 주인공 입학 형태 | 정식 신입생 | `CONFIRMED` | 플레이어와 기초부터 학습하고 관계·학년 성장 축적 |
+| GM-WORLD-08 | 주인공 출신 배경 | 일반 가정 출신 장학생 | `DIRECTION_CONFIRMED` | 가문보다 입학시험과 회로 활용 잠재력으로 입학 |
 | GM-WORLD-BM-01 | 마법학교 장르 벤치마킹 | 여러 작품의 구조적 장점만 참고 | `BENCHMARK_DIRECTION_CONFIRMED` | 학교생활·수업·관계·학년·현장실습 구조 강화 |
+| GM-NARRATIVE-01 | 스토리 공개 깊이 | 핵심은 짧게, NPC 재대화로 상세 제공 | `DIRECTION_CONFIRMED` | 빠른 진행과 깊은 세계관 감상을 동시에 지원 |
 | OPS-00-01 | GitHub 기획 기록 | 지속 갱신 | `CONFIRMED` | 책임 원본·원장·Active Context 동기화 |
 
 ---
@@ -117,7 +115,7 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 → 기초 회로와 원리 학습
 → 학교 밖 현장실습
 → 상황에 맞는 회로 활용
-→ 새로운 주문·응용 방식 발견
+→ 새로운 주문·응용 발견
 → 마도서 설계도 등록
 → 숙련과 스톡화
 ```
@@ -139,19 +137,40 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 → 상위 회로·시설·지역·사건 해금
 ```
 
-- 다른 학교는 교류전·대회·공동 실습을 통해 점진적으로 등장한다.
-- 매일 단위 일정 대신 학기 단위의 경량 선택 구조를 사용한다.
+- 다른 학교는 교류전·대회·공동 실습으로 점진 등장한다.
+- 매일 단위 일정 대신 학기 단위 경량 선택 구조를 사용한다.
 - 필수 수업은 핵심 회로 문법을 보장하고 선택 수업은 성장 성향을 만든다.
 - 육성 결과는 활용 힌트, 현장 선택지, 관계와 사건에 반영한다.
 - 육성만으로 주문을 자동 획득하지 않고 현장에서 직접 발견한다.
 - 학교 경영·건설, 수십 개 생활 능력치, 연애·결혼 중심 구조는 현재 코어에서 제외한다.
 
-### 정식 신입생과 벤치마킹
+### 정식 신입생과 장학생 배경
 
 - 주인공은 특별 전형이나 편입이 아닌 정식 신입생이다.
-- 플레이어와 함께 학교 규칙, 회로 문법, 교수, 동급생과 현장실습을 처음부터 경험한다.
-- 특별한 혈통·환생 지식·선행 숙련을 필수 설정으로 사용하지 않는다.
-- 차별성은 플레이어의 회로 활용과 문제 해결에서 발생한다.
+- 일반 가정에서 성장했으며 명문 마법 가문이나 비밀 혈통 출신이 아니다.
+- 입학시험의 회로 이해·작성·활용·안전 판단으로 장학생에 선발된다.
+- 차별성은 최고 마력량보다 플레이어의 회로 활용과 문제 해결에서 발생한다.
+- 장학금 상실을 반복적인 협박이나 강제 진행 조건으로 사용하지 않는다.
+
+### 선택형 상세 서사와 DDD
+
+```text
+사건 핵심 요약
+→ 즉시 목표와 조작권 제공
+→ 플레이 진행과 보상
+→ 관심 있는 플레이어가 NPC·장소·기록 조사
+→ 인물·세계관·사건 상세 확인
+```
+
+- 필수층은 현재 상황, 행동 이유, 목표, 위험과 중요한 선택 결과를 전달한다.
+- 인물의 과거·감정·학교 역사·사건의 세부 맥락은 선택 대화로 확장한다.
+- 선택 대화를 보지 않아도 메인 진행과 기본 성장에 불이익이 없다.
+- 임무 목표, 실패 조건, 필수 대응법과 핵심 해금 정보는 선택 대화에 숨기지 않는다.
+- 핵심 사건 요약은 기록에 자동 저장한다.
+- DDD는 서사를 삭제하는 것이 아니라 장문 설명이 행동과 보상 흐름을 오래 중단하지 않게 하는 원칙이다.
+
+### 장르 벤치마킹
+
 - `마법학교 마법사로 살아가는 법`, `Harry Potter`, `Mother of Learning`, `Scholomance`, `Mage Errant`, `Witch Hat Atelier`, `Earthsea`, `The Magicians`의 구조적 장점을 참고한다.
 - 학교생활을 반복 사건 생성 시스템으로 사용한다.
 - 수업은 기능 해금뿐 아니라 교수·관계·과제·활용 관점과 연결한다.
@@ -180,13 +199,14 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 
 | 후보 ID | 질문 | 상태 |
 |---|---|---|
-| GM-WORLD-08 | 정식 신입생의 출신 배경과 입학 동기는 무엇인가 | `UNRESOLVED` |
 | GM-WORLD-09 | 교육 기간은 총 몇 학년인가 | `UNRESOLVED` |
 | GM-WORLD-10 | 학기당 활동 선택 단위는 몇 개인가 | `UNRESOLVED` |
 | GM-WORLD-11 | 현장실습은 학교 배정·학생 선택·혼합형 중 무엇인가 | `UNRESOLVED` |
 | GM-WORLD-12 | 컨디션은 단일 피로도인가, 집중·스트레스 분리인가 | `UNRESOLVED` |
 | GM-WORLD-13 | 졸업과 진로를 다중 엔딩으로 운영하는가 | `UNRESOLVED` |
 | GM-WORLD-14 | 세계의 장기 갈등은 무엇인가 | `UNRESOLVED` |
+| GM-NARRATIVE-02 | 필수 핵심 대화의 표현 형식과 권장 길이는 무엇인가 | `UNRESOLVED` |
+| GM-NARRATIVE-03 | 선택 대화 표시·기록·관계 연동 UI는 어떻게 구성하는가 | `UNRESOLVED` |
 | GM-00-35 | 전환 지연 중 다시 대상을 변경하면 어떻게 처리하는가 | `UNRESOLVED` |
 | GM-00-36 | 플레이어·소환수 생산 능력치 계산식은 무엇인가 | `UNRESOLVED` |
 | GM-00-37 | 연결·분기·합류를 독립 기능 회로로 계산하는가 | `UNRESOLVED` |
@@ -194,12 +214,21 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 | GM-00-39 | 속성을 별도 회로 계층으로 분리하는가 | `UNRESOLVED` |
 | GM-00-40 | 소환수 추가 편성·교체·동시 전개 방식은 무엇인가 | `UNRESOLVED` |
 
-## 보류된 상태이상 설계
+## 보류된 세부 설계
+
+### 상태이상
 
 상태: `DEFERRED_STATUS_DESIGN`
 
-- 마력 교란·주문 봉인·마력 봉쇄의 실제 지속시간
-- 마력 봉쇄 중 자동 충전과 회로 UI 처리
-- 상태이상 적용 확률과 적·스킬별 데이터
-- 중첩·갱신·저항·해제 공식
+- 실제 지속시간·확률·저항·해제·중첩 공식
+- 마력 봉쇄 중 자동 충전과 회로 UI
 - 소환수 수호·동조와의 상호작용
+
+### 주인공·서사 데이터
+
+상태: `DEFERRED_CONTENT_DATA`
+
+- 가족 구성과 출신 지역
+- 최초 입학시험 회로 활용 사례
+- 선택 대화의 정확한 분량과 보상 데이터
+- 기록 UI와 대화 아이콘의 세부 표현
