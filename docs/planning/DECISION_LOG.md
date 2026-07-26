@@ -20,7 +20,7 @@
 - 스톡 충전 대상 전환: `docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md`
 - 스톡 피격 일시정지: `docs/planning/STOCK_HIT_PAUSE_SYSTEM.md`
 - 상태이상–스톡 연동: `docs/planning/STATUS_EFFECT_STOCK_SYSTEM.md`
-- 결정 추가 기록 A~H: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26*.md`
+- 결정 추가 기록 A~I: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26*.md`
 
 이 문서는 사용자와 합의한 결정, 수정, 폐기와 보류 상태를 추적한다. 최신 세부 결정은 추가 기록 문서와 각 책임 원본이 우선한다.
 
@@ -74,6 +74,7 @@
 | GM-WORLD-08 | 주인공 출신 배경 | 일반 가정 출신 장학생 | `DIRECTION_CONFIRMED` | 가문보다 입학시험과 회로 활용 잠재력으로 입학 |
 | GM-WORLD-BM-01 | 마법학교 장르 벤치마킹 | 여러 작품의 구조적 장점만 참고 | `BENCHMARK_DIRECTION_CONFIRMED` | 학교생활·수업·관계·학년·현장실습 구조 강화 |
 | GM-NARRATIVE-01 | 스토리 공개 깊이 | 핵심은 짧게, NPC 재대화로 상세 제공 | `DIRECTION_CONFIRMED` | 빠른 진행과 깊은 세계관 감상을 동시에 지원 |
+| GM-NARRATIVE-02 | 필수 스토리 표현 | 상황별 혼합형, 일반 사건은 짧은 대사+목표 카드 | `DIRECTION_CONFIRMED` | 진행 정보·감정·세계관 상세의 전달 채널 분리 |
 | OPS-00-01 | GitHub 기획 기록 | 지속 갱신 | `CONFIRMED` | 책임 원본·원장·Active Context 동기화 |
 
 ---
@@ -169,6 +170,28 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 - 핵심 사건 요약은 기록에 자동 저장한다.
 - DDD는 서사를 삭제하는 것이 아니라 장문 설명이 행동과 보상 흐름을 오래 중단하지 않게 하는 원칙이다.
 
+### 상황별 핵심 스토리 표현
+
+```text
+일반 사건·수업
+→ 짧은 대사 + 목표 카드
+
+긴급 임무
+→ 경고 + 긴급 목표·위험 카드
+
+감정·관계·승급 장면
+→ 일반 대화창
+
+선택형 상세
+→ NPC 재대화·질문 목록·조사·기록
+```
+
+- 진행 정보는 목표 카드와 HUD에서 전달한다.
+- 감정과 인물 관계는 필요한 장면에서 대화창으로 전달한다.
+- 세계관과 사건의 세부 맥락은 선택형 상세층에서 제공한다.
+- 완료 보고는 짧은 결과 카드 뒤에 선택형 상세 보고를 둔다.
+- 목표 카드와 대화창에서 같은 내용을 반복하지 않는다.
+
 ### 장르 벤치마킹
 
 - `마법학교 마법사로 살아가는 법`, `Harry Potter`, `Mother of Learning`, `Scholomance`, `Mage Errant`, `Witch Hat Atelier`, `Earthsea`, `The Magicians`의 구조적 장점을 참고한다.
@@ -205,7 +228,6 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 | GM-WORLD-12 | 컨디션은 단일 피로도인가, 집중·스트레스 분리인가 | `UNRESOLVED` |
 | GM-WORLD-13 | 졸업과 진로를 다중 엔딩으로 운영하는가 | `UNRESOLVED` |
 | GM-WORLD-14 | 세계의 장기 갈등은 무엇인가 | `UNRESOLVED` |
-| GM-NARRATIVE-02 | 필수 핵심 대화의 표현 형식과 권장 길이는 무엇인가 | `UNRESOLVED` |
 | GM-NARRATIVE-03 | 선택 대화 표시·기록·관계 연동 UI는 어떻게 구성하는가 | `UNRESOLVED` |
 | GM-00-35 | 전환 지연 중 다시 대상을 변경하면 어떻게 처리하는가 | `UNRESOLVED` |
 | GM-00-36 | 플레이어·소환수 생산 능력치 계산식은 무엇인가 | `UNRESOLVED` |
@@ -230,5 +252,6 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 
 - 가족 구성과 출신 지역
 - 최초 입학시험 회로 활용 사례
-- 선택 대화의 정확한 분량과 보상 데이터
-- 기록 UI와 대화 아이콘의 세부 표현
+- 필수 대사와 목표 카드의 실제 문장 길이
+- 목표 카드·기록·선택 대화 아이콘의 세부 UI
+- 선택 대화의 보상과 관계 연동 데이터
