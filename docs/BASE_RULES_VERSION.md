@@ -31,6 +31,7 @@
 - Base Skill route: `skills/SKILL_REGISTRY.json`
 - 프로젝트 어댑터: `skills/PROJECT_BASE_SKILL_ADAPTER.json`
 - 전문 extension route: `skills/BASE_SHARED_SKILL_ROUTES.json`
+- 운영체계 검증: `docs/OPERATING_SYSTEM_HEALTH_REPORT.md`
 
 ## 적용 우선순위
 
@@ -71,7 +72,7 @@ Base skills/SKILL_REGISTRY.json의 자동 Trigger 선택
 | 책임 | Base Skill | 현재 상태 |
 |---|---|---|
 | 요청 접수·실행 계약 | `managing-project-intake-and-work-contract` | route·contract 적용 |
-| 운영체계 | `managing-game-project-operating-system` | audit→승인→Governance foundation 설치→verify 진행 |
+| 운영체계 | `managing-game-project-operating-system` | audit→승인→Governance foundation 설치→verify 완료, 일부 검사 `NOT_RUN` |
 | 프로젝트 코어 조사 | `identifying-project-core` | 읽기 전용 기준선 확인 |
 | 콘셉트·CORE_POC | `analyzing-and-refining-game-concepts` | 다음 기획 단계에서 순차 실행 |
 | 코어 승인 | `establishing-project-core` | 사용자 승인 전 미실행 |
@@ -99,4 +100,4 @@ Base commit 변경만으로 Godot 구현·CI·발행·Codex 인수를 자동 승
 
 | 날짜 | 이전 기준 | 새 기준 | 범위 | 검증 | 결과 |
 |---|---|---|---|---|---|
-| 2026-07-27 | 없음 | `438f41afd510c827c3097341bd9e5f9c9b0e1dd0` | Governance foundation·v6 계약·Skill route | 경로·정본·콜드 스타트 검증 | 설치 진행 |
+| 2026-07-27 | 없음 | `438f41afd510c827c3097341bd9e5f9c9b0e1dd0` | Governance foundation·v6 계약·Skill route | 원격 경로·정본·콜드 스타트·Git 비교 | `PASS_WITH_NOT_RUN` |
