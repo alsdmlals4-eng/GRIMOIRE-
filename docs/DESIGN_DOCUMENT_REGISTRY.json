@@ -37,17 +37,19 @@
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
     "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md"
   },
   "canonical_documents": [
     {
       "id": "spell-v6-concept-rebase",
       "title": "스펠 v6 콘셉트 재기획 기준선",
-      "responsibility": "Gate 1 플레이어 경험·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
+      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·플레이 상황·서사 깊이·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
       "responsibility_coverage": [
         "gate-1-working-baseline",
         "primary-player-experience",
+        "target-player-and-play-context",
+        "optional-narrative-depth",
         "player-promise-draft",
         "pointed-fun",
         "why-how-what",
@@ -60,6 +62,7 @@
       "status": "ACTIVE_GATE_1_WORKING_SOURCE",
       "publication_policy": "source_only",
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md",
         "docs/ACTIVE_CONTEXT.md"
       ]
@@ -78,6 +81,7 @@
       "status": "ACTIVE_WITH_LATEST_ADDENDUM",
       "publication_policy": "source_only",
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md"
       ]
     }
@@ -133,15 +137,19 @@
   "deferred_responsibilities": [
     {
       "responsibility": "target-player-and-play-context",
-      "status": "NEXT_BLOCKING_DECISION_GM-AUDIENCE-01"
+      "status": "CONFIRMED_BY_GM-AUDIENCE-01"
+    },
+    {
+      "responsibility": "optional-narrative-depth",
+      "status": "CONFIRMED_BY_GM-NARRATIVE-03"
     },
     {
       "responsibility": "final-player-promise",
-      "status": "BLOCKED_BY_GM-AUDIENCE-01"
+      "status": "NEXT_BLOCKING_DECISION_GM-PROMISE-01"
     },
     {
       "responsibility": "micro-combat-session-semester-loops",
-      "status": "NOT_AUTHORED"
+      "status": "BLOCKED_BY_GM-PROMISE-01"
     },
     {
       "responsibility": "experience-curve-and-sales-points",
