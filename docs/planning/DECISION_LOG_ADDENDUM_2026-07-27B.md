@@ -20,7 +20,7 @@
 
 상태: `DIRECTION_CONFIRMED`
 
-## GM-CIRCUIT-03 — 메인 글자별 레벨 성장
+## GM-CIRCUIT-06 — 메인 글자별 레벨 성장
 
 ### 채택안
 
