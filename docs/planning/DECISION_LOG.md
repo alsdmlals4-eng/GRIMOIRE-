@@ -1,11 +1,14 @@
-# Spell 기획 결정 원장
+# 스펠 기획 결정 원장
 
 ## 문서 상태
 
+- 프로젝트명: `스펠` (임시)
+- 저장소: `https://github.com/alsdmlals4-eng/Spell`
 - 상태: `PLANNING_IN_PROGRESS`
 - 기준 날짜: 2026-07-27
 - 기준 브랜치: `gpt/planning-spell-20260725`
 - 상위 책임 원본: `docs/planning/SPELL_GAME_DESIGN.md`
+- 전투 코어: `docs/planning/COMBAT_CORE_SYSTEM.md`
 - 세계관 책임 원본: `docs/planning/WORLD_SETTING_CONCEPT.md`
 - 학교 육성: `docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md`
 - 학년 구조: `docs/planning/WORLD_ACADEMIC_YEAR_STRUCTURE.md`
@@ -16,19 +19,12 @@
 - 메인 글자 레벨: `docs/planning/MAIN_LETTER_LEVEL_SYSTEM.md`
 - 메인 글자 전문화: `docs/planning/MAIN_LETTER_SPECIALIZATION_SYSTEM.md`
 - 보조 글자 운용량: `docs/planning/SUPPORT_LETTER_OPERATION_CAPACITY_SYSTEM.md`
-- 주인공 배경: `docs/planning/WORLD_PROTAGONIST_BACKGROUND.md`
-- 선택형 상세 서사: `docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md`
-- 마법학교 벤치마킹: `docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md`
-- 회로: `docs/planning/CIRCUIT_SYSTEM.md`
-- 마나: `docs/planning/MANA_SYSTEM.md`
+- 보조 글자 숙련: `docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md`
 - 소환수: `docs/planning/SUMMON_SYSTEM.md`
 - 스톡: `docs/planning/STOCK_SYSTEM.md`
-- 스톡 준비 용량: `docs/planning/STOCK_CAPACITY_SYSTEM.md`
-- 스톡 충전시간: `docs/planning/STOCK_CHARGE_TIME_SYSTEM.md`
-- 스톡 대상 전환: `docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md`
-- 스톡 피격 정지: `docs/planning/STOCK_HIT_PAUSE_SYSTEM.md`
-- 상태이상–스톡: `docs/planning/STATUS_EFFECT_STOCK_SYSTEM.md`
-- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27C.md`
+- 마나: `docs/planning/MANA_SYSTEM.md`
+- 선택형 상세 서사: `docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md`
+- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27D.md`
 
 최신 세부 결정은 결정 추가 기록과 각 책임 원본이 우선한다.
 
@@ -53,6 +49,7 @@
 | GM-CIRCUIT-06 | 메인 글자 성장 | 글자별 독립 Lv, 공부·실습으로 성장 | `DIRECTION_CONFIRMED_WITH_PLANNING_DEFAULT` | 계열별 폭·깊이 육성 |
 | GM-CIRCUIT-07 | Lv.4~Lv.5 성장 | Lv.1~3 공통, Lv.4~5 전문 활용 분기 | `DIRECTION_CONFIRMED` | 연구실·실습·진로 차별화 |
 | GM-CIRCUIT-08 | 보조 글자 운용량 | 1학년 2개, 학년마다 +2, 우수 성적 추가 | `DIRECTION_CONFIRMED_WITH_PLANNING_DEFAULT` | 초반 조합 재미와 학업 보상 |
+| GM-CIRCUIT-09 | 보조 글자 성장 | 미숙→숙련→달인 3단계 | `DIRECTION_CONFIRMED` | 반복 입력 감소와 단순한 숙련 관리 |
 | GM-00-10 | 동료 정체성 | 소환수 같은 마법적 존재 | `DIRECTION_CONFIRMED` | 전투 협력자 |
 | GM-00-11 | 자동스펠 | 반복 입력 완화 | `SUPERSEDED_BY_STOCK` | 스톡으로 통합 |
 | GM-00-12 | 완성 주문 스톡 | 등록 주문을 저장해 터치 사용 | `CONFIRMED` | 준비형 전술 자원 |
@@ -61,8 +58,10 @@
 | GM-00-15 | 스톡 귀속 | 주문·글자별 스톡, 대상 지정 | `CONFIRMED` | 우선 충전 전략 |
 | GM-00-16 | 마나 예약 | 주문 비용 50% 최대 마나 예약 | `SUPERSEDED_BY_GM-00-21` | 예약 폐기 |
 | GM-00-17 | 조건부 자동발동 | 폐기, 터치 스톡으로 통합 | `LATEST_OVERRIDE` | 발동 판단 유지 |
-| GM-00-18 | 하위 회로 스톡 | 숙련 글자 자동 배치·연결 | `CONFIRMED_DIRECTION` | 반복 드로잉 감소 |
-| GM-00-19-A | 소환수 작성 | 제거, 생산 지원으로 통합 | `LATEST_OVERRIDE` | 역할 정리 |
+| GM-00-18 | 하위 글자 스톡 | 숙련 글자 자동 배치·연결 | `CONFIRMED_DIRECTION` | 반복 드로잉 감소 |
+| GM-00-19-A | 소환수 회로 작성 | 제거, 스톡 생산 지원으로 통합 | `LATEST_OVERRIDE_CONFIRMED` | 소환수는 글자를 직접 쓰지 않음 |
+| GM-SUMMON-01 | 소환수 주문 보조 경계 | 회로 보조는 스톡 충전만 담당 | `LATEST_OVERRIDE_CONFIRMED` | 직접 연결안 폐기, 생산·동조로 제한 |
+| GM-COMBAT-01 | 기본 전투 간결화 | 1학년부터 직접 작성+스톡+소환수 충전 지원 | `DIRECTION_CONFIRMED` | 핵심 판단 유지·반복 입력 감소 |
 | GM-00-20 | 스톡 한도 | 기능 글자 수 기반 공용 용량 | `CONFIRMED_WITH_REINTERPRETATION` | 복잡한 주문이 더 무거움 |
 | GM-00-21 | 스톡 자원 제약 | 공용 준비 용량만 사용 | `LATEST_OVERRIDE_CONFIRMED` | 스톡과 마나 분리 |
 | GM-00-22 | 충전시간 | 1글자 1.0, 추가 글자당 +0.5 | `CONFIRMED_WITH_REINTERPRETATION` | 완만한 복잡도 비용 |
@@ -116,67 +115,64 @@
 - 보조 글자는 형상·전달·출력·규모·시간·행동·효율·안정·조건·순서를 담당한다.
 - 보조가 늘수록 기능이 확대되지만 작성 시간·마나·스톡 비용도 증가한다.
 
-### 메인 글자 계열·레벨·전문화
+### 메인 글자·보조 글자 성장
 
-- 계열은 현상·물질·개념 중심이다.
-- 공격·방어·생활·구조·탐색은 활용 결과다.
-- 각 메인 글자는 독립 레벨을 가진다.
-- 기획 기본값은 `Lv.0 미습득 → Lv.1 입문 → Lv.2 숙련 → Lv.3 응용 → Lv.4 전문화 → Lv.5 개인 연구`다.
-- 레벨은 수업·직접 작성·보조 조합·현장 활용·시험·연구로 상승한다.
-- Lv.1~Lv.3은 공통 기반, Lv.4에서 전문 분야를 선택하고 Lv.5에서 심화한다.
-- 전문화는 기본 발현·보조 결합·연구실·현장실습·진로에 영향을 준다.
-- 전문화가 보조 글자를 자동 습득시키지는 않는다.
-- 메인 레벨과 무관하게 기능 글자 수 계산에서는 메인 1개다.
+- 메인 계열은 현상·물질·개념 중심이다.
+- 각 메인 글자는 `Lv.0~Lv.5` 독립 레벨과 Lv.4~5 전문 분기를 가진다.
+- 보조 글자는 `미숙→숙련→달인` 3단계다.
+- `숙련` 이상인 보조 글자만 하위 글자 스톡 후보가 된다.
+- 학년별 표준 보조 운용량은 1학년 2개, 2학년 4개, 3학년 6개다.
+- 성적·연구 성과가 좋으면 관련 계열의 운용량을 추가로 인증받을 수 있다.
 
-### 학년별 보조 글자 운용량
+### 직접 작성·스톡·소환수 책임
 
 ```text
-1학년
-→ 보조 2개
+직접 작성
+→ 새 글자·미숙 글자·핵심 판단·즉석 변형
 
-2학년
-→ 보조 4개
+하위 글자 스톡
+→ 숙련 글자 하나 자동 배치·연결
 
-3학년
-→ 보조 6개
+완성 주문 스톡
+→ 등록 주문 전체 즉시 기동
+
+소환수
+→ 전투·수호·지정 스톡 충전·생산·동조 지원
 ```
 
-- 위 수치는 학교가 인증한 표준 안전 운용량의 `PLANNING_DEFAULT`다.
-- 1학년부터 `메인 1 + 보조 2`의 완성형 주문 조합을 사용할 수 있다.
-- 우수한 계열·회로 문법·응용 실기 성적은 현재 학년 표준보다 보조 글자 1개 이상을 추가 운용하게 할 수 있다.
-- 성적 보너스는 관련 계열에 우선 적용하며, 모든 주문에 일괄 적용하는 전역 보너스는 후속 검토한다.
-- 보조 운용량은 한 주문의 조합 복잡도이며, 스톡 준비 용량과는 별개다.
-- 보조 글자 하나는 기능 글자 1개로 계산되고 추가 운용으로 스톡 비용이 할인되지 않는다.
+- 소환수는 회로판에 글자·선·연결을 직접 작성하지 않는다.
+- 소환수의 회로 보조는 스톡 충전으로만 작동한다.
+- 소환수에게 보조 묶음을 장착해 자동 연결하는 안은 폐기한다.
+- 스톡이 없어도 직접 시전할 수 있다.
+- 소환수가 없어도 직접 시전과 이미 준비된 스톡은 사용할 수 있다.
 
-### 수업·현장실습
+### 1학년 전투
 
 ```text
-계열 원리 학습
-→ 메인 글자 습득·레벨 성장
-→ 관련 보조 글자 학습
-→ 응용 과제
-→ 현장 활용 성공
-→ 마도서 등록·숙련·스톡화
+메인 글자 단독 발동
+→ 보조 글자 2개 직접 조합
+→ 핵심 보조 글자 숙련
+→ 하위 글자 스톡 사용
+→ 소환수로 지정 스톡 충전
+→ 완성 주문 스톡 사용
 ```
 
-- 1학년은 여러 계열을 넓게 배우고 보조 2개 조합과 학교 지정 실습을 수행한다.
-- 2학년은 선택 계열을 전문화하고 보조 4개 조합과 지정·선택 실습을 병행한다.
-- 3학년은 전공 계열 전문 분기, 보조 6개 조합과 학생 제안형 실습을 수행한다.
-- 우수 성적은 한 학년 앞선 복합 주문을 일부 조기 체험하게 할 수 있다.
+첫 학기 안에 직접 작성·스톡·소환수 생산 지원을 모두 경험한다.
 
 ### 스톡
 
-- 완성 주문 스톡과 하위 글자 스톡은 공용 준비 용량을 사용한다.
+- 두 스톡은 공용 준비 용량을 사용한다.
 - 준비 용량과 충전시간은 기능 글자 수 기준이다.
-- 메인 단독 주문은 용량 1, 기준 충전시간 1.0단위다.
 - 충전 공식은 `1.0 + 0.5 × (기능 글자 수 - 1)`이다.
 - 스톡은 마나를 소비·예약하지 않는다.
-- 학년별 보조 운용량 증가가 전체 스톡 준비 용량을 자동 증가시키지는 않는다.
+- 자동 충전 대상은 한 번에 1종이며 소환수가 생산을 지원한다.
 
 ### 학교·서사
 
 - 단일 명문학교, 3년제·6학기다.
 - 한 학기는 자유 일정 10회와 고정 사건 4회다.
+- 수업은 메인 글자 계열별로 진행하며 관련 메인·보조 글자를 학습한다.
+- 현장실습은 학년이 오를수록 배정형에서 제안형으로 자율성이 증가한다.
 - 필수 스토리는 목표·이유·위험만 짧게 전달한다.
 - 상세 세계관과 인물 이야기는 NPC 재대화·조사·기록으로 제공한다.
 
@@ -185,14 +181,13 @@
 ## 운영 규칙
 
 1. 사용자의 최신 지시가 이전 결정에 우선한다.
-2. 변경 결정은 `SUPERSEDED`, `LATEST_OVERRIDE`, `TRANSFERRED`, `REMOVED`로 추적한다.
+2. 변경 결정은 `SUPERSEDED`, `LATEST_OVERRIDE`, `TRANSFERRED`, `REMOVED`, `REJECTED`로 추적한다.
 3. 핵심 변경 시 책임 원본·결정 원장·Active Context를 함께 갱신한다.
 4. 방향 확정과 세부 수치 확정을 구분한다.
 5. 외부 작품은 고유 설정을 복제하지 않고 구조만 참고한다.
-6. 보류된 상태이상 세부설계를 현재 질문에 다시 끌어오지 않는다.
-7. 구현 파일은 기획 브랜치에 포함하지 않는다.
-8. 사용자 승인 전 `CORE_CONFIRMED`를 사용하지 않는다.
-9. 현재 단계에서는 Codex를 실행하지 않는다.
+6. 구현 파일은 기획 브랜치에 포함하지 않는다.
+7. 사용자 승인 전 `CORE_CONFIRMED`를 사용하지 않는다.
+8. 현재 단계에서는 Codex를 실행하지 않는다.
 
 ---
 
@@ -203,9 +198,9 @@
 | GM-CIRCUIT-03 | 각 메인 글자의 기본 발현과 레벨별 변화는 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-04 | 공통 보조와 계열 전용 보조의 비율은 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-05 | 보조 글자의 반복·중복·상충·감쇠 규칙은 무엇인가 | `UNRESOLVED` |
-| GM-CIRCUIT-09 | 보조 글자에도 독립 레벨을 둘 것인가 | `UNRESOLVED` |
 | GM-CIRCUIT-10 | Lv.4 전문 분기를 변경할 수 있는가 | `UNRESOLVED` |
 | GM-CIRCUIT-11 | 성적 등급별 추가 운용량과 과부하 규칙은 무엇인가 | `UNRESOLVED` |
+| GM-CIRCUIT-12 | 보조 글자 달인의 정확한 전투·스톡 보상은 무엇인가 | `UNRESOLVED` |
 | GM-WORLD-13 | 필수·선택 수업은 자유 일정에서 어떤 비용을 사용하는가 | `UNRESOLVED` |
 | GM-WORLD-14 | 컨디션은 단일 피로도인가, 집중·스트레스 분리인가 | `UNRESOLVED` |
 | GM-WORLD-15 | 졸업·진로를 다중 엔딩으로 운영하는가 | `UNRESOLVED` |
@@ -216,6 +211,8 @@
 | GM-00-37 | 연결·분기·합류를 독립 기능 글자로 계산하는가 | `UNRESOLVED` |
 | GM-00-38 | 전체 준비 용량 초기값과 성장량은 얼마인가 | `UNRESOLVED` |
 | GM-00-40 | 소환수 추가 편성·교체·동시 전개 방식은 무엇인가 | `UNRESOLVED` |
+| GM-STOCK-01 | 1학년 스톡 초기 준비 용량과 기본 편성은 무엇인가 | `UNRESOLVED` |
+| GM-POC-01 | CORE_POC 대표 주문·적·전투 구간은 무엇인가 | `UNRESOLVED` |
 
 ## 보류된 세부 설계
 
@@ -234,8 +231,8 @@
 - 실제 메인·보조 글자 목록과 수치
 - 메인 레벨별 정확한 기본 발현·효율
 - 계열별 Lv.4~Lv.5 전문 분기명과 효과
+- 보조 글자 숙련 등급의 정확한 요구량·보너스
 - 성적 등급별 추가 보조 운용량과 과부하 수치
-- 가족·출신 지역·입학시험 사례
 - 자유 일정의 세계관상 시간과 활동 수치
 - 학기별 수업·실습 개수와 예상 플레이 시간
 - 선택 대화 분량·보상·기록 UI
