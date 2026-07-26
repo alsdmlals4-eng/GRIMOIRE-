@@ -11,8 +11,33 @@
 - 프로젝트 코어 상태: `CORE_CANDIDATE`
 - 세계관 코어 상태: `WORLD_CORE_CANDIDATE`
 - 구현 상태: 미착수
+- 운영체계 상태: `GOVERNANCE_FOUNDATION_INSTALLED_VERIFYING`
 - 기준 브랜치: `gpt/planning-spell-20260725`
 - 기준 날짜: 2026-07-27
+- Base 기준 Commit: `438f41afd510c827c3097341bd9e5f9c9b0e1dd0`
+- 작업 계약: `VERTICAL_SLICE_MASTER_REFERENCE 6.0`
+
+## 운영체계 진입
+
+```text
+AGENTS.md
+→ docs/BASE_RULES_VERSION.md
+→ START_HERE.md
+→ 이 ACTIVE_CONTEXT.md
+→ docs/DOCUMENTATION_MAP.md
+→ docs/DEVELOPMENT_GATES.md
+→ docs/DESIGN_DOCUMENT_REGISTRY.json
+→ 현재 책임 원본
+→ skills/SKILL_REGISTRY.json
+→ skills/PROJECT_BASE_SKILL_ADAPTER.json
+→ 현재 PR·Issue·Goal·Plan
+→ 실제 파일·테스트
+```
+
+- Base Skill 본문을 프로젝트에 복제하지 않는다.
+- Base Registry의 자동 Trigger route를 프로젝트 어댑터와 전문 extension route를 통해 사용한다.
+- 기존 `docs/planning/` 책임 원본은 이동·삭제·강제 통합하지 않는다.
+- 운영체계 설치·검증 기록은 `docs/PROJECT_OPERATING_SYSTEM_INSTALLATION_PLAN.md`와 `docs/OPERATING_SYSTEM_HEALTH_REPORT.md`를 따른다.
 
 ## 한 줄 방향
 
@@ -151,8 +176,9 @@ Lv.0 미습득
 - 수업을 완성 주문 구매 메뉴로 만들지 않음
 - 학기를 3~4회 선택으로 압축하지 않음
 - 선택 대화를 읽지 않았다는 이유로 핵심 정보를 놓치게 하지 않음
+- 기존 기획 책임 원본의 승인 없는 이동·삭제·강제 통합 금지
 
-## 먼저 읽을 책임 원본
+## 먼저 읽을 기획 책임 원본
 
 1. `docs/planning/COMBAT_CORE_SYSTEM.md`
 2. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27D.md`
@@ -162,9 +188,25 @@ Lv.0 미습득
 6. `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`
 7. `docs/planning/DECISION_LOG.md`
 
+전체 책임과 보조 문서는 `docs/DESIGN_DOCUMENT_REGISTRY.json`에서 찾는다.
+
 ## 다음 우선 결정
 
 `GM-STOCK-01`: 1학년이 처음 사용하는 스톡의 기본 준비 용량과 초기 편성 구성을 정한다.
+
+후속 순서:
+
+```text
+GM-STOCK-01
+→ 목표 플레이어·플레이 상황
+→ 프로젝트 코어·뾰족한 재미 반례 검토
+→ Core Loop·경험 곡선·세일즈포인트
+→ 벤치마킹·SWOT·VRIO·제작성
+→ 마스코트 또는 상징 동반자 역할 후보
+→ CORE_POC 계약
+→ 적대적 검토
+→ 사용자 Gate 1 승인
+```
 
 ## 미검증
 
@@ -173,6 +215,8 @@ Lv.0 미습득
 - 1학년 `메인 1 + 보조 2`가 충분한 조합 재미를 주는지
 - 하위 글자 스톡과 완성 주문 스톡의 역할 차이를 즉시 이해하는지
 - 정확한 충전·마나·숙련·운용 수치
+- Godot 버전·렌더러·터치 입력 구현 방식
+- 저장·복귀·접근성·성능·발열·배터리
 
 ## GitHub 규칙
 
@@ -180,3 +224,5 @@ Lv.0 미습득
 - 구현 산출물을 기획 브랜치에 혼입하지 않는다.
 - 핵심 변경 시 책임 원본·결정 원장·Active Context를 함께 갱신한다.
 - 충돌하는 이전 결정은 `SUPERSEDED`, `REJECTED`, `LATEST_OVERRIDE`로 기록한다.
+- Base Skill 본문을 프로젝트에 복제하지 않는다.
+- 기본 브랜치 직접 수정과 사용자 승인 없는 PR 병합을 하지 않는다.
