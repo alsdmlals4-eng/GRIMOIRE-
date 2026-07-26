@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "registry_role": "spell-design-document-canonical-source-router",
+  "project": {
+    "repository": "alsdmlals4-eng/Spell",
+    "name": "스펠",
+    "temporary_name": true,
+    "branch": "gpt/planning-spell-20260725",
+    "product_stage": "CONCEPT_APPROVAL",
+    "execution_profile": "PLANNING_ONLY_PROFILE",
+    "work_mode": "PLAN",
+    "implementation_status": "NOT_STARTED"
+  },
+  "base_pin": {
+    "repository": "alsdmlals4-eng/Base",
+    "commit": "438f41afd510c827c3097341bd9e5f9c9b0e1dd0",
+    "version_record": "docs/BASE_RULES_VERSION.md"
+  },
+  "publication": {
+    "default_policy": "source_only",
+    "pdf_status": "NOT_BUILT",
+    "docx_status": "NOT_BUILT",
+    "manifest_status": "NOT_INSTALLED",
+    "human_visual_review": "NOT_RUN"
+  },
+  "state_sources": {
+    "start_here": "START_HERE.md",
+    "active_context": "docs/ACTIVE_CONTEXT.md",
+    "documentation_map": "docs/DOCUMENTATION_MAP.md",
+    "development_gates": "docs/DEVELOPMENT_GATES.md",
+    "decision_log": "docs/planning/DECISION_LOG.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27D.md"
+  },
+  "documents": [
+    {
+      "id": "spell-project-master",
+      "title": "스펠 통합 게임 설계",
+      "responsibility": "프로젝트 전체 코어·플레이어 약속·상위 시스템·세계관·육성 통합",
+      "responsibility_coverage": [
+        "project-core",
+        "player-promise",
+        "pointed-fun-candidate",
+        "combat",
+        "magic-system",
+        "world",
+        "progression",
+        "narrative"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/SPELL_GAME_DESIGN.md",
+      "status": "ACTIVE_CORE_CANDIDATE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/ACTIVE_CONTEXT.md",
+        "docs/planning/DECISION_LOG.md"
+      ]
+    },
+    {
+      "id": "spell-combat-core",
+      "title": "전투 코어 시스템",
+      "responsibility": "직접 작성·하위 글자 스톡·완성 주문 스톡·소환수 책임 경계와 전투 루프",
+      "responsibility_coverage": [
+        "combat-core",
+        "direct-writing",
+        "stock-usage",
+        "summon-support",
+        "combat-learning"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/COMBAT_CORE_SYSTEM.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27D.md"
+      ]
+    },
+    {
+      "id": "spell-magic-letter-circuit",
+      "title": "마법 글자·회로 문법",
+      "responsibility": "마법 글자·회로·주문 구성 문법과 메인·보조 책임",
+      "responsibility_coverage": [
+        "magic-letter",
+        "circuit-grammar",
+        "spell-composition"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/CIRCUIT_SYSTEM.md",
+        "docs/planning/BENCHMARK_CIRCUIT_GRAMMAR.md"
+      ]
+    },
+    {
+      "id": "spell-main-letter-growth",
+      "title": "메인 글자 성장·전문화",
+      "responsibility": "메인 글자 독립 레벨과 Lv.4~Lv.5 전문 활용 분기",
+      "responsibility_coverage": [
+        "main-letter-level",
+        "specialization",
+        "research-progression"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/MAIN_LETTER_LEVEL_SYSTEM.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/MAIN_LETTER_SPECIALIZATION_SYSTEM.md"
+      ]
+    },
+    {
+      "id": "spell-support-letter-growth",
+      "title": "보조 글자 숙련·운용량",
+      "responsibility": "보조 글자의 미숙·숙련·달인 상태와 학년별 표준 안전 운용량",
+      "responsibility_coverage": [
+        "support-letter-mastery",
+        "support-letter-capacity"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/SUPPORT_LETTER_OPERATION_CAPACITY_SYSTEM.md"
+      ]
+    },
+    {
+      "id": "spell-stock-system",
+      "title": "스톡 시스템",
+      "responsibility": "완성 주문·하위 글자 스톡의 상위 규칙·편성·생산·소비",
+      "responsibility_coverage": [
+        "stock-core",
+        "stock-capacity",
+        "stock-charge",
+        "stock-target-switch",
+        "stock-hit-pause",
+        "stock-status-effects"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/STOCK_SYSTEM.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/STOCK_CAPACITY_SYSTEM.md",
+        "docs/planning/STOCK_CHARGE_TIME_SYSTEM.md",
+        "docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md",
+        "docs/planning/STOCK_HIT_PAUSE_SYSTEM.md",
+        "docs/planning/STATUS_EFFECT_STOCK_SYSTEM.md",
+        "docs/planning/AUTO_SPELL_SYSTEM.md"
+      ]
+    },
+    {
+      "id": "spell-summon-system",
+      "title": "소환수 시스템",
+      "responsibility": "기본 소환수 전개·전투·수호·지정 스톡 생산·충전·동조",
+      "responsibility_coverage": [
+        "summon-core",
+        "summon-stance",
+        "stock-charge-support"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/SUMMON_SYSTEM.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/BENCHMARK_SUMMON_SYSTEM.md"
+      ]
+    },
+    {
+      "id": "spell-mana-system",
+      "title": "마나 시스템",
+      "responsibility": "직접 시전 자원·회복·행동 보너스와 스톡 자원 분리",
+      "responsibility_coverage": [
+        "mana",
+        "direct-cast-resource"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/MANA_SYSTEM.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/COMBAT_CORE_SYSTEM.md"
+      ]
+    },
+    {
+      "id": "spell-world-setting",
+      "title": "세계관 콘셉트",
+      "responsibility": "단일 명문 마법학교·인근 지역·주인공 배경·세계관 범위",
+      "responsibility_coverage": [
+        "world-setting",
+        "school-hub",
+        "protagonist-background"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/WORLD_SETTING_CONCEPT.md",
+      "status": "ACTIVE_WORLD_CORE_CANDIDATE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/WORLD_PROTAGONIST_BACKGROUND.md"
+      ]
+    },
+    {
+      "id": "spell-school-growth",
+      "title": "마법학교 육성 구조",
+      "responsibility": "3년제·6학기·수업·현장실습·학년별 자율성 증가",
+      "responsibility_coverage": [
+        "school-growth",
+        "academic-year",
+        "semester-schedule",
+        "curriculum",
+        "field-practicum"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/WORLD_ACADEMIC_YEAR_STRUCTURE.md",
+        "docs/planning/WORLD_SEMESTER_SCHEDULE_SYSTEM.md",
+        "docs/planning/WORLD_MAGIC_CURRICULUM_SYSTEM.md",
+        "docs/planning/WORLD_FIELD_PRACTICUM_SYSTEM.md",
+        "docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md"
+      ]
+    },
+    {
+      "id": "spell-narrative-progressive-disclosure",
+      "title": "선택형 상세 서사",
+      "responsibility": "필수 정보의 빠른 전달과 재대화·조사·기록 기반 상세 서사",
+      "responsibility_coverage": [
+        "narrative-ux",
+        "progressive-disclosure",
+        "ddd-feedback"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/WORLD_SEMESTER_SCHEDULE_SYSTEM.md"
+      ]
+    },
+    {
+      "id": "spell-decision-ledger",
+      "title": "기획 결정 원장",
+      "responsibility": "사용자 결정·최신 override·폐기·보류·설계 영향 추적",
+      "responsibility_coverage": [
+        "decision-ledger",
+        "legacy-requirement-traceability"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/DECISION_LOG.md",
+      "status": "ACTIVE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27D.md"
+      ]
+    }
+  ],
+  "unregistered_or_deferred_responsibilities": [
+    {
+      "responsibility": "target-player-and-market-positioning",
+      "status": "PLANNED_FOR_CONCEPT_GATE"
+    },
+    {
+      "responsibility": "core-poc-contract-and-playtest",
+      "status": "NOT_AUTHORED"
+    },
+    {
+      "responsibility": "vertical-slice-contract",
+      "status": "BLOCKED_BY_CONCEPT_APPROVAL"
+    },
+    {
+      "responsibility": "ui-ux-accessibility",
+      "status": "NOT_AUTHORED"
+    },
+    {
+      "responsibility": "asset-license-and-mascot",
+      "status": "LEDGER_INSTALLED_CONTENT_EMPTY"
+    },
+    {
+      "responsibility": "godot-engineering-data-save",
+      "status": "NOT_STARTED"
+    },
+    {
+      "responsibility": "qa-performance-release",
+      "status": "NOT_STARTED"
+    }
+  ],
+  "registry_rules": {
+    "single_canonical_source_per_responsibility": true,
+    "date_addenda_are_decision_history_not_parallel_master_documents": true,
+    "actual_files_and_tests_override_implementation_claims": true,
+    "publication_does_not_replace_source": true,
+    "user_approval_required_for_core_confirmed": true,
+    "base_skill_bodies_copied_to_project": false
+  }
+}
