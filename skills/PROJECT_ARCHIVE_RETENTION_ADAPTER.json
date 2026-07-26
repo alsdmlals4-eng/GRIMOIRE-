@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "adapter_role": "spell-archive-retention-adapter",
+  "project": "alsdmlals4-eng/Spell",
+  "base": {
+    "repository": "alsdmlals4-eng/Base",
+    "commit": "438f41afd510c827c3097341bd9e5f9c9b0e1dd0",
+    "skill_id": "governing-legacy-retention-and-archives"
+  },
+  "status": {
+    "active": false,
+    "implementation": "NONE",
+    "reason": "No approved legacy reconciliation or archive migration is in scope. Existing planning documents are preserved in place."
+  },
+  "canonical_sources": [
+    "docs/planning/DECISION_LOG.md",
+    "docs/DESIGN_DOCUMENT_REGISTRY.json",
+    "docs/DOCUMENTATION_MAP.md"
+  ],
+  "protected_paths": [
+    "docs/planning/**",
+    "docs/ACTIVE_CONTEXT.md",
+    "docs/contracts/**"
+  ],
+  "legacy_search_roots": [
+    "docs/planning/"
+  ],
+  "generated_derivative_roots": [],
+  "protected_evidence_roots": [],
+  "archive_root": null,
+  "archive_readme": null,
+  "archive_manifest": null,
+  "default_classification": "KEEP_UNRESOLVED",
+  "allowed_actions_without_new_user_approval": [
+    "inventory",
+    "classify",
+    "verify"
+  ],
+  "actions_requiring_user_approval": [
+    "reconcile",
+    "archive",
+    "delete-approved",
+    "move",
+    "rename",
+    "merge-to-canonical"
+  ],
+  "recovery": {
+    "git_history_required": true,
+    "rollback_branch": "gpt/planning-spell-20260725",
+    "delete_without_recovery_evidence": false
+  },
+  "validators": {
+    "stale_reference_review": "manual-and-connector",
+    "archive_manifest_validation": "NOT_AVAILABLE_INACTIVE",
+    "runtime_validation": "NOT_APPLICABLE"
+  }
+}
