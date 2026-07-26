@@ -6,7 +6,7 @@
 - 결정 상태: `DIRECTION_CONFIRMED`
 - 세계관 코어 상태: `WORLD_CORE_CANDIDATE`
 - 기준 날짜: 2026-07-27
-- 관련 결정: `GM-WORLD-12`, `GM-CIRCUIT-02`, `GM-CIRCUIT-03`
+- 관련 결정: `GM-WORLD-12`, `GM-CIRCUIT-02`, `GM-CIRCUIT-06`
 - 마법 글자 문법: `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`
 - 메인 글자 레벨: `docs/planning/MAIN_LETTER_LEVEL_SYSTEM.md`
 - 학교 육성: `docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md`
