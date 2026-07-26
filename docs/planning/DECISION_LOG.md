@@ -17,6 +17,7 @@
 - 세계관 참조: `docs/planning/WORLD_SETTING_CONCEPT.md`
 - 선택형 상세 서사 참조: `docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md`
 - 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`
+- 전체 이전 결정 표: Git commit `d1bc4f1a47e3638047c7ee22381ee379ea338106` 이전 버전과 날짜별 Addendum
 
 기존 시스템 문서는 `REFERENCE_CANDIDATE`다. 최신 v6 재기획 결정은 Gate 1 기준선, 최신 Addendum, Active Context 순으로 확인한다.
 
@@ -37,7 +38,7 @@
 
 ## 기존 결정 기록의 지위
 
-이 파일의 이전 세부 결정 표는 삭제하지 않고 Git 이력과 기존 Addendum에 보존한다. v6 재기획에서는 다음 원칙으로 재해석한다.
+v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum에 보존한다. 이 원장은 현재 Gate 1의 활성 인덱스와 재해석 상태를 제공한다.
 
 - 보호 결정: 명시적으로 유지
 - 기존 코어·세계관·시스템: `REFERENCE_CANDIDATE`
