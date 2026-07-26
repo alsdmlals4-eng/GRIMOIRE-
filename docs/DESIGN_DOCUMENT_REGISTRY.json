@@ -44,13 +44,13 @@
     {
       "id": "spell-v6-concept-rebase",
       "title": "스펠 v6 콘셉트 재기획 기준선",
-      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·플레이 상황·서사 깊이·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
+      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·플레이 상황·서사 깊이·플레이어 약속·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
       "responsibility_coverage": [
         "gate-1-working-baseline",
         "primary-player-experience",
         "target-player-and-play-context",
         "optional-narrative-depth",
-        "player-promise-draft",
+        "confirmed-player-promise",
         "pointed-fun",
         "why-how-what",
         "element-alignment",
@@ -145,15 +145,15 @@
     },
     {
       "responsibility": "final-player-promise",
-      "status": "NEXT_BLOCKING_DECISION_GM-PROMISE-01"
+      "status": "CONFIRMED_BY_GM-PROMISE-01"
     },
     {
       "responsibility": "micro-combat-session-semester-loops",
-      "status": "BLOCKED_BY_GM-PROMISE-01"
+      "status": "NEXT_BLOCKING_DECISION_GM-LOOP-01"
     },
     {
       "responsibility": "experience-curve-and-sales-points",
-      "status": "NOT_AUTHORED"
+      "status": "BLOCKED_BY_GM-LOOP-01"
     },
     {
       "responsibility": "benchmark-swot-vrio-feasibility",
