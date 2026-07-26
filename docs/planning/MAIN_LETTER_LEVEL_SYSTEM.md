@@ -6,7 +6,7 @@
 - 결정 상태: `DIRECTION_CONFIRMED`
 - 프로젝트 코어 상태: `CORE_CANDIDATE`
 - 기준 날짜: 2026-07-27
-- 관련 결정: `GM-CIRCUIT-02`, `GM-CIRCUIT-03`
+- 관련 결정: `GM-CIRCUIT-02`, `GM-CIRCUIT-06`
 - 마법 글자 문법: `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`
 - 수업 체계: `docs/planning/WORLD_MAGIC_CURRICULUM_SYSTEM.md`
 
