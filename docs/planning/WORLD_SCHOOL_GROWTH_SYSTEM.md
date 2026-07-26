@@ -6,7 +6,7 @@
 - 결정 상태: `DIRECTION_CONFIRMED`
 - 세계관 코어 상태: `WORLD_CORE_CANDIDATE`
 - 기준 날짜: 2026-07-26
-- 관련 결정: `GM-WORLD-04`, `GM-WORLD-05`
+- 관련 결정: `GM-WORLD-04`, `GM-WORLD-05`, `GM-WORLD-06`
 - 상위 세계관: `docs/planning/WORLD_SETTING_CONCEPT.md`
 
 이 문서는 단일 명문 마법학교, 학년 승급, 프린세스 메이커식 일정 선택 육성을 Spell의 회로·현장실습 구조에 맞게 변형한 성장 방향을 정의한다.
