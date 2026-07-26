@@ -11,6 +11,8 @@
 - 프로젝트 코어 상태: `CORE_CANDIDATE`
 - 세계관 코어 상태: `REFERENCE_CANDIDATE`
 - 최상위 경험 방향: `PRIMARY_EXPERIENCE_DIRECTION_CONFIRMED`
+- 목표 플레이어·플레이 상황: `AUDIENCE_AND_PLAY_CONTEXT_CONFIRMED`
+- 선택형 상세 서사: `OPTIONAL_NARRATIVE_DEPTH_CONFIRMED`
 - Gate 1 판정: `UNVERIFIED`
 - 구현 상태: `NOT_STARTED`
 - CORE_POC: `NOT_AUTHORED`
@@ -32,6 +34,7 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 
 - `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
 - `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md`
+- `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`
 
 ### 기존 작업물
 
@@ -74,17 +77,97 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 
 이 결정은 `CORE_CONFIRMED`, Gate 1 승인, 개별 시스템·수치 확정, CORE_POC 통과 또는 구현 승인이 아니다.
 
-## 플레이어 약속 초안
+## 승인된 목표 플레이어·플레이 상황 — GM-AUDIENCE-01
+
+사용자 승인: 2026-07-27, `권장안대로 진행`
+
+> 집·카페·휴식 시간처럼 잠깐 집중할 수 있는 환경에서 10~15분 동안 하나의 수업·현장실습·마법 발견 단위를 완주하고, 장기적으로 학교생활과 주문 연구를 축적하려는 모바일 플레이어.
+
+상태: `AUDIENCE_AND_PLAY_CONTEXT_CONFIRMED`
+
+### 목표 시간 구조
 
 ```text
-플레이어는 마법학교의 학생이 되어
-마법 글자의 의미와 현장의 문제를 읽고 주문을 직접 설계하며
-내가 생각한 마법이 실제 세계를 바꾸는 발견·영리함·성장의 판타지를 경험한다.
+Micro 상황
+= 약 30초~2분
+
+전투·문제 묶음
+= 약 3~5분
+
+기본 수업·현장실습 세션
+= 약 10~15분
+
+선택형 상세 감상
+= 추가 대화·조사·기록으로 자율 연장
 ```
 
-상태: `DESIGN_HYPOTHESIS_PENDING_GATE_1`
+시간은 Gate 1 설계 목표 범위다. 실제 플레이테스트 전까지 정확한 수치는 `PLAYTEST_TUNING_REQUIRED`다.
 
-목표 플레이어와 플레이 상황을 확정한 뒤 문장을 압축·수정한다.
+### 플레이 상황 원칙
+
+- 기본 세션은 문제 인지→주문 설계→결과→발견 또는 성장까지 완결한다.
+- 전투·대화·보상 사이에 안전한 중단·복귀 지점을 둔다.
+- 장시간 플레이를 강제하지 않는다.
+- 연속 플레이를 원하는 사용자는 다음 실습이나 상세 대화를 이어갈 수 있다.
+
+## 승인된 서사 깊이 원칙 — GM-NARRATIVE-03
+
+사용자 요구:
+
+> 기본적으론 스토리, 설명을 짧게 하고 대화 선택 시 좀 더 다양하게.
+
+상태: `OPTIONAL_NARRATIVE_DEPTH_CONFIRMED`
+
+### 필수 핵심층
+
+기본 진행에서 짧고 명확하게 전달한다.
+
+- 현재 상황
+- 행동 이유
+- 목표
+- 위험·실패 조건
+- 중요한 선택 결과
+- 주문 문제 해결에 필요한 핵심 정보
+
+### 선택형 상세층
+
+대화 선택·재대화·조사·기록 열람으로 확장한다.
+
+- 인물의 감정과 관계
+- 학교생활과 일상
+- 세계관과 사건 배경
+- 마법 글자·주문 원리
+- 다른 해결법과 실패 사례
+- 소환수 이야기
+- 지역·학교 역사
+
+```text
+기본 대화
+→ 짧은 상황·목표 전달
+
+선택지
+├─ 바로 출발한다
+├─ 주문 원리를 더 묻는다
+├─ 상대의 사정을 듣는다
+└─ 주변 기록을 조사한다
+```
+
+필수 정보는 선택형 상세 대화에만 숨기지 않는다. 상세층을 읽지 않았다는 이유로 불합리한 실패를 만들지 않는다.
+
+## 플레이어 약속 초안 — GM-PROMISE-01
+
+권장 초안:
+
+> 짧은 현장실습 속에서 마법 글자의 의미를 읽고 주문을 직접 설계해, 내가 생각한 해결법으로 세계를 바꾸는 마법학교 RPG.
+
+상태: `DESIGN_HYPOTHESIS_REQUIRES_USER_DECISION`
+
+이 문장은 다음을 포함한다.
+
+- 목표 플레이 상황: 짧은 집중 세션
+- 주 행동: 의미 읽기·주문 설계
+- 핵심 감정: 발견·영리함·주체성
+- 장르 프레임: 마법학교 RPG
 
 ## 뾰족한 재미 초안
 
@@ -162,9 +245,9 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 
 `GM-STOCK-01`의 세부 수치는 다음 상위 항목이 정렬될 때까지 보류한다.
 
-1. 목표 플레이어와 플레이 상황
-2. 세션 길이·중단 복귀 단위
-3. Micro·Combat·Session Loop
+1. 플레이어 약속 확정
+2. Micro·Combat·Session Loop
+3. 중단·복귀 지점
 4. CORE_POC 범위
 
 상태: `DEFERRED_BY_HIGHER_LEVEL_CONCEPT_WORK`
@@ -178,25 +261,27 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 - 직접 작성이 주체성을 전달하기 전에 반복 피로와 화면 가림을 만들 수 있다.
 - 완성 주문 스톡 비중이 높아지면 버튼 전투로 퇴행할 수 있다.
 - 학교 3년 콘텐츠 범위가 코어 검증보다 먼저 커질 수 있다.
+- 선택형 상세층이 과도하게 커지면 콘텐츠 제작량이 폭증할 수 있다.
 
 ### BLOCKED_UNVERIFIED
 
-- 목표 플레이어와 실제 플레이 상황
-- 목표 세션 길이와 중단·복귀 단위
+- 실제 세션 시간이 10~15분 목표에 맞는지
+- 중단·복귀 단위가 모바일 사용 환경에 적합한지
 - 터치 작성의 반복 재미와 인식 허용 범위
 - 실시간 압박이 사고를 강화하는지 방해하는지
 - 스톡이 조합 선택을 보존하는지
 - 소환수 충전 판단이 의미 있는지
 - 짧은 주문과 복잡한 주문의 공존
 - 실제 모바일 UI 혼잡도
+- 기본층과 상세층의 적정 대화 분량
 
-## 다음 우선 결정 — GM-AUDIENCE-01
+## 다음 우선 결정 — GM-PROMISE-01
 
-1차 목표 플레이어와 가장 자주 발생할 플레이 상황을 정한다.
+승인된 최상위 경험과 목표 플레이어를 한 문장 플레이어 약속으로 확정한다.
 
-현재 권장 가설:
+현재 권장 초안:
 
-> 짧은 시간에도 한 번의 마법 문제 해결과 발견을 완주하고, 장기적으로는 학교생활과 주문 연구를 축적하고 싶은 모바일 플레이어.
+> 짧은 현장실습 속에서 마법 글자의 의미를 읽고 주문을 직접 설계해, 내가 생각한 해결법으로 세계를 바꾸는 마법학교 RPG.
 
 상태: `DESIGN_HYPOTHESIS_REQUIRES_USER_DECISION`
 
@@ -204,8 +289,9 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 
 ```text
 GM-CORE-01 최상위 경험 방향 — 승인됨
-→ GM-AUDIENCE-01 목표 플레이어·플레이 상황
-→ 플레이어 약속 확정
+→ GM-AUDIENCE-01 목표 플레이어·플레이 상황 — 승인됨
+→ GM-NARRATIVE-03 기본·선택형 상세층 — 승인됨
+→ GM-PROMISE-01 플레이어 약속
 → Micro·Combat·Session·Semester Loop
 → 경험 곡선
 → 프로젝트 코어·변경 가능한 외피
@@ -221,10 +307,11 @@ GM-CORE-01 최상위 경험 방향 — 승인됨
 
 1. 사용자 제공 `VERTICAL_SLICE_MASTER_REFERENCE_v6.md`
 2. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
-3. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md`
-4. `docs/planning/DECISION_LOG.md`
-5. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-6. 기존 시스템별 `docs/planning/` 문서 — 참조 필요 시 선택
+3. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`
+4. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md`
+5. `docs/planning/DECISION_LOG.md`
+6. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+7. 기존 시스템별 `docs/planning/` 문서 — 참조 필요 시 선택
 
 ## GitHub 규칙
 
