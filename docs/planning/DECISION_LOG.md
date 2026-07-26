@@ -8,6 +8,7 @@
 - 상위 책임 원본: `docs/planning/SPELL_GAME_DESIGN.md`
 - 세계관 책임 원본: `docs/planning/WORLD_SETTING_CONCEPT.md`
 - 학교 육성 책임 원본: `docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md`
+- 마법학교 성장 벤치마킹: `docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md`
 - 회로 시스템: `docs/planning/CIRCUIT_SYSTEM.md`
 - 마나 시스템: `docs/planning/MANA_SYSTEM.md`
 - 소환수 시스템: `docs/planning/SUMMON_SYSTEM.md`
@@ -23,6 +24,7 @@
 - 최신 결정 추가 기록 D: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26D.md`
 - 최신 결정 추가 기록 E: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26E.md`
 - 최신 결정 추가 기록 F: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26F.md`
+- 최신 결정 추가 기록 G: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-26G.md`
 
 이 문서는 사용자와 합의한 결정, 수정, 폐기, 보류 상태를 추적한다. 최신 세부 결정은 추가 기록 문서와 각 책임 원본이 우선한다.
 
@@ -72,6 +74,8 @@
 | GM-WORLD-04 | 학교 규모 | 단일 명문학교+인근 도시·야외 지역 | `CONFIRMED` | 중심 허브를 깊게 만들고 외부 지역을 점진 확장 |
 | GM-WORLD-05 | 학년 성장 | 학년 승급에 따라 자연스럽게 성장 | `DIRECTION_CONFIRMED` | 상위 회로·실습·시설·관계 해금 |
 | GM-WORLD-06 | 육성 구조 | 프린세스 메이커식 육성을 경량 결합 | `DIRECTION_CONFIRMED` | 학기 일정 선택이 능력·관계·활용 성향에 영향 |
+| GM-WORLD-07 | 주인공 입학 형태 | 정식 신입생 | `CONFIRMED` | 플레이어와 기초부터 학습하고 관계·학년 성장을 처음부터 축적 |
+| GM-WORLD-BM-01 | 마법학교 장르 벤치마킹 | 여러 작품의 구조적 장점만 참고 | `BENCHMARK_DIRECTION_CONFIRMED` | 학교생활·수업·관계·학년·현장실습 구조 강화 |
 | OPS-00-01 | GitHub 기획 기록 | 지속 갱신 | `CONFIRMED` | 책임 원본·원장·Active Context 동기화 |
 
 ---
@@ -142,6 +146,19 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 - 육성만으로 주문을 자동 획득하지 않고 현장에서 직접 발견한다.
 - 학교 경영·건설, 수십 개 생활 능력치, 연애·결혼 중심 구조는 현재 코어에서 제외한다.
 
+### 정식 신입생과 벤치마킹
+
+- 주인공은 특별 전형이나 편입이 아닌 정식 신입생이다.
+- 플레이어와 함께 학교 규칙, 회로 문법, 교수, 동급생과 현장실습을 처음부터 경험한다.
+- 특별한 혈통·환생 지식·선행 숙련을 필수 설정으로 사용하지 않는다.
+- 차별성은 플레이어의 회로 활용과 문제 해결에서 발생한다.
+- `마법학교 마법사로 살아가는 법`, `Harry Potter`, `Mother of Learning`, `Scholomance`, `Mage Errant`, `Witch Hat Atelier`, `Earthsea`, `The Magicians`의 구조적 장점을 참고한다.
+- 학교생활을 반복 사건 생성 시스템으로 사용한다.
+- 수업은 기능 해금뿐 아니라 교수·관계·과제·활용 관점과 연결한다.
+- 관계는 단순 호감도보다 정보·동행·연구·해결 경로를 연다.
+- 학년 상승은 힘뿐 아니라 책임과 문제 범위를 넓힌다.
+- 참고 작품의 고유 설정은 복제하지 않는다.
+
 ---
 
 ## 운영 규칙
@@ -152,9 +169,10 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 4. 방향 확정과 세부 수치 확정을 구분한다.
 5. `PLANNING_DEFAULT` 수치는 PoC에서 수정할 수 있으며 시스템 구조와 구분한다.
 6. 보류된 상태이상 세부설계를 현재 핵심 기획 질문에 다시 끌어오지 않는다.
-7. 구현 파일은 현재 기획 브랜치에 포함하지 않는다.
-8. 사용자 승인 전 `CORE_CONFIRMED`를 사용하지 않는다.
-9. 현재 단계에서는 Codex를 실행하지 않는다.
+7. 외부 작품은 고유 명칭·인물·사건·마법 체계를 복제하지 않고 구조만 참고한다.
+8. 구현 파일은 현재 기획 브랜치에 포함하지 않는다.
+9. 사용자 승인 전 `CORE_CONFIRMED`를 사용하지 않는다.
+10. 현재 단계에서는 Codex를 실행하지 않는다.
 
 ---
 
@@ -162,13 +180,13 @@ r = 0.25초 직접 피해 체력 손실 합계 / 집계 시작 시 최대 체력
 
 | 후보 ID | 질문 | 상태 |
 |---|---|---|
-| GM-WORLD-07 | 주인공은 신입생·편입생·견습 연구생 중 무엇인가 | `UNRESOLVED` |
-| GM-WORLD-08 | 교육 기간은 총 몇 학년인가 | `UNRESOLVED` |
-| GM-WORLD-09 | 학기당 활동 선택 단위는 몇 개인가 | `UNRESOLVED` |
-| GM-WORLD-10 | 현장실습은 학교 배정·학생 선택·혼합형 중 무엇인가 | `UNRESOLVED` |
-| GM-WORLD-11 | 컨디션은 단일 피로도인가, 집중·스트레스 분리인가 | `UNRESOLVED` |
-| GM-WORLD-12 | 졸업과 진로를 다중 엔딩으로 운영하는가 | `UNRESOLVED` |
-| GM-WORLD-13 | 세계의 장기 갈등은 무엇인가 | `UNRESOLVED` |
+| GM-WORLD-08 | 정식 신입생의 출신 배경과 입학 동기는 무엇인가 | `UNRESOLVED` |
+| GM-WORLD-09 | 교육 기간은 총 몇 학년인가 | `UNRESOLVED` |
+| GM-WORLD-10 | 학기당 활동 선택 단위는 몇 개인가 | `UNRESOLVED` |
+| GM-WORLD-11 | 현장실습은 학교 배정·학생 선택·혼합형 중 무엇인가 | `UNRESOLVED` |
+| GM-WORLD-12 | 컨디션은 단일 피로도인가, 집중·스트레스 분리인가 | `UNRESOLVED` |
+| GM-WORLD-13 | 졸업과 진로를 다중 엔딩으로 운영하는가 | `UNRESOLVED` |
+| GM-WORLD-14 | 세계의 장기 갈등은 무엇인가 | `UNRESOLVED` |
 | GM-00-35 | 전환 지연 중 다시 대상을 변경하면 어떻게 처리하는가 | `UNRESOLVED` |
 | GM-00-36 | 플레이어·소환수 생산 능력치 계산식은 무엇인가 | `UNRESOLVED` |
 | GM-00-37 | 연결·분기·합류를 독립 기능 회로로 계산하는가 | `UNRESOLVED` |
