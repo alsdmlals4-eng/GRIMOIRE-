@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "registry_role": "spell-project-skill-router",
+  "project": {
+    "repository": "alsdmlals4-eng/Spell",
+    "name": "스펠",
+    "product_stage": "CONCEPT_APPROVAL",
+    "execution_profile": "PLANNING_ONLY_PROFILE",
+    "work_mode": "PLAN"
+  },
+  "base_registry_route": {
+    "repository": "alsdmlals4-eng/Base",
+    "commit": "438f41afd510c827c3097341bd9e5f9c9b0e1dd0",
+    "source_registry": "skills/SKILL_REGISTRY.json",
+    "selection": "automatic-trigger-match",
+    "automatic_selection": true,
+    "require_trigger_match": true,
+    "adapter": "skills/PROJECT_BASE_SKILL_ADAPTER.json",
+    "extension_routes": "skills/BASE_SHARED_SKILL_ROUTES.json",
+    "copy_skill_bodies_to_project": false,
+    "load_all_skills": false
+  },
+  "execution_contracts": {
+    "short_v6": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
+    "master_v6_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
+    "project_agents": "AGENTS.md",
+    "start_here": "START_HERE.md",
+    "active_context": "docs/ACTIVE_CONTEXT.md",
+    "documentation_map": "docs/DOCUMENTATION_MAP.md",
+    "development_gates": "docs/DEVELOPMENT_GATES.md",
+    "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json"
+  },
+  "routing_policy": {
+    "minimum_sufficient_skill_per_subtask": true,
+    "long_stage_uses_sequential_skill_chain": true,
+    "skill_file_read_is_not_execution": true,
+    "grill_me_does_not_replace_skill_coverage": true,
+    "adversarial_review_does_not_replace_build_or_validation": true,
+    "one_blocking_design_question_at_a_time": true,
+    "evidence_before_completion": true
+  },
+  "active_base_routes": [
+    {
+      "skill_id": "managing-project-intake-and-work-contract",
+      "modes": [
+        "route",
+        "clarify",
+        "contract",
+        "decompose-and-sequence",
+        "execution-report"
+      ],
+      "trigger_tags": [
+        "new-request",
+        "scope-change",
+        "multi-step-work",
+        "work-contract"
+      ],
+      "current_use": "Every non-trivial planning, review, workflow, or implementation request"
+    },
+    {
+      "skill_id": "managing-game-project-operating-system",
+      "modes": [
+        "install",
+        "audit",
+        "reconcile-legacy",
+        "migrate",
+        "verify"
+      ],
+      "trigger_tags": [
+        "project-operating-system",
+        "documentation-map",
+        "registry",
+        "governance-foundation",
+        "cold-start"
+      ],
+      "current_use": "Governance foundation audit, approved installation, and verification"
+    },
+    {
+      "skill_id": "maintaining-project-context-and-handoff",
+      "modes": [
+        "context-refresh",
+        "session-handoff",
+        "implementation-package-handoff"
+      ],
+      "trigger_tags": [
+        "active-context",
+        "handoff",
+        "next-work",
+        "long-running-task"
+      ],
+      "current_use": "Refresh Active Context after decisions, gates, and completed work units"
+    },
+    {
+      "skill_id": "analyzing-and-refining-game-concepts",
+      "modes": [
+        "frame",
+        "constrain",
+        "sharpen",
+        "structure",
+        "benchmark-and-player-research",
+        "analyze",
+        "playtest-and-experiment",
+        "poc-contract",
+        "recalibrate",
+        "production-gate"
+      ],
+      "trigger_tags": [
+        "concept",
+        "player-experience",
+        "pointed-fun",
+        "core-loop",
+        "benchmark",
+        "swot",
+        "vrio",
+        "core-poc"
+      ],
+      "current_use": "Primary Concept Gate and CORE_POC planning chain"
+    },
+    {
+      "skill_id": "identifying-project-core",
+      "modes": [
+        "read-only-core-identification"
+      ],
+      "trigger_tags": [
+        "existing-project-core",
+        "core-boundary",
+        "protected-decision"
+      ],
+      "current_use": "Distinguish core, support, shell, removed, and unverified elements"
+    },
+    {
+      "skill_id": "establishing-project-core",
+      "modes": [
+        "plan",
+        "counterexample-review",
+        "user-confirmation"
+      ],
+      "trigger_tags": [
+        "core-confirmation",
+        "non-negotiable-core",
+        "changeable-shell"
+      ],
+      "current_use": "Only after Concept analysis and explicit user approval"
+    },
+    {
+      "skill_id": "managing-design-documents",
+      "modes": [
+        "author",
+        "update",
+        "restructure",
+        "publish",
+        "validate"
+      ],
+      "trigger_tags": [
+        "design-document",
+        "canonical-source",
+        "registry",
+        "publication"
+      ],
+      "current_use": "Maintain project planning canonical sources and Registry"
+    },
+    {
+      "skill_id": "designing-vertical-slices",
+      "modes": [
+        "slice-contract",
+        "quality-bar",
+        "pipeline-proof",
+        "playtest-evidence",
+        "decision-gate"
+      ],
+      "trigger_tags": [
+        "vertical-slice",
+        "integrated-demo",
+        "quality-bar",
+        "pipeline-proof"
+      ],
+      "current_use": "Blocked until core approval and CORE_POC contract/result"
+    },
+    {
+      "skill_id": "running-adversarial-review-and-refinement",
+      "modes": [
+        "review-scope-map",
+        "attack",
+        "validate-critique",
+        "route-findings",
+        "technical-review-proposal",
+        "refine-approved-findings",
+        "regression-recheck",
+        "decision-report"
+      ],
+      "trigger_tags": [
+        "adversarial-review",
+        "gate-review",
+        "finding-routing",
+        "p0-p3"
+      ],
+      "current_use": "Concept confirmation, large changes, and integrated review"
+    },
+    {
+      "skill_id": "reviewing-and-validating-project-changes",
+      "modes": [
+        "contract-check",
+        "external-source-review",
+        "reference-freshness",
+        "static-validation",
+        "runtime-validation",
+        "accessibility-review",
+        "performance-profile",
+        "regression",
+        "evidence-report"
+      ],
+      "trigger_tags": [
+        "validation",
+        "reference-freshness",
+        "runtime",
+        "accessibility",
+        "performance",
+        "regression"
+      ],
+      "current_use": "Documentation reference validation now; runtime modes after implementation"
+    },
+    {
+      "skill_id": "auditing-canonical-reference-freshness",
+      "modes": [
+        "reference-freshness"
+      ],
+      "trigger_tags": [
+        "path-change",
+        "document-id-change",
+        "schema-change",
+        "stale-reference"
+      ],
+      "current_use": "Run when canonical paths, IDs, schema, Registry, or generated outputs change"
+    },
+    {
+      "skill_id": "managing-base-change-proposals",
+      "modes": [
+        "extract",
+        "submit",
+        "review",
+        "implement",
+        "verify"
+      ],
+      "trigger_tags": [
+        "base-promotion",
+        "shared-learning",
+        "cross-project-rule"
+      ],
+      "current_use": "Only for reusable cross-project learning with user approval"
+    }
+  ],
+  "required_extension_routes": [
+    {
+      "route_id": "legacy_retention_and_archives",
+      "skill_id": "governing-legacy-retention-and-archives",
+      "route_file": "skills/BASE_SHARED_SKILL_ROUTES.json",
+      "adapter": "skills/PROJECT_ARCHIVE_RETENTION_ADAPTER.json"
+    },
+    {
+      "route_id": "godot_assets_before_creation",
+      "skill_id": "evaluating-godot-assets-and-plugins-before-creation",
+      "route_file": "skills/BASE_SHARED_SKILL_ROUTES.json",
+      "adapter": "skills/PROJECT_BASE_SKILL_ADAPTER.json"
+    }
+  ],
+  "project_local_skills": [],
+  "project_local_skill_policy": {
+    "adapter_only": true,
+    "local_only_when_spell_specific": true,
+    "duplicate_base_skill": false,
+    "creation_requires_independent_input_output_validation": true
+  },
+  "execution_evidence_statuses": [
+    "EXECUTED_AND_EVIDENCED",
+    "EXECUTED_UNVERIFIED",
+    "ROUTED_NOT_NEEDED",
+    "NOT_AVAILABLE",
+    "BLOCKED",
+    "FALLBACK_USED"
+  ],
+  "current_gate_coverage": {
+    "gate_1_concept": {
+      "status": "IN_PROGRESS",
+      "required_routes": [
+        "managing-project-intake-and-work-contract",
+        "analyzing-and-refining-game-concepts",
+        "identifying-project-core",
+        "establishing-project-core",
+        "managing-design-documents",
+        "running-adversarial-review-and-refinement"
+      ]
+    },
+    "gate_2_prototype_vertical_slice": {
+      "status": "NOT_ENTERED",
+      "required_routes": [
+        "designing-vertical-slices",
+        "evaluating-godot-assets-and-plugins-before-creation",
+        "reviewing-and-validating-project-changes"
+      ]
+    }
+  }
+}
