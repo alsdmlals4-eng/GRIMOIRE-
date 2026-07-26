@@ -14,6 +14,8 @@
 - 마법 수업: `docs/planning/WORLD_MAGIC_CURRICULUM_SYSTEM.md`
 - 마법 글자 문법: `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`
 - 메인 글자 레벨: `docs/planning/MAIN_LETTER_LEVEL_SYSTEM.md`
+- 메인 글자 전문화: `docs/planning/MAIN_LETTER_SPECIALIZATION_SYSTEM.md`
+- 보조 글자 운용량: `docs/planning/SUPPORT_LETTER_OPERATION_CAPACITY_SYSTEM.md`
 - 주인공 배경: `docs/planning/WORLD_PROTAGONIST_BACKGROUND.md`
 - 선택형 상세 서사: `docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md`
 - 마법학교 벤치마킹: `docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md`
@@ -26,7 +28,7 @@
 - 스톡 대상 전환: `docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md`
 - 스톡 피격 정지: `docs/planning/STOCK_HIT_PAUSE_SYSTEM.md`
 - 상태이상–스톡: `docs/planning/STATUS_EFFECT_STOCK_SYSTEM.md`
-- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27B.md`
+- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27C.md`
 
 최신 세부 결정은 결정 추가 기록과 각 책임 원본이 우선한다.
 
@@ -49,6 +51,8 @@
 | GM-CIRCUIT-01 | 마법 글자 문법 | 메인 하나로 주문 성립, 보조로 강화 | `DIRECTION_CONFIRMED` | 글자→회로→주문 문장 |
 | GM-CIRCUIT-02 | 메인 글자 계열 | 현상·물질·개념 중심 | `DIRECTION_CONFIRMED` | 한 글자의 다목적 활용 |
 | GM-CIRCUIT-06 | 메인 글자 성장 | 글자별 독립 Lv, 공부·실습으로 성장 | `DIRECTION_CONFIRMED_WITH_PLANNING_DEFAULT` | 계열별 폭·깊이 육성 |
+| GM-CIRCUIT-07 | Lv.4~Lv.5 성장 | Lv.1~3 공통, Lv.4~5 전문 활용 분기 | `DIRECTION_CONFIRMED` | 연구실·실습·진로 차별화 |
+| GM-CIRCUIT-08 | 보조 글자 운용량 | 1학년 2개, 학년마다 +2, 우수 성적 추가 | `DIRECTION_CONFIRMED_WITH_PLANNING_DEFAULT` | 초반 조합 재미와 학업 보상 |
 | GM-00-10 | 동료 정체성 | 소환수 같은 마법적 존재 | `DIRECTION_CONFIRMED` | 전투 협력자 |
 | GM-00-11 | 자동스펠 | 반복 입력 완화 | `SUPERSEDED_BY_STOCK` | 스톡으로 통합 |
 | GM-00-12 | 완성 주문 스톡 | 등록 주문을 저장해 터치 사용 | `CONFIRMED` | 준비형 전술 자원 |
@@ -112,16 +116,37 @@
 - 보조 글자는 형상·전달·출력·규모·시간·행동·효율·안정·조건·순서를 담당한다.
 - 보조가 늘수록 기능이 확대되지만 작성 시간·마나·스톡 비용도 증가한다.
 
-### 메인 글자 계열과 레벨
+### 메인 글자 계열·레벨·전문화
 
 - 계열은 현상·물질·개념 중심이다.
 - 공격·방어·생활·구조·탐색은 활용 결과다.
 - 각 메인 글자는 독립 레벨을 가진다.
-- 기획 기본값은 `Lv.0 미습득 → Lv.1 입문 → Lv.2 숙련 → Lv.3 응용 → Lv.4 심화 → Lv.5 전공·연구`다.
+- 기획 기본값은 `Lv.0 미습득 → Lv.1 입문 → Lv.2 숙련 → Lv.3 응용 → Lv.4 전문화 → Lv.5 개인 연구`다.
 - 레벨은 수업·직접 작성·보조 조합·현장 활용·시험·연구로 상승한다.
-- 레벨은 기본 발현·안정성·마나 효율·보조 수용력·활용 범위를 성장시킨다.
-- 높은 메인 레벨이 보조 글자를 자동 습득시키지는 않는다.
+- Lv.1~Lv.3은 공통 기반, Lv.4에서 전문 분야를 선택하고 Lv.5에서 심화한다.
+- 전문화는 기본 발현·보조 결합·연구실·현장실습·진로에 영향을 준다.
+- 전문화가 보조 글자를 자동 습득시키지는 않는다.
 - 메인 레벨과 무관하게 기능 글자 수 계산에서는 메인 1개다.
+
+### 학년별 보조 글자 운용량
+
+```text
+1학년
+→ 보조 2개
+
+2학년
+→ 보조 4개
+
+3학년
+→ 보조 6개
+```
+
+- 위 수치는 학교가 인증한 표준 안전 운용량의 `PLANNING_DEFAULT`다.
+- 1학년부터 `메인 1 + 보조 2`의 완성형 주문 조합을 사용할 수 있다.
+- 우수한 계열·회로 문법·응용 실기 성적은 현재 학년 표준보다 보조 글자 1개 이상을 추가 운용하게 할 수 있다.
+- 성적 보너스는 관련 계열에 우선 적용하며, 모든 주문에 일괄 적용하는 전역 보너스는 후속 검토한다.
+- 보조 운용량은 한 주문의 조합 복잡도이며, 스톡 준비 용량과는 별개다.
+- 보조 글자 하나는 기능 글자 1개로 계산되고 추가 운용으로 스톡 비용이 할인되지 않는다.
 
 ### 수업·현장실습
 
@@ -134,9 +159,10 @@
 → 마도서 등록·숙련·스톡화
 ```
 
-- 1학년은 여러 계열을 넓게 배우고 학교 지정 실습을 수행한다.
-- 2학년은 선택 계열을 전문화하고 지정·선택 실습을 병행한다.
-- 3학년은 전공 계열 연구와 학생 제안형 실습을 수행한다.
+- 1학년은 여러 계열을 넓게 배우고 보조 2개 조합과 학교 지정 실습을 수행한다.
+- 2학년은 선택 계열을 전문화하고 보조 4개 조합과 지정·선택 실습을 병행한다.
+- 3학년은 전공 계열 전문 분기, 보조 6개 조합과 학생 제안형 실습을 수행한다.
+- 우수 성적은 한 학년 앞선 복합 주문을 일부 조기 체험하게 할 수 있다.
 
 ### 스톡
 
@@ -145,6 +171,7 @@
 - 메인 단독 주문은 용량 1, 기준 충전시간 1.0단위다.
 - 충전 공식은 `1.0 + 0.5 × (기능 글자 수 - 1)`이다.
 - 스톡은 마나를 소비·예약하지 않는다.
+- 학년별 보조 운용량 증가가 전체 스톡 준비 용량을 자동 증가시키지는 않는다.
 
 ### 학교·서사
 
@@ -176,9 +203,9 @@
 | GM-CIRCUIT-03 | 각 메인 글자의 기본 발현과 레벨별 변화는 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-04 | 공통 보조와 계열 전용 보조의 비율은 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-05 | 보조 글자의 반복·중복·상충·감쇠 규칙은 무엇인가 | `UNRESOLVED` |
-| GM-CIRCUIT-07 | Lv.4~Lv.5를 선형 성장과 전문 분기 중 어떻게 구성하는가 | `UNRESOLVED` |
-| GM-CIRCUIT-08 | 레벨별 안전 보조 글자 수용 범위와 과부하 규칙은 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-09 | 보조 글자에도 독립 레벨을 둘 것인가 | `UNRESOLVED` |
+| GM-CIRCUIT-10 | Lv.4 전문 분기를 변경할 수 있는가 | `UNRESOLVED` |
+| GM-CIRCUIT-11 | 성적 등급별 추가 운용량과 과부하 규칙은 무엇인가 | `UNRESOLVED` |
 | GM-WORLD-13 | 필수·선택 수업은 자유 일정에서 어떤 비용을 사용하는가 | `UNRESOLVED` |
 | GM-WORLD-14 | 컨디션은 단일 피로도인가, 집중·스트레스 분리인가 | `UNRESOLVED` |
 | GM-WORLD-15 | 졸업·진로를 다중 엔딩으로 운영하는가 | `UNRESOLVED` |
@@ -205,7 +232,9 @@
 상태: `DEFERRED_CONTENT_DATA`
 
 - 실제 메인·보조 글자 목록과 수치
-- 메인 레벨별 정확한 기본 발현·보조 수용량·효율
+- 메인 레벨별 정확한 기본 발현·효율
+- 계열별 Lv.4~Lv.5 전문 분기명과 효과
+- 성적 등급별 추가 보조 운용량과 과부하 수치
 - 가족·출신 지역·입학시험 사례
 - 자유 일정의 세계관상 시간과 활동 수치
 - 학기별 수업·실습 개수와 예상 플레이 시간
