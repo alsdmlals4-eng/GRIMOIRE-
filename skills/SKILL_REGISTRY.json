@@ -4,9 +4,13 @@
   "project": {
     "repository": "alsdmlals4-eng/Spell",
     "name": "스펠",
-    "product_stage": "CONCEPT_APPROVAL",
+    "product_stage": "PROTOTYPE_AND_VERTICAL_SLICE",
+    "gate_1_status": "APPROVED",
+    "project_core_status": "CORE_CONFIRMED",
     "execution_profile": "PLANNING_ONLY_PROFILE",
-    "work_mode": "PLAN"
+    "work_mode": "PLAN",
+    "implementation_status": "NOT_STARTED",
+    "next_blocking_decision": "GM-VISUAL-PRESENTATION-01"
   },
   "base_registry_route": {
     "repository": "alsdmlals4-eng/Base",
@@ -28,7 +32,10 @@
     "active_context": "docs/ACTIVE_CONTEXT.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
-    "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json"
+    "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
+    "asset_license_ledger": "docs/ASSET_LICENSE_LEDGER.md",
+    "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
+    "latest_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md"
   },
   "routing_policy": {
     "minimum_sufficient_skill_per_subtask": true,
@@ -37,216 +44,83 @@
     "grill_me_does_not_replace_skill_coverage": true,
     "adversarial_review_does_not_replace_build_or_validation": true,
     "one_blocking_design_question_at_a_time": true,
-    "evidence_before_completion": true
+    "evidence_before_completion": true,
+    "latest_user_override_precedes_base_default": true,
+    "core_poc_must_not_be_reintroduced": true,
+    "visual_presentation_precedes_mass_asset_generation": true
   },
   "active_base_routes": [
     {
       "skill_id": "managing-project-intake-and-work-contract",
-      "modes": [
-        "route",
-        "clarify",
-        "contract",
-        "decompose-and-sequence",
-        "execution-report"
-      ],
-      "trigger_tags": [
-        "new-request",
-        "scope-change",
-        "multi-step-work",
-        "work-contract"
-      ],
-      "current_use": "Every non-trivial planning, review, workflow, or implementation request"
+      "modes": ["route", "clarify", "contract", "decompose-and-sequence", "execution-report"],
+      "trigger_tags": ["new-request", "scope-change", "multi-step-work", "work-contract"],
+      "current_use": "Every non-trivial planning, review, workflow, asset, or implementation request"
     },
     {
       "skill_id": "managing-game-project-operating-system",
-      "modes": [
-        "install",
-        "audit",
-        "reconcile-legacy",
-        "migrate",
-        "verify"
-      ],
-      "trigger_tags": [
-        "project-operating-system",
-        "documentation-map",
-        "registry",
-        "governance-foundation",
-        "cold-start"
-      ],
-      "current_use": "Governance foundation audit, approved installation, and verification"
+      "modes": ["install", "audit", "reconcile-legacy", "migrate", "verify"],
+      "trigger_tags": ["project-operating-system", "documentation-map", "registry", "governance-foundation", "cold-start"],
+      "current_use": "Governance audit, state reconciliation, and verification"
     },
     {
       "skill_id": "maintaining-project-context-and-handoff",
-      "modes": [
-        "context-refresh",
-        "session-handoff",
-        "implementation-package-handoff"
-      ],
-      "trigger_tags": [
-        "active-context",
-        "handoff",
-        "next-work",
-        "long-running-task"
-      ],
-      "current_use": "Refresh Active Context after decisions, gates, and completed work units"
+      "modes": ["context-refresh", "session-handoff", "implementation-package-handoff"],
+      "trigger_tags": ["active-context", "handoff", "next-work", "long-running-task"],
+      "current_use": "Refresh Active Context after decisions, reviews, gates, and completed work units"
     },
     {
       "skill_id": "analyzing-and-refining-game-concepts",
-      "modes": [
-        "frame",
-        "constrain",
-        "sharpen",
-        "structure",
-        "benchmark-and-player-research",
-        "analyze",
-        "playtest-and-experiment",
-        "poc-contract",
-        "recalibrate",
-        "production-gate"
-      ],
-      "trigger_tags": [
-        "concept",
-        "player-experience",
-        "pointed-fun",
-        "core-loop",
-        "benchmark",
-        "swot",
-        "vrio",
-        "core-poc"
-      ],
-      "current_use": "Primary Concept Gate and CORE_POC planning chain"
+      "modes": ["frame", "constrain", "sharpen", "structure", "benchmark-and-player-research", "analyze", "playtest-and-experiment", "poc-contract", "recalibrate", "production-gate"],
+      "trigger_tags": ["concept", "player-experience", "pointed-fun", "core-loop", "benchmark", "swot", "vrio", "core-poc"],
+      "current_use": "Gate 1 concept chain is approved; use only for evidence-driven recalibration"
     },
     {
       "skill_id": "identifying-project-core",
-      "modes": [
-        "read-only-core-identification"
-      ],
-      "trigger_tags": [
-        "existing-project-core",
-        "core-boundary",
-        "protected-decision"
-      ],
-      "current_use": "Distinguish core, support, shell, removed, and unverified elements"
+      "modes": ["read-only-core-identification"],
+      "trigger_tags": ["existing-project-core", "core-boundary", "protected-decision"],
+      "current_use": "Protect CORE_CONFIRMED and distinguish support, shell, removed, and unverified elements"
     },
     {
       "skill_id": "establishing-project-core",
-      "modes": [
-        "plan",
-        "counterexample-review",
-        "user-confirmation"
-      ],
-      "trigger_tags": [
-        "core-confirmation",
-        "non-negotiable-core",
-        "changeable-shell"
-      ],
-      "current_use": "Only after Concept analysis and explicit user approval"
+      "modes": ["plan", "counterexample-review", "user-confirmation"],
+      "trigger_tags": ["core-confirmation", "non-negotiable-core", "changeable-shell"],
+      "current_use": "Completed for Gate 1; reopen only with explicit evidence and user decision"
     },
     {
       "skill_id": "managing-design-documents",
-      "modes": [
-        "author",
-        "update",
-        "restructure",
-        "publish",
-        "validate"
-      ],
-      "trigger_tags": [
-        "design-document",
-        "canonical-source",
-        "registry",
-        "publication"
-      ],
-      "current_use": "Maintain project planning canonical sources and Registry"
+      "modes": ["author", "update", "restructure", "publish", "validate"],
+      "trigger_tags": ["design-document", "canonical-source", "registry", "publication"],
+      "current_use": "Maintain approved planning sources, visual/audio preproduction documents, and Registry"
     },
     {
       "skill_id": "designing-vertical-slices",
-      "modes": [
-        "slice-contract",
-        "quality-bar",
-        "pipeline-proof",
-        "playtest-evidence",
-        "decision-gate"
-      ],
-      "trigger_tags": [
-        "vertical-slice",
-        "integrated-demo",
-        "quality-bar",
-        "pipeline-proof"
-      ],
-      "current_use": "Blocked until core approval and CORE_POC contract/result"
+      "modes": ["slice-contract", "quality-bar", "pipeline-proof", "playtest-evidence", "decision-gate"],
+      "trigger_tags": ["vertical-slice", "integrated-demo", "quality-bar", "pipeline-proof"],
+      "current_use": "Gate 1 Slice contract approved; quality and pipeline planning allowed, implementation blocked by profile transition"
     },
     {
       "skill_id": "running-adversarial-review-and-refinement",
-      "modes": [
-        "review-scope-map",
-        "attack",
-        "validate-critique",
-        "route-findings",
-        "technical-review-proposal",
-        "refine-approved-findings",
-        "regression-recheck",
-        "decision-report"
-      ],
-      "trigger_tags": [
-        "adversarial-review",
-        "gate-review",
-        "finding-routing",
-        "p0-p3"
-      ],
-      "current_use": "Concept confirmation, large changes, and integrated review"
+      "modes": ["review-scope-map", "attack", "validate-critique", "route-findings", "technical-review-proposal", "refine-approved-findings", "regression-recheck", "decision-report"],
+      "trigger_tags": ["adversarial-review", "gate-review", "finding-routing", "p0-p3"],
+      "current_use": "Executed for Gate 2 preproduction readiness; repeat after visual/audio contracts and major changes"
     },
     {
       "skill_id": "reviewing-and-validating-project-changes",
-      "modes": [
-        "contract-check",
-        "external-source-review",
-        "reference-freshness",
-        "static-validation",
-        "runtime-validation",
-        "accessibility-review",
-        "performance-profile",
-        "regression",
-        "evidence-report"
-      ],
-      "trigger_tags": [
-        "validation",
-        "reference-freshness",
-        "runtime",
-        "accessibility",
-        "performance",
-        "regression"
-      ],
-      "current_use": "Documentation reference validation now; runtime modes after implementation"
+      "modes": ["contract-check", "external-source-review", "reference-freshness", "static-validation", "runtime-validation", "accessibility-review", "performance-profile", "regression", "evidence-report"],
+      "trigger_tags": ["validation", "reference-freshness", "runtime", "accessibility", "performance", "regression"],
+      "current_use": "Documentation and reference validation now; runtime, accessibility, and performance after implementation"
     },
     {
       "skill_id": "auditing-canonical-reference-freshness",
-      "modes": [
-        "reference-freshness"
-      ],
-      "trigger_tags": [
-        "path-change",
-        "document-id-change",
-        "schema-change",
-        "stale-reference"
-      ],
-      "current_use": "Run when canonical paths, IDs, schema, Registry, or generated outputs change"
+      "modes": ["reference-freshness"],
+      "trigger_tags": ["path-change", "document-id-change", "schema-change", "stale-reference"],
+      "current_use": "Required when state, canonical paths, IDs, Registry, asset ledger, or generated outputs change"
     },
     {
       "skill_id": "managing-base-change-proposals",
-      "modes": [
-        "extract",
-        "submit",
-        "review",
-        "implement",
-        "verify"
-      ],
-      "trigger_tags": [
-        "base-promotion",
-        "shared-learning",
-        "cross-project-rule"
-      ],
-      "current_use": "Only for reusable cross-project learning with user approval"
+      "modes": ["extract", "submit", "review", "implement", "verify"],
+      "trigger_tags": ["base-promotion", "shared-learning", "cross-project-rule"],
+      "current_use": "Only for reusable cross-project learning with separate user approval"
     }
   ],
   "required_extension_routes": [
@@ -280,7 +154,7 @@
   ],
   "current_gate_coverage": {
     "gate_1_concept": {
-      "status": "IN_PROGRESS",
+      "status": "APPROVED",
       "required_routes": [
         "managing-project-intake-and-work-contract",
         "analyzing-and-refining-game-concepts",
@@ -291,12 +165,19 @@
       ]
     },
     "gate_2_prototype_vertical_slice": {
-      "status": "NOT_ENTERED",
+      "status": "ENTERED_PLANNING_ONLY",
+      "current_substage": "VISUAL_AUDIO_PREPRODUCTION_BEFORE_PROFILE_TRANSITION",
       "required_routes": [
         "designing-vertical-slices",
+        "running-adversarial-review-and-refinement",
         "evaluating-godot-assets-and-plugins-before-creation",
         "reviewing-and-validating-project-changes"
-      ]
+      ],
+      "blocked_routes": {
+        "codex": "BLOCKED_BY_PROFILE_TRANSITION",
+        "godot_implementation": "BLOCKED_BY_PROFILE_TRANSITION",
+        "runtime_validation": "BLOCKED_BY_IMPLEMENTATION"
+      }
     }
   }
 }
