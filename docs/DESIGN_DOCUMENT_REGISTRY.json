@@ -1,5 +1,5 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "registry_role": "spell-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/Spell",
@@ -16,21 +16,24 @@
     "sales_points_status": "CONFIRMED_BY_GM-SALES-01",
     "benchmark_status": "BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED",
     "vrio_status": "VRIO_POTENTIAL_NOT_PROVEN",
-    "solo_feasibility_status": "FEASIBLE_WITH_STRICT_SCOPE",
     "summon_companion_status": "TWO_TIER_SUMMON_STRUCTURE_CONFIRMED_BY_GM-MASCOT-01",
     "core_poc_status": "REMOVED_BY_USER_DECISION",
     "core_poc_validation_status": "ABSORBED_INTO_VERTICAL_SLICE",
     "vertical_slice_route_status": "DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_BY_GM-VS-ROUTE-01",
     "vertical_slice_contract_status": "CONFIRMED_BY_GM-SLICE-01",
     "vertical_slice_structure": "COMPRESSED_SEMESTER_FOUR_CORE_SESSIONS_THREE_FREE_SCHEDULES",
+    "adversarial_review_status": "AUTHORED_BY_GM-GATE1-REVIEW-01",
+    "current_scope_feasibility": "CONDITIONAL_FAIL",
+    "p0_reduced_scope_feasibility": "CONDITIONAL_PASS_CANDIDATE",
+    "gate_1_final_approval_status": "BLOCKED_BY_P0_DECISION",
     "vertical_slice_implementation_status": "NOT_STARTED",
-    "next_blocking_decision": "GM-GATE1-REVIEW-01"
+    "next_blocking_decision": "GM-GATE1-RISK-01"
   },
   "planning_authority": {
     "master_contract": "user-provided VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
     "short_contract": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
     "master_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
-    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27M.md",
+    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27N.md",
     "gate_1_working_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
     "previous_planning_documents_role": "REFERENCE_CANDIDATE"
   },
@@ -45,7 +48,7 @@
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27M.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27N.md",
     "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
     "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
     "gate_1_experience_curve": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
@@ -54,7 +57,8 @@
     "gate_1_benchmark_swot_vrio_feasibility": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
     "gate_1_summon_companion": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
     "gate_1_direct_vertical_slice_route": "docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md",
-    "gate_1_vertical_slice_contract": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md"
+    "gate_1_vertical_slice_contract": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md",
+    "gate_1_adversarial_review": "docs/planning/GATE_1_ADVERSARIAL_REVIEW.md"
   },
   "canonical_documents": [
     {
@@ -168,7 +172,7 @@
       "id": "spell-gate-1-vertical-slice-contract",
       "title": "스펠 Gate 1 축약 학기형 Vertical Slice 계약",
       "source_path": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md",
-      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE_PENDING_P0_AMENDMENT",
       "responsibility_coverage": [
         "compressed-semester-slice",
         "four-core-sessions",
@@ -184,6 +188,22 @@
       ]
     },
     {
+      "id": "spell-gate-1-adversarial-review",
+      "title": "스펠 Gate 1 적대적 콘셉트·범위 검토",
+      "source_path": "docs/planning/GATE_1_ADVERSARIAL_REVIEW.md",
+      "status": "ACTIVE_REVIEW_SOURCE_USER_DECISION_REQUIRED",
+      "responsibility_coverage": [
+        "adversarial-scope-review",
+        "p0-risks",
+        "p1-risks",
+        "common-situation-challenge-proposal",
+        "first-completion-time-cap-proposal",
+        "free-schedule-archetype-proposal",
+        "validation-first-implementation-order",
+        "minimal-save-state-proposal"
+      ]
+    },
+    {
       "id": "spell-decision-ledger",
       "title": "스펠 기획 결정 원장",
       "source_path": "docs/planning/DECISION_LOG.md",
@@ -195,9 +215,9 @@
         "user-overrides"
       ],
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27N.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27M.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27L.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27K.md"
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27L.md"
       ]
     }
   ],
@@ -286,15 +306,23 @@
     },
     {
       "responsibility": "vertical-slice-contract",
-      "status": "CONFIRMED_BY_GM-SLICE-01"
+      "status": "CONFIRMED_BY_GM-SLICE-01_PENDING_P0_AMENDMENT"
     },
     {
       "responsibility": "gate-1-adversarial-review",
-      "status": "NEXT_BLOCKING_DECISION_GM-GATE1-REVIEW-01"
+      "status": "AUTHORED_BY_GM-GATE1-REVIEW-01"
+    },
+    {
+      "responsibility": "gate-1-p0-risk-package",
+      "status": "USER_DECISION_REQUIRED_GM-GATE1-RISK-01"
+    },
+    {
+      "responsibility": "gate-1-final-approval",
+      "status": "BLOCKED_BY_P0_DECISION"
     },
     {
       "responsibility": "vertical-slice-implementation",
-      "status": "BLOCKED_BY_GATE_1_REVIEW_AND_FINAL_APPROVAL"
+      "status": "BLOCKED_BY_GATE_1_FINAL_APPROVAL"
     },
     {
       "responsibility": "godot-engineering-data-save",
@@ -313,6 +341,8 @@
     "critical_events_require_one_free_schedule_between_them": true,
     "rest_must_be_a_valid_free_schedule_choice": true,
     "free_schedule_must_not_block_required_progression": true,
+    "p0_package_requires_user_approval": true,
+    "gate_1_final_approval_blocked_until_p0_decision": true,
     "v6_contract_controls_process_except_explicit_user_override": true,
     "previous_planning_documents_are_references_until_reapproved": true,
     "actual_files_and_tests_override_implementation_claims": true,
