@@ -10,7 +10,7 @@
 - Work Mode: `PLAN`
 - 기준 날짜: 2026-07-27
 - 기준 브랜치: `gpt/planning-spell-20260725`
-- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27N.md`
+- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27O.md`
 - 현재 상태: `docs/ACTIVE_CONTEXT.md`
 - Gate 1 기준선: `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
 
@@ -20,22 +20,22 @@
 
 ## Gate 1 결정 인덱스
 
-| 질문 ID | 결정 주제 | 사용자 결정·검토 | 상태 |
-|---|---|---|---|
-| GM-CORE-01 | 최상위 플레이 경험 | 조합·발견 우선, 직접 작성·자동화 보조 | `PRIMARY_EXPERIENCE_DIRECTION_CONFIRMED` |
-| GM-AUDIENCE-01 | 목표 플레이어·상황 | 10~15분 집중형 모바일 세션 | `AUDIENCE_AND_PLAY_CONTEXT_CONFIRMED` |
-| GM-NARRATIVE-03 | 서사 깊이 | 기본은 짧게, 선택 시 깊게 | `OPTIONAL_NARRATIVE_DEPTH_CONFIRMED` |
-| GM-PROMISE-01 | 플레이어 약속 | 배움→설계→세계 변화 | `PLAYER_PROMISE_CONFIRMED_FOR_GATE_1` |
-| GM-LOOP-01 | 게임플레이 Loop | 고정 중요 일정 + 자유 일정 | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` |
-| GM-CURVE-01 | 경험 곡선 | 첫 5분 직접 작성, 자동화 후행 | `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1` |
-| GM-CORE-BOUNDARY-01 | 프로젝트 코어 경계 | 의미 기반 작성·조합·상황 반응 | `PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1` |
-| GM-SALES-01 | 세일즈포인트 | 직접 작성·상황별 설계·학교 발견 | `SALES_POINTS_CONFIRMED_FOR_GATE_1` |
-| GM-BENCHMARK-01 | 벤치마킹·SWOT·VRIO·제작성 | 직접 입력 / 조합 문제 / 학교 성장 | `BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED` |
-| GM-MASCOT-01 | 소환수 구조 | 메인 동반 + 전투 보조 2계층 | `TWO_TIER_SUMMON_STRUCTURE_CONFIRMED_FOR_GATE_1` |
-| GM-VS-ROUTE-01 | 제품 검증 경로 | CORE_POC 없이 Vertical Slice로 직접 진행 | `DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_FOR_GATE_1` |
-| GM-SLICE-01 | Vertical Slice 계약 | 4개 핵심 세션 + 자유일정 3회 | `VERTICAL_SLICE_CONTRACT_CONFIRMED_FOR_GATE_1` |
-| GM-GATE1-REVIEW-01 | 적대적 범위 검토 | 현재 계약은 조건부 실패, P0 감량안 제안 | `ADVERSARIAL_REVIEW_AUTHORED_P0_P1_PROPOSED` |
-| GM-GATE1-RISK-01 | P0 처리 패키지 | 사용자 결정 대기 | `USER_DECISION_REQUIRED` |
+| 질문 ID | 결정 | 상태 |
+|---|---|---|
+| GM-CORE-01 | 조합·발견을 주 경험으로 확정 | `PRIMARY_EXPERIENCE_DIRECTION_CONFIRMED` |
+| GM-AUDIENCE-01 | 10~15분 단위 모바일 플레이 | `AUDIENCE_AND_PLAY_CONTEXT_CONFIRMED` |
+| GM-NARRATIVE-03 | 기본은 짧게, 선택 시 깊게 | `OPTIONAL_NARRATIVE_DEPTH_CONFIRMED` |
+| GM-PROMISE-01 | 배움→설계→세계 변화 | `PLAYER_PROMISE_CONFIRMED_FOR_GATE_1` |
+| GM-LOOP-01 | 수업·연습·일상·시험·축제·현장 + 자유 일정 | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` |
+| GM-CURVE-01 | 첫 5분 직접 작성·설계, 자동화 후행 | `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1` |
+| GM-CORE-BOUNDARY-01 | 의미 기반 작성·조합·상황 반응·학습 순환 | `PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1` |
+| GM-SALES-01 | 직접 작성·상황별 설계·학교 학습 발견 | `SALES_POINTS_CONFIRMED_FOR_GATE_1` |
+| GM-BENCHMARK-01 | 직접 입력 / 조합 문제 / 학교 성장 3그룹 | `BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED` |
+| GM-MASCOT-01 | 메인 동반 + 전투 보조 2계층 | `TWO_TIER_SUMMON_STRUCTURE_CONFIRMED_FOR_GATE_1` |
+| GM-VS-ROUTE-01 | CORE_POC 없이 Vertical Slice로 직접 진행 | `DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_FOR_GATE_1` |
+| GM-SLICE-01 | 4개 핵심 세션 + 자유일정 3회 | `VERTICAL_SLICE_CONTRACT_CONFIRMED_FOR_GATE_1` |
+| GM-GATE1-REVIEW-01 | 적대적 범위·제작성 검토 | `ADVERSARIAL_REVIEW_AUTHORED_P0_P1_PROPOSED` |
+| GM-GATE1-RISK-01 | 권장 P0 처리 패키지 전체 승인 | `P0_RISK_TREATMENT_PACKAGE_CONFIRMED_FOR_GATE_1` |
 
 ---
 
@@ -72,20 +72,17 @@
 = 공격·견제·수호·충전 지원
 ```
 
-소환수는 작성·조합 판단·정답 제시를 대행하지 않는다.
+Slice에서는 보조 소환수의 수호 또는 견제 하나만 구현한다. 두 소환수 모두 글자 작성·조합 판단·정답 제시를 대행하지 않는다.
 
 ---
 
 ## 직접 Vertical Slice 경로
 
-사용자 결정:
-
-> COREPOC 없이 우리는 버티칼슬라이스로 갈거야.
-
 ```text
 Gate 1 콘셉트 정리
-→ Vertical Slice 계약
-→ 적대적 검토·P0 처리
+→ Vertical Slice 구조 계약
+→ 적대적 검토
+→ P0 처리 패키지 승인
 → 사용자 Gate 1 최종 승인
 → VERTICAL_SLICE_FULL_PROFILE 전환
 → Codex read-only Plan
@@ -93,82 +90,106 @@ Gate 1 콘셉트 정리
 ```
 
 - CORE_POC: `REMOVED_BY_USER_DECISION`
-- 검증 책임: `ABSORBED_INTO_VERTICAL_SLICE`
-- 별도 CORE_POC 재도입 금지
+- CORE_POC 검증 책임: `ABSORBED_INTO_VERTICAL_SLICE`
+- 별도 CORE_POC를 다른 이름으로 재도입하지 않는다.
 
 ---
 
-## 승인된 Vertical Slice 계약
+## P0 보완 Vertical Slice 계약
+
+책임 원본: `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
 
 ```text
-프롤로그·학교 도착
-→ 첫 수업·교내 연습
+첫 수업·교내 연습
 → 자유일정 A
 → 첫 실기시험
 → 자유일정 B
 → 학교축제
 → 자유일정 C
 → 첫 현장실습
-→ 귀환·마도서 기록·다음 학기 예고
+→ 귀환·마도서 기록
 ```
 
-역할:
+### 공통 Situation Challenge
 
 ```text
-수업·연습 = 배움
-시험 = 이해의 증명
-학교축제 = 표현·관계·비전투 활용
-현장실습 = 위험 속 응용·발견
-자유일정 = 휴식·준비·관계·연구의 완충
+상황 목표
+→ 관찰 가능한 상태
+→ 사용 가능한 메인·보조 글자
+→ 제한 조건
+→ 방향성 결과 미리보기
+→ 주문 작성
+→ 세계 상태 변화
+→ 성공·부분 성공·실패 원인
+→ 기록·후속 반응
 ```
 
-보호 결정:
+수업·시험·축제·현장은 같은 계약을 사용하며 위험·압박·자원·평가·결과·소환수 허용·복구 방식으로 차이를 만든다.
 
-- 중요 일정 사이 자유일정 1회씩
-- 휴식은 유효한 선택
+### 세션 역할
+
+| 세션 | 역할 |
+|---|---|
+| 수업·연습 | 원리 이해와 비교 |
+| 실기시험 | 제한 조건 안에서 이해 증명 |
+| 학교축제 | 표현·개성·관계·비전투 활용 |
+| 현장실습 | 위험 속 우선순위·재설계·발견 |
+
+### 자유일정
+
+모든 슬롯은 다음 세 원형을 재사용한다.
+
+- `휴식`: 컨디션·집중 회복과 안전 보정
+- `준비`: 시험 복습·축제 준비·현장 조사 또는 소환수 조율
+- `교류`: 메인 동반자 또는 핵심 인물과 관계·관점 획득
+
+보호:
+
+- 중요 일정 사이 총 3회
+- 슬롯당 행동 하나 선택
 - 필수 진행·정보·정답 차단 금지
+- 신규 지역·전투·독립 미니게임 제작 금지
+- 휴식·준비·교류 사이 절대 우위 금지
+
+### 시간
+
+- 첫 완주 목표: `45~50분`
+- 허용 상한: `60분`
+- 첫 5분 안에 직접 작성
+- 15분 안에 메인·보조 차이 이해
+- 연속 플레이 강제 없음
+
+### 내부 구현 순서
+
+```text
+M0 입력·피드백
+→ M1 공통 Situation Challenge
+→ M2 학교 세션
+→ M3 현장실습
+→ M4 저장·복귀·최종 연출
+```
+
+M0~M4는 Vertical Slice 내부 체크포인트이며 CORE_POC가 아니다.
+
+### 최소 저장
+
+- 세션 시작·완료
+- 자유일정 선택 전·완료
+- 현장 전투 문제 완료 후
+- 귀환·기록 완료
+
+상태는 현재 단계, 배운 글자, 자유일정 선택, 시험·축제·현장 결과 태그, 동반자 관계 구간, 보조 소환수 준비, 마도서 발견으로 제한한다.
 
 ---
 
-## GM-GATE1-REVIEW-01 적대적 검토
+## P1 제약
 
-책임 원본: `docs/planning/GATE_1_ADVERSARIAL_REVIEW.md`
-
-### 판정
-
-- 제품 약속 적합성: `PASS`
-- 세일즈포인트 커버리지: `PASS`
-- 학교생활 대표성: `PASS`
-- 현재 1인 제작 범위: `CONDITIONAL_FAIL`
-- P0 감량 후 제작성: `CONDITIONAL_PASS_CANDIDATE`
-- Gate 1 최종 승인: `BLOCKED_BY_P0_DECISION`
-
-### 확인된 P0
-
-1. 네 세션이 네 개의 별도 게임으로 분열할 위험
-2. 세션별 플레이 역할 중복
-3. 52~84분 시간 범위의 상한 부재
-4. 자유일정이 최대 12개 독립 이벤트로 폭증
-5. 터치 입력 검증 전 콘텐츠·아트 제작 위험
-6. 저장·복귀 상태의 불필요한 복잡화
-
-### 권장 P0 처리 패키지 — 미승인
-
-1. 공통 `Situation Challenge` 계약
-2. 세션별 판단·압박·결과·실패 역할 분리
-3. 첫 완주 45~50분 목표, 60분 상한
-4. 자유일정은 `휴식 / 준비 / 교류` 세 원형
-5. 입력·피드백→공통 문제→학교→현장→연출 구현 순서
-6. 세션 경계 중심 최소 저장 상태
-
-### P1 제안
-
-- 시험 표시 평가 축 3개
-- 축제는 학교 장면 재사용
-- 축제 결과는 표현 성향 태그
+- 시험 표시 평가 축: 상황 적합성 / 주문 설계 / 실행 안정성
+- 축제는 학교 장면 상태 재사용
+- 축제 결과: `ELEGANT / PRACTICAL / SPECTACULAR`
 - 메인 동반자 관계 단계 최대 3개
-- 보조 소환수는 수호 또는 견제 중 하나
-- 작성 화면 정보 예산 제한
+- 보조 소환수는 수호 또는 견제 하나
+- 작성 화면 고정 정보: 목표·메인·보조·자원·위험 경고
 
 ---
 
@@ -179,19 +200,42 @@ Gate 1 콘셉트 정리
 - 숙련 보조만 하위 글자 스톡 후보
 - 스톡 없이 직접 시전 가능
 - 입력 실패와 설계 실패 분리
-- 필수 정보는 선택형 대화·자유일정에만 숨기지 않음
-- 소환수는 작성·조합 판단을 대행하지 않음
+- 필수 정보는 선택형 상세 대화나 자유일정에만 숨기지 않음
+- 메인 동반자는 항상 같은 개체
 - 중요 일정 사이 자유일정 1회
 - 휴식은 손해 전용 선택이 아님
 - 자유일정은 필수 진행을 차단하지 않음
+- 모든 세션은 공통 Situation Challenge 사용
+- 첫 완주 허용 상한 60분
 - 별도 CORE_POC 재도입 금지
 - 사용자 승인 전 `CORE_CONFIRMED` 금지
-- 현재 단계에서 Godot 구현·Codex 실행 금지
+- 현재 단계에서 Godot 구현·Codex 실행·프로필 전환·PR 병합 금지
+
+---
+
+## 보류 항목
+
+### `PLAYTEST_TUNING_REQUIRED`
+
+- 각 세션의 정확한 시간
+- 입력 판정 허용 범위
+- 완전 정지·감속·실시간 최종안
+- 자유일정 보정 수치
+- 시험 점수·성적 보상
+- 보조 소환수 수호·견제 수치
+
+### `DEFERRED_CONTENT_DATA`
+
+- 첫 메인·보조 글자 명칭과 효과
+- 시험 문제 소재
+- 축제 대표 활동
+- 현장실습 사건·적·환경
+- 교수·학생·동반자 대사
 
 ---
 
 ## 다음 결정
 
-`GM-GATE1-RISK-01`: 권장 P0 처리 패키지를 승인해 Vertical Slice 계약을 감량·강화할 것인가?
+`GM-GATE1-APPROVAL-01`: P0 보완 계약을 포함한 Gate 1 콘셉트와 Vertical Slice 범위를 최종 승인할 것인가?
 
-상태: `USER_DECISION_REQUIRED`
+상태: `NEXT_BLOCKING_DECISION`
