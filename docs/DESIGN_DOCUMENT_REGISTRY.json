@@ -37,15 +37,16 @@
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
     "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
-    "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md"
+    "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
+    "gate_1_experience_curve": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md"
   },
   "canonical_documents": [
     {
       "id": "spell-v6-concept-rebase",
       "title": "스펠 v6 콘셉트 재기획 기준선",
-      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·플레이 상황·서사 깊이·플레이어 약속·Loop 요약·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
+      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·서사 깊이·플레이어 약속·Loop·경험 곡선 요약·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
       "responsibility_coverage": [
         "gate-1-working-baseline",
         "primary-player-experience",
@@ -53,6 +54,7 @@
         "optional-narrative-depth",
         "confirmed-player-promise",
         "confirmed-loop-summary",
+        "confirmed-experience-curve-summary",
         "pointed-fun",
         "why-how-what",
         "element-alignment",
@@ -65,8 +67,9 @@
       "publication_policy": "source_only",
       "supporting_sources": [
         "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
+        "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md",
         "docs/ACTIVE_CONTEXT.md"
       ]
     },
@@ -98,6 +101,36 @@
       ]
     },
     {
+      "id": "spell-gate-1-experience-curve",
+      "title": "스펠 Gate 1 경험 곡선",
+      "responsibility": "첫 실행·첫 5분·첫 수업·첫 독립 설계·첫 관계 장면·첫 모의 실습·첫 발견·첫 숙련 자동화·시스템 공개 순서와 감정 곡선",
+      "responsibility_coverage": [
+        "first-five-minutes",
+        "first-cast",
+        "first-main-letter",
+        "first-support-letter",
+        "first-independent-design",
+        "first-relationship-beat",
+        "first-mock-practicum",
+        "first-discovery",
+        "first-mastery-automation",
+        "system-reveal-order",
+        "onboarding-emotional-curve",
+        "onboarding-guardrails",
+        "experience-curve-playtest-metrics"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
+        "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
+        "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
+        "docs/planning/STOCK_SYSTEM.md"
+      ]
+    },
+    {
       "id": "spell-decision-ledger",
       "title": "스펠 기획 결정 원장",
       "responsibility": "사용자 결정·override·폐기·보류·설계 영향 추적",
@@ -111,6 +144,7 @@
       "status": "ACTIVE_WITH_LATEST_ADDENDUM",
       "publication_policy": "source_only",
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md"
       ]
@@ -183,11 +217,15 @@
     },
     {
       "responsibility": "experience-curve",
-      "status": "NEXT_BLOCKING_DECISION_GM-CURVE-01"
+      "status": "CONFIRMED_BY_GM-CURVE-01"
+    },
+    {
+      "responsibility": "project-core-and-changeable-shell",
+      "status": "NEXT_BLOCKING_DECISION_GM-CORE-BOUNDARY-01"
     },
     {
       "responsibility": "sales-points",
-      "status": "BLOCKED_BY_GM-CURVE-01"
+      "status": "BLOCKED_BY_GM-CORE-BOUNDARY-01"
     },
     {
       "responsibility": "benchmark-swot-vrio-feasibility",
