@@ -15,6 +15,7 @@
 - 선택형 상세 서사: `OPTIONAL_NARRATIVE_DEPTH_CONFIRMED`
 - 플레이어 약속: `PLAYER_PROMISE_CONFIRMED_FOR_GATE_1`
 - 게임플레이 Loop: `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1`
+- 경험 곡선: `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1`
 - Gate 1 판정: `UNVERIFIED`
 - 구현 상태: `NOT_STARTED`
 - CORE_POC: `NOT_AUTHORED`
@@ -34,12 +35,13 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 
 ### Gate 1 활성 원본
 
-- `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
-- `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
-- `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md`
-- `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`
-- `docs/planning/DECISION_LOG.md`
-- `docs/DESIGN_DOCUMENT_REGISTRY.json`
+1. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
+2. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
+3. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
+4. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md`
+5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`
+6. `docs/planning/DECISION_LOG.md`
+7. `docs/DESIGN_DOCUMENT_REGISTRY.json`
 
 ### 기존 작업물
 
@@ -143,14 +145,6 @@ Micro 상황: 약 30초~2분
 
 ## 확정된 게임플레이 Loop — GM-LOOP-01
 
-사용자 제안:
-
-- 수업에서 주문을 배우고 설계·사용을 연습한다.
-- 현장실습 전투에서 실전을 통해 배운다.
-- 일상에서 관계가 진행된다.
-
-사용자 승인: 2026-07-27, `권장안대로 진행`
-
 상태: `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1`
 
 책임 원본: `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
@@ -193,21 +187,70 @@ Micro 상황: 약 30초~2분
 - `Session Loop`: 수업·연습·현장실습·일상 중 하나를 중심으로 약 10~15분에 완결
 - `Semester Loop`: 고정 사건과 자유 일정이 교차하여 다음 학습·관계·문제를 변화
 
-### 보호 원칙
+## 확정된 경험 곡선 — GM-CURVE-01
 
-- 수업은 완성 주문 상점이 아니다.
-- 현장실습은 배운 주문을 그대로 재생하는 시험이 아니다.
-- 일상은 전투와 무관한 호감도 메뉴가 아니다.
-- 자유 일정은 필수 진행을 영구 차단하지 않는다.
-- 모든 세션에 수업·전투·일상을 억지로 동시에 넣지 않는다.
-- 직접 작성·조합 판단을 스톡·소환수·자동화가 제거하지 않는다.
+사용자 승인: 2026-07-27, `권장안대로 진행`
 
-### 수치·범위 상태
+상태: `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1`
 
-- 시간 목표: `PLAYTEST_TUNING_REQUIRED`
-- 학기 `자유 일정 10회 + 고정 사건 4회`: `REFERENCE_CANDIDATE`
-- 3년·6학기: `NEUTRAL_SCOPE_RISK`
-- 전투 중 완전 상태 복원 범위: `NOT_AUTHORED`
+책임 원본: `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
+
+```text
+학교 도착·현재 목표 소개
+→ 교수의 짧은 시범
+→ 첫 메인 글자 직접 작성
+→ 세계가 변하는 결과 확인
+→ 보조 글자 하나로 작은 설계 선택
+→ 짧은 일상·관계 장면
+→ 첫 모의 현장실습에서 응용
+→ 새 활용 발견·마도서 기록
+→ 반복 숙련 후 첫 하위 글자 스톡 해금
+```
+
+핵심 문장:
+
+> 먼저 마법이 작동하는 기쁨을 주고, 곧바로 내가 설계했다는 감각을 주며, 실전에서 응용한 뒤 숙련된 반복만 자동화한다.
+
+### 첫 5분 책임
+
+1. 마법학교 학생과 현재 목표 이해
+2. 첫 메인 글자 직접 작성
+3. 즉각적인 현상 변화
+4. 보조 글자 하나로 결과 변형
+5. 플레이어 선택에 따른 다른 결과
+
+첫 5분 종료 시 플레이어는 메인 글자·보조 글자·직접 작성의 역할을 설명할 수 있어야 한다.
+
+### 첫 자동화 경계
+
+```text
+직접 작성
+→ 서로 다른 상황에서 반복 사용
+→ 역할과 결과 이해
+→ 안정적 재현
+→ 숙련 인정
+→ 숙련 보조 글자의 하위 글자 스톡 후보 해금
+```
+
+- 첫 5분에 스톡을 지급하지 않는다.
+- 수동 작성 경험 없이 자동화를 먼저 공개하지 않는다.
+- 첫 자동화는 하위 글자 스톡부터 시작한다.
+- 완성 주문 스톡은 직접 작성·조합·발견을 충분히 이해한 이후로 미룬다.
+- 정확한 시간과 요구량은 `PLAYTEST_TUNING_REQUIRED`다.
+
+### 시스템 공개 순서
+
+```text
+1. 메인 글자 직접 작성
+2. 보조 글자 하나와 결과 차이
+3. 마나·작성 시간의 기본 의미
+4. 현장 목표와 환경 반응
+5. 여러 보조 조합과 재설계
+6. 하위 글자 스톡
+7. 소환수 전투·수호 지원
+8. 소환수 지정 스톡 충전
+9. 완성 주문 스톡과 고급 준비 전술
+```
 
 ## 뾰족한 재미 초안
 
@@ -242,6 +285,7 @@ Micro 상황: 약 30초~2분
 | 상황별 주문 변형 | `AMPLIFY` | 핵심 고민과 재설계 |
 | 직접 터치 작성 | `AMPLIFY` | 주체성과 손맛 |
 | 즉각적인 현상 변화 | `AMPLIFY` | 원인·결과 학습 |
+| 첫 5분 즉시 작성·설계 | `AMPLIFY` | 핵심 재미를 초반에 증명 |
 | 수업→연습→실전 순환 | `AMPLIFY` | 배움과 설계를 성장으로 연결 |
 | 일상 관계의 실습 반영 | `SUPPORT` | 학교생활에 시스템 의미 부여 |
 | 하위 글자 스톡 | `SUPPORT` | 숙련 반복 감소 |
@@ -256,7 +300,7 @@ Micro 상황: 약 30초~2분
 | 보조 미숙·숙련·달인 | `SUPPORT` | 직접 작성에서 스톡화로 연결 |
 | 학년별 보조 2·4·6 | `BALANCE_TUNING_BACKLOG` | 테스트 전 고정 불가 |
 
-## 보호할 기존 결정
+## 보호할 결정
 
 - 주문은 `메인 글자 1개 + 보조 글자 0개 이상`
 - 메인 글자 하나만으로 기본 주문 성립
@@ -273,6 +317,8 @@ Micro 상황: 약 30초~2분
 - 현장실습은 정답 주문 재생 시험이 아님
 - 일상은 전투와 무관한 호감도 메뉴가 아님
 - 자유 일정은 필수 진행을 영구 차단하지 않음
+- 첫 마법 사용 전 장문 설명을 강제하지 않음
+- 수동 작성 경험 없이 자동화를 먼저 공개하지 않음
 - 사용자 승인 전 `CORE_CONFIRMED` 사용 금지
 - 현재 단계에서 Godot 코드·Scene·Resource·게임 데이터 구현 금지
 - Codex 실행 금지
@@ -281,7 +327,7 @@ Micro 상황: 약 30초~2분
 
 `GM-STOCK-01`의 세부 수치는 다음 상위 항목이 정렬될 때까지 보류한다.
 
-1. 경험 곡선
+1. 프로젝트 코어·지원 시스템·변경 가능한 외피 경계
 2. CORE_POC 범위
 3. 모바일 UI·인지 부하 검증
 4. 실제 세션·전투 시간 테스트
@@ -298,9 +344,13 @@ Micro 상황: 약 30초~2분
 - 완성 주문 스톡 비중이 높아지면 버튼 전투로 퇴행할 수 있다.
 - 학교 3년 콘텐츠와 선택형 상세층 제작량이 코어 검증보다 먼저 커질 수 있다.
 - 일상 관계가 실습과 연결되지 않으면 별도 호감도 메뉴로 분리될 수 있다.
+- 온보딩에서 시스템을 빠르게 많이 공개하면 첫 설계 경험이 메뉴 학습으로 변질될 수 있다.
 
 ### BLOCKED_UNVERIFIED
 
+- 첫 마법 발현·첫 독립 설계까지의 실제 시간
+- 첫 실습 진입 시점과 난이도
+- 첫 숙련·스톡 해금 요구량
 - 실제 세션 시간이 10~15분 목표에 맞는지
 - 전투·문제 묶음이 모바일 중단 단위로 적합한지
 - 전투 중 완전 상태 복원이 필요한지
@@ -313,9 +363,9 @@ Micro 상황: 약 30초~2분
 - 기본층과 상세층의 적정 대화 분량
 - 자유 일정과 관계 변화가 제작량 대비 충분한 차이를 만드는지
 
-## 다음 우선 결정 — GM-CURVE-01
+## 다음 우선 결정 — GM-CORE-BOUNDARY-01
 
-첫 5분, 첫 수업, 첫 주문 설계, 첫 현장실습, 첫 발견과 첫 숙련 자동화가 어떤 순서와 감정 곡선으로 제공되는지 정한다.
+직접 작성·의미 기반 조합·상황 반응·학교·관계·스톡·소환수 중 무엇을 비타협 프로젝트 코어로 두고, 무엇을 지원 시스템 또는 변경 가능한 외피로 둘 것인가.
 
 상태: `DESIGN_HYPOTHESIS_REQUIRES_USER_DECISION`
 
@@ -327,10 +377,10 @@ GM-CORE-01 — 승인됨
 → GM-NARRATIVE-03 — 승인됨
 → GM-PROMISE-01 — 승인됨
 → GM-LOOP-01 — 승인됨
-→ GM-CURVE-01 경험 곡선
-→ 프로젝트 코어·변경 가능한 외피
+→ GM-CURVE-01 — 승인됨
+→ GM-CORE-BOUNDARY-01 프로젝트 코어·변경 가능한 외피
 → 세일즈포인트 최대 3개
-→ 벤치마킹 질문·SWOT·VRIO·제작성
+→ 벤치마킹·SWOT·VRIO·제작성
 → 마스코트·상징 동반자 역할 후보
 → CORE_POC 계약
 → 적대적 검토
@@ -342,8 +392,8 @@ GM-CORE-01 — 승인됨
 1. 사용자 제공 `VERTICAL_SLICE_MASTER_REFERENCE_v6.md`
 2. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
 3. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
-4. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`
-5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md`
+4. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
+5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md`
 6. `docs/planning/DECISION_LOG.md`
 7. `docs/DESIGN_DOCUMENT_REGISTRY.json`
 8. 기존 시스템별 `docs/planning/` 문서 — 참조 필요 시 선택
