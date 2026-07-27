@@ -3,33 +3,36 @@
 ## 1. 문서 상태
 
 - 프로젝트: `스펠` (임시)
-- 제품 단계: `CONCEPT_APPROVAL`
+- 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
 - 경로 결정 ID: `GM-VS-ROUTE-01`
 - 계약 결정 ID: `GM-SLICE-01`
 - 위험 처리 결정 ID: `GM-GATE1-RISK-01`
-- 경로 상태: `DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_FOR_GATE_1`
+- 최종 승인 결정 ID: `GM-GATE1-APPROVAL-01`
+- 경로 상태: `DIRECT_VERTICAL_SLICE_ROUTE_APPROVED_AT_GATE_1`
 - CORE_POC: `REMOVED_BY_USER_DECISION`
 - CORE_POC 검증 책임: `ABSORBED_INTO_VERTICAL_SLICE`
-- Vertical Slice 계약: `CONFIRMED_WITH_P0_AMENDMENT_FOR_GATE_1`
+- Vertical Slice 계약: `APPROVED_AT_GATE_1_WITH_P0_AMENDMENT`
 - 제작성: `CONDITIONAL_PASS_CANDIDATE`
-- Gate 1 전체: `FINAL_USER_APPROVAL_PENDING`
+- Gate 1: `APPROVED`
+- 프로젝트 코어: `CORE_CONFIRMED`
 - Vertical Slice 구현: `NOT_STARTED`
 - Codex: `NOT_RUN`
+- 다음 결정: `GM-VS-PROFILE-01`
 
-> **별도 CORE_POC는 만들지 않는다. 직접 작성·의미 기반 조합·학교 학습 순환·2계층 소환수의 핵심 가설은 P0 보완 축약 학기형 Vertical Slice 안에서 검증한다.**
+> **별도 CORE_POC는 만들지 않는다. 직접 작성·의미 기반 조합·마법학교 학습 순환·2계층 소환수의 핵심 가설은 승인된 축약 학기형 Vertical Slice 안에서 검증한다.**
 
 ---
 
-## 2. 최신 경로
+## 2. 승인된 제품 경로
 
 ```text
 Gate 1 콘셉트 정리
-→ GM-SLICE-01 축약 학기형 Vertical Slice 구조 승인
-→ GM-GATE1-REVIEW-01 적대적 검토
-→ GM-GATE1-RISK-01 P0 처리 패키지 승인
-→ GM-GATE1-APPROVAL-01 사용자 Gate 1 최종 승인
+→ 축약 학기형 Vertical Slice 구조 승인
+→ 적대적 범위 검토
+→ P0 처리 패키지 승인
+→ 사용자 Gate 1 최종 승인 — 완료
 → VERTICAL_SLICE_FULL_PROFILE 전환 승인
 → Codex read-only Plan 검수
 → Validation-First Vertical Slice 구현
@@ -41,7 +44,7 @@ Gate 1 콘셉트 정리
 
 ---
 
-## 3. 확정된 Slice 구조
+## 3. 승인된 Slice 구조
 
 ```text
 프롤로그·학교 도착
@@ -55,10 +58,10 @@ Gate 1 콘셉트 정리
 → 귀환·마도서 기록·다음 학기 예고
 ```
 
-- 수업: 배움
-- 시험: 이해의 증명
-- 축제: 표현·관계·비전투 활용
-- 현장: 위험 속 응용·발견
+- 수업: 배움과 원리 비교
+- 시험: 제한 조건 안의 이해 증명
+- 축제: 표현·개성·관계·비전투 활용
+- 현장: 위험 속 우선순위·재설계·발견
 - 자유일정: 휴식·준비·교류의 완충
 
 ---
@@ -83,18 +86,19 @@ Gate 1 콘셉트 정리
 
 ### 자유일정
 
-- 휴식
-- 준비
-- 교류
-
-총 3회, 슬롯당 한 행동, 필수 진행 차단 없음, 신규 지역·전투·미니게임 없음.
+- `휴식 / 준비 / 교류`
+- 총 3회
+- 슬롯당 한 행동
+- 필수 진행 차단 없음
+- 신규 지역·전투·독립 미니게임 없음
 
 ### 시간
 
-- 목표 45~50분
-- 상한 60분
+- 목표 `45~50분`
+- 상한 `60분`
 - 첫 5분 직접 작성
 - 15분 안에 메인·보조 이해
+- 연속 플레이 강제 없음
 
 ### 저장
 
@@ -102,8 +106,7 @@ Gate 1 콘셉트 정리
 - 자유일정 선택 전·완료
 - 현장 전투 문제 완료 후
 - 귀환·기록 완료
-
-최소 결과 태그만 저장한다.
+- 최소 결과 태그만 저장
 
 ---
 
@@ -128,12 +131,12 @@ M4 저장·복귀·최종 연출
 
 M0~M4는 별도 제품 단계나 CORE_POC가 아니라 Vertical Slice 내부 체크포인트다.
 
-### 순서 보호
+순서 보호:
 
-- M0에서 입력 실패와 설계 실패를 구분한다.
-- M1 전에는 축제 전용 연출·장문 대화·다수 자산을 확대하지 않는다.
-- M2까지 학교 장면 세트를 재사용한다.
-- 공통 Situation Challenge 검증 전에 세션별 전용 시스템을 만들지 않는다.
+- M0에서 입력 실패와 설계 실패를 구분
+- M1 전 축제 전용 연출·장문 대화·다수 자산 확대 금지
+- M2까지 학교 장면 세트 재사용
+- 공통 Situation Challenge 검증 전 세션별 전용 시스템 제작 금지
 
 ---
 
@@ -197,8 +200,18 @@ M0~M4는 별도 제품 단계나 CORE_POC가 아니라 Vertical Slice 내부 체
 
 ---
 
-## 8. 다음 단계
+## 8. 승인과 실행의 분리
 
-`GM-GATE1-APPROVAL-01`: P0 보완 계약을 포함한 Gate 1 콘셉트와 Vertical Slice 범위를 최종 승인할 것인가?
+Gate 1은 승인됐지만 다음은 승인되지 않았다.
 
-최종 승인 전에는 `CORE_CONFIRMED`, `VERTICAL_SLICE_FULL_PROFILE` 전환, Codex 실행, Godot 구현, PR 병합을 하지 않는다.
+- `VERTICAL_SLICE_FULL_PROFILE` 전환
+- Codex 실행
+- Godot 구현
+- 런타임·Android·성능·접근성 통과
+- PR 병합
+
+---
+
+## 9. 다음 단계
+
+`GM-VS-PROFILE-01`: 실행 프로필을 `PLANNING_ONLY_PROFILE`에서 `VERTICAL_SLICE_FULL_PROFILE`로 전환하고 Codex read-only Plan 및 구현 준비 문서 작성을 시작할 것인가?
