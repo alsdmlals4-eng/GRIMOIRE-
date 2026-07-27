@@ -17,19 +17,16 @@
 
 ## 작업 시작
 
-새 GPT·Codex·작업자는 다음 순서로 시작합니다.
-
 1. `AGENTS.md`
-2. `docs/BASE_RULES_VERSION.md`
-3. `START_HERE.md`
-4. `docs/ACTIVE_CONTEXT.md`
-5. `docs/planning/GATE_1_FINAL_APPROVAL.md`
-6. `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md`
-7. `docs/DOCUMENTATION_MAP.md`
-8. `docs/DEVELOPMENT_GATES.md`
-9. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-10. `docs/ASSET_LICENSE_LEDGER.md`
-11. `skills/SKILL_REGISTRY.json`
+2. `START_HERE.md`
+3. `docs/ACTIVE_CONTEXT.md`
+4. `docs/planning/GATE_1_FINAL_APPROVAL.md`
+5. `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md`
+6. `docs/DOCUMENTATION_MAP.md`
+7. `docs/DEVELOPMENT_GATES.md`
+8. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+9. `docs/ASSET_LICENSE_LEDGER.md`
+10. `skills/SKILL_REGISTRY.json`
 
 ## 승인된 Vertical Slice
 
@@ -55,8 +52,6 @@
 
 그림체와 자산을 제작하기 전에 Vertical Slice의 화면 방향, 카메라, 탐색·대화·마법 작성의 시각 표현 구조를 확정합니다.
 
-이후 순서:
-
 ```text
 시각 표현 구조
 → 캐릭터 표현 수준
@@ -67,4 +62,4 @@
 → 실행 프로필 전환 재검토
 ```
 
-현재 프로필에서는 대량 이미지·사운드 제작, Godot 코드·Scene·Resource·게임 데이터 구현, Codex 실행, Draft PR 병합을 하지 않습니다.
+현재 프로필에서는 대량 이미지·사운드 제작, Godot 구현, Codex 실행, Draft PR 병합을 하지 않습니다.
