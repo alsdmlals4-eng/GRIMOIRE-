@@ -11,13 +11,14 @@
 - Work Mode: `PLAN`
 - Vertical Slice 계약: `APPROVED_AT_GATE_1_WITH_P0_AMENDMENT`
 - 적대적 검토 루프: `PASS_WITH_FOLLOWUP`
+- 시각 표현 구조: `LANDSCAPE_HYBRID_2D_CONFIRMED`
 - 제작성: `CONDITIONAL_PASS_CANDIDATE`
 - 구현: `NOT_STARTED`
 - Codex: `NOT_RUN`
 - CORE_POC: `REMOVED_BY_USER_DECISION`
-- 다음 결정: `GM-VISUAL-PRESENTATION-01`
+- 다음 결정: `GM-CHARACTER-PRESENTATION-01`
 
-최종 승인 권위는 `docs/planning/GATE_1_FINAL_APPROVAL.md`, 최신 검토 권위는 `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md`가 책임진다.
+최종 승인 권위는 `docs/planning/GATE_1_FINAL_APPROVAL.md`, 적대적 검토 권위는 `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md`, 시각 표현 권위는 `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`가 책임진다.
 
 ---
 
@@ -68,11 +69,11 @@
 
 - 전체 학년·학기 규모
 - 지역·관계 분기량
-- 실시간·감속·정지형 전투 표현
+- 완전 정지·감속·실시간의 정확한 시간 규칙
 - 완성 주문 스톡
 - 보조 소환수 편성·성장
 - 세부 시간과 수치
-- 화면·카메라·그림체의 구체 표현
+- 캐릭터 비율·그림체·내부 해상도·세부 UI 배치
 
 ---
 
@@ -178,10 +179,16 @@ M0~M4는 별도 CORE_POC가 아니다.
 - 45~50분 목표·60분 상한
 - 최소 콘텐츠 범위
 
+### 교정 완료
+
+- README와 프로젝트 상태 최신화
+- Vertical Slice 계약 승인 상태 정렬
+- Skill Registry와 Asset Ledger 최신화
+- 시각 표현 구조를 그림체보다 선행하도록 라우팅
+
 ### 추가 준비 필요
 
 - Problem Differentiation Matrix
-- 화면 방향·카메라·게임 표현 구조
 - 캐릭터 표현 수준
 - 그림체 후보 비교
 - Art Bible과 접근성·FX 규칙
@@ -189,13 +196,72 @@ M0~M4는 별도 CORE_POC가 아니다.
 - Audio Direction Card
 - 생성·편집 자산 출처·파생 관계 기록
 
-### 현재 미검증
+---
+
+## 승인된 시각 표현 구조
+
+상태: `LANDSCAPE_HYBRID_2D_CONFIRMED`
+
+```text
+화면 방향
+= 가로형
+
+학교·현장
+= 고정·장면 기반 3/4 시점
+
+대화
+= 기존 장소 배경 위 캐릭터 반신·초상과 대화창
+
+마법 작성
+= 월드를 감속·암전하고 전용 작성 오버레이 표시
+
+전투
+= 같은 장면에서 적·환경·보조 소환수 확인
+```
+
+### 화면비
+
+- 기준 구도: `16:9`
+- 확장 대응: `18:9~20:9`
+- 넓은 화면에서는 좌우 월드 영역을 확장
+- 핵심 UI·작성 영역은 안전 구도 안에 유지
+- 정확한 내부 해상도는 `ASSET-SPEC-01`에서 확정
+
+### 제작 경계
+
+- 자유 이동형 대형 학교 대신 장면 단위 이동
+- 고정 카메라와 제한된 연출 이동
+- 학교 장면은 수업·시험·자유일정·축제 상태로 재사용
+- 현장 장면은 전투·환경·복구 상태로 재사용
+- 대화·작성 시 기존 장소와 목표의 연속성 유지
+- 작성 중 월드·대상·위험·보조 소환수 상태 유지
+- 작성 화면이 월드를 완전히 숨기지 않음
+- 세로형 별도 UI·자유 카메라·복잡한 2.5D는 초기 Slice에서 제외
+
+### 시각 우선순위
+
+```text
+글자 궤적
+→ 주문 대상
+→ 위험 경고
+→ 세계 변화 인과
+→ 캐릭터·소환수
+→ 장식·입자
+```
+
+감속형은 시각 표현 기본 후보다. 완전 정지·감속·실시간의 최종 규칙과 감속 비율은 M0에서 검증한다.
+
+---
+
+## 현재 미검증
 
 - 터치 작성의 실제 재미·피로·인식
-- 정지·감속·실시간 최종안
+- 정지·감속·실시간 최종안과 감속 비율
 - 공통 문제 계약 런타임 재사용성
 - 자유일정 선택 가치
 - Android 화면비·성능·저장 복귀
+- 캐릭터 필드 비율·초상 규격
+- 정확한 내부 렌더 해상도·작성 패널 크기
 - 아트·FX 실제 가독성
 - 사운드·무음 대체 정보
 - 외부 자산 라이선스
@@ -207,11 +273,12 @@ M0~M4는 별도 CORE_POC가 아니다.
 ```text
 Gate 1 승인 — 완료
 → Gate 2 적대적 검토 루프 — 완료
-→ GM-VISUAL-PRESENTATION-01
+→ 가로형 하이브리드 2D 시각 표현 — 완료
 → GM-CHARACTER-PRESENTATION-01
 → ART-STYLE-01
 → ART-BIBLE-01
 → ASSET-SPEC-01
+→ AUDIO-DIRECTION-01
 → 캐릭터·배경·효과·사운드 작업
 → GM-VS-PROFILE-01 재검토
 → Codex read-only Plan
@@ -228,10 +295,12 @@ Gate 1 승인 — 완료
 - 중요 일정 사이 자유일정 1회
 - 세션별 전용 미니게임·프레임워크 금지
 - 첫 완주 상한 60분
-- 시각 표현 구조 전 대량 자산 제작 금지
+- 가로형 하이브리드 2D와 고정·장면 기반 3/4 시점 유지
+- 작성 중 월드·대상·위험을 완전히 숨기지 않음
+- 캐릭터 표현·Art Bible·Asset Specification 전 대량 자산 제작 금지
 - 실행 프로필 전환 전 Codex·Godot 구현 금지
 - 사용자 승인 없는 PR 병합 금지
 
 ## 다음 결정
 
-`GM-VISUAL-PRESENTATION-01`: Vertical Slice를 어떤 화면 방향과 카메라·게임 표현 구조로 보여줄 것인가?
+`GM-CHARACTER-PRESENTATION-01`: 가로형 3/4 장면에서 주인공·NPC·메인 동반 소환수·전투 보조 소환수를 어떤 비율과 자산 조합으로 표현할 것인가?
