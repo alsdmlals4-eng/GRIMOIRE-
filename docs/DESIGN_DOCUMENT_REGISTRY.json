@@ -10,7 +10,9 @@
     "execution_profile": "PLANNING_ONLY_PROFILE",
     "work_mode": "PLAN",
     "implementation_status": "NOT_STARTED",
-    "gate_1_status": "UNVERIFIED"
+    "gate_1_status": "UNVERIFIED",
+    "project_core_status": "CORE_CANDIDATE",
+    "project_core_boundary_status": "CONFIRMED_BY_GM-CORE-BOUNDARY-01"
   },
   "planning_authority": {
     "master_contract": "user-provided VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
@@ -37,16 +39,17 @@
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md",
     "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
     "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
-    "gate_1_experience_curve": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md"
+    "gate_1_experience_curve": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
+    "gate_1_project_core_boundary": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md"
   },
   "canonical_documents": [
     {
       "id": "spell-v6-concept-rebase",
       "title": "스펠 v6 콘셉트 재기획 기준선",
-      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·서사 깊이·플레이어 약속·Loop·경험 곡선 요약·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
+      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·서사 깊이·플레이어 약속·Loop·경험 곡선·코어 경계 요약·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
       "responsibility_coverage": [
         "gate-1-working-baseline",
         "primary-player-experience",
@@ -55,6 +58,7 @@
         "confirmed-player-promise",
         "confirmed-loop-summary",
         "confirmed-experience-curve-summary",
+        "confirmed-project-core-boundary-summary",
         "pointed-fun",
         "why-how-what",
         "element-alignment",
@@ -66,10 +70,10 @@
       "status": "ACTIVE_GATE_1_WORKING_SOURCE",
       "publication_policy": "source_only",
       "supporting_sources": [
+        "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
         "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
         "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md",
         "docs/ACTIVE_CONTEXT.md"
       ]
     },
@@ -131,6 +135,34 @@
       ]
     },
     {
+      "id": "spell-gate-1-project-core-boundary",
+      "title": "스펠 Gate 1 프로젝트 코어 경계",
+      "responsibility": "비타협 프로젝트 코어·코어 지원 시스템·변경 가능한 외피·제거 테스트·범위 축소 순서·CORE_POC 최소 인과",
+      "responsibility_coverage": [
+        "non-negotiable-project-core",
+        "core-support-systems",
+        "changeable-shell",
+        "removal-test",
+        "non-negotiable-design-rules",
+        "scope-reduction-order",
+        "core-poc-minimum-causal-chain",
+        "core-boundary-risks"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md",
+        "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
+        "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
+        "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
+        "docs/planning/COMBAT_CORE_SYSTEM.md",
+        "docs/planning/STOCK_SYSTEM.md",
+        "docs/planning/SUMMON_SYSTEM.md"
+      ]
+    },
+    {
       "id": "spell-decision-ledger",
       "title": "스펠 기획 결정 원장",
       "responsibility": "사용자 결정·override·폐기·보류·설계 영향 추적",
@@ -144,6 +176,7 @@
       "status": "ACTIVE_WITH_LATEST_ADDENDUM",
       "publication_policy": "source_only",
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md"
@@ -221,15 +254,15 @@
     },
     {
       "responsibility": "project-core-and-changeable-shell",
-      "status": "NEXT_BLOCKING_DECISION_GM-CORE-BOUNDARY-01"
+      "status": "CONFIRMED_BY_GM-CORE-BOUNDARY-01"
     },
     {
       "responsibility": "sales-points",
-      "status": "BLOCKED_BY_GM-CORE-BOUNDARY-01"
+      "status": "NEXT_BLOCKING_DECISION_GM-SALES-01"
     },
     {
       "responsibility": "benchmark-swot-vrio-feasibility",
-      "status": "NOT_REVALIDATED"
+      "status": "BLOCKED_BY_GM-SALES-01"
     },
     {
       "responsibility": "mascot-and-symbolic-companion",
