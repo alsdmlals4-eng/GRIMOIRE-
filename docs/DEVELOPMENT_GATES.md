@@ -6,126 +6,181 @@
 - 현재 제품 단계: `CONCEPT_APPROVAL`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
-- 다음 Greenlight: `GM-GATE1-RISK-01 P0 처리 패키지 승인`
+- Gate 1 상태: `UNVERIFIED`
+- 다음 Greenlight: `GM-GATE1-APPROVAL-01 사용자 Gate 1 최종 승인`
 
-> 게이트는 문서 존재만으로 통과하지 않는다. 관찰 가능한 결과와 증거로 판정하며 실행하지 않은 검증은 `NOT_RUN` 또는 `BLOCKED_UNVERIFIED`로 표시한다.
-
----
-
-## 1. 현재 상태
-
-- 프로젝트 코어: `CORE_CANDIDATE`
-- Gate 1: `UNVERIFIED`
-- CORE_POC: `REMOVED_BY_USER_DECISION`
-- Vertical Slice 경로: `DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_FOR_GATE_1`
-- Vertical Slice 계약: `VERTICAL_SLICE_CONTRACT_CONFIRMED_FOR_GATE_1`
-- 적대적 검토: `ADVERSARIAL_REVIEW_AUTHORED_P0_P1_PROPOSED`
-- 현재 1인 제작 범위: `CONDITIONAL_FAIL`
-- P0 감량 후 제작성: `CONDITIONAL_PASS_CANDIDATE`
-- Gate 1 최종 승인: `BLOCKED_BY_P0_DECISION`
-- 구현: `NOT_STARTED`
-- Codex: `NOT_RUN`
+> 문서 존재만으로 게이트를 통과하지 않는다. 실행하지 않은 검증은 `NOT_RUN` 또는 `BLOCKED_UNVERIFIED`로 표시한다.
 
 ---
 
-## 2. 확보된 Gate 1 산출물
+## 1. 최신 제품 경로
 
-- [x] 목표 플레이어·플레이 상황
+```text
+Gate 1 콘셉트 정리
+→ GM-SLICE-01 Vertical Slice 구조 계약
+→ GM-GATE1-REVIEW-01 적대적 검토
+→ GM-GATE1-RISK-01 P0 처리 패키지 승인
+→ GM-GATE1-APPROVAL-01 사용자 Gate 1 최종 승인
+→ VERTICAL_SLICE_FULL_PROFILE 전환 승인
+→ Codex read-only Plan 검수
+→ Validation-First Vertical Slice 구현
+→ QA·외부 플레이테스트
+```
+
+### CORE_POC
+
+- 상태: `REMOVED_BY_USER_DECISION`
+- 검증 책임: `ABSORBED_INTO_VERTICAL_SLICE`
+- 다른 이름으로 재도입: `FORBIDDEN`
+
+### Vertical Slice 계약
+
+- 상태: `CONFIRMED_WITH_P0_AMENDMENT_FOR_GATE_1`
+- 제작성: `CONDITIONAL_PASS_CANDIDATE`
+- 책임 원본: `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
+- 적대적 검토: `docs/planning/GATE_1_ADVERSARIAL_REVIEW.md`
+- P0 승인 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27O.md`
+
+---
+
+## 2. Definition of Ready — Gate 1 기획
+
+- [x] 목표 플레이어와 플레이 상황
 - [x] 최상위 플레이 경험
 - [x] 플레이어 약속
-- [x] 게임플레이 Loop·경험 곡선
-- [x] 프로젝트 코어 경계
+- [x] Core Loop와 경험 곡선
+- [x] 프로젝트 코어·지원층·변경 가능한 외피
 - [x] 세일즈포인트 3개
 - [x] 벤치마킹·SWOT·VRIO·1인 제작성
 - [x] 2계층 소환수 구조
 - [x] CORE_POC 없는 직접 Slice 경로
-- [x] 축약 학기형 Vertical Slice 계약
-- [x] 중요 일정 사이 자유일정 1회씩
-- [x] 적대적 콘셉트·범위 검토
-- [x] P0·P1 위험 및 처리안 제안
-- [ ] `GM-GATE1-RISK-01` P0 처리 패키지 사용자 승인
-- [ ] P0 승인안의 Vertical Slice 계약 반영
+- [x] 축약 학기형 Vertical Slice 구조
+- [x] 중요 일정 사이 자유일정 3회
+- [x] 적대적 범위 검토
+- [x] P0 처리 패키지 승인
+- [x] 공통 Situation Challenge 계약
+- [x] 첫 완주 45~50분 목표·60분 상한
+- [x] 자유일정 `휴식 / 준비 / 교류` 원형
+- [x] 최소 저장 계약
+- [x] Slice 내부 구현 체크포인트
 - [ ] 사용자 Gate 1 최종 승인
+- [ ] 정량 검증 임계값 — `PLAYTEST_TUNING_REQUIRED`
 
-현재 판정: `GATE_1_REVIEW_COMPLETE / P0_DECISION_REQUIRED`
-
----
-
-## 3. 적대적 검토 P0
-
-1. 네 핵심 세션이 네 개의 별도 게임으로 분열
-2. 수업·시험·축제·현장실습의 플레이 역할 중복
-3. 52~84분 범위에 첫 완주 상한이 없음
-4. 자유일정이 최대 12개 독립 이벤트로 폭증
-5. 터치 입력 검증보다 콘텐츠·아트 제작이 선행
-6. 저장·복귀 상태가 초기 범위보다 복잡해짐
-
-책임 원본: `docs/planning/GATE_1_ADVERSARIAL_REVIEW.md`
+현재 판정: `GATE_1_FINAL_APPROVAL_READY`
 
 ---
 
-## 4. 권장 P0 처리 패키지 — 미승인
-
-1. 공통 `Situation Challenge` 계약으로 수업·시험·축제·현장을 제작
-2. 세션별 판단·압박·결과·실패 역할 분리
-3. 첫 완주 `45~50분` 목표, `60분` 상한
-4. 자유일정은 `휴식 / 준비 / 교류` 세 원형
-5. 구현 순서는 입력·피드백→공통 문제→학교→현장→연출
-6. 저장은 세션 경계와 현장 문제 전환 지점의 최소 상태
-
-이 패키지는 다음을 제거하지 않는다.
-
-- 수업·교내 연습
-- 실기시험
-- 학교축제
-- 현장실습
-- 중요 일정 사이 자유일정 3회
-- 휴식의 유효성
-
----
-
-## 5. 구현 Definition of Ready
+## 3. Definition of Ready — 구현
 
 구현 시작 조건:
 
-1. `GM-GATE1-RISK-01` P0 처리 패키지 승인
-2. 승인안을 Vertical Slice 계약·Loop·Registry에 반영
-3. 사용자 Gate 1 최종 승인
-4. `VERTICAL_SLICE_FULL_PROFILE` 전환 승인
-5. Codex read-only Plan 검수
-6. Godot 버전·렌더러·Android 대상 기기 확정
-7. 구현 브랜치·검증 매트릭스·완료 기준 승인
+1. 사용자 `GM-GATE1-APPROVAL-01` 최종 승인
+2. `VERTICAL_SLICE_FULL_PROFILE` 전환 승인
+3. Codex read-only Plan 검수
+4. 구현 브랜치·검증 매트릭스·완료 기준 확정
+5. Godot 버전·렌더러·Android 대상 기기 확정
+6. M0~M4 작업 순서와 중단 기준 확정
 
 현재 판정: `IMPLEMENTATION_NOT_READY`
 
 ---
 
-## 6. Gate 1 통과 금지 조건
+## 4. Gate 1 — CONCEPT_APPROVAL
 
-- P0 결정 없이 Gate 1 최종 승인
-- 사용자 승인 없는 `CORE_CONFIRMED`
-- 세션별 전용 게임 시스템 제작
-- 자유일정마다 독립 미니게임·지역·장문 분기 제작
-- 첫 완주 시간 상한 부재
-- 휴식을 명백한 손해 선택으로 설계
-- 터치 입력 검증 전 축제·관계·연출 자산 대량 제작
-- 저장 범위를 전투 중 임의 저장·대화 한 줄 저장까지 확대
+현재 상태: `FINAL_USER_APPROVAL_PENDING`
+
+### 확보된 산출물
+
+- [x] 플레이어 약속과 비타협 코어
+- [x] 세일즈포인트
+- [x] Loop와 경험 곡선
+- [x] 벤치마킹·SWOT·VRIO·제작성
+- [x] 소환수 책임 분리
+- [x] 직접 Vertical Slice 경로
+- [x] 수업·시험·축제·현장실습·자유일정 구조
+- [x] 공통 문제·데이터 재사용 계약
+- [x] 시간·저장·UI·콘텐츠 범위 상한
+- [x] P0·P1 처리 방향
+
+### 남은 필수 산출물
+
+- [ ] 사용자 Gate 1 최종 승인
+- [ ] 프로필 전환 직전 기술 검토 계획
+- [ ] Android·접근성·성능 검증 매트릭스 초안
+- [ ] Balance Tuning Backlog 초안
+
+### 통과 금지 조건
+
+- 사용자 최종 승인 없는 `CORE_CONFIRMED`
+- 공통 Situation Challenge 없이 세션별 전용 게임 제작
+- 첫 완주 범위가 구조적으로 60분을 초과
+- 자유일정에 신규 지역·전투·독립 미니게임을 붙임
+- 휴식을 손해 선택으로 만듦
+- 필수 진행·정보·정답을 자유일정에 잠금
+- 입력 검증보다 아트·서사 제작을 우선
 - 별도 CORE_POC를 다른 이름으로 재도입
 
 ---
 
-## 7. Gate 2 — PROTOTYPE_AND_VERTICAL_SLICE
+## 5. 승인된 P0 계약
+
+### 5.1 공통 문제 계약
+
+```text
+상황 목표
+→ 관찰 가능한 상태
+→ 사용 가능한 메인·보조 글자
+→ 제한 조건
+→ 방향성 결과 미리보기
+→ 주문 작성
+→ 세계 상태 변화
+→ 성공·부분 성공·실패 원인
+→ 기록·후속 반응
+```
+
+### 5.2 세션 차별화
+
+- 수업: 원리 이해·비교
+- 시험: 제한 조건 안의 증명
+- 축제: 표현·개성·관계
+- 현장: 위험 속 우선순위·재설계
+
+### 5.3 시간
+
+- 목표: 45~50분
+- 상한: 60분
+- 첫 5분 직접 작성
+- 15분 안에 메인·보조 이해
+
+### 5.4 자유일정
+
+- `휴식 / 준비 / 교류`
+- 총 3회
+- 슬롯당 한 행동
+- 공통 이벤트 구조·결과 태그 재사용
+
+### 5.5 저장
+
+- 세션 시작·완료
+- 자유일정 선택 전·완료
+- 현장 전투 문제 완료 후
+- 귀환·기록 완료
+- 최소 결과 태그만 저장
+
+---
+
+## 6. Gate 2 — PROTOTYPE_AND_VERTICAL_SLICE
 
 현재 상태: `NOT_ENTERED`
 
-진입 전제:
+### 진입 조건
 
-- P0 패키지 승인·반영
-- Gate 1 최종 승인
-- 실행 프로필 전환
-- Codex Plan 검수
+- 사용자 Gate 1 최종 승인
+- `VERTICAL_SLICE_FULL_PROFILE` 전환 승인
+- Codex read-only Plan 검수
+- 구현 계획·검증 매트릭스 승인
 
-권장 구현 체크포인트:
+### 실행 순서
 
 ```text
 M0 입력·피드백
@@ -133,17 +188,28 @@ M0 입력·피드백
 → M2 학교 세션
 → M3 현장실습
 → M4 저장·복귀·최종 연출
+→ QA·외부 플레이테스트
 ```
 
-M0~M4는 Vertical Slice 내부 체크포인트이며 별도 CORE_POC가 아니다.
+M0~M4는 CORE_POC가 아니라 Vertical Slice 내부 체크포인트다.
+
+### 구현 중단 조건
+
+- 입력 실패와 설계 실패를 구분하지 못함
+- 직접 작성 피로가 핵심 경험을 방해
+- 공통 문제 계약으로 두 번째 문제를 추가할 수 없음
+- 세션별 전용 프레임워크가 필요해짐
+- 첫 완주 상한 60분을 구조적으로 초과
+- 자유일정이나 관계 제작량이 핵심 세션보다 커짐
+- 보조 소환수 운용이 주문 설계보다 복잡
 
 ---
 
-## 8. 검증 경계
+## 7. 현재 검증 경계
 
 - Godot 코드·Scene·Resource·게임 데이터 없음
+- Codex 미실행
 - 런타임·Android·접근성·성능·플레이테스트 `NOT_RUN`
-- 정지·감속·실시간 최종안 `BLOCKED_UNVERIFIED`
-- 첫 완주 시간·자유일정 균형 `PLAYTEST_TUNING_REQUIRED`
+- 정량 임계값 `PLAYTEST_TUNING_REQUIRED`
 - PR은 Draft 유지
 - 병합하지 않음
