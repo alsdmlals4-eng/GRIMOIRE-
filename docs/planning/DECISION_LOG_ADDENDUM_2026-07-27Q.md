@@ -33,9 +33,11 @@ Gate 1 승인
 - 수업·시험·학교축제·현장실습·자유일정 3회: 유지
 - 공통 Situation Challenge·45~50분 목표·60분 상한: 유지
 - 아트·사운드 대량 제작: `BLOCKED_BY_VISUAL_PRESENTATION_DECISIONS`
-- 오래된 README·계약 메타데이터·Skill Registry·Asset Ledger: `MUST_FIX`
+- README·계약 메타데이터·Skill Registry·Asset Ledger 상태 회귀: `FIXED`
 - 문제 차별화 표·시각 자산 예산·접근성 Art Bible·Audio Direction Card: `SHOULD_FIX`
+- Save Schema v1·Situation Challenge 데이터 계약: `TECHNICAL_REVIEW_PROPOSAL`
 - 직접 작성의 정지·감속·실시간 최종안과 Android 런타임: `BLOCKED_UNVERIFIED`
+- 최종 회귀 판정: `PASS_WITH_FOLLOWUP`
 
 ## 다음 차단 결정
 
