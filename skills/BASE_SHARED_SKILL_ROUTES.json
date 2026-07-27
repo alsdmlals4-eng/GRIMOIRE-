@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "registry_role": "spell-base-shared-skill-extension-router",
+  "base": {
+    "repository": "alsdmlals4-eng/Base",
+    "commit": "438f41afd510c827c3097341bd9e5f9c9b0e1dd0",
+    "source_path": "skills/BASE_SHARED_SKILL_ROUTES.json"
+  },
+  "routing_policy": {
+    "load_all_skills": false,
+    "default_selection": "automatic-trigger-match",
+    "automatic_selection": true,
+    "require_trigger_match": true,
+    "project_adapter_required": true,
+    "project_adapter": "skills/PROJECT_BASE_SKILL_ADAPTER.json",
+    "copy_shared_skill_bodies_to_project": false,
+    "max_primary_shared_skills": 1
+  },
+  "project_skill_policy": {
+    "base_shared_skills": "route-through-project-adapter",
+    "project_specific_skills": "create-only-for-spell-specific-independent-responsibility",
+    "duplicate_base_skill_bodies": "forbidden",
+    "local_policy_mode": "adapter-only"
+  },
+  "routes": [
+    {
+      "route_id": "legacy_retention_and_archives",
+      "skill_id": "governing-legacy-retention-and-archives",
+      "base_skill_path": "skills/governing-legacy-retention-and-archives/SKILL.md",
+      "status": "ACTIVE_ROUTE_INACTIVE_PROJECT_ADAPTER",
+      "load_by_default": false,
+      "trigger_tags": [
+        "legacy-retention",
+        "archive-governance",
+        "versioned-duplicate",
+        "stale-copy",
+        "canonical-merge",
+        "archive-history",
+        "delete-candidate",
+        "legacy-reconciliation"
+      ],
+      "skill_modes": [
+        "inventory",
+        "classify",
+        "reconcile",
+        "archive",
+        "delete-approved",
+        "verify"
+      ],
+      "project_adapter": "skills/PROJECT_ARCHIVE_RETENTION_ADAPTER.json",
+      "current_use": "Only when legacy, duplicate, archive, compatibility, or approved deletion work is requested"
+    },
+    {
+      "route_id": "godot_assets_before_creation",
+      "skill_id": "evaluating-godot-assets-and-plugins-before-creation",
+      "base_skill_path": "skills/evaluating-godot-assets-and-plugins-before-creation/SKILL.md",
+      "status": "ACTIVE",
+      "load_by_default": false,
+      "trigger_tags": [
+        "godot-asset-search",
+        "godot-plugin-search",
+        "asset-store",
+        "asset-library",
+        "commercial-plugin",
+        "third-party-license",
+        "reuse-before-build",
+        "build-custom-decision"
+      ],
+      "skill_modes": [
+        "frame-need",
+        "search",
+        "evaluate",
+        "trial-plan",
+        "adoption-decision",
+        "revalidate"
+      ],
+      "project_adapter": "skills/PROJECT_BASE_SKILL_ADAPTER.json",
+      "license_record": "docs/ASSET_LICENSE_LEDGER.md",
+      "current_use": "Before creating or buying Godot assets, plugins, UI kits, recognition tools, or mobile integrations"
+    }
+  ],
+  "verification_contract": {
+    "same_base_commit_as_project_registry": true,
+    "project_adapter_required": true,
+    "required_route_ids": [
+      "legacy_retention_and_archives",
+      "godot_assets_before_creation"
+    ],
+    "copy_skill_bodies_to_project": false,
+    "runtime_and_human_checks_default_to_not_run": true
+  }
+}
