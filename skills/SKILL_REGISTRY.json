@@ -10,7 +10,8 @@
     "execution_profile": "PLANNING_ONLY_PROFILE",
     "work_mode": "PLAN",
     "implementation_status": "NOT_STARTED",
-    "next_blocking_decision": "GM-VISUAL-PRESENTATION-01"
+    "visual_presentation_status": "LANDSCAPE_HYBRID_2D_CONFIRMED",
+    "next_blocking_decision": "GM-CHARACTER-PRESENTATION-01"
   },
   "base_registry_route": {
     "repository": "alsdmlals4-eng/Base",
@@ -35,7 +36,8 @@
     "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "asset_license_ledger": "docs/ASSET_LICENSE_LEDGER.md",
     "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
-    "latest_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md"
+    "latest_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
+    "visual_presentation": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md"
   },
   "routing_policy": {
     "minimum_sufficient_skill_per_subtask": true,
@@ -47,7 +49,9 @@
     "evidence_before_completion": true,
     "latest_user_override_precedes_base_default": true,
     "core_poc_must_not_be_reintroduced": true,
-    "visual_presentation_precedes_mass_asset_generation": true
+    "visual_presentation_precedes_character_presentation": true,
+    "character_presentation_precedes_art_style": true,
+    "art_style_precedes_mass_asset_generation": true
   },
   "active_base_routes": [
     {
@@ -96,13 +100,13 @@
       "skill_id": "designing-vertical-slices",
       "modes": ["slice-contract", "quality-bar", "pipeline-proof", "playtest-evidence", "decision-gate"],
       "trigger_tags": ["vertical-slice", "integrated-demo", "quality-bar", "pipeline-proof"],
-      "current_use": "Gate 1 Slice contract approved; quality and pipeline planning allowed, implementation blocked by profile transition"
+      "current_use": "Gate 1 Slice contract and visual presentation approved; quality and pipeline planning allowed, implementation blocked by profile transition"
     },
     {
       "skill_id": "running-adversarial-review-and-refinement",
       "modes": ["review-scope-map", "attack", "validate-critique", "route-findings", "technical-review-proposal", "refine-approved-findings", "regression-recheck", "decision-report"],
       "trigger_tags": ["adversarial-review", "gate-review", "finding-routing", "p0-p3"],
-      "current_use": "Executed for Gate 2 preproduction readiness; repeat after visual/audio contracts and major changes"
+      "current_use": "Executed for Gate 2 preproduction readiness; repeat after character, art, audio contracts and major changes"
     },
     {
       "skill_id": "reviewing-and-validating-project-changes",
@@ -166,7 +170,11 @@
     },
     "gate_2_prototype_vertical_slice": {
       "status": "ENTERED_PLANNING_ONLY",
-      "current_substage": "VISUAL_AUDIO_PREPRODUCTION_BEFORE_PROFILE_TRANSITION",
+      "current_substage": "CHARACTER_PRESENTATION_BEFORE_ART_STYLE",
+      "completed_preproduction_decisions": [
+        "GM-VS-REVIEW-LOOP-01",
+        "GM-VISUAL-PRESENTATION-01"
+      ],
       "required_routes": [
         "designing-vertical-slices",
         "running-adversarial-review-and-refinement",
@@ -174,6 +182,7 @@
         "reviewing-and-validating-project-changes"
       ],
       "blocked_routes": {
+        "mass_asset_generation": "BLOCKED_BY_CHARACTER_PRESENTATION_ART_BIBLE_ASSET_SPEC_AND_USER_APPROVAL",
         "codex": "BLOCKED_BY_PROFILE_TRANSITION",
         "godot_implementation": "BLOCKED_BY_PROFILE_TRANSITION",
         "runtime_validation": "BLOCKED_BY_IMPLEMENTATION"
