@@ -6,122 +6,112 @@
 
 | 항목 | 현재 기준 |
 |---|---|
-| 프로젝트명 | `스펠` (임시) |
-| 장르·플랫폼 | 집중형 모바일 마법학교 RPG / Android·Google Play |
-| 플레이어 약속 | 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG |
-| 통합 세일즈 문장 | 마법 글자를 직접 쓰고 조합해, 수업에서 배운 원리로 전투와 환경의 새로운 해답을 발견하는 모바일 마법학교 RPG |
-| 주 경험 | 마법 글자의 의미를 이해하고 상황에 맞는 주문을 설계·발견하는 지적 마법 판타지 |
-| 비타협 코어 | 의미 기반 글자·직접 작성·상황별 조합·설명 가능한 세계 변화·학습→실전→기록 순환 |
-| 세일즈포인트 | 직접 쓰는 마법 / 상황에 맞게 만드는 주문 / 수업에서 실전 발견 |
-| 기본 Loop | 수업→교내 연습→일상·준비→현장실습→복귀·기록→다음 학습 |
-| 소환수 구조 | 상시 메인 동반 소환수 + 전투 호출 보조 소환수 |
-| 제품 경로 | CORE_POC 없이 Validation-First Vertical Slice로 직접 진행 |
 | 제품 단계 | `CONCEPT_APPROVAL` |
 | 실행 프로필 | `PLANNING_ONLY_PROFILE` |
 | Work Mode | `PLAN` |
 | 프로젝트 코어 | `CORE_CANDIDATE` |
 | Gate 1 | `UNVERIFIED` |
-| CORE_POC | `REMOVED_BY_USER_DECISION` |
-| CORE_POC 검증 | `ABSORBED_INTO_VERTICAL_SLICE` |
-| Vertical Slice 계약 | `NOT_AUTHORED` |
 | 구현 | `NOT_STARTED` |
-| 현재 브랜치 | `gpt/planning-spell-20260725` |
-| 현재 PR | Draft PR #1 |
-| 다음 결정 | `GM-SLICE-01` — Vertical Slice 대표 구간·범위·통과 기준 |
-| 가장 큰 위험 | POC 없이 Slice로 가면서 핵심 검증보다 콘텐츠·연출 범위가 먼저 커지는 것 |
-| Base 기준 | `438f41afd510c827c3097341bd9e5f9c9b0e1dd0` |
+| CORE_POC | `REMOVED_BY_USER_DECISION` |
+| 직접 Slice 경로 | `DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_FOR_GATE_1` |
+| Vertical Slice 계약 | `VERTICAL_SLICE_CONTRACT_CONFIRMED_FOR_GATE_1` |
+| 다음 차단 결정 | `GM-GATE1-REVIEW-01` |
+| 기준 브랜치 | `gpt/planning-spell-20260725` |
 
----
+## 먼저 읽을 문서
 
-## 최신 사용자 결정
+1. `docs/ACTIVE_CONTEXT.md`
+2. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
+3. `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
+4. `docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md`
+5. `docs/planning/DECISION_LOG.md`
+6. `docs/DEVELOPMENT_GATES.md`
+7. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+8. `docs/DOCUMENTATION_MAP.md`
 
-> `COREPOC 없이 우리는 버티칼슬라이스로 갈거야`
+## 플레이어 약속
 
-적용 결과:
+> **마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.**
 
-```text
-CORE_POC 계약·구현·통과
-→ 제거
+## 비타협 코어
 
-CORE_POC 검증 책임
-→ Vertical Slice 필수 통과 조건으로 이동
-```
+- 의미를 가진 마법 글자
+- `메인 글자 1개 + 보조 글자 0개 이상`
+- 신규·미숙·중요 글자의 직접 작성
+- 상황에 따른 주문 변형 판단
+- 즉각적이고 설명 가능한 세계 변화
+- 학습→응용→발견·기록 순환
 
-별도 CORE_POC를 다른 이름으로 재도입하지 않는다.
+## 세일즈포인트
 
----
+1. 손으로 직접 쓰는 마법
+2. 상황에 맞게 만드는 주문
+3. 수업에서 배우고 실전에서 발견하는 마법학교
 
-## 먼저 읽기
-
-```text
-AGENTS.md
-→ docs/BASE_RULES_VERSION.md
-→ START_HERE.md
-→ docs/ACTIVE_CONTEXT.md
-→ docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md
-→ docs/planning/V6_CONCEPT_REBASE_BASELINE.md
-→ docs/DEVELOPMENT_GATES.md
-→ docs/DESIGN_DOCUMENT_REGISTRY.json
-→ docs/planning/DECISION_LOG.md
-```
-
-필요한 세부 원본:
-
-1. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
-2. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
-3. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
-4. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
-5. `docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md`
-6. `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md`
-7. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27L.md`
-
-기존 시스템 문서는 `REFERENCE_CANDIDATE`다. 최신 책임 원본과 사용자 override가 우선한다.
-
----
-
-## 보호 결정
-
-- 주문은 `메인 글자 1개 + 보조 글자 0개 이상`
-- 복수 메인 글자 결합 금지
-- 신규·미숙·중요 글자는 직접 작성
-- 스톡은 이해한 반복만 줄임
-- 입력 실패와 설계 실패 분리
-- 메인 동반 소환수는 항상 같은 개체
-- 전투 보조 소환수는 전투에서 호출
-- 소환수는 글자 작성·조합 판단·정답 제시를 대행하지 않음
-- 필수 정보는 선택형 상세 대화에만 숨기지 않음
-- 별도 CORE_POC 재도입 금지
-- Gate 1 및 Slice 계약 승인 전 구현·Codex 실행 금지
-- 사용자 승인 없는 PR 병합 금지
-
----
-
-## Validation-First Vertical Slice 필수 증거
-
-- 직접 글자 작성과 즉각적 발현
-- 메인·보조 글자의 역할 차이
-- 같은 메인 글자의 전투·환경 재사용
-- 최소 2개의 유효 해결법
-- 실패 원인 이해와 재설계
-- 완전 정지·감속·실시간 비교
-- 메인 동반자의 학습·기록 연결
-- 전투 보조 소환수의 수호·견제 효과
-- Android 실제 기기·화면비·성능·저장·복귀
-- 두 번째 유사 콘텐츠 제작성
-
----
-
-## 다음 작업 — GM-SLICE-01
-
-권장 첫 Slice:
+## 소환수 구조
 
 ```text
-짧은 수업
-→ 교내 연습
-→ 메인 동반자와 짧은 일상·준비
-→ 첫 현장실습의 전투 문제
-→ 환경·구조 문제
-→ 복귀·마도서 기록
+메인 동반 소환수
+= 항상 같은 개체가 동행
+= 학습·관계·기록
+
+전투 보조 소환수
+= 전투에서 호출
+= 공격·견제·수호·충전 지원
 ```
 
-이 결정 이후 적대적 범위 검토와 사용자 Gate 1 승인을 진행한다. 구현은 아직 시작하지 않는다.
+소환수는 글자 작성·조합 판단·정답 제시를 대행하지 않는다.
+
+## 확정된 Vertical Slice
+
+```text
+프롤로그·학교 도착
+→ 첫 수업·교내 연습
+→ 자유일정 A 1회
+→ 첫 실기시험
+→ 자유일정 B 1회
+→ 학교축제 준비·학교축제
+→ 자유일정 C 1회
+→ 첫 현장실습
+→ 귀환·마도서 기록·다음 학기 예고
+```
+
+핵심 역할:
+
+```text
+수업·연습 = 배움
+시험 = 이해의 증명
+학교축제 = 표현·관계·비전투 활용
+현장실습 = 실제 위험 속 응용·발견
+자유일정 = 휴식·준비·관계·연구의 완충
+```
+
+자유일정 보호 결정:
+
+- 중요 일정 사이 총 3회
+- 한 슬롯에서 행동 1개 선택
+- `휴식`은 유효한 정식 선택
+- 필수 일정·정보·정답을 차단하지 않음
+
+## 현재 금지
+
+- 별도 CORE_POC 재도입
+- Godot 구현·Scene·Resource·게임 데이터 작성
+- Codex 실행
+- `CORE_CONFIRMED` 선언
+- 실행 프로필 전환
+- PR 병합
+
+## 다음 작업
+
+`GM-GATE1-REVIEW-01`
+
+축약 학기형 Vertical Slice가 다음을 만족하는지 적대적으로 검토한다.
+
+- 1인 개발 범위
+- 수업·시험·축제·현장실습의 역할 차이
+- 자유일정의 휴식·준비 가치
+- 모바일 터치 UX
+- 저장·복귀
+- 두 번째 콘텐츠 제작성
+- P0·P1 감량 우선순위
