@@ -38,19 +38,21 @@
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
     "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
-    "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md"
+    "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
+    "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md"
   },
   "canonical_documents": [
     {
       "id": "spell-v6-concept-rebase",
       "title": "스펠 v6 콘셉트 재기획 기준선",
-      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·플레이 상황·서사 깊이·플레이어 약속·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
+      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·플레이 상황·서사 깊이·플레이어 약속·Loop 요약·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
       "responsibility_coverage": [
         "gate-1-working-baseline",
         "primary-player-experience",
         "target-player-and-play-context",
         "optional-narrative-depth",
         "confirmed-player-promise",
+        "confirmed-loop-summary",
         "pointed-fun",
         "why-how-what",
         "element-alignment",
@@ -62,9 +64,37 @@
       "status": "ACTIVE_GATE_1_WORKING_SOURCE",
       "publication_policy": "source_only",
       "supporting_sources": [
+        "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md",
         "docs/ACTIVE_CONTEXT.md"
+      ]
+    },
+    {
+      "id": "spell-gate-1-gameplay-loop",
+      "title": "스펠 Gate 1 게임플레이 Loop 구조",
+      "responsibility": "수업·교내 연습·일상·현장실습의 순환과 Micro·Combat·Session·Semester Loop, 고정 핵심 사건·자유 일정, 중단·복귀 지점",
+      "responsibility_coverage": [
+        "micro-loop",
+        "combat-loop",
+        "class-session-loop",
+        "practice-session-loop",
+        "field-practicum-session-loop",
+        "daily-life-session-loop",
+        "semester-loop",
+        "fixed-events-and-free-schedule",
+        "save-resume-boundaries",
+        "loop-reward-data-flow"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
+        "docs/planning/WORLD_MAGIC_CURRICULUM_SYSTEM.md",
+        "docs/planning/WORLD_FIELD_PRACTICUM_SYSTEM.md",
+        "docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md"
       ]
     },
     {
@@ -149,11 +179,15 @@
     },
     {
       "responsibility": "micro-combat-session-semester-loops",
-      "status": "NEXT_BLOCKING_DECISION_GM-LOOP-01"
+      "status": "CONFIRMED_BY_GM-LOOP-01"
     },
     {
-      "responsibility": "experience-curve-and-sales-points",
-      "status": "BLOCKED_BY_GM-LOOP-01"
+      "responsibility": "experience-curve",
+      "status": "NEXT_BLOCKING_DECISION_GM-CURVE-01"
+    },
+    {
+      "responsibility": "sales-points",
+      "status": "BLOCKED_BY_GM-CURVE-01"
     },
     {
       "responsibility": "benchmark-swot-vrio-feasibility",
