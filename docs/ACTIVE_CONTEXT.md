@@ -10,6 +10,7 @@
 - 기획 상태: `PLANNING_IN_PROGRESS`
 - 프로젝트 코어 전체: `CORE_CANDIDATE`
 - 프로젝트 코어 경계: `PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1`
+- 세일즈포인트: `SALES_POINTS_CONFIRMED_FOR_GATE_1`
 - 세계관 코어: `REFERENCE_CANDIDATE`
 - 최상위 경험 방향: `PRIMARY_EXPERIENCE_DIRECTION_CONFIRMED`
 - 목표 플레이어·플레이 상황: `AUDIENCE_AND_PLAY_CONTEXT_CONFIRMED`
@@ -24,7 +25,7 @@
 - 기준 브랜치: `gpt/planning-spell-20260725`
 - 기준 날짜: 2026-07-27
 
-`PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1`은 코어와 지원층의 경계가 승인됐다는 뜻이다. Gate 1 전체 승인이나 `CORE_CONFIRMED`, CORE_POC 통과, 구현 승인이 아니다.
+`PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1`과 `SALES_POINTS_CONFIRMED_FOR_GATE_1`은 각각 코어 경계와 전달 문구가 승인됐다는 뜻이다. Gate 1 전체 승인이나 `CORE_CONFIRMED`, CORE_POC 통과, 구현 승인이 아니다.
 
 ## 작업 권한과 자료 지위
 
@@ -42,9 +43,10 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 2. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
 3. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
 4. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
-5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md`
-6. `docs/planning/DECISION_LOG.md`
-7. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+5. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
+6. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md`
+7. `docs/planning/DECISION_LOG.md`
+8. `docs/DESIGN_DOCUMENT_REGISTRY.json`
 
 ### 기존 작업물
 
@@ -286,6 +288,55 @@ Loop 층:
 - 학습·실전·기록 순환 제거 → 학교와 성장이 메뉴 모음으로 분리
 - 스톡·소환수·관계·실시간 전투·3년 구조는 축소·교체해도 코어 유지
 
+## 확정된 세일즈포인트 — GM-SALES-01
+
+사용자 승인: 2026-07-27, `그래`
+
+상태: `SALES_POINTS_CONFIRMED_FOR_GATE_1`
+
+책임 원본: `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
+
+### 통합 한 문장
+
+> 마법 글자를 직접 쓰고 조합해, 수업에서 배운 원리로 전투와 환경의 새로운 해답을 발견하는 모바일 마법학교 RPG.
+
+### 최대 3개
+
+1. **손으로 직접 쓰는 마법**
+   - 버튼을 누르는 대신 마법 글자를 직접 그려 발동한다.
+2. **상황에 맞게 만드는 주문**
+   - 메인 글자와 보조 글자를 조합해 같은 마법도 전투·구조·탐색·환경 해결에 다르게 사용한다.
+3. **수업에서 배우고 실전에서 발견하는 마법학교**
+   - 수업에서 원리를 배우고 현장실습에서 나만의 활용법을 발견해 마도서에 기록한다.
+
+### 대표 세 장면
+
+```text
+장면 1
+직접 글자 작성→즉시 마법 발현
+
+장면 2
+같은 메인 글자→다른 보조 조합→다른 상황 결과
+
+장면 3
+수업 원리→현장 응용→새 활용 마도서 기록
+```
+
+### 전달 우선순위
+
+```text
+첫 시각적 훅
+= 직접 쓰는 마법
+
+장기 핵심 재미
+= 의미 기반 조합·상황 반응·발견
+
+장기 성장 프레임
+= 수업·현장실습·마도서·관계
+```
+
+직접 작성은 가장 눈에 띄는 훅이지만 프로젝트 코어의 최우선 재미는 조합하고 발견하는 지적 재미다.
+
 ## 뾰족한 재미
 
 ```text
@@ -352,6 +403,9 @@ Loop 층:
 - 첫 마법 사용 전 장문 설명을 강제하지 않는다.
 - 수동 작성 경험 없이 자동화를 먼저 공개하지 않는다.
 - 의미 기반 글자·직접 작성·상황 변형·세계 변화·학습 순환은 범위 축소 대상이 아니다.
+- `무한 자유 조합`, `무엇이든 가능한 마법`, `완전한 손글씨 인식`을 약속하지 않는다.
+- 직접 작성만 강조하고 의미 기반 조합과 결과 해석을 숨기지 않는다.
+- 실시간 전투·완성 주문 스톡·소환수 충전을 검증 전 대표 세일즈포인트로 사용하지 않는다.
 - 사용자 승인 전 `CORE_CONFIRMED`를 사용하지 않는다.
 - 현재 단계에서 Godot 코드·Scene·Resource·게임 데이터를 구현하지 않는다.
 - Codex를 실행하지 않는다.
@@ -360,7 +414,7 @@ Loop 층:
 
 `GM-STOCK-01`의 세부 수치는 다음 항목이 정렬될 때까지 보류한다.
 
-1. 세일즈포인트와 CORE_POC 범위
+1. 벤치마킹·SWOT·VRIO·제작성과 CORE_POC 범위
 2. 모바일 UI·인지 부하 검증
 3. 실제 세션·전투 시간 테스트
 4. 실시간·감속·단계형 전투 표현 비교
@@ -379,6 +433,8 @@ Loop 층:
 - 일상 관계가 실습과 연결되지 않으면 별도 호감도 메뉴로 분리될 수 있다.
 - 온보딩에서 시스템을 빠르게 많이 공개하면 첫 설계 경험이 메뉴 학습으로 변질될 수 있다.
 - 지원 시스템을 코어로 오인하면 범위를 줄이지 못하고 CORE_POC가 비대해질 수 있다.
+- 직접 작성만 세일즈 훅으로 보이면 단순 필기 미니게임으로 오해될 수 있다.
+- `무한 조합`으로 과장하면 실제 규칙 기반 설계와 기대 불일치가 발생한다.
 
 ### BLOCKED_UNVERIFIED
 
@@ -397,12 +453,15 @@ Loop 층:
 - 기본층과 상세층의 적정 대화 분량
 - 자유 일정과 관계 변화가 제작량 대비 충분한 차이를 만드는지
 - 코어만 포함한 CORE_POC가 독립적으로 재미있는지
+- 세일즈포인트 3개의 경쟁작 대비 희소성·모방 난이도
+- 한 문장과 세 장면만으로 플레이어가 올바르게 이해하는지
+- 세 대표 장면의 1인 개발 제작비와 Vertical Slice 재사용성
 
-## 다음 우선 결정 — GM-SALES-01
+## 다음 우선 결정 — GM-BENCHMARK-01
 
-플레이어와 시장에 즉시 전달할 세일즈포인트를 최대 3개로 압축한다.
+확정한 세일즈포인트 3개를 경쟁군·비교 축·근거로 검증하고 SWOT·VRIO·1인 제작성 판단으로 연결한다.
 
-> 스펠을 처음 보는 사람이 한 문장과 세 장면만 보고도 이해해야 하는 차별점 3개는 무엇인가?
+> 직접 작성·의미 기반 조합·마법학교 학습 순환을 검증할 벤치마크를 어떤 세 그룹으로 나눌 것인가?
 
 상태: `DESIGN_HYPOTHESIS_REQUIRES_USER_DECISION`
 
@@ -416,8 +475,8 @@ GM-CORE-01 — 승인됨
 → GM-LOOP-01 — 승인됨
 → GM-CURVE-01 — 승인됨
 → GM-CORE-BOUNDARY-01 — 승인됨
-→ GM-SALES-01 세일즈포인트 최대 3개
-→ 벤치마킹·SWOT·VRIO·제작성
+→ GM-SALES-01 — 승인됨
+→ GM-BENCHMARK-01 벤치마킹·SWOT·VRIO·제작성
 → 마스코트·상징 동반자 역할 후보
 → CORE_POC 계약
 → 적대적 검토
@@ -429,12 +488,13 @@ GM-CORE-01 — 승인됨
 1. 사용자 제공 `VERTICAL_SLICE_MASTER_REFERENCE_v6.md`
 2. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
 3. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
-4. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
-5. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
-6. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md`
-7. `docs/planning/DECISION_LOG.md`
-8. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-9. 기존 시스템별 `docs/planning/` 문서 — 참조 필요 시 선택
+4. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
+5. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
+6. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
+7. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md`
+8. `docs/planning/DECISION_LOG.md`
+9. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+10. 기존 시스템별 `docs/planning/` 문서 — 참조 필요 시 선택
 
 ## GitHub 규칙
 
