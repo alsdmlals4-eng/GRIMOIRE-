@@ -9,8 +9,9 @@
 - 프로젝트 코어: `CORE_CONFIRMED`
 - Gate 2: `ENTERED_PLANNING_ONLY_VISUAL_PREPRODUCTION`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
+- 시각 표현 구조: `LANDSCAPE_HYBRID_2D_CONFIRMED`
 - 구현: `NOT_STARTED`
-- 다음 차단 결정: `GM-VISUAL-PRESENTATION-01`
+- 다음 차단 결정: `GM-CHARACTER-PRESENTATION-01`
 
 ## 1. 시작 경로
 
@@ -21,6 +22,7 @@ README.md
 → docs/planning/GATE_1_FINAL_APPROVAL.md
 → docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md
 → docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md
+→ docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
 → docs/ASSET_LICENSE_LEDGER.md
@@ -34,6 +36,7 @@ README.md
 | Gate 1 최종 승인 | `docs/planning/GATE_1_FINAL_APPROVAL.md` | `ACTIVE_APPROVAL_AUTHORITY` |
 | 승인된 Vertical Slice 계약 | `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md` | `APPROVED_AT_GATE_1` |
 | Gate 2 적대적 검토 루프 | `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md` | `PASS_WITH_FOLLOWUP` |
+| 시각 표현 구조 | `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md` | `LANDSCAPE_HYBRID_2D_CONFIRMED` |
 | 통합 기준선 | `docs/planning/V6_CONCEPT_REBASE_BASELINE.md` | `APPROVED_GATE_1_BASELINE` |
 | 게임플레이 Loop | `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md` | `APPROVED_GATE_1_SOURCE` |
 | 경험 곡선 | `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md` | `APPROVED_GATE_1_SOURCE` |
@@ -43,7 +46,7 @@ README.md
 | 소환수·동반자 | `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md` | `APPROVED_GATE_1_SOURCE` |
 | 직접 Slice 경로 | `docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md` | `ACTIVE_ROUTE_SOURCE` |
 | 결정 원장 | `docs/planning/DECISION_LOG.md` | `ACTIVE_WITH_LATEST_ADDENDUM` |
-| 최신 Addendum | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md` | `LATEST_DECISION_RECORD` |
+| 최신 Addendum | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md` | `LATEST_DECISION_RECORD` |
 | 자산 출처·라이선스 | `docs/ASSET_LICENSE_LEDGER.md` | `ACTIVE_ASSET_PROVENANCE_AUTHORITY` |
 | Skill 라우팅 | `skills/SKILL_REGISTRY.json` | `ACTIVE_PROJECT_SKILL_ROUTER` |
 
@@ -80,14 +83,36 @@ README.md
 
 - Gate 1 코어·Slice 범위: `NO_CHANGE`
 - 문서 상태 회귀: `FIXED`
-- 아트·사운드 대량 제작: `BLOCKED_BY_VISUAL_PRESENTATION_DECISIONS`
 - 최종: `PASS_WITH_FOLLOWUP`
 
-## 5. 시각·사운드 프리프로덕션 경로
+## 5. 확정된 시각 표현 구조
 
 ```text
-GM-VISUAL-PRESENTATION-01
-→ GM-CHARACTER-PRESENTATION-01
+가로형
++ 고정·장면 기반 3/4 월드
++ 기존 배경 위 대화 초상 레이어
++ 월드 감속·암전형 마법 작성 오버레이
++ 같은 장면에서 적·환경·보조 소환수 확인
+```
+
+화면비:
+
+- 기준 구도: `16:9`
+- 확장 대응: `18:9~20:9`
+- 좌우 월드 확장, 핵심 UI·작성 영역은 안전 구도 유지
+
+제작 경계:
+
+- 자유 이동형 대형 학교 제외
+- 학교 장면은 수업·시험·자유일정·축제 상태로 재사용
+- 현장 장면은 전투·환경·복구 상태로 재사용
+- 작성 중 대상·위험·지원 상태 유지
+- 세로형 별도 UI·자유 카메라·복잡한 2.5D 제외
+
+## 6. 시각·사운드 프리프로덕션 경로
+
+```text
+GM-CHARACTER-PRESENTATION-01
 → ART-STYLE-01
 → ART-BIBLE-01
 → ASSET-SPEC-01
@@ -96,9 +121,9 @@ GM-VISUAL-PRESENTATION-01
 → GM-VS-PROFILE-01 재검토
 ```
 
-그림체보다 화면 방향·카메라·게임 표현 구조를 먼저 결정한다.
+화면 구조는 확정됐다. 다음으로 캐릭터의 필드·대화 표현 수준을 결정한 뒤 그림체를 선정한다.
 
-## 6. 기존 시스템 참조
+## 7. 기존 시스템 참조
 
 다음은 `REFERENCE_CANDIDATE`다.
 
@@ -113,32 +138,35 @@ GM-VISUAL-PRESENTATION-01
 - 수치는 `UNVERIFIED` 또는 `BALANCE_TUNING_BACKLOG`
 - 폐기·대체 결정은 이력으로 보존
 
-## 7. 구현·검증 상태
+## 8. 구현·검증 상태
 
 | 항목 | 상태 |
 |---|---|
 | Godot 구현 계획 | `NOT_AUTHORED` |
 | Save Schema v1 | `NOT_AUTHORED` |
 | Situation Challenge 데이터 계약 | `CONCEPT_ONLY` |
+| 캐릭터 표현 구조 | `NEXT_BLOCKING_DECISION` |
+| 그림체·Art Bible·Asset Specification | `NOT_AUTHORED` |
+| Audio Direction | `NOT_AUTHORED` |
 | Android 검증 매트릭스 | `NOT_AUTHORED` |
 | Balance Tuning Backlog | `NOT_AUTHORED` |
 | 이미지·사운드 자산 | `NOT_STARTED` |
 | 외부 자산 라이선스 조사 | `NOT_RUN` |
 | 런타임·접근성·성능 | `NOT_RUN` |
 
-## 8. 현재 금지
+## 9. 현재 금지
 
 - `main` 직접 수정
 - 사용자 승인 없는 PR 병합
-- 화면 구조 결정 전 대량 이미지·사운드 제작
+- 캐릭터 표현·Art Bible·Asset Specification 전 대량 이미지·사운드 제작
 - 별도 CORE_POC 재도입
 - `VERTICAL_SLICE_FULL_PROFILE` 자동 전환
 - Codex 실행
 - Godot 구현
 - 런타임 증거 없는 완료 선언
 
-## 9. 다음 라우팅
+## 10. 다음 라우팅
 
-`GM-VISUAL-PRESENTATION-01`
+`GM-CHARACTER-PRESENTATION-01`
 
-Vertical Slice의 화면 방향, 카메라, 탐색·대화·마법 작성의 시각 표현 구조를 결정한다.
+가로형 3/4 장면에서 주인공·NPC·메인 동반 소환수·전투 보조 소환수를 어떤 비율과 자산 조합으로 표현할지 결정한다.
