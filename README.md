@@ -28,7 +28,8 @@
 7. `docs/DOCUMENTATION_MAP.md`
 8. `docs/DEVELOPMENT_GATES.md`
 9. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-10. 현재 책임 원본과 `skills/SKILL_REGISTRY.json`
+10. `docs/ASSET_LICENSE_LEDGER.md`
+11. `skills/SKILL_REGISTRY.json`
 
 ## 승인된 Vertical Slice
 
@@ -63,7 +64,7 @@
 → Art Bible·Asset Specification
 → 캐릭터·배경·효과 이미지
 → 사운드·BGM·효과음
-→ 실행 프로필 전환 검토
+→ 실행 프로필 전환 재검토
 ```
 
-현재 프로필에서는 Godot 코드·Scene·Resource·게임 데이터 구현, Codex 실행, Draft PR 병합을 하지 않습니다.
+현재 프로필에서는 대량 이미지·사운드 제작, Godot 코드·Scene·Resource·게임 데이터 구현, Codex 실행, Draft PR 병합을 하지 않습니다.
