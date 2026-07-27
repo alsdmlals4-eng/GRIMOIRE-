@@ -24,7 +24,7 @@
 ## 검토 결론
 
 - Gate 1 코어·Vertical Slice 범위: `NO_CHANGE`
-- 수업·시험·축제·현장실습·자유일정 3회: 유지
+- 수업·시험·학교축제·현장실습·자유일정 3회: 유지
 - 공통 Situation Challenge·45~50분 목표·60분 상한: 유지
 - 정본 상태 회귀: `FIXED`
 - Problem Differentiation Matrix·Art Bible·Asset Specification·Audio Direction Card: 다음 산출물
