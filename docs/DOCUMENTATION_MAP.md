@@ -7,176 +7,143 @@
 - 제품 단계: `CONCEPT_APPROVAL`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
-- CORE_POC: `REMOVED_BY_USER_DECISION`
-- Vertical Slice 계약: `NOT_AUTHORED`
+- Gate 1: `UNVERIFIED`
+- Vertical Slice 계약: `VERTICAL_SLICE_CONTRACT_CONFIRMED_FOR_GATE_1`
+- 구현: `NOT_STARTED`
 
----
-
-## 1. 콜드 스타트 경로
+## 1. 시작 경로
 
 ```text
-AGENTS.md
-→ docs/BASE_RULES_VERSION.md
-→ START_HERE.md
+START_HERE.md
 → docs/ACTIVE_CONTEXT.md
-→ docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md
 → docs/planning/V6_CONCEPT_REBASE_BASELINE.md
+→ docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
-→ docs/planning/DECISION_LOG.md
 ```
-
-이 경로를 읽으면 현재 제품 단계, 승인된 코어, CORE_POC 제거 결정, Vertical Slice 진입 조건과 다음 차단 결정을 확인할 수 있어야 한다.
-
----
 
 ## 2. Gate 1 책임 원본
 
-| 책임 | 단일 책임 원본 | 상태 |
+| 책임 | 문서 | 상태 |
 |---|---|---|
-| Gate 1 통합 기준선 | `docs/planning/V6_CONCEPT_REBASE_BASELINE.md` | `ACTIVE_GATE_1_WORKING_SOURCE` |
-| 게임플레이 Loop | `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md` | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` |
-| 경험 곡선 | `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md` | `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1` |
-| 프로젝트 코어 경계 | `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md` | `PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1` |
-| 세일즈포인트 | `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md` | `SALES_POINTS_CONFIRMED_FOR_GATE_1` |
-| 벤치마킹·SWOT·VRIO·제작성 | `docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md` | `BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED` |
-| 소환수·동반자 구조 | `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md` | `TWO_TIER_SUMMON_STRUCTURE_CONFIRMED_FOR_GATE_1` |
-| CORE_POC 없는 직접 Slice 경로 | `docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md` | `DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_FOR_GATE_1` |
+| 통합 기준선 | `docs/planning/V6_CONCEPT_REBASE_BASELINE.md` | `ACTIVE_GATE_1_WORKING_SOURCE` |
+| 게임플레이 Loop | `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
+| 경험 곡선 | `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
+| 프로젝트 코어 경계 | `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
+| 세일즈포인트 | `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
+| 벤치마킹·SWOT·VRIO·제작성 | `docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md` | `RESEARCH_AUTHORED` |
+| 소환수·동반자 구조 | `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
+| 직접 Vertical Slice 경로 | `docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md` | `CONFIRMED_FOR_GATE_1` |
+| 축약 학기형 Vertical Slice 계약 | `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md` | `CONFIRMED_FOR_GATE_1` |
 | 결정 원장 | `docs/planning/DECISION_LOG.md` | `ACTIVE_WITH_LATEST_ADDENDUM` |
-| 최신 override 기록 | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27L.md` | `LATEST_DECISION_ADDENDUM` |
-| 현재 실행 상태 | `docs/ACTIVE_CONTEXT.md` | `ACTIVE_CONTEXT` |
-| 제품 게이트 | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_ROUTER` |
-| 책임 라우터 | `docs/DESIGN_DOCUMENT_REGISTRY.json` | `ACTIVE_CANONICAL_SOURCE_ROUTER` |
+| 최신 Addendum | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27M.md` | `LATEST_DECISION_RECORD` |
 
----
+## 3. Vertical Slice 계약 요약
 
-## 3. 최신 제품 경로
+```text
+프롤로그·학교 도착
+→ 첫 수업·교내 연습
+→ 자유일정 A 1회
+→ 첫 실기시험
+→ 자유일정 B 1회
+→ 학교축제 준비·학교축제
+→ 자유일정 C 1회
+→ 첫 현장실습
+→ 귀환·마도서 기록·다음 학기 예고
+```
+
+세션별 책임:
+
+- 수업·연습: 배움
+- 시험: 이해의 증명
+- 학교축제: 표현·관계·비전투 활용
+- 현장실습: 실제 위험 속 응용·발견
+- 자유일정: 휴식·준비·관계·연구의 완충
+- 귀환·기록: 결과 해석·다음 학습 연결
+
+자유일정:
+
+- 총 3회
+- 한 슬롯에서 행동 1개
+- 휴식은 유효한 선택
+- 필수 진행·정보·정답 차단 금지
+
+## 4. 제품 경로
 
 ```text
 Gate 1 콘셉트 정리
-→ GM-SLICE-01 Vertical Slice 계약
-→ 적대적 범위 검토
-→ 사용자 Gate 1 승인
+→ Vertical Slice 계약 — 승인됨
+→ GM-GATE1-REVIEW-01 적대적 검토
+→ P0·P1 처리안
+→ 사용자 Gate 1 최종 승인
 → VERTICAL_SLICE_FULL_PROFILE 전환
 → Codex read-only Plan
-→ Validation-First Vertical Slice
-→ QA·외부 플레이테스트
-→ Gate 3 판단
+→ Validation-First Vertical Slice 구현
 ```
 
-제거된 경로:
+CORE_POC:
 
-```text
-CORE_POC 계약
-→ CORE_POC 구현
-→ CORE_POC 통과
-```
+- `REMOVED_BY_USER_DECISION`
+- 검증 책임은 Vertical Slice에 흡수
+- 다른 이름으로 재도입 금지
 
-상태: `SUPERSEDED_BY_GM-VS-ROUTE-01`
+## 5. 시스템 참조 문서
 
-CORE_POC 검증 항목은 제거되지 않고 Vertical Slice 통과 기준으로 흡수된다.
+다음은 기존 결정과 후보를 보존하는 `REFERENCE_CANDIDATE`다.
 
----
-
-## 4. 승인된 핵심 요약
-
-### 플레이어 약속
-
-> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.
-
-### 비타협 코어
-
-- 의미를 가진 마법 글자
-- `메인 글자 1개 + 보조 글자 0개 이상`
-- 신규·미숙·중요 글자의 직접 작성
-- 상황에 따른 주문 변형 판단
-- 설명 가능한 세계 변화
-- 수업→연습→현장실습→발견·기록→다음 학습
-
-### 소환수 구조
-
-```text
-메인 동반 소환수
-= 항상 같은 개체가 동행
-= 학습·관계·기록
-
-전투 보조 소환수
-= 전투에서 호출
-= 공격·견제·수호·충전 지원
-```
-
----
-
-## 5. Validation-First Vertical Slice 책임
-
-다음은 Slice 계약과 구현에서 반드시 추적한다.
-
-- 직접 작성과 즉시 발현
-- 입력 실패와 설계 실패 분리
-- 완전 정지·감속·실시간 비교
-- 같은 메인 글자의 전투·환경 재사용
-- 최소 2개의 유효 해결법
-- 실패 원인 이해와 재설계
-- 메인 동반자의 학습·기록 연결
-- 전투 보조 소환수의 수호·견제 효과
-- Android 실제 기기·화면비·성능·저장·복귀
-- 두 번째 유사 콘텐츠 제작성
-
----
-
-## 6. 기존 참조 문서
-
-다음 문서는 최신 Gate 1 원본을 보조하는 `REFERENCE_CANDIDATE`다.
-
-### 마법·전투·자동화
-
+- `docs/planning/SPELL_GAME_DESIGN.md`
 - `docs/planning/COMBAT_CORE_SYSTEM.md`
 - `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`
 - `docs/planning/CIRCUIT_SYSTEM.md`
+- `docs/planning/MAIN_LETTER_LEVEL_SYSTEM.md`
+- `docs/planning/MAIN_LETTER_SPECIALIZATION_SYSTEM.md`
+- `docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md`
+- `docs/planning/SUPPORT_LETTER_OPERATION_CAPACITY_SYSTEM.md`
 - `docs/planning/STOCK_SYSTEM.md`
-- `docs/planning/MANA_SYSTEM.md`
 - `docs/planning/SUMMON_SYSTEM.md`
+- `docs/planning/MANA_SYSTEM.md`
+- 학교·학년·학기·수업·현장실습 문서
+- 내러티브·벤치마크 문서
 
-### 학교·세계·서사
+사용 규칙:
 
-- `docs/planning/WORLD_SETTING_CONCEPT.md`
-- `docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md`
-- `docs/planning/WORLD_MAGIC_CURRICULUM_SYSTEM.md`
-- `docs/planning/WORLD_FIELD_PRACTICUM_SYSTEM.md`
-- `docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md`
+- 최신 Gate 1 책임 원본과 충돌하면 최신 원본 우선
+- 보호 결정은 유지
+- 수치는 `UNVERIFIED` 또는 `BALANCE_TUNING_BACKLOG`
+- 폐기·대체 결정은 이력으로 보존
 
-### 벤치마크
+## 6. 구현·검증 문서
 
-- `docs/planning/BENCHMARK_CIRCUIT_GRAMMAR.md`
-- `docs/planning/BENCHMARK_SUMMON_SYSTEM.md`
-- `docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md`
+| 문서 | 현재 상태 |
+|---|---|
+| `docs/DEVELOPMENT_GATES.md` | Gate 1 진행 중 |
+| Godot 구현 계획 | `NOT_AUTHORED` |
+| Android 검증 매트릭스 | `NOT_AUTHORED` |
+| Balance Tuning Backlog | `NOT_AUTHORED` |
+| 적대적 Gate 1 검토 | `NEXT_BLOCKING_DECISION` |
+| QA·접근성·성능 | `NOT_RUN` |
 
-참조 문서의 기존 수치와 범위는 사용자 재승인 없이 Gate 1 확정값으로 승격하지 않는다.
+## 7. 현재 금지
 
----
+- `main` 직접 수정
+- 사용자 승인 없는 PR 병합
+- Gate 1 승인 전 구현
+- Codex 실행
+- `CORE_CONFIRMED` 선언
+- 별도 CORE_POC 재도입
+- 자유일정 선택으로 필수 진행 차단
+- 휴식을 손해 전용 선택으로 설계
 
-## 7. 다음 차단 결정
+## 8. 다음 라우팅
 
-`GM-SLICE-01`: 첫 Vertical Slice의 대표 구간, 포함·제외 범위, 통과·실패 기준.
+`GM-GATE1-REVIEW-01`
 
-권장 후보:
+검토 대상:
 
-```text
-짧은 수업
-→ 교내 연습
-→ 짧은 일상·준비
-→ 첫 현장실습 전투
-→ 환경·구조 문제
-→ 복귀·마도서 기록
-```
-
----
-
-## 8. 문서 운영 규칙
-
-- 한 책임에는 하나의 정본만 둔다.
-- 최신 사용자 결정이 이전 경로를 override할 수 있다.
-- 별도 CORE_POC를 다른 이름으로 재도입하지 않는다.
-- 과거 결정과 문서는 Git 이력과 Addendum으로 보존한다.
-- 실제 파일·빌드·테스트가 구현 주장보다 우선한다.
-- 사용자 승인 전 PR을 병합하지 않는다.
+- 4개 핵심 세션 + 자유일정 3회의 1인 제작성
+- 시험·축제·현장실습의 플레이 중복
+- 전체 52~84분의 모바일 완주 부담
+- 자유일정의 가치와 제작 비용
+- 터치 입력·소환수·환경 UI 인지 부하
+- 저장·복귀와 콘텐츠 재사용성
+- P0·P1 감량 순서
