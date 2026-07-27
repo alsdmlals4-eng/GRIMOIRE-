@@ -10,6 +10,7 @@
 | 플레이어 약속 | 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG |
 | 주 경험 | 마법 글자의 의미를 이해하고 상황에 맞는 주문을 설계·발견하는 지적 마법 판타지 |
 | 기본 Loop | 수업→교내 연습→일상→현장실습→복귀·정리→다음 학습 |
+| 경험 곡선 | 첫 5분 직접 작성·설계→첫 모의 실습→첫 발견→첫 하위 글자 스톡 |
 | 일정 방식 | 고정 핵심 사건 + 자유 일정 |
 | 장르·플랫폼 | 집중형 모바일 마법학교 RPG / Android·Google Play |
 | 기본 세션 목표 | 약 10~15분, 수업·연습·현장실습·일상 중 하나를 중심으로 완결 |
@@ -21,8 +22,8 @@
 | 구현 상태 | `NOT_STARTED` |
 | 현재 브랜치 | `gpt/planning-spell-20260725` |
 | 현재 PR | Draft PR #1 |
-| 다음 결정 | `GM-CURVE-01` — 첫 5분부터 첫 숙련 자동화까지의 경험 곡선 |
-| 다음 제품 증거 | 경험 곡선·코어 경계·세일즈포인트·CORE_POC 계약 |
+| 다음 결정 | `GM-CORE-BOUNDARY-01` — 프로젝트 코어·지원 시스템·변경 가능한 외피 경계 |
+| 다음 제품 증거 | 코어 경계·세일즈포인트·제작성·CORE_POC 계약 |
 | 가장 큰 위험 | 모바일 실시간 전투에서 직접 작성·스톡·소환수·대상 판단이 조합 발견을 강화하는지 미검증 |
 | Base 기준 | `438f41afd510c827c3097341bd9e5f9c9b0e1dd0` |
 | 작업 계약 | v6 실행문·마스터 참고 계약 |
@@ -80,14 +81,45 @@ AGENTS.md
 
 > 수업에서 알고, 연습에서 할 수 있게 되고, 실전에서 다르게 써 보며, 일상에서 그 경험의 관계와 의미가 누적된다.
 
-### Loop 책임 원본
+책임 원본: `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
 
-- `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
+## 확정된 경험 곡선
 
-### 일정 구조
+상태: `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1`
 
-- 고정 핵심 사건: 학기 시작, 필수 수업, 중간 실습, 학기 핵심 실습, 시험·평가
-- 자유 일정: 선택 수업, 교내 연습, 연구, 실습 준비·조사, 일상·관계, 소환수 교감, 휴식·정비
+```text
+학교 도착·현재 목표 소개
+→ 교수의 짧은 시범
+→ 첫 메인 글자 직접 작성
+→ 세계가 변하는 결과 확인
+→ 보조 글자 하나로 작은 설계 선택
+→ 짧은 일상·관계 장면
+→ 첫 모의 현장실습에서 응용
+→ 새 활용 발견·마도서 기록
+→ 반복 숙련 후 첫 하위 글자 스톡 해금
+```
+
+핵심 문장:
+
+> 먼저 마법이 작동하는 기쁨을 주고, 곧바로 내가 설계했다는 감각을 주며, 실전에서 응용한 뒤 숙련된 반복만 자동화한다.
+
+### 첫 5분 책임
+
+1. 마법학교 학생과 현재 목표 이해
+2. 첫 메인 글자 직접 작성
+3. 즉각적인 현상 변화
+4. 보조 글자 하나로 결과 변형
+5. 플레이어 선택에 따른 다른 결과
+
+### 첫 자동화 경계
+
+- 첫 5분에 스톡을 지급하지 않는다.
+- 수동 작성 경험 없이 자동화를 먼저 공개하지 않는다.
+- 첫 자동화는 숙련 보조 글자의 하위 글자 스톡부터 시작한다.
+- 완성 주문 스톡은 직접 작성·조합·발견을 충분히 이해한 이후로 미룬다.
+- 정확한 시간과 요구량은 `PLAYTEST_TUNING_REQUIRED`다.
+
+책임 원본: `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
 
 ## 핵심 행동과 고민
 
@@ -127,7 +159,8 @@ AGENTS.md
 | 선택형 서사 | `OPTIONAL_NARRATIVE_DEPTH_CONFIRMED` | `V6_CONCEPT_REBASE_BASELINE.md` |
 | 플레이어 약속 | `PLAYER_PROMISE_CONFIRMED_FOR_GATE_1` | `V6_CONCEPT_REBASE_BASELINE.md` |
 | 게임플레이 Loop | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` | `GATE_1_GAMEPLAY_LOOP_SYSTEM.md` |
-| 프로젝트 코어 전체 | `CORE_CANDIDATE` | Gate 1 진행 중 |
+| 경험 곡선 | `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1` | `GATE_1_EXPERIENCE_CURVE_SYSTEM.md` |
+| 프로젝트 코어 전체 | `CORE_CANDIDATE` | 다음 결정 필요 |
 | 기존 세부 시스템 | `REFERENCE_CANDIDATE`·`UNPROVEN`·`BALANCE_TUNING_BACKLOG` | `DESIGN_DOCUMENT_REGISTRY.json` |
 | 구현 | `NOT_STARTED` | Godot 프로젝트·코드·Scene 없음 |
 | 런타임 검증 | `NOT_RUN` | 빌드 없음 |
@@ -146,11 +179,13 @@ AGENTS.md
 - 일상은 전투와 무관한 호감도 메뉴가 아님
 - 자유 일정은 필수 진행을 영구 차단하지 않음
 - 필수 정보를 선택형 상세 대화에만 숨기지 않음
+- 첫 마법 사용 전 장문 설명을 강제하지 않음
+- 첫 수업을 따라 그리기만 하는 긴 튜토리얼로 만들지 않음
+- 첫 5분에 모든 시스템을 동시에 공개하지 않음
+- 수동 작성 경험 없이 자동화를 먼저 공개하지 않음
 - 사용자 승인 전 `CORE_CONFIRMED` 사용 금지
 - 현재 프로필에서 Godot 구현·Codex Build 금지
 - 기획 브랜치에 구현 산출물 혼입 금지
-
-세부 근거는 `docs/ACTIVE_CONTEXT.md`와 `docs/planning/DECISION_LOG.md`를 따른다.
 
 ## 책임 원본 바로가기
 
@@ -159,7 +194,8 @@ AGENTS.md
 | 현재 무엇이 사실인가? | `docs/ACTIVE_CONTEXT.md` |
 | Gate 1 전체 기준선은? | `docs/planning/V6_CONCEPT_REBASE_BASELINE.md` |
 | 게임플레이 Loop는? | `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md` |
-| 최신 사용자 결정은? | `docs/planning/DECISION_LOG.md`·`docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md` |
+| 경험 곡선은? | `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md` |
+| 최신 사용자 결정은? | `docs/planning/DECISION_LOG.md`·`docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md` |
 | 마법 글자·회로 문법은? | `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md` — 참조 후보 |
 | 전투·스톡·소환수는? | 해당 시스템 문서 — 참조 후보·미검증 상태 확인 |
 | 세계관·학교 육성은? | 학교·학년·학기·수업·현장실습 문서 — 참조 후보 |
@@ -181,16 +217,16 @@ AGENTS.md
 3. 선택형 서사 깊이
 4. 플레이어 약속
 5. Micro·Combat·Session·Semester Loop 구조
+6. 첫 5분부터 첫 숙련 자동화까지의 경험 곡선
 
 남은 주요 증거:
 
-1. 첫 5분부터 장기 성장까지의 경험 곡선
-2. 프로젝트 코어와 변경 가능한 외피
-3. 세일즈포인트 최대 3개
-4. 벤치마킹·SWOT·VRIO·1인 제작성 재검증
-5. 마스코트 또는 상징 동반자 역할 후보
-6. CORE_POC 위험 가설·대표 구간·통과 기준
-7. 적대적 검토와 사용자 Gate 1 승인
+1. 프로젝트 코어와 변경 가능한 외피
+2. 세일즈포인트 최대 3개
+3. 벤치마킹·SWOT·VRIO·1인 제작성 재검증
+4. 마스코트 또는 상징 동반자 역할 후보
+5. CORE_POC 위험 가설·대표 구간·통과 기준
+6. 적대적 검토와 사용자 Gate 1 승인
 
 코어 승인 전 `designing-vertical-slices`의 본 계약으로 넘어가지 않는다.
 
@@ -198,12 +234,12 @@ AGENTS.md
 
 | 우선순위 | 작업 | 완료 기준 |
 |---:|---|---|
-| 1 | `GM-CURVE-01` | 첫 5분·첫 수업·첫 주문 설계·첫 현장실습·첫 발견·첫 숙련 자동화의 순서와 감정 정의 |
-| 2 | 프로젝트 코어 경계 | 코어·지원·변경 가능한 외피·비타협 조건 승인 |
-| 3 | 세일즈포인트·제작성 | 최대 3개 강점과 1인 개발 범위 검증 |
+| 1 | `GM-CORE-BOUNDARY-01` | 비타협 프로젝트 코어·지원 시스템·변경 가능한 외피·제거 가능 요소 구분 |
+| 2 | 세일즈포인트·제작성 | 최대 3개 강점과 1인 개발 범위 검증 |
+| 3 | 벤치마킹·SWOT·VRIO | 외부 구조 비교와 경쟁력·위험 재검증 |
 | 4 | CORE_POC 계약 | 대표 주문·적·전투 구간·관찰 지표·실패 기준 정의 |
 
-`GM-STOCK-01`은 경험 곡선·CORE_POC·모바일 인지 부하 검증 전까지 보류한다.
+`GM-STOCK-01`은 코어 경계·CORE_POC·모바일 인지 부하 검증 전까지 보류한다.
 
 ## 지금 하지 말아야 할 것
 
@@ -221,6 +257,7 @@ AGENTS.md
 
 - 플레이어에게 약속한 경험은 무엇인가?
 - 수업·연습·실전·일상은 어떻게 순환하는가?
+- 첫 5분과 첫 자동화는 어떤 순서로 제공되는가?
 - 현재 확정·후보·미검증 상태는 무엇인가?
 - 무엇을 변경하면 안 되는가?
 - 다음 결정과 제품 게이트는 무엇인가?
