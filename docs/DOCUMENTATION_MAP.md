@@ -3,12 +3,12 @@
 - 책임: 프로젝트 허브·통합검수
 - 마지막 검토일: 2026-07-27
 - 기준 브랜치: `gpt/planning-spell-20260725`
+- Base 기준 Commit: `438f41afd510c827c3097341bd9e5f9c9b0e1dd0`
 - 제품 단계: `CONCEPT_APPROVAL`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
-- Gate 1: `UNVERIFIED`
-- Vertical Slice 계약: `CONFIRMED_PENDING_P0_AMENDMENT`
-- 적대적 검토: `AUTHORED`
+- Gate 1: `FINAL_USER_APPROVAL_PENDING`
+- Vertical Slice 계약: `CONFIRMED_WITH_P0_AMENDMENT_FOR_GATE_1`
 - 구현: `NOT_STARTED`
 
 ## 1. 시작 경로
@@ -16,8 +16,9 @@
 ```text
 START_HERE.md
 → docs/ACTIVE_CONTEXT.md
-→ docs/planning/GATE_1_ADVERSARIAL_REVIEW.md
+→ docs/planning/V6_CONCEPT_REBASE_BASELINE.md
 → docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md
+→ docs/planning/GATE_1_ADVERSARIAL_REVIEW.md
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
 ```
@@ -26,87 +27,130 @@ START_HERE.md
 
 | 책임 | 문서 | 상태 |
 |---|---|---|
-| 통합 기준선 | `docs/planning/V6_CONCEPT_REBASE_BASELINE.md` | `ACTIVE_GATE_1_WORKING_SOURCE` |
+| 통합 기준선 | `docs/planning/V6_CONCEPT_REBASE_BASELINE.md` | `GATE_1_FINAL_APPROVAL_READY` |
 | 게임플레이 Loop | `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
 | 경험 곡선 | `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
 | 프로젝트 코어 경계 | `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
 | 세일즈포인트 | `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
 | 벤치마킹·SWOT·VRIO·제작성 | `docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md` | `RESEARCH_AUTHORED` |
-| 소환수·동반자 | `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
-| 직접 Slice 경로 | `docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md` | `CONFIRMED_FOR_GATE_1` |
-| 축약 학기형 Slice 계약 | `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md` | `CONFIRMED_PENDING_P0_AMENDMENT` |
-| 적대적 Gate 1 검토 | `docs/planning/GATE_1_ADVERSARIAL_REVIEW.md` | `AUTHORED_USER_DECISION_REQUIRED` |
+| 소환수·동반자 구조 | `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md` | `CONFIRMED_FOR_GATE_1` |
+| 직접 Vertical Slice 경로 | `docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md` | `CONFIRMED_FOR_GATE_1` |
+| P0 보완 Vertical Slice 계약 | `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md` | `CONFIRMED_WITH_P0_AMENDMENT` |
+| 적대적 검토 | `docs/planning/GATE_1_ADVERSARIAL_REVIEW.md` | `AUTHORED / P0_ACCEPTED` |
 | 결정 원장 | `docs/planning/DECISION_LOG.md` | `ACTIVE_WITH_LATEST_ADDENDUM` |
-| 최신 Addendum | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27N.md` | `LATEST_DECISION_RECORD` |
+| 최신 Addendum | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27O.md` | `LATEST_DECISION_RECORD` |
 
-## 3. 승인된 Vertical Slice
+## 3. Vertical Slice 구조
 
 ```text
-수업·교내 연습
+프롤로그·학교 도착
+→ 첫 수업·교내 연습
 → 자유일정 A
-→ 실기시험
+→ 첫 실기시험
 → 자유일정 B
 → 학교축제
 → 자유일정 C
-→ 현장실습
-→ 귀환·마도서 기록
+→ 첫 현장실습
+→ 귀환·마도서 기록·다음 학기 예고
 ```
 
-보호:
+- 수업·연습: 배움
+- 시험: 이해의 증명
+- 축제: 표현·관계·비전투 활용
+- 현장: 위험 속 응용·발견
+- 자유일정: 휴식·준비·교류
 
-- 자유일정 총 3회
-- 휴식은 유효한 선택
-- 필수 진행 차단 금지
+## 4. 승인된 P0 구조
 
-## 4. 적대적 검토 판정
+### 공통 문제 계약
 
-### 현재 계약 그대로
+모든 핵심 세션은 `Situation Challenge`를 사용한다.
 
-`NO-GO_FOR_GATE_1_FINAL_APPROVAL`
+```text
+상황 목표
+→ 관찰 상태
+→ 글자·제한 조건
+→ 방향성 미리보기
+→ 직접 작성
+→ 세계 변화
+→ 결과 원인
+→ 기록·후속 반응
+```
 
-주요 원인:
+### 시간·자유일정·저장
 
-- 세션별 전용 시스템 분열
-- 세션 역할 중복
-- 52~84분 시간 범위 상한 부재
-- 자유일정 콘텐츠 폭증
-- 터치 입력 검증 지연
-- 저장 상태 과다
+- 목표: 45~50분
+- 상한: 60분
+- 자유일정: 슬롯당 `휴식 / 준비 / 교류`
+- 저장: 세션 경계와 현장 전환 중심 최소 상태
+- 세션별 전용 미니게임·프레임워크 금지
 
-### 권장 P0 패키지 승인 후
+### 내부 구현 순서
 
-`CONDITIONAL_GO_CANDIDATE_FOR_GATE_1_FINAL_APPROVAL`
+```text
+M0 입력·피드백
+→ M1 공통 Situation Challenge
+→ M2 학교 세션
+→ M3 현장실습
+→ M4 저장·복귀·최종 연출
+```
 
-권장 패키지:
-
-1. 공통 `Situation Challenge` 계약
-2. 세션별 판단·압박·결과·실패 분리
-3. 45~50분 목표, 60분 상한
-4. 자유일정 `휴식 / 준비 / 교류`
-5. 입력→공통 문제→학교→현장→연출 구현 순서
-6. 경계 중심 최소 저장
+M0~M4는 별도 CORE_POC가 아니다.
 
 ## 5. 제품 경로
 
 ```text
-GM-GATE1-RISK-01 P0 패키지 결정
-→ 승인안 계약 반영
-→ 사용자 Gate 1 최종 승인
+Gate 1 콘셉트 정리
+→ Slice 구조 승인
+→ 적대적 검토
+→ P0 처리 패키지 승인
+→ GM-GATE1-APPROVAL-01 사용자 최종 승인
 → VERTICAL_SLICE_FULL_PROFILE 전환
 → Codex read-only Plan
 → Validation-First Vertical Slice 구현
 ```
 
-## 6. 현재 금지
+## 6. 기존 시스템 참조
 
-- P0 결정 없는 Gate 1 최종 승인
-- `CORE_CONFIRMED`
-- 실행 프로필 전환
+다음 문서들은 기존 결정과 후보를 보존하는 `REFERENCE_CANDIDATE`다.
+
+- `docs/planning/SPELL_GAME_DESIGN.md`
+- 전투·글자·회로·스톡·마나·소환수 문서
+- 학교·학년·학기·수업·현장실습 문서
+- 내러티브·벤치마크 문서
+
+사용 규칙:
+
+- 최신 Gate 1 책임 원본과 충돌하면 최신 원본 우선
+- 보호 결정 유지
+- 수치는 `UNVERIFIED` 또는 `BALANCE_TUNING_BACKLOG`
+- 폐기·대체 결정은 이력으로 보존
+
+## 7. 구현·검증 문서
+
+| 문서 | 현재 상태 |
+|---|---|
+| `docs/DEVELOPMENT_GATES.md` | Gate 1 최종 승인 대기 |
+| Godot 구현 계획 | `NOT_AUTHORED` |
+| Android 검증 매트릭스 | `NOT_AUTHORED` |
+| Balance Tuning Backlog | `NOT_AUTHORED` |
+| 런타임·QA·접근성·성능 | `NOT_RUN` |
+
+## 8. 현재 금지
+
+- `main` 직접 수정
+- 사용자 승인 없는 PR 병합
+- Gate 1 최종 승인 전 구현
 - Codex 실행
-- Godot 구현
+- `CORE_CONFIRMED` 선언
+- 실행 프로필 전환
 - 별도 CORE_POC 재도입
-- PR 병합
+- 세션별 전용 게임·미니게임 제작
+- 자유일정 선택으로 필수 진행 차단
+- 첫 완주 범위를 구조적으로 60분 초과
 
-## 7. 다음 라우팅
+## 9. 다음 라우팅
 
-`GM-GATE1-RISK-01`: 권장 P0 처리 패키지를 승인할지 결정한다.
+`GM-GATE1-APPROVAL-01`
+
+P0 보완 계약을 포함한 Gate 1 콘셉트와 Vertical Slice 범위를 최종 승인할지 결정한다.
