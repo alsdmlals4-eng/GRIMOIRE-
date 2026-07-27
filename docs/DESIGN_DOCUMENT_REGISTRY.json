@@ -13,7 +13,10 @@
     "gate_1_status": "UNVERIFIED",
     "project_core_status": "CORE_CANDIDATE",
     "project_core_boundary_status": "CONFIRMED_BY_GM-CORE-BOUNDARY-01",
-    "sales_points_status": "CONFIRMED_BY_GM-SALES-01"
+    "sales_points_status": "CONFIRMED_BY_GM-SALES-01",
+    "benchmark_status": "BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED",
+    "vrio_status": "VRIO_POTENTIAL_NOT_PROVEN",
+    "solo_feasibility_status": "FEASIBLE_WITH_STRICT_SCOPE"
   },
   "planning_authority": {
     "master_contract": "user-provided VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
@@ -40,18 +43,19 @@
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md",
     "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
     "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
     "gate_1_experience_curve": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
     "gate_1_project_core_boundary": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
-    "gate_1_sales_points": "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md"
+    "gate_1_sales_points": "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
+    "gate_1_benchmark_swot_vrio_feasibility": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md"
   },
   "canonical_documents": [
     {
       "id": "spell-v6-concept-rebase",
       "title": "스펠 v6 콘셉트 재기획 기준선",
-      "responsibility": "Gate 1 플레이어 경험·목표 플레이어·서사 깊이·플레이어 약속·Loop·경험 곡선·코어 경계·세일즈포인트 요약·뾰족한 재미·WHY-HOW-WHAT·요소 정렬·위험·진행 순서",
+      "responsibility": "Gate 1 통합 상태·승인 요약·뾰족한 재미·위험·진행 순서",
       "responsibility_coverage": [
         "gate-1-working-baseline",
         "primary-player-experience",
@@ -62,9 +66,8 @@
         "confirmed-experience-curve-summary",
         "confirmed-project-core-boundary-summary",
         "confirmed-sales-points-summary",
+        "benchmark-summary",
         "pointed-fun",
-        "why-how-what",
-        "element-alignment",
         "concept-risks",
         "core-poc-preconditions"
       ],
@@ -75,16 +78,17 @@
       "supporting_sources": [
         "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
         "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
+        "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
         "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
         "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md",
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md",
         "docs/ACTIVE_CONTEXT.md"
       ]
     },
     {
       "id": "spell-gate-1-gameplay-loop",
       "title": "스펠 Gate 1 게임플레이 Loop 구조",
-      "responsibility": "수업·교내 연습·일상·현장실습의 순환과 Micro·Combat·Session·Semester Loop, 고정 핵심 사건·자유 일정, 중단·복귀 지점",
+      "responsibility": "수업·교내 연습·일상·현장실습과 Micro·Combat·Session·Semester Loop",
       "responsibility_coverage": [
         "micro-loop",
         "combat-loop",
@@ -111,19 +115,16 @@
     {
       "id": "spell-gate-1-experience-curve",
       "title": "스펠 Gate 1 경험 곡선",
-      "responsibility": "첫 실행·첫 5분·첫 수업·첫 독립 설계·첫 관계 장면·첫 모의 실습·첫 발견·첫 숙련 자동화·시스템 공개 순서와 감정 곡선",
+      "responsibility": "첫 5분·첫 작성·첫 설계·첫 실습·첫 발견·첫 숙련 자동화",
       "responsibility_coverage": [
         "first-five-minutes",
         "first-cast",
-        "first-main-letter",
-        "first-support-letter",
         "first-independent-design",
         "first-relationship-beat",
         "first-mock-practicum",
         "first-discovery",
         "first-mastery-automation",
         "system-reveal-order",
-        "onboarding-emotional-curve",
         "onboarding-guardrails",
         "experience-curve-playtest-metrics"
       ],
@@ -141,7 +142,7 @@
     {
       "id": "spell-gate-1-project-core-boundary",
       "title": "스펠 Gate 1 프로젝트 코어 경계",
-      "responsibility": "비타협 프로젝트 코어·코어 지원 시스템·변경 가능한 외피·제거 테스트·범위 축소 순서·CORE_POC 최소 인과",
+      "responsibility": "비타협 코어·지원 시스템·변경 가능한 외피·제거 테스트·범위 축소 순서",
       "responsibility_coverage": [
         "non-negotiable-project-core",
         "core-support-systems",
@@ -169,15 +170,14 @@
     {
       "id": "spell-gate-1-sales-points",
       "title": "스펠 Gate 1 세일즈포인트",
-      "responsibility": "세일즈포인트 최대 3개·통합 한 문장·대표 세 장면·표현 우선순위·스토어·트레일러 적용 방향·과장 방지 경계·시장 검증 질문",
+      "responsibility": "세일즈포인트 최대 3개·통합 문장·대표 세 장면·과장 방지 경계",
       "responsibility_coverage": [
         "sales-points-max-three",
         "one-sentence-pitch",
         "three-representative-scenes",
         "sales-message-priority",
-        "store-short-description-direction",
+        "store-description-direction",
         "trailer-opening-direction",
-        "screenshot-role-direction",
         "sales-claim-guardrails",
         "sales-point-validation-questions"
       ],
@@ -190,6 +190,36 @@
         "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
         "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
         "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md"
+      ]
+    },
+    {
+      "id": "spell-gate-1-benchmark-swot-vrio-feasibility",
+      "title": "스펠 Gate 1 벤치마킹·SWOT·VRIO·1인 제작성",
+      "responsibility": "직접 입력·조합 문제 해결·마법학교 성장 경쟁군 분석과 SWOT·VRIO·Godot·Android·1인 제작성 판정",
+      "responsibility_coverage": [
+        "benchmark-direct-input-group",
+        "benchmark-combination-problem-solving-group",
+        "benchmark-magic-school-learning-group",
+        "integrated-competitor-assessment",
+        "swot",
+        "vrio",
+        "godot-android-technical-feasibility",
+        "solo-development-feasibility",
+        "adopt-adapt-avoid",
+        "benchmark-source-ledger",
+        "core-poc-strengthening-conditions"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
+      "status": "ACTIVE_RESEARCHED_GATE_1_SOURCE",
+      "publication_policy": "source_only",
+      "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md",
+        "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
+        "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
+        "docs/planning/BENCHMARK_CIRCUIT_GRAMMAR.md",
+        "docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md",
+        "docs/planning/BENCHMARK_SUMMON_SYSTEM.md"
       ]
     },
     {
@@ -206,11 +236,11 @@
       "status": "ACTIVE_WITH_LATEST_ADDENDUM",
       "publication_policy": "source_only",
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md"
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md"
       ]
     }
   ],
@@ -257,7 +287,7 @@
       "rules": [
         "Existing content is not automatically reapproved for Gate 1.",
         "Protected user decisions remain traceable.",
-        "Numeric values remain UNVERIFIED or Balance Tuning Backlog until tested.",
+        "Numeric values remain UNVERIFIED or BALANCE_TUNING_BACKLOG until tested.",
         "Superseded and rejected decisions remain historical evidence."
       ]
     }
@@ -293,15 +323,15 @@
     },
     {
       "responsibility": "benchmark-swot-vrio-feasibility",
-      "status": "NEXT_BLOCKING_DECISION_GM-BENCHMARK-01"
+      "status": "CONFIRMED_RESEARCH_AUTHORED_BY_GM-BENCHMARK-01"
     },
     {
       "responsibility": "mascot-and-symbolic-companion",
-      "status": "BLOCKED_BY_GM-BENCHMARK-01"
+      "status": "NEXT_BLOCKING_DECISION_GM-MASCOT-01"
     },
     {
       "responsibility": "core-poc-contract-and-playtest",
-      "status": "NOT_AUTHORED"
+      "status": "BLOCKED_BY_GM-MASCOT-01"
     },
     {
       "responsibility": "vertical-slice-contract",
