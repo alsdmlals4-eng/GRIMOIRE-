@@ -1,5 +1,5 @@
 {
-  "schema_version": 5,
+  "schema_version": 4,
   "registry_role": "spell-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/Spell",
@@ -10,7 +10,8 @@
     "execution_profile": "PLANNING_ONLY_PROFILE",
     "work_mode": "PLAN",
     "implementation_status": "NOT_STARTED",
-    "gate_1_status": "UNVERIFIED",
+    "codex_status": "NOT_RUN",
+    "gate_1_status": "FINAL_USER_APPROVAL_PENDING",
     "project_core_status": "CORE_CANDIDATE",
     "project_core_boundary_status": "CONFIRMED_BY_GM-CORE-BOUNDARY-01",
     "sales_points_status": "CONFIRMED_BY_GM-SALES-01",
@@ -20,20 +21,19 @@
     "core_poc_status": "REMOVED_BY_USER_DECISION",
     "core_poc_validation_status": "ABSORBED_INTO_VERTICAL_SLICE",
     "vertical_slice_route_status": "DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_BY_GM-VS-ROUTE-01",
-    "vertical_slice_contract_status": "CONFIRMED_BY_GM-SLICE-01",
+    "vertical_slice_contract_status": "CONFIRMED_WITH_P0_AMENDMENT_BY_GM-GATE1-RISK-01",
     "vertical_slice_structure": "COMPRESSED_SEMESTER_FOUR_CORE_SESSIONS_THREE_FREE_SCHEDULES",
     "adversarial_review_status": "AUTHORED_BY_GM-GATE1-REVIEW-01",
-    "current_scope_feasibility": "CONDITIONAL_FAIL",
-    "p0_reduced_scope_feasibility": "CONDITIONAL_PASS_CANDIDATE",
-    "gate_1_final_approval_status": "BLOCKED_BY_P0_DECISION",
+    "p0_risk_treatment_status": "CONFIRMED_BY_GM-GATE1-RISK-01",
+    "solo_feasibility_status": "CONDITIONAL_PASS_CANDIDATE",
     "vertical_slice_implementation_status": "NOT_STARTED",
-    "next_blocking_decision": "GM-GATE1-RISK-01"
+    "next_blocking_decision": "GM-GATE1-APPROVAL-01"
   },
   "planning_authority": {
     "master_contract": "user-provided VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
     "short_contract": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
     "master_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
-    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27N.md",
+    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27O.md",
     "gate_1_working_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
     "previous_planning_documents_role": "REFERENCE_CANDIDATE"
   },
@@ -48,7 +48,7 @@
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27N.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27O.md",
     "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
     "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
     "gate_1_experience_curve": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
@@ -76,7 +76,8 @@
         "summon-companion-summary",
         "direct-vertical-slice-route-summary",
         "vertical-slice-contract-summary",
-        "concept-risks"
+        "adversarial-review-summary",
+        "p0-risk-treatment-summary"
       ]
     },
     {
@@ -165,42 +166,40 @@
         "core-poc-removal",
         "validation-absorption",
         "direct-vertical-slice-route",
-        "profile-transition-conditions"
+        "profile-transition-conditions",
+        "internal-slice-checkpoints"
       ]
     },
     {
       "id": "spell-gate-1-vertical-slice-contract",
-      "title": "스펠 Gate 1 축약 학기형 Vertical Slice 계약",
+      "title": "스펠 Gate 1 P0 보완 축약 학기형 Vertical Slice 계약",
       "source_path": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md",
-      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE_PENDING_P0_AMENDMENT",
+      "status": "ACTIVE_CONFIRMED_WITH_P0_AMENDMENT_GATE_1_SOURCE",
       "responsibility_coverage": [
         "compressed-semester-slice",
         "four-core-sessions",
         "three-free-schedule-slots",
-        "class-practice",
-        "practical-exam",
-        "school-festival",
-        "field-practicum",
-        "rest-as-valid-choice",
-        "slice-inclusion-exclusion",
-        "slice-pass-fail-criteria",
-        "slice-save-resume"
+        "situation-challenge-contract",
+        "session-differentiation",
+        "rest-prepare-socialize-archetypes",
+        "45-to-50-minute-target",
+        "60-minute-cap",
+        "minimal-save-contract",
+        "slice-internal-checkpoints",
+        "slice-pass-fail-criteria"
       ]
     },
     {
       "id": "spell-gate-1-adversarial-review",
       "title": "스펠 Gate 1 적대적 콘셉트·범위 검토",
       "source_path": "docs/planning/GATE_1_ADVERSARIAL_REVIEW.md",
-      "status": "ACTIVE_REVIEW_SOURCE_USER_DECISION_REQUIRED",
+      "status": "ACTIVE_REVIEW_SOURCE_P0_ACCEPTED",
       "responsibility_coverage": [
         "adversarial-scope-review",
         "p0-risks",
         "p1-risks",
-        "common-situation-challenge-proposal",
-        "first-completion-time-cap-proposal",
-        "free-schedule-archetype-proposal",
-        "validation-first-implementation-order",
-        "minimal-save-state-proposal"
+        "solo-feasibility-challenge",
+        "risk-treatment-proposal"
       ]
     },
     {
@@ -215,9 +214,9 @@
         "user-overrides"
       ],
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27O.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27N.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27M.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27L.md"
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27M.md"
       ]
     }
   ],
@@ -250,10 +249,7 @@
         "docs/planning/WORLD_SEMESTER_SCHEDULE_SYSTEM.md",
         "docs/planning/WORLD_MAGIC_CURRICULUM_SYSTEM.md",
         "docs/planning/WORLD_FIELD_PRACTICUM_SYSTEM.md",
-        "docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md",
-        "docs/planning/BENCHMARK_CIRCUIT_GRAMMAR.md",
-        "docs/planning/BENCHMARK_SUMMON_SYSTEM.md",
-        "docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md"
+        "docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md"
       ],
       "rules": [
         "Existing content is not automatically reapproved for Gate 1.",
@@ -306,19 +302,19 @@
     },
     {
       "responsibility": "vertical-slice-contract",
-      "status": "CONFIRMED_BY_GM-SLICE-01_PENDING_P0_AMENDMENT"
+      "status": "CONFIRMED_WITH_P0_AMENDMENT_BY_GM-GATE1-RISK-01"
     },
     {
       "responsibility": "gate-1-adversarial-review",
       "status": "AUTHORED_BY_GM-GATE1-REVIEW-01"
     },
     {
-      "responsibility": "gate-1-p0-risk-package",
-      "status": "USER_DECISION_REQUIRED_GM-GATE1-RISK-01"
+      "responsibility": "gate-1-p0-risk-treatment",
+      "status": "CONFIRMED_BY_GM-GATE1-RISK-01"
     },
     {
       "responsibility": "gate-1-final-approval",
-      "status": "BLOCKED_BY_P0_DECISION"
+      "status": "NEXT_BLOCKING_DECISION_GM-GATE1-APPROVAL-01"
     },
     {
       "responsibility": "vertical-slice-implementation",
@@ -338,11 +334,15 @@
     "latest_user_decision_overrides_previous_route": true,
     "core_poc_must_not_be_reintroduced_under_another_name": true,
     "vertical_slice_must_absorb_core_validation": true,
+    "all_core_sessions_use_situation_challenge": true,
     "critical_events_require_one_free_schedule_between_them": true,
+    "free_schedule_archetypes_are_rest_prepare_socialize": true,
     "rest_must_be_a_valid_free_schedule_choice": true,
     "free_schedule_must_not_block_required_progression": true,
-    "p0_package_requires_user_approval": true,
-    "gate_1_final_approval_blocked_until_p0_decision": true,
+    "first_completion_target_minutes": "45-50",
+    "first_completion_cap_minutes": 60,
+    "implementation_order_is_m0_to_m4": true,
+    "minimal_boundary_save_only_for_initial_slice": true,
     "v6_contract_controls_process_except_explicit_user_override": true,
     "previous_planning_documents_are_references_until_reapproved": true,
     "actual_files_and_tests_override_implementation_claims": true,
