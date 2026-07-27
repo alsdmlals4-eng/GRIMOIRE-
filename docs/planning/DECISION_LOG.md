@@ -12,6 +12,7 @@
 - 기준 브랜치: `gpt/planning-spell-20260725`
 - v6 Gate 1 기준선: `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
 - 현재 상태: `docs/ACTIVE_CONTEXT.md`
+- Gate 1 Loop 책임 원본: `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
 - 기존 통합 기획 참조: `docs/planning/SPELL_GAME_DESIGN.md`
 - 전투 코어 참조: `docs/planning/COMBAT_CORE_SYSTEM.md`
 - 세계관 참조: `docs/planning/WORLD_SETTING_CONCEPT.md`
@@ -31,10 +32,23 @@
 | GM-AUDIENCE-01 | 목표 플레이어·플레이 상황 | 10~15분 집중형 모바일 RPG | `AUDIENCE_AND_PLAY_CONTEXT_CONFIRMED` | 한 세션에 문제 해결·발견 완결 |
 | GM-NARRATIVE-03 | 서사 깊이 | 기본은 짧게, 대화 선택 시 다양하고 깊게 | `OPTIONAL_NARRATIVE_DEPTH_CONFIRMED` | 필수 핵심층·선택형 상세층 분리 |
 | GM-PROMISE-01 | 플레이어 약속 | 제안 문장 확정 | `PLAYER_PROMISE_CONFIRMED_FOR_GATE_1` | 배움→설계→세계 변화로 시스템 필터링 |
+| GM-LOOP-01 | 게임플레이 Loop | 수업·연습·일상·현장실습 순환 + 고정 핵심 사건·자유 일정 | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` | 학습·실전·관계 결과가 다음 선택으로 순환 |
 
 ## 확정된 플레이어 약속
 
 > 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.
+
+## 확정된 기본 Loop
+
+```text
+수업에서 알고
+→ 연습에서 할 수 있게 되고
+→ 실전에서 다르게 써 보며
+→ 일상에서 관계와 의미가 누적되고
+→ 다음 수업·연구가 변화한다
+```
+
+일정은 `고정 핵심 사건 + 자유 일정` 혼합형이다.
 
 ## 기존 결정 기록의 지위
 
@@ -58,12 +72,17 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 - 스톡 없이 직접 시전 가능
 - 조건부 완전 자동 발동 재도입 금지
 - 필수 정보를 선택형 상세 대화에만 숨기지 않음
+- 수업은 완성 주문 상점이 아님
+- 현장실습은 배운 주문을 그대로 재생하는 시험이 아님
+- 일상은 전투와 무관한 호감도 메뉴가 아님
+- 자유 일정은 필수 진행을 영구 차단하지 않음
 - 사용자 승인 전 `CORE_CONFIRMED` 사용 금지
 
 ### 주요 참조 결정군
 
 | 결정군 | 현재 지위 | 책임 원본 |
 |---|---|---|
+| Gate 1 게임플레이 Loop | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` | `GATE_1_GAMEPLAY_LOOP_SYSTEM.md` |
 | 마법 글자 문법 | `DIRECTION_CONFIRMED` | `MAGIC_LETTER_CIRCUIT_SYSTEM.md` |
 | 직접 작성·스톡 | `REFERENCE_CANDIDATE_WITH_PROTECTED_BOUNDARIES` | `COMBAT_CORE_SYSTEM.md`, `STOCK_SYSTEM.md` |
 | 소환수 책임 | `LATEST_OVERRIDE_CONFIRMED` | `SUMMON_SYSTEM.md` |
@@ -98,7 +117,7 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 
 | 후보 ID | 질문 | 상태 |
 |---|---|---|
-| GM-LOOP-01 | Micro·Combat·Session·Semester Loop는 어떻게 연결되는가 | `NEXT_BLOCKING_DECISION` |
+| GM-CURVE-01 | 첫 5분부터 첫 숙련 자동화까지 어떤 순서와 감정 곡선으로 제공하는가 | `NEXT_BLOCKING_DECISION` |
 | GM-CIRCUIT-03 | 각 메인 글자의 기본 발현과 레벨별 변화는 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-04 | 공통 보조와 계열 전용 보조의 비율은 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-05 | 보조 글자의 반복·중복·상충·감쇠 규칙은 무엇인가 | `UNRESOLVED` |
@@ -120,9 +139,7 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 
 ## 다음 결정
 
-`GM-LOOP-01`: 승인된 플레이어 약속을 실제 반복 경험으로 만드는 Micro·Combat·Session·Semester Loop를 정한다.
-
-> 10~15분 세션에서 플레이어가 어떤 순서로 문제를 읽고, 주문을 설계하고, 결과를 확인하며, 발견과 성장을 저장하는가?
+`GM-CURVE-01`: 첫 5분, 첫 수업, 첫 주문 설계, 첫 현장실습, 첫 발견과 첫 숙련 자동화가 어떤 순서와 감정 곡선으로 제공되는가.
 
 상태: `DESIGN_HYPOTHESIS_REQUIRES_USER_DECISION`
 
