@@ -13,12 +13,10 @@
 - v6 Gate 1 기준선: `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
 - 현재 상태: `docs/ACTIVE_CONTEXT.md`
 - Gate 1 Loop 책임 원본: `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
-- 기존 통합 기획 참조: `docs/planning/SPELL_GAME_DESIGN.md`
-- 전투 코어 참조: `docs/planning/COMBAT_CORE_SYSTEM.md`
-- 세계관 참조: `docs/planning/WORLD_SETTING_CONCEPT.md`
-- 선택형 상세 서사 참조: `docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md`
-- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`
-- 전체 이전 결정 표: Git commit `d1bc4f1a47e3638047c7ee22381ee379ea338106` 이전 버전과 날짜별 Addendum
+- Gate 1 경험 곡선 책임 원본: `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
+- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md`
+- 이전 재기획 결정: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`, `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md`
+- 전체 이전 결정 표: Git 이력과 날짜별 Addendum
 
 기존 시스템 문서는 `REFERENCE_CANDIDATE`다. 최신 v6 재기획 결정은 Gate 1 기준선, 최신 Addendum, Active Context 순으로 확인한다.
 
@@ -33,6 +31,7 @@
 | GM-NARRATIVE-03 | 서사 깊이 | 기본은 짧게, 대화 선택 시 다양하고 깊게 | `OPTIONAL_NARRATIVE_DEPTH_CONFIRMED` | 필수 핵심층·선택형 상세층 분리 |
 | GM-PROMISE-01 | 플레이어 약속 | 제안 문장 확정 | `PLAYER_PROMISE_CONFIRMED_FOR_GATE_1` | 배움→설계→세계 변화로 시스템 필터링 |
 | GM-LOOP-01 | 게임플레이 Loop | 수업·연습·일상·현장실습 순환 + 고정 핵심 사건·자유 일정 | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` | 학습·실전·관계 결과가 다음 선택으로 순환 |
+| GM-CURVE-01 | 초반 경험 곡선 | 짧은 수업에서 즉시 작성·설계 후 모의 실습과 첫 숙련 자동화 | `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1` | 첫 5분에 핵심 재미 증명, 자동화는 숙련 보상으로 후행 |
 
 ## 확정된 플레이어 약속
 
@@ -49,6 +48,24 @@
 ```
 
 일정은 `고정 핵심 사건 + 자유 일정` 혼합형이다.
+
+## 확정된 경험 곡선
+
+```text
+학교 도착·현재 목표 소개
+→ 교수의 짧은 시범
+→ 첫 메인 글자 직접 작성
+→ 세계가 변하는 결과 확인
+→ 보조 글자 하나로 작은 설계 선택
+→ 짧은 일상·관계 장면
+→ 첫 모의 현장실습에서 응용
+→ 새 활용 발견·마도서 기록
+→ 반복 숙련 후 첫 하위 글자 스톡 해금
+```
+
+핵심 문장:
+
+> 먼저 마법이 작동하는 기쁨을 주고, 곧바로 내가 설계했다는 감각을 주며, 실전에서 응용한 뒤 숙련된 반복만 자동화한다.
 
 ## 기존 결정 기록의 지위
 
@@ -76,13 +93,18 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 - 현장실습은 배운 주문을 그대로 재생하는 시험이 아님
 - 일상은 전투와 무관한 호감도 메뉴가 아님
 - 자유 일정은 필수 진행을 영구 차단하지 않음
+- 첫 마법 사용 전 장문 세계관 설명을 강제하지 않음
+- 첫 5분에 스톡·소환수 충전·완성 주문 스톡을 동시에 공개하지 않음
+- 수동 작성 경험 없이 자동화를 먼저 공개하지 않음
+- 첫 자동화는 숙련 보조 글자의 하위 글자 스톡부터 시작
 - 사용자 승인 전 `CORE_CONFIRMED` 사용 금지
 
-### 주요 참조 결정군
+### 주요 책임 원본
 
 | 결정군 | 현재 지위 | 책임 원본 |
 |---|---|---|
 | Gate 1 게임플레이 Loop | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` | `GATE_1_GAMEPLAY_LOOP_SYSTEM.md` |
+| Gate 1 경험 곡선 | `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1` | `GATE_1_EXPERIENCE_CURVE_SYSTEM.md` |
 | 마법 글자 문법 | `DIRECTION_CONFIRMED` | `MAGIC_LETTER_CIRCUIT_SYSTEM.md` |
 | 직접 작성·스톡 | `REFERENCE_CANDIDATE_WITH_PROTECTED_BOUNDARIES` | `COMBAT_CORE_SYSTEM.md`, `STOCK_SYSTEM.md` |
 | 소환수 책임 | `LATEST_OVERRIDE_CONFIRMED` | `SUMMON_SYSTEM.md` |
@@ -106,10 +128,12 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 
 상태: `DEFERRED_CONTENT_DATA`
 
-- 실제 메인·보조 글자 목록과 수치
+- 실제 첫 메인·보조 글자와 수치
+- 첫 모의 실습의 적·환경·목표
 - 메인 레벨별 기본 발현·효율
 - Lv.4~Lv.5 전문 분기명과 효과
 - 보조 글자 숙련 요구량·보너스
+- 첫 숙련·스톡 해금 요구량
 - 학기별 수업·실습 개수와 예상 플레이 시간
 - 선택 대화 분량·보상·기록 UI
 
@@ -117,7 +141,7 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 
 | 후보 ID | 질문 | 상태 |
 |---|---|---|
-| GM-CURVE-01 | 첫 5분부터 첫 숙련 자동화까지 어떤 순서와 감정 곡선으로 제공하는가 | `NEXT_BLOCKING_DECISION` |
+| GM-CORE-BOUNDARY-01 | 무엇이 비타협 프로젝트 코어이고 무엇이 지원 시스템·변경 가능한 외피인가 | `NEXT_BLOCKING_DECISION` |
 | GM-CIRCUIT-03 | 각 메인 글자의 기본 발현과 레벨별 변화는 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-04 | 공통 보조와 계열 전용 보조의 비율은 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-05 | 보조 글자의 반복·중복·상충·감쇠 규칙은 무엇인가 | `UNRESOLVED` |
@@ -139,7 +163,7 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 
 ## 다음 결정
 
-`GM-CURVE-01`: 첫 5분, 첫 수업, 첫 주문 설계, 첫 현장실습, 첫 발견과 첫 숙련 자동화가 어떤 순서와 감정 곡선으로 제공되는가.
+`GM-CORE-BOUNDARY-01`: 직접 작성·의미 기반 조합·상황 반응·학교·관계·스톡·소환수 중 무엇을 비타협 프로젝트 코어로 두고, 무엇을 지원 시스템 또는 변경 가능한 외피로 둘 것인가.
 
 상태: `DESIGN_HYPOTHESIS_REQUIRES_USER_DECISION`
 
