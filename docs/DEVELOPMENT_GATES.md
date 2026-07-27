@@ -8,11 +8,12 @@
 - 프로젝트 코어: `CORE_CONFIRMED`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
-- Gate 2: `ENTERED_PLANNING_ONLY`
+- Gate 2: `ENTERED_PLANNING_ONLY_VISUAL_PREPRODUCTION`
 - 적대적 검토 루프: `PASS_WITH_FOLLOWUP`
-- 다음 Greenlight: `GM-VISUAL-PRESENTATION-01`
+- 시각 표현 구조: `LANDSCAPE_HYBRID_2D_CONFIRMED`
+- 다음 Greenlight: `GM-CHARACTER-PRESENTATION-01`
 
-> Gate 1 승인은 콘셉트와 범위를 확정한다. 구현·런타임·성능·접근성·플레이테스트 통과를 의미하지 않는다.
+> Gate 1과 시각 표현 구조 승인은 콘셉트·범위·화면 체계를 확정한다. 구현·런타임·성능·접근성·플레이테스트 통과를 의미하지 않는다.
 
 ---
 
@@ -21,11 +22,12 @@
 ```text
 Gate 1 최종 승인 — 완료
 → Gate 2 적대적 검토 루프 — 완료
-→ 화면 방향·카메라·게임 표현 구조
+→ 가로형 하이브리드 2D 화면 구조 — 완료
 → 캐릭터 표현 수준
 → 그림체 선정
 → Art Bible·Asset Specification
-→ 캐릭터·배경·효과·사운드 작업
+→ Audio Direction
+→ 사용자 승인 후 캐릭터·배경·효과·사운드 작업
 → VERTICAL_SLICE_FULL_PROFILE 전환 재검토
 → Codex read-only Plan
 → Validation-First Vertical Slice 구현
@@ -69,7 +71,7 @@ Gate 1 최종 승인 — 완료
 
 ## 3. Gate 2 — PROTOTYPE_AND_VERTICAL_SLICE
 
-현재 상태: `ENTERED_PLANNING_ONLY`
+현재 상태: `ENTERED_PLANNING_ONLY_VISUAL_PREPRODUCTION`
 
 ### 3.1 적대적 검토 루프
 
@@ -77,31 +79,53 @@ Gate 1 최종 승인 — 완료
 - 판정: `PASS_WITH_FOLLOWUP`
 - 코어·Slice 범위: `NO_CHANGE`
 - 문서 상태 회귀: `FIXED`
-- 아트·사운드 대량 제작: `BLOCKED_BY_VISUAL_PRESENTATION_DECISIONS`
+- 아트·사운드 대량 제작: `BLOCKED_BY_CHARACTER_PRESENTATION_ART_BIBLE_AND_ASSET_SPEC`
 
-### 3.2 시각·사운드 프리프로덕션 진입 조건
+### 3.2 시각 표현 구조 — 완료
 
-1. `GM-VISUAL-PRESENTATION-01` 화면 방향·카메라·표현 구조
-2. `GM-CHARACTER-PRESENTATION-01` 캐릭터 표현 수준
-3. `ART-STYLE-01` 그림체 후보 비교·사용자 선정
-4. `ART-BIBLE-01` 색·선·명암·재질·실루엣·배경·FX·접근성
-5. `ASSET-SPEC-01` 자산 수량·상태·변형·기술 규격
-6. `AUDIO-DIRECTION-01` 사운드 정체성·우선순위·무음 대체
-7. Asset License Ledger 후보 등록과 승인
+책임 원본: `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`
 
-### 3.3 대량 자산 제작 금지 조건
+상태: `LANDSCAPE_HYBRID_2D_CONFIRMED`
 
-- 화면 방향이 미정
-- 카메라·월드 표현이 미정
-- 대화·탐색·마법 작성 화면 관계가 미정
-- 주인공·NPC·소환수 표현 수준이 미정
-- 해상도·화면비·안전 영역이 미정
-- 자산 수량 예산과 기술 규격이 미정
+```text
+가로형
++ 고정·장면 기반 3/4 월드
++ 동일 배경 위 대화 초상
++ 월드 감속·암전형 마법 작성 오버레이
++ 같은 장면에서 적·환경·소환수 확인
+```
+
+보호:
+
+- 기준 구도 16:9, 18:9~20:9는 좌우 월드 확장
+- 자유 이동형 대형 학교 제외
+- 학교 장면의 수업·시험·자유일정·축제 상태 재사용
+- 현장 장면의 전투·환경·복구 상태 재사용
+- 작성 중 대상·위험·지원 상태 유지
+- 작성 화면이 월드를 완전히 숨기지 않음
+- 정확한 감속 비율과 내부 해상도는 후속 검증·규격에서 확정
+
+### 3.3 시각·사운드 프리프로덕션 남은 조건
+
+1. `GM-CHARACTER-PRESENTATION-01` 캐릭터 표현 수준
+2. `ART-STYLE-01` 그림체 후보 비교·사용자 선정
+3. `ART-BIBLE-01` 색·선·명암·재질·실루엣·배경·FX·접근성
+4. `ASSET-SPEC-01` 자산 수량·상태·변형·기술 규격·내부 해상도
+5. `AUDIO-DIRECTION-01` 사운드 정체성·우선순위·무음 대체
+6. Asset License Ledger 후보 등록과 승인
+
+### 3.4 대량 자산 제작 금지 조건
+
+- 주인공·NPC·소환수 표현 수준 미정
 - 그림체 기준 샷 사용자 승인 없음
+- Art Bible 미승인
+- 해상도·안전 영역·자산 수량 예산 미확정
+- 캐릭터·배경·UI·효과·사운드 기술 규격 미확정
+- Audio Direction 미승인
 
-스타일 비교용 소수 기준 샷은 별도 승인 후 제작할 수 있다.
+스타일 비교용 소수 기준 샷은 `ART-STYLE-01` 단계에서 별도 사용자 승인 후 제작할 수 있다.
 
-### 3.4 구현 시작 조건
+### 3.5 구현 시작 조건
 
 1. `GM-VS-PROFILE-01` 사용자 승인
 2. 실행 프로필 `VERTICAL_SLICE_FULL_PROFILE` 전환
@@ -177,6 +201,7 @@ M0~M4는 CORE_POC가 아니라 Vertical Slice 내부 체크포인트다.
 - 보조 소환수 운용이 주문 설계보다 복잡
 - Android 주요 화면비에서 작성 영역이 성립하지 않음
 - 최종 아트·FX가 글자 궤적·위험·대상을 가림
+- 캐릭터 자산 수량이 승인된 Asset Budget을 초과
 
 ---
 
@@ -186,8 +211,9 @@ M0~M4는 CORE_POC가 아니라 Vertical Slice 내부 체크포인트다.
 - Codex 미실행
 - 이미지·사운드 자산 생성 미착수
 - 외부 자산·폰트·사운드 라이선스 조사 `NOT_RUN`
+- 캐릭터 표현 수준·그림체·Art Bible·Asset Specification 미확정
 - 런타임·Android·접근성·성능·플레이테스트 `NOT_RUN`
-- 정량 임계값 `PLAYTEST_TUNING_REQUIRED`
+- 정확한 감속 비율·내부 해상도·터치 작성 면적 `PLAYTEST_TUNING_REQUIRED / ASSET_SPEC_REQUIRED`
 - PR은 Draft 유지
 - 병합하지 않음
 
@@ -195,6 +221,6 @@ M0~M4는 CORE_POC가 아니라 Vertical Slice 내부 체크포인트다.
 
 ## 7. 다음 Greenlight
 
-`GM-VISUAL-PRESENTATION-01`
+`GM-CHARACTER-PRESENTATION-01`
 
-Vertical Slice를 어떤 화면 방향과 카메라·게임 표현 구조로 보여줄지 결정한다.
+가로형 3/4 장면에서 주인공·NPC·메인 동반 소환수·전투 보조 소환수를 어떤 비율과 자산 조합으로 표현할지 결정한다.
