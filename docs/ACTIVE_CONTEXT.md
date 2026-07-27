@@ -13,13 +13,15 @@
 - Work Mode: `PLAN`
 - Vertical Slice 계약: `APPROVED_AT_GATE_1_WITH_P0_AMENDMENT`
 - 적대적 검토 루프: `PASS_WITH_FOLLOWUP`
+- 시각 표현 구조: `LANDSCAPE_HYBRID_2D_CONFIRMED`
 - 구현: `NOT_STARTED`
 - Codex: `NOT_RUN`
+- 이미지·사운드 제작: `NOT_STARTED`
 - CORE_POC: `REMOVED_BY_USER_DECISION`
 - PR 병합: `NOT_APPROVED`
-- 다음 차단 결정: `GM-VISUAL-PRESENTATION-01`
+- 다음 차단 결정: `GM-CHARACTER-PRESENTATION-01`
 
-Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실행 프로필 전환, Codex, Godot 구현, 런타임 검증과 PR 병합은 별도 승인 대상이다.
+Gate 1과 시각 표현 구조의 승인은 제품 콘셉트·범위·화면 구조를 확정한다. 실행 프로필 전환, Codex, Godot 구현, 실제 자산 생성, 런타임 검증과 PR 병합은 별도 승인 대상이다.
 
 ---
 
@@ -28,18 +30,19 @@ Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실�
 1. `docs/planning/GATE_1_FINAL_APPROVAL.md`
 2. `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
 3. `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md`
-4. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md`
-5. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
-6. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
-7. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
-8. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
-9. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
-10. `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md`
-11. `docs/planning/DECISION_LOG.md`
-12. `docs/DEVELOPMENT_GATES.md`
-13. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-14. `docs/ASSET_LICENSE_LEDGER.md`
-15. `skills/SKILL_REGISTRY.json`
+4. `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`
+5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md`
+6. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
+7. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
+8. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
+9. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
+10. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
+11. `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md`
+12. `docs/planning/DECISION_LOG.md`
+13. `docs/DEVELOPMENT_GATES.md`
+14. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+15. `docs/ASSET_LICENSE_LEDGER.md`
+16. `skills/SKILL_REGISTRY.json`
 
 기존 세부 문서는 `REFERENCE_CANDIDATE`다. 최신 사용자 지시, 최종 승인 문서와 위 책임 원본이 우선한다.
 
@@ -141,6 +144,64 @@ Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실�
 
 ---
 
+## 승인된 시각 표현 구조 — GM-VISUAL-PRESENTATION-01
+
+상태: `LANDSCAPE_HYBRID_2D_CONFIRMED`
+
+```text
+화면 방향
+= 가로형
+
+학교·현장
+= 고정·장면 기반 3/4 시점
+
+대화
+= 기존 장소 배경 위 캐릭터 반신·초상과 대화창
+
+마법 작성
+= 월드를 감속·암전하고 전용 작성 오버레이 표시
+
+전투
+= 같은 장면에서 적·환경·보조 소환수 확인
+```
+
+### 화면비
+
+- 기준 구도: `16:9 LANDSCAPE`
+- 확장 대응: `18:9~20:9 LANDSCAPE`
+- 넓은 화면은 좌우 월드 영역을 확장하고 핵심 UI·작성 영역은 안전 구도를 유지
+- 정확한 내부 렌더 해상도: `ASSET-SPEC-01`에서 확정
+
+### 월드·카메라
+
+- 자유 이동형 대형 학교가 아니라 장면 단위 이동
+- 고정 카메라와 제한된 연출 이동
+- 학교 장면은 수업·시험·자유일정·축제 상태로 재사용
+- 현장 장면은 전투·환경·복구 상태로 재사용
+- 카메라 회전·자유 줌·복잡한 2.5D 원근은 초기 Slice에서 제외
+
+### 대화·작성 연결
+
+- 대화 시 장소 배경을 유지하고 초상 레이어를 추가
+- 작성 시 카메라를 바꾸지 않고 월드 감속·암전과 작성 패널을 적용
+- 작성 중에도 대상·위험·보조 소환수 지원 상태를 읽을 수 있어야 함
+- 감속형을 시각적 기본 후보로 사용하되 완전 정지·감속·실시간 최종안은 M0에서 검증
+
+### 시각 우선순위
+
+```text
+글자 궤적
+→ 주문 대상
+→ 위험 경고
+→ 세계 변화 인과
+→ 캐릭터·소환수
+→ 장식·입자
+```
+
+화려한 FX가 글자 궤적·대상·위험 정보를 가리는 것을 금지한다.
+
+---
+
 ## 적대적 검토 루프 결론
 
 최종 판정: `PASS_WITH_FOLLOWUP`
@@ -161,11 +222,11 @@ Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실�
 - Vertical Slice 계약 승인 상태 정렬
 - Skill Registry Gate 상태 정렬
 - Asset Ledger 생성·편집 자산 추적 규칙 추가
+- 시각 표현 구조 책임 원본 추가
 
 ### 다음 필수 기획
 
 - `Problem Differentiation Matrix`
-- 화면 방향·카메라·게임 표현 구조
 - 주인공·NPC·소환수의 화면별 표현 수준
 - 그림체 후보 비교
 - Art Bible
@@ -177,14 +238,14 @@ Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실�
 
 다음이 확정되기 전 캐릭터·배경·효과·사운드를 대량 제작하지 않는다.
 
-1. 화면 방향
-2. 카메라와 월드 표현
-3. 탐색·대화·마법 작성 화면의 관계
-4. 주인공·NPC·소환수 표현 수준
-5. 목표 해상도·화면비
-6. 자산 수량·상태·변형 예산
+1. 주인공·NPC·메인 동반·전투 보조 소환수의 표현 수준
+2. 그림체
+3. Art Bible
+4. 목표 내부 해상도·안전 영역
+5. 자산 수량·상태·변형 예산
+6. Audio Direction Card
 
-스타일 비교용 소수의 기준 샷은 별도 사용자 승인 후 제작할 수 있다.
+스타일 비교용 소수의 기준 샷은 `ART-STYLE-01` 단계에서 사용자 승인 후 제작할 수 있다.
 
 ---
 
@@ -200,23 +261,24 @@ M0 입력·피드백
 
 M0~M4는 독립 CORE_POC가 아니다.
 
-현재는 사용자가 지정한 순서에 따라 아트·사운드 프리프로덕션을 먼저 진행하므로 `GM-VS-PROFILE-01`을 후순위로 이동한다.
+현재는 사용자가 지정한 순서에 따라 아트·사운드 프리프로덕션을 먼저 진행하므로 `GM-VS-PROFILE-01`을 후순위로 유지한다.
 
 ---
 
 ## 현재 미검증
 
 - 터치 작성의 실제 재미·인식 허용 범위·반복 피로
-- 완전 정지·감속·실시간 최종안
+- 완전 정지·감속·실시간 최종안과 감속 비율
 - 공통 Situation Challenge의 런타임 재사용성
 - 자유일정 세 원형의 선택 가치
 - 보조 소환수의 작성 시간 확보 효과
 - Android 실제 기기·화면비·성능·복귀
-- 두 번째 유사 콘텐츠 제작 비용
+- 정확한 내부 렌더 해상도와 작성 패널 크기
+- 캐릭터 필드 비율·초상 규격
 - 외부 자산·폰트·사운드 라이선스
 - 사운드·FX 실제 믹스와 무음 대체 정보
 
-상태는 `NOT_RUN`, `BLOCKED_UNVERIFIED` 또는 `PLAYTEST_TUNING_REQUIRED`다.
+상태는 `NOT_RUN`, `BLOCKED_UNVERIFIED`, `ASSET_SPEC_REQUIRED` 또는 `PLAYTEST_TUNING_REQUIRED`다.
 
 ---
 
@@ -231,7 +293,9 @@ M0~M4는 독립 CORE_POC가 아니다.
 - 모든 핵심 세션은 공통 Situation Challenge 사용
 - 첫 완주 허용 상한 60분
 - 별도 CORE_POC 재도입 금지
-- 대량 자산 제작 전 시각 표현 구조 확정
+- 가로형 하이브리드 2D와 고정·장면 기반 3/4 시점 유지
+- 작성 중 월드·대상·위험을 완전히 숨기지 않음
+- 캐릭터 표현·Art Bible·Asset Specification 전 대량 자산 제작 금지
 - 실행 프로필 전환 전 Codex·Godot 구현 금지
 - 사용자 승인 없는 PR 병합 금지
 
@@ -239,18 +303,18 @@ M0~M4는 독립 CORE_POC가 아니다.
 
 ## 다음 차단 결정
 
-`GM-VISUAL-PRESENTATION-01`
+`GM-CHARACTER-PRESENTATION-01`
 
-Vertical Slice를 어떤 화면 방향과 카메라·게임 표현 구조로 보여줄지 결정한다.
+가로형 3/4 장면에서 주인공·NPC·메인 동반 소환수·전투 보조 소환수를 어떤 비율과 자산 조합으로 표현할지 결정한다.
 
 이후 순서:
 
 ```text
-GM-VISUAL-PRESENTATION-01
-→ GM-CHARACTER-PRESENTATION-01
+GM-CHARACTER-PRESENTATION-01
 → ART-STYLE-01
 → ART-BIBLE-01
 → ASSET-SPEC-01
-→ 캐릭터·배경·효과·사운드 작업
+→ AUDIO-DIRECTION-01
+→ 사용자 승인 후 캐릭터·배경·효과·사운드 작업
 → GM-VS-PROFILE-01 재검토
 ```
