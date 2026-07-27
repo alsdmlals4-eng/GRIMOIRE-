@@ -1,5 +1,5 @@
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "registry_role": "spell-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/Spell",
@@ -16,26 +16,25 @@
     "project_core_status": "CORE_CONFIRMED",
     "vertical_slice_contract_status": "APPROVED_AT_GATE_1_WITH_P0_AMENDMENT",
     "vertical_slice_structure": "COMPRESSED_SEMESTER_FOUR_CORE_SESSIONS_THREE_FREE_SCHEDULES",
-    "adversarial_review_loop_status": "PASS_WITH_FOLLOWUP_BY_GM-VS-REVIEW-LOOP-01",
-    "visual_presentation_status": "LANDSCAPE_HYBRID_2D_CONFIRMED_BY_GM-VISUAL-PRESENTATION-01",
-    "visual_orientation": "LANDSCAPE",
-    "world_camera_structure": "FIXED_SCENE_BASED_3_QUARTER_VIEW",
-    "dialogue_presentation": "SCENE_BACKGROUND_WITH_CHARACTER_PORTRAIT_LAYER",
-    "spell_writing_presentation": "WORLD_SLOWDOWN_DIMMING_WITH_WRITING_OVERLAY",
+    "adversarial_review_loop_status": "PASS_WITH_CORRECTIONS_BY_GM-VS-REVIEW-LOOP-02",
+    "visual_presentation_status": "LANDSCAPE_HYBRID_2D_WITH_SEPARATE_TACTICAL_BATTLE_CONFIRMED",
+    "character_presentation_status": "SD_FIELD_HALF_BODY_DIALOGUE_CONFIRMED",
+    "battle_presentation_status": "SEPARATE_FIXED_3_QUARTER_TACTICAL_BATTLE_CONFIRMED",
+    "main_summon_growth_status": "FOUR_STAGE_FORM_SELECTION_AND_LONG_TERM_RIDING_CONFIRMED_DIRECTION",
+    "combat_summon_status": "ONE_GUARD_OR_INTERFERENCE_SUPPORT_IN_VERTICAL_SLICE",
     "solo_feasibility_status": "CONDITIONAL_PASS_CANDIDATE",
     "core_poc_status": "REMOVED_BY_USER_DECISION",
-    "asset_generation_status": "NOT_STARTED_BLOCKED_BY_CHARACTER_PRESENTATION_ART_BIBLE_AND_ASSET_SPEC",
+    "asset_generation_status": "STYLE_COMPARISON_ONLY_BEFORE_ART_BIBLE_AND_ASSET_SPEC",
     "audio_production_status": "NOT_STARTED_BLOCKED_BY_AUDIO_DIRECTION",
-    "next_blocking_decision": "GM-CHARACTER-PRESENTATION-01"
+    "next_blocking_decision": "ART-STYLE-01"
   },
   "planning_authority": {
     "master_contract": "user-provided VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
     "short_contract": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
-    "master_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
-    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md",
+    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27S.md",
+    "current_confirmed_snapshot": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
-    "gate_2_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
-    "gate_2_visual_presentation": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md",
+    "latest_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27B.md",
     "previous_planning_documents_role": "REFERENCE_CANDIDATE"
   },
   "base_pin": {
@@ -47,18 +46,28 @@
     "start_here": "START_HERE.md",
     "readme": "README.md",
     "active_context": "docs/ACTIVE_CONTEXT.md",
+    "current_confirmed_decisions": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md",
-    "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
-    "gate_1_vertical_slice_contract": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md",
-    "gate_2_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
-    "gate_2_visual_presentation": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27S.md",
     "asset_license_ledger": "docs/ASSET_LICENSE_LEDGER.md",
     "skill_registry": "skills/SKILL_REGISTRY.json"
   },
   "canonical_documents": [
+    {
+      "id": "spell-current-confirmed-decisions",
+      "title": "스펠 현재 확정 결정 스냅샷",
+      "source_path": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+      "status": "ACTIVE_FIRST_READ_AUTHORITY",
+      "responsibility_coverage": [
+        "confirmed-decision-recall",
+        "question-before-lookup",
+        "current-protected-decisions",
+        "resolved-vs-unresolved-routing",
+        "next-blocking-decision"
+      ]
+    },
     {
       "id": "spell-gate-1-final-approval",
       "title": "스펠 Gate 1 최종 승인",
@@ -67,110 +76,90 @@
       "responsibility_coverage": [
         "gate-1-final-approval",
         "core-confirmation",
-        "approved-scope-summary",
-        "approval-execution-separation"
+        "approved-scope-summary"
       ]
     },
     {
-      "id": "spell-gate-1-vertical-slice-contract",
-      "title": "스펠 Gate 1 축약 학기형 Vertical Slice 계약",
+      "id": "spell-vertical-slice-contract",
+      "title": "스펠 Vertical Slice 계약",
       "source_path": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md",
-      "status": "APPROVED_AT_GATE_1",
+      "status": "ACTIVE_APPROVED_CONTRACT",
       "responsibility_coverage": [
-        "compressed-semester-slice",
-        "four-core-sessions",
-        "three-free-schedule-slots",
-        "situation-challenge-contract",
-        "problem-differentiation-matrix",
-        "time-budget",
-        "minimal-save",
-        "m0-m4-checkpoints",
+        "vertical-slice-flow",
+        "situation-challenge",
+        "free-schedule",
+        "time-and-save-boundaries",
         "pass-fail-criteria"
       ]
     },
     {
-      "id": "spell-gate-2-adversarial-review-loop",
-      "title": "스펠 Gate 2 진입 전 적대적 검토 루프",
-      "source_path": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
+      "id": "spell-adversarial-review-loop-02",
+      "title": "스펠 Gate 2 적대적 검토 루프 02",
+      "source_path": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27B.md",
       "status": "ACTIVE_REVIEW_AUTHORITY",
       "responsibility_coverage": [
-        "five-lens-adversarial-review",
-        "finding-validation",
-        "must-fix-routing",
-        "visual-audio-readiness",
-        "regression-recheck"
+        "decision-memory-regression",
+        "visual-and-battle-conflict-review",
+        "character-asset-scope-review",
+        "summon-growth-scope-review",
+        "image-workflow-review"
       ]
     },
     {
-      "id": "spell-gate-2-visual-presentation",
+      "id": "spell-visual-presentation",
       "title": "스펠 Gate 2 시각 표현 구조",
       "source_path": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md",
-      "status": "ACTIVE_CONFIRMED_VISUAL_PRESENTATION_AUTHORITY",
+      "status": "ACTIVE_CONFIRMED_SOURCE",
       "responsibility_coverage": [
         "landscape-orientation",
-        "fixed-scene-based-three-quarter-world",
-        "scene-mode-continuity",
-        "dialogue-portrait-layer",
+        "scene-based-field-camera",
+        "dialogue-layer",
+        "separate-tactical-battle",
         "spell-writing-overlay",
-        "screen-aspect-ratio-adaptation",
-        "world-and-camera-boundaries",
-        "visual-accessibility-guardrails",
-        "asset-production-implications"
+        "aspect-ratio-and-accessibility"
+      ],
+      "supersedes": [
+        "same-field-screen-combat-presentation"
       ]
     },
     {
-      "id": "spell-v6-concept-rebase",
-      "title": "스펠 v6 콘셉트 재기획 기준선",
-      "source_path": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
-      "status": "APPROVED_GATE_1_BASELINE"
-    },
-    {
-      "id": "spell-gate-1-gameplay-loop",
-      "title": "스펠 Gate 1 게임플레이 Loop 구조",
-      "source_path": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
-      "status": "APPROVED_GATE_1_SOURCE"
-    },
-    {
-      "id": "spell-gate-1-experience-curve",
-      "title": "스펠 Gate 1 경험 곡선",
-      "source_path": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
-      "status": "APPROVED_GATE_1_SOURCE"
-    },
-    {
-      "id": "spell-gate-1-project-core-boundary",
-      "title": "스펠 Gate 1 프로젝트 코어 경계",
-      "source_path": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
-      "status": "APPROVED_GATE_1_SOURCE"
-    },
-    {
-      "id": "spell-gate-1-sales-points",
-      "title": "스펠 Gate 1 세일즈포인트",
-      "source_path": "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
-      "status": "APPROVED_GATE_1_SOURCE"
-    },
-    {
-      "id": "spell-gate-1-benchmark",
-      "title": "스펠 Gate 1 벤치마킹·SWOT·VRIO·제작성",
-      "source_path": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
-      "status": "ACTIVE_RESEARCH_EVIDENCE"
-    },
-    {
-      "id": "spell-gate-1-summon-companion",
-      "title": "스펠 Gate 1 소환수·동반자 구조",
-      "source_path": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
-      "status": "APPROVED_GATE_1_SOURCE"
-    },
-    {
-      "id": "spell-asset-license-ledger",
-      "title": "스펠 Asset License Ledger",
-      "source_path": "docs/ASSET_LICENSE_LEDGER.md",
-      "status": "ACTIVE_ASSET_PROVENANCE_AUTHORITY",
+      "id": "spell-character-presentation",
+      "title": "스펠 Gate 2 캐릭터 표현 구조",
+      "source_path": "docs/planning/GATE_2_CHARACTER_PRESENTATION_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_SOURCE",
       "responsibility_coverage": [
-        "external-asset-license",
-        "generated-asset-provenance",
-        "derivative-lineage",
-        "user-asset-approval",
-        "runtime-asset-validation"
+        "sd-field-character",
+        "half-body-dialogue",
+        "sd-battle-reuse",
+        "character-asset-boundary",
+        "approved-visual-reference-meaning"
+      ]
+    },
+    {
+      "id": "spell-summon-companion-core",
+      "title": "스펠 소환수·동반자 핵심 구조",
+      "source_path": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_SOURCE",
+      "responsibility_coverage": [
+        "two-tier-summon-structure",
+        "main-companion-role",
+        "combat-support-role",
+        "summon-responsibility-boundary",
+        "vertical-slice-summon-scope"
+      ]
+    },
+    {
+      "id": "spell-summon-growth-form",
+      "title": "스펠 Gate 2 소환수 성장·형상·탑승 구조",
+      "source_path": "docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_DIRECTION_SOURCE",
+      "responsibility_coverage": [
+        "elemental-spirit-visual-direction",
+        "four-stage-main-summon-growth",
+        "previous-form-selection",
+        "actual-growth-vs-display-form",
+        "long-term-riding",
+        "combat-summon-unresolved-boundaries"
       ]
     },
     {
@@ -178,111 +167,96 @@
       "title": "스펠 기획 결정 원장",
       "source_path": "docs/planning/DECISION_LOG.md",
       "status": "ACTIVE_WITH_LATEST_ADDENDUM",
+      "responsibility_coverage": [
+        "decision-ledger",
+        "supersession-history",
+        "protected-decisions",
+        "unresolved-items"
+      ],
       "supporting_sources": [
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27P.md"
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27S.md"
       ]
     }
   ],
   "reference_collections": [
     {
       "id": "spell-previous-integrated-design",
-      "title": "재기획 전 통합 게임 설계",
       "source_path": "docs/planning/SPELL_GAME_DESIGN.md",
       "status": "REFERENCE_CANDIDATE"
     },
     {
-      "id": "spell-system-reference-set",
+      "id": "spell-generated-visual-explorations",
       "status": "REFERENCE_CANDIDATE_SET",
       "rules": [
-        "Gate 1 승인 범위와 충돌하면 최신 승인 원본이 우선한다.",
-        "수치는 실제 검증 전 UNVERIFIED 또는 BALANCE_TUNING_BACKLOG다.",
-        "폐기·대체 결정은 이력으로 보존한다."
+        "Generated images do not automatically confirm systems or final runtime assets.",
+        "The user-approved second in-game composition image is USER_APPROVED_VISUAL_REFERENCE.",
+        "Binary reference import to the repository remains separate from textual decision capture.",
+        "Combat summon four-role images are concept exploration until explicit user approval."
       ]
     }
   ],
   "responsibility_status": [
     {
-      "responsibility": "gate-1-final-approval",
-      "status": "APPROVED_BY_GM-GATE1-APPROVAL-01"
+      "responsibility": "decision-recall-before-question",
+      "status": "REQUIRED_BY_GM-VS-REVIEW-LOOP-02"
     },
     {
-      "responsibility": "project-core",
-      "status": "CORE_CONFIRMED"
+      "responsibility": "gate-1-core-and-slice",
+      "status": "APPROVED"
     },
     {
-      "responsibility": "vertical-slice-contract",
-      "status": "APPROVED_AT_GATE_1_WITH_P0_AMENDMENT"
-    },
-    {
-      "responsibility": "gate-2-adversarial-review-loop",
-      "status": "PASS_WITH_FOLLOWUP_BY_GM-VS-REVIEW-LOOP-01"
-    },
-    {
-      "responsibility": "visual-presentation-structure",
-      "status": "CONFIRMED_BY_GM-VISUAL-PRESENTATION-01"
+      "responsibility": "visual-presentation",
+      "status": "CONFIRMED"
     },
     {
       "responsibility": "character-presentation",
-      "status": "NEXT_BLOCKING_DECISION_GM-CHARACTER-PRESENTATION-01"
+      "status": "CONFIRMED"
     },
     {
-      "responsibility": "art-style-selection",
-      "status": "BLOCKED_BY_CHARACTER_PRESENTATION"
+      "responsibility": "battle-presentation",
+      "status": "CONFIRMED_SEPARATE_FIXED_TACTICAL_SCENE"
+    },
+    {
+      "responsibility": "main-summon-growth-form-riding",
+      "status": "CONFIRMED_LONG_TERM_DIRECTION_SLICE_REDUCED"
+    },
+    {
+      "responsibility": "combat-summon-four-role-system",
+      "status": "UNRESOLVED_REFERENCE_CANDIDATE"
+    },
+    {
+      "responsibility": "art-style",
+      "status": "NEXT_BLOCKING_DECISION_ART-STYLE-01"
     },
     {
       "responsibility": "art-bible-and-asset-spec",
-      "status": "BLOCKED_BY_ART_STYLE_SELECTION"
+      "status": "BLOCKED_BY_ART_STYLE"
     },
     {
       "responsibility": "audio-direction",
-      "status": "PLANNED_AFTER_VISUAL_STRUCTURE_AND_ART_STYLE"
-    },
-    {
-      "responsibility": "asset-generation",
-      "status": "BLOCKED_BY_CHARACTER_PRESENTATION_ART_BIBLE_ASSET_SPEC_AND_USER_APPROVAL"
-    },
-    {
-      "responsibility": "vertical-slice-profile-transition",
-      "status": "DEFERRED_UNTIL_VISUAL_AUDIO_PREPRODUCTION"
-    },
-    {
-      "responsibility": "codex-read-only-plan",
-      "status": "BLOCKED_BY_PROFILE_TRANSITION"
+      "status": "BLOCKED_BY_VISUAL_PREPRODUCTION_SEQUENCE"
     },
     {
       "responsibility": "vertical-slice-implementation",
-      "status": "BLOCKED_BY_PROFILE_TRANSITION_AND_CODEX_PLAN"
-    },
-    {
-      "responsibility": "runtime-accessibility-performance",
-      "status": "NOT_RUN"
+      "status": "BLOCKED_BY_PROFILE_TRANSITION"
     }
   ],
   "registry_rules": {
     "single_canonical_source_per_responsibility": true,
+    "current_confirmed_snapshot_must_be_read_before_questions": true,
+    "confirmed_decisions_must_not_be_reasked_for_memory_check": true,
+    "questions_require_unresolved_or_tuning_status": true,
     "latest_user_decision_overrides_previous_route": true,
-    "gate_1_is_approved": true,
-    "core_is_confirmed": true,
-    "gate_1_approval_does_not_authorize_implementation": true,
-    "core_poc_must_not_be_reintroduced_under_another_name": true,
-    "all_core_sessions_use_situation_challenge": true,
-    "critical_events_require_one_free_schedule_between_them": true,
-    "first_completion_target_minutes": "45-50",
-    "first_completion_cap_minutes": 60,
-    "implementation_order_is_m0_to_m4": true,
-    "visual_orientation_is_landscape": true,
-    "world_camera_is_fixed_scene_based_three_quarter": true,
-    "dialogue_preserves_scene_background": true,
-    "spell_writing_preserves_world_context": true,
-    "landscape_16_9_is_reference_composition": true,
-    "landscape_18_9_to_20_9_uses_horizontal_world_extension": true,
-    "character_presentation_precedes_art_style": true,
-    "art_style_precedes_mass_asset_generation": true,
-    "generated_assets_require_provenance_and_user_approval": true,
-    "profile_transition_requires_separate_user_approval": true,
-    "actual_files_and_tests_override_implementation_claims": true,
+    "same_field_combat_is_superseded": true,
+    "separate_tactical_battle_must_preserve_field_causality": true,
+    "field_and_battle_sd_assets_must_be_reused": true,
+    "main_summon_growth_does_not_expand_vertical_slice": true,
+    "combat_summon_four_roles_are_not_confirmed": true,
+    "generated_images_are_not_automatic_system_approval": true,
+    "image_related_decisions_should_use_visual_comparison_when_feasible": true,
+    "image_generation_failure_should_preserve_existing_brief": true,
+    "core_poc_must_not_be_reintroduced": true,
+    "user_approval_required_for_profile_transition": true,
     "user_approval_required_for_pr_merge": true
   }
 }
