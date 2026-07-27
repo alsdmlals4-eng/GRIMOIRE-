@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "registry_role": "spell-project-skill-router",
   "project": {
     "repository": "alsdmlals4-eng/Spell",
@@ -10,8 +10,11 @@
     "execution_profile": "PLANNING_ONLY_PROFILE",
     "work_mode": "PLAN",
     "implementation_status": "NOT_STARTED",
-    "visual_presentation_status": "LANDSCAPE_HYBRID_2D_CONFIRMED",
-    "next_blocking_decision": "GM-CHARACTER-PRESENTATION-01"
+    "adversarial_review_status": "PASS_WITH_CORRECTIONS_BY_GM-VS-REVIEW-LOOP-02",
+    "visual_presentation_status": "LANDSCAPE_HYBRID_2D_WITH_SEPARATE_TACTICAL_BATTLE_CONFIRMED",
+    "character_presentation_status": "SD_FIELD_HALF_BODY_DIALOGUE_CONFIRMED",
+    "summon_growth_status": "FOUR_STAGE_FORM_SELECTION_AND_LONG_TERM_RIDING_CONFIRMED_DIRECTION",
+    "next_blocking_decision": "ART-STYLE-01"
   },
   "base_registry_route": {
     "repository": "alsdmlals4-eng/Base",
@@ -31,100 +34,113 @@
     "project_agents": "AGENTS.md",
     "start_here": "START_HERE.md",
     "active_context": "docs/ACTIVE_CONTEXT.md",
+    "current_confirmed_decisions": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "decision_log": "docs/planning/DECISION_LOG.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "asset_license_ledger": "docs/ASSET_LICENSE_LEDGER.md",
-    "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
-    "latest_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
-    "visual_presentation": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md"
+    "latest_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27B.md",
+    "visual_presentation": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md",
+    "character_presentation": "docs/planning/GATE_2_CHARACTER_PRESENTATION_SYSTEM.md",
+    "summon_growth_and_form": "docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md"
   },
   "routing_policy": {
     "minimum_sufficient_skill_per_subtask": true,
     "long_stage_uses_sequential_skill_chain": true,
     "skill_file_read_is_not_execution": true,
-    "grill_me_does_not_replace_skill_coverage": true,
     "adversarial_review_does_not_replace_build_or_validation": true,
     "one_blocking_design_question_at_a_time": true,
     "evidence_before_completion": true,
     "latest_user_override_precedes_base_default": true,
+    "current_confirmed_decisions_must_be_read_before_questions": true,
+    "confirmed_decisions_must_not_be_reasked": true,
+    "questions_require_unresolved_or_tuning_status": true,
     "core_poc_must_not_be_reintroduced": true,
-    "visual_presentation_precedes_character_presentation": true,
-    "character_presentation_precedes_art_style": true,
-    "art_style_precedes_mass_asset_generation": true
+    "same_field_combat_is_superseded": true,
+    "field_and_battle_sd_assets_are_reused": true,
+    "main_summon_growth_does_not_expand_vertical_slice": true,
+    "combat_summon_four_role_system_is_not_confirmed": true,
+    "image_decisions_use_visual_comparison_when_feasible": true,
+    "generated_image_is_not_automatic_final_asset": true,
+    "image_failure_preserves_existing_brief": true,
+    "art_style_precedes_art_bible": true,
+    "art_bible_precedes_asset_spec": true,
+    "asset_spec_and_audio_direction_precede_mass_asset_generation": true
+  },
+  "question_gate": {
+    "read_order": [
+      "START_HERE.md",
+      "docs/ACTIVE_CONTEXT.md",
+      "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+      "docs/planning/DECISION_LOG.md",
+      "topic canonical source"
+    ],
+    "allowed_statuses": [
+      "USER_DECISION_REQUIRED",
+      "UNRESOLVED",
+      "PLAYTEST_TUNING_REQUIRED",
+      "ASSET_SPEC_REQUIRED",
+      "TECHNICAL_REVIEW_PROPOSAL"
+    ],
+    "forbidden_reask_statuses": [
+      "CONFIRMED",
+      "APPROVED",
+      "CORE_CONFIRMED",
+      "SUPERSEDED"
+    ],
+    "violation_status": "PROCESS_REGRESSION_REASKED_CONFIRMED_DECISION"
   },
   "active_base_routes": [
     {
       "skill_id": "managing-project-intake-and-work-contract",
       "modes": ["route", "clarify", "contract", "decompose-and-sequence", "execution-report"],
-      "trigger_tags": ["new-request", "scope-change", "multi-step-work", "work-contract"],
       "current_use": "Every non-trivial planning, review, workflow, asset, or implementation request"
     },
     {
       "skill_id": "managing-game-project-operating-system",
-      "modes": ["install", "audit", "reconcile-legacy", "migrate", "verify"],
-      "trigger_tags": ["project-operating-system", "documentation-map", "registry", "governance-foundation", "cold-start"],
-      "current_use": "Governance audit, state reconciliation, and verification"
+      "modes": ["audit", "reconcile-legacy", "verify"],
+      "current_use": "State reconciliation, canonical routing, and cold-start verification"
     },
     {
       "skill_id": "maintaining-project-context-and-handoff",
       "modes": ["context-refresh", "session-handoff", "implementation-package-handoff"],
-      "trigger_tags": ["active-context", "handoff", "next-work", "long-running-task"],
-      "current_use": "Refresh Active Context after decisions, reviews, gates, and completed work units"
+      "current_use": "Refresh current decision snapshot and Active Context after every approved decision"
     },
     {
       "skill_id": "analyzing-and-refining-game-concepts",
-      "modes": ["frame", "constrain", "sharpen", "structure", "benchmark-and-player-research", "analyze", "playtest-and-experiment", "poc-contract", "recalibrate", "production-gate"],
-      "trigger_tags": ["concept", "player-experience", "pointed-fun", "core-loop", "benchmark", "swot", "vrio", "core-poc"],
-      "current_use": "Gate 1 concept chain is approved; use only for evidence-driven recalibration"
+      "modes": ["recalibrate", "production-gate"],
+      "current_use": "Gate 1 is approved; reopen core only with explicit evidence and user decision"
     },
     {
       "skill_id": "identifying-project-core",
       "modes": ["read-only-core-identification"],
-      "trigger_tags": ["existing-project-core", "core-boundary", "protected-decision"],
       "current_use": "Protect CORE_CONFIRMED and distinguish support, shell, removed, and unverified elements"
     },
     {
-      "skill_id": "establishing-project-core",
-      "modes": ["plan", "counterexample-review", "user-confirmation"],
-      "trigger_tags": ["core-confirmation", "non-negotiable-core", "changeable-shell"],
-      "current_use": "Completed for Gate 1; reopen only with explicit evidence and user decision"
-    },
-    {
       "skill_id": "managing-design-documents",
-      "modes": ["author", "update", "restructure", "publish", "validate"],
-      "trigger_tags": ["design-document", "canonical-source", "registry", "publication"],
-      "current_use": "Maintain approved planning sources, visual/audio preproduction documents, and Registry"
+      "modes": ["author", "update", "restructure", "validate"],
+      "current_use": "Maintain current snapshot, decision ledger, art and audio preproduction sources"
     },
     {
       "skill_id": "designing-vertical-slices",
-      "modes": ["slice-contract", "quality-bar", "pipeline-proof", "playtest-evidence", "decision-gate"],
-      "trigger_tags": ["vertical-slice", "integrated-demo", "quality-bar", "pipeline-proof"],
-      "current_use": "Gate 1 Slice contract and visual presentation approved; quality and pipeline planning allowed, implementation blocked by profile transition"
+      "modes": ["quality-bar", "pipeline-proof", "playtest-evidence", "decision-gate"],
+      "current_use": "Approved Slice quality and pipeline planning; implementation blocked by profile transition"
     },
     {
       "skill_id": "running-adversarial-review-and-refinement",
-      "modes": ["review-scope-map", "attack", "validate-critique", "route-findings", "technical-review-proposal", "refine-approved-findings", "regression-recheck", "decision-report"],
-      "trigger_tags": ["adversarial-review", "gate-review", "finding-routing", "p0-p3"],
-      "current_use": "Executed for Gate 2 preproduction readiness; repeat after character, art, audio contracts and major changes"
+      "modes": ["review-scope-map", "attack", "validate-critique", "route-findings", "refine-approved-findings", "regression-recheck", "decision-report"],
+      "current_use": "Review loop 02 completed; repeat after Art Bible, Asset Specification, Audio Direction, and major changes"
     },
     {
       "skill_id": "reviewing-and-validating-project-changes",
-      "modes": ["contract-check", "external-source-review", "reference-freshness", "static-validation", "runtime-validation", "accessibility-review", "performance-profile", "regression", "evidence-report"],
-      "trigger_tags": ["validation", "reference-freshness", "runtime", "accessibility", "performance", "regression"],
-      "current_use": "Documentation and reference validation now; runtime, accessibility, and performance after implementation"
+      "modes": ["contract-check", "reference-freshness", "static-validation", "accessibility-review", "regression", "evidence-report"],
+      "current_use": "Documentation and visual-reference validation now; runtime validation after implementation"
     },
     {
       "skill_id": "auditing-canonical-reference-freshness",
       "modes": ["reference-freshness"],
-      "trigger_tags": ["path-change", "document-id-change", "schema-change", "stale-reference"],
-      "current_use": "Required when state, canonical paths, IDs, Registry, asset ledger, or generated outputs change"
-    },
-    {
-      "skill_id": "managing-base-change-proposals",
-      "modes": ["extract", "submit", "review", "implement", "verify"],
-      "trigger_tags": ["base-promotion", "shared-learning", "cross-project-rule"],
-      "current_use": "Only for reusable cross-project learning with separate user approval"
+      "current_use": "Required whenever decisions, canonical paths, Registry, asset ledger, or generated references change"
     }
   ],
   "required_extension_routes": [
@@ -142,47 +158,24 @@
     }
   ],
   "project_local_skills": [],
-  "project_local_skill_policy": {
-    "adapter_only": true,
-    "local_only_when_spell_specific": true,
-    "duplicate_base_skill": false,
-    "creation_requires_independent_input_output_validation": true
-  },
-  "execution_evidence_statuses": [
-    "EXECUTED_AND_EVIDENCED",
-    "EXECUTED_UNVERIFIED",
-    "ROUTED_NOT_NEEDED",
-    "NOT_AVAILABLE",
-    "BLOCKED",
-    "FALLBACK_USED"
-  ],
   "current_gate_coverage": {
     "gate_1_concept": {
-      "status": "APPROVED",
-      "required_routes": [
-        "managing-project-intake-and-work-contract",
-        "analyzing-and-refining-game-concepts",
-        "identifying-project-core",
-        "establishing-project-core",
-        "managing-design-documents",
-        "running-adversarial-review-and-refinement"
-      ]
+      "status": "APPROVED"
     },
     "gate_2_prototype_vertical_slice": {
       "status": "ENTERED_PLANNING_ONLY",
-      "current_substage": "CHARACTER_PRESENTATION_BEFORE_ART_STYLE",
+      "current_substage": "ART_STYLE_SELECTION",
       "completed_preproduction_decisions": [
         "GM-VS-REVIEW-LOOP-01",
-        "GM-VISUAL-PRESENTATION-01"
+        "GM-VISUAL-PRESENTATION-01",
+        "GM-CHARACTER-PRESENTATION-01",
+        "GM-BATTLE-PRESENTATION-01",
+        "GM-SUMMON-GROWTH-01",
+        "GM-VS-REVIEW-LOOP-02"
       ],
-      "required_routes": [
-        "designing-vertical-slices",
-        "running-adversarial-review-and-refinement",
-        "evaluating-godot-assets-and-plugins-before-creation",
-        "reviewing-and-validating-project-changes"
-      ],
+      "next_decision": "ART-STYLE-01",
       "blocked_routes": {
-        "mass_asset_generation": "BLOCKED_BY_CHARACTER_PRESENTATION_ART_BIBLE_ASSET_SPEC_AND_USER_APPROVAL",
+        "mass_asset_generation": "BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AUDIO_DIRECTION_AND_USER_APPROVAL",
         "codex": "BLOCKED_BY_PROFILE_TRANSITION",
         "godot_implementation": "BLOCKED_BY_PROFILE_TRANSITION",
         "runtime_validation": "BLOCKED_BY_IMPLEMENTATION"
