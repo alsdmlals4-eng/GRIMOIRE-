@@ -7,44 +7,41 @@
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
 - 경로 결정 ID: `GM-VS-ROUTE-01`
+- 계약 결정 ID: `GM-SLICE-01`
+- 위험 처리 결정 ID: `GM-GATE1-RISK-01`
 - 경로 상태: `DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_FOR_GATE_1`
-- Vertical Slice 계약: `CONFIRMED_BY_GM-SLICE-01_PENDING_P0_AMENDMENT`
-- 적대적 검토: `AUTHORED_BY_GM-GATE1-REVIEW-01`
-- 현재 범위 제작성: `CONDITIONAL_FAIL`
-- P0 감량 후 제작성: `CONDITIONAL_PASS_CANDIDATE`
 - CORE_POC: `REMOVED_BY_USER_DECISION`
 - CORE_POC 검증 책임: `ABSORBED_INTO_VERTICAL_SLICE`
+- Vertical Slice 계약: `CONFIRMED_WITH_P0_AMENDMENT_FOR_GATE_1`
+- 제작성: `CONDITIONAL_PASS_CANDIDATE`
+- Gate 1 전체: `FINAL_USER_APPROVAL_PENDING`
 - Vertical Slice 구현: `NOT_STARTED`
-- Gate 1: `UNVERIFIED`
-- 다음 결정: `GM-GATE1-RISK-01`
+- Codex: `NOT_RUN`
 
-이 문서는 별도 CORE_POC 없이 검증 중심 Vertical Slice로 직접 이동하는 제품 경로를 책임진다. 정확한 Slice 범위는 `GATE_1_VERTICAL_SLICE_CONTRACT.md`, 적대적 검토는 `GATE_1_ADVERSARIAL_REVIEW.md`가 책임진다.
-
-> **별도 CORE_POC는 만들지 않는다. 핵심 가설을 축약 학기형 Vertical Slice 안에서 검증하되, P0 범위 위험을 처리하기 전에는 Gate 1 최종 승인과 구현으로 이동하지 않는다.**
+> **별도 CORE_POC는 만들지 않는다. 직접 작성·의미 기반 조합·학교 학습 순환·2계층 소환수의 핵심 가설은 P0 보완 축약 학기형 Vertical Slice 안에서 검증한다.**
 
 ---
 
-## 2. 현재 제품 경로
+## 2. 최신 경로
 
 ```text
 Gate 1 콘셉트 정리
-→ GM-SLICE-01 축약 학기형 Slice 계약
+→ GM-SLICE-01 축약 학기형 Vertical Slice 구조 승인
 → GM-GATE1-REVIEW-01 적대적 검토
-→ GM-GATE1-RISK-01 P0 처리 패키지 결정
-→ 승인안 계약 반영
-→ 사용자 Gate 1 최종 승인
-→ VERTICAL_SLICE_FULL_PROFILE 전환
+→ GM-GATE1-RISK-01 P0 처리 패키지 승인
+→ GM-GATE1-APPROVAL-01 사용자 Gate 1 최종 승인
+→ VERTICAL_SLICE_FULL_PROFILE 전환 승인
 → Codex read-only Plan 검수
 → Validation-First Vertical Slice 구현
 → QA·외부 플레이테스트
 → Gate 3 판단
 ```
 
-기존 `GM-POC-01`, CORE_POC 계약·선행 구현·통과 요구는 `SUPERSEDED_BY_GM-VS-ROUTE-01`이다.
+기존 `GM-POC-01`, `CORE_POC 계약 승인`, `CORE_POC 선행 구현`, `CORE_POC 통과` 요구는 `SUPERSEDED_BY_GM-VS-ROUTE-01`이다.
 
 ---
 
-## 3. 승인된 Slice 구조
+## 3. 확정된 Slice 구조
 
 ```text
 프롤로그·학교 도착
@@ -58,54 +55,63 @@ Gate 1 콘셉트 정리
 → 귀환·마도서 기록·다음 학기 예고
 ```
 
-보호 결정:
-
-- 수업·시험·학교축제·현장실습을 모두 경험
-- 중요 일정 사이 자유일정 1회씩
-- 휴식은 유효한 정식 선택
-- 자유일정은 필수 진행·정보·정답을 차단하지 않음
-
----
-
-## 4. 적대적 검토 판정
-
-### 현재 계약 그대로
-
-`NO-GO_FOR_GATE_1_FINAL_APPROVAL`
-
-주요 원인:
-
-1. 네 세션이 네 개의 별도 게임으로 분열할 위험
-2. 세션별 플레이 역할 중복
-3. 52~84분 범위에 첫 완주 상한이 없음
-4. 자유일정이 최대 12개 독립 이벤트로 폭증
-5. 터치 입력 검증보다 콘텐츠·아트 제작이 선행
-6. 저장 상태가 초기 범위보다 복잡해짐
-
-### P0 감량 후
-
-`CONDITIONAL_GO_CANDIDATE_FOR_GATE_1_FINAL_APPROVAL`
+- 수업: 배움
+- 시험: 이해의 증명
+- 축제: 표현·관계·비전투 활용
+- 현장: 위험 속 응용·발견
+- 자유일정: 휴식·준비·교류의 완충
 
 ---
 
-## 5. 권장 P0 처리 패키지 — 미승인
+## 4. 승인된 P0 계약
 
-1. 모든 핵심 세션을 공통 `Situation Challenge` 계약으로 제작
-2. 수업·시험·축제·현장의 판단·압박·결과·실패 역할 분리
-3. 첫 완주 `45~50분` 목표, `60분` 상한
-4. 자유일정은 `휴식 / 준비 / 교류` 세 원형으로 통일
-5. 구현 순서는 입력·피드백→공통 문제→학교→현장→연출
-6. 저장은 세션 경계와 현장 문제 전환 지점의 최소 상태
+### 공통 Situation Challenge
 
-이 패키지는 네 핵심 세션과 자유일정 3회를 제거하지 않는다.
+```text
+상황 목표
+→ 관찰 가능한 상태
+→ 사용 가능한 메인·보조 글자
+→ 제한 조건
+→ 방향성 결과 미리보기
+→ 주문 작성
+→ 세계 상태 변화
+→ 성공·부분 성공·실패 원인
+→ 기록·후속 반응
+```
+
+수업·시험·축제·현장은 같은 문제·데이터 계약을 사용한다.
+
+### 자유일정
+
+- 휴식
+- 준비
+- 교류
+
+총 3회, 슬롯당 한 행동, 필수 진행 차단 없음, 신규 지역·전투·미니게임 없음.
+
+### 시간
+
+- 목표 45~50분
+- 상한 60분
+- 첫 5분 직접 작성
+- 15분 안에 메인·보조 이해
+
+### 저장
+
+- 세션 시작·완료
+- 자유일정 선택 전·완료
+- 현장 전투 문제 완료 후
+- 귀환·기록 완료
+
+최소 결과 태그만 저장한다.
 
 ---
 
-## 6. Validation-First 구현 순서 제안
+## 5. Validation-First 구현 순서
 
 ```text
 M0 입력·피드백
-→ 짧은 심볼 3개·넓은 판정·시간 처리 비교
+→ 짧은 심볼 3개, 넓은 판정, 시간 처리 비교
 
 M1 공통 Situation Challenge
 → 관찰·작성·세계 변화·실패 피드백
@@ -114,30 +120,85 @@ M2 학교 세션
 → 수업·시험·축제를 공통 계약으로 연결
 
 M3 현장실습
-→ 전투·환경 문제·보조 소환수 연결
+→ 전투·환경 문제와 보조 소환수 연결
 
 M4 저장·복귀·최종 연출
 → UI·아트·사운드·관계 반응 통합
 ```
 
-M0~M4는 Slice 내부 체크포인트이며 별도 CORE_POC가 아니다.
+M0~M4는 별도 제품 단계나 CORE_POC가 아니라 Vertical Slice 내부 체크포인트다.
+
+### 순서 보호
+
+- M0에서 입력 실패와 설계 실패를 구분한다.
+- M1 전에는 축제 전용 연출·장문 대화·다수 자산을 확대하지 않는다.
+- M2까지 학교 장면 세트를 재사용한다.
+- 공통 Situation Challenge 검증 전에 세션별 전용 시스템을 만들지 않는다.
 
 ---
 
-## 7. 현재 금지
+## 6. 내부 검증 항목
 
-- P0 결정 전 Gate 1 최종 승인
-- `CORE_CONFIRMED`
-- `VERTICAL_SLICE_FULL_PROFILE` 전환
-- Codex 실행
-- Godot 구현
-- 별도 CORE_POC 재도입
-- PR 병합
+### 핵심 마법
+
+- 첫 5분 직접 작성
+- 메인·보조 역할 이해
+- 입력 실패와 설계 실패 분리
+- 최소 두 가지 유효 해결법
+- 실패 원인 이해와 재설계
+- 시험·축제·현장에서 같은 문법 재사용
+
+### 학교생활
+
+- 네 핵심 세션의 역할 구분
+- 자유일정 3회의 휴식·준비·교류 가치
+- 휴식이 손해 선택이 아님
+- 자유일정이 필수 진행을 차단하지 않음
+
+### 모바일·제품
+
+- 완전 정지·감속·실시간 비교
+- 손가락 가림·피로·인지 부하
+- Android 실제 기기와 주요 화면비
+- 세션 경계 저장·복귀
+- 첫 완주 60분 이내
+- 두 번째 문제의 데이터 재사용성
 
 ---
 
-## 8. 다음 결정
+## 7. 포함·제외 경계
 
-`GM-GATE1-RISK-01`: 권장 P0 처리 패키지를 승인해 Vertical Slice 계약을 감량·강화할 것인가?
+### 포함
 
-상태: `USER_DECISION_REQUIRED`
+- 메인 글자 1개, 보조 글자 2개
+- 작성 심볼 3개
+- 학교 장면 세트 1개
+- 축제 장식 상태 1개
+- 현장 구역 1개
+- 교수 1명, 핵심 관계 인물 1명
+- 메인 동반 소환수 1체
+- 수호 또는 견제형 보조 소환수 1체
+- 연습·시험·축제 문제 각 1개
+- 현장 전투·환경 문제 각 1개
+- 자유일정 3회
+- 저장·복귀
+- 핵심 UI·아트·사운드
+
+### 제외
+
+- 3년·6학기 전체
+- 다수 시험·축제 부스·현장 지역
+- 대규모 관계·연애 분기
+- 완성 주문 스톡
+- 복잡한 소환수 경제·진화·충전
+- 다중 상태이상·광범위한 조합표
+- 고정밀 자유 손글씨 인식
+- 온라인·협동·풀보이스
+
+---
+
+## 8. 다음 단계
+
+`GM-GATE1-APPROVAL-01`: P0 보완 계약을 포함한 Gate 1 콘셉트와 Vertical Slice 범위를 최종 승인할 것인가?
+
+최종 승인 전에는 `CORE_CONFIRMED`, `VERTICAL_SLICE_FULL_PROFILE` 전환, Codex 실행, Godot 구현, PR 병합을 하지 않는다.
