@@ -16,7 +16,8 @@
     "sales_points_status": "CONFIRMED_BY_GM-SALES-01",
     "benchmark_status": "BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED",
     "vrio_status": "VRIO_POTENTIAL_NOT_PROVEN",
-    "solo_feasibility_status": "FEASIBLE_WITH_STRICT_SCOPE"
+    "solo_feasibility_status": "FEASIBLE_WITH_STRICT_SCOPE",
+    "summon_companion_status": "TWO_TIER_SUMMON_STRUCTURE_CONFIRMED_BY_GM-MASCOT-01"
   },
   "planning_authority": {
     "master_contract": "user-provided VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
@@ -43,13 +44,14 @@
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27K.md",
     "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
     "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
     "gate_1_experience_curve": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
     "gate_1_project_core_boundary": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
     "gate_1_sales_points": "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
-    "gate_1_benchmark_swot_vrio_feasibility": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md"
+    "gate_1_benchmark_swot_vrio_feasibility": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
+    "gate_1_summon_companion": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md"
   },
   "canonical_documents": [
     {
@@ -67,6 +69,7 @@
         "confirmed-project-core-boundary-summary",
         "confirmed-sales-points-summary",
         "benchmark-summary",
+        "confirmed-summon-companion-summary",
         "pointed-fun",
         "concept-risks",
         "core-poc-preconditions"
@@ -79,9 +82,10 @@
         "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
         "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
         "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
+        "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
         "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
         "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md",
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27K.md",
         "docs/ACTIVE_CONTEXT.md"
       ]
     },
@@ -104,13 +108,7 @@
       "source_format": "markdown",
       "source_path": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
       "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
-      "publication_policy": "source_only",
-      "supporting_sources": [
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md",
-        "docs/planning/WORLD_MAGIC_CURRICULUM_SYSTEM.md",
-        "docs/planning/WORLD_FIELD_PRACTICUM_SYSTEM.md",
-        "docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md"
-      ]
+      "publication_policy": "source_only"
     },
     {
       "id": "spell-gate-1-experience-curve",
@@ -131,13 +129,7 @@
       "source_format": "markdown",
       "source_path": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
       "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
-      "publication_policy": "source_only",
-      "supporting_sources": [
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
-        "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
-        "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
-        "docs/planning/STOCK_SYSTEM.md"
-      ]
+      "publication_policy": "source_only"
     },
     {
       "id": "spell-gate-1-project-core-boundary",
@@ -156,16 +148,7 @@
       "source_format": "markdown",
       "source_path": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
       "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
-      "publication_policy": "source_only",
-      "supporting_sources": [
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md",
-        "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
-        "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
-        "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
-        "docs/planning/COMBAT_CORE_SYSTEM.md",
-        "docs/planning/STOCK_SYSTEM.md",
-        "docs/planning/SUMMON_SYSTEM.md"
-      ]
+      "publication_policy": "source_only"
     },
     {
       "id": "spell-gate-1-sales-points",
@@ -184,18 +167,12 @@
       "source_format": "markdown",
       "source_path": "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
       "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
-      "publication_policy": "source_only",
-      "supporting_sources": [
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md",
-        "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
-        "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
-        "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md"
-      ]
+      "publication_policy": "source_only"
     },
     {
       "id": "spell-gate-1-benchmark-swot-vrio-feasibility",
       "title": "스펠 Gate 1 벤치마킹·SWOT·VRIO·1인 제작성",
-      "responsibility": "직접 입력·조합 문제 해결·마법학교 성장 경쟁군 분석과 SWOT·VRIO·Godot·Android·1인 제작성 판정",
+      "responsibility": "직접 입력·조합 문제 해결·마법학교 성장 경쟁군과 SWOT·VRIO·Godot·Android·1인 제작성",
       "responsibility_coverage": [
         "benchmark-direct-input-group",
         "benchmark-combination-problem-solving-group",
@@ -206,20 +183,38 @@
         "godot-android-technical-feasibility",
         "solo-development-feasibility",
         "adopt-adapt-avoid",
-        "benchmark-source-ledger",
         "core-poc-strengthening-conditions"
       ],
       "source_format": "markdown",
       "source_path": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
       "status": "ACTIVE_RESEARCHED_GATE_1_SOURCE",
+      "publication_policy": "source_only"
+    },
+    {
+      "id": "spell-gate-1-summon-companion",
+      "title": "스펠 Gate 1 소환수·동반자 구조",
+      "responsibility": "메인 동반 소환수·전투 보조 소환수의 역할·금지 책임·성장축·모바일 경계·CORE_POC 조건",
+      "responsibility_coverage": [
+        "main-companion-summon",
+        "combat-support-summon",
+        "two-tier-summon-structure",
+        "summon-role-boundaries",
+        "summon-prohibited-responsibilities",
+        "main-companion-growth-direction",
+        "support-summon-growth-direction",
+        "summon-mobile-cognitive-load",
+        "summon-core-poc-requirements",
+        "summon-legacy-override"
+      ],
+      "source_format": "markdown",
+      "source_path": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
       "publication_policy": "source_only",
       "supporting_sources": [
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md",
-        "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
-        "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
-        "docs/planning/BENCHMARK_CIRCUIT_GRAMMAR.md",
-        "docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md",
-        "docs/planning/BENCHMARK_SUMMON_SYSTEM.md"
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27K.md",
+        "docs/planning/SUMMON_SYSTEM.md",
+        "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
+        "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md"
       ]
     },
     {
@@ -236,11 +231,10 @@
       "status": "ACTIVE_WITH_LATEST_ADDENDUM",
       "publication_policy": "source_only",
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27K.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md"
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md"
       ]
     }
   ],
@@ -264,12 +258,6 @@
         "docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md",
         "docs/planning/SUPPORT_LETTER_OPERATION_CAPACITY_SYSTEM.md",
         "docs/planning/STOCK_SYSTEM.md",
-        "docs/planning/STOCK_CAPACITY_SYSTEM.md",
-        "docs/planning/STOCK_CHARGE_TIME_SYSTEM.md",
-        "docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md",
-        "docs/planning/STOCK_HIT_PAUSE_SYSTEM.md",
-        "docs/planning/STATUS_EFFECT_STOCK_SYSTEM.md",
-        "docs/planning/AUTO_SPELL_SYSTEM.md",
         "docs/planning/SUMMON_SYSTEM.md",
         "docs/planning/MANA_SYSTEM.md",
         "docs/planning/WORLD_SETTING_CONCEPT.md",
@@ -327,11 +315,11 @@
     },
     {
       "responsibility": "mascot-and-symbolic-companion",
-      "status": "NEXT_BLOCKING_DECISION_GM-MASCOT-01"
+      "status": "CONFIRMED_BY_GM-MASCOT-01"
     },
     {
       "responsibility": "core-poc-contract-and-playtest",
-      "status": "BLOCKED_BY_GM-MASCOT-01"
+      "status": "NEXT_BLOCKING_DECISION_GM-POC-01"
     },
     {
       "responsibility": "vertical-slice-contract",
