@@ -7,41 +7,41 @@
 - 기준 브랜치: `gpt/planning-spell-20260725`
 - 기준 날짜: 2026-07-27
 - 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
+- Gate 1: `APPROVED`
+- 프로젝트 코어: `CORE_CONFIRMED`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
-- 프로젝트 코어: `CORE_CONFIRMED`
-- Gate 1: `APPROVED`
-- Vertical Slice 계약: `APPROVED_AT_GATE_1`
-- 제작성: `CONDITIONAL_PASS_CANDIDATE`
+- Vertical Slice 계약: `APPROVED_AT_GATE_1_WITH_P0_AMENDMENT`
+- 적대적 검토 루프: `PASS_WITH_FOLLOWUP`
 - 구현: `NOT_STARTED`
 - Codex: `NOT_RUN`
 - CORE_POC: `REMOVED_BY_USER_DECISION`
 - PR 병합: `NOT_APPROVED`
-- 다음 차단 결정: `GM-VS-PROFILE-01`
+- 다음 차단 결정: `GM-VISUAL-PRESENTATION-01`
 
-Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실행 프로필 전환, Codex 실행, Godot 구현, 런타임 검증, PR 병합은 별도 승인 대상이다.
+Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실행 프로필 전환, Codex, Godot 구현, 런타임 검증과 PR 병합은 별도 승인 대상이다.
 
 ---
 
 ## 활성 책임 원본
 
 1. `docs/planning/GATE_1_FINAL_APPROVAL.md`
-2. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
-3. `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
-4. `docs/planning/GATE_1_ADVERSARIAL_REVIEW.md`
-5. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
-6. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
-7. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
-8. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
-9. `docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md`
+2. `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
+3. `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md`
+4. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md`
+5. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
+6. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
+7. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
+8. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
+9. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
 10. `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md`
-11. `docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md`
-12. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27P.md`
-13. `docs/planning/DECISION_LOG.md`
-14. `docs/DEVELOPMENT_GATES.md`
-15. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+11. `docs/planning/DECISION_LOG.md`
+12. `docs/DEVELOPMENT_GATES.md`
+13. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+14. `docs/ASSET_LICENSE_LEDGER.md`
+15. `skills/SKILL_REGISTRY.json`
 
-기존 세부 문서는 `REFERENCE_CANDIDATE`다. 최신 사용자 결정, 최종 승인 문서와 위 책임 원본이 우선한다.
+기존 세부 문서는 `REFERENCE_CANDIDATE`다. 최신 사용자 지시, 최종 승인 문서와 위 책임 원본이 우선한다.
 
 ---
 
@@ -91,7 +91,7 @@ Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실�
 → 다음 학기 예고
 ```
 
-세션 역할:
+세션 책임:
 
 ```text
 수업·연습 = 배움과 원리 비교
@@ -115,37 +115,17 @@ Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실�
 → 기록·후속 반응
 ```
 
-수업·시험·축제·현장실습은 같은 문제·데이터 계약을 사용한다.
-
-### 시간 계약
+### 시간·저장
 
 - 첫 완주 목표: `45~50분`
 - 허용 상한: `60분`
-- 첫 직접 작성: 시작 후 5분 이내
-- 메인·보조 차이 이해: 시작 후 15분 이내
+- 첫 직접 작성: 5분 이내
+- 메인·보조 이해: 15분 이내
+- 자유일정: `휴식 / 준비 / 교류`
+- 저장: 세션 경계 중심 최소 상태
 - 연속 플레이 강제 없음
 
-### 자유일정 계약
-
-- 중요 일정 사이 총 3회
-- 슬롯당 행동 하나
-- `휴식 / 준비 / 교류` 세 원형 재사용
-- 필수 진행·정보·정답 차단 금지
-- 신규 지역·전투·독립 미니게임 추가 금지
-- 휴식은 손해 전용 선택이 아님
-
-### 최소 저장
-
-- 핵심 세션 시작·완료
-- 자유일정 선택 전·완료
-- 현장 전투 문제 완료 후
-- 귀환·기록 완료 후
-
-대화 한 줄 단위 저장, 자유 위치 저장, 전투 중 임의 저장과 모든 주문 궤적 기록은 초기 범위에서 제외한다.
-
----
-
-## 승인된 2계층 소환수
+### 2계층 소환수
 
 ```text
 메인 동반 소환수
@@ -154,16 +134,61 @@ Gate 1 승인은 제품 콘셉트와 Vertical Slice 범위를 확정한다. 실�
 
 전투 보조 소환수
 = 전투에서 호출
-= 작성 시간을 확보하는 전술 지원
+= 작성 시간을 확보하는 수호 또는 견제
 ```
-
-Vertical Slice에서는 보조 소환수의 `수호` 또는 `견제` 중 하나만 구현한다.
 
 두 소환수 모두 글자 작성, 조합 판단, 주문 설계와 정답 제시를 대행하지 않는다.
 
 ---
 
-## 승인된 구현 체크포인트
+## 적대적 검토 루프 결론
+
+최종 판정: `PASS_WITH_FOLLOWUP`
+
+### NO_CHANGE
+
+- Gate 1 승인
+- `CORE_CONFIRMED`
+- 수업·시험·학교축제·현장실습
+- 자유일정 3회
+- 공통 Situation Challenge
+- 45~50분 목표·60분 상한
+- M0~M4 Validation-First 순서
+
+### 문서 교정 완료
+
+- README 최신화
+- Vertical Slice 계약 승인 상태 정렬
+- Skill Registry Gate 상태 정렬
+- Asset Ledger 생성·편집 자산 추적 규칙 추가
+
+### 다음 필수 기획
+
+- `Problem Differentiation Matrix`
+- 화면 방향·카메라·게임 표현 구조
+- 주인공·NPC·소환수의 화면별 표현 수준
+- 그림체 후보 비교
+- Art Bible
+- Visual Asset Budget·Asset Specification
+- Audio Direction Card
+- 접근성·무음 대체·FX 가독성 규칙
+
+### 아트·사운드 대량 제작 차단
+
+다음이 확정되기 전 캐릭터·배경·효과·사운드를 대량 제작하지 않는다.
+
+1. 화면 방향
+2. 카메라와 월드 표현
+3. 탐색·대화·마법 작성 화면의 관계
+4. 주인공·NPC·소환수 표현 수준
+5. 목표 해상도·화면비
+6. 자산 수량·상태·변형 예산
+
+스타일 비교용 소수의 기준 샷은 별도 사용자 승인 후 제작할 수 있다.
+
+---
+
+## 승인된 내부 구현 체크포인트
 
 ```text
 M0 입력·피드백
@@ -173,14 +198,9 @@ M0 입력·피드백
 → M4 저장·복귀·최종 연출
 ```
 
-M0~M4는 Vertical Slice 내부 체크포인트이며 별도 CORE_POC가 아니다.
+M0~M4는 독립 CORE_POC가 아니다.
 
-가드레일:
-
-- M0에서 입력 실패와 설계 실패 분리
-- M1 확인 전 축제 전용 연출·장문 대화·다수 자산 확대 금지
-- M2까지 학교 장면 세트 재사용
-- 구현 순서 역전 금지
+현재는 사용자가 지정한 순서에 따라 아트·사운드 프리프로덕션을 먼저 진행하므로 `GM-VS-PROFILE-01`을 후순위로 이동한다.
 
 ---
 
@@ -189,11 +209,12 @@ M0~M4는 Vertical Slice 내부 체크포인트이며 별도 CORE_POC가 아니�
 - 터치 작성의 실제 재미·인식 허용 범위·반복 피로
 - 완전 정지·감속·실시간 최종안
 - 공통 Situation Challenge의 런타임 재사용성
-- 첫 완주 60분 이내 달성
 - 자유일정 세 원형의 선택 가치
 - 보조 소환수의 작성 시간 확보 효과
 - Android 실제 기기·화면비·성능·복귀
 - 두 번째 유사 콘텐츠 제작 비용
+- 외부 자산·폰트·사운드 라이선스
+- 사운드·FX 실제 믹스와 무음 대체 정보
 
 상태는 `NOT_RUN`, `BLOCKED_UNVERIFIED` 또는 `PLAYTEST_TUNING_REQUIRED`다.
 
@@ -210,6 +231,7 @@ M0~M4는 Vertical Slice 내부 체크포인트이며 별도 CORE_POC가 아니�
 - 모든 핵심 세션은 공통 Situation Challenge 사용
 - 첫 완주 허용 상한 60분
 - 별도 CORE_POC 재도입 금지
+- 대량 자산 제작 전 시각 표현 구조 확정
 - 실행 프로필 전환 전 Codex·Godot 구현 금지
 - 사용자 승인 없는 PR 병합 금지
 
@@ -217,17 +239,18 @@ M0~M4는 Vertical Slice 내부 체크포인트이며 별도 CORE_POC가 아니�
 
 ## 다음 차단 결정
 
-`GM-VS-PROFILE-01`: 실행 프로필을 `PLANNING_ONLY_PROFILE`에서 `VERTICAL_SLICE_FULL_PROFILE`로 전환하고 Codex read-only Plan 및 구현 준비 문서 작성을 시작할 것인가?
+`GM-VISUAL-PRESENTATION-01`
 
-전환 승인 전 허용:
+Vertical Slice를 어떤 화면 방향과 카메라·게임 표현 구조로 보여줄지 결정한다.
 
-- 승인된 계약 문서 정리
-- 구현 계획·검증 항목 논의
-- Godot·Android 기술 후보 검토
+이후 순서:
 
-전환 승인 전 금지:
-
-- Codex 실행
-- Godot 구현
-- 런타임 산출물 작성
-- Draft PR 병합
+```text
+GM-VISUAL-PRESENTATION-01
+→ GM-CHARACTER-PRESENTATION-01
+→ ART-STYLE-01
+→ ART-BIBLE-01
+→ ASSET-SPEC-01
+→ 캐릭터·배경·효과·사운드 작업
+→ GM-VS-PROFILE-01 재검토
+```
