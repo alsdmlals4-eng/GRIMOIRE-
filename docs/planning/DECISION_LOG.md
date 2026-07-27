@@ -14,8 +14,9 @@
 - 현재 상태: `docs/ACTIVE_CONTEXT.md`
 - Gate 1 Loop 책임 원본: `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
 - Gate 1 경험 곡선 책임 원본: `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
-- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md`
-- 이전 재기획 결정: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`, `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md`
+- Gate 1 코어 경계 책임 원본: `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
+- 최신 결정 추가 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md`
+- 이전 재기획 결정: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27G.md`, `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27F.md`, `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27E.md`
 - 전체 이전 결정 표: Git 이력과 날짜별 Addendum
 
 기존 시스템 문서는 `REFERENCE_CANDIDATE`다. 최신 v6 재기획 결정은 Gate 1 기준선, 최신 Addendum, Active Context 순으로 확인한다.
@@ -32,6 +33,7 @@
 | GM-PROMISE-01 | 플레이어 약속 | 제안 문장 확정 | `PLAYER_PROMISE_CONFIRMED_FOR_GATE_1` | 배움→설계→세계 변화로 시스템 필터링 |
 | GM-LOOP-01 | 게임플레이 Loop | 수업·연습·일상·현장실습 순환 + 고정 핵심 사건·자유 일정 | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` | 학습·실전·관계 결과가 다음 선택으로 순환 |
 | GM-CURVE-01 | 초반 경험 곡선 | 짧은 수업에서 즉시 작성·설계 후 모의 실습과 첫 숙련 자동화 | `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1` | 첫 5분에 핵심 재미 증명, 자동화는 숙련 보상으로 후행 |
+| GM-CORE-BOUNDARY-01 | 프로젝트 코어 경계 | 마법 학습·설계를 비타협 코어로 두고 학교·관계·스톡·소환수는 지원층으로 분리 | `PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1` | 범위 축소 시에도 의미 기반 작성·조합·상황 반응·학습 순환 보존 |
 
 ## 확정된 플레이어 약속
 
@@ -67,6 +69,42 @@
 
 > 먼저 마법이 작동하는 기쁨을 주고, 곧바로 내가 설계했다는 감각을 주며, 실전에서 응용한 뒤 숙련된 반복만 자동화한다.
 
+## 확정된 프로젝트 코어 경계
+
+### 비타협 코어
+
+1. 의미를 가진 마법 글자
+2. `메인 글자 1개 + 보조 글자 0개 이상` 조합 문법
+3. 신규·미숙·중요 글자의 직접 작성
+4. 상황·목표·위험을 읽고 주문을 변형하는 판단
+5. 적·환경·사건을 바꾸는 즉각적이고 설명 가능한 결과
+6. 수업→연습→현장실습→발견·기록→다음 학습의 순환
+
+핵심 문장:
+
+> 의미를 배운 글자를 직접 쓰고 상황에 맞게 조합하여, 내가 설계한 주문으로 세계를 변화시키고 새 활용을 발견한다.
+
+### 지원 시스템
+
+- 마법학교
+- 일상·관계
+- 마도서·발견 기록
+- 숙련·하위 글자 스톡
+- 소환수 전투·수호·지정 충전 지원
+
+### 변경 가능한 외피
+
+- 3년·6학기와 학기 `10+4`
+- 학교 규모·지역·등장인물·관계 분기량
+- 주인공 세부 출신
+- 실시간 전투 압박과 집중 모드
+- 메인 레벨·보조 운용량·스톡 수치
+- 완성 주문 스톡의 존재와 비중
+- 소환수 수·편성·성장 방식
+- 정확한 세션 시간과 저장·복귀 단위
+
+책임 원본: `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
+
 ## 기존 결정 기록의 지위
 
 v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum에 보존한다. 이 원장은 현재 Gate 1의 활성 인덱스와 재해석 상태를 제공한다.
@@ -82,7 +120,7 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 - 주문은 `메인 글자 1개 + 보조 글자 0개 이상`
 - 메인 글자 하나만으로 기본 주문 성립
 - 복수 메인 글자 결합 금지
-- 신규·미숙 글자는 직접 작성
+- 신규·미숙·중요 글자는 직접 작성
 - 숙련 보조만 하위 글자 스톡 후보
 - 소환수는 회로·글자를 직접 작성·배치·연결하지 않음
 - 소환수 보조 묶음 자동 연결 재도입 금지
@@ -97,6 +135,7 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 - 첫 5분에 스톡·소환수 충전·완성 주문 스톡을 동시에 공개하지 않음
 - 수동 작성 경험 없이 자동화를 먼저 공개하지 않음
 - 첫 자동화는 숙련 보조 글자의 하위 글자 스톡부터 시작
+- 의미 기반 글자·직접 작성·상황 변형·세계 변화·학습 순환을 범위 축소 대상으로 삼지 않음
 - 사용자 승인 전 `CORE_CONFIRMED` 사용 금지
 
 ### 주요 책임 원본
@@ -105,13 +144,14 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 |---|---|---|
 | Gate 1 게임플레이 Loop | `LOOP_STRUCTURE_CONFIRMED_FOR_GATE_1` | `GATE_1_GAMEPLAY_LOOP_SYSTEM.md` |
 | Gate 1 경험 곡선 | `EXPERIENCE_CURVE_CONFIRMED_FOR_GATE_1` | `GATE_1_EXPERIENCE_CURVE_SYSTEM.md` |
+| Gate 1 프로젝트 코어 경계 | `PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1` | `GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md` |
 | 마법 글자 문법 | `DIRECTION_CONFIRMED` | `MAGIC_LETTER_CIRCUIT_SYSTEM.md` |
 | 직접 작성·스톡 | `REFERENCE_CANDIDATE_WITH_PROTECTED_BOUNDARIES` | `COMBAT_CORE_SYSTEM.md`, `STOCK_SYSTEM.md` |
 | 소환수 책임 | `LATEST_OVERRIDE_CONFIRMED` | `SUMMON_SYSTEM.md` |
 | 메인 글자 Lv.0~5 | `UNPROVEN` | `MAIN_LETTER_LEVEL_SYSTEM.md` |
 | 보조 미숙·숙련·달인 | `SUPPORT_DIRECTION_CONFIRMED` | `SUPPORT_LETTER_MASTERY_SYSTEM.md` |
-| 학교 3년·6학기 | `NEUTRAL_SCOPE_RISK` | 학교·학년·학기 참조 문서 |
-| 선택형 상세 서사 | `OPTIONAL_NARRATIVE_DEPTH_CONFIRMED` | `NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md` |
+| 학교 3년·6학기 | `CHANGEABLE_SHELL_SCOPE_RISK` | 학교·학년·학기 참조 문서 |
+| 선택형 상세 서사 | `CORE_SUPPORT` | `NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md` |
 
 ## 보류된 세부 설계
 
@@ -141,7 +181,7 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 
 | 후보 ID | 질문 | 상태 |
 |---|---|---|
-| GM-CORE-BOUNDARY-01 | 무엇이 비타협 프로젝트 코어이고 무엇이 지원 시스템·변경 가능한 외피인가 | `NEXT_BLOCKING_DECISION` |
+| GM-SALES-01 | 처음 보는 플레이어에게 즉시 전달할 세일즈포인트 최대 3개는 무엇인가 | `NEXT_BLOCKING_DECISION` |
 | GM-CIRCUIT-03 | 각 메인 글자의 기본 발현과 레벨별 변화는 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-04 | 공통 보조와 계열 전용 보조의 비율은 무엇인가 | `UNRESOLVED` |
 | GM-CIRCUIT-05 | 보조 글자의 반복·중복·상충·감쇠 규칙은 무엇인가 | `UNRESOLVED` |
@@ -163,7 +203,9 @@ v6 재기획 이전의 세부 결정 원문은 Git 이력과 날짜별 Addendum�
 
 ## 다음 결정
 
-`GM-CORE-BOUNDARY-01`: 직접 작성·의미 기반 조합·상황 반응·학교·관계·스톡·소환수 중 무엇을 비타협 프로젝트 코어로 두고, 무엇을 지원 시스템 또는 변경 가능한 외피로 둘 것인가.
+`GM-SALES-01`: 플레이어와 시장에 즉시 전달할 세일즈포인트를 최대 3개로 압축한다.
+
+> 스펠을 처음 보는 사람이 한 문장과 세 장면만 보고도 이해해야 하는 차별점 3개는 무엇인가?
 
 상태: `DESIGN_HYPOTHESIS_REQUIRES_USER_DECISION`
 
