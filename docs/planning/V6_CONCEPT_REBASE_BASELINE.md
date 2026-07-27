@@ -4,21 +4,22 @@
 
 - 프로젝트: `스펠` (임시)
 - 저장소: `alsdmlals4-eng/Spell`
-- 제품 단계: `CONCEPT_APPROVAL`
+- 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
-- 상태: `GATE_1_FINAL_APPROVAL_READY`
+- 상태: `GATE_1_APPROVED_BASELINE`
 - 기준 날짜: 2026-07-27
 - 기준 브랜치: `gpt/planning-spell-20260725`
-- 프로젝트 코어 전체: `CORE_CANDIDATE`
-- Gate 1 전체: `FINAL_USER_APPROVAL_PENDING`
+- 프로젝트 코어: `CORE_CONFIRMED`
+- Gate 1: `APPROVED`
+- Vertical Slice 계약: `APPROVED_AT_GATE_1`
+- 제작성: `CONDITIONAL_PASS_CANDIDATE`
 - 구현: `NOT_STARTED`
 - Codex: `NOT_RUN`
 - CORE_POC: `REMOVED_BY_USER_DECISION`
-- Vertical Slice 계약: `CONFIRMED_WITH_P0_AMENDMENT_FOR_GATE_1`
-- 제작성: `CONDITIONAL_PASS_CANDIDATE`
+- 다음 결정: `GM-VS-PROFILE-01`
 
-이 문서는 Gate 1의 통합 상태와 최신 승인 요약을 책임진다. 세부 규칙은 각 단일 책임 원본이 우선한다.
+최종 승인 권위는 `docs/planning/GATE_1_FINAL_APPROVAL.md`가 책임진다. 이 문서는 승인된 Gate 1 콘셉트의 통합 기준선이다.
 
 ---
 
@@ -51,7 +52,7 @@
 
 ---
 
-## 3. 비타협 코어
+## 3. 비타협 프로젝트 코어
 
 1. 의미를 가진 마법 글자
 2. `메인 글자 1개 + 보조 글자 0개 이상`
@@ -99,31 +100,14 @@
 
 전투 보조 소환수
 = 전투에서 호출
-= 공격·견제·수호·충전 지원
+= 작성 시간을 확보하는 전술 지원
 ```
 
-Slice에서는 보조 소환수의 수호 또는 견제 하나만 구현한다. 소환수는 글자 작성·조합 판단·정답 제시를 대행하지 않는다.
+Vertical Slice에서는 보조 소환수의 `수호` 또는 `견제` 하나만 구현한다. 소환수는 글자 작성·조합 판단·정답 제시를 대행하지 않는다.
 
 ---
 
-## 6. 직접 Vertical Slice 경로
-
-별도 CORE_POC는 제작하지 않는다. 핵심 검증은 Vertical Slice 통과 조건으로 흡수한다.
-
-```text
-Gate 1 콘셉트 정리
-→ Vertical Slice 구조 승인
-→ 적대적 검토
-→ P0 처리 패키지 승인
-→ 사용자 Gate 1 최종 승인
-→ VERTICAL_SLICE_FULL_PROFILE 전환
-→ Codex read-only Plan
-→ Validation-First Vertical Slice 구현
-```
-
----
-
-## 7. P0 보완 Vertical Slice
+## 6. 승인된 Vertical Slice
 
 ```text
 프롤로그·학교 도착
@@ -134,16 +118,17 @@ Gate 1 콘셉트 정리
 → 학교축제
 → 자유일정 C
 → 첫 현장실습
-→ 귀환·마도서 기록·다음 학기 예고
+→ 귀환·마도서 기록
+→ 다음 학기 예고
 ```
 
-### 세션 의미
+세션 의미:
 
 ```text
-수업·연습 = 배움
-시험 = 이해의 증명
-학교축제 = 표현·관계·비전투 활용
-현장실습 = 실제 위험 속 응용·발견
+수업·연습 = 배움과 원리 비교
+시험 = 제한 조건 안에서 이해 증명
+학교축제 = 표현·개성·관계·비전투 활용
+현장실습 = 위험 속 우선순위·재설계·발견
 자유일정 = 휴식·준비·교류의 완충
 ```
 
@@ -161,15 +146,16 @@ Gate 1 콘셉트 정리
 → 기록·후속 반응
 ```
 
-수업·시험·축제·현장은 같은 계약을 사용한다. 차이는 위험 수준, 시간 압박, 허용 자원, 평가 방식, 결과 성격, 소환수 허용 여부, 실패 복구 방식으로 만든다.
+수업·시험·축제·현장은 같은 계약을 사용한다.
 
 ### 자유일정
 
 - `휴식`: 컨디션·집중 회복과 안전 보정
 - `준비`: 시험 복습·축제 준비·현장 조사 또는 소환수 조율
 - `교류`: 메인 동반자 또는 핵심 인물과 관계·관점 획득
-
-총 3회를 유지하며 필수 진행·정보·정답을 차단하지 않는다. 별도 지역·전투·미니게임을 추가하지 않는다.
+- 총 3회, 슬롯당 행동 하나
+- 필수 진행·정보·정답 차단 금지
+- 신규 지역·전투·독립 미니게임 추가 금지
 
 ### 시간
 
@@ -179,7 +165,17 @@ Gate 1 콘셉트 정리
 - 15분 안에 메인·보조 이해
 - 연속 플레이 강제 없음
 
-### 내부 구현 순서
+### 최소 저장
+
+- 세션 시작·완료
+- 자유일정 선택 전·완료
+- 현장 전투 문제 완료 후
+- 귀환·기록 완료
+- 최소 결과 태그만 저장
+
+---
+
+## 7. 승인된 구현 체크포인트
 
 ```text
 M0 입력·피드백
@@ -190,15 +186,6 @@ M0 입력·피드백
 ```
 
 M0~M4는 Vertical Slice 내부 체크포인트이며 CORE_POC가 아니다.
-
-### 최소 저장
-
-- 세션 시작·완료
-- 자유일정 선택 전·완료
-- 현장 전투 문제 완료 후
-- 귀환·기록 완료
-
-현재 단계, 배운 글자, 자유일정 선택, 시험·축제·현장 결과 태그, 동반자 관계, 소환수 준비, 마도서 발견만 저장한다.
 
 ---
 
@@ -211,10 +198,10 @@ M0~M4는 Vertical Slice 내부 체크포인트이며 CORE_POC가 아니다.
 - 학교 장면 세트 1개
 - 축제 장식 상태 1개
 - 현장실습 구역 1개
-- 교수 1명, 학생 또는 관계 인물 1명
+- 교수 1명, 핵심 관계 인물 1명
 - 메인 동반 소환수 1체
 - 수호 또는 견제형 보조 소환수 1체
-- 적 1종, 필요 시 변형 1종
+- 적 1종, 필요 시 역할 차이 변형 1종
 - 연습·시험·축제 문제 각 1개
 - 현장 전투·환경 문제 각 1개
 - 자유일정 3회
@@ -237,11 +224,11 @@ M0~M4는 Vertical Slice 내부 체크포인트이며 CORE_POC가 아니다.
 ## 9. P1 제약
 
 - 시험 표시 평가: 상황 적합성 / 주문 설계 / 실행 안정성
-- 축제: 별도 맵 없이 학교 장면 재사용
+- 축제는 별도 맵 없이 학교 장면 재사용
 - 축제 결과: `ELEGANT / PRACTICAL / SPECTACULAR`
 - 메인 동반자 관계 단계 최대 3개
 - 보조 소환수는 수호 또는 견제 하나
-- 작성 화면 고정 정보는 목표·메인·보조·자원·위험 경고
+- 작성 화면 고정 정보: 목표·메인·보조·자원·위험 경고
 
 ---
 
@@ -250,39 +237,36 @@ M0~M4는 Vertical Slice 내부 체크포인트이며 CORE_POC가 아니다.
 - 제품 약속 적합성: `PASS`
 - 세일즈포인트 커버리지: `PASS`
 - 학교생활 대표성: `PASS`
-- P0 이전 제작성: `SUPERSEDED_CONDITIONAL_FAIL`
-- P0 보완 제작성: `CONDITIONAL_PASS_CANDIDATE`
-- Gate 1 최종 승인: `USER_DECISION_REQUIRED`
+- Gate 1 범위 승인: `APPROVED`
+- 구현 제작성: `CONDITIONAL_PASS_CANDIDATE`
 
 조건부인 이유:
 
 - 터치 입력의 실제 재미·피로 미검증
-- 공통 Situation Challenge의 실제 재사용성 미검증
+- 공통 Situation Challenge의 런타임 재사용성 미검증
 - 첫 완주 60분 이내 달성 미검증
 - 자유일정 세 원형의 선택 가치 미검증
 - 보조 소환수의 작성 시간 확보 효과 미검증
 
 ---
 
-## 11. 보호 결정
+## 11. 승인과 실행의 분리
 
-- 복수 메인 글자 결합 금지
-- 신규·미숙·중요 글자는 직접 작성
-- 스톡 없이 직접 시전 가능
-- 입력 실패와 설계 실패 분리
-- 필수 정보는 선택형 상세 대화나 자유일정에만 숨기지 않음
-- 중요 일정 사이 자유일정 1회
-- 휴식은 손해 전용 선택이 아님
-- 모든 세션은 공통 Situation Challenge 사용
-- 첫 완주 허용 상한 60분
-- 별도 CORE_POC 재도입 금지
-- 사용자 승인 전 `CORE_CONFIRMED` 금지
-- 현재 단계에서 Godot 구현·Codex 실행·프로필 전환·PR 병합 금지
+Gate 1 승인에 포함되지 않는다.
+
+- `VERTICAL_SLICE_FULL_PROFILE` 전환
+- Codex 실행
+- Godot 구현
+- 런타임·Android·접근성·성능 통과
+- 정량 밸런스 확정
+- PR 병합
+
+현재 실행 프로필은 `PLANNING_ONLY_PROFILE`을 유지한다.
 
 ---
 
-## 12. 다음 Gate 1 결정
+## 12. 다음 결정
 
-`GM-GATE1-APPROVAL-01`: P0 보완 계약을 포함한 Gate 1 콘셉트와 Vertical Slice 범위를 최종 승인할 것인가?
+`GM-VS-PROFILE-01`: 실행 프로필을 `VERTICAL_SLICE_FULL_PROFILE`로 전환하고 Codex read-only Plan 및 구현 준비 문서 작성을 시작할 것인가?
 
 상태: `NEXT_BLOCKING_DECISION`
