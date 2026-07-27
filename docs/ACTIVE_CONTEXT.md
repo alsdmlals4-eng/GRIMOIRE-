@@ -12,70 +12,79 @@
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
 - Vertical Slice 계약: `APPROVED_AT_GATE_1_WITH_P0_AMENDMENT`
-- 적대적 검토 루프: `PASS_WITH_FOLLOWUP`
-- 시각 표현 구조: `LANDSCAPE_HYBRID_2D_CONFIRMED`
+- 적대적 검토 루프 01: `PASS_WITH_FOLLOWUP`
+- 적대적 검토 루프 02: `PASS_WITH_CORRECTIONS`
+- 시각 표현: `LANDSCAPE_HYBRID_2D_WITH_SEPARATE_TACTICAL_BATTLE_CONFIRMED`
+- 캐릭터 표현: `SD_FIELD_HALF_BODY_DIALOGUE_CONFIRMED`
+- 메인 소환수 성장: `FOUR_STAGE_FORM_SELECTION_AND_LONG_TERM_RIDING_CONFIRMED_DIRECTION`
 - 구현: `NOT_STARTED`
 - Codex: `NOT_RUN`
-- 이미지·사운드 제작: `NOT_STARTED`
+- 이미지·사운드 대량 제작: `NOT_STARTED`
 - CORE_POC: `REMOVED_BY_USER_DECISION`
 - PR 병합: `NOT_APPROVED`
-- 다음 차단 결정: `GM-CHARACTER-PRESENTATION-01`
+- 다음 차단 결정: `ART-STYLE-01`
 
-Gate 1과 시각 표현 구조의 승인은 제품 콘셉트·범위·화면 구조를 확정한다. 실행 프로필 전환, Codex, Godot 구현, 실제 자산 생성, 런타임 검증과 PR 병합은 별도 승인 대상이다.
+Gate 1과 현재 시각·캐릭터·소환수 방향의 승인은 제품 콘셉트와 프리프로덕션 기준을 확정한다. 실행 프로필 전환, Codex, Godot 구현, 런타임 검증과 PR 병합은 별도 승인 대상이다.
+
+---
+
+## 질문 전 필수 복원 순서
+
+```text
+START_HERE.md
+→ docs/ACTIVE_CONTEXT.md
+→ docs/planning/CURRENT_CONFIRMED_DECISIONS.md
+→ docs/planning/DECISION_LOG.md와 최신 Addendum
+→ 질문 주제의 단일 책임 원본
+```
+
+이미 `CONFIRMED`, `APPROVED`, `CORE_CONFIRMED`, `SUPERSEDED`인 결정을 기억 확인 목적으로 다시 선택하게 하지 않는다.
+
+질문 가능 상태:
+
+- `USER_DECISION_REQUIRED`
+- `UNRESOLVED`
+- `PLAYTEST_TUNING_REQUIRED`
+- `ASSET_SPEC_REQUIRED`
+- `TECHNICAL_REVIEW_PROPOSAL`
+- 사용자 명시적 재개방
 
 ---
 
 ## 활성 책임 원본
 
-1. `docs/planning/GATE_1_FINAL_APPROVAL.md`
-2. `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
-3. `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md`
-4. `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`
-5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md`
-6. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
-7. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
-8. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
-9. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
-10. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
-11. `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md`
-12. `docs/planning/DECISION_LOG.md`
-13. `docs/DEVELOPMENT_GATES.md`
-14. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-15. `docs/ASSET_LICENSE_LEDGER.md`
-16. `skills/SKILL_REGISTRY.json`
+1. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
+2. `docs/planning/GATE_1_FINAL_APPROVAL.md`
+3. `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
+4. `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27B.md`
+5. `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`
+6. `docs/planning/GATE_2_CHARACTER_PRESENTATION_SYSTEM.md`
+7. `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md`
+8. `docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md`
+9. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27S.md`
+10. `docs/planning/DECISION_LOG.md`
+11. `docs/DEVELOPMENT_GATES.md`
+12. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+13. `docs/ASSET_LICENSE_LEDGER.md`
+14. `skills/SKILL_REGISTRY.json`
 
-기존 세부 문서는 `REFERENCE_CANDIDATE`다. 최신 사용자 지시, 최종 승인 문서와 위 책임 원본이 우선한다.
+기존 세부 문서는 `REFERENCE_CANDIDATE`다. 최신 사용자 지시와 위 책임 원본이 우선한다.
 
 ---
 
 ## 승인된 플레이어 약속
 
-> **마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.**
+> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.
 
 ## 승인된 최상위 경험
 
-> **마법 글자의 의미를 이해하고 상황에 맞는 주문을 설계해 발견하는 지적 마법 판타지.**
+> 마법 글자의 의미를 이해하고 상황에 맞는 주문을 설계해 발견하는 지적 마법 판타지.
 
 우선순위:
 
 1. 조합하고 발견하는 지적 재미
 2. 직접 쓰는 마법의 손맛
 3. 숙련하고 자동화하는 성장감
-
-## 승인된 비타협 코어
-
-1. 의미를 가진 마법 글자
-2. `메인 글자 1개 + 보조 글자 0개 이상`
-3. 신규·미숙·중요 글자의 직접 작성
-4. 상황·목표·위험에 따른 주문 변형 판단
-5. 즉각적이고 설명 가능한 세계 변화
-6. 수업→연습→평가·표현→현장실습→발견·기록→다음 학습 순환
-
-## 승인된 세일즈포인트
-
-1. 손으로 직접 쓰는 마법
-2. 상황에 맞게 만드는 주문
-3. 수업에서 배우고 실전에서 발견하는 마법학교
 
 ---
 
@@ -94,100 +103,38 @@ Gate 1과 시각 표현 구조의 승인은 제품 콘셉트·범위·화면 구
 → 다음 학기 예고
 ```
 
-세션 책임:
-
-```text
-수업·연습 = 배움과 원리 비교
-시험 = 제한 조건 안에서 이해 증명
-학교축제 = 표현·개성·관계·비전투 활용
-현장실습 = 위험 속 우선순위·재설계·발견
-자유일정 = 휴식·준비·교류의 완충
-```
-
-### 공통 Situation Challenge
-
-```text
-상황 목표
-→ 관찰 가능한 상태
-→ 사용 가능한 메인·보조 글자
-→ 제한 조건
-→ 방향성 결과 미리보기
-→ 주문 작성
-→ 세계 상태 변화
-→ 성공·부분 성공·실패 원인
-→ 기록·후속 반응
-```
-
-### 시간·저장
-
-- 첫 완주 목표: `45~50분`
-- 허용 상한: `60분`
-- 첫 직접 작성: 5분 이내
-- 메인·보조 이해: 15분 이내
-- 자유일정: `휴식 / 준비 / 교류`
-- 저장: 세션 경계 중심 최소 상태
-- 연속 플레이 강제 없음
-
-### 2계층 소환수
-
-```text
-메인 동반 소환수
-= 항상 같은 개체가 동행
-= 학습·관계·일상·현장·기록
-
-전투 보조 소환수
-= 전투에서 호출
-= 작성 시간을 확보하는 수호 또는 견제
-```
-
-두 소환수 모두 글자 작성, 조합 판단, 주문 설계와 정답 제시를 대행하지 않는다.
+- 첫 완주 목표 `45~50분`, 상한 `60분`
+- 공통 `Situation Challenge`
+- 자유일정 `휴식 / 준비 / 교류`
+- 세션 경계 중심 최소 저장
+- M0→M1→M2→M3→M4는 Slice 내부 체크포인트
 
 ---
 
-## 승인된 시각 표현 구조 — GM-VISUAL-PRESENTATION-01
-
-상태: `LANDSCAPE_HYBRID_2D_CONFIRMED`
+## 승인된 화면·캐릭터·전투 표현
 
 ```text
-화면 방향
-= 가로형
-
-학교·현장
-= 고정·장면 기반 3/4 시점
+학교·자유일정·비전투 탐색
+= 가로형 고정·장면 기반 3/4 필드
+= 3.5~4등신 SD 캐릭터
 
 대화
-= 기존 장소 배경 위 캐릭터 반신·초상과 대화창
-
-마법 작성
-= 월드를 감속·암전하고 전용 작성 오버레이 표시
+= 기존 장소 배경 위 반신 일러스트
 
 전투
-= 같은 장면에서 적·환경·보조 소환수 확인
+= 별도 고정 3/4 전술 전투장
+= 필드와 동일한 SD 비율·기본 골격 재사용
+
+마법 작성
+= 현재 화면 감속·암전 + 전용 작성 오버레이
+
+전투 종료
+= 결과를 반영한 원래 필드 장면으로 복귀
 ```
 
-### 화면비
+기존 `같은 필드 화면에서 전투` 결정은 최신 사용자 승인으로 대체됐다.
 
-- 기준 구도: `16:9 LANDSCAPE`
-- 확장 대응: `18:9~20:9 LANDSCAPE`
-- 넓은 화면은 좌우 월드 영역을 확장하고 핵심 UI·작성 영역은 안전 구도를 유지
-- 정확한 내부 렌더 해상도: `ASSET-SPEC-01`에서 확정
-
-### 월드·카메라
-
-- 자유 이동형 대형 학교가 아니라 장면 단위 이동
-- 고정 카메라와 제한된 연출 이동
-- 학교 장면은 수업·시험·자유일정·축제 상태로 재사용
-- 현장 장면은 전투·환경·복구 상태로 재사용
-- 카메라 회전·자유 줌·복잡한 2.5D 원근은 초기 Slice에서 제외
-
-### 대화·작성 연결
-
-- 대화 시 장소 배경을 유지하고 초상 레이어를 추가
-- 작성 시 카메라를 바꾸지 않고 월드 감속·암전과 작성 패널을 적용
-- 작성 중에도 대상·위험·보조 소환수 지원 상태를 읽을 수 있어야 함
-- 감속형을 시각적 기본 후보로 사용하되 완전 정지·감속·실시간 최종안은 M0에서 검증
-
-### 시각 우선순위
+시각 우선순위:
 
 ```text
 글자 궤적
@@ -198,123 +145,133 @@ Gate 1과 시각 표현 구조의 승인은 제품 콘셉트·범위·화면 구
 → 장식·입자
 ```
 
-화려한 FX가 글자 궤적·대상·위험 정보를 가리는 것을 금지한다.
-
 ---
 
-## 적대적 검토 루프 결론
-
-최종 판정: `PASS_WITH_FOLLOWUP`
-
-### NO_CHANGE
-
-- Gate 1 승인
-- `CORE_CONFIRMED`
-- 수업·시험·학교축제·현장실습
-- 자유일정 3회
-- 공통 Situation Challenge
-- 45~50분 목표·60분 상한
-- M0~M4 Validation-First 순서
-
-### 문서 교정 완료
-
-- README 최신화
-- Vertical Slice 계약 승인 상태 정렬
-- Skill Registry Gate 상태 정렬
-- Asset Ledger 생성·편집 자산 추적 규칙 추가
-- 시각 표현 구조 책임 원본 추가
-
-### 다음 필수 기획
-
-- `Problem Differentiation Matrix`
-- 주인공·NPC·소환수의 화면별 표현 수준
-- 그림체 후보 비교
-- Art Bible
-- Visual Asset Budget·Asset Specification
-- Audio Direction Card
-- 접근성·무음 대체·FX 가독성 규칙
-
-### 아트·사운드 대량 제작 차단
-
-다음이 확정되기 전 캐릭터·배경·효과·사운드를 대량 제작하지 않는다.
-
-1. 주인공·NPC·메인 동반·전투 보조 소환수의 표현 수준
-2. 그림체
-3. Art Bible
-4. 목표 내부 해상도·안전 영역
-5. 자산 수량·상태·변형 예산
-6. Audio Direction Card
-
-스타일 비교용 소수의 기준 샷은 `ART-STYLE-01` 단계에서 사용자 승인 후 제작할 수 있다.
-
----
-
-## 승인된 내부 구현 체크포인트
+## 승인된 2계층 소환수
 
 ```text
-M0 입력·피드백
-→ M1 공통 Situation Challenge
-→ M2 학교 세션
-→ M3 현장실습
-→ M4 저장·복귀·최종 연출
+메인 동반 소환수
+= 항상 같은 개체가 동행
+= 학습·관계·일상·현장·기록
+
+전투 보조 소환수
+= 위험·전투에서 호출
+= 작성 시간을 확보하는 전술 지원
 ```
 
-M0~M4는 독립 CORE_POC가 아니다.
+공통 금지:
 
-현재는 사용자가 지정한 순서에 따라 아트·사운드 프리프로덕션을 먼저 진행하므로 `GM-VS-PROFILE-01`을 후순위로 유지한다.
+- 글자·회로 작성 대행
+- 메인·보조 글자 자동 선택
+- 자동 주문 설계·정답 제시
+- 소환수만으로 전투 자동 해결
+
+### 메인 동반 소환수
+
+- 원소·정령 중심
+- 동물 형상은 가능하지만 전체 체계를 동물형으로 고정하지 않음
+- 대표 방향은 신비한 정령수 계열, 늑대형 레퍼런스가 유력
+- 장기 4단계 성장
+- 성장 단계별 크기·실루엣·원소 표현 변화
+- 해금한 현재 단계 이하의 이전 형상 선택 가능
+- 실제 성장 단계와 표시 형상 분리
+- 장기 탑승 기능
+- Vertical Slice는 초기 형상 1개만 필수
+- 2~4단계 런타임·형상 선택 UI·탑승은 Slice 제외
+
+### 전투 보조 소환수
+
+확정:
+
+- 원소·정령 중심 시각 언어
+- 역할 우선 실루엣
+- Vertical Slice는 수호 또는 견제 1체
+
+미확정:
+
+- 4역할 전체 체계
+- 성장 단계·이전 형상 선택·탑승
+- 획득·편성·재화 구조
 
 ---
 
-## 현재 미검증
+## 이미지 작업 규칙
 
-- 터치 작성의 실제 재미·인식 허용 범위·반복 피로
-- 완전 정지·감속·실시간 최종안과 감속 비율
-- 공통 Situation Challenge의 런타임 재사용성
-- 자유일정 세 원형의 선택 가치
-- 보조 소환수의 작성 시간 확보 효과
-- Android 실제 기기·화면비·성능·복귀
-- 정확한 내부 렌더 해상도와 작성 패널 크기
-- 캐릭터 필드 비율·초상 규격
-- 외부 자산·폰트·사운드 라이선스
-- 사운드·FX 실제 믹스와 무음 대체 정보
+- 이미지 관련 선택은 가능한 경우 예상 인게임 이미지로 제시
+- 생성 이미지는 자동 최종 자산·시스템 확정이 아님
+- 사용자 승인 두 번째 인게임 구성 이미지는 `USER_APPROVED_VISUAL_REFERENCE`
+- 이미지 생성 실패 시 동일 요청 재입력을 기본 해결책으로 사용하지 않음
+- 기존 브리프를 유지하고 한글 장문·UI 복잡도·한 장의 요소 수를 줄여 재시도
 
-상태는 `NOT_RUN`, `BLOCKED_UNVERIFIED`, `ASSET_SPEC_REQUIRED` 또는 `PLAYTEST_TUNING_REQUIRED`다.
+상태:
+
+```text
+CONCEPT_EXPLORATION
+VISUAL_REFERENCE_CANDIDATE
+USER_APPROVED_VISUAL_REFERENCE
+ART_BIBLE_APPROVED
+RUNTIME_ASSET_APPROVED
+```
 
 ---
 
-## 보호 결정
+## 적대적 검토 루프 02 결과
 
+최종 판정: `PASS_WITH_CORRECTIONS`
+
+수정 완료:
+
+- 승인 결정을 다시 묻는 정본 누락 보완
+- 현재 확정 결정 스냅샷 신설
+- 같은 화면 전투를 별도 전술 전투장으로 교체
+- 필드·전투 SD 재사용 규칙 확정
+- 메인 소환수 성장 단계와 표시 형상 분리
+- 탑승을 장기 방향으로 유지하되 Slice 제외
+- 전투 소환수 4역할 과잉 확정 방지
+- 이미지 생성 실패 처리 규칙 추가
+
+코어·Vertical Slice 세션·완주 상한은 변경하지 않았다.
+
+---
+
+## 현재 보호 결정
+
+- 승인된 코어를 증거 없이 재개방하지 않음
 - 복수 메인 글자 결합 금지
 - 신규·미숙·중요 글자는 직접 작성
-- 스톡 없이 직접 시전 가능
 - 입력 실패와 설계 실패 분리
 - 필수 정보는 선택형 대화나 자유일정에만 숨기지 않음
 - 중요 일정 사이 자유일정 1회
-- 모든 핵심 세션은 공통 Situation Challenge 사용
-- 첫 완주 허용 상한 60분
-- 별도 CORE_POC 재도입 금지
-- 가로형 하이브리드 2D와 고정·장면 기반 3/4 시점 유지
-- 작성 중 월드·대상·위험을 완전히 숨기지 않음
-- 캐릭터 표현·Art Bible·Asset Specification 전 대량 자산 제작 금지
+- 휴식은 손해 전용 선택이 아님
+- 세션별 전용 미니게임·프레임워크 금지
+- 첫 완주 상한 60분
+- 필드 SD + 대화 반신 + 별도 고정 3/4 전투장
+- 메인 소환수 장기 성장 약속이 초기 Slice를 팽창시키지 않음
+- Art Bible·Asset Specification 전 대량 자산 제작 금지
 - 실행 프로필 전환 전 Codex·Godot 구현 금지
 - 사용자 승인 없는 PR 병합 금지
 
 ---
 
-## 다음 차단 결정
+## 다음 작업
 
-`GM-CHARACTER-PRESENTATION-01`
+`ART-STYLE-01`
 
-가로형 3/4 장면에서 주인공·NPC·메인 동반 소환수·전투 보조 소환수를 어떤 비율과 자산 조합으로 표현할지 결정한다.
+동일한 인게임 구성으로 그림체 후보를 이미지 비교한다.
 
-이후 순서:
+- 학교 필드 SD
+- 대화 반신
+- 별도 3/4 전술 전투장
+- 메인 원소 정령수 초기 형상
+- 수호 또는 견제 전투 보조 소환수
+- 마법 작성 오버레이
+
+그림체 확정 후:
 
 ```text
-GM-CHARACTER-PRESENTATION-01
-→ ART-STYLE-01
-→ ART-BIBLE-01
+ART-BIBLE-01
 → ASSET-SPEC-01
 → AUDIO-DIRECTION-01
-→ 사용자 승인 후 캐릭터·배경·효과·사운드 작업
+→ 승인된 자산 제작
 → GM-VS-PROFILE-01 재검토
 ```
