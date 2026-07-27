@@ -11,6 +11,9 @@
 - 프로젝트 코어 전체: `CORE_CANDIDATE`
 - 프로젝트 코어 경계: `PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1`
 - 세일즈포인트: `SALES_POINTS_CONFIRMED_FOR_GATE_1`
+- 벤치마킹·SWOT·VRIO·제작성: `BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED`
+- VRIO: `VRIO_POTENTIAL_NOT_PROVEN`
+- 1인 제작성: `FEASIBLE_WITH_STRICT_SCOPE`
 - 세계관 코어: `REFERENCE_CANDIDATE`
 - 최상위 경험 방향: `PRIMARY_EXPERIENCE_DIRECTION_CONFIRMED`
 - 목표 플레이어·플레이 상황: `AUDIENCE_AND_PLAY_CONTEXT_CONFIRMED`
@@ -25,7 +28,9 @@
 - 기준 브랜치: `gpt/planning-spell-20260725`
 - 기준 날짜: 2026-07-27
 
-`PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1`과 `SALES_POINTS_CONFIRMED_FOR_GATE_1`은 각각 코어 경계와 전달 문구가 승인됐다는 뜻이다. Gate 1 전체 승인이나 `CORE_CONFIRMED`, CORE_POC 통과, 구현 승인이 아니다.
+위 상태는 개별 Gate 1 설계 항목과 데스크 리서치가 승인·작성됐다는 뜻이다. Gate 1 전체 승인, `CORE_CONFIRMED`, CORE_POC 통과, 시장 검증 완료 또는 구현 승인이 아니다.
+
+---
 
 ## 작업 권한과 자료 지위
 
@@ -44,9 +49,10 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 3. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
 4. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
 5. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
-6. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md`
-7. `docs/planning/DECISION_LOG.md`
-8. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+6. `docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md`
+7. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md`
+8. `docs/planning/DECISION_LOG.md`
+9. `docs/DESIGN_DOCUMENT_REGISTRY.json`
 
 ### 기존 작업물
 
@@ -57,6 +63,8 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 - 개별 수치: `BALANCE_TUNING_BACKLOG` 또는 `UNVERIFIED`
 - 폐기·대체 이력: `SUPERSEDED`·`REJECTED` 유지
 - 새 확정값: v6 재기획 과정에서 사용자 승인 후 승격
+
+---
 
 ## 승인된 최상위 경험 — GM-CORE-01
 
@@ -82,6 +90,8 @@ v6는 기획 순서, Skill 오케스트레이션, 제품 Gate, 검증, 증거와
 = 새 글자·활용 문제·관계·전문화를 공급하는 장기 프레임
 ```
 
+---
+
 ## 승인된 목표 플레이어 — GM-AUDIENCE-01
 
 > 집·카페·휴식 시간처럼 잠깐 집중할 수 있는 환경에서 10~15분 동안 하나의 수업·현장실습·마법 발견 단위를 완주하고, 장기적으로 학교생활과 주문 연구를 축적하려는 모바일 플레이어.
@@ -94,6 +104,8 @@ Micro 상황: 약 30초~2분
 ```
 
 정확한 시간은 `PLAYTEST_TUNING_REQUIRED`다.
+
+---
 
 ## 승인된 서사 깊이 — GM-NARRATIVE-03
 
@@ -118,7 +130,9 @@ Micro 상황: 약 30초~2분
 - 소환수 이야기
 - 지역·학교 역사
 
-필수 정보는 선택형 상세 대화에만 숨기지 않는다. 상세층을 읽지 않았다는 이유로 불합리한 실패를 만들지 않는다.
+필수 정보는 선택형 상세 대화에만 숨기지 않는다.
+
+---
 
 ## 확정된 플레이어 약속 — GM-PROMISE-01
 
@@ -141,6 +155,8 @@ Micro 상황: 약 30초~2분
 - 스톡과 소환수는 설계 판단을 대체하지 않는다.
 - 학교는 완성 주문 지급 메뉴가 아니라 새 문법과 문제를 학습시키는 프레임이다.
 - 수치 성장·자동 전투·장문 서사가 플레이어 약속보다 전면에 나오지 않는다.
+
+---
 
 ## 확정된 게임플레이 Loop — GM-LOOP-01
 
@@ -170,15 +186,12 @@ Micro 상황: 약 30초~2분
 
 일정은 `고정 핵심 사건 + 자유 일정` 혼합형이다.
 
-- 고정 축: 학기 시작, 필수 기초 수업, 중간 현장실습, 학기 핵심 실습, 시험·평가
-- 자유 일정: 선택 수업, 교내 연습, 연구, 실습 준비·조사, 일상·관계, 소환수 교감, 휴식·정비
-
-Loop 층:
-
 - `Micro Loop`: 관찰→메인·보조 선택→직접 작성·스톡→결과 확인→재설계
 - `Combat Loop`: 현장 파악→첫 주문→반응 확인→변형·교체→핵심 위협 해결→기록
 - `Session Loop`: 수업·연습·현장실습·일상 중 하나를 중심으로 약 10~15분에 완결
 - `Semester Loop`: 고정 사건과 자유 일정이 교차하여 다음 학습·관계·문제를 변화
+
+---
 
 ## 확정된 경험 곡선 — GM-CURVE-01
 
@@ -206,18 +219,7 @@ Loop 층:
 4. 보조 글자 하나로 결과 변형
 5. 플레이어 선택에 따른 다른 결과
 
-첫 5분 종료 시 플레이어는 메인 글자·보조 글자·직접 작성의 역할을 설명할 수 있어야 한다.
-
 ### 첫 자동화 경계
-
-```text
-직접 작성
-→ 서로 다른 상황에서 반복 사용
-→ 역할과 결과 이해
-→ 안정적 재현
-→ 숙련 인정
-→ 숙련 보조 글자의 하위 글자 스톡 후보 해금
-```
 
 - 첫 5분에 스톡을 지급하지 않는다.
 - 수동 작성 경험 없이 자동화를 먼저 공개하지 않는다.
@@ -225,27 +227,11 @@ Loop 층:
 - 완성 주문 스톡은 직접 작성·조합·발견을 이해한 이후로 미룬다.
 - 정확한 시간과 요구량은 `PLAYTEST_TUNING_REQUIRED`다.
 
-### 시스템 공개 순서
-
-1. 메인 글자 직접 작성
-2. 보조 글자 하나와 결과 차이
-3. 마나·작성 시간
-4. 현장 목표와 환경 반응
-5. 여러 보조 조합과 재설계
-6. 하위 글자 스톡
-7. 소환수 전투·수호 지원
-8. 소환수 지정 스톡 충전
-9. 완성 주문 스톡과 고급 준비 전술
+---
 
 ## 확정된 프로젝트 코어 경계 — GM-CORE-BOUNDARY-01
 
-사용자 승인: 2026-07-27, `권장안대로`
-
-상태: `PROJECT_CORE_BOUNDARY_CONFIRMED_FOR_GATE_1`
-
 책임 원본: `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
-
-핵심 문장:
 
 > 의미를 배운 글자를 직접 쓰고 상황에 맞게 조합하여, 내가 설계한 주문으로 세계를 변화시키고 새 활용을 발견한다.
 
@@ -260,11 +246,11 @@ Loop 층:
 
 ### 코어 지원 시스템
 
-- 마법학교: 새 글자·문제·교수·전문화 공급
-- 일상·관계: 동행·정보·다른 설계 관점·감정적 의미
-- 마도서·발견 기록: 주문·활용·실패 원인과 다음 연구 목표 보존
-- 숙련·하위 글자 스톡: 이해한 반복만 줄이는 성장 보상
-- 소환수: 전투·수호·지정 생산·충전으로 작성 시간 지원
+- 마법학교
+- 일상·관계
+- 마도서·발견 기록
+- 숙련·하위 글자 스톡
+- 소환수 전투·수호·지정 생산·충전
 
 ### 변경 가능한 외피
 
@@ -278,64 +264,83 @@ Loop 층:
 - 소환수 수·편성·성장
 - 정확한 세션 시간과 저장·복귀 단위
 
-### 제거 테스트
-
-- 의미 기반 글자 제거 → 일반 스킬 선택 게임으로 퇴행
-- 조합 문법 제거 → 주문 설계와 발견 소멸
-- 직접 작성 제거 → 마법 사용자 판타지와 주체성 약화
-- 상황 반응 제거 → 레시피 암기·화력 비교로 퇴행
-- 세계 변화 피드백 제거 → 원인·결과 학습 불가
-- 학습·실전·기록 순환 제거 → 학교와 성장이 메뉴 모음으로 분리
-- 스톡·소환수·관계·실시간 전투·3년 구조는 축소·교체해도 코어 유지
+---
 
 ## 확정된 세일즈포인트 — GM-SALES-01
 
-사용자 승인: 2026-07-27, `그래`
-
-상태: `SALES_POINTS_CONFIRMED_FOR_GATE_1`
-
 책임 원본: `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
-
-### 통합 한 문장
 
 > 마법 글자를 직접 쓰고 조합해, 수업에서 배운 원리로 전투와 환경의 새로운 해답을 발견하는 모바일 마법학교 RPG.
 
 ### 최대 3개
 
 1. **손으로 직접 쓰는 마법**
-   - 버튼을 누르는 대신 마법 글자를 직접 그려 발동한다.
 2. **상황에 맞게 만드는 주문**
-   - 메인 글자와 보조 글자를 조합해 같은 마법도 전투·구조·탐색·환경 해결에 다르게 사용한다.
 3. **수업에서 배우고 실전에서 발견하는 마법학교**
-   - 수업에서 원리를 배우고 현장실습에서 나만의 활용법을 발견해 마도서에 기록한다.
 
 ### 대표 세 장면
 
 ```text
-장면 1
 직접 글자 작성→즉시 마법 발현
-
-장면 2
 같은 메인 글자→다른 보조 조합→다른 상황 결과
-
-장면 3
 수업 원리→현장 응용→새 활용 마도서 기록
 ```
 
-### 전달 우선순위
+전달 우선순위:
 
 ```text
-첫 시각적 훅
-= 직접 쓰는 마법
-
-장기 핵심 재미
-= 의미 기반 조합·상황 반응·발견
-
-장기 성장 프레임
-= 수업·현장실습·마도서·관계
+첫 시각적 훅 = 직접 쓰는 마법
+장기 핵심 재미 = 의미 기반 조합·상황 반응·발견
+장기 성장 프레임 = 수업·현장실습·마도서·관계
 ```
 
-직접 작성은 가장 눈에 띄는 훅이지만 프로젝트 코어의 최우선 재미는 조합하고 발견하는 지적 재미다.
+---
+
+## 벤치마킹·SWOT·VRIO·1인 제작성 — GM-BENCHMARK-01
+
+책임 원본: `docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md`
+
+상태: `BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED`
+
+### 확정된 세 그룹
+
+1. 직접 입력·마법 조작군
+2. 조합·시스템 문제 해결군
+3. 마법학교·학습 성장군
+
+### 핵심 벤치마크 결론
+
+- 직접 작성은 강한 첫 훅이지만 단독으로는 필기 미니게임화 위험이 있다.
+- 장기 재미는 의미가 명확한 소수 글자와 상황 반응의 조합 밀도에서 만들어야 한다.
+- 학교는 콘텐츠 양보다 배운 원리가 다음 실습의 해결법을 바꾸는지가 중요하다.
+- 이번 검토군에서 직접 작성·의미 기반 조합·학교 학습 순환을 모두 중심 코어로 제공하는 단일 작품은 확인하지 못했다.
+- 결합은 `RARE_IN_REVIEWED_SET`이지만 시장 가치와 장기 재미는 `UNPROVEN`이다.
+
+### SWOT·VRIO 판정
+
+- 강점: 시각적 훅, 의미 재사용, 전투·환경 공통 문법, 학교 학습 순환
+- 약점: 입력 오류·피로·화면 가림, 모바일 UI 과밀, 조합 반응 데이터·QA 비용
+- 기회: 모바일 제스처 마법과 마법학교 생활에 대한 지속적 시장 관심, 전투 외 활용
+- 위협: 필기 미니게임 오해, 무한 조합 기대 불일치, 대형 경쟁작 수준의 콘텐츠 기대
+- VRIO: `VRIO_POTENTIAL_NOT_PROVEN`
+- 1인 제작성: 작은 2D 모바일 CORE_POC는 `FEASIBLE_WITH_STRICT_SCOPE`
+
+### Gate 1 강화 사항
+
+- 작성 중 `완전 정지 / 감속 / 실시간`을 CORE_POC에서 비교한다.
+- 입력 실패와 주문 설계 실패를 피드백에서 구분한다.
+- 대표 문제는 전투 1개와 환경·구조 문제 1개 이상을 포함한다.
+- 같은 메인 글자를 다른 보조와 상황에서 재사용한다.
+- 최소 두 가지 이상의 유효 해결법과 실패 원인 재설계를 검증한다.
+
+### 기술 제작성
+
+- Godot 터치 궤적 수집·시각화: `TECHNICALLY_FEASIBLE`
+- 단순 템플릿 기반 글자 인식: `LIKELY_FEASIBLE_FOR_CORE_POC`
+- 고정밀 자유 손글씨 인식: `OUT_OF_SCOPE_FOR_INITIAL_POC`
+- Android·Google Play 내보내기: `SUPPORTED_BY_ENGINE`, 실제 프로젝트 설정은 미검증
+
+---
 
 ## 뾰족한 재미
 
@@ -362,6 +367,8 @@ Loop 층:
 - 마법을 이해했다는 숙련감
 - 내 설계가 작동했다는 주체성
 
+---
+
 ## 현재 요소 판정
 
 | 요소 | 판정 | 현재 의미 |
@@ -373,7 +380,7 @@ Loop 층:
 | 수업→연습→실전→기록 | `NON_NEGOTIABLE_CORE` | 배움과 설계를 성장으로 연결 |
 | 마법학교 | `CORE_SUPPORT` | 새 글자·문제·전문화 공급 |
 | 일상 관계 | `CORE_SUPPORT` | 실습 관점·동행·감정적 의미 |
-| 마도서·발견 기록 | `CORE_SUPPORT` | 발견과 다음 연구의 축적 |
+| 마도서·발견 기록 | `CORE_SUPPORT` | 발견과 다음 연구 축적 |
 | 하위 글자 스톡 | `CORE_SUPPORT` | 이해한 반복 감소 |
 | 완성 주문 스톡 | `UNPROVEN_OPTION` | 긴급 대응 가능, 버튼 전투화 위험 |
 | 소환수 | `CORE_SUPPORT_WITH_UNPROVEN_EFFICIENCY` | 작성 시간과 동반자 경험 지원 |
@@ -383,6 +390,8 @@ Loop 층:
 | 3년·6학기 | `CHANGEABLE_SHELL_SCOPE_RISK` | 장기 프레임·콘텐츠 범위 위험 |
 | 메인 글자 Lv.0~5 | `CHANGEABLE_SHELL / UNPROVEN_OPTION` | 수치 성장 편향 위험 |
 | 학년별 보조 2·4·6 | `BALANCE_TUNING_BACKLOG` | 테스트 전 고정 불가 |
+
+---
 
 ## 보호할 결정
 
@@ -405,21 +414,27 @@ Loop 층:
 - 의미 기반 글자·직접 작성·상황 변형·세계 변화·학습 순환은 범위 축소 대상이 아니다.
 - `무한 자유 조합`, `무엇이든 가능한 마법`, `완전한 손글씨 인식`을 약속하지 않는다.
 - 직접 작성만 강조하고 의미 기반 조합과 결과 해석을 숨기지 않는다.
+- 입력 실패와 설계 실패를 같은 실패로 처리하지 않는다.
 - 실시간 전투·완성 주문 스톡·소환수 충전을 검증 전 대표 세일즈포인트로 사용하지 않는다.
 - 사용자 승인 전 `CORE_CONFIRMED`를 사용하지 않는다.
 - 현재 단계에서 Godot 코드·Scene·Resource·게임 데이터를 구현하지 않는다.
 - Codex를 실행하지 않는다.
 
+---
+
 ## 보류된 기존 결정
 
 `GM-STOCK-01`의 세부 수치는 다음 항목이 정렬될 때까지 보류한다.
 
-1. 벤치마킹·SWOT·VRIO·제작성과 CORE_POC 범위
-2. 모바일 UI·인지 부하 검증
-3. 실제 세션·전투 시간 테스트
-4. 실시간·감속·단계형 전투 표현 비교
+1. 마스코트·상징 동반자 역할
+2. CORE_POC 범위
+3. 모바일 UI·인지 부하 검증
+4. 실제 세션·전투 시간 테스트
+5. 실시간·감속·단계형 전투 표현 비교
 
 상태: `DEFERRED_BY_HIGHER_LEVEL_CONCEPT_WORK`
+
+---
 
 ## 확인된 위험
 
@@ -431,10 +446,10 @@ Loop 층:
 - 완성 주문 스톡 비중이 높아지면 버튼 전투로 퇴행할 수 있다.
 - 학교 3년 콘텐츠와 선택형 상세층 제작량이 코어 검증보다 먼저 커질 수 있다.
 - 일상 관계가 실습과 연결되지 않으면 별도 호감도 메뉴로 분리될 수 있다.
-- 온보딩에서 시스템을 빠르게 많이 공개하면 첫 설계 경험이 메뉴 학습으로 변질될 수 있다.
-- 지원 시스템을 코어로 오인하면 범위를 줄이지 못하고 CORE_POC가 비대해질 수 있다.
+- 지원 시스템을 코어로 오인하면 CORE_POC가 비대해질 수 있다.
 - 직접 작성만 세일즈 훅으로 보이면 단순 필기 미니게임으로 오해될 수 있다.
 - `무한 조합`으로 과장하면 실제 규칙 기반 설계와 기대 불일치가 발생한다.
+- 대형 작품의 3D·협동·도시 생활·관계 분량과 직접 비교될 수 있다.
 
 ### BLOCKED_UNVERIFIED
 
@@ -443,9 +458,9 @@ Loop 층:
 - 첫 숙련·스톡 해금 요구량
 - 실제 세션 시간이 10~15분 목표에 맞는지
 - 전투·문제 묶음이 모바일 중단 단위로 적합한지
-- 전투 중 완전 상태 복원이 필요한지
 - 터치 작성의 반복 재미와 인식 허용 범위
-- 실시간 압박이 사고를 강화하는지 방해하는지
+- 입력 실패와 설계 실패의 구분이 이해되는지
+- 실시간·감속·정지 중 어느 표현이 사고와 긴장을 가장 잘 결합하는지
 - 스톡이 조합 선택을 보존하는지
 - 소환수 충전 판단이 의미 있는지
 - 짧은 주문과 복잡한 주문의 공존
@@ -453,15 +468,17 @@ Loop 층:
 - 기본층과 상세층의 적정 대화 분량
 - 자유 일정과 관계 변화가 제작량 대비 충분한 차이를 만드는지
 - 코어만 포함한 CORE_POC가 독립적으로 재미있는지
-- 세일즈포인트 3개의 경쟁작 대비 희소성·모방 난이도
+- 세일즈포인트 3개의 시장 희소성·모방 난이도
 - 한 문장과 세 장면만으로 플레이어가 올바르게 이해하는지
-- 세 대표 장면의 1인 개발 제작비와 Vertical Slice 재사용성
+- 세 대표 장면의 실제 1인 개발 공수와 Vertical Slice 재사용성
 
-## 다음 우선 결정 — GM-BENCHMARK-01
+---
 
-확정한 세일즈포인트 3개를 경쟁군·비교 축·근거로 검증하고 SWOT·VRIO·1인 제작성 판단으로 연결한다.
+## 다음 우선 결정 — GM-MASCOT-01
 
-> 직접 작성·의미 기반 조합·마법학교 학습 순환을 검증할 벤치마크를 어떤 세 그룹으로 나눌 것인가?
+소환수 또는 상징 동반자가 세일즈포인트와 코어를 어떻게 강화하며, 어떤 역할은 맡지 않아야 하는가.
+
+> 소환수를 전투 유닛보다 마법 학습·실습·기록을 함께하는 상징 동반자로 우선 배치할 것인가?
 
 상태: `DESIGN_HYPOTHESIS_REQUIRES_USER_DECISION`
 
@@ -476,9 +493,9 @@ GM-CORE-01 — 승인됨
 → GM-CURVE-01 — 승인됨
 → GM-CORE-BOUNDARY-01 — 승인됨
 → GM-SALES-01 — 승인됨
-→ GM-BENCHMARK-01 벤치마킹·SWOT·VRIO·제작성
-→ 마스코트·상징 동반자 역할 후보
-→ CORE_POC 계약
+→ GM-BENCHMARK-01 — 승인·조사 작성됨
+→ GM-MASCOT-01 마스코트·상징 동반자 역할
+→ GM-POC-01 CORE_POC 계약
 → 적대적 검토
 → 사용자 Gate 1 승인
 ```
@@ -489,12 +506,12 @@ GM-CORE-01 — 승인됨
 2. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
 3. `docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md`
 4. `docs/planning/GATE_1_SALES_POINTS_SYSTEM.md`
-5. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
-6. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
-7. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md`
-8. `docs/planning/DECISION_LOG.md`
-9. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-10. 기존 시스템별 `docs/planning/` 문서 — 참조 필요 시 선택
+5. `docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md`
+6. `docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md`
+7. `docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md`
+8. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md`
+9. `docs/planning/DECISION_LOG.md`
+10. `docs/DESIGN_DOCUMENT_REGISTRY.json`
 
 ## GitHub 규칙
 
