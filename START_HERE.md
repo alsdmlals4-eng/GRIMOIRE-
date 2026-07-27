@@ -1,6 +1,6 @@
 # 스펠 시작 지점
 
-> 새 사용자·GPT·Codex·작업자가 현재 상태와 다음 결정을 가장 먼저 확인하는 대시보드다.
+> 새 사용자·GPT·Codex·작업자가 현재 상태, 책임 원본, 보호 결정과 다음 작업을 가장 먼저 확인하는 대시보드다.
 
 ## 한눈에 보기
 
@@ -10,30 +10,40 @@
 | 실행 프로필 | `PLANNING_ONLY_PROFILE` |
 | Work Mode | `PLAN` |
 | 프로젝트 코어 | `CORE_CANDIDATE` |
-| Gate 1 | `UNVERIFIED` |
+| Gate 1 | `FINAL_USER_APPROVAL_PENDING` |
 | 구현 | `NOT_STARTED` |
+| Codex | `NOT_RUN` |
 | CORE_POC | `REMOVED_BY_USER_DECISION` |
-| Vertical Slice 계약 | `CONFIRMED_BY_GM-SLICE-01_PENDING_P0_AMENDMENT` |
-| 적대적 검토 | `AUTHORED_BY_GM-GATE1-REVIEW-01` |
-| 현재 범위 제작성 | `CONDITIONAL_FAIL` |
-| P0 감량 후 제작성 | `CONDITIONAL_PASS_CANDIDATE` |
-| 다음 결정 | `GM-GATE1-RISK-01` |
+| Vertical Slice 계약 | `CONFIRMED_WITH_P0_AMENDMENT_FOR_GATE_1` |
+| 제작성 | `CONDITIONAL_PASS_CANDIDATE` |
+| 다음 차단 결정 | `GM-GATE1-APPROVAL-01` |
+| 기준 브랜치 | `gpt/planning-spell-20260725` |
 
 ## 먼저 읽을 문서
 
 1. `docs/ACTIVE_CONTEXT.md`
-2. `docs/planning/GATE_1_ADVERSARIAL_REVIEW.md`
+2. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
 3. `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
-4. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
-5. `docs/planning/DECISION_LOG.md`
-6. `docs/DEVELOPMENT_GATES.md`
-7. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+4. `docs/planning/GATE_1_ADVERSARIAL_REVIEW.md`
+5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27O.md`
+6. `docs/planning/DECISION_LOG.md`
+7. `docs/DEVELOPMENT_GATES.md`
+8. `docs/DESIGN_DOCUMENT_REGISTRY.json`
 
 ## 플레이어 약속
 
-> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.
+> **마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.**
 
-## 승인된 Vertical Slice
+## 비타협 코어
+
+- 의미를 가진 마법 글자
+- `메인 글자 1개 + 보조 글자 0개 이상`
+- 신규·미숙·중요 글자의 직접 작성
+- 상황에 따른 주문 변형 판단
+- 즉각적이고 설명 가능한 세계 변화
+- 학습→응용→발견·기록 순환
+
+## Vertical Slice
 
 ```text
 첫 수업·교내 연습
@@ -46,42 +56,53 @@
 → 귀환·마도서 기록
 ```
 
-보호:
+역할:
 
-- 중요 일정 사이 자유일정 1회씩
-- 휴식은 유효한 선택
-- 자유일정은 필수 진행을 차단하지 않음
+```text
+수업 = 배움
+시험 = 증명
+축제 = 표현·관계
+현장 = 응용·발견
+자유일정 = 휴식·준비·교류
+```
 
-## 적대적 검토 결론
+## 승인된 P0 계약
 
-현재 계약을 그대로 제작하면 다음 위험으로 `CONDITIONAL_FAIL`이다.
+### 공통 Situation Challenge
 
-- 네 세션이 별도 게임으로 분열
-- 자유일정이 다수 독립 이벤트로 폭증
-- 첫 완주 시간 상한 부재
-- 입력 검증 전 콘텐츠·아트 제작
-- 저장 상태 과다
+```text
+상황 목표
+→ 관찰 가능한 상태
+→ 사용 가능한 메인·보조 글자
+→ 제한 조건
+→ 방향성 결과 미리보기
+→ 주문 작성
+→ 세계 상태 변화
+→ 성공·부분 성공·실패 원인
+→ 기록·후속 반응
+```
 
-## 권장 P0 처리 패키지 — 사용자 결정 대기
+### 범위 상한
 
-1. 공통 `Situation Challenge` 계약
-2. 세션별 역할 분리
-3. 첫 완주 45~50분 목표, 60분 상한
-4. 자유일정 `휴식 / 준비 / 교류` 세 원형
-5. 입력→공통 문제→학교→현장→연출 구현 순서
-6. 세션 경계 중심 최소 저장
+- 첫 완주 목표: `45~50분`
+- 허용 상한: `60분`
+- 자유일정: `휴식 / 준비 / 교류`
+- 저장: 세션 경계 중심 최소 상태
+- 구현 순서: `M0 입력 → M1 공통 문제 → M2 학교 → M3 현장 → M4 연출·저장`
+
+M0~M4는 Vertical Slice 내부 체크포인트이며 CORE_POC가 아니다.
 
 ## 현재 금지
 
-- Gate 1 최종 승인
-- `CORE_CONFIRMED`
+- 별도 CORE_POC 재도입
+- 사용자 최종 승인 전 `CORE_CONFIRMED`
 - `VERTICAL_SLICE_FULL_PROFILE` 전환
+- Godot 구현·Scene·Resource·게임 데이터 작성
 - Codex 실행
-- Godot 구현
 - PR 병합
 
 ## 다음 작업
 
-`GM-GATE1-RISK-01`
+`GM-GATE1-APPROVAL-01`
 
-권장 P0 처리 패키지를 승인할지 결정한다.
+P0 보완 계약을 포함한 Gate 1 콘셉트와 Vertical Slice 범위를 최종 승인할지 결정한다.
