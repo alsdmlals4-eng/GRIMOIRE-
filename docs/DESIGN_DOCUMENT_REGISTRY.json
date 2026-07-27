@@ -1,5 +1,5 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "registry_role": "spell-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/Spell",
@@ -12,31 +12,24 @@
     "implementation_status": "NOT_STARTED",
     "codex_status": "NOT_RUN",
     "gate_1_status": "APPROVED_BY_GM-GATE1-APPROVAL-01",
-    "gate_2_status": "ENTERED_PLANNING_ONLY_BLOCKED_BY_PROFILE_TRANSITION",
+    "gate_2_status": "ENTERED_PLANNING_ONLY_VISUAL_PREPRODUCTION",
     "project_core_status": "CORE_CONFIRMED",
-    "project_core_boundary_status": "CONFIRMED_BY_GM-CORE-BOUNDARY-01",
-    "sales_points_status": "CONFIRMED_BY_GM-SALES-01",
-    "benchmark_status": "BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED",
-    "vrio_status": "VRIO_POTENTIAL_NOT_PROVEN",
-    "summon_companion_status": "TWO_TIER_SUMMON_STRUCTURE_CONFIRMED_BY_GM-MASCOT-01",
-    "core_poc_status": "REMOVED_BY_USER_DECISION",
-    "core_poc_validation_status": "ABSORBED_INTO_VERTICAL_SLICE",
-    "vertical_slice_route_status": "DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_BY_GM-VS-ROUTE-01",
     "vertical_slice_contract_status": "APPROVED_AT_GATE_1_WITH_P0_AMENDMENT",
     "vertical_slice_structure": "COMPRESSED_SEMESTER_FOUR_CORE_SESSIONS_THREE_FREE_SCHEDULES",
-    "adversarial_review_status": "AUTHORED_BY_GM-GATE1-REVIEW-01",
-    "p0_risk_treatment_status": "CONFIRMED_BY_GM-GATE1-RISK-01",
+    "adversarial_review_loop_status": "PASS_WITH_FOLLOWUP_BY_GM-VS-REVIEW-LOOP-01",
     "solo_feasibility_status": "CONDITIONAL_PASS_CANDIDATE",
-    "vertical_slice_implementation_status": "NOT_STARTED",
-    "next_blocking_decision": "GM-VS-PROFILE-01"
+    "core_poc_status": "REMOVED_BY_USER_DECISION",
+    "asset_generation_status": "NOT_STARTED_BLOCKED_BY_VISUAL_PRESENTATION",
+    "audio_production_status": "NOT_STARTED_BLOCKED_BY_VISUAL_AUDIO_DIRECTION",
+    "next_blocking_decision": "GM-VISUAL-PRESENTATION-01"
   },
   "planning_authority": {
     "master_contract": "user-provided VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
     "short_contract": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
     "master_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
-    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27P.md",
+    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md",
     "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
-    "gate_1_working_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
+    "gate_2_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
     "previous_planning_documents_role": "REFERENCE_CANDIDATE"
   },
   "base_pin": {
@@ -46,22 +39,17 @@
   },
   "state_sources": {
     "start_here": "START_HERE.md",
+    "readme": "README.md",
     "active_context": "docs/ACTIVE_CONTEXT.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27P.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md",
     "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
-    "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
-    "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
-    "gate_1_experience_curve": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
-    "gate_1_project_core_boundary": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
-    "gate_1_sales_points": "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
-    "gate_1_benchmark_swot_vrio_feasibility": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
-    "gate_1_summon_companion": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
-    "gate_1_direct_vertical_slice_route": "docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md",
     "gate_1_vertical_slice_contract": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md",
-    "gate_1_adversarial_review": "docs/planning/GATE_1_ADVERSARIAL_REVIEW.md"
+    "gate_2_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
+    "asset_license_ledger": "docs/ASSET_LICENSE_LEDGER.md",
+    "skill_registry": "skills/SKILL_REGISTRY.json"
   },
   "canonical_documents": [
     {
@@ -73,23 +61,7 @@
         "gate-1-final-approval",
         "core-confirmation",
         "approved-scope-summary",
-        "approval-execution-separation",
-        "next-profile-transition"
-      ]
-    },
-    {
-      "id": "spell-v6-concept-rebase",
-      "title": "스펠 v6 콘셉트 재기획 기준선",
-      "source_path": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
-      "status": "APPROVED_GATE_1_BASELINE",
-      "responsibility_coverage": [
-        "player-promise",
-        "project-core",
-        "sales-points",
-        "loop-summary",
-        "summon-companion-summary",
-        "vertical-slice-summary",
-        "scope-and-risk-summary"
+        "approval-execution-separation"
       ]
     },
     {
@@ -102,6 +74,7 @@
         "four-core-sessions",
         "three-free-schedule-slots",
         "situation-challenge-contract",
+        "problem-differentiation-matrix",
         "time-budget",
         "minimal-save",
         "m0-m4-checkpoints",
@@ -109,17 +82,24 @@
       ]
     },
     {
-      "id": "spell-gate-1-adversarial-review",
-      "title": "스펠 Gate 1 적대적 콘셉트·범위 검토",
-      "source_path": "docs/planning/GATE_1_ADVERSARIAL_REVIEW.md",
-      "status": "ACTIVE_REVIEW_EVIDENCE",
+      "id": "spell-gate-2-adversarial-review-loop",
+      "title": "스펠 Gate 2 진입 전 적대적 검토 루프",
+      "source_path": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
+      "status": "ACTIVE_REVIEW_AUTHORITY",
       "responsibility_coverage": [
-        "p0-risks",
-        "p1-risks",
-        "scope-reuse",
-        "solo-feasibility",
-        "risk-treatment-rationale"
+        "five-lens-adversarial-review",
+        "finding-validation",
+        "must-fix-routing",
+        "visual-audio-readiness",
+        "regression-recheck",
+        "next-visual-decision"
       ]
+    },
+    {
+      "id": "spell-v6-concept-rebase",
+      "title": "스펠 v6 콘셉트 재기획 기준선",
+      "source_path": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
+      "status": "APPROVED_GATE_1_BASELINE"
     },
     {
       "id": "spell-gate-1-gameplay-loop",
@@ -158,13 +138,26 @@
       "status": "APPROVED_GATE_1_SOURCE"
     },
     {
+      "id": "spell-asset-license-ledger",
+      "title": "스펠 Asset License Ledger",
+      "source_path": "docs/ASSET_LICENSE_LEDGER.md",
+      "status": "ACTIVE_ASSET_PROVENANCE_AUTHORITY",
+      "responsibility_coverage": [
+        "external-asset-license",
+        "generated-asset-provenance",
+        "derivative-lineage",
+        "user-asset-approval",
+        "runtime-asset-validation"
+      ]
+    },
+    {
       "id": "spell-decision-ledger",
       "title": "스펠 기획 결정 원장",
       "source_path": "docs/planning/DECISION_LOG.md",
       "status": "ACTIVE_WITH_LATEST_ADDENDUM",
       "supporting_sources": [
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27P.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27O.md"
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md",
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27P.md"
       ]
     }
   ],
@@ -199,16 +192,36 @@
       "status": "APPROVED_AT_GATE_1_WITH_P0_AMENDMENT"
     },
     {
-      "responsibility": "core-poc-contract-and-playtest",
-      "status": "REMOVED_AND_SUPERSEDED_BY_GM-VS-ROUTE-01"
+      "responsibility": "gate-2-adversarial-review-loop",
+      "status": "PASS_WITH_FOLLOWUP_BY_GM-VS-REVIEW-LOOP-01"
     },
     {
-      "responsibility": "core-poc-validation-evidence",
-      "status": "ABSORBED_INTO_VERTICAL_SLICE"
+      "responsibility": "visual-presentation-structure",
+      "status": "NEXT_BLOCKING_DECISION_GM-VISUAL-PRESENTATION-01"
+    },
+    {
+      "responsibility": "character-presentation",
+      "status": "BLOCKED_BY_VISUAL_PRESENTATION"
+    },
+    {
+      "responsibility": "art-style-selection",
+      "status": "BLOCKED_BY_VISUAL_AND_CHARACTER_PRESENTATION"
+    },
+    {
+      "responsibility": "art-bible-and-asset-spec",
+      "status": "BLOCKED_BY_ART_STYLE_SELECTION"
+    },
+    {
+      "responsibility": "audio-direction",
+      "status": "PLANNED_AFTER_VISUAL_STRUCTURE"
+    },
+    {
+      "responsibility": "asset-generation",
+      "status": "BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_USER_APPROVAL"
     },
     {
       "responsibility": "vertical-slice-profile-transition",
-      "status": "NEXT_BLOCKING_DECISION_GM-VS-PROFILE-01"
+      "status": "DEFERRED_UNTIL_VISUAL_AUDIO_PREPRODUCTION"
     },
     {
       "responsibility": "codex-read-only-plan",
@@ -219,12 +232,8 @@
       "status": "BLOCKED_BY_PROFILE_TRANSITION_AND_CODEX_PLAN"
     },
     {
-      "responsibility": "godot-engineering-data-save",
-      "status": "NOT_STARTED"
-    },
-    {
-      "responsibility": "qa-performance-release",
-      "status": "NOT_STARTED"
+      "responsibility": "runtime-accessibility-performance",
+      "status": "NOT_RUN"
     }
   ],
   "registry_rules": {
@@ -234,18 +243,15 @@
     "core_is_confirmed": true,
     "gate_1_approval_does_not_authorize_implementation": true,
     "core_poc_must_not_be_reintroduced_under_another_name": true,
-    "vertical_slice_must_absorb_core_validation": true,
     "all_core_sessions_use_situation_challenge": true,
     "critical_events_require_one_free_schedule_between_them": true,
-    "free_schedule_archetypes_are_rest_prepare_socialize": true,
-    "rest_must_be_a_valid_free_schedule_choice": true,
-    "free_schedule_must_not_block_required_progression": true,
     "first_completion_target_minutes": "45-50",
     "first_completion_cap_minutes": 60,
     "implementation_order_is_m0_to_m4": true,
-    "minimal_boundary_save_only_for_initial_slice": true,
+    "visual_presentation_precedes_art_style": true,
+    "art_style_precedes_mass_asset_generation": true,
+    "generated_assets_require_provenance_and_user_approval": true,
     "profile_transition_requires_separate_user_approval": true,
-    "codex_requires_profile_transition_and_read_only_plan": true,
     "actual_files_and_tests_override_implementation_claims": true,
     "user_approval_required_for_pr_merge": true
   }
