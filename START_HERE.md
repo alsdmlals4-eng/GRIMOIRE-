@@ -7,38 +7,36 @@
 | 항목 | 현재 기준 |
 |---|---|
 | 제품 단계 | `PROTOTYPE_AND_VERTICAL_SLICE` |
+| Gate 1 | `APPROVED` |
+| 프로젝트 코어 | `CORE_CONFIRMED` |
 | 실행 프로필 | `PLANNING_ONLY_PROFILE` |
 | Work Mode | `PLAN` |
-| 프로젝트 코어 | `CORE_CONFIRMED` |
-| Gate 1 | `APPROVED` |
-| Gate 2 | `ENTERED_PLANNING_ONLY` |
+| Vertical Slice 계약 | `APPROVED_AT_GATE_1_WITH_P0_AMENDMENT` |
+| 적대적 검토 루프 | `PASS_WITH_FOLLOWUP` |
 | 구현 | `NOT_STARTED` |
 | Codex | `NOT_RUN` |
-| CORE_POC | `REMOVED_BY_USER_DECISION` |
-| Vertical Slice 계약 | `APPROVED_AT_GATE_1` |
-| 제작성 | `CONDITIONAL_PASS_CANDIDATE` |
-| 다음 차단 결정 | `GM-VS-PROFILE-01` |
+| 이미지·사운드 제작 | `NOT_STARTED` |
+| 다음 차단 결정 | `GM-VISUAL-PRESENTATION-01` |
 | 기준 브랜치 | `gpt/planning-spell-20260725` |
-
-Gate 1 승인은 콘셉트와 Vertical Slice 범위를 확정한다. 실행 프로필 전환과 구현 착수는 아직 승인되지 않았다.
 
 ## 먼저 읽을 문서
 
 1. `docs/ACTIVE_CONTEXT.md`
 2. `docs/planning/GATE_1_FINAL_APPROVAL.md`
-3. `docs/planning/V6_CONCEPT_REBASE_BASELINE.md`
-4. `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
-5. `docs/planning/GATE_1_ADVERSARIAL_REVIEW.md`
-6. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27P.md`
-7. `docs/planning/DECISION_LOG.md`
-8. `docs/DEVELOPMENT_GATES.md`
-9. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+3. `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
+4. `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md`
+5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md`
+6. `docs/DEVELOPMENT_GATES.md`
+7. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+8. `docs/ASSET_LICENSE_LEDGER.md`
+9. `skills/SKILL_REGISTRY.json`
+10. `docs/DOCUMENTATION_MAP.md`
 
-## 플레이어 약속
+## 승인된 플레이어 약속
 
 > **마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.**
 
-## 비타협 코어
+## 승인된 코어
 
 - 의미를 가진 마법 글자
 - `메인 글자 1개 + 보조 글자 0개 이상`
@@ -63,46 +61,58 @@ Gate 1 승인은 콘셉트와 Vertical Slice 범위를 확정한다. 실행 프�
 역할:
 
 ```text
-수업 = 배움과 비교
+수업 = 배움
 시험 = 증명
 축제 = 표현·관계
 현장 = 응용·발견
 자유일정 = 휴식·준비·교류
 ```
 
-## 공통 Situation Challenge
-
-```text
-상황 목표
-→ 관찰 가능한 상태
-→ 메인·보조 글자와 제한 조건
-→ 방향성 결과 미리보기
-→ 주문 작성
-→ 세계 상태 변화
-→ 결과 원인
-→ 기록·후속 반응
-```
-
-## 범위 상한
+범위 상한:
 
 - 첫 완주 목표: `45~50분`
 - 허용 상한: `60분`
-- 자유일정: `휴식 / 준비 / 교류`
-- 저장: 세션 경계 중심 최소 상태
-- 구현 순서: `M0 입력 → M1 공통 문제 → M2 학교 → M3 현장 → M4 저장·연출`
+- 공통 `Situation Challenge`
+- 자유일정 3회
+- 세션 경계 중심 최소 저장
+- M0~M4 Validation-First 구현 순서
 
-M0~M4는 Vertical Slice 내부 체크포인트이며 CORE_POC가 아니다.
+## 적대적 검토 결과
+
+- 코어와 Slice 범위: 유지
+- 세션·글자·지역·캐릭터 수: 확대하지 않음
+- README·계약 상태·Skill Registry·Asset Ledger: 최신화
+- 아트·사운드 대량 제작: 화면 구조 결정 전 차단
+- 런타임·Android·접근성·성능: `NOT_RUN`
+
+## 현재 작업 순서
+
+```text
+GM-VISUAL-PRESENTATION-01
+화면 방향·카메라·게임 표현 구조
+→ GM-CHARACTER-PRESENTATION-01
+캐릭터 표현 수준
+→ ART-STYLE-01
+그림체 후보 비교·선정
+→ ART-BIBLE-01
+시각 규칙·접근성·FX 규칙
+→ ASSET-SPEC-01
+캐릭터·배경·UI·효과·사운드 수량·규격
+→ 사용자 승인 후 자산 작업
+→ GM-VS-PROFILE-01 재검토
+```
 
 ## 현재 금지
 
+- 화면 구조 결정 전 대량 이미지·사운드 제작
 - 별도 CORE_POC 재도입
-- 승인 전 `VERTICAL_SLICE_FULL_PROFILE` 전환
+- `VERTICAL_SLICE_FULL_PROFILE` 자동 전환
 - Godot 구현·Scene·Resource·게임 데이터 작성
 - Codex 실행
 - PR 병합
 
-## 다음 작업
+## 다음 결정
 
-`GM-VS-PROFILE-01`
+`GM-VISUAL-PRESENTATION-01`
 
-실행 프로필을 `VERTICAL_SLICE_FULL_PROFILE`로 전환하고 Codex read-only Plan 및 구현 준비 문서 작성을 시작할지 결정한다.
+Vertical Slice를 어떤 화면 방향과 카메라·게임 표현 구조로 보여줄지 결정한다.
