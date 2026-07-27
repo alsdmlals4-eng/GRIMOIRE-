@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "registry_role": "spell-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/Spell",
@@ -17,12 +17,18 @@
     "benchmark_status": "BENCHMARK_FRAMEWORK_CONFIRMED_RESEARCH_AUTHORED",
     "vrio_status": "VRIO_POTENTIAL_NOT_PROVEN",
     "solo_feasibility_status": "FEASIBLE_WITH_STRICT_SCOPE",
-    "summon_companion_status": "TWO_TIER_SUMMON_STRUCTURE_CONFIRMED_BY_GM-MASCOT-01"
+    "summon_companion_status": "TWO_TIER_SUMMON_STRUCTURE_CONFIRMED_BY_GM-MASCOT-01",
+    "core_poc_status": "REMOVED_BY_USER_DECISION",
+    "core_poc_validation_status": "ABSORBED_INTO_VERTICAL_SLICE",
+    "vertical_slice_route_status": "DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_BY_GM-VS-ROUTE-01",
+    "vertical_slice_contract_status": "NOT_AUTHORED",
+    "vertical_slice_implementation_status": "NOT_STARTED"
   },
   "planning_authority": {
     "master_contract": "user-provided VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
     "short_contract": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
     "master_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
+    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27L.md",
     "gate_1_working_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
     "previous_planning_documents_role": "REFERENCE_CANDIDATE"
   },
@@ -31,220 +37,151 @@
     "commit": "438f41afd510c827c3097341bd9e5f9c9b0e1dd0",
     "version_record": "docs/BASE_RULES_VERSION.md"
   },
-  "publication": {
-    "default_policy": "source_only",
-    "pdf_status": "NOT_BUILT",
-    "docx_status": "NOT_BUILT",
-    "manifest_status": "NOT_INSTALLED",
-    "human_visual_review": "NOT_RUN"
-  },
   "state_sources": {
     "start_here": "START_HERE.md",
     "active_context": "docs/ACTIVE_CONTEXT.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27K.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27L.md",
     "gate_1_baseline": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
     "gate_1_gameplay_loop": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
     "gate_1_experience_curve": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
     "gate_1_project_core_boundary": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
     "gate_1_sales_points": "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
     "gate_1_benchmark_swot_vrio_feasibility": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
-    "gate_1_summon_companion": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md"
+    "gate_1_summon_companion": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
+    "gate_1_direct_vertical_slice_route": "docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md"
   },
   "canonical_documents": [
     {
       "id": "spell-v6-concept-rebase",
       "title": "스펠 v6 콘셉트 재기획 기준선",
-      "responsibility": "Gate 1 통합 상태·승인 요약·뾰족한 재미·위험·진행 순서",
-      "responsibility_coverage": [
-        "gate-1-working-baseline",
-        "primary-player-experience",
-        "target-player-and-play-context",
-        "optional-narrative-depth",
-        "confirmed-player-promise",
-        "confirmed-loop-summary",
-        "confirmed-experience-curve-summary",
-        "confirmed-project-core-boundary-summary",
-        "confirmed-sales-points-summary",
-        "benchmark-summary",
-        "confirmed-summon-companion-summary",
-        "pointed-fun",
-        "concept-risks",
-        "core-poc-preconditions"
-      ],
-      "source_format": "markdown",
       "source_path": "docs/planning/V6_CONCEPT_REBASE_BASELINE.md",
       "status": "ACTIVE_GATE_1_WORKING_SOURCE",
-      "publication_policy": "source_only",
-      "supporting_sources": [
-        "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
-        "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
-        "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
-        "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
-        "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
-        "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27K.md",
-        "docs/ACTIVE_CONTEXT.md"
+      "responsibility_coverage": [
+        "gate-1-working-baseline",
+        "player-promise",
+        "core-boundary-summary",
+        "sales-points-summary",
+        "loop-summary",
+        "experience-curve-summary",
+        "summon-companion-summary",
+        "direct-vertical-slice-route-summary",
+        "concept-risks"
       ]
     },
     {
       "id": "spell-gate-1-gameplay-loop",
       "title": "스펠 Gate 1 게임플레이 Loop 구조",
-      "responsibility": "수업·교내 연습·일상·현장실습과 Micro·Combat·Session·Semester Loop",
+      "source_path": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
       "responsibility_coverage": [
         "micro-loop",
         "combat-loop",
-        "class-session-loop",
-        "practice-session-loop",
-        "field-practicum-session-loop",
-        "daily-life-session-loop",
+        "session-loop",
         "semester-loop",
         "fixed-events-and-free-schedule",
-        "save-resume-boundaries",
-        "loop-reward-data-flow"
-      ],
-      "source_format": "markdown",
-      "source_path": "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
-      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
-      "publication_policy": "source_only"
+        "save-resume-boundaries"
+      ]
     },
     {
       "id": "spell-gate-1-experience-curve",
       "title": "스펠 Gate 1 경험 곡선",
-      "responsibility": "첫 5분·첫 작성·첫 설계·첫 실습·첫 발견·첫 숙련 자동화",
+      "source_path": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
       "responsibility_coverage": [
         "first-five-minutes",
         "first-cast",
-        "first-independent-design",
-        "first-relationship-beat",
-        "first-mock-practicum",
+        "first-design",
+        "first-practicum",
         "first-discovery",
-        "first-mastery-automation",
-        "system-reveal-order",
-        "onboarding-guardrails",
-        "experience-curve-playtest-metrics"
-      ],
-      "source_format": "markdown",
-      "source_path": "docs/planning/GATE_1_EXPERIENCE_CURVE_SYSTEM.md",
-      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
-      "publication_policy": "source_only"
+        "first-mastery-automation"
+      ]
     },
     {
       "id": "spell-gate-1-project-core-boundary",
       "title": "스펠 Gate 1 프로젝트 코어 경계",
-      "responsibility": "비타협 코어·지원 시스템·변경 가능한 외피·제거 테스트·범위 축소 순서",
+      "source_path": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
       "responsibility_coverage": [
         "non-negotiable-project-core",
         "core-support-systems",
         "changeable-shell",
-        "removal-test",
-        "non-negotiable-design-rules",
-        "scope-reduction-order",
-        "core-poc-minimum-causal-chain",
-        "core-boundary-risks"
-      ],
-      "source_format": "markdown",
-      "source_path": "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md",
-      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
-      "publication_policy": "source_only"
+        "scope-reduction-order"
+      ]
     },
     {
       "id": "spell-gate-1-sales-points",
       "title": "스펠 Gate 1 세일즈포인트",
-      "responsibility": "세일즈포인트 최대 3개·통합 문장·대표 세 장면·과장 방지 경계",
+      "source_path": "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
       "responsibility_coverage": [
         "sales-points-max-three",
         "one-sentence-pitch",
         "three-representative-scenes",
-        "sales-message-priority",
-        "store-description-direction",
-        "trailer-opening-direction",
-        "sales-claim-guardrails",
-        "sales-point-validation-questions"
-      ],
-      "source_format": "markdown",
-      "source_path": "docs/planning/GATE_1_SALES_POINTS_SYSTEM.md",
-      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
-      "publication_policy": "source_only"
+        "sales-claim-guardrails"
+      ]
     },
     {
       "id": "spell-gate-1-benchmark-swot-vrio-feasibility",
       "title": "스펠 Gate 1 벤치마킹·SWOT·VRIO·1인 제작성",
-      "responsibility": "직접 입력·조합 문제 해결·마법학교 성장 경쟁군과 SWOT·VRIO·Godot·Android·1인 제작성",
+      "source_path": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
+      "status": "ACTIVE_RESEARCHED_GATE_1_SOURCE",
       "responsibility_coverage": [
         "benchmark-direct-input-group",
         "benchmark-combination-problem-solving-group",
         "benchmark-magic-school-learning-group",
-        "integrated-competitor-assessment",
         "swot",
         "vrio",
-        "godot-android-technical-feasibility",
-        "solo-development-feasibility",
-        "adopt-adapt-avoid",
-        "core-poc-strengthening-conditions"
-      ],
-      "source_format": "markdown",
-      "source_path": "docs/planning/GATE_1_BENCHMARK_SWOT_VRIO_FEASIBILITY.md",
-      "status": "ACTIVE_RESEARCHED_GATE_1_SOURCE",
-      "publication_policy": "source_only"
+        "godot-android-feasibility",
+        "solo-development-feasibility"
+      ]
     },
     {
       "id": "spell-gate-1-summon-companion",
       "title": "스펠 Gate 1 소환수·동반자 구조",
-      "responsibility": "메인 동반 소환수·전투 보조 소환수의 역할·금지 책임·성장축·모바일 경계·CORE_POC 조건",
+      "source_path": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
       "responsibility_coverage": [
         "main-companion-summon",
         "combat-support-summon",
-        "two-tier-summon-structure",
-        "summon-role-boundaries",
-        "summon-prohibited-responsibilities",
-        "main-companion-growth-direction",
-        "support-summon-growth-direction",
-        "summon-mobile-cognitive-load",
-        "summon-core-poc-requirements",
-        "summon-legacy-override"
-      ],
-      "source_format": "markdown",
-      "source_path": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
+        "two-tier-growth-boundary",
+        "summon-non-delegation-rules"
+      ]
+    },
+    {
+      "id": "spell-gate-1-direct-vertical-slice-route",
+      "title": "스펠 Gate 1 CORE_POC 없는 직접 Vertical Slice 경로",
+      "source_path": "docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md",
       "status": "ACTIVE_CONFIRMED_GATE_1_SOURCE",
-      "publication_policy": "source_only",
-      "supporting_sources": [
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27K.md",
-        "docs/planning/SUMMON_SYSTEM.md",
-        "docs/planning/GATE_1_GAMEPLAY_LOOP_SYSTEM.md",
-        "docs/planning/GATE_1_PROJECT_CORE_BOUNDARY_SYSTEM.md"
+      "responsibility_coverage": [
+        "core-poc-removal",
+        "validation-responsibility-transfer",
+        "validation-first-vertical-slice",
+        "vertical-slice-entry-conditions",
+        "vertical-slice-validation-evidence",
+        "vertical-slice-initial-scope-boundary",
+        "vertical-slice-failure-routing"
       ]
     },
     {
       "id": "spell-decision-ledger",
       "title": "스펠 기획 결정 원장",
-      "responsibility": "사용자 결정·override·폐기·보류·설계 영향 추적",
-      "responsibility_coverage": [
-        "decision-ledger",
-        "legacy-requirement-traceability",
-        "v6-replan-decisions"
-      ],
-      "source_format": "markdown",
       "source_path": "docs/planning/DECISION_LOG.md",
       "status": "ACTIVE_WITH_LATEST_ADDENDUM",
-      "publication_policy": "source_only",
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27L.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27K.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27I.md",
-        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27H.md"
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27J.md"
       ]
     }
   ],
   "reference_collections": [
     {
       "id": "spell-previous-integrated-design",
-      "title": "재기획 전 통합 게임 설계",
       "source_path": "docs/planning/SPELL_GAME_DESIGN.md",
-      "status": "REFERENCE_CANDIDATE",
-      "use": "기존 프로젝트 코어·세계관·시스템·육성 후보와 사용자 결정 이력 추출"
+      "status": "REFERENCE_CANDIDATE"
     },
     {
       "id": "spell-system-reference-set",
@@ -252,25 +189,13 @@
       "sources": [
         "docs/planning/COMBAT_CORE_SYSTEM.md",
         "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
-        "docs/planning/CIRCUIT_SYSTEM.md",
-        "docs/planning/MAIN_LETTER_LEVEL_SYSTEM.md",
-        "docs/planning/MAIN_LETTER_SPECIALIZATION_SYSTEM.md",
-        "docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md",
-        "docs/planning/SUPPORT_LETTER_OPERATION_CAPACITY_SYSTEM.md",
         "docs/planning/STOCK_SYSTEM.md",
         "docs/planning/SUMMON_SYSTEM.md",
         "docs/planning/MANA_SYSTEM.md",
-        "docs/planning/WORLD_SETTING_CONCEPT.md",
-        "docs/planning/WORLD_PROTAGONIST_BACKGROUND.md",
         "docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md",
-        "docs/planning/WORLD_ACADEMIC_YEAR_STRUCTURE.md",
-        "docs/planning/WORLD_SEMESTER_SCHEDULE_SYSTEM.md",
         "docs/planning/WORLD_MAGIC_CURRICULUM_SYSTEM.md",
         "docs/planning/WORLD_FIELD_PRACTICUM_SYSTEM.md",
-        "docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md",
-        "docs/planning/BENCHMARK_CIRCUIT_GRAMMAR.md",
-        "docs/planning/BENCHMARK_SUMMON_SYSTEM.md",
-        "docs/planning/BENCHMARK_MAGIC_SCHOOL_GROWTH.md"
+        "docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md"
       ],
       "rules": [
         "Existing content is not automatically reapproved for Gate 1.",
@@ -280,7 +205,7 @@
       ]
     }
   ],
-  "deferred_responsibilities": [
+  "responsibility_status": [
     {
       "responsibility": "target-player-and-play-context",
       "status": "CONFIRMED_BY_GM-AUDIENCE-01"
@@ -290,11 +215,11 @@
       "status": "CONFIRMED_BY_GM-NARRATIVE-03"
     },
     {
-      "responsibility": "final-player-promise",
+      "responsibility": "player-promise",
       "status": "CONFIRMED_BY_GM-PROMISE-01"
     },
     {
-      "responsibility": "micro-combat-session-semester-loops",
+      "responsibility": "gameplay-loops",
       "status": "CONFIRMED_BY_GM-LOOP-01"
     },
     {
@@ -302,7 +227,7 @@
       "status": "CONFIRMED_BY_GM-CURVE-01"
     },
     {
-      "responsibility": "project-core-and-changeable-shell",
+      "responsibility": "project-core-boundary",
       "status": "CONFIRMED_BY_GM-CORE-BOUNDARY-01"
     },
     {
@@ -314,20 +239,24 @@
       "status": "CONFIRMED_RESEARCH_AUTHORED_BY_GM-BENCHMARK-01"
     },
     {
-      "responsibility": "mascot-and-symbolic-companion",
+      "responsibility": "summon-companion",
       "status": "CONFIRMED_BY_GM-MASCOT-01"
     },
     {
       "responsibility": "core-poc-contract-and-playtest",
-      "status": "NEXT_BLOCKING_DECISION_GM-POC-01"
+      "status": "REMOVED_AND_SUPERSEDED_BY_GM-VS-ROUTE-01"
+    },
+    {
+      "responsibility": "core-poc-validation-evidence",
+      "status": "ABSORBED_INTO_VERTICAL_SLICE"
     },
     {
       "responsibility": "vertical-slice-contract",
-      "status": "BLOCKED_BY_GATE_1_AND_CORE_POC"
+      "status": "NEXT_BLOCKING_DECISION_GM-SLICE-01"
     },
     {
-      "responsibility": "ui-ux-accessibility",
-      "status": "NOT_AUTHORED"
+      "responsibility": "vertical-slice-implementation",
+      "status": "BLOCKED_BY_GATE_1_AND_SLICE_CONTRACT"
     },
     {
       "responsibility": "godot-engineering-data-save",
@@ -340,12 +269,13 @@
   ],
   "registry_rules": {
     "single_canonical_source_per_responsibility": true,
-    "v6_contract_controls_process_and_gate": true,
+    "latest_user_decision_overrides_previous_route": true,
+    "core_poc_must_not_be_reintroduced_under_another_name": true,
+    "vertical_slice_must_absorb_core_validation": true,
+    "v6_contract_controls_process_except_explicit_user_override": true,
     "previous_planning_documents_are_references_until_reapproved": true,
-    "date_addenda_are_decision_history_not_parallel_master_documents": true,
     "actual_files_and_tests_override_implementation_claims": true,
-    "publication_does_not_replace_source": true,
     "user_approval_required_for_core_confirmed": true,
-    "base_skill_bodies_copied_to_project": false
+    "user_approval_required_for_vertical_slice_profile_transition": true
   }
 }
