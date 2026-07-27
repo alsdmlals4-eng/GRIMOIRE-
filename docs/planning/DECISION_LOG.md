@@ -10,11 +10,13 @@
 - Work Mode: `PLAN`
 - 구현: `NOT_STARTED`
 - Codex: `NOT_RUN`
+- 이미지·사운드 제작: `NOT_STARTED`
 - 기준 날짜: 2026-07-27
 - 기준 브랜치: `gpt/planning-spell-20260725`
-- 최신 결정 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md`
+- 최신 결정 기록: `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md`
 - 최종 승인 원본: `docs/planning/GATE_1_FINAL_APPROVAL.md`
 - 최신 적대적 검토: `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md`
+- 시각 표현 원본: `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`
 - 현재 상태: `docs/ACTIVE_CONTEXT.md`
 
 기존 세부 문서는 `REFERENCE_CANDIDATE`다. 최신 사용자 결정과 승인 원본이 우선한다.
@@ -42,7 +44,8 @@
 | GM-GATE1-APPROVAL-01 | Gate 1 전체 최종 승인 | `APPROVED` |
 | GM-VS-REVIEW-LOOP-01 | Gate 2 진입 전 5렌즈 적대적 검토 | `PASS_WITH_FOLLOWUP` |
 | GM-VS-PROFILE-01 | 실행 프로필 전환 | `DEFERRED_UNTIL_VISUAL_AUDIO_PREPRODUCTION` |
-| GM-VISUAL-PRESENTATION-01 | 화면 방향·카메라·게임 표현 구조 | `NEXT_BLOCKING_DECISION` |
+| GM-VISUAL-PRESENTATION-01 | 가로형 하이브리드 2D 화면 구조 | `CONFIRMED` |
+| GM-CHARACTER-PRESENTATION-01 | 필드·대화 캐릭터 표현 수준 | `NEXT_BLOCKING_DECISION` |
 
 ---
 
@@ -81,7 +84,7 @@
 
 ## 적대적 검토 루프 결정
 
-사용자 최신 순서:
+사용자 지정 순서:
 
 ```text
 적대적 검토 루프
@@ -93,7 +96,7 @@
 → 이후 구현 준비
 ```
 
-적대적 검토로 다음 순서를 확정했다.
+적대적 검토로 다음 안전 순서를 확정했다.
 
 ```text
 화면 방향·카메라·게임 표현 구조
@@ -101,6 +104,7 @@
 → 그림체 후보 비교·선정
 → Art Bible
 → Asset Specification
+→ Audio Direction
 → 캐릭터·배경·UI·효과·사운드 작업
 → 실행 프로필 전환 재검토
 ```
@@ -111,9 +115,59 @@
 - 문서 상태 회귀: `MUST_FIX / FIXED`
 - Problem Differentiation Matrix: `SHOULD_FIX`
 - Save Schema v1: `TECHNICAL_REVIEW_PROPOSAL`
-- 화면 방향·카메라·표현 구조: `USER_DECISION_REQUIRED`
-- 대량 자산 제작: `BLOCKED_BY_VISUAL_PRESENTATION_DECISIONS`
+- 대량 자산 제작: `BLOCKED_BY_CHARACTER_PRESENTATION_ART_BIBLE_AND_ASSET_SPEC`
 - 런타임·Android·접근성·성능: `BLOCKED_UNVERIFIED`
+
+---
+
+## 승인된 시각 표현 구조 — GM-VISUAL-PRESENTATION-01
+
+```text
+화면 방향
+= 가로형
+
+학교·현장
+= 고정·장면 기반 3/4 시점
+
+대화
+= 기존 장소 배경 위 캐릭터 반신·초상과 대화창
+
+마법 작성
+= 월드를 감속·암전하고 전용 작성 오버레이 표시
+
+전투
+= 같은 장면에서 적·환경·보조 소환수 확인
+```
+
+화면비:
+
+- 기준 구도: `16:9`
+- 확장 대응: `18:9~20:9`
+- 좌우 월드 영역을 확장하고 핵심 UI·작성 영역은 안전 구도 유지
+- 정확한 내부 해상도는 `ASSET-SPEC-01`에서 확정
+
+제작 원칙:
+
+- 자유 이동형 대형 학교 대신 장면 단위 이동
+- 고정 카메라와 제한된 연출 이동
+- 학교 장면은 수업·시험·자유일정·축제 상태로 재사용
+- 현장 장면은 전투·환경·복구 상태로 재사용
+- 대화와 작성 시 기존 장소·목표의 연속성 유지
+- 작성 중 대상·위험·보조 소환수 상태 유지
+- 감속형을 시각적 기본 후보로 사용하되 최종 시간 규칙은 M0에서 비교
+- 글자 궤적·대상·위험·결과 인과를 장식·입자보다 우선
+
+제외:
+
+- 세로형 별도 UI
+- 자유 카메라·대형 자유 탐색
+- 복잡한 2.5D·3D 원근
+- 세션별 별도 화면 시스템
+- 작성 중 월드를 완전히 숨기는 방식
+
+책임 원본:
+
+- `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`
 
 ---
 
@@ -128,7 +182,9 @@
 - 휴식은 손해 전용 선택이 아님
 - 세션별 전용 미니게임·프레임워크 금지
 - 첫 완주 상한 60분
-- 화면 구조 전 대량 자산 제작 금지
+- 가로형 하이브리드 2D와 고정·장면 기반 3/4 시점 유지
+- 작성 중 월드·대상·위험을 완전히 숨기지 않음
+- 캐릭터 표현·Art Bible·Asset Specification 전 대량 자산 제작 금지
 - 생성·편집 자산의 출처·도구·파생 관계·승인 기록
 - 실행 프로필 전환 전 Codex·Godot 구현 금지
 - 사용자 승인 없는 PR 병합 금지
@@ -141,10 +197,18 @@
 
 - 각 세션의 정확한 시간
 - 입력 판정 허용 범위
-- 완전 정지·감속·실시간 최종안
+- 완전 정지·감속·실시간 최종안과 감속 비율
 - 자유일정 보정 수치
 - 시험 점수·성적 보상
 - 보조 소환수 수호·견제 수치
+
+### `ASSET_SPEC_REQUIRED`
+
+- 정확한 내부 렌더 해상도
+- 터치 작성 패널 크기
+- 필드 캐릭터 비율·기준선
+- 대화 초상 크기·표정 수
+- 배경·효과·사운드 수량·상태·변형 규격
 
 ### `BLOCKED_UNVERIFIED`
 
@@ -166,6 +230,6 @@
 
 ## 다음 결정
 
-`GM-VISUAL-PRESENTATION-01`: Vertical Slice를 어떤 화면 방향과 카메라·게임 표현 구조로 보여줄 것인가?
+`GM-CHARACTER-PRESENTATION-01`: 가로형 3/4 장면에서 주인공·NPC·메인 동반 소환수·전투 보조 소환수를 어떤 비율과 자산 조합으로 표현할 것인가?
 
 상태: `NEXT_BLOCKING_DECISION`
