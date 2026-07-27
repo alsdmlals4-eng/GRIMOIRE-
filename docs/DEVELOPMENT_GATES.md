@@ -6,207 +6,224 @@
 - 현재 제품 단계: `CONCEPT_APPROVAL`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
 - Work Mode: `PLAN`
-- 다음 Greenlight: 프로젝트 코어·뾰족한 재미·CORE_POC 계약 사용자 승인
+- 다음 Greenlight: `GM-SLICE-01 Vertical Slice 계약 + 적대적 검토 + 사용자 Gate 1 승인`
 
-> 게이트는 문서가 존재한다는 이유로 통과하지 않는다. 관찰 가능한 결과와 증거로 판정하며 실행하지 않은 검증은 `NOT_RUN` 또는 `BLOCKED_UNVERIFIED`로 표시한다.
+> 게이트는 문서 존재만으로 통과하지 않는다. 관찰 가능한 결과와 증거로 판정하며 실행하지 않은 검증은 `NOT_RUN` 또는 `BLOCKED_UNVERIFIED`로 표시한다.
 
-## 1. 작업 실행 게이트
+---
 
-### 1.1 Intake·Context Gate
+## 1. 최신 제품 경로 override
+
+사용자 결정:
+
+> `COREPOC 없이 우리는 버티칼슬라이스로 갈거야`
+
+상태:
+
+- 결정 ID: `GM-VS-ROUTE-01`
+- 직접 Slice 경로: `DIRECT_VERTICAL_SLICE_ROUTE_CONFIRMED_FOR_GATE_1`
+- CORE_POC: `REMOVED_BY_USER_DECISION`
+- CORE_POC 검증 책임: `ABSORBED_INTO_VERTICAL_SLICE`
+- Vertical Slice 계약: `NOT_AUTHORED`
+
+최신 경로:
+
+```text
+Gate 1 콘셉트 정리
+→ Vertical Slice 계약 승인
+→ 적대적 범위 검토
+→ 사용자 Gate 1 승인
+→ VERTICAL_SLICE_FULL_PROFILE 전환
+→ Codex read-only Plan 검수
+→ Validation-First Vertical Slice 구현
+→ QA·외부 플레이테스트
+→ Gate 3 판단
+```
+
+기존 `CORE_POC 계약 승인`, `CORE_POC 구현`, `CORE_POC 통과` 선행 조건은 `SUPERSEDED_BY_GM-VS-ROUTE-01`이다.
+
+---
+
+## 2. 작업 실행 게이트
+
+### 2.1 Intake·Context Gate
 
 현재 상태: `PASS_WITH_LIMITS`
 
-- [x] 최신 사용자 지시와 저장소 URL을 확인했다.
-- [x] `AGENTS.md`, `START_HERE.md`, Active Context, Documentation Map을 연결했다.
+- [x] 최신 사용자 지시와 저장소를 확인했다.
+- [x] `AGENTS.md`, `START_HERE.md`, Active Context, Documentation Map, Registry를 연결했다.
 - [x] 현재 책임 원본과 Draft PR을 확인했다.
-- [x] 현재 제품 단계·프로필·Work Mode를 판정했다.
+- [x] 제품 단계·프로필·Work Mode를 판정했다.
 - [x] 기존 기획 문서와 보호 결정을 확인했다.
 - [ ] 실제 Godot 코드·Scene·데이터·테스트 확인 — 구현 미착수로 `NOT_APPLICABLE_NOW`
 
 ```yaml
-problem: v6와 Base 기준으로 Spell의 콘셉트·코어를 확정하고 CORE_POC·버티컬 슬라이스로 이어갈 수 있는 운영 구조가 필요함
-user_or_player_value: 중요한 결정과 플레이어 경험을 잃지 않고 일관된 순서로 기획·검증·구현함
+problem: 스펠의 승인된 코어를 별도 CORE_POC 없이 외부 플레이 가능한 Vertical Slice로 증명해야 함
+player_value: 직접 작성·의미 기반 조합·학교 학습 순환을 한 완결 경험으로 체험
 primary_discipline: game-design-and-project-governance
 affected_disciplines:
-  - combat-design
+  - touch-input-ux
+  - combat-and-problem-design
   - progression-and-world
-  - ux-and-touch-input
+  - summon-companion-design
   - godot-engineering
   - qa-and-playtest
-change_type: planning-and-governance
 current_truth_sources:
   - docs/ACTIVE_CONTEXT.md
   - docs/planning/DECISION_LOG.md
-  - docs/planning/SPELL_GAME_DESIGN.md
-  - docs/planning/COMBAT_CORE_SYSTEM.md
-protected_decisions_and_paths:
-  - docs/planning/**
-  - docs/ACTIVE_CONTEXT.md
-  - direct-writing-stock-summon-boundaries
+  - docs/planning/GATE_1_VERTICAL_SLICE_DIRECT_ROUTE.md
 unknowns:
-  - approved-project-core
-  - target-player-definition
-  - core-poc-evidence
-  - godot-version-and-runtime
+  - vertical-slice-exact-scope
+  - vertical-slice-pass-fail-thresholds
+  - godot-version-renderer-runtime
+  - android-device-performance
 ```
 
-### 1.2 Definition of Ready
+### 2.2 Definition of Ready — 기획
 
-현재 기획 작업은 다음을 만족할 때 Ready다.
+- [x] 플레이어 약속과 비타협 코어가 있다.
+- [x] 세일즈포인트 3개가 있다.
+- [x] 기본 Loop와 경험 곡선이 있다.
+- [x] 벤치마킹·SWOT·VRIO·1인 제작성 분석이 있다.
+- [x] 2계층 소환수 구조가 있다.
+- [x] CORE_POC 제거와 검증 책임 이전이 승인됐다.
+- [ ] `GM-SLICE-01` 대표 구간·포함·제외 범위 승인
+- [ ] Vertical Slice 통과·실패 기준 승인
+- [ ] 적대적 범위 검토
+- [ ] 사용자 Gate 1 승인
 
-- [x] 이번 요청의 목적과 범위가 명확하다.
-- [x] 사용자 승인 범위와 금지 범위가 분리됐다.
-- [x] 책임 원본과 영향 문서를 지정했다.
-- [x] 기존 기획·결정 보존 범위를 확인했다.
-- [x] 완료 기준과 참조 검증 방법이 있다.
-- [x] Base Skill과 프로젝트 Skill route를 연결했다.
-- [ ] 기능 구현 Ready — `PLANNING_ONLY_PROFILE`이므로 `BLOCKED_BY_PROFILE`
+현재 판정: `PLANNING_READY / VERTICAL_SLICE_CONTRACT_NOT_READY`
 
-Ready 판정: `PLANNING_READY / IMPLEMENTATION_NOT_READY`
+### 2.3 Definition of Ready — 구현
 
-### 1.3 Planning·Approval Gate
+구현 시작 조건:
 
-| 항목 | 현재 내용 | 상태 |
-|---|---|---|
-| 구조 조사 | README·Active Context·46개 기획 문서·Draft PR·Base 템플릿 조사 | `PASS` |
-| 보호 파일 | `docs/planning/**`, Active Context, v6 계약 | `PASS` |
-| 변경 파일 | 운영 진입점·Registry·Gate·Adapter·링크만 추가 | `PASS` |
-| 구현 영향 | 없음 | `PASS` |
-| 저장·Schema 영향 | 없음 | `PASS` |
-| 이미지·사운드·UI 영향 | 없음 | `PASS` |
-| 롤백 | 신규 Commit revert, 기존 기획 원본 유지 | `PASS` |
-| 사용자 승인 | 2026-07-27 `좋아 작업해` | `PASS` |
-| Concept Gate 승인 | 아직 없음 | `PENDING` |
-| Godot 구현 승인 | 없음 | `BLOCKED` |
+1. Gate 1 사용자 승인
+2. Vertical Slice 계약 승인
+3. `VERTICAL_SLICE_FULL_PROFILE` 전환 승인
+4. Codex read-only Plan 검수
+5. 구현 브랜치·완료 기준·검증 매트릭스 확정
 
-### 1.4 Documentation Implementation Gate
+현재 판정: `IMPLEMENTATION_NOT_READY`
 
-- [x] 승인된 Governance foundation 범위만 변경한다.
-- [x] 기존 기획 문서의 이동·삭제·강제 개명을 하지 않는다.
-- [x] Base Skill 본문을 프로젝트에 복제하지 않는다.
-- [x] 신규 파일을 한 책임 단위로 분리한다.
-- [x] Draft 기획 브랜치와 PR을 사용한다.
-- [x] `main` 직접 수정과 병합을 하지 않는다.
+---
 
-### 1.5 Verification Gate
-
-| 순서 | 검증 | 방법 | 현재 결과 |
-|---:|---|---|---|
-| 1 | 파일 존재 | GitHub branch fetch | 진행 중 |
-| 2 | Markdown·JSON 문법 | 구조·JSON 파싱 검토 | 진행 중 |
-| 3 | 경로 참조 | Registry·Map·Adapter 대상 경로 조회 | 진행 중 |
-| 4 | 기존 문서 보존 | PR changed files·compare | 진행 중 |
-| 5 | 상태 일관성 | 단계·프로필·Work Mode·다음 결정 교차 검토 | 진행 중 |
-| 6 | 콜드 스타트 | AGENTS→START_HERE→Context→Registry 읽기 | 진행 중 |
-| 7 | Godot 런타임 | 빌드 없음 | `NOT_RUN` |
-| 8 | 저장·접근성·성능 | 구현 없음 | `NOT_RUN` |
-| 9 | 사용자 수동 검수 | PR 확인 | `PENDING` |
-
-### 1.6 Documentation Gate
-
-- [x] AGENTS
-- [x] START_HERE
-- [x] Base Rules Version
-- [x] Documentation Map
-- [x] Development Gates
-- [x] Design Document Registry
-- [x] Skill Registry·Adapter route
-- [x] v6 계약 기록
-- [ ] Active Context 운영 경로 갱신 — 설치 작업에서 수행
-- [ ] README 진입점 갱신 — 설치 작업에서 수행
-- [ ] PDF·DOCX·Manifest — `NOT_REQUIRED_THIS_SCOPE`
-- [ ] 자동 Checker·Actions — `DEFERRED`
-
-### 1.7 Integration·Completion Gate
-
-운영체계 설치 완료 조건:
-
-- [ ] 모든 신규 경로가 기획 브랜치에 존재한다.
-- [ ] JSON 파일이 유효하게 파싱된다.
-- [ ] Registry가 실제 책임 원본을 가리킨다.
-- [ ] Skill route·adapter·Base pin이 일치한다.
-- [ ] Active Context와 README가 새 진입점을 가리킨다.
-- [ ] 기존 `docs/planning/` 정본이 보존된다.
-- [ ] Health Report에 PASS·PARTIAL·NOT_RUN을 구분한다.
-- [ ] Draft PR 상태와 최종 branch HEAD를 확인한다.
-
-## 2. v6 제품 승인 체계
-
-### Gate 1 — `CONCEPT_APPROVAL`
+## 3. Gate 1 — CONCEPT_APPROVAL
 
 현재 상태: `IN_PROGRESS`
 
-#### 목표
+### 목표
 
-만들 가치가 있고, 1인 개발 범위 안에서 CORE_POC와 버티컬 슬라이스로 증명할 수 있는 게임인지 판단한다.
+만들 가치가 있고, 1인 개발 범위 안에서 외부 플레이 가능한 Vertical Slice로 핵심 경험과 세일즈포인트를 증명할 수 있는지 판단한다.
 
-#### 현재 확보
+### 확보된 산출물
 
-- 플레이어 약속 후보
-- 직접 작성·스톡·소환수 책임 경계
-- 마법 글자·회로 문법
-- 마법학교 3년 육성 구조
-- Decision Log와 보호 결정
-- 다음 결정 `GM-STOCK-01`
+- [x] 목표 플레이어와 플레이 상황
+- [x] 최상위 플레이 경험
+- [x] 플레이어 약속
+- [x] 뾰족한 재미 우선순위
+- [x] Core Loop와 경험 곡선
+- [x] 프로젝트 코어·지원층·변경 가능한 외피
+- [x] 세일즈포인트 최대 3개
+- [x] 벤치마킹·SWOT·VRIO·1인 제작성
+- [x] 마스코트·상징 동반자 역할
+- [x] CORE_POC 없는 직접 Vertical Slice 경로
 
-#### 남은 필수 산출물
+### 남은 필수 산출물
 
-- [ ] 목표 플레이어와 플레이 상황
-- [ ] 프로젝트 코어·변경 가능한 외피 사용자 승인
-- [ ] 뾰족한 재미 우선순위 승인
-- [ ] Core Loop와 경험 곡선
-- [ ] 세일즈포인트 최대 3개
-- [ ] 제약·비타협 조건
-- [ ] 벤치마킹·SWOT·VRIO 행동안
-- [ ] 마스코트 또는 상징 동반자 후보와 실제 역할
-- [ ] CORE_POC 가설·대표 구간·통과·실패 기준
-- [ ] 버티컬 슬라이스 후보와 포함·제외 범위
+- [ ] `GM-SLICE-01` Vertical Slice 대표 구간
+- [ ] Slice 포함·제외 범위
+- [ ] Slice 통과·실패 기준
+- [ ] Android·접근성·성능·저장·복귀 검증 계획
 - [ ] Balance Tuning Backlog 초안
-- [ ] 적대적 콘셉트 검토와 P0·P1 해소
+- [ ] 적대적 콘셉트·범위 검토
+- [ ] P0·P1 처리 방안
+- [ ] 사용자 Gate 1 승인
 
-#### 통과 금지 조건
+### 통과 금지 조건
 
 - 사용자 승인 없는 `CORE_CONFIRMED`
 - 기능 목록만 있고 반복 행동·고민·감정이 불명확함
-- 핵심 차별점이 실제 플레이로 증명되지 않음
-- 모바일 터치 작성이 현실적으로 검증 가능한 범위로 축소되지 않음
-- CORE_POC가 전체 게임 또는 버티컬 슬라이스로 팽창함
+- 핵심 차별점이 실제 플레이로 증명될 범위가 없음
+- 모바일 터치 작성이 현실적인 판정·피로 범위로 축소되지 않음
+- Vertical Slice가 3년·6학기 또는 전체 게임 제작으로 팽창함
+- 별도 CORE_POC를 다른 이름으로 다시 만들며 중복 작업함
+- 직접 작성·조합·학습 순환의 검증이 아트·서사 제작 뒤로 밀림
 
-### Gate 2 — `PROTOTYPE_AND_VERTICAL_SLICE`
+---
+
+## 4. Gate 2 — PROTOTYPE_AND_VERTICAL_SLICE
 
 현재 상태: `NOT_ENTERED`
 
-진입 조건:
+### 진입 조건
 
-- Gate 1 승인
-- CORE_POC 계약 승인
+- Gate 1 사용자 승인
+- Vertical Slice 계약 승인
 - `VERTICAL_SLICE_FULL_PROFILE` 전환 승인
 - Codex read-only Plan 검수
 
-종료 조건:
+CORE_POC 계약·통과는 진입 조건이 아니다.
+
+### 실행 순서
 
 ```text
-CORE_POC
-→ 결과 기반 기획 재조정
-→ 버티컬 슬라이스 통합 데모
-→ QA
-→ 외부 SLICE_VALIDATION
+Validation-First Vertical Slice 핵심 인과 구현
+→ 내부 검증 빌드
+→ 결과 기반 설계 수정
+→ 최종 방향의 UI·아트·사운드 통합
+→ 외부 플레이 가능한 Slice
+→ QA·외부 SLICE_VALIDATION
 → Gate 3 판단 자료
 ```
 
-필수 증거:
+내부 검증 빌드는 Vertical Slice의 체크포인트이며 독립 CORE_POC 산출물이 아니다.
+
+### 필수 증거
+
+#### 핵심 플레이
+
+- 상황 관찰→글자 선택→직접 작성→세계 변화→재설계→발견 기록
+- 같은 메인 글자의 전투·환경 재사용
+- 최소 두 가지 유효 해결법
+- 실패 원인 이해와 복구
+
+#### 입력·모바일 UX
 
 - 실제 Android 테스트 빌드
-- 터치 작성·회로 판정
-- 직접 작성·스톡·소환수 연결
-- 성공·실패·복구
-- 저장·복귀
+- 터치 작성·판정과 즉시 피드백
+- 입력 실패와 설계 실패 분리
+- 완전 정지·감속·실시간 비교
+- 손가락 가림·피로·접근성
+- 다양한 화면비와 보급형 기기 성능
+
+#### Loop·소환수
+
+- 수업에서 배운 원리의 현장 이전
+- 메인 동반 소환수의 관계·학습·기록 연결
+- 전투 보조 소환수의 수호 또는 견제
+- 보조 소환수 유무에 따른 작성 시간·피격·완주율 비교
+
+#### 제품·제작성
+
+- 저장·중단·복귀
 - 최종 방향에 가까운 UI·아트·사운드
-- 접근성·다양한 화면비·보급형 기기 성능
 - 두 번째 유사 콘텐츠 제작 증거
 - 외부 플레이테스트의 행동·자기보고 분리
+- 실제 제작 공수와 병목 기록
 
-### Gate 3 — `PRODUCTION_APPROVAL`
+### 종료 조건
+
+- Vertical Slice 통과 기준 충족
+- 핵심 재미와 세일즈포인트가 외부 플레이어에게 인식됨
+- P0 차단 문제 없음
+- P1 위험에 수정 계획과 비용 추정이 있음
+- 두 번째 콘텐츠 제작성이 증명됨
+- Gate 3 판단 자료가 준비됨
+
+---
+
+## 5. Gate 3 — PRODUCTION_APPROVAL
 
 현재 상태: `NOT_ENTERED`
 
@@ -217,10 +234,12 @@ CORE_POC
 - 재도전·재방문·구매 의향
 - 제작 병목과 두 번째 콘텐츠 제작성
 - 목표 기기 성능과 남은 범위·비용·기간
-- 마스코트의 세계관·UX·브랜드 기여
+- 메인 동반자와 보조 소환수의 세계관·UX·브랜드 기여
 - 데이터 기반 수치 튜닝 구조
 
-### Gate 4 — `RELEASE_CANDIDATE_APPROVAL`
+---
+
+## 6. Gate 4 — RELEASE_CANDIDATE_APPROVAL
 
 현재 상태: `NOT_ENTERED`
 
@@ -230,45 +249,36 @@ CORE_POC
 - 저장 호환·접근성·성능·장시간 실행
 - Google Play 정책·등급·개인정보·데이터 안전·라이선스
 - 최종 스토어 자산과 실제 게임 일치
-- 출시 Runbook·긴급 패치·롤백·출시 후 대응
+- 출시 Runbook·긴급 수정·롤백 절차
 
-## 3. 현재 기획 진행 순서
+---
+
+## 7. Verification Gate
+
+| 순서 | 검증 | 현재 결과 |
+|---:|---|---|
+| 1 | 책임 원본 파일 존재 | `PASS` |
+| 2 | 상태 문서 일관성 | `IN_PROGRESS` |
+| 3 | Registry 경로와 JSON 유효성 | `IN_PROGRESS` |
+| 4 | Draft PR·branch HEAD | `IN_PROGRESS` |
+| 5 | 구현 파일 미혼입 | `IN_PROGRESS` |
+| 6 | Godot 런타임 | `NOT_RUN` |
+| 7 | Android·저장·접근성·성능 | `NOT_RUN` |
+| 8 | 사용자 수동 검수 | `PENDING` |
+
+---
+
+## 8. 다음 차단 결정
+
+`GM-SLICE-01`: 첫 Vertical Slice의 대표 구간, 포함·제외 범위, 통과·실패 기준을 확정한다.
+
+권장 후보:
 
 ```text
-GM-STOCK-01
-→ 목표 플레이어·플레이 상황
-→ 프로젝트 코어·뾰족한 재미 반례 검토
-→ Core Loop·경험 곡선·세일즈포인트
-→ 벤치마킹·SWOT·VRIO·제작성
-→ 마스코트 역할 후보
-→ CORE_POC 계약
-→ 적대적 검토
-→ GRILL_3_CORE_CONFIRMATION
-→ 사용자 Gate 1 승인
+짧은 수업
+→ 교내 연습
+→ 짧은 일상·준비
+→ 첫 현장실습의 전투 문제
+→ 환경·구조 문제
+→ 복귀·마도서 기록
 ```
-
-## 4. 현재 `BLOCKED_UNVERIFIED`
-
-- Godot 버전·렌더러·프로젝트 구조
-- 터치 입력 인식 방식과 허용 오차
-- 실제 모바일 화면의 회로 작성 공간
-- 스톡 UI와 직접 작성 UI의 혼잡도
-- 집중 모드 시간 감속의 조작감
-- 소환수 충전 지원의 체감
-- 1학년 `메인 1 + 보조 2` 조합 재미
-- 저장·복귀·성능·발열·배터리
-- Google Play 실제 정책·API·계정 조건
-
-## 5. 게이트 판정 규칙
-
-가능한 판정:
-
-- `APPROVED`
-- `APPROVED_WITH_CONDITIONS`
-- `REWORK`
-- `REPEAT_VALIDATION`
-- `HOLD`
-- `STOP`
-- `UNVERIFIED`
-
-세부 수치·기술값이 미확정이라는 이유만으로 사용자에게 질문하지 않는다. 기술안과 Balance Tuning Backlog로 묶고, 프로젝트 코어·플레이어 경험·주요 UX·범위·비용이 달라지는 충돌만 한 문항씩 결정한다.
