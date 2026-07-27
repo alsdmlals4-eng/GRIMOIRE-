@@ -1,5 +1,5 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "registry_role": "spell-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/Spell",
@@ -17,19 +17,25 @@
     "vertical_slice_contract_status": "APPROVED_AT_GATE_1_WITH_P0_AMENDMENT",
     "vertical_slice_structure": "COMPRESSED_SEMESTER_FOUR_CORE_SESSIONS_THREE_FREE_SCHEDULES",
     "adversarial_review_loop_status": "PASS_WITH_FOLLOWUP_BY_GM-VS-REVIEW-LOOP-01",
+    "visual_presentation_status": "LANDSCAPE_HYBRID_2D_CONFIRMED_BY_GM-VISUAL-PRESENTATION-01",
+    "visual_orientation": "LANDSCAPE",
+    "world_camera_structure": "FIXED_SCENE_BASED_3_QUARTER_VIEW",
+    "dialogue_presentation": "SCENE_BACKGROUND_WITH_CHARACTER_PORTRAIT_LAYER",
+    "spell_writing_presentation": "WORLD_SLOWDOWN_DIMMING_WITH_WRITING_OVERLAY",
     "solo_feasibility_status": "CONDITIONAL_PASS_CANDIDATE",
     "core_poc_status": "REMOVED_BY_USER_DECISION",
-    "asset_generation_status": "NOT_STARTED_BLOCKED_BY_VISUAL_PRESENTATION",
-    "audio_production_status": "NOT_STARTED_BLOCKED_BY_VISUAL_AUDIO_DIRECTION",
-    "next_blocking_decision": "GM-VISUAL-PRESENTATION-01"
+    "asset_generation_status": "NOT_STARTED_BLOCKED_BY_CHARACTER_PRESENTATION_ART_BIBLE_AND_ASSET_SPEC",
+    "audio_production_status": "NOT_STARTED_BLOCKED_BY_AUDIO_DIRECTION",
+    "next_blocking_decision": "GM-CHARACTER-PRESENTATION-01"
   },
   "planning_authority": {
     "master_contract": "user-provided VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
     "short_contract": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
     "master_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
-    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md",
+    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md",
     "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
     "gate_2_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
+    "gate_2_visual_presentation": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md",
     "previous_planning_documents_role": "REFERENCE_CANDIDATE"
   },
   "base_pin": {
@@ -44,10 +50,11 @@
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "decision_log": "docs/planning/DECISION_LOG.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md",
     "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
     "gate_1_vertical_slice_contract": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md",
     "gate_2_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27.md",
+    "gate_2_visual_presentation": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md",
     "asset_license_ledger": "docs/ASSET_LICENSE_LEDGER.md",
     "skill_registry": "skills/SKILL_REGISTRY.json"
   },
@@ -91,8 +98,24 @@
         "finding-validation",
         "must-fix-routing",
         "visual-audio-readiness",
-        "regression-recheck",
-        "next-visual-decision"
+        "regression-recheck"
+      ]
+    },
+    {
+      "id": "spell-gate-2-visual-presentation",
+      "title": "스펠 Gate 2 시각 표현 구조",
+      "source_path": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md",
+      "status": "ACTIVE_CONFIRMED_VISUAL_PRESENTATION_AUTHORITY",
+      "responsibility_coverage": [
+        "landscape-orientation",
+        "fixed-scene-based-three-quarter-world",
+        "scene-mode-continuity",
+        "dialogue-portrait-layer",
+        "spell-writing-overlay",
+        "screen-aspect-ratio-adaptation",
+        "world-and-camera-boundaries",
+        "visual-accessibility-guardrails",
+        "asset-production-implications"
       ]
     },
     {
@@ -156,6 +179,7 @@
       "source_path": "docs/planning/DECISION_LOG.md",
       "status": "ACTIVE_WITH_LATEST_ADDENDUM",
       "supporting_sources": [
+        "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27R.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27Q.md",
         "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27P.md"
       ]
@@ -197,15 +221,15 @@
     },
     {
       "responsibility": "visual-presentation-structure",
-      "status": "NEXT_BLOCKING_DECISION_GM-VISUAL-PRESENTATION-01"
+      "status": "CONFIRMED_BY_GM-VISUAL-PRESENTATION-01"
     },
     {
       "responsibility": "character-presentation",
-      "status": "BLOCKED_BY_VISUAL_PRESENTATION"
+      "status": "NEXT_BLOCKING_DECISION_GM-CHARACTER-PRESENTATION-01"
     },
     {
       "responsibility": "art-style-selection",
-      "status": "BLOCKED_BY_VISUAL_AND_CHARACTER_PRESENTATION"
+      "status": "BLOCKED_BY_CHARACTER_PRESENTATION"
     },
     {
       "responsibility": "art-bible-and-asset-spec",
@@ -213,11 +237,11 @@
     },
     {
       "responsibility": "audio-direction",
-      "status": "PLANNED_AFTER_VISUAL_STRUCTURE"
+      "status": "PLANNED_AFTER_VISUAL_STRUCTURE_AND_ART_STYLE"
     },
     {
       "responsibility": "asset-generation",
-      "status": "BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_USER_APPROVAL"
+      "status": "BLOCKED_BY_CHARACTER_PRESENTATION_ART_BIBLE_ASSET_SPEC_AND_USER_APPROVAL"
     },
     {
       "responsibility": "vertical-slice-profile-transition",
@@ -248,7 +272,13 @@
     "first_completion_target_minutes": "45-50",
     "first_completion_cap_minutes": 60,
     "implementation_order_is_m0_to_m4": true,
-    "visual_presentation_precedes_art_style": true,
+    "visual_orientation_is_landscape": true,
+    "world_camera_is_fixed_scene_based_three_quarter": true,
+    "dialogue_preserves_scene_background": true,
+    "spell_writing_preserves_world_context": true,
+    "landscape_16_9_is_reference_composition": true,
+    "landscape_18_9_to_20_9_uses_horizontal_world_extension": true,
+    "character_presentation_precedes_art_style": true,
     "art_style_precedes_mass_asset_generation": true,
     "generated_assets_require_provenance_and_user_approval": true,
     "profile_transition_requires_separate_user_approval": true,
