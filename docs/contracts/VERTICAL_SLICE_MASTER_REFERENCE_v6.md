@@ -1,4 +1,14 @@
 ---
+document_role: LEGACY_COMPATIBILITY
+active_authority: false
+implementation_authority: NONE
+replacement_execution_prompt: templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v8.md
+status: LEGACY_COMPATIBILITY
+---
+
+> `VERTICAL_SLICE_MASTER_REFERENCE_v6`은 과거 비교·호환 기록이다. 새 작업 실행은 Base v8 통합 실행문과 Spell 프로젝트 정본을 사용한다.
+
+---
 contract_name: VERTICAL_SLICE_MASTER_REFERENCE
 contract_version: "6.0"
 language: ko-KR

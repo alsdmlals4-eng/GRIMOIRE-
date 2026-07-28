@@ -287,3 +287,12 @@ Godot 구현 이후:
 4. Requirement·Skill·Artifact Coverage 감사
 5. 프로젝트 전용 유지와 Base 승격 후보 분리
 6. 실제 Commit·PR 상태와 미실행 검증 보고
+
+## BCA Sheet·GPT 이미지 생성·검수
+
+- Base 기준은 `alsdmlals4-eng/Base@7072b9e2742a60d7548fd39df3328ad76a8dbad1`와 v8 통합 실행문이다.
+- 현행 제품 단계는 `DEMO_FIRST_VERTICAL_SLICE`; `PROTOTYPE_AND_VERTICAL_SLICE`와 별도 `CORE_POC`는 역사·호환 별칭이다.
+- 프로젝트 Sheet는 `NOT_CONFIGURED`; URL 확인 전 신규 Sheet를 추정 생성하지 않는다.
+- GPT는 기획 중 화면·인물·회로·소환수 목업과 기획 종료 Demo·스토어 후보를 생성할 수 있다.
+- 생성 결과는 자동 최종 자산이 아니며 실제 화면·구현·권리·오류·승인 원장 검수 뒤 사용한다.
+- 각 단계 뒤 `repository-wide-audit`로 v6·구형 Gate·stale 이미지·untouched 소비자를 재검사한다.

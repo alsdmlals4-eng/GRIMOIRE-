@@ -151,3 +151,7 @@ ART-STYLE-01
 `ART-STYLE-01`
 
 승인된 필드 SD·대화 반신·별도 전투장·원소 정령 소환수 구성을 동일하게 사용하여 그림체 후보를 이미지로 비교한다.
+
+- Base v8 통합 실행문: `templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v8.md`
+- 프로젝트 Sheet: `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` (`NOT_CONFIGURED`)
+- GPT 이미지·검수: `docs/GPT_IMAGE_GENERATION_AND_REVIEW_WORKFLOW.md`

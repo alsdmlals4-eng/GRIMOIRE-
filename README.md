@@ -105,3 +105,12 @@ START_HERE
 승인된 필드 SD·대화 반신·별도 전투장·원소 정령 소환수 구성을 동일하게 사용해 그림체 후보를 예상 인게임 이미지로 비교합니다.
 
 현재는 대량 자산 제작, Godot 구현, Codex 실행, Draft PR 병합을 하지 않습니다.
+
+## BCA v8 기획·이미지·Sheet 운영
+
+- Base: `alsdmlals4-eng/Base@7072b9e2742a60d7548fd39df3328ad76a8dbad1`
+- 현재 단계: `DEMO_FIRST_VERTICAL_SLICE`
+- 통합 실행문: `VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v8.md`
+- Sheet: `NOT_CONFIGURED`; `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
+- GPT 이미지·검수: `docs/GPT_IMAGE_GENERATION_AND_REVIEW_WORKFLOW.md`
+- 적대적 검토: `docs/BCA_VISUAL_SHEET_ADOPTION_AUDIT.md`

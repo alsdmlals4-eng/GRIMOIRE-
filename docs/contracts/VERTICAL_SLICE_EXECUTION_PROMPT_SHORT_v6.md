@@ -1,3 +1,13 @@
+---
+document_role: LEGACY_COMPATIBILITY
+active_authority: false
+implementation_authority: NONE
+replacement_execution_prompt: templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v8.md
+status: LEGACY_COMPATIBILITY
+---
+
+> `VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6`은 과거 비교·호환 기록이다. 새 작업 실행은 Base v8 통합 실행문과 Spell 프로젝트 정본을 사용한다.
+
 # 버티컬 슬라이스 작업 축약 실행문 v6
 
 첨부한 `VERTICAL_SLICE_MASTER_REFERENCE_v6.md`를 이번 작업의 최상위 참고 계약으로 사용해줘.
