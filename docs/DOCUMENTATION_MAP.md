@@ -1,7 +1,7 @@
 # 스펠 Documentation Map
 
 - 책임: 프로젝트 허브·통합검수
-- 마지막 검토일: 2026-07-27
+- 마지막 검토일: 2026-07-29
 - 기준 브랜치: `gpt/planning-spell-20260725`
 - Base 기준 Commit: `438f41afd510c827c3097341bd9e5f9c9b0e1dd0`
 - 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
@@ -37,6 +37,7 @@ README.md
 | 캐릭터 표현 | `docs/planning/GATE_2_CHARACTER_PRESENTATION_SYSTEM.md` | `CONFIRMED` |
 | 소환수 2계층 코어 | `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md` | `CONFIRMED` |
 | 소환수 성장·형상·탑승 | `docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md` | `CONFIRMED_DIRECTION` |
+| 마법 글자 작성·인식 Pilot | `docs/planning/GATE_2_MAGIC_WRITING_INPUT_EVIDENCE_PACK_2026-07-29.md` | `PILOT_RECOMMENDATION / NOT_CANON` |
 | 결정 원장 | `docs/planning/DECISION_LOG.md` | `ACTIVE_WITH_LATEST_ADDENDUM` |
 | 최신 Addendum | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27S.md` | `LATEST_DECISION_RECORD` |
 | 개발 게이트 | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_AUTHORITY` |
@@ -162,6 +163,8 @@ ART-STYLE-01
 
 그림체 비교는 승인된 동일 인게임 구성을 이미지로 제시한다.
 
+마법 글자 작성·인식 Evidence Pilot은 `ART-STYLE-01`을 대체하거나 우회하지 않는다. 작성 오버레이와 향후 기술 Prototype의 입력·피드백 검증 계약으로만 사용한다.
+
 ## 9. 기존 시스템 참조
 
 다음은 `REFERENCE_CANDIDATE`다.
@@ -187,6 +190,7 @@ ART-STYLE-01
 | 캐릭터 표현 구조 | `CONFIRMED` |
 | 전투 화면 구조 | `CONFIRMED` |
 | 소환수 장기 성장 방향 | `CONFIRMED_DIRECTION` |
+| 마법 작성 입력·인식 검증 계약 | `PILOT_RECOMMENDATION / HUMAN_AND_DEVICE_NOT_RUN` |
 | 그림체 | `NEXT_BLOCKING_DECISION` |
 | Art Bible·Asset Specification | `NOT_AUTHORED` |
 | Audio Direction | `NOT_AUTHORED` |
