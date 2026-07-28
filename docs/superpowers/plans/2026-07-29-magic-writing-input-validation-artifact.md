@@ -5,7 +5,7 @@ session_packet_id: GRIMOIRE-HV-001
 project: GRIMOIRE
 baseline_branch: main
 baseline_commit: f3cd913faf67ee04069d78fe3024aa71e9f72b07
-base_governance: BASE_PR_56_PENDING_MERGE
+base_governance_commit: dd6ae48225da58088045733e8fdc3de5784bdeff
 base_governance_path: docs/knowledge/game-development/HUMAN_VALIDATION_ARTIFACT_GOVERNANCE.md
 base_template_path: templates/research/HUMAN_VALIDATION_SESSION_PACKET.md
 artifact_status: READY_FOR_LOW_FIDELITY_TOUCH_SESSION
@@ -14,7 +14,7 @@ android_performance_validation: NOT_RUN
 implementation_authority: NONE
 ```
 
-> 이 문서는 실제 글자 인식 알고리즘을 검증하지 않는다. 진행자가 제공하는 후보·확신 카드는 `SIMULATED_RECOGNITION_RESULT`이며, 후보 확인·부분 수정·입력 실패와 설계 실패의 책임 분리 UX만 검증한다.
+> 이 문서는 실제 글자 인식 알고리즘을 검증하지 않는다. 진행자가 제공하는 후보·확신 카드는 `SIMULATED_RECOGNITION_RESULT`이며 후보 확인·부분 수정·입력 실패와 설계 실패의 책임 분리 UX만 검증한다.
 
 ## 1. 결정 질문
 
@@ -51,7 +51,7 @@ claim_ceiling:
 
 ## 3. 보호 경계
 
-- 현재 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`, 구현 `NOT_STARTED`.
+- 제품 단계는 `PROTOTYPE_AND_VERTICAL_SLICE`, 구현은 `NOT_STARTED`다.
 - 별도 Core PoC를 재도입하지 않는다.
 - 신규·미숙·중요 글자의 직접 작성 원칙을 유지한다.
 - 메인 글자 1개 + 보조 글자 0개 이상 계약을 유지한다.
@@ -71,12 +71,7 @@ claim_ceiling:
 7. first attempt·post-feedback attempt 기록지.
 8. 행동·자기보고·진행자 개입 분리 기록지.
 
-### 작성 판
-
-- 작성 캔버스와 대상·위험 요약을 함께 표시한다.
-- `마지막 획 취소 / 전체 지우기 / 글자 확인`의 후보 터치 영역은 48dp 이상으로 준비한다.
-- 선은 손가락 이동과 동시에 보이게 하되 실제 latency 측정값으로 보고하지 않는다.
-- 상태는 색상 외 문구·아이콘으로 중복 표현한다.
+조작 후보 영역은 48dp 이상으로 준비하고, 상태는 색상 외 문구·아이콘으로 중복 표현한다. 이는 실제 접근성 통과 선언이 아니다.
 
 ## 5. 연구용 글자
 
@@ -86,8 +81,6 @@ claim_ceiling:
 | `RESEARCH_GLYPH_B` | SHIELD / 막기 | 1 | 입력 성공·상황 부적합 |
 | `RESEARCH_GLYPH_C` | OPEN / 열기 | 1 | 진행 방향 후보 충돌 |
 | `RESEARCH_GLYPH_D` | ANCHOR / 고정 | 2 | 마지막 획 취소 |
-
-이 글자는 최종 마법 체계가 아니다.
 
 ## 6. 시나리오
 
@@ -106,28 +99,18 @@ allowed_recovery: [ALTERNATE, REWRITE]
 forbidden: [AUTOMATIC_CAST]
 ```
 
-측정: 실제 인식 성공이 아니라 낮은 확신과 대안 후보를 이해하고 시전 전 수정하는가.
+실제 인식 성공이 아니라 낮은 확신과 대안 후보를 이해하는지 측정한다.
 
 ### 2 — 입력 성공·설계 실패
 
 ```yaml
 scenario_id: GR-WRITE-2
 situation: "밀려오는 상자를 이동시킨 뒤 지정 위치에 고정하라"
-simulated_result:
-  recognized: SHIELD
-  confidence: HIGH
-semantic_result:
-  input_valid: true
-  design_valid: false
-allowed_recovery:
-  - 인식된 글자 보존
-  - 메인 글자 교체
-  - 보조 ANCHOR 추가
-forbidden:
-  - 설계 실패 때문에 전체 획 강제 재작성
+simulated_result: {recognized: SHIELD, confidence: HIGH}
+semantic_result: {input_valid: true, design_valid: false}
+allowed_recovery: [PRESERVE_RECOGNIZED, REPLACE_MAIN, ADD_ANCHOR]
+forbidden: [FORCE_FULL_REWRITE]
 ```
-
-측정: `글자는 인식됐지만 주문 설계가 상황에 맞지 않는다`고 구분하는가.
 
 ### 3 — 마지막 획 취소
 
@@ -144,8 +127,6 @@ allowed_recovery: [UNDO_LAST, REDRAW_SECOND]
 forbidden: [CLEAR_ALL_REQUIRED]
 ```
 
-측정: 진행자가 버튼을 지시하지 않아도 마지막 획 취소를 찾는가.
-
 ### 4 — 손가락 가림과 경고
 
 ```yaml
@@ -156,30 +137,24 @@ warning_timing: "획이 하단 중앙을 지날 때"
 required_observation: "확정 전에 경고 변화를 확인"
 ```
 
-측정: 가림과 경고 발견 가능성. 인식 성능과 분리한다.
-
 ## 7. 진행자 스크립트
-
-시작 문구:
 
 > 시스템이 어떤 글자로 인식했다고 제시하는지 확인하고 필요하면 수정한 뒤, 그 글자가 상황에 맞는 주문인지 별도로 판단해 주세요. 후보 카드는 실제 인식 알고리즘 결과가 아니라 흐름을 검증하기 위한 모의 결과입니다.
 
-순서:
-
-1. 상황·연구용 글자 카드 공개.
+1. 상황·글자 카드 공개.
 2. 참가자가 손가락으로 작성.
-3. 작성 종료까지의 시간을 `drawing_completion_seconds`로 기록.
-4. **first attempt**로 작성 행동과 예상 글자·설명을 기록.
-5. 진행자가 `SIMULATED_RECOGNITION_RESULT`를 공개하고 개입 기록.
+3. 작성 종료까지를 `drawing_completion_seconds`로 기록한다. 알고리즘 latency가 아니다.
+4. 피드백 전 `first_attempt_shape_intent`를 기록한다.
+5. `SIMULATED_RECOGNITION_RESULT`를 공개하고 `facilitator_intervention`에 기록한다.
 6. 참가자가 후보 확인·수정·확정.
-7. **post-feedback attempt**로 수정 경로와 이유 기록.
-8. 의미 조합·상황 판정 카드 공개.
+7. `post_feedback_attempt`로 수정 경로와 이유 기록.
+8. 의미 조합·상황 판정 공개.
 9. 입력 실패와 설계 실패를 구분하게 한다.
-10. 행동 기록 뒤 가림·피로·자동화 선호를 자기보고로 질문한다.
+10. 행동 기록 뒤 가림·피로·자동화 선호를 질문한다.
 
 진행자는 후보·조합을 대신 선택하거나 마지막 획 취소를 지시하지 않는다.
 
-## 8. 참가자와 기기
+## 8. 참가자와 기록
 
 ```yaml
 pilot_purpose: UX_RESPONSIBILITY_AND_RECOVERY_DEFECT_DISCOVERY
@@ -190,63 +165,44 @@ segments:
 devices:
   - small_android_phone_finger
   - medium_android_phone_finger
-optional:
-  - supported_stylus_device
+optional: [supported_stylus_device]
 scenario_order:
   group_1: [1, 2, 3, 4]
   group_2: [4, 3, 2, 1]
 session_minutes: 25-35
 ```
 
-모든 참가자는 손가락 세션을 수행한다. 기기 차이는 기록하지만 실제 Android 성능·인식 정확도를 주장하지 않는다.
+분리 기록:
 
-## 9. 관찰 기록
+- `drawing_completion_seconds`.
+- 피드백 전 의도한 글자·이유.
+- 공개한 simulated 카드와 진행자 개입.
+- 후보·확신 상태 설명.
+- 수정 경로와 힌트 없는 발견 여부.
+- 입력 실패/설계 실패 설명.
+- 경고 확인·실제 가림·오터치 행동.
+- 피로·가림·자동 보정 자기보고.
+- 자동 시전 요구·실패 유형 혼동·경고 누락 critical incident.
 
-| 필드 | 정의 |
-|---|---|
-| `participant_id` | 개인정보 없는 코드 |
-| `segment` | LOW / EXPERIENCED |
-| `device_class` | SMALL_PHONE / MEDIUM_PHONE / STYLUS_OPTIONAL |
-| `scenario_id` | 1~4 |
-| `drawing_completion_seconds` | 첫 터치부터 작성 종료까지; 알고리즘 latency 아님 |
-| `first_attempt_shape_intent` | 피드백 전 의도한 글자·이유 |
-| `simulated_candidate_card` | 공개한 카드 ID |
-| `facilitator_intervention` | 후보·판정 공개 시점·문구 |
-| `candidate_state_understood` | 후보·확신 상태 설명 0/1 |
-| `post_feedback_correction` | ALTERNATE / UNDO_LAST / REWRITE / CLEAR_ALL / NONE |
-| `correction_path_discovered_without_hint` | 0/1 |
-| `input_vs_design_explained` | 0/1 |
-| `warning_seen_before_confirm` | 0/1 |
-| `occlusion_observed` | 실제 가림 행동 |
-| `mis_touch_count` | 수 |
-| `behavior_observation` | 실제 선택·되돌리기·시간 |
-| `player_self_report` | 피로·가림·자동 보정 선호 |
-| `critical_incident` | 자동 시전 요구·실패 유형 혼동·경고 누락 |
-
-다음 필드는 사용하지 않는다.
+사용 금지 지표:
 
 - `first_attempt_recognition_success_rate`
 - `final_recognition_rate`
 - `recognizer_latency`
 - `confidence_calibration_accuracy`
 
-## 10. 판정
+## 9. 판정
 
-1. 연구 글자가 최종 정본으로 사용되거나 범위가 별도 Core PoC로 확장되면 `STOP`.
-2. simulated 후보를 실제 인식 성능으로 보고하면 `STOP`.
-3. 심각도 높은 자동 오시전·실패 유형 혼동·경고 누락 사례를 본다.
-4. 서로 다른 참가자 2명 이상에게 반복된 후보·부분 수정·가림 결함을 본다.
-5. 경험군·기기 차이를 본다.
-6. 비율은 `n/N` 참고값으로만 기록한다.
+비율은 `n/N` 참고값으로만 기록한다.
 
 ```yaml
 PROMISING_DIRECTION:
   required_patterns:
     - "서로 다른 참가자 2명 이상이 후보·확신 상태를 자기 말로 설명"
     - "입력 실패와 설계 실패를 구분"
-    - "진행자 힌트 없이 부분 수정 경로를 발견하거나 발견 실패 원인을 명확히 기록"
+    - "부분 수정 경로를 발견하거나 발견 실패 원인을 명확히 기록"
     - "scripted 흐름에서 낮은 확신 자동 시전 없음"
-  claim: "후보 확인→부분 수정→의미 조합의 UX 책임 분리를 기술 Prototype에서 계속 검증할 방향을 지지"
+  claim: "후보 확인→부분 수정→의미 조합의 UX 책임 분리를 기술 Prototype에서 검증할 방향을 지지"
 ADAPT:
   condition: "책임 분리는 이해되지만 후보 표시·부분 수정·가림 중 반복 혼란"
 REWORK:
@@ -257,21 +213,9 @@ STOP:
   condition: "simulated 결과를 실제 정확도로 보고, 연구 글자를 정본화, 별도 Core PoC 확장"
 ```
 
-판정은 `PIPELINE_RESPONSIBILITY_PROMISING` 의미의 공용 `PROMISING_DIRECTION`까지만 허용한다. 실제 알고리즘 채택은 별도 기술 Prototype이 책임진다.
+판정은 공용 `PROMISING_DIRECTION`까지만 허용한다. 실제 알고리즘 채택은 별도 기술 Prototype이 책임진다.
 
-## 11. 후속 기술 Prototype 경계
-
-별도 승인 뒤 다음을 실제로 측정한다.
-
-- 단일·다중 획 정확도.
-- 방향·획 순서 의미.
-- confidence calibration.
-- 후보 표시 latency.
-- 손가락·스타일러스 차이.
-- 오프라인 데이터 보존.
-- Godot Android 성능·접근성.
-
-## 12. 현재 상태
+## 10. 현재 상태
 
 ```yaml
 research_glyphs_canonized: false
