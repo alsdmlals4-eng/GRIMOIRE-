@@ -1,0 +1,22 @@
+name: Validate Spell BCA Adoption
+on:
+  pull_request:
+    branches: [main]
+    paths: ["README.md","AGENTS.md","START_HERE.md","docs/**","skills/SKILL_REGISTRY.json","tests/test_bca_visual_sheet_adoption.py",".github/workflows/validate-bca-visual-sheet-adoption.yml"]
+permissions: {contents: read}
+concurrency:
+  group: spell-bca-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: python -m unittest tests.test_bca_visual_sheet_adoption -v
+      - name: Stale active-reference audit
+        shell: bash
+        run: |
+          git grep -n -I -E 'PROTOTYPE_AND_VERTICAL_SLICE|VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6|VERTICAL_SLICE_MASTER_REFERENCE_v6' -- README.md AGENTS.md START_HERE.md docs skills || true
+          git diff --check origin/main...HEAD
