@@ -21,6 +21,7 @@ README.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
 → docs/planning/DECISION_LOG.md
 → 주제별 책임 원본
+→ Evidence Pilot·사람 검증 Artifact
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
 ```
@@ -38,6 +39,7 @@ README.md
 | 소환수 2계층 코어 | `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md` | `CONFIRMED` |
 | 소환수 성장·형상·탑승 | `docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md` | `CONFIRMED_DIRECTION` |
 | 마법 글자 작성·인식 Pilot | `docs/planning/GATE_2_MAGIC_WRITING_INPUT_EVIDENCE_PACK_2026-07-29.md` | `PILOT_RECOMMENDATION / NOT_CANON` |
+| 마법 글자 작성·인식 사람 검증 Artifact | `docs/superpowers/plans/2026-07-29-magic-writing-input-validation-artifact.md` | `HUMAN_VALIDATION_INPUT / NOT_CANON` |
 | 결정 원장 | `docs/planning/DECISION_LOG.md` | `ACTIVE_WITH_LATEST_ADDENDUM` |
 | 최신 Addendum | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27S.md` | `LATEST_DECISION_RECORD` |
 | 개발 게이트 | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_AUTHORITY` |
@@ -127,7 +129,31 @@ START_HERE
 - 후행: 메인 2~4단계·형상 선택 UI·탑승
 - 미확정: 전투 소환수 4역할 전체·성장·탑승
 
-## 7. 적대적 검토 루프 02
+## 7. 마법 작성 Evidence Pilot·검증 Artifact 경계
+
+`docs/planning/GATE_2_MAGIC_WRITING_INPUT_EVIDENCE_PACK_2026-07-29.md`는 다음을 소유한다.
+
+- 입력 인식 실패와 주문 설계 실패를 분리해야 한다는 가설.
+- 획 입력→후보 확인→의미 조합→상황 판정→세계 변화의 책임 분리.
+- 직접 작성·부분 수정·손가락 가림·낮은 확신 자동 시전 금지 원칙.
+
+`docs/superpowers/plans/2026-07-29-magic-writing-input-validation-artifact.md`는 다음을 소유한다.
+
+- `RESEARCH_ONLY_GLYPH` 4개와 저충실도 Android 터치 세션 구성.
+- simulated 인식 후보를 사용한 4개 시나리오.
+- 진행자 스크립트·기기 분류·관찰 기록지·Pilot 판정 기준.
+- 사람 세션 뒤 작성할 검증 보고서 계약.
+
+두 문서는 다음을 소유하지 않는다.
+
+- 최종 글자·룬·의미·세계관 정본.
+- 인식 알고리즘 선정.
+- Godot 코드·Scene·Resource·Save Schema.
+- `ART-STYLE-01` 또는 `ART-BIBLE-01` 승인.
+- 별도 CORE_POC.
+- Vertical Slice 구현·사람·Android·접근성·성능 완료 판정.
+
+## 8. 적대적 검토 루프 02
 
 ```text
 정본·결정 기억 공격
@@ -150,7 +176,7 @@ START_HERE
 - 결정 기억 운영 `MUST_FIX / FIXED`
 - 최종 `PASS_WITH_CORRECTIONS`
 
-## 8. 프리프로덕션 경로
+## 9. 프리프로덕션 경로
 
 ```text
 ART-STYLE-01
@@ -163,9 +189,9 @@ ART-STYLE-01
 
 그림체 비교는 승인된 동일 인게임 구성을 이미지로 제시한다.
 
-마법 글자 작성·인식 Evidence Pilot은 `ART-STYLE-01`을 대체하거나 우회하지 않는다. 작성 오버레이와 향후 기술 Prototype의 입력·피드백 검증 계약으로만 사용한다.
+마법 글자 작성·인식 Evidence Pilot과 사람 검증 Artifact는 `ART-STYLE-01`을 대체하거나 우회하지 않는다. 작성 오버레이와 향후 기술 Prototype의 입력·피드백 검증 경로로만 사용한다.
 
-## 9. 기존 시스템 참조
+## 10. 기존 시스템 참조
 
 다음은 `REFERENCE_CANDIDATE`다.
 
@@ -180,7 +206,7 @@ ART-STYLE-01
 - 수치는 `UNVERIFIED` 또는 `BALANCE_TUNING_BACKLOG`
 - 폐기·대체 결정은 이력으로 보존
 
-## 10. 구현·검증 상태
+## 11. 구현·검증 상태
 
 | 항목 | 상태 |
 |---|---|
@@ -190,7 +216,8 @@ ART-STYLE-01
 | 캐릭터 표현 구조 | `CONFIRMED` |
 | 전투 화면 구조 | `CONFIRMED` |
 | 소환수 장기 성장 방향 | `CONFIRMED_DIRECTION` |
-| 마법 작성 입력·인식 검증 계약 | `PILOT_RECOMMENDATION / HUMAN_AND_DEVICE_NOT_RUN` |
+| 마법 작성 입력·인식 근거 | `PILOT_RECOMMENDATION / NOT_CANON` |
+| 마법 작성 사람 검증 Artifact | `READY_FOR_LOW_FIDELITY_TOUCH_SESSION / HUMAN_AND_DEVICE_NOT_RUN` |
 | 그림체 | `NEXT_BLOCKING_DECISION` |
 | Art Bible·Asset Specification | `NOT_AUTHORED` |
 | Audio Direction | `NOT_AUTHORED` |
@@ -199,21 +226,31 @@ ART-STYLE-01
 | 외부 자산 라이선스 조사 | `NOT_RUN` |
 | 런타임·접근성·성능 | `NOT_RUN` |
 
-## 11. 현재 금지
+## 12. 현재 금지
 
 - `main` 직접 수정
 - 사용자 승인 없는 PR 병합
 - Art Bible·Asset Specification 전 대량 이미지·사운드 제작
 - 메인 소환수 4단계 전체를 Vertical Slice에 추가
 - 전투 소환수 4역할 전체를 승인 없이 확정
+- 연구용 글자를 세계관·아트 정본으로 승격
+- simulated 인식 결과를 실제 알고리즘 성능으로 주장
 - 별도 CORE_POC 재도입
 - `VERTICAL_SLICE_FULL_PROFILE` 자동 전환
 - Codex 실행
 - Godot 구현
 - 런타임 증거 없는 완료 선언
 
-## 12. 다음 라우팅
+## 13. 다음 라우팅
+
+### 제품 기획 차단 결정
 
 `ART-STYLE-01`
 
 학교 필드 SD·대화 반신·별도 3/4 전술 전투장·메인 원소 정령수 초기 형상·수호 또는 견제 보조 소환수·마법 작성 오버레이를 같은 구성으로 유지한 채 그림체 후보를 이미지로 비교한다.
+
+### 독립 연구 준비 경로
+
+`docs/superpowers/plans/2026-07-29-magic-writing-input-validation-artifact.md`
+
+제품 구현과 아트 정본을 만들지 않고 Android 저충실도 터치 세션 패킷을 준비할 수 있다. 실제 사람 세션·기기·성능·접근성 결과는 실행 전 `NOT_RUN`을 유지한다.
