@@ -1,11 +1,11 @@
-# GRIMOIRE: 세계를 다시 쓰는 법 
+# GRIMOIRE: 세계를 다시 쓰는 법
 
 모바일 터치 기반 마법 글자·회로 전투와 마법학교 생활을 결합한 Godot 프로젝트입니다.
 
-- 저장소: `https://github.com/alsdmlals4-eng/Spell`
+- 저장소: `https://github.com/alsdmlals4-eng/GRIMOIRE-`
 - 엔진: Godot
 - 목표 플랫폼: Android / Google Play
-- 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
+- 제품 단계: `DEMO_FIRST_VERTICAL_SLICE`
 - Gate 1: `APPROVED`
 - 프로젝트 코어: `CORE_CONFIRMED`
 - 실행 프로필: `PLANNING_ONLY_PROFILE`
@@ -26,6 +26,7 @@
 8. `docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md`
 9. `docs/DEVELOPMENT_GATES.md`
 10. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+11. `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
 
 ## Vertical Slice
 
@@ -98,10 +99,20 @@ START_HERE
 → 주제별 책임 원본
 ```
 
+## GDD Google Sheets 운영
+
+- Base·Skill 기준 원본: `docs/BASE_RULES_VERSION.md`
+- Sheet 상태: `PROJECT_SHEET_CONFIGURED`
+- Workbook 계약: `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
+- Workbook 역할: `USER_FACING_GDD_WORKSPACE`
+- 사용자 Sheet 편집: `PROPOSED_SHEET_CHANGE`
+- GitHub에 없는 Sheet 변경은 자동 정본화하지 않는다.
+- 승인 후 GitHub와 Sheet를 모두 재조회한 경우에만 `SYNCED`로 판정한다.
+
 ## 다음 결정
 
 `ART-STYLE-01`
 
 승인된 필드 SD·대화 반신·별도 전투장·원소 정령 소환수 구성을 동일하게 사용해 그림체 후보를 예상 인게임 이미지로 비교합니다.
 
-현재는 대량 자산 제작, Godot 구현, Codex 실행, Draft PR 병합을 하지 않습니다.
+현재는 대량 자산 제작, Godot 구현, Codex 실행을 하지 않습니다.

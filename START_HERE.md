@@ -1,4 +1,4 @@
-# 스펠 시작 지점
+# GRIMOIRE 시작 지점
 
 > 새 사용자·GPT·Codex·작업자가 현재 상태, 확정 결정과 다음 작업을 가장 먼저 확인하는 대시보드다.
 
@@ -6,7 +6,7 @@
 
 | 항목 | 현재 기준 |
 |---|---|
-| 제품 단계 | `PROTOTYPE_AND_VERTICAL_SLICE` |
+| 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | Gate 1 | `APPROVED` |
 | 프로젝트 코어 | `CORE_CONFIRMED` |
 | 실행 프로필 | `PLANNING_ONLY_PROFILE` |
@@ -19,8 +19,10 @@
 | 구현 | `NOT_STARTED` |
 | Codex | `NOT_RUN` |
 | 이미지·사운드 대량 제작 | `NOT_STARTED` |
+| Google Sheet | `PROJECT_SHEET_CONFIGURED` |
+| Workbook 역할 | `USER_FACING_GDD_WORKSPACE` |
 | 다음 차단 결정 | `ART-STYLE-01` |
-| 기준 브랜치 | `gpt/planning-spell-20260725` |
+| 기준 브랜치 | `main` |
 
 ## 먼저 읽을 문서
 
@@ -37,7 +39,8 @@
 11. `docs/DESIGN_DOCUMENT_REGISTRY.json`
 12. `docs/ASSET_LICENSE_LEDGER.md`
 13. `skills/SKILL_REGISTRY.json`
-14. `docs/DOCUMENTATION_MAP.md`
+14. `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
+15. `docs/DOCUMENTATION_MAP.md`
 
 ## 재질문 방지
 
@@ -117,6 +120,14 @@
 - 메인 2~4단계·형상 선택 UI·탑승은 후행
 - 전투 소환수 4역할 전체·성장·탑승은 미확정
 
+## GDD Google Sheets 규칙
+
+- Sheet는 독립 정본이 아니라 `USER_FACING_GDD_WORKSPACE`다.
+- GitHub에 없는 편집은 `PROPOSED_SHEET_CHANGE`로 보존한다.
+- 확정 결정·임시 값·미검증 상태를 같은 값으로 취급하지 않는다.
+- 승인 후 GitHub와 Sheet를 모두 재조회한 경우에만 `SYNCED`로 판정한다.
+- `05_GDD_요약`, `15_조작_게임규칙`, `51_미니게임`, `52_글쓰기_서사`를 포함한 검증 탭은 `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`가 소유한다.
+
 ## 이미지 작업 규칙
 
 - 이미지 관련 선택은 가능한 경우 인게임 예상 이미지로 제시
@@ -144,7 +155,7 @@ ART-STYLE-01
 - 별도 CORE_POC 재도입
 - `VERTICAL_SLICE_FULL_PROFILE` 자동 전환
 - Godot 구현·Codex 실행
-- PR 병합
+- 사용자 명시적 요청과 검증 없는 PR 병합
 
 ## 다음 결정
 

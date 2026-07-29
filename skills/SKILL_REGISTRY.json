@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "registry_role": "spell-project-skill-router",
+  "registry_role": "grimoire-project-skill-router",
   "project": {
-    "repository": "alsdmlals4-eng/Spell",
-    "name": "스펠",
-    "product_stage": "PROTOTYPE_AND_VERTICAL_SLICE",
+    "repository": "alsdmlals4-eng/GRIMOIRE-",
+    "name": "GRIMOIRE: 세계를 다시 쓰는 법",
+    "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "gate_1_status": "APPROVED",
     "project_core_status": "CORE_CONFIRMED",
     "execution_profile": "PLANNING_ONLY_PROFILE",
@@ -18,7 +18,7 @@
   },
   "base_registry_route": {
     "repository": "alsdmlals4-eng/Base",
-    "commit": "438f41afd510c827c3097341bd9e5f9c9b0e1dd0",
+    "commit": "c987647d01ad2baa028a16e03d85ddfc1572a727",
     "source_registry": "skills/SKILL_REGISTRY.json",
     "selection": "automatic-trigger-match",
     "automatic_selection": true,
@@ -26,11 +26,16 @@
     "adapter": "skills/PROJECT_BASE_SKILL_ADAPTER.json",
     "extension_routes": "skills/BASE_SHARED_SKILL_ROUTES.json",
     "copy_skill_bodies_to_project": false,
-    "load_all_skills": false
+    "load_all_skills": false,
+    "integrated_execution_prompt": "templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v8.md",
+    "project_sheet_status": "PROJECT_SHEET_CONFIGURED",
+    "project_sheet_url": "https://docs.google.com/spreadsheets/d/19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM/edit",
+    "project_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "project_sheet_role": "USER_FACING_GDD_WORKSPACE",
+    "project_sheet_edit_policy": "PROPOSED_SHEET_CHANGE",
+    "project_sheet_last_verified_at": "2026-07-29"
   },
   "execution_contracts": {
-    "short_v6": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
-    "master_v6_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
     "project_agents": "AGENTS.md",
     "start_here": "START_HERE.md",
     "active_context": "docs/ACTIVE_CONTEXT.md",
@@ -43,7 +48,12 @@
     "latest_adversarial_review": "docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27B.md",
     "visual_presentation": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md",
     "character_presentation": "docs/planning/GATE_2_CHARACTER_PRESENTATION_SYSTEM.md",
-    "summon_growth_and_form": "docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md"
+    "summon_growth_and_form": "docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md",
+    "integrated_v8": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v8.md",
+    "project_sheet": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
+    "image_workflow": "docs/GPT_IMAGE_GENERATION_AND_REVIEW_WORKFLOW.md",
+    "short_v6_legacy": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
+    "master_v6_manifest_legacy": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md"
   },
   "routing_policy": {
     "minimum_sufficient_skill_per_subtask": true,
@@ -94,53 +104,109 @@
   "active_base_routes": [
     {
       "skill_id": "managing-project-intake-and-work-contract",
-      "modes": ["route", "clarify", "contract", "decompose-and-sequence", "execution-report"],
+      "modes": [
+        "route",
+        "clarify",
+        "contract",
+        "decompose-and-sequence",
+        "execution-report"
+      ],
       "current_use": "Every non-trivial planning, review, workflow, asset, or implementation request"
     },
     {
       "skill_id": "managing-game-project-operating-system",
-      "modes": ["audit", "reconcile-legacy", "verify"],
+      "modes": [
+        "audit",
+        "reconcile-legacy",
+        "verify"
+      ],
       "current_use": "State reconciliation, canonical routing, and cold-start verification"
     },
     {
       "skill_id": "maintaining-project-context-and-handoff",
-      "modes": ["context-refresh", "session-handoff", "implementation-package-handoff"],
+      "modes": [
+        "context-refresh",
+        "session-handoff",
+        "implementation-package-handoff"
+      ],
       "current_use": "Refresh current decision snapshot and Active Context after every approved decision"
     },
     {
       "skill_id": "analyzing-and-refining-game-concepts",
-      "modes": ["recalibrate", "production-gate"],
+      "modes": [
+        "recalibrate",
+        "production-gate"
+      ],
       "current_use": "Gate 1 is approved; reopen core only with explicit evidence and user decision"
     },
     {
       "skill_id": "identifying-project-core",
-      "modes": ["read-only-core-identification"],
+      "modes": [
+        "read-only-core-identification"
+      ],
       "current_use": "Protect CORE_CONFIRMED and distinguish support, shell, removed, and unverified elements"
     },
     {
       "skill_id": "managing-design-documents",
-      "modes": ["author", "update", "restructure", "validate"],
-      "current_use": "Maintain current snapshot, decision ledger, art and audio preproduction sources"
+      "modes": [
+        "author",
+        "update",
+        "restructure",
+        "validate"
+      ],
+      "current_use": "Maintain current snapshot, decision ledger, Sheet semantic structure, art and audio preproduction sources"
     },
     {
       "skill_id": "designing-vertical-slices",
-      "modes": ["quality-bar", "pipeline-proof", "playtest-evidence", "decision-gate"],
+      "modes": [
+        "quality-bar",
+        "pipeline-proof",
+        "playtest-evidence",
+        "decision-gate"
+      ],
       "current_use": "Approved Slice quality and pipeline planning; implementation blocked by profile transition"
     },
     {
       "skill_id": "running-adversarial-review-and-refinement",
-      "modes": ["review-scope-map", "attack", "validate-critique", "route-findings", "refine-approved-findings", "regression-recheck", "decision-report"],
-      "current_use": "Review loop 02 completed; repeat after Art Bible, Asset Specification, Audio Direction, and major changes"
+      "modes": [
+        "review-scope-map",
+        "attack",
+        "validate-critique",
+        "route-findings",
+        "refine-approved-findings",
+        "regression-recheck",
+        "decision-report",
+        "repository-wide-audit"
+      ],
+      "current_use": "Repeat after Art Bible, Asset Specification, Audio Direction, Sheet contract changes, and major decisions"
     },
     {
       "skill_id": "reviewing-and-validating-project-changes",
-      "modes": ["contract-check", "reference-freshness", "static-validation", "accessibility-review", "regression", "evidence-report"],
-      "current_use": "Documentation and visual-reference validation now; runtime validation after implementation"
+      "modes": [
+        "contract-check",
+        "reference-freshness",
+        "static-validation",
+        "accessibility-review",
+        "regression",
+        "evidence-report"
+      ],
+      "current_use": "Documentation, Sheet, and visual-reference validation now; runtime validation after implementation"
     },
     {
       "skill_id": "auditing-canonical-reference-freshness",
-      "modes": ["reference-freshness"],
-      "current_use": "Required whenever decisions, canonical paths, Registry, asset ledger, or generated references change"
+      "modes": [
+        "reference-freshness"
+      ],
+      "current_use": "Required whenever decisions, canonical paths, Registry, Sheet contract, asset ledger, or generated references change"
+    },
+    {
+      "skill_id": "designing-art-prompts-and-technique-cards",
+      "modes": [
+        "planning-visualization",
+        "final-visual-candidate",
+        "visual-qa-and-approval"
+      ],
+      "current_use": "Generate planning and final-candidate images and review them before asset approval"
     }
   ],
   "required_extension_routes": [
@@ -162,7 +228,7 @@
     "gate_1_concept": {
       "status": "APPROVED"
     },
-    "gate_2_prototype_vertical_slice": {
+    "gate_2_demo_first_vertical_slice": {
       "status": "ENTERED_PLANNING_ONLY",
       "current_substage": "ART_STYLE_SELECTION",
       "completed_preproduction_decisions": [
@@ -179,7 +245,59 @@
         "codex": "BLOCKED_BY_PROFILE_TRANSITION",
         "godot_implementation": "BLOCKED_BY_PROFILE_TRANSITION",
         "runtime_validation": "BLOCKED_BY_IMPLEMENTATION"
-      }
+      },
+      "legacy_gate_alias": "PROTOTYPE_AND_VERTICAL_SLICE"
     }
+  },
+  "bca_visual_sheet": {
+    "status": "ADOPTED",
+    "sheet_status": "PROJECT_SHEET_CONFIGURED",
+    "spreadsheet_url": "https://docs.google.com/spreadsheets/d/19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM/edit",
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "workbook_role": "USER_FACING_GDD_WORKSPACE",
+    "sheet_edit_policy": "PROPOSED_SHEET_CHANGE",
+    "last_verified_at": "2026-07-29",
+    "required_tabs": [
+      "00_프로젝트_허브",
+      "01_작업순서",
+      "02_현재_확정결정",
+      "03_근거_라이브러리",
+      "04_누락_충돌_감사",
+      "05_GDD_요약",
+      "10_제품방향",
+      "11_세계관",
+      "12_핵심루프",
+      "13_주요인물",
+      "14_조연_세력_관계",
+      "15_조작_게임규칙",
+      "20_코어경험_데모목표",
+      "30_데모범위_품질기준_제작기반",
+      "40_핵심시스템_메인콘텐츠",
+      "41_성장_경제",
+      "50_메인콘텐츠",
+      "51_미니게임",
+      "52_글쓰기_서사",
+      "60_UX_UI_접근성",
+      "70_아트_오디오_에셋",
+      "71_이미지기획_생성목록",
+      "72_이미지검수_승인로그",
+      "80_데모_버티컬슬라이스_플레이테스트",
+      "90_본제작_출시_사업",
+      "98_Base_반영후보",
+      "99_변경이력"
+    ],
+    "image_modes": [
+      "planning-visualization",
+      "final-visual-candidate",
+      "visual-qa-and-approval"
+    ],
+    "image_state_aliases": {
+      "CONCEPT_EXPLORATION": "GENERATED_EXPLORATION",
+      "VISUAL_REFERENCE_CANDIDATE": "IN_REVIEW_OR_APPROVED_CANDIDATE",
+      "USER_APPROVED_VISUAL_REFERENCE": "APPROVED_CANDIDATE",
+      "ART_BIBLE_APPROVED": "DIRECTION_CANON_APPROVED",
+      "RUNTIME_ASSET_APPROVED": "PROJECT_ASSET_APPROVED_OR_APPLIED_AND_RUNTIME_VERIFIED"
+    },
+    "adversarial_mode": "repository-wide-audit"
   }
 }
