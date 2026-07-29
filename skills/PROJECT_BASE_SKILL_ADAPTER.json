@@ -9,7 +9,7 @@
   },
   "base": {
     "repository": "alsdmlals4-eng/Base",
-    "commit": "438f41afd510c827c3097341bd9e5f9c9b0e1dd0",
+    "commit": "0fd95f4513343e77fd664af2763a01b02f52545b",
     "source_registry": "skills/SKILL_REGISTRY.json",
     "extension_registry": "skills/BASE_SHARED_SKILL_ROUTES.json",
     "copy_skill_bodies_to_project": false
@@ -22,7 +22,8 @@
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "skill_registry": "skills/SKILL_REGISTRY.json",
-    "base_version": "docs/BASE_RULES_VERSION.md"
+    "base_version": "docs/BASE_RULES_VERSION.md",
+    "ux_ui_source": "docs/UX_UI_SYSTEM.md"
   },
   "execution_contracts": {
     "short_v6": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
@@ -40,16 +41,19 @@
     "docs/planning/WORLD_SETTING_CONCEPT.md",
     "docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md",
     "docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md",
+    "docs/UX_UI_SYSTEM.md",
     "docs/planning/DECISION_LOG.md"
   ],
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
+    "docs/UX_UI_SYSTEM.md",
     "docs/planning/DECISION_LOG.md",
     "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27D.md",
     "docs/DESIGN_DOCUMENT_REGISTRY.json"
   ],
   "protected_paths": [
     "docs/planning/**",
+    "docs/UX_UI_SYSTEM.md",
     "docs/ACTIVE_CONTEXT.md",
     "docs/contracts/**",
     "AGENTS.md",
@@ -137,6 +141,9 @@
     },
     "human_visual_review": {
       "status": "NOT_RUN"
+    },
+    "ux_ui_human_understanding": {
+      "status": "HUMAN_NOT_RUN"
     }
   },
   "implementation_permissions": {
@@ -146,12 +153,39 @@
     "main_branch_direct_write": "FORBIDDEN",
     "pr_merge": "USER_APPROVAL_REQUIRED"
   },
+  "shared_skill_overrides": {
+    "auditing-and-refining-ui-art": {
+      "canonical_project_source": "docs/UX_UI_SYSTEM.md",
+      "modes": [
+        "experience-contract",
+        "flow-and-information-architecture",
+        "pattern-selection",
+        "design-system-contract",
+        "godot-ui-contract",
+        "accessibility-gate",
+        "playtest-contract",
+        "runtime-ui-audit"
+      ],
+      "project_focus": [
+        "mobile touch magic letter writing",
+        "recognition versus spell grammar failure",
+        "progressive learning",
+        "undo and correction",
+        "causal result recap"
+      ],
+      "godot_runtime_status": "NOT_AVAILABLE_NO_BUILD",
+      "android_device_status": "NOT_RUN",
+      "human_status": "HUMAN_NOT_RUN"
+    }
+  },
   "search_focus": [
     "mobile-touch-magic-letter-writing",
     "circuit-grammar",
     "stock-preparation-and-charge",
     "summon-stock-support",
     "magic-school-growth",
+    "ux-ui-information-architecture",
+    "recognition-error-recovery",
     "core-poc-and-vertical-slice"
   ],
   "rollback_reference": {
