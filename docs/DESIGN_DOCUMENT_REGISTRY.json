@@ -17,6 +17,7 @@
     "primary_platform": "PC",
     "follow_up_platform": "Mobile",
     "next_blocking_decision": "ART-STYLE-01",
+    "art_style_status": "BENCHMARK_COMPLETE_USER_DECISION_REQUIRED",
     "canon_sync_policy_id": "GM-CANON-SYNC-01",
     "canon_sync_state": "SYNCED_TO_WORKING_BRANCH",
     "main_sync_state": "PENDING_PR_MERGE"
@@ -31,8 +32,9 @@
     "canon_sync_state_data": "docs/planning/CANON_SYNC_STATE.json",
     "latest_sync_receipt": "docs/planning/sync/GR-SYNC-20260731-04.md",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
-    "latest_benchmark": "docs/planning/benchmarks/GRIMOIRE_BENCHMARK_PASS_2026-07-31.md",
-    "latest_adversarial_review": "docs/planning/GRIMOIRE_PLANNING_ADVERSARIAL_REVIEW_2026-07-31.md",
+    "art_style_benchmark": "docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md",
+    "art_style_candidates": "docs/planning/ART_STYLE_01_CANDIDATES.md",
+    "art_style_state": "docs/planning/ART_STYLE_01_STATE.json",
     "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
     "gate_1_vertical_slice": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md"
   },
@@ -55,6 +57,7 @@
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
     "canon_sync_state": "docs/planning/CANON_SYNC_STATE.json",
     "latest_sync_receipt": "docs/planning/sync/GR-SYNC-20260731-04.md",
+    "art_style_state": "docs/planning/ART_STYLE_01_STATE.json",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
@@ -128,17 +131,32 @@
       "status": "ACTIVE_CONFIRMED_SOURCE"
     }
   ],
+  "review_documents": [
+    {
+      "id": "grimoire-art-style-candidates",
+      "source_path": "docs/planning/ART_STYLE_01_CANDIDATES.md",
+      "status": "USER_DECISION_REQUIRED",
+      "decision_id": "ART-STYLE-01",
+      "recommended_candidate": "A_SOFT_STORYBOOK_CEL_2D_HYBRID"
+    },
+    {
+      "id": "grimoire-art-style-state",
+      "source_path": "docs/planning/ART_STYLE_01_STATE.json",
+      "status": "ACTIVE_CANDIDATE_STATE"
+    }
+  ],
   "evidence_documents": [
+    {
+      "id": "grimoire-art-style-benchmark-20260731",
+      "source_path": "docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md",
+      "status": "STANDARD_BENCHMARK_COMPLETE",
+      "benchmark_commit": "395a2f99159a1421243d39e80d7e6bd987af878c"
+    },
     {
       "id": "grimoire-sync-receipt-20260731-04",
       "source_path": "docs/planning/sync/GR-SYNC-20260731-04.md",
       "status": "SYNCED_TO_WORKING_BRANCH_READBACK_PASS",
       "receipt_commit": "46141385621ff77ea728dc23c2cd912ca3f3b89d"
-    },
-    {
-      "id": "grimoire-benchmark-pass-2026-07-31",
-      "source_path": "docs/planning/benchmarks/GRIMOIRE_BENCHMARK_PASS_2026-07-31.md",
-      "status": "COMPLETED_STANDARD_BENCHMARK"
     },
     {
       "id": "grimoire-planning-adversarial-review-2026-07-31",
@@ -175,10 +193,6 @@
       "status": "APPROVED_WITH_SOLO_PRODUCTION_CONDITION"
     },
     {
-      "responsibility": "planning-adversarial-review",
-      "status": "PASS_WITH_CORRECTIONS_APPLIED"
-    },
-    {
       "responsibility": "benchmark-before-design",
       "status": "ACTIVE_PROJECT_WORK_PRINCIPLE"
     },
@@ -195,8 +209,16 @@
       "status": "PENDING_PR_MERGE"
     },
     {
-      "responsibility": "art-style",
-      "status": "NEXT_PRODUCT_GATE"
+      "responsibility": "art-style-benchmark",
+      "status": "COMPLETE"
+    },
+    {
+      "responsibility": "art-style-decision",
+      "status": "USER_DECISION_REQUIRED"
+    },
+    {
+      "responsibility": "art-bible-and-asset-spec",
+      "status": "BLOCKED_BY_ART_STYLE"
     },
     {
       "responsibility": "codex-plan",
@@ -220,12 +242,11 @@
     "same_decision_id_required_across_github_and_sheet": true,
     "working_branch_sync_must_not_be_claimed_as_main_sync": true,
     "partial_sync_must_be_recorded_not_hidden": true,
-    "sync_report_must_include_paths_commit_and_sheet_ranges": true,
     "candidate_decisions_must_not_be_marked_confirmed": true,
+    "art_style_candidate_requires_user_approval": true,
+    "comparison_images_require_user_request": true,
     "same_field_combat_is_superseded": true,
     "main_summon_growth_does_not_expand_vertical_slice": true,
-    "combat_summon_four_roles_are_not_confirmed": true,
-    "generated_images_are_not_automatic_system_approval": true,
     "core_poc_must_not_be_reintroduced": true,
     "codex_requires_art_and_integrated_review": true,
     "user_approval_required_for_pr_merge": true
