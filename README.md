@@ -11,14 +11,14 @@
 | 후속 플랫폼 | `Mobile` |
 | 엔진 기준 후보 | `Godot 4.7.1 stable` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
-| Gate 1 | `APPROVED` |
 | 프로젝트 코어 | `CORE_CONFIRMED` |
-| 기획 완료 | `TRUE` |
+| 기획 | `PLANNING_COMPLETE` |
 | 벤치마킹·적대적 검토 | `COMPLETE` |
 | 실행 프로필 | `PLANNING_ONLY_PROFILE` |
+| 다음 제품 Gate | `ART-STYLE-01` |
+| Codex | `BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES` |
 | 구현 | `NOT_STARTED` |
-| Codex | `BLOCKED` |
-| 다음 제품 게이트 | `ART-STYLE-01` |
+| 정본 동기화 | `SYNCED_TO_WORKING_BRANCH / GR-SYNC-20260731-04` |
 
 저장소에는 아직 실행 가능한 Godot 프로젝트가 없습니다. 첨부 또는 외부의 Godot 실행 파일은 개발 도구이며 프로젝트 소스나 배포 자산이 아닙니다.
 
@@ -28,14 +28,14 @@
 2. `START_HERE.md`
 3. `docs/ACTIVE_CONTEXT.md`
 4. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-31Q.md`
+5. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-31R.md`
 6. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
 7. `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
-8. `docs/DEVELOPMENT_GATES.md`
-9. `docs/DOCUMENTATION_MAP.md`
-10. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-11. `skills/PROJECT_BASE_ADAPTER.json`
-12. `skills/PROJECT_SKILL_SNAPSHOT.json`
+8. `docs/planning/PROJECT_CANON_SYNC_POLICY.md`
+9. `docs/DEVELOPMENT_GATES.md`
+10. `docs/DOCUMENTATION_MAP.md`
+11. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+12. `docs/planning/CANON_SYNC_STATE.json`
 
 ## Vertical Slice
 
@@ -71,9 +71,7 @@
 - 마도서: 상황·의도·결과·부작용·발견 기록
 - 완성 주문 자동 시전 스톡: 제외
 
-상세 정본:
-
-- `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+상세 정본: `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
 
 ## 화면과 전투
 
@@ -87,21 +85,33 @@
 
 - PC: 마우스 드래그·펜 보조·키보드 Undo·취소·확정
 - Gamepad: `DEFERRED / NOT_PROMISED`
-- 모바일: 공통 게임 규칙을 유지하고 터치·레이아웃·성능을 별도 검증
+- 모바일: 공통 규칙을 유지하고 터치·레이아웃·성능을 별도 검증
 - 기존 Android 연구: `REFERENCE_CANDIDATE / NOT_RUNTIME_VALIDATED`
 
-## 벤치마킹 선행 원칙
+## 프로젝트 작업 원칙
 
-새 시스템, 핵심 규칙, 콘텐츠 구조 또는 UX 흐름을 설계하거나 의미 있게 변경할 때는 관련 사례를 먼저 벤치마킹합니다.
+### 벤치마킹 선행
 
-- 매번 대규모 조사를 반복하지 않습니다.
-- 범위에 따라 `QUICK / STANDARD / DEEP`를 선택합니다.
-- 최근 동일 결정 질문의 유효한 조사는 재사용합니다.
-- 적용·변형·배제 근거를 `ADOPT / ADAPT / REJECT`로 기록합니다.
+새 시스템·핵심 규칙·콘텐츠 구조·UX 흐름은 범위에 맞는 `QUICK / STANDARD / DEEP` 벤치마킹 후 설계합니다. 최근 유효한 조사는 재사용하고 `ADOPT / ADAPT / REJECT`를 기록합니다.
 
-책임 원본:
+### 기획 정본 즉시 동기화
 
-- `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
+주요 변경과 승인 내용은 같은 Decision ID로 GitHub 권위 문서·계획 데이터와 연결된 Google Sheet에 즉시 반영합니다.
+
+```text
+GitHub authority commit
+→ Sheet 반영·재조회
+→ SYNCED_TO_WORKING_BRANCH
+→ PR 병합
+→ main·Sheet 재검증
+→ SYNCED_TO_MAIN
+```
+
+현재 `GR-SYNC-20260731-04`는 작업 브랜치와 Sheet 재조회까지 완료됐습니다.
+
+- authority commit: `fa82c4c4cebe1232f0ff809ff4321ebacefb3731`
+- sync receipt commit: `46141385621ff77ea728dc23c2cd912ca3f3b89d`
+- main 승격: Draft PR #22 병합 후
 
 ## 현재 제품 경로
 
@@ -122,6 +132,6 @@ ART-STYLE-01
 - Base: `v9.3.0`
 - 활성 실행문: `VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md`
 - v6·v8 계약: `LEGACY_REFERENCE_INPUT / SUPERSEDED_COMPATIBILITY`
-- Google Sheet: `USER_FACING_GDD_WORKSPACE`
+- Google Sheet: `USER_FACING_GDD_WORKSPACE / SYNCED_TO_WORKING_BRANCH`
 
 현재는 제품 코드·Scene·Resource·게임 데이터·대량 자산을 구현하지 않습니다.
