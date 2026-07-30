@@ -20,8 +20,6 @@
 5. GitHub와 Sheet를 재조회한다.
 6. 변경 경로·커밋·Sheet 범위·동기화 상태를 남긴다.
 
-동기화 상태는 다음과 같이 구분한다.
-
 ```text
 SYNCED_TO_WORKING_BRANCH
 = 작업 브랜치 authority commit과 Sheet가 일치
@@ -46,9 +44,9 @@ Sheet 단독 수정이나 미승인 후보는 정본 승격 대상이 아니다.
 
 ## GR-SYNC-20260731-04 — 직전 승인 기획 소급 동기화
 
-상태: `IN_PROGRESS`
+상태: `SYNCED_TO_WORKING_BRANCH`
 
-동기화 대상:
+포함 Decision ID:
 
 - `GM-PLANNING-APPROVAL-01`
 - `GM-BENCHMARK-FIRST-01`
@@ -56,6 +54,18 @@ Sheet 단독 수정이나 미승인 후보는 정본 승격 대상이 아니다.
 - `GM-GRIMOIRE-RECORD-01`
 - `GM-PLANNING-GATES-01`
 - `GM-CANON-SYNC-01`
+
+추적 정보:
+
+- 작업 브랜치: `agent/grimoire-v93-canon`
+- PR: `#22`
+- authority commit: `fa82c4c4cebe1232f0ff809ff4321ebacefb3731`
+- Sync State 승격 commit: `23c33be138bf530c4bcee4dbca3c3233dae34d7c`
+- 검증 영수증: `docs/planning/sync/GR-SYNC-20260731-04.md`
+- 영수증 commit: `46141385621ff77ea728dc23c2cd912ca3f3b89d`
+- Sheet 반영: 18개 탭
+- Sheet 재조회: `READBACK_PASS`
+- main 동기화: `PENDING_PR_MERGE`
 
 GitHub 대상:
 
@@ -67,15 +77,27 @@ GitHub 대상:
 - `docs/planning/CANON_SYNC_STATE.json`
 - `docs/DESIGN_DOCUMENT_REGISTRY.json`
 - `docs/DOCUMENTATION_MAP.md`
+- `docs/planning/sync/GR-SYNC-20260731-04.md`
 
-Sheet 최소 대상:
+Sheet 대상:
 
 - `00_프로젝트_허브`
 - `01_작업순서`
 - `02_현재_확정결정`
-- 관련 도메인 탭
 - `04_누락_충돌_감사`
 - `05_GDD_요약`
+- `10_제품방향`
+- `13_주요인물`
+- `15_조작_게임규칙`
+- `20_코어경험_데모목표`
+- `30_데모범위_품질기준_제작기반`
+- `40_핵심시스템_메인콘텐츠`
+- `41_성장_경제`
+- `50_메인콘텐츠`
+- `51_미니게임`
+- `52_글쓰기_서사`
+- `60_UX_UI_접근성`
+- `80_데모_버티컬슬라이스_플레이테스트`
 - `99_변경이력`
 
 ## 변경 보고 의무
@@ -85,6 +107,7 @@ Sheet 최소 대상:
 - Decision ID
 - GitHub 변경 경로
 - authority commit SHA
+- sync verification commit SHA
 - Google Sheet 탭·범위
 - `SYNCED_TO_WORKING_BRANCH` 또는 `SYNCED_TO_MAIN`
 - 남은 미검증·후행 작업
