@@ -1,37 +1,31 @@
 # GRIMOIRE 개발·기획 게이트
 
-## 1. 현재 판정
+## 현재 상태
 
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
+baseline_date: 2026-07-31
 product_stage: DEMO_FIRST_VERTICAL_SLICE
-gate_1: APPROVED
-project_core: CORE_CONFIRMED
 execution_profile: PLANNING_ONLY_PROFILE
 work_mode: PLAN
-planning_completion_pass: IN_PROGRESS
-planning_complete: false
+gate_1: APPROVED
+planning_complete: true
+benchmark_complete: true
+adversarial_review_complete: true
+next_greenlight: ART-STYLE-01
 implementation_ready: false
 codex: BLOCKED
-next_greenlight: PLANNING-CONTENT-01
-runtime_validation: NOT_RUN
-human_playtest: NOT_RUN
 ```
 
-현재 승인은 프로젝트 코어, Vertical Slice 구조, 화면·캐릭터·전투 표현, 소환수 장기 방향에 한정된다. 실제 글자 의미·문제·인물·PC 입력·시간·제작량은 기획 완료 게이트에서 검토한다.
+현재 승인은 콘셉트·기획·범위·플랫폼 방향을 확정한다. 구현·런타임·성능·접근성·사람 플레이테스트 통과를 의미하지 않는다.
 
-## 2. 전체 경로
+## 1. 전체 제품 경로
 
 ```text
-Gate 1 콘셉트·Vertical Slice 구조 — APPROVED
-→ 화면·캐릭터·별도 전술 전투 표현 — CONFIRMED
-→ 소환수 장기 방향·Slice 감량 — CONFIRMED
-→ 기획 정본 전수 감사 — COMPLETE_WITH_FINDINGS
-→ PLANNING-CONTENT-01 — USER_REVIEW_REQUIRED
-→ PLANNING-PLATFORM-01
-→ PLANNING-SCOPE-01
-→ PLANNING-REVIEW-01
-→ 사용자 기획 완료 승인
+Gate 1 콘셉트·Vertical Slice — 완료
+→ 기획 완결 패스 — 완료
+→ 벤치마킹 패스 — 완료
+→ 적대적 기획 검토 — 완료
 → ART-STYLE-01
 → ART-BIBLE-01
 → ASSET-SPEC-01
@@ -40,274 +34,263 @@ Gate 1 콘셉트·Vertical Slice 구조 — APPROVED
 → 사용자 Codex Plan 승인
 → Codex read-only Plan
 → 기술 검수
-→ 실행 프로필 전환 검토
-→ 마지막에 Godot 구현
-→ QA·사람 플레이테스트
+→ 실행 프로필 전환 재검토
+→ Validation-First 구현
+→ QA·외부 플레이테스트
 ```
 
-Codex·Godot 구현은 기획 및 검수보다 먼저 진행하지 않는다.
+`CORE_POC`는 `REMOVED_BY_USER_DECISION / REINTRODUCTION_FORBIDDEN`이다.
 
-## 3. 보호된 Gate 1 결정
+## 2. Gate 1 — 콘셉트·Slice
 
-### 플레이어 약속
+상태: `APPROVED`
 
-> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
+승인 범위:
 
-### Vertical Slice
+- 플레이어 약속과 비타협 코어
+- 메인 1 + 보조 0개 이상 문법
+- 수업·시험·축제·현장실습
+- 자유일정 3회
+- 공통 Situation Challenge
+- 45~50분 목표·60분 하드 상한
+- M0~M4 Validation-First 순서
+- 2계층 소환수
+- 필드·대화·별도 전술 전투 표현
 
-```text
-첫 수업·교내 연습
-→ 자유일정 A
-→ 첫 실기시험
-→ 자유일정 B
-→ 학교축제
-→ 자유일정 C
-→ 첫 현장실습
-→ 귀환·마도서 기록
-```
+책임 원본:
 
-보호:
+- `docs/planning/GATE_1_FINAL_APPROVAL.md`
+- `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
 
-- 목표 `45~50분`, 하드 상한 `60분`
-- 공통 `Situation Challenge`
-- 문제마다 유효 해법 2개 이상
-- 자유일정 `휴식 / 준비 / 교류`
-- 세션 경계 중심 최소 저장
-- 별도 CORE_POC 재도입 금지
-- 입력 실패와 주문 설계 실패 분리
+## 3. 기획 완결 게이트
 
-### 표현과 소환수
+### 3.1 PLANNING-CONTENT-01
 
-- 고정 장면 기반 3/4 필드
-- 3.5~4등신 SD
-- 같은 장소 배경 위 반신 대화
-- 별도 고정 3/4 전술 전투장
-- 필드·전투 SD 기본 골격 재사용
-- 현재 화면 감속·암전 + 작성 오버레이
-- 메인 동반 정령 Slice 초기 형상 1개
-- 수호 또는 견제형 보조 소환수 1체
-- 장기 4단계 성장·이전 형상 선택·탑승은 후행
+상태: `APPROVED`
 
-## 4. 기획 감사 게이트
+승인:
 
-상태: `COMPLETE_WITH_P0_FINDINGS`
-
-책임 문서:
-
-- `docs/planning/GRIMOIRE_PLANNING_COMPLETION_PASS_2026-07-31.md`
-- `docs/planning/DECISION_LOG_ADDENDUM_2026-07-31P.md`
-
-확인된 P0:
-
-1. PC 우선과 모바일 터치 중심 계약 충돌
-2. 구간 최대 시간 합계와 60분 상한 충돌
-3. 대표 글자의 의미·조합 규칙 누락
-4. 다섯 Situation Challenge의 실제 문제·복수 해법 누락
-5. 교수·핵심 동급생·주인공 성장선 누락
-6. 자유일정 결과의 구체성·동등성 부족
-7. 학교 문화·현장실습 이유·마도서 종료 보상 부족
-8. Art Style보다 먼저 확정해야 할 콘텐츠 대상 누락
-
-## 5. PLANNING-CONTENT-01
-
-상태: `USER_REVIEW_REQUIRED`
-
-검토 대상:
-
-- 대표 글자 의미와 문법
+- 글자 `흐름 / 집중 / 분산`
+- 주인공·교수·동급생·동반자 역할
 - 다섯 Situation Challenge와 복수 해법
-- 주인공·교수·핵심 동급생·메인 동반 정령 역할
-- 자유일정 A/B/C의 휴식·준비·교류 결과
-- 학교 교육 철학과 현장실습의 이유
-- 귀환·마도서 기록의 기억 가능한 보상
+- 자유일정 효과와 무최적해 원칙
+- 귀환·마도서 기록 보상
 
-권장 후보:
+책임 원본:
 
-- 글자: `흐름 / 집중 / 분산`
-- 주인공: 일반 가정 출신 장학생 신입생
-- 성장선: 하나의 정답 집착 → 결과를 책임지는 설계자
-- 축제: 빛실 장막 복구
-- 현장: 외곽 생태 온실의 마력 관개 수로
-- 보조 소환수: 수호형 우선
+- `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
 
-통과 조건:
+### 3.2 PLANNING-PLATFORM-01
 
-- 사용자 승인 또는 수정 승인
-- 문제별 관찰 정보·판단·유효 해법 2개 이상·실패 원인·후속 학습 명시
-- 후보와 확정 상태 분리
-- Slice 제외 범위 유지
+상태: `APPROVED_WITH_PLAYTEST_TUNING_PENDING`
 
-## 6. PLANNING-PLATFORM-01
+승인:
 
-상태: `BLOCKED_BY_CONTENT_REVIEW`
-
-검토 후보:
-
-- 마우스 왼쪽 드래그 작성
-- 펜 태블릿·스타일러스 보조
-- `Ctrl+Z` Undo
-- `Esc` 취소·이전
-- `Enter` 후보 확정
-- `Tab` 포커스 이동
-- 자동 시전 금지
+- PC 마우스 드래그·펜 보조
+- 키보드 Undo·취소·후보 확정
+- 명시적 시전 전 자원 미소모
+- 정상 완주 필수 성공 작성 7회
+- 안내형 복구 포함 목표 상한 10회
+- 동일 문제의 확인 글자 토큰 재선택
 - Gamepad `DEFERRED / NOT_PROMISED`
+- 모바일은 후속 별도 적응·검증
 
-통과 조건:
+미확정:
 
-- PC 기본 입력·대체 입력·오류 복구 흐름 승인
-- 입력 실패·문법 실패·상황 실패가 UI에서 분리
-- 색 외 아이콘·형태·텍스트 피드백 계약
-- 모바일 입력을 PC 런타임 증거와 분리
+- 획 허용 오차
+- 선 보정·떨림 완화 수치
+- 화면 감속 비율
+- 인식 알고리즘
 
-## 7. PLANNING-SCOPE-01
+상태: `PLAYTEST_TUNING_REQUIRED`.
 
-상태: `BLOCKED_BY_CONTENT_REVIEW`
+### 3.3 PLANNING-SCOPE-01
 
-시간 후보:
+상태: `APPROVED_WITH_SOLO_PRODUCTION_CONDITION`
 
-| 구간 | 목표 | 콘텐츠 상한 |
-|---|---:|---:|
-| 프롤로그·수업·연습 | 9분 | 10분 |
-| 자유일정 A | 2분 | 3분 |
-| 실기시험 | 7분 | 8분 |
-| 자유일정 B | 2분 | 3분 |
-| 학교축제 | 7분 | 8분 |
-| 자유일정 C | 2분 | 3분 |
-| 현장실습 | 13분 | 14분 |
-| 귀환·기록 | 4분 | 4분 |
-| 합계 | 46분 | 53분 |
+시간:
 
-- 재작성·읽기·접근성 여유: 7분
-- 하드 상한: 60분
+- 목표 중앙값 46분
+- 콘텐츠 상한 53분
+- 접근성·재작성 여유 7분
+- 하드 상한 60분
 
-제작량 후보:
+제작량:
 
-- 학교 공용 장면 세트 1개
-- 축제 장식 상태 1개
-- 생태 온실·관개 수로 1개
-- 같은 현장 기반 전술 전투장 1개
-- 작성 오버레이 1종
-- 마도서 화면 1종
-- 교수 1명·핵심 동급생 1명
-- 메인 동반 정령 초기 형상 1체
-- 수호형 보조 소환수 1체
-- 폭주 수로 정령 1종
-- 메인 글자 1·보조 글자 2
+- 학교 공용 장면 1 + 축제 상태 변형 1
+- 현장 장면 1 + 동일 장소 전술 전투장 1
+- 작성 오버레이 1
+- 마도서 화면 1
+- 주인공·교수·동급생
+- 메인 동반 정령·수호형 보조 소환수·폭주 정령
+- 글자 3개
 - Situation Challenge 5개
 
+### 3.4 PLANNING-REVIEW-01
+
+상태: `PASS_WITH_CORRECTIONS_APPLIED`
+
+검토:
+
+- 합성 시스템 최적화형
+- 학교생활·관계 중심형
+- 마우스 작성 초보·저숙련형
+- 복귀 플레이어
+- 1인 개발 제작 관점
+- 적대적 검토
+- 추적성 검수
+
+주요 보정:
+
+- 직접 작성 7회·목표 상한 10회
+- 입력 수정 단계 자원 미소모
+- 집중·분산 대가 분리
+- 자유일정 효과의 다음 세션 한정
+- 마도서 자동 주문 스톡 금지
+- 문제별 성공 의미 차별화
+
+책임 원본:
+
+- `docs/planning/GRIMOIRE_PLANNING_ADVERSARIAL_REVIEW_2026-07-31.md`
+
+## 4. 벤치마킹 게이트
+
+정책: `GR-BENCHMARK-FIRST-01 / ACTIVE`
+
+새 시스템·핵심 규칙·콘텐츠 구조·UX 흐름을 설계하거나 의미 있게 변경할 때 벤치마킹을 먼저 수행한다.
+
+- 기본 규모: `QUICK` 또는 `STANDARD`
+- `DEEP`: 코어 재개방·시장·대규모 구조 전환에만 사용
+- 최근 동일 질문의 유효한 결과 재사용 가능
+- 산출물: 결정 질문·비교축·근거·위험·`ADOPT / ADAPT / REJECT`·프로젝트 계약
+
+책임 원본:
+
+- `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
+- `docs/planning/benchmarks/GRIMOIRE_BENCHMARK_PASS_2026-07-31.md`
+
+## 5. ART-STYLE-01
+
+상태: `NEXT_PRODUCT_GATE`
+
+목적:
+
+동일한 인게임 구성에서 그림체 후보를 비교하고, 마법 작성 가독성·필드/전투 분리·캐릭터 계층·PC 판독성·1인 제작 가능성·독창성을 평가한다.
+
+허용:
+
+- 소수 기준 샷
+- 동일 구도 후보 비교
+- 기존 사용자 승인 참고 이미지의 구조 활용
+- 라이선스·출처 후보 기록
+
+금지:
+
+- 최종 스타일 사용자 승인 전 대량 자산 제작
+- 후보마다 다른 구도·캐릭터·상황을 사용한 비교
+- 생성 이미지를 자동 런타임 자산으로 승격
+- 룬 문양·UI·캐릭터 세부를 Art Bible 없이 확정
+
 통과 조건:
 
-- 시간표가 60분 상한 안에서 성립
-- 장소·인물·문제 예산 승인
-- 장기 성장과 Slice 런타임 범위 분리
-- 완성 주문 스톡·소환수 4역할·추가 지역·별도 미니게임 제외 유지
+1. 동일 필드 구성 후보 비교
+2. 동일 대화 구성 후보 비교
+3. 동일 전투 구성 후보 비교
+4. 마법 작성 확대 판독 비교
+5. 사용자 스타일 선정
+6. 선택 이유·배제 이유 기록
 
-## 8. PLANNING-REVIEW-01
+프로젝트 Skill:
 
-상태: `NOT_STARTED`
+- `art-style-decision-gate`
 
-필수 검수:
-
-1. 합성 플레이어 관점
-   - 마법 퍼즐 초심자
-   - 시스템 탐구형 플레이어
-   - 서사·관계 중심 플레이어
-   - 직접 작성 피로에 민감한 플레이어
-2. 적대적 검토
-   - 정답 조합 고착
-   - 자유일정 최적해
-   - 소환수 자동 해결
-   - 반복 작성 피로
-   - 60분 초과
-   - 자산 폭증
-   - PC와 모바일 요구 혼합
-3. 추적성 검수
-   - 사용자 결정 → 정본 → Sheet → 향후 구현 요구
-4. 독립 검수
-   - 확정·후보·미검증 상태 혼합 여부
-   - 누락·중복·상충 책임
-5. 사용자 최종 승인
-
-통과 전에는 `PLANNING_COMPLETE`를 true로 표시하지 않는다.
-
-## 9. Art 프리프로덕션 게이트
-
-### ART-STYLE-01
-
-상태: `BLOCKED_BY_PLANNING_COMPLETE`
-
-기획 완료 뒤 동일한 인게임 구성으로 그림체 후보를 비교한다. 콘텐츠 대상이 확정되기 전 대량 이미지 제작을 금지한다.
-
-### ART-BIBLE-01
+## 6. ART-BIBLE-01
 
 상태: `BLOCKED_BY_ART_STYLE`
 
-색·선·명암·재질·실루엣·배경·FX·UI 가독성·접근성을 확정한다.
+확정 대상:
 
-### ASSET-SPEC-01
+- 색·선·명암·재질
+- 캐릭터 SD와 반신 일관성
+- 배경 깊이·실루엣·상호작용 강조
+- 글자 획·위험·대상·후보 상태
+- 전투와 필드의 시각 인과
+- 접근성·모션 감소·무음 피드백
+
+## 7. ASSET-SPEC-01
 
 상태: `BLOCKED_BY_ART_BIBLE`
 
-자산 수량·상태·변형·내부 해상도·안전 영역·재사용·파일 규칙을 확정한다.
+확정 대상:
 
-### AUDIO-DIRECTION-01
+- 내부 해상도·화면비·안전 영역
+- 캐릭터·배경·UI·FX 상태 수량
+- 애니메이션·표정·전투 변형
+- 파일 형식·명명·폴더·라이선스
+- 제작량과 재사용 경계
+
+## 8. AUDIO-DIRECTION-01
 
 상태: `PENDING_AFTER_CONTENT_AND_ART_DIRECTION`
 
-사운드 정체성·우선순위·무음 대체·제작 예산을 확정한다.
+확정 대상:
 
-## 10. Codex·구현 진입 게이트
+- 학교·시험·축제·현장·귀환의 음향 정체성
+- 글자 작성·후보·시전·실패 원인 피드백
+- 동반 정령과 수호형 소환수의 청각 구분
+- 무음 대체
+- 제작·라이선스 우선순위
 
-다음이 모두 충족돼야 한다.
+## 9. 기획·아트 통합 검수
 
-```text
-PLANNING_COMPLETE = true
-PLANNING_REVIEW_01 = PASS
-USER_PLANNING_APPROVAL = GRANTED
-ART_STYLE_01 = APPROVED
-ART_BIBLE_01 = APPROVED
-ASSET_SPEC_01 = APPROVED
-AUDIO_DIRECTION_01 = APPROVED_OR_EXPLICITLY_DEFERRED
-INTEGRATED_PLANNING_ART_REVIEW = PASS
-USER_APPROVED_FOR_CODEX_PLAN = true
-```
+상태: `BLOCKED_BY_ART_PREPRODUCTION`
 
-그 후에도 순서는 다음과 같다.
+확인:
 
-```text
-Codex read-only Plan
-→ 기술 검수
-→ 구현 범위·브랜치·검증 매트릭스 승인
-→ 실행 프로필 전환
-→ 구현
-```
+- 그림체가 글자·목표·위험을 가리지 않는가
+- 기획 제작량과 Asset Spec 수량이 일치하는가
+- 46분 목표에 연출·대화·입력 시간이 들어가는가
+- PC 우선 입력과 UI가 일치하는가
+- 모바일 후속 적응을 방해하는 하드코딩 가정이 없는가
+- 소환수·인물·배경이 Slice를 팽창시키지 않는가
+
+## 10. Codex Plan 진입
+
+상태: `BLOCKED`
+
+필수 조건:
+
+1. `ART-STYLE-01` 승인
+2. `ART-BIBLE-01` 승인
+3. `ASSET-SPEC-01` 승인
+4. `AUDIO-DIRECTION-01` 승인
+5. 기획·아트 통합 검수 통과
+6. 사용자의 Codex Plan 승인
+7. Base v9.3 Adapter·Snapshot·CI 정합화
+8. Godot 버전·렌더러·플랫폼 범위 재확인
+
+그 뒤에만 Codex read-only Plan을 작성한다. 구현은 기술 검수와 사용자 승인 뒤 마지막 단계다.
 
 ## 11. 구현 중단 조건
 
 - 입력 실패와 설계 실패를 구분하지 못함
-- 직접 작성 피로가 핵심 경험을 방해
-- 두 번째 문제가 공통 Situation Challenge로 추가되지 않음
-- 세션별 전용 프레임워크가 생김
+- 직접 작성이 7회 계약을 넘어 반복 피로를 만듦
+- 문제마다 전용 시스템·Scene이 필요함
+- `집중` 또는 특정 자유일정이 전역 최적해가 됨
 - 첫 완주가 60분을 구조적으로 초과
-- 자유일정·관계 제작량이 핵심 세션보다 커짐
+- 마도서가 자동 주문 스톡으로 작동
 - 보조 소환수 운용이 주문 설계보다 복잡
-- 전술 전투장이 필드 사건과 단절됨
-- 장기 소환수 성장·탑승이 초기 Slice보다 먼저 구현됨
+- 별도 전투장이 필드와 무관하게 느껴짐
+- 장면·인물·자산이 제작량 잠금을 초과
+- Android·게임패드 요구가 PC 코어를 선행 변경
 - 최종 아트·FX가 글자 궤적·위험·대상을 가림
 
 ## 12. 현재 검증 경계
 
-```text
-GODOT_PROJECT = NOT_STARTED
-CODEX = NOT_RUN
-PRODUCT_CODE = NONE
-RUNTIME = NOT_RUN
-PC_INPUT = NOT_RUN
-MOBILE = NOT_RUN
-ACCESSIBILITY = NOT_RUN
-PERFORMANCE = NOT_RUN
-HUMAN_PLAYTEST = NOT_RUN
-ART_STYLE = NOT_APPROVED
-```
-
-현재 브랜치에서는 문서·결정·범위·추적성만 검증한다. PR 병합과 Google Sheet 쓰기는 사용자 검토 뒤 별도 수행한다.
+- Godot 코드·Scene·Resource·게임 데이터 없음
+- Codex 미실행
+- 대량 이미지·사운드 자산 미착수
+- 외부 자산·폰트·사운드 라이선스 승인 `NOT_RUN`
+- 런타임·PC 입력·모바일·접근성·성능·사람 플레이 `NOT_RUN`
+- PR 병합 금지
+- Sheet 쓰기 금지
