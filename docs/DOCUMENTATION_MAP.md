@@ -12,6 +12,7 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE
 planning_complete: true
 next_product_gate: ART-STYLE-01
+canon_sync_policy: GM-CANON-SYNC-01
 ```
 
 ## 1. 시작 경로
@@ -22,11 +23,12 @@ README.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31Q.md
+→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31R.md
 → docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md
 → 질문 주제의 책임 원본
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
+→ docs/planning/CANON_SYNC_STATE.json
 → skills/PROJECT_BASE_ADAPTER.json
 → skills/PROJECT_SKILL_SNAPSHOT.json
 ```
@@ -39,9 +41,11 @@ README.md
 | 시작·다음 작업 | `START_HERE.md` | `ACTIVE_ENTRYPOINT` |
 | 현재 상태·위험·다음 작업 | `docs/ACTIVE_CONTEXT.md` | `ACTIVE_CONTEXT_AUTHORITY` |
 | 확정 결정 복원 | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` | `ACTIVE_FIRST_READ_AUTHORITY` |
-| 최신 사용자 승인 | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-31Q.md` | `ACTIVE_LATEST_USER_DECISION_AUTHORITY` |
+| 최신 사용자 승인 | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-31R.md` | `ACTIVE_LATEST_USER_DECISION_AUTHORITY` |
 | 기획 완결 정본 | `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md` | `ACTIVE_APPROVED_PLANNING_CANON` |
 | 벤치마킹 원칙 | `docs/planning/PROJECT_BENCHMARKING_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
+| 기획 정본 즉시 동기화 | `docs/planning/PROJECT_CANON_SYNC_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
+| 동기화 계획 데이터 | `docs/planning/CANON_SYNC_STATE.json` | `ACTIVE_MACHINE_READABLE_SYNC_STATE` |
 | 현재 벤치마킹 결과 | `docs/planning/benchmarks/GRIMOIRE_BENCHMARK_PASS_2026-07-31.md` | `COMPLETED_STANDARD_BENCHMARK` |
 | 기획 적대적 검토 | `docs/planning/GRIMOIRE_PLANNING_ADVERSARIAL_REVIEW_2026-07-31.md` | `PASS_WITH_CORRECTIONS_APPLIED` |
 | Gate 1 승인 | `docs/planning/GATE_1_FINAL_APPROVAL.md` | `ACTIVE_APPROVAL_AUTHORITY` |
@@ -54,7 +58,7 @@ README.md
 | 개발 게이트 | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_AUTHORITY` |
 | 문서 라우터 | `docs/DESIGN_DOCUMENT_REGISTRY.json` | `ACTIVE_CANONICAL_ROUTER` |
 | Base 핀 | `docs/BASE_RULES_VERSION.md` | `ACTIVE_VERSION_AUTHORITY` |
-| GDD Sheet | `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` | `USER_FACING_GDD_WORKSPACE` |
+| GDD Sheet 계약 | `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` | `USER_FACING_GDD_WORKSPACE_CONTRACT` |
 | Base adapter | `skills/PROJECT_BASE_ADAPTER.json` | `ACTIVE_APPLICATION_BINDING_RECONCILIATION_PENDING` |
 | Skill snapshot | `skills/PROJECT_SKILL_SNAPSHOT.json` | `GENERATED_ROUTE_VIEW_RECONCILIATION_PENDING` |
 
@@ -68,10 +72,12 @@ Gate 1 콘셉트·Slice 승인
 → 적대적 검토
 → 2026-07-31Q 사용자 승인
 → 기획 완결 정본
+→ 2026-07-31R 즉시 정본·Sheet 동기화 원칙
 ```
 
 - 제안서: `docs/planning/GRIMOIRE_PLANNING_COMPLETION_PASS_2026-07-31.md`
 - 승인 정본: `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+- 즉시 동기화 정책: `docs/planning/PROJECT_CANON_SYNC_POLICY.md`
 
 제안서의 `NOT_YET_CANON` 표기는 최신 Addendum Q와 승인 정본에 의해 대체된다. 제안서는 설계 계보·비교 근거로 보존한다.
 
@@ -87,18 +93,37 @@ PROJECT_BENCHMARKING_POLICY
 → 프로젝트 설계 문서
 → 적대적 검토
 → 사용자 승인
+→ PROJECT_CANON_SYNC_POLICY
 ```
 
-현재 적용:
+## 5. 기획 정본 동기화 경로
 
-- 마법 글자 문법
-- 직접 작성 PC UX
-- 학교·자유일정 구조
-- 복수 해법
-- 마도서 기록
-- 시간·제작량 경계
+```text
+Decision ID 확정
+→ Decision Addendum·분야 정본·Snapshot·Active Context
+→ 계획 데이터·Registry·Documentation Map
+→ authority commit
+→ 연결된 Google Sheet 탭·행
+→ 양쪽 재조회
+→ SYNCED_TO_WORKING_BRANCH
+→ PR 병합 후 main·Sheet 재검증
+→ SYNCED_TO_MAIN
+```
 
-## 5. 다음 제품 경로
+필수 Sheet 위치:
+
+- `02_현재_확정결정`
+- 해당 도메인 탭
+- `04_누락_충돌_감사`
+- `99_변경이력`
+
+Gate·현재 단계 변경 시 추가:
+
+- `00_프로젝트_허브`
+- `01_작업순서`
+- `05_GDD_요약`
+
+## 6. 다음 제품 경로
 
 ```text
 ART-STYLE-01
@@ -112,7 +137,7 @@ ART-STYLE-01
 → 구현
 ```
 
-## 6. Legacy·참고 자료
+## 7. Legacy·참고 자료
 
 | 자료 | 역할 |
 |---|---|
@@ -122,7 +147,7 @@ ART-STYLE-01
 | 합성 입력 검증 Artifact | `RESEARCH_EVIDENCE / NOT_HUMAN_VALIDATION` |
 | 생성 이미지 | 승인 상태별 참고, 자동 시스템·런타임 자산 아님 |
 
-## 7. 질문 전 조회
+## 8. 질문 전 조회
 
 ```text
 AGENTS
@@ -132,4 +157,5 @@ AGENTS
 → 최신 Decision Addendum
 → GRIMOIRE_PLANNING_CANON
 → 주제별 책임 원본
+→ CANON_SYNC_STATE
 ```
