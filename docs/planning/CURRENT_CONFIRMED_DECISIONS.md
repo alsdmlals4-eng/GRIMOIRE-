@@ -10,14 +10,17 @@ baseline_date: 2026-07-31
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE
 work_mode: PLAN
+planning_complete: true
+benchmark_complete: true
+adversarial_review_complete: true
 implementation: NOT_STARTED
-codex: BLOCKED
-planning_complete: false
+codex: BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES
+next_product_gate: ART-STYLE-01
 ```
 
 이 문서는 이미 확정된 결정을 빠르게 복원하고, 새 항목이 확정·제안·미검증 중 어디에 속하는지 판정한다. 세부 책임 원본을 대체하지 않는다.
 
-## 2. 읽기 순서와 결정 우선순위
+## 2. 읽기 순서
 
 ```text
 AGENTS.md
@@ -25,7 +28,8 @@ AGENTS.md
 → docs/ACTIVE_CONTEXT.md
 → 이 문서
 → docs/planning/DECISION_LOG.md
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31P.md
+→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31Q.md
+→ docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md
 → 주제별 단일 책임 원본
 ```
 
@@ -41,7 +45,7 @@ AGENTS.md
 
 `CONFIRMED`, `APPROVED`, `CORE_CONFIRMED`, `SUPERSEDED` 결정은 기억 확인 목적으로 다시 묻지 않는다.
 
-## 3. 확정된 프로젝트 바인딩
+## 3. 프로젝트 바인딩
 
 - 프로젝트명: `GRIMOIRE: 세계를 다시 쓰는 법`
 - 저장소: `alsdmlals4-eng/GRIMOIRE-`
@@ -54,7 +58,7 @@ AGENTS.md
 
 첨부 Godot Linux 실행 파일은 엔진 버전 확인 자료이며 저장소 자산이 아니다.
 
-## 4. 확정된 플레이어 약속과 코어
+## 4. 플레이어 약속과 비타협 코어
 
 ### 플레이어 약속
 
@@ -64,17 +68,17 @@ AGENTS.md
 
 > 마법 글자의 의미를 이해하고 상황에 맞는 주문을 설계해 발견하는 지적 마법 판타지.
 
-### 비타협 코어
+### 비타협
 
 1. 의미를 가진 마법 글자
 2. `메인 글자 1개 + 보조 글자 0개 이상`
 3. 신규·미숙·중요 글자의 직접 작성
 4. 상황·목표·위험에 따른 주문 변형 판단
 5. 즉각적이고 설명 가능한 세계 변화
-6. 수업→연습→평가·표현→현장실습→발견·기록→다음 학습 순환
-7. 입력 실패와 주문 설계 실패의 분리
+6. 입력 실패와 주문 설계 실패 분리
+7. 학습→증명→표현→응용→발견·기록 순환
 
-## 5. 확정된 Vertical Slice 구조
+## 5. Vertical Slice
 
 ```text
 첫 수업·교내 연습
@@ -89,140 +93,221 @@ AGENTS.md
 
 보호 결정:
 
-- 첫 완주 목표 `45~50분`, 하드 상한 `60분`
+- 목표 중앙값 `45~50분`
+- 콘텐츠 상한 `53분`
+- 하드 상한 `60분`
 - 모든 핵심 세션은 공통 `Situation Challenge` 계약 사용
+- 문제마다 유효 해법 2개 이상
 - 자유일정은 `휴식 / 준비 / 교류`
 - 중요 일정 사이 자유일정 1회
 - 세션 경계 중심 최소 저장
 - 별도 `CORE_POC` 재도입 금지
 - M0→M1→M2→M3→M4는 Slice 내부 검증 체크포인트
-- 문제마다 유효 해법 2개 이상
 - 낮은 성적·부분 성공은 진행 영구 차단이 아님
 
-## 6. 확정된 표현 구조
+## 6. 승인된 마법 문법
 
-- 기준 구도: 가로형 `16:9`
-- 학교·자유일정·비전투 탐색: 고정·장면 기반 3/4 필드
+### 글자
+
+- 메인: `흐름`
+- 보조: `집중 / 분산`
+
+### 결과
+
+| 조합 | 결과 | 대표 대가 |
+|---|---|---|
+| 흐름 | 경로·방향 변경 | 힘 부족·경로 불안정 |
+| 흐름 + 집중 | 좁고 강한 정밀 흐름 | 과압·손상·반격 |
+| 흐름 + 분산 | 넓고 완만한 안정 흐름 | 출력 부족·시간 지연 |
+
+Slice 제외:
+
+- 다중 보조 동시 사용
+- 순서 의존 문법
+- 완성 주문 자동 시전 스톡
+- 대규모 주문·수정자 풀
+
+## 7. 승인된 콘텐츠
+
+### 핵심 인물
+
+- 주인공: 일반 가정 출신 장학생 신입생
+- 성장: 정답 집착 → 결과를 설명하고 책임지는 설계자
+- 교수: 의미·조건·책임을 가르치며 정답 조합을 직접 제시하지 않음
+- 동급생: 정석·속도 중심 경쟁자이자 협력자
+- 갈등: 혈통 우열이 아니라 교육 자원·사전 훈련·실패 허용 폭의 차이
+- 최종 이름: `NAMING_PASS_REQUIRED`
+
+### 핵심 문제
+
+| 세션 | 문제 | 판단 |
+|---|---|---|
+| 수업 | 불안정한 마력 수로 | 메인과 보조의 역할 비교 |
+| 시험 | 취약한 부유 수정구 이송 | 효율과 안정성 |
+| 축제 | 빛실 장막 복구 | 실용·화려·우아한 표현 |
+| 현장 전투 | 관개 압력으로 폭주한 정령 | 빠른 돌파와 안전한 진정 |
+| 현장 환경 | 마력 관개관 누출 | 묘목과 구조물의 우선순위 |
+
+### 소환수
+
+- 메인 동반 정령: 작은 늑대형 원소 정령수 초기 형상
+- 장기 방향: 4단계 성장·이전 형상 선택·탑승
+- Slice 보조 소환수: 수호형 1체 우선
+- 자동 공격 해결·글자 선택·자동 시전·정답 제시 금지
+
+## 8. 자유일정
+
+- 횟수: 정확히 3회
+- 선택: 각 슬롯에서 휴식·준비·교류 중 1개
+- `CALM`: 입력 복구·집중 안정
+- `PREPARED`: 조건 관찰·결과 예측
+- `CONNECTED`: 관계 반응·다른 관점
+- 효과는 다음 핵심 세션을 주로 보조
+- 장기 누적 최적 루트 금지
+- 필수 정보·유일 해법 독점 금지
+- 모든 선택에 짧은 장면과 동등 규모의 효용 제공
+
+## 9. PC 작성 UX
+
+### 입력
+
+- 획 작성: 마우스 왼쪽 드래그, 펜 보조
+- 현재 획 취소: 오른쪽 버튼 또는 `Esc`
+- Undo: `Ctrl+Z`
+- 전체 지우기: `R` 길게 또는 확인형 Clear
+- 후보 이동: 클릭·휠·방향키·Tab
+- 후보 확정: 클릭 또는 `Enter`
+- Gamepad: `DEFERRED / NOT_PROMISED`
+
+### 책임 흐름
+
+```text
+획 입력
+→ 인식 후보
+→ 사용자 확인·부분 수정
+→ 글자 의미 확정
+→ 조합
+→ 상황 경향 미리보기
+→ 명시적 시전
+→ 세계 변화
+→ 원인·대가 설명
+```
+
+- 명시적 시전 전 마나·횟수 미소모
+- Undo·취소·재작성 자원 미소모
+- 낮은 확신 후보 자동 선택 금지
+- 입력 실패·문법 실패·상황 실패 분리
+
+### 빈도
+
+- 정상 완주 필수 성공 작성: 7회
+- 안내형 복구 포함 목표 상한: 10회
+- 같은 문제에서 확인한 동일 글자 토큰 재선택 허용
+
+정확한 허용 오차·선 보정·감속 비율은 `PLAYTEST_TUNING_REQUIRED`다.
+
+## 10. 마도서
+
+마도서는 다음을 기록한다.
+
+```text
+상황
+→ 글자·조합
+→ 의도
+→ 실제 결과
+→ 부작용·포기
+→ 발견
+→ 플레이어 명명
+```
+
+- 자동 최적 조합 추천 금지
+- 기록 클릭 자동 시전 금지
+- 재사용 시 현재 상황 검증 재실행
+- 귀환 시 `정밀 / 안정 / 표현 / 책임` 성향을 문장으로 요약
+
+## 11. 표현·제작량
+
+### 표현
+
+- 기준 구도: `16:9`
+- 학교·자유일정·탐색: 고정·장면 기반 3/4 필드
 - 필드 캐릭터: 3.5~4등신 SD
 - 대화: 같은 장소 배경 위 반신 일러스트
 - 전투: 별도 고정 3/4 전술 전투장
-- 전투 캐릭터: 필드 SD 비율·기본 골격 재사용
-- 마법 작성: 현재 화면 감속·암전 + 전용 오버레이
-- 결과: 원래 필드의 환경 변화로 반영
-- `같은 필드 화면에서 전투`: `SUPERSEDED`
+- 작성: 현재 화면 감속·암전 + 오버레이
+- 결과: 원래 필드 환경 변화로 복귀
+- 같은 필드 화면 전투: `SUPERSEDED`
 
-## 7. 확정된 소환수 방향
+### 제작량 잠금
 
-### 메인 동반 정령
+- 학교 공용 장면 세트 1
+- 축제 상태 변형 1
+- 현장 장면 1
+- 동일 현장 전술 전투장 1
+- 작성 오버레이 1
+- 마도서 화면 1
+- 주인공·교수·동급생
+- 메인 동반 정령·수호형 보조 소환수·폭주 정령
+- 글자 3개, Situation Challenge 5개
 
-- 원소·정령 중심
-- 같은 개체가 학습·관계·일상·현장·기록에 동행
-- Vertical Slice 런타임 필수는 초기 형상 1개
-- 장기 방향은 4단계 성장
-- 해금된 현재 단계 이하의 이전 형상 선택
-- 실제 성장 단계와 표시 형상 분리
-- 장기 탑승
-- 2~4단계·형상 선택 UI·탑승은 Slice 후행
+금지:
 
-### 전투 보조 소환수
+- 새 학교 지역·다수 축제 부스
+- 적 2종 이상
+- 메인 동반 정령 2~4단계 런타임
+- 보조 소환수 4역할 편성
+- 별도 미니게임 프레임워크
+- 장문 관계 분기·연애 시스템
 
-- 원소·정령 시각 언어
-- Slice는 수호 또는 견제 1체
-- 4역할 전체·성장·탑승·획득·경제는 `UNRESOLVED_REFERENCE_CANDIDATE`
+## 12. 벤치마킹 작업 원칙
 
-공통 금지:
+결정 ID: `GM-BENCHMARK-FIRST-01`
 
-- 글자 작성 대행
-- 메인·보조 글자 자동 선택
-- 자동 주문 설계·정답 제시
-- 소환수만으로 전투 자동 해결
+새 시스템, 핵심 규칙, 콘텐츠 구조, UX 흐름을 설계하거나 의미 있게 변경할 때는 벤치마킹을 먼저 수행한다.
 
-## 8. 확정된 작업 순서
+- 매번 대규모 조사를 반복하지 않는다.
+- 범위에 따라 `QUICK / STANDARD / DEEP`를 선택한다.
+- 최근 동일 질문의 유효한 조사를 재사용한다.
+- 공식·1차 자료를 우선한다.
+- `ADOPT / ADAPT / REJECT`와 GRIMOIRE 적용 계약을 남긴다.
+- 다른 작품의 고유 표현은 복제하지 않는다.
 
-결정 ID: `GM-PLANNING-SEQUENCE-01`
+책임 원본:
 
-```text
-기획 정본 전수 감사
-→ 누락·충돌·과잉 범위 보완
-→ 콘텐츠 상세 설계
-→ 합성 관점·적대적 검토
-→ 정본·Sheet 추적성 검수
-→ 사용자 기획 완료 승인
-→ ART-STYLE-01
-→ ART-BIBLE-01
-→ ASSET-SPEC-01
-→ AUDIO-DIRECTION-01
-→ 기획·아트 통합 검수
-→ 사용자 Codex Plan 승인
-→ Codex read-only Plan
-→ 기술 검수
-→ 마지막에 구현
-```
+- `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
 
-Codex와 Godot 구현은 기획·검수보다 먼저 진행하지 않는다.
-
-## 9. 현재 기획 완료 게이트
-
-| 게이트 | 상태 | 책임 |
-|---|---|---|
-| `PLANNING-CONTENT-01` | `USER_REVIEW_REQUIRED` | 글자·문제·인물·자유일정·귀환 보상 |
-| `PLANNING-PLATFORM-01` | `BLOCKED_BY_CONTENT_REVIEW` | PC 입력·오류 복구·모바일 분리 |
-| `PLANNING-SCOPE-01` | `BLOCKED_BY_CONTENT_REVIEW` | 시간·장면·인물·문제 제작량 |
-| `PLANNING-REVIEW-01` | `NOT_STARTED` | 합성·적대적·추적성 검수 |
-| 사용자 기획 완료 승인 | `NOT_GRANTED` | 기획 종료와 아트 진입 승인 |
-
-현재 다음 차단 게이트: `PLANNING-CONTENT-01`
-
-## 10. 검토 중인 기획 후보
-
-책임 문서:
-
-`docs/planning/GRIMOIRE_PLANNING_COMPLETION_PASS_2026-07-31.md`
-
-상태: `DESIGN_SPEC_FOR_USER_REVIEW / NOT_YET_CANON`
-
-권장 후보:
-
-- 대표 글자: `흐름 / 집중 / 분산`
-- 주인공: 일반 가정 출신 장학생 신입생의 정답 집착→책임 설계 성장선
-- 핵심 동급생: 정석·속도 중심 경쟁자이자 협력자
-- 축제 문제: 빛실 장막 복구
-- 현장 문제: 외곽 생태 온실의 마력 관개 수로
-- 보조 소환수: 수호형 우선
-- PC 입력: 마우스 드래그·펜 보조·키보드 복구
-- 시간 후보: 목표 46분·콘텐츠 상한 53분·하드 상한 60분
-
-이 항목은 사용자 검토 전 최종 룬·세계관 고유명·런타임 데이터·구현 요구사항으로 승격하지 않는다.
-
-## 11. 플랫폼 정책
-
-- PC판을 먼저 설계·검증·출시한다.
-- 모바일판은 공통 데이터·게임 규칙·콘텐츠 의미를 재사용한다.
-- 모바일 입력·레이아웃·접근성·성능·배터리·백그라운드 복귀는 별도 검증한다.
-- 기존 Android 터치 연구는 `REFERENCE_CANDIDATE / NOT_RUNTIME_VALIDATED`다.
-- Gamepad는 직접 작성 코어를 대체할 검증된 방식이 없으므로 현재 `DEFERRED / NOT_PROMISED` 후보 상태다.
-
-## 12. Base와 실행 계약
+## 13. Base와 실행 계약
 
 - Base release: `v9.3.0`
 - release commit: `30ca6c7b5f93521f0eb0eed42d01437cd43c50ae`
 - evidence commit: `462a86db192d23d0f386281a1eb54b0a8cbad62e`
 - 활성 실행문: `VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md`
 - v6·v8: `LEGACY_REFERENCE_INPUT / SUPERSEDED_COMPATIBILITY`
-- Base v9.3 운영 정합화: `IN_PROGRESS / IMPLEMENTATION_ADAPTER_DEFERRED_UNTIL_PLANNING_REVIEW`
 
-## 13. 현재 검증 경계
+## 14. 게이트 상태
+
+| 게이트 | 상태 |
+|---|---|
+| Gate 1 콘셉트 | `APPROVED` |
+| `PLANNING-CONTENT-01` | `APPROVED` |
+| `PLANNING-PLATFORM-01` | `APPROVED_WITH_PLAYTEST_TUNING_PENDING` |
+| `PLANNING-SCOPE-01` | `APPROVED_WITH_SOLO_PRODUCTION_CONDITION` |
+| `PLANNING-REVIEW-01` | `PASS_WITH_CORRECTIONS_APPLIED` |
+| 기획 완료 | `TRUE` |
+| `ART-STYLE-01` | `NEXT_PRODUCT_GATE` |
+| `ART-BIBLE-01` | `BLOCKED_BY_ART_STYLE` |
+| `ASSET-SPEC-01` | `BLOCKED_BY_ART_BIBLE` |
+| `AUDIO-DIRECTION-01` | `PENDING` |
+| Codex Plan | `BLOCKED_BY_ART_AND_INTEGRATED_REVIEW` |
+| Godot 구현 | `NOT_STARTED` |
+
+## 15. 검증 경계
 
 ```text
-PLANNING_COMPLETE = false
-ADVERSARIAL_REVIEW_COMPLETE = false
-USER_APPROVED_FOR_CODEX_PLAN = false
-CODEX = BLOCKED
-GODOT_PROJECT = NOT_STARTED
 RUNTIME_VALIDATION = NOT_RUN
 PC_INPUT_VALIDATION = NOT_RUN
 MOBILE_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
 ```
 
-Google Sheet는 병합 전 수정하지 않는다. 생성 이미지와 연구 Artifact는 최종 시스템·자산·런타임 증거가 아니다.
+Google Sheet는 관련 PR 병합 전 수정하지 않는다. 생성 이미지와 연구 Artifact는 최종 시스템·자산·런타임 증거가 아니다.
