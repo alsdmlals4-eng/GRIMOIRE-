@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "decision_id": "ART-STYLE-01",
+  "status": "USER_DECISION_REQUIRED",
+  "benchmark_status": "STANDARD_BENCHMARK_COMPLETE",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "benchmark_policy_id": "GM-BENCHMARK-FIRST-01",
+  "benchmark_source": "docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md",
+  "candidate_source": "docs/planning/ART_STYLE_01_CANDIDATES.md",
+  "benchmark_commit": "395a2f99159a1421243d39e80d7e6bd987af878c",
+  "candidate_commit": "a11732694ef1404f6a66ae4aa642dbcf32c5780f",
+  "protected_presentation": {
+    "orientation": "16:9 landscape",
+    "field": "fixed scene-based 3/4 field",
+    "field_character": "3.5-4 head SD",
+    "dialogue": "half-body illustration over same location",
+    "battle": "separate fixed 3/4 tactical scene",
+    "battle_character": "reuse field SD proportion and base skeleton",
+    "writing": "dimmed and slowed current screen with writing overlay",
+    "result": "return to field with world-state change"
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "name": "Soft Storybook Cel 2D Hybrid",
+      "status": "RECOMMENDED",
+      "summary": "soft storybook backgrounds, crisp limited cel-shaded SD characters, matching half-body illustrations, restrained directional magic FX"
+    },
+    {
+      "id": "B",
+      "name": "Clean Academy Anime 2D",
+      "status": "SAFE_ALTERNATIVE",
+      "summary": "clean anime linework, flat cel shading, high readability, lower texture and production variance"
+    },
+    {
+      "id": "C",
+      "name": "Illustrated Pixel Diorama",
+      "status": "PRODUCTION_FALLBACK",
+      "summary": "3/4 pixel field with large SD silhouettes and separate illustrated portraits"
+    }
+  ],
+  "recommendation": "A",
+  "recommendation_reason": "best fit for approved SD field, half-body dialogue, tactical battle reuse, glyph readability, magical-school atmosphere, and non-3D production boundary",
+  "asset_generation_status": "NOT_STARTED",
+  "comparison_image_status": "NOT_REQUESTED_BY_USER",
+  "implementation_authority": "NONE",
+  "next_after_approval": "ART-BIBLE-01"
+}
