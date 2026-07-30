@@ -223,7 +223,32 @@
       "adapter": "skills/PROJECT_BASE_SKILL_ADAPTER.json"
     }
   ],
-  "project_local_skills": [],
+  "project_local_skills": [
+    {
+      "skill_id": "magic-writing-recovery",
+      "status": "ACTIVE",
+      "path": "magic-writing-recovery/SKILL.md",
+      "current_use": "Mobile magic-letter recognition, grammar failure, undo, and recovery UX"
+    },
+    {
+      "skill_id": "art-style-decision-gate",
+      "status": "ACTIVE",
+      "path": "art-style-decision-gate/SKILL.md",
+      "current_use": "ART-STYLE-01 evidence, comparison, and decision recording"
+    }
+  ],
+  "skills": [
+    {
+      "skill_id": "magic-writing-recovery",
+      "status": "ACTIVE",
+      "path": "magic-writing-recovery/SKILL.md"
+    },
+    {
+      "skill_id": "art-style-decision-gate",
+      "status": "ACTIVE",
+      "path": "art-style-decision-gate/SKILL.md"
+    }
+  ],
   "current_gate_coverage": {
     "gate_1_concept": {
       "status": "APPROVED"

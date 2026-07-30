@@ -1,0 +1,65 @@
+{
+  "alias_resolutions": {},
+  "aliases": [],
+  "artifact_role": "PROJECT_SKILL_SNAPSHOT",
+  "base_registry": {
+    "hash_definition": "RAW_FILE_BYTES_SHA256",
+    "path": "skills/SKILL_REGISTRY.json",
+    "sha256": "e06003cb986e979aa46c06839de178c3fb9ff10bdf440e750712d90d6c5ae7bb"
+  },
+  "base_routes": [
+    {
+      "route_id": "auditing-and-refining-ui-art",
+      "skill_id": "auditing-and-refining-ui-art",
+      "status": "ACTIVE"
+    }
+  ],
+  "effective_routes": {
+    "art-style-decision-gate": {
+      "route_id": "art-style-decision-gate",
+      "skill_id": "art-style-decision-gate",
+      "source": "PROJECT_LOCAL",
+      "status": "ACTIVE",
+      "target_route_id": "art-style-decision-gate"
+    },
+    "auditing-and-refining-ui-art": {
+      "route_id": "auditing-and-refining-ui-art",
+      "skill_id": "auditing-and-refining-ui-art",
+      "source": "BASE_SHARED",
+      "status": "ACTIVE",
+      "target_route_id": "auditing-and-refining-ui-art"
+    },
+    "magic-writing-recovery": {
+      "route_id": "magic-writing-recovery",
+      "skill_id": "magic-writing-recovery",
+      "source": "PROJECT_LOCAL",
+      "status": "ACTIVE",
+      "target_route_id": "magic-writing-recovery"
+    }
+  },
+  "generated": true,
+  "inactive_routes": [],
+  "project_registry": {
+    "hash_definition": "RAW_FILE_BYTES_SHA256",
+    "path": "skills/SKILL_REGISTRY.json",
+    "sha256": "670e1fca4e984d55ce7ecbdd2f4832494c40caab21ae1253f98e9a4b6c8fa2b7"
+  },
+  "project_routes": [
+    {
+      "route_id": "art-style-decision-gate",
+      "skill_id": "art-style-decision-gate",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "magic-writing-recovery",
+      "skill_id": "magic-writing-recovery",
+      "status": "ACTIVE"
+    }
+  ],
+  "schema_version": 1,
+  "source_registry": {
+    "hash_definition": "RAW_FILE_BYTES_SHA256",
+    "path": "skills/PROJECT_BASE_ADAPTER.json",
+    "sha256": "f76845102a75af8a902f342b6870b44129dfec26780bb7aa37c27b3c06e39208"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Magic Writing Recovery"
+  short_description: "Recover magic-writing errors without losing intent."
+  default_prompt: "Review a magic-writing failure and prepare player recovery guidance."

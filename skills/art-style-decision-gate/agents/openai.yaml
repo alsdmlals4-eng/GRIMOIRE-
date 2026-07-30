@@ -1,0 +1,4 @@
+interface:
+  display_name: "Art Style Decision Gate"
+  short_description: "Prepare and record the ART-STYLE-01 decision gate."
+  default_prompt: "Prepare the evidence and decision bundle for ART-STYLE-01."

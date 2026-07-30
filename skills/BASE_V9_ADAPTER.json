@@ -1,1 +1,56 @@
-{"schema_version":1,"adapter_role":"project-base-v9-operating-system-adapter","base":{"repository":"alsdmlals4-eng/Base","release_line":"v9.0.0","release_commit":"585a53a25be1b04c543196f5901551deb49c7691","release_state":"BASE_RELEASED","registry_sha256":"c136d9bb3fde9fc1473fbbe518cc975313023fc9c104efd9692f6834cbf8d8ae","snapshot_sha256":"e30fca95d201a31937c7bddcbc341c79764d4940c318933a8902cb5bf901ba57","copy_common_skill_bodies":false},"project":{"repository":"alsdmlals4-eng/GRIMOIRE-","local_registry":"skills/SKILL_REGISTRY.json","project_skills_remain_local":true},"sheet":{"id":"19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM","role":"USER_FACING_GDD_WORKSPACE","sync_status":"SHEET_GITHUB_CONFLICT","sheet_only_change_policy":"PROPOSED_SHEET_CHANGE","write_policy":"NO_AUTOMATIC_OVERWRITE","last_read_at":"2026-07-30"},"maturity":{"level":2,"status":"PROVISIONAL_PENDING_ART_STYLE_01_DECISION","next_gate":"ART_STYLE_01_USER_DECISION"},"validation":{"ci_gate":"REQUIRED_ON_PULL_REQUEST","adversarial_gate":"REQUIRED_ON_PULL_REQUEST","art_style_01":"BLOCKED","runtime":"NOT_RUN"}}
+{
+  "adapter_role": "project-base-v9-operating-system-adapter",
+  "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
+  "base": {
+    "copy_common_skill_bodies": false,
+    "registry_sha256": "c136d9bb3fde9fc1473fbbe518cc975313023fc9c104efd9692f6834cbf8d8ae",
+    "release_commit": "585a53a25be1b04c543196f5901551deb49c7691",
+    "release_line": "v9.0.0",
+    "release_state": "BASE_RELEASED",
+    "repository": "alsdmlals4-eng/Base",
+    "snapshot_sha256": "e30fca95d201a31937c7bddcbc341c79764d4940c318933a8902cb5bf901ba57"
+  },
+  "base_release": {
+    "release_commit": "3c158f52cfdad889970aef4d6ce6650a6fea0645",
+    "release_evidence_commit": "dd20ad3852e264d7e337e34d2cb963f71053a6cb",
+    "repository": "alsdmlals4-eng/Base",
+    "version": "9.1.0"
+  },
+  "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
+  "canonical_source_sha256": "f76845102a75af8a902f342b6870b44129dfec26780bb7aa37c27b3c06e39208",
+  "generated": true,
+  "hash_definition": "RAW_FILE_BYTES_SHA256",
+  "legacy_source": "docs/archive/base-v9-legacy-inputs/BASE_V9_ADAPTER.json",
+  "legacy_source_sha256": "f0f9d366099aca78312cb7d5723698f3651ffa235b6b37546c5f061c66c465b2",
+  "lifecycle": "ONE_CYCLE",
+  "maturity": {
+    "level": 2,
+    "next_gate": "ART_STYLE_01_USER_DECISION",
+    "status": "PROVISIONAL_PENDING_ART_STYLE_01_DECISION"
+  },
+  "project": {
+    "engine": "NOT_APPLICABLE_NO_PROJECT",
+    "legacy_repository_aliases": [
+      "alsdmlals4-eng/Spell"
+    ],
+    "repository": "alsdmlals4-eng/GRIMOIRE-",
+    "root": "."
+  },
+  "routing_precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
+  "schema_version": 1,
+  "sheet": {
+    "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "last_read_at": "2026-07-30",
+    "role": "USER_FACING_GDD_WORKSPACE",
+    "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
+    "sync_status": "SHEET_GITHUB_CONFLICT",
+    "write_policy": "NO_AUTOMATIC_OVERWRITE"
+  },
+  "validation": {
+    "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
+    "art_style_01": "BLOCKED",
+    "ci_gate": "REQUIRED_ON_PULL_REQUEST",
+    "runtime": "NOT_RUN"
+  },
+  "view_name": "BASE_V9_ADAPTER.json"
+}
