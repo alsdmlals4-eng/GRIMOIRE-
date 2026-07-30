@@ -1,36 +1,34 @@
 {
-  "schema_version": 1,
   "adapter_role": "spell-project-base-skill-adapter",
-  "project": {
-    "repository": "alsdmlals4-eng/Spell",
-    "name": "스펠",
-    "project_root": ".",
-    "branch": "gpt/planning-spell-20260725"
+  "archive": {
+    "active": false,
+    "adapter": "skills/PROJECT_ARCHIVE_RETENTION_ADAPTER.json",
+    "generated_derivative_roots": [],
+    "implementation": "NONE",
+    "legacy_search_roots": [
+      "docs/planning/"
+    ]
+  },
+  "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
+  "asset_and_license": {
+    "approved_visual_manifest": "NOT_INSTALLED",
+    "image_generation_requires_explicit_user_request": true,
+    "license_record": "docs/ASSET_LICENSE_LEDGER.md",
+    "source_assets_before_generation": true,
+    "third_party_inventory": "docs/ASSET_LICENSE_LEDGER.md"
   },
   "base": {
-    "repository": "alsdmlals4-eng/Base",
     "commit": "0fd95f4513343e77fd664af2763a01b02f52545b",
-    "source_registry": "skills/SKILL_REGISTRY.json",
+    "copy_skill_bodies_to_project": false,
     "extension_registry": "skills/BASE_SHARED_SKILL_ROUTES.json",
-    "copy_skill_bodies_to_project": false
+    "repository": "alsdmlals4-eng/Base",
+    "source_registry": "skills/SKILL_REGISTRY.json"
   },
-  "project_entrypoints": {
-    "agents": "AGENTS.md",
-    "start_here": "START_HERE.md",
-    "active_context": "docs/ACTIVE_CONTEXT.md",
-    "documentation_map": "docs/DOCUMENTATION_MAP.md",
-    "development_gates": "docs/DEVELOPMENT_GATES.md",
-    "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
-    "skill_registry": "skills/SKILL_REGISTRY.json",
-    "base_version": "docs/BASE_RULES_VERSION.md",
-    "ux_ui_source": "docs/UX_UI_SYSTEM.md"
-  },
-  "execution_contracts": {
-    "short_v6": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
-    "master_v6_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
-    "current_product_stage": "CONCEPT_APPROVAL",
-    "current_execution_profile": "PLANNING_ONLY_PROFILE",
-    "current_work_mode": "PLAN"
+  "base_release": {
+    "release_commit": "3c158f52cfdad889970aef4d6ce6650a6fea0645",
+    "release_evidence_commit": "dd20ad3852e264d7e337e34d2cb963f71053a6cb",
+    "repository": "alsdmlals4-eng/Base",
+    "version": "9.1.0"
   },
   "canonical_design_sources": [
     "docs/planning/SPELL_GAME_DESIGN.md",
@@ -44,6 +42,8 @@
     "docs/UX_UI_SYSTEM.md",
     "docs/planning/DECISION_LOG.md"
   ],
+  "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
+  "canonical_source_sha256": "f76845102a75af8a902f342b6870b44129dfec26780bb7aa37c27b3c06e39208",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "docs/UX_UI_SYSTEM.md",
@@ -51,14 +51,79 @@
     "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27D.md",
     "docs/DESIGN_DOCUMENT_REGISTRY.json"
   ],
-  "protected_paths": [
-    "docs/planning/**",
-    "docs/UX_UI_SYSTEM.md",
-    "docs/ACTIVE_CONTEXT.md",
-    "docs/contracts/**",
-    "AGENTS.md",
-    "START_HERE.md"
+  "engine": {
+    "autoloads": "NOT_CREATED",
+    "input_map": "NOT_CREATED",
+    "main_scene": "NOT_CREATED",
+    "name": "Godot",
+    "project_file": "NOT_CREATED",
+    "renderer": "UNVERIFIED",
+    "version": "UNVERIFIED"
+  },
+  "execution_contracts": {
+    "current_execution_profile": "PLANNING_ONLY_PROFILE",
+    "current_product_stage": "CONCEPT_APPROVAL",
+    "current_work_mode": "PLAN",
+    "master_v6_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
+    "short_v6": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md"
+  },
+  "externalization_prohibited_core": [
+    "project-core-and-player-promise",
+    "latest-user-decisions",
+    "magic-letter-and-circuit-grammar",
+    "direct-writing-stock-summon-boundaries",
+    "school-growth-structure"
   ],
+  "generated": true,
+  "hash_definition": "RAW_FILE_BYTES_SHA256",
+  "implementation_permissions": {
+    "codex_build": "FORBIDDEN_IN_CURRENT_PROFILE",
+    "godot_code_scene_resource_data": "FORBIDDEN_IN_CURRENT_PROFILE",
+    "main_branch_direct_write": "FORBIDDEN",
+    "planning_documents": "ALLOWED_ON_APPROVED_PLANNING_BRANCH",
+    "pr_merge": "USER_APPROVAL_REQUIRED"
+  },
+  "legacy_source": "docs/archive/base-v9-legacy-inputs/PROJECT_BASE_SKILL_ADAPTER.json",
+  "legacy_source_sha256": "4dfc709754cbd4702d439fb1d31a686cff91e8adecbabd8b2f3c4976427f4e83",
+  "lifecycle": "ONE_CYCLE",
+  "platforms": {
+    "desktop_release": false,
+    "primary": [
+      "Android",
+      "Google Play"
+    ],
+    "touch_input": true
+  },
+  "project": {
+    "engine": "NOT_APPLICABLE_NO_PROJECT",
+    "legacy_repository_aliases": [
+      "alsdmlals4-eng/Spell"
+    ],
+    "repository": "alsdmlals4-eng/GRIMOIRE-",
+    "root": "."
+  },
+  "project_entrypoints": {
+    "active_context": "docs/ACTIVE_CONTEXT.md",
+    "agents": "AGENTS.md",
+    "base_version": "docs/BASE_RULES_VERSION.md",
+    "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
+    "development_gates": "docs/DEVELOPMENT_GATES.md",
+    "documentation_map": "docs/DOCUMENTATION_MAP.md",
+    "skill_registry": "skills/SKILL_REGISTRY.json",
+    "start_here": "START_HERE.md",
+    "ux_ui_source": "docs/UX_UI_SYSTEM.md"
+  },
+  "project_paths": {
+    "addon_root": "addons/",
+    "asset_roots": [
+      "assets/"
+    ],
+    "godot_project_root": "NOT_CREATED",
+    "planning_root": "docs/planning/",
+    "test_roots": [
+      "tests/"
+    ]
+  },
   "protected_decisions": [
     "one-main-letter-per-spell",
     "main-letter-alone-forms-basic-spell",
@@ -70,92 +135,37 @@
     "first-year-experiences-direct-writing-stock-and-summon-charge",
     "core-confirmed-requires-explicit-user-approval"
   ],
-  "externalization_prohibited_core": [
-    "project-core-and-player-promise",
-    "latest-user-decisions",
-    "magic-letter-and-circuit-grammar",
-    "direct-writing-stock-summon-boundaries",
-    "school-growth-structure"
+  "protected_paths": [
+    "docs/planning/**",
+    "docs/UX_UI_SYSTEM.md",
+    "docs/ACTIVE_CONTEXT.md",
+    "docs/contracts/**",
+    "AGENTS.md",
+    "START_HERE.md"
   ],
-  "engine": {
-    "name": "Godot",
-    "version": "UNVERIFIED",
-    "renderer": "UNVERIFIED",
-    "project_file": "NOT_CREATED",
-    "main_scene": "NOT_CREATED",
-    "autoloads": "NOT_CREATED",
-    "input_map": "NOT_CREATED"
+  "rollback_reference": {
+    "base_main_commit": "8233dc68211128993477b67d9085ec8c0cdd7e34",
+    "branch": "gpt/planning-spell-20260725",
+    "strategy": "revert-governance-foundation-commits-without-moving-existing-planning-documents"
   },
-  "platforms": {
-    "primary": [
-      "Android",
-      "Google Play"
-    ],
-    "touch_input": true,
-    "desktop_release": false
-  },
-  "project_paths": {
-    "godot_project_root": "NOT_CREATED",
-    "addon_root": "addons/",
-    "asset_roots": [
-      "assets/"
-    ],
-    "test_roots": [
-      "tests/"
-    ],
-    "planning_root": "docs/planning/"
-  },
-  "asset_and_license": {
-    "third_party_inventory": "docs/ASSET_LICENSE_LEDGER.md",
-    "license_record": "docs/ASSET_LICENSE_LEDGER.md",
-    "approved_visual_manifest": "NOT_INSTALLED",
-    "source_assets_before_generation": true,
-    "image_generation_requires_explicit_user_request": true
-  },
-  "archive": {
-    "adapter": "skills/PROJECT_ARCHIVE_RETENTION_ADAPTER.json",
-    "active": false,
-    "implementation": "NONE",
-    "legacy_search_roots": [
-      "docs/planning/"
-    ],
-    "generated_derivative_roots": []
-  },
-  "validators": {
-    "documentation_reference_review": {
-      "type": "manual-and-connector",
-      "status": "AVAILABLE"
-    },
-    "json_parse": {
-      "type": "local-parser-or-review",
-      "status": "AVAILABLE"
-    },
-    "godot_static_validation": {
-      "status": "NOT_AVAILABLE_NO_PROJECT"
-    },
-    "godot_runtime_validation": {
-      "status": "NOT_AVAILABLE_NO_BUILD"
-    },
-    "android_device_validation": {
-      "status": "NOT_RUN"
-    },
-    "human_visual_review": {
-      "status": "NOT_RUN"
-    },
-    "ux_ui_human_understanding": {
-      "status": "HUMAN_NOT_RUN"
-    }
-  },
-  "implementation_permissions": {
-    "planning_documents": "ALLOWED_ON_APPROVED_PLANNING_BRANCH",
-    "godot_code_scene_resource_data": "FORBIDDEN_IN_CURRENT_PROFILE",
-    "codex_build": "FORBIDDEN_IN_CURRENT_PROFILE",
-    "main_branch_direct_write": "FORBIDDEN",
-    "pr_merge": "USER_APPROVAL_REQUIRED"
-  },
+  "routing_precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
+  "schema_version": 1,
+  "search_focus": [
+    "mobile-touch-magic-letter-writing",
+    "circuit-grammar",
+    "stock-preparation-and-charge",
+    "summon-stock-support",
+    "magic-school-growth",
+    "ux-ui-information-architecture",
+    "recognition-error-recovery",
+    "core-poc-and-vertical-slice"
+  ],
   "shared_skill_overrides": {
     "auditing-and-refining-ui-art": {
+      "android_device_status": "NOT_RUN",
       "canonical_project_source": "docs/UX_UI_SYSTEM.md",
+      "godot_runtime_status": "NOT_AVAILABLE_NO_BUILD",
+      "human_status": "HUMAN_NOT_RUN",
       "modes": [
         "experience-contract",
         "flow-and-information-architecture",
@@ -172,25 +182,33 @@
         "progressive learning",
         "undo and correction",
         "causal result recap"
-      ],
-      "godot_runtime_status": "NOT_AVAILABLE_NO_BUILD",
-      "android_device_status": "NOT_RUN",
-      "human_status": "HUMAN_NOT_RUN"
+      ]
     }
   },
-  "search_focus": [
-    "mobile-touch-magic-letter-writing",
-    "circuit-grammar",
-    "stock-preparation-and-charge",
-    "summon-stock-support",
-    "magic-school-growth",
-    "ux-ui-information-architecture",
-    "recognition-error-recovery",
-    "core-poc-and-vertical-slice"
-  ],
-  "rollback_reference": {
-    "branch": "gpt/planning-spell-20260725",
-    "base_main_commit": "8233dc68211128993477b67d9085ec8c0cdd7e34",
-    "strategy": "revert-governance-foundation-commits-without-moving-existing-planning-documents"
-  }
+  "validators": {
+    "android_device_validation": {
+      "status": "NOT_RUN"
+    },
+    "documentation_reference_review": {
+      "status": "AVAILABLE",
+      "type": "manual-and-connector"
+    },
+    "godot_runtime_validation": {
+      "status": "NOT_AVAILABLE_NO_BUILD"
+    },
+    "godot_static_validation": {
+      "status": "NOT_AVAILABLE_NO_PROJECT"
+    },
+    "human_visual_review": {
+      "status": "NOT_RUN"
+    },
+    "json_parse": {
+      "status": "AVAILABLE",
+      "type": "local-parser-or-review"
+    },
+    "ux_ui_human_understanding": {
+      "status": "HUMAN_NOT_RUN"
+    }
+  },
+  "view_name": "PROJECT_BASE_SKILL_ADAPTER.json"
 }

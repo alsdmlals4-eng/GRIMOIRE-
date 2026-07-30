@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "adapter_role": "spell-project-base-skill-adapter",
+  "project": {
+    "repository": "alsdmlals4-eng/Spell",
+    "name": "스펠",
+    "project_root": ".",
+    "branch": "gpt/planning-spell-20260725"
+  },
+  "base": {
+    "repository": "alsdmlals4-eng/Base",
+    "commit": "0fd95f4513343e77fd664af2763a01b02f52545b",
+    "source_registry": "skills/SKILL_REGISTRY.json",
+    "extension_registry": "skills/BASE_SHARED_SKILL_ROUTES.json",
+    "copy_skill_bodies_to_project": false
+  },
+  "project_entrypoints": {
+    "agents": "AGENTS.md",
+    "start_here": "START_HERE.md",
+    "active_context": "docs/ACTIVE_CONTEXT.md",
+    "documentation_map": "docs/DOCUMENTATION_MAP.md",
+    "development_gates": "docs/DEVELOPMENT_GATES.md",
+    "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
+    "skill_registry": "skills/SKILL_REGISTRY.json",
+    "base_version": "docs/BASE_RULES_VERSION.md",
+    "ux_ui_source": "docs/UX_UI_SYSTEM.md"
+  },
+  "execution_contracts": {
+    "short_v6": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md",
+    "master_v6_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
+    "current_product_stage": "CONCEPT_APPROVAL",
+    "current_execution_profile": "PLANNING_ONLY_PROFILE",
+    "current_work_mode": "PLAN"
+  },
+  "canonical_design_sources": [
+    "docs/planning/SPELL_GAME_DESIGN.md",
+    "docs/planning/COMBAT_CORE_SYSTEM.md",
+    "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
+    "docs/planning/STOCK_SYSTEM.md",
+    "docs/planning/SUMMON_SYSTEM.md",
+    "docs/planning/WORLD_SETTING_CONCEPT.md",
+    "docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md",
+    "docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md",
+    "docs/UX_UI_SYSTEM.md",
+    "docs/planning/DECISION_LOG.md"
+  ],
+  "current_truth_sources": [
+    "docs/ACTIVE_CONTEXT.md",
+    "docs/UX_UI_SYSTEM.md",
+    "docs/planning/DECISION_LOG.md",
+    "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27D.md",
+    "docs/DESIGN_DOCUMENT_REGISTRY.json"
+  ],
+  "protected_paths": [
+    "docs/planning/**",
+    "docs/UX_UI_SYSTEM.md",
+    "docs/ACTIVE_CONTEXT.md",
+    "docs/contracts/**",
+    "AGENTS.md",
+    "START_HERE.md"
+  ],
+  "protected_decisions": [
+    "one-main-letter-per-spell",
+    "main-letter-alone-forms-basic-spell",
+    "new-and-unskilled-letters-require-direct-writing",
+    "support-letter-stock-requires-mastery",
+    "summon-does-not-write-or-connect-circuits",
+    "summon-spell-support-is-stock-production-and-charge-only",
+    "direct-casting-remains-possible-without-stock",
+    "first-year-experiences-direct-writing-stock-and-summon-charge",
+    "core-confirmed-requires-explicit-user-approval"
+  ],
+  "externalization_prohibited_core": [
+    "project-core-and-player-promise",
+    "latest-user-decisions",
+    "magic-letter-and-circuit-grammar",
+    "direct-writing-stock-summon-boundaries",
+    "school-growth-structure"
+  ],
+  "engine": {
+    "name": "Godot",
+    "version": "UNVERIFIED",
+    "renderer": "UNVERIFIED",
+    "project_file": "NOT_CREATED",
+    "main_scene": "NOT_CREATED",
+    "autoloads": "NOT_CREATED",
+    "input_map": "NOT_CREATED"
+  },
+  "platforms": {
+    "primary": [
+      "Android",
+      "Google Play"
+    ],
+    "touch_input": true,
+    "desktop_release": false
+  },
+  "project_paths": {
+    "godot_project_root": "NOT_CREATED",
+    "addon_root": "addons/",
+    "asset_roots": [
+      "assets/"
+    ],
+    "test_roots": [
+      "tests/"
+    ],
+    "planning_root": "docs/planning/"
+  },
+  "asset_and_license": {
+    "third_party_inventory": "docs/ASSET_LICENSE_LEDGER.md",
+    "license_record": "docs/ASSET_LICENSE_LEDGER.md",
+    "approved_visual_manifest": "NOT_INSTALLED",
+    "source_assets_before_generation": true,
+    "image_generation_requires_explicit_user_request": true
+  },
+  "archive": {
+    "adapter": "skills/PROJECT_ARCHIVE_RETENTION_ADAPTER.json",
+    "active": false,
+    "implementation": "NONE",
+    "legacy_search_roots": [
+      "docs/planning/"
+    ],
+    "generated_derivative_roots": []
+  },
+  "validators": {
+    "documentation_reference_review": {
+      "type": "manual-and-connector",
+      "status": "AVAILABLE"
+    },
+    "json_parse": {
+      "type": "local-parser-or-review",
+      "status": "AVAILABLE"
+    },
+    "godot_static_validation": {
+      "status": "NOT_AVAILABLE_NO_PROJECT"
+    },
+    "godot_runtime_validation": {
+      "status": "NOT_AVAILABLE_NO_BUILD"
+    },
+    "android_device_validation": {
+      "status": "NOT_RUN"
+    },
+    "human_visual_review": {
+      "status": "NOT_RUN"
+    },
+    "ux_ui_human_understanding": {
+      "status": "HUMAN_NOT_RUN"
+    }
+  },
+  "implementation_permissions": {
+    "planning_documents": "ALLOWED_ON_APPROVED_PLANNING_BRANCH",
+    "godot_code_scene_resource_data": "FORBIDDEN_IN_CURRENT_PROFILE",
+    "codex_build": "FORBIDDEN_IN_CURRENT_PROFILE",
+    "main_branch_direct_write": "FORBIDDEN",
+    "pr_merge": "USER_APPROVAL_REQUIRED"
+  },
+  "shared_skill_overrides": {
+    "auditing-and-refining-ui-art": {
+      "canonical_project_source": "docs/UX_UI_SYSTEM.md",
+      "modes": [
+        "experience-contract",
+        "flow-and-information-architecture",
+        "pattern-selection",
+        "design-system-contract",
+        "godot-ui-contract",
+        "accessibility-gate",
+        "playtest-contract",
+        "runtime-ui-audit"
+      ],
+      "project_focus": [
+        "mobile touch magic letter writing",
+        "recognition versus spell grammar failure",
+        "progressive learning",
+        "undo and correction",
+        "causal result recap"
+      ],
+      "godot_runtime_status": "NOT_AVAILABLE_NO_BUILD",
+      "android_device_status": "NOT_RUN",
+      "human_status": "HUMAN_NOT_RUN"
+    }
+  },
+  "search_focus": [
+    "mobile-touch-magic-letter-writing",
+    "circuit-grammar",
+    "stock-preparation-and-charge",
+    "summon-stock-support",
+    "magic-school-growth",
+    "ux-ui-information-architecture",
+    "recognition-error-recovery",
+    "core-poc-and-vertical-slice"
+  ],
+  "rollback_reference": {
+    "branch": "gpt/planning-spell-20260725",
+    "base_main_commit": "8233dc68211128993477b67d9085ec8c0cdd7e34",
+    "strategy": "revert-governance-foundation-commits-without-moving-existing-planning-documents"
+  }
+}

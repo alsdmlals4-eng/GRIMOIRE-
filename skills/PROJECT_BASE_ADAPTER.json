@@ -1,0 +1,124 @@
+{
+  "artifact_role": "PROJECT_BASE_ADAPTER",
+  "base_release": {
+    "release_commit": "3c158f52cfdad889970aef4d6ce6650a6fea0645",
+    "release_evidence_commit": "dd20ad3852e264d7e337e34d2cb963f71053a6cb",
+    "repository": "alsdmlals4-eng/Base",
+    "version": "9.1.0"
+  },
+  "compatibility": {
+    "cycle": "ONE_CYCLE",
+    "legacy_inputs": {
+      "skills/BASE_V9_ADAPTER.json": "docs/archive/base-v9-legacy-inputs/BASE_V9_ADAPTER.json",
+      "skills/PROJECT_BASE_SKILL_ADAPTER.json": "docs/archive/base-v9-legacy-inputs/PROJECT_BASE_SKILL_ADAPTER.json"
+    },
+    "views": [
+      "skills/BASE_V9_ADAPTER.json",
+      "skills/PROJECT_BASE_SKILL_ADAPTER.json"
+    ]
+  },
+  "gdd_sheet": {
+    "declared_sync_status": "SHEET_GITHUB_CONFLICT",
+    "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "role": "USER_FACING_GDD_WORKSPACE",
+    "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
+    "sync_status": "BLOCKED",
+    "write_policy": "NO_AUTOMATIC_OVERWRITE"
+  },
+  "project": {
+    "engine": "NOT_APPLICABLE_NO_PROJECT",
+    "legacy_repository_aliases": [
+      "alsdmlals4-eng/Spell"
+    ],
+    "repository": "alsdmlals4-eng/GRIMOIRE-",
+    "root": "."
+  },
+  "protected_baseline": {
+    "authority_kind": "REMOTE_TRACKING_REF",
+    "authority_ref": "refs/remotes/origin/main",
+    "commit": "abf763b69247032dd7ed77cc3219aba3f685c084",
+    "policy_sha256": "cdbce4ba6a3491d8c9f0e9473c05d57d66800c7174d92e6b7fa40e3d64d9dfc4",
+    "policy_source_path": "skills/PROJECT_BASE_SKILL_ADAPTER.json",
+    "policy_source_type": "FIRST_MIGRATION_LEGACY_SOURCE",
+    "protected_paths_pointer": "/protected_paths"
+  },
+  "protected_paths": [
+    "docs/planning/**",
+    "docs/UX_UI_SYSTEM.md",
+    "docs/ACTIVE_CONTEXT.md",
+    "docs/contracts/**",
+    "AGENTS.md",
+    "START_HERE.md"
+  ],
+  "routing": {
+    "aliases": [],
+    "base_routes": [
+      {
+        "route_id": "auditing-and-refining-ui-art",
+        "skill_id": "auditing-and-refining-ui-art",
+        "status": "ACTIVE"
+      }
+    ],
+    "inactive_routes": [],
+    "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
+    "project_routes": [
+      {
+        "route_id": "art-style-decision-gate",
+        "skill_id": "art-style-decision-gate",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "magic-writing-recovery",
+        "skill_id": "magic-writing-recovery",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "shared_overrides": {
+    "auditing-and-refining-ui-art": {
+      "android_device_status": "NOT_RUN",
+      "canonical_project_source": "docs/UX_UI_SYSTEM.md",
+      "godot_runtime_status": "NOT_AVAILABLE_NO_BUILD",
+      "human_status": "HUMAN_NOT_RUN",
+      "modes": [
+        "experience-contract",
+        "flow-and-information-architecture",
+        "pattern-selection",
+        "design-system-contract",
+        "godot-ui-contract",
+        "accessibility-gate",
+        "playtest-contract",
+        "runtime-ui-audit"
+      ],
+      "project_focus": [
+        "mobile touch magic letter writing",
+        "recognition versus spell grammar failure",
+        "progressive learning",
+        "undo and correction",
+        "causal result recap"
+      ]
+    }
+  },
+  "skill_registry": {
+    "base": {
+      "hash_definition": "RAW_FILE_BYTES_SHA256",
+      "path": "skills/SKILL_REGISTRY.json",
+      "sha256": "e06003cb986e979aa46c06839de178c3fb9ff10bdf440e750712d90d6c5ae7bb"
+    },
+    "project": {
+      "hash_definition": "RAW_FILE_BYTES_SHA256",
+      "path": "skills/SKILL_REGISTRY.json",
+      "sha256": "670e1fca4e984d55ce7ecbdd2f4832494c40caab21ae1253f98e9a4b6c8fa2b7"
+    }
+  },
+  "validators": [
+    "documentation_reference_review",
+    "json_parse",
+    "godot_static_validation",
+    "godot_runtime_validation",
+    "android_device_validation",
+    "human_visual_review",
+    "ux_ui_human_understanding"
+  ]
+}
