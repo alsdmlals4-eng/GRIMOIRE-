@@ -53,6 +53,9 @@
       "GM-CANON-SYNC-01"
     ],
     "authority_commit": "fa82c4c4cebe1232f0ff809ff4321ebacefb3731",
+    "sync_state_commit": "23c33be138bf530c4bcee4dbca3c3233dae34d7c",
+    "verification_receipt": "docs/planning/sync/GR-SYNC-20260731-04.md",
+    "verification_receipt_commit": "46141385621ff77ea728dc23c2cd912ca3f3b89d",
     "pull_request": 22,
     "sheet_sync": "VERIFIED_BY_READBACK",
     "sheet_ranges": [
