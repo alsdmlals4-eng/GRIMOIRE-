@@ -16,6 +16,8 @@ adversarial_review_complete: true
 implementation: NOT_STARTED
 codex: BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES
 next_product_gate: ART-STYLE-01
+canon_sync_policy: GM-CANON-SYNC-01
+canon_sync_bundle: GR-SYNC-20260731-04
 ```
 
 이 문서는 이미 확정된 결정을 빠르게 복원하고, 새 항목이 확정·제안·미검증 중 어디에 속하는지 판정한다. 세부 책임 원본을 대체하지 않는다.
@@ -28,7 +30,7 @@ AGENTS.md
 → docs/ACTIVE_CONTEXT.md
 → 이 문서
 → docs/planning/DECISION_LOG.md
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31Q.md
+→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31R.md
 → docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md
 → 주제별 단일 책임 원본
 ```
@@ -60,15 +62,13 @@ AGENTS.md
 
 ## 4. 플레이어 약속과 비타협 코어
 
-### 플레이어 약속
-
 > 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
 
-### 최상위 경험
+최상위 경험:
 
 > 마법 글자의 의미를 이해하고 상황에 맞는 주문을 설계해 발견하는 지적 마법 판타지.
 
-### 비타협
+비타협:
 
 1. 의미를 가진 마법 글자
 2. `메인 글자 1개 + 보조 글자 0개 이상`
@@ -107,12 +107,8 @@ AGENTS.md
 
 ## 6. 승인된 마법 문법
 
-### 글자
-
 - 메인: `흐름`
 - 보조: `집중 / 분산`
-
-### 결과
 
 | 조합 | 결과 | 대표 대가 |
 |---|---|---|
@@ -129,7 +125,7 @@ Slice 제외:
 
 ## 7. 승인된 콘텐츠
 
-### 핵심 인물
+핵심 인물:
 
 - 주인공: 일반 가정 출신 장학생 신입생
 - 성장: 정답 집착 → 결과를 설명하고 책임지는 설계자
@@ -138,7 +134,7 @@ Slice 제외:
 - 갈등: 혈통 우열이 아니라 교육 자원·사전 훈련·실패 허용 폭의 차이
 - 최종 이름: `NAMING_PASS_REQUIRED`
 
-### 핵심 문제
+핵심 문제:
 
 | 세션 | 문제 | 판단 |
 |---|---|---|
@@ -148,7 +144,7 @@ Slice 제외:
 | 현장 전투 | 관개 압력으로 폭주한 정령 | 빠른 돌파와 안전한 진정 |
 | 현장 환경 | 마력 관개관 누출 | 묘목과 구조물의 우선순위 |
 
-### 소환수
+소환수:
 
 - 메인 동반 정령: 작은 늑대형 원소 정령수 초기 형상
 - 장기 방향: 4단계 성장·이전 형상 선택·탑승
@@ -169,7 +165,7 @@ Slice 제외:
 
 ## 9. PC 작성 UX
 
-### 입력
+입력:
 
 - 획 작성: 마우스 왼쪽 드래그, 펜 보조
 - 현재 획 취소: 오른쪽 버튼 또는 `Esc`
@@ -179,7 +175,7 @@ Slice 제외:
 - 후보 확정: 클릭 또는 `Enter`
 - Gamepad: `DEFERRED / NOT_PROMISED`
 
-### 책임 흐름
+책임 흐름:
 
 ```text
 획 입력
@@ -197,9 +193,6 @@ Slice 제외:
 - Undo·취소·재작성 자원 미소모
 - 낮은 확신 후보 자동 선택 금지
 - 입력 실패·문법 실패·상황 실패 분리
-
-### 빈도
-
 - 정상 완주 필수 성공 작성: 7회
 - 안내형 복구 포함 목표 상한: 10회
 - 같은 문제에서 확인한 동일 글자 토큰 재선택 허용
@@ -207,8 +200,6 @@ Slice 제외:
 정확한 허용 오차·선 보정·감속 비율은 `PLAYTEST_TUNING_REQUIRED`다.
 
 ## 10. 마도서
-
-마도서는 다음을 기록한다.
 
 ```text
 상황
@@ -227,7 +218,7 @@ Slice 제외:
 
 ## 11. 표현·제작량
 
-### 표현
+표현:
 
 - 기준 구도: `16:9`
 - 학교·자유일정·탐색: 고정·장면 기반 3/4 필드
@@ -238,7 +229,7 @@ Slice 제외:
 - 결과: 원래 필드 환경 변화로 복귀
 - 같은 필드 화면 전투: `SUPERSEDED`
 
-### 제작량 잠금
+제작량 잠금:
 
 - 학교 공용 장면 세트 1
 - 축제 상태 변형 1
@@ -272,11 +263,43 @@ Slice 제외:
 - `ADOPT / ADAPT / REJECT`와 GRIMOIRE 적용 계약을 남긴다.
 - 다른 작품의 고유 표현은 복제하지 않는다.
 
+책임 원본: `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
+
+## 13. 기획 정본 즉시 동기화
+
+결정 ID: `GM-CANON-SYNC-01`
+
+주요 변경사항과 승인 결정은 같은 작업 단위에서 GitHub 권위 문서·계획 데이터와 연결된 Google Sheet 위치에 같은 Decision ID로 반영한다.
+
+```text
+GitHub authority commit
+→ Sheet 반영
+→ 양쪽 재조회
+→ SYNCED_TO_WORKING_BRANCH
+→ PR 병합
+→ main·Sheet 재검증
+→ SYNCED_TO_MAIN
+```
+
+- 작업 브랜치 상태와 main 상태를 혼합하지 않는다.
+- 한쪽 쓰기 실패는 `GITHUB_ONLY` 또는 `SHEET_ONLY`로 기록한다.
+- Sheet 단독 값은 `PROPOSED_SHEET_CHANGE`다.
+- 완료 보고에 Decision ID, GitHub 경로, authority commit, Sheet 범위, 동기화 상태를 남긴다.
+- 기존 “PR 병합 전 Sheet 수정 금지” 규칙은 `SUPERSEDED`다.
+
 책임 원본:
 
-- `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
+- `docs/planning/PROJECT_CANON_SYNC_POLICY.md`
+- `docs/planning/CANON_SYNC_STATE.json`
+- `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
 
-## 13. Base와 실행 계약
+현재 초기 번들:
+
+- Sync ID: `GR-SYNC-20260731-04`
+- 포함: `GM-PLANNING-APPROVAL-01`, `GM-BENCHMARK-FIRST-01`, `GM-WRITING-FREQUENCY-01`, `GM-GRIMOIRE-RECORD-01`, `GM-PLANNING-GATES-01`, `GM-CANON-SYNC-01`
+- 상태: `GITHUB_ONLY` — Sheet 반영·재검증 전
+
+## 14. Base와 실행 계약
 
 - Base release: `v9.3.0`
 - release commit: `30ca6c7b5f93521f0eb0eed42d01437cd43c50ae`
@@ -284,7 +307,7 @@ Slice 제외:
 - 활성 실행문: `VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md`
 - v6·v8: `LEGACY_REFERENCE_INPUT / SUPERSEDED_COMPATIBILITY`
 
-## 14. 게이트 상태
+## 15. 게이트 상태
 
 | 게이트 | 상태 |
 |---|---|
@@ -301,7 +324,7 @@ Slice 제외:
 | Codex Plan | `BLOCKED_BY_ART_AND_INTEGRATED_REVIEW` |
 | Godot 구현 | `NOT_STARTED` |
 
-## 15. 검증 경계
+## 16. 검증 경계
 
 ```text
 RUNTIME_VALIDATION = NOT_RUN
@@ -310,4 +333,4 @@ MOBILE_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
 ```
 
-Google Sheet는 관련 PR 병합 전 수정하지 않는다. 생성 이미지와 연구 Artifact는 최종 시스템·자산·런타임 증거가 아니다.
+Google Sheet는 승인된 주요 변경과 작업 브랜치 정본을 즉시 동기화한다. 생성 이미지와 연구 Artifact는 최종 시스템·자산·런타임 증거가 아니다.
