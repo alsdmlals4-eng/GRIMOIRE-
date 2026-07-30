@@ -43,7 +43,7 @@
   ],
   "current_bundle": {
     "sync_id": "GR-SYNC-20260731-04",
-    "status": "GITHUB_ONLY",
+    "status": "SYNCED_TO_WORKING_BRANCH",
     "decision_ids": [
       "GM-PLANNING-APPROVAL-01",
       "GM-BENCHMARK-FIRST-01",
@@ -52,7 +52,30 @@
       "GM-PLANNING-GATES-01",
       "GM-CANON-SYNC-01"
     ],
-    "sheet_sync": "PENDING",
+    "authority_commit": "fa82c4c4cebe1232f0ff809ff4321ebacefb3731",
+    "pull_request": 22,
+    "sheet_sync": "VERIFIED_BY_READBACK",
+    "sheet_ranges": [
+      "00_프로젝트_허브!A2:H2",
+      "01_작업순서!A2:J6",
+      "02_현재_확정결정!A7:J13",
+      "04_누락_충돌_감사!A8:H8",
+      "05_GDD_요약!A2:H8",
+      "10_제품방향!A2:F5",
+      "13_주요인물!A2:H6",
+      "15_조작_게임규칙!A2:H5",
+      "20_코어경험_데모목표!A2:H3",
+      "30_데모범위_품질기준_제작기반!A2:H4",
+      "40_핵심시스템_메인콘텐츠!A2:H7",
+      "41_성장_경제!A2:H4",
+      "50_메인콘텐츠!A2:H6",
+      "51_미니게임!A2:H4",
+      "52_글쓰기_서사!A2:H6",
+      "60_UX_UI_접근성!A2:H5",
+      "80_데모_버티컬슬라이스_플레이테스트!A2:H4",
+      "99_변경이력!A7:H7"
+    ],
+    "readback_verified_at": "2026-07-31T08:01:00+09:00",
     "main_sync": "PENDING_PR_MERGE"
   },
   "latest_product_gate": "ART-STYLE-01",
