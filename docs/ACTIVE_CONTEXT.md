@@ -22,6 +22,9 @@ adversarial_review_complete: true
 implementation: NOT_STARTED
 codex: BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES
 next_product_gate: ART-STYLE-01
+canon_sync_policy: GM-CANON-SYNC-01
+canon_sync_bundle: GR-SYNC-20260731-04
+canon_sync_state: GITHUB_ONLY
 ```
 
 현재 기획 완결 패스는 사용자 승인, 벤치마킹, 적대적 검토와 정본 승격까지 완료됐다. 제품 코드·Scene·Resource·게임 데이터·자산은 아직 없다.
@@ -33,7 +36,7 @@ AGENTS.md
 → START_HERE.md
 → 이 문서
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31Q.md
+→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31R.md
 → docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md
 → 주제별 책임 원본
 ```
@@ -138,9 +141,36 @@ AGENTS.md
 - 최근 동일 질문의 유효한 결과는 재사용한다.
 - `ADOPT / ADAPT / REJECT`와 프로젝트 적용 계약을 기록한다.
 
+책임 원본: `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
+
+## 기획 정본 즉시 동기화
+
+결정 ID: `GM-CANON-SYNC-01`
+
+주요 변경사항과 승인 결정은 같은 작업 단위에서 GitHub 권위 문서·계획 데이터와 Google Sheet에 같은 Decision ID로 반영한다.
+
+```text
+GitHub authority commit
+→ Sheet 반영
+→ 양쪽 재조회
+→ SYNCED_TO_WORKING_BRANCH
+→ PR 병합
+→ main·Sheet 재검증
+→ SYNCED_TO_MAIN
+```
+
+현재 초기 동기화 번들:
+
+- Sync ID: `GR-SYNC-20260731-04`
+- GitHub 상태: 반영 중
+- Sheet 상태: 반영 전
+- main 상태: PR 병합 대기
+
 책임 원본:
 
-- `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
+- `docs/planning/PROJECT_CANON_SYNC_POLICY.md`
+- `docs/planning/CANON_SYNC_STATE.json`
+- `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
 
 ## 현재 제품 경로
 
@@ -176,8 +206,9 @@ Adapter·Snapshot·CI의 v9.3 정합화는 별도 운영 변경으로 완료해�
 - Spreadsheet ID: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`
 - 역할: `USER_FACING_GDD_WORKSPACE`
 - GitHub에 없는 사용자 편집: `PROPOSED_SHEET_CHANGE`
-- 현재 쓰기: 금지
-- 관련 PR 병합 후 계약된 탭·범위만 동기화
+- 승인된 주요 변경: 작업 브랜치와 즉시 동기화
+- 병합 전: `SYNCED_TO_WORKING_BRANCH`
+- 병합 후 main 재검증: `SYNCED_TO_MAIN`
 
 ## 현재 보호 결정
 
