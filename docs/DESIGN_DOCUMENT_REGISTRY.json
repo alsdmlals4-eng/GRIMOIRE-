@@ -4,7 +4,6 @@
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
-    "temporary_name": false,
     "default_branch": "main",
     "working_branch": "agent/grimoire-v93-canon",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
@@ -18,7 +17,9 @@
     "primary_platform": "PC",
     "follow_up_platform": "Mobile",
     "next_blocking_decision": "ART-STYLE-01",
-    "canon_sync_policy_id": "GM-CANON-SYNC-01"
+    "canon_sync_policy_id": "GM-CANON-SYNC-01",
+    "canon_sync_state": "SYNCED_TO_WORKING_BRANCH",
+    "main_sync_state": "PENDING_PR_MERGE"
   },
   "planning_authority": {
     "active_execution_contract": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
@@ -27,13 +28,13 @@
     "approved_planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
     "benchmark_policy": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
-    "canon_sync_state": "docs/planning/CANON_SYNC_STATE.json",
+    "canon_sync_state_data": "docs/planning/CANON_SYNC_STATE.json",
+    "latest_sync_receipt": "docs/planning/sync/GR-SYNC-20260731-04.md",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
     "latest_benchmark": "docs/planning/benchmarks/GRIMOIRE_BENCHMARK_PASS_2026-07-31.md",
     "latest_adversarial_review": "docs/planning/GRIMOIRE_PLANNING_ADVERSARIAL_REVIEW_2026-07-31.md",
     "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
-    "gate_1_vertical_slice": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md",
-    "legacy_contracts_role": "LEGACY_REFERENCE_INPUT"
+    "gate_1_vertical_slice": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md"
   },
   "base_pin": {
     "repository": "alsdmlals4-eng/Base",
@@ -41,7 +42,6 @@
     "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
     "evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
     "registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
-    "version_record": "docs/BASE_RULES_VERSION.md",
     "adapter_reconciliation_status": "PENDING_SEPARATE_OPERATING_CHANGE"
   },
   "state_sources": {
@@ -54,12 +54,10 @@
     "benchmark_policy": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
     "canon_sync_state": "docs/planning/CANON_SYNC_STATE.json",
+    "latest_sync_receipt": "docs/planning/sync/GR-SYNC-20260731-04.md",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
-    "decision_log": "docs/planning/DECISION_LOG.md",
-    "asset_license_ledger": "docs/ASSET_LICENSE_LEDGER.md",
-    "skill_registry": "skills/SKILL_REGISTRY.json",
     "project_base_adapter": "skills/PROJECT_BASE_ADAPTER.json",
     "project_skill_snapshot": "skills/PROJECT_SKILL_SNAPSHOT.json"
   },
@@ -67,100 +65,42 @@
     {
       "id": "grimoire-current-confirmed-decisions",
       "source_path": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
-      "status": "ACTIVE_FIRST_READ_AUTHORITY",
-      "responsibility_coverage": [
-        "confirmed-decision-recall",
-        "current-protected-decisions",
-        "gate-status",
-        "next-blocking-decision",
-        "canon-sync-status"
-      ]
+      "status": "ACTIVE_FIRST_READ_AUTHORITY"
     },
     {
       "id": "grimoire-latest-decision-addendum",
       "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31R.md",
-      "status": "ACTIVE_LATEST_USER_DECISION_AUTHORITY",
-      "responsibility_coverage": [
-        "immediate-canon-sync",
-        "same-decision-id",
-        "working-branch-vs-main-status",
-        "change-location-and-commit-reporting"
-      ]
+      "status": "ACTIVE_LATEST_USER_DECISION_AUTHORITY"
     },
     {
       "id": "grimoire-planning-canon",
       "source_path": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
-      "status": "ACTIVE_APPROVED_PLANNING_CANON",
-      "responsibility_coverage": [
-        "glyph-grammar",
-        "characters",
-        "situation-challenges",
-        "free-schedules",
-        "pc-input",
-        "writing-frequency",
-        "grimoire-record",
-        "time-budget",
-        "production-scope"
-      ]
+      "status": "ACTIVE_APPROVED_PLANNING_CANON"
     },
     {
       "id": "grimoire-benchmark-policy",
       "source_path": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
-      "status": "ACTIVE_PROJECT_WORK_PRINCIPLE",
-      "responsibility_coverage": [
-        "benchmark-trigger",
-        "benchmark-scale",
-        "source-quality",
-        "adopt-adapt-reject",
-        "benchmark-traceability"
-      ]
+      "status": "ACTIVE_PROJECT_WORK_PRINCIPLE"
     },
     {
       "id": "grimoire-canon-sync-policy",
       "source_path": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
-      "status": "ACTIVE_PROJECT_WORK_PRINCIPLE",
-      "responsibility_coverage": [
-        "immediate-approved-change-sync",
-        "github-sheet-same-decision-id",
-        "partial-sync-failure-states",
-        "working-branch-and-main-reconciliation",
-        "change-location-and-commit-report"
-      ]
+      "status": "ACTIVE_PROJECT_WORK_PRINCIPLE"
     },
     {
       "id": "grimoire-canon-sync-state",
       "source_path": "docs/planning/CANON_SYNC_STATE.json",
-      "status": "ACTIVE_MACHINE_READABLE_SYNC_STATE",
-      "responsibility_coverage": [
-        "current-sync-bundle",
-        "sync-status",
-        "required-github-locations",
-        "required-sheet-locations"
-      ]
+      "status": "ACTIVE_MACHINE_READABLE_SYNC_STATE"
     },
     {
       "id": "grimoire-google-sheet-contract",
       "source_path": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
-      "status": "USER_FACING_GDD_WORKSPACE_CONTRACT",
-      "responsibility_coverage": [
-        "spreadsheet-id",
-        "tab-map",
-        "sheet-sync-status-contract",
-        "sheet-readback-requirement"
-      ]
+      "status": "USER_FACING_GDD_WORKSPACE_CONTRACT"
     },
     {
       "id": "grimoire-development-gates",
       "source_path": "docs/DEVELOPMENT_GATES.md",
-      "status": "ACTIVE_GATE_AUTHORITY",
-      "responsibility_coverage": [
-        "planning-gates",
-        "art-style-gate",
-        "art-bible-gate",
-        "asset-spec-gate",
-        "audio-direction-gate",
-        "codex-entry-gate"
-      ]
+      "status": "ACTIVE_GATE_AUTHORITY"
     },
     {
       "id": "grimoire-gate-1-final-approval",
@@ -186,19 +126,14 @@
       "id": "grimoire-summon-companion-core",
       "source_path": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
       "status": "ACTIVE_CONFIRMED_SOURCE"
-    },
-    {
-      "id": "grimoire-summon-growth-form",
-      "source_path": "docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md",
-      "status": "ACTIVE_CONFIRMED_DIRECTION_SOURCE"
     }
   ],
   "evidence_documents": [
     {
-      "id": "grimoire-planning-completion-proposal",
-      "source_path": "docs/planning/GRIMOIRE_PLANNING_COMPLETION_PASS_2026-07-31.md",
-      "status": "APPROVED_PROPOSAL_SUPERSEDED_BY_CANON",
-      "canonical_successor": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md"
+      "id": "grimoire-sync-receipt-20260731-04",
+      "source_path": "docs/planning/sync/GR-SYNC-20260731-04.md",
+      "status": "SYNCED_TO_WORKING_BRANCH_READBACK_PASS",
+      "receipt_commit": "46141385621ff77ea728dc23c2cd912ca3f3b89d"
     },
     {
       "id": "grimoire-benchmark-pass-2026-07-31",
@@ -253,7 +188,11 @@
     },
     {
       "responsibility": "current-canon-sync-bundle",
-      "status": "GITHUB_ONLY_PENDING_SHEET_WRITE"
+      "status": "SYNCED_TO_WORKING_BRANCH"
+    },
+    {
+      "responsibility": "main-canon-sync",
+      "status": "PENDING_PR_MERGE"
     },
     {
       "responsibility": "art-style",
