@@ -17,7 +17,7 @@
     "version": "9.1.0"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "f76845102a75af8a902f342b6870b44129dfec26780bb7aa37c27b3c06e39208",
+  "canonical_source_sha256": "d172058670e05e92368fb1b1fb8512d2e7d7c50a619a6f51b5ce8c4f5f59287c",
   "generated": true,
   "hash_definition": "RAW_FILE_BYTES_SHA256",
   "legacy_source": "docs/archive/base-v9-legacy-inputs/BASE_V9_ADAPTER.json",
