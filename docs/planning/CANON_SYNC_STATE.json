@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "policy_id": "GM-CANON-SYNC-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "repository": "alsdmlals4-eng/GRIMOIRE-",
+  "working_branch": "agent/grimoire-v93-canon",
+  "google_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+  "sync_contract": {
+    "major_change_or_approval_requires_immediate_sync": true,
+    "same_decision_id_required": true,
+    "working_branch_and_main_states_are_distinct": true,
+    "readback_verification_required": true,
+    "change_location_and_commit_required": true
+  },
+  "statuses": [
+    "SYNC_PENDING",
+    "GITHUB_ONLY",
+    "SHEET_ONLY",
+    "SYNCED_TO_WORKING_BRANCH",
+    "SYNCED_TO_MAIN",
+    "SYNC_CONFLICT"
+  ],
+  "required_github_locations": [
+    "decision_log_or_latest_addendum",
+    "domain_canonical_source",
+    "current_confirmed_decisions",
+    "active_context",
+    "development_gates_when_affected",
+    "design_document_registry_or_planning_data",
+    "documentation_map_when_new_authority_is_added",
+    "google_sheet_workbook_contract"
+  ],
+  "required_sheet_locations": [
+    "02_현재_확정결정",
+    "affected_domain_tabs",
+    "04_누락_충돌_감사",
+    "99_변경이력"
+  ],
+  "conditional_sheet_locations": [
+    "00_프로젝트_허브",
+    "01_작업순서",
+    "05_GDD_요약"
+  ],
+  "current_bundle": {
+    "sync_id": "GR-SYNC-20260731-04",
+    "status": "GITHUB_ONLY",
+    "decision_ids": [
+      "GM-PLANNING-APPROVAL-01",
+      "GM-BENCHMARK-FIRST-01",
+      "GM-WRITING-FREQUENCY-01",
+      "GM-GRIMOIRE-RECORD-01",
+      "GM-PLANNING-GATES-01",
+      "GM-CANON-SYNC-01"
+    ],
+    "sheet_sync": "PENDING",
+    "main_sync": "PENDING_PR_MERGE"
+  },
+  "latest_product_gate": "ART-STYLE-01",
+  "codex_status": "BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES"
+}
