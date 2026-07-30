@@ -1,32 +1,37 @@
 # GRIMOIRE: 세계를 다시 쓰는 법
 
-모바일 터치 기반 마법 글자·회로 전투와 마법학교 생활을 결합한 Godot 프로젝트입니다.
+마법 글자의 의미를 배우고 직접 주문을 설계해 상황의 규칙을 바꾸는 마법학교 성장 RPG입니다.
 
-- 저장소: `https://github.com/alsdmlals4-eng/GRIMOIRE-`
-- 엔진: Godot
-- 목표 플랫폼: Android / Google Play
-- 제품 단계: `DEMO_FIRST_VERTICAL_SLICE`
-- Gate 1: `APPROVED`
-- 프로젝트 코어: `CORE_CONFIRMED`
-- 실행 프로필: `PLANNING_ONLY_PROFILE`
-- 적대적 검토 루프 02: `PASS_WITH_CORRECTIONS`
-- 시각 표현: `LANDSCAPE_HYBRID_2D_WITH_SEPARATE_TACTICAL_BATTLE_CONFIRMED`
-- 구현: `NOT_STARTED`
-- Codex: `NOT_RUN`
+## 프로젝트 상태
 
-## 시작
+| 항목 | 현재 기준 |
+|---|---|
+| 저장소 | `alsdmlals4-eng/GRIMOIRE-` |
+| 1차 플랫폼 | `PC` |
+| 후속 플랫폼 | `Mobile` |
+| 엔진 기준 후보 | `Godot 4.7.1 stable` |
+| 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
+| Gate 1 | `APPROVED` |
+| 프로젝트 코어 | `CORE_CONFIRMED` |
+| 실행 프로필 | `PLANNING_ONLY_PROFILE` |
+| 구현 | `NOT_STARTED` |
+| 다음 제품 결정 | `ART-STYLE-01` |
+| 구현 전 플랫폼 계약 | `PLATFORM-INPUT-01` |
 
-1. `START_HERE.md`
-2. `docs/ACTIVE_CONTEXT.md`
-3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-4. `docs/planning/DECISION_LOG.md`
-5. `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27B.md`
-6. `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`
-7. `docs/planning/GATE_2_CHARACTER_PRESENTATION_SYSTEM.md`
-8. `docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md`
-9. `docs/DEVELOPMENT_GATES.md`
-10. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-11. `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
+저장소에는 아직 실행 가능한 Godot 프로젝트가 없습니다. 첨부 또는 외부의 Godot 실행 파일은 개발 도구이며 프로젝트 소스나 배포 자산이 아닙니다.
+
+## 시작 순서
+
+1. `AGENTS.md`
+2. `START_HERE.md`
+3. `docs/ACTIVE_CONTEXT.md`
+4. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
+5. `docs/planning/DECISION_LOG.md`
+6. `docs/DOCUMENTATION_MAP.md`
+7. `docs/DEVELOPMENT_GATES.md`
+8. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+9. `skills/PROJECT_BASE_ADAPTER.json`
+10. `skills/PROJECT_SKILL_SNAPSHOT.json`
 
 ## Vertical Slice
 
@@ -41,78 +46,25 @@
 → 귀환·마도서 기록
 ```
 
-- 첫 완주 목표 `45~50분`, 상한 `60분`
-- 공통 문제 계약 `Situation Challenge`
-- 자유일정 `휴식 / 준비 / 교류`
-- CORE_POC `REMOVED_BY_USER_DECISION`
+첫 완주 목표는 `45~50분`, 상한은 `60분`입니다. 공통 문제 계약은 `Situation Challenge`, 자유일정은 `휴식 / 준비 / 교류`입니다.
 
-## 화면·캐릭터·전투
+## 화면과 전투
 
-```text
-학교·자유일정·탐색
-= 가로형 고정·장면 기반 3/4 필드
-= 3.5~4등신 SD 캐릭터
+- 학교·자유일정·탐색: 가로형 고정·장면 기반 3/4 필드
+- 캐릭터: 필드 3.5~4등신 SD, 대화 반신 일러스트
+- 전투: 별도 고정 3/4 전술 전투장
+- 마법 작성: 현재 화면 감속·암전 + 작성 오버레이
+- 결과: 환경 변화를 반영해 원래 필드 장면으로 복귀
 
-대화
-= 같은 장소 배경 위 반신 일러스트
+## 플랫폼 방향
 
-전투
-= 별도 고정 3/4 전술 전투장
-= 필드 SD 비율 재사용
+PC판을 먼저 설계·검증·출시하고, 모바일판은 후속 적응 단계에서 입력·레이아웃·성능을 별도로 검증합니다. 기존 모바일 터치 연구는 참고 근거로 보존하지만 PC 런타임 검증으로 간주하지 않습니다.
 
-마법 작성
-= 현재 화면 감속·암전 + 작성 오버레이
+## Base와 실행 계약
 
-전투 종료
-= 결과를 반영한 필드 복귀
-```
+- Base: `v9.3.0`
+- 활성 실행문: `VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md`
+- v6·v8 계약: `LEGACY_REFERENCE_INPUT / SUPERSEDED_COMPATIBILITY`
+- Google Sheet: `USER_FACING_GDD_WORKSPACE`
 
-- 기준 구도 `16:9`
-- 확장 대응 `18:9~20:9`
-- 자유 이동형 대형 학교와 대형 전투장은 초기 Slice 제외
-
-## 소환수
-
-```text
-메인 동반 소환수
-= 원소·정령 중심의 고정 동반자
-= 장기 4단계 성장
-= 해금된 이전 형상 선택 가능
-= 장기 탑승 기능
-
-전투 보조 소환수
-= 위험·전투에서 호출
-= Vertical Slice는 수호 또는 견제 1체
-```
-
-Vertical Slice는 메인 동반 초기 형상 1개만 런타임 필수입니다. 2~4단계 전체, 형상 선택 UI와 탑승은 후행합니다.
-
-## 재질문 방지
-
-이미 확정된 내용을 다시 묻기 전에 반드시 다음을 확인합니다.
-
-```text
-START_HERE
-→ ACTIVE_CONTEXT
-→ CURRENT_CONFIRMED_DECISIONS
-→ DECISION_LOG
-→ 주제별 책임 원본
-```
-
-## GDD Google Sheets 운영
-
-- Base·Skill 기준 원본: `docs/BASE_RULES_VERSION.md`
-- Sheet 상태: `PROJECT_SHEET_CONFIGURED`
-- Workbook 계약: `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
-- Workbook 역할: `USER_FACING_GDD_WORKSPACE`
-- 사용자 Sheet 편집: `PROPOSED_SHEET_CHANGE`
-- GitHub에 없는 Sheet 변경은 자동 정본화하지 않는다.
-- 승인 후 GitHub와 Sheet를 모두 재조회한 경우에만 `SYNCED`로 판정한다.
-
-## 다음 결정
-
-`ART-STYLE-01`
-
-승인된 필드 SD·대화 반신·별도 전투장·원소 정령 소환수 구성을 동일하게 사용해 그림체 후보를 예상 인게임 이미지로 비교합니다.
-
-현재는 대량 자산 제작, Godot 구현, Codex 실행을 하지 않습니다.
+현재는 게임 코드·Scene·Resource·게임 데이터·대량 자산을 구현하지 않습니다.
