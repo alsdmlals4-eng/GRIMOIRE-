@@ -13,6 +13,7 @@ execution_profile: PLANNING_ONLY_PROFILE
 planning_complete: true
 next_product_gate: ART-STYLE-01
 canon_sync_policy: GM-CANON-SYNC-01
+canon_sync_state: SYNCED_TO_WORKING_BRANCH
 ```
 
 ## 1. 시작 경로
@@ -46,6 +47,7 @@ README.md
 | 벤치마킹 원칙 | `docs/planning/PROJECT_BENCHMARKING_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
 | 기획 정본 즉시 동기화 | `docs/planning/PROJECT_CANON_SYNC_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
 | 동기화 계획 데이터 | `docs/planning/CANON_SYNC_STATE.json` | `ACTIVE_MACHINE_READABLE_SYNC_STATE` |
+| 최신 동기화 영수증 | `docs/planning/sync/GR-SYNC-20260731-04.md` | `SYNCED_TO_WORKING_BRANCH_READBACK_PASS` |
 | 현재 벤치마킹 결과 | `docs/planning/benchmarks/GRIMOIRE_BENCHMARK_PASS_2026-07-31.md` | `COMPLETED_STANDARD_BENCHMARK` |
 | 기획 적대적 검토 | `docs/planning/GRIMOIRE_PLANNING_ADVERSARIAL_REVIEW_2026-07-31.md` | `PASS_WITH_CORRECTIONS_APPLIED` |
 | Gate 1 승인 | `docs/planning/GATE_1_FINAL_APPROVAL.md` | `ACTIVE_APPROVAL_AUTHORITY` |
@@ -73,17 +75,15 @@ Gate 1 콘셉트·Slice 승인
 → 2026-07-31Q 사용자 승인
 → 기획 완결 정본
 → 2026-07-31R 즉시 정본·Sheet 동기화 원칙
+→ GR-SYNC-20260731-04 working branch 동기화 검증
 ```
 
 - 제안서: `docs/planning/GRIMOIRE_PLANNING_COMPLETION_PASS_2026-07-31.md`
 - 승인 정본: `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
 - 즉시 동기화 정책: `docs/planning/PROJECT_CANON_SYNC_POLICY.md`
-
-제안서의 `NOT_YET_CANON` 표기는 최신 Addendum Q와 승인 정본에 의해 대체된다. 제안서는 설계 계보·비교 근거로 보존한다.
+- 동기화 영수증: `docs/planning/sync/GR-SYNC-20260731-04.md`
 
 ## 4. 벤치마킹 경로
-
-새 시스템·핵심 규칙·콘텐츠 구조·UX 흐름:
 
 ```text
 PROJECT_BENCHMARKING_POLICY
@@ -105,6 +105,7 @@ Decision ID 확정
 → authority commit
 → 연결된 Google Sheet 탭·행
 → 양쪽 재조회
+→ 동기화 영수증
 → SYNCED_TO_WORKING_BRANCH
 → PR 병합 후 main·Sheet 재검증
 → SYNCED_TO_MAIN
@@ -158,4 +159,5 @@ AGENTS
 → GRIMOIRE_PLANNING_CANON
 → 주제별 책임 원본
 → CANON_SYNC_STATE
+→ 최신 Sync Receipt
 ```
