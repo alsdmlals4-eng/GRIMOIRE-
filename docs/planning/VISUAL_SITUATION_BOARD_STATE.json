@@ -1,5 +1,5 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "decision_id": "GM-VISUAL-SITUATION-BOARD-WORKFLOW-01",
   "project_visual_board_id": "GR-VISUAL-SITUATION-BOARD-01",
   "art_style_decision_id": "ART-STYLE-01",
@@ -102,7 +102,8 @@
     "art_approval": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
     "art_state": "docs/planning/ART_STYLE_01_STATE.json",
     "locked_reference_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
-    "sync_receipt": "docs/planning/sync/GR-APPROVE-ART-STYLE-01.md"
+    "sync_receipt": "docs/planning/sync/GR-APPROVE-ART-STYLE-01.md",
+    "sync_receipt_commit": "5300fee3189e3b7635350cb82695523ad1bb9161"
   },
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
