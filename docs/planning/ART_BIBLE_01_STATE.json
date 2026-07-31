@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "decision_id": "ART-BIBLE-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "status": "DRAFT_USER_REVIEW_REQUIRED",
@@ -38,6 +38,25 @@
     "NAVY_GOLD_ACADEMY_UI",
     "HIGH_CONTRAST_BLUE_GLYPH_LANGUAGE"
   ],
+  "approved_refinements": [
+    {
+      "decision_id": "GM-BATTLE-SCREEN-LAYOUT-01",
+      "status": "APPROVED_LAYOUT_DIRECTION",
+      "authority": "docs/planning/BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md",
+      "authority_commit": "73829e0d7b0937d7aac88db5545a41a6f549669a",
+      "state": "docs/planning/BATTLE_SCREEN_LAYOUT_01_STATE.json",
+      "state_commit": "2e889bd45e9cf3beee53e40d1db5b2f3df284ea0",
+      "benchmark": "docs/planning/benchmarks/BATTLE_SCREEN_LAYOUT_01_QUICK_BENCHMARK_2026-08-01.md",
+      "benchmark_commit": "d40d932fa004f0298512b5e64014a182095cbabf",
+      "contract": [
+        "ENEMY_AND_ENVIRONMENT_ONLY_PERSISTENT_BATTLEFIELD",
+        "ALLY_FACE_PORTRAITS_LOWER_LEFT",
+        "SPELL_WRITING_AREA_RIGHT",
+        "ENEMY_WARNING_VISIBLE_DURING_WRITING",
+        "GUARDIAN_SUMMON_BRIEF_ACTIVATION_NOT_PERSISTENT_BODY"
+      ]
+    }
+  ],
   "corrections_applied_in_draft": [
     "PC_RUNTIME_MUST_NOT_INHERIT_PERSISTENT_MOBILE_TOUCH_CONTROLS",
     "IMAGE_NAMES_STATS_PARTY_SIZE_ENEMY_COUNT_ARE_NOT_CANON",
@@ -50,11 +69,13 @@
     "COMPANION_OFFICIAL_NAME",
     "BLUE_AND_ORANGE_STATE_COLOR_SEMANTICS",
     "MAIN_AND_GRIMOIRE_DERIVATIVE_BOARD_ORDER",
-    "SERIF_TITLE_AND_GOTHIC_BODY_FONT_DIRECTION"
+    "SERIF_TITLE_AND_GOTHIC_BODY_FONT_DIRECTION",
+    "BATTLE_WRITING_PANEL_ALWAYS_OPEN_OR_EXPAND_ON_ACTION",
+    "BATTLE_ALLY_PORTRAIT_VISIBLE_COUNT_AND_FIELDS"
   ],
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "status": "VERIFIED_BY_READBACK",
+    "status": "VERIFIED_BY_READBACK_FOR_ART_BIBLE_DRAFT",
     "readback": "PASS",
     "verified_at": "2026-08-01T04:34:00+09:00",
     "ranges": [
@@ -63,7 +84,8 @@
       "04_누락_충돌_감사!A12:H12",
       "70_아트_오디오_에셋!A8:H8",
       "99_변경이력!A12:H12"
-    ]
+    ],
+    "battle_layout_sync": "PENDING"
   },
   "implementation_authority": "NONE",
   "asset_generation_authority": "NONE",
@@ -72,7 +94,8 @@
   "runtime_validation": "NOT_RUN",
   "human_validation": "NOT_RUN",
   "next_product_gate": "ART-BIBLE-01_USER_REVIEW",
+  "next_planning_work_item": "BATTLE-UX-01_WITHIN_ART_BIBLE_REVIEW",
   "next_gate_after_approval": "ASSET-SPEC-01",
-  "sync_status": "DRAFT_SYNCED_TO_WORKING_BRANCH",
+  "sync_status": "ART_BIBLE_DRAFT_SYNCED_BATTLE_LAYOUT_SHEET_PENDING",
   "main_sync": "PENDING_PR_MERGE"
 }
