@@ -17,6 +17,11 @@
     "source_path": "docs/planning/BATTLE_SINGLE_ENEMY_FOCUS_01_APPROVAL_2026-08-01.md",
     "commit": "f7f33d3a98b7923ae051eafd67d0361d52999302"
   },
+  "sync_receipt": {
+    "source_path": "docs/planning/sync/GR-APPROVE-BATTLE-SINGLE-ENEMY-01.md",
+    "commit": "9f13e2e7a3bfd7b23d6a2d3f635cd8479e325b6d",
+    "sheet_readback": "PASS"
+  },
   "encounter_contract": {
     "default_enemy_count": 1,
     "enemy_role": "STRONG_SITUATIONAL_ENEMY",
@@ -42,6 +47,6 @@
   "godot": "NOT_STARTED",
   "runtime_validation": "NOT_RUN",
   "human_validation": "NOT_RUN",
-  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
   "main_sync": "PENDING_PR_MERGE"
 }
