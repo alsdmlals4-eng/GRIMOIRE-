@@ -15,13 +15,15 @@ implementation: NOT_STARTED
 codex: BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES
 next_product_gate: ART-STYLE-01
 art_style_status: BENCHMARK_COMPLETE_USER_DECISION_REQUIRED
-situation_screen_workflow: APPROVED_PROJECT_WORK_PRINCIPLE
-situation_screen_spec: USER_REVIEW_REQUIRED_TECHNICAL_DESIGN_ONLY
+visual_situation_board_workflow: APPROVED_PROJECT_WORK_PRINCIPLE
+grimoire_visual_board: REWORK_REQUIRED_USER_REVIEW_REQUIRED
+previous_situation_screen_spec: SUPPORTING_TECHNICAL_APPENDIX_ONLY
+previous_generated_visuals: REJECTED_NOT_AUTHORITY
 canon_sync_state: SYNCED_TO_WORKING_BRANCH
 main_sync_state: PENDING_PR_MERGE
 ```
 
-이 문서는 승인된 현재 결정, 승인된 작업 원칙, 미승인 Gate와 검토 중 설계안을 빠르게 구분한다.
+이 문서는 승인된 현재 결정, 미승인 Gate, 재작업 상태와 역할이 변경된 이전 산출물을 빠르게 구분한다.
 
 ## 2. 읽기 순서
 
@@ -30,24 +32,25 @@ AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → 이 문서
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31S.md
+→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md
 → docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md
+→ docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md
 → 주제별 책임 원본
 → docs/planning/CANON_SYNC_STATE.json
-→ docs/planning/SITUATION_SCREEN_SPEC_STATE.json
+→ docs/planning/VISUAL_SITUATION_BOARD_STATE.json
 ```
 
-확정된 결정은 기억 확인 목적으로 다시 묻지 않는다. `USER_DECISION_REQUIRED`와 `USER_REVIEW_REQUIRED`는 승인 상태가 아니다.
+확정된 결정은 기억 확인 목적으로 다시 묻지 않는다. `USER_DECISION_REQUIRED`, `USER_REVIEW_REQUIRED`, `REWORK_REQUIRED`는 승인 상태가 아니다.
 
 ## 3. 프로젝트 바인딩
 
-- 1차 플랫폼: `PC`
-- 후속 플랫폼: `Mobile`
-- 엔진 기준 후보: `Godot 4.7.1 stable`
-- Google Sheet ID: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`
-- Godot 프로젝트: `NOT_STARTED`
-- 실제 `project.godot`, `.tscn`, `.gd`, `.tres`: `NOT_FOUND`
-- Codex: `NOT_AUTHORIZED`
+- 1차 플랫폼: `PC`.
+- 후속 플랫폼: `Mobile`.
+- 엔진 기준 후보: `Godot 4.7.1 stable`.
+- Google Sheet ID: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`.
+- Godot 프로젝트: `NOT_STARTED`.
+- 실제 `project.godot`, `.tscn`, `.gd`, `.tres`: `NOT_FOUND`.
+- Codex: `NOT_AUTHORIZED`.
 
 ## 4. 플레이어 약속과 코어
 
@@ -134,7 +137,7 @@ AGENTS.md
 - 작성: 현재 화면 감속·암전 + Overlay.
 - 결과: 원래 필드 환경 변화로 복귀.
 
-이 구조는 확정됐지만 실제 그림체·색·선·명암·재질·내부 해상도는 확정되지 않았다.
+실제 그림체·색·선·명암·재질·내부 해상도는 아직 확정되지 않았다.
 
 ## 8. 승인된 작업 원칙
 
@@ -144,66 +147,94 @@ AGENTS.md
 
 ### GM-CANON-SYNC-01
 
-주요 승인 변경은 같은 Decision ID로 GitHub 권위 문서·계획 데이터와 Google Sheet에 즉시 반영하고, working branch와 main 상태를 구분한다.
+주요 승인 변경은 같은 Decision ID로 GitHub 권위 문서·계획 데이터와 Google Sheet에 즉시 반영하고 working branch와 main 상태를 구분한다.
+
+### GM-VISUAL-SITUATION-BOARD-WORKFLOW-01
+
+프로젝트별 상황 화면 산출물은 기술 보고서가 아니라 **구현 후 실제 모습을 보여 주는 비주얼 중심 화면 보드**를 1차 산출물로 한다.
+
+```text
+프로젝트 핵심 경험
+→ 비주얼 기준 보드
+→ 필수 화면 4종 보드
+→ 핵심 상황별 화면 시퀀스
+→ 전체 화면 전환도
+→ 구현 명세 부록
+→ 적대적 검토
+```
+
+필수 규칙:
+
+- `SCREEN-01` 메인.
+- `SCREEN-02` 전투 또는 핵심 플레이.
+- `SCREEN-03` 인벤토리 또는 자원 관리 대응.
+- `SCREEN-04` 결과.
+- 화면·요소마다 `CURRENT / INFERRED / PROPOSED / PLACEHOLDER` 구분.
+- 기존 이미지·캐릭터·마스코트·구도 우선 확인.
+- 화면을 읽을 수 있도록 여러 장으로 분리.
+- 기술 구조는 PART D 부록으로 후행.
+- 6단계 적대적 검토에서 FAIL이 남으면 완료 금지.
+
+책임 원본:
+
+- `docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md`.
+- `docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md`.
+- `docs/planning/VISUAL_SITUATION_BOARD_STATE.json`.
+
+## 9. 이전 상황 명세의 현재 역할
 
 ### GM-SITUATION-SCREEN-WORKFLOW-01
 
-프로젝트별 상황 화면 명세는 다음 순서로 작성한다.
-
 ```text
-프로젝트·실제 파일 확인
-→ 핵심 경험
-→ 필수 기준 화면 4종
-→ 실제 플레이 상황 도출
-→ P0~P3
-→ P0 A~T 상세 명세
-→ 전체 전환·의존 관계
-→ 상황 보드
-→ 완료·테스트
-→ Base 승격 후보·프로젝트 전용 분리
+SUPERSEDED_PRIMARY_OUTPUT_ROLE
+SUPPORTING_TECHNICAL_APPENDIX_ONLY
 ```
 
-책임 원본:
+### GM-SITUATION-SCREEN-SPEC-01
 
-- `docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md`
+기존 P0 10개 A~T Godot 구현 명세는 폐기하지 않고 다음 용도로만 유지한다.
 
-## 9. GM-SITUATION-SCREEN-SPEC-01 — 검토 중 기술 설계
+- PART D 기술 부록.
+- Scene·Node·Resource·Signal·Save·Test 연결.
+- 향후 Codex Plan 입력.
+
+기존 기술 명세는 사용자에게 먼저 보여 줄 비주얼 보드가 아니며 구현 권한도 아니다.
+
+## 10. GRIMOIRE 비주얼 화면 보드 — 재작업 상태
 
 ```yaml
-status: USER_REVIEW_REQUIRED
-spec_type: TECHNICAL_DESIGN_ONLY
-benchmark: STANDARD_COMPLETE
-implementation_authority: NONE
+decision_id: GR-VISUAL-SITUATION-BOARD-01
+status: REWORK_REQUIRED_USER_REVIEW_REQUIRED
+previous_generated_visuals: REJECTED_NOT_AUTHORITY
+image_generation_for_corrected_board: NOT_STARTED
 ```
 
-작성 범위:
+재작업에서 보호할 기존 요소:
 
-- 필수 기준 화면 4종: Main, 별도 전투, 마도서·자원 대응, Result.
-- P0 상황 10개, P1~P3 Backlog.
-- 각 P0의 진입·화면·입력·시스템·Godot Scene/Node/Resource/Signal·Save·예외·완료·테스트.
-- Persistent ApplicationRoot + World Scene 교체 + CanvasLayer Overlay + Snapshot 권장안.
-- 9칸 상황 보드와 전체 상태 전환도.
+- 마법학교 생활·수업·시험·축제·현장실습.
+- 장면 기반 가로 16:9 3/4 필드.
+- 필드 SD 캐릭터.
+- 같은 장소 배경 위 반신 대화.
+- 직접 마법 글자 작성 Overlay.
+- 별도 고정 3/4 전술 전투장.
+- 작은 늑대형 메인 동반 정령 초기 형상.
+- 결과 후 원래 필드 환경 변화 복귀.
+- 마도서 과정 기록.
 
-책임 원본:
+재작업 보드:
 
-- `docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md`
-- `docs/superpowers/specs/grimoire-situations/P0_01_ENTRY_FIELD_DIALOGUE.md`
-- `docs/superpowers/specs/grimoire-situations/P0_02_SCHEDULE_SPELL_BATTLE.md`
-- `docs/superpowers/specs/grimoire-situations/P0_03_RESULT_RETURN_GRIMOIRE.md`
-- `docs/superpowers/specs/grimoire-situations/SITUATION_BOARD_AND_BACKLOG.md`
-- `docs/planning/SITUATION_SCREEN_SPEC_STATE.json`
+1. `BOARD-GR-A` 비주얼 기준.
+2. `BOARD-GR-B1` 필드·대화.
+3. `BOARD-GR-B2` 직접 작성·전투.
+4. `BOARD-GR-B3` 마도서·결과.
+5. `BOARD-GR-C1` 수업·연습 시퀀스.
+6. `BOARD-GR-C2` 시험·축제 시퀀스.
+7. `BOARD-GR-C3` 현장실습·귀환 시퀀스.
+8. `BOARD-GR-D` 전환도·최소 기술 부록.
 
-검토 중 제안:
+이전 일반 다크 판타지 조사·인벤토리형 이미지와 기술 대시보드형 이미지는 프로젝트 비주얼 정본·UI 승인 근거로 사용하지 않는다.
 
-- ApplicationRoot·WorldHost·UIHost 구체 구조.
-- 최소 Main Menu.
-- 마도서 화면 배치.
-- Resource·Save JSON·Sheet export Pipeline.
-- Signal·Scene 경로·상태 명칭.
-
-이 문서는 구현 권한이 아니다.
-
-## 10. ART-STYLE-01 — 미승인 Gate
+## 11. ART-STYLE-01 — 미승인 Gate
 
 ```yaml
 benchmark_status: STANDARD_BENCHMARK_COMPLETE
@@ -218,16 +249,18 @@ asset_generation: NOT_STARTED
 | C | Illustrated Pixel Diorama | `PRODUCTION_FALLBACK` |
 
 - A/B/C 모두 `NOT_YET_CANON`.
-- 이미지 생성·팔레트·선·명암·재질·내부 해상도 미착수.
-- 승인 후 같은 `ART-STYLE-01` ID로 정본·Sheet 동기화.
+- 기존 이미지 기반 화면 보드는 근거 태그를 사용하며 새 그림체를 확정하지 않는다.
+- 승인 후 같은 `ART-STYLE-01` ID로 정본·Sheet를 동기화한다.
 
-## 11. 게이트 상태
+## 12. 게이트 상태
 
 | 게이트 | 상태 |
 |---|---|
 | 기획 완료 | `TRUE` |
-| 상황 화면 작업 원칙 | `APPROVED_PROJECT_WORK_PRINCIPLE` |
-| 상황 화면 기술 설계 | `USER_REVIEW_REQUIRED` |
+| 비주얼 상황 보드 작업 원칙 | `APPROVED_PROJECT_WORK_PRINCIPLE` |
+| GRIMOIRE 비주얼 보드 | `REWORK_REQUIRED_USER_REVIEW_REQUIRED` |
+| 이전 기술 명세 | `SUPPORTING_TECHNICAL_APPENDIX_ONLY` |
+| 이전 생성 이미지 | `REJECTED_NOT_AUTHORITY` |
 | `ART-STYLE-01` 벤치마킹 | `COMPLETE` |
 | `ART-STYLE-01` 결정 | `USER_DECISION_REQUIRED` |
 | `ART-BIBLE-01` | `BLOCKED_BY_ART_STYLE` |
@@ -236,7 +269,7 @@ asset_generation: NOT_STARTED
 | Codex Plan | `BLOCKED_BY_ART_AND_INTEGRATED_REVIEW` |
 | Godot 구현 | `NOT_STARTED` |
 
-## 12. 검증 경계
+## 13. 검증 경계
 
 ```text
 RUNTIME_VALIDATION = NOT_RUN
@@ -244,5 +277,5 @@ PC_INPUT_VALIDATION = NOT_RUN
 MOBILE_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
 ART_STYLE_USER_APPROVAL = NOT_GRANTED
-SITUATION_SCREEN_SPEC_USER_REVIEW = NOT_GRANTED
+CORRECTED_VISUAL_BOARD_USER_REVIEW = NOT_GRANTED
 ```
