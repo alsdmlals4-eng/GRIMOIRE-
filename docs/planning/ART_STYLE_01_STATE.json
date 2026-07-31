@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "decision_id": "ART-STYLE-01",
   "status": "APPROVED",
   "approved_at": "2026-07-31T21:58:00+09:00",
@@ -12,8 +12,9 @@
   "approval_source": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
   "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md",
   "locked_reference_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
+  "sync_receipt": "docs/planning/sync/GR-APPROVE-ART-STYLE-01.md",
   "benchmark_commit": "395a2f99159a1421243d39e80d7e6bd987af878c",
-  "candidate_commit": "a11732694ef1404f6a66ae4aa642dbcf32c5780f",
+  "candidate_commit": "30bcf864bd38d0daf5332649769f76e987a4d2ef",
   "manifest_commit": "07515dc8d21b53f9f14d59f3e72fb27c9fe0c756",
   "approval_commit": "b151495958d08896ba1a42362e8786b42b591ec7",
   "addendum_commit": "3d2ab8c2098720dc040114d02a459092e274d02b",
@@ -65,9 +66,32 @@
   "asset_generation_status": "BLOCKED_UNTIL_ART_BIBLE",
   "next_product_gate": "ART-BIBLE-01",
   "asset_spec_gate": "BLOCKED_BY_ART_BIBLE",
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "status": "VERIFIED_BY_READBACK",
+    "verified_at": "2026-07-31T22:10:00+09:00",
+    "readback": "PASS",
+    "ranges": [
+      "01_작업순서!A3:J3",
+      "01_작업순서!A10:J10",
+      "02_현재_확정결정!A7:J7",
+      "02_현재_확정결정!A17:J17",
+      "03_근거_라이브러리!A7:I7",
+      "04_누락_충돌_감사!A11:H11",
+      "05_GDD_요약!A6:H6",
+      "05_GDD_요약!A10:H10",
+      "60_UX_UI_접근성!A8:H9",
+      "70_아트_오디오_에셋!A6:H8",
+      "71_이미지기획_생성목록!A7:H7",
+      "72_이미지검수_승인로그!A3:H3",
+      "80_데모_버티컬슬라이스_플레이테스트!A4:H4",
+      "80_데모_버티컬슬라이스_플레이테스트!A6:H6",
+      "99_변경이력!A11:H11"
+    ]
+  },
   "implementation_authority": "NONE",
   "codex": "BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_INTEGRATED_REVIEW",
   "godot": "NOT_STARTED",
-  "sync_status": "GITHUB_AUTHORITY_UPDATED_SHEET_PENDING",
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
   "main_sync": "PENDING_PR_MERGE"
 }
