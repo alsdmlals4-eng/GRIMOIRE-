@@ -18,7 +18,7 @@
   },
   "authority": {
     "source_path": "docs/planning/BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md",
-    "commit": "eee96e1c58dbb24eed80488c875da359a3102fe4"
+    "commit": "1e5bf6d8336f3861d9d5fabeac7c5dd5473547ee"
   },
   "sync_receipt": {
     "source_path": "docs/planning/sync/GR-APPROVE-BATTLE-ACTIVE-TIMER-01.md",
@@ -26,8 +26,14 @@
     "sheet_readback": "PASS"
   },
   "core_contract": {
-    "enemy_action_model": "FIXED_OR_DATA_DRIVEN_INTERVAL_TIMER",
-    "enemy_action_ui": "NEXT_ACTION_AND_REMAINING_TIME_VISIBLE",
+    "enemy_default_action": "PERIODIC_ATTACK_ONLY",
+    "enemy_attack_model": "FIXED_OR_DATA_DRIVEN_INTERVAL_TIMER",
+    "enemy_attack_ui": "NEXT_ATTACK_AND_REMAINING_TIME_VISIBLE",
+    "unapproved_enemy_actions": [
+      "DEFENSE",
+      "CHARGE",
+      "SUPPORT"
+    ],
     "player_action_model": "FREE_SPELL_WRITING_DURING_BATTLE",
     "cast_trigger": "IMPLEMENT_BUTTON",
     "cast_execution": "IMMEDIATE_AFTER_VALIDATION",
@@ -47,10 +53,10 @@
   ],
   "unresolved": [
     "TIME_FLOW_DURING_WRITING",
-    "ENEMY_ACTION_INTERVAL_VALUES",
+    "ENEMY_ATTACK_INTERVAL_VALUES",
     "DAMAGE_AND_DEFENSE_RULES",
     "VICTORY_AND_DEFEAT_CONDITIONS",
-    "BOSS_PHASE_COUNT_AND_TRANSITION_RULES",
+    "BOSS_PHASE_COUNT_AND_ATTACK_PATTERNS",
     "NUMERIC_BALANCE"
   ],
   "next_design_gate": "BATTLE-TIME-FLOW-01",
