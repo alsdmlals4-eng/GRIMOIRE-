@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "decision_id": "ART-BIBLE-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "DRAFT_USER_REVIEW_REQUIRED",
+  "approach_status": "DUAL_STANDARD_APPROVED",
+  "approach_approved_at": "2026-08-01T04:34:00+09:00",
+  "approved_by": "USER",
+  "draft_source": "docs/planning/ART_BIBLE_01_DRAFT_2026-08-01.md",
+  "draft_commit": "844eee0a746df31cbc21ea8c8ca02de6849a17e0",
+  "source_art_style": {
+    "decision_id": "ART-STYLE-01",
+    "status": "APPROVED_A_MODIFIED",
+    "locked_reference_sha256": "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a",
+    "source_edit": "PROHIBITED"
+  },
+  "model": {
+    "visual_authority_standard": "FINAL_TARGET_IMPRESSION_AND_SCREEN_LANGUAGE",
+    "vertical_slice_production_standard": "SOLO_PRODUCTION_COMPLEXITY_AND_REUSE_LIMITS"
+  },
+  "protected_contracts": [
+    "LANDSCAPE_16_9",
+    "FIXED_SCENE_BASED_THREE_QUARTER_FIELD",
+    "FIELD_AND_BATTLE_SD_CHARACTER_SYSTEM",
+    "HALF_BODY_DIALOGUE_OVER_SAME_LOCATION",
+    "FIELD_WRITING_OVERLAY",
+    "SEPARATE_FIXED_THREE_QUARTER_TACTICAL_BATTLE",
+    "BATTLE_WRITING_OVERLAY",
+    "RESULT_RETURN_TO_ORIGINAL_FIELD",
+    "NAVY_GOLD_ACADEMY_UI",
+    "HIGH_CONTRAST_BLUE_GLYPH_LANGUAGE"
+  ],
+  "corrections_applied_in_draft": [
+    "PC_RUNTIME_MUST_NOT_INHERIT_PERSISTENT_MOBILE_TOUCH_CONTROLS",
+    "IMAGE_NAMES_STATS_PARTY_SIZE_ENEMY_COUNT_ARE_NOT_CANON",
+    "SCHOOL_EXAM_FESTIVAL_USE_SHARED_SCENE_STATE_VARIANTS",
+    "MAIN_COMPANION_AND_COMBAT_SUPPORT_SUMMON_ARE_SEPARATE",
+    "MAIN_AND_GRIMOIRE_SCREENS_REQUIRE_SEPARATE_DERIVATIVE_BOARDS"
+  ],
+  "user_decisions_required": [
+    "PROTAGONIST_EXACT_VISUAL_KEY_LOCK_SCOPE",
+    "COMPANION_OFFICIAL_NAME",
+    "BLUE_AND_ORANGE_STATE_COLOR_SEMANTICS",
+    "MAIN_AND_GRIMOIRE_DERIVATIVE_BOARD_ORDER",
+    "SERIF_TITLE_AND_GOTHIC_BODY_FONT_DIRECTION"
+  ],
+  "implementation_authority": "NONE",
+  "asset_generation_authority": "NONE",
+  "codex": "BLOCKED",
+  "godot": "NOT_STARTED",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "next_product_gate": "ART-BIBLE-01_USER_REVIEW",
+  "next_gate_after_approval": "ASSET-SPEC-01",
+  "sync_status": "GITHUB_DRAFT_CREATED_SHEET_PENDING",
+  "main_sync": "PENDING_PR_MERGE"
+}
