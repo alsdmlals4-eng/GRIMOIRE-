@@ -20,6 +20,11 @@
     "source_path": "docs/planning/BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md",
     "commit": "eee96e1c58dbb24eed80488c875da359a3102fe4"
   },
+  "sync_receipt": {
+    "source_path": "docs/planning/sync/GR-APPROVE-BATTLE-ACTIVE-TIMER-01.md",
+    "commit": "98dff2debacc6782d96d49fc8733e6be6ab742eb",
+    "sheet_readback": "PASS"
+  },
   "core_contract": {
     "enemy_action_model": "FIXED_OR_DATA_DRIVEN_INTERVAL_TIMER",
     "enemy_action_ui": "NEXT_ACTION_AND_REMAINING_TIME_VISIBLE",
@@ -53,6 +58,6 @@
   "godot": "NOT_STARTED",
   "runtime_validation": "NOT_RUN",
   "human_validation": "NOT_RUN",
-  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
   "main_sync": "PENDING_PR_MERGE"
 }
