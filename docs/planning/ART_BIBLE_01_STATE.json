@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "decision_id": "ART-BIBLE-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "status": "DRAFT_USER_REVIEW_REQUIRED",
@@ -45,9 +45,12 @@
       "authority": "docs/planning/BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md",
       "authority_commit": "73829e0d7b0937d7aac88db5545a41a6f549669a",
       "state": "docs/planning/BATTLE_SCREEN_LAYOUT_01_STATE.json",
-      "state_commit": "2e889bd45e9cf3beee53e40d1db5b2f3df284ea0",
+      "state_commit": "736ab8bf7ad0494de849b593c20c3345859f3410",
       "benchmark": "docs/planning/benchmarks/BATTLE_SCREEN_LAYOUT_01_QUICK_BENCHMARK_2026-08-01.md",
       "benchmark_commit": "d40d932fa004f0298512b5e64014a182095cbabf",
+      "sync_receipt": "docs/planning/sync/GR-APPROVE-BATTLE-SCREEN-LAYOUT-01.md",
+      "sync_receipt_commit": "9d9ebce0513d2421bd88cd474d8b7f424e3a445f",
+      "sync_status": "SYNCED_TO_WORKING_BRANCH",
       "contract": [
         "ENEMY_AND_ENVIRONMENT_ONLY_PERSISTENT_BATTLEFIELD",
         "ALLY_FACE_PORTRAITS_LOWER_LEFT",
@@ -64,6 +67,9 @@
     "MAIN_COMPANION_AND_COMBAT_SUPPORT_SUMMON_ARE_SEPARATE",
     "MAIN_AND_GRIMOIRE_SCREENS_REQUIRE_SEPARATE_DERIVATIVE_BOARDS"
   ],
+  "document_corrections_required_before_final_approval": [
+    "REPLACE_PERSISTENT_ALLY_AND_GUARDIAN_BODIES_IN_BATTLEFIELD_WITH_LOWER_LEFT_PORTRAITS_AND_BRIEF_ACTIVATION_PRESENTATION"
+  ],
   "user_decisions_required": [
     "PROTAGONIST_EXACT_VISUAL_KEY_LOCK_SCOPE",
     "COMPANION_OFFICIAL_NAME",
@@ -75,17 +81,28 @@
   ],
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "status": "VERIFIED_BY_READBACK_FOR_ART_BIBLE_DRAFT",
+    "status": "VERIFIED_BY_READBACK",
     "readback": "PASS",
-    "verified_at": "2026-08-01T04:34:00+09:00",
-    "ranges": [
+    "verified_at": "2026-08-01T05:04:00+09:00",
+    "art_bible_ranges": [
       "01_작업순서!A11:J11",
       "02_현재_확정결정!A18:J18",
       "04_누락_충돌_감사!A12:H12",
       "70_아트_오디오_에셋!A8:H8",
       "99_변경이력!A12:H12"
     ],
-    "battle_layout_sync": "PENDING"
+    "battle_layout_ranges": [
+      "01_작업순서!A12:J12",
+      "02_현재_확정결정!A19:J19",
+      "04_누락_충돌_감사!A13:H13",
+      "05_GDD_요약!A13:H13",
+      "40_핵심시스템_메인콘텐츠!A10:H10",
+      "60_UX_UI_접근성!A10:H10",
+      "70_아트_오디오_에셋!A9:H9",
+      "80_데모_버티컬슬라이스_플레이테스트!A7:H7",
+      "99_변경이력!A13:H13"
+    ],
+    "battle_layout_sync": "READBACK_PASS"
   },
   "implementation_authority": "NONE",
   "asset_generation_authority": "NONE",
@@ -96,6 +113,6 @@
   "next_product_gate": "ART-BIBLE-01_USER_REVIEW",
   "next_planning_work_item": "BATTLE-UX-01_WITHIN_ART_BIBLE_REVIEW",
   "next_gate_after_approval": "ASSET-SPEC-01",
-  "sync_status": "ART_BIBLE_DRAFT_SYNCED_BATTLE_LAYOUT_SHEET_PENDING",
+  "sync_status": "DRAFT_SYNCED_TO_WORKING_BRANCH_WITH_BATTLE_LAYOUT_REFINEMENT",
   "main_sync": "PENDING_PR_MERGE"
 }
