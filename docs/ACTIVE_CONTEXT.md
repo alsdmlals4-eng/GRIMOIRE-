@@ -18,13 +18,15 @@ implementation: NOT_STARTED
 codex: BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES
 next_product_gate: ART-STYLE-01
 art_style_status: USER_DECISION_REQUIRED
-situation_screen_workflow: APPROVED_PROJECT_WORK_PRINCIPLE
-situation_screen_spec: USER_REVIEW_REQUIRED
+visual_situation_board_workflow: APPROVED_PROJECT_WORK_PRINCIPLE
+grimoire_visual_board: REWORK_REQUIRED_USER_REVIEW_REQUIRED
+previous_situation_screen_spec: SUPPORTING_TECHNICAL_APPENDIX_ONLY
+previous_generated_visuals: REJECTED_NOT_AUTHORITY
 canon_sync_state: SYNCED_TO_WORKING_BRANCH
 main_sync_state: PENDING_PR_MERGE
 ```
 
-제품 코드·Scene·Resource·게임 데이터·실제 자산은 아직 없다.
+제품 코드·Scene·Resource·게임 데이터·실제 런타임 자산은 아직 없다.
 
 ## 질문 전 복원 순서
 
@@ -33,11 +35,12 @@ AGENTS.md
 → START_HERE.md
 → 이 문서
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31S.md
+→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md
 → docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md
+→ docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md
 → 주제별 책임 원본
 → docs/planning/CANON_SYNC_STATE.json
-→ docs/planning/SITUATION_SCREEN_SPEC_STATE.json
+→ docs/planning/VISUAL_SITUATION_BOARD_STATE.json
 ```
 
 확정된 결정을 기억 확인 목적으로 다시 묻지 않는다.
@@ -78,114 +81,127 @@ AGENTS.md
 
 실제 그림체·팔레트·선·명암·재질·내부 해상도는 아직 미승인이다.
 
-## 벤치마킹 선행 원칙
+## 벤치마킹·정본 동기화
 
-결정 ID: `GM-BENCHMARK-FIRST-01`
+- `GM-BENCHMARK-FIRST-01`: 새 시스템·핵심 규칙·콘텐츠 구조·UX 흐름은 범위 맞춤 벤치마킹 후 설계.
+- `GM-CANON-SYNC-01`: 주요 승인 변경은 같은 Decision ID로 GitHub 권위 문서·계획 데이터와 Google Sheet에 즉시 반영.
+- working branch 동기화와 main 동기화를 구분.
+- 승인 기획 번들 `GR-SYNC-20260731-04`는 working branch·Sheet 재조회 완료, main은 PR #22 병합 대기.
 
-새 시스템, 핵심 규칙, 콘텐츠 구조, UX 흐름을 설계하거나 의미 있게 변경할 때 범위에 맞는 벤치마킹을 먼저 수행한다.
+## 비주얼 중심 상황 화면 작업 원칙
 
-책임 원본: `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
-
-## 기획 정본 즉시 동기화
-
-결정 ID: `GM-CANON-SYNC-01`
-
-```text
-Decision ID
-→ GitHub 권위 문서·계획 데이터
-→ authority commit
-→ 연결된 Google Sheet
-→ 양쪽 재조회
-→ SYNCED_TO_WORKING_BRANCH
-→ PR 병합
-→ main·Sheet 재검증
-→ SYNCED_TO_MAIN
-```
-
-승인 기획 번들 `GR-SYNC-20260731-04`는 working branch와 Sheet 재조회까지 완료됐고 main은 PR #22 병합 대기다.
-
-## 프로젝트 상황 화면 작업 원칙
-
-결정 ID: `GM-SITUATION-SCREEN-WORKFLOW-01`
+결정 ID: `GM-VISUAL-SITUATION-BOARD-WORKFLOW-01`
 
 상태: `APPROVED_PROJECT_WORK_PRINCIPLE`
 
-필수 기준 화면 4종을 먼저 조사한 뒤, 실제 플레이 상황을 P0~P3로 도출하고 P0를 A~T 형식으로 상세 설계한다.
+사용자에게 먼저 보여 줄 산출물은 기술 감사 문서가 아니라 **“이 프로젝트가 구현되면 실제로 어떻게 보이는가”**를 보여 주는 비주얼 중심 화면 보드다.
 
-필수 기준 화면:
+```text
+프로젝트 핵심 경험
+→ 프로젝트 비주얼 기준 보드
+→ 필수 기준 화면 4종 보드
+→ 핵심 상황별 화면 시퀀스 보드
+→ 전체 화면 전환도
+→ 구현 명세 부록
+→ 적대적 검토
+```
 
-1. Main·시작.
-2. 전투 또는 핵심 플레이.
-3. 인벤토리 또는 보유 지식·자원 대응.
-4. 결과.
+필수 화면:
+
+1. 메인 화면.
+2. 전투 또는 핵심 플레이 화면.
+3. 인벤토리 또는 자원 관리 대응 화면.
+4. 결과 화면.
+
+모든 화면·요소는 `CURRENT / INFERRED / PROPOSED / PLACEHOLDER`를 구분한다.
+
+금지:
+
+- 기술 구조가 화면보다 앞에 오는 구성.
+- 한 장 과밀 대시보드.
+- UI가 읽히지 않는 작은 화면.
+- 기존 프로젝트 이미지 확인 없이 generic 장르 UI 생성.
+- CURRENT와 PROPOSED 혼합.
 
 책임 원본:
 
-- `docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md`
+- `docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md`.
+- `docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md`.
+- `docs/planning/VISUAL_SITUATION_BOARD_STATE.json`.
 
-## GRIMOIRE 상황별 화면·상태 구현 설계
+## 이전 기술 명세의 현재 역할
 
-결정 ID: `GM-SITUATION-SCREEN-SPEC-01`
+- `GM-SITUATION-SCREEN-WORKFLOW-01`: `SUPERSEDED_PRIMARY_OUTPUT_ROLE / SUPPORTING_APPENDIX_ONLY`.
+- `GM-SITUATION-SCREEN-SPEC-01`: `SUPPORTING_TECHNICAL_APPENDIX_ONLY`.
 
-상태: `USER_REVIEW_REQUIRED / TECHNICAL_DESIGN_ONLY`
+기존 P0 10개 A~T Godot 명세는 폐기하지 않는다. 다만 다음 용도로만 사용한다.
 
-### 프로젝트 감사
+- PART D 기술 부록.
+- Scene·Node·Resource·Signal·Save·Test 연결.
+- 향후 Codex Plan 입력.
 
-```text
-project.godot = NOT_FOUND
-*.tscn = NOT_FOUND
-*.gd = NOT_FOUND
-*.tres = NOT_FOUND
-actual implementation = NOT_STARTED
-```
+이전 기술 명세는 사용자 1차 검토용 비주얼 산출물이 아니며 구현 권한도 아니다.
 
-### 권장 기술 구조
+## GRIMOIRE 비주얼 화면 보드 재작업
 
-```text
-Persistent ApplicationRoot
-├─ GameFlowController
-├─ SessionStateOwner
-├─ WorldHost
-│  └─ FieldScene | BattleScene
-├─ UIHost
-│  └─ Main | Dialogue | Schedule | Spell | Result | Grimoire | Pause
-├─ TransitionLayer
-└─ AudioDirector
-```
-
-- Field와 Battle은 별도 World Scene.
-- 대화·일정·작성·결과·마도서는 CanvasLayer Overlay.
-- `FieldReturnSnapshot`과 Result Tag로 Battle→Field 복귀.
-- 최소 Autoload 후보는 `ContentRegistry / SaveService / SettingsService`.
-- UI는 인식·문법·비용·피해·보상을 계산하지 않음.
-
-### P0 상황
-
-1. `SIT-GR-001 최초 실행·세이브 선택`.
-2. `SIT-GR-002 학교 장면 진입·이상 징후 관찰`.
-3. `SIT-GR-003 교수·동급생·동반 정령 대화`.
-4. `SIT-GR-004 자유일정 선택`.
-5. `SIT-GR-005 Situation Challenge 관찰·준비`.
-6. `SIT-GR-006 직접 작성·인식·조합·Commit`.
-7. `SIT-GR-007 전술 전투·수호 소환`.
-8. `SIT-GR-008 결과·원인·보상 복기`.
-9. `SIT-GR-009 원래 필드 복귀·환경 변화`.
-10. `SIT-GR-010 귀환·마도서 기록·Checkpoint`.
-
-책임 원본:
-
-- `docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md`
-- `docs/superpowers/specs/grimoire-situations/P0_01_ENTRY_FIELD_DIALOGUE.md`
-- `docs/superpowers/specs/grimoire-situations/P0_02_SCHEDULE_SPELL_BATTLE.md`
-- `docs/superpowers/specs/grimoire-situations/P0_03_RESULT_RETURN_GRIMOIRE.md`
-- `docs/superpowers/specs/grimoire-situations/SITUATION_BOARD_AND_BACKLOG.md`
-- `docs/planning/SITUATION_SCREEN_SPEC_STATE.json`
-
-이 명세는 사용자 검토 대상이며 구현 권한이 아니다.
-
-## ART-STYLE-01
+결정 ID: `GR-VISUAL-SITUATION-BOARD-01`
 
 상태:
+
+```text
+REWORK_REQUIRED
+USER_REVIEW_REQUIRED
+CORRECTED_IMAGE_GENERATION = NOT_STARTED
+```
+
+이전 생성 결과 판정:
+
+```text
+generic dark fantasy 조사·인벤토리형 이미지 = REJECTED_NOT_AUTHORITY
+기술 대시보드 중심 이미지 = REJECTED_AS_PRIMARY_ARTIFACT
+```
+
+재작업에서 반드시 보존할 기존 요소:
+
+- 마법학교 생활·수업·시험·축제·현장실습.
+- 장면 기반 가로 16:9 3/4 필드.
+- 필드 SD 주인공·NPC·동반 정령.
+- 같은 장소 배경 위 대화용 반신 일러스트.
+- 직접 마법 글자 작성 Overlay.
+- 별도 고정 3/4 전술 전투장.
+- 작은 늑대형 메인 동반 정령 초기 형상.
+- 기존 정령수 성장 이미지는 장기 방향 참고이며 Slice 런타임을 확장하지 않음.
+- 결과 후 원래 Field 환경 변화 복귀.
+- 마도서 과정 기록.
+
+재작업 보드:
+
+1. `BOARD-GR-A` 프로젝트 비주얼 기준.
+2. `BOARD-GR-B1` 필드·대화.
+3. `BOARD-GR-B2` 직접 작성·전술 전투.
+4. `BOARD-GR-B3` 마도서·결과.
+5. `BOARD-GR-C1` 수업·연습 시퀀스.
+6. `BOARD-GR-C2` 시험·축제 시퀀스.
+7. `BOARD-GR-C3` 현장실습·귀환 시퀀스.
+8. `BOARD-GR-D` 전체 전환도·최소 기술 부록.
+
+각 보드는 화면과 UI가 읽히는 크기로 분리하고 근거 태그를 표시한다.
+
+## 적대적 검토 필수 항목
+
+다음이 모두 PASS여야 완료다.
+
+- 화면 중심 산출물 유지.
+- 필수 화면 4종 가시성.
+- 핵심 상황 시퀀스 명확성.
+- CURRENT/PROPOSED 구분.
+- 프로젝트 고유성 반영.
+- 판독성·가독성.
+- 비교·재사용 가능성.
+
+FAIL이 있으면 보드를 분리·확대·수정한 뒤 재판정한다.
+
+## ART-STYLE-01
 
 ```text
 STANDARD_BENCHMARK_COMPLETE
@@ -193,7 +209,7 @@ USER_DECISION_REQUIRED
 IMAGE_GENERATION = NOT_STARTED
 ```
 
-후보 A `Soft Storybook Cel 2D Hybrid`가 권장이지만 미승인이다. B와 C도 정본이 아니다.
+후보 A `Soft Storybook Cel 2D Hybrid`는 권장이지만 미승인이다. B와 C도 정본이 아니다. 기존 이미지 기반 보드 제작은 새 그림체 승인으로 간주하지 않는다.
 
 ## 현재 제품 경로
 
@@ -210,7 +226,7 @@ IMAGE_GENERATION = NOT_STARTED
 → 구현
 ```
 
-상황 화면 명세 검토는 이 경로를 보조하며 Art Gate를 우회하지 않는다.
+비주얼 화면 보드 검토는 이 경로를 보조하며 Art Gate를 우회하지 않는다.
 
 ## Base·운영 정합화 위험
 
@@ -225,6 +241,7 @@ IMAGE_GENERATION = NOT_STARTED
 - 사용자 검토 없는 PR 병합 금지.
 - Codex·Godot 구현 금지.
 - Art Bible·Asset Spec 전 대량 자산 제작 금지.
+- 이전 잘못된 이미지를 정본·승인 근거로 사용 금지.
 - 전환·Save·인식·전투를 실제 실행하지 않은 상태에서 완료 주장 금지.
 
 ```text
@@ -232,5 +249,5 @@ RUNTIME_VALIDATION = NOT_RUN
 PC_INPUT_VALIDATION = NOT_RUN
 MOBILE_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
-SITUATION_SCREEN_SPEC_USER_REVIEW = NOT_GRANTED
+CORRECTED_VISUAL_BOARD_USER_REVIEW = NOT_GRANTED
 ```
