@@ -1,6 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "decision_id": "GM-VISUAL-SITUATION-BOARD-WORKFLOW-01",
+  "project_visual_board_id": "GR-VISUAL-SITUATION-BOARD-01",
   "trace_id": "GR-TRACE-VISUAL-SITUATION-BOARD-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -90,6 +91,34 @@
       "BOARD-GR-D_FLOW_AND_MINIMAL_TECH_APPENDIX"
     ]
   },
+  "authority": {
+    "work_order": "docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md",
+    "work_order_commit": "52947b95bba608acc68fe8f27fb9919d9c54d97d",
+    "latest_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md",
+    "latest_addendum_commit": "39ae34a961dcb0f2b774a754c484daf96c801a58",
+    "registry_commit": "e76d6896d12ef184e8e1e4181bb0933e1877c8dd",
+    "current_decisions_commit": "1c97b843c9bb9aab8649650189c126540170e2bf",
+    "active_context_commit": "d211af10c32d41922bf4172086a1330142b13a77",
+    "sync_receipt": "docs/planning/sync/GR-TRACE-VISUAL-SITUATION-BOARD-01.md",
+    "sync_receipt_commit": "9ca6d58307176853be20e2df68faf9743313102c"
+  },
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "status": "VERIFIED_BY_READBACK",
+    "ranges": [
+      "01_작업순서!A9:J10",
+      "02_현재_확정결정!A14:J17",
+      "03_근거_라이브러리!A6:I6",
+      "04_누락_충돌_감사!A10:H10",
+      "05_GDD_요약!A9:H12",
+      "60_UX_UI_접근성!A8:H9",
+      "70_아트_오디오_에셋!A7:H8",
+      "80_데모_버티컬슬라이스_플레이테스트!A6:H6",
+      "99_변경이력!A10:H10"
+    ],
+    "readback": "PASS",
+    "verified_at": "2026-07-31T21:22:00+09:00"
+  },
   "base_promotion": {
     "status": "CANDIDATE",
     "candidates": [
@@ -114,6 +143,6 @@
   "implementation_authority": "NONE",
   "codex": "BLOCKED",
   "godot": "NOT_STARTED",
-  "sheet_sync": "PENDING",
+  "sync_status": "WORKFLOW_SYNCED_BOARD_REWORK_PENDING",
   "main_sync": "PENDING_PR_MERGE"
 }
