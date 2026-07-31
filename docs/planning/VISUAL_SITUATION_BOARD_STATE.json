@@ -1,19 +1,49 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "decision_id": "GM-VISUAL-SITUATION-BOARD-WORKFLOW-01",
   "project_visual_board_id": "GR-VISUAL-SITUATION-BOARD-01",
-  "trace_id": "GR-TRACE-VISUAL-SITUATION-BOARD-01",
+  "art_style_decision_id": "ART-STYLE-01",
+  "trace_id": "GR-TRACE-ART-STYLE-01-APPROVAL",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
   "branch": "agent/grimoire-v93-canon",
   "pull_request": 22,
   "workflow_status": "APPROVED_PROJECT_WORK_PRINCIPLE",
   "primary_artifact_type": "VISUAL_FIRST_SITUATION_BASED_INGAME_SCREEN_BOARD",
+  "visual_board_status": "APPROVED_LOCKED_REFERENCE_BOARD",
+  "art_style_status": "APPROVED_A_MODIFIED",
+  "approved_at": "2026-07-31T21:58:00+09:00",
+  "approved_by": "USER",
   "primary_questions": [
     "WHAT_DOES_THE_IMPLEMENTED_PROJECT_LOOK_LIKE",
-    "HOW_DO_THE_FOUR_REQUIRED_SCREENS_LOOK",
+    "HOW_DO_THE_REQUIRED_SCREENS_LOOK",
     "HOW_DO_CORE_SITUATIONS_CHANGE_THE_SCREEN",
-    "WHAT_IS_THE_PROJECT_UI_UX_WIREFRAME_DIRECTION"
+    "WHAT_IS_THE_PROJECT_UI_UX_DIRECTION"
+  ],
+  "approved_reference": {
+    "status": "LOCKED",
+    "caption": "추천 확정안 A (수정): 필드 SD + 대화 반신 + 별도 전투 화면",
+    "library_path": "/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png",
+    "library_file_id": "file_0000000061bc81fa93d8b1b30d553943",
+    "library_node_id": "libfile_b61a5d166df48191b249a132142dba84",
+    "width_px": 662,
+    "height_px": 455,
+    "sha256": "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a",
+    "manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
+    "approval_document": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "source_edit": "PROHIBITED",
+    "source_regeneration": "PROHIBITED"
+  },
+  "approved_screen_set": [
+    "SCHOOL_EXPLORATION_AND_FREE_SCHEDULE_FIELD_SD",
+    "HALF_BODY_DIALOGUE_WITH_COMPANION",
+    "NON_BATTLE_GLYPH_WRITING_OVERLAY",
+    "SEPARATE_FIXED_THREE_QUARTER_TACTICAL_BATTLE",
+    "BATTLE_GLYPH_WRITING_OVERLAY",
+    "BATTLE_RESULT_AND_RETURN_TO_ORIGINAL_SCENE",
+    "PROTAGONIST_AND_COMPANION_DESIGN_KEYS",
+    "CLASS_EXAM_FESTIVAL_FIELD_PRACTICUM_BACKGROUND_VARIANTS",
+    "LANDSCAPE_16_9_UI_LAYOUT"
   ],
   "evidence_tags": [
     "CURRENT",
@@ -21,30 +51,25 @@
     "PROPOSED",
     "PLACEHOLDER"
   ],
-  "required_parts": [
-    "PART_A_VISUAL_DIRECTION_BOARD",
-    "PART_B_FOUR_REQUIRED_SCREEN_BOARDS",
-    "PART_C_CORE_SITUATION_SEQUENCE_BOARDS",
-    "PART_D_IMPLEMENTATION_APPENDIX"
-  ],
-  "required_screens": [
-    "SCREEN-01_MAIN",
-    "SCREEN-02_BATTLE_OR_CORE_PLAY",
-    "SCREEN-03_INVENTORY_OR_RESOURCE_MANAGEMENT",
-    "SCREEN-04_RESULT"
-  ],
+  "evidence_tag_policy": "REQUIRED_FOR_FUTURE_DERIVATIVE_BOARDS_BUT_NOT_OVERLAID_ON_LOCKED_SOURCE",
+  "source_lock_contract": {
+    "edit": "PROHIBITED",
+    "crop_as_replacement": "PROHIBITED",
+    "text_replacement": "PROHIBITED",
+    "panel_relayout": "PROHIBITED",
+    "color_change": "PROHIBITED",
+    "regeneration": "PROHIBITED",
+    "derivative_work": "SEPARATE_FILES_ONLY_AFTER_ART_BIBLE",
+    "override": "EXPLICIT_USER_APPROVAL_REQUIRED"
+  },
   "adversarial_review": {
-    "required": true,
-    "must_pass_all": true,
-    "checks": [
-      "SCREEN_FIRST_NOT_TECHNICAL_REPORT",
-      "FOUR_REQUIRED_SCREENS_VISIBLE",
-      "CORE_SEQUENCE_VISUALLY_CLEAR",
-      "CURRENT_PROPOSED_SEPARATED",
-      "PROJECT_IDENTITY_PRESERVED",
-      "SCREEN_AND_UI_READABLE",
-      "CROSS_PROJECT_TEMPLATE_REUSABLE"
-    ]
+    "locked_board_user_approval": "PASS",
+    "screen_first_not_technical_report": "PASS",
+    "project_identity_preserved": "PASS",
+    "field_dialogue_writing_battle_result_sequence_visible": "PASS",
+    "character_and_companion_consistency": "PASS",
+    "screen_and_ui_readability": "REFERENCE_LEVEL_PASS",
+    "runtime_ux_validation": "NOT_RUN"
   },
   "previous_workflow": {
     "decision_id": "GM-SITUATION-SCREEN-WORKFLOW-01",
@@ -64,85 +89,28 @@
       "EXISTING_MAGIC_ACADEMY_CHARACTER_COMPANION_AND_SCREEN_LANGUAGE_NOT_PRESERVED"
     ]
   },
-  "grimoire_visual_board": {
-    "status": "REWORK_REQUIRED_USER_REVIEW_REQUIRED",
-    "art_style_status": "ART_STYLE_01_USER_DECISION_REQUIRED",
-    "implementation_status": "NOT_STARTED",
-    "image_generation_status": "NOT_STARTED_FOR_CORRECTED_BOARD",
-    "protected_existing_elements": [
-      "MAGIC_ACADEMY_LIFE_CLASS_EXAM_FESTIVAL_FIELD_PRACTICUM",
-      "LANDSCAPE_16_9_SCENE_BASED_THREE_QUARTER_FIELD",
-      "FIELD_SD_CHARACTERS",
-      "HALF_BODY_DIALOGUE_ON_SAME_LOCATION_BACKGROUND",
-      "DIRECT_GLYPH_WRITING_OVERLAY",
-      "SEPARATE_FIXED_THREE_QUARTER_TACTICAL_BATTLE_ARENA",
-      "SMALL_WOLF_LIKE_ELEMENTAL_COMPANION_INITIAL_FORM",
-      "RESULT_RETURN_TO_CHANGED_FIELD",
-      "GRIMOIRE_PROCESS_RECORD"
-    ],
-    "planned_boards": [
-      "BOARD-GR-A_VISUAL_DIRECTION",
-      "BOARD-GR-B1_FIELD_AND_DIALOGUE",
-      "BOARD-GR-B2_WRITING_AND_BATTLE",
-      "BOARD-GR-B3_GRIMOIRE_AND_RESULT",
-      "BOARD-GR-C1_CLASS_AND_PRACTICE_SEQUENCE",
-      "BOARD-GR-C2_EXAM_AND_FESTIVAL_SEQUENCE",
-      "BOARD-GR-C3_FIELD_PRACTICUM_AND_RETURN_SEQUENCE",
-      "BOARD-GR-D_FLOW_AND_MINIMAL_TECH_APPENDIX"
-    ]
+  "future_derivative_board_policy": {
+    "source_must_remain_unchanged": true,
+    "new_board_required_for_new_detail": true,
+    "same_protagonist_and_companion_keys": true,
+    "same_field_dialogue_battle_relationship": true,
+    "art_bible_required_before_final_asset_detail": true
   },
   "authority": {
     "work_order": "docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md",
-    "work_order_commit": "52947b95bba608acc68fe8f27fb9919d9c54d97d",
-    "latest_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md",
-    "latest_addendum_commit": "39ae34a961dcb0f2b774a754c484daf96c801a58",
-    "registry_commit": "e76d6896d12ef184e8e1e4181bb0933e1877c8dd",
-    "current_decisions_commit": "1c97b843c9bb9aab8649650189c126540170e2bf",
-    "active_context_commit": "d211af10c32d41922bf4172086a1330142b13a77",
-    "sync_receipt": "docs/planning/sync/GR-TRACE-VISUAL-SITUATION-BOARD-01.md",
-    "sync_receipt_commit": "9ca6d58307176853be20e2df68faf9743313102c"
+    "latest_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md",
+    "art_approval": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "art_state": "docs/planning/ART_STYLE_01_STATE.json",
+    "locked_reference_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json"
   },
-  "sheet_sync": {
-    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "status": "VERIFIED_BY_READBACK",
-    "ranges": [
-      "01_작업순서!A9:J10",
-      "02_현재_확정결정!A14:J17",
-      "03_근거_라이브러리!A6:I6",
-      "04_누락_충돌_감사!A10:H10",
-      "05_GDD_요약!A9:H12",
-      "60_UX_UI_접근성!A8:H9",
-      "70_아트_오디오_에셋!A7:H8",
-      "80_데모_버티컬슬라이스_플레이테스트!A6:H6",
-      "99_변경이력!A10:H10"
-    ],
-    "readback": "PASS",
-    "verified_at": "2026-07-31T21:22:00+09:00"
-  },
-  "base_promotion": {
-    "status": "CANDIDATE",
-    "candidates": [
-      "VISUAL_FIRST_FOUR_PART_BOARD_TEMPLATE",
-      "FOUR_REQUIRED_SCREEN_STANDARD",
-      "EVIDENCE_LEVEL_TAGGING",
-      "SIX_STAGE_ADVERSARIAL_REVIEW",
-      "READABLE_BOARD_SPLITTING_RULES",
-      "COMMON_SCREEN_FLOW_NOTATION"
-    ]
-  },
-  "project_specific": [
-    "GRIMOIRE_ART_DIRECTION",
-    "MAGIC_ACADEMY_WORLD_AND_EMOTIONAL_TONE",
-    "GRIMOIRE_CHARACTERS_AND_COMPANION",
-    "GLYPH_GRAMMAR_FLOW_FOCUS_DISPERSION",
-    "DIRECT_WRITING_UX",
-    "SEPARATE_TACTICAL_BATTLE_PRESENTATION",
-    "GRIMOIRE_RECORDING_PRESENTATION",
-    "CLASS_EXAM_FESTIVAL_FIELD_PRACTICUM_SEQUENCES"
-  ],
+  "next_product_gate": "ART-BIBLE-01",
+  "asset_spec_gate": "BLOCKED_BY_ART_BIBLE",
   "implementation_authority": "NONE",
-  "codex": "BLOCKED",
+  "codex": "BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_INTEGRATED_REVIEW",
   "godot": "NOT_STARTED",
-  "sync_status": "WORKFLOW_SYNCED_BOARD_REWORK_PENDING",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sheet_sync": "PENDING",
+  "sync_status": "GITHUB_AUTHORITY_UPDATED_SHEET_PENDING",
   "main_sync": "PENDING_PR_MERGE"
 }
