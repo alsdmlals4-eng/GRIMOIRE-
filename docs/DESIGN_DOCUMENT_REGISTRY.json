@@ -18,6 +18,7 @@
     "art_style_status": "BENCHMARK_COMPLETE_USER_DECISION_REQUIRED",
     "situation_screen_workflow_status": "APPROVED_PROJECT_WORK_PRINCIPLE",
     "situation_screen_spec_status": "USER_REVIEW_REQUIRED_TECHNICAL_DESIGN_ONLY",
+    "situation_screen_sync_status": "WORKFLOW_SYNCED_SPEC_REVIEW_PENDING",
     "canon_sync_policy_id": "GM-CANON-SYNC-01",
     "canon_sync_state": "SYNCED_TO_WORKING_BRANCH",
     "main_sync_state": "PENDING_PR_MERGE"
@@ -33,6 +34,7 @@
     "situation_screen_work_order": "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
     "situation_screen_master_spec": "docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md",
     "situation_screen_state": "docs/planning/SITUATION_SCREEN_SPEC_STATE.json",
+    "situation_screen_sync_receipt": "docs/planning/sync/GR-TRACE-SITUATION-SCREEN-01.md",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md"
   },
@@ -137,7 +139,8 @@
     {
       "id": "grimoire-situation-screen-spec-state",
       "source_path": "docs/planning/SITUATION_SCREEN_SPEC_STATE.json",
-      "status": "GITHUB_ONLY_PENDING_SHEET_READBACK"
+      "status": "WORKFLOW_SYNCED_SPEC_REVIEW_PENDING_READBACK_PASS",
+      "state_commit": "0ea7e72dfcb4780e28c5304b98a60324560a7d59"
     },
     {
       "id": "grimoire-art-style-state",
@@ -151,6 +154,12 @@
       "source_path": "docs/planning/benchmarks/GM_SITUATION_SCREEN_ARCHITECTURE_BENCHMARK_2026-07-31.md",
       "status": "STANDARD_BENCHMARK_COMPLETE",
       "source_policy": "OFFICIAL_GODOT_PRIMARY_ONLY"
+    },
+    {
+      "id": "grimoire-situation-screen-sync-receipt",
+      "source_path": "docs/planning/sync/GR-TRACE-SITUATION-SCREEN-01.md",
+      "status": "WORKFLOW_SYNCED_SPEC_REVIEW_PENDING_READBACK_PASS",
+      "receipt_commit": "0bd52a96a7b19e1dcd21f9905285a545f00c1712"
     },
     {
       "id": "grimoire-art-style-benchmark",
