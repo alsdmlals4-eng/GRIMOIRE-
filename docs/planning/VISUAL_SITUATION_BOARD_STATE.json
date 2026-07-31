@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "decision_id": "GM-VISUAL-SITUATION-BOARD-WORKFLOW-01",
   "project_visual_board_id": "GR-VISUAL-SITUATION-BOARD-01",
   "art_style_decision_id": "ART-STYLE-01",
@@ -101,7 +101,31 @@
     "latest_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md",
     "art_approval": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
     "art_state": "docs/planning/ART_STYLE_01_STATE.json",
-    "locked_reference_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json"
+    "locked_reference_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
+    "sync_receipt": "docs/planning/sync/GR-APPROVE-ART-STYLE-01.md"
+  },
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "status": "VERIFIED_BY_READBACK",
+    "verified_at": "2026-07-31T22:10:00+09:00",
+    "readback": "PASS",
+    "ranges": [
+      "01_작업순서!A3:J3",
+      "01_작업순서!A10:J10",
+      "02_현재_확정결정!A7:J7",
+      "02_현재_확정결정!A17:J17",
+      "03_근거_라이브러리!A7:I7",
+      "04_누락_충돌_감사!A11:H11",
+      "05_GDD_요약!A6:H6",
+      "05_GDD_요약!A10:H10",
+      "60_UX_UI_접근성!A8:H9",
+      "70_아트_오디오_에셋!A6:H8",
+      "71_이미지기획_생성목록!A7:H7",
+      "72_이미지검수_승인로그!A3:H3",
+      "80_데모_버티컬슬라이스_플레이테스트!A4:H4",
+      "80_데모_버티컬슬라이스_플레이테스트!A6:H6",
+      "99_변경이력!A11:H11"
+    ]
   },
   "next_product_gate": "ART-BIBLE-01",
   "asset_spec_gate": "BLOCKED_BY_ART_BIBLE",
@@ -110,7 +134,6 @@
   "godot": "NOT_STARTED",
   "runtime_validation": "NOT_RUN",
   "human_validation": "NOT_RUN",
-  "sheet_sync": "PENDING",
-  "sync_status": "GITHUB_AUTHORITY_UPDATED_SHEET_PENDING",
+  "sync_status": "APPROVED_LOCKED_REFERENCE_SYNCED_TO_WORKING_BRANCH",
   "main_sync": "PENDING_PR_MERGE"
 }
