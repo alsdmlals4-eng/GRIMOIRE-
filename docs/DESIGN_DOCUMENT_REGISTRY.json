@@ -1,5 +1,5 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "registry_role": "grimoire-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -10,33 +10,31 @@
     "execution_profile": "PLANNING_ONLY_PROFILE",
     "work_mode": "PLAN",
     "planning_complete": true,
-    "benchmark_complete": true,
-    "adversarial_review_complete": true,
     "implementation_status": "NOT_STARTED",
     "codex_status": "BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES",
     "primary_platform": "PC",
     "follow_up_platform": "Mobile",
     "next_blocking_decision": "ART-STYLE-01",
     "art_style_status": "BENCHMARK_COMPLETE_USER_DECISION_REQUIRED",
+    "situation_screen_workflow_status": "APPROVED_PROJECT_WORK_PRINCIPLE",
+    "situation_screen_spec_status": "USER_REVIEW_REQUIRED_TECHNICAL_DESIGN_ONLY",
     "canon_sync_policy_id": "GM-CANON-SYNC-01",
     "canon_sync_state": "SYNCED_TO_WORKING_BRANCH",
     "main_sync_state": "PENDING_PR_MERGE"
   },
   "planning_authority": {
     "active_execution_contract": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
-    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31R.md",
+    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31S.md",
     "current_confirmed_snapshot": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "approved_planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
     "benchmark_policy": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
     "canon_sync_state_data": "docs/planning/CANON_SYNC_STATE.json",
-    "latest_sync_receipt": "docs/planning/sync/GR-SYNC-20260731-04.md",
+    "situation_screen_work_order": "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
+    "situation_screen_master_spec": "docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md",
+    "situation_screen_state": "docs/planning/SITUATION_SCREEN_SPEC_STATE.json",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
-    "art_style_benchmark": "docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md",
-    "art_style_candidates": "docs/planning/ART_STYLE_01_CANDIDATES.md",
-    "art_style_state": "docs/planning/ART_STYLE_01_STATE.json",
-    "gate_1_final_approval": "docs/planning/GATE_1_FINAL_APPROVAL.md",
-    "gate_1_vertical_slice": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md"
+    "development_gates": "docs/DEVELOPMENT_GATES.md"
   },
   "base_pin": {
     "repository": "alsdmlals4-eng/Base",
@@ -44,25 +42,12 @@
     "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
     "evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
     "registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
-    "adapter_reconciliation_status": "PENDING_SEPARATE_OPERATING_CHANGE"
-  },
-  "state_sources": {
-    "agents": "AGENTS.md",
-    "start_here": "START_HERE.md",
-    "active_context": "docs/ACTIVE_CONTEXT.md",
-    "current_confirmed_decisions": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
-    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31R.md",
-    "approved_planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
-    "benchmark_policy": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
-    "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
-    "canon_sync_state": "docs/planning/CANON_SYNC_STATE.json",
-    "latest_sync_receipt": "docs/planning/sync/GR-SYNC-20260731-04.md",
-    "art_style_state": "docs/planning/ART_STYLE_01_STATE.json",
-    "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
-    "documentation_map": "docs/DOCUMENTATION_MAP.md",
-    "development_gates": "docs/DEVELOPMENT_GATES.md",
-    "project_base_adapter": "skills/PROJECT_BASE_ADAPTER.json",
-    "project_skill_snapshot": "skills/PROJECT_SKILL_SNAPSHOT.json"
+    "adapter_reconciliation_status": "PENDING_ISSUE_21",
+    "known_stale_files": [
+      "docs/BASE_RULES_VERSION.md",
+      "skills/PROJECT_BASE_ADAPTER.json",
+      "skills/PROJECT_SKILL_SNAPSHOT.json"
+    ]
   },
   "canonical_documents": [
     {
@@ -72,7 +57,7 @@
     },
     {
       "id": "grimoire-latest-decision-addendum",
-      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31R.md",
+      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31S.md",
       "status": "ACTIVE_LATEST_USER_DECISION_AUTHORITY"
     },
     {
@@ -91,14 +76,11 @@
       "status": "ACTIVE_PROJECT_WORK_PRINCIPLE"
     },
     {
-      "id": "grimoire-canon-sync-state",
-      "source_path": "docs/planning/CANON_SYNC_STATE.json",
-      "status": "ACTIVE_MACHINE_READABLE_SYNC_STATE"
-    },
-    {
-      "id": "grimoire-google-sheet-contract",
-      "source_path": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
-      "status": "USER_FACING_GDD_WORKSPACE_CONTRACT"
+      "id": "grimoire-situation-screen-workflow",
+      "source_path": "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
+      "status": "ACTIVE_PROJECT_WORK_ORDER",
+      "decision_id": "GM-SITUATION-SCREEN-WORKFLOW-01",
+      "base_promotion": "CANDIDATE"
     },
     {
       "id": "grimoire-development-gates",
@@ -106,15 +88,88 @@
       "status": "ACTIVE_GATE_AUTHORITY"
     },
     {
-      "id": "grimoire-gate-1-final-approval",
-      "source_path": "docs/planning/GATE_1_FINAL_APPROVAL.md",
-      "status": "ACTIVE_APPROVAL_AUTHORITY"
+      "id": "grimoire-google-sheet-contract",
+      "source_path": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
+      "status": "USER_FACING_GDD_WORKSPACE_CONTRACT"
+    }
+  ],
+  "review_documents": [
+    {
+      "id": "grimoire-situation-screen-master-spec",
+      "source_path": "docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md",
+      "status": "USER_REVIEW_REQUIRED_TECHNICAL_DESIGN_ONLY",
+      "decision_id": "GM-SITUATION-SCREEN-SPEC-01"
     },
     {
-      "id": "grimoire-vertical-slice-contract",
-      "source_path": "docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md",
-      "status": "ACTIVE_APPROVED_CONTRACT_WITH_LATEST_ADDENDA"
+      "id": "grimoire-p0-entry-field-dialogue",
+      "source_path": "docs/superpowers/specs/grimoire-situations/P0_01_ENTRY_FIELD_DIALOGUE.md",
+      "status": "USER_REVIEW_REQUIRED"
     },
+    {
+      "id": "grimoire-p0-schedule-spell-battle",
+      "source_path": "docs/superpowers/specs/grimoire-situations/P0_02_SCHEDULE_SPELL_BATTLE.md",
+      "status": "USER_REVIEW_REQUIRED"
+    },
+    {
+      "id": "grimoire-p0-result-return-grimoire",
+      "source_path": "docs/superpowers/specs/grimoire-situations/P0_03_RESULT_RETURN_GRIMOIRE.md",
+      "status": "USER_REVIEW_REQUIRED"
+    },
+    {
+      "id": "grimoire-situation-board-backlog",
+      "source_path": "docs/superpowers/specs/grimoire-situations/SITUATION_BOARD_AND_BACKLOG.md",
+      "status": "USER_REVIEW_REQUIRED"
+    },
+    {
+      "id": "grimoire-art-style-candidates",
+      "source_path": "docs/planning/ART_STYLE_01_CANDIDATES.md",
+      "status": "USER_DECISION_REQUIRED",
+      "decision_id": "ART-STYLE-01",
+      "recommended_candidate": "A_SOFT_STORYBOOK_CEL_2D_HYBRID"
+    }
+  ],
+  "machine_readable_state": [
+    {
+      "id": "grimoire-canon-sync-state",
+      "source_path": "docs/planning/CANON_SYNC_STATE.json",
+      "status": "ACTIVE_MACHINE_READABLE_SYNC_STATE"
+    },
+    {
+      "id": "grimoire-situation-screen-spec-state",
+      "source_path": "docs/planning/SITUATION_SCREEN_SPEC_STATE.json",
+      "status": "GITHUB_ONLY_PENDING_SHEET_READBACK"
+    },
+    {
+      "id": "grimoire-art-style-state",
+      "source_path": "docs/planning/ART_STYLE_01_STATE.json",
+      "status": "ACTIVE_CANDIDATE_STATE"
+    }
+  ],
+  "evidence_documents": [
+    {
+      "id": "grimoire-situation-screen-architecture-benchmark",
+      "source_path": "docs/planning/benchmarks/GM_SITUATION_SCREEN_ARCHITECTURE_BENCHMARK_2026-07-31.md",
+      "status": "STANDARD_BENCHMARK_COMPLETE",
+      "source_policy": "OFFICIAL_GODOT_PRIMARY_ONLY"
+    },
+    {
+      "id": "grimoire-art-style-benchmark",
+      "source_path": "docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md",
+      "status": "STANDARD_BENCHMARK_COMPLETE"
+    },
+    {
+      "id": "grimoire-planning-adversarial-review",
+      "source_path": "docs/planning/GRIMOIRE_PLANNING_ADVERSARIAL_REVIEW_2026-07-31.md",
+      "status": "PASS_WITH_CORRECTIONS_APPLIED"
+    },
+    {
+      "id": "grimoire-sync-receipt-20260731-04",
+      "source_path": "docs/planning/sync/GR-SYNC-20260731-04.md",
+      "status": "SYNCED_TO_WORKING_BRANCH_READBACK_PASS",
+      "receipt_commit": "46141385621ff77ea728dc23c2cd912ca3f3b89d"
+    }
+  ],
+  "domain_sources": [
     {
       "id": "grimoire-visual-presentation",
       "source_path": "docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md",
@@ -129,68 +184,17 @@
       "id": "grimoire-summon-companion-core",
       "source_path": "docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md",
       "status": "ACTIVE_CONFIRMED_SOURCE"
-    }
-  ],
-  "review_documents": [
-    {
-      "id": "grimoire-art-style-candidates",
-      "source_path": "docs/planning/ART_STYLE_01_CANDIDATES.md",
-      "status": "USER_DECISION_REQUIRED",
-      "decision_id": "ART-STYLE-01",
-      "recommended_candidate": "A_SOFT_STORYBOOK_CEL_2D_HYBRID"
     },
     {
-      "id": "grimoire-art-style-state",
-      "source_path": "docs/planning/ART_STYLE_01_STATE.json",
-      "status": "ACTIVE_CANDIDATE_STATE"
-    }
-  ],
-  "evidence_documents": [
-    {
-      "id": "grimoire-art-style-benchmark-20260731",
-      "source_path": "docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md",
-      "status": "STANDARD_BENCHMARK_COMPLETE",
-      "benchmark_commit": "395a2f99159a1421243d39e80d7e6bd987af878c"
-    },
-    {
-      "id": "grimoire-sync-receipt-20260731-04",
-      "source_path": "docs/planning/sync/GR-SYNC-20260731-04.md",
-      "status": "SYNCED_TO_WORKING_BRANCH_READBACK_PASS",
-      "receipt_commit": "46141385621ff77ea728dc23c2cd912ca3f3b89d"
-    },
-    {
-      "id": "grimoire-planning-adversarial-review-2026-07-31",
-      "source_path": "docs/planning/GRIMOIRE_PLANNING_ADVERSARIAL_REVIEW_2026-07-31.md",
-      "status": "PASS_WITH_CORRECTIONS_APPLIED"
-    }
-  ],
-  "reference_collections": [
-    {
-      "id": "grimoire-previous-integrated-design",
-      "source_path": "docs/planning/SPELL_GAME_DESIGN.md",
-      "status": "LEGACY_REFERENCE_CANDIDATE"
-    },
-    {
-      "id": "grimoire-magic-writing-research",
-      "status": "RESEARCH_EVIDENCE_SET_NOT_RUNTIME_VALIDATED"
-    },
-    {
-      "id": "grimoire-generated-visual-explorations",
-      "status": "REFERENCE_CANDIDATE_SET"
+      "id": "grimoire-ux-ui-system",
+      "source_path": "docs/UX_UI_SYSTEM.md",
+      "status": "ACTIVE_DOMAIN_SOURCE_WITH_PC_ADAPTATION"
     }
   ],
   "responsibility_status": [
     {
       "responsibility": "planning-content-detail",
       "status": "APPROVED"
-    },
-    {
-      "responsibility": "planning-platform-input",
-      "status": "APPROVED_WITH_PLAYTEST_TUNING_PENDING"
-    },
-    {
-      "responsibility": "planning-scope-budget",
-      "status": "APPROVED_WITH_SOLO_PRODUCTION_CONDITION"
     },
     {
       "responsibility": "benchmark-before-design",
@@ -201,16 +205,12 @@
       "status": "ACTIVE_PROJECT_WORK_PRINCIPLE"
     },
     {
-      "responsibility": "current-canon-sync-bundle",
-      "status": "SYNCED_TO_WORKING_BRANCH"
+      "responsibility": "situation-screen-workflow",
+      "status": "APPROVED_PROJECT_WORK_PRINCIPLE"
     },
     {
-      "responsibility": "main-canon-sync",
-      "status": "PENDING_PR_MERGE"
-    },
-    {
-      "responsibility": "art-style-benchmark",
-      "status": "COMPLETE"
+      "responsibility": "situation-screen-technical-design",
+      "status": "USER_REVIEW_REQUIRED"
     },
     {
       "responsibility": "art-style-decision",
@@ -231,22 +231,21 @@
   ],
   "registry_rules": {
     "single_canonical_source_per_responsibility": true,
-    "current_confirmed_snapshot_must_be_read_before_questions": true,
-    "confirmed_decisions_must_not_be_reasked_for_memory_check": true,
     "latest_user_decision_overrides_previous_route": true,
+    "confirmed_decisions_must_not_be_reasked_for_memory_check": true,
     "benchmark_required_before_new_system_core_rule_content_structure_or_ux_flow": true,
-    "benchmark_scale_must_match_decision_scope": true,
-    "recent_relevant_benchmark_may_be_reused": true,
     "benchmark_must_record_adopt_adapt_reject": true,
     "major_approved_change_requires_immediate_github_and_sheet_sync": true,
     "same_decision_id_required_across_github_and_sheet": true,
     "working_branch_sync_must_not_be_claimed_as_main_sync": true,
-    "partial_sync_must_be_recorded_not_hidden": true,
-    "candidate_decisions_must_not_be_marked_confirmed": true,
+    "candidate_or_review_specs_must_not_be_marked_confirmed": true,
+    "situation_spec_must_audit_required_reference_screens_first": true,
+    "situation_spec_must_separate_confirmed_implemented_interpretation_proposal_assumption": true,
+    "situation_spec_must_prioritize_p0_before_p1_p3_detail": true,
+    "situation_spec_is_not_implementation_authority": true,
     "art_style_candidate_requires_user_approval": true,
     "comparison_images_require_user_request": true,
     "same_field_combat_is_superseded": true,
-    "main_summon_growth_does_not_expand_vertical_slice": true,
     "core_poc_must_not_be_reintroduced": true,
     "codex_requires_art_and_integrated_review": true,
     "user_approval_required_for_pr_merge": true
