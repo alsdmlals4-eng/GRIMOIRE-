@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "decision_id": "GM-BATTLE-SCREEN-LAYOUT-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "status": "APPROVED_LAYOUT_DIRECTION",
@@ -17,6 +17,10 @@
   "authority": {
     "source_path": "docs/planning/BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md",
     "commit": "73829e0d7b0937d7aac88db5545a41a6f549669a"
+  },
+  "decision_addendum": {
+    "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-08-01B.md",
+    "commit": "630224bd0a22a6e9c975ef3db78b2ed8ab54b625"
   },
   "layout_contract": {
     "battlefield": "ENEMIES_AND_ENVIRONMENT_ONLY_AS_PERSISTENT_ACTORS",
@@ -47,11 +51,32 @@
     "TURN_ORDER_EXACT_PLACEMENT"
   ],
   "art_bible_integration": "REQUIRED_BEFORE_ART_BIBLE_FINAL_APPROVAL",
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "status": "VERIFIED_BY_READBACK",
+    "readback": "PASS",
+    "verified_at": "2026-08-01T05:04:00+09:00",
+    "ranges": [
+      "01_작업순서!A12:J12",
+      "02_현재_확정결정!A19:J19",
+      "04_누락_충돌_감사!A13:H13",
+      "05_GDD_요약!A13:H13",
+      "40_핵심시스템_메인콘텐츠!A10:H10",
+      "60_UX_UI_접근성!A10:H10",
+      "70_아트_오디오_에셋!A9:H9",
+      "80_데모_버티컬슬라이스_플레이테스트!A7:H7",
+      "99_변경이력!A13:H13"
+    ]
+  },
+  "sync_receipt": {
+    "source_path": "docs/planning/sync/GR-APPROVE-BATTLE-SCREEN-LAYOUT-01.md",
+    "commit": "9d9ebce0513d2421bd88cd474d8b7f424e3a445f"
+  },
   "implementation_authority": "NONE",
   "asset_generation_authority": "NONE",
   "godot": "NOT_STARTED",
   "runtime_validation": "NOT_RUN",
   "human_validation": "NOT_RUN",
-  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
   "main_sync": "PENDING_PR_MERGE"
 }
