@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-BATTLE-SINGLE-ENEMY-FOCUS-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "APPROVED_ENCOUNTER_DIRECTION",
+  "approved_at": "2026-08-01T05:26:00+09:00",
+  "approved_by": "USER",
+  "refines": "GM-BATTLE-SCREEN-LAYOUT-01",
+  "benchmark": {
+    "id": "GR-BM-BATTLE-SINGLE-ENEMY-FOCUS-01",
+    "scale": "QUICK",
+    "status": "COMPLETE",
+    "source_path": "docs/planning/benchmarks/BATTLE_SINGLE_ENEMY_FOCUS_01_QUICK_BENCHMARK_2026-08-01.md",
+    "commit": "c5309227b6ac579ce9524f848a52c92173d0162e"
+  },
+  "authority": {
+    "source_path": "docs/planning/BATTLE_SINGLE_ENEMY_FOCUS_01_APPROVAL_2026-08-01.md",
+    "commit": "f7f33d3a98b7923ae051eafd67d0361d52999302"
+  },
+  "encounter_contract": {
+    "default_enemy_count": 1,
+    "enemy_role": "STRONG_SITUATIONAL_ENEMY",
+    "persistent_minor_enemies": "EXCLUDED_FROM_VERTICAL_SLICE_DEFAULT",
+    "wave_reinforcements": "EXCLUDED_FROM_VERTICAL_SLICE_DEFAULT",
+    "tactical_depth_sources": [
+      "TELEGRAPHED_ACTIONS",
+      "STATE_CHANGES_OR_LIMITED_PHASES",
+      "ENVIRONMENTAL_PRESSURE",
+      "SPELL_COMBINATION_OUTCOME_DIFFERENCES",
+      "SUCCESS_PARTIAL_SUCCESS_SIDE_EFFECT_FEEDBACK"
+    ]
+  },
+  "unresolved": [
+    "PHASE_COUNT",
+    "PART_BREAK_SYSTEM",
+    "TURN_AND_TIMELINE_RULES",
+    "VICTORY_CONDITION",
+    "NUMERIC_BALANCE"
+  ],
+  "next_design_gate": "BATTLE-UX-01",
+  "implementation_authority": "NONE",
+  "godot": "NOT_STARTED",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
+  "main_sync": "PENDING_PR_MERGE"
+}
