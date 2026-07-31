@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-BATTLE-SCREEN-LAYOUT-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "APPROVED_LAYOUT_DIRECTION",
+  "approved_at": "2026-08-01T05:04:00+09:00",
+  "approved_by": "USER",
+  "refines": "GM-BATTLE-PRESENTATION-01",
+  "benchmark": {
+    "id": "GR-BM-BATTLE-SCREEN-LAYOUT-01",
+    "scale": "QUICK",
+    "status": "COMPLETE",
+    "source": "USER_PROVIDED_VISUAL_REFERENCES_AND_APPROVED_PROJECT_BOARD",
+    "source_path": "docs/planning/benchmarks/BATTLE_SCREEN_LAYOUT_01_QUICK_BENCHMARK_2026-08-01.md",
+    "commit": "d40d932fa004f0298512b5e64014a182095cbabf"
+  },
+  "authority": {
+    "source_path": "docs/planning/BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md",
+    "commit": "73829e0d7b0937d7aac88db5545a41a6f549669a"
+  },
+  "layout_contract": {
+    "battlefield": "ENEMIES_AND_ENVIRONMENT_ONLY_AS_PERSISTENT_ACTORS",
+    "ally_body_on_battlefield": "PROHIBITED_AS_PERSISTENT_LAYOUT",
+    "ally_status": "LOWER_LEFT_FACE_PORTRAITS",
+    "spell_writing": "RIGHT_SIDE_DEDICATED_DRAWING_AREA",
+    "enemy_warning_visibility_during_writing": "REQUIRED",
+    "guardian_summon": "STATUS_BADGE_AND_BRIEF_ACTIVATION_PRESENTATION_NOT_PERSISTENT_BODY",
+    "pc_touch_controls": "NOT_PERSISTENT"
+  },
+  "state_flow": [
+    "BATTLE_OVERVIEW",
+    "ALLY_OR_ACTION_SELECT",
+    "SPELL_WRITE_OPEN",
+    "SPELL_RECOGNITION",
+    "SPELL_COMBINATION_REVIEW",
+    "CAST_COMMIT",
+    "BATTLE_RESOLVE",
+    "BATTLE_OVERVIEW_OR_RESULT"
+  ],
+  "unresolved": [
+    "WRITING_PANEL_EXACT_WIDTH",
+    "WRITING_PANEL_ALWAYS_OPEN_OR_EXPAND_ON_ACTION",
+    "VISIBLE_ALLY_PORTRAIT_COUNT",
+    "PORTRAIT_RESOURCE_FIELDS",
+    "ENEMY_FULL_BODY_HALF_BODY_OR_SD_RULE",
+    "GUARDIAN_SUMMON_CUTIN_FORMAT",
+    "TURN_ORDER_EXACT_PLACEMENT"
+  ],
+  "art_bible_integration": "REQUIRED_BEFORE_ART_BIBLE_FINAL_APPROVAL",
+  "implementation_authority": "NONE",
+  "asset_generation_authority": "NONE",
+  "godot": "NOT_STARTED",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
+  "main_sync": "PENDING_PR_MERGE"
+}
