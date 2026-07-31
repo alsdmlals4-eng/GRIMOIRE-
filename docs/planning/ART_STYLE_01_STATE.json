@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "decision_id": "ART-STYLE-01",
   "status": "APPROVED",
   "approved_at": "2026-07-31T21:58:00+09:00",
@@ -13,6 +13,7 @@
   "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md",
   "locked_reference_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
   "sync_receipt": "docs/planning/sync/GR-APPROVE-ART-STYLE-01.md",
+  "sync_receipt_commit": "5300fee3189e3b7635350cb82695523ad1bb9161",
   "benchmark_commit": "395a2f99159a1421243d39e80d7e6bd987af878c",
   "candidate_commit": "30bcf864bd38d0daf5332649769f76e987a4d2ef",
   "manifest_commit": "07515dc8d21b53f9f14d59f3e72fb27c9fe0c756",
