@@ -1,5 +1,5 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "registry_role": "grimoire-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -11,14 +11,14 @@
     "work_mode": "PLAN",
     "planning_complete": true,
     "implementation_status": "NOT_STARTED",
-    "codex_status": "BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES",
+    "codex_status": "BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_INTEGRATED_REVIEW",
     "primary_platform": "PC",
     "follow_up_platform": "Mobile",
-    "next_blocking_decision": "ART-STYLE-01",
-    "art_style_status": "BENCHMARK_COMPLETE_USER_DECISION_REQUIRED",
+    "next_blocking_decision": "ART-BIBLE-01",
+    "art_style_status": "APPROVED_A_MODIFIED",
+    "locked_visual_reference_status": "APPROVED_NO_EDIT",
     "visual_situation_board_workflow_status": "APPROVED_PROJECT_WORK_PRINCIPLE",
-    "grimoire_visual_board_status": "REWORK_REQUIRED_USER_REVIEW_REQUIRED",
-    "visual_situation_board_sync_status": "WORKFLOW_SYNCED_BOARD_REWORK_PENDING_READBACK_PASS",
+    "grimoire_visual_board_status": "APPROVED_LOCKED_REFERENCE_BOARD",
     "previous_situation_screen_spec_role": "SUPPORTING_TECHNICAL_APPENDIX_ONLY",
     "previous_generated_visuals": "REJECTED_NOT_AUTHORITY",
     "canon_sync_policy_id": "GM-CANON-SYNC-01",
@@ -27,18 +27,20 @@
   },
   "planning_authority": {
     "active_execution_contract": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
-    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md",
+    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md",
     "current_confirmed_snapshot": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "active_context": "docs/ACTIVE_CONTEXT.md",
     "approved_planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
     "benchmark_policy": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
     "canon_sync_state_data": "docs/planning/CANON_SYNC_STATE.json",
+    "art_style_approval": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "art_style_state": "docs/planning/ART_STYLE_01_STATE.json",
+    "art_style_locked_reference_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
     "visual_situation_board_work_order": "docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md",
     "visual_situation_board_state": "docs/planning/VISUAL_SITUATION_BOARD_STATE.json",
-    "visual_situation_board_sync_receipt": "docs/planning/sync/GR-TRACE-VISUAL-SITUATION-BOARD-01.md",
     "previous_situation_screen_work_order": "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
     "previous_situation_screen_master_spec": "docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md",
-    "previous_situation_screen_state": "docs/planning/SITUATION_SCREEN_SPEC_STATE.json",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md"
   },
@@ -60,19 +62,33 @@
       "id": "grimoire-current-confirmed-decisions",
       "source_path": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
       "status": "ACTIVE_FIRST_READ_AUTHORITY",
-      "commit": "1c97b843c9bb9aab8649650189c126540170e2bf"
+      "commit": "a3068454329548f707b80c28d807939f1d939f0e"
     },
     {
       "id": "grimoire-active-context",
       "source_path": "docs/ACTIVE_CONTEXT.md",
       "status": "ACTIVE_CONTEXT_AUTHORITY",
-      "commit": "d211af10c32d41922bf4172086a1330142b13a77"
+      "commit": "bc057ae7d614e43f2eafa8d15de538ead5f60d69"
     },
     {
       "id": "grimoire-latest-decision-addendum",
-      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md",
+      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md",
       "status": "ACTIVE_LATEST_USER_DECISION_AUTHORITY",
-      "commit": "39ae34a961dcb0f2b774a754c484daf96c801a58"
+      "commit": "3d2ab8c2098720dc040114d02a459092e274d02b"
+    },
+    {
+      "id": "grimoire-art-style-approval",
+      "source_path": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+      "status": "ACTIVE_APPROVED_ART_STYLE_AUTHORITY",
+      "decision_id": "ART-STYLE-01",
+      "commit": "b151495958d08896ba1a42362e8786b42b591ec7"
+    },
+    {
+      "id": "grimoire-art-style-locked-reference-manifest",
+      "source_path": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
+      "status": "ACTIVE_LOCKED_REFERENCE_MANIFEST",
+      "decision_id": "ART-STYLE-01",
+      "commit": "07515dc8d21b53f9f14d59f3e72fb27c9fe0c756"
     },
     {
       "id": "grimoire-planning-canon",
@@ -94,19 +110,13 @@
       "source_path": "docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md",
       "status": "ACTIVE_PROJECT_WORK_ORDER",
       "decision_id": "GM-VISUAL-SITUATION-BOARD-WORKFLOW-01",
-      "base_promotion": "CANDIDATE",
-      "commit": "52947b95bba608acc68fe8f27fb9919d9c54d97d"
-    },
-    {
-      "id": "grimoire-previous-situation-screen-workflow",
-      "source_path": "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
-      "status": "SUPERSEDED_PRIMARY_OUTPUT_ROLE_SUPPORTING_APPENDIX_ONLY",
-      "decision_id": "GM-SITUATION-SCREEN-WORKFLOW-01"
+      "base_promotion": "CANDIDATE"
     },
     {
       "id": "grimoire-development-gates",
       "source_path": "docs/DEVELOPMENT_GATES.md",
-      "status": "ACTIVE_GATE_AUTHORITY"
+      "status": "ACTIVE_GATE_AUTHORITY",
+      "commit": "d202f4704ca760a513224b01b3c31be3ace9f260"
     },
     {
       "id": "grimoire-google-sheet-contract",
@@ -114,12 +124,26 @@
       "status": "USER_FACING_GDD_WORKSPACE_CONTRACT"
     }
   ],
+  "approved_visual_authority": {
+    "decision_id": "ART-STYLE-01",
+    "visual_board_id": "GR-VISUAL-SITUATION-BOARD-01",
+    "selected_candidate": "A_MODIFIED_SOFT_STORYBOOK_CEL_2D_HYBRID",
+    "status": "APPROVED_LOCKED_REFERENCE_BOARD",
+    "library_path": "/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png",
+    "library_file_id": "file_0000000061bc81fa93d8b1b30d553943",
+    "sha256": "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a",
+    "source_edit": "PROHIBITED",
+    "source_regeneration": "PROHIBITED",
+    "artifact_role": "VISUAL_DIRECTION_AND_SCREEN_COMPOSITION_AUTHORITY_NOT_RUNTIME_ASSET"
+  },
   "review_documents": [
     {
-      "id": "grimoire-visual-situation-board",
-      "status": "REWORK_REQUIRED_USER_REVIEW_REQUIRED",
-      "decision_id": "GR-VISUAL-SITUATION-BOARD-01",
-      "required_output": "MULTI_BOARD_VISUAL_FIRST_ARTIFACT"
+      "id": "grimoire-art-style-candidates",
+      "source_path": "docs/planning/ART_STYLE_01_CANDIDATES.md",
+      "status": "APPROVED_DECISION_RECORD",
+      "decision_id": "ART-STYLE-01",
+      "selected_candidate": "A_MODIFIED",
+      "commit": "30bcf864bd38d0daf5332649769f76e987a4d2ef"
     },
     {
       "id": "grimoire-situation-screen-master-spec",
@@ -141,18 +165,6 @@
       "id": "grimoire-p0-result-return-grimoire",
       "source_path": "docs/superpowers/specs/grimoire-situations/P0_03_RESULT_RETURN_GRIMOIRE.md",
       "status": "SUPPORTING_TECHNICAL_APPENDIX_ONLY"
-    },
-    {
-      "id": "grimoire-situation-board-backlog",
-      "source_path": "docs/superpowers/specs/grimoire-situations/SITUATION_BOARD_AND_BACKLOG.md",
-      "status": "SUPPORTING_TECHNICAL_APPENDIX_ONLY"
-    },
-    {
-      "id": "grimoire-art-style-candidates",
-      "source_path": "docs/planning/ART_STYLE_01_CANDIDATES.md",
-      "status": "USER_DECISION_REQUIRED",
-      "decision_id": "ART-STYLE-01",
-      "recommended_candidate": "A_SOFT_STORYBOOK_CEL_2D_HYBRID"
     }
   ],
   "machine_readable_state": [
@@ -162,50 +174,34 @@
       "status": "ACTIVE_MACHINE_READABLE_SYNC_STATE"
     },
     {
+      "id": "grimoire-art-style-state",
+      "source_path": "docs/planning/ART_STYLE_01_STATE.json",
+      "status": "APPROVED_LOCKED_REFERENCE_STATE",
+      "commit": "d2171ac15410548f391319185e26ee1200f8fd4c"
+    },
+    {
       "id": "grimoire-visual-situation-board-state",
       "source_path": "docs/planning/VISUAL_SITUATION_BOARD_STATE.json",
-      "status": "WORKFLOW_SYNCED_BOARD_REWORK_PENDING_READBACK_PASS",
-      "state_commit": "643d1e47046cd00a5d22bcaed72ac6e0113bcfa6"
+      "status": "APPROVED_LOCKED_REFERENCE_BOARD_STATE",
+      "commit": "e1c2946bfef984ca491749762b1079af9d1abaf1"
     },
     {
       "id": "grimoire-previous-situation-screen-spec-state",
       "source_path": "docs/planning/SITUATION_SCREEN_SPEC_STATE.json",
       "status": "HISTORICAL_TECHNICAL_APPENDIX_STATE"
-    },
-    {
-      "id": "grimoire-art-style-state",
-      "source_path": "docs/planning/ART_STYLE_01_STATE.json",
-      "status": "ACTIVE_CANDIDATE_STATE"
     }
   ],
   "evidence_documents": [
     {
-      "id": "grimoire-visual-situation-board-user-correction",
-      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md",
-      "status": "ACTIVE_CORRECTION_AUTHORITY",
-      "commit": "39ae34a961dcb0f2b774a754c484daf96c801a58"
-    },
-    {
-      "id": "grimoire-visual-situation-board-sync-receipt",
-      "source_path": "docs/planning/sync/GR-TRACE-VISUAL-SITUATION-BOARD-01.md",
-      "status": "WORKFLOW_SYNCED_BOARD_REWORK_PENDING_READBACK_PASS",
-      "receipt_commit": "9ca6d58307176853be20e2df68faf9743313102c"
-    },
-    {
-      "id": "grimoire-situation-screen-architecture-benchmark",
-      "source_path": "docs/planning/benchmarks/GM_SITUATION_SCREEN_ARCHITECTURE_BENCHMARK_2026-07-31.md",
-      "status": "SUPPORTING_TECHNICAL_EVIDENCE_ONLY",
-      "source_policy": "OFFICIAL_GODOT_PRIMARY_ONLY"
-    },
-    {
-      "id": "grimoire-situation-screen-sync-receipt",
-      "source_path": "docs/planning/sync/GR-TRACE-SITUATION-SCREEN-01.md",
-      "status": "HISTORICAL_TECHNICAL_SPEC_RECEIPT"
-    },
-    {
       "id": "grimoire-art-style-benchmark",
       "source_path": "docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md",
       "status": "STANDARD_BENCHMARK_COMPLETE"
+    },
+    {
+      "id": "grimoire-art-style-user-approval",
+      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md",
+      "status": "ACTIVE_USER_APPROVAL_EVIDENCE",
+      "commit": "3d2ab8c2098720dc040114d02a459092e274d02b"
     },
     {
       "id": "grimoire-planning-adversarial-review",
@@ -260,7 +256,23 @@
     },
     {
       "responsibility": "grimoire-visual-screen-board",
-      "status": "REWORK_REQUIRED_USER_REVIEW_REQUIRED"
+      "status": "APPROVED_LOCKED_REFERENCE_BOARD"
+    },
+    {
+      "responsibility": "art-style-decision",
+      "status": "APPROVED_A_MODIFIED"
+    },
+    {
+      "responsibility": "locked-art-reference-integrity",
+      "status": "SHA256_RECORDED_NO_EDIT"
+    },
+    {
+      "responsibility": "art-bible",
+      "status": "NEXT_PRODUCT_GATE"
+    },
+    {
+      "responsibility": "asset-spec",
+      "status": "BLOCKED_BY_ART_BIBLE"
     },
     {
       "responsibility": "previous-situation-screen-technical-design",
@@ -271,16 +283,8 @@
       "status": "REJECTED_NOT_AUTHORITY"
     },
     {
-      "responsibility": "art-style-decision",
-      "status": "USER_DECISION_REQUIRED"
-    },
-    {
-      "responsibility": "art-bible-and-asset-spec",
-      "status": "BLOCKED_BY_ART_STYLE"
-    },
-    {
       "responsibility": "codex-plan",
-      "status": "BLOCKED_BY_ART_AND_INTEGRATED_REVIEW"
+      "status": "BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_INTEGRATED_REVIEW"
     },
     {
       "responsibility": "vertical-slice-implementation",
@@ -296,21 +300,18 @@
     "major_approved_change_requires_immediate_github_and_sheet_sync": true,
     "same_decision_id_required_across_github_and_sheet": true,
     "working_branch_sync_must_not_be_claimed_as_main_sync": true,
+    "approved_locked_reference_must_be_identified_by_sha256": true,
+    "approved_locked_reference_must_not_be_edited_regenerated_or_recomposed": true,
+    "derivative_assets_must_be_separate_files": true,
+    "art_bible_must_not_modify_locked_reference": true,
     "visual_board_is_primary_user_review_artifact": true,
     "technical_spec_is_supporting_appendix_only": true,
-    "required_four_screens_must_be_visually_readable": true,
-    "core_situations_must_show_screen_changes_not_only_text": true,
-    "evidence_tags_required_current_inferred_proposed_placeholder": true,
     "existing_project_images_and_visual_identity_must_be_reviewed_before_generation": true,
     "generic_cross_genre_visual_substitution_is_forbidden": true,
-    "single_overloaded_dashboard_is_forbidden": true,
-    "adversarial_visual_review_must_pass_before_completion": true,
     "candidate_or_review_specs_must_not_be_marked_confirmed": true,
-    "art_style_candidate_requires_user_approval": true,
-    "comparison_images_require_user_request": true,
     "same_field_combat_is_superseded": true,
     "core_poc_must_not_be_reintroduced": true,
-    "codex_requires_art_and_integrated_review": true,
+    "codex_requires_art_bible_asset_spec_and_integrated_review": true,
     "user_approval_required_for_pr_merge": true
   }
 }
