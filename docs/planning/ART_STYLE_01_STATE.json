@@ -1,48 +1,73 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "decision_id": "ART-STYLE-01",
-  "status": "USER_DECISION_REQUIRED",
-  "benchmark_status": "STANDARD_BENCHMARK_COMPLETE",
+  "status": "APPROVED",
+  "approved_at": "2026-07-31T21:58:00+09:00",
+  "approved_by": "USER",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "benchmark_policy_id": "GM-BENCHMARK-FIRST-01",
+  "benchmark_status": "STANDARD_BENCHMARK_COMPLETE",
   "benchmark_source": "docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md",
   "candidate_source": "docs/planning/ART_STYLE_01_CANDIDATES.md",
+  "approval_source": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+  "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md",
+  "locked_reference_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
   "benchmark_commit": "395a2f99159a1421243d39e80d7e6bd987af878c",
   "candidate_commit": "a11732694ef1404f6a66ae4aa642dbcf32c5780f",
+  "manifest_commit": "07515dc8d21b53f9f14d59f3e72fb27c9fe0c756",
+  "approval_commit": "b151495958d08896ba1a42362e8786b42b591ec7",
+  "addendum_commit": "3d2ab8c2098720dc040114d02a459092e274d02b",
+  "selected_candidate": {
+    "id": "A_MODIFIED",
+    "base_candidate": "A",
+    "name": "Soft Storybook Cel 2D Hybrid",
+    "caption": "추천 확정안 A (수정): 필드 SD + 대화 반신 + 별도 전투 화면",
+    "status": "APPROVED"
+  },
+  "locked_reference": {
+    "status": "APPROVED_LOCKED_VISUAL_REFERENCE",
+    "library_path": "/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png",
+    "library_file_id": "file_0000000061bc81fa93d8b1b30d553943",
+    "library_node_id": "libfile_b61a5d166df48191b249a132142dba84",
+    "original_uploaded_name": "image(32).png",
+    "mime_type": "image/png",
+    "width_px": 662,
+    "height_px": 455,
+    "byte_size": 748443,
+    "sha256": "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a",
+    "source_image_edit": "PROHIBITED",
+    "source_image_regeneration": "PROHIBITED",
+    "source_image_recomposition": "PROHIBITED",
+    "change_requires": "EXPLICIT_USER_OVERRIDE_USING_ART-STYLE-01"
+  },
   "protected_presentation": {
     "orientation": "16:9 landscape",
     "field": "fixed scene-based 3/4 field",
     "field_character": "3.5-4 head SD",
     "dialogue": "half-body illustration over same location",
+    "writing_non_battle": "dimmed and slowed current scene with writing overlay",
     "battle": "separate fixed 3/4 tactical scene",
-    "battle_character": "reuse field SD proportion and base skeleton",
-    "writing": "dimmed and slowed current screen with writing overlay",
-    "result": "return to field with world-state change"
+    "battle_character": "reuse field SD proportion and character keys",
+    "writing_battle": "separate battle writing overlay",
+    "result": "return to original field with world-state change",
+    "companion": "small wolf-like elemental spirit initial form",
+    "background_states": "class exam festival field practicum variants of shared scene language"
   },
-  "candidates": [
-    {
-      "id": "A",
-      "name": "Soft Storybook Cel 2D Hybrid",
-      "status": "RECOMMENDED",
-      "summary": "soft storybook backgrounds, crisp limited cel-shaded SD characters, matching half-body illustrations, restrained directional magic FX"
-    },
-    {
-      "id": "B",
-      "name": "Clean Academy Anime 2D",
-      "status": "SAFE_ALTERNATIVE",
-      "summary": "clean anime linework, flat cel shading, high readability, lower texture and production variance"
-    },
-    {
-      "id": "C",
-      "name": "Illustrated Pixel Diorama",
-      "status": "PRODUCTION_FALLBACK",
-      "summary": "3/4 pixel field with large SD silhouettes and separate illustrated portraits"
-    }
-  ],
-  "recommendation": "A",
-  "recommendation_reason": "best fit for approved SD field, half-body dialogue, tactical battle reuse, glyph readability, magical-school atmosphere, and non-3D production boundary",
-  "asset_generation_status": "NOT_STARTED",
-  "comparison_image_status": "NOT_REQUESTED_BY_USER",
+  "approved_visual_language": {
+    "background": "soft storybook-like academy and field illustration with readable play space",
+    "character": "clear anime-cel line language shared by SD and half-body forms",
+    "ui": "navy and gold fantasy-academy frame language with restrained blue magic accents",
+    "magic_fx": "high-contrast glyph strokes and directional or range information",
+    "consistency": "same protagonist companion and costume keys across every screen"
+  },
+  "artifact_role": "VISUAL_DIRECTION_AND_SCREEN_COMPOSITION_AUTHORITY_NOT_RUNTIME_ASSET",
+  "comparison_image_status": "SUPERSEDED_BY_USER_APPROVED_LOCKED_REFERENCE",
+  "asset_generation_status": "BLOCKED_UNTIL_ART_BIBLE",
+  "next_product_gate": "ART-BIBLE-01",
+  "asset_spec_gate": "BLOCKED_BY_ART_BIBLE",
   "implementation_authority": "NONE",
-  "next_after_approval": "ART-BIBLE-01"
+  "codex": "BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_INTEGRATED_REVIEW",
+  "godot": "NOT_STARTED",
+  "sync_status": "GITHUB_AUTHORITY_UPDATED_SHEET_PENDING",
+  "main_sync": "PENDING_PR_MERGE"
 }
