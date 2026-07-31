@@ -1,5 +1,5 @@
 {
-  "schema_version": 9,
+  "schema_version": 10,
   "registry_role": "grimoire-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -16,25 +16,27 @@
     "follow_up_platform": "Mobile",
     "next_blocking_decision": "ART-STYLE-01",
     "art_style_status": "BENCHMARK_COMPLETE_USER_DECISION_REQUIRED",
-    "situation_screen_workflow_status": "APPROVED_PROJECT_WORK_PRINCIPLE",
-    "situation_screen_spec_status": "USER_REVIEW_REQUIRED_TECHNICAL_DESIGN_ONLY",
-    "situation_screen_sync_status": "WORKFLOW_SYNCED_SPEC_REVIEW_PENDING",
+    "visual_situation_board_workflow_status": "APPROVED_PROJECT_WORK_PRINCIPLE",
+    "grimoire_visual_board_status": "REWORK_REQUIRED_USER_REVIEW_REQUIRED",
+    "previous_situation_screen_spec_role": "SUPPORTING_TECHNICAL_APPENDIX_ONLY",
+    "previous_generated_visuals": "REJECTED_NOT_AUTHORITY",
     "canon_sync_policy_id": "GM-CANON-SYNC-01",
     "canon_sync_state": "SYNCED_TO_WORKING_BRANCH",
     "main_sync_state": "PENDING_PR_MERGE"
   },
   "planning_authority": {
     "active_execution_contract": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
-    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31S.md",
+    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md",
     "current_confirmed_snapshot": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "approved_planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
     "benchmark_policy": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
     "canon_sync_state_data": "docs/planning/CANON_SYNC_STATE.json",
-    "situation_screen_work_order": "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
-    "situation_screen_master_spec": "docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md",
-    "situation_screen_state": "docs/planning/SITUATION_SCREEN_SPEC_STATE.json",
-    "situation_screen_sync_receipt": "docs/planning/sync/GR-TRACE-SITUATION-SCREEN-01.md",
+    "visual_situation_board_work_order": "docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md",
+    "visual_situation_board_state": "docs/planning/VISUAL_SITUATION_BOARD_STATE.json",
+    "previous_situation_screen_work_order": "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
+    "previous_situation_screen_master_spec": "docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md",
+    "previous_situation_screen_state": "docs/planning/SITUATION_SCREEN_SPEC_STATE.json",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md"
   },
@@ -59,7 +61,7 @@
     },
     {
       "id": "grimoire-latest-decision-addendum",
-      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31S.md",
+      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md",
       "status": "ACTIVE_LATEST_USER_DECISION_AUTHORITY"
     },
     {
@@ -78,11 +80,17 @@
       "status": "ACTIVE_PROJECT_WORK_PRINCIPLE"
     },
     {
-      "id": "grimoire-situation-screen-workflow",
-      "source_path": "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
+      "id": "grimoire-visual-situation-board-workflow",
+      "source_path": "docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md",
       "status": "ACTIVE_PROJECT_WORK_ORDER",
-      "decision_id": "GM-SITUATION-SCREEN-WORKFLOW-01",
+      "decision_id": "GM-VISUAL-SITUATION-BOARD-WORKFLOW-01",
       "base_promotion": "CANDIDATE"
+    },
+    {
+      "id": "grimoire-previous-situation-screen-workflow",
+      "source_path": "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
+      "status": "SUPERSEDED_PRIMARY_OUTPUT_ROLE_SUPPORTING_APPENDIX_ONLY",
+      "decision_id": "GM-SITUATION-SCREEN-WORKFLOW-01"
     },
     {
       "id": "grimoire-development-gates",
@@ -97,30 +105,36 @@
   ],
   "review_documents": [
     {
+      "id": "grimoire-visual-situation-board",
+      "status": "REWORK_REQUIRED_USER_REVIEW_REQUIRED",
+      "decision_id": "GM-VISUAL-SITUATION-BOARD-WORKFLOW-01",
+      "required_output": "MULTI_BOARD_VISUAL_FIRST_ARTIFACT"
+    },
+    {
       "id": "grimoire-situation-screen-master-spec",
       "source_path": "docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md",
-      "status": "USER_REVIEW_REQUIRED_TECHNICAL_DESIGN_ONLY",
+      "status": "SUPPORTING_TECHNICAL_APPENDIX_ONLY",
       "decision_id": "GM-SITUATION-SCREEN-SPEC-01"
     },
     {
       "id": "grimoire-p0-entry-field-dialogue",
       "source_path": "docs/superpowers/specs/grimoire-situations/P0_01_ENTRY_FIELD_DIALOGUE.md",
-      "status": "USER_REVIEW_REQUIRED"
+      "status": "SUPPORTING_TECHNICAL_APPENDIX_ONLY"
     },
     {
       "id": "grimoire-p0-schedule-spell-battle",
       "source_path": "docs/superpowers/specs/grimoire-situations/P0_02_SCHEDULE_SPELL_BATTLE.md",
-      "status": "USER_REVIEW_REQUIRED"
+      "status": "SUPPORTING_TECHNICAL_APPENDIX_ONLY"
     },
     {
       "id": "grimoire-p0-result-return-grimoire",
       "source_path": "docs/superpowers/specs/grimoire-situations/P0_03_RESULT_RETURN_GRIMOIRE.md",
-      "status": "USER_REVIEW_REQUIRED"
+      "status": "SUPPORTING_TECHNICAL_APPENDIX_ONLY"
     },
     {
       "id": "grimoire-situation-board-backlog",
       "source_path": "docs/superpowers/specs/grimoire-situations/SITUATION_BOARD_AND_BACKLOG.md",
-      "status": "USER_REVIEW_REQUIRED"
+      "status": "SUPPORTING_TECHNICAL_APPENDIX_ONLY"
     },
     {
       "id": "grimoire-art-style-candidates",
@@ -137,10 +151,14 @@
       "status": "ACTIVE_MACHINE_READABLE_SYNC_STATE"
     },
     {
-      "id": "grimoire-situation-screen-spec-state",
+      "id": "grimoire-visual-situation-board-state",
+      "source_path": "docs/planning/VISUAL_SITUATION_BOARD_STATE.json",
+      "status": "ACTIVE_PENDING_SHEET_SYNC"
+    },
+    {
+      "id": "grimoire-previous-situation-screen-spec-state",
       "source_path": "docs/planning/SITUATION_SCREEN_SPEC_STATE.json",
-      "status": "WORKFLOW_SYNCED_SPEC_REVIEW_PENDING_READBACK_PASS",
-      "state_commit": "0ea7e72dfcb4780e28c5304b98a60324560a7d59"
+      "status": "HISTORICAL_TECHNICAL_APPENDIX_STATE"
     },
     {
       "id": "grimoire-art-style-state",
@@ -150,16 +168,20 @@
   ],
   "evidence_documents": [
     {
+      "id": "grimoire-visual-situation-board-user-correction",
+      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31T.md",
+      "status": "ACTIVE_CORRECTION_AUTHORITY"
+    },
+    {
       "id": "grimoire-situation-screen-architecture-benchmark",
       "source_path": "docs/planning/benchmarks/GM_SITUATION_SCREEN_ARCHITECTURE_BENCHMARK_2026-07-31.md",
-      "status": "STANDARD_BENCHMARK_COMPLETE",
+      "status": "SUPPORTING_TECHNICAL_EVIDENCE_ONLY",
       "source_policy": "OFFICIAL_GODOT_PRIMARY_ONLY"
     },
     {
       "id": "grimoire-situation-screen-sync-receipt",
       "source_path": "docs/planning/sync/GR-TRACE-SITUATION-SCREEN-01.md",
-      "status": "WORKFLOW_SYNCED_SPEC_REVIEW_PENDING_READBACK_PASS",
-      "receipt_commit": "0bd52a96a7b19e1dcd21f9905285a545f00c1712"
+      "status": "HISTORICAL_TECHNICAL_SPEC_RECEIPT"
     },
     {
       "id": "grimoire-art-style-benchmark",
@@ -214,12 +236,20 @@
       "status": "ACTIVE_PROJECT_WORK_PRINCIPLE"
     },
     {
-      "responsibility": "situation-screen-workflow",
+      "responsibility": "visual-situation-board-workflow",
       "status": "APPROVED_PROJECT_WORK_PRINCIPLE"
     },
     {
-      "responsibility": "situation-screen-technical-design",
-      "status": "USER_REVIEW_REQUIRED"
+      "responsibility": "grimoire-visual-screen-board",
+      "status": "REWORK_REQUIRED_USER_REVIEW_REQUIRED"
+    },
+    {
+      "responsibility": "previous-situation-screen-technical-design",
+      "status": "SUPPORTING_TECHNICAL_APPENDIX_ONLY"
+    },
+    {
+      "responsibility": "previous-generated-visuals",
+      "status": "REJECTED_NOT_AUTHORITY"
     },
     {
       "responsibility": "art-style-decision",
@@ -247,11 +277,16 @@
     "major_approved_change_requires_immediate_github_and_sheet_sync": true,
     "same_decision_id_required_across_github_and_sheet": true,
     "working_branch_sync_must_not_be_claimed_as_main_sync": true,
+    "visual_board_is_primary_user_review_artifact": true,
+    "technical_spec_is_supporting_appendix_only": true,
+    "required_four_screens_must_be_visually_readable": true,
+    "core_situations_must_show_screen_changes_not_only_text": true,
+    "evidence_tags_required_current_inferred_proposed_placeholder": true,
+    "existing_project_images_and_visual_identity_must_be_reviewed_before_generation": true,
+    "generic_cross_genre_visual_substitution_is_forbidden": true,
+    "single_overloaded_dashboard_is_forbidden": true,
+    "adversarial_visual_review_must_pass_before_completion": true,
     "candidate_or_review_specs_must_not_be_marked_confirmed": true,
-    "situation_spec_must_audit_required_reference_screens_first": true,
-    "situation_spec_must_separate_confirmed_implemented_interpretation_proposal_assumption": true,
-    "situation_spec_must_prioritize_p0_before_p1_p3_detail": true,
-    "situation_spec_is_not_implementation_authority": true,
     "art_style_candidate_requires_user_approval": true,
     "comparison_images_require_user_request": true,
     "same_field_combat_is_superseded": true,
