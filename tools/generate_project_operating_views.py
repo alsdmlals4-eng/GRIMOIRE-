@@ -36,10 +36,10 @@ def validate_source(adapter: dict, registry_text: str) -> None:
         raise ValueError(f"project registry hash mismatch: expected={expected} actual={actual}")
     base = adapter["base_release"]
     expected_base = {
-        "version": "9.3.0",
-        "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
-        "release_evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
-        "registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
+        "version": "9.4.0",
+        "release_commit": "a728712cb776ec98f4875914a580fcf7d0156593",
+        "release_evidence_commit": "ef1fba11167e4da0b298123b0c85ebd268191a42",
+        "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
     }
     for key, value in expected_base.items():
         if base[key] != value:
@@ -95,7 +95,7 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
         "canonical_source_sha256": adapter_hash,
         "base": {
             "repository": adapter["base_release"]["repository"],
-            "release_line": "v9.3.0",
+            "release_line": "v9.4.0",
             "release_state": "BASE_RELEASED",
             "release_commit": adapter["base_release"]["release_commit"],
             "release_evidence_commit": adapter["base_release"]["release_evidence_commit"],

@@ -169,3 +169,9 @@ ASSET-SPEC-01
 - 환경 결과 임계값.
 - 실제 인식 알고리즘·허용치·지연.
 - Godot Runtime·PC 입력·Mobile·성능·접근성·사람 플레이.
+
+## Base v9.4 운영 계약
+
+- Base `9.4.0` payload/evidence를 adapter와 생성기에 적용했다.
+- 승인 기획·아트·전투·Asset Spec·Sheet 내용과 제품 구현 상태는 변경하지 않는다.
+- 런타임·입력·사람·provider 검증은 `NOT_RUN` 또는 `HUMAN_NOT_RUN`이다.

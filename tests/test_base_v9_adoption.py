@@ -9,21 +9,21 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 
 
-class BaseV93AdoptionTests(unittest.TestCase):
-    def test_canonical_adapter_pins_base_v93(self) -> None:
+class BaseV94AdoptionTests(unittest.TestCase):
+    def test_canonical_adapter_pins_base_v94(self) -> None:
         data = json.loads((ROOT / "skills/PROJECT_BASE_ADAPTER.json").read_text(encoding="utf-8"))
-        self.assertEqual(data["base_release"]["version"], "9.3.0")
+        self.assertEqual(data["base_release"]["version"], "9.4.0")
         self.assertEqual(
             data["base_release"]["release_commit"],
-            "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
+            "a728712cb776ec98f4875914a580fcf7d0156593",
         )
         self.assertEqual(
             data["base_release"]["release_evidence_commit"],
-            "462a86db192d23d0f386281a1eb54b0a8cbad62e",
+            "ef1fba11167e4da0b298123b0c85ebd268191a42",
         )
         self.assertEqual(
             data["base_release"]["registry_sha256"],
-            "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
+            "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
         )
         self.assertEqual(data["gdd_sheet"]["sync_status"], "SYNCED_TO_WORKING_BRANCH")
         self.assertEqual(data["project"]["primary_platform"], "PC")
@@ -44,7 +44,7 @@ class BaseV93AdoptionTests(unittest.TestCase):
     def test_generated_views_do_not_claim_runtime_validation(self) -> None:
         base_view = json.loads((ROOT / "skills/BASE_V9_ADAPTER.json").read_text(encoding="utf-8"))
         snapshot = json.loads((ROOT / "skills/PROJECT_SKILL_SNAPSHOT.json").read_text(encoding="utf-8"))
-        self.assertEqual(base_view["base"]["release_line"], "v9.3.0")
+        self.assertEqual(base_view["base"]["release_line"], "v9.4.0")
         self.assertEqual(base_view["validation"]["runtime"], "NOT_RUN")
         self.assertEqual(base_view["validation"]["human"], "NOT_RUN")
         self.assertEqual(snapshot["generation_status"], "CURRENT")
