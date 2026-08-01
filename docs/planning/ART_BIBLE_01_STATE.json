@@ -1,21 +1,25 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "decision_id": "ART-BIBLE-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
-  "status": "DRAFT_USER_REVIEW_REQUIRED",
-  "approach_status": "DUAL_STANDARD_APPROVED",
-  "approach_approved_at": "2026-08-01T04:34:00+09:00",
-  "approved_by": "USER",
-  "draft_source": "docs/planning/ART_BIBLE_01_DRAFT_2026-08-01.md",
-  "draft_commit": "844eee0a746df31cbc21ea8c8ca02de6849a17e0",
-  "state_initial_commit": "ebf2d7bf2ba8695fb6cc68d6035db76c02b95c46",
-  "decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-08-01A.md",
-  "decision_addendum_commit": "b6ac82b07e44de61fffa80d8fcab06940b45f6e5",
-  "adversarial_audit": "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-01.md",
-  "adversarial_audit_commit": "79b7926e0b7db8c7a6e66f544b8fede19b5ca89b",
-  "adversarial_audit_status": "PASS_WITH_CORRECTIONS_REQUIRED",
-  "sync_receipt": "docs/planning/sync/GR-TRACE-ART-BIBLE-01.md",
-  "sync_receipt_commit": "a545c93a42560378a5c50add09929903d09bed9d",
+  "status": "APPROVED_DUAL_STANDARD_ART_BIBLE",
+  "approved_at": "2026-08-01T09:50:00+09:00",
+  "approved_by": "USER_BATCH_APPROVAL_RECOMMENDED_OPTION",
+  "approach": "DUAL_STANDARD",
+  "authority": {
+    "source_path": "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
+    "commit": "434040c263be6f2c4946efba944bd72657c5ba6d"
+  },
+  "source_draft": {
+    "path": "docs/planning/ART_BIBLE_01_DRAFT_2026-08-01.md",
+    "commit": "844eee0a746df31cbc21ea8c8ca02de6849a17e0",
+    "role": "APPROVED_SOURCE_WITH_ACTIVE_OVERRIDE"
+  },
+  "battle_correction": {
+    "path": "docs/planning/ART_BIBLE_01_BATTLE_CORRECTION_ADDENDUM_2026-08-01.md",
+    "commit": "6bc01c5e73741cff064edebe3e5882eac018d3f0",
+    "role": "ACTIVE_OVERRIDE_FOR_BATTLE_SECTIONS"
+  },
   "source_art_style": {
     "decision_id": "ART-STYLE-01",
     "status": "APPROVED_A_MODIFIED",
@@ -26,93 +30,51 @@
     "visual_authority_standard": "FINAL_TARGET_IMPRESSION_AND_SCREEN_LANGUAGE",
     "vertical_slice_production_standard": "SOLO_PRODUCTION_COMPLEXITY_AND_REUSE_LIMITS"
   },
-  "protected_contracts": [
-    "LANDSCAPE_16_9",
-    "FIXED_SCENE_BASED_THREE_QUARTER_FIELD",
-    "FIELD_AND_BATTLE_SD_CHARACTER_SYSTEM",
-    "HALF_BODY_DIALOGUE_OVER_SAME_LOCATION",
-    "FIELD_WRITING_OVERLAY",
-    "SEPARATE_FIXED_THREE_QUARTER_TACTICAL_BATTLE",
-    "BATTLE_WRITING_OVERLAY",
-    "RESULT_RETURN_TO_ORIGINAL_FIELD",
-    "NAVY_GOLD_ACADEMY_UI",
-    "HIGH_CONTRAST_BLUE_GLYPH_LANGUAGE"
+  "approved_contracts": [
+    "SOFT_STORYBOOK_ENVIRONMENT",
+    "CLEAN_ANIME_CEL_CHARACTER",
+    "NAVY_GOLD_MAGIC_ACADEMY_UI",
+    "HIGH_CONTRAST_BLUE_GLYPH_LANGUAGE",
+    "FIXED_PROTAGONIST_ONE_ACTIVE_BATTLE_PORTRAIT",
+    "COMPANION_AND_GUARDIAN_STATUS_BADGES",
+    "COLLAPSED_THEN_EXPANDED_BATTLE_WRITING_PANEL",
+    "SANS_BODY_AND_LIMITED_SERIF_TITLE_DIRECTION",
+    "GRIMOIRE_DERIVATIVE_SCREEN_BEFORE_MAIN",
+    "NO_PERSISTENT_ALLY_OR_GUARDIAN_BODIES_ON_BATTLEFIELD"
   ],
-  "approved_refinements": [
-    {
-      "decision_id": "GM-BATTLE-SCREEN-LAYOUT-01",
-      "status": "APPROVED_LAYOUT_DIRECTION",
-      "authority": "docs/planning/BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md",
-      "authority_commit": "73829e0d7b0937d7aac88db5545a41a6f549669a",
-      "state": "docs/planning/BATTLE_SCREEN_LAYOUT_01_STATE.json",
-      "state_commit": "736ab8bf7ad0494de849b593c20c3345859f3410",
-      "benchmark": "docs/planning/benchmarks/BATTLE_SCREEN_LAYOUT_01_QUICK_BENCHMARK_2026-08-01.md",
-      "benchmark_commit": "d40d932fa004f0298512b5e64014a182095cbabf",
-      "sync_receipt": "docs/planning/sync/GR-APPROVE-BATTLE-SCREEN-LAYOUT-01.md",
-      "sync_receipt_commit": "9d9ebce0513d2421bd88cd474d8b7f424e3a445f",
-      "sync_status": "SYNCED_TO_WORKING_BRANCH",
-      "contract": [
-        "ENEMY_AND_ENVIRONMENT_ONLY_PERSISTENT_BATTLEFIELD",
-        "ALLY_FACE_PORTRAITS_LOWER_LEFT",
-        "SPELL_WRITING_AREA_RIGHT",
-        "ENEMY_WARNING_VISIBLE_DURING_WRITING",
-        "GUARDIAN_SUMMON_BRIEF_ACTIVATION_NOT_PERSISTENT_BODY"
-      ]
-    }
+  "battle_refinements": [
+    "GM-BATTLE-SCREEN-LAYOUT-01",
+    "GM-BATTLE-SINGLE-ENEMY-FOCUS-01",
+    "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
+    "GM-BATTLE-TIME-FLOW-01",
+    "GM-BATTLE-RULES-01"
   ],
-  "corrections_applied_in_draft": [
-    "PC_RUNTIME_MUST_NOT_INHERIT_PERSISTENT_MOBILE_TOUCH_CONTROLS",
-    "IMAGE_NAMES_STATS_PARTY_SIZE_ENEMY_COUNT_ARE_NOT_CANON",
-    "SCHOOL_EXAM_FESTIVAL_USE_SHARED_SCENE_STATE_VARIANTS",
-    "MAIN_COMPANION_AND_COMBAT_SUPPORT_SUMMON_ARE_SEPARATE",
-    "MAIN_AND_GRIMOIRE_SCREENS_REQUIRE_SEPARATE_DERIVATIVE_BOARDS"
-  ],
-  "document_corrections_required_before_final_approval": [
-    "REPLACE_PERSISTENT_ALLY_AND_GUARDIAN_BODIES_IN_BATTLEFIELD_WITH_LOWER_LEFT_PORTRAITS_AND_BRIEF_ACTIVATION_PRESENTATION"
-  ],
-  "user_decisions_required": [
-    "PROTAGONIST_EXACT_VISUAL_KEY_LOCK_SCOPE",
-    "COMPANION_OFFICIAL_NAME",
-    "BLUE_AND_ORANGE_STATE_COLOR_SEMANTICS",
-    "MAIN_AND_GRIMOIRE_DERIVATIVE_BOARD_ORDER",
-    "SERIF_TITLE_AND_GOTHIC_BODY_FONT_DIRECTION",
-    "BATTLE_WRITING_PANEL_ALWAYS_OPEN_OR_EXPAND_ON_ACTION",
-    "BATTLE_ALLY_PORTRAIT_VISIBLE_COUNT_AND_FIELDS"
-  ],
-  "sheet_sync": {
-    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "status": "VERIFIED_BY_READBACK",
-    "readback": "PASS",
-    "verified_at": "2026-08-01T05:04:00+09:00",
-    "art_bible_ranges": [
-      "01_작업순서!A11:J11",
-      "02_현재_확정결정!A18:J18",
-      "04_누락_충돌_감사!A12:H12",
-      "70_아트_오디오_에셋!A8:H8",
-      "99_변경이력!A12:H12"
-    ],
-    "battle_layout_ranges": [
-      "01_작업순서!A12:J12",
-      "02_현재_확정결정!A19:J19",
-      "04_누락_충돌_감사!A13:H13",
-      "05_GDD_요약!A13:H13",
-      "40_핵심시스템_메인콘텐츠!A10:H10",
-      "60_UX_UI_접근성!A10:H10",
-      "70_아트_오디오_에셋!A9:H9",
-      "80_데모_버티컬슬라이스_플레이테스트!A7:H7",
-      "99_변경이력!A13:H13"
-    ],
-    "battle_layout_sync": "READBACK_PASS"
+  "naming": {
+    "status": "DEFERRED_TO_NAMING_PASS_01",
+    "blocks_art_bible": false
   },
+  "derivative_screen_order": [
+    "GRIMOIRE_SCREEN_BOARD",
+    "MAIN_SCREEN_BOARD",
+    "BATTLE_DETAIL_WIREFRAME"
+  ],
+  "next_product_gate": "ASSET-SPEC-01",
+  "parallel_design_work": [
+    "BOSS-PHASE-01",
+    "GRIMOIRE-SCREEN-01",
+    "MAIN-SCREEN-01",
+    "NAMING-PASS-01"
+  ],
   "implementation_authority": "NONE",
-  "asset_generation_authority": "NONE",
+  "asset_generation_authority": "ASSET_SPEC_REQUIRED",
   "codex": "BLOCKED",
   "godot": "NOT_STARTED",
   "runtime_validation": "NOT_RUN",
   "human_validation": "NOT_RUN",
-  "next_product_gate": "ART-BIBLE-01_USER_REVIEW",
-  "next_planning_work_item": "BATTLE-UX-01_WITHIN_ART_BIBLE_REVIEW",
-  "next_gate_after_approval": "ASSET-SPEC-01",
-  "sync_status": "DRAFT_SYNCED_TO_WORKING_BRANCH_WITH_BATTLE_LAYOUT_REFINEMENT",
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "status": "PENDING_CURRENT_APPROVAL_SYNC"
+  },
+  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
   "main_sync": "PENDING_PR_MERGE"
 }
