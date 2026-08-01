@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "work_item_id": "GM-PROJECT-OPERATING-RECONCILIATION-01",
+  "audit_id": "GR-AUDIT-20260801-02",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "CORRECTIONS_IN_PROGRESS",
+  "audit_authority": {
+    "path": "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md",
+    "commit": "fabbc6b33d08260ce311ed25b76ea394728aafcd"
+  },
+  "base": {
+    "repository": "alsdmlals4-eng/Base",
+    "main_head_observed": "a82976a3a42450ea413cdc5d4aebf701678110d8",
+    "release": "v9.3.0",
+    "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
+    "release_evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
+    "release_registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
+    "active_skill_count_observed": 27
+  },
+  "repository_audit": {
+    "cold_start_documents": "STALE_BLOCKING",
+    "design_registry": "STALE_BLOCKING",
+    "documentation_map": "STALE_BLOCKING",
+    "base_adapter": "ATOMIC_REGENERATION_REQUIRED",
+    "generated_views": "MUST_NOT_HAND_EDIT",
+    "ci_semantics": "STALE_EXPECTATIONS",
+    "product_files": "NOT_FOUND"
+  },
+  "sheet_audit": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "tabs_present": 27,
+    "tabs_expected": 27,
+    "structure": "PASS",
+    "cold_start_summary": "STALE",
+    "cross_tab_freshness": "PARTIAL",
+    "latest_battle_decisions": "PRESENT"
+  },
+  "latest_approved_product_decisions": [
+    "ART-STYLE-01",
+    "GR-VISUAL-SITUATION-BOARD-01",
+    "GM-BATTLE-SCREEN-LAYOUT-01",
+    "GM-BATTLE-SINGLE-ENEMY-FOCUS-01",
+    "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
+    "GM-BATTLE-TIME-FLOW-01"
+  ],
+  "current_product_gate": {
+    "art_bible_01": "APPROACH_APPROVED_DRAFT_USER_REVIEW_REQUIRED",
+    "battle_rules_01": "NEXT_GAME_DESIGN_GATE",
+    "asset_spec_01": "BLOCKED_BY_ART_BIBLE",
+    "codex": "BLOCKED",
+    "godot": "NOT_STARTED"
+  },
+  "immediate_corrections": [
+    "COLD_START_AUTHORITY_REFRESH",
+    "DOCUMENTATION_MAP_AND_REGISTRY_REFRESH",
+    "SHEET_SUMMARY_AND_STALE_DOMAIN_REFRESH",
+    "ART_BIBLE_BATTLE_OVERRIDE_ADDENDUM",
+    "PR_REVIEW_SURFACE_REFRESH"
+  ],
+  "atomic_followup": [
+    "BASE_V93_CANONICAL_ADAPTER_UPDATE",
+    "RUN_BASE_GENERATOR",
+    "REGENERATE_SNAPSHOT_AND_COMPATIBILITY_VIEWS",
+    "UPDATE_OPERATING_TEST_EXPECTATIONS",
+    "RUN_CI_AND_ADVERSARIAL_GATE"
+  ],
+  "unresolved_product_design": [
+    "BATTLE_DAMAGE_DEFENSE_VICTORY_DEFEAT",
+    "GUARDIAN_SUMMON_BATTLE_EFFECT",
+    "ENEMY_ATTACK_INTERVAL_TUNING",
+    "BOSS_PHASE_RULES",
+    "MAIN_SCREEN_DERIVATIVE",
+    "GRIMOIRE_SCREEN_DERIVATIVE",
+    "CHARACTER_AND_COMPANION_NAMING"
+  ],
+  "implementation_authority": "NONE",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sync_status": "GITHUB_AUDIT_CREATED_CORRECTIONS_PENDING",
+  "main_sync": "PENDING_PR_MERGE"
+}
