@@ -1,11 +1,10 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "registry_role": "grimoire-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
     "default_branch": "main",
-    "working_branch": "agent/grimoire-v93-canon",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "execution_profile": "PLANNING_ONLY_PROFILE",
     "work_mode": "PLAN",
@@ -19,8 +18,8 @@
     "parallel_design_gate": "BOSS-PHASE-01",
     "implementation": "NOT_STARTED",
     "codex": "BLOCKED",
-    "canon_sync": "SYNC_IN_PROGRESS_WORKING_BRANCH",
-    "main_sync": "PENDING_PR_MERGE"
+    "canon_sync": "SYNCED_TO_MAIN",
+    "authority_main_commit": "a088252349bee94cecef94b216c8cc5e0b9162cb"
   },
   "base_pin": {
     "repository": "alsdmlals4-eng/Base",
@@ -41,6 +40,8 @@
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "benchmark_policy": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
+    "canon_sync_state": "docs/planning/CANON_SYNC_STATE.json",
+    "main_sync_receipt": "docs/planning/sync/GR-SYNC-20260801-05-MAIN.md",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
     "operating_audit": "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md"
   },
@@ -132,23 +133,28 @@
       "id": "google-sheet-contract",
       "source_path": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
       "status": "ACTIVE_WORKBOOK_CONTRACT"
+    },
+    {
+      "id": "main-sync-receipt",
+      "source_path": "docs/planning/sync/GR-SYNC-20260801-05-MAIN.md",
+      "status": "SYNCED_TO_MAIN_RECEIPT"
     }
   ],
   "machine_readable_state": [
     {
       "id": "canon-sync-state",
       "source_path": "docs/planning/CANON_SYNC_STATE.json",
-      "status": "ACTIVE_SYNC_STATE"
+      "status": "SYNCED_TO_MAIN_STATE"
     },
     {
       "id": "operating-reconciliation-state",
       "source_path": "docs/planning/PROJECT_OPERATING_RECONCILIATION_STATE.json",
-      "status": "ACTIVE_AUDIT_STATE"
+      "status": "PASS_CORRECTIONS_VERIFIED_SYNCED_TO_MAIN"
     },
     {
       "id": "art-bible-state",
       "source_path": "docs/planning/ART_BIBLE_01_STATE.json",
-      "status": "APPROVED_ART_BIBLE_STATE"
+      "status": "APPROVED_SYNCED_TO_MAIN"
     },
     {
       "id": "battle-screen-layout-state",
@@ -173,14 +179,14 @@
     {
       "id": "battle-rules-state",
       "source_path": "docs/planning/BATTLE_RULES_01_STATE.json",
-      "status": "APPROVED_STATE"
+      "status": "APPROVED_SYNCED_TO_MAIN"
     }
   ],
   "evidence_documents": [
     {
       "id": "project-wide-audit",
       "source_path": "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md",
-      "status": "PASS_WITH_CORRECTIONS_APPLIED"
+      "status": "PASS_CORRECTIONS_VERIFIED"
     },
     {
       "id": "art-style-benchmark",
