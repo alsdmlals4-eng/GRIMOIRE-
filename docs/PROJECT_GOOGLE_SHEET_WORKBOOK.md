@@ -8,8 +8,9 @@ sheet_edit_policy: IMMEDIATE_APPROVED_CANON_SYNC
 canon_sync_policy_id: GM-CANON-SYNC-01
 required_tabs: 27
 last_full_audit: 2026-08-01
-working_branch_sync: IN_PROGRESS
-main_sync: PENDING_PR_MERGE
+sync_status: SYNCED_TO_MAIN
+authority_main_commit: a088252349bee94cecef94b216c8cc5e0b9162cb
+main_readback: PASS
 ```
 
 Sheet는 사용자가 기획을 확인·수정하는 작업면이다. GitHub 승인 책임 원본, 계획 JSON, 실제 구현과 함께 읽으며 Sheet 단독 값으로 승인·구현·검증 완료를 확정하지 않는다.
@@ -74,6 +75,7 @@ human_validation: NOT_RUN
 | 개발 Gate | `docs/DEVELOPMENT_GATES.md` |
 | 운영 감사 | `docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md` |
 | Base Adapter | `skills/PROJECT_BASE_ADAPTER.json` |
+| main 동기화 | `docs/planning/sync/GR-SYNC-20260801-05-MAIN.md` |
 
 ## 4. 즉시 동기화 규칙
 
@@ -116,7 +118,7 @@ Gate·단계 변경 시:
 | `SYNCED_TO_MAIN` | PR 병합 후 main Commit과 Sheet가 다시 일치 |
 | `SYNC_CONFLICT` | 값·상태·책임 경로 충돌 |
 
-## 6. 현재 동기화 대상
+## 6. 완료된 동기화
 
 Sync Bundle: `GR-SYNC-20260801-05`.
 
@@ -127,6 +129,15 @@ Sync Bundle: `GR-SYNC-20260801-05`.
 - `GM-BATTLE-RULES-01`.
 - Base v9.3 Adapter·Snapshot·CI 정합화.
 - 27개 Sheet 탭 전수 감사 교정.
+
+증거:
+
+- Authority PR: `#22`.
+- Authority main Commit: `a088252349bee94cecef94b216c8cc5e0b9162cb`.
+- CI: `ci-gate SUCCESS / adversarial-gate SUCCESS`.
+- main Authority·Sheet Readback: `PASS`.
+- 최종 영수증: `docs/planning/sync/GR-SYNC-20260801-05-MAIN.md`.
+- 상태: `SYNCED_TO_MAIN`.
 
 ## 7. 검증 경계
 
