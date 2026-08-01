@@ -1,20 +1,80 @@
 {
   "active_base_routes": [
-    {"route_id": "managing-project-intake-and-work-contract", "skill_id": "managing-project-intake-and-work-contract", "status": "ACTIVE"},
-    {"route_id": "managing-game-project-operating-system", "skill_id": "managing-game-project-operating-system", "status": "ACTIVE"},
-    {"route_id": "managing-design-documents", "skill_id": "managing-design-documents", "status": "ACTIVE"},
-    {"route_id": "maintaining-project-context-and-handoff", "skill_id": "maintaining-project-context-and-handoff", "status": "ACTIVE"},
-    {"route_id": "analyzing-and-refining-game-concepts", "skill_id": "analyzing-and-refining-game-concepts", "status": "ACTIVE"},
-    {"route_id": "designing-vertical-slices", "skill_id": "designing-vertical-slices", "status": "ACTIVE"},
-    {"route_id": "reviewing-and-validating-project-changes", "skill_id": "reviewing-and-validating-project-changes", "status": "ACTIVE"},
-    {"route_id": "auditing-canonical-reference-freshness", "skill_id": "auditing-canonical-reference-freshness", "status": "ACTIVE"},
-    {"route_id": "designing-art-prompts-and-technique-cards", "skill_id": "designing-art-prompts-and-technique-cards", "status": "ACTIVE"},
-    {"route_id": "auditing-and-refining-ui-art", "skill_id": "auditing-and-refining-ui-art", "status": "ACTIVE"},
-    {"route_id": "identifying-project-core", "skill_id": "identifying-project-core", "status": "ACTIVE"},
-    {"route_id": "running-adversarial-review-and-refinement", "skill_id": "running-adversarial-review-and-refinement", "status": "ACTIVE"},
-    {"route_id": "managing-base-change-proposals", "skill_id": "managing-base-change-proposals", "status": "ACTIVE"},
-    {"route_id": "governing-legacy-retention-and-archives", "skill_id": "governing-legacy-retention-and-archives", "status": "ACTIVE"},
-    {"route_id": "evaluating-godot-assets-and-plugins-before-creation", "skill_id": "evaluating-godot-assets-and-plugins-before-creation", "status": "ACTIVE"}
+    {
+      "route_id": "managing-project-intake-and-work-contract",
+      "skill_id": "managing-project-intake-and-work-contract",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "managing-game-project-operating-system",
+      "skill_id": "managing-game-project-operating-system",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "managing-design-documents",
+      "skill_id": "managing-design-documents",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "maintaining-project-context-and-handoff",
+      "skill_id": "maintaining-project-context-and-handoff",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "analyzing-and-refining-game-concepts",
+      "skill_id": "analyzing-and-refining-game-concepts",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "designing-vertical-slices",
+      "skill_id": "designing-vertical-slices",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "reviewing-and-validating-project-changes",
+      "skill_id": "reviewing-and-validating-project-changes",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "auditing-canonical-reference-freshness",
+      "skill_id": "auditing-canonical-reference-freshness",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "designing-art-prompts-and-technique-cards",
+      "skill_id": "designing-art-prompts-and-technique-cards",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "auditing-and-refining-ui-art",
+      "skill_id": "auditing-and-refining-ui-art",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "identifying-project-core",
+      "skill_id": "identifying-project-core",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "running-adversarial-review-and-refinement",
+      "skill_id": "running-adversarial-review-and-refinement",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "managing-base-change-proposals",
+      "skill_id": "managing-base-change-proposals",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "governing-legacy-retention-and-archives",
+      "skill_id": "governing-legacy-retention-and-archives",
+      "status": "ACTIVE"
+    },
+    {
+      "route_id": "evaluating-godot-assets-and-plugins-before-creation",
+      "skill_id": "evaluating-godot-assets-and-plugins-before-creation",
+      "status": "ACTIVE"
+    }
   ],
   "base_registry_route": {
     "copy_skill_bodies_to_project": false,
@@ -85,21 +145,58 @@
     "work_mode": "PLAN"
   },
   "project_local_routes": [
-    {"path": "magic-writing-recovery/SKILL.md", "route_id": "magic-writing-recovery", "skill_id": "magic-writing-recovery", "status": "ACTIVE"},
-    {"path": "art-style-decision-gate/SKILL.md", "route_id": "art-style-decision-gate", "skill_id": "art-style-decision-gate", "status": "ACTIVE"}
+    {
+      "path": "magic-writing-recovery/SKILL.md",
+      "route_id": "magic-writing-recovery",
+      "skill_id": "magic-writing-recovery",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "art-style-decision-gate/SKILL.md",
+      "route_id": "art-style-decision-gate",
+      "skill_id": "art-style-decision-gate",
+      "status": "ACTIVE"
+    }
   ],
   "project_local_skills": [
-    {"path": "magic-writing-recovery/SKILL.md", "skill_id": "magic-writing-recovery", "status": "ACTIVE"},
-    {"path": "art-style-decision-gate/SKILL.md", "skill_id": "art-style-decision-gate", "status": "ACTIVE"}
+    {
+      "path": "magic-writing-recovery/SKILL.md",
+      "skill_id": "magic-writing-recovery",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "art-style-decision-gate/SKILL.md",
+      "skill_id": "art-style-decision-gate",
+      "status": "ACTIVE"
+    }
   ],
   "question_gate": {
-    "allowed_statuses": ["USER_DECISION_REQUIRED", "UNRESOLVED", "PLAYTEST_TUNING_REQUIRED", "ASSET_SPEC_REQUIRED", "TECHNICAL_REVIEW_PROPOSAL"],
-    "forbidden_reask_statuses": ["CONFIRMED", "APPROVED", "CORE_CONFIRMED", "SUPERSEDED"]
+    "allowed_statuses": [
+      "USER_DECISION_REQUIRED",
+      "UNRESOLVED",
+      "PLAYTEST_TUNING_REQUIRED",
+      "ASSET_SPEC_REQUIRED",
+      "TECHNICAL_REVIEW_PROPOSAL"
+    ],
+    "forbidden_reask_statuses": [
+      "CONFIRMED",
+      "APPROVED",
+      "CORE_CONFIRMED",
+      "SUPERSEDED"
+    ]
   },
   "registry_role": "grimoire-project-skill-router",
   "required_extension_routes": [
-    {"route_id": "legacy_retention_and_archives", "skill_id": "governing-legacy-retention-and-archives", "source": "BASE_SHARED"},
-    {"route_id": "godot_assets_before_creation", "skill_id": "evaluating-godot-assets-and-plugins-before-creation", "source": "BASE_SHARED"}
+    {
+      "route_id": "legacy_retention_and_archives",
+      "skill_id": "governing-legacy-retention-and-archives",
+      "source": "BASE_SHARED"
+    },
+    {
+      "route_id": "godot_assets_before_creation",
+      "skill_id": "evaluating-godot-assets-and-plugins-before-creation",
+      "source": "BASE_SHARED"
+    }
   ],
   "routing_policy": {
     "benchmark_required_before_new_system_or_core_rule": true,
