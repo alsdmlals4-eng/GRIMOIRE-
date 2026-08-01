@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "decision_id": "GM-BATTLE-RULES-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "status": "APPROVED_SITUATION_RESOLUTION_RULES",
@@ -14,7 +14,9 @@
   },
   "authority": {
     "source_path": "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
-    "commit": "12690d43cf9e4c73f186097144c900dfe0e7722e"
+    "commit": "12690d43cf9e4c73f186097144c900dfe0e7722e",
+    "main_commit": "a088252349bee94cecef94b216c8cc5e0b9162cb",
+    "main_readback": "PASS"
   },
   "victory": {
     "enemy_primary_meter": "INSTABILITY",
@@ -65,34 +67,19 @@
     "ENVIRONMENT_RESULT_THRESHOLDS"
   ],
   "next_design_gate": "BOSS-PHASE-01_AND_ASSET-SPEC-01",
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "main_commit_recorded": "a088252349bee94cecef94b216c8cc5e0b9162cb",
+    "main_readback": "PASS",
+    "status": "SYNCED_TO_MAIN"
+  },
+  "sync_receipts": {
+    "working_branch": "docs/planning/sync/GR-SYNC-20260801-05.md",
+    "main": "docs/planning/sync/GR-SYNC-20260801-05-MAIN.md"
+  },
+  "sync_status": "SYNCED_TO_MAIN",
   "implementation_authority": "NONE",
   "godot": "NOT_STARTED",
   "runtime_validation": "NOT_RUN",
-  "human_validation": "NOT_RUN",
-  "sheet_sync": {
-    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "ranges": [
-      "01_작업순서!A16:J16",
-      "02_현재_확정결정!A23:J23",
-      "03_근거_라이브러리!A8:I8",
-      "04_누락_충돌_감사!A18:H18",
-      "05_GDD_요약!A17:J17",
-      "12_핵심루프!A7:J8",
-      "15_조작_게임규칙!A7:J9",
-      "40_핵심시스템_메인콘텐츠!A10:J14",
-      "51_미니게임!E4:I4",
-      "60_UX_UI_접근성!A12:J14",
-      "70_아트_오디오_에셋!A8:J10",
-      "80_데모_버티컬슬라이스_플레이테스트!A9:J11",
-      "99_변경이력!A18:H18"
-    ],
-    "readback": "PASS",
-    "status": "SYNCED_TO_WORKING_BRANCH"
-  },
-  "sync_receipt": {
-    "path": "docs/planning/sync/GR-SYNC-20260801-05.md",
-    "commit": "3b5c164e6488986ab55db1a36ae4d22085653d93"
-  },
-  "sync_status": "SYNCED_TO_WORKING_BRANCH",
-  "main_sync": "PENDING_PR_MERGE"
+  "human_validation": "NOT_RUN"
 }
