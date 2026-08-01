@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-BATTLE-RULES-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "APPROVED_SITUATION_RESOLUTION_RULES",
+  "approved_at": "2026-08-01T09:45:00+09:00",
+  "approved_by": "USER_BATCH_APPROVAL_RECOMMENDED_OPTION",
+  "benchmark": {
+    "id": "GR-BM-BATTLE-RULES-01",
+    "scale": "QUICK",
+    "status": "COMPLETE",
+    "source_path": "docs/planning/benchmarks/BATTLE_RULES_01_QUICK_BENCHMARK_2026-08-01.md",
+    "commit": "4d48da9dfaa2215a6c1840c302e2261ce24f8995"
+  },
+  "authority": {
+    "source_path": "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
+    "commit": "12690d43cf9e4c73f186097144c900dfe0e7722e"
+  },
+  "victory": {
+    "enemy_primary_meter": "INSTABILITY",
+    "enemy_hp": "NOT_USED_AS_DEFAULT",
+    "condition": "INSTABILITY_REACHES_ZERO_BY_VALID_SITUATION_APPROPRIATE_CAST",
+    "extra_finisher": false
+  },
+  "player_failure": {
+    "player_hp_zero": true,
+    "declared_critical_environment_collapse": true,
+    "recognition_error_counts_as_defeat": false,
+    "recovery": "SAFE_CHECKPOINT"
+  },
+  "result_quality": [
+    "ENVIRONMENT_PRESERVATION",
+    "PLAYER_DAMAGE_TAKEN",
+    "SIDE_EFFECTS_AND_SACRIFICES",
+    "GLYPHS_AND_INTENT",
+    "FREE_SCHEDULE_AND_RELATION_REACTIONS"
+  ],
+  "spell_result_axes": [
+    "INSTABILITY_DELTA",
+    "NEXT_ATTACK_RISK_DELTA",
+    "ENVIRONMENT_STATE_DELTA",
+    "SIDE_EFFECT_OR_SACRIFICE"
+  ],
+  "guardian_summon": {
+    "manual_activation": true,
+    "role": "MITIGATE_NEXT_ATTACK_OR_ENVIRONMENT_DAMAGE_AND_PRESERVE_DRAFT",
+    "stops_enemy_timer": false,
+    "auto_writes_or_casts": false,
+    "persistent_battlefield_body": false,
+    "exact_values": "PLAYTEST_TUNING_REQUIRED"
+  },
+  "general_encounter_limits": {
+    "default_enemy_count": 1,
+    "normal_phases": 1,
+    "waves": false,
+    "second_capture_gauge": false,
+    "per_enemy_unique_answer_puzzle": false
+  },
+  "unresolved_tuning": [
+    "ENEMY_ATTACK_INTERVAL",
+    "PLAYER_HP_AND_DAMAGE_VALUES",
+    "MANA_VALUES",
+    "INSTABILITY_CHANGE_VALUES",
+    "GUARDIAN_MITIGATION_AND_USES",
+    "ENVIRONMENT_RESULT_THRESHOLDS"
+  ],
+  "next_design_gate": "BOSS-PHASE-01_AND_ART-BIBLE-01_FINALIZATION",
+  "implementation_authority": "NONE",
+  "godot": "NOT_STARTED",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
+  "main_sync": "PENDING_PR_MERGE"
+}
