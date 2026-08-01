@@ -1,9 +1,9 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "work_item_id": "GM-PROJECT-OPERATING-RECONCILIATION-01",
   "audit_id": "GR-AUDIT-20260801-02",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
-  "status": "CORRECTIONS_IN_PROGRESS",
+  "status": "CORRECTIONS_APPLIED_VERIFICATION_PENDING",
   "audit_authority": {
     "path": "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md",
     "commit": "fabbc6b33d08260ce311ed25b76ea394728aafcd"
@@ -18,64 +18,91 @@
     "active_skill_count_observed": 27
   },
   "repository_audit": {
-    "cold_start_documents": "STALE_BLOCKING",
-    "design_registry": "STALE_BLOCKING",
-    "documentation_map": "STALE_BLOCKING",
-    "base_adapter": "ATOMIC_REGENERATION_REQUIRED",
-    "generated_views": "MUST_NOT_HAND_EDIT",
-    "ci_semantics": "STALE_EXPECTATIONS",
+    "cold_start_documents": "CORRECTED",
+    "design_registry": "CORRECTED",
+    "documentation_map": "CORRECTED",
+    "base_adapter": "UPDATED_TO_V9_3",
+    "generated_views": "REGENERATED_WITH_DETERMINISTIC_TOOL",
+    "ci_semantics": "UPDATED_VERIFICATION_PENDING",
     "product_files": "NOT_FOUND"
+  },
+  "operating_artifacts": {
+    "project_skill_registry_commit": "832267519ab9c0218d03ae17d31958d417ffbb37",
+    "canonical_adapter_commit": "36c1cc50f3620677450522e9de62c6c3fb963236",
+    "snapshot_commit": "b412f587ab3957bd6110c7c6dad06ddee55a4578",
+    "base_view_commit": "c4cd351b0879a0ecc897e7db5da5a101b04439cd",
+    "project_view_commit": "5171e72c54c69ac2618466b70036cdd621e99ee2",
+    "generator_commit": "e8648bb018c96109492bad9efe8fca8336a8e8de",
+    "test_commit": "e97078fcd8be036590acc645a2db2a800c4749e9",
+    "workflow_commit": "bc44dffa9544dede685c4eab1a93378657f73373"
   },
   "sheet_audit": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "tabs_present": 27,
     "tabs_expected": 27,
     "structure": "PASS",
-    "cold_start_summary": "STALE",
-    "cross_tab_freshness": "PARTIAL",
-    "latest_battle_decisions": "PRESENT"
+    "cold_start_summary": "CORRECTED",
+    "cross_tab_freshness": "CORRECTED_FOR_CURRENT_SCOPE",
+    "latest_battle_decisions": "PRESENT",
+    "readback": "PASS"
   },
   "latest_approved_product_decisions": [
     "ART-STYLE-01",
+    "ART-BIBLE-01",
     "GR-VISUAL-SITUATION-BOARD-01",
     "GM-BATTLE-SCREEN-LAYOUT-01",
     "GM-BATTLE-SINGLE-ENEMY-FOCUS-01",
     "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
-    "GM-BATTLE-TIME-FLOW-01"
+    "GM-BATTLE-TIME-FLOW-01",
+    "GM-BATTLE-RULES-01"
   ],
   "current_product_gate": {
-    "art_bible_01": "APPROACH_APPROVED_DRAFT_USER_REVIEW_REQUIRED",
-    "battle_rules_01": "NEXT_GAME_DESIGN_GATE",
-    "asset_spec_01": "BLOCKED_BY_ART_BIBLE",
+    "art_bible_01": "APPROVED_DUAL_STANDARD_ART_BIBLE",
+    "battle_rules_01": "APPROVED_SITUATION_RESOLUTION_RULES",
+    "asset_spec_01": "NEXT_PRODUCT_GATE",
+    "boss_phase_01": "PARALLEL_DESIGN_GATE",
     "codex": "BLOCKED",
     "godot": "NOT_STARTED"
   },
-  "immediate_corrections": [
+  "completed_corrections": [
     "COLD_START_AUTHORITY_REFRESH",
     "DOCUMENTATION_MAP_AND_REGISTRY_REFRESH",
     "SHEET_SUMMARY_AND_STALE_DOMAIN_REFRESH",
-    "ART_BIBLE_BATTLE_OVERRIDE_ADDENDUM",
-    "PR_REVIEW_SURFACE_REFRESH"
-  ],
-  "atomic_followup": [
+    "ART_BIBLE_BATTLE_OVERRIDE_AND_FINAL_APPROVAL",
+    "BATTLE_RULES_BENCHMARK_AND_APPROVAL",
     "BASE_V93_CANONICAL_ADAPTER_UPDATE",
-    "RUN_BASE_GENERATOR",
     "REGENERATE_SNAPSHOT_AND_COMPATIBILITY_VIEWS",
     "UPDATE_OPERATING_TEST_EXPECTATIONS",
-    "RUN_CI_AND_ADVERSARIAL_GATE"
+    "PR_REVIEW_SURFACE_REFRESH_PENDING_FINAL_BODY"
   ],
-  "unresolved_product_design": [
-    "BATTLE_DAMAGE_DEFENSE_VICTORY_DEFEAT",
-    "GUARDIAN_SUMMON_BATTLE_EFFECT",
+  "remaining_verification": [
+    "RUN_GENERATOR_CHECK_IN_CI",
+    "RUN_UNIT_AND_JSON_PARSE_IN_CI",
+    "RUN_ADVERSARIAL_GATE",
+    "REFRESH_PR_TITLE_AND_BODY",
+    "VERIFY_PR_HEAD_AND_MERGEABILITY",
+    "MERGE_UNDER_USER_BATCH_APPROVAL_IF_ALL_PASS",
+    "VERIFY_MAIN_AND_SHEET"
+  ],
+  "unresolved_product_design_or_tuning": [
     "ENEMY_ATTACK_INTERVAL_TUNING",
+    "PLAYER_HP_DAMAGE_MANA_VALUES",
+    "INSTABILITY_CHANGE_VALUES",
+    "GUARDIAN_MITIGATION_AND_USES",
+    "ENVIRONMENT_RESULT_THRESHOLDS",
     "BOSS_PHASE_RULES",
     "MAIN_SCREEN_DERIVATIVE",
     "GRIMOIRE_SCREEN_DERIVATIVE",
     "CHARACTER_AND_COMPANION_NAMING"
   ],
+  "sync_receipt": {
+    "path": "docs/planning/sync/GR-SYNC-20260801-05.md",
+    "commit": "3b5c164e6488986ab55db1a36ae4d22085653d93",
+    "sheet_readback": "PASS"
+  },
   "implementation_authority": "NONE",
   "runtime_validation": "NOT_RUN",
   "human_validation": "NOT_RUN",
-  "sync_status": "GITHUB_AUDIT_CREATED_CORRECTIONS_PENDING",
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
   "main_sync": "PENDING_PR_MERGE"
 }
