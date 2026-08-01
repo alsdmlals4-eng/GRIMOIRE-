@@ -17,10 +17,12 @@ next_product_gate: ASSET-SPEC-01
 parallel_design_gate: BOSS-PHASE-01
 implementation: NOT_STARTED
 codex: BLOCKED
-main_sync: PENDING_PR_MERGE
+canon_sync: SYNCED_TO_MAIN
+authority_main_commit: a088252349bee94cecef94b216c8cc5e0b9162cb
 ```
 
 최신 사용자 결정: `docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md`.
+최종 동기화 영수증: `docs/planning/sync/GR-SYNC-20260801-05-MAIN.md`.
 
 ## 2. 프로젝트 코어
 
@@ -170,7 +172,7 @@ generator: tools/generate_project_operating_views.py
 
 - Snapshot·Compatibility View 직접 편집 금지.
 - GitHub·Sheet 승인 정본 즉시 동기화.
-- 작업 브랜치와 main 동기화 상태 분리.
+- `GR-SYNC-20260801-05`는 main Commit `a088252349bee94cecef94b216c8cc5e0b9162cb`과 Sheet Readback을 검증해 `SYNCED_TO_MAIN`으로 닫힘.
 
 ## 12. 현재 Gate
 
