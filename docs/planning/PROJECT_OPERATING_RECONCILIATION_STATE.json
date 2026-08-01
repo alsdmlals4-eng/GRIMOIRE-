@@ -1,9 +1,14 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "work_item_id": "GM-PROJECT-OPERATING-RECONCILIATION-01",
   "audit_id": "GR-AUDIT-20260801-02",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
-  "status": "CORRECTIONS_APPLIED_VERIFICATION_PENDING",
+  "status": "PASS_CORRECTIONS_VERIFIED_SYNCED_TO_MAIN",
+  "authority_main": {
+    "pull_request": 22,
+    "merge_commit": "a088252349bee94cecef94b216c8cc5e0b9162cb",
+    "readback": "PASS"
+  },
   "audit_authority": {
     "path": "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md",
     "commit": "fabbc6b33d08260ce311ed25b76ea394728aafcd"
@@ -18,13 +23,13 @@
     "active_skill_count_observed": 27
   },
   "repository_audit": {
-    "cold_start_documents": "CORRECTED",
-    "design_registry": "CORRECTED",
-    "documentation_map": "CORRECTED",
-    "base_adapter": "UPDATED_TO_V9_3",
-    "generated_views": "REGENERATED_WITH_DETERMINISTIC_TOOL",
-    "ci_semantics": "UPDATED_VERIFICATION_PENDING",
-    "product_files": "NOT_FOUND"
+    "cold_start_documents": "PASS",
+    "design_registry": "PASS",
+    "documentation_map": "PASS",
+    "base_adapter": "PASS_V9_3",
+    "generated_views": "PASS_GENERATOR_CHECK",
+    "ci_semantics": "PASS",
+    "product_files": "NOT_FOUND_EXPECTED_PLANNING_ONLY"
   },
   "operating_artifacts": {
     "project_skill_registry_commit": "832267519ab9c0218d03ae17d31958d417ffbb37",
@@ -36,26 +41,25 @@
     "test_commit": "e97078fcd8be036590acc645a2db2a800c4749e9",
     "workflow_commit": "bc44dffa9544dede685c4eab1a93378657f73373"
   },
+  "ci": {
+    "workflow": "Validate Base v9.3 adoption",
+    "run_id": 30677453818,
+    "ci_gate": "SUCCESS",
+    "adversarial_gate": "SUCCESS",
+    "generator_check": "PASS",
+    "unit_tests": "4_PASS",
+    "json_parse": "PASS",
+    "product_path_guard": "PASS"
+  },
   "sheet_audit": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "tabs_present": 27,
     "tabs_expected": 27,
     "structure": "PASS",
-    "cold_start_summary": "CORRECTED",
-    "cross_tab_freshness": "CORRECTED_FOR_CURRENT_SCOPE",
-    "latest_battle_decisions": "PRESENT",
-    "readback": "PASS"
+    "cross_tab_freshness": "PASS_CURRENT_SCOPE",
+    "main_commit_recorded": "a088252349bee94cecef94b216c8cc5e0b9162cb",
+    "main_readback": "PASS"
   },
-  "latest_approved_product_decisions": [
-    "ART-STYLE-01",
-    "ART-BIBLE-01",
-    "GR-VISUAL-SITUATION-BOARD-01",
-    "GM-BATTLE-SCREEN-LAYOUT-01",
-    "GM-BATTLE-SINGLE-ENEMY-FOCUS-01",
-    "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
-    "GM-BATTLE-TIME-FLOW-01",
-    "GM-BATTLE-RULES-01"
-  ],
   "current_product_gate": {
     "art_bible_01": "APPROVED_DUAL_STANDARD_ART_BIBLE",
     "battle_rules_01": "APPROVED_SITUATION_RESOLUTION_RULES",
@@ -73,16 +77,10 @@
     "BASE_V93_CANONICAL_ADAPTER_UPDATE",
     "REGENERATE_SNAPSHOT_AND_COMPATIBILITY_VIEWS",
     "UPDATE_OPERATING_TEST_EXPECTATIONS",
-    "PR_REVIEW_SURFACE_REFRESH_PENDING_FINAL_BODY"
-  ],
-  "remaining_verification": [
-    "RUN_GENERATOR_CHECK_IN_CI",
-    "RUN_UNIT_AND_JSON_PARSE_IN_CI",
-    "RUN_ADVERSARIAL_GATE",
-    "REFRESH_PR_TITLE_AND_BODY",
-    "VERIFY_PR_HEAD_AND_MERGEABILITY",
-    "MERGE_UNDER_USER_BATCH_APPROVAL_IF_ALL_PASS",
-    "VERIFY_MAIN_AND_SHEET"
+    "PR_REVIEW_SURFACE_REFRESH",
+    "CI_AND_ADVERSARIAL_VERIFICATION",
+    "PR22_MAIN_MERGE",
+    "MAIN_AND_SHEET_READBACK"
   ],
   "unresolved_product_design_or_tuning": [
     "ENEMY_ATTACK_INTERVAL_TUNING",
@@ -95,14 +93,12 @@
     "GRIMOIRE_SCREEN_DERIVATIVE",
     "CHARACTER_AND_COMPANION_NAMING"
   ],
-  "sync_receipt": {
-    "path": "docs/planning/sync/GR-SYNC-20260801-05.md",
-    "commit": "3b5c164e6488986ab55db1a36ae4d22085653d93",
-    "sheet_readback": "PASS"
+  "sync_receipts": {
+    "working_branch": "docs/planning/sync/GR-SYNC-20260801-05.md",
+    "main": "docs/planning/sync/GR-SYNC-20260801-05-MAIN.md"
   },
+  "sync_status": "SYNCED_TO_MAIN",
   "implementation_authority": "NONE",
   "runtime_validation": "NOT_RUN",
-  "human_validation": "NOT_RUN",
-  "sync_status": "SYNCED_TO_WORKING_BRANCH",
-  "main_sync": "PENDING_PR_MERGE"
+  "human_validation": "NOT_RUN"
 }
