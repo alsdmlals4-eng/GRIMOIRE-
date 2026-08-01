@@ -1,5 +1,5 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "decision_id": "ART-BIBLE-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "status": "APPROVED_DUAL_STANDARD_ART_BIBLE",
@@ -73,8 +73,28 @@
   "human_validation": "NOT_RUN",
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "status": "PENDING_CURRENT_APPROVAL_SYNC"
+    "ranges": [
+      "00_프로젝트_허브!E2:J2",
+      "01_작업순서!A11:J11",
+      "02_현재_확정결정!A18:J18",
+      "04_누락_충돌_감사!A13:H13",
+      "05_GDD_요약!A6:J6",
+      "10_제품방향!A4:F4",
+      "30_데모범위_품질기준_제작기반!A3:H3",
+      "60_UX_UI_접근성!A12:J14",
+      "70_아트_오디오_에셋!A2:J8",
+      "71_이미지기획_생성목록!A2:J9",
+      "72_이미지검수_승인로그!A3:J4",
+      "90_본제작_출시_사업!A2:H6",
+      "99_변경이력!A17:H17"
+    ],
+    "readback": "PASS",
+    "status": "SYNCED_TO_WORKING_BRANCH"
   },
-  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
+  "sync_receipt": {
+    "path": "docs/planning/sync/GR-SYNC-20260801-05.md",
+    "commit": "3b5c164e6488986ab55db1a36ae4d22085653d93"
+  },
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
   "main_sync": "PENDING_PR_MERGE"
 }
