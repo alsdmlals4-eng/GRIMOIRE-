@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "grimoire-asset-manifest.schema.json",
+  "title": "GRIMOIRE Asset Manifest",
+  "description": "ASSET-SPEC-01 runtime asset traceability contract. A manifest record does not imply runtime approval.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "asset_id",
+    "role",
+    "decision_ids",
+    "source",
+    "export",
+    "license",
+    "status",
+    "used_in_screens",
+    "runtime_validation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "asset_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_\\-]*$"
+    },
+    "role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "storage",
+        "file_id_or_path",
+        "sha256",
+        "tool",
+        "owner"
+      ],
+      "properties": {
+        "storage": {
+          "enum": [
+            "EXTERNAL_LIBRARY",
+            "GDIGNORE_SOURCE_ROOT",
+            "USER_PROVIDED_REFERENCE",
+            "GENERATED_CANDIDATE"
+          ]
+        },
+        "file_id_or_path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "tool": {
+          "type": "string"
+        },
+        "tool_version": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "prompt_or_brief_path": {
+          "type": "string"
+        },
+        "parent_asset_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "export": {
+      "type": "object",
+      "required": [
+        "file_path",
+        "sha256",
+        "format",
+        "width",
+        "height",
+        "alpha",
+        "import_profile"
+      ],
+      "properties": {
+        "file_path": {
+          "type": "string",
+          "pattern": "^assets/"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "format": {
+          "enum": [
+            "PNG",
+            "WEBP",
+            "SVG",
+            "TTF",
+            "OTF",
+            "WOFF2"
+          ]
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "alpha": {
+          "type": "boolean"
+        },
+        "import_profile": {
+          "type": "string"
+        },
+        "atlas_group": {
+          "type": "string"
+        },
+        "animation_clip": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "license": {
+      "type": "object",
+      "required": [
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PROJECT_ORIGINAL",
+            "USER_OWNED",
+            "COMMERCIAL_USE_APPROVED",
+            "REVIEW_REQUIRED",
+            "REJECTED"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "credit_required": {
+          "type": "boolean"
+        },
+        "modification_allowed": {
+          "type": "boolean"
+        },
+        "redistribution_allowed": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "enum": [
+        "PLANNED",
+        "SOURCE_READY",
+        "EXPORTED_CANDIDATE",
+        "IN_VISUAL_REVIEW",
+        "REVISION_REQUIRED",
+        "REJECTED",
+        "APPROVED_RUNTIME_CANDIDATE",
+        "IMPORTED",
+        "RUNTIME_VERIFIED",
+        "PROJECT_ASSET_APPROVED"
+      ]
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "approved_at": {
+      "type": "string"
+    },
+    "used_in_screens": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "replacement_or_supersession": {
+      "type": "string"
+    },
+    "runtime_validation": {
+      "enum": [
+        "NOT_RUN",
+        "PASS",
+        "FAIL",
+        "PARTIAL"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

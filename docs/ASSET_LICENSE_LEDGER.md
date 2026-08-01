@@ -1,163 +1,216 @@
-# 스펠 Asset License Ledger
+# GRIMOIRE Asset·License Ledger
 
-- 프로젝트: `스펠` (임시)
-- 마지막 검토일: 2026-07-27
-- 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
-- Gate 1: `APPROVED`
-- 프로젝트 코어: `CORE_CONFIRMED`
-- 실행 프로필: `PLANNING_ONLY_PROFILE`
-- 시각 표현: `LANDSCAPE_HYBRID_2D_WITH_SEPARATE_TACTICAL_BATTLE_CONFIRMED`
-- 캐릭터 표현: `SD_FIELD_HALF_BODY_DIALOGUE_CONFIRMED`
-- 외부 런타임 자산: `NO_EXTERNAL_ASSETS_REGISTERED`
-- 생성·편집 런타임 자산: `NOT_STARTED`
-- 비교용 시각 참조: `REGISTERED_BELOW`
-- 대량 제작: `BLOCKED_BY_ART_STYLE_ART_BIBLE_ASSET_SPEC_AND_AUDIO_DIRECTION`
+## 1. 현재 상태
 
-> 출처·사용 권리·생성 이력·파생 관계·사용자 승인·적용 경로를 확인하지 않은 자산을 최종 런타임 자산으로 승인하지 않는다.
-
-## 1. 확정된 화면 전제
-
-```text
-가로형 16:9 기준
-→ 18:9~20:9 좌우 확장
-
-학교·자유일정·탐색
-= 고정·장면 기반 3/4 필드
-= 3.5~4등신 SD
-
-대화
-= 같은 장소 배경 위 반신 일러스트
-
-전투
-= 별도 고정 3/4 전술 전투장
-= 필드 SD 비율 재사용
-
-작성
-= 현재 화면 감속·암전 + 작성 오버레이
+```yaml
+project: "GRIMOIRE: 세계를 다시 쓰는 법"
+last_reviewed_at: 2026-08-01
+product_stage: DEMO_FIRST_VERTICAL_SLICE
+primary_platform: PC
+follow_up_platform: Mobile
+art_style_01: APPROVED_A_MODIFIED_LOCKED
+art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
+asset_spec_01: APPROVED_VERTICAL_SLICE_ASSET_SPEC
+asset_production: NOT_STARTED
+external_runtime_assets: NONE_REGISTERED
+fonts: NOT_SELECTED
+ui_kits: NONE_SELECTED
+plugins: NONE_ADOPTED
+audio_assets: NOT_STARTED
+runtime_validation: NOT_RUN
+human_validation: NOT_RUN
 ```
 
-세로형·자유 카메라·대형 자유 탐색·대형 전투장을 전제로 자산을 제작하지 않는다.
+책임 원본:
 
-## 2. 조달 순서
+- `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`.
+- `docs/planning/ASSET_MANIFEST_SCHEMA.json`.
+- `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`.
+- `docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json`.
+
+출처·권리·Source SHA·Export SHA·사용 화면·Approval·Runtime Evidence가 연결되지 않은 자산은 제품 자산으로 승인하지 않는다.
+
+## 2. 조달·승인 순서
 
 ```text
-현재 확정 결정 확인
-→ ART-STYLE-01 그림체 기준 샷 비교
-→ Art Bible
-→ Asset Specification
-→ Audio Direction
-→ 보유·외부·Godot 후보 조사
-→ 라이선스·기술·스타일·성능 검토
-→ 사용자 승인
-→ 생성·편집·적용
-→ 런타임 검수
+현재 Decision·Art Bible·Asset Spec 확인
+→ 기존 보유·승인 Source Inventory
+→ 외부·생성 후보 조사
+→ License·Style·Technical·Removal Risk 검토
+→ Source Manifest
+→ Export Candidate
+→ Visual Review
+→ Runtime Import
+→ Runtime·Performance·Accessibility QA
+→ PROJECT_ASSET_APPROVED
 ```
 
-외부 Godot 자산·플러그인 조사에는 `evaluating-godot-assets-and-plugins-before-creation`을 사용한다.
+- 새로 만들기 전에 기존 승인 Source·Template·Godot 기본 기능을 조사한다.
+- Pinterest·검색 이미지·상용 게임 Screenshot은 Discovery Reference이며 Source Asset이 아니다.
+- 외부 Plugin·Asset Pack은 License와 제거 가능성 검증 전 설치하지 않는다.
+- 생성 성공만으로 Runtime Asset이 되지 않는다.
 
-## 3. 자산·참조 원장
+## 3. 승인된 비주얼 권위
 
-| Asset ID | 자산 | 용도 | 유형 | 출처 | 권리·라이선스 | 도구·날짜 | 파생 관계 | 사용자 승인 | 저장 상태 | 적용 경로 | 런타임 검증 | 상태 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| REF-VISUAL-001 | 필드 SD·대화 반신·별도 전술 전투장 구성 이미지 | 화면·캐릭터·전투 구성 기준 | 사용자 대화 내 생성 이미지 | ChatGPT 대화 첨부 | 런타임 사용 아님, 프리프로덕션 참조 | OpenAI image generation / 2026-07-27 | 이전 A/B/C 비교 이미지에서 선택된 두 번째 구성 | `USER_APPROVED_VISUAL_REFERENCE` | `BINARY_PENDING_REPOSITORY_IMPORT` | 문서 참조만 | `NOT_APPLICABLE` | `REFERENCE_APPROVED` |
-| REF-SUMMON-001 | 신비한 늑대형 원소 정령수 레퍼런스 | 메인 동반 소환수 방향 | 사용자 제공 이미지 | 사용자 대화 첨부 | 런타임 사용 아님, 프리프로덕션 참조 | 사용자 제공 / 2026-07-27 | 메인 동반 원소 정령수 방향의 대표 참조 | `USER_APPROVED_DIRECTION_REFERENCE` | `BINARY_PENDING_REPOSITORY_IMPORT` | 문서 참조만 | `NOT_APPLICABLE` | `REFERENCE_APPROVED` |
-| REF-SUMMON-002 | 메인 소환수 성장 4단계 콘셉트 시트 | 성장·크기·탑승 방향 탐색 | 생성 이미지 | ChatGPT 대화 첨부 | 런타임 사용 아님, 콘셉트 탐색 | OpenAI image generation / 2026-07-27 | REF-SUMMON-001 기반 개념 확장 | 성장 프레임 방향 승인, 세부 디자인 미승인 | `BINARY_PENDING_REPOSITORY_IMPORT` | 문서 참조만 | `NOT_APPLICABLE` | `CONCEPT_REFERENCE` |
-| REF-SUMMON-003 | 전투 소환수 역할 콘셉트 이미지 시도 | 역할 실루엣 탐색 | 생성 시도·후보 이미지 | ChatGPT 대화 첨부 | 런타임 사용 아님 | OpenAI image generation / 2026-07-27 | 원소·정령·역할 분류 탐색 | 4역할 전체 시스템 미승인 | `NOT_CANONICAL_BINARY` | 없음 | `NOT_APPLICABLE` | `REFERENCE_CANDIDATE` |
+| Asset ID | 자산 | 역할 | 출처·보관 | 권리·상태 | SHA-256 | Runtime 사용 |
+|---|---|---|---|---|---|---|
+| `REF-ART-STYLE-LOCKED-01` | GRIMOIRE Art Style 잠긴 기준판 | Art·화면 구성 권위 | ChatGPT Library `/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png` | `USER_APPROVED_REFERENCE / SOURCE_EDIT_PROHIBITED` | `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a` | `NO / REFERENCE_ONLY` |
 
-현재 대화 첨부 바이너리는 GitHub 저장소에 직접 보관되지 않았다. 텍스트 결정은 정본에 반영했으며, 실제 파일을 저장소에 가져올 때 원본·파일명·해시·파생 관계를 추가한다.
+금지:
 
-## 4. 상태 정의
+- 원본 수정·재생성·리터치.
+- Crop·Upscale·Text 교체본으로 원본 대체.
+- Runtime Background·Character·UI로 직접 Import.
+- Image 안의 이름·수치·파티 수를 자동 정본화.
 
-- `CONCEPT_EXPLORATION`
-- `VISUAL_REFERENCE_CANDIDATE`
-- `USER_APPROVED_VISUAL_REFERENCE`
-- `USER_APPROVED_DIRECTION_REFERENCE`
-- `ART_BIBLE_APPROVED`
-- `ASSET_SPEC_APPROVED`
-- `RUNTIME_ASSET_CANDIDATE`
-- `RUNTIME_ASSET_APPROVED`
-- `REJECT_LICENSE`
-- `REJECT_STYLE`
-- `REJECT_TECHNICAL`
+## 4. 역사·Discovery Reference
 
-생성 성공만으로 `RUNTIME_ASSET_APPROVED`가 되지 않는다.
+| Asset ID | 자산 | 현재 역할 | 권리·상태 | 후속 |
+|---|---|---|---|---|
+| `REF-VISUAL-LEGACY-01` | 과거 Field SD·Half-body·Battle 구성 이미지 | Art Style 승인 이전 참고 | `HISTORICAL_REFERENCE / NOT_AUTHORITY` | 잠긴 기준판으로 대체 |
+| `REF-SUMMON-01` | 늑대형 원소 정령수 방향 이미지 | Companion Discovery Reference | `USER_PROVIDED_OR_GENERATED_REFERENCE / NOT_RUNTIME_ASSET` | Asset Spec 기반 Character Sheet 후보 |
+| `REF-SUMMON-GROWTH-01` | 성장 4단계 Concept Sheet | 장기 방향 참고 | `DEFERRED_BEYOND_SLICE` | Slice Asset 제작 금지 |
+| `REF-GUARDIAN-MULTIROLE-01` | 전투 소환수 다역할 Concept | 과거 탐색 | `REJECTED_FOR_SLICE / NOT_AUTHORITY` | Guardian 1역할 규칙만 유지 |
+| `REF-GENERIC-BOARD-REJECTED-01` | Generic Dark Fantasy·기술 Dashboard 이미지 | 실패 근거 | `REJECTED_NOT_AUTHORITY` | 재사용 금지 |
 
-## 5. 생성·편집 자산 필수 기록
+실제 Binary가 다시 필요하면 원본 File ID·SHA·Tool·날짜·권리·파생 관계를 먼저 복구한다.
 
-- 실제 화면 역할
-- 생성·편집 도구와 날짜
-- 브리프·프롬프트 저장 경로
-- 사용자 제공 참조와 외부 참조 출처
-- 원본→수정본→최종본 파생 관계
-- 상업 이용·수정 가능 여부
-- 사용자 승인 상태
-- Godot 적용 경로
-- 실제 화면·성능·접근성 검증
+## 5. Runtime Asset Manifest 상태
 
-## 6. 배경 자산 전제
+```yaml
+manifest_schema: docs/planning/ASSET_MANIFEST_SCHEMA.json
+runtime_asset_records: 0
+project_asset_approved: 0
+imported: 0
+runtime_verified: 0
+```
 
-- 가로형 3/4 고정 학교 필드
-- 기준 16:9, 좌우 확장 레이어
-- 학교 기본·시험·자유일정·축제 상태 변형
-- 현장 필드와 같은 장소 정체성을 가진 별도 전투장
-- 전투 결과의 손상·복구 상태를 필드에 반영
-- 캐릭터 기준선과 핫스폿 일관성
+첫 Runtime Asset Record는 다음을 모두 포함해야 한다.
 
-배경을 화면비마다 별도 제작하지 않는다.
+- Asset ID·역할·Decision ID.
+- Source File ID/Path·SHA·Tool·Owner.
+- Export Path·SHA·Format·Dimensions·Alpha·Import Profile.
+- License Status·Evidence·Credit·Modification·Redistribution 조건.
+- 사용 Screen.
+- Approval·Supersession.
+- Runtime Validation.
 
-## 7. 캐릭터 자산 전제
+## 6. Font Ledger
 
-- 필드·전투: 3.5~4등신 SD와 기본 골격 재사용
-- 대화: 반신 일러스트
-- 필드·전투 디자인 식별 요소 공유
-- 핵심 인물만 반신·표정 제작
-- 정확한 픽셀 규격·표정·애니메이션 수는 `ASSET-SPEC-01`
+| Font ID | 역할 | 후보 | License | 한글 Coverage | Runtime QA | 상태 |
+|---|---|---|---|---|---|---|
+| `FONT-BODY-01` | Body·UI Sans | 미선정 | `REVIEW_REQUIRED` | `REQUIRED` | `NOT_RUN` | `PLANNED` |
+| `FONT-TITLE-01` | 제한적 Title Serif | 미선정 | `REVIEW_REQUIRED` | `REQUIRED` | `NOT_RUN` | `PLANNED` |
 
-## 8. 메인 동반 소환수
+상한:
 
-- 세계관 역할: `CONFIRMED_BY_GM-MASCOT-01`
-- 시각 방향: `ELEMENTAL_SPIRIT_BEAST_DIRECTION_CONFIRMED`
-- 대표 레퍼런스: 늑대형 원소 정령수 계열
-- 장기 성장: 4단계
-- 이전 형상 선택: 가능
-- 장기 탑승: 확정 방향
-- Vertical Slice 런타임: 초기 형상 1개
-- 2~4단계 전체·형상 선택 UI·탑승: 후행
-- 정확한 이름·원소·색·최종 외형: `ART_STYLE_AND_ART_BIBLE_REQUIRED`
+- Body/UI Family 1.
+- Title Family 1.
+- System Font 의존 금지.
+- License Evidence 없는 Font Import 금지.
+- Body 전역 MSDF는 PC·Mobile Trial 전 금지.
 
-## 9. 전투 보조 소환수
+## 7. External Asset·Plugin Ledger
 
-- 원소·정령 중심 시각 언어
-- Vertical Slice: 수호 또는 견제 1체
-- 4역할 전체 체계: `REFERENCE_CANDIDATE`
-- 성장·형상 선택·탑승: `UNRESOLVED`
-- 대화 반신: 초기 Slice 제외
+현재 등록:
 
-## 10. 이미지 생성 실패 처리
+```yaml
+external_art_packs: 0
+ui_kits: 0
+font_packages: 0
+godot_plugins: 0
+audio_packs: 0
+```
 
-- 사용자에게 동일 요청 재입력을 기본 해결책으로 요구하지 않음
-- 기존 브리프와 승인 참조를 보존
-- 한글 장문·UI 복잡도·한 장의 요소 수를 줄여 단계적 재시도
-- 상세 서버 오류를 확인할 수 없으면 추정과 사실을 구분
-- 실패한 생성물을 완료로 주장하지 않음
+채택 전 필수:
 
-## 11. 대량 제작 전 차단 조건
+1. Need Gap.
+2. Current Godot 4.7 Compatibility.
+3. Commercial License.
+4. Modification·Redistribution·Credit.
+5. Project Ownership·Trust.
+6. Removal·Rollback Plan.
+7. Art Style·Performance·Accessibility Trial.
+8. 사용자 승인.
 
-- `ART-STYLE-01` 사용자 승인
-- Art Bible 승인
-- 내부 해상도·안전 영역·자산 예산 확정
-- 캐릭터·배경·UI·효과·사운드 규격 확정
-- Audio Direction 승인
-- 외부·생성 자산의 권리·출처 기록
+현재 Asset Pipeline은 Godot 기본 Import·Theme·SpriteFrames로 충분하므로 Add-on을 채택하지 않는다.
 
-스타일 비교용 소수 기준 이미지는 `ART-STYLE-01`에서 허용한다.
+## 8. Runtime Export 형식
 
-## 12. 현재 `NOT_RUN`
+| 역할 | 형식 | 상태 |
+|---|---|---|
+| Opaque Background | WebP Lossless 우선 | `SPEC_APPROVED / NOT_EXPORTED` |
+| Transparent Character·Portrait·VFX | PNG RGBA | `SPEC_APPROVED / NOT_EXPORTED` |
+| Simple UI·Icon·Glyph Source | SVG | `SPEC_APPROVED / NOT_CREATED` |
+| Font | Licensed TTF/OTF/WOFF2 | `SPEC_APPROVED / NOT_SELECTED` |
+| Audio | `AUDIO-DIRECTION-01` 후 확정 | `BLOCKED` |
 
-- Godot Asset Library 검색
-- 플러그인 기술 Trial
-- 제3자 라이선스 법률 검토
-- UI Kit·폰트·사운드 후보 조사
-- 그림체 기준 샷의 체계적 비교
-- 실제 런타임 적용·성능·접근성 검수
-- 사람 시각·청각 검수
+## 9. 수량 상한
+
+| 자산군 | Hard Cap |
+|---|---:|
+| Opaque Background Base | 3 |
+| Background State Overlay Set | 8 |
+| 핵심 Half-body Portrait | 12 |
+| 일반 NPC Half-body | 0 |
+| Protagonist Field Frame | 36 |
+| Professor Field Frame | 16 |
+| Peer Field Frame | 16 |
+| Companion Frame | 20 |
+| Guardian Full Battlefield Body Set | 0 |
+| Enemy Body Set | 1 |
+| Enemy Frame | 50 |
+| UI Component Family | 12 |
+| Base Icon | 24 |
+| Glyph Base | 3 |
+| Reusable VFX Module | 12 |
+| Font Family | 2 |
+
+초과는 Scope Change Decision·Benchmark·사용자 승인·Sheet 동기화를 요구한다.
+
+## 10. 생성·편집 자산 기록
+
+생성 후보마다 기록:
+
+- 목적과 실제 Screen Consumer.
+- Brief·Prompt Path.
+- 고정 Reference와 변경 축.
+- Tool·Model·Date.
+- Source File ID·SHA.
+- Rights·Similarity Review.
+- Revision History.
+- User Approval.
+- Export·Import·Runtime Evidence.
+
+한글 UI Text는 Editable Layer로 제작하고 이미지 생성 결과의 Text를 제품 Text로 사용하지 않는다.
+
+## 11. 대량 제작 차단
+
+현재:
+
+```yaml
+art_style: PASS
+art_bible: PASS
+asset_spec: PASS
+audio_direction: NOT_APPROVED
+derivative_screen_consumers: PARTIAL
+runtime_project: NOT_STARTED
+mass_asset_generation: BLOCKED
+```
+
+다음 전에는 대량 제작을 시작하지 않는다.
+
+- `BOSS-PHASE-01`.
+- `GRIMOIRE-SCREEN-01`.
+- `MAIN-SCREEN-01`.
+- `AUDIO-DIRECTION-01`.
+- 기획·아트 통합 검수.
+- Asset Manifest·License Workflow 준비.
+
+## 12. 현재 검증 경계
+
+- Godot Asset Import: `NOT_RUN`.
+- Texture Compression·Mipmap·MSDF 비교: `NOT_RUN`.
+- Memory·Load Time: `NOT_RUN`.
+- 720p·1080p·1440p·Ultrawide QA: `NOT_RUN`.
+- PC Input·Mobile·Accessibility·Human Visual/Audio QA: `NOT_RUN`.
