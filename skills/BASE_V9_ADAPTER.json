@@ -1,55 +1,49 @@
 {
-  "adapter_role": "project-base-v9-operating-system-adapter",
   "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
   "base": {
     "copy_common_skill_bodies": false,
-    "registry_sha256": "c136d9bb3fde9fc1473fbbe518cc975313023fc9c104efd9692f6834cbf8d8ae",
-    "release_commit": "585a53a25be1b04c543196f5901551deb49c7691",
-    "release_line": "v9.0.0",
+    "registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
+    "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
+    "release_evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
+    "release_line": "v9.3.0",
     "release_state": "BASE_RELEASED",
-    "repository": "alsdmlals4-eng/Base",
-    "snapshot_sha256": "e30fca95d201a31937c7bddcbc341c79764d4940c318933a8902cb5bf901ba57"
-  },
-  "base_release": {
-    "release_commit": "3c158f52cfdad889970aef4d6ce6650a6fea0645",
-    "release_evidence_commit": "dd20ad3852e264d7e337e34d2cb963f71053a6cb",
-    "repository": "alsdmlals4-eng/Base",
-    "version": "9.1.0"
+    "repository": "alsdmlals4-eng/Base"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "d172058670e05e92368fb1b1fb8512d2e7d7c50a619a6f51b5ce8c4f5f59287c",
+  "canonical_source_sha256": "c1854a40993fdc5d9f0afbb9e27f23581ae6debc439e6e1c4b7a6f7c4613e193",
   "generated": true,
-  "hash_definition": "RAW_FILE_BYTES_SHA256",
-  "legacy_source": "docs/archive/base-v9-legacy-inputs/BASE_V9_ADAPTER.json",
-  "legacy_source_sha256": "f0f9d366099aca78312cb7d5723698f3651ffa235b6b37546c5f061c66c465b2",
-  "lifecycle": "ONE_CYCLE",
   "maturity": {
     "level": 2,
-    "next_gate": "ART_STYLE_01_USER_DECISION",
-    "status": "PROVISIONAL_PENDING_ART_STYLE_01_DECISION"
+    "next_gate": "ASSET_SPEC_01",
+    "status": "PLANNING_AND_ART_BIBLE_APPROVED_IMPLEMENTATION_NOT_STARTED"
   },
   "project": {
-    "engine": "NOT_APPLICABLE_NO_PROJECT",
-    "legacy_repository_aliases": [
-      "alsdmlals4-eng/Spell"
-    ],
+    "engine": "Godot 4.7.1 stable candidate",
+    "execution_profile": "PLANNING_ONLY_PROFILE",
+    "follow_up_platform": "Mobile",
+    "godot_project_status": "NOT_CREATED",
+    "name": "GRIMOIRE: 세계를 다시 쓰는 법",
+    "primary_platform": "PC",
+    "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "repository": "alsdmlals4-eng/GRIMOIRE-",
-    "root": "."
+    "root": ".",
+    "work_mode": "PLAN"
   },
-  "routing_precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
-  "schema_version": 1,
+  "schema_version": 2,
   "sheet": {
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "last_read_at": "2026-07-30",
+    "main_sync": "PENDING_PR_MERGE",
     "role": "USER_FACING_GDD_WORKSPACE",
-    "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
-    "sync_status": "SHEET_GITHUB_CONFLICT",
-    "write_policy": "NO_AUTOMATIC_OVERWRITE"
+    "sync_status": "SYNCED_TO_WORKING_BRANCH",
+    "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC"
   },
   "validation": {
     "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
-    "art_style_01": "BLOCKED",
+    "art_bible_01": "APPROVED_DUAL_STANDARD_ART_BIBLE",
+    "art_style_01": "APPROVED_A_MODIFIED_LOCKED",
+    "battle_rules_01": "APPROVED_SITUATION_RESOLUTION_RULES",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
+    "human": "NOT_RUN",
     "runtime": "NOT_RUN"
   },
   "view_name": "BASE_V9_ADAPTER.json"

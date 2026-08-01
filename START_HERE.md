@@ -1,67 +1,44 @@
 # GRIMOIRE 시작 지점
 
-> 새 사용자·GPT·Codex·작업자가 현재 상태, 확정 결정과 다음 작업을 가장 먼저 확인하는 대시보드다.
+> 과거 대화 없이 현재 상태와 다음 작업을 복원하는 첫 화면이다.
 
 ## 한눈에 보기
 
 | 항목 | 현재 기준 |
 |---|---|
+| 프로젝트 | `GRIMOIRE: 세계를 다시 쓰는 법` |
+| 1차 플랫폼 | `PC` |
+| 후속 플랫폼 | `Mobile` |
+| 엔진 기준 후보 | `Godot 4.7.1 stable` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
-| Gate 1 | `APPROVED` |
-| 프로젝트 코어 | `CORE_CONFIRMED` |
-| 실행 프로필 | `PLANNING_ONLY_PROFILE` |
-| Work Mode | `PLAN` |
-| Vertical Slice 계약 | `APPROVED_AT_GATE_1_WITH_P0_AMENDMENT` |
-| 적대적 검토 루프 02 | `PASS_WITH_CORRECTIONS` |
-| 시각 표현 | `LANDSCAPE_HYBRID_2D_WITH_SEPARATE_TACTICAL_BATTLE_CONFIRMED` |
-| 캐릭터 표현 | `SD_FIELD_HALF_BODY_DIALOGUE_CONFIRMED` |
-| 메인 소환수 성장 | `FOUR_STAGE_FORM_SELECTION_AND_LONG_TERM_RIDING_CONFIRMED_DIRECTION` |
+| 기획 | `APPROVED` |
+| Art Style | `APPROVED_A_MODIFIED_LOCKED` |
+| Art Bible | `APPROVED_DUAL_STANDARD_ART_BIBLE` |
+| 전투 규칙 | `APPROVED_SITUATION_RESOLUTION_RULES` |
+| 다음 제품 Gate | `ASSET-SPEC-01` |
+| 병행 설계 | `BOSS-PHASE-01` |
 | 구현 | `NOT_STARTED` |
-| Codex | `NOT_RUN` |
-| 이미지·사운드 대량 제작 | `NOT_STARTED` |
-| Google Sheet | `PROJECT_SHEET_CONFIGURED` |
-| Workbook 역할 | `USER_FACING_GDD_WORKSPACE` |
-| 다음 차단 결정 | `ART-STYLE-01` |
-| 기준 브랜치 | `main` |
+| Codex | `BLOCKED` |
+| 정본 동기화 | `WORKING BRANCH / MAIN PENDING` |
 
 ## 먼저 읽을 문서
 
-1. `docs/ACTIVE_CONTEXT.md`
-2. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-3. `docs/planning/DECISION_LOG.md`
-4. `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27S.md`
-5. `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27B.md`
-6. `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`
-7. `docs/planning/GATE_2_CHARACTER_PRESENTATION_SYSTEM.md`
-8. `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md`
-9. `docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md`
-10. `docs/DEVELOPMENT_GATES.md`
-11. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-12. `docs/ASSET_LICENSE_LEDGER.md`
-13. `skills/SKILL_REGISTRY.json`
-14. `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
-15. `docs/DOCUMENTATION_MAP.md`
+1. `AGENTS.md`
+2. `docs/ACTIVE_CONTEXT.md`
+3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
+4. `docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md`
+5. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+6. `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`
+7. `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`
+8. `docs/DEVELOPMENT_GATES.md`
+9. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+10. `skills/PROJECT_BASE_ADAPTER.json`
 
-## 재질문 방지
+## 현재 플레이어 약속
 
-새 질문을 하기 전에 `CURRENT_CONFIRMED_DECISIONS.md`에서 상태를 확인한다.
+> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
 
-질문 가능한 상태:
-
-- `USER_DECISION_REQUIRED`
-- `UNRESOLVED`
-- `PLAYTEST_TUNING_REQUIRED`
-- `ASSET_SPEC_REQUIRED`
-- `TECHNICAL_REVIEW_PROPOSAL`
-- 사용자 명시적 재개방
-
-이미 `CONFIRMED`, `APPROVED`, `CORE_CONFIRMED`, `SUPERSEDED`인 결정을 기억 확인 목적으로 다시 선택하게 하지 않는다.
-
-## 승인된 플레이어 약속
-
-> **마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.**
-
-## 승인된 Vertical Slice
+## Vertical Slice
 
 ```text
 첫 수업·교내 연습
@@ -74,91 +51,74 @@
 → 귀환·마도서 기록
 ```
 
-- 첫 완주 목표 `45~50분`, 상한 `60분`
-- 공통 `Situation Challenge`
-- 자유일정 `휴식 / 준비 / 교류`
-- 세션 경계 중심 최소 저장
+- 글자: `흐름 / 집중 / 분산`.
+- 목표 `45~50분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
+- 직접 작성 성공 7회, 안내형 복구 포함 목표 상한 10회.
+- 메인 동반 정령 초기 형상 1개, 수호형 보조 소환수 1체.
+- 마도서는 해결 과정·결과·부작용·발견을 기록하며 자동 주문 Stock이 아니다.
 
-## 승인된 화면·캐릭터·전투
+## 현재 전투
 
 ```text
-학교·자유일정·탐색
-= 가로형 고정·장면 기반 3/4 필드
-= 3.5~4등신 SD 캐릭터
-
-대화
-= 같은 장소 배경 위 반신 일러스트
-
-전투
-= 별도 고정 3/4 전술 전투장
-= 필드 SD 비율 재사용
-
-마법 작성
-= 현재 화면 감속·암전 + 작성 오버레이
-
-전투 종료
-= 결과를 반영한 필드 복귀
+강한 적 1개체
+→ 다음 공격 예고·타이머
+→ 우측에 글자 작성
+→ [구현]
+→ 마나 검증·즉시 시전
+→ 적 불안정도·환경 변화
+→ 진정 또는 다음 공격
 ```
 
-## 승인된 소환수 방향
+- 일반 적은 단일 페이즈.
+- 판단·작성 중 타이머 진행, 시스템 해결 중 정지.
+- 기본 적의 승리는 HP 0 처치가 아니라 `불안정도 0 → 진정·해결`.
+- 플레이어 HP 0 또는 선언된 치명적 환경 붕괴가 패배.
+- 환경 보존도·부작용·남은 HP가 결과 품질을 만든다.
+- 수호 소환수는 다음 공격 피해를 완화하지만 시간·작성·판단을 대행하지 않는다.
+
+## 현재 화면·아트
+
+- 16:9 고정 3/4 Field.
+- Field SD와 같은 장소 Half-body Dialogue.
+- 별도 고정 3/4 Battle.
+- 좌측 하단 주인공 초상 1개, 우측 축소→확장 Writing Panel.
+- Soft Storybook 배경 + 선명한 Anime Cel 캐릭터.
+- Navy/Gold UI + Blue Glyph.
+- Result 후 원래 Field 변화로 복귀.
+- Grimoire 파생 화면을 Main보다 먼저 설계.
+
+잠긴 기준 이미지 SHA-256:
+
+`b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`
+
+원본은 수정·재생성하지 않는다.
+
+## Base v9.3
+
+- Release: `30ca6c7b5f93521f0eb0eed42d01437cd43c50ae`.
+- Evidence: `462a86db192d23d0f386281a1eb54b0a8cbad62e`.
+- Registry: `9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1`.
+- Adapter: `skills/PROJECT_BASE_ADAPTER.json`.
+- Generated view check: `python tools/generate_project_operating_views.py --check`.
+
+## 다음 작업
 
 ```text
-메인 동반 소환수
-= 원소·정령 중심의 고정 동반자
-= 장기 4단계 성장
-= 해금된 이전 형상 선택 가능
-= 장기 탑승 기능
-
-전투 보조 소환수
-= 전투에서 호출하는 원소 정령
-= Vertical Slice는 수호 또는 견제 1체
-```
-
-범위 보호:
-
-- Vertical Slice는 메인 동반 초기 형상 1개만 런타임 필수
-- 메인 2~4단계·형상 선택 UI·탑승은 후행
-- 전투 소환수 4역할 전체·성장·탑승은 미확정
-
-## GDD Google Sheets 규칙
-
-- Sheet는 독립 정본이 아니라 `USER_FACING_GDD_WORKSPACE`다.
-- GitHub에 없는 편집은 `PROPOSED_SHEET_CHANGE`로 보존한다.
-- 확정 결정·임시 값·미검증 상태를 같은 값으로 취급하지 않는다.
-- 승인 후 GitHub와 Sheet를 모두 재조회한 경우에만 `SYNCED`로 판정한다.
-- `05_GDD_요약`, `15_조작_게임규칙`, `51_미니게임`, `52_글쓰기_서사`를 포함한 검증 탭은 `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`가 소유한다.
-
-## 이미지 작업 규칙
-
-- 이미지 관련 선택은 가능한 경우 인게임 예상 이미지로 제시
-- 생성 이미지는 자동 최종 자산·시스템 확정이 아님
-- 사용자 승인 두 번째 인게임 구성 이미지는 `USER_APPROVED_VISUAL_REFERENCE`
-- 생성 실패 시 같은 요청 재입력을 기본 해결책으로 사용하지 않고 기존 브리프를 단순화해 재시도
-
-## 현재 작업 순서
-
-```text
-ART-STYLE-01
-그림체 후보를 동일한 인게임 구성으로 이미지 비교
-→ ART-BIBLE-01
-→ ASSET-SPEC-01
+ASSET-SPEC-01
+→ BOSS-PHASE-01·Grimoire/Main 파생 화면
 → AUDIO-DIRECTION-01
-→ 사용자 승인 후 자산 작업
-→ GM-VS-PROFILE-01 재검토
+→ 기획·아트 통합 검수
+→ Codex Plan 승인·기술 검수
+→ 구현
 ```
+
+정확한 공격 간격·피해·마나·불안정도 변화량·수호 완화율은 Prototype·사람 검증이 필요한 `PLAYTEST_TUNING_REQUIRED`다.
 
 ## 현재 금지
 
-- Art Bible·Asset Specification 전 대량 이미지·사운드 제작
-- 메인 소환수 4단계 전체를 Vertical Slice 범위에 추가
-- 전투 소환수 4역할 전체를 승인 없이 시스템 확정
-- 별도 CORE_POC 재도입
-- `VERTICAL_SLICE_FULL_PROFILE` 자동 전환
-- Godot 구현·Codex 실행
-- 사용자 명시적 요청과 검증 없는 PR 병합
-
-## 다음 결정
-
-`ART-STYLE-01`
-
-승인된 필드 SD·대화 반신·별도 전투장·원소 정령 소환수 구성을 동일하게 사용하여 그림체 후보를 이미지로 비교한다.
+- 기본 브랜치 직접 수정.
+- Godot 제품 코드·Scene·Resource·게임 데이터 생성.
+- Codex Build.
+- 잠긴 기준 이미지 편집·재생성.
+- Asset Spec 전 대량 Asset 제작.
+- 런타임·PC·Mobile·사람 검증을 실행 없이 완료 처리.

@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "policy_id": "GM-CANON-SYNC-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "repository": "alsdmlals4-eng/GRIMOIRE-",
+  "working_branch": "agent/grimoire-v93-canon",
+  "google_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+  "sync_contract": {
+    "major_change_or_approval_requires_immediate_sync": true,
+    "same_decision_id_required": true,
+    "working_branch_and_main_states_are_distinct": true,
+    "readback_verification_required": true,
+    "change_location_and_commit_required": true
+  },
+  "statuses": [
+    "SYNC_PENDING",
+    "GITHUB_ONLY",
+    "SHEET_ONLY",
+    "SYNCED_TO_WORKING_BRANCH",
+    "SYNCED_TO_MAIN",
+    "SYNC_CONFLICT"
+  ],
+  "required_github_locations": [
+    "decision_log_or_latest_addendum",
+    "domain_canonical_source",
+    "current_confirmed_decisions",
+    "active_context",
+    "development_gates_when_affected",
+    "design_document_registry_or_planning_data",
+    "documentation_map_when_new_authority_is_added",
+    "google_sheet_workbook_contract"
+  ],
+  "required_sheet_locations": [
+    "02_현재_확정결정",
+    "affected_domain_tabs",
+    "04_누락_충돌_감사",
+    "99_변경이력"
+  ],
+  "conditional_sheet_locations": [
+    "00_프로젝트_허브",
+    "01_작업순서",
+    "05_GDD_요약",
+    "10_제품방향",
+    "90_본제작_출시_사업"
+  ],
+  "current_bundle": {
+    "sync_id": "GR-SYNC-20260801-05",
+    "status": "SYNCED_TO_WORKING_BRANCH",
+    "decision_ids": [
+      "GM-PROJECT-OPERATING-RECONCILIATION-01",
+      "ART-BIBLE-01",
+      "GM-BATTLE-RULES-01",
+      "GM-CANON-SYNC-01"
+    ],
+    "audit_commit": "fabbc6b33d08260ce311ed25b76ea394728aafcd",
+    "art_bible_authority_commit": "434040c263be6f2c4946efba944bd72657c5ba6d",
+    "battle_rules_authority_commit": "12690d43cf9e4c73f186097144c900dfe0e7722e",
+    "adapter_commit": "36c1cc50f3620677450522e9de62c6c3fb963236",
+    "generator_commit": "e8648bb018c96109492bad9efe8fca8336a8e8de",
+    "verification_receipt": "docs/planning/sync/GR-SYNC-20260801-05.md",
+    "verification_receipt_commit": "3b5c164e6488986ab55db1a36ae4d22085653d93",
+    "pull_request": 22,
+    "sheet_sync": "VERIFIED_BY_READBACK",
+    "sheet_tabs_audited": 27,
+    "sheet_tabs_modified": 20,
+    "sheet_ranges": [
+      "00_프로젝트_허브!E2:J2",
+      "01_작업순서!A11:J17",
+      "02_현재_확정결정!A18:J24",
+      "03_근거_라이브러리!A8:I9",
+      "04_누락_충돌_감사!A13:H18",
+      "05_GDD_요약!A2:J17",
+      "10_제품방향!A4:F4",
+      "12_핵심루프!B2:J7",
+      "15_조작_게임규칙!A2:J9",
+      "30_데모범위_품질기준_제작기반!A3:H3",
+      "40_핵심시스템_메인콘텐츠!B6:J14",
+      "51_미니게임!E4:I4",
+      "60_UX_UI_접근성!A12:J14",
+      "70_아트_오디오_에셋!A2:J8",
+      "71_이미지기획_생성목록!A2:J9",
+      "72_이미지검수_승인로그!A3:J4",
+      "80_데모_버티컬슬라이스_플레이테스트!A4:J11",
+      "90_본제작_출시_사업!A2:H6",
+      "98_Base_반영후보!A3:G4",
+      "99_변경이력!A14:H19"
+    ],
+    "readback_verified_at": "2026-08-01T10:15:00+09:00",
+    "ci_status": "PENDING_CURRENT_HEAD",
+    "main_sync": "PENDING_PR_MERGE"
+  },
+  "latest_product_gate": "ASSET-SPEC-01",
+  "parallel_design_gate": "BOSS-PHASE-01",
+  "codex_status": "BLOCKED_BY_ASSET_SPEC_AUDIO_INTEGRATED_REVIEW_AND_TECHNICAL_ENTRY"
+}

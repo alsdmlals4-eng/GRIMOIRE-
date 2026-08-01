@@ -1,0 +1,100 @@
+{
+  "schema_version": 6,
+  "decision_id": "ART-BIBLE-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "APPROVED_DUAL_STANDARD_ART_BIBLE",
+  "approved_at": "2026-08-01T09:50:00+09:00",
+  "approved_by": "USER_BATCH_APPROVAL_RECOMMENDED_OPTION",
+  "approach": "DUAL_STANDARD",
+  "authority": {
+    "source_path": "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
+    "commit": "434040c263be6f2c4946efba944bd72657c5ba6d"
+  },
+  "source_draft": {
+    "path": "docs/planning/ART_BIBLE_01_DRAFT_2026-08-01.md",
+    "commit": "844eee0a746df31cbc21ea8c8ca02de6849a17e0",
+    "role": "APPROVED_SOURCE_WITH_ACTIVE_OVERRIDE"
+  },
+  "battle_correction": {
+    "path": "docs/planning/ART_BIBLE_01_BATTLE_CORRECTION_ADDENDUM_2026-08-01.md",
+    "commit": "6bc01c5e73741cff064edebe3e5882eac018d3f0",
+    "role": "ACTIVE_OVERRIDE_FOR_BATTLE_SECTIONS"
+  },
+  "source_art_style": {
+    "decision_id": "ART-STYLE-01",
+    "status": "APPROVED_A_MODIFIED",
+    "locked_reference_sha256": "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a",
+    "source_edit": "PROHIBITED"
+  },
+  "model": {
+    "visual_authority_standard": "FINAL_TARGET_IMPRESSION_AND_SCREEN_LANGUAGE",
+    "vertical_slice_production_standard": "SOLO_PRODUCTION_COMPLEXITY_AND_REUSE_LIMITS"
+  },
+  "approved_contracts": [
+    "SOFT_STORYBOOK_ENVIRONMENT",
+    "CLEAN_ANIME_CEL_CHARACTER",
+    "NAVY_GOLD_MAGIC_ACADEMY_UI",
+    "HIGH_CONTRAST_BLUE_GLYPH_LANGUAGE",
+    "FIXED_PROTAGONIST_ONE_ACTIVE_BATTLE_PORTRAIT",
+    "COMPANION_AND_GUARDIAN_STATUS_BADGES",
+    "COLLAPSED_THEN_EXPANDED_BATTLE_WRITING_PANEL",
+    "SANS_BODY_AND_LIMITED_SERIF_TITLE_DIRECTION",
+    "GRIMOIRE_DERIVATIVE_SCREEN_BEFORE_MAIN",
+    "NO_PERSISTENT_ALLY_OR_GUARDIAN_BODIES_ON_BATTLEFIELD"
+  ],
+  "battle_refinements": [
+    "GM-BATTLE-SCREEN-LAYOUT-01",
+    "GM-BATTLE-SINGLE-ENEMY-FOCUS-01",
+    "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
+    "GM-BATTLE-TIME-FLOW-01",
+    "GM-BATTLE-RULES-01"
+  ],
+  "naming": {
+    "status": "DEFERRED_TO_NAMING_PASS_01",
+    "blocks_art_bible": false
+  },
+  "derivative_screen_order": [
+    "GRIMOIRE_SCREEN_BOARD",
+    "MAIN_SCREEN_BOARD",
+    "BATTLE_DETAIL_WIREFRAME"
+  ],
+  "next_product_gate": "ASSET-SPEC-01",
+  "parallel_design_work": [
+    "BOSS-PHASE-01",
+    "GRIMOIRE-SCREEN-01",
+    "MAIN-SCREEN-01",
+    "NAMING-PASS-01"
+  ],
+  "implementation_authority": "NONE",
+  "asset_generation_authority": "ASSET_SPEC_REQUIRED",
+  "codex": "BLOCKED",
+  "godot": "NOT_STARTED",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "ranges": [
+      "00_프로젝트_허브!E2:J2",
+      "01_작업순서!A11:J11",
+      "02_현재_확정결정!A18:J18",
+      "04_누락_충돌_감사!A13:H13",
+      "05_GDD_요약!A6:J6",
+      "10_제품방향!A4:F4",
+      "30_데모범위_품질기준_제작기반!A3:H3",
+      "60_UX_UI_접근성!A12:J14",
+      "70_아트_오디오_에셋!A2:J8",
+      "71_이미지기획_생성목록!A2:J9",
+      "72_이미지검수_승인로그!A3:J4",
+      "90_본제작_출시_사업!A2:H6",
+      "99_변경이력!A17:H17"
+    ],
+    "readback": "PASS",
+    "status": "SYNCED_TO_WORKING_BRANCH"
+  },
+  "sync_receipt": {
+    "path": "docs/planning/sync/GR-SYNC-20260801-05.md",
+    "commit": "3b5c164e6488986ab55db1a36ae4d22085653d93"
+  },
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
+  "main_sync": "PENDING_PR_MERGE"
+}

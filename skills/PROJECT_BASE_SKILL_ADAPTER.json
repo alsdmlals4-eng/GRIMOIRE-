@@ -1,55 +1,38 @@
 {
-  "adapter_role": "spell-project-base-skill-adapter",
-  "archive": {
-    "active": false,
-    "adapter": "skills/PROJECT_ARCHIVE_RETENTION_ADAPTER.json",
-    "generated_derivative_roots": [],
-    "implementation": "NONE",
-    "legacy_search_roots": [
-      "docs/planning/"
-    ]
-  },
   "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
   "asset_and_license": {
-    "approved_visual_manifest": "NOT_INSTALLED",
-    "image_generation_requires_explicit_user_request": true,
-    "license_record": "docs/ASSET_LICENSE_LEDGER.md",
-    "source_assets_before_generation": true,
+    "approved_visual_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
+    "locked_reference_edit": "PROHIBITED",
+    "mass_asset_generation": "BLOCKED_BY_ASSET_SPEC",
     "third_party_inventory": "docs/ASSET_LICENSE_LEDGER.md"
   },
-  "base": {
-    "commit": "0fd95f4513343e77fd664af2763a01b02f52545b",
-    "copy_skill_bodies_to_project": false,
-    "extension_registry": "skills/BASE_SHARED_SKILL_ROUTES.json",
-    "repository": "alsdmlals4-eng/Base",
-    "source_registry": "skills/SKILL_REGISTRY.json"
-  },
   "base_release": {
-    "release_commit": "3c158f52cfdad889970aef4d6ce6650a6fea0645",
-    "release_evidence_commit": "dd20ad3852e264d7e337e34d2cb963f71053a6cb",
+    "integrated_execution_prompt": "templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
+    "registry_path": "skills/SKILL_REGISTRY.json",
+    "registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
+    "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
+    "release_evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
     "repository": "alsdmlals4-eng/Base",
-    "version": "9.1.0"
+    "version": "9.3.0"
   },
-  "canonical_design_sources": [
-    "docs/planning/SPELL_GAME_DESIGN.md",
-    "docs/planning/COMBAT_CORE_SYSTEM.md",
-    "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
-    "docs/planning/STOCK_SYSTEM.md",
-    "docs/planning/SUMMON_SYSTEM.md",
-    "docs/planning/WORLD_SETTING_CONCEPT.md",
-    "docs/planning/WORLD_SCHOOL_GROWTH_SYSTEM.md",
-    "docs/planning/NARRATIVE_PROGRESSIVE_DISCLOSURE_SYSTEM.md",
-    "docs/UX_UI_SYSTEM.md",
-    "docs/planning/DECISION_LOG.md"
-  ],
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "d172058670e05e92368fb1b1fb8512d2e7d7c50a619a6f51b5ce8c4f5f59287c",
+  "canonical_source_sha256": "c1854a40993fdc5d9f0afbb9e27f23581ae6debc439e6e1c4b7a6f7c4613e193",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
-    "docs/UX_UI_SYSTEM.md",
-    "docs/planning/DECISION_LOG.md",
-    "docs/planning/DECISION_LOG_ADDENDUM_2026-07-27D.md",
-    "docs/DESIGN_DOCUMENT_REGISTRY.json"
+    "AGENTS.md",
+    "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "docs/DESIGN_DOCUMENT_REGISTRY.json",
+    "docs/DEVELOPMENT_GATES.md",
+    "docs/DOCUMENTATION_MAP.md",
+    "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
+    "docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md",
+    "START_HERE.md",
+    "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
+    "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
+    "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
+    "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md",
+    "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md"
   ],
   "engine": {
     "autoloads": "NOT_CREATED",
@@ -58,157 +41,77 @@
     "name": "Godot",
     "project_file": "NOT_CREATED",
     "renderer": "UNVERIFIED",
-    "version": "UNVERIFIED"
+    "version_candidate": "4.7.1 stable"
   },
   "execution_contracts": {
     "current_execution_profile": "PLANNING_ONLY_PROFILE",
-    "current_product_stage": "CONCEPT_APPROVAL",
+    "current_product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "current_work_mode": "PLAN",
-    "master_v6_manifest": "docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md",
-    "short_v6": "docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md"
+    "integrated_v9": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md"
   },
-  "externalization_prohibited_core": [
-    "project-core-and-player-promise",
-    "latest-user-decisions",
-    "magic-letter-and-circuit-grammar",
-    "direct-writing-stock-summon-boundaries",
-    "school-growth-structure"
-  ],
   "generated": true,
-  "hash_definition": "RAW_FILE_BYTES_SHA256",
   "implementation_permissions": {
     "codex_build": "FORBIDDEN_IN_CURRENT_PROFILE",
     "godot_code_scene_resource_data": "FORBIDDEN_IN_CURRENT_PROFILE",
     "main_branch_direct_write": "FORBIDDEN",
+    "operating_tooling": "ALLOWED",
     "planning_documents": "ALLOWED_ON_APPROVED_PLANNING_BRANCH",
-    "pr_merge": "USER_APPROVAL_REQUIRED"
+    "pr_merge": "USER_BATCH_APPROVAL_GRANTED_SUBJECT_TO_VERIFICATION"
   },
-  "legacy_source": "docs/archive/base-v9-legacy-inputs/PROJECT_BASE_SKILL_ADAPTER.json",
-  "legacy_source_sha256": "4dfc709754cbd4702d439fb1d31a686cff91e8adecbabd8b2f3c4976427f4e83",
-  "lifecycle": "ONE_CYCLE",
   "platforms": {
-    "desktop_release": false,
-    "primary": [
-      "Android",
-      "Google Play"
-    ],
-    "touch_input": true
+    "follow_up": "Mobile",
+    "gamepad": "DEFERRED_NOT_PROMISED",
+    "primary": "PC",
+    "touch_input": "FOLLOW_UP_SEPARATE_VALIDATION"
   },
   "project": {
-    "engine": "NOT_APPLICABLE_NO_PROJECT",
-    "legacy_repository_aliases": [
-      "alsdmlals4-eng/Spell"
-    ],
+    "engine": "Godot 4.7.1 stable candidate",
+    "execution_profile": "PLANNING_ONLY_PROFILE",
+    "follow_up_platform": "Mobile",
+    "godot_project_status": "NOT_CREATED",
+    "name": "GRIMOIRE: 세계를 다시 쓰는 법",
+    "primary_platform": "PC",
+    "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "repository": "alsdmlals4-eng/GRIMOIRE-",
-    "root": "."
+    "root": ".",
+    "work_mode": "PLAN"
   },
-  "project_entrypoints": {
-    "active_context": "docs/ACTIVE_CONTEXT.md",
-    "agents": "AGENTS.md",
-    "base_version": "docs/BASE_RULES_VERSION.md",
-    "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
-    "development_gates": "docs/DEVELOPMENT_GATES.md",
-    "documentation_map": "docs/DOCUMENTATION_MAP.md",
-    "skill_registry": "skills/SKILL_REGISTRY.json",
-    "start_here": "START_HERE.md",
-    "ux_ui_source": "docs/UX_UI_SYSTEM.md"
-  },
-  "project_paths": {
-    "addon_root": "addons/",
-    "asset_roots": [
-      "assets/"
+  "routing": {
+    "base_routes": [
+      {"route_id": "managing-project-intake-and-work-contract", "skill_id": "managing-project-intake-and-work-contract", "status": "ACTIVE"},
+      {"route_id": "managing-game-project-operating-system", "skill_id": "managing-game-project-operating-system", "status": "ACTIVE"},
+      {"route_id": "managing-design-documents", "skill_id": "managing-design-documents", "status": "ACTIVE"},
+      {"route_id": "maintaining-project-context-and-handoff", "skill_id": "maintaining-project-context-and-handoff", "status": "ACTIVE"},
+      {"route_id": "analyzing-and-refining-game-concepts", "skill_id": "analyzing-and-refining-game-concepts", "status": "ACTIVE"},
+      {"route_id": "designing-vertical-slices", "skill_id": "designing-vertical-slices", "status": "ACTIVE"},
+      {"route_id": "reviewing-and-validating-project-changes", "skill_id": "reviewing-and-validating-project-changes", "status": "ACTIVE"},
+      {"route_id": "auditing-canonical-reference-freshness", "skill_id": "auditing-canonical-reference-freshness", "status": "ACTIVE"},
+      {"route_id": "designing-art-prompts-and-technique-cards", "skill_id": "designing-art-prompts-and-technique-cards", "status": "ACTIVE"},
+      {"route_id": "auditing-and-refining-ui-art", "skill_id": "auditing-and-refining-ui-art", "status": "ACTIVE"},
+      {"route_id": "identifying-project-core", "skill_id": "identifying-project-core", "status": "ACTIVE"},
+      {"route_id": "running-adversarial-review-and-refinement", "skill_id": "running-adversarial-review-and-refinement", "status": "ACTIVE"},
+      {"route_id": "managing-base-change-proposals", "skill_id": "managing-base-change-proposals", "status": "ACTIVE"},
+      {"route_id": "governing-legacy-retention-and-archives", "skill_id": "governing-legacy-retention-and-archives", "status": "ACTIVE"},
+      {"route_id": "evaluating-godot-assets-and-plugins-before-creation", "skill_id": "evaluating-godot-assets-and-plugins-before-creation", "status": "ACTIVE"}
     ],
-    "godot_project_root": "NOT_CREATED",
-    "planning_root": "docs/planning/",
-    "test_roots": [
-      "tests/"
+    "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
+    "project_routes": [
+      {"route_id": "magic-writing-recovery", "skill_id": "magic-writing-recovery", "status": "ACTIVE"},
+      {"route_id": "art-style-decision-gate", "skill_id": "art-style-decision-gate", "status": "ACTIVE"}
     ]
   },
-  "protected_decisions": [
-    "one-main-letter-per-spell",
-    "main-letter-alone-forms-basic-spell",
-    "new-and-unskilled-letters-require-direct-writing",
-    "support-letter-stock-requires-mastery",
-    "summon-does-not-write-or-connect-circuits",
-    "summon-spell-support-is-stock-production-and-charge-only",
-    "direct-casting-remains-possible-without-stock",
-    "first-year-experiences-direct-writing-stock-and-summon-charge",
-    "core-confirmed-requires-explicit-user-approval"
-  ],
-  "protected_paths": [
-    "docs/planning/**",
-    "docs/UX_UI_SYSTEM.md",
-    "docs/ACTIVE_CONTEXT.md",
-    "docs/contracts/**",
-    "AGENTS.md",
-    "START_HERE.md"
-  ],
-  "rollback_reference": {
-    "base_main_commit": "8233dc68211128993477b67d9085ec8c0cdd7e34",
-    "branch": "gpt/planning-spell-20260725",
-    "strategy": "revert-governance-foundation-commits-without-moving-existing-planning-documents"
-  },
-  "routing_precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
-  "schema_version": 1,
-  "search_focus": [
-    "mobile-touch-magic-letter-writing",
-    "circuit-grammar",
-    "stock-preparation-and-charge",
-    "summon-stock-support",
-    "magic-school-growth",
-    "ux-ui-information-architecture",
-    "recognition-error-recovery",
-    "core-poc-and-vertical-slice"
-  ],
-  "shared_skill_overrides": {
-    "auditing-and-refining-ui-art": {
-      "android_device_status": "NOT_RUN",
-      "canonical_project_source": "docs/UX_UI_SYSTEM.md",
-      "godot_runtime_status": "NOT_AVAILABLE_NO_BUILD",
-      "human_status": "HUMAN_NOT_RUN",
-      "modes": [
-        "experience-contract",
-        "flow-and-information-architecture",
-        "pattern-selection",
-        "design-system-contract",
-        "godot-ui-contract",
-        "accessibility-gate",
-        "playtest-contract",
-        "runtime-ui-audit"
-      ],
-      "project_focus": [
-        "mobile touch magic letter writing",
-        "recognition versus spell grammar failure",
-        "progressive learning",
-        "undo and correction",
-        "causal result recap"
-      ]
-    }
-  },
-  "validators": {
-    "android_device_validation": {
-      "status": "NOT_RUN"
-    },
-    "documentation_reference_review": {
-      "status": "AVAILABLE",
-      "type": "manual-and-connector"
-    },
-    "godot_runtime_validation": {
-      "status": "NOT_AVAILABLE_NO_BUILD"
-    },
-    "godot_static_validation": {
-      "status": "NOT_AVAILABLE_NO_PROJECT"
-    },
-    "human_visual_review": {
-      "status": "NOT_RUN"
-    },
-    "json_parse": {
-      "status": "AVAILABLE",
-      "type": "local-parser-or-review"
-    },
-    "ux_ui_human_understanding": {
-      "status": "HUMAN_NOT_RUN"
-    }
+  "schema_version": 2,
+  "validation": {
+    "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
+    "ci_gate": "REQUIRED_ON_PULL_REQUEST",
+    "generator_check": "REQUIRED",
+    "godot_runtime": "NOT_RUN",
+    "godot_static": "NOT_AVAILABLE_NO_PROJECT",
+    "human": "NOT_RUN",
+    "json_parse": "REQUIRED",
+    "mobile": "NOT_RUN",
+    "pc_input": "NOT_RUN",
+    "registry_hash": "REQUIRED"
   },
   "view_name": "PROJECT_BASE_SKILL_ADAPTER.json"
 }

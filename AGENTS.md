@@ -1,111 +1,129 @@
-# AGENTS.md
+# GRIMOIRE 작업 규칙
 
-이 파일은 `스펠` 프로젝트의 최상위 작업 규칙이다. Base 공용 절차와 v6 Vertical Slice 계약을 현재 승인 상태에 맞게 적용한다.
+이 파일은 **GRIMOIRE: 세계를 다시 쓰는 법**의 최상위 프로젝트 운영 권위다.
 
-## 1. 프로젝트 상태
+## 1. 프로젝트 바인딩
 
-- 프로젝트명: `스펠` (임시)
-- 저장소: `alsdmlals4-eng/Spell`
-- 엔진: Godot
-- 목표 플랫폼: Android / Google Play
-- 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
-- Gate 1: `APPROVED`
-- 프로젝트 코어: `CORE_CONFIRMED`
-- 실행 프로필: `PLANNING_ONLY_PROFILE`
-- Work Mode: `PLAN`
-- 구현: `NOT_STARTED`
-- Codex: `NOT_RUN`
-- 기획 브랜치: `gpt/planning-spell-20260725`
-- 기획 PR: Draft PR #1
-- 다음 차단 결정: `ART-STYLE-01`
+```yaml
+project: "GRIMOIRE: 세계를 다시 쓰는 법"
+repository: alsdmlals4-eng/GRIMOIRE-
+default_branch: main
+working_branch: agent/grimoire-v93-canon
+primary_platform: PC
+follow_up_platform: Mobile
+engine_baseline_candidate: Godot 4.7.1 stable
+product_stage: DEMO_FIRST_VERTICAL_SLICE
+execution_profile: PLANNING_ONLY_PROFILE
+work_mode: PLAN
+planning: APPROVED
+art_style_01: APPROVED_A_MODIFIED_LOCKED
+art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
+battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
+next_product_gate: ASSET-SPEC-01
+parallel_design_gate: BOSS-PHASE-01
+implementation: NOT_STARTED
+codex: BLOCKED
+canon_sync_policy: GM-CANON-SYNC-01
+```
 
-## 2. 최상위 연속성 원칙
+첨부 Godot Linux 실행 파일은 버전 참고 자료이며 저장소 자산으로 커밋하지 않는다.
 
-새 채팅·새 GPT·새 Codex·새 작업자는 과거 대화 없이 저장소만으로 다음을 찾을 수 있어야 한다.
+## 2. 권한 우선순위
 
-- 플레이어 약속과 `CORE_CONFIRMED`
-- Vertical Slice 범위와 보호 결정
-- 화면·캐릭터·전투·소환수 확정 방향
-- 현재 제품 단계·실행 프로필·Work Mode
-- 최신 결정·대체·보류·미검증 상태
-- 다음 차단 결정과 검증 요구
-- 실제 구현·테스트 상태
+1. 사용자의 최신 명시적 결정.
+2. 이 `AGENTS.md`.
+3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`.
+4. `START_HERE.md`.
+5. `docs/ACTIVE_CONTEXT.md`.
+6. 최신 Decision Addendum.
+7. 주제별 승인 책임 원본.
+8. `docs/DEVELOPMENT_GATES.md`.
+9. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
+10. `skills/PROJECT_BASE_ADAPTER.json`과 생성 Snapshot.
+11. 실제 코드·Scene·Resource·데이터·자산·테스트.
+12. 고정 Base Release·Evidence Commit.
+13. Legacy·과거 대화·외부 AI 결과·추정.
 
-같은 책임의 활성 복제본을 만들지 않는다.
+Sheet 단독 값이나 생성 이미지는 승인 근거와 상태가 없으면 정본이 아니다.
 
-## 3. 우선순위
-
-1. 사용자의 최신 명시적 요청과 승인
-2. 이 `AGENTS.md`
-3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-4. `START_HERE.md`
-5. `docs/ACTIVE_CONTEXT.md`
-6. `docs/planning/DECISION_LOG.md`와 최신 Addendum
-7. `docs/DEVELOPMENT_GATES.md`
-8. `docs/DESIGN_DOCUMENT_REGISTRY.json`의 책임 원본
-9. `docs/DOCUMENTATION_MAP.md`
-10. `skills/SKILL_REGISTRY.json`과 프로젝트 어댑터
-11. 실제 코드·Scene·Resource·데이터·자산·테스트
-12. Base 고정 Commit
-13. 과거 대화·외부 AI 결과·추정
-
-충돌 시 최신 사용자 결정과 최신 책임 원본이 우선한다. 생성 이미지와 외부 AI 결과는 승인 상태가 명시되지 않으면 검수 대기 입력이다.
-
-## 4. 질문 전 필수 읽기 순서
+## 3. 필수 읽기 순서
 
 ```text
 AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/DECISION_LOG.md와 최신 Addendum
-→ 질문 주제의 단일 책임 원본
+→ docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md
+→ 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
-→ skills/SKILL_REGISTRY.json
+→ skills/PROJECT_BASE_ADAPTER.json
 ```
 
-### 질문 허용 상태
+GitHub·Sheet 조회로 해결되는 사실을 사용자에게 다시 묻지 않는다. 확정 결정은 기억 확인 목적으로 재질문하지 않는다.
 
-- `USER_DECISION_REQUIRED`
-- `UNRESOLVED`
-- `PLAYTEST_TUNING_REQUIRED`
-- `ASSET_SPEC_REQUIRED`
-- `TECHNICAL_REVIEW_PROPOSAL`
-- 사용자 명시적 재개방
+## 4. Base v9.3 계약
 
-### 질문 금지
+```yaml
+base_repository: alsdmlals4-eng/Base
+release: v9.3.0
+release_commit: 30ca6c7b5f93521f0eb0eed42d01437cd43c50ae
+evidence_commit: 462a86db192d23d0f386281a1eb54b0a8cbad62e
+registry_sha256: 9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1
+execution_prompt: VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md
+```
 
-- `CONFIRMED`, `APPROVED`, `CORE_CONFIRMED`, `SUPERSEDED` 결정을 기억 확인 목적으로 다시 선택하게 함
-- 저장소 조회로 해결되는 사항을 사용자에게 재질문
-- 과거 답변을 찾지 않고 같은 A/B/C 선택지를 반복 제시
+- `skills/PROJECT_BASE_ADAPTER.json`만 편집 가능한 통합 권위다.
+- `PROJECT_SKILL_SNAPSHOT.json`, `BASE_V9_ADAPTER.json`, `PROJECT_BASE_SKILL_ADAPTER.json`은 생성물이다.
+- 생성물은 `tools/generate_project_operating_views.py`로 생성·검사하며 직접 편집하지 않는다.
+- Base Skill 본문을 프로젝트에 복제하지 않는다.
+- Trigger에 맞는 최소 Skill만 사용한다.
 
-위반 상태: `PROCESS_REGRESSION_REASKED_CONFIRMED_DECISION`
+## 5. 벤치마킹 선행
 
-## 5. Base와 v6 계약
+결정 ID: `GM-BENCHMARK-FIRST-01`.
 
-- Base 저장소: `alsdmlals4-eng/Base`
-- Base 기준 Commit: `438f41afd510c827c3097341bd9e5f9c9b0e1dd0`
-- 버전 기록: `docs/BASE_RULES_VERSION.md`
-- v6 축약 실행문: `docs/contracts/VERTICAL_SLICE_EXECUTION_PROMPT_SHORT_v6.md`
-- v6 마스터 계약: `docs/contracts/VERTICAL_SLICE_MASTER_REFERENCE_v6.md`
+새 시스템·핵심 규칙·콘텐츠 구조·UX 흐름은 범위에 맞는 `QUICK / STANDARD / DEEP` 벤치마킹 후 설계한다. 공식·1차 자료를 우선하고 `ADOPT / ADAPT / REJECT`를 기록한다.
 
-Base Skill 본문을 프로젝트에 복제하지 않는다.
+비발동:
 
-## 6. 승인된 프로젝트 코어
+- 오탈자·상태·SHA·링크 동기화.
+- 승인 구조의 단순 데이터 입력.
+- 설계를 바꾸지 않는 명백한 버그 수정.
 
-> 마법 글자의 의미를 이해하고 상황에 맞는 주문을 설계해 발견하는 지적 마법 판타지.
+## 6. 승인 정본 즉시 동기화
+
+결정 ID: `GM-CANON-SYNC-01`.
+
+```text
+Decision ID
+→ GitHub 권위 문서·계획 데이터
+→ authority commit
+→ 연결된 Google Sheet
+→ 양쪽 Readback
+→ SYNCED_TO_WORKING_BRANCH
+→ PR 병합
+→ main·Sheet 재검증
+→ SYNCED_TO_MAIN
+```
+
+완료 보고에는 Decision ID, GitHub 경로, Commit, Sheet 범위, Readback, 남은 미검증을 기록한다.
+
+## 7. 승인된 코어
+
+> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
 
 비타협:
 
-1. 의미를 가진 마법 글자
-2. `메인 글자 1개 + 보조 글자 0개 이상`
-3. 신규·미숙·중요 글자의 직접 작성
-4. 상황에 따른 주문 변형 판단
-5. 즉각적이고 설명 가능한 세계 변화
-6. 학습→평가·표현→응용→발견·기록 순환
+- 의미를 가진 글자.
+- `메인 글자 1개 + 보조 글자 0개 이상`.
+- 신규·미숙·중요 글자의 직접 작성.
+- 상황·목표·위험에 따른 설계 판단.
+- 즉각적이고 설명 가능한 세계 변화.
+- 입력 실패·문법 실패·상황 설계 실패 분리.
+- 학습→증명→표현→응용→발견·기록 순환.
 
-## 7. 승인된 Vertical Slice
+## 8. 승인된 Vertical Slice
 
 ```text
 첫 수업·교내 연습
@@ -118,172 +136,74 @@ Base Skill 본문을 프로젝트에 복제하지 않는다.
 → 귀환·마도서 기록
 ```
 
-- 목표 `45~50분`, 상한 `60분`
-- 공통 `Situation Challenge`
-- 자유일정 `휴식 / 준비 / 교류`
-- 중요 일정 사이 자유일정 1회
-- 세션 경계 중심 최소 저장
-- 별도 CORE_POC 재도입 금지
+- 목표 `45~50분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
+- 글자 `흐름 / 집중 / 분산`.
+- 자유일정 `휴식 / 준비 / 교류` 3회.
+- 필수 성공 작성 7회, 안내형 복구 포함 목표 상한 10회.
+- 메인 동반 정령은 작은 늑대형 초기 형상 1개.
+- 수호형 보조 소환수 1체 우선.
+- 마도서는 과정과 결과를 기록하며 자동 주문 Stock이 아니다.
 
-## 8. 승인된 시각·캐릭터·전투
+## 9. 승인된 Art Bible
+
+책임 원본: `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`.
+
+- Soft Storybook 배경 + 선명한 Anime Cel 캐릭터.
+- Navy/Gold UI + 고대비 Blue Glyph.
+- 고정 3/4 Field, 같은 장소 Half-body Dialogue, 별도 Battle, Result 후 Field 복귀.
+- 고정 주인공 1명, 전투 상시 초상 1개.
+- 동반 정령·수호 소환수는 상태 배지로 분리.
+- Battle Writing Panel은 축소 Rail에서 작성 시 확장.
+- 본문 고딕계, 제목 제한적 세리프계 방향.
+- Grimoire 파생 화면을 Main보다 먼저 설계.
+- 잠긴 기준 이미지 SHA-256 `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`는 수정·재생성 금지.
+
+## 10. 승인된 전투 규칙
+
+책임 원본: `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`.
+
+- 기본 조우는 강한 적 1개체.
+- 일반 적은 단일 페이즈.
+- 적은 일정 시간마다 공격.
+- 플레이어는 작성 후 `[구현]`으로 즉시 시전.
+- 판단·작성 중 타이머 진행, 시스템 해결 중 정지.
+- 선택형 작성 감속 제공; 정확한 배율은 튜닝 항목.
+- 기본 적에게 일반 HP를 두지 않고 `불안정도`를 사용.
+- 상황에 맞는 주문으로 불안정도 0에 도달하면 진정·해결.
+- 플레이어 HP 0 또는 선언된 치명적 환경 붕괴가 패배.
+- 환경 보존도·부작용·남은 HP·해결 방식이 결과 품질을 결정.
+- 수호 소환수는 다음 공격 피해를 완화하지만 타이머·작성·판단을 대신하지 않음.
+
+## 11. 현재 작업 경로
 
 ```text
-학교·자유일정·탐색
-= 가로형 고정·장면 기반 3/4 필드
-= 3.5~4등신 SD
-
-대화
-= 같은 장소 배경 위 반신 일러스트
-
-전투
-= 별도 고정 3/4 전술 전투장
-= 필드 SD 비율·기본 골격 재사용
-
-마법 작성
-= 현재 화면 감속·암전 + 작성 오버레이
-
-전투 종료
-= 결과를 반영한 필드 복귀
+ASSET-SPEC-01
+→ BOSS-PHASE-01·Grimoire/Main 파생 화면
+→ AUDIO-DIRECTION-01
+→ 기획·아트 통합 검수
+→ 사용자 Codex Plan 승인
+→ Codex read-only Plan
+→ 기술 검수
+→ 구현
 ```
 
-기존 `같은 필드 화면에서 전투`는 `SUPERSEDED`다.
+## 12. 현재 허용·금지
 
-## 9. 승인된 소환수 방향
+허용:
 
-```text
-메인 동반 소환수
-= 원소·정령 중심
-= 장기 4단계 성장
-= 해금된 이전 형상 선택
-= 장기 탑승 기능
-
-전투 보조 소환수
-= 전투 호출형 원소 정령
-= Vertical Slice는 수호 또는 견제 1체
-```
-
-범위 보호:
-
-- Vertical Slice는 메인 초기 형상 1개만 필수
-- 메인 2~4단계·형상 선택 UI·탑승은 후행
-- 전투 보조 소환수 4역할 전체·성장·탑승은 미확정
-- 소환수는 글자 작성·조합 판단·정답을 대행하지 않음
-
-## 10. Skill 라우팅
-
-기능·게임 경험·아트 방향·구조·워크플로 변경은 `managing-project-intake-and-work-contract`로 시작한다.
-
-주요 단계:
-
-- 콘셉트·코어: `analyzing-and-refining-game-concepts`
-- 기존 코어 판정: `identifying-project-core`
-- 기획 문서: `managing-design-documents`
-- Vertical Slice: `designing-vertical-slices`
-- 적대적 검토: `running-adversarial-review-and-refinement`
-- 통합 검증: `reviewing-and-validating-project-changes`
-- 컨텍스트·인계: `maintaining-project-context-and-handoff`
-- Godot 자산·플러그인: `evaluating-godot-assets-and-plugins-before-creation`
-- 레거시·아카이브: `governing-legacy-retention-and-archives`
-
-Skill 파일을 읽은 것과 절차를 실행한 것을 구분한다.
-
-## 11. 현재 실행 권한
-
-`PLANNING_ONLY_PROFILE`에서 허용:
-
-- 기획·벤치마킹·시스템·데이터 구조 설계
-- Decision Ledger·P0~P3·기술 검수안
-- Art Style 비교용 소수 이미지
-- Art Bible·Asset Specification·Audio Direction 설계
-- GitHub 기획 문서와 Draft PR 갱신
+- 기획·아트·UX·전투 규칙 문서.
+- Asset Specification·Audio Direction.
+- 벤치마킹·적대적 검토.
+- GitHub·Sheet 정본 동기화.
+- 운영 Adapter·검증 Tooling.
 
 금지:
 
-- Godot 코드·Scene·Resource·게임 데이터 구현
-- Codex Build 실행
-- 구현 완료·런타임 통과 주장
-- 사용자 승인 없는 제품 게이트·프로필 전환
-- 기본 브랜치 직접 수정과 PR 병합
+- Godot 제품 코드·Scene·Resource·게임 데이터 생성.
+- Codex Build.
+- 잠긴 기준 이미지 편집·재생성.
+- Asset Spec 전 대량 이미지·사운드 제작.
+- 실행하지 않은 런타임·성능·접근성·사람 검증 완료 주장.
+- 기본 브랜치 직접 수정.
 
-## 12. 이미지·에셋·사운드
-
-```text
-플레이어 경험·역할
-→ 현재 확정 결정 확인
-→ 승인된 시각 기준
-→ 그림체 후보 비교
-→ Art Bible
-→ Asset Specification
-→ 라이선스·출처 검토
-→ 사용자 승인 후 생성·편집
-→ 실제 런타임 검수
-```
-
-### 이미지 관련 사용자 규칙
-
-- 이미지로 이해하는 선택은 가능한 경우 이미지로 보여 줌
-- 생성 이미지는 자동 시스템 확정·최종 자산이 아님
-- 사용자 승인 두 번째 인게임 구성 이미지는 `USER_APPROVED_VISUAL_REFERENCE`
-- 이미지 생성 실패 시 동일 요청 재입력을 기본 해결책으로 사용하지 않음
-- 기존 브리프를 보존하고 한글 장문·복합 UI·한 장의 요소 수를 줄여 재시도
-- 실패한 생성물을 완료로 주장하지 않음
-
-상태:
-
-```text
-CONCEPT_EXPLORATION
-VISUAL_REFERENCE_CANDIDATE
-USER_APPROVED_VISUAL_REFERENCE
-ART_BIBLE_APPROVED
-RUNTIME_ASSET_APPROVED
-```
-
-자산 출처·도구·파생 관계·승인은 `docs/ASSET_LICENSE_LEDGER.md`에 기록한다.
-
-## 13. 기획·수치 정책
-
-- 기능보다 플레이어 경험·행동·고민·감정·피드백을 먼저 정의
-- 모든 기능은 `WHY → HOW → WHAT` 추적성 보유
-- `REMOVE → REDUCE → MERGE → CLARIFY → FEEDBACK 강화 → ADD` 순으로 검토
-- 미검증 수치는 `INITIAL_TEST_VALUE`, `TUNING_RANGE`, `PLAYTEST_TUNING_REQUIRED`
-- 빌드·표본·관찰 없이 `VALIDATED` 표시 금지
-
-## 14. 변경·GitHub 규칙
-
-- 기획 변경 시 책임 원본·Decision Log·Active Context·현재 확정 스냅샷을 같은 작업 단위에서 갱신
-- 이전 결정과 충돌하면 `SUPERSEDED`, `REJECTED`, `LATEST_OVERRIDE` 추적
-- 기획 PR과 구현 PR 분리
-- Draft PR 유지, 사용자 요청 없이 병합 금지
-- 변경 이유·연결 영향·후속 동기화·미실행 검증 보고
-
-## 15. 검증
-
-문서·구조:
-
-- 경로 존재
-- Markdown·JSON 문법
-- Registry와 책임 원본 연결
-- stale reference·중복 책임
-- 결정·상태·프로필 일치
-- 확정 결정 재질문 여부
-- PR diff와 승인 범위
-- 새 작업자 콜드 스타트
-
-Godot 구현 이후:
-
-- 정적 검사·자동 테스트·런타임
-- 터치 입력·화면비·백그라운드 복귀
-- 저장·불러오기
-- 접근성·성능·배터리·발열
-- 회귀·실기기 검증
-
-실행하지 않은 검증은 `NOT_RUN` 또는 `BLOCKED_UNVERIFIED`다.
-
-## 16. 작업 종료
-
-1. 프로젝트 결정을 책임 원본에 반영
-2. `CURRENT_CONFIRMED_DECISIONS.md`와 `ACTIVE_CONTEXT.md` 최신화
-3. Decision Log·Documentation Map·Design Registry·Skill Registry 연결 확인
-4. Requirement·Skill·Artifact Coverage 감사
-5. 프로젝트 전용 유지와 Base 승격 후보 분리
-6. 실제 Commit·PR 상태와 미실행 검증 보고
+PR 병합은 사용자 승인과 검증 통과가 필요하다. 2026-08-01F 작업에는 사용자의 일괄 승인이 기록되어 있으나 CI·Readback 실패 시 병합하지 않는다.

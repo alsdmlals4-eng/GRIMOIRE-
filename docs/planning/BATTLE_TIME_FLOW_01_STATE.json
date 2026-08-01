@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-BATTLE-TIME-FLOW-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "APPROVED_TIME_FLOW_DIRECTION",
+  "approved_at": "2026-08-01T09:15:00+09:00",
+  "approved_by": "USER",
+  "refines": [
+    "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
+    "GM-BATTLE-SCREEN-LAYOUT-01"
+  ],
+  "benchmark": {
+    "id": "GR-BM-BATTLE-TIME-FLOW-01",
+    "scale": "QUICK",
+    "status": "COMPLETE",
+    "source_path": "docs/planning/benchmarks/BATTLE_TIME_FLOW_01_QUICK_BENCHMARK_2026-08-01.md",
+    "commit": "29f88777573cb4a99e7f8ed3411456dd429833cf"
+  },
+  "authority": {
+    "source_path": "docs/planning/BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md",
+    "commit": "5e3baf8f1fa4487bbc4eb281828bf5e18153d5d6"
+  },
+  "sync_receipt": {
+    "source_path": "docs/planning/sync/GR-APPROVE-BATTLE-TIME-FLOW-01.md",
+    "commit": "5b87bf5d35aa1a6950b66ccc145b84f67f6a9053",
+    "sheet_readback": "PASS"
+  },
+  "time_contract": {
+    "default_player_control_multiplier": 1.0,
+    "writing_panel_default_multiplier": 1.0,
+    "writing_assist_enabled_by_default": false,
+    "writing_assist_initial_playtest_multiplier": 0.5,
+    "system_resolution_multiplier": 0.0,
+    "pause_menu_multiplier": 0.0,
+    "focus_lost_multiplier": 0.0,
+    "tutorial_modal_multiplier": 0.0,
+    "player_control_states": [
+      "BATTLE_OVERVIEW",
+      "SPELL_PANEL_EXPANDED",
+      "SPELL_DRAWING",
+      "SPELL_RECOGNITION_REVIEW",
+      "SPELL_COMBINATION_REVIEW"
+    ],
+    "system_pause_states": [
+      "CAST_COMMIT_LOCK",
+      "CAST_RESOLVE",
+      "ENEMY_ATTACK_RESOLVE",
+      "BATTLE_END_CHECK",
+      "BOSS_PHASE_TRANSITION",
+      "RESULT_TRANSITION",
+      "SYSTEM_BLOCKING"
+    ]
+  },
+  "race_resolution": {
+    "ordering": "FIRST_VALIDATED_EVENT_WINS",
+    "simultaneous_resolution": "PROHIBITED",
+    "enemy_attack_first_result": "PRESERVE_DRAFT_AND_RESUME_IF_BATTLE_CONTINUES",
+    "cast_first_result": "RESOLVE_CAST_THEN_REEVALUATE_ENEMY_TIMER"
+  },
+  "recognition_fairness": {
+    "async_input_available": "TIMER_CONTINUES",
+    "blocking_system_wait": "TIMER_PAUSES",
+    "stale_response": "DISCARD_BY_REQUEST_TOKEN"
+  },
+  "unresolved": [
+    "ENEMY_ATTACK_INTERVAL_VALUES",
+    "WRITING_ASSIST_FINAL_MULTIPLIER",
+    "RESUME_GRACE_PERIOD",
+    "DAMAGE_AND_DEFENSE_RULES",
+    "VICTORY_AND_DEFEAT_CONDITIONS",
+    "BOSS_ATTACK_PATTERNS"
+  ],
+  "next_design_gate": "BATTLE-RULES-01",
+  "implementation_authority": "NONE",
+  "godot": "NOT_STARTED",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
+  "main_sync": "PENDING_PR_MERGE"
+}

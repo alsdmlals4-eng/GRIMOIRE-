@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "workflow_decision_id": "GM-SITUATION-SCREEN-WORKFLOW-01",
+  "spec_decision_id": "GM-SITUATION-SCREEN-SPEC-01",
+  "trace_id": "GR-TRACE-SITUATION-SCREEN-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "repository": "alsdmlals4-eng/GRIMOIRE-",
+  "branch": "agent/grimoire-v93-canon",
+  "pull_request": 22,
+  "workflow_status": "APPROVED_PROJECT_WORK_PRINCIPLE",
+  "spec_status": "USER_REVIEW_REQUIRED",
+  "spec_type": "TECHNICAL_DESIGN_ONLY",
+  "benchmark": {
+    "id": "GR-BM-SITUATION-SCREEN-01",
+    "scale": "STANDARD",
+    "status": "COMPLETE",
+    "source": "docs/planning/benchmarks/GM_SITUATION_SCREEN_ARCHITECTURE_BENCHMARK_2026-07-31.md",
+    "commit": "1bbcbfeb5382990873b723a46d0893fcfc77526d"
+  },
+  "authority_commit": "c0c2ebd1c3614b955f97515fbce62265a33a4359",
+  "verification_receipt": "docs/planning/sync/GR-TRACE-SITUATION-SCREEN-01.md",
+  "verification_receipt_commit": "0bd52a96a7b19e1dcd21f9905285a545f00c1712",
+  "authority_files": [
+    "docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md",
+    "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31S.md",
+    "docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md",
+    "docs/superpowers/specs/grimoire-situations/P0_01_ENTRY_FIELD_DIALOGUE.md",
+    "docs/superpowers/specs/grimoire-situations/P0_02_SCHEDULE_SPELL_BATTLE.md",
+    "docs/superpowers/specs/grimoire-situations/P0_03_RESULT_RETURN_GRIMOIRE.md",
+    "docs/superpowers/specs/grimoire-situations/SITUATION_BOARD_AND_BACKLOG.md"
+  ],
+  "required_reference_screens": [
+    {
+      "screen_id": "SCREEN-01",
+      "name": "메인·시작 화면",
+      "definition_status": "PROPOSED_MINIMUM_SCREEN",
+      "implementation_status": "NOT_IMPLEMENTED"
+    },
+    {
+      "screen_id": "SCREEN-02",
+      "name": "별도 전술 전투·핵심 플레이 화면",
+      "definition_status": "CONFIRMED_PRESENTATION_WITH_TECHNICAL_PROPOSAL",
+      "implementation_status": "NOT_IMPLEMENTED"
+    },
+    {
+      "screen_id": "SCREEN-03",
+      "name": "마도서·보유 지식·준비 상태 화면",
+      "definition_status": "INVENTORY_EQUIVALENT_PROPOSAL_BASED_ON_CONFIRMED_GRIMOIRE_RULE",
+      "implementation_status": "NOT_IMPLEMENTED"
+    },
+    {
+      "screen_id": "SCREEN-04",
+      "name": "결과·보상·복기 화면",
+      "definition_status": "CONFIRMED_RESULT_RULE_WITH_TECHNICAL_PROPOSAL",
+      "implementation_status": "NOT_IMPLEMENTED"
+    }
+  ],
+  "p0_situations": [
+    "SIT-GR-001 최초 실행·세이브 선택",
+    "SIT-GR-002 학교 장면 진입·이상 징후 관찰",
+    "SIT-GR-003 교수·동급생·동반 정령 대화",
+    "SIT-GR-004 자유일정 선택",
+    "SIT-GR-005 Situation Challenge 관찰·준비",
+    "SIT-GR-006 직접 작성·인식·조합·Commit",
+    "SIT-GR-007 전술 전투·수호 소환",
+    "SIT-GR-008 결과·원인·보상 복기",
+    "SIT-GR-009 원래 필드 복귀·환경 변화",
+    "SIT-GR-010 귀환·마도서 기록·Checkpoint"
+  ],
+  "recommended_architecture": "PERSISTENT_APPLICATION_ROOT_WORLD_SWAP_CANVAS_OVERLAY_SNAPSHOT",
+  "actual_product_files": {
+    "project_godot": "NOT_FOUND",
+    "scenes": "NOT_FOUND",
+    "scripts": "NOT_FOUND",
+    "resources": "NOT_FOUND",
+    "implementation": "NOT_STARTED"
+  },
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "status": "VERIFIED_BY_READBACK",
+    "ranges": [
+      "01_작업순서!A7:J8",
+      "02_현재_확정결정!A14:J15",
+      "03_근거_라이브러리!A5:I5",
+      "04_누락_충돌_감사!A9:H9",
+      "05_GDD_요약!A9:H10",
+      "15_조작_게임규칙!A6:H6",
+      "40_핵심시스템_메인콘텐츠!A8:H9",
+      "60_UX_UI_접근성!A6:H7",
+      "80_데모_버티컬슬라이스_플레이테스트!A5:H5",
+      "99_변경이력!A9:H9"
+    ],
+    "readback": "PASS",
+    "verified_at": "2026-07-31T08:47:00+09:00"
+  },
+  "unresolved": [
+    "ART-STYLE-01",
+    "ASSET-SPEC-01",
+    "AUDIO-DIRECTION-01",
+    "TECH-BATTLE-TIME-01",
+    "TECH-RECOGNITION-01",
+    "TECH-DATA-PIPELINE-01",
+    "TECH-TEST-FRAMEWORK-01",
+    "UI-MAIN-01",
+    "UI-GRIMOIRE-01"
+  ],
+  "implementation_authority": "NONE",
+  "codex": "BLOCKED",
+  "godot": "NOT_STARTED",
+  "sync_status": "WORKFLOW_SYNCED_SPEC_REVIEW_PENDING",
+  "main_sync": "PENDING_PR_MERGE"
+}

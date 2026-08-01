@@ -1,124 +1,217 @@
 {
   "artifact_role": "PROJECT_BASE_ADAPTER",
   "base_release": {
-    "release_commit": "3c158f52cfdad889970aef4d6ce6650a6fea0645",
-    "release_evidence_commit": "dd20ad3852e264d7e337e34d2cb963f71053a6cb",
+    "integrated_execution_prompt": "templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
+    "registry_path": "skills/SKILL_REGISTRY.json",
+    "registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
+    "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
+    "release_evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
     "repository": "alsdmlals4-eng/Base",
-    "version": "9.1.0"
+    "version": "9.3.0"
   },
   "compatibility": {
-    "cycle": "ONE_CYCLE",
-    "legacy_inputs": {
-      "skills/BASE_V9_ADAPTER.json": "docs/archive/base-v9-legacy-inputs/BASE_V9_ADAPTER.json",
-      "skills/PROJECT_BASE_SKILL_ADAPTER.json": "docs/archive/base-v9-legacy-inputs/PROJECT_BASE_SKILL_ADAPTER.json"
-    },
-    "views": [
-      "skills/BASE_V9_ADAPTER.json",
-      "skills/PROJECT_BASE_SKILL_ADAPTER.json"
-    ]
-  },
-  "gdd_sheet": {
-    "declared_sync_status": "SHEET_GITHUB_CONFLICT",
-    "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "role": "USER_FACING_GDD_WORKSPACE",
-    "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
-    "sync_status": "BLOCKED",
-    "write_policy": "NO_AUTOMATIC_OVERWRITE"
-  },
-  "project": {
-    "engine": "NOT_APPLICABLE_NO_PROJECT",
     "legacy_repository_aliases": [
       "alsdmlals4-eng/Spell"
     ],
+    "lifecycle": "ONE_CYCLE_GENERATED_VIEWS",
+    "v6_v8_contracts": "LEGACY_REFERENCE_INPUT_SUPERSEDED_COMPATIBILITY"
+  },
+  "current_state": {
+    "art_bible_01": "APPROVED_DUAL_STANDARD_ART_BIBLE",
+    "art_style_01": "APPROVED_A_MODIFIED_LOCKED",
+    "battle_rules_01": "APPROVED_SITUATION_RESOLUTION_RULES",
+    "codex": "BLOCKED",
+    "human_validation": "NOT_RUN",
+    "implementation": "NOT_STARTED",
+    "next_product_gate": "ASSET-SPEC-01",
+    "planning": "APPROVED",
+    "runtime_validation": "NOT_RUN"
+  },
+  "entrypoints": {
+    "active_context": "docs/ACTIVE_CONTEXT.md",
+    "agents": "AGENTS.md",
+    "current_confirmed_decisions": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
+    "development_gates": "docs/DEVELOPMENT_GATES.md",
+    "documentation_map": "docs/DOCUMENTATION_MAP.md",
+    "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
+    "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md",
+    "start_here": "START_HERE.md"
+  },
+  "gdd_sheet": {
+    "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "last_full_audit": "2026-08-01",
+    "main_sync": "PENDING_PR_MERGE",
+    "role": "USER_FACING_GDD_WORKSPACE",
+    "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
+    "sync_status": "SYNCED_TO_WORKING_BRANCH",
+    "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC"
+  },
+  "generated_outputs": {
+    "compatibility_views": [
+      "skills/BASE_V9_ADAPTER.json",
+      "skills/PROJECT_BASE_SKILL_ADAPTER.json"
+    ],
+    "generator": "tools/generate_project_operating_views.py",
+    "hand_edit": "PROHIBITED",
+    "snapshot": "skills/PROJECT_SKILL_SNAPSHOT.json"
+  },
+  "planning_authority": {
+    "art_bible": "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
+    "art_style": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "battle_rules": "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
+    "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
+    "operating_audit": "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md",
+    "planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md"
+  },
+  "project": {
+    "engine": "Godot 4.7.1 stable candidate",
+    "execution_profile": "PLANNING_ONLY_PROFILE",
+    "follow_up_platform": "Mobile",
+    "godot_project_status": "NOT_CREATED",
+    "name": "GRIMOIRE: 세계를 다시 쓰는 법",
+    "primary_platform": "PC",
+    "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "repository": "alsdmlals4-eng/GRIMOIRE-",
-    "root": "."
+    "root": ".",
+    "work_mode": "PLAN"
+  },
+  "project_registry": {
+    "hash_definition": "RAW_FILE_BYTES_SHA256",
+    "path": "skills/SKILL_REGISTRY.json",
+    "sha256": "d246fa142be0639e4b83d0a86ef1ca160e1f45e09116baa3e1b92142d8db6445"
   },
   "protected_baseline": {
-    "authority_kind": "REMOTE_TRACKING_REF",
     "authority_ref": "refs/remotes/origin/main",
-    "commit": "abf763b69247032dd7ed77cc3219aba3f685c084",
-    "policy_sha256": "cdbce4ba6a3491d8c9f0e9473c05d57d66800c7174d92e6b7fa40e3d64d9dfc4",
-    "policy_source_path": "skills/PROJECT_BASE_SKILL_ADAPTER.json",
-    "policy_source_type": "FIRST_MIGRATION_LEGACY_SOURCE",
-    "protected_paths_pointer": "/protected_paths"
+    "commit": "4527356e9597f9a07295ee594caf019a38c4ed9f",
+    "main_sync": "PENDING_PR_MERGE"
   },
+  "protected_decisions": [
+    "GM-PLANNING-APPROVAL-01",
+    "ART-STYLE-01",
+    "ART-BIBLE-01",
+    "GM-BATTLE-SCREEN-LAYOUT-01",
+    "GM-BATTLE-SINGLE-ENEMY-FOCUS-01",
+    "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
+    "GM-BATTLE-TIME-FLOW-01",
+    "GM-BATTLE-RULES-01",
+    "GM-CANON-SYNC-01"
+  ],
   "protected_paths": [
-    "docs/planning/**",
-    "docs/UX_UI_SYSTEM.md",
-    "docs/ACTIVE_CONTEXT.md",
-    "docs/contracts/**",
     "AGENTS.md",
-    "START_HERE.md"
+    "START_HERE.md",
+    "docs/ACTIVE_CONTEXT.md",
+    "docs/DEVELOPMENT_GATES.md",
+    "docs/DESIGN_DOCUMENT_REGISTRY.json",
+    "docs/planning/**",
+    "docs/contracts/**",
+    "skills/PROJECT_BASE_ADAPTER.json"
   ],
   "routing": {
     "aliases": [],
     "base_routes": [
       {
+        "route_id": "managing-project-intake-and-work-contract",
+        "skill_id": "managing-project-intake-and-work-contract",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-game-project-operating-system",
+        "skill_id": "managing-game-project-operating-system",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-design-documents",
+        "skill_id": "managing-design-documents",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "maintaining-project-context-and-handoff",
+        "skill_id": "maintaining-project-context-and-handoff",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "analyzing-and-refining-game-concepts",
+        "skill_id": "analyzing-and-refining-game-concepts",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "designing-vertical-slices",
+        "skill_id": "designing-vertical-slices",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "reviewing-and-validating-project-changes",
+        "skill_id": "reviewing-and-validating-project-changes",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "auditing-canonical-reference-freshness",
+        "skill_id": "auditing-canonical-reference-freshness",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "designing-art-prompts-and-technique-cards",
+        "skill_id": "designing-art-prompts-and-technique-cards",
+        "status": "ACTIVE"
+      },
+      {
         "route_id": "auditing-and-refining-ui-art",
         "skill_id": "auditing-and-refining-ui-art",
         "status": "ACTIVE"
-      }
-    ],
-    "inactive_routes": [],
-    "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
-    "project_routes": [
+      },
       {
-        "route_id": "art-style-decision-gate",
-        "skill_id": "art-style-decision-gate",
+        "route_id": "identifying-project-core",
+        "skill_id": "identifying-project-core",
         "status": "ACTIVE"
       },
+      {
+        "route_id": "running-adversarial-review-and-refinement",
+        "skill_id": "running-adversarial-review-and-refinement",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-base-change-proposals",
+        "skill_id": "managing-base-change-proposals",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "governing-legacy-retention-and-archives",
+        "skill_id": "governing-legacy-retention-and-archives",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "evaluating-godot-assets-and-plugins-before-creation",
+        "skill_id": "evaluating-godot-assets-and-plugins-before-creation",
+        "status": "ACTIVE"
+      }
+    ],
+    "copy_base_skill_bodies": false,
+    "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
+    "project_routes": [
       {
         "route_id": "magic-writing-recovery",
         "skill_id": "magic-writing-recovery",
         "status": "ACTIVE"
+      },
+      {
+        "route_id": "art-style-decision-gate",
+        "skill_id": "art-style-decision-gate",
+        "status": "ACTIVE"
       }
     ]
   },
-  "schema_version": 1,
-  "shared_overrides": {
-    "auditing-and-refining-ui-art": {
-      "android_device_status": "NOT_RUN",
-      "canonical_project_source": "docs/UX_UI_SYSTEM.md",
-      "godot_runtime_status": "NOT_AVAILABLE_NO_BUILD",
-      "human_status": "HUMAN_NOT_RUN",
-      "modes": [
-        "experience-contract",
-        "flow-and-information-architecture",
-        "pattern-selection",
-        "design-system-contract",
-        "godot-ui-contract",
-        "accessibility-gate",
-        "playtest-contract",
-        "runtime-ui-audit"
-      ],
-      "project_focus": [
-        "mobile touch magic letter writing",
-        "recognition versus spell grammar failure",
-        "progressive learning",
-        "undo and correction",
-        "causal result recap"
-      ]
-    }
-  },
-  "skill_registry": {
-    "base": {
-      "hash_definition": "RAW_FILE_BYTES_SHA256",
-      "path": "skills/SKILL_REGISTRY.json",
-      "sha256": "e06003cb986e979aa46c06839de178c3fb9ff10bdf440e750712d90d6c5ae7bb"
-    },
-    "project": {
-      "hash_definition": "RAW_FILE_BYTES_SHA256",
-      "path": "skills/SKILL_REGISTRY.json",
-      "sha256": "b5db44ceb940bd2da2c4d054aab07248f75f3a24a789fffbce6e58ecd24a38d7"
-    }
-  },
-  "validators": [
-    "documentation_reference_review",
-    "json_parse",
-    "godot_static_validation",
-    "godot_runtime_validation",
-    "android_device_validation",
-    "human_visual_review",
-    "ux_ui_human_understanding"
-  ]
+  "schema_version": 2,
+  "validation": {
+    "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
+    "ci_gate": "REQUIRED_ON_PULL_REQUEST",
+    "generator_check": "REQUIRED",
+    "godot_runtime": "NOT_RUN",
+    "godot_static": "NOT_AVAILABLE_NO_PROJECT",
+    "human": "NOT_RUN",
+    "json_parse": "REQUIRED",
+    "mobile": "NOT_RUN",
+    "pc_input": "NOT_RUN",
+    "registry_hash": "REQUIRED"
+  }
 }

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "decision_id": "ART-STYLE-01",
+  "visual_board_id": "GR-VISUAL-SITUATION-BOARD-01",
+  "status": "APPROVED_LOCKED_VISUAL_REFERENCE",
+  "approved_at": "2026-07-31T21:58:00+09:00",
+  "approved_by": "USER",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "selected_direction": {
+    "candidate": "A_MODIFIED",
+    "name": "Soft Storybook Cel 2D Hybrid",
+    "presentation": "FIELD_SD_HALF_BODY_DIALOGUE_SEPARATE_TACTICAL_BATTLE",
+    "source_caption": "추천 확정안 A (수정): 필드 SD + 대화 반신 + 별도 전투 화면"
+  },
+  "locked_reference": {
+    "original_uploaded_name": "image(32).png",
+    "library_path": "/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png",
+    "library_file_id": "file_0000000061bc81fa93d8b1b30d553943",
+    "library_node_id": "libfile_b61a5d166df48191b249a132142dba84",
+    "mime_type": "image/png",
+    "width_px": 662,
+    "height_px": 455,
+    "color_mode": "RGBA",
+    "byte_size": 748443,
+    "sha256": "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a"
+  },
+  "lock_contract": {
+    "source_image_edit": "PROHIBITED",
+    "source_image_regeneration": "PROHIBITED",
+    "source_image_recomposition": "PROHIBITED",
+    "crop_or_text_replacement": "PROHIBITED",
+    "derivative_assets": "ALLOWED_ONLY_AS_SEPARATE_FILES_AFTER_ART_BIBLE",
+    "change_requires": "EXPLICIT_USER_OVERRIDE_USING_ART-STYLE-01"
+  },
+  "protected_screen_language": [
+    "LANDSCAPE_16_9",
+    "SCENE_BASED_FIXED_THREE_QUARTER_FIELD",
+    "FIELD_SD_CHARACTERS",
+    "HALF_BODY_DIALOGUE_ILLUSTRATION",
+    "DIRECT_GLYPH_WRITING_OVERLAY",
+    "SEPARATE_FIXED_THREE_QUARTER_TACTICAL_BATTLE",
+    "BATTLE_WRITING_OVERLAY",
+    "RESULT_RETURN_TO_ORIGINAL_FIELD",
+    "MAIN_ELEMENTAL_COMPANION",
+    "SCHOOL_CLASS_EXAM_FESTIVAL_FIELD_PRACTICUM_BACKGROUNDS"
+  ],
+  "artifact_role": "VISUAL_DIRECTION_AND_SCREEN_COMPOSITION_AUTHORITY_NOT_RUNTIME_ASSET",
+  "next_gate": "ART-BIBLE-01",
+  "implementation_authority": "NONE",
+  "codex": "BLOCKED",
+  "godot": "NOT_STARTED",
+  "main_sync": "PENDING_PR_MERGE"
+}

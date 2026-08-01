@@ -1,256 +1,157 @@
-# 스펠 Documentation Map
+# GRIMOIRE Documentation Map
 
-- 책임: 프로젝트 허브·통합검수
-- 마지막 검토일: 2026-07-29
-- 기준 브랜치: `gpt/planning-spell-20260725`
-- Base 기준 Commit: `438f41afd510c827c3097341bd9e5f9c9b0e1dd0`
-- 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
-- Gate 1: `APPROVED`
-- 프로젝트 코어: `CORE_CONFIRMED`
-- Gate 2: `ENTERED_PLANNING_ONLY_VISUAL_PREPRODUCTION`
-- 실행 프로필: `PLANNING_ONLY_PROFILE`
-- 적대적 검토 루프 02: `PASS_WITH_CORRECTIONS`
-- 다음 차단 결정: `ART-STYLE-01`
+## 현재 기준
+
+```yaml
+project: "GRIMOIRE: 세계를 다시 쓰는 법"
+working_branch: agent/grimoire-v93-canon
+product_stage: DEMO_FIRST_VERTICAL_SLICE
+execution_profile: PLANNING_ONLY_PROFILE
+planning: APPROVED
+art_style_01: APPROVED_A_MODIFIED_LOCKED
+art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
+battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
+next_product_gate: ASSET-SPEC-01
+parallel_design_gate: BOSS-PHASE-01
+implementation: NOT_STARTED
+main_sync: PENDING_PR_MERGE
+```
 
 ## 1. 시작 경로
 
 ```text
 README.md
+→ AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/DECISION_LOG.md
-→ 주제별 책임 원본
-→ Evidence Pilot·사람 검증 Artifact
+→ docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md
+→ 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
+→ skills/PROJECT_BASE_ADAPTER.json
 ```
 
-## 2. 활성 책임 원본
+## 2. 활성 권위
 
 | 책임 | 문서 | 상태 |
 |---|---|---|
-| 빠른 결정 복원·재질문 방지 | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` | `ACTIVE_FIRST_READ_AUTHORITY` |
-| Gate 1 최종 승인 | `docs/planning/GATE_1_FINAL_APPROVAL.md` | `ACTIVE_APPROVAL_AUTHORITY` |
-| Vertical Slice 계약 | `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md` | `APPROVED_AT_GATE_1` |
-| 적대적 검토 루프 02 | `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27B.md` | `PASS_WITH_CORRECTIONS` |
-| 시각·전투 표현 | `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md` | `CONFIRMED` |
-| 캐릭터 표현 | `docs/planning/GATE_2_CHARACTER_PRESENTATION_SYSTEM.md` | `CONFIRMED` |
-| 소환수 2계층 코어 | `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md` | `CONFIRMED` |
-| 소환수 성장·형상·탑승 | `docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md` | `CONFIRMED_DIRECTION` |
-| 마법 글자 작성·인식 Pilot | `docs/planning/GATE_2_MAGIC_WRITING_INPUT_EVIDENCE_PACK_2026-07-29.md` | `PILOT_RECOMMENDATION / NOT_CANON` |
-| 마법 글자 작성·인식 사람 검증 Artifact | `docs/superpowers/plans/2026-07-29-magic-writing-input-validation-artifact.md` | `HUMAN_VALIDATION_INPUT / NOT_CANON` |
-| 결정 원장 | `docs/planning/DECISION_LOG.md` | `ACTIVE_WITH_LATEST_ADDENDUM` |
-| 최신 Addendum | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-27S.md` | `LATEST_DECISION_RECORD` |
-| 개발 게이트 | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_AUTHORITY` |
-| Registry | `docs/DESIGN_DOCUMENT_REGISTRY.json` | `ACTIVE_CANONICAL_ROUTER` |
-| 자산 출처·라이선스 | `docs/ASSET_LICENSE_LEDGER.md` | `ACTIVE_ASSET_PROVENANCE_AUTHORITY` |
-| Skill 라우팅 | `skills/SKILL_REGISTRY.json` | `ACTIVE_PROJECT_SKILL_ROUTER` |
+| 최상위 작업 규칙 | `AGENTS.md` | `ACTIVE_PROJECT_AUTHORITY` |
+| 시작·다음 작업 | `START_HERE.md` | `ACTIVE_ENTRYPOINT` |
+| 현재 상태 | `docs/ACTIVE_CONTEXT.md` | `ACTIVE_CONTEXT_AUTHORITY` |
+| 현재 확정 결정 | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` | `ACTIVE_FIRST_READ_AUTHORITY` |
+| 최신 사용자 결정 | `docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md` | `ACTIVE_LATEST_USER_DECISION_AUTHORITY` |
+| 기획 정본 | `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md` | `ACTIVE_APPROVED_PLANNING_CANON` |
+| Art Style | `docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md` | `APPROVED_LOCKED_REFERENCE` |
+| Art Bible | `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md` | `APPROVED_DUAL_STANDARD_ART_BIBLE` |
+| Art Bible 전투 교정 | `docs/planning/ART_BIBLE_01_BATTLE_CORRECTION_ADDENDUM_2026-08-01.md` | `ACTIVE_BATTLE_OVERRIDE` |
+| 전투 화면 | `docs/planning/BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md` | `APPROVED_LAYOUT_DIRECTION` |
+| 단일 강적 | `docs/planning/BATTLE_SINGLE_ENEMY_FOCUS_01_APPROVAL_2026-08-01.md` | `APPROVED_ENCOUNTER_DIRECTION` |
+| 적 Timer·즉시시전 | `docs/planning/BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md` | `APPROVED_CORE_BATTLE_FLOW` |
+| 시간 흐름 | `docs/planning/BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md` | `APPROVED_TIME_FLOW_DIRECTION` |
+| 승패·피해·진정 | `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md` | `APPROVED_SITUATION_RESOLUTION_RULES` |
+| 벤치마킹 정책 | `docs/planning/PROJECT_BENCHMARKING_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
+| 정본 동기화 정책 | `docs/planning/PROJECT_CANON_SYNC_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
+| 전수 감사 | `docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md` | `ACTIVE_AUDIT_EVIDENCE` |
+| 개발 Gate | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_AUTHORITY` |
+| Design Router | `docs/DESIGN_DOCUMENT_REGISTRY.json` | `ACTIVE_CANONICAL_ROUTER` |
+| Google Sheet 계약 | `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` | `ACTIVE_WORKBOOK_CONTRACT` |
+| Base Version | `docs/BASE_RULES_VERSION.md` | `CURRENT_V9_3` |
+| Base Adapter | `skills/PROJECT_BASE_ADAPTER.json` | `CURRENT_CANONICAL_ADAPTER` |
+| Skill Snapshot | `skills/PROJECT_SKILL_SNAPSHOT.json` | `CURRENT_GENERATED_VIEW` |
 
-## 3. 질문 전 조회 규칙
+## 3. 기획·콘텐츠
 
-```text
-START_HERE
-→ ACTIVE_CONTEXT
-→ CURRENT_CONFIRMED_DECISIONS
-→ DECISION_LOG와 최신 Addendum
-→ 주제별 책임 원본
-```
-
-질문 허용 상태:
-
-- `USER_DECISION_REQUIRED`
-- `UNRESOLVED`
-- `PLAYTEST_TUNING_REQUIRED`
-- `ASSET_SPEC_REQUIRED`
-- `TECHNICAL_REVIEW_PROPOSAL`
-- 사용자 명시적 재개방
-
-`CONFIRMED`, `APPROVED`, `CORE_CONFIRMED`, `SUPERSEDED` 결정은 기억 확인 목적으로 재질문하지 않는다.
-
-## 4. 승인된 Vertical Slice
-
-```text
-첫 수업·교내 연습
-→ 자유일정 A
-→ 첫 실기시험
-→ 자유일정 B
-→ 학교축제
-→ 자유일정 C
-→ 첫 현장실습
-→ 귀환·마도서 기록
-```
-
-- 공통 `Situation Challenge`
-- 목표 `45~50분`, 상한 `60분`
-- 자유일정 `휴식 / 준비 / 교류`
-- 세션 경계 중심 최소 저장
-
-## 5. 승인된 시각·캐릭터·전투 구조
-
-```text
-학교·자유일정·탐색
-= 가로형 고정·장면 기반 3/4 필드
-= 3.5~4등신 SD
-
-대화
-= 기존 장소 배경 위 반신 일러스트
-
-전투
-= 별도 고정 3/4 전술 전투장
-= 필드 SD 비율 재사용
-
-작성
-= 현재 화면 감속·암전 + 작성 오버레이
-
-결과
-= 필드 복귀 후 환경 변화 반영
-```
-
-기존 `같은 필드 화면에서 전투` 규칙은 최신 결정으로 대체됐다.
-
-## 6. 승인된 소환수 방향
-
-```text
-메인 동반 소환수
-= 원소·정령 중심
-= 장기 4단계 성장
-= 이전 형상 선택 가능
-= 장기 탑승 기능
-
-전투 보조 소환수
-= 원소·정령 중심의 전술 지원
-= Vertical Slice는 수호 또는 견제 1체
-```
-
-범위:
-
-- Vertical Slice: 메인 초기 형상 1개
-- 후행: 메인 2~4단계·형상 선택 UI·탑승
-- 미확정: 전투 소환수 4역할 전체·성장·탑승
-
-## 7. 마법 작성 Evidence Pilot·검증 Artifact 경계
-
-`docs/planning/GATE_2_MAGIC_WRITING_INPUT_EVIDENCE_PACK_2026-07-29.md`는 다음을 소유한다.
-
-- 입력 인식 실패와 주문 설계 실패를 분리해야 한다는 가설.
-- 획 입력→후보 확인→의미 조합→상황 판정→세계 변화의 책임 분리.
-- 직접 작성·부분 수정·손가락 가림·낮은 확신 자동 시전 금지 원칙.
-
-`docs/superpowers/plans/2026-07-29-magic-writing-input-validation-artifact.md`는 다음을 소유한다.
-
-- `RESEARCH_ONLY_GLYPH` 4개와 저충실도 Android 터치 세션 구성.
-- simulated 인식 후보를 사용한 4개 시나리오.
-- 진행자 스크립트·기기 분류·관찰 기록지·Pilot 판정 기준.
-- 사람 세션 뒤 작성할 검증 보고서 계약.
-
-두 문서는 다음을 소유하지 않는다.
-
-- 최종 글자·룬·의미·세계관 정본.
-- 인식 알고리즘 선정.
-- Godot 코드·Scene·Resource·Save Schema.
-- `ART-STYLE-01` 또는 `ART-BIBLE-01` 승인.
-- 별도 CORE_POC.
-- Vertical Slice 구현·사람·Android·접근성·성능 완료 판정.
-
-## 8. 적대적 검토 루프 02
-
-```text
-정본·결정 기억 공격
-→ 화면·전투 연속성 공격
-→ 캐릭터 자산 폭증 공격
-→ 소환수 성장·형상·탑승 공격
-→ 전투 소환수 과잉 확정 공격
-→ 이미지 작업 운영 공격
-→ 수정·회귀 재검사
-```
-
-판정:
-
-- 프로젝트 코어 `NO_CHANGE`
-- Vertical Slice 세션 `NO_CHANGE`
-- 캐릭터 표현 `CONFIRMED_WITH_REUSE_GUARDRAIL`
-- 전투 화면 `SEPARATE_FIXED_TACTICAL_SCENE`
-- 메인 소환수 장기 성장 `CONFIRMED_DIRECTION`
-- 전투 소환수 4역할 `REFERENCE_CANDIDATE`
-- 결정 기억 운영 `MUST_FIX / FIXED`
-- 최종 `PASS_WITH_CORRECTIONS`
-
-## 9. 프리프로덕션 경로
-
-```text
-ART-STYLE-01
-→ ART-BIBLE-01
-→ ASSET-SPEC-01
-→ AUDIO-DIRECTION-01
-→ 사용자 승인 후 캐릭터·배경·효과·사운드 제작
-→ GM-VS-PROFILE-01 재검토
-```
-
-그림체 비교는 승인된 동일 인게임 구성을 이미지로 제시한다.
-
-마법 글자 작성·인식 Evidence Pilot과 사람 검증 Artifact는 `ART-STYLE-01`을 대체하거나 우회하지 않는다. 작성 오버레이와 향후 기술 Prototype의 입력·피드백 검증 경로로만 사용한다.
-
-## 10. 기존 시스템 참조
-
-다음은 `REFERENCE_CANDIDATE`다.
-
-- `docs/planning/SPELL_GAME_DESIGN.md`
-- 전투·글자·회로·스톡·마나 세부 문서
-- 학교·학년·학기·수업·현장실습 세부 문서
-- 내러티브·기존 벤치마크 문서
-
-규칙:
-
-- 최신 승인 원본과 충돌하면 최신 원본 우선
-- 수치는 `UNVERIFIED` 또는 `BALANCE_TUNING_BACKLOG`
-- 폐기·대체 결정은 이력으로 보존
-
-## 11. 구현·검증 상태
-
-| 항목 | 상태 |
+| 책임 | 문서 |
 |---|---|
-| Godot 구현 계획 | `NOT_AUTHORED` |
-| Save Schema v1 | `NOT_AUTHORED` |
-| Situation Challenge 데이터 계약 | `CONCEPT_ONLY` |
-| 캐릭터 표현 구조 | `CONFIRMED` |
-| 전투 화면 구조 | `CONFIRMED` |
-| 소환수 장기 성장 방향 | `CONFIRMED_DIRECTION` |
-| 마법 작성 입력·인식 근거 | `PILOT_RECOMMENDATION / NOT_CANON` |
-| 마법 작성 사람 검증 Artifact | `READY_FOR_LOW_FIDELITY_TOUCH_SESSION / HUMAN_AND_DEVICE_NOT_RUN` |
-| 그림체 | `NEXT_BLOCKING_DECISION` |
-| Art Bible·Asset Specification | `NOT_AUTHORED` |
-| Audio Direction | `NOT_AUTHORED` |
-| Android 검증 매트릭스 | `NOT_AUTHORED` |
-| 이미지·사운드 런타임 자산 | `NOT_STARTED` |
-| 외부 자산 라이선스 조사 | `NOT_RUN` |
-| 런타임·접근성·성능 | `NOT_RUN` |
+| 전체 승인 Slice | `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md` |
+| 현재 결정 Snapshot | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` |
+| 글자·작성 빈도 | Planning Canon + `GM-WRITING-FREQUENCY-01` |
+| 마도서 기록 | Planning Canon + `GM-GRIMOIRE-RECORD-01` |
+| 화면 시퀀스 기술 부록 | `docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md` |
+| P0 상세 부록 | `docs/superpowers/specs/grimoire-situations/` |
 
-## 12. 현재 금지
+기존 P0 Scene·Node·Resource·Signal 명세는 `SUPPORTING_TECHNICAL_APPENDIX_ONLY`이며 구현 권한이 아니다.
 
-- `main` 직접 수정
-- 사용자 승인 없는 PR 병합
-- Art Bible·Asset Specification 전 대량 이미지·사운드 제작
-- 메인 소환수 4단계 전체를 Vertical Slice에 추가
-- 전투 소환수 4역할 전체를 승인 없이 확정
-- 연구용 글자를 세계관·아트 정본으로 승격
-- simulated 인식 결과를 실제 알고리즘 성능으로 주장
-- 별도 CORE_POC 재도입
-- `VERTICAL_SLICE_FULL_PROFILE` 자동 전환
-- Codex 실행
-- Godot 구현
-- 런타임 증거 없는 완료 선언
+## 4. 아트·화면
 
-## 13. 다음 라우팅
+```text
+ART-STYLE-01 — 승인
+→ ART-BIBLE-01 — 승인
+→ ASSET-SPEC-01 — 현재 Gate
+→ Grimoire Board
+→ Main Board
+→ Battle Detail Wireframe
+```
 
-### 제품 기획 차단 결정
+잠긴 원본:
 
-`ART-STYLE-01`
+- Library: `/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png`.
+- SHA-256: `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`.
+- 원본 편집·재생성 금지.
 
-학교 필드 SD·대화 반신·별도 3/4 전술 전투장·메인 원소 정령수 초기 형상·수호 또는 견제 보조 소환수·마법 작성 오버레이를 같은 구성으로 유지한 채 그림체 후보를 이미지로 비교한다.
+## 5. 전투 Router
 
-### 독립 연구 준비 경로
+| 결정 | Authority | Machine State | Benchmark |
+|---|---|---|---|
+| `GM-BATTLE-SCREEN-LAYOUT-01` | `BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md` | `BATTLE_SCREEN_LAYOUT_01_STATE.json` | `BATTLE_SCREEN_LAYOUT_01_QUICK_BENCHMARK_2026-08-01.md` |
+| `GM-BATTLE-SINGLE-ENEMY-FOCUS-01` | `BATTLE_SINGLE_ENEMY_FOCUS_01_APPROVAL_2026-08-01.md` | `BATTLE_SINGLE_ENEMY_FOCUS_01_STATE.json` | `BATTLE_SINGLE_ENEMY_FOCUS_01_QUICK_BENCHMARK_2026-08-01.md` |
+| `GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01` | `BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md` | `BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_STATE.json` | `BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_QUICK_BENCHMARK_2026-08-01.md` |
+| `GM-BATTLE-TIME-FLOW-01` | `BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md` | `BATTLE_TIME_FLOW_01_STATE.json` | `BATTLE_TIME_FLOW_01_QUICK_BENCHMARK_2026-08-01.md` |
+| `GM-BATTLE-RULES-01` | `BATTLE_RULES_01_APPROVAL_2026-08-01.md` | `BATTLE_RULES_01_STATE.json` | `BATTLE_RULES_01_QUICK_BENCHMARK_2026-08-01.md` |
 
-`docs/superpowers/plans/2026-07-29-magic-writing-input-validation-artifact.md`
+## 6. Base v9.3 Router
 
-제품 구현과 아트 정본을 만들지 않고 Android 저충실도 터치 세션 패킷을 준비할 수 있다. 실제 사람 세션·기기·성능·접근성 결과는 실행 전 `NOT_RUN`을 유지한다.
+```text
+skills/SKILL_REGISTRY.json
+→ skills/PROJECT_BASE_ADAPTER.json
+→ tools/generate_project_operating_views.py
+→ PROJECT_SKILL_SNAPSHOT.json
+→ BASE_V9_ADAPTER.json
+→ PROJECT_BASE_SKILL_ADAPTER.json
+→ tests/test_base_v9_adoption.py
+→ GitHub Actions
+```
+
+Generated View 직접 편집 금지.
+
+## 7. Google Sheet
+
+- Spreadsheet ID: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`.
+- 27개 필수 탭.
+- 역할: `USER_FACING_GDD_WORKSPACE`.
+- 승인 변경은 같은 Decision ID로 GitHub Authority와 즉시 동기화.
+- 필수 범위: `02_현재_확정결정`, 관련 Domain, `04_누락_충돌_감사`, `99_변경이력`.
+- Gate 변경 시 `00`, `01`, `05`, `10`, `90`도 갱신.
+
+## 8. Legacy
+
+| 자료 | 역할 |
+|---|---|
+| v6·v8 Vertical Slice 계약 | `LEGACY_REFERENCE_INPUT / SUPERSEDED_COMPATIBILITY` |
+| `Spell` 저장소명 | `LEGACY_ALIAS` |
+| 이전 generic dark fantasy·기술 Dashboard 이미지 | `REJECTED_NOT_AUTHORITY` |
+| 기존 P0 Godot 기술 명세 | `SUPPORTING_TECHNICAL_APPENDIX_ONLY` |
+| Android Touch 연구 | `REFERENCE_CANDIDATE / NOT_PC_RUNTIME_VALIDATED` |
+
+## 9. 다음 Gate
+
+```text
+ASSET-SPEC-01
+→ BOSS-PHASE-01·Grimoire/Main 파생 화면
+→ AUDIO-DIRECTION-01
+→ 통합 검수
+→ Codex Plan 승인·기술 검수
+→ 구현
+```
+
+## 10. 검증 경계
+
+```text
+GODOT_PROJECT = NOT_STARTED
+PRODUCT_CODE_SCENE_RESOURCE_DATA = NOT_FOUND
+RUNTIME_VALIDATION = NOT_RUN
+PC_INPUT_VALIDATION = NOT_RUN
+MOBILE_VALIDATION = NOT_RUN
+HUMAN_PLAYTEST = NOT_RUN
+```

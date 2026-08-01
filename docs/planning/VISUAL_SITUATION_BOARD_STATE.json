@@ -1,0 +1,140 @@
+{
+  "schema_version": 5,
+  "decision_id": "GM-VISUAL-SITUATION-BOARD-WORKFLOW-01",
+  "project_visual_board_id": "GR-VISUAL-SITUATION-BOARD-01",
+  "art_style_decision_id": "ART-STYLE-01",
+  "trace_id": "GR-TRACE-ART-STYLE-01-APPROVAL",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "repository": "alsdmlals4-eng/GRIMOIRE-",
+  "branch": "agent/grimoire-v93-canon",
+  "pull_request": 22,
+  "workflow_status": "APPROVED_PROJECT_WORK_PRINCIPLE",
+  "primary_artifact_type": "VISUAL_FIRST_SITUATION_BASED_INGAME_SCREEN_BOARD",
+  "visual_board_status": "APPROVED_LOCKED_REFERENCE_BOARD",
+  "art_style_status": "APPROVED_A_MODIFIED",
+  "approved_at": "2026-07-31T21:58:00+09:00",
+  "approved_by": "USER",
+  "primary_questions": [
+    "WHAT_DOES_THE_IMPLEMENTED_PROJECT_LOOK_LIKE",
+    "HOW_DO_THE_REQUIRED_SCREENS_LOOK",
+    "HOW_DO_CORE_SITUATIONS_CHANGE_THE_SCREEN",
+    "WHAT_IS_THE_PROJECT_UI_UX_DIRECTION"
+  ],
+  "approved_reference": {
+    "status": "LOCKED",
+    "caption": "추천 확정안 A (수정): 필드 SD + 대화 반신 + 별도 전투 화면",
+    "library_path": "/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png",
+    "library_file_id": "file_0000000061bc81fa93d8b1b30d553943",
+    "library_node_id": "libfile_b61a5d166df48191b249a132142dba84",
+    "width_px": 662,
+    "height_px": 455,
+    "sha256": "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a",
+    "manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
+    "approval_document": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "source_edit": "PROHIBITED",
+    "source_regeneration": "PROHIBITED"
+  },
+  "approved_screen_set": [
+    "SCHOOL_EXPLORATION_AND_FREE_SCHEDULE_FIELD_SD",
+    "HALF_BODY_DIALOGUE_WITH_COMPANION",
+    "NON_BATTLE_GLYPH_WRITING_OVERLAY",
+    "SEPARATE_FIXED_THREE_QUARTER_TACTICAL_BATTLE",
+    "BATTLE_GLYPH_WRITING_OVERLAY",
+    "BATTLE_RESULT_AND_RETURN_TO_ORIGINAL_SCENE",
+    "PROTAGONIST_AND_COMPANION_DESIGN_KEYS",
+    "CLASS_EXAM_FESTIVAL_FIELD_PRACTICUM_BACKGROUND_VARIANTS",
+    "LANDSCAPE_16_9_UI_LAYOUT"
+  ],
+  "evidence_tags": [
+    "CURRENT",
+    "INFERRED",
+    "PROPOSED",
+    "PLACEHOLDER"
+  ],
+  "evidence_tag_policy": "REQUIRED_FOR_FUTURE_DERIVATIVE_BOARDS_BUT_NOT_OVERLAID_ON_LOCKED_SOURCE",
+  "source_lock_contract": {
+    "edit": "PROHIBITED",
+    "crop_as_replacement": "PROHIBITED",
+    "text_replacement": "PROHIBITED",
+    "panel_relayout": "PROHIBITED",
+    "color_change": "PROHIBITED",
+    "regeneration": "PROHIBITED",
+    "derivative_work": "SEPARATE_FILES_ONLY_AFTER_ART_BIBLE",
+    "override": "EXPLICIT_USER_APPROVAL_REQUIRED"
+  },
+  "adversarial_review": {
+    "locked_board_user_approval": "PASS",
+    "screen_first_not_technical_report": "PASS",
+    "project_identity_preserved": "PASS",
+    "field_dialogue_writing_battle_result_sequence_visible": "PASS",
+    "character_and_companion_consistency": "PASS",
+    "screen_and_ui_readability": "REFERENCE_LEVEL_PASS",
+    "runtime_ux_validation": "NOT_RUN"
+  },
+  "previous_workflow": {
+    "decision_id": "GM-SITUATION-SCREEN-WORKFLOW-01",
+    "role": "SUPPORTING_TECHNICAL_APPENDIX_ONLY"
+  },
+  "previous_spec": {
+    "decision_id": "GM-SITUATION-SCREEN-SPEC-01",
+    "role": "SUPPORTING_TECHNICAL_APPENDIX_ONLY",
+    "status": "RETAINED_NOT_PRIMARY_VISUAL_ARTIFACT"
+  },
+  "previous_generated_visuals": {
+    "status": "REJECTED_NOT_AUTHORITY",
+    "reasons": [
+      "DIVERGED_FROM_EXISTING_GRIMOIRE_GAME_COMPOSITION",
+      "GENERIC_DARK_FANTASY_INVESTIGATION_REINTERPRETATION",
+      "TECHNICAL_DASHBOARD_DOMINATED_SCREEN_VISUALS",
+      "EXISTING_MAGIC_ACADEMY_CHARACTER_COMPANION_AND_SCREEN_LANGUAGE_NOT_PRESERVED"
+    ]
+  },
+  "future_derivative_board_policy": {
+    "source_must_remain_unchanged": true,
+    "new_board_required_for_new_detail": true,
+    "same_protagonist_and_companion_keys": true,
+    "same_field_dialogue_battle_relationship": true,
+    "art_bible_required_before_final_asset_detail": true
+  },
+  "authority": {
+    "work_order": "docs/workflows/PROJECT_VISUAL_SITUATION_SCREEN_BOARD_WORK_ORDER.md",
+    "latest_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md",
+    "art_approval": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "art_state": "docs/planning/ART_STYLE_01_STATE.json",
+    "locked_reference_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
+    "sync_receipt": "docs/planning/sync/GR-APPROVE-ART-STYLE-01.md",
+    "sync_receipt_commit": "5300fee3189e3b7635350cb82695523ad1bb9161"
+  },
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "status": "VERIFIED_BY_READBACK",
+    "verified_at": "2026-07-31T22:10:00+09:00",
+    "readback": "PASS",
+    "ranges": [
+      "01_작업순서!A3:J3",
+      "01_작업순서!A10:J10",
+      "02_현재_확정결정!A7:J7",
+      "02_현재_확정결정!A17:J17",
+      "03_근거_라이브러리!A7:I7",
+      "04_누락_충돌_감사!A11:H11",
+      "05_GDD_요약!A6:H6",
+      "05_GDD_요약!A10:H10",
+      "60_UX_UI_접근성!A8:H9",
+      "70_아트_오디오_에셋!A6:H8",
+      "71_이미지기획_생성목록!A7:H7",
+      "72_이미지검수_승인로그!A3:H3",
+      "80_데모_버티컬슬라이스_플레이테스트!A4:H4",
+      "80_데모_버티컬슬라이스_플레이테스트!A6:H6",
+      "99_변경이력!A11:H11"
+    ]
+  },
+  "next_product_gate": "ART-BIBLE-01",
+  "asset_spec_gate": "BLOCKED_BY_ART_BIBLE",
+  "implementation_authority": "NONE",
+  "codex": "BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_INTEGRATED_REVIEW",
+  "godot": "NOT_STARTED",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sync_status": "APPROVED_LOCKED_REFERENCE_SYNCED_TO_WORKING_BRANCH",
+  "main_sync": "PENDING_PR_MERGE"
+}

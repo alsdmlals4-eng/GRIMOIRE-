@@ -1,273 +1,245 @@
-# 스펠 개발 게이트
+# GRIMOIRE 개발·기획 게이트
 
-- 책임: 프로젝트 허브·프로덕션·통합검수
-- 마지막 검토일: 2026-07-27
-- 기준 브랜치: `gpt/planning-spell-20260725`
-- 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
-- Gate 1: `APPROVED`
-- 프로젝트 코어: `CORE_CONFIRMED`
-- 실행 프로필: `PLANNING_ONLY_PROFILE`
-- Work Mode: `PLAN`
-- Gate 2: `ENTERED_PLANNING_ONLY_VISUAL_PREPRODUCTION`
-- 적대적 검토 루프 02: `PASS_WITH_CORRECTIONS`
-- 시각 표현: `LANDSCAPE_HYBRID_2D_WITH_SEPARATE_TACTICAL_BATTLE_CONFIRMED`
-- 캐릭터 표현: `SD_FIELD_HALF_BODY_DIALOGUE_CONFIRMED`
-- 다음 Greenlight: `ART-STYLE-01`
+## 현재 상태
 
-> 현재 승인은 콘셉트·범위·화면·캐릭터·소환수 장기 방향을 확정한다. 구현·런타임·성능·접근성·플레이테스트 통과를 의미하지 않는다.
+```yaml
+project: "GRIMOIRE: 세계를 다시 쓰는 법"
+baseline_date: 2026-08-01
+product_stage: DEMO_FIRST_VERTICAL_SLICE
+execution_profile: PLANNING_ONLY_PROFILE
+planning: APPROVED
+art_style_01: APPROVED_A_MODIFIED_LOCKED
+art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
+battle_screen_layout_01: APPROVED
+battle_single_enemy_focus_01: APPROVED
+battle_active_timer_01: APPROVED
+battle_time_flow_01: APPROVED
+battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
+next_product_gate: ASSET-SPEC-01
+parallel_design_gate: BOSS-PHASE-01
+implementation_ready: false
+codex: BLOCKED
+```
 
----
+현재 승인은 기획·시각 규칙·전투 구조를 확정한다. 구현·성능·접근성·사람 플레이 통과를 의미하지 않는다.
 
-## 1. 현재 제품 경로
+## 1. 전체 경로
 
 ```text
-Gate 1 최종 승인 — 완료
-→ Gate 2 적대적 검토 루프 01 — 완료
-→ 가로형 하이브리드 2D — 완료
-→ 캐릭터 표현·별도 전술 전투장 — 완료
-→ 소환수 성장·형상·탑승 장기 방향 — 완료
-→ 적대적 검토 루프 02·정본 복구 — 완료
-→ ART-STYLE-01
-→ ART-BIBLE-01
-→ ASSET-SPEC-01
+Gate 1 콘셉트·Vertical Slice — 완료
+→ 기획 완결·벤치마킹·적대적 검토 — 완료
+→ ART-STYLE-01 — 완료
+→ ART-BIBLE-01 — 완료
+→ 전투 화면·단일 강적·Active Timer·Time Flow·Battle Rules — 완료
+→ ASSET-SPEC-01 — 현재 Gate
+→ BOSS-PHASE-01·Grimoire/Main 파생 화면 — 병행
 → AUDIO-DIRECTION-01
-→ 사용자 승인 후 자산 제작
-→ VERTICAL_SLICE_FULL_PROFILE 전환 재검토
+→ 기획·아트 통합 검수
+→ 사용자 Codex Plan 승인
 → Codex read-only Plan
-→ Validation-First Vertical Slice 구현
+→ 기술 검수
+→ 실행 프로필 전환
+→ Validation-First 구현
 → QA·외부 플레이테스트
 ```
 
-`GM-VS-PROFILE-01`은 폐기하지 않고 시각·사운드 프리프로덕션 이후로 이동한다.
+## 2. 완료된 기획 Gate
 
-### CORE_POC
+### Gate 1·Vertical Slice
 
-- 상태: `REMOVED_BY_USER_DECISION`
-- 검증 책임: `ABSORBED_INTO_VERTICAL_SLICE`
-- 다른 이름으로 재도입: `FORBIDDEN`
+상태: `APPROVED`.
 
----
+- 플레이어 약속과 비타협 코어.
+- 수업·시험·축제·현장·귀환.
+- 자유일정 3회.
+- 목표 45~50분, 콘텐츠 상한 53분, 하드 상한 60분.
+- 글자 `흐름 / 집중 / 분산`.
+- 직접 작성 성공 7회, 복구 포함 목표 상한 10회.
 
-## 2. Gate 1 — CONCEPT_APPROVAL
+### Art Style
 
-상태: `APPROVED`
+상태: `APPROVED_A_MODIFIED_LOCKED`.
 
-승인 범위:
+- 잠긴 기준 이미지 SHA-256: `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`.
+- 원본 수정·재생성 금지.
 
-```text
-플레이어 약속
-+ 비타협 프로젝트 코어
-+ 세일즈포인트 3개
-+ 2계층 소환수
-+ 수업·시험·축제·현장실습
-+ 자유일정 3회
-+ 공통 Situation Challenge
-+ 시간·저장·UI·범위 상한
-+ M0~M4 Validation-First 순서
-```
+### Art Bible
 
-승인 원본:
+상태: `APPROVED_DUAL_STANDARD_ART_BIBLE`.
 
-- `docs/planning/GATE_1_FINAL_APPROVAL.md`
-- `docs/planning/GATE_1_VERTICAL_SLICE_CONTRACT.md`
+책임 원본: `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`.
 
----
+- Soft Storybook 배경 + Anime Cel 캐릭터.
+- Navy/Gold UI + Blue Glyph.
+- 고정 주인공 1명·전투 초상 1개.
+- 동반 정령·수호 상태 배지.
+- 우측 작성 Panel 축소→확장.
+- Grimoire 화면 우선 파생.
 
-## 3. Gate 2 — PROTOTYPE_AND_VERTICAL_SLICE
+## 3. 완료된 전투 Gate
 
-상태: `ENTERED_PLANNING_ONLY_VISUAL_PREPRODUCTION`
+### GM-BATTLE-SCREEN-LAYOUT-01
 
-### 3.1 적대적 검토 루프 02
-
-- 보고서: `docs/planning/GATE_2_ADVERSARIAL_REVIEW_LOOP_2026-07-27B.md`
-- 판정: `PASS_WITH_CORRECTIONS`
-- 코어·Vertical Slice 세션: `NO_CHANGE`
-- 결정 기억 누락: `P0 MUST_FIX / FIXED`
-- 같은 화면 전투 충돌: `P0 MUST_FIX / FIXED`
-- 메인 소환수 성장 범위: `LONG_TERM_CONFIRMED / SLICE_REDUCED`
-- 전투 소환수 4역할: `REFERENCE_CANDIDATE`
-
-### 3.2 화면·캐릭터·전투 표현 — 완료
-
-책임 원본:
-
-- `docs/planning/GATE_2_VISUAL_PRESENTATION_SYSTEM.md`
-- `docs/planning/GATE_2_CHARACTER_PRESENTATION_SYSTEM.md`
+상태: `APPROVED_LAYOUT_DIRECTION`.
 
 ```text
-학교·자유일정·비전투 탐색
-= 가로형 고정·장면 기반 3/4 필드
-= 3.5~4등신 SD 캐릭터
-
-대화
-= 기존 장소 배경 위 반신 일러스트
-
-전투
-= 별도 고정 3/4 전술 전투장
-= 필드 SD 비율·기본 골격 재사용
-
-마법 작성
-= 현재 화면 감속·암전 + 작성 오버레이
-
-전투 종료
-= 결과를 반영한 필드 복귀
+상단·중앙 적·환경
++ 좌측 하단 주인공 초상
++ 좌측 보조 동반·수호 배지
++ 우측 직접 작성
 ```
 
-보호:
+### GM-BATTLE-SINGLE-ENEMY-FOCUS-01
 
-- 기준 구도 16:9, 18:9~20:9 좌우 확장
-- 자유 이동형 대형 학교 제외
-- 작은 고정 전투장
-- 필드와 전투의 장소·목표·환경 인과 유지
-- 작성 중 대상·위험·지원 상태 유지
-- 정확한 감속 비율과 내부 해상도는 후속 검증·규격에서 확정
+상태: `APPROVED_ENCOUNTER_DIRECTION`.
 
-### 3.3 소환수 성장·형상·탑승 — 장기 방향 완료
+- 강한 적 1개체.
+- 잡몹·웨이브 제외.
+- 일반 적 단일 페이즈.
 
-책임 원본:
+### GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01
 
-- `docs/planning/GATE_1_SUMMON_COMPANION_SYSTEM.md`
-- `docs/planning/GATE_2_SUMMON_GROWTH_AND_FORM_SYSTEM.md`
+상태: `APPROVED_CORE_BATTLE_FLOW`.
 
-확정:
+- 적 주기공격.
+- `[구현]` 후 마나 검증·즉시 시전.
+- 보스만 다중 페이즈.
 
-- 메인 동반 + 전투 보조 2계층
-- 원소·정령 중심 시각 언어
-- 메인 동반 장기 4단계 성장
-- 해금된 이전 형상 선택
-- 실제 성장과 표시 형상 분리
-- 장기 탑승 기능
-- Vertical Slice는 초기 형상 1개와 수호/견제 보조 1체
+### GM-BATTLE-TIME-FLOW-01
 
-후행:
+상태: `APPROVED_TIME_FLOW_DIRECTION`.
 
-- 메인 2~4단계 전체 런타임
-- 형상 선택 UI
-- 탑승
-- 전투 보조 소환수 4역할 전체·성장·탑승
+- 판단·작성 중 진행.
+- 시스템 해결 중 정지.
+- 선택형 작성 감속.
+- 동시 해결 금지·먼저 승인된 Event 우선.
 
-### 3.4 시각·사운드 프리프로덕션 남은 조건
+### GM-BATTLE-RULES-01
 
-1. `ART-STYLE-01` 그림체 후보 이미지 비교·사용자 선정
-2. `ART-BIBLE-01` 색·선·명암·재질·실루엣·배경·FX·접근성
-3. `ASSET-SPEC-01` 자산 수량·상태·변형·기술 규격·내부 해상도
-4. `AUDIO-DIRECTION-01` 사운드 정체성·우선순위·무음 대체
-5. Asset License Ledger 후보 등록과 승인
+상태: `APPROVED_SITUATION_RESOLUTION_RULES`.
 
-### 3.5 대량 자산 제작 금지 조건
+- 적 HP 0 처치 대신 불안정도 0 진정·해결.
+- 플레이어 HP 0 또는 선언된 치명적 환경 붕괴가 패배.
+- 환경 보존도·부작용·남은 HP가 결과 품질을 결정.
+- 수호 소환수는 다음 공격 피해를 완화하지만 Timer·작성·판단을 대행하지 않음.
 
-- 그림체 기준 샷 사용자 승인 없음
-- Art Bible 미승인
-- 내부 해상도·안전 영역·자산 예산 미확정
-- 캐릭터·배경·UI·효과·사운드 기술 규격 미확정
-- Audio Direction 미승인
+## 4. ASSET-SPEC-01
 
-`ART-STYLE-01`의 비교용 소수 이미지 제작은 허용한다.
+상태: `CURRENT_PRODUCT_GATE`.
 
-### 3.6 구현 시작 조건
+확정 대상:
 
-1. `GM-VS-PROFILE-01` 사용자 승인
-2. 실행 프로필 `VERTICAL_SLICE_FULL_PROFILE` 전환
-3. Codex read-only Plan 검수
-4. 구현 브랜치·검증 매트릭스·완료 기준 확정
-5. Godot 버전·렌더러·Android 대상 기기 확정
-6. Save Schema v1과 Situation Challenge 데이터 계약
-7. Android·접근성·성능 검증 매트릭스
-8. Balance Tuning Backlog
+- 내부 해상도·16:9 Safe Frame·UI Scale.
+- 캐릭터 SD·반신·초상·표정 상태 수량.
+- 적·동반 정령·수호 소환수 상태·Animation 수량.
+- 학교·현장 배경과 상태 변형 수량.
+- Writing Panel·Grimoire·Main·Result UI Asset 수량.
+- Glyph·Attack Warning·Instability·Result FX 상태.
+- 파일 형식·명명·폴더·Import·License 규칙.
+- Solo Production 제작량 상한.
 
-현재 판정: `IMPLEMENTATION_NOT_READY`
+통과 조건:
 
----
+1. Art Bible 규칙과 수량이 일치.
+2. 잠긴 원본을 편집하지 않음.
+3. 일반 적 1체·단일 페이즈·주인공 초상 1개 범위를 보호.
+4. Grimoire·Main 파생 화면에 필요한 최소 Asset을 포함.
+5. 실제 Font·외부 Asset은 License Ledger에 기록.
+6. 사용자의 승인.
 
-## 4. 승인된 Vertical Slice 계약
+## 5. 병행 설계 Gate
+
+### BOSS-PHASE-01
+
+상태: `NEXT_GAME_DESIGN_GATE`.
+
+확정 대상:
+
+- 보스 페이즈 수.
+- 페이즈 전환 시 불안정도·Attack Timer·작성 Draft 유지.
+- 페이즈별 공격 규칙과 환경 변화.
+- 회복·리셋·반복 악용 방지.
+- 일반 적과 구분되는 제작량 상한.
+
+### GRIMOIRE-SCREEN-01
+
+상태: `PENDING_DERIVATIVE_BOARD`.
+
+- 상황·글자·의도·결과·부작용·발견 관리.
+- 자동 최적 추천·자동 시전 금지.
+
+### MAIN-SCREEN-01
+
+상태: `PENDING_AFTER_GRIMOIRE_SCREEN`.
+
+- `새 게임 / 이어하기 / 설정` 중심 최소 구조.
+- 수집형 로비 UI 금지.
+
+### NAMING-PASS-01
+
+상태: `NONBLOCKING_PENDING`.
+
+- 세계 명명 규칙.
+- 교수·동급생·동반 정령 공식 이름.
+- 이름은 Art Bible·Asset Spec을 차단하지 않음.
+
+## 6. AUDIO-DIRECTION-01
+
+상태: `PENDING_AFTER_ASSET_SPEC`.
+
+- 학교·시험·축제·현장·귀환의 청각 정체성.
+- 획·후보·확정·시전·실패 원인 SFX.
+- 적 공격 예고·Time State·Instability·Result 피드백.
+- 무음 대체와 License 우선순위.
+
+## 7. 통합 검수
+
+상태: `BLOCKED_BY_ASSET_SPEC_AUDIO_AND_DERIVATIVE_SCREENS`.
+
+확인:
+
+- Glyph·대상·위험 판독성.
+- Art Bible과 Asset 수량 일치.
+- 46/53/60분 시간 계약.
+- PC 입력·UI 일치.
+- Mobile 후속 적응 가능성.
+- 단일 강적이 HP 스펀지로 변질되지 않음.
+- 수호 소환수가 주문 설계보다 복잡하지 않음.
+- Grimoire가 자동 주문 Stock으로 변질되지 않음.
+
+## 8. Codex Plan 진입
+
+상태: `BLOCKED`.
+
+필수 조건:
+
+1. `ASSET-SPEC-01` 승인.
+2. `AUDIO-DIRECTION-01` 승인.
+3. Grimoire/Main 파생 화면 검수.
+4. 기획·아트 통합 검수 통과.
+5. Base v9.3 Adapter·Snapshot·CI 정합화.
+6. Godot 버전·Renderer·플랫폼 범위 재확인.
+7. 사용자의 Codex Plan 승인.
+
+그 뒤에만 Codex read-only Plan을 작성한다.
+
+## 9. PLAYTEST_TUNING_REQUIRED
+
+- 공격 간격·피해·HP·마나.
+- 불안정도 변화량.
+- 수호 완화율·사용 횟수.
+- 환경 결과 임계값.
+- 작성 감속 최종값·복귀 유예.
+- 인식 허용치·보정·Latency.
+
+## 10. 검증 경계
 
 ```text
-첫 수업·교내 연습
-→ 자유일정 A
-→ 첫 실기시험
-→ 자유일정 B
-→ 학교축제
-→ 자유일정 C
-→ 첫 현장실습
-→ 귀환·마도서 기록
+GODOT_PROJECT = NOT_STARTED
+PRODUCT_CODE_SCENE_RESOURCE_DATA = NOT_FOUND
+RUNTIME_VALIDATION = NOT_RUN
+PC_INPUT_VALIDATION = NOT_RUN
+MOBILE_VALIDATION = NOT_RUN
+PERFORMANCE_VALIDATION = NOT_RUN
+HUMAN_PLAYTEST = NOT_RUN
 ```
-
-- 목표 `45~50분`, 상한 `60분`
-- 첫 5분 직접 작성
-- 15분 안에 메인·보조 이해
-- 자유일정 `휴식 / 준비 / 교류`
-- 세션 경계 중심 최소 저장
-
-내부 구현 순서:
-
-```text
-M0 입력·피드백
-→ M1 공통 Situation Challenge
-→ M2 학교 세션
-→ M3 현장실습
-→ M4 저장·복귀·최종 연출
-```
-
-M0~M4는 CORE_POC가 아니다.
-
----
-
-## 5. 구현 중단 조건
-
-- 입력 실패와 설계 실패를 구분하지 못함
-- 직접 작성 피로가 핵심 경험을 방해
-- 공통 문제 계약으로 두 번째 문제를 추가할 수 없음
-- 세션별 전용 프레임워크가 필요해짐
-- 첫 완주가 60분을 구조적으로 초과
-- 자유일정·관계 제작량이 핵심 세션보다 커짐
-- 보조 소환수 운용이 주문 설계보다 복잡
-- 별도 전투 화면이 필드와 무관한 전투 인스턴스로 느껴짐
-- 필드·대화·전투 캐릭터 자산이 Asset Budget 초과
-- 메인 소환수 성장·탑승이 초기 Slice 핵심보다 먼저 구현됨
-- Android 주요 화면비에서 작성 영역이 성립하지 않음
-- 최종 아트·FX가 글자 궤적·위험·대상을 가림
-
----
-
-## 6. 결정 기억 게이트
-
-새 질문 전 다음을 확인한다.
-
-```text
-START_HERE
-→ ACTIVE_CONTEXT
-→ CURRENT_CONFIRMED_DECISIONS
-→ DECISION_LOG와 최신 Addendum
-→ 주제별 책임 원본
-```
-
-이미 확정된 결정을 기억 확인 목적으로 다시 질문하면 `PROCESS_REGRESSION`으로 판정한다.
-
-질문 허용 상태:
-
-- `USER_DECISION_REQUIRED`
-- `UNRESOLVED`
-- `PLAYTEST_TUNING_REQUIRED`
-- `ASSET_SPEC_REQUIRED`
-- `TECHNICAL_REVIEW_PROPOSAL`
-
----
-
-## 7. 현재 검증 경계
-
-- Godot 코드·Scene·Resource·게임 데이터 없음
-- Codex 미실행
-- 대량 이미지·사운드 자산 미착수
-- 외부 자산·폰트·사운드 라이선스 조사 `NOT_RUN`
-- 그림체·Art Bible·Asset Specification·Audio Direction 미확정
-- 런타임·Android·접근성·성능·플레이테스트 `NOT_RUN`
-- PR은 Draft 유지
-- 병합하지 않음
-
----
-
-## 8. 다음 Greenlight
-
-`ART-STYLE-01`
-
-승인된 필드 SD·대화 반신·별도 전투장·원소 정령 소환수 구성을 동일하게 사용하여 그림체 후보를 예상 인게임 이미지로 비교한다.

@@ -2,18 +2,19 @@
 
 ```yaml
 project: GRIMOIRE: 세계를 다시 쓰는 법
-sheet_status: PROJECT_SHEET_CONFIGURED
-spreadsheet_url: https://docs.google.com/spreadsheets/d/19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM/edit
 spreadsheet_id: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
 workbook_role: USER_FACING_GDD_WORKSPACE
-sheet_edit_policy: PROPOSED_SHEET_CHANGE
-base_commit: c987647d01ad2baa028a16e03d85ddfc1572a727
-last_verified_at: 2026-07-29
+sheet_edit_policy: IMMEDIATE_APPROVED_CANON_SYNC
+canon_sync_policy_id: GM-CANON-SYNC-01
+required_tabs: 27
+last_full_audit: 2026-08-01
+working_branch_sync: IN_PROGRESS
+main_sync: PENDING_PR_MERGE
 ```
 
-Google Sheets는 마법 작성·학교 일정·전술 전투·소환수·미니게임·서사의 전체 흐름을 사용자가 확인·수정하고, AI가 GitHub 정본·실제 구현과 함께 읽는 GDD 작업면이다. Sheet 단독 값으로 승인·구현·검증 완료를 확정하지 않는다.
+Sheet는 사용자가 기획을 확인·수정하는 작업면이다. GitHub 승인 책임 원본, 계획 JSON, 실제 구현과 함께 읽으며 Sheet 단독 값으로 승인·구현·검증 완료를 확정하지 않는다.
 
-## 검증된 탭
+## 1. 필수 탭
 
 - `00_프로젝트_허브`
 - `01_작업순서`
@@ -43,19 +44,93 @@ Google Sheets는 마법 작성·학교 일정·전술 전투·소환수·미니�
 - `98_Base_반영후보`
 - `99_변경이력`
 
-## 프로젝트 책임 매핑
+## 2. 현재 핵심 상태
 
-| 의미 구조 | 프로젝트 책임 원본 |
+```yaml
+planning: APPROVED
+art_style_01: APPROVED_A_MODIFIED_LOCKED
+art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
+battle_screen_layout_01: APPROVED
+battle_single_enemy_focus_01: APPROVED
+battle_active_timer_01: APPROVED
+battle_time_flow_01: APPROVED
+battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
+next_product_gate: ASSET-SPEC-01
+implementation: NOT_STARTED
+runtime_validation: NOT_RUN
+human_validation: NOT_RUN
+```
+
+## 3. 책임 매핑
+
+| Sheet 의미 | GitHub 책임 원본 |
 |---|---|
-| 핵심루프 | 학교 일정 → 마법 작성·확인 → 의미 조합 → 상황 검증 → 세계 변화 → 마도서 기록 |
-| Vertical Slice | Gate 1 승인 정본과 Gate 2 시각·전투·소환수 문서 |
-| 미니게임·서사 | `51_미니게임`, `52_글쓰기_서사`와 Situation Challenge 정본 |
-| 아트·이미지 | `ART-STYLE-01`, `docs/GPT_IMAGE_GENERATION_AND_REVIEW_WORKFLOW.md` |
-| 구현 상태 | `IMPLEMENTATION_NOT_STARTED`; 실제 인식 알고리즘 미선택 |
+| 프로젝트 코어·Slice | `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md` |
+| 현재 결정 | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` |
+| 최신 승인 | `docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md` |
+| Art Style | `docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md` |
+| Art Bible | `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md` |
+| 전투 승패·진정 | `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md` |
+| 개발 Gate | `docs/DEVELOPMENT_GATES.md` |
+| 운영 감사 | `docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md` |
+| Base Adapter | `skills/PROJECT_BASE_ADAPTER.json` |
 
-## 동기화 규칙
+## 4. 즉시 동기화 규칙
 
-- GitHub 정본에 없는 사용자 수정은 `PROPOSED_SHEET_CHANGE`로 보존한다.
-- 승인된 변경은 GitHub 책임 원본과 Sheet에 반영한 뒤 양쪽을 재조회한다.
-- 생성 이미지나 simulated 후보는 실제 인식 정확도·지연·런타임 증거가 아니다.
-- `SYNCED`는 GitHub와 Sheet의 값·상태·책임 경로가 모두 일치할 때만 사용한다.
+```text
+Decision ID 확정
+→ GitHub Authority·State·Registry 갱신
+→ Authority Commit
+→ 관련 Sheet 범위 갱신
+→ GitHub·Sheet Readback
+→ Sync Receipt
+→ SYNCED_TO_WORKING_BRANCH
+→ PR 병합
+→ main·Sheet 재검증
+→ SYNCED_TO_MAIN
+```
+
+필수 Sheet 위치:
+
+- `02_현재_확정결정`.
+- 관련 Domain 탭.
+- `04_누락_충돌_감사`.
+- `99_변경이력`.
+
+Gate·단계 변경 시:
+
+- `00_프로젝트_허브`.
+- `01_작업순서`.
+- `05_GDD_요약`.
+- `10_제품방향`.
+- `90_본제작_출시_사업`.
+
+## 5. 상태 계약
+
+| 상태 | 의미 |
+|---|---|
+| `PROPOSED_SHEET_CHANGE` | GitHub 승인 근거 없는 Sheet 단독 편집 |
+| `GITHUB_ONLY` | GitHub 반영, Sheet 실패 |
+| `SHEET_ONLY` | Sheet 반영, GitHub 실패 |
+| `SYNCED_TO_WORKING_BRANCH` | 작업 브랜치 Commit과 Sheet가 같은 Decision ID·값으로 Readback 됨 |
+| `SYNCED_TO_MAIN` | PR 병합 후 main Commit과 Sheet가 다시 일치 |
+| `SYNC_CONFLICT` | 값·상태·책임 경로 충돌 |
+
+## 6. 현재 동기화 대상
+
+Sync Bundle: `GR-SYNC-20260801-05`.
+
+포함:
+
+- `GM-PROJECT-OPERATING-RECONCILIATION-01`.
+- `ART-BIBLE-01`.
+- `GM-BATTLE-RULES-01`.
+- Base v9.3 Adapter·Snapshot·CI 정합화.
+- 27개 Sheet 탭 전수 감사 교정.
+
+## 7. 검증 경계
+
+- Sheet는 실제 Code·Scene·Resource·Asset·Test를 대체하지 않는다.
+- 잠긴 이미지의 예시 이름·수치·파티 수는 자동 정본이 아니다.
+- Prototype 수치와 사람 검증이 없는 상태는 `PLAYTEST_TUNING_REQUIRED / NOT_RUN`이다.
+- 완료 보고에는 Decision ID, GitHub 경로, Commit, Sheet 범위, Readback, 남은 미검증을 포함한다.

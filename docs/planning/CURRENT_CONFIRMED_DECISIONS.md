@@ -1,73 +1,45 @@
-# 스펠 현재 확정 결정 스냅샷
+# GRIMOIRE 현재 확정 결정 스냅샷
 
-## 1. 문서 목적
+## 1. 상태
 
-- 역할: 새 대화·새 작업자가 이미 확정된 내용을 다시 묻지 않도록 하는 단일 복원 지점
-- 제품 단계: `PROTOTYPE_AND_VERTICAL_SLICE`
-- Gate 1: `APPROVED`
-- 프로젝트 코어: `CORE_CONFIRMED`
-- 실행 프로필: `PLANNING_ONLY_PROFILE`
-- 구현: `NOT_STARTED`
-- Codex: `NOT_RUN`
-- 기준 날짜: 2026-07-27
-- 기준 브랜치: `gpt/planning-spell-20260725`
-- 상태: `ACTIVE_CANONICAL_DECISION_SNAPSHOT`
-
-이 문서는 세부 책임 원본을 대체하지 않는다. 이미 승인된 결정을 빠르게 복원하고, 다음 질문이 실제 미확정 사항인지 확인하는 인덱스다.
-
----
-
-## 2. 질문 전 필수 확인 규칙
-
-새로운 기획 질문을 사용자에게 하기 전에 다음 순서로 확인한다.
-
-```text
-START_HERE.md
-→ docs/ACTIVE_CONTEXT.md
-→ 이 문서
-→ docs/planning/DECISION_LOG.md와 최신 Addendum
-→ 질문 주제의 단일 책임 원본
+```yaml
+status: ACTIVE_CANONICAL_DECISION_SNAPSHOT
+project: "GRIMOIRE: 세계를 다시 쓰는 법"
+baseline_date: 2026-08-01
+product_stage: DEMO_FIRST_VERTICAL_SLICE
+execution_profile: PLANNING_ONLY_PROFILE
+work_mode: PLAN
+planning: APPROVED
+art_style_01: APPROVED_A_MODIFIED_LOCKED
+art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
+battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
+next_product_gate: ASSET-SPEC-01
+parallel_design_gate: BOSS-PHASE-01
+implementation: NOT_STARTED
+codex: BLOCKED
+main_sync: PENDING_PR_MERGE
 ```
 
-다음 상태만 사용자 질문 대상으로 허용한다.
+최신 사용자 결정: `docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md`.
 
-- `USER_DECISION_REQUIRED`
-- `UNRESOLVED`
-- `PLAYTEST_TUNING_REQUIRED`
-- `ASSET_SPEC_REQUIRED`
-- `TECHNICAL_REVIEW_PROPOSAL`
-- 명시적인 사용자 재개방 요청
+## 2. 프로젝트 코어
 
-`CONFIRMED`, `APPROVED`, `CORE_CONFIRMED`, `SUPERSEDED` 항목을 기억 확인 목적으로 다시 선택하게 하지 않는다.
+> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
 
----
+비타협:
 
-## 3. 제품 코어
+1. 의미를 가진 마법 글자.
+2. `메인 글자 1개 + 보조 글자 0개 이상`.
+3. 신규·미숙·중요 글자의 직접 작성.
+4. 상황·목표·위험에 따른 주문 변형 판단.
+5. 즉각적이고 설명 가능한 세계 변화.
+6. 입력 실패·문법 실패·상황 설계 실패 분리.
+7. 학습→증명→표현→응용→발견·기록 순환.
 
-### 플레이어 약속
-
-> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 모바일 마법 RPG.
-
-### 최상위 경험
-
-> 마법 글자의 의미를 이해하고 상황에 맞는 주문을 설계해 발견하는 지적 마법 판타지.
-
-### 비타협 코어
-
-1. 의미를 가진 마법 글자
-2. `메인 글자 1개 + 보조 글자 0개 이상`
-3. 신규·미숙·중요 글자의 직접 작성
-4. 상황·목표·위험에 따른 주문 변형 판단
-5. 즉각적이고 설명 가능한 세계 변화
-6. 수업→연습→평가·표현→현장실습→발견·기록→다음 학습 순환
-
----
-
-## 4. Vertical Slice
+## 3. Vertical Slice
 
 ```text
-프롤로그·학교 도착
-→ 첫 수업·교내 연습
+첫 수업·교내 연습
 → 자유일정 A
 → 첫 실기시험
 → 자유일정 B
@@ -75,204 +47,154 @@ START_HERE.md
 → 자유일정 C
 → 첫 현장실습
 → 귀환·마도서 기록
-→ 다음 학기 예고
 ```
 
-보호 결정:
+- 목표 `45~50분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
+- 공통 `Situation Challenge`, 문제마다 유효 해법 2개 이상.
+- 자유일정 `휴식 / 준비 / 교류` 3회.
+- 글자 `흐름 / 집중 / 분산`.
+- 필수 성공 작성 7회, 안내형 복구 포함 목표 상한 10회.
+- 같은 문제의 확인된 글자 Token 재선택 허용.
+- 명시적 시전 전 Undo·취소·재작성은 자원 미소모.
 
-- 첫 완주 목표 `45~50분`, 상한 `60분`
-- 모든 핵심 세션은 공통 `Situation Challenge` 계약 사용
-- 자유일정은 `휴식 / 준비 / 교류`
-- 중요 일정 사이 자유일정 1회
-- 세션 경계 중심 최소 저장
-- 별도 CORE_POC 재도입 금지
-- M0→M1→M2→M3→M4는 Slice 내부 검증 체크포인트
+## 4. 인물·소환수
 
----
+- 주인공: 일반 가정 출신 장학생 신입생, 정답 집착에서 책임 설계자로 성장.
+- 교수: 의미·조건·책임을 가르치며 정답을 대신 제시하지 않음.
+- 동급생: 정석·속도 중심 경쟁자이자 협력자.
+- 메인 동반 정령: 작은 늑대형 원소 정령수, Slice 초기 형상 1개.
+- 전투 보조: 수호형 1체, 글자 작성·조합·대상·시전을 대행하지 않음.
+- 이름은 `NAMING-PASS-01`에서 세계 명명 규칙과 함께 확정하며 현재 Gate를 차단하지 않음.
 
-## 5. 화면·캐릭터·전투 표현
+## 5. 입력·마도서
 
-### 화면 방향과 학교·탐색
+- PC: LMB Drag 작성, Pen 보조.
+- RMB/Esc 취소, Ctrl+Z Undo, R Hold Clear.
+- Click/Wheel/Arrow/Tab 후보 이동, Click/Enter 확정.
+- Gamepad: `DEFERRED / NOT_PROMISED`.
+- 마도서 기록: 상황, 글자·조합, 의도, 결과, 부작용·희생, 발견, 플레이어 명명.
+- 자동 최적 추천·기록 클릭 자동 시전 금지.
 
-- 가로형 `LANDSCAPE`
-- 기준 구도 `16:9`, 확장 대응 `18:9~20:9`
-- 학교·자유일정·비전투 탐색은 고정·장면 기반 3/4 시점
-- 자유 이동형 대형 학교 대신 출입구·핫스폿·장면 단위 이동
-- 학교 장면은 수업·시험·자유일정·축제 상태로 재사용
+## 6. ART-STYLE-01
 
-### 캐릭터 표현 — `GM-CHARACTER-PRESENTATION-01 CONFIRMED`
+```yaml
+status: APPROVED_A_MODIFIED_LOCKED
+selected: Soft Storybook Cel 2D Hybrid A 수정안
+locked_reference_sha256: b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a
+```
+
+원본 수정·재생성·리터치·크롭 대체·Text 교체·Panel 재배치·색 변경 금지.
+
+## 7. ART-BIBLE-01
+
+```yaml
+status: APPROVED_DUAL_STANDARD_ART_BIBLE
+authority: docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md
+next_gate: ASSET-SPEC-01
+```
+
+승인 규칙:
+
+- Soft Storybook Environment + Clean Anime Cel Character.
+- Navy/Gold UI + High-contrast Blue Glyph.
+- 고정 3/4 Field, 같은 장소 Half-body Dialogue, 별도 3/4 Battle, Result 후 Field 복귀.
+- 고정 주인공 1명, 전투 상시 초상 1개.
+- 동반 정령·수호 소환수는 상태 배지와 짧은 Cut-in/FX.
+- Battle Writing Panel은 축소 Rail에서 작성 시 확장.
+- 본문 고딕계, 제목 제한적 세리프계 방향.
+- Grimoire 파생 화면을 Main보다 먼저 설계.
+- 정확한 Pixel·Format·Font·Animation 수량은 Asset Spec에서 확정.
+
+## 8. 전투 화면·조우
+
+### GM-BATTLE-SCREEN-LAYOUT-01
 
 ```text
-필드·학교생활
-= 3.5~4등신 SD 캐릭터
-
-대화
-= 기존 장소 배경 위 반신 일러스트와 대화창
-
-전투
-= 필드와 동일한 SD 비율을 사용하되 전투용 최소 상태 추가
+상단·중앙 = 적·환경 목표·공격 예고
+좌측 하단 = 주인공 초상·HP·마나·상태
+좌측 보조 = 동반 정령·수호 상태 배지
+우측 = 직접 글자·마법진 작성 영역
 ```
 
-필드 SD와 대화 반신은 같은 인물로 즉시 인식되도록 의상·대표색·머리·얼굴 특징을 공유한다.
+아군·수호 소환수 몸체는 전장에 상시 배치하지 않는다.
 
-### 전투 화면 — `GM-BATTLE-PRESENTATION-01 CONFIRMED`
+### GM-BATTLE-SINGLE-ENEMY-FOCUS-01
 
-```text
-필드에서 전투 진입
-→ 별도의 고정 3/4 전술 전투장으로 전환
-→ 상황 관찰·대상 선택·마법 작성·환경 변화
-→ 전투 결과를 반영해 원래 필드 장면으로 복귀
+- Vertical Slice 기본 전투는 강한 적 1개체.
+- 잡몹·웨이브 기본 제외.
+- 일반 적은 단일 페이즈.
+- HP 스펀지 금지; 행동 예고·상태·환경 변화로 깊이 확보.
+
+## 9. 전투 흐름·시간
+
+### GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01
+
+- 적은 일정 시간마다 공격.
+- 플레이어는 작성 후 `[구현]`으로 유효성·마나 검증 뒤 즉시 시전.
+- 마나 부족 시 시전하지 않고 Draft 유지.
+- 일반 적 단일 페이즈, 보스만 다중 페이즈 허용.
+
+### GM-BATTLE-TIME-FLOW-01
+
+- 판단·작성 중 Timer `1.0×` 진행.
+- 선택형 작성 감속 제공; 초기 Prototype 후보 `0.5×`, 최종값 미정.
+- 시전·적 공격·보스 전환·Result 해결 중 `0×` 정지.
+- Pause·Focus Lost·Blocking Tutorial은 정지.
+- 먼저 유효 승인된 Event가 우선하며 동시 해결 금지.
+- 적 공격이 먼저 확정되어도 작성 Draft 유지.
+
+## 10. GM-BATTLE-RULES-01
+
+```yaml
+status: APPROVED_SITUATION_RESOLUTION_RULES
+authority: docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md
 ```
 
-기존의 `필드와 동일 화면에서 전투` 결정은 최신 사용자 결정으로 대체한다.
+- 기본 적에게 일반 HP를 두지 않고 `불안정도` 사용.
+- 상황에 맞는 주문으로 불안정도 0에 도달하면 마지막 시전 결과로 진정·해결.
+- 별도 포획·Finish·두 번째 게이지 없음.
+- 주문 결과 축: 불안정도, 다음 공격 위험, 환경 상태, 부작용·희생.
+- 플레이어 HP 0 또는 Situation이 선언한 치명적 환경 붕괴가 패배.
+- 환경 보존도·남은 HP·부작용·해결 방식이 완전 성공·부분 성공의 결과 품질을 결정.
+- 수호 소환수는 수동 발동해 다음 공격의 피해를 완화하고 Draft를 보호하지만 Timer를 정지하지 않음.
 
-전투장 보호 규칙:
+## 11. Base v9.3 운영
 
-- 작은 고정 전투장
-- 플레이어·적·환경 목표·전투 보조 소환수를 한 화면에서 확인
-- 작성 시 전투장을 감속·암전하고 전용 작성 오버레이 표시
-- 전투 전후 장소 정체성과 환경 변화의 인과를 유지
-- 자유 카메라·대형 전투 맵·복잡한 위치 조작은 초기 Slice에서 제외
-
----
-
-## 6. 2계층 소환수
-
-```text
-메인 동반 소환수
-= 항상 같은 개체가 동행
-= 학습·관계·일상·현장·기록
-
-전투 보조 소환수
-= 위험·전투에서 호출
-= 작성 시간을 확보하는 전술 지원
+```yaml
+release_commit: 30ca6c7b5f93521f0eb0eed42d01437cd43c50ae
+evidence_commit: 462a86db192d23d0f386281a1eb54b0a8cbad62e
+registry_sha256: 9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1
+canonical_adapter: skills/PROJECT_BASE_ADAPTER.json
+generator: tools/generate_project_operating_views.py
 ```
 
-공통 금지:
+- Snapshot·Compatibility View 직접 편집 금지.
+- GitHub·Sheet 승인 정본 즉시 동기화.
+- 작업 브랜치와 main 동기화 상태 분리.
 
-- 글자·회로 작성 대행
-- 메인·보조 글자 자동 선택
-- 자동 주문 설계·정답 제시
-- 소환수만으로 전투 자동 해결
+## 12. 현재 Gate
 
-### 메인 동반 소환수 시각 방향
+| Gate | 상태 |
+|---|---|
+| 기획 | `APPROVED` |
+| Art Style | `APPROVED_A_MODIFIED_LOCKED` |
+| Art Bible | `APPROVED_DUAL_STANDARD_ART_BIBLE` |
+| Battle Rules | `APPROVED_SITUATION_RESOLUTION_RULES` |
+| Asset Spec | `NEXT_PRODUCT_GATE` |
+| Boss Phase | `PARALLEL_DESIGN_GATE` |
+| Grimoire/Main 파생 화면 | `PENDING_AFTER_ART_BIBLE` |
+| Audio Direction | `PENDING_AFTER_ASSET_SPEC` |
+| Codex | `BLOCKED` |
+| Godot 구현 | `NOT_STARTED` |
 
-- `원소 + 정령`을 우선한다.
-- 동물 형상은 사용할 수 있지만 전체 소환수 체계를 동물형으로 고정하지 않는다.
-- 현재 승인된 대표 방향은 신비한 원소 에너지와 문양을 지닌 정령수 계열이다.
-- 늑대형 레퍼런스는 메인 동반자의 유력한 기준이며, 정확한 원소·색·종족·이름은 `ART-STYLE-01` 이후 확정한다.
+## 13. PLAYTEST_TUNING_REQUIRED
 
-### 메인 동반 소환수 성장 — `GM-SUMMON-GROWTH-01 CONFIRMED_DIRECTION`
+- 적 공격 간격·피해량.
+- 플레이어 HP·마나.
+- 불안정도 변화량.
+- 수호 완화율·사용 횟수·재충전.
+- 환경 결과 임계값.
+- 작성 감속 최종값·복귀 유예.
+- 인식 허용치·보정·Latency.
 
-- 장기 방향은 4단계 성장 프레임을 사용한다.
-- 성장할수록 크기·실루엣·원소 표현·문양·위엄이 변한다.
-- 성장 단계는 능력·관계·기억 해금 기준이다.
-- 표시 형상은 플레이어가 해금한 현재 단계 이하에서 자유롭게 선택한다.
-
-예:
-
-```text
-실제 성장 단계 = 3단계
-선택 가능한 표시 형상 = 1 / 2 / 3단계
-실제 능력 = 3단계 기준
-필드 표시 = 플레이어가 선택한 형상
-```
-
-### 탑승
-
-- 메인 동반 소환수의 장기 성장 보상으로 탑승 기능을 둔다.
-- 탑승은 Vertical Slice 초기 범위에 포함하지 않는다.
-- 초기 권장 구현은 연출형 또는 특정 구간형 탑승이다.
-- 하위 형상을 표시 중이어도 탑승 시 전용 탑승 가능 형상으로 자동 전환할 수 있다.
-- 완전 자유 탑승·학교 실내 상시 탑승·모든 장면 대응은 초기 범위에서 제외한다.
-
-### 전투 보조 소환수
-
-확정:
-
-- 메인 동반자와 같은 세계관의 원소·정령 시각 언어 사용
-- 동물·정령수·비인간 정령체 등 실루엣은 역할에 맞게 선택 가능
-- 역할이 외형보다 먼저 읽혀야 함
-- Vertical Slice에서는 `수호` 또는 `견제` 역할 1체만 구현
-
-미확정:
-
-- 공격·견제·수호·보조의 4역할 전체 체계
-- 성장 단계 수
-- 이전 단계 형상 선택 적용 여부
-- 탑승 가능 여부
-- 획득·계약·편성·재화 구조
-
-이미지로 생성된 4역할안은 비교 후보이며, 사용자 승인 전 시스템 확정이 아니다.
-
----
-
-## 7. 이미지·아트 작업 규칙
-
-- 이미지 관련 선택은 가능한 경우 텍스트 설명만 반복하지 않고 비교 이미지·인게임 예상 이미지로 제시한다.
-- 생성된 이미지는 자동으로 최종 자산이나 시스템 확정이 아니다.
-- 상태를 다음처럼 분리한다.
-
-```text
-CONCEPT_EXPLORATION
-VISUAL_REFERENCE_CANDIDATE
-USER_APPROVED_VISUAL_REFERENCE
-ART_BIBLE_APPROVED
-RUNTIME_ASSET_APPROVED
-```
-
-- 현재 승인된 두 번째 인게임 구성 이미지는 `USER_APPROVED_VISUAL_REFERENCE`다.
-- 실제 그림체·색·선·명암·재질·UI 세부는 아직 `ART-STYLE-01`과 `ART-BIBLE-01` 대상이다.
-- 이미지 생성 오류가 나도 사용자에게 동일 요청을 반복 입력하도록 요구하지 않는다. 기존 브리프를 유지한 채 복잡도·한글 텍스트·한 장의 요소 수를 줄여 재시도하고, 실패 원인을 확인할 수 없으면 도구 한계를 명시한다.
-
----
-
-## 8. 적대적 검토 후 범위 보호
-
-### Vertical Slice에 포함
-
-- 필드 SD + 대화 반신의 표현 체계
-- 별도 고정 3/4 전술 전투장
-- 메인 동반 소환수 1체의 초기 형상
-- 전투 보조 소환수 1체의 수호 또는 견제
-- 두 소환수 계층의 역할 구분
-
-### Vertical Slice에서 제외·후행
-
-- 메인 소환수 4단계 전부의 런타임 제작
-- 탑승 기능
-- 전투 소환수 전체 역할군
-- 전투 소환수 진화·형상 선택·탑승
-- 다수 소환수 편성·희귀도·복잡한 성장 경제
-
-성장·형상·탑승은 장기 제품 방향으로 보존하되, 초기 Slice의 핵심 작성·조합 검증보다 먼저 구현하지 않는다.
-
----
-
-## 9. 현재 미확정
-
-- 실제 그림체
-- 주인공·교수·학생의 구체 디자인
-- 메인 동반 소환수의 이름·원소·정확한 종족·각 단계 최종 외형
-- 전투 보조 소환수의 첫 역할이 수호인지 견제인지
-- 전투 보조 소환수의 전체 역할 체계
-- 정확한 내부 렌더 해상도와 자산 픽셀 규격
-- 표정·애니메이션·배경 변형 수량
-- Audio Direction
-- 완전 정지·감속·실시간 최종 시간 규칙
-
----
-
-## 10. 다음 단계
-
-```text
-적대적 검토·정본 복구
-→ ART-STYLE-01 그림체 후보를 인게임 이미지로 비교
-→ ART-BIBLE-01
-→ ASSET-SPEC-01
-→ AUDIO-DIRECTION-01
-→ 승인된 자산 제작
-→ GM-VS-PROFILE-01 재검토
-```
-
-다음 차단 결정: `ART-STYLE-01`
+실행 증거 전에는 위 값을 최종 확정하거나 검증 완료로 표시하지 않는다.

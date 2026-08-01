@@ -1,4 +1,4 @@
-name: Validate Base v9 adoption
+name: Validate Base v9.3 adoption
 on: [pull_request]
 jobs:
   ci-gate:
@@ -7,7 +7,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
+      - run: python tools/generate_project_operating_views.py --check
       - run: python -m unittest tests.test_base_v9_adoption
+      - run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in Path('.').rglob('*.json'):
+              json.loads(path.read_text(encoding='utf-8'))
+          print('json parse pass')
+          PY
   adversarial-gate:
     needs: ci-gate
     runs-on: ubuntu-latest
@@ -16,5 +25,11 @@ jobs:
         with: {fetch-depth: 0}
       - run: |
           git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}" > changed.txt
-          if grep -E '^(src/|scenes/|data/|assets/|addons/|project\.godot$)' changed.txt; then exit 1; fi
-          test -f skills/BASE_V9_ADAPTER.json
+          if grep -E '^(src/|scenes/|data/|assets/|addons/|project\.godot$)' changed.txt; then
+            echo "product implementation changed in planning-only PR"
+            exit 1
+          fi
+          test -f skills/PROJECT_BASE_ADAPTER.json
+          test -f skills/PROJECT_SKILL_SNAPSHOT.json
+          test -f docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md
+          ! grep -R "NEXT ART-STYLE-01" AGENTS.md START_HERE.md docs/ACTIVE_CONTEXT.md docs/planning/CURRENT_CONFIRMED_DECISIONS.md

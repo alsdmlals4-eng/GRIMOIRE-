@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "APPROVED_CORE_BATTLE_FLOW",
+  "approved_at": "2026-08-01T05:26:00+09:00",
+  "approved_by": "USER",
+  "refines": [
+    "GM-BATTLE-SCREEN-LAYOUT-01",
+    "GM-BATTLE-SINGLE-ENEMY-FOCUS-01"
+  ],
+  "benchmark": {
+    "id": "GR-BM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
+    "scale": "QUICK",
+    "status": "COMPLETE",
+    "source_path": "docs/planning/benchmarks/BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_QUICK_BENCHMARK_2026-08-01.md",
+    "commit": "c06cee963e602be700436a2b70a1fd158656ae9f"
+  },
+  "authority": {
+    "source_path": "docs/planning/BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md",
+    "commit": "1e5bf6d8336f3861d9d5fabeac7c5dd5473547ee"
+  },
+  "sync_receipt": {
+    "source_path": "docs/planning/sync/GR-APPROVE-BATTLE-ACTIVE-TIMER-01.md",
+    "commit": "98dff2debacc6782d96d49fc8733e6be6ab742eb",
+    "sheet_readback": "PASS"
+  },
+  "core_contract": {
+    "enemy_default_action": "PERIODIC_ATTACK_ONLY",
+    "enemy_attack_model": "FIXED_OR_DATA_DRIVEN_INTERVAL_TIMER",
+    "enemy_attack_ui": "NEXT_ATTACK_AND_REMAINING_TIME_VISIBLE",
+    "unapproved_enemy_actions": [
+      "DEFENSE",
+      "CHARGE",
+      "SUPPORT"
+    ],
+    "player_action_model": "FREE_SPELL_WRITING_DURING_BATTLE",
+    "cast_trigger": "IMPLEMENT_BUTTON",
+    "cast_execution": "IMMEDIATE_AFTER_VALIDATION",
+    "resource_gate": "MANA_REQUIRED",
+    "insufficient_mana": "BLOCK_CAST_KEEP_WRITING_AND_RECOGNITION_STATE",
+    "regular_battle_phase_count": 1,
+    "boss_multi_phase": "ALLOWED",
+    "regular_enemy_multi_phase": "PROHIBITED",
+    "duplicate_cast_defense": "COMMIT_TOKEN_AND_RESOLUTION_INPUT_LOCK"
+  },
+  "boss_phase_persistence": [
+    "PLAYER_HP",
+    "PLAYER_MANA",
+    "PLAYER_STATUS",
+    "TEMPORARY_GRIMOIRE_RECORD",
+    "CAST_HISTORY"
+  ],
+  "unresolved": [
+    "TIME_FLOW_DURING_WRITING",
+    "ENEMY_ATTACK_INTERVAL_VALUES",
+    "DAMAGE_AND_DEFENSE_RULES",
+    "VICTORY_AND_DEFEAT_CONDITIONS",
+    "BOSS_PHASE_COUNT_AND_ATTACK_PATTERNS",
+    "NUMERIC_BALANCE"
+  ],
+  "next_design_gate": "BATTLE-TIME-FLOW-01",
+  "implementation_authority": "NONE",
+  "godot": "NOT_STARTED",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
+  "main_sync": "PENDING_PR_MERGE"
+}
