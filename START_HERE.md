@@ -19,7 +19,7 @@
 | 병행 설계 | `BOSS-PHASE-01` |
 | 구현 | `NOT_STARTED` |
 | Codex | `BLOCKED` |
-| 정본 동기화 | `WORKING BRANCH / MAIN PENDING` |
+| 정본 동기화 | `SYNCED_TO_MAIN / authority a088252` |
 
 ## 먼저 읽을 문서
 
@@ -33,6 +33,7 @@
 8. `docs/DEVELOPMENT_GATES.md`
 9. `docs/DESIGN_DOCUMENT_REGISTRY.json`
 10. `skills/PROJECT_BASE_ADAPTER.json`
+11. `docs/planning/sync/GR-SYNC-20260801-05-MAIN.md`
 
 ## 현재 플레이어 약속
 
@@ -99,7 +100,15 @@
 - Evidence: `462a86db192d23d0f386281a1eb54b0a8cbad62e`.
 - Registry: `9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1`.
 - Adapter: `skills/PROJECT_BASE_ADAPTER.json`.
-- Generated view check: `python tools/generate_project_operating_views.py --check`.
+- Generated View Check: `python tools/generate_project_operating_views.py --check`.
+
+## 정본 동기화
+
+- Authority PR: `#22`.
+- Authority main Commit: `a088252349bee94cecef94b216c8cc5e0b9162cb`.
+- CI: `ci-gate SUCCESS / adversarial-gate SUCCESS`.
+- Google Sheet 27개 탭 감사 및 main Commit Readback: `PASS`.
+- 상태: `GR-SYNC-20260801-05 / SYNCED_TO_MAIN`.
 
 ## 다음 작업
 
