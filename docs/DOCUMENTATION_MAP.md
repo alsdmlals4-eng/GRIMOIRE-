@@ -4,7 +4,6 @@
 
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
-working_branch: agent/grimoire-v93-canon
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE
 planning: APPROVED
@@ -14,7 +13,8 @@ battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
 next_product_gate: ASSET-SPEC-01
 parallel_design_gate: BOSS-PHASE-01
 implementation: NOT_STARTED
-main_sync: PENDING_PR_MERGE
+canon_sync: SYNCED_TO_MAIN
+authority_main_commit: a088252349bee94cecef94b216c8cc5e0b9162cb
 ```
 
 ## 1. 시작 경로
@@ -30,6 +30,7 @@ README.md
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
 → skills/PROJECT_BASE_ADAPTER.json
+→ docs/planning/sync/GR-SYNC-20260801-05-MAIN.md
 ```
 
 ## 2. 활성 권위
@@ -52,7 +53,8 @@ README.md
 | 승패·피해·진정 | `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md` | `APPROVED_SITUATION_RESOLUTION_RULES` |
 | 벤치마킹 정책 | `docs/planning/PROJECT_BENCHMARKING_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
 | 정본 동기화 정책 | `docs/planning/PROJECT_CANON_SYNC_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
-| 전수 감사 | `docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md` | `ACTIVE_AUDIT_EVIDENCE` |
+| 전수 감사 | `docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md` | `PASS_CORRECTIONS_VERIFIED` |
+| main 동기화 영수증 | `docs/planning/sync/GR-SYNC-20260801-05-MAIN.md` | `SYNCED_TO_MAIN_RECEIPT` |
 | 개발 Gate | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_AUTHORITY` |
 | Design Router | `docs/DESIGN_DOCUMENT_REGISTRY.json` | `ACTIVE_CANONICAL_ROUTER` |
 | Google Sheet 계약 | `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` | `ACTIVE_WORKBOOK_CONTRACT` |
@@ -120,9 +122,8 @@ Generated View 직접 편집 금지.
 - Spreadsheet ID: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`.
 - 27개 필수 탭.
 - 역할: `USER_FACING_GDD_WORKSPACE`.
-- 승인 변경은 같은 Decision ID로 GitHub Authority와 즉시 동기화.
-- 필수 범위: `02_현재_확정결정`, 관련 Domain, `04_누락_충돌_감사`, `99_변경이력`.
-- Gate 변경 시 `00`, `01`, `05`, `10`, `90`도 갱신.
+- Authority main Commit `a088252349bee94cecef94b216c8cc5e0b9162cb` 기록·Readback `PASS`.
+- 상태: `GR-SYNC-20260801-05 / SYNCED_TO_MAIN`.
 
 ## 8. Legacy
 

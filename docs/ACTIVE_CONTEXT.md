@@ -6,7 +6,6 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: agent/grimoire-v93-canon
 primary_platform: PC
 follow_up_platform: Mobile
 engine_baseline_candidate: Godot 4.7.1 stable
@@ -23,8 +22,8 @@ implementation: NOT_STARTED
 codex: BLOCKED
 runtime_validation: NOT_RUN
 human_validation: NOT_RUN
-canon_sync_state: SYNC_IN_PROGRESS_WORKING_BRANCH
-main_sync_state: PENDING_PR_MERGE
+canon_sync_state: SYNCED_TO_MAIN
+authority_main_commit: a088252349bee94cecef94b216c8cc5e0b9162cb
 ```
 
 제품용 `project.godot`, Scene, Script, Resource, 게임 데이터, 런타임 Asset은 없다.
@@ -140,13 +139,16 @@ generator: tools/generate_project_operating_views.py
 
 Snapshot과 Compatibility View는 생성물이며 직접 편집하지 않는다.
 
-## 현재 작업
+## 완료된 운영 작업
 
-1. GitHub·Sheet 전수 Drift 교정.
-2. Base v9.3 Adapter·Snapshot·CI 정합화.
-3. `ART-BIBLE-01`과 `GM-BATTLE-RULES-01` 동기화.
-4. Readback·CI·적대적 검토.
-5. 검증 통과 시 PR #22 병합과 main 재동기화.
+- Base `main` 구조와 v9.3 Release·Evidence Pin 확인.
+- 프로젝트 GitHub·27개 Sheet 탭 전수 감사.
+- 콜드 스타트·Registry·Adapter·Generated View·CI 교정.
+- Art Bible과 상황 해결형 Battle Rules 승인·정본화.
+- PR #22를 main Merge Commit `a088252349bee94cecef94b216c8cc5e0b9162cb`로 병합.
+- CI `ci-gate`·`adversarial-gate` 성공.
+- main 권위와 Google Sheet Readback 성공.
+- 최종 영수증: `docs/planning/sync/GR-SYNC-20260801-05-MAIN.md`.
 
 ## 다음 제품 작업
 
