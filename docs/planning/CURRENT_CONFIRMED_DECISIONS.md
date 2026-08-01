@@ -1,54 +1,28 @@
 # GRIMOIRE 현재 확정 결정 스냅샷
 
-## 1. 문서 상태
+## 1. 상태
 
 ```yaml
 status: ACTIVE_CANONICAL_DECISION_SNAPSHOT
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
-repository: alsdmlals4-eng/GRIMOIRE-
-baseline_date: 2026-07-31
+baseline_date: 2026-08-01
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE
 work_mode: PLAN
-planning_complete: true
+planning: APPROVED
+art_style_01: APPROVED_A_MODIFIED_LOCKED
+art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
+battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
+next_product_gate: ASSET-SPEC-01
+parallel_design_gate: BOSS-PHASE-01
 implementation: NOT_STARTED
-codex: BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_INTEGRATED_REVIEW
-next_product_gate: ART-BIBLE-01
-art_style_status: APPROVED_A_MODIFIED
-visual_board_status: APPROVED_LOCKED_REFERENCE_BOARD
-locked_reference_edit: PROHIBITED
-canon_sync_state: SYNCED_TO_WORKING_BRANCH
-main_sync_state: PENDING_PR_MERGE
+codex: BLOCKED
+main_sync: PENDING_PR_MERGE
 ```
 
-이 문서는 승인된 현재 결정과 미실행 영역을 빠르게 복원하기 위한 스냅샷이다.
+최신 사용자 결정: `docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md`.
 
-## 2. 읽기 순서
-
-```text
-AGENTS.md
-→ START_HERE.md
-→ docs/ACTIVE_CONTEXT.md
-→ 이 문서
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31U.md
-→ docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md
-→ docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md
-→ 주제별 책임 원본
-```
-
-확정된 결정은 기억 확인을 위해 다시 묻지 않는다.
-
-## 3. 프로젝트 바인딩
-
-- 1차 플랫폼: `PC`.
-- 후속 플랫폼: `Mobile`.
-- 엔진 기준 후보: `Godot 4.7.1 stable`.
-- Google Sheet ID: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`.
-- Godot 프로젝트: `NOT_STARTED`.
-- 실제 `project.godot`, `.tscn`, `.gd`, `.tres`: `NOT_FOUND`.
-- Codex: `NOT_AUTHORIZED`.
-
-## 4. 플레이어 약속과 핵심 경험
+## 2. 프로젝트 코어
 
 > 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
 
@@ -59,10 +33,10 @@ AGENTS.md
 3. 신규·미숙·중요 글자의 직접 작성.
 4. 상황·목표·위험에 따른 주문 변형 판단.
 5. 즉각적이고 설명 가능한 세계 변화.
-6. 입력 실패와 주문 설계 실패 분리.
+6. 입력 실패·문법 실패·상황 설계 실패 분리.
 7. 학습→증명→표현→응용→발견·기록 순환.
 
-## 5. 승인된 Vertical Slice
+## 3. Vertical Slice
 
 ```text
 첫 수업·교내 연습
@@ -75,184 +49,152 @@ AGENTS.md
 → 귀환·마도서 기록
 ```
 
-- 목표 중앙값 `45~50분`.
-- 콘텐츠 상한 `53분`.
-- 하드 상한 `60분`.
-- 공통 `Situation Challenge`.
-- 문제마다 유효 해법 2개 이상.
+- 목표 `45~50분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
+- 공통 `Situation Challenge`, 문제마다 유효 해법 2개 이상.
 - 자유일정 `휴식 / 준비 / 교류` 3회.
+- 글자 `흐름 / 집중 / 분산`.
+- 필수 성공 작성 7회, 안내형 복구 포함 목표 상한 10회.
+- 같은 문제의 확인된 글자 Token 재선택 허용.
+- 명시적 시전 전 Undo·취소·재작성은 자원 미소모.
 
-## 6. 승인된 마법·인물·콘텐츠
+## 4. 인물·소환수
 
-### 마법 문법
-
-- 메인: `흐름`.
-- 보조: `집중 / 분산`.
-- 흐름: 방향·경로 변경.
-- 집중: 좁고 강한 정밀 흐름, 과압·손상 위험.
-- 분산: 넓고 안정적인 흐름, 출력·속도 저하.
-- Slice에서 다중 보조·순서 의존·완성 주문 자동 Stock 제외.
-
-### 인물
-
-- 주인공: 일반 가정 출신 장학생 신입생.
-- 성장: 정답 집착 → 책임 있는 설계자.
-- 교수: 의미·조건·책임을 가르치며 정답을 대신 말하지 않음.
+- 주인공: 일반 가정 출신 장학생 신입생, 정답 집착에서 책임 설계자로 성장.
+- 교수: 의미·조건·책임을 가르치며 정답을 대신 제시하지 않음.
 - 동급생: 정석·속도 중심 경쟁자이자 협력자.
-- 메인 동반 정령: 작은 늑대형 원소 정령수 초기 형상.
-- 보조 소환수: 수호형 1체 우선.
+- 메인 동반 정령: 작은 늑대형 원소 정령수, Slice 초기 형상 1개.
+- 전투 보조: 수호형 1체, 글자 작성·조합·대상·시전을 대행하지 않음.
+- 이름은 `NAMING-PASS-01`에서 세계 명명 규칙과 함께 확정하며 현재 Gate를 차단하지 않음.
 
-### Situation Challenge
+## 5. 입력·마도서
 
-| 세션 | 문제 |
-|---|---|
-| 수업 | 불안정한 마력 수로 |
-| 시험 | 취약한 부유 수정구 이송 |
-| 축제 | 빛실 장막 복구 |
-| 현장 전투 | 관개 압력으로 폭주한 정령 |
-| 현장 환경 | 마력 관개관 누출 |
-
-## 7. 승인된 입력·마도서
-
-- PC: 마우스 드래그·펜 보조·키보드 복구.
+- PC: LMB Drag 작성, Pen 보조.
+- RMB/Esc 취소, Ctrl+Z Undo, R Hold Clear.
+- Click/Wheel/Arrow/Tab 후보 이동, Click/Enter 확정.
 - Gamepad: `DEFERRED / NOT_PROMISED`.
-- 정상 완주 필수 성공 작성 7회.
-- 안내형 복구 포함 목표 상한 10회.
-- 같은 문제에서 확인한 동일 글자 토큰 재선택 허용.
-- 명시적 시전 전 Undo·취소·재작성 자원 미소모.
-- 마도서: 상황·의도·결과·부작용·발견·플레이어 명명 기록.
+- 마도서 기록: 상황, 글자·조합, 의도, 결과, 부작용·희생, 발견, 플레이어 명명.
 - 자동 최적 추천·기록 클릭 자동 시전 금지.
 
-## 8. ART-STYLE-01 — 승인
+## 6. ART-STYLE-01
 
 ```yaml
-decision_id: ART-STYLE-01
-status: APPROVED
-selected_candidate: A_MODIFIED
-selected_name: Soft Storybook Cel 2D Hybrid
-approved_at: 2026-07-31T21:58:00+09:00
-next_product_gate: ART-BIBLE-01
+status: APPROVED_A_MODIFIED_LOCKED
+selected: Soft Storybook Cel 2D Hybrid A 수정안
+locked_reference_sha256: b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a
 ```
 
-사용자가 제공한 이미지의 구성을 GRIMOIRE 아트·화면 기준으로 승인하고 수정하지 않도록 잠갔다.
+원본 수정·재생성·리터치·크롭 대체·Text 교체·Panel 재배치·색 변경 금지.
 
-### 승인 기준 이미지
-
-- Library 경로: `/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png`.
-- File ID: `file_0000000061bc81fa93d8b1b30d553943`.
-- 크기: `662 × 455 px`.
-- SHA-256: `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`.
-- Manifest: `docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json`.
-- 승인 문서: `docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md`.
-
-해시가 다른 파일은 같은 승인 기준판이 아니다.
-
-### 승인된 표현 구조
-
-```text
-가로형 16:9
-+ 장면 기반 고정 3/4 학교 필드
-+ 필드 SD 주인공·NPC·동반 정령
-+ 같은 장소 배경 위 대화 반신
-+ 탐색·비전투 직접 글자 작성 Overlay
-+ 별도 고정 3/4 전술 전투장
-+ 전투 중 작성 Overlay
-+ 결과 후 원래 장면 복귀
-```
-
-### 승인된 시각 언어
-
-- 밝은 마법학교와 현장 배경을 연결하는 부드러운 일러스트 계열 배경.
-- SD와 반신이 같은 인물로 보이는 애니메이션 셀 계열 캐릭터 언어.
-- 네이비·금색 판타지 학교 UI 프레임.
-- 파랑 계열의 고대비 글자·마법 강조.
-- 수업·시험·축제·현장실습을 같은 배경 언어의 상태 변형으로 표현.
-- 주인공·동반 정령·소환수의 얼굴·색·의상·실루엣 일관성 유지.
-
-### 원본 잠금
-
-승인 이미지 자체의 다음 작업은 금지한다.
-
-- 수정·재생성·리터치.
-- 크롭 또는 업스케일 파일로 원본 대체.
-- 텍스트·패널·캐릭터·배경·UI 교체.
-- 색상 변경.
-
-후속 산출물은 원본을 변경하지 않고 별도 파일로 제작한다. 변경은 사용자의 명시적 재승인만 허용한다.
-
-## 9. GR-VISUAL-SITUATION-BOARD-01
+## 7. ART-BIBLE-01
 
 ```yaml
-status: APPROVED_LOCKED_REFERENCE_BOARD
-role: VISUAL_DIRECTION_AND_SCREEN_COMPOSITION_AUTHORITY
-runtime_asset: false
-implementation_authority: NONE
+status: APPROVED_DUAL_STANDARD_ART_BIBLE
+authority: docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md
+next_gate: ASSET-SPEC-01
 ```
 
-이 이미지는 최종 런타임 Asset이 아니라 다음의 권위 기준이다.
+승인 규칙:
 
-- 프로젝트가 실제로 보일 방향.
-- 필드 SD·대화 반신·직접 작성·별도 전투·결과 복귀의 관계.
-- 화면별 정보 우선순위와 UI 배치 방향.
-- 학교·마법·정령 동반자 경험의 시각 연결.
+- Soft Storybook Environment + Clean Anime Cel Character.
+- Navy/Gold UI + High-contrast Blue Glyph.
+- 고정 3/4 Field, 같은 장소 Half-body Dialogue, 별도 3/4 Battle, Result 후 Field 복귀.
+- 고정 주인공 1명, 전투 상시 초상 1개.
+- 동반 정령·수호 소환수는 상태 배지와 짧은 Cut-in/FX.
+- Battle Writing Panel은 축소 Rail에서 작성 시 확장.
+- 본문 고딕계, 제목 제한적 세리프계 방향.
+- Grimoire 파생 화면을 Main보다 먼저 설계.
+- 정확한 Pixel·Format·Font·Animation 수량은 Asset Spec에서 확정.
 
-## 10. 비주얼 중심 화면 보드 작업 원칙
+## 8. 전투 화면·조우
 
-결정 ID: `GM-VISUAL-SITUATION-BOARD-WORKFLOW-01`.
-
-- 사용자 1차 검토 산출물은 화면 중심 보드.
-- 기술 감사·Scene·Node·Signal·데이터·테스트는 별도 부록.
-- 필수 화면: 메인, 핵심 플레이/전투, 자원 관리 대응, 결과.
-- `CURRENT / INFERRED / PROPOSED / PLACEHOLDER` 구분.
-- generic 장르 UI로 대체 금지.
-- 승인 원본을 미래 보드 안에서 편집하거나 재조합하지 않음.
-
-기존 A~T 상황별 Godot 명세는 `SUPPORTING_TECHNICAL_APPENDIX_ONLY`로 유지한다.
-
-## 11. 다음 제품 Gate
+### GM-BATTLE-SCREEN-LAYOUT-01
 
 ```text
-ART-BIBLE-01
-→ ASSET-SPEC-01
-→ AUDIO-DIRECTION-01
-→ 기획·아트 통합 검수
-→ 사용자 Codex Plan 승인
-→ 기술 계획·검수
-→ 구현
+상단·중앙 = 적·환경 목표·공격 예고
+좌측 하단 = 주인공 초상·HP·마나·상태
+좌측 보조 = 동반 정령·수호 상태 배지
+우측 = 직접 글자·마법진 작성 영역
 ```
 
-`ART-BIBLE-01`에서는 승인 이미지를 수정하지 않고 다음을 추출한다.
+아군·수호 소환수 몸체는 전장에 상시 배치하지 않는다.
 
-- 선 굵기·선 색·셀 명암.
-- SD·반신 얼굴·의상·인체 비율.
-- 학교·시험·축제·현장 색 스크립트.
-- 배경 질감과 플레이 영역 대비.
-- UI 패널·버튼·아이콘·폰트 계층.
-- 글자·집중·분산·위험 FX.
-- 16:9 Safe Frame과 후속 Mobile 적응.
+### GM-BATTLE-SINGLE-ENEMY-FOCUS-01
 
-## 12. 게이트 상태
+- Vertical Slice 기본 전투는 강한 적 1개체.
+- 잡몹·웨이브 기본 제외.
+- 일반 적은 단일 페이즈.
+- HP 스펀지 금지; 행동 예고·상태·환경 변화로 깊이 확보.
 
-| 게이트 | 상태 |
+## 9. 전투 흐름·시간
+
+### GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01
+
+- 적은 일정 시간마다 공격.
+- 플레이어는 작성 후 `[구현]`으로 유효성·마나 검증 뒤 즉시 시전.
+- 마나 부족 시 시전하지 않고 Draft 유지.
+- 일반 적 단일 페이즈, 보스만 다중 페이즈 허용.
+
+### GM-BATTLE-TIME-FLOW-01
+
+- 판단·작성 중 Timer `1.0×` 진행.
+- 선택형 작성 감속 제공; 초기 Prototype 후보 `0.5×`, 최종값 미정.
+- 시전·적 공격·보스 전환·Result 해결 중 `0×` 정지.
+- Pause·Focus Lost·Blocking Tutorial은 정지.
+- 먼저 유효 승인된 Event가 우선하며 동시 해결 금지.
+- 적 공격이 먼저 확정되어도 작성 Draft 유지.
+
+## 10. GM-BATTLE-RULES-01
+
+```yaml
+status: APPROVED_SITUATION_RESOLUTION_RULES
+authority: docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md
+```
+
+- 기본 적에게 일반 HP를 두지 않고 `불안정도` 사용.
+- 상황에 맞는 주문으로 불안정도 0에 도달하면 마지막 시전 결과로 진정·해결.
+- 별도 포획·Finish·두 번째 게이지 없음.
+- 주문 결과 축: 불안정도, 다음 공격 위험, 환경 상태, 부작용·희생.
+- 플레이어 HP 0 또는 Situation이 선언한 치명적 환경 붕괴가 패배.
+- 환경 보존도·남은 HP·부작용·해결 방식이 완전 성공·부분 성공의 결과 품질을 결정.
+- 수호 소환수는 수동 발동해 다음 공격의 피해를 완화하고 Draft를 보호하지만 Timer를 정지하지 않음.
+
+## 11. Base v9.3 운영
+
+```yaml
+release_commit: 30ca6c7b5f93521f0eb0eed42d01437cd43c50ae
+evidence_commit: 462a86db192d23d0f386281a1eb54b0a8cbad62e
+registry_sha256: 9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1
+canonical_adapter: skills/PROJECT_BASE_ADAPTER.json
+generator: tools/generate_project_operating_views.py
+```
+
+- Snapshot·Compatibility View 직접 편집 금지.
+- GitHub·Sheet 승인 정본 즉시 동기화.
+- 작업 브랜치와 main 동기화 상태 분리.
+
+## 12. 현재 Gate
+
+| Gate | 상태 |
 |---|---|
-| 기획 완료 | `TRUE` |
-| `ART-STYLE-01` | `APPROVED_A_MODIFIED` |
-| 승인 이미지 | `LOCKED_NO_EDIT` |
-| `GR-VISUAL-SITUATION-BOARD-01` | `APPROVED_LOCKED_REFERENCE_BOARD` |
-| `ART-BIBLE-01` | `NEXT_PRODUCT_GATE` |
-| `ASSET-SPEC-01` | `BLOCKED_BY_ART_BIBLE` |
-| `AUDIO-DIRECTION-01` | `PENDING` |
-| Codex Plan | `BLOCKED_BY_ART_BIBLE_ASSET_SPEC_AND_INTEGRATED_REVIEW` |
+| 기획 | `APPROVED` |
+| Art Style | `APPROVED_A_MODIFIED_LOCKED` |
+| Art Bible | `APPROVED_DUAL_STANDARD_ART_BIBLE` |
+| Battle Rules | `APPROVED_SITUATION_RESOLUTION_RULES` |
+| Asset Spec | `NEXT_PRODUCT_GATE` |
+| Boss Phase | `PARALLEL_DESIGN_GATE` |
+| Grimoire/Main 파생 화면 | `PENDING_AFTER_ART_BIBLE` |
+| Audio Direction | `PENDING_AFTER_ASSET_SPEC` |
+| Codex | `BLOCKED` |
 | Godot 구현 | `NOT_STARTED` |
 
-## 13. 검증 경계
+## 13. PLAYTEST_TUNING_REQUIRED
 
-```text
-RUNTIME_VALIDATION = NOT_RUN
-PC_INPUT_VALIDATION = NOT_RUN
-MOBILE_VALIDATION = NOT_RUN
-HUMAN_PLAYTEST = NOT_RUN
-ART_STYLE_USER_APPROVAL = GRANTED
-LOCKED_REFERENCE_INTEGRITY = SHA256_RECORDED
-GODOT_IMPLEMENTATION = NOT_STARTED
-```
+- 적 공격 간격·피해량.
+- 플레이어 HP·마나.
+- 불안정도 변화량.
+- 수호 완화율·사용 횟수·재충전.
+- 환경 결과 임계값.
+- 작성 감속 최종값·복귀 유예.
+- 인식 허용치·보정·Latency.
+
+실행 증거 전에는 위 값을 최종 확정하거나 검증 완료로 표시하지 않는다.
