@@ -20,6 +20,11 @@
     "source_path": "docs/planning/BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md",
     "commit": "5e3baf8f1fa4487bbc4eb281828bf5e18153d5d6"
   },
+  "sync_receipt": {
+    "source_path": "docs/planning/sync/GR-APPROVE-BATTLE-TIME-FLOW-01.md",
+    "commit": "5b87bf5d35aa1a6950b66ccc145b84f67f6a9053",
+    "sheet_readback": "PASS"
+  },
   "time_contract": {
     "default_player_control_multiplier": 1.0,
     "writing_panel_default_multiplier": 1.0,
@@ -70,6 +75,6 @@
   "godot": "NOT_STARTED",
   "runtime_validation": "NOT_RUN",
   "human_validation": "NOT_RUN",
-  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
+  "sync_status": "SYNCED_TO_WORKING_BRANCH",
   "main_sync": "PENDING_PR_MERGE"
 }
