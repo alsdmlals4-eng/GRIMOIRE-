@@ -2,15 +2,15 @@
   "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
   "base": {
     "copy_common_skill_bodies": false,
-    "registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
-    "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
-    "release_evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
-    "release_line": "v9.3.0",
+    "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
+    "release_commit": "a728712cb776ec98f4875914a580fcf7d0156593",
+    "release_evidence_commit": "ef1fba11167e4da0b298123b0c85ebd268191a42",
+    "release_line": "v9.4.0",
     "release_state": "BASE_RELEASED",
     "repository": "alsdmlals4-eng/Base"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "c1854a40993fdc5d9f0afbb9e27f23581ae6debc439e6e1c4b7a6f7c4613e193",
+  "canonical_source_sha256": "cddccdb6540801ebfe1bca76cfa3d3b9bd6e59cb66729717d71bdb89abdee459",
   "generated": true,
   "maturity": {
     "level": 2,

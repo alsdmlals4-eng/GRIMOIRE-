@@ -62,14 +62,15 @@ AGENTS.md
 
 GitHub·Sheet 조회로 해결되는 사실을 사용자에게 다시 묻지 않는다. 확정 결정은 기억 확인 목적으로 재질문하지 않는다.
 
-## 4. Base v9.3 계약
+## 4. Base v9.4 계약
 
 ```yaml
 base_repository: alsdmlals4-eng/Base
-release: v9.3.0
-release_commit: 30ca6c7b5f93521f0eb0eed42d01437cd43c50ae
-evidence_commit: 462a86db192d23d0f386281a1eb54b0a8cbad62e
-registry_sha256: 9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1
+release: v9.4.0
+release_commit: a728712cb776ec98f4875914a580fcf7d0156593
+evidence_commit: ef1fba11167e4da0b298123b0c85ebd268191a42
+registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
+finalization_commit: 87a0b54c2847ce4b685879209205957c170cc1cd
 execution_prompt: VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md
 ```
 

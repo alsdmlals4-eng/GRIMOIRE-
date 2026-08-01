@@ -1,7 +1,7 @@
 # GRIMOIRE UX/UI 시스템
 
 > Base 공용 기준: `alsdmlals4-eng/Base`의 `auditing-and-refining-ui-art`  
-> Base content commit: `0fd95f4513343e77fd664af2763a01b02f52545b`  
+> Base content commit: `a728712cb776ec98f4875914a580fcf7d0156593`
 > 프로젝트 상태: `DESIGN_CONTRACT_ADOPTED`  
 > 런타임·실기기·사람 검증: `NOT_RUN`
 
@@ -106,6 +106,18 @@ UI는 입력 stroke와 권위 있는 인식/주문 판정 결과를 표시하며
 - 애니메이션 종료 시점에 마나·피해를 지급
 - 인식 실패와 주문 설계 실패를 같은 오류 상태로 합침
 - 프로젝트의 기존 입력·Theme 구조 조사 없이 범용 필기 프레임워크 추가
+
+## 7A. UI 모션·중단·반복 계약
+
+```text
+입력 접수 → 처리 중 → 도메인 결과 확정 → 결과 표현
+```
+
+- 글자 작성·후보 선택·주문 조립·발동·결과·마도서 기록 모션은 중단과 즉시 완료 경로를 가진다.
+- 빠른 반복·재진입에서 stroke·후보·비용·불안정도·결과·기록이 중복되지 않아야 한다.
+- `AnimationPlayer`·`Tween` 완료 signal은 인식·문법·비용·전투·저장·기록 결과의 권위 시점이 아니다.
+- `Reduced Motion`, `mute`, `haptic-off`에서도 인식 상태·오류 종류·비용·위험·결과 원인·다음 행동을 보존한다.
+- 실제 입력·인식·PC/Mobile 성능·사람 이해는 `NOT_RUN` / `HUMAN_NOT_RUN`으로 유지한다.
 
 ## 8. 검증 매트릭스
 

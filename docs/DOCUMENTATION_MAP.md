@@ -156,3 +156,8 @@ PC_INPUT_VALIDATION = NOT_RUN
 MOBILE_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
 ```
+
+## Base v9.4 운영 계약
+
+- `docs/AI_WORKFLOW.md`: 모델 추천·지시 권위·Context 큐레이션·증거 상한.
+- `docs/reviews/2026-08-01_BASE_V9_4_ADOPTION_AUDIT.md`: Base identity와 승인 정본 보호 감사.

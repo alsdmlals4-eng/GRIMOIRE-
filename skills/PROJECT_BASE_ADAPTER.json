@@ -3,11 +3,12 @@
   "base_release": {
     "integrated_execution_prompt": "templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
     "registry_path": "skills/SKILL_REGISTRY.json",
-    "registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
-    "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
-    "release_evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
+    "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
+    "release_commit": "a728712cb776ec98f4875914a580fcf7d0156593",
+    "release_evidence_commit": "ef1fba11167e4da0b298123b0c85ebd268191a42",
     "repository": "alsdmlals4-eng/Base",
-    "version": "9.3.0"
+    "version": "9.4.0",
+    "finalization_commit": "87a0b54c2847ce4b685879209205957c170cc1cd"
   },
   "compatibility": {
     "legacy_repository_aliases": [
@@ -83,8 +84,8 @@
   },
   "protected_baseline": {
     "authority_ref": "refs/remotes/origin/main",
-    "commit": "4527356e9597f9a07295ee594caf019a38c4ed9f",
-    "main_sync": "PENDING_PR_MERGE"
+    "commit": "154c7b020b0c181204c7a395292d74b84f8c20fa",
+    "main_sync": "SYNCED_TO_MAIN"
   },
   "protected_decisions": [
     "GM-PLANNING-APPROVAL-01",
@@ -111,38 +112,13 @@
     "aliases": [],
     "base_routes": [
       {
-        "route_id": "managing-project-intake-and-work-contract",
-        "skill_id": "managing-project-intake-and-work-contract",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-game-project-operating-system",
-        "skill_id": "managing-game-project-operating-system",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-design-documents",
-        "skill_id": "managing-design-documents",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "maintaining-project-context-and-handoff",
-        "skill_id": "maintaining-project-context-and-handoff",
-        "status": "ACTIVE"
-      },
-      {
         "route_id": "analyzing-and-refining-game-concepts",
         "skill_id": "analyzing-and-refining-game-concepts",
         "status": "ACTIVE"
       },
       {
-        "route_id": "designing-vertical-slices",
-        "skill_id": "designing-vertical-slices",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "reviewing-and-validating-project-changes",
-        "skill_id": "reviewing-and-validating-project-changes",
+        "route_id": "auditing-and-refining-ui-art",
+        "skill_id": "auditing-and-refining-ui-art",
         "status": "ACTIVE"
       },
       {
@@ -156,23 +132,13 @@
         "status": "ACTIVE"
       },
       {
-        "route_id": "auditing-and-refining-ui-art",
-        "skill_id": "auditing-and-refining-ui-art",
+        "route_id": "designing-vertical-slices",
+        "skill_id": "designing-vertical-slices",
         "status": "ACTIVE"
       },
       {
-        "route_id": "identifying-project-core",
-        "skill_id": "identifying-project-core",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "running-adversarial-review-and-refinement",
-        "skill_id": "running-adversarial-review-and-refinement",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-base-change-proposals",
-        "skill_id": "managing-base-change-proposals",
+        "route_id": "evaluating-godot-assets-and-plugins-before-creation",
+        "skill_id": "evaluating-godot-assets-and-plugins-before-creation",
         "status": "ACTIVE"
       },
       {
@@ -181,8 +147,48 @@
         "status": "ACTIVE"
       },
       {
-        "route_id": "evaluating-godot-assets-and-plugins-before-creation",
-        "skill_id": "evaluating-godot-assets-and-plugins-before-creation",
+        "route_id": "identifying-project-core",
+        "skill_id": "identifying-project-core",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "maintaining-project-context-and-handoff",
+        "skill_id": "maintaining-project-context-and-handoff",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-base-change-proposals",
+        "skill_id": "managing-base-change-proposals",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-design-documents",
+        "skill_id": "managing-design-documents",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-game-project-operating-system",
+        "skill_id": "managing-game-project-operating-system",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "managing-project-intake-and-work-contract",
+        "skill_id": "managing-project-intake-and-work-contract",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "optimizing-ai-model-and-prompt-costs",
+        "skill_id": "optimizing-ai-model-and-prompt-costs",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "reviewing-and-validating-project-changes",
+        "skill_id": "reviewing-and-validating-project-changes",
+        "status": "ACTIVE"
+      },
+      {
+        "route_id": "running-adversarial-review-and-refinement",
+        "skill_id": "running-adversarial-review-and-refinement",
         "status": "ACTIVE"
       }
     ],
@@ -213,5 +219,11 @@
     "mobile": "NOT_RUN",
     "pc_input": "NOT_RUN",
     "registry_hash": "REQUIRED"
+  },
+  "base_v94_contract": {
+    "model_recommendation": "USER_CHANGES_SETTING_AT_CHECKPOINT",
+    "provider_measurement": "NOT_RUN",
+    "runtime_validation": "NOT_RUN",
+    "human_validation": "HUMAN_NOT_RUN"
   }
 }
