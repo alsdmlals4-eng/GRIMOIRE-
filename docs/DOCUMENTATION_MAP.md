@@ -4,16 +4,17 @@
 
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
-repository: alsdmlals4-eng/GRIMOIRE-
-default_branch: main
 working_branch: agent/grimoire-v93-canon
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE
-planning_complete: true
-next_product_gate: ART-STYLE-01
-situation_screen_workflow: APPROVED_PROJECT_WORK_PRINCIPLE
-situation_screen_spec: USER_REVIEW_REQUIRED
-canon_sync_state: SYNCED_TO_WORKING_BRANCH
+planning: APPROVED
+art_style_01: APPROVED_A_MODIFIED_LOCKED
+art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
+battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
+next_product_gate: ASSET-SPEC-01
+parallel_design_gate: BOSS-PHASE-01
+implementation: NOT_STARTED
+main_sync: PENDING_PR_MERGE
 ```
 
 ## 1. 시작 경로
@@ -24,163 +25,131 @@ README.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-07-31S.md
-→ docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md
-→ 질문 주제의 책임 원본
+→ docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md
+→ 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
-→ docs/planning/CANON_SYNC_STATE.json
-→ docs/planning/SITUATION_SCREEN_SPEC_STATE.json
+→ skills/PROJECT_BASE_ADAPTER.json
 ```
 
-## 2. 활성 권위·책임 원본
+## 2. 활성 권위
 
 | 책임 | 문서 | 상태 |
 |---|---|---|
 | 최상위 작업 규칙 | `AGENTS.md` | `ACTIVE_PROJECT_AUTHORITY` |
 | 시작·다음 작업 | `START_HERE.md` | `ACTIVE_ENTRYPOINT` |
-| 현재 상태·위험 | `docs/ACTIVE_CONTEXT.md` | `ACTIVE_CONTEXT_AUTHORITY` |
-| 확정 결정 복원 | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` | `ACTIVE_FIRST_READ_AUTHORITY` |
-| 최신 사용자 결정 | `docs/planning/DECISION_LOG_ADDENDUM_2026-07-31S.md` | `ACTIVE_LATEST_USER_DECISION_AUTHORITY` |
-| 기획 완결 정본 | `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md` | `ACTIVE_APPROVED_PLANNING_CANON` |
-| 벤치마킹 원칙 | `docs/planning/PROJECT_BENCHMARKING_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
-| 정본·Sheet 동기화 | `docs/planning/PROJECT_CANON_SYNC_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
-| 프로젝트 상황 화면 작업지시문 | `docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md` | `ACTIVE_PROJECT_WORK_ORDER` |
-| 상황 화면 설계 Master | `docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md` | `USER_REVIEW_REQUIRED_TECHNICAL_DESIGN` |
-| 상황 화면 상태 데이터 | `docs/planning/SITUATION_SCREEN_SPEC_STATE.json` | `ACTIVE_MACHINE_READABLE_REVIEW_STATE` |
-| Canon 동기화 상태 | `docs/planning/CANON_SYNC_STATE.json` | `ACTIVE_MACHINE_READABLE_SYNC_STATE` |
-| Google Sheet 계약 | `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` | `USER_FACING_GDD_WORKSPACE_CONTRACT` |
-| 개발 게이트 | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_AUTHORITY` |
-| 문서 Router | `docs/DESIGN_DOCUMENT_REGISTRY.json` | `ACTIVE_CANONICAL_ROUTER` |
-| Base 핀 | `docs/BASE_RULES_VERSION.md` | `STALE_RECONCILIATION_REQUIRED` |
-| Base Adapter | `skills/PROJECT_BASE_ADAPTER.json` | `RECONCILIATION_PENDING` |
-| Skill Snapshot | `skills/PROJECT_SKILL_SNAPSHOT.json` | `RECONCILIATION_PENDING` |
+| 현재 상태 | `docs/ACTIVE_CONTEXT.md` | `ACTIVE_CONTEXT_AUTHORITY` |
+| 현재 확정 결정 | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` | `ACTIVE_FIRST_READ_AUTHORITY` |
+| 최신 사용자 결정 | `docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md` | `ACTIVE_LATEST_USER_DECISION_AUTHORITY` |
+| 기획 정본 | `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md` | `ACTIVE_APPROVED_PLANNING_CANON` |
+| Art Style | `docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md` | `APPROVED_LOCKED_REFERENCE` |
+| Art Bible | `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md` | `APPROVED_DUAL_STANDARD_ART_BIBLE` |
+| Art Bible 전투 교정 | `docs/planning/ART_BIBLE_01_BATTLE_CORRECTION_ADDENDUM_2026-08-01.md` | `ACTIVE_BATTLE_OVERRIDE` |
+| 전투 화면 | `docs/planning/BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md` | `APPROVED_LAYOUT_DIRECTION` |
+| 단일 강적 | `docs/planning/BATTLE_SINGLE_ENEMY_FOCUS_01_APPROVAL_2026-08-01.md` | `APPROVED_ENCOUNTER_DIRECTION` |
+| 적 Timer·즉시시전 | `docs/planning/BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md` | `APPROVED_CORE_BATTLE_FLOW` |
+| 시간 흐름 | `docs/planning/BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md` | `APPROVED_TIME_FLOW_DIRECTION` |
+| 승패·피해·진정 | `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md` | `APPROVED_SITUATION_RESOLUTION_RULES` |
+| 벤치마킹 정책 | `docs/planning/PROJECT_BENCHMARKING_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
+| 정본 동기화 정책 | `docs/planning/PROJECT_CANON_SYNC_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
+| 전수 감사 | `docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md` | `ACTIVE_AUDIT_EVIDENCE` |
+| 개발 Gate | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_AUTHORITY` |
+| Design Router | `docs/DESIGN_DOCUMENT_REGISTRY.json` | `ACTIVE_CANONICAL_ROUTER` |
+| Google Sheet 계약 | `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` | `ACTIVE_WORKBOOK_CONTRACT` |
+| Base Version | `docs/BASE_RULES_VERSION.md` | `CURRENT_V9_3` |
+| Base Adapter | `skills/PROJECT_BASE_ADAPTER.json` | `CURRENT_CANONICAL_ADAPTER` |
+| Skill Snapshot | `skills/PROJECT_SKILL_SNAPSHOT.json` | `CURRENT_GENERATED_VIEW` |
 
-## 3. 상황 화면 명세 경로
+## 3. 기획·콘텐츠
 
-### 작업 원칙
+| 책임 | 문서 |
+|---|---|
+| 전체 승인 Slice | `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md` |
+| 현재 결정 Snapshot | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` |
+| 글자·작성 빈도 | Planning Canon + `GM-WRITING-FREQUENCY-01` |
+| 마도서 기록 | Planning Canon + `GM-GRIMOIRE-RECORD-01` |
+| 화면 시퀀스 기술 부록 | `docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md` |
+| P0 상세 부록 | `docs/superpowers/specs/grimoire-situations/` |
 
-- 결정 ID: `GM-SITUATION-SCREEN-WORKFLOW-01`.
-- 책임 원본: `docs/workflows/PROJECT_SITUATION_SCREEN_IMPLEMENTATION_SPEC_WORK_ORDER.md`.
-- 상태: `APPROVED_PROJECT_WORK_PRINCIPLE`.
-- Base 승격: `CANDIDATE`.
+기존 P0 Scene·Node·Resource·Signal 명세는 `SUPPORTING_TECHNICAL_APPENDIX_ONLY`이며 구현 권한이 아니다.
 
-### GRIMOIRE 설계
-
-- 결정 ID: `GM-SITUATION-SCREEN-SPEC-01`.
-- 상태: `USER_REVIEW_REQUIRED / TECHNICAL_DESIGN_ONLY`.
-- 구현 권한: 없음.
+## 4. 아트·화면
 
 ```text
-공식 Godot 벤치마킹
-→ 필수 기준 화면 4종
-→ P0~P3 상황 목록
-→ P0 10개 A~T 상세 명세
-→ 전체 상태 전환·의존 관계
-→ 9칸 화면 보드
-→ 사용자 검토
+ART-STYLE-01 — 승인
+→ ART-BIBLE-01 — 승인
+→ ASSET-SPEC-01 — 현재 Gate
+→ Grimoire Board
+→ Main Board
+→ Battle Detail Wireframe
 ```
 
-책임 파일:
+잠긴 원본:
 
-- `docs/planning/benchmarks/GM_SITUATION_SCREEN_ARCHITECTURE_BENCHMARK_2026-07-31.md`
-- `docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md`
-- `docs/superpowers/specs/grimoire-situations/P0_01_ENTRY_FIELD_DIALOGUE.md`
-- `docs/superpowers/specs/grimoire-situations/P0_02_SCHEDULE_SPELL_BATTLE.md`
-- `docs/superpowers/specs/grimoire-situations/P0_03_RESULT_RETURN_GRIMOIRE.md`
-- `docs/superpowers/specs/grimoire-situations/SITUATION_BOARD_AND_BACKLOG.md`
-- `docs/planning/SITUATION_SCREEN_SPEC_STATE.json`
+- Library: `/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png`.
+- SHA-256: `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`.
+- 원본 편집·재생성 금지.
 
-## 4. 필수 기준 화면 Router
+## 5. 전투 Router
 
-| 화면 | 책임 문서 | 상태 |
-|---|---|---|
-| SCREEN-01 Main·시작 | Master + P0 01 | `PROPOSED_MINIMUM / NOT_IMPLEMENTED` |
-| SCREEN-02 전술 전투·핵심 플레이 | Master + P0 02 | `CONFIRMED_PRESENTATION / TECHNICAL_PROPOSAL` |
-| SCREEN-03 마도서·보유 지식·준비 | Master + P0 03 | `INVENTORY_EQUIVALENT_PROPOSAL` |
-| SCREEN-04 Result·보상·복기 | Master + P0 03 | `CONFIRMED_RULE / TECHNICAL_PROPOSAL` |
+| 결정 | Authority | Machine State | Benchmark |
+|---|---|---|---|
+| `GM-BATTLE-SCREEN-LAYOUT-01` | `BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md` | `BATTLE_SCREEN_LAYOUT_01_STATE.json` | `BATTLE_SCREEN_LAYOUT_01_QUICK_BENCHMARK_2026-08-01.md` |
+| `GM-BATTLE-SINGLE-ENEMY-FOCUS-01` | `BATTLE_SINGLE_ENEMY_FOCUS_01_APPROVAL_2026-08-01.md` | `BATTLE_SINGLE_ENEMY_FOCUS_01_STATE.json` | `BATTLE_SINGLE_ENEMY_FOCUS_01_QUICK_BENCHMARK_2026-08-01.md` |
+| `GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01` | `BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md` | `BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_STATE.json` | `BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_QUICK_BENCHMARK_2026-08-01.md` |
+| `GM-BATTLE-TIME-FLOW-01` | `BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md` | `BATTLE_TIME_FLOW_01_STATE.json` | `BATTLE_TIME_FLOW_01_QUICK_BENCHMARK_2026-08-01.md` |
+| `GM-BATTLE-RULES-01` | `BATTLE_RULES_01_APPROVAL_2026-08-01.md` | `BATTLE_RULES_01_STATE.json` | `BATTLE_RULES_01_QUICK_BENCHMARK_2026-08-01.md` |
 
-## 5. P0 상황 Router
-
-| 범위 | 문서 |
-|---|---|
-| 최초 실행·학교 Field·Dialogue | `P0_01_ENTRY_FIELD_DIALOGUE.md` |
-| 자유일정·Situation·Spell·Battle | `P0_02_SCHEDULE_SPELL_BATTLE.md` |
-| Result·Field Return·Grimoire | `P0_03_RESULT_RETURN_GRIMOIRE.md` |
-| P1~P3·Transition·Board | `SITUATION_BOARD_AND_BACKLOG.md` |
-
-## 6. 기획·아트 경로
+## 6. Base v9.3 Router
 
 ```text
-Gate 1·Vertical Slice 승인
-→ 기획 완결 정본
-→ ART-STYLE-01 벤치마킹·후보
-→ 사용자 ART-STYLE 결정
-→ ART-BIBLE-01
-→ ASSET-SPEC-01
+skills/SKILL_REGISTRY.json
+→ skills/PROJECT_BASE_ADAPTER.json
+→ tools/generate_project_operating_views.py
+→ PROJECT_SKILL_SNAPSHOT.json
+→ BASE_V9_ADAPTER.json
+→ PROJECT_BASE_SKILL_ADAPTER.json
+→ tests/test_base_v9_adoption.py
+→ GitHub Actions
+```
+
+Generated View 직접 편집 금지.
+
+## 7. Google Sheet
+
+- Spreadsheet ID: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`.
+- 27개 필수 탭.
+- 역할: `USER_FACING_GDD_WORKSPACE`.
+- 승인 변경은 같은 Decision ID로 GitHub Authority와 즉시 동기화.
+- 필수 범위: `02_현재_확정결정`, 관련 Domain, `04_누락_충돌_감사`, `99_변경이력`.
+- Gate 변경 시 `00`, `01`, `05`, `10`, `90`도 갱신.
+
+## 8. Legacy
+
+| 자료 | 역할 |
+|---|---|
+| v6·v8 Vertical Slice 계약 | `LEGACY_REFERENCE_INPUT / SUPERSEDED_COMPATIBILITY` |
+| `Spell` 저장소명 | `LEGACY_ALIAS` |
+| 이전 generic dark fantasy·기술 Dashboard 이미지 | `REJECTED_NOT_AUTHORITY` |
+| 기존 P0 Godot 기술 명세 | `SUPPORTING_TECHNICAL_APPENDIX_ONLY` |
+| Android Touch 연구 | `REFERENCE_CANDIDATE / NOT_PC_RUNTIME_VALIDATED` |
+
+## 9. 다음 Gate
+
+```text
+ASSET-SPEC-01
+→ BOSS-PHASE-01·Grimoire/Main 파생 화면
 → AUDIO-DIRECTION-01
-→ 기획·아트 통합 검수
-→ 사용자 Codex Plan 승인
-→ 기술 계획·검수
+→ 통합 검수
+→ Codex Plan 승인·기술 검수
 → 구현
 ```
 
-상황 화면 설계는 기술 구조를 준비하지만 Art Gate·Asset Gate·Codex 승인 순서를 우회하지 않는다.
-
-## 7. ART-STYLE-01
-
-| 자료 | 문서 | 상태 |
-|---|---|---|
-| 벤치마킹 | `docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md` | `COMPLETE` |
-| 후보 A/B/C | `docs/planning/ART_STYLE_01_CANDIDATES.md` | `USER_DECISION_REQUIRED` |
-| 상태 데이터 | `docs/planning/ART_STYLE_01_STATE.json` | `ACTIVE_CANDIDATE_STATE` |
-
-이미지 생성은 시작하지 않았다.
-
-## 8. 정본·Sheet 동기화 경로
-
-```text
-Decision ID
-→ Decision Addendum·분야 책임 원본·Snapshot·Active Context
-→ Registry·Map·계획 상태 데이터
-→ authority commit
-→ 연결된 Google Sheet
-→ 양쪽 재조회
-→ 동기화 영수증
-→ working branch 상태
-→ PR 병합 후 main 재검증
-```
-
-필수 Sheet 위치:
-
-- `02_현재_확정결정`.
-- 해당 도메인 탭.
-- `04_누락_충돌_감사`.
-- `99_변경이력`.
-
-Gate·단계 변경 시:
-
-- `00_프로젝트_허브`.
-- `01_작업순서`.
-- `05_GDD_요약`.
-
-## 9. Legacy·충돌
-
-| 자료 | 현재 역할 |
-|---|---|
-| v6·v8 Vertical Slice 계약 | `LEGACY_REFERENCE_INPUT / SUPERSEDED_COMPATIBILITY` |
-| `docs/planning/SPELL_GAME_DESIGN.md` | `LEGACY_REFERENCE_CANDIDATE` |
-| Android 터치 연구 | `REFERENCE_CANDIDATE / NOT_PC_RUNTIME_VALIDATED` |
-| 생성 이미지 | 승인 상태별 참고, 자동 정본·자산 아님 |
-| `docs/BASE_RULES_VERSION.md` 과거 값 | `STALE / ISSUE_21_RECONCILIATION` |
-| Adapter v9.1 본문 | `STALE / ISSUE_21_RECONCILIATION` |
-
-## 10. 구현·검증 경계
+## 10. 검증 경계
 
 ```text
 GODOT_PROJECT = NOT_STARTED
-CODEX = BLOCKED
-PRODUCT_SCENE_SCRIPT_RESOURCE = NOT_FOUND
+PRODUCT_CODE_SCENE_RESOURCE_DATA = NOT_FOUND
 RUNTIME_VALIDATION = NOT_RUN
 PC_INPUT_VALIDATION = NOT_RUN
 MOBILE_VALIDATION = NOT_RUN
