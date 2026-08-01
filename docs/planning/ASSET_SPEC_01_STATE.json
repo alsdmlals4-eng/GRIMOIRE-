@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "decision_id": "ASSET-SPEC-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "APPROVED_VERTICAL_SLICE_ASSET_SPEC",
+  "approved_at": "2026-08-01T11:00:00+09:00",
+  "approved_by": "USER_BATCH_APPROVAL_RECOMMENDED_OPTION",
+  "benchmark": {
+    "id": "GR-BM-ASSET-SPEC-01",
+    "scale": "STANDARD",
+    "status": "COMPLETE",
+    "source_path": "docs/planning/benchmarks/ASSET_SPEC_01_STANDARD_BENCHMARK_2026-08-01.md",
+    "commit": "f194c448632d2fa0da1428a69407a4459c5b6607"
+  },
+  "authority": {
+    "source_path": "docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md",
+    "commit": "e9b4ae583c2e660c99689edcb29e0b3db9e379c9"
+  },
+  "display_contract": {
+    "logical_design_frame": "1920x1080",
+    "minimum_pc_readability": "1280x720",
+    "primary_aspect_ratio": "16:9",
+    "safe_margin_px_1080p": {
+      "left": 64,
+      "right": 64,
+      "top": 48,
+      "bottom": 48
+    },
+    "ultrawide": "EXPAND_BACKGROUND_AND_WORLD_KEEP_UI_IN_16_9_SAFE_FRAME",
+    "mobile": "SEPARATE_FOLLOW_UP_DERIVATIVE"
+  },
+  "formats": {
+    "opaque_background_runtime": "WEBP_LOSSLESS_FIRST",
+    "transparent_runtime": "PNG_RGBA",
+    "simple_vector_source": "SVG",
+    "font": "LICENSED_TTF_OTF_OR_WOFF2",
+    "baked_korean_text": false,
+    "default_filter": "LINEAR",
+    "default_mipmap": "OFF_EXCEPT_BACKGROUND_TRIAL"
+  },
+  "production_caps": {
+    "opaque_background_base_masters": 3,
+    "background_state_overlay_sets": 8,
+    "half_body_portraits": 12,
+    "general_npc_half_body_portraits": 0,
+    "protagonist_field_frames": 36,
+    "professor_field_frames": 16,
+    "peer_field_frames": 16,
+    "companion_frames": 20,
+    "companion_reaction_icons": 4,
+    "guardian_status_badges": 1,
+    "guardian_cutins": 1,
+    "guardian_fx_frames": 8,
+    "guardian_full_battlefield_body_sets": 0,
+    "enemy_body_sets": 1,
+    "enemy_frames": 50,
+    "normal_enemy_phase_variants": 0,
+    "ui_component_families": 12,
+    "base_icons": 24,
+    "base_glyphs": 3,
+    "reusable_vfx_modules": 12,
+    "screen_specific_full_frame_ui_art": 2,
+    "font_families": 2,
+    "max_texture_dimension": 4096
+  },
+  "runtime_canvas": {
+    "background_master": "2560x1440",
+    "half_body_portrait": "1024x1536",
+    "protagonist_and_npc_sd_frame": "384x384",
+    "companion_frame": "256x256",
+    "enemy_frame": "512x512",
+    "glyph_base": "512x512"
+  },
+  "folder_contract": {
+    "runtime_root": "assets/",
+    "source_root": "art_source/ OR EXTERNAL_LIBRARY",
+    "source_import": "PROHIBITED_USE_GDIGNORE_OR_EXTERNAL_STORAGE",
+    "manifest_root": "assets/manifests/",
+    "naming": "LOWERCASE_SNAKE_CASE"
+  },
+  "asset_pipeline": {
+    "addons": "NONE_ADOPTED",
+    "native_godot_import_first": true,
+    "source_runtime_boundary": "REQUIRED",
+    "manifest_and_sha": "REQUIRED",
+    "license_ledger": "docs/ASSET_LICENSE_LEDGER.md",
+    "generated_image_auto_approval": false
+  },
+  "next_product_gates": [
+    "BOSS-PHASE-01",
+    "GRIMOIRE-SCREEN-01",
+    "MAIN-SCREEN-01",
+    "AUDIO-DIRECTION-01"
+  ],
+  "implementation_authority": "NONE",
+  "asset_production": "NOT_STARTED",
+  "godot": "NOT_STARTED",
+  "runtime_validation": "NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "sync_status": "GITHUB_AUTHORITY_CREATED_SHEET_PENDING",
+  "main_sync": "PENDING_PR_MERGE"
+}
