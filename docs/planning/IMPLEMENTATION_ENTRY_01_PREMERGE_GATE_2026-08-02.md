@@ -6,21 +6,22 @@
 gate_id: GM-PREMERGE-ADVERSARIAL-GATE-01
 scope: GM-IMPLEMENTATION-ENTRY-01
 status: PASS
-verdict: MERGE_READY_AFTER_EXPLICIT_USER_APPROVAL
-reviewed_at: 2026-08-02T20:18+09:00
+verdict: MERGE_AUTHORIZED_BY_USER_AFTER_FINAL_REVERIFY
+reviewed_at: 2026-08-02T20:59+09:00
 pull_request: 43
 branch: chatgpt/grimoire-implementation-entry-20260802
-baseline_main: f9c6f5fdd59f7c256986b5c817a244d464e0e74c
-base_release_on_main: 9.4.2
+latest_main: c114343ac925d734caf0ac8011c8ee25fd6d29e8
+base_release_on_main: 9.4.3
 base_pr_38: MERGED
-base_pr_42: OPEN_DRAFT
+base_pr_42: CLOSED_SUPERSEDED
+base_pr_44: MERGED
 grill_counter: 1_of_10
 merge_trigger: GATE_OR_IMPLEMENTATION_BOUNDARY
 merge_required: true
-merge_authorized: false
+merge_authorized: true
 merge_blocking_p0: 0
 merge_blocking_p1: 0
-execution_blocking_p1: 4
+execution_blocking_p1: 3
 implementation: NOT_STARTED
 codex_execution: BLOCKED
 runtime_validation: NOT_RUN
@@ -28,10 +29,10 @@ mobile_device_validation: NOT_RUN
 performance_validation: NOT_RUN
 accessibility_validation: NOT_RUN
 human_validation: NOT_RUN
-final_head_resolution: CURRENT_BRANCH_CONTAINING_THIS_REPORT_AND_FINAL_BATCH_STATE; exact SHA and final CI are recorded in PR 43 and Google Sheet
+final_head_resolution: CURRENT_BRANCH_CONTAINING_THIS_REPORT_AND_FINAL_BATCH_STATE; exact SHA and final CI are recorded in PR 43 and Google Sheet before merge
 ```
 
-PR #43은 조건부 Foundation POC의 **정본·설계·TDD 계획을 병합할 준비가 됐다**. 그러나 사용자 명시 승인 전에는 병합하지 않는다. 병합 이후에도 `GM-FOUNDATION-POC-EXECUTION-READINESS-01` 통과 전에는 제품 코드 작성을 시작하지 않는다.
+PR #43은 조건부 Foundation POC의 **정본·설계·TDD 계획을 병합할 준비가 됐고 사용자가 병합을 승인했다**. 단, 병합 이후에도 `GM-FOUNDATION-POC-EXECUTION-READINESS-01` 통과 전에는 제품 코드 작성을 시작하지 않는다.
 
 ## 검토 범위
 
@@ -39,27 +40,32 @@ PR #43은 조건부 Foundation POC의 **정본·설계·TDD 계획을 병합할 
 2. 전체 변경 파일과 제품 코드 경계.
 3. Decision ID·승인 옵션·Batch counter.
 4. Google Sheet 동기화와 인접 행 Readback.
-5. Base v9.4.2 main 정본과 open PR #42.
+5. Base v9.4.3 main 정본과 PR #42/#44 처리 결과.
 6. 구현 설계·TDD 계획·금지 범위.
 7. CI·adversarial-gate·review 상태.
 8. Runtime·기기·성능·접근성·사람 검증의 증거 상한.
 
 ## 최신 main과 Base
 
-PR #38이 병합되어 main은 Base v9.4.2 planning-first 정본을 가진다.
+- PR #38이 Base v9.4.2 planning-first 계약을 도입했다.
+- 기존 PR #42는 supersede 종료됐다.
+- 대체 PR #44가 병합되어 main은 Base v9.4.3 first-prompt governance를 가진다.
+- v9.4.3은 v9.4.2 planning-first와 v9.4.1 external-AI 경계를 보존한다.
 
 ```yaml
-main: f9c6f5fdd59f7c256986b5c817a244d464e0e74c
-merge_base: f9c6f5fdd59f7c256986b5c817a244d464e0e74c
-behind_by: 0
-base_release: 9.4.2
+main: c114343ac925d734caf0ac8011c8ee25fd6d29e8
+base_release: 9.4.3
+base_identity: SINGLE_CANONICAL_RELEASE_ON_MAIN
+planning_first_preserved: true
+first_prompt_governance_added: true
+product_or_canon_change_from_pr44: false
 ```
 
-PR #42는 Base v9.4.3 first-prompt adapter Draft로 열려 있다. 이 상태는 PR #43 문서 병합을 막지 않지만, 제품 코드 실행 전에 반드시 정리하고 최종 Base identity를 재검증해야 한다.
+PR #44의 변경 경로는 Adapter·생성 View·검증·Workflow이며 PR #43의 문서 경로와 겹치지 않는다. 최신 main 반영 후 exact-head 검증을 다시 실행한다.
 
 ## 변경 범위
 
-보고서 생성 전 변경 파일은 10개이며 모두 문서·운영 상태 파일이다.
+최종 변경 파일은 11개이며 모두 문서·운영 상태 파일이다.
 
 ```text
 START_HERE.md
@@ -69,12 +75,11 @@ docs/planning/IMPLEMENTATION_ENTRY_01_ADVERSARIAL_REVIEW_2026-08-02.md
 docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md
 docs/planning/IMPLEMENTATION_ENTRY_01_COLD_START_OVERRIDE_2026-08-02.md
 docs/planning/IMPLEMENTATION_ENTRY_01_GRILL_ME_2026-08-02.md
+docs/planning/IMPLEMENTATION_ENTRY_01_PREMERGE_GATE_2026-08-02.md
 docs/planning/sync/GR-SYNC-20260802-21-WORKING.md
 docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md
 docs/superpowers/specs/2026-08-02-mobile-foundation-poc-implementation-entry-design.md
 ```
-
-이 보고서 추가 후 최종 변경 파일은 11개다.
 
 미포함:
 
@@ -93,6 +98,7 @@ docs/superpowers/specs/2026-08-02-mobile-foundation-poc-implementation-entry-des
 decision_id: GM-IMPLEMENTATION-ENTRY-01
 approved_option: A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK
 approval_time: 2026-08-02T20:18+09:00
+merge_approval_time: 2026-08-02T20:59+09:00
 counter_before: 0_of_10
 counter_after: 1_of_10
 pending_decision_ids:
@@ -100,7 +106,7 @@ pending_decision_ids:
 merge_trigger: GATE_OR_IMPLEMENTATION_BOUNDARY
 ```
 
-GitHub Approval·Batch State·Sync Receipt와 Sheet의 Decision row가 동일하다.
+GitHub Approval·Batch State·Sync Receipt와 Sheet의 Decision row가 동일해야 한다.
 
 ## Google Sheet Readback
 
@@ -110,18 +116,18 @@ GitHub Approval·Batch State·Sync Receipt와 Sheet의 Decision row가 동일하
 00·01·02·04·05·10·20·30·60·80·90·99
 ```
 
-확인:
+확인 항목:
 
 - `GM-IMPLEMENTATION-ENTRY-01` 승인 옵션 일치.
 - counter `1/10`, pending 1개 일치.
 - `GR-AUD-IMPLEMENTATION-ENTRY-20260802-01` 존재.
 - `GR-G-07`, `GR-UX-18`, `GR-TEST-024`, `GR-M-13` 연속성 확인.
 - 기존 인접 행 보존.
-- `01_작업순서`의 빈 행 위치를 보정해 sequence 23→24 연속성을 복원.
 - 구현·Codex·검증 상태를 과장하지 않음.
+- Base 상태를 v9.4.3 / PR #42 superseded / PR #44 merged로 갱신.
 
 ```yaml
-sheet_readback: PASS
+sheet_readback: PASS_REQUIRED_BEFORE_MERGE
 row_overwrite: 0
 id_conflict: 0
 ```
@@ -137,35 +143,33 @@ p1: 0
 
 ### 실행 차단 P1
 
-다음 네 건은 PR #43 병합 후에도 남는다.
+Base PR 정리 문제는 해소됐다. 다음 세 건은 PR #43 병합 후에도 남는다.
 
-1. `P1-BASE-IDENTITY-01`: PR #42 처리와 최종 Base identity 재검증.
-2. `P1-COLD-START-STALE-01`: ACTIVE_CONTEXT·DEVELOPMENT_GATES·기본 Registry 직접 최신화.
-3. `P1-TOOLCHAIN-01`: Godot binary·version·renderer/export 환경 검증.
-4. `P1-PLAN-BASE-DRIFT-01`: 최종 main 기준 계획·interface·CI 재검토.
+1. `P1-COLD-START-STALE-01`: ACTIVE_CONTEXT·DEVELOPMENT_GATES·기본 Registry 직접 최신화와 Override 흡수.
+2. `P1-TOOLCHAIN-01`: Godot binary·version·renderer/export 환경 검증.
+3. `P1-PLAN-BASE-DRIFT-01`: Base v9.4.3 최종 main 기준 계획·interface·CI 재검토.
 
 따라서 다음 두 판정은 동시에 참이다.
 
 ```text
-PR #43 DOCUMENT MERGE = READY_AFTER_USER_APPROVAL
+PR #43 DOCUMENT MERGE = USER_AUTHORIZED_AFTER_FINAL_REVERIFY
 FOUNDATION POC CODE EXECUTION = BLOCKED
 ```
 
 ## CI·리뷰 기준
 
-보고서 작성 전 HEAD에서 확인한 workflow:
+병합 직전 exact HEAD에서 다음을 다시 확인한다.
 
 ```yaml
-workflow_run: 30746319404
-workflow: Validate Base v9.4.2 adoption
-conclusion: success
-ci_gate: success
-adversarial_gate: success
-unresolved_review_threads: 0
-blocking_reviews: 0
+ci_gate: success_required
+adversarial_gate: success_required
+base_v943_first_prompt_adoption: success_required_if_triggered
+unresolved_review_threads: 0_required
+blocking_reviews: 0_required
+behind_by: 0_or_conflict_free_merge_against_latest_main
 ```
 
-이 보고서와 최종 Batch State를 포함한 exact HEAD의 CI를 다시 확인하고 PR #43과 Sheet에 기록한다. CI는 Runtime·실기기·성능·접근성·사람 검증을 대체하지 않는다.
+CI는 Runtime·실기기·성능·접근성·사람 검증을 대체하지 않는다.
 
 ## 병합 후 경계
 
@@ -185,11 +189,9 @@ Store·배포·사업화
 
 ```text
 PR #43 병합·main/Sheet 최종화
-→ PR #42 처리
-→ 최종 Base identity와 Required Workflow 확인
-→ Cold-start 핵심 문서 직접 조정
+→ Cold-start 핵심 문서 직접 조정·Override 흡수
 → Godot Toolchain preflight
-→ 구현 계획 최신 main 재검증
+→ 구현 계획을 Base v9.4.3 main에 재검증
 → GM-FOUNDATION-POC-EXECUTION-READINESS-01
 → P0=0·P1=0이면 Foundation POC 코드 시작
 ```
@@ -199,6 +201,7 @@ PR #43 병합·main/Sheet 최종화
 ```yaml
 premerge_gate: PASS
 merge_ready: true
-explicit_user_approval_required: true
+explicit_user_approval_received: true
+final_reverification_required: true
 code_execution_ready: false
 ```
