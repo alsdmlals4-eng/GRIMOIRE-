@@ -1,4 +1,4 @@
-name: Validate Base v9.3 adoption
+name: Validate Base v9.4.2 adoption
 on: [pull_request]
 jobs:
   ci-gate:

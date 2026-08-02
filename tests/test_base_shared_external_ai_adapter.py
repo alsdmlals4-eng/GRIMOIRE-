@@ -9,8 +9,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ADAPTER_PATH = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 SKILL_ID = "orchestrating-deepseek-worktrees"
-BASE_RELEASE_COMMIT = "3f2c4a624d302b704c1b5322eb5c9f34ad55abb9"
-BASE_RELEASE_EVIDENCE_COMMIT = "ff117d24d5bdb121314e109a6aa9b4f552e0fdc1"
+CURRENT_BASE_VERSION = "9.4.2"
+CURRENT_BASE_RELEASE_COMMIT = "dd705d7f48a7919187bc0507610ba5fc5b43a658"
+CURRENT_BASE_EVIDENCE_COMMIT = "0c6cdd128bf1f5782e96b3a6240c9585f8d1ef6d"
+CURRENT_BASE_FINALIZATION_COMMIT = "ac9466edc2d93b59f274c9ac55ca719eba2809e3"
 BASE_REGISTRY_SHA256 = "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59"
 
 
@@ -27,22 +29,27 @@ def active_base_routes(adapter: dict) -> set[str]:
 
 
 class BaseSharedExternalAIAdapterTests(unittest.TestCase):
-    def test_preserves_released_base_identity(self) -> None:
+    def test_preserves_current_released_base_identity(self) -> None:
         adapter = load_adapter()
-        self.assertEqual("9.4.1", adapter["base_release"]["version"])
-        self.assertEqual(BASE_RELEASE_COMMIT, adapter["base_release"]["release_commit"])
+        release = adapter["base_release"]
+        self.assertEqual(CURRENT_BASE_VERSION, release["version"])
+        self.assertEqual(CURRENT_BASE_RELEASE_COMMIT, release["release_commit"])
         self.assertEqual(
-            BASE_RELEASE_EVIDENCE_COMMIT,
-            adapter["base_release"]["release_evidence_commit"],
+            CURRENT_BASE_EVIDENCE_COMMIT,
+            release["release_evidence_commit"],
         )
-        self.assertEqual(BASE_REGISTRY_SHA256, adapter["base_release"]["registry_sha256"])
+        self.assertEqual(
+            CURRENT_BASE_FINALIZATION_COMMIT,
+            release["finalization_commit"],
+        )
+        self.assertEqual(BASE_REGISTRY_SHA256, release["registry_sha256"])
 
     def test_routes_external_ai_worktree_skill_without_copying_body(self) -> None:
         adapter = load_adapter()
         self.assertIn(SKILL_ID, active_base_routes(adapter))
         self.assertFalse((ROOT / "skills/orchestrating-deepseek-worktrees/SKILL.md").exists())
 
-    def test_binds_planning_only_isolation_policy(self) -> None:
+    def test_binds_v941_external_ai_validator_as_separate_boundary(self) -> None:
         adapter = load_adapter()
         override = adapter["base_v94_contract"]["external_ai_worktree"]
         self.assertEqual(".worktrees/", override["worktree_parent"])
