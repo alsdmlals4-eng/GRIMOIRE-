@@ -8,7 +8,7 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 5,
+    "approved_grill_me_since_last_flush": 6,
     "next_merge_at": 10,
     "merge_required": false,
     "pending_decision_ids": [
@@ -16,7 +16,8 @@
       "GM-FULL-GAME-CHAPTER-RHYTHM-01",
       "GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01",
       "GM-FULL-GAME-GROWTH-CHOICE-COST-01",
-      "GM-FULL-GAME-REWARD-ECONOMY-01"
+      "GM-FULL-GAME-REWARD-ECONOMY-01",
+      "GM-FULL-GAME-FAILURE-LONG-TERM-IMPACT-01"
     ]
   },
   "counting_rule": {
@@ -44,8 +45,8 @@
   "current_work": {
     "branch": "chatgpt/grimoire-full-game-structure-20260802",
     "draft_pull_request": 36,
-    "working_sync_id": "GR-SYNC-20260802-14",
-    "sheet_readback": "PASS",
+    "working_sync_id": "GR-SYNC-20260802-15",
+    "sheet_readback": "PENDING",
     "final_head_resolution": "CURRENT_BRANCH_CONTAINING_THIS_FILE; exact SHA recorded in Google Sheet",
     "sequence_decision_id": "GM-FULL-GAME-PLANNING-ORDER-01",
     "current_design_gate": "FULL-GAME-STRUCTURE-01",
@@ -75,13 +76,18 @@
         "decision_id": "GM-FULL-GAME-REWARD-ECONOMY-01",
         "approved_option": "A_PRIMARY_PLUS_C_MATERIAL_CRAFTING_MINIGAME_CONTENT",
         "approved_at": "2026-08-02T18:04:00+09:00"
+      },
+      {
+        "decision_id": "GM-FULL-GAME-FAILURE-LONG-TERM-IMPACT-01",
+        "approved_option": "A_RESULT_TAG_RECOVERY_SPIRAL_WITH_HIDDEN_MINOR_SEMESTER_EVALUATION",
+        "approved_at": "2026-08-02T18:23:00+09:00"
       }
     ],
-    "latest_approved_grill_me_decision": "GM-FULL-GAME-REWARD-ECONOMY-01",
-    "latest_approved_grill_me_option": "A_PRIMARY_PLUS_C_MATERIAL_CRAFTING_MINIGAME_CONTENT",
-    "current_grill_me_candidate": "GM-FULL-GAME-FAILURE-LONG-TERM-IMPACT-01",
+    "latest_approved_grill_me_decision": "GM-FULL-GAME-FAILURE-LONG-TERM-IMPACT-01",
+    "latest_approved_grill_me_option": "A_RESULT_TAG_RECOVERY_SPIRAL_WITH_HIDDEN_MINOR_SEMESTER_EVALUATION",
+    "current_grill_me_candidate": "GM-FULL-GAME-SCOPE-ENDING-01",
     "current_grill_me_status": "USER_DECISION_REQUIRED",
-    "next_planning_work": "Resolve partial success, failure, scholarship, relationship, place, research, and recovery consequences",
+    "next_planning_work": "Resolve full-game term, chapter, school, minigame, optional-content scope and ending condition",
     "magic_curriculum": {
       "structure": "MULTI_SCHOOL_ENROLLMENT_AND_SPECIALIZATION",
       "vertical_slice_foundation": "FLOW_MAIN_PLUS_FOCUS_OR_DISPERSION_SUPPORT",
@@ -100,6 +106,7 @@
         "FOUNDATION_LEARNING_AND_LIGHT_WRITING",
         "NONCOMBAT_APPLICATION_IN_DAILY_AND_FESTIVAL_EVENTS",
         "FIELD_PRACTICUM_COMBAT_AND_ENVIRONMENT_PERFORMANCE",
+        "CRAFTING_RESEARCH_AND_MINIGAME_APPLICATION",
         "GRIMOIRE_REFLECTION_AND_EXPLANATION"
       ]
     },
@@ -118,26 +125,50 @@
         "TOOLS_PROTECTION_DEVICES_AND_RITUAL_CONSUMABLES"
       ],
       "minigame_content_required": true,
-      "vertical_slice_representative_minigame_minimum": 1,
+      "vertical_slice_representative_minigame_minimum": 1
+    },
+    "failure_and_semester_evaluation": {
+      "structure": "RESULT_TAG_RECOVERY_SPIRAL_WITH_HIDDEN_MINOR_SEMESTER_EVALUATION",
+      "immediate_visible": [
+        "WORLD_AND_LOCATION_RESULT",
+        "SAVED_LOST_OR_ALTERED_TARGETS",
+        "CRAFTING_QUALITY_SIDE_EFFECTS_AND_DISCOVERIES",
+        "NATURAL_CHARACTER_AND_SPIRIT_REACTIONS",
+        "GRIMOIRE_EVENT_RECORD"
+      ],
+      "hidden_during_term": [
+        "INTERNAL_EVALUATION_SCORE",
+        "PER_EVENT_DEDUCTION",
+        "PREDICTED_TERM_GRADE",
+        "SCHOLARSHIP_THRESHOLD_MARGIN"
+      ],
+      "term_end_output": [
+        "AGGREGATE_EVALUATION_RESULT",
+        "PROFESSOR_NARRATIVE_FEEDBACK",
+        "STRENGTHS_AND_IMPROVEMENT_AREAS",
+        "REPRESENTATIVE_SUPPORTING_EVENTS",
+        "NEXT_TERM_COURSE_RESEARCH_AND_SPECIALIZATION_CANDIDATES"
+      ],
       "guardrails": [
-        "MATERIALS_CANNOT_BUY_EVALUATION_ACCESS_OR_SPECIALIZATION",
-        "NO_REQUIRED_SINGLE_RARE_MATERIAL_SOLUTION",
-        "NO_COMBAT_ONLY_MATERIAL_ECONOMY",
-        "NO_REPEAT_FARMING_AS_PRIMARY_PERMANENT_PROGRESSION",
-        "CRAFTED_ITEMS_ARE_CONTEXTUAL_NOT_UNIVERSAL_POWER_SUPERSETS",
-        "MINIGAMES_MUST_CONNECT_TO_GLYPH_MEANING_SITUATION_OR_MATERIAL_PROPERTIES",
-        "EXACT_MINIGAME_MATERIAL_RECIPE_AND_INVENTORY_COUNTS_REMAIN_TEST_VALUE"
+        "SMALL_BOUNDED_PER_EVENT_DEDUCTION",
+        "BOUNDED_TOTAL_TERM_DEDUCTION",
+        "NO_SINGLE_FAILURE_DOMINATES_TERM_RESULT",
+        "NO_IMMEDIATE_SCHOLARSHIP_LOSS_RELATIONSHIP_BREAK_OR_CONTENT_LOCK",
+        "RECOVERY_CONTENT_CREATES_NEW_EVIDENCE_NOT_SCORE_ERASURE",
+        "NO_HIDDEN_RANDOM_OR_UNLOGGED_EVALUATION_CONDITIONS",
+        "TERM_END_FEEDBACK_MUST_EXPLAIN_REPRESENTATIVE_CAUSES",
+        "EXACT_VALUES_REMAIN_TEST_VALUE"
       ]
     },
     "scope_override": "docs/planning/GRIMOIRE_VERTICAL_SLICE_MINIGAME_CRAFTING_SCOPE_OVERRIDE_2026-08-02.md",
     "wireframe_status": "DEFERRED_UNTIL_FULL_GAME_STRUCTURE_APPROVAL",
     "authority_documents": [
-      "docs/planning/FULL_GAME_REWARD_ECONOMY_01_GRILL_ME_2026-08-02.md",
-      "docs/planning/FULL_GAME_REWARD_ECONOMY_01_APPROVAL_2026-08-02.md",
-      "docs/planning/GRIMOIRE_VERTICAL_SLICE_MINIGAME_CRAFTING_SCOPE_OVERRIDE_2026-08-02.md",
       "docs/planning/FULL_GAME_FAILURE_LONG_TERM_IMPACT_01_GRILL_ME_2026-08-02.md",
+      "docs/planning/FULL_GAME_FAILURE_LONG_TERM_IMPACT_01_APPROVAL_2026-08-02.md",
+      "docs/planning/FULL_GAME_SCOPE_ENDING_01_GRILL_ME_2026-08-02.md",
       "docs/planning/FULL_GAME_STRUCTURE_GAP_AUDIT_2026-08-02.md",
-      "docs/planning/sync/GR-SYNC-20260802-14-WORKING.md"
+      "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
+      "docs/planning/sync/GR-SYNC-20260802-15-WORKING.md"
     ]
   },
   "protected_boundaries": {
