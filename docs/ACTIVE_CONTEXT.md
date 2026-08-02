@@ -26,9 +26,12 @@ codex: BLOCKED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 human_validation: NOT_RUN
-canon_sync_state: GITHUB_ONLY
+canon_sync_state: SYNCED_TO_WORKING_BRANCH
 sync_bundle: GR-SYNC-20260802-07
+authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
+sheet_readback: PASS
 main_baseline_commit: 3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03
+main_sync: PENDING_PR_MERGE
 ```
 
 제품용 `project.godot`, Scene, Script, Resource, 게임 데이터, 런타임 Asset은 없다.
@@ -41,6 +44,7 @@ AGENTS.md
 → 이 문서
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
 → docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md
+→ docs/planning/sync/GR-SYNC-20260802-07-WORKING.md
 → 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
@@ -155,15 +159,19 @@ Snapshot과 Compatibility View는 생성물이며 직접 편집하지 않는다.
 - Art Style, Art Bible, 전투 화면·시간·승패 규칙 승인.
 - Asset Spec 승인 및 main·Sheet 동기화(PR #24·#25).
 - 프로젝트 코어·Vertical Slice·잠긴 시각 기준 보존.
+- `GM-PLATFORM-02` GitHub authority와 Sheet 14개 탭 동기화·Readback PASS.
+- `60_UX_UI_접근성`의 `GR-UX-13/14` 위치 오류 적대적 교정.
 
 ## 현재 작업
 
-Sync Bundle: `GR-SYNC-20260802-07`.
+Sync Bundle `GR-SYNC-20260802-07`은 `SYNCED_TO_WORKING_BRANCH`다.
 
-- `GM-PLATFORM-02` 정본화.
-- Base v9.4·Asset Spec 완료 상태의 시작 문서·Sheet 전파.
+남은 운영 작업:
+
 - Issue #9/#16의 구형 상태 교정.
-- Mobile Foundation을 다음 Gate로 설정.
+- Draft PR 생성과 변경 파일 검토.
+- Generator·Generated Views·CI 검증.
+- 사용자 검토 후 main 병합 및 `SYNCED_TO_MAIN` 재검증.
 
 ## 다음 제품 작업
 
@@ -187,6 +195,8 @@ MOBILE-FOUNDATION-01
 
 ## 미검증
 
+- Generator와 생성 Snapshot·Compatibility View.
+- PR CI와 adversarial gate.
 - Mobile OS·Store·방향·최소 기기.
 - Touch target·Canvas 크기·인식 알고리즘·허용치·지연.
 - 적 공격 간격·피해량·HP·마나·불안정도 변화량·수호 완화율.
