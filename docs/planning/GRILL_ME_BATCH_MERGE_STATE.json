@@ -8,13 +8,14 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 3,
+    "approved_grill_me_since_last_flush": 4,
     "next_merge_at": 10,
     "merge_required": false,
     "pending_decision_ids": [
       "GM-FULL-GAME-MACRO-LOOP-01",
       "GM-FULL-GAME-CHAPTER-RHYTHM-01",
-      "GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01"
+      "GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01",
+      "GM-FULL-GAME-GROWTH-CHOICE-COST-01"
     ]
   },
   "counting_rule": {
@@ -55,8 +56,8 @@
   "current_work": {
     "branch": "chatgpt/grimoire-full-game-structure-20260802",
     "draft_pull_request": 36,
-    "working_sync_id": "GR-SYNC-20260802-12",
-    "sheet_readback": "PASS",
+    "working_sync_id": "GR-SYNC-20260802-13",
+    "sheet_readback": "PENDING",
     "final_head_resolution": "CURRENT_BRANCH_CONTAINING_THIS_FILE; exact SHA recorded in Google Sheet",
     "sequence_decision_id": "GM-FULL-GAME-PLANNING-ORDER-01",
     "sequence_status": "USER_APPROVED_ACTIVE_SYNCED_TO_WORKING_BRANCH",
@@ -77,13 +78,18 @@
         "decision_id": "GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01",
         "approved_option": "B_MULTI_SCHOOL_ENROLLMENT_SPECIALIZATION_TREE",
         "approved_at": "2026-08-02T17:19:00+09:00"
+      },
+      {
+        "decision_id": "GM-FULL-GAME-GROWTH-CHOICE-COST-01",
+        "approved_option": "A_COURSE_SLOTS_PLUS_CONTEXTUAL_PORTFOLIO_EVIDENCE_NO_SEPARATE_EXAM",
+        "approved_at": "2026-08-02T17:39:00+09:00"
       }
     ],
-    "latest_approved_grill_me_decision": "GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01",
-    "latest_approved_grill_me_option": "B_MULTI_SCHOOL_ENROLLMENT_SPECIALIZATION_TREE",
-    "current_grill_me_candidate": "GM-FULL-GAME-GROWTH-CHOICE-COST-01",
+    "latest_approved_grill_me_decision": "GM-FULL-GAME-GROWTH-CHOICE-COST-01",
+    "latest_approved_grill_me_option": "A_COURSE_SLOTS_PLUS_CONTEXTUAL_PORTFOLIO_EVIDENCE_NO_SEPARATE_EXAM",
+    "current_grill_me_candidate": "GM-FULL-GAME-REWARD-ECONOMY-01",
     "current_grill_me_status": "USER_DECISION_REQUIRED",
-    "next_planning_work": "Resolve curriculum slots, growth evidence, specialization cost, and recovery rules",
+    "next_planning_work": "Resolve reward layers, sinks, preparation resources, access rights, and anti-farming rules",
     "magic_curriculum": {
       "structure": "MULTI_SCHOOL_ENROLLMENT_AND_SPECIALIZATION",
       "vertical_slice_foundation": "FLOW_MAIN_PLUS_FOCUS_OR_DISPERSION_SUPPORT",
@@ -103,10 +109,29 @@
         "EXACT_SCHOOL_COUNT_LEVEL_CAP_AND_SPECIALIZATION_THRESHOLD_REMAIN_TEST_VALUE"
       ]
     },
+    "growth_and_assessment": {
+      "structure": "COURSE_SLOTS_PLUS_CONTEXTUAL_PORTFOLIO_EVIDENCE",
+      "separate_exam": false,
+      "evidence": [
+        "FOUNDATION_LEARNING_AND_LIGHT_WRITING",
+        "NONCOMBAT_APPLICATION_IN_DAILY_AND_FESTIVAL_EVENTS",
+        "FIELD_PRACTICUM_COMBAT_AND_ENVIRONMENT_PERFORMANCE",
+        "GRIMOIRE_REFLECTION_AND_EXPLANATION"
+      ],
+      "guardrails": [
+        "CLASS_PRACTICE_IS_SAFE_LEARNING_NOT_GRADE_COMPETITION",
+        "FIELD_KILL_SPEED_OR_DAMAGE_DOES_NOT_DOMINATE_ASSESSMENT",
+        "NONCOMBAT_APPLICATION_COUNTS_AS_REAL_GROWTH_EVIDENCE",
+        "SAME_PRACTICUM_REPEAT_DOES_NOT_REPLACE_CONTEXT_DIVERSITY",
+        "PARTIAL_SUCCESS_AND_FAILURE_CAN_BE_VALID_LEARNING_RECORDS",
+        "SPECIALIZATION_REQUIRES_EVIDENCE_AND_EXPLICIT_PLAYER_CHOICE",
+        "COURSE_SLOT_COUNT_AND_ASSESSMENT_WEIGHTS_REMAIN_TEST_VALUE"
+      ]
+    },
     "chapter_required_functions": [
       "DISCOVERY_AND_LEARNING",
       "CHOICE_AND_PREPARATION",
-      "CONTROLLED_APPLICATION",
+      "CONTROLLED_NONCOMBAT_OR_LOW_RISK_APPLICATION",
       "FIELD_RESPONSIBILITY_CHOICE",
       "REFLECTION_AND_NEXT_QUESTION"
     ],
@@ -118,15 +143,16 @@
     ],
     "wireframe_status": "DEFERRED_UNTIL_FULL_GAME_STRUCTURE_APPROVAL",
     "authority_documents": [
+      "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
       "docs/planning/FULL_GAME_STRUCTURE_GATE_01_2026-08-02.md",
       "docs/planning/FULL_GAME_STRUCTURE_GAP_AUDIT_2026-08-02.md",
       "docs/planning/FULL_GAME_MACRO_LOOP_01_APPROVAL_2026-08-02.md",
       "docs/planning/FULL_GAME_CHAPTER_RHYTHM_01_APPROVAL_2026-08-02.md",
-      "docs/planning/benchmarks/FULL_GAME_MAGIC_GLYPH_CURRICULUM_CANON_RECONCILIATION_2026-08-02.md",
-      "docs/planning/FULL_GAME_MAGIC_GLYPH_CURRICULUM_01_GRILL_ME_2026-08-02.md",
       "docs/planning/FULL_GAME_MAGIC_GLYPH_CURRICULUM_01_APPROVAL_2026-08-02.md",
       "docs/planning/FULL_GAME_GROWTH_CHOICE_COST_01_GRILL_ME_2026-08-02.md",
-      "docs/planning/sync/GR-SYNC-20260802-12-WORKING.md"
+      "docs/planning/FULL_GAME_GROWTH_CHOICE_COST_01_APPROVAL_2026-08-02.md",
+      "docs/planning/FULL_GAME_REWARD_ECONOMY_01_GRILL_ME_2026-08-02.md",
+      "docs/planning/sync/GR-SYNC-20260802-13-WORKING.md"
     ]
   },
   "protected_boundaries": {
