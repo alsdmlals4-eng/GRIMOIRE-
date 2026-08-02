@@ -13,6 +13,9 @@ implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
 product_implementation: NOT_STARTED
 codex_plan: ALLOWED
 codex_execution: BLOCKED
+base_release_on_main: 9.4.2
+base_pr_38: MERGED
+base_pr_42: OPEN_DRAFT
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 accessibility_validation: NOT_RUN
@@ -28,8 +31,8 @@ human_validation: NOT_RUN
 - 현재 저장소에는 제품용 `project.godot`, Scene, Script, Resource, 게임 데이터가 없다.
 - 기존 개발 Gate는 `BOSS-PHASE-01`, `GRIMOIRE-SCREEN-01`, `AUDIO-DIRECTION-01`, Mobile 통합 검수를 전체 Vertical Slice 구현 전 조건으로 둔다.
 - 실제 글자 인식 알고리즘, Renderer, Mobile OS 최소 범위, 최소 기기, 성능 기준은 확정되지 않았다.
-- Draft PR #38과 #42가 Base Adapter의 같은 권위 파일을 갱신하고 있어 실행 전에 단일 Base 정본으로 정리해야 한다.
-- `START_HERE.md`, `docs/ACTIVE_CONTEXT.md`, `docs/DEVELOPMENT_GATES.md`, `docs/DESIGN_DOCUMENT_REGISTRY.json`에는 최신 병합·Gate 상태보다 오래된 필드가 남아 있다.
+- PR #38 병합으로 main은 Base v9.4.2 planning-first 정본을 가지지만, PR #42가 Base v9.4.3 first-prompt adapter Draft로 남아 있다.
+- `docs/ACTIVE_CONTEXT.md`, `docs/DEVELOPMENT_GATES.md`, `docs/DESIGN_DOCUMENT_REGISTRY.json`에는 최신 병합·Gate 상태보다 오래된 필드가 남아 있다. `START_HERE.md`는 이번 Branch에서 보정했다.
 
 ## A — Foundation POC만 TDD로 조건부 진입 — 승인·권장
 
@@ -58,10 +61,11 @@ human_validation: NOT_RUN
 실행 전 필수 조건:
 
 ```text
-Base PR #38·#42 병합 또는 명시적 supersede/close
-→ main에서 단일 Base release identity 확인
-→ Cold-start 문서의 최신 Override 적용 여부 확인
-→ Implementation Plan 재검토
+Base PR #42 병합 또는 명시적 supersede/close
+→ main에서 최종 단일 Base release identity와 Required Workflow 확인
+→ Cold-start 핵심 문서 직접 재조정
+→ Godot Toolchain preflight
+→ Implementation Plan 최신 main 재검토
 → GM-FOUNDATION-POC-EXECUTION-READINESS-01 PASS
 → 그 뒤에만 코드 작성
 ```
@@ -76,13 +80,13 @@ Base PR #38·#42 병합 또는 명시적 supersede/close
 
 - Harness가 재미 검증으로 오인될 수 있다.
 - 임시 Test Recognizer가 실제 인식 품질을 대표하지 않는다.
-- Base 채택 PR과 병렬로 실행하면 운영 정본이 다시 갈라질 수 있다.
+- 후속 Base 채택 PR과 병렬로 실행하면 운영 정본이 다시 갈라질 수 있다.
 
 방어:
 
 - 모든 화면·수치·인식 결과에 `POC / TEST_VALUE / NOT_CONTENT_COMPLETE`를 표시한다.
 - 실제 제품 콘텐츠·아트·오디오 파일을 변경 금지 목록으로 CI에서 검사한다.
-- Base PR 정리와 실행 준비 Gate 전에는 Codex 실행을 차단한다.
+- PR #42 처리와 실행 준비 Gate 전에는 Codex 실행을 차단한다.
 
 ## B — 전체 Vertical Slice를 즉시 구현
 
@@ -100,4 +104,4 @@ BOSS·Grimoire·Audio·통합 검수·기기·성능 수치가 모두 확정될 
 
 사용자의 `권장안대로 진행`을 A안 승인으로 기록한다.
 
-이 승인은 **Foundation POC 설계·계획 진입**을 허용한다. Base PR 정리와 별도 실행 준비 Gate 전에는 제품 코드 작성을 허용하지 않는다.
+이 승인은 **Foundation POC 설계·계획 진입**을 허용한다. PR #42 처리와 별도 실행 준비 Gate 전에는 제품 코드 작성을 허용하지 않는다.
