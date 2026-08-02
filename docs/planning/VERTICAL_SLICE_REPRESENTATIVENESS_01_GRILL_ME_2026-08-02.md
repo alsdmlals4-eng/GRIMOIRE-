@@ -1,111 +1,69 @@
-# GM-VERTICAL-SLICE-REPRESENTATIVENESS-01 — 3단계 제품 범위 대표성 Grill Me
+# GM-VERTICAL-SLICE-REPRESENTATIVENESS-01 — 3단계 제품 범위 대표성 승인 기록
 
 ## 1. 상태
 
 ```yaml
 decision_id: GM-VERTICAL-SLICE-REPRESENTATIVENESS-01
-status: USER_DECISION_REQUIRED
+status: USER_APPROVED_ACTIVE
+approved_option: A_CORE_SYSTEMS_PLAYABLE_PLUS_LONG_TERM_STRUCTURE_COMPRESSED_MOCK
+approved_at: 2026-08-02T19:06+09:00
 parent_decision: GM-FULL-GAME-SCOPE-ENDING-01
-current_grill_me_batch_if_approved: 8_of_10
+grill_me_batch: 8_of_10
 gate: VERTICAL-SLICE-REPRESENTATIVENESS-01
 implementation: NOT_STARTED
 codex: BLOCKED
 ```
 
-## 2. 결정 질문
+## 2. 사용자 승인
 
-46–53분 Internal Vertical Slice에서 무엇을 실제 플레이로 구현하고 무엇을 압축 Mock·예고로 표현해야, 1학년 Year-One Demo와 3학년 Full Game의 핵심 약속을 거짓 없이 대표할 수 있는가?
+사용자는 권장 A안을 승인했다.
 
-## 3. A안 — 핵심 시스템 실구현 + 장기 구조 압축 Mock / 권장
+```text
+46–53분 Internal Vertical Slice
+= 반복 가능한 핵심 시스템은 실제 플레이로 구현
++ 1년·3년 장기 구조는 명확히 표시한 압축 Mock·예고로 표현
+```
 
-### 실제 구현
+승인 정본:
+
+`docs/planning/VERTICAL_SLICE_REPRESENTATIVENESS_01_APPROVAL_2026-08-02.md`
+
+## 3. 실제 플레이로 증명할 요소
 
 - 흐름 문자 학습과 직접 작성.
 - 집중 또는 분산 보조 문법.
 - 교내 비전투 응용.
-- 대표 재료 식별·촉매 안정화 제작 미니게임 1개 이상.
+- 대표 재료 식별·촉매 안정화 제작 미니게임 최소 1개.
 - 강한 적 1개체 중심 현장실습 전투와 환경 책임 선택.
 - 결과·부작용·발견의 마도서 기록.
-- 작은 숨김 평가 Ledger와 학기말 평가 축약 출력.
-- 자유일정의 휴식·준비·교류·현장실습 중 최소 2축의 의미 있는 선택.
+- 작은 숨김 평가 Ledger와 실제 결과 로그에 연결된 학기말 평가 축약 출력.
+- 휴식·준비·교류·현장실습 중 최소 2축의 의미 있는 자유일정 선택.
 
-### 압축 Mock·예고
+## 4. 압축 Mock·예고로 표현할 요소
 
-- 2·3학기 수강과 다계열 확장은 학기 전환 카드·수강 후보·교수 피드백으로 예고.
-- 2·3학년 전문화와 세계 규모 확장은 마도서 연구 방향·잠긴 Curriculum Map·엔딩 후속 질문으로 표현.
-- 실제 6~8 Chapter와 3년 콘텐츠를 Slice 안에 축소 복제하지 않는다.
+- 2·3학기 다계열 수강: 학기 전환 카드·수강 후보·교수 피드백.
+- 2·3학년 전문화와 세계 규모 확장: 마도서 연구 방향·잠긴 Curriculum Map·후속 질문.
+- 1학년 6~8 Chapter와 3년 콘텐츠 자체를 Slice에 축소 복제하지 않는다.
 
-### 통과 조건
+Mock은 실제 구현된 것처럼 위장하지 않으며 `PREVIEW / FUTURE TERM / NOT PLAYABLE IN SLICE` 상태를 명확히 표시한다.
 
-- 플레이어가 `배운 문자를 직접 설계해 비전투와 현장에서 다른 방식으로 세계를 바꾼다`는 약속을 체험한다.
-- 제작물이 전투력 아이템이 아니라 상황 해법과 대가를 바꾼다는 점을 이해한다.
-- 학기 중 점수는 보이지 않지만 학기말 평가 근거는 납득한다.
+## 5. 통과 계약
+
+- 배운 문자를 직접 설계해 비전투와 현장에서 서로 다른 방식으로 세계를 바꾸는 약속을 체험한다.
+- 제작물이 단순 전투력 아이템이 아니라 상황 해법·부작용·대가를 바꾼다는 점을 이해한다.
+- 학기 중 점수는 보이지 않지만 학기말 평가의 대표 근거는 납득한다.
 - 한 계열만이 정답이라는 인상을 주지 않는다.
-- 53분 상한과 모바일 작성 피로 기준을 넘기지 않는다.
+- 53분 콘텐츠 상한과 Mobile 직접 작성 피로 기준을 넘기지 않는다.
+- 중단복귀 후 작성 Draft·전투·결과 적용 상태가 손실되거나 중복 적용되지 않는다.
 
-장점:
+## 6. 제작 Gate
 
-- 현재 시간 예산에서 실제 핵심 재미를 검증할 수 있다.
-- Year-One Demo와 Full Game의 장기 구조를 과장하지 않고 예고한다.
-- 구현·Mobile·QA 위험을 가장 먼저 드러낸다.
+- 이 승인은 구현 착수가 아니라 대표성 계약 승인이다.
+- Mobile UX Flow와 Writing/Battle Wireframe 승인 전 Godot 제품 구현을 시작하지 않는다.
+- Vertical Slice Runtime·실기기·접근성·사람 검증 PASS 전 Year-One Demo 6~8 Chapter 본제작을 시작하지 않는다.
+- Year-One Demo 검증 전 2·3학년 전용 대형 콘텐츠를 본제작하지 않는다.
+- 정확한 자유일정 축·작성 횟수·Mock 화면 수·통과 수치는 `TEST_VALUE`다.
 
-위험:
+## 7. 다음 결정
 
-- 수강·전문화의 장기 만족감은 Mock으로만 확인된다.
-- 축약 학기말 평가가 실제 1년 누적 평가와 다르게 느껴질 수 있다.
-
-## 4. B안 — Year-One Demo 우선 제작 후 Slice 추출
-
-```text
-1학년 3학기 Demo를 먼저 제작
-→ 완성된 Demo에서 대표 46–53분 구간을 추출
-```
-
-장점:
-
-- Slice가 실제 Demo와 완전히 동일한 시스템·콘텐츠에서 나온다.
-- 장기 수강·학기말 평가를 실제 누적으로 검증할 수 있다.
-
-위험:
-
-- 핵심 시스템 검증 전에 6~8 Chapter 제작에 진입한다.
-- 잘못된 작성 UX·전투·제작·평가 구조를 대량 콘텐츠에 복제할 위험이 크다.
-- 현재 `PLANNING_ONLY / Codex BLOCKED` 단계와 맞지 않는다.
-
-## 5. C안 — 최소 전투·작성 Slice만 구현
-
-```text
-수업 문자 학습
-→ 전투 1회
-→ 마도서 기록
-```
-
-장점:
-
-- 가장 빠르고 구현 범위가 작다.
-- 직접 작성과 전투의 기본 작동 여부를 집중 검증한다.
-
-위험:
-
-- 사용자가 승인한 비전투 응용·재료 제작·미니게임·숨김 학기 평가·학교생활을 대표하지 못한다.
-- Year-One Demo와 Full Game이 실제 Slice와 전혀 다른 게임처럼 보일 수 있다.
-
-## 6. 권장 판정
-
-`A — 핵심 시스템 실구현 + 장기 구조 압축 Mock`을 권장한다.
-
-핵심 이유:
-
-- Vertical Slice는 전체 콘텐츠 양이 아니라 반복 가능한 핵심 경험과 위험을 증명해야 한다.
-- Year-One Demo의 대량 콘텐츠보다 먼저 작성·전투·제작·평가의 결합을 검증해야 한다.
-- 3년 구조는 콘텐츠 복제가 아니라 데이터·상태·확장 규칙이 이어질 수 있음을 보여주면 된다.
-
-## 7. A안 승인 시 확정되는 것
-
-- 46–53분 Slice는 실제 핵심 시스템을 구현한다.
-- 1년·3년 장기 진행은 전환 카드·수강 후보·마도서 연구 방향으로 압축 표현한다.
-- 대표 제작 미니게임 최소 1개를 실제 구현한다.
-- 학기말 평가 축약 Mock을 실제 결과 로그에 연결한다.
-- Vertical Slice 통과 전 Year-One Demo의 6~8 Chapter 본제작을 시작하지 않는다.
-- 정확한 필수 자유일정 축·작성 횟수·Mock 화면 수는 `TEST_VALUE`다.
-- Grill Me counter는 `8/10`이 된다.
+`GM-MOBILE-UX-FLOW-01 — Mobile Landscape에서 학교·일정·비전투·제작·전투·작성·마도서를 어떤 전환 흐름으로 연결할 것인가`.
