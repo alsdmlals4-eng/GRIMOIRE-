@@ -17,14 +17,14 @@
     "version": "9.4.0"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb",
+  "canonical_source_sha256": "980e2f4e21bd09ac49946f90d095680220013cbab6cdf62421fc01ca1b7be8c5",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "AGENTS.md",
     "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
     "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
-    "docs/planning/sync/GR-SYNC-20260802-07-WORKING.md",
+    "docs/planning/sync/GR-SYNC-20260802-07-MAIN.md",
     "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "docs/DEVELOPMENT_GATES.md",
     "docs/DOCUMENTATION_MAP.md",
@@ -85,99 +85,27 @@
   },
   "routing": {
     "base_routes": [
-      {
-        "route_id": "analyzing-and-refining-game-concepts",
-        "skill_id": "analyzing-and-refining-game-concepts",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "auditing-and-refining-ui-art",
-        "skill_id": "auditing-and-refining-ui-art",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "auditing-canonical-reference-freshness",
-        "skill_id": "auditing-canonical-reference-freshness",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "designing-art-prompts-and-technique-cards",
-        "skill_id": "designing-art-prompts-and-technique-cards",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "designing-vertical-slices",
-        "skill_id": "designing-vertical-slices",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "evaluating-godot-assets-and-plugins-before-creation",
-        "skill_id": "evaluating-godot-assets-and-plugins-before-creation",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "governing-legacy-retention-and-archives",
-        "skill_id": "governing-legacy-retention-and-archives",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "identifying-project-core",
-        "skill_id": "identifying-project-core",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "maintaining-project-context-and-handoff",
-        "skill_id": "maintaining-project-context-and-handoff",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-base-change-proposals",
-        "skill_id": "managing-base-change-proposals",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-design-documents",
-        "skill_id": "managing-design-documents",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-game-project-operating-system",
-        "skill_id": "managing-game-project-operating-system",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "managing-project-intake-and-work-contract",
-        "skill_id": "managing-project-intake-and-work-contract",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "optimizing-ai-model-and-prompt-costs",
-        "skill_id": "optimizing-ai-model-and-prompt-costs",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "reviewing-and-validating-project-changes",
-        "skill_id": "reviewing-and-validating-project-changes",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "running-adversarial-review-and-refinement",
-        "skill_id": "running-adversarial-review-and-refinement",
-        "status": "ACTIVE"
-      }
+      {"route_id":"analyzing-and-refining-game-concepts","skill_id":"analyzing-and-refining-game-concepts","status":"ACTIVE"},
+      {"route_id":"auditing-and-refining-ui-art","skill_id":"auditing-and-refining-ui-art","status":"ACTIVE"},
+      {"route_id":"auditing-canonical-reference-freshness","skill_id":"auditing-canonical-reference-freshness","status":"ACTIVE"},
+      {"route_id":"designing-art-prompts-and-technique-cards","skill_id":"designing-art-prompts-and-technique-cards","status":"ACTIVE"},
+      {"route_id":"designing-vertical-slices","skill_id":"designing-vertical-slices","status":"ACTIVE"},
+      {"route_id":"evaluating-godot-assets-and-plugins-before-creation","skill_id":"evaluating-godot-assets-and-plugins-before-creation","status":"ACTIVE"},
+      {"route_id":"governing-legacy-retention-and-archives","skill_id":"governing-legacy-retention-and-archives","status":"ACTIVE"},
+      {"route_id":"identifying-project-core","skill_id":"identifying-project-core","status":"ACTIVE"},
+      {"route_id":"maintaining-project-context-and-handoff","skill_id":"maintaining-project-context-and-handoff","status":"ACTIVE"},
+      {"route_id":"managing-base-change-proposals","skill_id":"managing-base-change-proposals","status":"ACTIVE"},
+      {"route_id":"managing-design-documents","skill_id":"managing-design-documents","status":"ACTIVE"},
+      {"route_id":"managing-game-project-operating-system","skill_id":"managing-game-project-operating-system","status":"ACTIVE"},
+      {"route_id":"managing-project-intake-and-work-contract","skill_id":"managing-project-intake-and-work-contract","status":"ACTIVE"},
+      {"route_id":"optimizing-ai-model-and-prompt-costs","skill_id":"optimizing-ai-model-and-prompt-costs","status":"ACTIVE"},
+      {"route_id":"reviewing-and-validating-project-changes","skill_id":"reviewing-and-validating-project-changes","status":"ACTIVE"},
+      {"route_id":"running-adversarial-review-and-refinement","skill_id":"running-adversarial-review-and-refinement","status":"ACTIVE"}
     ],
     "precedence": "PROJECT_LOCAL_THEN_BASE_SHARED",
     "project_routes": [
-      {
-        "route_id": "magic-writing-recovery",
-        "skill_id": "magic-writing-recovery",
-        "status": "ACTIVE"
-      },
-      {
-        "route_id": "art-style-decision-gate",
-        "skill_id": "art-style-decision-gate",
-        "status": "ACTIVE"
-      }
+      {"route_id":"magic-writing-recovery","skill_id":"magic-writing-recovery","status":"ACTIVE"},
+      {"route_id":"art-style-decision-gate","skill_id":"art-style-decision-gate","status":"ACTIVE"}
     ]
   },
   "schema_version": 2,
