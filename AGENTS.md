@@ -1,6 +1,6 @@
 # GRIMOIRE 작업 규칙
 
-이 파일은 **GRIMOIRE: 세계를 다시 쓰는 법**의 최상위 프로젝트 운영 권위다.
+이 파일은 **GRIMOIRE: 세계를 다시 쓰는 법**의 최상위 프로젝트 운영 권위다. 세부 시스템 수치와 규칙은 연결된 최신 책임 원본을 우선한다.
 
 ## 1. 프로젝트 바인딩
 
@@ -8,296 +8,273 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: DYNAMIC_PER_TASK_SEE_GRILL_ME_BATCH_MERGE_STATE
+working_branch: agent/grimoire-stock-summon-detail-audit
 primary_platform: Mobile
 follow_up_platform: PC
-platform_decision: GM-PLATFORM-02
-engine_baseline_candidate: Godot 4.7.1 stable
+orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
-execution_profile: PLANNING_ONLY_PROFILE
+execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
 work_mode: PLAN
-planning: APPROVED
-art_style_01: APPROVED_A_MODIFIED_LOCKED
-art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
-battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
-asset_spec_01: APPROVED_SPEC
-next_product_gate: MOBILE-FOUNDATION-01
-queued_design_gates: BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01
+base_release: v9.4.3
+baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
+current_working_sync: GR-SYNC-20260803-01
+current_pull_request: 51
+grill_me_batch_counter: 4/10
+pending_decisions: 4
 implementation: NOT_STARTED
-codex: BLOCKED
-canon_sync_policy: GM-CANON-SYNC-01
-merge_cadence_policy: GM-GRILL-MERGE-CADENCE-01
-required_pre_merge_gate: GM-PREMERGE-ADVERSARIAL-GATE-01
-grill_me_batch_counter: 0/10
-policy_decision_main: b905413e34263c8a004239efd018497dcc7e77ae
-current_sync_bundle: GR-SYNC-20260802-09
+codex_plan: ALLOWED
+codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
 ```
 
-현재 작업 브랜치·pending Decision·카운터의 기계 권위는 `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`이다. 고정된 과거 브랜치명을 다음 작업의 활성 브랜치로 재사용하지 않는다.
-
-첨부 Godot Linux 실행 파일은 버전 참고 자료이며 저장소 자산으로 커밋하지 않는다.
+현재 브랜치·pending Decision·카운터의 기계 권위는 `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`이다.
 
 ## 2. 권한 우선순위
 
 1. 사용자의 최신 명시적 결정.
 2. 이 `AGENTS.md`.
-3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 최신 Addendum.
-4. `START_HERE.md`.
-5. `docs/ACTIVE_CONTEXT.md`.
-6. 최신 Decision Addendum 또는 현재 승인 책임 원본.
-7. 주제별 승인 책임 원본.
-8. `docs/DEVELOPMENT_GATES.md`.
-9. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
-10. `skills/PROJECT_BASE_ADAPTER.json`과 생성 Snapshot.
-11. 실제 코드·Scene·Resource·데이터·자산·테스트.
-12. 고정 Base Release·Evidence Commit.
-13. Legacy·과거 대화·외부 AI 결과·추정.
+3. `START_HERE.md`.
+4. `docs/ACTIVE_CONTEXT.md`.
+5. 최신 승인 Decision 책임 원본.
+6. `docs/DEVELOPMENT_GATES.md`.
+7. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
+8. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 최신 Addendum.
+9. 실제 코드·Scene·Resource·데이터·자산·테스트.
+10. 고정 Base Release·Evidence.
+11. Legacy·과거 대화·외부 AI 결과·추정.
 
-Sheet 단독 값이나 생성 이미지는 승인 근거와 상태가 없으면 정본이 아니다. 역사 기록의 PC-first 문구는 `GM-PLATFORM-02`를 대체하지 않는다.
+Sheet 단독 값이나 외부 사례는 승인 Decision과 상태가 없으면 정본이 아니다.
 
-## 3. 필수 읽기 순서
+## 3. 필수 복원 순서
 
 ```text
 AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
-→ docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/CURRENT_CONFIRMED_DECISIONS_ADDENDUM_GRILL_MERGE_2026-08-02.md
-→ docs/planning/PROJECT_CANON_SYNC_POLICY_ADDENDUM_GRILL_BATCH_2026-08-02.md
-→ docs/planning/GRILL_ME_BATCH_MERGE_STATE.json
-→ docs/planning/sync/GR-SYNC-20260802-09-MAIN.md
-→ docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md
-→ 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
-→ skills/PROJECT_BASE_ADAPTER.json
+→ docs/planning/GRILL_ME_BATCH_MERGE_STATE.json
+→ docs/planning/GRILL_WORK_BENCHMARK_TEXT_INTEGRITY_01_APPROVAL_2026-08-03.md
+→ docs/planning/PROJECT_BENCHMARKING_POLICY.md
+→ 질문 주제의 승인 책임 원본
+→ 최신 Working Sync Receipt
 ```
 
-GitHub·Sheet 조회로 해결되는 사실을 사용자에게 다시 묻지 않는다. 확정 결정은 기억 확인 목적으로 재질문하지 않는다.
+GitHub·Sheet 조회로 해결되는 사실을 사용자에게 다시 묻지 않는다. 확정된 결정은 기억 확인 목적으로 재질문하지 않는다.
 
-## 4. Base v9.4 계약
+## 4. Base 계약
 
 ```yaml
 base_repository: alsdmlals4-eng/Base
-release: v9.4.0
-release_commit: a728712cb776ec98f4875914a580fcf7d0156593
-evidence_commit: ef1fba11167e4da0b298123b0c85ebd268191a42
+release: v9.4.3
+release_commit: 7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8
+release_evidence_commit: da33a350d61b8adc52df97fccc7001708a933370
+finalization_commit: 0b7c94f38d959efc0fc9442274c60b2e268a3c97
 registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
-finalization_commit: 87a0b54c2847ce4b685879209205957c170cc1cd
-execution_prompt: VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md
 ```
 
-- `skills/PROJECT_BASE_ADAPTER.json`만 편집 가능한 통합 권위다.
-- `PROJECT_SKILL_SNAPSHOT.json`, `BASE_V9_ADAPTER.json`, `PROJECT_BASE_SKILL_ADAPTER.json`은 생성물이다.
-- 생성물은 `tools/generate_project_operating_views.py`로 생성·검사하며 직접 편집하지 않는다.
+- `skills/PROJECT_BASE_ADAPTER.json`만 편집 가능한 프로젝트 통합 권위다.
+- `PROJECT_SKILL_SNAPSHOT.json` 등 생성물은 직접 편집하지 않는다.
+- 생성물은 `tools/generate_project_operating_views.py`로 검사한다.
 - Base Skill 본문을 프로젝트에 복제하지 않는다.
-- Trigger에 맞는 최소 Skill만 사용한다.
+- Trigger에 맞는 최소 Skill을 사용하되, 필수 품질 Gate는 생략하지 않는다.
 
-## 5. 벤치마킹 선행
+## 5. 모든 GrillMe·작업의 필수 루프
 
-결정 ID: `GM-BENCHMARK-FIRST-01`.
+결정 ID: `GM-GRILL-WORK-QUALITY-GATE-01`.
 
-새 시스템·핵심 규칙·콘텐츠 구조·UX 흐름은 범위에 맞는 `QUICK / STANDARD / DEEP` 벤치마킹 후 설계한다. 공식·1차 자료를 우선하고 `ADOPT / ADAPT / REJECT`를 기록한다.
+```text
+현재 정본·실제 상태 조회
+→ 사용자 의도와 결정 질문 정의
+→ QUICK / STANDARD / DEEP 벤치마킹
+→ 공식 사례·현업·표준 비교
+→ ADOPT / ADAPT / REJECT
+→ 중립 권장안
+→ 사용자 승인 또는 위임 범위 확인
+→ GitHub·Sheet 같은 Decision ID 동기화
+→ 적대적 검토
+→ UTF-8·NFC·Text Integrity Gate
+→ 최신 HEAD CI·Review·Readback
+```
 
-비발동:
+실질 설계 작업에는 직접 사례 2개 이상과 인접 사례 또는 현업·표준 근거 1개 이상을 포함한다. 유명 사례 이름만 나열하지 않고 제작·QA·Mobile·접근성·운영 비용을 비교한다.
 
-- 오탈자·상태·SHA·링크 동기화.
-- 승인 구조의 단순 데이터 입력.
-- 설계를 바꾸지 않는 명백한 버그 수정.
+설계 의미가 없는 SHA·링크·날짜·오탈자 동기화는 다음으로 기록할 수 있다.
 
-## 6. 승인 정본 즉시 동기화와 Grill Me Batch 병합
+```yaml
+benchmark_applicability: N/A_NO_DESIGN_CHANGE
+text_integrity: REQUIRED
+readback: REQUIRED
+```
+
+## 6. 중립·적대적 검토
+
+사용자 의견에 자동 동의하지 않는다. 최소 두 대안을 비교하고 권장안에도 반대 질문을 적용한다.
+
+필수 확인:
+
+- 기존 정본과 같은 이름의 다른 시스템을 만들지 않았는가.
+- 편의·자동화가 상황 판단과 Commit을 대체하지 않는가.
+- Prototype 값을 최종 밸런스로 과장하지 않았는가.
+- Mobile 정보량·입력·접근성 한계를 넘지 않는가.
+- Save/Resume·중복 Event·상태 소유권이 빠지지 않았는가.
+- 제작량·QA·콘텐츠 비용이 숨겨지지 않았는가.
+- GitHub와 Sheet가 동일한 Decision·Sync ID를 가지는가.
+- 깨진 한글·잘못된 인코딩·Unicode 불일치가 없는가.
+- 실행하지 않은 검증을 PASS로 표시하지 않았는가.
+
+## 7. Text Integrity Gate
+
+모든 저장소 텍스트는 다음을 만족해야 한다.
+
+```yaml
+encoding: UTF-8_NO_BOM
+unicode_normalization: NFC
+replacement_character_u_fffd: PROHIBITED
+invalid_control_characters: PROHIBITED
+known_mojibake_patterns: PROHIBITED
+json_parse: REQUIRED_FOR_JSON
+```
+
+GitHub Actions와 병합 직전 체크리스트는 `.md`, `.json`, `.yml`, `.yaml`, `.py`, `.gd`, `.tscn`, `.tres`, `.txt`, `.csv`를 검사한다.
+
+Readback sentinel:
+
+```text
+소환수
+자연충전
+적대적 검토
+벤치마킹
+마도서
+```
+
+깨진 문자는 의미를 추측해 자동 복구하지 않는다. 원문·정상 책임 원본·Readback을 근거로 교정한다.
+
+## 8. 승인 정본 즉시 동기화와 GrillMe Batch
 
 결정 ID:
 
-- `GM-CANON-SYNC-01`: 승인 정본 즉시 동기화.
-- `GM-GRILL-MERGE-CADENCE-01`: Grill Me 승인 10건 기본 병합 주기.
+- `GM-CANON-SYNC-01`.
+- `GM-GRILL-MERGE-CADENCE-01`.
+- `GM-PREMERGE-ADVERSARIAL-GATE-01`.
 
 ```text
 Decision ID
 → GitHub 권위 문서·계획 데이터
-→ authority commit
-→ 연결된 Google Sheet
+→ 연결 Google Sheet
 → 양쪽 Readback
 → SYNCED_TO_WORKING_BRANCH
-→ Grill Me 승인 Decision이면 Counter +1
+→ 고유 GrillMe Decision이면 Counter +1
 → 10/10 또는 조기 병합 Trigger
-→ GitHub·Sheet·PR 전수 점검
-→ 적대적 검토 루프 PASS
-→ PR 병합
+→ Benchmark·Text Integrity·Pre-merge Adversarial Gate
+→ 사용자 병합 승인
 → main·Sheet 재검증
 → SYNCED_TO_MAIN
-→ Counter 0 Reset
+→ Counter Reset
 ```
 
-승인 즉시 working branch·Sheet에 반영하는 원칙은 유지한다. 기본 main 병합은 Grill Me 승인 고유 Decision ID가 10건 누적될 때 수행한다.
+같은 Decision ID의 재승인·문구·SHA 교정은 카운트하지 않는다.
 
 조기 병합 Trigger:
 
-- 사용자의 명시적 병합 요청.
-- Gate·Codex·구현 권한 전환 경계.
+- 사용자 명시 병합 요청.
+- Gate·Codex·구현 권한 전환.
 - P0/P1 정본 안전 수정.
 - 작업 종료·인계 Flush.
 
-같은 Decision ID의 문구 수정·SHA 정정·재승인은 카운트하지 않는다. main sync 전용 PR도 카운트하지 않는다. 기계 판독 상태는 `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`에 기록한다.
+사용자 명시 승인 전 자동 병합하지 않는다.
 
-완료 보고에는 Decision ID, Batch count, GitHub 경로, Commit, Sheet 범위, Readback, 병합 Trigger, 남은 미검증을 기록한다.
+## 9. 승인된 프로젝트 코어
 
-## 6A. 병합 직전 필수 적대적 검토
-
-모든 병합 직전 `docs/planning/PRE_MERGE_ADVERSARIAL_REVIEW_CHECKLIST_2026-08-02.md`를 최신 HEAD 기준으로 실행한다.
-
-필수 확인:
-
-- 최신 main·merge-base·열린/중복/stale/미병합 승인 PR.
-- changed files 전부와 승인 범위 밖 파일 침범.
-- Decision ID·책임 원본·Current Decisions·cold-start·Gate·Registry·Adapter.
-- Generator·Unit·JSON/Registry·Adversarial CI.
-- PR mergeability·최종 HEAD·review thread·requested changes.
-- Sheet `00·01·02·도메인·04·99`와 GitHub 값·경로·SHA 교차 대조.
-- `TODO/TBD/placeholder`, 구형 Gate·PC-first·SUPERSEDED Decision 재활성화.
-- `TEST_VALUE`, `PLAYTEST_TUNING_REQUIRED`, `NOT_RUN` 경계.
-
-다음 중 하나라도 있으면 병합하지 않는다.
-
-```text
-P0/P1 unresolved
-GitHub-Sheet mismatch
-CI or adversarial failure
-merge conflict
-unresolved review
-missing authority path
-failed Sheet readback
-scope creep into protected product files
-false completion claim
-```
-
-병합 후 main·Sheet Readback과 필요 시 cold-start main-sync PR까지 완료해야 `SYNCED_TO_MAIN`과 Counter Reset을 기록할 수 있다.
-
-## 7. 승인된 프로젝트 코어
-
-> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
+> 마법학교 학생이 글자의 의미와 상황 조건을 배우고, 직접 작성·준비 Stock·상주 소환수를 조합해 주문을 설계하며, 명시적으로 구현한 결과와 대가를 책임지고 마도서에 기록하는 마법 RPG.
 
 비타협:
 
-- 의미를 가진 글자.
-- `메인 글자 1개 + 보조 글자 0개 이상`.
+- 의미를 가진 글자와 `메인 글자 1개 + 보조 글자 0개 이상`.
 - 신규·미숙·중요 글자의 직접 작성.
 - 상황·목표·위험에 따른 설계 판단.
-- 즉각적이고 설명 가능한 세계 변화.
+- 명시적 Commit과 설명 가능한 세계 변화.
 - 입력 실패·문법 실패·상황 설계 실패 분리.
-- 학습→증명→표현→응용→발견·기록 순환.
+- 학습→응용→책임→복기→발견 순환.
 
-## 8. 승인된 Vertical Slice
-
-```text
-첫 수업·교내 연습
-→ 자유일정 A
-→ 첫 실기시험
-→ 자유일정 B
-→ 학교축제
-→ 자유일정 C
-→ 첫 현장실습
-→ 귀환·마도서 기록
-```
-
-- 목표 `45~50분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
-- 글자 `흐름 / 집중 / 분산`.
-- 자유일정 `휴식 / 준비 / 교류` 3회.
-- 필수 성공 작성 7회, 안내형 복구 포함 목표 상한 10회.
-- 메인 동반 정령은 작은 늑대형 초기 형상 1개.
-- 수호형 보조 소환수 1체 우선.
-- 마도서는 과정과 결과를 기록하며 자동 주문 Stock이 아니다.
-
-## 9. 승인된 시각·Asset 계약
+## 10. Stock 최신 계약
 
 책임 원본:
 
-- `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`.
-- `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`.
+- `docs/planning/STOCK_SYSTEM.md`.
+- `docs/planning/STOCK_CHARGE_TIME_SYSTEM.md`.
+- `docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`.
 
-- Soft Storybook 배경 + 선명한 Anime Cel 캐릭터.
-- Navy/Gold UI + 고대비 Blue Glyph.
-- 고정 3/4 Field, 같은 장소 Half-body Dialogue, 별도 Battle, Result 후 Field 복귀.
-- 고정 주인공 1명, 전투 상시 초상 1개.
-- 동반 정령·수호 소환수는 상태 배지로 분리.
-- Battle Writing Panel은 축소 Rail에서 작성 시 확장.
-- Grimoire 파생 화면을 Main보다 먼저 설계.
-- 잠긴 기준 이미지 SHA-256 `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`는 수정·재생성 금지.
-- 기존 16:9·PC 해상도 규격은 승인 Asset 기준이지만 Mobile 실기기 적합성을 증명하지 않는다.
-
-## 10. 승인된 전투 규칙
-
-책임 원본: `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`.
-
-- 기본 조우는 강한 적 1개체.
-- 일반 적은 단일 페이즈.
-- 적은 일정 시간마다 공격.
-- 플레이어는 작성 후 `[구현]`으로 즉시 시전.
-- 판단·작성 중 타이머 진행, 시스템 해결 중 정지.
-- 선택형 작성 감속 제공; 정확한 배율은 튜닝 항목.
-- 기본 적에게 일반 HP를 두지 않고 `불안정도`를 사용.
-- 상황에 맞는 주문으로 불안정도 0에 도달하면 진정·해결.
-- 플레이어 HP 0 또는 선언된 치명적 환경 붕괴가 패배.
-- 환경 보존도·부작용·남은 HP·해결 방식이 결과 품질을 결정.
-- 수호 소환수는 다음 공격 피해를 완화하지만 타이머·작성·판단을 대신하지 않는다.
-
-## 11. GM-PLATFORM-02 / Mobile 우선
-
-책임 원본: `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`.
-
-- 1차 플랫폼은 `Mobile`, 후속 플랫폼은 `PC`.
-- `GM-PLATFORM-01 / PC 우선·Mobile 후속`은 `SUPERSEDED_BY GM-PLATFORM-02`.
-- Touch·Stylus 작성과 명시적 Undo·삭제·초기화·취소·확정·구현을 Mobile 입력의 중심으로 재설계한다.
-- 화면 방향은 `GM-MOBILE-ORIENTATION-01 / LANDSCAPE_FIXED`.
-- 정식 품질 Gate는 Smartphone이며 Tablet은 Best-effort Smoke다.
-- Store, 최소 기기, 성능·메모리·배터리 수치, 인식 처리 방식은 아직 확정하지 않는다.
-- 기존 Mouse/Pen/Keyboard 계약은 후속 PC 적응 자료이며 Mobile 기본 입력으로 사용하지 않는다.
-
-## 12. 현재 작업 경로
-
-```text
-Smartphone Landscape Writing/Battle Wireframe 계약
-→ Android/iOS·Store·최소 기기·성능 Decision Packet
-→ MOBILE-FOUNDATION-01 통합 승인
-→ BOSS-PHASE-01·Grimoire/Main 파생 화면 영향 재검토
-→ AUDIO-DIRECTION-01
-→ Mobile 기준 기획·아트·UX 통합 검수
-→ 사용자 Codex Plan 승인
-→ Codex read-only Plan
-→ 기술 검수
-→ 실행 프로필 전환 승인
-→ Validation-First 구현
+```yaml
+stock_types: [FULL_SPELL, SUB_GLYPH]
+shared_capacity: 8
+active_charge_targets: 1
+one_glyph_charge_seconds: 10
+additional_glyph_seconds: 5
+stock_use_mana_cost: 0
+offline_charge: false
 ```
 
-`MOBILE-FOUNDATION-01`은 다음을 다룬다.
+```text
+기능 글자 수 n의 충전시간
+= 10 + 5 × (n - 1)초
+```
 
-- Touch·Stylus 작성·복구·확정 계약.
-- Landscape 지원 비율·Safe Area·System gesture.
-- Smartphone Battle/Writing 정보 위계와 Tablet Smoke 경계.
-- App pause/resume·background/foreground·interrupted stroke·stale request 방어.
-- Device·Memory·Texture·load·frame pacing·battery·thermal 검증 계획.
-- 후속 PC 입력 적응 원칙.
+## 11. 소환수 최신 계약
 
-정확한 공격 간격·피해·마나·불안정도 변화량·수호 완화율·Touch target·인식 허용치는 `PLAYTEST_TUNING_REQUIRED`다.
+책임 원본: `docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md`.
+
+```yaml
+persistent_main_summon: 1
+secondary_active_summon_cap: 3
+total_active_summon_cap: 4
+secondary_role_duplicate_cap_in_slice: 1
+summon_duration_limit: NONE
+resummon_cooldown: NONE
+summon_spell_mana_cost: 2
+support_cycle_seconds: 5
+```
+
+- 보조 슬롯은 `S1/S2/S3`다.
+- 보조는 `PRODUCTION / GUARDIAN / ASSAULT / RECOVERY` 중 최대 세 역할을 선택한다.
+- Slice에서는 보조 사이 같은 역할 중복을 금지한다.
+- 메인 `[스톡] 1`은 보조 역할 중복 판정에서 제외한다.
+- 보조 기본 정수값은 `[스톡] 2 / [방어도] 2 / [공격] 2 / [치유] 2`다.
+- 자동 공격은 불안정도 `1` 아래 또는 마지막 해결 Event를 만들 수 없다.
+- 같은 시각 보조 Event는 `S1 → S2 → S3` 순서다.
+
+## 12. Mobile·Save·기술 경계
+
+- Smartphone Landscape가 정식 품질 Gate다.
+- Writing Panel과 상황·적·환경·타이머를 동시에 보존한다.
+- 소환수 HUD는 메인 배지 + 보조 3슬롯 압축 Rail + 선택 슬롯 상세를 사용한다.
+- Stock·소환수 State는 단일 소유권·원자 Transaction·Exactly-once Event를 사용한다.
+- Background·Offline 경과로 충전·공격·치유 Event를 생성하지 않는다.
 
 ## 13. 현재 허용·금지
 
 허용:
 
-- Mobile Foundation·기획·아트·UX·전투 규칙 문서.
-- Smartphone Writing/Battle Wireframe 계약.
-- Boss/Grimoire/Main/Audio의 Mobile 영향 분석.
-- 벤치마킹·적대적 검토.
-- GitHub·Sheet 정본 동기화.
-- 운영 Adapter·검증 Tooling.
+- 기획·정본·벤치마킹·적대적 검토.
+- Mobile HUD·TDD Test 계약·Toolchain preflight 설계.
+- GitHub·Sheet 동기화.
+- 운영 Adapter·검증 Tooling·CI Text Integrity Gate.
 
 금지:
 
 - Godot 제품 코드·Scene·Resource·게임 데이터 생성.
-- Codex Build.
+- Codex Build 실행.
 - 잠긴 기준 이미지 편집·재생성.
 - OS·성능·인식 수치를 증거 없이 확정.
-- 실행하지 않은 Runtime·Mobile device·성능·접근성·사람 검증 완료 주장.
+- Runtime·실기기·성능·접근성·사람 검증 완료 주장.
 - 기본 브랜치 직접 수정.
+- 사용자 승인 없는 PR 병합.
 
-PR 병합은 `GM-GRILL-MERGE-CADENCE-01`의 Trigger와 `GM-PREMERGE-ADVERSARIAL-GATE-01` PASS가 모두 필요하다.
+```text
+PRODUCT_IMPLEMENTATION = NOT_STARTED
+CODEX_EXECUTION = BLOCKED
+RUNTIME_VALIDATION = NOT_RUN
+MOBILE_DEVICE_VALIDATION = NOT_RUN
+PERFORMANCE_VALIDATION = NOT_RUN
+ACCESSIBILITY_VALIDATION = NOT_RUN
+HUMAN_VALIDATION = NOT_RUN
+```
