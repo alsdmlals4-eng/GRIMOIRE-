@@ -5,8 +5,9 @@
 ```yaml
 sync_id: GR-SYNC-20260802-16
 status: SYNCED_TO_WORKING_BRANCH
-sheet_readback: PENDING
+sheet_readback: PASS
 authority_head_before_sheet: 472a886c8e3b1dd2d435f09a8c9b25076fe4cbf6
+final_head_resolution: CURRENT_BRANCH_CONTAINING_FINAL_BATCH_STATE; exact SHA recorded in Google Sheet
 approved_decision: GM-FULL-GAME-SCOPE-ENDING-01
 approved_option: B_THREE_SCHOOL_YEAR_FULL_GAME_WITH_A_YEAR_ONE_DEMO_BOUNDARY
 approved_at: 2026-08-02T18:39+09:00
@@ -79,18 +80,25 @@ Internal Vertical Slice
 - `FULL-GAME-STRUCTURE-01`을 승인 완료하고 현재 Gate를 `VERTICAL-SLICE-REPRESENTATIVENESS-01`로 전환.
 - Batch State advanced to `7/10`.
 
-## 7. Google Sheet 반영 대상
+## 7. Google Sheet Readback
 
-- `00·01·02·03·04·05·10·12·30·40·41·50·52·80·90·99`.
+검증 범위:
 
-검증 항목:
+- `00·01·02·03·04·05·10·12·20·30·40·41·50·52·80·90·99`.
 
-- Decision ID와 B 본편/A 데모 옵션.
-- Vertical Slice·Year-One Demo·Full Game의 3단계 구분.
-- Counter `7/10`과 pending 7개.
-- Full Game Structure 완료와 Representativeness Gate 전환.
-- 후보 범위와 `TEST_VALUE` 경계.
-- 구현·Runtime·Device·Human 차단 유지.
+판정:
+
+```text
+Decision ID match = PASS
+Approved B full game + A demo option = PASS
+Three-stage boundary = PASS
+Counter 7/10 = PASS
+Pending decisions 7 = PASS
+Full Game Structure gate complete = PASS
+Representativeness gate current = PASS
+Existing authority row overwrite = NONE
+Implementation/Runtime/Device/Human boundary = PRESERVED
+```
 
 ## 8. 병합 경계
 
