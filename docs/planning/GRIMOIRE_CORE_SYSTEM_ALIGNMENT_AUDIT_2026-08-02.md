@@ -7,8 +7,8 @@ audit_id: GR-AUD-CORE-SYSTEM-ALIGNMENT-20260802-01
 status: USER_APPROVED_CORRECTIONS_IN_PROGRESS
 decision_id: GM-CORE-SYSTEM-ALIGNMENT-01
 approved_option: A_CORE_FUN_FIRST_TAXONOMY_WITH_STOCK_AND_SUMMON_FATIGUE_RELIEF_GUARDS
-approved_at: 2026-08-02T21:44:00+09:00
-clarified_at: 2026-08-02T21:44:00+09:00
+approved_at: 2026-08-02T21:49:00+09:00
+clarified_at: 2026-08-02T21:57:00+09:00
 scope: PLANNING_CLASSIFICATION_AND_CANON_CONSISTENCY
 grill_counter_change: 1
 implementation: NOT_STARTED
@@ -350,7 +350,7 @@ summon_requires_spell_for_others: APPROVED_CONCEPT
 summon_periodic_spell_or_stock_support: APPROVED_CONCEPT
 summon_detailed_rules: DESIGN_REQUIRED
 canon_consistency: PASS_WITH_ACTIVE_OVERRIDE_AND_DIRECT_RECONCILIATION_REMAINING
-sheet_consistency: CORRECTIONS_IN_PROGRESS
+sheet_consistency: PASS
 product_implementation_ready: false
 ```
 
