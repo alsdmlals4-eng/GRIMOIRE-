@@ -8,7 +8,7 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 2,
+    "approved_grill_me_since_last_flush": 3,
     "next_merge_at": 10,
     "merge_required": false,
     "merge_trigger": null,
@@ -16,7 +16,8 @@
     "authorization_state": "AWAITING_FUTURE_EXPLICIT_MERGE_APPROVAL",
     "pending_decision_ids": [
       "GM-STOCK-SYSTEM-01",
-      "GM-SUMMON-SYSTEM-01"
+      "GM-SUMMON-SYSTEM-01",
+      "GM-STOCK-SUMMON-STATE-INTERFACE-01"
     ]
   },
   "counting_rule": {
@@ -33,7 +34,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "NOT_RUN_FOR_CURRENT_BATCH",
+  "pre_merge_gate_status": "NOT_RUN_FOR_CURRENT_REVISED_HEAD",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T22:18:00+09:00",
@@ -50,78 +51,98 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "STOCK_SUMMON_DEFAULTS_AND_PLANNING_REMAINDER_SYNCED_TO_WORKING_BRANCH",
+    "status": "NATURAL_CHARGE_STOCK_PERSISTENT_INTEGER_SUMMON_AND_STATE_INTERFACE_SYNC_IN_PROGRESS",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
+    "working_pull_request": 51,
     "working_sync_id": "GR-SYNC-20260802-25",
     "decisions": [
       {
         "decision_id": "GM-STOCK-SYSTEM-01",
-        "approved_option": "A_TEMPORARY_CONFIRMED_GLYPH_TOKEN_RACK",
-        "status": "USER_APPROVED_RECOMMENDED_DEFAULTS",
-        "approved_at": "2026-08-02T22:36:00+09:00",
-        "grill_count": 1
+        "approved_option": "B_PREPARED_SPELL_AND_GLYPH_NATURAL_CHARGE",
+        "status": "USER_APPROVED_REVISED_DEFAULTS",
+        "approved_at": "2026-08-02T23:14:00+09:00",
+        "grill_count": 1,
+        "reapproval_increment": 0
       },
       {
         "decision_id": "GM-SUMMON-SYSTEM-01",
-        "approved_option": "A_PERSISTENT_MAIN_PLUS_ONE_EXPLICIT_TIMED_SECONDARY",
-        "status": "USER_APPROVED_RECOMMENDED_DEFAULTS",
-        "approved_at": "2026-08-02T22:36:00+09:00",
+        "approved_option": "B_PERSISTENT_MAIN_PLUS_ONE_SUMMONED_INTEGER_STAT_SUPPORT",
+        "status": "USER_APPROVED_REVISED_DEFAULTS",
+        "approved_at": "2026-08-02T23:14:00+09:00",
+        "grill_count": 1,
+        "reapproval_increment": 0
+      },
+      {
+        "decision_id": "GM-STOCK-SUMMON-STATE-INTERFACE-01",
+        "approved_option": "A_SINGLE_ACTIVE_PRESSURE_CLOCK_WITH_ATOMIC_EVENT_LEDGER",
+        "status": "USER_DELEGATED_RECOMMENDED_OPTION",
+        "approved_at": "2026-08-02T23:14:00+09:00",
         "grill_count": 1
       }
     ],
     "stock_defaults": {
-      "rack_slots": 4,
-      "duplicate_glyph_cap": 2,
-      "anchor_floor": 2,
-      "direct_commit_generation": 1,
-      "summon_refill_cap_per_focus_task": 3,
-      "persistence": "CHAPTER_AND_SESSION_ONLY_NO_OFFLINE"
+      "types": [
+        "FULL_SPELL",
+        "SUB_GLYPH"
+      ],
+      "shared_capacity": 8,
+      "one_glyph_charge_seconds": 10,
+      "additional_glyph_seconds": 5,
+      "active_charge_targets": 1,
+      "stock_use_mana_cost": 0,
+      "offline_charge": false
     },
     "summon_defaults": {
       "main_active": true,
-      "secondary_active_cap": 1,
-      "main_stock_tick_seconds": 20,
-      "main_stock_tick_cap_per_focus_task": 1,
-      "summon_cost_max_mana_percent": 20,
-      "secondary_duration_seconds": 30,
-      "resummon_cooldown_seconds": 20,
-      "spell_tick_seconds": 10,
-      "spell_action_cap": 3,
-      "stock_tick_seconds": 12,
-      "stock_refill_cap": 2,
-      "auto_effect_percent_of_player_support": 60,
-      "auto_contribution_cap_percent": 25,
-      "guardian_player_damage_reduction_percent": 35,
-      "guardian_environment_damage_reduction_percent": 25
+      "additional_active_cap": 1,
+      "duration_limit": null,
+      "cooldown": null,
+      "summon_spell_mana_cost": 2,
+      "support_cycle_seconds": 5,
+      "main_stock_stat": 1,
+      "secondary_stock_stat": 2,
+      "defense_stat": 2,
+      "attack_stat": 2,
+      "heal_stat": 2
+    },
+    "state_interface": {
+      "status": "APPROVED_DESIGN_ONLY",
+      "transactional_summon": true,
+      "transactional_stock_use": true,
+      "exactly_once_summon_event": true,
+      "exactly_once_stock_charge_event": true,
+      "offline_events": false
     },
     "planning_remainder": {
       "p0_open": 0,
-      "p1_open": 7,
+      "p1_open": 4,
       "p2_open": 12,
       "p3_deferred": 8,
       "canon_reconciliation_completed_in_working_branch": true,
-      "next_priority": "STATE_LEDGER_SAVE_INTERFACE_AND_STOCK_SUMMON_HUD_TEST_CONTRACT"
+      "next_priority": "MOBILE_HUD_WIREFRAME_AND_TDD_TEST_MATRIX"
     },
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PASS"
+    "sheet_readback": "PENDING_FOR_REVISED_MODEL"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
     "codex_execution": "BLOCKED",
     "godot_project_creation": "BLOCKED_UNTIL_EXECUTION_READINESS_PASS",
     "prototype_defaults_are_final_balance": false,
-    "stock_full_spell_storage": "PROHIBITED",
+    "stock_conditional_auto_cast": "PROHIBITED",
     "stock_offline_generation": "PROHIBITED",
-    "summon_secondary_active_cap": 1,
+    "summon_additional_active_cap": 1,
+    "summon_duration_limit": "NONE",
     "summon_dynamic_optimal_ai": "PROHIBITED",
     "summon_auto_summon_chain": "PROHIBITED",
-    "summon_offline_ticks": "PROHIBITED",
+    "summon_offline_actions": "PROHIBITED",
     "summon_final_situation_resolution": "PROHIBITED",
+    "percentage_based_summon_effects": "PROHIBITED",
     "runtime_validation": "NOT_RUN",
     "mobile_device_validation": "NOT_RUN",
     "performance_validation": "NOT_RUN",
