@@ -7,6 +7,7 @@ date: 2026-08-02 KST
 baseline_main: 59c2197c41e9f9e3df86a239d1088d262af19df6
 working_branch: chatgpt/grimoire-mobile-foundation-session-20260802
 decision_authority_commit: 4044a6c7984873d0b493994abbf307a7771dad85
+receipt_head_before_note: 18e11b656a37b5a93a5462e4b70bf292f5a3ed09
 device_class_decision: GM-MOBILE-DEVICE-CLASS-01
 device_class_status: USER_APPROVED_ACTIVE
 sheet_id: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
