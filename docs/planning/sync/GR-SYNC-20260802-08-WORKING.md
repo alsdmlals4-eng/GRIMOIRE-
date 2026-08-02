@@ -6,10 +6,11 @@ status: SYNCED_TO_WORKING_BRANCH
 date: 2026-08-02 KST
 baseline_main: 59c2197c41e9f9e3df86a239d1088d262af19df6
 working_branch: chatgpt/grimoire-mobile-foundation-session-20260802
+decision_authority_commit: 4044a6c7984873d0b493994abbf307a7771dad85
 device_class_decision: GM-MOBILE-DEVICE-CLASS-01
 device_class_status: USER_APPROVED_ACTIVE
 sheet_id: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
-sheet_readback: PENDING_DECISION_UPDATE
+sheet_readback: PASS
 product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
@@ -43,37 +44,27 @@ human_playtest: NOT_RUN
 - `docs/planning/TOTAL_PLANNING_ADVERSARIAL_AUDIT_ADDENDUM_2026-08-02A.md`
 - `docs/planning/benchmarks/MOBILE_FOUNDATION_PLATFORM_GUIDELINES_BENCHMARK_2026-08-02.md`
 
-## 3. Google Sheet 대상
+## 3. Google Sheet 반영
 
-- `00_프로젝트_허브!H2`
-- `02_현재_확정결정!A28:J30`
-- `03_근거_라이브러리!A11:I11`
-- `04_누락_충돌_감사!A24:H24`
-- `10_제품방향!A7:F7`
-- `15_조작_게임규칙!A10:J11`
-- `30_데모범위_품질기준_제작기반!A5:H5`
-- `60_UX_UI_접근성!A16:J17`
-- `80_데모_버티컬슬라이스_플레이테스트!A14:J15`
-- `99_변경이력!A25:H25`
+- `00_프로젝트_허브!H2`.
+- `02_현재_확정결정!A29:J30`.
+- `04_누락_충돌_감사!D24:H24`.
+- `10_제품방향!A7:F7`.
+- `15_조작_게임규칙!I11:J11`.
+- `30_데모범위_품질기준_제작기반!A5:H5`.
+- `60_UX_UI_접근성!H17:J17`.
+- `80_데모_버티컬슬라이스_플레이테스트!C15:J15`.
+- `99_변경이력!D25:H25`.
 
-Decision Update에서 기록할 상태:
+Readback PASS:
 
-- `GM-MOBILE-DEVICE-CLASS-01 = USER_APPROVED_ACTIVE`.
+- `GM-MOBILE-DEVICE-CLASS-01 = USER_APPROVED_ACTIVE / OPTION_A`.
 - Smartphone 필수 Matrix `16:9 / 18:9 / 19.5:9 / 20:9 + 좌·우 Cutout + 하단 System indicator`.
 - Tablet `4:3 / 3:2 = BEST_EFFORT_SMOKE_ONLY`.
 - Landscape UX `CONTRACT_DEFINED_WITH_TEST_VALUES`.
 - `Runtime·Device·Accessibility·Human = NOT_RUN` 유지.
 
-## 4. 외부 공식 근거
-
-- Android 상태 저장과 로컬 영속 저장 역할 분리.
-- Android Touch target 48dp.
-- Apple 주요 Game Control 44pt와 Landscape Safe Area.
-- Godot DisplayServer Safe Area·Cutout API.
-
-프로젝트 시험값은 공식 최소선과 구분해 `TEST_VALUE`로 기록했다.
-
-## 5. 적대적 검토 결과
+## 4. 적대적 검토 결과
 
 닫힌 누락·충돌:
 
@@ -87,12 +78,12 @@ Decision Update에서 기록할 상태:
 - `GR-TPA-05` 7~10회 작성 피로.
 - Smartphone Aspect·Cutout·Touch 실기기 검증.
 
-## 6. 병합 경계
+## 5. 병합 경계
 
-이 Receipt는 working branch 권위 문서 상태다.
+이 Receipt는 working branch와 Sheet가 같은 Decision ID와 상태로 동기화됐음을 뜻한다.
 
 PR 병합 전:
 
-- Sheet를 같은 Decision ID로 갱신하고 Readback PASS를 기록한다.
+- Final Head CI·Adversarial gate를 통과한다.
 - `SYNCED_TO_MAIN`으로 승격하지 않는다.
 - 제품 구현·Godot 파일·Asset 제작을 시작하지 않는다.
