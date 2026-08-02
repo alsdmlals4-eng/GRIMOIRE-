@@ -8,7 +8,7 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: chatgpt/grimoire-grill-batch-merge-policy-20260802
+working_branch: DYNAMIC_PER_TASK_SEE_GRILL_ME_BATCH_MERGE_STATE
 primary_platform: Mobile
 follow_up_platform: PC
 platform_decision: GM-PLATFORM-02
@@ -29,8 +29,11 @@ canon_sync_policy: GM-CANON-SYNC-01
 merge_cadence_policy: GM-GRILL-MERGE-CADENCE-01
 required_pre_merge_gate: GM-PREMERGE-ADVERSARIAL-GATE-01
 grill_me_batch_counter: 0/10
+policy_decision_main: b905413e34263c8a004239efd018497dcc7e77ae
 current_sync_bundle: GR-SYNC-20260802-09
 ```
+
+현재 작업 브랜치·pending Decision·카운터의 기계 권위는 `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`이다. 고정된 과거 브랜치명을 다음 작업의 활성 브랜치로 재사용하지 않는다.
 
 첨부 Godot Linux 실행 파일은 버전 참고 자료이며 저장소 자산으로 커밋하지 않는다.
 
@@ -62,6 +65,7 @@ AGENTS.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS_ADDENDUM_GRILL_MERGE_2026-08-02.md
 → docs/planning/PROJECT_CANON_SYNC_POLICY_ADDENDUM_GRILL_BATCH_2026-08-02.md
 → docs/planning/GRILL_ME_BATCH_MERGE_STATE.json
+→ docs/planning/sync/GR-SYNC-20260802-09-MAIN.md
 → docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md
 → 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
