@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "registry_role": "grimoire-implementation-entry-current-authority-addendum",
-  "status": "ACTIVE_OVERRIDE_UNTIL_BASE_RECONCILIATION",
+  "status": "ACTIVE_OVERRIDE_UNTIL_COLD_START_RECONCILIATION",
   "decision_id": "GM-IMPLEMENTATION-ENTRY-01",
   "approved_option": "A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK",
   "project": {
@@ -10,10 +10,12 @@
     "mobile_orientation": "LANDSCAPE_FIXED",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "planning_contracts": "APPROVED_AND_MERGED_TO_MAIN",
-    "current_main": "f9c6f5fdd59f7c256986b5c817a244d464e0e74c",
-    "base_release_on_main": "9.4.2",
+    "current_main_before_pr43_merge": "c114343ac925d734caf0ac8011c8ee25fd6d29e8",
+    "base_release_on_main": "9.4.3",
     "base_adoption_pr_38": "MERGED",
-    "open_base_adoption_prs": [42],
+    "base_adoption_pr_42": "CLOSED_SUPERSEDED",
+    "base_adoption_pr_44": "MERGED",
+    "open_base_adoption_prs": [],
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED",
@@ -39,7 +41,7 @@
     {
       "id": "implementation-entry-plan",
       "path": "docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md",
-      "status": "PLAN_COMPLETE_EXECUTION_BLOCKED"
+      "status": "PLAN_COMPLETE_REVALIDATION_REQUIRED_ON_BASE_V9_4_3_MAIN"
     },
     {
       "id": "implementation-entry-adversarial-review",
@@ -47,17 +49,26 @@
       "status": "PASS_FOR_CONDITIONAL_DESIGN_AND_PLAN"
     },
     {
+      "id": "implementation-entry-premerge-gate",
+      "path": "docs/planning/IMPLEMENTATION_ENTRY_01_PREMERGE_GATE_2026-08-02.md",
+      "status": "PASS_USER_MERGE_AUTHORIZED_FINAL_REVERIFY"
+    },
+    {
       "id": "implementation-entry-cold-start-override",
       "path": "docs/planning/IMPLEMENTATION_ENTRY_01_COLD_START_OVERRIDE_2026-08-02.md",
       "status": "ACTIVE_WORKING_BRANCH_OVERRIDE"
     }
   ],
+  "resolved_blockers": [
+    "BASE_PR_38_MERGED",
+    "BASE_PR_42_CLOSED_SUPERSEDED",
+    "BASE_PR_44_MERGED",
+    "SINGLE_BASE_V9_4_3_IDENTITY_ON_MAIN"
+  ],
   "execution_blockers": [
-    "OPEN_BASE_ADOPTION_PR_42",
-    "FINAL_BASE_IDENTITY_AFTER_PR_42_NOT_REVALIDATED",
     "COLD_START_CORE_DOCS_NOT_DIRECTLY_RECONCILED",
     "GODOT_TOOLCHAIN_NOT_VERIFIED",
-    "IMPLEMENTATION_PLAN_NOT_REVALIDATED_ON_FINAL_MAIN",
+    "IMPLEMENTATION_PLAN_NOT_REVALIDATED_ON_BASE_V9_4_3_FINAL_MAIN",
     "EXECUTION_READINESS_GATE_NOT_RUN"
   ],
   "validation": {
