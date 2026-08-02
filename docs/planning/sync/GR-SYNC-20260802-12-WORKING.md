@@ -5,7 +5,9 @@
 ```yaml
 sync_id: GR-SYNC-20260802-12
 status: SYNCED_TO_WORKING_BRANCH
-sheet_readback: PENDING
+sheet_readback: PASS
+authority_head_before_final_state: 3e2208a92c24ea37a2412a2811c81c51a9200fbd
+final_head_resolution: CURRENT_BRANCH_CONTAINING_FINAL_BATCH_STATE; exact SHA recorded in Sheet after final state commit
 approved_decision: GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01
 approved_option: B_MULTI_SCHOOL_ENROLLMENT_SPECIALIZATION_TREE
 approved_at: 2026-08-02T17:19+09:00
@@ -28,7 +30,7 @@ human_validation: NOT_RUN
 
 ## 2. 사용자 승인
 
-사용자는 마법 글자 커리큘럼 후보 중 `B — 다계열 수강·전문화 트리`를 선택했다.
+사용자는 `B — 다계열 수강·전문화 트리`를 선택했다.
 
 ```text
 공통 문법·기초 계열 체험
@@ -43,17 +45,16 @@ human_validation: NOT_RUN
 - 복수 메인 계열 수강과 계열별 성장.
 - 기초 체험 이후 일부 계열 심화.
 - 전문화에 따른 해법·관계·연구·마도서 기록 차이.
-- `흐름`을 첫 기초 계열 대표 사례로 유지.
-- `집중 / 분산`을 공통 보조 문법의 첫 사례로 유지.
+- `흐름`은 첫 기초 계열 대표 사례로 유지.
+- `집중 / 분산`은 공통 보조 문법의 첫 사례로 유지.
 
-미확정:
+미확정 `TEST_VALUE`:
 
-- 본편 계열 수.
-- 동시 수강 계열 수.
+- 본편·동시 수강 계열 수.
 - 학년·학기 범위.
-- 계열 레벨 상한.
-- 전문화 진입 단계.
+- 계열 레벨 상한과 전문화 진입 단계.
 - 보조 글자 운용량.
+- 계열별 고유 Asset 수.
 
 ## 4. 적대적 보호 규칙
 
@@ -64,21 +65,17 @@ human_validation: NOT_RUN
 - 반복 시전만으로 전문화하지 않는다.
 - 초기 선택을 즉시 영구 잠금하지 않는다.
 - 특정 계열이 대부분 상황의 상위 호환이 되면 재설계한다.
-- 계열 수 증가와 한 주문의 글자 수 증가를 동시에 무제한 허용하지 않는다.
+- 계열 수와 한 주문의 글자 수를 동시에 무제한 확대하지 않는다.
 
 ## 5. 구형 정본 처리
 
-구형 장기 문서의 `다수 계열 / 3학년 / Lv.0~5 / Lv.4 전문화 / 보조 2·4·6` 중 다계열 수강과 전문화 방향은 재승인됐다.
-
-그러나 정확한 학년·레벨·수치와 제작량은 아직 `PROVISIONAL / TEST_VALUE`이며, 이번 승인만으로 최종 본편 약속이 되지 않는다.
+구형 장기 문서의 다계열 수강과 전문화 방향은 재승인했다. 그러나 `3학년 / Lv.0~5 / Lv.4 전문화 / 보조 2·4·6`의 정확한 값은 아직 최종 본편 약속이 아니다.
 
 ## 6. 다음 결정
 
 `GM-FULL-GAME-GROWTH-CHOICE-COST-01`.
 
-권장안:
-
-`A — 수강 슬롯 + 성장 증거 인증형`.
+권장안은 `A — 수강 슬롯 + 성장 증거 인증형`이다.
 
 ```text
 수강 선택
@@ -89,13 +86,6 @@ human_validation: NOT_RUN
 → 심화·전문화
 ```
 
-성장 증거 후보:
-
-- 이해.
-- 숙련.
-- 활용.
-- 인증.
-
 ## 7. GitHub 반영
 
 - `FULL_GAME_MAGIC_GLYPH_CURRICULUM_01_GRILL_ME_2026-08-02.md`.
@@ -105,15 +95,27 @@ human_validation: NOT_RUN
 - `GRILL_ME_BATCH_MERGE_STATE.json`.
 - 이 Working Sync Receipt.
 
-## 8. Sheet 반영 대상
+## 8. Google Sheet Readback
 
-- 프로젝트 허브·작업 순서·확정 결정.
-- GDD·제품 방향·핵심 루프.
-- 성장 경제·메인 콘텐츠·플레이테스트.
-- 감사·변경 이력.
+검증 범위:
+
+- `00·01·02·03·04·05·10·12·30·41·50·80·99`.
+
+판정:
+
+```text
+Decision ID match = PASS
+Approved option B match = PASS
+Counter 3/10 = PASS
+Pending decisions 3 = PASS
+Next Grill Me match = PASS
+Curriculum guardrails match = PASS
+Existing authority row overwrite = NONE
+Implementation/Runtime/Device/Human boundary = PRESERVED
+```
 
 ## 9. 병합 경계
 
-- 현재 카운터는 `3/10`.
 - Draft PR #36은 병합하지 않는다.
-- 10/10 또는 조기 Trigger에서 `GM-PREMERGE-ADVERSARIAL-GATE-01`을 실행한다.
+- 기본 병합은 `10/10`이다.
+- 조기 Trigger가 발생하면 `GM-PREMERGE-ADVERSARIAL-GATE-01`을 먼저 실행한다.
