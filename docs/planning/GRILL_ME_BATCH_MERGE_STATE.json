@@ -32,7 +32,7 @@
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
   "pre_merge_gate_status": "PASS_P0_0_P1_0",
   "last_complete_flush": {
-    "status": "DECISION_MERGED_FINALIZATION_IN_PROGRESS",
+    "status": "DECISION_MERGED_FINALIZATION_PR_OPEN",
     "approved_at": "2026-08-02T22:18:00+09:00",
     "decision_id": "GM-CORE-SYSTEM-ALIGNMENT-01",
     "approved_option": "A_CORE_FUN_FIRST_TAXONOMY_WITH_STOCK_AND_SUMMON_FATIGUE_RELIEF_GUARDS",
@@ -40,7 +40,7 @@
     "decision_merge_pull_request": 47,
     "decision_head": "90afbd9e67bbc5a2fef21c01344b9e75a5a9e651",
     "decision_merge_commit": "1f814a16f3a523379a8ffe4b2a87a02d0c97e287",
-    "finalization_pull_request": null,
+    "finalization_pull_request": 48,
     "finalization_merge_commit": null,
     "readback_finalization_pull_request": null,
     "final_main_commit": null,
@@ -51,10 +51,11 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "CORE_SYSTEM_ALIGNMENT_MERGED_FINALIZATION_IN_PROGRESS",
+    "status": "CORE_SYSTEM_ALIGNMENT_FINALIZATION_PR_48_OPEN",
     "decision_id": "GM-CORE-SYSTEM-ALIGNMENT-01",
-    "pull_request": 47,
-    "merge_commit": "1f814a16f3a523379a8ffe4b2a87a02d0c97e287",
+    "decision_pull_request": 47,
+    "decision_merge_commit": "1f814a16f3a523379a8ffe4b2a87a02d0c97e287",
+    "finalization_pull_request": 48,
     "main_finalization_sync_id": "GR-SYNC-20260802-24",
     "core_fun": "SITUATION_READING_TO_SEMANTIC_DESIGN_TO_DIRECT_STOCK_SUMMON_OPERATION_TO_EXPLICIT_COMMIT_TO_EXPLAINABLE_WORLD_CHANGE_TO_GRIMOIRE",
     "stock_fatigue_relief": "APPROVED_CONCEPT_DETAILED_RULES_REQUIRED",
@@ -68,7 +69,7 @@
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release_on_main": "9.4.3",
     "p1_open_for_direct_canon_reconciliation": 3,
-    "next_work": "Finalize main and Sheet readback, absorb cold-start override into authority files, then design GM-STOCK-SYSTEM-01 and GM-SUMMON-SYSTEM-01 before execution readiness"
+    "next_work": "Verify and merge PR 48, perform main and Sheet readback, then absorb cold-start override and design GM-STOCK-SYSTEM-01 and GM-SUMMON-SYSTEM-01"
   },
   "protected_boundaries": {
     "execution_profile": "PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY",
