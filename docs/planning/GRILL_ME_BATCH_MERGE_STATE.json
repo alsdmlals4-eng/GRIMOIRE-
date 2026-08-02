@@ -55,8 +55,25 @@
       "04_누락_충돌_감사!A25:H25",
       "99_변경이력!A26:H26"
     ],
-    "sheet_readback_rule": "Final exact main SHA is authoritative only after post-merge Sheet readback",
-    "next_planning_work": "Smartphone Landscape Writing/Battle Wireframe contract"
+    "sheet_readback_rule": "Final exact main SHA is authoritative only after post-merge Sheet readback"
+  },
+  "current_work": {
+    "branch": "chatgpt/grimoire-full-game-structure-20260802",
+    "sequence_decision_id": "GM-FULL-GAME-PLANNING-ORDER-01",
+    "sequence_status": "USER_APPROVED_ACTIVE_SYNCING_TO_WORKING_BRANCH",
+    "current_design_gate": "FULL-GAME-STRUCTURE-01",
+    "mobile_foundation_status": "IN_PROGRESS_PAUSED_AT_UPSTREAM_DESIGN_DEPENDENCY",
+    "next_planning_work": "Resolve GM-FULL-GAME-MACRO-LOOP-01",
+    "current_grill_me_candidate": "GM-FULL-GAME-MACRO-LOOP-01",
+    "current_grill_me_status": "USER_DECISION_REQUIRED",
+    "counter_effect_before_approval": "NO_CHANGE_0_OF_10",
+    "wireframe_status": "DEFERRED_UNTIL_FULL_GAME_STRUCTURE_APPROVAL",
+    "authority_documents": [
+      "docs/planning/FULL_GAME_STRUCTURE_GATE_01_2026-08-02.md",
+      "docs/planning/FULL_GAME_STRUCTURE_GAP_AUDIT_2026-08-02.md",
+      "docs/planning/benchmarks/FULL_GAME_CORE_LOOP_STANDARD_BENCHMARK_2026-08-02.md",
+      "docs/planning/FULL_GAME_STRUCTURE_01_GRILL_ME_2026-08-02.md"
+    ]
   },
   "protected_boundaries": {
     "execution_profile": "PLANNING_ONLY_PROFILE",
