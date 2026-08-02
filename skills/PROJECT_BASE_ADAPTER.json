@@ -1,14 +1,37 @@
 {
   "artifact_role": "PROJECT_BASE_ADAPTER",
   "base_release": {
+    "finalization_commit": "87a0b54c2847ce4b685879209205957c170cc1cd",
     "integrated_execution_prompt": "templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
     "registry_path": "skills/SKILL_REGISTRY.json",
     "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
-    "release_commit": "a728712cb776ec98f4875914a580fcf7d0156593",
-    "release_evidence_commit": "ef1fba11167e4da0b298123b0c85ebd268191a42",
+    "release_commit": "3f2c4a624d302b704c1b5322eb5c9f34ad55abb9",
+    "release_evidence_commit": "ff117d24d5bdb121314e109a6aa9b4f552e0fdc1",
     "repository": "alsdmlals4-eng/Base",
-    "version": "9.4.0",
-    "finalization_commit": "87a0b54c2847ce4b685879209205957c170cc1cd"
+    "version": "9.4.1"
+  },
+  "base_v94_contract": {
+    "external_ai_worktree": {
+      "actual_external_ai_worktree_execution": "NOT_RUN",
+      "allowed_write_roots": [
+        "drafts/external-ai/**"
+      ],
+      "base_contract_source": "skills/orchestrating-deepseek-worktrees/SKILL.md",
+      "base_release_lock": "base-v9.4.1.lock.json",
+      "base_validator_adoption": "ADOPTED_FROM_BASE_V9_4_1",
+      "base_validator_path": "tools/check_external_ai_worktree_contract.py",
+      "draft_root": "drafts/external-ai/",
+      "integration_policy": "LOCAL_REVIEW_REQUIRED_BEFORE_CANON",
+      "protected_paths_source": "skills/PROJECT_BASE_ADAPTER.json#/protected_paths",
+      "result_state": "REVIEW_PENDING",
+      "task_branch_prefix": "ai/deepseek-",
+      "work_package_source": "templates/ai/DEEPSEEK_WORK_PACKAGE.md",
+      "worktree_parent": ".worktrees/"
+    },
+    "human_validation": "HUMAN_NOT_RUN",
+    "model_recommendation": "USER_CHANGES_SETTING_AT_CHECKPOINT",
+    "provider_measurement": "NOT_RUN",
+    "runtime_validation": "NOT_RUN"
   },
   "compatibility": {
     "legacy_repository_aliases": [
@@ -45,15 +68,12 @@
     "start_here": "START_HERE.md"
   },
   "gdd_sheet": {
+    "authority_commit": "fe88236946a87362a43aafe598348b84c42a2243",
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "last_full_audit": "2026-08-02",
+    "main_commit": "fe88236946a87362a43aafe598348b84c42a2243",
     "main_sync": "SYNCED_TO_MAIN",
-    "role": "USER_FACING_GDD_WORKSPACE",
-    "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
-    "sync_bundle": "GR-SYNC-20260802-07",
-    "sync_status": "SYNCED_TO_MAIN",
-    "authority_commit": "fe88236946a87362a43aafe598348b84c42a2243",
-    "sheet_readback": "PASS",
+    "merged_pr": 27,
     "readback_tabs": [
       "00_프로젝트_허브",
       "01_작업순서",
@@ -70,9 +90,12 @@
       "90_본제작_출시_사업",
       "99_변경이력"
     ],
-    "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC",
-    "main_commit": "fe88236946a87362a43aafe598348b84c42a2243",
-    "merged_pr": 27
+    "role": "USER_FACING_GDD_WORKSPACE",
+    "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
+    "sheet_readback": "PASS",
+    "sync_bundle": "GR-SYNC-20260802-07",
+    "sync_status": "SYNCED_TO_MAIN",
+    "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC"
   },
   "generated_outputs": {
     "compatibility_views": [
@@ -80,10 +103,10 @@
       "skills/PROJECT_BASE_SKILL_ADAPTER.json"
     ],
     "generator": "tools/generate_project_operating_views.py",
+    "generator_check": "REQUIRED",
     "hand_edit": "PROHIBITED",
     "snapshot": "skills/PROJECT_SKILL_SNAPSHOT.json",
-    "status": "CURRENT",
-    "generator_check": "REQUIRED"
+    "status": "CURRENT"
   },
   "planning_authority": {
     "art_bible": "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
@@ -215,6 +238,11 @@
         "status": "ACTIVE"
       },
       {
+        "route_id": "orchestrating-deepseek-worktrees",
+        "skill_id": "orchestrating-deepseek-worktrees",
+        "status": "ACTIVE"
+      },
+      {
         "route_id": "reviewing-and-validating-project-changes",
         "skill_id": "reviewing-and-validating-project-changes",
         "status": "ACTIVE"
@@ -243,9 +271,10 @@
   "schema_version": 2,
   "validation": {
     "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
+    "base_shared_external_ai_adapter": "REQUIRED_ON_PULL_REQUEST",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
-    "generator_check": "REQUIRED",
     "generated_views": "CURRENT",
+    "generator_check": "REQUIRED",
     "godot_runtime": "NOT_RUN",
     "godot_static": "NOT_AVAILABLE_NO_PROJECT",
     "human": "NOT_RUN",
@@ -253,11 +282,5 @@
     "mobile": "NOT_RUN",
     "pc_input": "NOT_RUN",
     "registry_hash": "REQUIRED"
-  },
-  "base_v94_contract": {
-    "model_recommendation": "USER_CHANGES_SETTING_AT_CHECKPOINT",
-    "provider_measurement": "NOT_RUN",
-    "runtime_validation": "NOT_RUN",
-    "human_validation": "HUMAN_NOT_RUN"
   }
 }
