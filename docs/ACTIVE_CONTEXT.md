@@ -18,18 +18,20 @@ work_mode: PLAN
 base_release: v9.4.3
 baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
 last_main_sync: GR-SYNC-20260802-24
-current_working_sync: GR-SYNC-20260803-01
+current_working_sync: GR-SYNC-20260803-03
 current_pull_request: 51
 current_decisions:
   - GM-STOCK-SYSTEM-01
   - GM-SUMMON-SYSTEM-01
   - GM-STOCK-SUMMON-STATE-INTERFACE-01
   - GM-GRILL-WORK-QUALITY-GATE-01
-grill_counter: 4_of_10
-pending_decisions: 4
+  - GM-MOBILE-SUMMON-HUD-WIREFRAME-01
+  - GM-INGAME-ART-CHECKPOINT-01
+grill_counter: 6_of_10
+pending_decisions: 6
 implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
 implementation: NOT_STARTED
-codex_plan: ALLOWED
+codex_plan: ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS
 codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
@@ -52,10 +54,13 @@ human_validation: NOT_RUN
 10. `docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`
 11. `docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md`
 12. `docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md`
-13. `docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md`
-14. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`
-15. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-16. `docs/planning/sync/GR-SYNC-20260803-01-WORKING.md`
+13. `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`
+14. `docs/planning/INGAME_ART_CHECKPOINT_01_APPROVAL_2026-08-03.md`
+15. `docs/planning/visual/INGAME_ART_CHECKPOINT_01_APPROVED_MANIFEST.json`
+16. `docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md`
+17. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`
+18. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
+19. `docs/planning/sync/GR-SYNC-20260803-03-WORKING.md`
 
 ## 플레이어 약속
 
@@ -160,6 +165,11 @@ support_cycle_seconds: 5
 
 ## Mobile UX 필수 정보
 
+책임 원본:
+
+- `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`.
+- `docs/superpowers/specs/2026-08-03-three-slot-mobile-summon-hud-design.md`.
+
 ```text
 메인 소환수 배지
 + 보조 S1/S2/S3 압축 Rail
@@ -176,6 +186,53 @@ support_cycle_seconds: 5
 - Writing Panel과 Commit.
 
 선택한 보조 슬롯에만 대상 규칙·예상 적용값·마지막 Event·귀환·교체를 상세 표시한다.
+
+## 승인 인게임 아트 중간점검
+
+책임 원본:
+
+- `docs/planning/INGAME_ART_CHECKPOINT_01_APPROVAL_2026-08-03.md`.
+- `docs/planning/visual/INGAME_ART_CHECKPOINT_01_APPROVED_MANIFEST.json`.
+
+```yaml
+decision_id: GM-INGAME-ART-CHECKPOINT-01
+status: USER_APPROVED_VISUAL_CHECKPOINT
+approved_boards: 2
+board_a: MAIN_DAILY_CLASS_FESTIVAL
+board_b: BATTLE_WRITING_SUMMON_EVENT_RESULT_RETURN
+```
+
+### Board A
+
+- 메인 화면.
+- 일상·자유일정.
+- 수업·글자 연습.
+- 학교축제 비전투 응용.
+
+### Board B
+
+- 전투 관찰·소환 운용.
+- 전투 Writing Focus.
+- 소환 Event·지원 활성.
+- 결과·환경 변화·복귀.
+
+승인 범위:
+
+- 장면 세트와 정보 위계.
+- Soft Storybook 환경·Clean Anime Cel 캐릭터·Navy/Gold UI 조합.
+- 주인공과 메인 늑대형 동반 정령의 연속성.
+- 보조 소환수를 상시 몸체가 아니라 배지와 짧은 Cut-in·FX로 표현하는 방식.
+- Board A와 Board B가 같은 게임으로 읽히는 화면 계보.
+
+비정본 자리표시자:
+
+- 이미지 내 영문 문구와 최종 현지화.
+- 레벨·재화·HP·MP·Stock·Timer·Grade 수치.
+- 적·장소·Quest 등 임시 고유명사.
+- Main·Daily 화면의 최종 메뉴 구조.
+- Board B의 `[공격] +3`, `[치유] +3` 표현.
+
+시스템 수치 정본은 `[스톡] 2 / [방어도] 2 / [공격] 2 / [치유] 2`를 계속 우선한다. 두 Board는 Runtime 구현·최종 Asset·접근성·성능 증거가 아니다.
 
 ## 작업 품질 Gate
 
@@ -240,11 +297,11 @@ Execution Readiness PASS 후 허용 후보:
 - 무아트 Smartphone Landscape Harness.
 - 합성 비전투 1개·합성 단일 강적 1개.
 
-Stock·소환수 Runtime은 별도 Scope 승인 없이 Foundation POC에 자동 포함하지 않는다.
+Stock·소환수 Runtime과 승인 Board의 실제 UI·Asset 구현은 별도 Scope 승인 없이 Foundation POC에 자동 포함하지 않는다.
 
 ## 잔여 P1
 
-1. 보조 3슬롯 Mobile HUD Wireframe.
+1. `GM-MOBILE-SUMMON-HUD-WIREFRAME-01` 사용자 명세 검토.
 2. State/Ledger/Save TDD Plan·Test Matrix.
 3. Godot Toolchain preflight.
 4. Base v9.4.3 Plan 재검증·Execution Readiness.
@@ -258,6 +315,12 @@ CODEX_EXECUTION = BLOCKED
 STOCK_DEFAULTS = APPROVED_FOR_PROTOTYPE
 SUMMON_DEFAULTS = APPROVED_FOR_PROTOTYPE
 STATE_INTERFACE = APPROVED_DESIGN_ONLY
+MOBILE_SUMMON_HUD_SPEC = AWAITING_USER_REVIEW
+INGAME_ART_CHECKPOINT_BOARDS = USER_APPROVED_REFERENCE_ONLY
+FINAL_UI_TEXT = NOT_APPROVED
+FINAL_NUMBERS = NOT_APPROVED
+FINAL_RUNTIME_SCREEN = NOT_APPROVED
+FINAL_ASSET_PRODUCTION = NOT_AUTHORIZED
 WORK_QUALITY_GATE = APPROVED_ACTIVE
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
