@@ -20,11 +20,13 @@
   "current_state": {
     "art_bible_01": "APPROVED_DUAL_STANDARD_ART_BIBLE",
     "art_style_01": "APPROVED_A_MODIFIED_LOCKED",
+    "asset_spec_01": "APPROVED_SPEC",
     "battle_rules_01": "APPROVED_SITUATION_RESOLUTION_RULES",
     "codex": "BLOCKED",
     "human_validation": "NOT_RUN",
     "implementation": "NOT_STARTED",
-    "next_product_gate": "ASSET-SPEC-01",
+    "mobile_device_validation": "NOT_RUN",
+    "next_product_gate": "MOBILE-FOUNDATION-01",
     "planning": "APPROVED",
     "runtime_validation": "NOT_RUN"
   },
@@ -32,6 +34,8 @@
     "active_context": "docs/ACTIVE_CONTEXT.md",
     "agents": "AGENTS.md",
     "current_confirmed_decisions": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "current_platform_decision": "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
+    "current_project_audit": "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
     "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
@@ -41,11 +45,12 @@
   },
   "gdd_sheet": {
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "last_full_audit": "2026-08-01",
+    "last_full_audit": "2026-08-02",
     "main_sync": "PENDING_PR_MERGE",
     "role": "USER_FACING_GDD_WORKSPACE",
     "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
-    "sync_status": "SYNCED_TO_WORKING_BRANCH",
+    "sync_bundle": "GR-SYNC-20260802-07",
+    "sync_status": "GITHUB_ONLY",
     "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC"
   },
   "generated_outputs": {
@@ -60,18 +65,21 @@
   "planning_authority": {
     "art_bible": "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
     "art_style": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "asset_spec": "docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md",
     "battle_rules": "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
-    "operating_audit": "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md",
-    "planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md"
+    "operating_audit": "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
+    "planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
+    "platform": "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md"
   },
   "project": {
     "engine": "Godot 4.7.1 stable candidate",
     "execution_profile": "PLANNING_ONLY_PROFILE",
-    "follow_up_platform": "Mobile",
+    "follow_up_platform": "PC",
     "godot_project_status": "NOT_CREATED",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
-    "primary_platform": "PC",
+    "platform_decision": "GM-PLATFORM-02",
+    "primary_platform": "Mobile",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "root": ".",
@@ -84,18 +92,20 @@
   },
   "protected_baseline": {
     "authority_ref": "refs/remotes/origin/main",
-    "commit": "154c7b020b0c181204c7a395292d74b84f8c20fa",
+    "commit": "3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03",
     "main_sync": "SYNCED_TO_MAIN"
   },
   "protected_decisions": [
     "GM-PLANNING-APPROVAL-01",
     "ART-STYLE-01",
     "ART-BIBLE-01",
+    "ASSET-SPEC-01",
     "GM-BATTLE-SCREEN-LAYOUT-01",
     "GM-BATTLE-SINGLE-ENEMY-FOCUS-01",
     "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
     "GM-BATTLE-TIME-FLOW-01",
     "GM-BATTLE-RULES-01",
+    "GM-PLATFORM-02",
     "GM-CANON-SYNC-01"
   ],
   "protected_paths": [
