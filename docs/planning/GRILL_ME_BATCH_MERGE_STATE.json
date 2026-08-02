@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
+  "status": "USER_APPROVED_ACTIVE",
+  "effective_date": "2026-08-02T15:16:00+09:00",
+  "repository": "alsdmlals4-eng/GRIMOIRE-",
+  "google_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+  "parent_policy": "GM-CANON-SYNC-01",
+  "threshold": 10,
+  "counter": {
+    "approved_grill_me_since_last_flush": 0,
+    "next_merge_at": 10,
+    "merge_required": false,
+    "pending_decision_ids": []
+  },
+  "counting_rule": {
+    "count_distinct_user_approved_grill_me_decision_id": true,
+    "count_reapproval_or_copy_edit": false,
+    "count_main_sync_receipt": false,
+    "count_unapproved_candidate": false
+  },
+  "merge_triggers": [
+    "COUNTER_REACHES_10",
+    "EXPLICIT_USER_MERGE_REQUEST",
+    "GATE_OR_IMPLEMENTATION_BOUNDARY",
+    "P0_P1_CANON_SAFETY_FIX",
+    "WORK_HANDOFF_FLUSH"
+  ],
+  "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
+  "last_complete_flush": {
+    "decision_main": "2aec51244ea96fc4d4c9088fcb133f41862faa1d",
+    "cold_start_main": "fe983e3d4ec327d8ceacc41b9976002cad88a524",
+    "merged_prs": [31, 32],
+    "sheet_state": "SYNCED_TO_MAIN",
+    "sheet_readback": "PASS",
+    "open_prs_after_flush": 0
+  },
+  "current_policy_adoption": {
+    "sync_id": "GR-SYNC-20260802-09",
+    "branch": "chatgpt/grimoire-grill-batch-merge-policy-20260802",
+    "status": "PR_OPEN_DRAFT",
+    "authority_commit": "276f09e832e7651cc5fa1918388759a275f4bf65",
+    "working_receipt_commit": "6cc2c8363e4d51070792fe757ccf8f8f143dc893",
+    "pull_request": 33,
+    "sheet_ranges": [
+      "00_프로젝트_허브!H2",
+      "01_작업순서!A19:J19",
+      "02_현재_확정결정!A31:J31",
+      "04_누락_충돌_감사!A25:H25",
+      "99_변경이력!A26:H26"
+    ],
+    "sheet_readback": "PASS",
+    "pre_merge_audit": "PENDING_LATEST_HEAD",
+    "ci": "PENDING_LATEST_HEAD",
+    "main_commit": null,
+    "cold_start_main_commit": null
+  },
+  "protected_boundaries": {
+    "execution_profile": "PLANNING_ONLY_PROFILE",
+    "implementation": "NOT_STARTED",
+    "codex": "BLOCKED",
+    "runtime_validation": "NOT_RUN",
+    "mobile_device_validation": "NOT_RUN",
+    "accessibility_validation": "NOT_RUN",
+    "human_validation": "NOT_RUN"
+  }
+}
