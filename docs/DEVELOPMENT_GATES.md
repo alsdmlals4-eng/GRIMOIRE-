@@ -5,280 +5,220 @@
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 baseline_date: 2026-08-02
-product_stage: DEMO_FIRST_VERTICAL_SLICE
-execution_profile: PLANNING_ONLY_PROFILE
+baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
 primary_platform: Mobile
 follow_up_platform: PC
-platform_decision: GM-PLATFORM-02
-mobile_orientation_decision: GM-MOBILE-ORIENTATION-01
-mobile_orientation: LANDSCAPE_FIXED
-planning: APPROVED
-art_style_01: APPROVED_A_MODIFIED_LOCKED
-art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
-battle_screen_layout_01: APPROVED
-battle_single_enemy_focus_01: APPROVED
-battle_active_timer_01: APPROVED
-battle_time_flow_01: APPROVED
-battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
-asset_spec_01: APPROVED_SPEC
-next_product_gate: MOBILE-FOUNDATION-01
-queued_design_gates: BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01
+orientation: LANDSCAPE_FIXED
+product_stage: DEMO_FIRST_VERTICAL_SLICE
+execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
+base_release: v9.4.3
+core_system_alignment: APPROVED_AND_SYNCED_TO_MAIN
+stock_system_01: USER_APPROVED_RECOMMENDED_DEFAULTS
+summon_system_01: USER_APPROVED_RECOMMENDED_DEFAULTS
+implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
 implementation_ready: false
-codex: BLOCKED
+implementation: NOT_STARTED
+codex_plan: ALLOWED
+codex_execution: BLOCKED
+runtime_validation: NOT_RUN
+mobile_device_validation: NOT_RUN
+performance_validation: NOT_RUN
+accessibility_validation: NOT_RUN
+human_validation: NOT_RUN
 ```
-
-현재 승인은 기획·시각 규칙·전투 구조·Asset 제작 계약과 Mobile Landscape 방향을 확정한다. Mobile 실기기 구현·성능·접근성·사람 플레이 통과를 의미하지 않는다.
 
 ## 1. 전체 경로
 
 ```text
-Gate 1 콘셉트·Vertical Slice — 완료
-→ 기획 완결·벤치마킹·적대적 검토 — 완료
-→ ART-STYLE-01 — 완료
-→ ART-BIBLE-01 — 완료
-→ 전투 화면·단일 강적·Active Timer·Time Flow·Battle Rules — 완료
-→ ASSET-SPEC-01 — 완료
-→ GM-PLATFORM-02 — Mobile 우선 승인
-→ GM-MOBILE-ORIENTATION-01 — Landscape 고정 승인
-→ MOBILE-FOUNDATION-01 — 현재 Gate
-→ BOSS-PHASE-01·Grimoire/Main 파생 화면 영향 재검토
-→ AUDIO-DIRECTION-01
-→ Mobile 기준 기획·아트·UX 통합 검수
-→ 사용자 Codex Plan 승인
-→ Codex read-only Plan
-→ 기술 검수
-→ 실행 프로필 전환 승인
-→ Validation-First 구현
-→ QA·외부 플레이테스트
+핵심 기획·Vertical Slice·Art·Battle·Asset 계약 — 완료
+→ Mobile 플랫폼·Landscape·Save/Resume·UX Flow·Writing Wireframe — 완료
+→ 전체 게임 Macro·Chapter·Curriculum·Growth·Reward·Failure·Scope — 완료
+→ 핵심/보조 시스템 계층 — 완료
+→ Stock·Summon Prototype 기본값 — 현재 Working Decision
+→ State/Ledger/Save 인터페이스·HUD·Test 계약
+→ Slice 제작 미니게임·시간 예산
+→ Battle/Result Tuning
+→ Grimoire/Main/Audio·접근성
+→ Godot Toolchain preflight
+→ Base v9.4.3 Implementation Plan 재검증
+→ GM-FOUNDATION-POC-EXECUTION-READINESS-01
+→ Foundation POC
+→ Runtime·Device·Performance·Accessibility·Human Validation
+→ Vertical Slice Production Approval
 ```
 
-## 2. 완료된 기획·시각 Gate
+## 2. 완료된 기획 Gate
 
-### Gate 1·Vertical Slice
+- 플레이어 약속과 핵심 재미.
+- 상황 해결형 단일 강적 전투.
+- 적 Attack Timer·작성 중 진행·시스템 해결 중 정지.
+- 불안정도 0 진정·환경 결과 품질.
+- Mobile 우선·PC 후속.
+- Landscape 고정 Smartphone 품질 Gate.
+- Scene-first Focus Task·우측 Writing Panel.
+- Save/Resume Anchor·Session Snapshot·Atomic Result Ledger 방향.
+- 학습 나선·다계열 수강·포트폴리오·학기 평가.
+- 재료·제작·미니게임 경제.
+- 1학년 Demo·3학년 Full Game 범위.
+- 핵심/진행/적용/보조/인프라 시스템 계층.
 
-상태: `APPROVED`.
+별도 시험 Chapter·시험장·시험 전용 미니게임은 사용하지 않는다.
 
-- 플레이어 약속과 비타협 코어.
-- 수업·시험·축제·현장·귀환.
-- 자유일정 3회.
-- 목표 45~50분, 콘텐츠 상한 53분, 하드 상한 60분.
-- 글자 `흐름 / 집중 / 분산`.
-- 직접 작성 성공 7회, 복구 포함 목표 상한 10회.
+## 3. GM-STOCK-SYSTEM-01
 
-### Art Style
+상태: `USER_APPROVED_RECOMMENDED_DEFAULTS`.
 
-상태: `APPROVED_A_MODIFIED_LOCKED`.
+Prototype 기본값:
 
-- 잠긴 기준 이미지 SHA-256: `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`.
-- 원본 수정·재생성 금지.
+- 확인 글자 Token Rack `4칸`.
+- 동일 글자 최대 `2개`.
+- Chapter·주요 Resume Anchor에서 2개 미만이면 `2개까지 보정`.
+- 글자별·Focus Task별 첫 직접 유효 Commit 후 Token `+1`.
+- 사용은 글자 1개당 Token `1개`.
+- Commit 승인과 세계 변화 적용 시 소비.
+- 취소·문법 실패·마나 부족은 소비하지 않음.
+- 완성 주문·대상·상황·자동 최적 조합은 저장하지 않음.
+- 영구 계정 자원·Offline 충전 금지.
 
-### Art Bible
+검증 Gate:
 
-상태: `APPROVED_DUAL_STANDARD_ART_BIBLE`.
+- 직접 작성 4~6회, Stock 보조 2~4회, 총 해결 7~10회 후보.
+- 직접 작성 비율 40% 미만이면 REWORK.
+- Token 중복 소비·Anchor 반복 보정·Save 불일치 0건.
 
-- Soft Storybook 배경 + Anime Cel 캐릭터.
-- Navy/Gold UI + Blue Glyph.
-- 고정 주인공 1명·전투 초상 1개.
-- 동반 정령·수호 상태 배지.
-- 우측 작성 Panel 축소→확장.
-- Grimoire 화면 우선 파생.
+## 4. GM-SUMMON-SYSTEM-01
 
-### Asset Spec
+상태: `USER_APPROVED_RECOMMENDED_DEFAULTS`.
 
-상태: `APPROVED_SPEC`.
+Prototype 기본값:
 
-책임 원본: `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`.
+- 메인 소환수 1체 상시 활성.
+- 기타 소환수는 `[소환]` Commit 후 최대 1체 활성.
+- 소환 비용 최대 마나 `20%`.
+- 지속 Active Pressure `30초`.
+- 종료 후 Cooldown `20초`.
+- 메인 Stock 지원: `20초` 후 Token 1개, Focus Task당 1회.
+- 주문형 보조: `10초` Tick, 활성당 최대 3회, 플레이어 비교 효과 `60%`.
+- Stock형 보조: `12초` Tick, 활성당 최대 2개.
+- 모든 소환수 Stock 충전 합산 Focus Task당 최대 `3개`.
+- 자동 주문 기여 상한: 시작 불안정도·핵심 목표 `25%`.
+- 자동 주문은 불안정도 0·치명 목표 완료·마지막 승리 Event 금지.
 
-- 해상도·형식·수량 상한·Manifest·License 계약 승인.
-- 기존 16:9·720p/1080p/1440p·Ultrawide 검증 기준은 Mobile 실기기 적합성을 자동 증명하지 않음.
-- 실제 Asset 제작·Godot Import·Memory·Runtime 검증은 `NOT_STARTED/NOT_RUN`.
+Slice 수호형:
 
-## 3. 완료된 전투 Gate
+- 플레이어 피해 `35%`, 환경 피해 `25%` 완화.
+- 중첩 불가.
+- 적 Timer 정지 없음.
 
-### GM-BATTLE-SCREEN-LAYOUT-01
+이 Decision은 `GM-BATTLE-RULES-01`의 수동 1회·자동 행동 금지 수호 소환수 규칙을 대체한다.
 
-상태: `APPROVED_LAYOUT_DIRECTION`.
+## 5. Active Pressure Clock Gate
 
-```text
-상단·중앙 적·환경
-+ 좌측 하단 주인공 초상
-+ 좌측 보조 동반·수호 배지
-+ 직접 작성 영역
-```
+진행:
 
-### GM-BATTLE-SINGLE-ENEMY-FOCUS-01
+- 관찰·작성·후보·조합 등 플레이어 조작 가능 상태.
 
-상태: `APPROVED_ENCOUNTER_DIRECTION`.
+정지:
 
-- 강한 적 1개체.
-- 잡몹·웨이브 제외.
-- 일반 적 단일 페이즈.
+- 주문·적 공격·소환수 행동 System Resolve.
+- Pause·강제 Tutorial.
+- Focus loss·Background.
+- Save/Load.
+- 입력을 막는 Recognition·Loading.
 
-### GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01
+- 작성 감속은 적·소환수 Clock 모두 같은 비율로 적용한다.
+- Offline catch-up과 복귀 순간 다중 Tick을 금지한다.
 
-상태: `APPROVED_CORE_BATTLE_FLOW`.
+## 6. P1 — Execution Readiness 전 필수
 
-- 적 주기공격.
-- `[구현]` 후 마나 검증·즉시 시전.
-- 보스만 다중 페이즈.
+### P1-01 State·Ledger·Save 인터페이스
 
-### GM-BATTLE-TIME-FLOW-01
+필수 데이터:
 
-상태: `APPROVED_TIME_FLOW_DIRECTION`.
+- Stock Token·Source·Pending·Anchor floor Ledger.
+- Active Summon·Duration·Next Tick·Action Count·Cooldown.
+- 고유 `summon_event_id`와 Transaction 소유권.
 
-- 판단·작성 중 진행.
-- 시스템 해결 중 정지.
-- 선택형 작성 감속.
-- 동시 해결 금지·먼저 승인된 Event 우선.
+### P1-02 작성·자동화·시간 예산
 
-### GM-BATTLE-RULES-01
+- 총 해결 7~10회.
+- 직접 작성 4~6회.
+- Stock 2~4회.
+- Summon 자동 행동 1~3회.
+- 46분 목표·53분 상한에서 재검증.
 
-상태: `APPROVED_SITUATION_RESOLUTION_RULES`.
-
-- 적 HP 0 처치 대신 불안정도 0 진정·해결.
-- 플레이어 HP 0 또는 선언된 치명적 환경 붕괴가 패배.
-- 환경 보존도·부작용·남은 HP가 결과 품질을 결정.
-- 수호 소환수는 다음 공격 피해를 완화하지만 Timer·작성·판단을 대행하지 않음.
-
-## 4. GM-PLATFORM-02
-
-상태: `USER_APPROVED_ACTIVE`.
-
-책임 원본: `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`.
-
-- 1차 플랫폼 `Mobile`, 후속 플랫폼 `PC`.
-- 기존 `GM-PLATFORM-01 / PC 우선·Mobile 후속`은 `SUPERSEDED`.
-- 승인 코어·Slice·Art·Battle·Asset Spec은 보존한다.
-- PC 전용 입력·해상도·테스트·출시 순서는 Mobile 기준으로 재검토한다.
-
-## 5. GM-MOBILE-ORIENTATION-01
-
-상태: `USER_APPROVED_ACTIVE`.
-
-책임 원본: `docs/planning/MOBILE_ORIENTATION_01_APPROVAL_2026-08-02.md`.
-
-- Mobile Vertical Slice의 Main·Field·Dialogue·Schedule·Writing·Battle·Result·Grimoire·Settings는 Landscape 고정.
-- Portrait Gameplay와 Runtime 자동 회전은 Vertical Slice 범위에서 제외.
-- 기존 16:9 자료는 Landscape 파생 기준으로 보존하지만 Mobile 실기기 품질 통과 증거로 자동 승격하지 않음.
-- 한손 Portrait 편의보다 직접 작성 Canvas와 적 위험·상태·작성 정보의 동시 판독을 우선.
-- Landscape 고정의 진입 마찰과 작은 기기 피로는 Resume Anchor·실기기 테스트·접근성 검증으로 다룸.
-
-## 6. MOBILE-FOUNDATION-01
-
-상태: `CURRENT_RECONCILIATION_GATE`.
-
-목표: 승인된 직접 작성·상황 해결 코어가 Landscape Mobile에서 입력·화면·중단·성능 문제로 약화되지 않는 최소 기반을 확정한다.
-
-확정·검증 대상:
-
-1. Touch·Stylus stroke 입력과 후보 확인.
-2. 화면 내 Undo·부분 삭제·전체 초기화·취소·확정·`[구현]`.
-3. interrupted stroke·multi-touch·system gesture·stale recognition·중복 Commit 방어.
-4. App pause/resume·background/foreground·focus loss 상태 유지.
-5. Landscape 지원 Aspect Ratio·Safe Area·Notch·최소 Touch target 후보.
-6. 작은 화면에서 적 위험·목표·주인공 상태·작성 Panel의 가림 방지.
-7. Resume Anchor·자동 저장·이어하기·Draft 저장 소유권.
-8. Memory·Texture·load·frame pacing·battery·thermal 측정 계획.
-9. Android/iOS·Store·최소 기기·성능 목표 결정을 위한 사용자 패킷.
-10. 후속 PC Mouse/Pen/Keyboard 적응 원칙.
-
-통과 조건:
-
-- 입력 실패·문법 실패·상황 설계 실패·비용 부족을 구분한다.
-- 낮은 확신 후보 자동 선택과 자동 시전을 하지 않는다.
-- 앱 중단·복귀와 입력 재진입에서 중복 시전·보상·기록·손상 상태가 없다.
-- Landscape 화면 후보가 적·위험·작성 정보를 동시에 가리지 않는다.
-- Portrait·자동 회전을 Vertical Slice 필수 지원으로 조용히 확장하지 않는다.
-- Aspect Ratio·Safe Area·성능 수치는 근거 또는 사용자 승인 없이 최종 확정하지 않는다.
-- 사용자가 Mobile Foundation 계약을 승인한다.
-
-## 7. 후속 설계 Gate
-
-### BOSS-PHASE-01
-
-상태: `QUEUED_REVIEW_AFTER_MOBILE_FOUNDATION`.
-
-- 보스 페이즈 수·전환 상태·Attack Timer·작성 Draft·환경 변화·반복 악용 방지.
-- Landscape 화면과 중단·복귀 계약에 맞는지 재검토 후 확정.
-
-### GRIMOIRE-SCREEN-01
-
-상태: `QUEUED_REVIEW_AFTER_MOBILE_FOUNDATION`.
-
-- 상황·글자·의도·결과·부작용·발견 관리.
-- 자동 최적 추천·자동 시전 금지.
-- Landscape 작은 화면 탐색·텍스트·Touch 조작 검증 필요.
-
-### MAIN-SCREEN-01
-
-상태: `QUEUED_AFTER_GRIMOIRE_SCREEN`.
-
-- `새 게임 / 이어하기 / 설정` 중심 최소 구조.
-- 수집형 로비 UI 금지.
-- Portrait 별도 Main을 Vertical Slice 범위에 추가하지 않음.
-
-### NAMING-PASS-01
-
-상태: `NONBLOCKING_PENDING`.
-
-- 세계 명명 규칙과 주요 이름.
-- Mobile Foundation을 차단하지 않음.
-
-## 8. AUDIO-DIRECTION-01
-
-상태: `QUEUED`.
-
-- 학교·시험·축제·현장·귀환의 청각 정체성.
-- 획·후보·확정·시전·실패 원인 SFX.
-- 적 공격 예고·Time State·Instability·Result 피드백.
-- 무음 대체·haptic-off·Mobile speaker/headphone 환경과 License 우선순위.
-
-## 9. 통합 검수
-
-상태: `BLOCKED_BY_MOBILE_FOUNDATION_DERIVATIVE_SCREENS_AND_AUDIO`.
-
-확인:
-
-- Glyph·대상·위험 판독성.
-- Art Bible·Asset Spec과 Landscape Mobile 화면 소비자 일치.
-- 45~50/53/60분 시간 계약과 Resume Anchor.
-- Touch·Stylus 입력과 UI 일치.
-- 작은 화면·Safe Area·중단/복귀·성능·접근성.
-- 단일 강적이 HP 스펀지로 변질되지 않음.
-- 수호 소환수가 주문 설계보다 복잡하지 않음.
-- Grimoire가 자동 주문 Stock으로 변질되지 않음.
-
-## 10. Codex Plan 진입
-
-상태: `BLOCKED`.
-
-필수 조건:
-
-1. `MOBILE-FOUNDATION-01` 승인.
-2. `BOSS-PHASE-01`, `GRIMOIRE-SCREEN-01`, `AUDIO-DIRECTION-01`의 Mobile 영향 검수.
-3. 기획·아트·UX 통합 검수 통과.
-4. Base v9.4 Adapter·Snapshot·CI 정합화.
-5. Godot 버전·Renderer·Mobile OS·Landscape Aspect·최소 기기 범위 재확인.
-6. 사용자의 Codex Plan 승인.
-
-그 뒤에만 Codex read-only Plan을 작성한다.
-
-## 11. PLAYTEST_TUNING_REQUIRED
-
-- 공격 간격·피해·HP·마나.
-- 불안정도 변화량.
-- 수호 완화율·사용 횟수.
-- 환경 결과 임계값.
-- 작성 감속 최종값·복귀 유예.
-- Landscape Touch target·Canvas 크기·Gesture·인식 허용치·보정·Latency.
-- 지원 Aspect Ratio·Text scale·Safe Area 세부값.
-- Memory·Texture·load·frame pacing·battery·thermal.
-
-## 12. 검증 경계
+### P1-03 Mobile HUD
+
+- Stock 4칸·Pending.
+- 메인 READY·다음 Tick.
+- 활성 보조·남은 시간·다음 행동·Cooldown.
+- 대상 규칙·자동 행동 출처.
+
+### P1-04 Test 계약
+
+- 중복 소비·중복 Tick·중복 결과 0.
+- Pause·Background·Save/Resume Clock 정지.
+- 자동 승리 종결 0.
+- Anchor reload 자원 증식 0.
+- Small-screen 필수 정보 가림 0.
+
+### P1-05 Toolchain·Plan
+
+- Godot binary·version·renderer·export 확인.
+- Base v9.4.3 최종 main에서 Implementation Plan 재검증.
+- `GM-FOUNDATION-POC-EXECUTION-READINESS-01` P0=0·P1=0.
+
+## 7. P2 — Vertical Slice 제작 전 필수
+
+1. `BATTLE-TUNING-01`.
+2. `RESULT-GRADING-01`.
+3. Slice 대표 제작 미니게임 확정 — 권장 `촉매 배합·안정화 1개`.
+4. 추가 선택형 현장실습 전투 Slice 포함 여부 — 권장 실제 플레이 제외·Preview만.
+5. `GRIMOIRE-SCREEN-01`.
+6. `MAIN-SCREEN-01`.
+7. `AUDIO-DIRECTION-01`.
+8. 접근성·난이도 기본 정책.
+9. Year-One 6~8 Chapter 실제 Map.
+10. 커리큘럼 글자 Catalog·수강 슬롯·전문화 시점.
+11. 성장·평가·재료·레시피·인벤토리 기본값.
+12. Slice 장면별 시간·대사·작성·제작·전투 예산.
+
+## 8. P3 — Slice 검증 후
+
+- Boss 다중 페이즈.
+- 소환수 4단계 성장·탑승·전체 Roster.
+- 2·3학년 Chapter·상급 연구.
+- Full Game 실제 콘텐츠 수량.
+- 저장 Migration.
+- Store·사업화·PC Adaptation.
+- 최종 Art·Audio·Asset 대량 제작.
+
+## 9. Foundation POC 진입
+
+승인된 것은 전체 Vertical Slice 구현이 아니다.
+
+Execution Readiness PASS 뒤 허용 후보:
+
+- 최소 Godot 프로젝트·Headless tests.
+- Focus Task 상태 전이.
+- Atomic Result Ledger.
+- Stroke·Draft·Candidate 생명주기.
+- Deterministic Test Recognizer.
+- Session Snapshot·atomic save.
+- Pause·Resume·Focus loss.
+- 무아트 Smartphone Landscape Harness.
+- 합성 비전투 1개·합성 단일 강적 1개.
+
+Stock·Summon Runtime은 인터페이스 설계와 별도 Scope 확인 없이 자동 포함하지 않는다.
+
+## 10. 검증 경계
 
 ```text
 GODOT_PROJECT = NOT_STARTED
 PRODUCT_CODE_SCENE_RESOURCE_DATA = NOT_FOUND
+CODEX_EXECUTION = BLOCKED
+STOCK_DEFAULTS = APPROVED_FOR_PROTOTYPE
+SUMMON_DEFAULTS = APPROVED_FOR_PROTOTYPE
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
 PC_ADAPTATION_VALIDATION = NOT_RUN
