@@ -1,5 +1,5 @@
 {
-  "schema_version": 15,
+  "schema_version": 16,
   "registry_role": "grimoire-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -14,8 +14,9 @@
     "orientation": "LANDSCAPE_FIXED",
     "planning": "APPROVED_WITH_REMAINING_DETAIL_GATES",
     "core_system_alignment": "APPROVED_SYNCED_TO_MAIN",
-    "stock_system_01": "USER_APPROVED_RECOMMENDED_DEFAULTS_WORKING_SYNC",
-    "summon_system_01": "USER_APPROVED_RECOMMENDED_DEFAULTS_WORKING_SYNC",
+    "stock_system_01": "USER_APPROVED_REVISED_DEFAULTS_WORKING_SYNC",
+    "summon_system_01": "USER_APPROVED_REVISED_DEFAULTS_WORKING_SYNC",
+    "stock_summon_state_interface_01": "USER_DELEGATED_RECOMMENDED_OPTION_WORKING_SYNC",
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED",
@@ -43,8 +44,11 @@
     "current_confirmed_snapshot": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "approved_planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
     "core_system_alignment": "docs/planning/CORE_SYSTEM_ALIGNMENT_01_APPROVAL_2026-08-02.md",
-    "stock_system": "docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md",
-    "summon_system": "docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md",
+    "stock_responsibility_source": "docs/planning/STOCK_SYSTEM.md",
+    "stock_charge_time_source": "docs/planning/STOCK_CHARGE_TIME_SYSTEM.md",
+    "stock_system_approval": "docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md",
+    "summon_system_approval": "docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md",
+    "stock_summon_state_interface": "docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md",
     "planning_remainder_audit": "docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md",
     "implementation_entry": "docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md",
     "grill_batch_state": "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
@@ -77,19 +81,41 @@
       "status": "APPROVED_SYNCED_TO_MAIN"
     },
     {
-      "id": "stock-system",
-      "source_path": "docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md",
+      "id": "stock-system-responsibility",
+      "source_path": "docs/planning/STOCK_SYSTEM.md",
       "decision_id": "GM-STOCK-SYSTEM-01",
-      "status": "USER_APPROVED_RECOMMENDED_DEFAULTS_WORKING_SYNC"
+      "status": "ACTIVE_NATURAL_CHARGE_RESPONSIBILITY_SOURCE"
     },
     {
-      "id": "summon-system",
+      "id": "stock-charge-time-responsibility",
+      "source_path": "docs/planning/STOCK_CHARGE_TIME_SYSTEM.md",
+      "decision_id": "GM-STOCK-SYSTEM-01",
+      "status": "ACTIVE_INTEGER_CHARGE_TIME_SOURCE"
+    },
+    {
+      "id": "stock-system-approval",
+      "source_path": "docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md",
+      "decision_id": "GM-STOCK-SYSTEM-01",
+      "status": "USER_APPROVED_REVISED_DEFAULTS_WORKING_SYNC",
+      "supersedes": [
+        "PR51_INITIAL_CONFIRMED_GLYPH_TOKEN_RACK_DRAFT"
+      ]
+    },
+    {
+      "id": "summon-system-approval",
       "source_path": "docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md",
       "decision_id": "GM-SUMMON-SYSTEM-01",
-      "status": "USER_APPROVED_RECOMMENDED_DEFAULTS_WORKING_SYNC",
+      "status": "USER_APPROVED_REVISED_DEFAULTS_WORKING_SYNC",
       "supersedes": [
-        "GM-BATTLE-RULES-01/GUARDIAN_MANUAL_ONLY_SUBSECTION"
+        "GM-BATTLE-RULES-01/GUARDIAN_MANUAL_ONLY_SUBSECTION",
+        "PR51_INITIAL_PERCENT_TIMED_SUMMON_DRAFT"
       ]
+    },
+    {
+      "id": "stock-summon-state-interface",
+      "source_path": "docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md",
+      "decision_id": "GM-STOCK-SUMMON-STATE-INTERFACE-01",
+      "status": "USER_DELEGATED_RECOMMENDED_OPTION_WORKING_SYNC"
     },
     {
       "id": "planning-remainder-audit",
@@ -164,7 +190,7 @@
     {
       "id": "stock-summon-benchmark",
       "source_path": "docs/planning/benchmarks/STOCK_SUMMON_SYSTEM_01_QUICK_BENCHMARK_2026-08-02.md",
-      "status": "QUICK_COMPLETE"
+      "status": "QUICK_COMPLETE_REVISED"
     },
     {
       "id": "core-system-audit",
@@ -174,15 +200,15 @@
     {
       "id": "planning-remainder-audit-evidence",
       "source_path": "docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md",
-      "status": "COMPLETE_P0_0_P1_7_P2_12"
+      "status": "COMPLETE_REVISED"
     }
   ],
   "responsibility_status": {
     "core_fun": "APPROVED",
     "full_game_structure": "APPROVED_DIRECTION",
-    "stock_system": "PROTOTYPE_DEFAULTS_APPROVED",
-    "summon_system": "PROTOTYPE_DEFAULTS_APPROVED",
-    "stock_summon_state_ledger_save_interface": "P1_REQUIRED",
+    "stock_system": "NATURAL_CHARGE_INTEGER_DEFAULTS_APPROVED",
+    "summon_system": "PERSISTENT_INTEGER_STATS_APPROVED",
+    "stock_summon_state_ledger_save_interface": "APPROVED_DESIGN_ONLY",
     "stock_summon_mobile_hud": "P1_REQUIRED",
     "stock_summon_tests": "P1_REQUIRED",
     "battle_tuning": "P2_REQUIRED",
