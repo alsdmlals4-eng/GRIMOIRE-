@@ -23,7 +23,9 @@
 | Codex | `BLOCKED` |
 | Base | `v9.4.0` |
 | main 기준선 | `3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03` |
-| 현재 Sync | `GR-SYNC-20260802-07 / GITHUB_ONLY` |
+| 현재 Sync | `GR-SYNC-20260802-07 / SYNCED_TO_WORKING_BRANCH / SHEET_READBACK_PASS` |
+| Authority Commit | `b9279e8c690a8406035675ebbe8a007e9b3f093f` |
+| Sync Receipt | `docs/planning/sync/GR-SYNC-20260802-07-WORKING.md` |
 
 ## 먼저 읽을 문서
 
@@ -32,12 +34,13 @@
 3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
 4. `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`
 5. `docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md`
-6. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
-7. `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`
-8. `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`
-9. `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`
-10. `docs/DEVELOPMENT_GATES.md`
-11. `skills/PROJECT_BASE_ADAPTER.json`
+6. `docs/planning/sync/GR-SYNC-20260802-07-WORKING.md`
+7. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+8. `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`
+9. `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`
+10. `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`
+11. `docs/DEVELOPMENT_GATES.md`
+12. `skills/PROJECT_BASE_ADAPTER.json`
 
 ## 현재 플레이어 약속
 
@@ -114,14 +117,20 @@ Android/iOS, Store, 가로/세로, 최소 기기, 성능 수치, 인식 처리 �
 ## 다음 작업
 
 ```text
-GR-SYNC-20260802-07 GitHub·Sheet·Issue 정합화
-→ MOBILE-FOUNDATION-01
+MOBILE-FOUNDATION-01
 → BOSS-PHASE-01·Grimoire/Main 영향 재검토
 → AUDIO-DIRECTION-01
 → Mobile 기준 통합 검수
 → Codex Plan 승인·기술 검수
 → 구현
 ```
+
+## 현재 검증 경계
+
+- Sheet 14개 탭 Readback: `PASS`.
+- Generator·Generated Views: `NOT_RUN / STALE_PENDING_GENERATOR`.
+- PR·CI: `PENDING`.
+- Godot Runtime·Mobile device·성능·접근성·사람 플레이: `NOT_RUN`.
 
 ## 현재 금지
 
