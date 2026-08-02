@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "registry_role": "grimoire-implementation-entry-current-authority-addendum",
+  "status": "ACTIVE_OVERRIDE_UNTIL_BASE_RECONCILIATION",
+  "decision_id": "GM-IMPLEMENTATION-ENTRY-01",
+  "approved_option": "A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK",
+  "project": {
+    "primary_platform": "Mobile",
+    "follow_up_platform": "PC",
+    "mobile_orientation": "LANDSCAPE_FIXED",
+    "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
+    "planning_contracts": "APPROVED_AND_MERGED_TO_MAIN",
+    "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
+    "implementation": "NOT_STARTED",
+    "codex_plan": "ALLOWED",
+    "codex_execution": "BLOCKED",
+    "next_gate": "GM-FOUNDATION-POC-EXECUTION-READINESS-01"
+  },
+  "authority_documents": [
+    {
+      "id": "implementation-entry-grill",
+      "path": "docs/planning/IMPLEMENTATION_ENTRY_01_GRILL_ME_2026-08-02.md",
+      "status": "USER_APPROVED_ACTIVE"
+    },
+    {
+      "id": "implementation-entry-approval",
+      "path": "docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md",
+      "status": "ACTIVE_DECISION_AUTHORITY"
+    },
+    {
+      "id": "implementation-entry-design",
+      "path": "docs/superpowers/specs/2026-08-02-mobile-foundation-poc-implementation-entry-design.md",
+      "status": "APPROVED_DESIGN"
+    },
+    {
+      "id": "implementation-entry-plan",
+      "path": "docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md",
+      "status": "PLAN_COMPLETE_EXECUTION_BLOCKED"
+    },
+    {
+      "id": "implementation-entry-adversarial-review",
+      "path": "docs/planning/IMPLEMENTATION_ENTRY_01_ADVERSARIAL_REVIEW_2026-08-02.md",
+      "status": "PASS_FOR_CONDITIONAL_DESIGN_AND_PLAN"
+    },
+    {
+      "id": "implementation-entry-cold-start-override",
+      "path": "docs/planning/IMPLEMENTATION_ENTRY_01_COLD_START_OVERRIDE_2026-08-02.md",
+      "status": "ACTIVE_WORKING_BRANCH_OVERRIDE"
+    }
+  ],
+  "execution_blockers": [
+    "OPEN_BASE_ADOPTION_PR_38",
+    "OPEN_BASE_ADOPTION_PR_42",
+    "SINGLE_BASE_IDENTITY_NOT_REVALIDATED",
+    "COLD_START_CORE_DOCS_NOT_DIRECTLY_RECONCILED",
+    "GODOT_TOOLCHAIN_NOT_VERIFIED",
+    "EXECUTION_READINESS_GATE_NOT_RUN"
+  ],
+  "validation": {
+    "runtime": "NOT_RUN",
+    "mobile_device": "NOT_RUN",
+    "performance": "NOT_RUN",
+    "accessibility": "NOT_RUN",
+    "human": "NOT_RUN"
+  },
+  "supersedes_fields_only": {
+    "source": "docs/DESIGN_DOCUMENT_REGISTRY.json",
+    "fields": [
+      "project.primary_platform",
+      "project.follow_up_platform",
+      "project.next_product_gate",
+      "project.implementation",
+      "project.codex",
+      "project.canon_sync",
+      "planning_authority.main_sync_receipt",
+      "responsibility_status.asset_spec",
+      "responsibility_status.codex",
+      "responsibility_status.implementation",
+      "validation_boundaries"
+    ]
+  }
+}
