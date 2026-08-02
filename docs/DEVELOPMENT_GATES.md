@@ -4,9 +4,12 @@
 
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
-baseline_date: 2026-08-01
+baseline_date: 2026-08-02
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE
+primary_platform: Mobile
+follow_up_platform: PC
+platform_decision: GM-PLATFORM-02
 planning: APPROVED
 art_style_01: APPROVED_A_MODIFIED_LOCKED
 art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
@@ -15,13 +18,14 @@ battle_single_enemy_focus_01: APPROVED
 battle_active_timer_01: APPROVED
 battle_time_flow_01: APPROVED
 battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
-next_product_gate: ASSET-SPEC-01
-parallel_design_gate: BOSS-PHASE-01
+asset_spec_01: APPROVED_SPEC
+next_product_gate: MOBILE-FOUNDATION-01
+queued_design_gates: BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01
 implementation_ready: false
 codex: BLOCKED
 ```
 
-현재 승인은 기획·시각 규칙·전투 구조를 확정한다. 구현·성능·접근성·사람 플레이 통과를 의미하지 않는다.
+현재 승인은 기획·시각 규칙·전투 구조·Asset 제작 계약을 확정한다. Mobile 실기기 구현·성능·접근성·사람 플레이 통과를 의미하지 않는다.
 
 ## 1. 전체 경로
 
@@ -31,19 +35,21 @@ Gate 1 콘셉트·Vertical Slice — 완료
 → ART-STYLE-01 — 완료
 → ART-BIBLE-01 — 완료
 → 전투 화면·단일 강적·Active Timer·Time Flow·Battle Rules — 완료
-→ ASSET-SPEC-01 — 현재 Gate
-→ BOSS-PHASE-01·Grimoire/Main 파생 화면 — 병행
+→ ASSET-SPEC-01 — 완료
+→ GM-PLATFORM-02 — Mobile 우선 승인
+→ MOBILE-FOUNDATION-01 — 현재 Gate
+→ BOSS-PHASE-01·Grimoire/Main 파생 화면 영향 재검토
 → AUDIO-DIRECTION-01
-→ 기획·아트 통합 검수
+→ Mobile 기준 기획·아트·UX 통합 검수
 → 사용자 Codex Plan 승인
 → Codex read-only Plan
 → 기술 검수
-→ 실행 프로필 전환
+→ 실행 프로필 전환 승인
 → Validation-First 구현
 → QA·외부 플레이테스트
 ```
 
-## 2. 완료된 기획 Gate
+## 2. 완료된 기획·시각 Gate
 
 ### Gate 1·Vertical Slice
 
@@ -67,14 +73,22 @@ Gate 1 콘셉트·Vertical Slice — 완료
 
 상태: `APPROVED_DUAL_STANDARD_ART_BIBLE`.
 
-책임 원본: `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`.
-
 - Soft Storybook 배경 + Anime Cel 캐릭터.
 - Navy/Gold UI + Blue Glyph.
 - 고정 주인공 1명·전투 초상 1개.
 - 동반 정령·수호 상태 배지.
 - 우측 작성 Panel 축소→확장.
 - Grimoire 화면 우선 파생.
+
+### Asset Spec
+
+상태: `APPROVED_SPEC`.
+
+책임 원본: `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`.
+
+- 해상도·형식·수량 상한·Manifest·License 계약 승인.
+- 기존 16:9·720p/1080p/1440p·Ultrawide 검증 기준은 Mobile 실기기 적합성을 자동 증명하지 않음.
+- 실제 Asset 제작·Godot Import·Memory·Runtime 검증은 `NOT_STARTED/NOT_RUN`.
 
 ## 3. 완료된 전투 Gate
 
@@ -86,7 +100,7 @@ Gate 1 콘셉트·Vertical Slice — 완료
 상단·중앙 적·환경
 + 좌측 하단 주인공 초상
 + 좌측 보조 동반·수호 배지
-+ 우측 직접 작성
++ 직접 작성 영역
 ```
 
 ### GM-BATTLE-SINGLE-ENEMY-FOCUS-01
@@ -123,54 +137,64 @@ Gate 1 콘셉트·Vertical Slice — 완료
 - 환경 보존도·부작용·남은 HP가 결과 품질을 결정.
 - 수호 소환수는 다음 공격 피해를 완화하지만 Timer·작성·판단을 대행하지 않음.
 
-## 4. ASSET-SPEC-01
+## 4. GM-PLATFORM-02
 
-상태: `CURRENT_PRODUCT_GATE`.
+상태: `USER_APPROVED_ACTIVE`.
 
-확정 대상:
+책임 원본: `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`.
 
-- 내부 해상도·16:9 Safe Frame·UI Scale.
-- 캐릭터 SD·반신·초상·표정 상태 수량.
-- 적·동반 정령·수호 소환수 상태·Animation 수량.
-- 학교·현장 배경과 상태 변형 수량.
-- Writing Panel·Grimoire·Main·Result UI Asset 수량.
-- Glyph·Attack Warning·Instability·Result FX 상태.
-- 파일 형식·명명·폴더·Import·License 규칙.
-- Solo Production 제작량 상한.
+- 1차 플랫폼 `Mobile`, 후속 플랫폼 `PC`.
+- 기존 `GM-PLATFORM-01 / PC 우선·Mobile 후속`은 `SUPERSEDED`.
+- 승인 코어·Slice·Art·Battle·Asset Spec은 보존한다.
+- PC 전용 입력·해상도·테스트·출시 순서는 Mobile 기준으로 재검토한다.
+
+## 5. MOBILE-FOUNDATION-01
+
+상태: `CURRENT_RECONCILIATION_GATE`.
+
+목표: 승인된 직접 작성·상황 해결 코어가 Mobile에서 입력·화면·중단·성능 문제로 약화되지 않는 최소 기반을 확정한다.
+
+확정·검증 대상:
+
+1. Touch·Stylus stroke 입력과 후보 확인.
+2. 화면 내 Undo·부분 삭제·전체 초기화·취소·확정·`[구현]`.
+3. interrupted stroke·multi-touch·system gesture·stale recognition·중복 Commit 방어.
+4. App pause/resume·background/foreground·focus loss 상태 유지.
+5. 화면 방향·지원 비율·Safe Area·Notch·최소 Touch target 후보.
+6. 작은 화면에서 적 위험·목표·주인공 상태·작성 Panel의 가림 방지.
+7. Memory·Texture·load·frame pacing·battery·thermal 측정 계획.
+8. Android/iOS·Store·최소 기기·성능 목표 결정을 위한 사용자 패킷.
+9. 후속 PC Mouse/Pen/Keyboard 적응 원칙.
 
 통과 조건:
 
-1. Art Bible 규칙과 수량이 일치.
-2. 잠긴 원본을 편집하지 않음.
-3. 일반 적 1체·단일 페이즈·주인공 초상 1개 범위를 보호.
-4. Grimoire·Main 파생 화면에 필요한 최소 Asset을 포함.
-5. 실제 Font·외부 Asset은 License Ledger에 기록.
-6. 사용자의 승인.
+- 입력 실패·문법 실패·상황 설계 실패·비용 부족을 구분한다.
+- 낮은 확신 후보 자동 선택과 자동 시전을 하지 않는다.
+- 앱 중단·복귀와 입력 재진입에서 중복 시전·보상·기록·손상 상태가 없다.
+- Mobile 기준 화면 후보가 적·위험·작성 정보를 동시에 가리지 않는다.
+- OS·방향·성능 수치는 근거 또는 사용자 승인 없이 확정하지 않는다.
+- 사용자가 Mobile Foundation 계약을 승인한다.
 
-## 5. 병행 설계 Gate
+## 6. 후속 설계 Gate
 
 ### BOSS-PHASE-01
 
-상태: `NEXT_GAME_DESIGN_GATE`.
+상태: `QUEUED_REVIEW_AFTER_MOBILE_FOUNDATION`.
 
-확정 대상:
-
-- 보스 페이즈 수.
-- 페이즈 전환 시 불안정도·Attack Timer·작성 Draft 유지.
-- 페이즈별 공격 규칙과 환경 변화.
-- 회복·리셋·반복 악용 방지.
-- 일반 적과 구분되는 제작량 상한.
+- 보스 페이즈 수·전환 상태·Attack Timer·작성 Draft·환경 변화·반복 악용 방지.
+- Mobile 화면과 중단·복귀 계약에 맞는지 재검토 후 확정.
 
 ### GRIMOIRE-SCREEN-01
 
-상태: `PENDING_DERIVATIVE_BOARD`.
+상태: `QUEUED_REVIEW_AFTER_MOBILE_FOUNDATION`.
 
 - 상황·글자·의도·결과·부작용·발견 관리.
 - 자동 최적 추천·자동 시전 금지.
+- 작은 화면 탐색·텍스트·Touch 조작 검증 필요.
 
 ### MAIN-SCREEN-01
 
-상태: `PENDING_AFTER_GRIMOIRE_SCREEN`.
+상태: `QUEUED_AFTER_GRIMOIRE_SCREEN`.
 
 - `새 게임 / 이어하기 / 설정` 중심 최소 구조.
 - 수집형 로비 UI 금지.
@@ -179,67 +203,67 @@ Gate 1 콘셉트·Vertical Slice — 완료
 
 상태: `NONBLOCKING_PENDING`.
 
-- 세계 명명 규칙.
-- 교수·동급생·동반 정령 공식 이름.
-- 이름은 Art Bible·Asset Spec을 차단하지 않음.
+- 세계 명명 규칙과 주요 이름.
+- Mobile Foundation을 차단하지 않음.
 
-## 6. AUDIO-DIRECTION-01
+## 7. AUDIO-DIRECTION-01
 
-상태: `PENDING_AFTER_ASSET_SPEC`.
+상태: `QUEUED`.
 
 - 학교·시험·축제·현장·귀환의 청각 정체성.
 - 획·후보·확정·시전·실패 원인 SFX.
 - 적 공격 예고·Time State·Instability·Result 피드백.
-- 무음 대체와 License 우선순위.
+- 무음 대체·haptic-off·Mobile speaker/headphone 환경과 License 우선순위.
 
-## 7. 통합 검수
+## 8. 통합 검수
 
-상태: `BLOCKED_BY_ASSET_SPEC_AUDIO_AND_DERIVATIVE_SCREENS`.
+상태: `BLOCKED_BY_MOBILE_FOUNDATION_DERIVATIVE_SCREENS_AND_AUDIO`.
 
 확인:
 
 - Glyph·대상·위험 판독성.
-- Art Bible과 Asset 수량 일치.
-- 46/53/60분 시간 계약.
-- PC 입력·UI 일치.
-- Mobile 후속 적응 가능성.
+- Art Bible·Asset Spec과 Mobile 화면 소비자 일치.
+- 45~50/53/60분 시간 계약.
+- Touch·Stylus 입력과 UI 일치.
+- 작은 화면·Safe Area·중단/복귀·성능·접근성.
 - 단일 강적이 HP 스펀지로 변질되지 않음.
 - 수호 소환수가 주문 설계보다 복잡하지 않음.
 - Grimoire가 자동 주문 Stock으로 변질되지 않음.
 
-## 8. Codex Plan 진입
+## 9. Codex Plan 진입
 
 상태: `BLOCKED`.
 
 필수 조건:
 
-1. `ASSET-SPEC-01` 승인.
-2. `AUDIO-DIRECTION-01` 승인.
-3. Grimoire/Main 파생 화면 검수.
-4. 기획·아트 통합 검수 통과.
-5. Base v9.3 Adapter·Snapshot·CI 정합화.
-6. Godot 버전·Renderer·플랫폼 범위 재확인.
-7. 사용자의 Codex Plan 승인.
+1. `MOBILE-FOUNDATION-01` 승인.
+2. `BOSS-PHASE-01`, `GRIMOIRE-SCREEN-01`, `AUDIO-DIRECTION-01`의 Mobile 영향 검수.
+3. 기획·아트·UX 통합 검수 통과.
+4. Base v9.4 Adapter·Snapshot·CI 정합화.
+5. Godot 버전·Renderer·Mobile OS·방향·최소 기기 범위 재확인.
+6. 사용자의 Codex Plan 승인.
 
 그 뒤에만 Codex read-only Plan을 작성한다.
 
-## 9. PLAYTEST_TUNING_REQUIRED
+## 10. PLAYTEST_TUNING_REQUIRED
 
 - 공격 간격·피해·HP·마나.
 - 불안정도 변화량.
 - 수호 완화율·사용 횟수.
 - 환경 결과 임계값.
 - 작성 감속 최종값·복귀 유예.
-- 인식 허용치·보정·Latency.
+- Touch target·Canvas 크기·Gesture·인식 허용치·보정·Latency.
+- Memory·Texture·load·frame pacing·battery·thermal.
 
-## 10. 검증 경계
+## 11. 검증 경계
 
 ```text
 GODOT_PROJECT = NOT_STARTED
 PRODUCT_CODE_SCENE_RESOURCE_DATA = NOT_FOUND
 RUNTIME_VALIDATION = NOT_RUN
-PC_INPUT_VALIDATION = NOT_RUN
-MOBILE_VALIDATION = NOT_RUN
+MOBILE_DEVICE_VALIDATION = NOT_RUN
+PC_ADAPTATION_VALIDATION = NOT_RUN
 PERFORMANCE_VALIDATION = NOT_RUN
+ACCESSIBILITY_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
 ```

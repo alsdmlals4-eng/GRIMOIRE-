@@ -3,7 +3,7 @@
   "asset_and_license": {
     "approved_visual_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
     "locked_reference_edit": "PROHIBITED",
-    "mass_asset_generation": "BLOCKED_BY_ASSET_SPEC",
+    "mass_asset_generation": "BLOCKED_BY_EXECUTION_PROFILE",
     "third_party_inventory": "docs/ASSET_LICENSE_LEDGER.md"
   },
   "base_release": {
@@ -17,11 +17,14 @@
     "version": "9.4.0"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "cddccdb6540801ebfe1bca76cfa3d3b9bd6e59cb66729717d71bdb89abdee459",
+  "canonical_source_sha256": "5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "AGENTS.md",
     "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
+    "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
+    "docs/planning/sync/GR-SYNC-20260802-07-WORKING.md",
     "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "docs/DEVELOPMENT_GATES.md",
     "docs/DOCUMENTATION_MAP.md",
@@ -30,10 +33,12 @@
     "START_HERE.md",
     "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
     "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md",
     "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
     "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
-    "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md",
-    "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md"
+    "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
+    "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
+    "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md"
   ],
   "engine": {
     "autoloads": "NOT_CREATED",
@@ -60,18 +65,19 @@
     "pr_merge": "USER_BATCH_APPROVAL_GRANTED_SUBJECT_TO_VERIFICATION"
   },
   "platforms": {
-    "follow_up": "Mobile",
+    "follow_up": "PC",
     "gamepad": "DEFERRED_NOT_PROMISED",
-    "primary": "PC",
-    "touch_input": "FOLLOW_UP_SEPARATE_VALIDATION"
+    "primary": "Mobile",
+    "touch_input": "PRIMARY_VALIDATION_REQUIRED"
   },
   "project": {
     "engine": "Godot 4.7.1 stable candidate",
     "execution_profile": "PLANNING_ONLY_PROFILE",
-    "follow_up_platform": "Mobile",
+    "follow_up_platform": "PC",
     "godot_project_status": "NOT_CREATED",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
-    "primary_platform": "PC",
+    "platform_decision": "GM-PLATFORM-02",
+    "primary_platform": "Mobile",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "root": ".",
@@ -178,6 +184,7 @@
   "validation": {
     "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
+    "generated_views": "CURRENT",
     "generator_check": "REQUIRED",
     "godot_runtime": "NOT_RUN",
     "godot_static": "NOT_AVAILABLE_NO_PROJECT",
