@@ -36,7 +36,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "NOT_RUN_FOR_CURRENT_HEAD",
+  "pre_merge_gate_status": "PASS_ON_VERIFICATION_CANDIDATE_RECHECK_FINAL_STATUS_HEAD",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T22:18:00+09:00",
@@ -62,12 +62,17 @@
     "review_threads": 0
   },
   "current_work": {
-    "status": "MOBILE_SUMMON_HUD_WIREFRAME_DESIGN_WRITTEN_AWAITING_USER_SPEC_REVIEW",
+    "status": "MOBILE_SUMMON_HUD_WIREFRAME_SYNCED_AWAITING_USER_SPEC_REVIEW_FINAL_STATUS_RECHECK",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "working_pull_request": 51,
     "working_sync_id": "GR-SYNC-20260803-02",
     "benchmark_id": "GR-BM-MOBILE-SUMMON-HUD-20260803-01",
+    "verification_candidate_head": "d56a2105357593222fef3e7b26ca36a5725b45b1",
+    "verification_candidate_ci_run": 30771278479,
+    "verification_candidate_ahead": 58,
+    "verification_candidate_behind": 0,
+    "verification_candidate_changed_files": 24,
     "decisions": [
       {
         "decision_id": "GM-STOCK-SYSTEM-01",
@@ -188,12 +193,14 @@
     "codex_plan": "ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PENDING",
-    "sheet_text_integrity_sentinel": "PENDING",
-    "final_head_ci": "PENDING",
-    "adversarial_gate": "PENDING",
-    "text_integrity_gate": "PENDING",
-    "review_threads": "PENDING"
+    "sheet_readback": "PASS",
+    "sheet_text_integrity_sentinel": "PASS",
+    "candidate_ci_gate": "PASS",
+    "candidate_adversarial_gate": "PASS",
+    "candidate_text_integrity_gate": "PASS",
+    "candidate_review_threads": 0,
+    "candidate_reviews": 0,
+    "final_status_commit_head_ci": "RECHECK_REQUIRED"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
