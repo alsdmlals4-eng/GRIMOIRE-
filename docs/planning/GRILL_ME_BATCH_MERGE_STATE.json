@@ -8,10 +8,12 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 0,
+    "approved_grill_me_since_last_flush": 1,
     "next_merge_at": 10,
     "merge_required": false,
-    "pending_decision_ids": []
+    "pending_decision_ids": [
+      "GM-FULL-GAME-MACRO-LOOP-01"
+    ]
   },
   "counting_rule": {
     "count_distinct_user_approved_grill_me_decision_id": true,
@@ -38,8 +40,6 @@
   "current_policy_adoption": {
     "sync_id": "GR-SYNC-20260802-09",
     "status": "SYNCED_TO_MAIN_WHEN_THIS_FILE_IS_PRESENT_ON_MAIN",
-    "authority_commit": "276f09e832e7651cc5fa1918388759a275f4bf65",
-    "final_policy_head": "cbaf5b9af8925d9b84ff59857e8584b2556b4586",
     "decision_pull_request": 33,
     "decision_main_commit": "b905413e34263c8a004239efd018497dcc7e77ae",
     "main_sync_pull_request": 34,
@@ -48,31 +48,44 @@
     "finalization_main_commit_resolution": "CURRENT_MAIN_CONTAINING_THIS_FILE; exact SHA recorded in Google Sheet",
     "pre_merge_audit": "PASS_P0_0_P1_0",
     "ci": "PASS",
-    "sheet_ranges": [
-      "00_프로젝트_허브!H2",
-      "01_작업순서!A19:J19",
-      "02_현재_확정결정!A31:J31",
-      "04_누락_충돌_감사!A25:H25",
-      "99_변경이력!A26:H26"
-    ],
     "sheet_readback_rule": "Final exact main SHA is authoritative only after post-merge Sheet readback"
   },
   "current_work": {
     "branch": "chatgpt/grimoire-full-game-structure-20260802",
+    "draft_pull_request": 36,
     "sequence_decision_id": "GM-FULL-GAME-PLANNING-ORDER-01",
-    "sequence_status": "USER_APPROVED_ACTIVE_SYNCING_TO_WORKING_BRANCH",
+    "sequence_status": "USER_APPROVED_ACTIVE_SYNCED_TO_WORKING_BRANCH",
     "current_design_gate": "FULL-GAME-STRUCTURE-01",
     "mobile_foundation_status": "IN_PROGRESS_PAUSED_AT_UPSTREAM_DESIGN_DEPENDENCY",
-    "next_planning_work": "Resolve GM-FULL-GAME-MACRO-LOOP-01",
-    "current_grill_me_candidate": "GM-FULL-GAME-MACRO-LOOP-01",
+    "approved_grill_me_decision": "GM-FULL-GAME-MACRO-LOOP-01",
+    "approved_grill_me_option": "A_ACADEMIC_SPIRAL_WITH_OPTIONAL_FIELD_PRACTICUM",
+    "approved_grill_me_status": "USER_APPROVED_ACTIVE",
+    "approved_at": "2026-08-02T16:03:00+09:00",
+    "current_grill_me_candidate": "GM-FULL-GAME-CHAPTER-RHYTHM-01",
     "current_grill_me_status": "USER_DECISION_REQUIRED",
-    "counter_effect_before_approval": "NO_CHANGE_0_OF_10",
+    "next_planning_work": "Resolve Chapter internal rhythm and variation rules",
+    "free_schedule_axes": [
+      "REST",
+      "PREPARATION",
+      "SOCIAL",
+      "FIELD_PRACTICUM_COMBAT"
+    ],
+    "field_practicum_guardrails": [
+      "CONSUMES_ONE_FREE_SCHEDULE_SLOT",
+      "NO_MANDATORY_INFORMATION_OR_UNIQUE_SOLUTION",
+      "NO_INFINITE_CORE_PROGRESSION_FARMING",
+      "FIRST_CLEAR_AND_NEW_DISCOVERY_REWARD_PRIORITY",
+      "REUSE_EXISTING_SPACE_AND_SINGLE_STRONG_ENEMY_RULES",
+      "MAIN_FIELD_EVENT_WORLD_STATE_AND_RESPONSIBILITY_REMAIN_DISTINCT"
+    ],
     "wireframe_status": "DEFERRED_UNTIL_FULL_GAME_STRUCTURE_APPROVAL",
     "authority_documents": [
       "docs/planning/FULL_GAME_STRUCTURE_GATE_01_2026-08-02.md",
       "docs/planning/FULL_GAME_STRUCTURE_GAP_AUDIT_2026-08-02.md",
       "docs/planning/benchmarks/FULL_GAME_CORE_LOOP_STANDARD_BENCHMARK_2026-08-02.md",
-      "docs/planning/FULL_GAME_STRUCTURE_01_GRILL_ME_2026-08-02.md"
+      "docs/planning/FULL_GAME_STRUCTURE_01_GRILL_ME_2026-08-02.md",
+      "docs/planning/FULL_GAME_MACRO_LOOP_01_APPROVAL_2026-08-02.md",
+      "docs/planning/FULL_GAME_CHAPTER_RHYTHM_01_GRILL_ME_2026-08-02.md"
     ]
   },
   "protected_boundaries": {
