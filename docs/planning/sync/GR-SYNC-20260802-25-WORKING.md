@@ -15,7 +15,7 @@ working_branch: agent/grimoire-stock-summon-detail-audit
 head: RESOLVE_FROM_PR_HEAD
 grill_counter: 2_of_10
 pending_decisions: 2
-sheet_readback: PENDING
+sheet_readback: PASS
 implementation: NOT_STARTED
 codex_execution: BLOCKED
 ```
@@ -124,9 +124,9 @@ p3_deferred: 8
 - 커리큘럼·성장·평가·경제 수치.
 - Slice 시간 예산.
 
-## Google Sheet 반영
+## Google Sheet 반영·Readback
 
-반영 대상:
+반영·재조회 완료:
 
 - `00_프로젝트_허브`
 - `01_작업순서`
@@ -140,7 +140,19 @@ p3_deferred: 8
 - `80_데모_버티컬슬라이스_플레이테스트`
 - `99_변경이력`
 
-Readback 결과는 최종 HEAD 검증 전에 이 영수증에 갱신한다.
+확인:
+
+```yaml
+stock_decision_row: PASS
+summon_decision_row: PASS
+stock_system_and_economy_rows: PASS
+summon_system_and_economy_rows: PASS
+hud_contract_rows: PASS
+test_contract_rows: PASS
+planning_remainder_audit_row: PASS
+row_overwrite: 0
+sheet_readback: PASS
+```
 
 ## 보호 경계
 
