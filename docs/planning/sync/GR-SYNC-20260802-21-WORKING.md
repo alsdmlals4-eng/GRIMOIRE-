@@ -4,16 +4,21 @@
 
 ```yaml
 sync_id: GR-SYNC-20260802-21
-status: WORKING_BRANCH_SYNC_IN_PROGRESS
+status: SYNCED_TO_WORKING_BRANCH
 decision_id: GM-IMPLEMENTATION-ENTRY-01
 approved_option: A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK
 approved_at: 2026-08-02T20:18+09:00
 repository: alsdmlals4-eng/GRIMOIRE-
 branch: chatgpt/grimoire-implementation-entry-20260802
-baseline_main: b9e7a6ba3a029c45a59bd20213bc4b7a561609f4
+draft_pull_request: 43
+baseline_main: f9c6f5fdd59f7c256986b5c817a244d464e0e74c
+base_release_on_main: 9.4.2
+base_adoption_pr_38: MERGED
+open_base_adoption_prs:
+  - 42
 final_head_resolution: CURRENT_BRANCH_CONTAINING_THIS_RECEIPT_AND_FINAL_READBACK_STATE
 google_sheet_id: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
-sheet_state: PENDING
+sheet_state: PASS
 batch_counter: 1_of_10
 merge_trigger: GATE_OR_IMPLEMENTATION_BOUNDARY
 merge_authorized: false
@@ -26,8 +31,9 @@ codex_execution: BLOCKED
 - 조건부 Foundation POC 구현 진입 승인.
 - 전체 Vertical Slice 본제작과 실제 인식·최종 Asset·Audio 계속 잠금.
 - Mobile Foundation POC 설계 문서 작성.
-- TDD 구현 계획 작성.
-- 실행 전 Base PR #38·#42 정리와 별도 Readiness Gate 의무화.
+- 12개 Task의 TDD 구현 계획 작성.
+- PR #38 병합으로 Base v9.4.2 planning-first 정본 확인.
+- 실행 전 PR #42 처리와 별도 Readiness Gate 의무화.
 - Cold-start 문서의 구형 상태를 Override와 새 START_HERE로 보정.
 - Grill Me counter `0/10 → 1/10`.
 
@@ -43,19 +49,33 @@ codex_execution: BLOCKED
 - `docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md`
 - `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
 
-## Sheet 반영 예정
+## Sheet 반영·Readback
 
-- 프로젝트 허브 현재 상태.
-- 작업순서에 Implementation Entry와 Execution Readiness Gate.
-- 현재 확정결정에 동일 Decision ID와 승인 옵션.
-- 누락·충돌 감사에 Base PR 중첩과 Cold-start stale 상태.
-- GDD 요약에 Foundation POC conditional entry.
-- 제품방향·코어경험·품질기준·UX·Validation·본제작 Gate.
-- 변경이력 `GR-SYNC-20260802-21`.
+반영 탭:
+
+```text
+00·01·02·04·05·10·20·30·60·80·90·99
+```
+
+확인:
+
+- `GM-IMPLEMENTATION-ENTRY-01`과 승인 옵션 일치.
+- Grill counter `1/10`, pending 1개 일치.
+- `GR-AUD-IMPLEMENTATION-ENTRY-20260802-01` 추가.
+- `GR-G-07`, `GR-UX-18`, `GR-TEST-024`, `GR-M-13` 연속성 확인.
+- 기존 인접 행 보존.
+- `01_작업순서` 빈 행 위치를 보정하고 sequence 23→24 연속성 확인.
+- 구현 `NOT_STARTED`, Codex 실행 `BLOCKED`, Runtime·Device·Accessibility·Human `NOT_RUN` 유지.
+
+```yaml
+sheet_readback: PASS
+row_overwrite: 0
+id_conflict: 0
+```
 
 ## 실행 경계
 
-이 Sync는 설계·계획 승인만 기록한다. 다음은 아직 실행하지 않았다.
+이 Sync는 설계·계획 승인만 기록한다. 다음은 실행하지 않았다.
 
 ```text
 Godot project creation = NOT_STARTED
@@ -68,4 +88,13 @@ Accessibility = NOT_RUN
 Human playtest = NOT_RUN
 ```
 
-Sheet 쓰기와 Readback 후 `sheet_state`를 `PASS`로 갱신한다.
+## 다음 Gate
+
+```text
+PR #43 검토·병합 승인
+→ PR #42 처리
+→ 최종 Base identity·Required Workflow 확인
+→ Cold-start 핵심 문서 직접 재조정
+→ 최신 main에서 Plan·Toolchain 재검증
+→ GM-FOUNDATION-POC-EXECUTION-READINESS-01
+```
