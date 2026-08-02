@@ -35,15 +35,12 @@
 6. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
 7. `docs/planning/sync/GR-SYNC-20260802-23-WORKING.md`
 8. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
-9. `docs/planning/GRIMOIRE_FULL_GAME_STRUCTURE_COMPLETION_OVERRIDE_2026-08-02.md`
-10. `docs/planning/MOBILE_UX_FLOW_01_APPROVAL_2026-08-02.md`
-11. `docs/planning/MOBILE_WRITING_BATTLE_WIREFRAME_01_APPROVAL_2026-08-02.md`
-12. 질문 주제의 세부 승인 책임 원본
-13. 과거 `ACTIVE_CONTEXT`, `DEVELOPMENT_GATES`, `DESIGN_DOCUMENT_REGISTRY`는 새 Override와 충돌하지 않는 범위에서만 사용
+9. 질문 주제의 세부 승인 책임 원본
+10. 과거 `ACTIVE_CONTEXT`, `DEVELOPMENT_GATES`, `DESIGN_DOCUMENT_REGISTRY`는 새 Override와 충돌하지 않는 범위에서만 사용
 
 ## 플레이어 약속
 
-> 마법학교 학생이 되어 글자의 의미와 상황의 조건을 배우고, 직접 작성·Stock·소환수의 도움을 상황에 맞게 선택해 주문을 설계하며, 명시적으로 구현한 결과와 대가를 책임지고 마도서에 기록하는 마법 RPG.
+> 마법학교 학생이 되어 글자의 의미와 상황의 조건을 배우고, 직접 작성·Stock·소환수의 주기 지원을 상황에 맞게 운용해 주문을 설계하며, 명시적으로 구현한 결과와 대가를 책임지고 마도서에 기록하는 마법 RPG.
 
 ## 핵심 재미
 
@@ -53,7 +50,8 @@
 
 1. 지금 상황에서 무엇을 바꿀 것인가.
 2. 어떤 의미·범위·출력·위험을 선택할 것인가.
-3. 무엇을 지키고 무엇을 포기할 것인가.
+3. 직접 작성·Stock·소환수 중 어떤 수단을 언제 운용할 것인가.
+4. 무엇을 지키고 무엇을 포기할 것인가.
 
 ## 승인된 시스템 계층
 
@@ -61,7 +59,7 @@
 비타협 핵심 플레이
 → 핵심 진행
 → 핵심을 시험하는 적용 모드
-→ 보조 시스템
+→ 보조·운용 시스템
 → 전달·안전·기술 인프라
 ```
 
@@ -69,11 +67,11 @@
 
 ```text
 상황·조건·위험 판독
-→ 직접 작성 또는 승인된 피로 완화 수단
+→ 직접 작성·Stock·소환 운용 중 수단 선택
 → 의미 조합·상황 검증
 → 결과·비용·위험 검토
-→ 명시적 Commit
-→ 원자 결과 적용
+→ 명시적 Commit 또는 [소환] Commit
+→ 플레이어 주문·소환수 주기 행동 원자 적용
 → 설명 가능한 세계 변화
 → 마도서 기록·복기
 ```
@@ -100,17 +98,27 @@
 
 - 직접 작성 반복 피로를 줄이는 보조 시스템.
 - 같은 문제에서 이미 확인한 글자는 Token으로 재선택 가능.
-- 신규·미숙·중요 글자는 직접 작성 또는 직접 작성한 요소의 명시적 조립 우선.
-- Stock을 사용해도 현재 상황 검증과 명시적 Commit 필요.
-- 자동 최적 추천·자동 시전 금지.
+- 신규·미숙·중요 글자는 직접 작성 또는 직접 작성 요소의 명시적 조립 우선.
+- 플레이어 Stock 사용은 현재 상황 검증과 명시적 Commit 필요.
+- 소환수는 주기 행동으로 Stock을 충전할 수 있음.
+- 자동 최적 추천 금지.
 - 저장 단위·용량·비용·보존 범위는 `GM-STOCK-SYSTEM-01`에서 결정.
 
 ### 소환수
 
-- 동반 정령은 위험·불안정 감지와 관계·발견·복기 연결.
-- 수호형 소환수는 피해 완화·Draft 보호·작성 시간 확보.
-- 현재 소환수의 글자 작성·조합·대상 선택·자동 시전 대행은 승인되지 않음.
-- 직접 대행이 필요하면 `GM-SUMMON-FATIGUE-DELEGATION-01`에서 별도 승인.
+```text
+메인 소환수 = 상시 활성
+기타 소환수 = [소환] 주문으로 호출
+활성 소환수 = 일정 시간마다 [주문] 사용 또는 [스톡] 충전
+```
+
+- 메인 소환수는 별도 소환 주문 없이 상시 효과·주기 행동 적용.
+- 기타 소환수는 플레이어가 `[소환]` 주문을 작성하거나 승인된 Stock으로 호출한 뒤 활성.
+- `[소환]`에는 상황 검토·비용·명시적 Commit이 필요.
+- 소환 후 지정 주문 사용 또는 Stock 충전은 승인된 자동화.
+- 자동 행동은 예고·주기·대상 또는 적용 규칙과 기여도를 표시.
+- Pause·Save/Resume에서 중복 Tick·주문·Stock 충전 금지.
+- 주기·주문 출처·대상 규칙·지속시간·동시 소환·중첩·Pause 진행은 `GM-SUMMON-SYSTEM-01`에서 결정.
 
 ## 전체 게임 목표
 
@@ -118,7 +126,7 @@
 새 마법 원리·상황 질문 학습
 → 휴식·준비·교류·현장실습 선택
 → 교내 일상 응용·축제·연구·제작에서 통제된 응용
-→ 메인 현장 사건에서 전투·환경 해결과 책임 선택
+→ 메인 현장 사건에서 직접 작성·Stock·소환수 운용과 책임 선택
 → 마도서 복기·교수 누적 평가
 → 다음 원리·심화·전문화 개방
 ```
@@ -133,14 +141,14 @@
 → 교내 일상 응용 또는 수업 후 실습
 → 축제·비전투 응용
 → 대표 제작 사례
-→ 현장 전투·환경 책임
+→ 직접 작성·Stock·소환수를 사용하는 현장 전투·환경 책임
 → 귀환·마도서 기록
 → 축약 학기말 평가·장기 Preview
 ```
 
 - 목표 `46분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
 - 대표 글자 `흐름 / 집중 / 분산`.
-- 필수 성공 작성 7회, 복구 포함 목표 상한 10회는 사람 테스트 전 `TEST_VALUE` 성격을 가진다.
+- 작성 횟수와 Stock·소환수 지원 비율은 사람 테스트 전 `TEST_VALUE`.
 - 시간 초과 시 Preview·이동·중복 설명·제작 단계·자유일정 반복부터 줄인다.
 
 ## 승인된 Mobile UX 코어
@@ -150,13 +158,14 @@
 → Context Card
 → 하나의 Focus Task
 → 필요 시 확장형 우측 Writing Panel
-→ 단일 원자 Commit
+→ 직접 주문 또는 [소환] Commit
+→ 플레이어·소환수 결과 원자 적용
 → 결과·세계 변화
 → Grimoire
 → Hub 또는 다음 Anchor
 ```
 
-작성 중에도 적·대상, 적 의도와 시간, 환경 위험과 보존 대상, HP·마나를 유지한다. Panel 축소·중단에는 Draft를 보존하고 명시적인 전체 취소에서만 폐기한다.
+작성 중에도 적·대상, 적 의도와 시간, 환경 위험과 보존 대상, HP·마나, 활성 소환수와 다음 주기 행동을 판독할 수 있어야 한다.
 
 ## 구현 진입 승인 범위
 
@@ -180,7 +189,7 @@ Execution Readiness PASS 뒤 허용 후보:
 - 최종 Art·Audio·Asset Import.
 - Boss 다중 페이즈.
 - 완성 Grimoire/Main.
-- Stock 상세 구현과 소환수 직접 대행.
+- Stock·소환수 상세 구현.
 - 최종 밸런스·성능·Touch 수치.
 - Store·배포·사업화.
 
@@ -192,6 +201,8 @@ GM-CORE-SYSTEM-ALIGNMENT-01 GitHub·Sheet 동기화
 → 사용자 명시 병합 승인
 → main·Sheet Readback 및 counter 최종화
 → Cold-start Override를 원본 문서에 직접 흡수
+→ GM-STOCK-SYSTEM-01
+→ GM-SUMMON-SYSTEM-01
 → Godot Toolchain preflight
 → Base v9.4.3 최종 main에서 Plan 재검증
 → GM-FOUNDATION-POC-EXECUTION-READINESS-01
@@ -205,7 +216,8 @@ GODOT_PROJECT = NOT_STARTED
 PRODUCT_CODE = NOT_STARTED
 CODE_EXECUTION = BLOCKED
 STOCK_DETAILED_RULES = DESIGN_REQUIRED
-SUMMON_DIRECT_DELEGATION = NOT_APPROVED
+SUMMON_DETAILED_RULES = DESIGN_REQUIRED
+SUMMON_PERIODIC_SUPPORT = APPROVED_CONCEPT
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
 PERFORMANCE_VALIDATION = NOT_RUN
