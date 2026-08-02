@@ -1,14 +1,14 @@
 {
   "artifact_role": "PROJECT_BASE_ADAPTER",
   "base_release": {
-    "finalization_commit": "ac9466edc2d93b59f274c9ac55ca719eba2809e3",
+    "finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
     "integrated_execution_prompt": "templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
     "registry_path": "skills/SKILL_REGISTRY.json",
     "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
-    "release_commit": "dd705d7f48a7919187bc0507610ba5fc5b43a658",
-    "release_evidence_commit": "0c6cdd128bf1f5782e96b3a6240c9585f8d1ef6d",
+    "release_commit": "7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8",
+    "release_evidence_commit": "da33a350d61b8adc52df97fccc7001708a933370",
     "repository": "alsdmlals4-eng/Base",
-    "version": "9.4.2"
+    "version": "9.4.3"
   },
   "base_v94_contract": {
     "external_ai_worktree": {
@@ -33,8 +33,8 @@
     "planning_first_grill_me": {
       "actual_project_batch_execution": "NOT_RUN",
       "base_contract_source": "docs/PLANNING_FIRST_GRILL_ME_BATCH_POLICY.md",
-      "base_release_finalization_commit": "ac9466edc2d93b59f274c9ac55ca719eba2809e3",
-      "base_release_lock": "base-v9.4.2.lock.json",
+      "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
+      "base_release_lock": "base-v9.4.3.lock.json",
       "checkpoint_template": "templates/project-operations/GRILL_ME_BATCH_CHECKPOINT.md",
       "max_approved_decisions_per_batch": 10,
       "numeric_default_state": "RECOMMENDED_DEFAULT",
@@ -43,7 +43,27 @@
       "pre_merge_sheet_state": "APPROVED_PENDING_MERGE"
     },
     "provider_measurement": "NOT_RUN",
-    "runtime_validation": "NOT_RUN"
+    "runtime_validation": "NOT_RUN",
+    "first_prompt_governance": {
+      "actual_project_instruction_execution": "NOT_RUN",
+      "approval_reuse": "REUSE_EXACT_APPROVAL_REFERENCE",
+      "base_contract_source": "skills/managing-project-intake-and-work-contract/SKILL.md",
+      "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
+      "base_release_lock": "base-v9.4.3.lock.json",
+      "direction_anchor_reference": "skills/managing-project-intake-and-work-contract/references/first-prompt-direction-anchoring.md",
+      "instruction_flow": [
+        "route",
+        "first-prompt",
+        "contract",
+        "clarify"
+      ],
+      "l0_exceptions": [
+        "TYPO",
+        "OBVIOUS_FORMAT",
+        "IDENTICAL_VALIDATION_RERUN"
+      ],
+      "unconfirmed_state": "AWAITING_USER_CONFIRMATION"
+    }
   },
   "compatibility": {
     "legacy_repository_aliases": [
@@ -294,6 +314,7 @@
     "json_parse": "REQUIRED",
     "mobile": "NOT_RUN",
     "pc_input": "NOT_RUN",
-    "registry_hash": "REQUIRED"
+    "registry_hash": "REQUIRED",
+    "base_v943_first_prompt_adoption": "REQUIRED_ON_PULL_REQUEST"
   }
 }
