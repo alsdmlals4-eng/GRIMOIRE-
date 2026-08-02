@@ -35,7 +35,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "NOT_RUN_FOR_CURRENT_HEAD",
+  "pre_merge_gate_status": "PASS_ON_VERIFICATION_CANDIDATE_RECHECK_STATUS_COMMIT_HEAD",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T22:18:00+09:00",
@@ -52,12 +52,17 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "THREE_SECONDARY_SUMMON_AND_WORK_QUALITY_GATE_SYNCED_TO_WORKING_BRANCH_PENDING_FINAL_HEAD_VALIDATION",
+    "status": "THREE_SECONDARY_SUMMON_AND_WORK_QUALITY_GATE_SYNCED_TO_WORKING_BRANCH_STATUS_COMMIT_RECHECK",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "working_pull_request": 51,
     "working_sync_id": "GR-SYNC-20260803-01",
     "benchmark_id": "GR-BM-SUMMON-ACTIVE-3-WORK-QUALITY-01",
+    "verification_candidate_head": "378de008a1a2f15426dbc82aea9848dd56f7591f",
+    "verification_candidate_ci_run": 30754760376,
+    "verification_candidate_ahead": 50,
+    "verification_candidate_behind": 0,
+    "verification_candidate_changed_files": 20,
     "decisions": [
       {
         "decision_id": "GM-STOCK-SYSTEM-01",
@@ -156,10 +161,12 @@
     "base_release": "9.4.3",
     "sheet_readback": "PASS",
     "sheet_text_integrity_sentinel": "PASS",
-    "final_head_ci": "PENDING",
-    "adversarial_gate": "PENDING",
-    "text_integrity_gate": "PENDING",
-    "review_threads": "PENDING"
+    "candidate_ci_gate": "PASS",
+    "candidate_adversarial_gate": "PASS",
+    "candidate_text_integrity_gate": "PASS",
+    "candidate_review_threads": 0,
+    "candidate_reviews": 0,
+    "final_status_commit_head_ci": "RECHECK_REQUIRED"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
