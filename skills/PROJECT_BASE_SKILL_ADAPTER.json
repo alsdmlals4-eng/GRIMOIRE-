@@ -11,13 +11,13 @@
     "integrated_execution_prompt": "templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
     "registry_path": "skills/SKILL_REGISTRY.json",
     "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
-    "release_commit": "a728712cb776ec98f4875914a580fcf7d0156593",
-    "release_evidence_commit": "ef1fba11167e4da0b298123b0c85ebd268191a42",
+    "release_commit": "3f2c4a624d302b704c1b5322eb5c9f34ad55abb9",
+    "release_evidence_commit": "ff117d24d5bdb121314e109a6aa9b4f552e0fdc1",
     "repository": "alsdmlals4-eng/Base",
-    "version": "9.4.0"
+    "version": "9.4.1"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "bac1fb9af1e6f07f74ea4d0851d52cb8d94f9b9eb67854884b31f1902f12f6e5",
+  "canonical_source_sha256": "c570aaf5c861cd73e5ee2f97f15d9d7b4f77d71a5d22937ffaa9c049057455fd",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "AGENTS.md",
