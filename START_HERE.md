@@ -7,33 +7,37 @@
 | 항목 | 현재 기준 |
 |---|---|
 | 프로젝트 | `GRIMOIRE: 세계를 다시 쓰는 법` |
-| 1차 플랫폼 | `PC` |
-| 후속 플랫폼 | `Mobile` |
+| 1차 플랫폼 | `Mobile` |
+| 후속 플랫폼 | `PC` |
+| 플랫폼 Decision | `GM-PLATFORM-02` (`GM-PLATFORM-01` 대체) |
 | 엔진 기준 후보 | `Godot 4.7.1 stable` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | 기획 | `APPROVED` |
 | Art Style | `APPROVED_A_MODIFIED_LOCKED` |
 | Art Bible | `APPROVED_DUAL_STANDARD_ART_BIBLE` |
 | 전투 규칙 | `APPROVED_SITUATION_RESOLUTION_RULES` |
-| 다음 제품 Gate | `ASSET-SPEC-01` |
-| 병행 설계 | `BOSS-PHASE-01` |
+| Asset Spec | `APPROVED_SPEC` |
+| 현재 제품 Gate | `MOBILE-FOUNDATION-01` |
+| 후속 설계 | `BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01` |
 | 구현 | `NOT_STARTED` |
 | Codex | `BLOCKED` |
-| 정본 동기화 | `SYNCED_TO_MAIN / authority a088252` |
+| Base | `v9.4.0` |
+| main 기준선 | `3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03` |
+| 현재 Sync | `GR-SYNC-20260802-07 / GITHUB_ONLY` |
 
 ## 먼저 읽을 문서
 
 1. `AGENTS.md`
 2. `docs/ACTIVE_CONTEXT.md`
 3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-4. `docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md`
-5. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
-6. `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`
-7. `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`
-8. `docs/DEVELOPMENT_GATES.md`
-9. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-10. `skills/PROJECT_BASE_ADAPTER.json`
-11. `docs/planning/sync/GR-SYNC-20260801-05-MAIN.md`
+4. `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`
+5. `docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md`
+6. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+7. `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`
+8. `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`
+9. `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`
+10. `docs/DEVELOPMENT_GATES.md`
+11. `skills/PROJECT_BASE_ADAPTER.json`
 
 ## 현재 플레이어 약속
 
@@ -63,7 +67,7 @@
 ```text
 강한 적 1개체
 → 다음 공격 예고·타이머
-→ 우측에 글자 작성
+→ 글자 작성
 → [구현]
 → 마나 검증·즉시 시전
 → 적 불안정도·환경 변화
@@ -75,53 +79,49 @@
 - 기본 적의 승리는 HP 0 처치가 아니라 `불안정도 0 → 진정·해결`.
 - 플레이어 HP 0 또는 선언된 치명적 환경 붕괴가 패배.
 - 환경 보존도·부작용·남은 HP가 결과 품질을 만든다.
-- 수호 소환수는 다음 공격 피해를 완화하지만 시간·작성·판단을 대행하지 않는다.
 
 ## 현재 화면·아트
 
-- 16:9 고정 3/4 Field.
-- Field SD와 같은 장소 Half-body Dialogue.
-- 별도 고정 3/4 Battle.
-- 좌측 하단 주인공 초상 1개, 우측 축소→확장 Writing Panel.
-- Soft Storybook 배경 + 선명한 Anime Cel 캐릭터.
-- Navy/Gold UI + Blue Glyph.
-- Result 후 원래 Field 변화로 복귀.
-- Grimoire 파생 화면을 Main보다 먼저 설계.
+- 승인 기준은 16:9 고정 3/4 Field, 같은 장소 Half-body Dialogue, 별도 Battle, Result 후 Field 복귀다.
+- Soft Storybook 배경 + Anime Cel 캐릭터, Navy/Gold UI + Blue Glyph.
+- Grimoire 파생 화면을 Main보다 먼저 설계한다.
+- 잠긴 기준 이미지 SHA-256: `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`.
+- 기존 16:9·PC 해상도 규격은 보존되지만 Mobile 실기기 적합성은 `NOT_RUN`이다.
 
-잠긴 기준 이미지 SHA-256:
+## Mobile 우선 전환
 
-`b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`
+`GM-PLATFORM-02`에 따라 1차 플랫폼을 Mobile로 전환했다. 기존 PC 중심 입력은 후속 적응 자료로 보존한다.
 
-원본은 수정·재생성하지 않는다.
+`MOBILE-FOUNDATION-01`에서 확정·검증할 항목:
 
-## Base v9.3
+- Touch·Stylus 작성, 후보 선택, Undo·부분 삭제·초기화·취소·확정·구현.
+- 방향·화면 비율·Safe Area·Notch·System gesture.
+- 작은 화면에서 적 위험·상태·작성 Panel의 가림 방지.
+- App pause/resume, background/foreground, interrupted stroke, stale request.
+- Device·Memory·Texture·load·frame pacing·battery·thermal 검증 계획.
+- 후속 PC의 Mouse/Pen/Keyboard 적응 원칙.
 
-- Release: `30ca6c7b5f93521f0eb0eed42d01437cd43c50ae`.
-- Evidence: `462a86db192d23d0f386281a1eb54b0a8cbad62e`.
-- Registry: `9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1`.
+Android/iOS, Store, 가로/세로, 최소 기기, 성능 수치, 인식 처리 방식은 아직 확정하지 않는다.
+
+## Base v9.4
+
+- Release: `a728712cb776ec98f4875914a580fcf7d0156593`.
+- Evidence: `ef1fba11167e4da0b298123b0c85ebd268191a42`.
+- Finalization: `87a0b54c2847ce4b685879209205957c170cc1cd`.
+- Registry: `693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59`.
 - Adapter: `skills/PROJECT_BASE_ADAPTER.json`.
-- Generated View Check: `python tools/generate_project_operating_views.py --check`.
-
-## 정본 동기화
-
-- Authority PR: `#22`.
-- Authority main Commit: `a088252349bee94cecef94b216c8cc5e0b9162cb`.
-- CI: `ci-gate SUCCESS / adversarial-gate SUCCESS`.
-- Google Sheet 27개 탭 감사 및 main Commit Readback: `PASS`.
-- 상태: `GR-SYNC-20260801-05 / SYNCED_TO_MAIN`.
 
 ## 다음 작업
 
 ```text
-ASSET-SPEC-01
-→ BOSS-PHASE-01·Grimoire/Main 파생 화면
+GR-SYNC-20260802-07 GitHub·Sheet·Issue 정합화
+→ MOBILE-FOUNDATION-01
+→ BOSS-PHASE-01·Grimoire/Main 영향 재검토
 → AUDIO-DIRECTION-01
-→ 기획·아트 통합 검수
+→ Mobile 기준 통합 검수
 → Codex Plan 승인·기술 검수
 → 구현
 ```
-
-정확한 공격 간격·피해·마나·불안정도 변화량·수호 완화율은 Prototype·사람 검증이 필요한 `PLAYTEST_TUNING_REQUIRED`다.
 
 ## 현재 금지
 
@@ -129,5 +129,5 @@ ASSET-SPEC-01
 - Godot 제품 코드·Scene·Resource·게임 데이터 생성.
 - Codex Build.
 - 잠긴 기준 이미지 편집·재생성.
-- Asset Spec 전 대량 Asset 제작.
-- 런타임·PC·Mobile·사람 검증을 실행 없이 완료 처리.
+- OS·방향·성능·인식 수치를 증거 없이 확정.
+- 런타임·Mobile device·성능·접근성·사람 검증을 실행 없이 완료 처리.
