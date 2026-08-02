@@ -11,52 +11,137 @@
 | 후속 플랫폼 | `PC` |
 | 방향 | `LANDSCAPE_FIXED` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
-| 기획 계약 | `APPROVED_AND_MERGED_TO_MAIN` |
-| Implementation Entry 병합 | `PR #43 / 9f7cc7ca803b518b7dbe6e7471797e34fec02350` |
-| Base 정본 | `v9.4.3 / PR #44 MERGED / PR #42 SUPERSEDED` |
-| 마지막 완료 Sync | `GR-SYNC-20260802-20 / SHEET_READBACK_PASS` |
-| 현재 최종화 Sync | `GR-SYNC-20260802-22` |
-| 완료 Decision | `GM-IMPLEMENTATION-ENTRY-01` |
-| 승인안 | `A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK` |
-| Grill Batch | `0/10 / pending 0` |
+| Base 정본 | `v9.4.3` |
+| main 기준 | `eaf05c24b90d233964d093b0e772e5e94b505f36` |
+| 마지막 main Sync | `GR-SYNC-20260802-22 / SHEET_READBACK_PASS` |
+| 현재 Working Sync | `GR-SYNC-20260802-23` |
+| 현재 Draft PR | `#47 / core system alignment` |
+| 현재 Decision | `GM-CORE-SYSTEM-ALIGNMENT-01` |
+| 승인안 | `A_CORE_FUN_FIRST_TAXONOMY_WITH_STOCK_AND_SUMMON_FATIGUE_RELIEF_GUARDS` |
+| Grill Batch | `1/10 / pending 1` |
 | 구현 진입 | `APPROVED_CONDITIONAL_FOUNDATION_POC` |
 | 제품 구현 | `NOT_STARTED` |
 | Codex Plan | `ALLOWED` |
 | Codex 실행 | `BLOCKED` |
-| 현재 Gate | `GM-FOUNDATION-POC-EXECUTION-READINESS-01` 준비 |
 | Runtime·실기기·성능·접근성·사람 검증 | `NOT_RUN` |
 
 ## 반드시 먼저 읽을 문서
 
 1. `AGENTS.md`
-2. `docs/planning/IMPLEMENTATION_ENTRY_01_COLD_START_OVERRIDE_2026-08-02.md`
-3. `docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md`
-4. `docs/superpowers/specs/2026-08-02-mobile-foundation-poc-implementation-entry-design.md`
-5. `docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md`
-6. `docs/planning/IMPLEMENTATION_ENTRY_01_ADVERSARIAL_REVIEW_2026-08-02.md`
-7. `docs/planning/IMPLEMENTATION_ENTRY_01_PREMERGE_GATE_2026-08-02.md`
-8. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-9. `docs/planning/sync/GR-SYNC-20260802-22-MAIN.md`
-10. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
-11. `docs/planning/GRIMOIRE_FULL_GAME_STRUCTURE_COMPLETION_OVERRIDE_2026-08-02.md`
-12. `docs/planning/MOBILE_UX_FLOW_01_APPROVAL_2026-08-02.md`
-13. `docs/planning/MOBILE_WRITING_BATTLE_WIREFRAME_01_APPROVAL_2026-08-02.md`
-14. `docs/DEVELOPMENT_GATES.md`
-15. `docs/ACTIVE_CONTEXT.md`
-16. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-17. 질문 주제의 세부 승인 책임 원본
+2. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_COLD_START_OVERRIDE_2026-08-02.md`
+3. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_APPROVAL_2026-08-02.md`
+4. `docs/planning/GRIMOIRE_CORE_SYSTEM_ALIGNMENT_AUDIT_2026-08-02.md`
+5. `docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md`
+6. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
+7. `docs/planning/sync/GR-SYNC-20260802-23-WORKING.md`
+8. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+9. `docs/planning/GRIMOIRE_FULL_GAME_STRUCTURE_COMPLETION_OVERRIDE_2026-08-02.md`
+10. `docs/planning/MOBILE_UX_FLOW_01_APPROVAL_2026-08-02.md`
+11. `docs/planning/MOBILE_WRITING_BATTLE_WIREFRAME_01_APPROVAL_2026-08-02.md`
+12. 질문 주제의 세부 승인 책임 원본
+13. 과거 `ACTIVE_CONTEXT`, `DEVELOPMENT_GATES`, `DESIGN_DOCUMENT_REGISTRY`는 새 Override와 충돌하지 않는 범위에서만 사용
 
 ## 플레이어 약속
 
-> 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
+> 마법학교 학생이 되어 글자의 의미와 상황의 조건을 배우고, 직접 작성·Stock·소환수의 도움을 상황에 맞게 선택해 주문을 설계하며, 명시적으로 구현한 결과와 대가를 책임지고 마도서에 기록하는 마법 RPG.
 
-비타협 코어:
+## 핵심 재미
 
-- 의미를 가진 글자와 직접 작성.
-- 상황·목표·위험에 따른 주문 설계 판단.
-- 입력 실패·인식 실패·문법 실패·상황 설계 실패·비용 부족 분리.
-- 명시적 Commit 뒤에만 설명 가능한 세계 변화 적용.
-- 의도·결과·부작용·발견을 Grimoire에 기록.
+> 정답 주문을 찾는 것이 아니라, 같은 글자 의미를 현재 상황에 맞게 설계하고 명시적으로 구현한 뒤, 설명 가능한 세계 변화와 포기한 대상을 받아들이는 재미.
+
+핵심 판단:
+
+1. 지금 상황에서 무엇을 바꿀 것인가.
+2. 어떤 의미·범위·출력·위험을 선택할 것인가.
+3. 무엇을 지키고 무엇을 포기할 것인가.
+
+## 승인된 시스템 계층
+
+```text
+비타협 핵심 플레이
+→ 핵심 진행
+→ 핵심을 시험하는 적용 모드
+→ 보조 시스템
+→ 전달·안전·기술 인프라
+```
+
+### 비타협 핵심 플레이
+
+```text
+상황·조건·위험 판독
+→ 직접 작성 또는 승인된 피로 완화 수단
+→ 의미 조합·상황 검증
+→ 결과·비용·위험 검토
+→ 명시적 Commit
+→ 원자 결과 적용
+→ 설명 가능한 세계 변화
+→ 마도서 기록·복기
+```
+
+### 핵심 진행
+
+- 학습 나선 Chapter.
+- 다계열 수강·전문화.
+- 수강 슬롯·맥락 포트폴리오 성장.
+- 결과 태그·숨김 소폭 학기 평가·학기말 종합 평가.
+
+### 적용 모드
+
+- 비전투 Situation.
+- 상황 해결형 전투.
+- 제작·미니게임.
+- 선택형 현장실습.
+
+전투와 제작은 핵심을 시험하는 모드이며 상황 판독·의미 설계보다 상위 핵심이 아니다.
+
+## 작성 피로 완화 계약
+
+### Stock
+
+- 직접 작성 반복 피로를 줄이는 보조 시스템.
+- 같은 문제에서 이미 확인한 글자는 Token으로 재선택 가능.
+- 신규·미숙·중요 글자는 직접 작성 또는 직접 작성한 요소의 명시적 조립 우선.
+- Stock을 사용해도 현재 상황 검증과 명시적 Commit 필요.
+- 자동 최적 추천·자동 시전 금지.
+- 저장 단위·용량·비용·보존 범위는 `GM-STOCK-SYSTEM-01`에서 결정.
+
+### 소환수
+
+- 동반 정령은 위험·불안정 감지와 관계·발견·복기 연결.
+- 수호형 소환수는 피해 완화·Draft 보호·작성 시간 확보.
+- 현재 소환수의 글자 작성·조합·대상 선택·자동 시전 대행은 승인되지 않음.
+- 직접 대행이 필요하면 `GM-SUMMON-FATIGUE-DELEGATION-01`에서 별도 승인.
+
+## 전체 게임 목표
+
+```text
+새 마법 원리·상황 질문 학습
+→ 휴식·준비·교류·현장실습 선택
+→ 교내 일상 응용·축제·연구·제작에서 통제된 응용
+→ 메인 현장 사건에서 전투·환경 해결과 책임 선택
+→ 마도서 복기·교수 누적 평가
+→ 다음 원리·심화·전문화 개방
+```
+
+별도 시험 Chapter와 시험 전용 미니게임은 없다. 평가 증거는 수업 학습, 비전투 응용, 현장 수행, 연구·제작, 복기·설명을 합산한다.
+
+## Vertical Slice 대표 범위
+
+```text
+수업·교내 연습
+→ 자유일정
+→ 교내 일상 응용 또는 수업 후 실습
+→ 축제·비전투 응용
+→ 대표 제작 사례
+→ 현장 전투·환경 책임
+→ 귀환·마도서 기록
+→ 축약 학기말 평가·장기 Preview
+```
+
+- 목표 `46분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
+- 대표 글자 `흐름 / 집중 / 분산`.
+- 필수 성공 작성 7회, 복구 포함 목표 상한 10회는 사람 테스트 전 `TEST_VALUE` 성격을 가진다.
+- 시간 초과 시 Preview·이동·중복 설명·제작 단계·자유일정 반복부터 줄인다.
 
 ## 승인된 Mobile UX 코어
 
@@ -71,22 +156,15 @@
 → Hub 또는 다음 Anchor
 ```
 
-작성 중에도 다음을 유지한다.
-
-- 적 또는 대상.
-- 적 의도와 남은 시간.
-- 환경 위험과 보존 대상.
-- 플레이어 핵심 HP·마나.
-
-Panel collapse·일시 중단은 Draft를 보존하고, 명시적인 전체 취소에서만 폐기한다. 낮은 확신 후보는 자동 확정하지 않는다.
+작성 중에도 적·대상, 적 의도와 시간, 환경 위험과 보존 대상, HP·마나를 유지한다. Panel 축소·중단에는 Draft를 보존하고 명시적인 전체 취소에서만 폐기한다.
 
 ## 구현 진입 승인 범위
 
-이번 승인은 전체 Vertical Slice 본제작 승인이 아니다.
+전체 Vertical Slice 본제작 승인이 아니다.
 
-실행 준비 Gate 통과 후 허용되는 Foundation POC:
+Execution Readiness PASS 뒤 허용 후보:
 
-- 최소 Godot 프로젝트와 Headless 테스트 계약.
+- 최소 Godot 프로젝트와 Headless 테스트.
 - Focus Task 순수 상태 전이.
 - Atomic Result Ledger.
 - Stroke Buffer·Draft·Candidate 상태.
@@ -97,27 +175,23 @@ Panel collapse·일시 중단은 Draft를 보존하고, 명시적인 전체 취�
 
 계속 금지:
 
-- 46–53분 전체 콘텐츠.
+- 전체 46~53분 콘텐츠.
 - 실제 글자 인식·ML·훈련 데이터.
 - 최종 Art·Audio·Asset Import.
 - Boss 다중 페이즈.
 - 완성 Grimoire/Main.
+- Stock 상세 구현과 소환수 직접 대행.
 - 최종 밸런스·성능·Touch 수치.
 - Store·배포·사업화.
 
-## Base 및 실행 차단 상태
-
-- Base PR 중첩 문제는 해소됐다.
-- main의 단일 Base 정본은 `v9.4.3`이다.
-- Cold-start 핵심 문서 직접 재조정, Godot Toolchain 확인, Base v9.4.3 최종 main 기준 Plan 재검증은 남아 있다.
-- 위 세 항목과 Execution Readiness Gate가 끝나기 전에는 제품 코드를 만들지 않는다.
-
-## 다음 작업
+## 현재 작업 순서
 
 ```text
-GR-SYNC-20260802-22 main/Sheet 최종화
-→ ACTIVE_CONTEXT·DEVELOPMENT_GATES·DESIGN_DOCUMENT_REGISTRY 직접 재조정
-→ Cold-start Override 흡수
+GM-CORE-SYSTEM-ALIGNMENT-01 GitHub·Sheet 동기화
+→ Draft PR #47 최종 HEAD CI·적대 Gate·리뷰 검증
+→ 사용자 명시 병합 승인
+→ main·Sheet Readback 및 counter 최종화
+→ Cold-start Override를 원본 문서에 직접 흡수
 → Godot Toolchain preflight
 → Base v9.4.3 최종 main에서 Plan 재검증
 → GM-FOUNDATION-POC-EXECUTION-READINESS-01
@@ -130,11 +204,11 @@ GR-SYNC-20260802-22 main/Sheet 최종화
 GODOT_PROJECT = NOT_STARTED
 PRODUCT_CODE = NOT_STARTED
 CODE_EXECUTION = BLOCKED
+STOCK_DETAILED_RULES = DESIGN_REQUIRED
+SUMMON_DIRECT_DELEGATION = NOT_APPROVED
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
 PERFORMANCE_VALIDATION = NOT_RUN
 ACCESSIBILITY_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
 ```
-
-`TEST_VALUE`, Harness, CI PASS를 실기기·성능·접근성·사람 검증 완료로 표시하지 않는다.
