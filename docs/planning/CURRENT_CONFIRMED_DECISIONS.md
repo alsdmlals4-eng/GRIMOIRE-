@@ -24,10 +24,14 @@ codex: BLOCKED
 canon_sync: SYNCED_TO_WORKING_BRANCH
 sync_bundle: GR-SYNC-20260802-07
 authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
+verified_code_head: 3aa1b7cd2bd49362e20982f63abb8182345e14c0
 sheet_readback: PASS
+generator_check: PASS
+unit_json_registry_checks: PASS
+adversarial_gate: PASS
 sync_receipt: docs/planning/sync/GR-SYNC-20260802-07-WORKING.md
 main_baseline_commit: 3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03
-main_sync: PENDING_PR_MERGE
+main_sync: PENDING_USER_REVIEW_AND_MERGE
 ```
 
 최신 플랫폼 승인: `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`.
@@ -193,14 +197,17 @@ evidence_commit: ef1fba11167e4da0b298123b0c85ebd268191a42
 finalization_commit: 87a0b54c2847ce4b685879209205957c170cc1cd
 registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
 canonical_adapter: skills/PROJECT_BASE_ADAPTER.json
+canonical_adapter_sha256: 5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb
 generator: tools/generate_project_operating_views.py
+generated_views: CURRENT
 ```
 
 - Snapshot·Compatibility View 직접 편집 금지.
 - GitHub·Sheet 승인 정본 즉시 동기화.
 - Base v9.4 PR #26 main merge commit은 `3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03`.
 - `PROJECT_BASE_ADAPTER.json`은 Mobile-first와 Sheet Readback를 반영했다.
-- 생성 Snapshot·Compatibility View는 `STALE_PENDING_GENERATOR`, Generator 검사는 `NOT_RUN`이다.
+- Generator는 Adapter의 플랫폼·다음 Gate·Asset 상태를 파생하며 3개 생성물은 `CURRENT`다.
+- PR #27 workflow run `30728081535`에서 Generator·Unit·JSON·Registry·Adversarial 검사가 `PASS`했다.
 
 ## 12. 현재 Gate
 
@@ -225,20 +232,31 @@ sync_id: GR-SYNC-20260802-07
 decision_id: GM-PLATFORM-02
 status: SYNCED_TO_WORKING_BRANCH
 authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
+verified_code_head: 3aa1b7cd2bd49362e20982f63abb8182345e14c0
 sheet_tabs_updated: 14
 sheet_readback: PASS
 ux_location_correction: PASS
-main_sync: PENDING_PR_MERGE
+generator_check: PASS
+unit_json_registry_checks: PASS
+adversarial_gate: PASS
+pull_request: 27
+pr_state: DRAFT_OPEN
+main_sync: PENDING_USER_REVIEW_AND_MERGE
 ```
 
 - Sheet `00·01·02·04·05·10·15·20·30·60·70·80·90·99` 반영·재조회 완료.
 - `GR-UX-13`은 Mobile interruption 계약, `GR-UX-14`는 승인 PC 규격 보존+Mobile 재검증으로 분리.
-- Issue·Draft PR·Generator·CI는 별도 운영 단계다.
+- Generator의 구형 PC·Asset Spec Gate 하드코딩을 제거하고 회귀 테스트를 추가했다.
+- Issue #9를 Mobile-first 검증 범위로 갱신하고 Issue #16을 완료 처리했다.
+- Draft PR #27은 검증을 통과했지만 사용자 검토·병합 전이다.
 
 ## 14. 다음 작업
 
 ```text
-MOBILE-FOUNDATION-01
+사용자 Draft PR #27 검토
+→ 승인 시 main 병합
+→ main·Sheet 재검증 및 SYNCED_TO_MAIN
+→ MOBILE-FOUNDATION-01
 → BOSS-PHASE-01·GRIMOIRE-SCREEN-01 영향 재검토
 → AUDIO-DIRECTION-01
 → Mobile 기준 기획·아트·UX 통합 검수
@@ -257,7 +275,6 @@ MOBILE-FOUNDATION-01
 - 환경 결과 임계값.
 - 작성 감속 최종값·복귀 유예.
 - Memory·Texture·load·frame pacing·battery·thermal.
-- Generator·Generated Views·CI.
 - Godot Runtime·Mobile device·PC 적응·접근성·사람 플레이.
 
 실행 증거 전에는 위 값을 최종 확정하거나 검증 완료로 표시하지 않는다.
