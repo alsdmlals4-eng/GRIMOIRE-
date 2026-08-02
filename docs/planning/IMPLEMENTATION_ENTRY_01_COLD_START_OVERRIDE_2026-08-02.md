@@ -24,18 +24,21 @@ follow_up_platform: PC
 mobile_orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 planning_contracts: APPROVED_AND_MERGED_TO_MAIN
-current_main: f9c6f5fdd59f7c256986b5c817a244d464e0e74c
-base_release_on_main: 9.4.2
+current_main_before_pr43_merge: c114343ac925d734caf0ac8011c8ee25fd6d29e8
+base_release_on_main: 9.4.3
 base_adoption_pr_38: MERGED
-open_base_adoption_prs:
-  - 42
+base_adoption_pr_42: CLOSED_SUPERSEDED
+base_adoption_pr_44: MERGED
+open_base_adoption_prs: []
 last_completed_sync: GR-SYNC-20260802-20
-last_sheet_readback: PASS
+current_working_sync: GR-SYNC-20260802-21
+last_sheet_readback: PASS_REVERIFY_REQUIRED_ON_FINAL_HEAD
 grill_counter_before_this_decision: 0_of_10
 current_decision: GM-IMPLEMENTATION-ENTRY-01
 current_approved_option: A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK
 current_batch_counter: 1_of_10
 current_draft_pr: 43
+merge_authorized: true
 implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
 implementation: NOT_STARTED
 codex_plan: ALLOWED
@@ -50,12 +53,14 @@ human_validation: NOT_RUN
 
 ## Base 상태
 
-- PR #38은 병합되어 main이 Base v9.4.2 planning-first 정본을 가진다.
-- PR #42는 Base v9.4.3 first-prompt adapter Draft로 열려 있다.
-- #42의 병합·종료·supersede 결과에 따라 실행 시점의 최종 Base identity와 Required Workflow를 다시 확인해야 한다.
+- PR #38은 Base v9.4.2 planning-first 계약을 도입했다.
+- 기존 PR #42는 supersede 종료됐다.
+- 대체 PR #44가 병합되어 main은 Base v9.4.3 first-prompt governance 정본을 가진다.
+- v9.4.3은 planning-first와 external-AI 경계를 보존한다.
 
 ```yaml
-base_execution_identity: MAIN_V9_4_2_WITH_OPEN_V9_4_3_ADOPTION_PR_42
+base_execution_identity: MAIN_V9_4_3_SINGLE_CANONICAL_RELEASE
+base_pr_overlap_blocker: RESOLVED
 product_code_execution: BLOCKED
 ```
 
@@ -75,14 +80,20 @@ product_code_execution: BLOCKED
 - 최종 Art·Audio.
 - Boss·완성 Grimoire/Main.
 
-## 첫 읽기 순서
+## 남은 실행 차단
 
-이 Branch 또는 이 결정이 main에 병합되기 전 작업자는 다음 순서로 읽는다.
+1. `docs/ACTIVE_CONTEXT.md`, `docs/DEVELOPMENT_GATES.md`, `docs/DESIGN_DOCUMENT_REGISTRY.json`을 Base v9.4.3 및 Implementation Entry 상태에 직접 맞춘다.
+2. Godot Binary·Version·Renderer·Export 환경을 preflight한다.
+3. 구현 계획과 Interface·CI 경계를 최종 main에 재대조한다.
+4. `GM-FOUNDATION-POC-EXECUTION-READINESS-01`을 P0=0·P1=0으로 통과한다.
+
+## 첫 읽기 순서
 
 ```text
 AGENTS.md
 → 이 Override
 → IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md
+→ IMPLEMENTATION_ENTRY_01_PREMERGE_GATE_2026-08-02.md
 → Mobile Foundation POC Design
 → Mobile Foundation POC Implementation Plan
 → IMPLEMENTATION_ENTRY_01_ADVERSARIAL_REVIEW_2026-08-02.md
@@ -92,12 +103,12 @@ AGENTS.md
 
 ## 직접 정본 갱신 조건
 
-PR #42가 병합·종료·supersede 중 하나로 정리된 후 다음 파일을 직접 최신화한다.
+PR #43 병합과 main·Sheet 최종화 후 다음 파일을 직접 최신화한다.
 
 1. `START_HERE.md`.
 2. `docs/ACTIVE_CONTEXT.md`.
 3. `docs/DEVELOPMENT_GATES.md`.
 4. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
-5. `skills/PROJECT_BASE_ADAPTER.json`과 생성 View는 최종 Base 채택 정본만 사용한다.
+5. `skills/PROJECT_BASE_ADAPTER.json`과 생성 View는 PR #44의 Base v9.4.3 정본을 사용한다.
 
 직접 갱신과 Readback이 끝나면 이 Override는 `ABSORBED_SUPERSEDED`로 전환할 수 있다.
