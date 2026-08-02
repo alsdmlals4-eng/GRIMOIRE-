@@ -5,7 +5,7 @@
 ```yaml
 sync_id: GR-SYNC-20260802-19
 status: SYNCED_TO_WORKING_BRANCH
-sheet_readback: PENDING
+sheet_readback: PASS
 approved_decision: GM-MOBILE-WRITING-BATTLE-WIREFRAME-01
 approved_option: A_CONTEXT_PRESERVING_EXPANDABLE_RIGHT_WRITING_FOCUS_PANEL
 approved_at: 2026-08-02T19:42+09:00
@@ -45,22 +45,41 @@ human_validation: NOT_RUN
 - Batch State를 `10/10`, `merge_required=true`, `merge_authorized=false`로 갱신.
 - 현재 Gate를 `GM-PREMERGE-ADVERSARIAL-GATE-01`로 전환.
 
-## Google Sheet 반영 대상
+## Google Sheet 반영·Readback
+
+반영·재조회 탭:
 
 `00·01·02·03·04·05·10·12·20·30·40·60·80·90·99`.
 
-검증할 내용:
+확인 결과:
 
-- Decision ID와 승인 옵션 A.
-- 상황 보존 영역·확장 우측 Panel·큰 캔버스·분리된 위험 행동.
-- Draft 보존과 낮은 확신 자동 확정 금지.
-- `10/10`, pending 10개, pre-merge Gate 전환.
-- 구현·Runtime·Device·Accessibility·Human 차단 유지.
-- 기존 인접 행 보존과 ID 연속성.
+- `GM-MOBILE-WRITING-BATTLE-WIREFRAME-01 / A_CONTEXT_PRESERVING_EXPANDABLE_RIGHT_WRITING_FOCUS_PANEL / GRILL_10_OF_10` 일치.
+- `GR-L-17·GR-S-19·GR-UX-17·GR-TEST-023·GR-M-11` 승인 상태 일치.
+- `GR-L-18·GR-M-12`와 Pre-merge Gate 상태 일치.
+- pending Decision ID 10개와 `MERGE_NOT_AUTHORIZED` 일치.
+- 구현·Runtime·Device·Accessibility·Human 상태는 `NOT_STARTED/NOT_RUN` 유지.
+
+### Readback 중 발견·복구한 행 덮어쓰기
+
+첫 쓰기에서 신규 행 위치 계산으로 다음 기존 행 두 개가 교체됐다.
+
+1. `10_제품방향`의 `Mobile UX Flow` 행.
+2. `20_코어경험_데모목표`의 `GR-G-05` 행.
+
+Readback에서 즉시 탐지했으며 기존 행을 복원하고 신규 `Mobile Writing·Battle Wireframe`, `GR-G-06`을 다음 빈 행으로 이동했다. 복구 후 인접 행을 다시 읽어 다음을 확인했다.
+
+```yaml
+sheet_readback_verdict: PASS
+row_overwrite_detected_initially: true
+row_overwrite_repaired: true
+row_overwrite_remaining: false
+id_sequence_conflict_detected: false
+canon_conflict_detected: false
+```
 
 ## 병합 경계
 
-- Sheet Readback 후 `GM-PREMERGE-ADVERSARIAL-GATE-01`을 실행한다.
+- `GM-PREMERGE-ADVERSARIAL-GATE-01`을 실행한다.
 - Gate가 통과해도 자동 병합하지 않는다.
 - 사용자 명시 병합 승인 전 Draft PR #36을 병합하지 않는다.
 - 병합 후에도 구현 진입 Gate 승인 전 제품 구현을 시작하지 않는다.
