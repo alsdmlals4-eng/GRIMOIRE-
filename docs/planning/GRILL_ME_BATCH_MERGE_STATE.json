@@ -39,7 +39,7 @@
     "sync_id": "GR-SYNC-20260802-09",
     "policy_branch": "chatgpt/grimoire-grill-batch-merge-policy-20260802",
     "main_sync_branch": "chatgpt/grimoire-grill-policy-main-sync-20260802",
-    "status": "MAIN_SYNC_IN_PROGRESS",
+    "status": "MAIN_SYNC_PR_OPEN_DRAFT",
     "authority_commit": "276f09e832e7651cc5fa1918388759a275f4bf65",
     "final_policy_head": "cbaf5b9af8925d9b84ff59857e8584b2556b4586",
     "decision_pull_request": 33,
@@ -54,7 +54,9 @@
       "99_변경이력!A26:H26"
     ],
     "sheet_readback": "PASS",
-    "main_sync_pull_request": null,
+    "main_sync_pull_request": 34,
+    "main_sync_ci": "PENDING_FINAL_HEAD",
+    "main_sync_pre_merge_audit": "PENDING_FINAL_HEAD",
     "cold_start_main_commit": null
   },
   "protected_boundaries": {
