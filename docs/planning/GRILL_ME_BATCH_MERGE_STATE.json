@@ -48,7 +48,7 @@
     "branch": "chatgpt/grimoire-full-game-structure-20260802",
     "draft_pull_request": 36,
     "working_sync_id": "GR-SYNC-20260802-17",
-    "sheet_readback": "PENDING",
+    "sheet_readback": "PASS",
     "final_head_resolution": "CURRENT_BRANCH_CONTAINING_THIS_FILE; exact SHA recorded in Google Sheet",
     "sequence_decision_id": "GM-FULL-GAME-PLANNING-ORDER-01",
     "completed_design_gates": [
@@ -165,6 +165,7 @@
       "docs/planning/VERTICAL_SLICE_REPRESENTATIVENESS_01_APPROVAL_2026-08-02.md",
       "docs/planning/MOBILE_UX_FLOW_01_GRILL_ME_2026-08-02.md",
       "docs/planning/FULL_GAME_STRUCTURE_GAP_AUDIT_2026-08-02.md",
+      "docs/planning/GRIMOIRE_FULL_GAME_STRUCTURE_COMPLETION_OVERRIDE_2026-08-02.md",
       "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
       "docs/planning/sync/GR-SYNC-20260802-17-WORKING.md"
     ]
