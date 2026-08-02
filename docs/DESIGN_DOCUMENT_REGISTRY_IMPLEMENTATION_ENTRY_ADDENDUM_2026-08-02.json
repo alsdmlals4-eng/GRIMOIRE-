@@ -10,6 +10,10 @@
     "mobile_orientation": "LANDSCAPE_FIXED",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "planning_contracts": "APPROVED_AND_MERGED_TO_MAIN",
+    "current_main": "f9c6f5fdd59f7c256986b5c817a244d464e0e74c",
+    "base_release_on_main": "9.4.2",
+    "base_adoption_pr_38": "MERGED",
+    "open_base_adoption_prs": [42],
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED",
@@ -49,11 +53,11 @@
     }
   ],
   "execution_blockers": [
-    "OPEN_BASE_ADOPTION_PR_38",
     "OPEN_BASE_ADOPTION_PR_42",
-    "SINGLE_BASE_IDENTITY_NOT_REVALIDATED",
+    "FINAL_BASE_IDENTITY_AFTER_PR_42_NOT_REVALIDATED",
     "COLD_START_CORE_DOCS_NOT_DIRECTLY_RECONCILED",
     "GODOT_TOOLCHAIN_NOT_VERIFIED",
+    "IMPLEMENTATION_PLAN_NOT_REVALIDATED_ON_FINAL_MAIN",
     "EXECUTION_READINESS_GATE_NOT_RUN"
   ],
   "validation": {
