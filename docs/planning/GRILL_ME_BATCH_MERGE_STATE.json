@@ -8,7 +8,7 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 7,
+    "approved_grill_me_since_last_flush": 8,
     "next_merge_at": 10,
     "merge_required": false,
     "pending_decision_ids": [
@@ -18,7 +18,8 @@
       "GM-FULL-GAME-GROWTH-CHOICE-COST-01",
       "GM-FULL-GAME-REWARD-ECONOMY-01",
       "GM-FULL-GAME-FAILURE-LONG-TERM-IMPACT-01",
-      "GM-FULL-GAME-SCOPE-ENDING-01"
+      "GM-FULL-GAME-SCOPE-ENDING-01",
+      "GM-VERTICAL-SLICE-REPRESENTATIVENESS-01"
     ]
   },
   "counting_rule": {
@@ -46,13 +47,16 @@
   "current_work": {
     "branch": "chatgpt/grimoire-full-game-structure-20260802",
     "draft_pull_request": 36,
-    "working_sync_id": "GR-SYNC-20260802-16",
-    "sheet_readback": "PASS",
+    "working_sync_id": "GR-SYNC-20260802-17",
+    "sheet_readback": "PENDING",
     "final_head_resolution": "CURRENT_BRANCH_CONTAINING_THIS_FILE; exact SHA recorded in Google Sheet",
     "sequence_decision_id": "GM-FULL-GAME-PLANNING-ORDER-01",
-    "completed_design_gate": "FULL-GAME-STRUCTURE-01",
-    "current_design_gate": "VERTICAL-SLICE-REPRESENTATIVENESS-01",
-    "mobile_foundation_status": "IN_PROGRESS_PAUSED_AT_REPRESENTATIVENESS_DEPENDENCY",
+    "completed_design_gates": [
+      "FULL-GAME-STRUCTURE-01",
+      "VERTICAL-SLICE-REPRESENTATIVENESS-01"
+    ],
+    "current_design_gate": "MOBILE-UX-FLOW-01",
+    "mobile_foundation_status": "IN_PROGRESS_PAUSED_AT_MOBILE_UX_FLOW_DEPENDENCY",
     "approved_grill_me_decisions": [
       {
         "decision_id": "GM-FULL-GAME-MACRO-LOOP-01",
@@ -88,13 +92,18 @@
         "decision_id": "GM-FULL-GAME-SCOPE-ENDING-01",
         "approved_option": "B_THREE_SCHOOL_YEAR_FULL_GAME_WITH_A_YEAR_ONE_DEMO_BOUNDARY",
         "approved_at": "2026-08-02T18:39:00+09:00"
+      },
+      {
+        "decision_id": "GM-VERTICAL-SLICE-REPRESENTATIVENESS-01",
+        "approved_option": "A_CORE_SYSTEMS_PLAYABLE_PLUS_LONG_TERM_STRUCTURE_COMPRESSED_MOCK",
+        "approved_at": "2026-08-02T19:06:00+09:00"
       }
     ],
-    "latest_approved_grill_me_decision": "GM-FULL-GAME-SCOPE-ENDING-01",
-    "latest_approved_grill_me_option": "B_THREE_SCHOOL_YEAR_FULL_GAME_WITH_A_YEAR_ONE_DEMO_BOUNDARY",
-    "current_grill_me_candidate": "GM-VERTICAL-SLICE-REPRESENTATIVENESS-01",
+    "latest_approved_grill_me_decision": "GM-VERTICAL-SLICE-REPRESENTATIVENESS-01",
+    "latest_approved_grill_me_option": "A_CORE_SYSTEMS_PLAYABLE_PLUS_LONG_TERM_STRUCTURE_COMPRESSED_MOCK",
+    "current_grill_me_candidate": "GM-MOBILE-UX-FLOW-01",
     "current_grill_me_status": "USER_DECISION_REQUIRED",
-    "next_planning_work": "Resolve playable versus compressed-mock boundaries for the internal Vertical Slice before Year-One Demo production",
+    "next_planning_work": "Resolve Mobile Landscape state transitions and information priority before Writing/Battle wireframes",
     "product_scope": {
       "stages": [
         "INTERNAL_VERTICAL_SLICE",
@@ -120,59 +129,44 @@
         "core_chapter_candidate": "12_TO_18_PLUS_TEST_VALUE",
         "main_school_candidate": "5_PLUS_TEST_VALUE",
         "ending": "GRADUATION_AND_LARGE_SCALE_WORLD_REWRITE"
-      },
-      "continuity": [
-        "YEAR_ONE_DEMO_IS_CANONICAL_FIRST_YEAR_OF_FULL_GAME",
-        "DESIGN_SAVE_GRIMOIRE_COURSE_RELATIONSHIP_AND_RESULT_TAG_CONTINUITY",
-        "NO_YEAR_TWO_OR_THREE_FULL_PRODUCTION_BEFORE_YEAR_ONE_DEMO_VALIDATION"
-      ]
+      }
     },
-    "magic_curriculum": {
-      "structure": "MULTI_SCHOOL_ENROLLMENT_AND_SPECIALIZATION",
-      "vertical_slice_foundation": "FLOW_MAIN_PLUS_FOCUS_OR_DISPERSION_SUPPORT",
+    "vertical_slice_representativeness": {
+      "structure": "CORE_SYSTEMS_PLAYABLE_PLUS_LONG_TERM_STRUCTURE_COMPRESSED_MOCK",
+      "playable_required": [
+        "DIRECT_GLYPH_WRITING",
+        "NONCOMBAT_APPLICATION",
+        "REPRESENTATIVE_CRAFTING_MINIGAME",
+        "AT_LEAST_TWO_FREE_SCHEDULE_AXES",
+        "SINGLE_STRONG_ENEMY_FIELD_COMBAT_AND_ENVIRONMENT_RESPONSIBILITY",
+        "GRIMOIRE_RESULT_RECORD",
+        "TERM_END_EVALUATION_COMPRESSED_OUTPUT_LINKED_TO_REAL_RESULT_LOG"
+      ],
+      "mock_only": [
+        "LATER_TERM_MULTI_SCHOOL_ENROLLMENT",
+        "YEAR_TWO_THREE_SPECIALIZATION_AND_ADVANCED_RESEARCH",
+        "LONG_TERM_CURRICULUM_AND_WORLD_SCALE_EXPANSION"
+      ],
+      "mock_disclosure_required": true,
       "guardrails": [
-        "NO_MANDATORY_PARALLEL_CAMPAIGN_PER_SCHOOL",
-        "NO_SINGLE_SCHOOL_STRICT_SUPERSET",
-        "NO_REPEAT_CAST_ONLY_SPECIALIZATION",
-        "NO_EARLY_IRREVERSIBLE_LOCK",
-        "UNSELECTED_SCHOOL_DOES_NOT_BLOCK_MAIN_PROGRESS"
+        "NO_YEAR_ONE_DEMO_MASS_PRODUCTION_BEFORE_SLICE_RUNTIME_AND_HUMAN_PASS",
+        "NO_MOCK_PRESENTED_AS_PLAYABLE_OR_VALIDATED",
+        "TARGET_46_CONTENT_CAP_53_HARD_CAP_60",
+        "SAVE_RESUME_MUST_PRESERVE_DRAFT_AND_ATOMIC_RESULT_STATE"
       ]
     },
-    "growth_and_assessment": {
-      "structure": "COURSE_SLOTS_PLUS_CONTEXTUAL_PORTFOLIO_EVIDENCE",
-      "separate_exam": false,
-      "evidence": [
-        "FOUNDATION_LEARNING_AND_LIGHT_WRITING",
-        "NONCOMBAT_APPLICATION_IN_DAILY_AND_FESTIVAL_EVENTS",
-        "FIELD_PRACTICUM_COMBAT_AND_ENVIRONMENT_PERFORMANCE",
-        "CRAFTING_RESEARCH_AND_MINIGAME_APPLICATION",
-        "GRIMOIRE_REFLECTION_AND_EXPLANATION"
-      ]
+    "mobile_ux_flow": {
+      "candidate": "A_SCENE_FIRST_CONTEXTUAL_FOCUS_FLOW",
+      "wireframe_status": "DEFERRED_UNTIL_MOBILE_UX_FLOW_APPROVAL",
+      "next_after_approval": "GM-MOBILE-WRITING-BATTLE-WIREFRAME-01"
     },
-    "reward_economy": {
-      "structure": "A_PRIMARY_PLUS_C_MATERIAL_CRAFTING_MINIGAME_CONTENT",
-      "minigame_content_required": true,
-      "vertical_slice_representative_minigame_minimum": 1
-    },
-    "failure_and_semester_evaluation": {
-      "structure": "RESULT_TAG_RECOVERY_SPIRAL_WITH_HIDDEN_MINOR_SEMESTER_EVALUATION",
-      "guardrails": [
-        "SMALL_BOUNDED_PER_EVENT_DEDUCTION",
-        "BOUNDED_TOTAL_TERM_DEDUCTION",
-        "NO_SINGLE_FAILURE_DOMINATES_TERM_RESULT",
-        "NO_IMMEDIATE_SCHOLARSHIP_LOSS_RELATIONSHIP_BREAK_OR_CONTENT_LOCK",
-        "TERM_END_FEEDBACK_MUST_EXPLAIN_REPRESENTATIVE_CAUSES",
-        "EXACT_VALUES_REMAIN_TEST_VALUE"
-      ]
-    },
-    "wireframe_status": "DEFERRED_UNTIL_VERTICAL_SLICE_REPRESENTATIVENESS_APPROVAL",
     "authority_documents": [
-      "docs/planning/FULL_GAME_SCOPE_ENDING_01_GRILL_ME_2026-08-02.md",
-      "docs/planning/FULL_GAME_SCOPE_ENDING_01_APPROVAL_2026-08-02.md",
       "docs/planning/VERTICAL_SLICE_REPRESENTATIVENESS_01_GRILL_ME_2026-08-02.md",
+      "docs/planning/VERTICAL_SLICE_REPRESENTATIVENESS_01_APPROVAL_2026-08-02.md",
+      "docs/planning/MOBILE_UX_FLOW_01_GRILL_ME_2026-08-02.md",
       "docs/planning/FULL_GAME_STRUCTURE_GAP_AUDIT_2026-08-02.md",
       "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
-      "docs/planning/sync/GR-SYNC-20260802-16-WORKING.md"
+      "docs/planning/sync/GR-SYNC-20260802-17-WORKING.md"
     ]
   },
   "protected_boundaries": {
@@ -183,7 +177,9 @@
     "mobile_device_validation": "NOT_RUN",
     "accessibility_validation": "NOT_RUN",
     "human_validation": "NOT_RUN",
-    "year_one_demo_content_production": "BLOCKED_UNTIL_VERTICAL_SLICE_REPRESENTATIVENESS_APPROVAL",
-    "year_two_three_content_production": "BLOCKED_UNTIL_YEAR_ONE_DEMO_VALIDATION"
+    "year_one_demo_content_production": "BLOCKED_UNTIL_VERTICAL_SLICE_RUNTIME_AND_HUMAN_PASS",
+    "year_two_three_content_production": "BLOCKED_UNTIL_YEAR_ONE_DEMO_VALIDATION",
+    "writing_battle_wireframe": "BLOCKED_UNTIL_MOBILE_UX_FLOW_APPROVAL",
+    "product_implementation": "BLOCKED_UNTIL_MOBILE_UX_FLOW_AND_WIREFRAME_AND_IMPLEMENTATION_GATE_APPROVAL"
   }
 }
