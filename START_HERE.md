@@ -12,7 +12,8 @@
 | 방향 | `LANDSCAPE_FIXED` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | 기획 계약 | `APPROVED_AND_MERGED_TO_MAIN` |
-| 마지막 최종화 main | `b9e7a6ba3a029c45a59bd20213bc4b7a561609f4` |
+| 현재 main | `f9c6f5fdd59f7c256986b5c817a244d464e0e74c` |
+| Base 정본 | `v9.4.2 / PR #38 MERGED` |
 | 마지막 완료 Sync | `GR-SYNC-20260802-20 / SHEET_READBACK_PASS` |
 | 현재 Decision | `GM-IMPLEMENTATION-ENTRY-01` |
 | 승인안 | `A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK` |
@@ -101,23 +102,22 @@ Panel collapse·일시 중단은 Draft를 보존하고, 명시적인 전체 취�
 - 최종 밸런스·성능·Touch 수치.
 - Store·배포·사업화.
 
-## 실행 차단 이유
+## Base 및 실행 차단 상태
 
-현재 open Draft PR:
-
-- `#38` — Base v9.4.2 planning-first adoption.
-- `#42` — Base v9.4.3 first-prompt adapter adoption.
-
-두 PR이 같은 Base Adapter 계층을 다루므로, 코드 실행 전 병합·통합·supersede·close 중 하나로 정리하고 main에서 단일 Base identity를 확인해야 한다.
+- PR `#38`은 병합되어 main이 Base `v9.4.2` planning-first 정본을 가진다.
+- PR `#42`는 Base `v9.4.3` first-prompt adapter Draft로 열려 있다.
+- #42가 병합·종료·supersede 중 하나로 정리되기 전에는 실행 시점의 최종 Base identity가 확정되지 않는다.
+- Cold-start 핵심 문서 직접 재조정, Godot Toolchain 확인, 최신 main 기준 Plan 재검증도 남아 있다.
 
 ## 다음 작업
 
 ```text
-Implementation Entry 설계·계획·Sheet 동기화
-→ Draft PR 검토
-→ Base PR #38·#42 정리
+Implementation Entry Draft PR #43 검토
+→ Base PR #42 정리
+→ 최종 Base identity·Required Workflow 확인
 → Cold-start 권위 문서 직접 재조정
 → 최신 main에서 Plan 재검증
+→ Godot Toolchain preflight
 → GM-FOUNDATION-POC-EXECUTION-READINESS-01
 → P0=0·P1=0일 때만 Foundation POC 코드 실행
 ```
