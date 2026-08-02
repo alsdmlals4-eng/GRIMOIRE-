@@ -12,13 +12,12 @@
 | 방향 | `LANDSCAPE_FIXED` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | Base 정본 | `v9.4.3` |
-| main 기준 | `eaf05c24b90d233964d093b0e772e5e94b505f36` |
-| 마지막 main Sync | `GR-SYNC-20260802-22 / SHEET_READBACK_PASS` |
-| 현재 Working Sync | `GR-SYNC-20260802-23` |
-| 현재 Draft PR | `#47 / core system alignment` |
-| 현재 Decision | `GM-CORE-SYSTEM-ALIGNMENT-01` |
+| Core Alignment 병합 | `PR #47 / 1f814a16f3a523379a8ffe4b2a87a02d0c97e287` |
+| 마지막 Working Sync | `GR-SYNC-20260802-23 / SHEET_READBACK_PASS` |
+| 현재 main Finalization Sync | `GR-SYNC-20260802-24` |
+| 완료 Decision | `GM-CORE-SYSTEM-ALIGNMENT-01` |
 | 승인안 | `A_CORE_FUN_FIRST_TAXONOMY_WITH_STOCK_AND_SUMMON_FATIGUE_RELIEF_GUARDS` |
-| Grill Batch | `1/10 / pending 1` |
+| Grill Batch | `0/10 / pending 0` |
 | 구현 진입 | `APPROVED_CONDITIONAL_FOUNDATION_POC` |
 | 제품 구현 | `NOT_STARTED` |
 | Codex Plan | `ALLOWED` |
@@ -28,15 +27,15 @@
 ## 반드시 먼저 읽을 문서
 
 1. `AGENTS.md`
-2. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_COLD_START_OVERRIDE_2026-08-02.md`
-3. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_APPROVAL_2026-08-02.md`
+2. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_APPROVAL_2026-08-02.md`
+3. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_SUMMON_CLARIFICATION_ADVERSARIAL_REVIEW_2026-08-02.md`
 4. `docs/planning/GRIMOIRE_CORE_SYSTEM_ALIGNMENT_AUDIT_2026-08-02.md`
 5. `docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md`
 6. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-7. `docs/planning/sync/GR-SYNC-20260802-23-WORKING.md`
+7. `docs/planning/sync/GR-SYNC-20260802-24-MAIN.md`
 8. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
 9. 질문 주제의 세부 승인 책임 원본
-10. 과거 `ACTIVE_CONTEXT`, `DEVELOPMENT_GATES`, `DESIGN_DOCUMENT_REGISTRY`는 새 Override와 충돌하지 않는 범위에서만 사용
+10. 과거 `ACTIVE_CONTEXT`, `DEVELOPMENT_GATES`, `DESIGN_DOCUMENT_REGISTRY`는 Core Alignment Override와 충돌하지 않는 범위에서만 사용하며 다음 정합성 작업에서 직접 교정한다.
 
 ## 플레이어 약속
 
@@ -109,7 +108,7 @@
 ```text
 메인 소환수 = 상시 활성
 기타 소환수 = [소환] 주문으로 호출
-활성 소환수 = 일정 시간마다 [주문] 사용 또는 [스톡] 충전
+활성 소환수 = 일정 시간마다 [주문] 사용 또는 [Stock] 충전
 ```
 
 - 메인 소환수는 별도 소환 주문 없이 상시 효과·주기 행동 적용.
@@ -196,11 +195,8 @@ Execution Readiness PASS 뒤 허용 후보:
 ## 현재 작업 순서
 
 ```text
-GM-CORE-SYSTEM-ALIGNMENT-01 GitHub·Sheet 동기화
-→ Draft PR #47 최종 HEAD CI·적대 Gate·리뷰 검증
-→ 사용자 명시 병합 승인
-→ main·Sheet Readback 및 counter 최종화
-→ Cold-start Override를 원본 문서에 직접 흡수
+Core Alignment main·Sheet Readback 최종화
+→ Cold-start Override를 ACTIVE_CONTEXT·DEVELOPMENT_GATES·DESIGN_DOCUMENT_REGISTRY에 직접 흡수
 → GM-STOCK-SYSTEM-01
 → GM-SUMMON-SYSTEM-01
 → Godot Toolchain preflight
