@@ -113,6 +113,7 @@
       "internal_vertical_slice": {
         "target_minutes": 46,
         "content_cap_minutes": 53,
+        "hard_cap_minutes": 60,
         "purpose": "PROVE_CORE_SYSTEMS_AND_RISKS_BEFORE_DEMO_CONTENT_PRODUCTION"
       },
       "year_one_demo": {
