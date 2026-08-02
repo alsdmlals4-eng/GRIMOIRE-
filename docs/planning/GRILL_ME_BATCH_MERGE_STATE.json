@@ -10,10 +10,10 @@
   "counter": {
     "approved_grill_me_since_last_flush": 1,
     "next_merge_at": 10,
-    "merge_required": true,
-    "merge_trigger": "EXPLICIT_USER_MERGE_REQUEST",
+    "merge_required": false,
+    "merge_trigger": null,
     "merge_authorized": false,
-    "authorization_state": "REAPPROVAL_REQUIRED_AFTER_MATERIAL_HEAD_CHANGE",
+    "authorization_state": "AWAITING_EXPLICIT_PR_47_MERGE_APPROVAL",
     "pending_decision_ids": [
       "GM-CORE-SYSTEM-ALIGNMENT-01"
     ]
@@ -32,7 +32,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "NOT_RUN_AFTER_SUMMON_CLARIFICATION",
+  "pre_merge_gate_status": "FINAL_HEAD_VERIFICATION_PENDING_AFTER_SUMMON_CLARIFICATION",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T20:59:00+09:00",
@@ -53,7 +53,7 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "SUMMON_CLARIFICATION_SYNC_AND_EXACT_HEAD_REVERIFY",
+    "status": "SUMMON_CLARIFICATION_SYNCED_FINAL_HEAD_REVERIFY_PENDING",
     "decision_id": "GM-CORE-SYSTEM-ALIGNMENT-01",
     "approved_option": "A_CORE_FUN_FIRST_TAXONOMY_WITH_STOCK_AND_SUMMON_FATIGUE_RELIEF_GUARDS",
     "approved_at": "2026-08-02T21:49:00+09:00",
@@ -64,15 +64,16 @@
     "clarification_adversarial_review": "docs/planning/CORE_SYSTEM_ALIGNMENT_01_SUMMON_CLARIFICATION_ADVERSARIAL_REVIEW_2026-08-02.md",
     "pull_request": 47,
     "working_sync_id": "GR-SYNC-20260802-23",
-    "sheet_readback": "PENDING_AFTER_SUMMON_CLARIFICATION",
-    "core_fun": "SITUATION_READING_TO_SEMANTIC_DESIGN_TO_EXPLICIT_COMMIT_TO_EXPLAINABLE_WORLD_CHANGE_TO_GRIMOIRE",
+    "sheet_readback": "PASS",
+    "core_fun": "SITUATION_READING_TO_SEMANTIC_DESIGN_TO_DIRECT_STOCK_SUMMON_OPERATION_TO_EXPLICIT_COMMIT_TO_EXPLAINABLE_WORLD_CHANGE_TO_GRIMOIRE",
     "system_taxonomy": "APPROVED",
-    "stock_fatigue_relief": "APPROVED_MINIMUM_BOUNDARY",
+    "stock_fatigue_relief": "APPROVED_CONCEPT",
     "stock_detailed_rules": "DESIGN_REQUIRED_BY_GM-STOCK-SYSTEM-01",
     "main_summon_activation": "ALWAYS_ACTIVE",
     "other_summon_activation": "REQUIRES_PLAYER_SUMMON_SPELL_COMMIT",
     "summon_periodic_action": "CAST_ASSIGNED_SPELL_OR_REFILL_STOCK",
     "summon_periodic_support": "DESIGN_APPROVED_IMPLEMENTATION_BLOCKED",
+    "summon_detailed_rules": "DESIGN_REQUIRED_BY_GM-SUMMON-SYSTEM-01",
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED",
@@ -82,7 +83,7 @@
     "merge_blocking_p0": 0,
     "merge_blocking_p1": 0,
     "p1_open_for_direct_canon_reconciliation": 3,
-    "next_work": "Sync summon clarification to Sheet and PR body, run exact-head CI and adversarial gate, then request renewed explicit merge approval because the head materially changed after the previous approval"
+    "next_work": "Run PR 47 final-head CI, adversarial gate and review checks; report exact changes and request explicit merge approval. After merge/readback, absorb the cold-start override, then design GM-STOCK-SYSTEM-01 and GM-SUMMON-SYSTEM-01"
   },
   "protected_boundaries": {
     "execution_profile": "PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY",
@@ -91,6 +92,7 @@
     "codex_execution": "BLOCKED",
     "godot_project_creation": "BLOCKED_UNTIL_EXECUTION_READINESS_PASS",
     "stock_detailed_rules": "DESIGN_REQUIRED",
+    "summon_detailed_rules": "DESIGN_REQUIRED",
     "summon_periodic_support": "DESIGN_APPROVED_IMPLEMENTATION_BLOCKED",
     "summon_arbitrary_optimal_decision_making": "NOT_APPROVED",
     "summon_auto_summon_chain": "PROHIBITED",
