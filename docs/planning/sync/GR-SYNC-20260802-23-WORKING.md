@@ -4,7 +4,7 @@
 
 ```yaml
 sync_id: GR-SYNC-20260802-23
-status: SYNCED_TO_WORKING_BRANCH_PENDING_FINAL_HEAD_REVERIFY
+status: PREMERGE_PASS_AWAITING_EXPLICIT_MERGE_APPROVAL
 scope: CORE_SYSTEM_ALIGNMENT_STOCK_AND_SUMMON_CLARIFICATION
 decision_id: GM-CORE-SYSTEM-ALIGNMENT-01
 approved_option: A_CORE_FUN_FIRST_TAXONOMY_WITH_STOCK_AND_SUMMON_FATIGUE_RELIEF_GUARDS
@@ -15,7 +15,8 @@ clarification_phrase: 메인 소환수는 상시 적용, 기타 소환수는 [�
 pull_request: 47
 base_branch: main
 main_baseline: eaf05c24b90d233964d093b0e772e5e94b505f36
-head: RESOLVE_FROM_PR_HEAD
+evidence_head: d3a943b1a7c882ca41814b57452888071a8a3a90
+final_state_head: RESOLVE_FROM_PR_HEAD
 grill_counter: 1_of_10
 pending_decisions: 1
 clarification_new_grill_count: false
@@ -120,19 +121,35 @@ implementation_readiness: NOT_READY
 sheet_readback: PASS
 ```
 
+## Pre-merge 증거
+
+```yaml
+evidence_head: d3a943b1a7c882ca41814b57452888071a8a3a90
+main_baseline: eaf05c24b90d233964d093b0e772e5e94b505f36
+ahead_by: 24
+behind_by: 0
+changed_files: 7
+product_code_changed: false
+workflow_run: 30749514405
+ci_gate: PASS
+adversarial_gate: PASS
+unresolved_review_threads: 0
+blocking_reviews: 0
+```
+
+증거 기록 뒤 변경은 Batch State와 이 Sync Receipt의 상태 갱신뿐이다. 최종 상태 HEAD도 동일 Gate로 다시 검증한다.
+
 ## 시각 권위
 
 - 정리안 승인: `2026-08-02T21:49:00+09:00`.
 - 소환수 보완 정의: `2026-08-02T21:57:00+09:00`.
-- 일부 초기 자동 문서의 `21:44`는 생성 시각 오류이며 위 시각이 우선한다.
 
 ## 병합 승인 경계
 
 `정리안 승인`은 `GM-CORE-SYSTEM-ALIGNMENT-01` 기획 결정 승인이다. PR #47 병합 승인 문구가 아니다.
 
 ```text
-소환수 보완 동기화
-→ 최종 HEAD CI·적대 Gate·리뷰·Sheet Readback
+최종 상태 HEAD CI·적대 Gate·리뷰 확인
 → 최종 변경 내용 보고
 → 사용자 명시 병합 승인
 → 병합
