@@ -80,8 +80,8 @@
     "generator": "tools/generate_project_operating_views.py",
     "hand_edit": "PROHIBITED",
     "snapshot": "skills/PROJECT_SKILL_SNAPSHOT.json",
-    "status": "STALE_PENDING_GENERATOR",
-    "generator_check": "NOT_RUN"
+    "status": "CURRENT",
+    "generator_check": "REQUIRED"
   },
   "planning_authority": {
     "art_bible": "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
@@ -242,8 +242,8 @@
   "validation": {
     "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
-    "generator_check": "NOT_RUN",
-    "generated_views": "STALE_PENDING_GENERATOR",
+    "generator_check": "REQUIRED",
+    "generated_views": "CURRENT",
     "godot_runtime": "NOT_RUN",
     "godot_static": "NOT_AVAILABLE_NO_PROJECT",
     "human": "NOT_RUN",
