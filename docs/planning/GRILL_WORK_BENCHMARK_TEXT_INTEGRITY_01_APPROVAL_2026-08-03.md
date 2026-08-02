@@ -127,12 +127,12 @@ json_parse: REQUIRED_FOR_JSON
 Hard failure:
 
 - UTF-8 strict decode 실패.
-- `�` 존재.
+- Unicode replacement character `U+FFFD` 존재.
 - UTF-8 BOM 존재.
 - 탭·개행·캐리지리턴 외 C0 제어문자.
 - NFC 정규화 실패.
-- `Ã`, `Â`, `â€`, `ðŸ`, `ï»¿` 등 알려진 mojibake 패턴.
-- 한글 문맥에서 `ì`, `í`, `ë`, `ê`로 시작하는 비정상 연속 토큰.
+- mojibake 의심 선행 코드 포인트 `U+00C3`, `U+00C2`, `U+00E2`, `U+00F0`, `U+00EF` 기반 비정상 토큰.
+- 한글 문맥에서 `U+00EC`, `U+00ED`, `U+00EB`, `U+00EA`로 시작하는 비정상 연속 토큰.
 
 자동 검출이 애매한 경우 `TEXT_INTEGRITY_WARNING`으로 올리고 사람이 원문·Readback을 확인한다. 자동 수정으로 의미를 추정하지 않는다.
 
