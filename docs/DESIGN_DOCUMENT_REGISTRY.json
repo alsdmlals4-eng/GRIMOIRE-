@@ -1,65 +1,63 @@
 {
-  "schema_version": 14,
+  "schema_version": 15,
   "registry_role": "grimoire-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
     "default_branch": "main",
+    "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
-    "execution_profile": "PLANNING_ONLY_PROFILE",
+    "execution_profile": "PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY",
     "work_mode": "PLAN",
-    "primary_platform": "PC",
-    "follow_up_platform": "Mobile",
-    "planning": "APPROVED",
-    "art_style_01": "APPROVED_A_MODIFIED_LOCKED",
-    "art_bible_01": "APPROVED_DUAL_STANDARD_ART_BIBLE",
-    "battle_rules_01": "APPROVED_SITUATION_RESOLUTION_RULES",
-    "next_product_gate": "ASSET-SPEC-01",
-    "parallel_design_gate": "BOSS-PHASE-01",
+    "primary_platform": "Mobile",
+    "follow_up_platform": "PC",
+    "orientation": "LANDSCAPE_FIXED",
+    "planning": "APPROVED_WITH_REMAINING_DETAIL_GATES",
+    "core_system_alignment": "APPROVED_SYNCED_TO_MAIN",
+    "stock_system_01": "USER_APPROVED_RECOMMENDED_DEFAULTS_WORKING_SYNC",
+    "summon_system_01": "USER_APPROVED_RECOMMENDED_DEFAULTS_WORKING_SYNC",
+    "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
-    "codex": "BLOCKED",
-    "canon_sync": "SYNCED_TO_MAIN",
-    "authority_main_commit": "a088252349bee94cecef94b216c8cc5e0b9162cb"
+    "codex_plan": "ALLOWED",
+    "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
+    "canon_sync": "SYNCED_TO_WORKING_BRANCH",
+    "authority_main_commit": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
+    "working_sync_id": "GR-SYNC-20260802-25"
   },
   "base_pin": {
     "repository": "alsdmlals4-eng/Base",
-    "release": "v9.3.0",
-    "release_commit": "30ca6c7b5f93521f0eb0eed42d01437cd43c50ae",
-    "evidence_commit": "462a86db192d23d0f386281a1eb54b0a8cbad62e",
-    "registry_sha256": "9847bb2b225c776ad7916930f0f48c490bc2a898bea8e02ea1fdd0e6caac60c1",
+    "release": "v9.4.3",
+    "release_commit": "7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8",
+    "release_evidence_commit": "da33a350d61b8adc52df97fccc7001708a933370",
+    "finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
+    "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
     "adapter": "skills/PROJECT_BASE_ADAPTER.json",
     "snapshot": "skills/PROJECT_SKILL_SNAPSHOT.json",
     "generator": "tools/generate_project_operating_views.py",
-    "status": "CURRENT_V9_3"
+    "status": "CURRENT_V9_4_3"
   },
   "planning_authority": {
-    "latest_user_override": "docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md",
-    "current_confirmed_snapshot": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "start_here": "START_HERE.md",
     "active_context": "docs/ACTIVE_CONTEXT.md",
-    "approved_planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
+    "current_confirmed_snapshot": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "approved_planning_canon": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
+    "core_system_alignment": "docs/planning/CORE_SYSTEM_ALIGNMENT_01_APPROVAL_2026-08-02.md",
+    "stock_system": "docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md",
+    "summon_system": "docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md",
+    "planning_remainder_audit": "docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md",
+    "implementation_entry": "docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md",
+    "grill_batch_state": "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
     "benchmark_policy": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
-    "canon_sync_state": "docs/planning/CANON_SYNC_STATE.json",
-    "main_sync_receipt": "docs/planning/sync/GR-SYNC-20260801-05-MAIN.md",
-    "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
-    "operating_audit": "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md"
-  },
-  "visual_authority": {
-    "decision_id": "ART-STYLE-01",
-    "status": "APPROVED_A_MODIFIED_LOCKED",
-    "approval": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
-    "state": "docs/planning/ART_STYLE_01_STATE.json",
-    "manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
-    "library_path": "/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png",
-    "sha256": "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a",
-    "source_edit": "PROHIBITED",
-    "runtime_asset": false
+    "main_sync_receipt": "docs/planning/sync/GR-SYNC-20260802-24-MAIN.md",
+    "working_sync_receipt": "docs/planning/sync/GR-SYNC-20260802-25-WORKING.md",
+    "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md"
   },
   "canonical_documents": [
     {
-      "id": "current-confirmed-decisions",
-      "source_path": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+      "id": "start-here",
+      "source_path": "START_HERE.md",
       "status": "ACTIVE_FIRST_READ_AUTHORITY"
     },
     {
@@ -68,14 +66,70 @@
       "status": "ACTIVE_CONTEXT_AUTHORITY"
     },
     {
-      "id": "latest-decision-addendum",
-      "source_path": "docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md",
-      "status": "ACTIVE_LATEST_USER_DECISION_AUTHORITY"
+      "id": "development-gates",
+      "source_path": "docs/DEVELOPMENT_GATES.md",
+      "status": "ACTIVE_GATE_AUTHORITY"
+    },
+    {
+      "id": "core-system-alignment",
+      "source_path": "docs/planning/CORE_SYSTEM_ALIGNMENT_01_APPROVAL_2026-08-02.md",
+      "decision_id": "GM-CORE-SYSTEM-ALIGNMENT-01",
+      "status": "APPROVED_SYNCED_TO_MAIN"
+    },
+    {
+      "id": "stock-system",
+      "source_path": "docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md",
+      "decision_id": "GM-STOCK-SYSTEM-01",
+      "status": "USER_APPROVED_RECOMMENDED_DEFAULTS_WORKING_SYNC"
+    },
+    {
+      "id": "summon-system",
+      "source_path": "docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md",
+      "decision_id": "GM-SUMMON-SYSTEM-01",
+      "status": "USER_APPROVED_RECOMMENDED_DEFAULTS_WORKING_SYNC",
+      "supersedes": [
+        "GM-BATTLE-RULES-01/GUARDIAN_MANUAL_ONLY_SUBSECTION"
+      ]
+    },
+    {
+      "id": "planning-remainder-audit",
+      "source_path": "docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md",
+      "status": "CURRENT_REMAINDER_AUTHORITY"
+    },
+    {
+      "id": "implementation-entry",
+      "source_path": "docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md",
+      "decision_id": "GM-IMPLEMENTATION-ENTRY-01",
+      "status": "APPROVED_CONDITIONAL_FOUNDATION_POC"
     },
     {
       "id": "planning-canon",
       "source_path": "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
-      "status": "ACTIVE_APPROVED_PLANNING_CANON"
+      "status": "ACTIVE_WHERE_NOT_SUPERSEDED"
+    },
+    {
+      "id": "battle-rules",
+      "source_path": "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
+      "decision_id": "GM-BATTLE-RULES-01",
+      "status": "ACTIVE_EXCEPT_SUMMON_SUBSECTION_SUPERSEDED"
+    },
+    {
+      "id": "battle-time-flow",
+      "source_path": "docs/planning/BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md",
+      "decision_id": "GM-BATTLE-TIME-FLOW-01",
+      "status": "APPROVED_TIME_FLOW_DIRECTION"
+    },
+    {
+      "id": "mobile-ux-flow",
+      "source_path": "docs/planning/MOBILE_UX_FLOW_01_APPROVAL_2026-08-02.md",
+      "decision_id": "GM-MOBILE-UX-FLOW-01",
+      "status": "APPROVED_ACTIVE"
+    },
+    {
+      "id": "mobile-writing-battle-wireframe",
+      "source_path": "docs/planning/MOBILE_WRITING_BATTLE_WIREFRAME_01_APPROVAL_2026-08-02.md",
+      "decision_id": "GM-MOBILE-WRITING-BATTLE-WIREFRAME-01",
+      "status": "APPROVED_ACTIVE"
     },
     {
       "id": "art-style-approval",
@@ -90,135 +144,57 @@
       "status": "ACTIVE_APPROVED_ART_BIBLE_AUTHORITY"
     },
     {
-      "id": "art-bible-battle-override",
-      "source_path": "docs/planning/ART_BIBLE_01_BATTLE_CORRECTION_ADDENDUM_2026-08-01.md",
-      "status": "ACTIVE_BATTLE_OVERRIDE"
-    },
-    {
-      "id": "battle-screen-layout",
-      "source_path": "docs/planning/BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md",
-      "decision_id": "GM-BATTLE-SCREEN-LAYOUT-01",
-      "status": "APPROVED_LAYOUT_DIRECTION"
-    },
-    {
-      "id": "battle-single-enemy",
-      "source_path": "docs/planning/BATTLE_SINGLE_ENEMY_FOCUS_01_APPROVAL_2026-08-01.md",
-      "decision_id": "GM-BATTLE-SINGLE-ENEMY-FOCUS-01",
-      "status": "APPROVED_ENCOUNTER_DIRECTION"
-    },
-    {
-      "id": "battle-active-timer",
-      "source_path": "docs/planning/BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md",
-      "decision_id": "GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01",
-      "status": "APPROVED_CORE_BATTLE_FLOW"
-    },
-    {
-      "id": "battle-time-flow",
-      "source_path": "docs/planning/BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md",
-      "decision_id": "GM-BATTLE-TIME-FLOW-01",
-      "status": "APPROVED_TIME_FLOW_DIRECTION"
-    },
-    {
-      "id": "battle-rules",
-      "source_path": "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
-      "decision_id": "GM-BATTLE-RULES-01",
-      "status": "APPROVED_SITUATION_RESOLUTION_RULES"
-    },
-    {
-      "id": "development-gates",
-      "source_path": "docs/DEVELOPMENT_GATES.md",
-      "status": "ACTIVE_GATE_AUTHORITY"
-    },
-    {
-      "id": "google-sheet-contract",
-      "source_path": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
-      "status": "ACTIVE_WORKBOOK_CONTRACT"
+      "id": "asset-spec",
+      "source_path": "docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md",
+      "decision_id": "ASSET-SPEC-01",
+      "status": "APPROVED_SPEC_RUNTIME_NOT_STARTED"
     },
     {
       "id": "main-sync-receipt",
-      "source_path": "docs/planning/sync/GR-SYNC-20260801-05-MAIN.md",
-      "status": "SYNCED_TO_MAIN_RECEIPT"
-    }
-  ],
-  "machine_readable_state": [
-    {
-      "id": "canon-sync-state",
-      "source_path": "docs/planning/CANON_SYNC_STATE.json",
-      "status": "SYNCED_TO_MAIN_STATE"
+      "source_path": "docs/planning/sync/GR-SYNC-20260802-24-MAIN.md",
+      "status": "SYNCED_TO_MAIN_AFTER_FINALIZATION_AND_READBACK"
     },
     {
-      "id": "operating-reconciliation-state",
-      "source_path": "docs/planning/PROJECT_OPERATING_RECONCILIATION_STATE.json",
-      "status": "PASS_CORRECTIONS_VERIFIED_SYNCED_TO_MAIN"
-    },
-    {
-      "id": "art-bible-state",
-      "source_path": "docs/planning/ART_BIBLE_01_STATE.json",
-      "status": "APPROVED_SYNCED_TO_MAIN"
-    },
-    {
-      "id": "battle-screen-layout-state",
-      "source_path": "docs/planning/BATTLE_SCREEN_LAYOUT_01_STATE.json",
-      "status": "APPROVED_STATE"
-    },
-    {
-      "id": "battle-single-enemy-state",
-      "source_path": "docs/planning/BATTLE_SINGLE_ENEMY_FOCUS_01_STATE.json",
-      "status": "APPROVED_STATE"
-    },
-    {
-      "id": "battle-active-timer-state",
-      "source_path": "docs/planning/BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_STATE.json",
-      "status": "APPROVED_STATE"
-    },
-    {
-      "id": "battle-time-flow-state",
-      "source_path": "docs/planning/BATTLE_TIME_FLOW_01_STATE.json",
-      "status": "APPROVED_STATE"
-    },
-    {
-      "id": "battle-rules-state",
-      "source_path": "docs/planning/BATTLE_RULES_01_STATE.json",
-      "status": "APPROVED_SYNCED_TO_MAIN"
+      "id": "working-sync-receipt",
+      "source_path": "docs/planning/sync/GR-SYNC-20260802-25-WORKING.md",
+      "status": "SYNCED_TO_WORKING_BRANCH"
     }
   ],
   "evidence_documents": [
     {
-      "id": "project-wide-audit",
-      "source_path": "docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md",
-      "status": "PASS_CORRECTIONS_VERIFIED"
-    },
-    {
-      "id": "art-style-benchmark",
-      "source_path": "docs/planning/benchmarks/ART_STYLE_01_BENCHMARK_2026-07-31.md",
-      "status": "STANDARD_COMPLETE"
-    },
-    {
-      "id": "battle-rules-benchmark",
-      "source_path": "docs/planning/benchmarks/BATTLE_RULES_01_QUICK_BENCHMARK_2026-08-01.md",
+      "id": "stock-summon-benchmark",
+      "source_path": "docs/planning/benchmarks/STOCK_SUMMON_SYSTEM_01_QUICK_BENCHMARK_2026-08-02.md",
       "status": "QUICK_COMPLETE"
+    },
+    {
+      "id": "core-system-audit",
+      "source_path": "docs/planning/GRIMOIRE_CORE_SYSTEM_ALIGNMENT_AUDIT_2026-08-02.md",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "planning-remainder-audit-evidence",
+      "source_path": "docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md",
+      "status": "COMPLETE_P0_0_P1_7_P2_12"
     }
   ],
-  "supporting_technical_appendices": [
-    "docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md",
-    "docs/superpowers/specs/grimoire-situations/P0_01_ENTRY_FIELD_DIALOGUE.md",
-    "docs/superpowers/specs/grimoire-situations/P0_02_SCHEDULE_SPELL_BATTLE.md",
-    "docs/superpowers/specs/grimoire-situations/P0_03_RESULT_RETURN_GRIMOIRE.md",
-    "docs/superpowers/specs/grimoire-situations/SITUATION_BOARD_AND_BACKLOG.md"
-  ],
   "responsibility_status": {
-    "planning": "APPROVED",
-    "art_style": "APPROVED_A_MODIFIED_LOCKED",
-    "art_bible": "APPROVED_DUAL_STANDARD_ART_BIBLE",
-    "battle_screen_layout": "APPROVED",
-    "battle_encounter": "APPROVED_SINGLE_ENEMY",
-    "battle_time": "APPROVED",
-    "battle_rules": "APPROVED_SITUATION_RESOLUTION",
-    "asset_spec": "NEXT_PRODUCT_GATE",
-    "boss_phase": "NEXT_GAME_DESIGN_GATE",
-    "grimoire_screen": "PENDING_DERIVATIVE_BOARD",
-    "main_screen": "PENDING_AFTER_GRIMOIRE_SCREEN",
-    "audio_direction": "PENDING_AFTER_ASSET_SPEC",
+    "core_fun": "APPROVED",
+    "full_game_structure": "APPROVED_DIRECTION",
+    "stock_system": "PROTOTYPE_DEFAULTS_APPROVED",
+    "summon_system": "PROTOTYPE_DEFAULTS_APPROVED",
+    "stock_summon_state_ledger_save_interface": "P1_REQUIRED",
+    "stock_summon_mobile_hud": "P1_REQUIRED",
+    "stock_summon_tests": "P1_REQUIRED",
+    "battle_tuning": "P2_REQUIRED",
+    "result_grading": "P2_REQUIRED",
+    "slice_crafting_minigame": "P2_REQUIRED_RECOMMEND_CATALYST_STABILIZATION",
+    "grimoire_screen": "P2_REQUIRED",
+    "main_screen": "P2_REQUIRED_AFTER_GRIMOIRE",
+    "audio_direction": "P2_REQUIRED",
+    "year_one_chapter_map": "P2_REQUIRED",
+    "curriculum_numbers": "P2_REQUIRED",
+    "growth_economy_numbers": "P2_REQUIRED",
+    "boss_phase": "P3_DEFERRED",
     "codex": "BLOCKED",
     "implementation": "NOT_STARTED"
   },
@@ -232,15 +208,16 @@
     "working_branch_sync_must_not_be_claimed_as_main_sync": true,
     "locked_reference_must_not_be_edited_or_regenerated": true,
     "generated_adapter_views_must_not_be_hand_edited": true,
-    "runtime_and_human_completion_require_execution_evidence": true
+    "runtime_and_human_completion_require_execution_evidence": true,
+    "prototype_defaults_are_not_final_balance": true
   },
   "validation_boundaries": {
     "godot_project": "NOT_STARTED",
     "product_code_scene_resource_data": "NOT_FOUND",
     "runtime": "NOT_RUN",
-    "pc_input": "NOT_RUN",
     "mobile": "NOT_RUN",
     "performance": "NOT_RUN",
+    "accessibility": "NOT_RUN",
     "human_playtest": "NOT_RUN"
   }
 }
