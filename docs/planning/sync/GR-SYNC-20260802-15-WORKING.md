@@ -5,8 +5,9 @@
 ```yaml
 sync_id: GR-SYNC-20260802-15
 status: SYNCED_TO_WORKING_BRANCH
-sheet_readback: PENDING
+sheet_readback: PASS
 authority_head_before_sheet: 20185faaade9b9ba7485806284ef0dc856b60701
+final_head_resolution: CURRENT_BRANCH_CONTAINING_FINAL_BATCH_STATE; exact SHA recorded in Google Sheet
 approved_decision: GM-FULL-GAME-FAILURE-LONG-TERM-IMPACT-01
 approved_option: A_RESULT_TAG_RECOVERY_SPIRAL_WITH_HIDDEN_MINOR_SEMESTER_EVALUATION
 approved_at: 2026-08-02T18:23+09:00
@@ -52,19 +53,37 @@ human_validation: NOT_RUN
 - Batch State advanced to `6/10`.
 - 이 Working Sync Receipt 생성.
 
-## 5. Google Sheet 반영 대상
+## 5. Google Sheet Readback
+
+검증 범위:
 
 - `00·01·02·03·04·05·10·12·30·41·50·52·80·90·99`.
 
-검증 항목:
+판정:
 
-- Decision ID와 승인 옵션.
-- 학기 중 비공개 항목.
-- 작은 사건별·학기 총감점 상한.
-- 즉시 장학 박탈·관계 단절·콘텐츠 폐쇄 없음.
-- 학기말 종합 평가와 대표 근거 설명.
-- Grill counter `6/10`.
-- 다음 Decision `GM-FULL-GAME-SCOPE-ENDING-01`.
+```text
+Decision ID match = PASS
+Approved option match = PASS
+Counter 6/10 = PASS
+Pending decisions 6 = PASS
+Immediate world/Grimoire result visibility = PASS
+Internal score and per-event deduction hidden during term = PASS
+Small bounded deduction rule = PASS
+No immediate scholarship loss, relationship break, course/content lock = PASS
+Semester-end aggregate evaluation = PASS
+Representative cause explanation = PASS
+GR-L-13 / GR-EC-07 / GR-CT-11 / GR-ST-07 / GR-TEST-020 = PASS
+Next Grill Me match = PASS
+Implementation/Runtime/Device/Human boundary = PRESERVED
+```
+
+초기 쓰기에서 `12_핵심루프`의 `GR-L-12`와 `50_메인콘텐츠`의 `GR-CT-10`이 덮어써진 것을 Readback 중 발견했다. 두 기존 행을 원문으로 복원하고 새 행을 다음 빈 행으로 이동한 뒤 재조회했다.
+
+```text
+GR-L-11 → GR-L-12 → GR-L-13 → GR-L-14 = PASS
+GR-CT-08 → GR-CT-09 → GR-CT-10 → GR-CT-11 = PASS
+Existing authority row overwrite after repair = NONE
+```
 
 ## 6. 병합 경계
 
