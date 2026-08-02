@@ -18,7 +18,9 @@ head: RESOLVE_FROM_FINAL_PR_HEAD
 grill_counter: 3_of_10
 pending_decisions: 3
 sheet_readback: PASS
-final_head_ci: PENDING
+final_head_ci: PASS
+adversarial_gate: PASS
+review_threads: 0
 implementation: NOT_STARTED
 codex_execution: BLOCKED
 ```
