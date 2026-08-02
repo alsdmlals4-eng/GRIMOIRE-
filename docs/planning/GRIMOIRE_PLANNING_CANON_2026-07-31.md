@@ -5,19 +5,25 @@
 ```yaml
 status: ACTIVE_APPROVED_VERTICAL_SLICE_CANON
 original_approval_basis: USER_APPROVED_RECOMMENDED_PLAN_2026-07-31
-latest_assessment_amendment: GM-FULL-GAME-GROWTH-CHOICE-COST-01
+latest_assessment_amendment: GM-MOBILE-WRITING-BATTLE-WIREFRAME-01
 vertical_slice_content_planning_complete: true
-full_game_structure_planning_complete: false
+full_game_structure_planning_complete: true
+vertical_slice_representativeness_planning_complete: true
+mobile_ux_flow_planning_complete: true
+mobile_writing_battle_wireframe_planning_complete: true
 benchmark_complete: true
 adversarial_review_complete: true
+implementation_entry_gate: NOT_APPROVED
 runtime_validation: NOT_RUN
+mobile_device_validation: NOT_RUN
+accessibility_validation: NOT_RUN
 human_playtest: NOT_RUN
 implementation: NOT_STARTED
 codex_status: BLOCKED
-current_full_game_gate: FULL-GAME-STRUCTURE-01
+current_full_game_gate: PREMERGE-ADVERSARIAL-01
 ```
 
-이 문서는 Vertical Slice의 실제 콘텐츠·플랫폼·범위 정본이다. 전체 게임 구조는 후속 `FULL-GAME-STRUCTURE-01` 결정 문서가 우선하며, 별도 시험은 2026-08-02 사용자 결정에 따라 제거됐다.
+이 문서는 Vertical Slice의 실제 콘텐츠·플랫폼·범위 정본이다. 전체 게임 구조·대표성·Mobile UX Flow·Writing/Battle 화면 계약은 2026-08-02 승인 문서들이 이 문서의 역사적 상태를 보완하며, 현재 Gate는 `GM-PREMERGE-ADVERSARIAL-GATE-01`이다. 별도 시험은 사용자 결정에 따라 제거됐고, 사전 병합 Gate와 별도 구현 진입 Gate 승인 전에는 병합·Godot 구현을 시작하지 않는다.
 
 ## 2. 승인된 대표 글자 문법
 
@@ -281,13 +287,20 @@ current_full_game_gate: FULL-GAME-STRUCTURE-01
 
 ```text
 VERTICAL_SLICE_CONTENT_PLANNING = APPROVED_WITH_ASSESSMENT_AMENDMENT
-FULL_GAME_STRUCTURE_PLANNING = IN_PROGRESS
+FULL_GAME_STRUCTURE_PLANNING = APPROVED
+VERTICAL_SLICE_REPRESENTATIVENESS = APPROVED
+MOBILE_UX_FLOW_PLANNING = APPROVED
+MOBILE_WRITING_BATTLE_WIREFRAME_PLANNING = APPROVED
+PREMERGE_ADVERSARIAL_GATE = CURRENT
+IMPLEMENTATION_ENTRY_GATE = NOT_APPROVED
 PLANNING-PLATFORM-01 = APPROVED_WITH_PLAYTEST_TUNING_PENDING
 PLANNING-SCOPE-01 = APPROVED_WITH_SOLO_PRODUCTION_CONDITION
 PLANNING-REVIEW-01 = PASS_WITH_CORRECTIONS_APPLIED
 RUNTIME_VALIDATION = NOT_RUN
+MOBILE_DEVICE_VALIDATION = NOT_RUN
+ACCESSIBILITY_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
 IMPLEMENTATION = NOT_STARTED
 ```
 
-Mobile Wireframe과 Codex 구현은 `FULL-GAME-STRUCTURE-01`과 후속 진입 Gate가 완료되기 전까지 차단한다.
+Draft PR #36은 `GM-PREMERGE-ADVERSARIAL-GATE-01` 통과와 사용자 명시 병합 승인 전까지 병합하지 않는다. Mobile Wireframe의 상세 수치와 Codex 구현은 별도 구현 진입 Gate가 완료되기 전까지 차단한다.
