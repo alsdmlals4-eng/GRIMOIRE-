@@ -12,6 +12,8 @@ work_mode: PLAN
 primary_platform: Mobile
 follow_up_platform: PC
 platform_decision: GM-PLATFORM-02
+mobile_orientation_decision: GM-MOBILE-ORIENTATION-01
+mobile_orientation: LANDSCAPE_FIXED
 planning: APPROVED
 art_style_01: APPROVED_A_MODIFIED_LOCKED
 art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
@@ -35,6 +37,8 @@ main_sync: SYNCED_TO_MAIN
 ```
 
 최신 플랫폼 승인: `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`.
+최신 화면 방향 승인: `docs/planning/MOBILE_ORIENTATION_01_APPROVAL_2026-08-02.md`.
+현재 총기획 감사: `docs/planning/TOTAL_PLANNING_ADVERSARIAL_AUDIT_2026-08-02.md`.
 현재 적대적 감사: `docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md`.
 Main Sync 영수증: `docs/planning/sync/GR-SYNC-20260802-07-MAIN.md`.
 
@@ -95,8 +99,25 @@ next_reconciliation_gate: MOBILE-FOUNDATION-01
 - 기존 `GM-PLATFORM-01 / PC 우선·Mobile 후속`은 역사로 보존하고 활성 방향에서는 대체한다.
 - Mobile에서는 Touch·Stylus 직접 작성과 화면 내 명시적 Undo·부분 삭제·전체 초기화·취소·후보 확정·`[구현]`을 기본 입력 후보로 검증한다.
 - Mouse/Pen/Keyboard는 후속 PC 적응 계약이다.
-- Android/iOS, Store, Landscape/Portrait, 최소 기기, 성능·메모리·배터리 수치, 인식 처리 방식은 미확정이다.
+- Mobile Vertical Slice 화면 방향은 `GM-MOBILE-ORIENTATION-01 / Landscape 고정`이다. Android/iOS, Store, 최소 기기, 성능·메모리·배터리 수치, 인식 처리 방식은 미확정이다.
 - 기존 16:9·1280×720·1920×1080·Ultrawide 자료는 승인 Asset/PC 참고 규격이며 Mobile 적합성을 자동 증명하지 않는다.
+
+## 5A. GM-MOBILE-ORIENTATION-01
+
+```yaml
+status: USER_APPROVED_ACTIVE
+orientation: LANDSCAPE_FIXED
+portrait_gameplay: NOT_SUPPORTED_IN_VERTICAL_SLICE
+runtime_rotation: DISABLED_IN_VERTICAL_SLICE
+authority: docs/planning/MOBILE_ORIENTATION_01_APPROVAL_2026-08-02.md
+```
+
+- Main·Field·Dialogue·Schedule·Writing·Battle·Result·Grimoire·Settings는 Landscape 고정.
+- 기존 16:9 자료는 Landscape 파생 기준으로 보존하지만 Mobile 실기기 적합성 증거로 자동 승격하지 않음.
+- Portrait Gameplay·화면별 혼합 방향·자동 회전은 Vertical Slice 범위에서 제외.
+- Landscape 고정의 진입 마찰은 Resume Anchor·자동 저장·이어하기로 보완.
+- 지원 Aspect Ratio·Safe Area·Touch target·Canvas·Text scale은 `MOBILE-FOUNDATION-01`에서 시험값과 검증 계획으로 작성.
+- Portrait 지원은 별도 Decision과 제작·QA 근거 없이는 추가하지 않음.
 
 ## 6. 마도서·입력 의미
 
@@ -218,6 +239,7 @@ generated_views: CURRENT
 | Art Bible | `APPROVED_DUAL_STANDARD_ART_BIBLE` |
 | Battle Rules | `APPROVED_SITUATION_RESOLUTION_RULES` |
 | Asset Spec | `APPROVED_SPEC` |
+| Mobile Orientation | `APPROVED_LANDSCAPE_FIXED` |
 | Mobile Foundation | `CURRENT_RECONCILIATION_GATE` |
 | Boss Phase | `QUEUED_REVIEW_AFTER_MOBILE_FOUNDATION` |
 | Grimoire/Main 파생 화면 | `QUEUED_REVIEW_AFTER_MOBILE_FOUNDATION` |
@@ -253,9 +275,9 @@ main_sync: SYNCED_TO_MAIN
 ## 14. 다음 작업
 
 ```text
-적대적 총기획 감사
-→ 중요 기획 충돌 Grill Me
-→ 승인 정본·Sheet 즉시 동기화
+GM-MOBILE-ORIENTATION-01 승인·동기화
+→ Resume Anchor·Save Ownership
+→ Landscape Safe Area·Aspect·Touch 정보 위계
 → MOBILE-FOUNDATION-01
 → BOSS-PHASE-01·GRIMOIRE-SCREEN-01 영향 재검토
 → AUDIO-DIRECTION-01
@@ -267,7 +289,7 @@ main_sync: SYNCED_TO_MAIN
 
 ## 15. PLAYTEST_TUNING_REQUIRED / NOT_RUN
 
-- Mobile OS·Store·방향·최소 기기.
+- Mobile OS·Store·지원 Aspect Ratio·최소 기기.
 - Touch target·Canvas 크기·gesture·인식 알고리즘·허용치·Latency.
 - 적 공격 간격·피해량·플레이어 HP·마나.
 - 불안정도 변화량.
