@@ -11,6 +11,9 @@ follow_up_platform: PC
 platform_decision: GM-PLATFORM-02
 mobile_orientation_decision: GM-MOBILE-ORIENTATION-01
 mobile_orientation: LANDSCAPE_FIXED
+mobile_device_class_decision: GM-MOBILE-DEVICE-CLASS-01
+smartphone_quality_gate: REQUIRED
+tablet_scope: BEST_EFFORT_SMOKE_ONLY
 portrait_gameplay: NOT_SUPPORTED_IN_VERTICAL_SLICE
 runtime_rotation: DISABLED_IN_VERTICAL_SLICE
 engine_baseline_candidate: Godot 4.7.1 stable
@@ -23,6 +26,10 @@ art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
 battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
 asset_spec_01: APPROVED_SPEC
 next_product_gate: MOBILE-FOUNDATION-01
+mobile_foundation_status: IN_PROGRESS
+resume_save: CONTRACT_DEFINED
+landscape_ux: CONTRACT_DEFINED_WITH_TEST_VALUES
+smartphone_required_aspect_matrix: DEFINED
 queued_design_gates: BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01
 implementation: NOT_STARTED
 codex: BLOCKED
@@ -31,11 +38,11 @@ mobile_device_validation: NOT_RUN
 performance_validation: NOT_RUN
 accessibility_validation: NOT_RUN
 human_validation: NOT_RUN
-orientation_authority_head: ebc3f8f38d4346cc8b5751f5981e3c5997d0b41b
-orientation_main_commit: 0bb1f4e2ee48f426579228e716abdba7edcbfc9c
-orientation_pr: 29
-orientation_sheet_sync: SYNCED_TO_MAIN
-orientation_sheet_readback: PASS
+decision_main_commit: 2aec51244ea96fc4d4c9088fcb133f41862faa1d
+decision_pr: 31
+sheet_sync: SYNCED_TO_MAIN
+sheet_readback: PASS
+main_sync_receipt: docs/planning/sync/GR-SYNC-20260802-08-MAIN.md
 ```
 
 제품용 `project.godot`, Scene, Script, Resource, 게임 데이터, 런타임 Asset은 없다.
@@ -47,10 +54,13 @@ AGENTS.md
 → START_HERE.md
 → 이 문서
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md
-→ docs/planning/MOBILE_ORIENTATION_01_APPROVAL_2026-08-02.md
-→ docs/planning/TOTAL_PLANNING_ADVERSARIAL_AUDIT_2026-08-02.md
-→ docs/planning/sync/GM-MOBILE-ORIENTATION-01-MAIN.md
+→ docs/planning/CURRENT_CONFIRMED_DECISIONS_ADDENDUM_MOBILE_FOUNDATION_2026-08-02.md
+→ docs/planning/MOBILE_SESSION_RESUME_SAVE_01_2026-08-02.md
+→ docs/planning/MOBILE_LANDSCAPE_UX_FOUNDATION_01_2026-08-02.md
+→ docs/planning/MOBILE_LANDSCAPE_UX_FOUNDATION_01_DEVICE_CLASS_ADDENDUM_2026-08-02.md
+→ docs/planning/MOBILE_DEVICE_CLASS_01_APPROVAL_2026-08-02.md
+→ docs/planning/TOTAL_PLANNING_ADVERSARIAL_AUDIT_ADDENDUM_2026-08-02A.md
+→ docs/planning/sync/GR-SYNC-20260802-08-MAIN.md
 → 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
 → docs/UX_UI_SYSTEM.md
@@ -92,7 +102,7 @@ AGENTS.md
 - 메인 동반 정령 초기 형상 1개, 수호형 보조 소환수 1체.
 - 마도서는 과정·결과·부작용·발견을 기록하며 자동 주문 Stock이 아니다.
 
-## 승인된 시각·Asset 권위
+## 승인된 시각·전투 권위
 
 - Art Style: `ART-STYLE-01 / APPROVED_A_MODIFIED_LOCKED`.
 - Art Bible: `ART-BIBLE-01 / APPROVED_DUAL_STANDARD_ART_BIBLE`.
@@ -114,94 +124,123 @@ Landscape 고정 3/4 Field
 
 - Soft Storybook 배경 + Anime Cel 캐릭터.
 - Navy/Gold UI + 고대비 Blue Glyph.
-- 고정 주인공 1명, 전투 상시 초상 1개.
-- 동반 정령·수호 소환수 상태 배지.
-- 우측 Writing Panel 축소→확장.
+- 우측 Writing Panel 축소 Rail→확장 Panel.
 - Grimoire 파생 화면을 Main보다 먼저 설계.
-- 기존 16:9 자료는 Landscape 파생 기준이지만 Mobile 적합성은 미검증이다.
+- 기존 16:9 자료는 파생 기준이지만 Mobile 적합성 증거가 아니다.
 
-## 전투 계약
+전투:
 
-```text
-상단·중앙 = 강한 적 1개체·환경 목표·공격 예고
-좌측 하단 = 주인공 초상·HP·마나·상태
-좌측 보조 = 동반 정령·수호 상태 배지
-우측 = 직접 글자·마법진 작성
-```
-
-- 일반 적은 단일 페이즈.
-- 적은 일정 시간마다 공격.
-- 작성 후 `[구현]`과 마나 검증을 거쳐 즉시 시전.
+- 강한 적 1개체, 일반 적 단일 페이즈.
+- 다음 공격 예고·타이머→작성→`[구현]`→마나 검증·즉시 시전.
 - 판단·작성 중 타이머 진행, 시스템 해결 중 정지.
-- 선택형 작성 감속 초기 후보 `0.5×`는 `TEST_VALUE`.
-- 기본 적은 HP 대신 `불안정도`를 사용하며 0이면 진정·해결.
+- 작성 감속 `0.5×`는 `TEST_VALUE`, 보상 불이익 없음.
+- 적은 HP 대신 `불안정도`, 0이면 진정·해결.
 - 플레이어 HP 0 또는 치명적 환경 붕괴가 패배.
-- 환경 보존도·부작용·남은 HP·해결 방식은 결과 품질을 만든다.
-- 수호 소환수는 다음 공격 피해를 완화하지만 타이머·작성·판단을 대행하지 않는다.
+- 환경 보존도·부작용·남은 HP·해결 방식이 결과 품질을 만든다.
 
-## GM-PLATFORM-02
+## GM-MOBILE-SESSION-RESUME-SAVE-01
 
-- 1차 플랫폼: `Mobile`.
-- 후속 플랫폼: `PC`.
-- 기존 `GM-PLATFORM-01 / PC 우선·Mobile 후속`은 `SUPERSEDED`.
-- Touch·Stylus 직접 작성과 화면 내 Undo·부분 삭제·초기화·취소·확정·구현을 우선한다.
-- Mouse/Pen/Keyboard는 후속 PC 적응 자료다.
-
-## GM-MOBILE-ORIENTATION-01
-
-- Mobile Vertical Slice 전체 `Landscape 고정`.
-- Main·Field·Dialogue·Schedule·Writing·Battle·Result·Grimoire·Settings에 적용.
-- Portrait Gameplay·혼합 방향·Runtime 자동 회전 제외.
-- 직접 작성 Canvas와 적 위험·상태·작성 정보 동시 판독을 우선.
-- 기존 16:9 자료는 파생 기준으로 보존하되 실기기 검증을 대체하지 않음.
-- 지원 Aspect·Safe Area·Touch target·Canvas·Text scale은 Mobile Foundation에서 시험값으로 작성.
-- Portrait 지원은 별도 Decision 없이는 추가하지 않음.
-
-## Resume·Save 권장 기본안
-
-전체 콘텐츠와 46분 목표는 유지하면서 핵심 경계에 Resume Anchor를 둔다.
+Resume Anchor:
 
 ```text
-첫 수업·교내 연습
-→ Anchor A
-→ 자유일정 A·실기시험
-→ Anchor B
-→ 자유일정 B·학교축제
-→ Anchor C
-→ 자유일정 C·현장 전투
-→ Anchor D
-→ 현장 환경·귀환·마도서 기록
+첫 수업·교내 연습 → A
+자유일정 A·실기시험 → B
+자유일정 B·학교축제 → C
+자유일정 C·현장 전투 → D
+현장 환경·귀환·마도서 기록 → Slice Complete
 ```
 
-상태 소유권 후보:
+상태:
 
 ```text
 Draft → Recognizing → Candidate → Committed → Resolved → Recorded
 ```
 
-- Commit·Reward·Result·Record는 각각 한 번만 확정.
-- interrupted stroke·stale recognition은 안전하게 폐기하거나 복구 이유 표시.
-- 이어하기는 마지막 완료 Anchor 또는 복구 가능한 현재 단계에서 시작.
+- Transient Buffer·Session Snapshot·Persistent Transaction·Progress Save 분리.
+- 중복 Commit·비용·피해·보상·Result·Record 0.
+- 완료 획 보존, 미완성 획·stale Recognition 안전 폐기.
+- 손상 Save는 직전 안전 Anchor로 복구하고 원인 표시.
+
+## GM-MOBILE-LANDSCAPE-UX-FOUNDATION-01
+
+Safe Root 5구역:
+
+1. Objective / Threat / Timer.
+2. Player Status.
+3. World / Enemy / Situation Focus.
+4. Writing Rail / Panel.
+5. Confirm / Recovery / System Feedback.
+
+보존 우선:
+
+- 목표·치명 위험·Timer.
+- HP·마나·불안정도.
+- 작성 획·후보·오류 원인.
+- Undo·취소·확정·`[구현]`.
+- 저장·복구 상태.
+
+시험값:
+
+- Android 공식 하한 `48dp`, Apple 주요 Control `44pt`.
+- 프로젝트 일반 `48 UI unit`, 핵심 `56 UI unit`.
+- Rail `12~16%`, Full Writing `36~44%`.
+- UI/Text Scale `100 / 115 / 130%`.
+- 작성 감속 `1.0× / 0.5×`.
+- Canvas 최소 크기·최종 허용치·Latency 미확정.
+
+## GM-MOBILE-DEVICE-CLASS-01
+
+사용자 승인 A안:
+
+```text
+Smartphone Landscape = 필수 지원·정식 품질 Gate
+Tablet 4:3·3:2 = Best-effort Smoke Test
+Tablet 전용 Layout·동일 품질·정식 지원 = 후속 Decision
+```
+
+Smartphone 필수 Matrix:
+
+- `16:9`.
+- `18:9`.
+- `19.5:9`.
+- `20:9`.
+- 좌측 Cutout.
+- 우측 Cutout.
+- 하단 System indicator·gesture 영역.
+
+Tablet Smoke:
+
+- 실행·Landscape 고정.
+- Safe Area·핵심 정보 판독.
+- 기본 Touch·저장 중단복귀.
+- 공통 저장 손상·중복 Commit·핵심 입력 불능은 Smartphone Gate 문제로 승격.
+
+제외:
+
+- Tablet 전용 4:3·3:2 Layout.
+- 동일 품질·Store 정식 지원.
+- Foldable·Multi-window·Portrait Tablet.
+- Tablet 전용 Stylus 최적화.
 
 ## 완료된 작업
 
 - Base v9.4 운영 계약 채택.
-- GitHub·27개 Sheet 탭 감사.
 - 프로젝트 코어·Vertical Slice·Art Style·Art Bible·Battle Rules·Asset Spec 승인.
 - `GM-PLATFORM-02 / Mobile 우선·PC 후속` main·Sheet 동기화.
 - `GM-MOBILE-ORIENTATION-01 / Landscape 고정` 승인.
-- 방향 미확정과 가로형·16:9 활성 소비자의 P0 충돌 해결.
-- PR #29 main `0bb1f4e...` 병합.
-- Sheet `00·02·04·10·60·99` 관련 범위 main SHA Readback PASS.
-- PR #29 Generator·Unit·JSON·Registry·Adversarial PASS.
+- `GM-MOBILE-SESSION-RESUME-SAVE-01` 계약 정의.
+- `GM-MOBILE-LANDSCAPE-UX-FOUNDATION-01` 시험값 포함 계약 정의.
+- `GM-MOBILE-DEVICE-CLASS-01 / Option A` 사용자 승인.
+- PR #31 main `2aec512...` 병합.
+- Sheet Main Readback PASS.
+- Final Head Generator·Unit·JSON·Registry·Adversarial PASS.
 
 ## 현재 작업
 
 ```text
-Resume Anchor·Save Ownership 명세
-→ Landscape Aspect·Safe Area·Touch 정보 위계
-→ 작은 화면 Writing/Battle 레이아웃 후보
-→ MOBILE-FOUNDATION-01 통합 계약
+Smartphone Landscape Writing/Battle Wireframe 계약
+→ Android/iOS·Store·최소 기기·성능 Decision Packet
+→ MOBILE-FOUNDATION-01 통합 승인
 ```
 
 세부 수치와 데이터는 `RECOMMENDED_DEFAULT / TEST_VALUE`로 작성한다. 핵심 방향·범위 충돌만 Grill Me로 사용자에게 질문한다.
@@ -218,22 +257,14 @@ MOBILE-FOUNDATION-01 승인
 → Validation-First 구현
 ```
 
-## MOBILE-FOUNDATION-01 범위
-
-- Resume Anchor·Save Ownership.
-- Landscape 지원 Aspect·Safe Area·Notch·System gesture.
-- Touch·Stylus 입력·복구·확정 상태 계약.
-- 작은 화면 Battle/Writing 정보 위계와 가림 방지.
-- App pause/resume·background/foreground·interrupted stroke·stale request 방어.
-- Device·Memory·Texture·load·frame pacing·battery·thermal 측정 계획.
-- 후속 PC 입력 적응 원칙.
-
 ## 미검증
 
-- Android/iOS·Store·지원 Aspect·최소 기기.
-- Touch target·Canvas·Text scale·인식 알고리즘·허용치·지연.
+- Smartphone Runtime·실기기·Aspect·Cutout·Touch.
+- Tablet Smoke.
+- Android/iOS·Store·최소 기기.
+- Touch target·Canvas·Text scale·인식 알고리즘·허용치·지연의 최종값.
+- Frame rate·Memory·Load·Battery·Thermal.
 - 적 공격 간격·피해량·HP·마나·불안정도 변화량·수호 완화율.
-- 환경 결과 임계값.
-- Godot Runtime·Mobile device·PC 적응·Performance·Accessibility·Human.
+- Accessibility·Human playtest·PC 적응.
 
-제품 구현은 기획 완료 Gate와 사용자 승인 전까지 시작하지 않는다.
+제품 구현은 `MOBILE-FOUNDATION-01` 통합 승인과 구현 계획 전까지 시작하지 않는다.
