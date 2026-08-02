@@ -25,7 +25,12 @@ class BaseV94AdoptionTests(unittest.TestCase):
             data["base_release"]["registry_sha256"],
             "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
         )
-        self.assertEqual(data["gdd_sheet"]["sync_status"], "SYNCED_TO_WORKING_BRANCH")
+        self.assertEqual(data["gdd_sheet"]["sync_status"], "SYNCED_TO_MAIN")
+        self.assertEqual(data["gdd_sheet"]["main_sync"], "SYNCED_TO_MAIN")
+        self.assertEqual(
+            data["gdd_sheet"]["main_commit"],
+            "fe88236946a87362a43aafe598348b84c42a2243",
+        )
         self.assertEqual(data["gdd_sheet"]["sheet_readback"], "PASS")
         self.assertEqual(data["project"]["primary_platform"], "Mobile")
         self.assertEqual(data["project"]["follow_up_platform"], "PC")
@@ -82,7 +87,7 @@ class BaseV94AdoptionTests(unittest.TestCase):
             "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
             "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
             "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
-            "docs/planning/sync/GR-SYNC-20260802-07-WORKING.md",
+            "docs/planning/sync/GR-SYNC-20260802-07-MAIN.md",
             "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
             "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
             "docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md",
