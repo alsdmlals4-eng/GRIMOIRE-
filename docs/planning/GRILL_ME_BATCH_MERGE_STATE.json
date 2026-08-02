@@ -46,10 +46,14 @@
     "main_finalization_sync_id": "GR-SYNC-20260802-20"
   },
   "last_complete_flush": {
-    "status": "DECISION_MERGED_FINALIZATION_IN_PROGRESS",
+    "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T20:59:00+09:00",
     "decision_merge_pull_request": 43,
     "decision_merge_commit": "9f7cc7ca803b518b7dbe6e7471797e34fec02350",
+    "finalization_pull_request": 45,
+    "finalization_merge_commit": "ef74bff304ba5d898b37c547e70218e347989eef",
+    "readback_finalization": "CURRENT_PR_CONTAINING_THIS_STATE",
+    "final_main_commit_resolution": "EXACT_READBACK_FINALIZATION_MERGE_SHA_RECORDED_IN_GOOGLE_SHEET",
     "pre_merge_gate": "PASS_P0_0_P1_0",
     "approved_decision_ids": [
       "GM-IMPLEMENTATION-ENTRY-01"
@@ -57,7 +61,7 @@
     "approved_decision_count": 1,
     "working_sync_id": "GR-SYNC-20260802-21",
     "main_finalization_sync_id": "GR-SYNC-20260802-22",
-    "sheet_state": "PENDING_EXACT_FINAL_MAIN_SHA",
+    "sheet_state": "SYNCED_TO_MAIN_AFTER_FINALIZATION_MERGE_AND_READBACK",
     "counter_reset": true
   },
   "current_work": {
@@ -66,7 +70,10 @@
     "approved_option": "A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK",
     "decision_merge_pull_request": 43,
     "decision_merge_commit": "9f7cc7ca803b518b7dbe6e7471797e34fec02350",
+    "finalization_pull_request": 45,
+    "finalization_merge_commit": "ef74bff304ba5d898b37c547e70218e347989eef",
     "main_finalization_sync_id": "GR-SYNC-20260802-22",
+    "sheet_readback": "PASS",
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED",
@@ -82,8 +89,7 @@
     "merge_blocking_p0": 0,
     "merge_blocking_p1": 0,
     "p1_open_for_execution": 3,
-    "sheet_readback": "PENDING_AFTER_FINALIZATION_MERGE",
-    "next_work": "Finalize main/Sheet sync, directly reconcile cold-start core docs, verify Godot toolchain, revalidate the plan on Base v9.4.3 main, then run GM-FOUNDATION-POC-EXECUTION-READINESS-01"
+    "next_work": "Directly reconcile cold-start core docs, verify Godot toolchain, revalidate the plan on Base v9.4.3 main, then run GM-FOUNDATION-POC-EXECUTION-READINESS-01"
   },
   "protected_boundaries": {
     "execution_profile": "PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY",
