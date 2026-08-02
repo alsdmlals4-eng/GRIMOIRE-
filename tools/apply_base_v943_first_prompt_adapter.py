@@ -29,3 +29,5 @@ contract["first_prompt_governance"] = {
 }
 data.setdefault("validation", {})["base_v943_first_prompt_adoption"] = "REQUIRED_ON_PULL_REQUEST"
 PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+# workflow trigger: canonical Adapter sync
