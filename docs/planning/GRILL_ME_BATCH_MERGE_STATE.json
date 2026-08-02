@@ -51,7 +51,7 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "NATURAL_CHARGE_STOCK_PERSISTENT_INTEGER_SUMMON_AND_STATE_INTERFACE_SYNC_IN_PROGRESS",
+    "status": "NATURAL_CHARGE_STOCK_PERSISTENT_INTEGER_SUMMON_AND_STATE_INTERFACE_SYNCED_TO_WORKING_BRANCH",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "working_pull_request": 51,
@@ -82,10 +82,7 @@
       }
     ],
     "stock_defaults": {
-      "types": [
-        "FULL_SPELL",
-        "SUB_GLYPH"
-      ],
+      "types": ["FULL_SPELL", "SUB_GLYPH"],
       "shared_capacity": 8,
       "one_glyph_charge_seconds": 10,
       "additional_glyph_seconds": 5,
@@ -127,7 +124,7 @@
     "codex_plan": "ALLOWED",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PENDING_FOR_REVISED_MODEL"
+    "sheet_readback": "PASS"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
