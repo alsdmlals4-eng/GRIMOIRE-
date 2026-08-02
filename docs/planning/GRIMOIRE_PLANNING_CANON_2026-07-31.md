@@ -1,20 +1,29 @@
-# GRIMOIRE 기획 완결 정본 — 2026-07-31
+# GRIMOIRE Vertical Slice 기획 정본 — 2026-07-31 / 2026-08-02 보정
 
 ## 1. 문서 상태
 
 ```yaml
-status: ACTIVE_APPROVED_PLANNING_CANON
-approval_basis: USER_APPROVED_RECOMMENDED_PLAN_2026-07-31
-planning_complete: true
+status: ACTIVE_APPROVED_VERTICAL_SLICE_CANON
+original_approval_basis: USER_APPROVED_RECOMMENDED_PLAN_2026-07-31
+latest_assessment_amendment: GM-MOBILE-WRITING-BATTLE-WIREFRAME-01
+vertical_slice_content_planning_complete: true
+full_game_structure_planning_complete: true
+vertical_slice_representativeness_planning_complete: true
+mobile_ux_flow_planning_complete: true
+mobile_writing_battle_wireframe_planning_complete: true
 benchmark_complete: true
 adversarial_review_complete: true
+implementation_entry_gate: NOT_APPROVED
 runtime_validation: NOT_RUN
+mobile_device_validation: NOT_RUN
+accessibility_validation: NOT_RUN
 human_playtest: NOT_RUN
-codex_status: BLOCKED_BY_ART_AND_TECHNICAL_ENTRY_GATES
-next_product_gate: ART-STYLE-01
+implementation: NOT_STARTED
+codex_status: BLOCKED
+current_full_game_gate: PREMERGE-ADVERSARIAL-01
 ```
 
-이 문서는 2026-07-31 사용자가 승인한 권장안, 벤치마킹 패스, 적대적 검토 보정을 합쳐 Vertical Slice의 실제 콘텐츠·플랫폼·범위 기획을 정본으로 승격한다.
+이 문서는 Vertical Slice의 실제 콘텐츠·플랫폼·범위 정본이다. 전체 게임 구조·대표성·Mobile UX Flow·Writing/Battle 화면 계약은 2026-08-02 승인 문서들이 이 문서의 역사적 상태를 보완하며, 현재 Gate는 `GM-PREMERGE-ADVERSARIAL-GATE-01`이다. 별도 시험은 사용자 결정에 따라 제거됐고, 사전 병합 Gate와 별도 구현 진입 Gate 승인 전에는 병합·Godot 구현을 시작하지 않는다.
 
 ## 2. 승인된 대표 글자 문법
 
@@ -54,7 +63,7 @@ next_product_gate: ART-STYLE-01
 ### 주인공
 
 - 일반 가정 출신 장학생 신입생
-- 외적 목표: 첫 학기 평가와 현장실습을 통과해 장학생 자격을 증명
+- 외적 목표: 첫 학기 누적 평가와 현장실습을 통과해 장학생 자격을 증명
 - 초기 결핍: 마법에는 하나의 정답이 있고 틀리면 자격이 없다고 믿음
 - 강점: 관찰, 원리 이해, 상황 간 공통점 발견
 - 변화: 정답을 복제하는 학생에서 결과를 설명하고 책임지는 설계자로 성장
@@ -63,14 +72,15 @@ next_product_gate: ART-STYLE-01
 
 - 글자의 형태보다 의미·조건·책임을 가르침
 - 정답 조합을 직접 제시하지 않음
-- 수업, 시험 평가, 귀환 기록의 성장 비교 담당
+- 수업 관찰, 축제·일상 응용, 현장실습 결과, 귀환 기록을 함께 비교
+- 별도 시험 점수 대신 활동 포트폴리오와 마도서 복기를 평가
 - 최종 이름은 네이밍 패스에서 확정
 
 ### 핵심 동급생
 
 - 마법사 가문 출신, 정석 글자를 빠르고 정확하게 재현
 - 적대자가 아니라 정석·속도 중심 경쟁자이자 협력자
-- 시험·축제·현장에서 주인공과 서로 다른 접근을 비교
+- 수업·일상 응용·축제·현장에서 주인공과 서로 다른 접근을 비교
 - 갈등은 혈통 우열이 아니라 교육 자원·사전 훈련·실패 허용 폭의 차이로 표현
 - 최종 이름은 네이밍 패스에서 확정
 
@@ -92,16 +102,21 @@ next_product_gate: ART-STYLE-01
 ### 수업 — 불안정한 마력 수로
 
 - 목적: 흐름·집중·분산의 역할 비교
+- 문자 의미와 기본 획을 배우고 가볍게 직접 작성
 - 실패 비용이 낮은 안전한 입력·설계 복구
 - 첫 직접 작성은 시작 후 5분 이내
+- 수업 연습 자체는 성적 경쟁 콘텐츠가 아님
 
-### 시험 — 취약한 부유 수정구 이송
+### 교내 일상 응용 — 취약한 부유 수정구 이송
+
+기존 `실기시험`을 별도 시험이 아닌 교내 일상 응용 또는 수업 후 실습으로 재분류한다.
 
 - 목표: 교차 기류 속 수정구를 안전선으로 이동
 - 제한: 시전 횟수, 충격 한계, 마나
 - 해법 A: 집중을 이용한 정밀·고효율 이송
 - 해법 B: 분산을 이용한 안정·완충 이송
 - 흐름 단독 반복과 동급생 경로 복제는 동일 결과를 보장하지 않음
+- 결과는 비전투 응용 포트폴리오에 기록되며 독립 시험 점수는 없음
 
 ### 축제 — 빛실 장막 복구
 
@@ -111,7 +126,8 @@ next_product_gate: ART-STYLE-01
 | 흐름 + 집중 | SPECTACULAR | 선명한 상징·순간 연출 |
 | 흐름 + 분산 | ELEGANT | 공간 전체의 부드러운 장막 |
 
-세 결과 모두 성공 가능하며 단일 최적해를 두지 않는다.
+- 세 결과 모두 성공 가능하며 단일 최적해를 두지 않는다.
+- 축제 결과는 표현·상황 판단·비전투 응용의 누적 평가 기록이 된다.
 
 ### 현장 전투 — 생태 온실 관개 수로의 폭주 정령
 
@@ -119,6 +135,7 @@ next_product_gate: ART-STYLE-01
 - 집중: 빠른 핵 노출, 높은 반격 위험
 - 분산: 공격 강도 완화, 느리지만 낮은 피해
 - 수호형 보조 소환수가 작성 안전 시간을 제공
+- 처치 속도보다 환경 보존·부작용·남은 피해·해결 방법을 평가
 
 ### 현장 환경 — 관개관 누출
 
@@ -134,31 +151,20 @@ next_product_gate: ART-STYLE-01
 - `CALM`: 입력 복구·집중 안정
 - `PREPARED`: 조건 관찰·결과 예측
 - `CONNECTED`: 관계 반응·다른 관점
+- `FIELD_PRACTICE`: 선택형 전투·환경 실습·현장 기록
 
 계약:
 
-- 정확히 3회
-- 각 슬롯에서 휴식·준비·교류 중 중심 행동 1개
+- Slice에는 자유일정 슬롯 3회를 유지
+- 각 슬롯에서 휴식·준비·교류·개방된 현장실습 중 중심 행동 1개
+- 모든 슬롯에서 네 선택을 전부 제공할 의무는 없음
+- 현장실습은 학교 허가·안전·공간·서사 상태가 맞을 때만 개방
 - 효과는 다음 핵심 세션을 주로 보조
-- 장기 누적 최적 루트 금지
+- 장기 누적 최적 루트와 반복 파밍 금지
 - 필수 정보·유일 해법 독점 금지
 - 모든 선택에 짧은 장면과 동등 규모의 효용 제공
 
-## 6. 직접 작성·PC 입력
-
-### 입력
-
-| 행동 | 기본 입력 | 대체·보조 |
-|---|---|---|
-| 획 작성 | 마우스 왼쪽 드래그 | 펜 태블릿·스타일러스 |
-| 현재 획 취소 | 오른쪽 버튼 또는 Esc | 화면 버튼 |
-| 이전 획 Undo | Ctrl+Z | Undo 버튼 |
-| 전체 지우기 | R 길게 누르기 | 확인형 Clear 버튼 |
-| 후보 이동 | 클릭·휠 | 방향키·Tab |
-| 후보 확정 | 클릭 또는 Enter | 확인 버튼 |
-| 이전 단계 | Esc | 뒤로 버튼 |
-
-Gamepad는 `DEFERRED / NOT_PROMISED`다.
+## 6. 직접 작성·입력
 
 ### 책임 흐름
 
@@ -188,7 +194,7 @@ Gamepad는 `DEFERRED / NOT_PROMISED`다.
 
 정확한 허용 오차·선 보정·감속 비율은 `PLAYTEST_TUNING_REQUIRED`다.
 
-## 7. 마도서 기록
+## 7. 마도서 기록과 누적 평가
 
 마도서는 다음을 저장한다.
 
@@ -202,28 +208,40 @@ Gamepad는 `DEFERRED / NOT_PROMISED`다.
 → 플레이어가 붙인 이름
 ```
 
+누적 평가 증거:
+
+| 증거 | Slice 대표 장면 |
+|---|---|
+| 기초 학습 | 수업·가벼운 작성 연습 |
+| 비전투 응용 | 수정구 이송·축제 장막 복구 |
+| 현장 수행 | 폭주 정령·관개관 누출 |
+| 복기·설명 | 귀환·마도서 기록·교수 피드백 |
+
+- 별도 시험 점수 없음
 - 자동 최적 조합 추천 금지
 - 기록 클릭으로 완성 주문 자동 시전 금지
 - 재사용 시 현재 상황 검증 재실행
 - 귀환 시 `정밀 / 안정 / 표현 / 책임` 성향을 문장으로 요약
+- 실패·부분 성공도 원인과 책임을 설명하면 유효한 학습 기록이 될 수 있음
 
 ## 8. 시간 예산
 
 | 구간 | 목표 | 콘텐츠 상한 |
 |---|---:|---:|
-| 프롤로그·수업·연습 | 9분 | 10분 |
+| 프롤로그·수업·가벼운 작성 연습 | 9분 | 10분 |
 | 자유일정 A | 2분 | 3분 |
-| 실기시험 | 7분 | 8분 |
+| 교내 일상 응용 | 7분 | 8분 |
 | 자유일정 B | 2분 | 3분 |
 | 학교축제 | 7분 | 8분 |
 | 자유일정 C | 2분 | 3분 |
 | 현장실습 | 13분 | 14분 |
-| 귀환·기록 | 4분 | 4분 |
+| 귀환·기록·누적 평가 | 4분 | 4분 |
 | 합계 | 46분 | 53분 |
 
 - 접근성·읽기·재작성 여유: 7분
 - 하드 상한: 60분
 - 53분 초과 시 반복 입력·이동·중복 설명을 먼저 감량
+- 별도 시험 제거는 새 콘텐츠 추가가 아니라 기존 7분 슬롯의 재분류로 처리
 
 ## 9. 제작량 잠금
 
@@ -247,19 +265,19 @@ Gamepad는 `DEFERRED / NOT_PROMISED`다.
 
 ### 금지
 
+- 시험 전용 장소·시험 전용 미니게임
 - 새 학교 지역·다수 축제 부스
 - 적 2종 이상
 - 메인 동반 정령 2~4단계 런타임
 - 보조 소환수 4역할 편성
 - 완성 주문 스톡
-- 별도 미니게임 프레임워크
 - 장문 관계 분기·연애 시스템
 
 ## 10. 벤치마킹 선행 원칙
 
 `GR-BENCHMARK-FIRST-01`을 프로젝트 작업 원칙으로 채택한다.
 
-새 시스템, 핵심 규칙, 콘텐츠 구조, UX 흐름을 설계하거나 의미 있게 변경할 때는 관련 사례를 먼저 벤치마킹한다. 매번 대규모 조사를 반복하지 않고 결정 범위에 맞춰 `QUICK / STANDARD / DEEP` 규모를 선택한다.
+새 시스템, 핵심 규칙, 콘텐츠 구조, UX 흐름을 설계하거나 의미 있게 변경할 때는 관련 사례를 먼저 벤치마킹한다. 결정 범위에 맞춰 `QUICK / STANDARD / DEEP` 규모를 선택한다.
 
 책임 원본:
 
@@ -268,15 +286,21 @@ Gamepad는 `DEFERRED / NOT_PROMISED`다.
 ## 11. 게이트 결과
 
 ```text
-PLANNING-CONTENT-01 = APPROVED
+VERTICAL_SLICE_CONTENT_PLANNING = APPROVED_WITH_ASSESSMENT_AMENDMENT
+FULL_GAME_STRUCTURE_PLANNING = APPROVED
+VERTICAL_SLICE_REPRESENTATIVENESS = APPROVED
+MOBILE_UX_FLOW_PLANNING = APPROVED
+MOBILE_WRITING_BATTLE_WIREFRAME_PLANNING = APPROVED
+PREMERGE_ADVERSARIAL_GATE = CURRENT
+IMPLEMENTATION_ENTRY_GATE = NOT_APPROVED
 PLANNING-PLATFORM-01 = APPROVED_WITH_PLAYTEST_TUNING_PENDING
 PLANNING-SCOPE-01 = APPROVED_WITH_SOLO_PRODUCTION_CONDITION
 PLANNING-REVIEW-01 = PASS_WITH_CORRECTIONS_APPLIED
-PLANNING_COMPLETE = true
-BENCHMARK_COMPLETE = true
-ADVERSARIAL_REVIEW_COMPLETE = true
 RUNTIME_VALIDATION = NOT_RUN
+MOBILE_DEVICE_VALIDATION = NOT_RUN
+ACCESSIBILITY_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
+IMPLEMENTATION = NOT_STARTED
 ```
 
-다음 제품 게이트는 `ART-STYLE-01`이다. Codex와 Godot 구현은 Art Bible, Asset Specification, Audio Direction, 기획·아트 통합검수, 사용자 Codex Plan 승인 뒤에만 진행한다.
+Draft PR #36은 `GM-PREMERGE-ADVERSARIAL-GATE-01` 통과와 사용자 명시 병합 승인 전까지 병합하지 않는다. Mobile Wireframe의 상세 수치와 Codex 구현은 별도 구현 진입 Gate가 완료되기 전까지 차단한다.
