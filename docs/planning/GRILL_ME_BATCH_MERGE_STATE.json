@@ -47,7 +47,7 @@
     "branch": "chatgpt/grimoire-full-game-structure-20260802",
     "draft_pull_request": 36,
     "working_sync_id": "GR-SYNC-20260802-16",
-    "sheet_readback": "PENDING",
+    "sheet_readback": "PASS",
     "final_head_resolution": "CURRENT_BRANCH_CONTAINING_THIS_FILE; exact SHA recorded in Google Sheet",
     "sequence_decision_id": "GM-FULL-GAME-PLANNING-ORDER-01",
     "completed_design_gate": "FULL-GAME-STRUCTURE-01",
