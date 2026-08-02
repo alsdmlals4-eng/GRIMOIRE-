@@ -8,11 +8,12 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 1,
+    "approved_grill_me_since_last_flush": 2,
     "next_merge_at": 10,
     "merge_required": false,
     "pending_decision_ids": [
-      "GM-FULL-GAME-MACRO-LOOP-01"
+      "GM-FULL-GAME-MACRO-LOOP-01",
+      "GM-FULL-GAME-CHAPTER-RHYTHM-01"
     ]
   },
   "counting_rule": {
@@ -57,13 +58,37 @@
     "sequence_status": "USER_APPROVED_ACTIVE_SYNCED_TO_WORKING_BRANCH",
     "current_design_gate": "FULL-GAME-STRUCTURE-01",
     "mobile_foundation_status": "IN_PROGRESS_PAUSED_AT_UPSTREAM_DESIGN_DEPENDENCY",
-    "approved_grill_me_decision": "GM-FULL-GAME-MACRO-LOOP-01",
-    "approved_grill_me_option": "A_ACADEMIC_SPIRAL_WITH_OPTIONAL_FIELD_PRACTICUM",
-    "approved_grill_me_status": "USER_APPROVED_ACTIVE",
-    "approved_at": "2026-08-02T16:03:00+09:00",
-    "current_grill_me_candidate": "GM-FULL-GAME-CHAPTER-RHYTHM-01",
+    "approved_grill_me_decisions": [
+      {
+        "decision_id": "GM-FULL-GAME-MACRO-LOOP-01",
+        "approved_option": "A_ACADEMIC_SPIRAL_WITH_OPTIONAL_FIELD_PRACTICUM",
+        "approved_at": "2026-08-02T16:03:00+09:00"
+      },
+      {
+        "decision_id": "GM-FULL-GAME-CHAPTER-RHYTHM-01",
+        "approved_option": "A_FIXED_FUNCTIONS_VARIABLE_ORDER",
+        "approved_at": "2026-08-02T16:18:00+09:00"
+      }
+    ],
+    "latest_approved_grill_me_decision": "GM-FULL-GAME-CHAPTER-RHYTHM-01",
+    "latest_approved_grill_me_option": "A_FIXED_FUNCTIONS_VARIABLE_ORDER",
+    "current_grill_me_candidate": "GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01",
     "current_grill_me_status": "USER_DECISION_REQUIRED",
-    "next_planning_work": "Resolve Chapter internal rhythm and variation rules",
+    "next_planning_work": "Resolve magic glyph curriculum and combination expansion rules",
+    "chapter_required_functions": [
+      "DISCOVERY_AND_LEARNING",
+      "CHOICE_AND_PREPARATION",
+      "CONTROLLED_APPLICATION",
+      "FIELD_RESPONSIBILITY_CHOICE",
+      "REFLECTION_AND_NEXT_QUESTION"
+    ],
+    "chapter_variation_guardrails": [
+      "NO_IDENTICAL_FULL_SEQUENCE_IN_ADJACENT_CHAPTERS",
+      "MAP_EACH_REQUIRED_FUNCTION_TO_A_SCENE",
+      "FIELD_PRACTICUM_DOES_NOT_REPLACE_MAIN_FIELD_RESPONSIBILITY",
+      "FREE_SCHEDULE_WINDOW_COUNT_REMAINS_TEST_VALUE",
+      "REUSE_EXISTING_LOCATIONS_AND_CONTENT_FORMS_BEFORE_NEW_ASSETS"
+    ],
     "free_schedule_axes": [
       "REST",
       "PREPARATION",
@@ -85,7 +110,10 @@
       "docs/planning/benchmarks/FULL_GAME_CORE_LOOP_STANDARD_BENCHMARK_2026-08-02.md",
       "docs/planning/FULL_GAME_STRUCTURE_01_GRILL_ME_2026-08-02.md",
       "docs/planning/FULL_GAME_MACRO_LOOP_01_APPROVAL_2026-08-02.md",
-      "docs/planning/FULL_GAME_CHAPTER_RHYTHM_01_GRILL_ME_2026-08-02.md"
+      "docs/planning/FULL_GAME_CHAPTER_RHYTHM_01_GRILL_ME_2026-08-02.md",
+      "docs/planning/FULL_GAME_CHAPTER_RHYTHM_01_APPROVAL_2026-08-02.md",
+      "docs/planning/benchmarks/FULL_GAME_MAGIC_GLYPH_CURRICULUM_CANON_RECONCILIATION_2026-08-02.md",
+      "docs/planning/FULL_GAME_MAGIC_GLYPH_CURRICULUM_01_GRILL_ME_2026-08-02.md"
     ]
   },
   "protected_boundaries": {
