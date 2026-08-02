@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ADAPTER_PATH = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
 SKILL_ID = "orchestrating-deepseek-worktrees"
 BASE_RELEASE_COMMIT = "3f2c4a624d302b704c1b5322eb5c9f34ad55abb9"
+BASE_RELEASE_EVIDENCE_COMMIT = "ff117d24d5bdb121314e109a6aa9b4f552e0fdc1"
 BASE_REGISTRY_SHA256 = "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59"
 
 
@@ -30,6 +31,10 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
         adapter = load_adapter()
         self.assertEqual("9.4.1", adapter["base_release"]["version"])
         self.assertEqual(BASE_RELEASE_COMMIT, adapter["base_release"]["release_commit"])
+        self.assertEqual(
+            BASE_RELEASE_EVIDENCE_COMMIT,
+            adapter["base_release"]["release_evidence_commit"],
+        )
         self.assertEqual(BASE_REGISTRY_SHA256, adapter["base_release"]["registry_sha256"])
 
     def test_routes_external_ai_worktree_skill_without_copying_body(self) -> None:
@@ -48,9 +53,12 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
         self.assertEqual("REVIEW_PENDING", override["result_state"])
         self.assertEqual("LOCAL_REVIEW_REQUIRED_BEFORE_CANON", override["integration_policy"])
         self.assertEqual("ADOPTED_FROM_BASE_V9_4_1", override["base_validator_adoption"])
-        self.assertEqual("tools/check_external_ai_worktree_contract.py", policy.get("base_validator_path", override.get("base_validator_path") if "override" in locals() else None))
-        self.assertEqual("base-v9.4.1.lock.json", policy.get("base_release_lock", override.get("base_release_lock") if "override" in locals() else None))
-        self.assertEqual("NOT_RUN", policy.get("actual_external_ai_worktree_execution", override.get("actual_external_ai_worktree_execution") if "override" in locals() else None))
+        self.assertEqual(
+            "tools/check_external_ai_worktree_contract.py",
+            override["base_validator_path"],
+        )
+        self.assertEqual("base-v9.4.1.lock.json", override["base_release_lock"])
+        self.assertEqual("NOT_RUN", override["actual_external_ai_worktree_execution"])
         self.assertEqual("PLANNING_ONLY_PROFILE", adapter["project"]["execution_profile"])
         self.assertEqual("NOT_STARTED", adapter["current_state"]["implementation"])
 
