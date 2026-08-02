@@ -22,12 +22,12 @@
 | 구현 | `NOT_STARTED` |
 | Codex | `BLOCKED` |
 | Base | `v9.4.0` |
-| main 기준선 | `3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03` |
-| 현재 Sync | `GR-SYNC-20260802-07 / SYNCED_TO_WORKING_BRANCH / SHEET_READBACK_PASS` |
-| Authority Commit | `b9279e8c690a8406035675ebbe8a007e9b3f093f` |
-| 검증된 코드 HEAD | `3aa1b7cd2bd49362e20982f63abb8182345e14c0` |
-| Draft PR | `#27 / OPEN / CI·ADVERSARIAL PASS` |
-| Sync Receipt | `docs/planning/sync/GR-SYNC-20260802-07-WORKING.md` |
+| main 기준선 | `fe88236946a87362a43aafe598348b84c42a2243` |
+| 현재 Sync | `GR-SYNC-20260802-07 / SYNCED_TO_MAIN / SHEET_READBACK_PASS` |
+| Authority Commit | `fe88236946a87362a43aafe598348b84c42a2243` |
+| main Merge Commit | `fe88236946a87362a43aafe598348b84c42a2243` |
+| 병합 PR | `#27 / MERGED / CI·ADVERSARIAL PASS` |
+| Sync Receipt | `docs/planning/sync/GR-SYNC-20260802-07-MAIN.md` |
 
 ## 먼저 읽을 문서
 
@@ -36,7 +36,7 @@
 3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
 4. `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`
 5. `docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md`
-6. `docs/planning/sync/GR-SYNC-20260802-07-WORKING.md`
+6. `docs/planning/sync/GR-SYNC-20260802-07-MAIN.md`
 7. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
 8. `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`
 9. `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`
@@ -115,11 +115,11 @@ Android/iOS, Store, 가로/세로, 최소 기기, 성능 수치, 인식 처리 �
 - Finalization: `87a0b54c2847ce4b685879209205957c170cc1cd`.
 - Registry: `693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59`.
 - Adapter: `skills/PROJECT_BASE_ADAPTER.json`.
-- Adapter SHA-256: `5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb`.
+- Adapter SHA-256: `980e2f4e21bd09ac49946f90d095680220013cbab6cdf62421fc01ca1b7be8c5`.
 
 ## 검증된 운영 상태
 
-PR #27 workflow run `30728081535`에서 다음을 통과했다.
+PR #27 final workflow run `30728196595`에서 다음을 통과했다.
 
 - Generator check.
 - Base v9.4·Mobile-first 회귀 단위 테스트.
@@ -131,9 +131,9 @@ Generator의 구형 `PC/ASSET_SPEC_01` 하드코딩도 Adapter 파생형으로 �
 ## 다음 작업
 
 ```text
-사용자 Draft PR #27 검토
-→ 승인 시 main 병합
-→ main·Sheet 재검증 및 SYNCED_TO_MAIN
+적대적 총기획 감사
+→ 핵심 기획 충돌만 Grill Me
+→ 승인된 기획 정본·Sheet 즉시 동기화
 → MOBILE-FOUNDATION-01
 → BOSS-PHASE-01·Grimoire/Main 영향 재검토
 → AUDIO-DIRECTION-01
@@ -147,7 +147,7 @@ Generator의 구형 `PC/ASSET_SPEC_01` 하드코딩도 Adapter 파생형으로 �
 - Sheet 14개 탭 Readback: `PASS`.
 - Generator·Generated Views: `PASS / CURRENT`.
 - Unit·JSON·Registry·Adversarial CI: `PASS`.
-- PR: `DRAFT_OPEN`, main 병합 전.
+- PR #27: `MERGED`; GitHub·Sheet `SYNCED_TO_MAIN`.
 - Godot Runtime·Mobile device·PC adaptation·성능·접근성·사람 플레이: `NOT_RUN`.
 
 ## 현재 금지

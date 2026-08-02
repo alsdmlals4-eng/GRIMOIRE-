@@ -17,14 +17,14 @@
     "version": "9.4.0"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb",
+  "canonical_source_sha256": "980e2f4e21bd09ac49946f90d095680220013cbab6cdf62421fc01ca1b7be8c5",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "AGENTS.md",
     "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
     "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
-    "docs/planning/sync/GR-SYNC-20260802-07-WORKING.md",
+    "docs/planning/sync/GR-SYNC-20260802-07-MAIN.md",
     "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "docs/DEVELOPMENT_GATES.md",
     "docs/DOCUMENTATION_MAP.md",

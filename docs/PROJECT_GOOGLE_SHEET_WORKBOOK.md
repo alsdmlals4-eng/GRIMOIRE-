@@ -14,12 +14,12 @@ platform_decision: GM-PLATFORM-02
 next_product_gate: MOBILE-FOUNDATION-01
 base_release: 9.4.0
 sync_bundle: GR-SYNC-20260802-07
-sync_status: SYNCED_TO_WORKING_BRANCH
-authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
-main_baseline_commit: 3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03
+sync_status: SYNCED_TO_MAIN
+authority_commit: fe88236946a87362a43aafe598348b84c42a2243
+main_baseline_commit: fe88236946a87362a43aafe598348b84c42a2243
 sheet_readback: PASS
-main_sync: PENDING_PR_MERGE
-sync_receipt: docs/planning/sync/GR-SYNC-20260802-07-WORKING.md
+main_sync: SYNCED_TO_MAIN
+sync_receipt: docs/planning/sync/GR-SYNC-20260802-07-MAIN.md
 ```
 
 Sheet는 사용자가 기획을 확인·수정하는 작업면이다. GitHub 승인 책임 원본, 계획 JSON, 실제 구현과 함께 읽으며 Sheet 단독 값으로 승인·구현·검증 완료를 확정하지 않는다.
@@ -78,7 +78,7 @@ human_validation: NOT_RUN
 | 현재 결정 | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` |
 | Mobile 우선 | `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md` |
 | 현재 감사 | `docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md` |
-| Working Sync | `docs/planning/sync/GR-SYNC-20260802-07-WORKING.md` |
+| Main Sync | `docs/planning/sync/GR-SYNC-20260802-07-MAIN.md` |
 | Art Style | `docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md` |
 | Art Bible | `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md` |
 | 전투 승패·진정 | `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md` |
@@ -95,7 +95,7 @@ Decision ID:
 
 사실 교정:
 
-- Base `v9.4.0`과 main `3ecf67c...`.
+- Base `v9.4.0`과 main `fe88236...`.
 - `ASSET-SPEC-01 / APPROVED_SPEC`.
 - 다음 Gate `MOBILE-FOUNDATION-01`.
 - 구현 `NOT_STARTED`, Runtime·Mobile device·Human `NOT_RUN`.
@@ -110,7 +110,7 @@ Readback:
 
 - Hub·결정·입력·UX·Asset·Playtest·출시·Audit·History를 재조회해 `PASS`.
 - `60_UX_UI_접근성` 최초 위치 오류를 발견해 `GR-UX-13`은 Mobile interruption, `GR-UX-14`는 승인 PC 규격 보존+Mobile 재검증으로 교정한 뒤 재조회해 `PASS`.
-- Sheet `04`와 `99`에 Readback와 남은 `NOT_RUN`을 기록.
+- Sheet `04`와 `99`에 main `fe88236...`, Readback와 남은 `NOT_RUN`을 기록.
 
 ## 5. 즉시 동기화 규칙
 
@@ -145,5 +145,5 @@ Decision ID 확정
 - Sheet는 실제 Code·Scene·Resource·Asset·Test를 대체하지 않는다.
 - 잠긴 이미지의 예시 이름·수치·파티 수는 자동 정본이 아니다.
 - Prototype 수치와 사람 검증이 없는 상태는 `PLAYTEST_TUNING_REQUIRED / NOT_RUN`이다.
-- Generated Views·Generator·CI·Runtime·Mobile device·Performance·Accessibility·Human은 아직 `NOT_RUN` 또는 `PENDING`이다.
+- Generated Views·Generator·Unit·JSON·Registry·Adversarial CI는 `PASS`; Runtime·Mobile device·Performance·Accessibility·Human은 `NOT_RUN`이다.
 - 완료 보고에는 Decision ID, GitHub 경로, authority commit, Sheet 범위, Readback, 남은 미검증을 포함한다.

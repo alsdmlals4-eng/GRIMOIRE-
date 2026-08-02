@@ -10,7 +10,7 @@
     "repository": "alsdmlals4-eng/Base"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb",
+  "canonical_source_sha256": "980e2f4e21bd09ac49946f90d095680220013cbab6cdf62421fc01ca1b7be8c5",
   "generated": true,
   "maturity": {
     "level": 2,
@@ -33,9 +33,9 @@
   "schema_version": 2,
   "sheet": {
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "main_sync": "PENDING_PR_MERGE",
+    "main_sync": "SYNCED_TO_MAIN",
     "role": "USER_FACING_GDD_WORKSPACE",
-    "sync_status": "SYNCED_TO_WORKING_BRANCH",
+    "sync_status": "SYNCED_TO_MAIN",
     "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC"
   },
   "validation": {

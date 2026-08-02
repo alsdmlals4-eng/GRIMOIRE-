@@ -21,22 +21,22 @@ next_product_gate: MOBILE-FOUNDATION-01
 queued_design_gates: BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01
 implementation: NOT_STARTED
 codex: BLOCKED
-canon_sync: SYNCED_TO_WORKING_BRANCH
+canon_sync: SYNCED_TO_MAIN
 sync_bundle: GR-SYNC-20260802-07
-authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
-verified_code_head: 3aa1b7cd2bd49362e20982f63abb8182345e14c0
+authority_commit: fe88236946a87362a43aafe598348b84c42a2243
+verified_code_head: fe88236946a87362a43aafe598348b84c42a2243
 sheet_readback: PASS
 generator_check: PASS
 unit_json_registry_checks: PASS
 adversarial_gate: PASS
-sync_receipt: docs/planning/sync/GR-SYNC-20260802-07-WORKING.md
-main_baseline_commit: 3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03
-main_sync: PENDING_USER_REVIEW_AND_MERGE
+sync_receipt: docs/planning/sync/GR-SYNC-20260802-07-MAIN.md
+main_baseline_commit: fe88236946a87362a43aafe598348b84c42a2243
+main_sync: SYNCED_TO_MAIN
 ```
 
 최신 플랫폼 승인: `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`.
 현재 적대적 감사: `docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md`.
-Working Sync 영수증: `docs/planning/sync/GR-SYNC-20260802-07-WORKING.md`.
+Main Sync 영수증: `docs/planning/sync/GR-SYNC-20260802-07-MAIN.md`.
 
 ## 2. 프로젝트 코어
 
@@ -197,7 +197,7 @@ evidence_commit: ef1fba11167e4da0b298123b0c85ebd268191a42
 finalization_commit: 87a0b54c2847ce4b685879209205957c170cc1cd
 registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
 canonical_adapter: skills/PROJECT_BASE_ADAPTER.json
-canonical_adapter_sha256: 5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb
+canonical_adapter_sha256: 980e2f4e21bd09ac49946f90d095680220013cbab6cdf62421fc01ca1b7be8c5
 generator: tools/generate_project_operating_views.py
 generated_views: CURRENT
 ```
@@ -207,7 +207,7 @@ generated_views: CURRENT
 - Base v9.4 PR #26 main merge commit은 `3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03`.
 - `PROJECT_BASE_ADAPTER.json`은 Mobile-first와 Sheet Readback를 반영했다.
 - Generator는 Adapter의 플랫폼·다음 Gate·Asset 상태를 파생하며 3개 생성물은 `CURRENT`다.
-- PR #27 workflow run `30728081535`에서 Generator·Unit·JSON·Registry·Adversarial 검사가 `PASS`했다.
+- PR #27 final workflow run `30728196595`에서 Generator·Unit·JSON·Registry·Adversarial 검사가 `PASS`했다.
 
 ## 12. 현재 Gate
 
@@ -230,9 +230,9 @@ generated_views: CURRENT
 ```yaml
 sync_id: GR-SYNC-20260802-07
 decision_id: GM-PLATFORM-02
-status: SYNCED_TO_WORKING_BRANCH
-authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
-verified_code_head: 3aa1b7cd2bd49362e20982f63abb8182345e14c0
+status: SYNCED_TO_MAIN
+authority_commit: fe88236946a87362a43aafe598348b84c42a2243
+verified_code_head: fe88236946a87362a43aafe598348b84c42a2243
 sheet_tabs_updated: 14
 sheet_readback: PASS
 ux_location_correction: PASS
@@ -240,22 +240,22 @@ generator_check: PASS
 unit_json_registry_checks: PASS
 adversarial_gate: PASS
 pull_request: 27
-pr_state: DRAFT_OPEN
-main_sync: PENDING_USER_REVIEW_AND_MERGE
+pr_state: MERGED
+main_sync: SYNCED_TO_MAIN
 ```
 
 - Sheet `00·01·02·04·05·10·15·20·30·60·70·80·90·99` 반영·재조회 완료.
 - `GR-UX-13`은 Mobile interruption 계약, `GR-UX-14`는 승인 PC 규격 보존+Mobile 재검증으로 분리.
 - Generator의 구형 PC·Asset Spec Gate 하드코딩을 제거하고 회귀 테스트를 추가했다.
 - Issue #9를 Mobile-first 검증 범위로 갱신하고 Issue #16을 완료 처리했다.
-- Draft PR #27은 검증을 통과했지만 사용자 검토·병합 전이다.
+- PR #27은 사용자 승인 후 main `fe88236...`로 병합됐다.
 
 ## 14. 다음 작업
 
 ```text
-사용자 Draft PR #27 검토
-→ 승인 시 main 병합
-→ main·Sheet 재검증 및 SYNCED_TO_MAIN
+적대적 총기획 감사
+→ 중요 기획 충돌 Grill Me
+→ 승인 정본·Sheet 즉시 동기화
 → MOBILE-FOUNDATION-01
 → BOSS-PHASE-01·GRIMOIRE-SCREEN-01 영향 재검토
 → AUDIO-DIRECTION-01

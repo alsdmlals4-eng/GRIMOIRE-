@@ -36,7 +36,7 @@
     "current_confirmed_decisions": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "current_platform_decision": "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
     "current_project_audit": "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
-    "current_sync_receipt": "docs/planning/sync/GR-SYNC-20260802-07-WORKING.md",
+    "current_sync_receipt": "docs/planning/sync/GR-SYNC-20260802-07-MAIN.md",
     "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
@@ -47,12 +47,12 @@
   "gdd_sheet": {
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "last_full_audit": "2026-08-02",
-    "main_sync": "PENDING_PR_MERGE",
+    "main_sync": "SYNCED_TO_MAIN",
     "role": "USER_FACING_GDD_WORKSPACE",
     "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
     "sync_bundle": "GR-SYNC-20260802-07",
-    "sync_status": "SYNCED_TO_WORKING_BRANCH",
-    "authority_commit": "b9279e8c690a8406035675ebbe8a007e9b3f093f",
+    "sync_status": "SYNCED_TO_MAIN",
+    "authority_commit": "fe88236946a87362a43aafe598348b84c42a2243",
     "sheet_readback": "PASS",
     "readback_tabs": [
       "00_프로젝트_허브",
@@ -70,7 +70,9 @@
       "90_본제작_출시_사업",
       "99_변경이력"
     ],
-    "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC"
+    "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC",
+    "main_commit": "fe88236946a87362a43aafe598348b84c42a2243",
+    "merged_pr": 27
   },
   "generated_outputs": {
     "compatibility_views": [
@@ -113,7 +115,7 @@
   },
   "protected_baseline": {
     "authority_ref": "refs/remotes/origin/main",
-    "commit": "3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03",
+    "commit": "fe88236946a87362a43aafe598348b84c42a2243",
     "main_sync": "SYNCED_TO_MAIN"
   },
   "protected_decisions": [
