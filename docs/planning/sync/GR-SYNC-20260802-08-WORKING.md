@@ -78,12 +78,16 @@ Readback PASS:
 - `GR-TPA-05` 7~10회 작성 피로.
 - Smartphone Aspect·Cutout·Touch 실기기 검증.
 
-## 5. 병합 경계
+## 5. 다음 작업
+
+```text
+Smartphone Landscape Writing/Battle Wireframe 계약
+→ Android/iOS·Store·최소 기기·성능 Decision Packet
+→ MOBILE-FOUNDATION-01 통합 승인
+```
+
+## 6. 병합 경계
 
 이 Receipt는 working branch와 Sheet가 같은 Decision ID와 상태로 동기화됐음을 뜻한다.
 
-PR 병합 전:
-
-- Final Head CI·Adversarial gate를 통과한다.
-- `SYNCED_TO_MAIN`으로 승격하지 않는다.
-- 제품 구현·Godot 파일·Asset 제작을 시작하지 않는다.
+PR 병합 전 Final Head CI·Adversarial gate를 통과한다. `SYNCED_TO_MAIN` 승격과 cold-start 전파는 병합 후 별도 main-sync 단계에서 수행한다. 제품 구현·Godot 파일·Asset 제작은 시작하지 않는다.
