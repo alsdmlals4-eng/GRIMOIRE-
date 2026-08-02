@@ -15,7 +15,7 @@
 | main 기준 | `eaf05c24b90d233964d093b0e772e5e94b505f36` |
 | 마지막 main Sync | `GR-SYNC-20260802-22 / SHEET_READBACK_PASS` |
 | 현재 Working Sync | `GR-SYNC-20260802-23` |
-| 현재 Draft PR | `#47 / core system alignment` |
+| 현재 PR | `#47 / OPEN_READY / MERGE_NOT_AUTHORIZED` |
 | 현재 Decision | `GM-CORE-SYSTEM-ALIGNMENT-01` |
 | 승인안 | `A_CORE_FUN_FIRST_TAXONOMY_WITH_STOCK_AND_SUMMON_FATIGUE_RELIEF_GUARDS` |
 | Grill Batch | `1/10 / pending 1` |
@@ -31,12 +31,13 @@
 2. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_COLD_START_OVERRIDE_2026-08-02.md`
 3. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_APPROVAL_2026-08-02.md`
 4. `docs/planning/GRIMOIRE_CORE_SYSTEM_ALIGNMENT_AUDIT_2026-08-02.md`
-5. `docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md`
-6. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-7. `docs/planning/sync/GR-SYNC-20260802-23-WORKING.md`
-8. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
-9. 질문 주제의 세부 승인 책임 원본
-10. 과거 `ACTIVE_CONTEXT`, `DEVELOPMENT_GATES`, `DESIGN_DOCUMENT_REGISTRY`는 새 Override와 충돌하지 않는 범위에서만 사용
+5. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_SUMMON_CLARIFICATION_ADVERSARIAL_REVIEW_2026-08-02.md`
+6. `docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md`
+7. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
+8. `docs/planning/sync/GR-SYNC-20260802-23-WORKING.md`
+9. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+10. 질문 주제의 세부 승인 책임 원본
+11. 과거 `ACTIVE_CONTEXT`, `DEVELOPMENT_GATES`, `DESIGN_DOCUMENT_REGISTRY`는 새 Override와 충돌하지 않는 범위에서만 사용
 
 ## 플레이어 약속
 
@@ -196,8 +197,7 @@ Execution Readiness PASS 뒤 허용 후보:
 ## 현재 작업 순서
 
 ```text
-GM-CORE-SYSTEM-ALIGNMENT-01 GitHub·Sheet 동기화
-→ Draft PR #47 최종 HEAD CI·적대 Gate·리뷰 검증
+PR #47 최종 HEAD CI·적대 Gate·리뷰·Sheet Readback
 → 사용자 명시 병합 승인
 → main·Sheet Readback 및 counter 최종화
 → Cold-start Override를 원본 문서에 직접 흡수
@@ -218,6 +218,7 @@ CODE_EXECUTION = BLOCKED
 STOCK_DETAILED_RULES = DESIGN_REQUIRED
 SUMMON_DETAILED_RULES = DESIGN_REQUIRED
 SUMMON_PERIODIC_SUPPORT = APPROVED_CONCEPT
+PR_47_MERGE = NOT_AUTHORIZED
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
 PERFORMANCE_VALIDATION = NOT_RUN
