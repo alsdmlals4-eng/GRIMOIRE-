@@ -1,4 +1,4 @@
-# GR-SYNC-20260802-25 — Stock·Summon 상세 기본값 및 잔여 기획 감사
+# GR-SYNC-20260802-25 — 자연충전 Stock·정수 상주 소환수·State Interface
 
 ## 상태
 
@@ -8,153 +8,171 @@ status: SYNCED_TO_WORKING_BRANCH
 decision_ids:
   - GM-STOCK-SYSTEM-01
   - GM-SUMMON-SYSTEM-01
-approved_at: 2026-08-02T22:36:00+09:00
-approval_mode: USER_DELEGATED_RECOMMENDED_OPTION
+  - GM-STOCK-SUMMON-STATE-INTERFACE-01
+revised_at: 2026-08-02T23:14:00+09:00
+approval_mode: USER_DIRECTED_REVISION_AND_DELEGATED_RECOMMENDED_CONTINUATION
 baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
 working_branch: agent/grimoire-stock-summon-detail-audit
-head: RESOLVE_FROM_PR_HEAD
-grill_counter: 2_of_10
-pending_decisions: 2
-sheet_readback: PASS
+pull_request: 51
+head: RESOLVE_FROM_FINAL_PR_HEAD
+grill_counter: 3_of_10
+pending_decisions: 3
+sheet_readback: PENDING_FOR_REVISED_MODEL
 implementation: NOT_STARTED
 codex_execution: BLOCKED
 ```
 
-## 승인된 Stock 기본값
+## 1. 충돌 교정
 
-```yaml
-unit: CONFIRMED_GLYPH_TOKEN
-rack_slots: 4
-duplicate_glyph_cap: 2
-anchor_floor: 2
-direct_first_valid_commit_generation: 1
-summon_refill_cap_per_focus_task: 3
-persistence: CHAPTER_AND_SESSION
-permanent_accumulation: false
-offline_generation: false
+기존 책임 원본은 다음 구조였다.
+
+```text
+완성 주문·하위 글자 Stock 준비
+→ 지정 대상 1종 자연 충전
+→ 플레이어가 필요한 순간에 사용
 ```
 
-- 완성 주문·대상·상황·자동 최적 조합은 저장하지 않는다.
-- Token은 Commit 승인과 세계 변화 적용 시 소비한다.
-- 취소·문법 실패·마나 부족은 소비하지 않는다.
-- Rack 초과는 Pending 1개로 결과 화면에서 교체한다.
+PR #51 초기 `확인 글자 Token Rack 4칸`은 동일 이름의 기존 정본과 충돌해 폐기했다.
 
-## 승인된 소환수 기본값
+교정한 책임 원본:
+
+- `docs/planning/STOCK_SYSTEM.md`.
+- `docs/planning/STOCK_CHARGE_TIME_SYSTEM.md`.
+- `docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`.
+
+## 2. Stock 승인 기본값
+
+```yaml
+stock_types:
+  - FULL_SPELL
+  - SUB_GLYPH
+shared_capacity: 8
+active_charge_targets: 1
+one_glyph_charge_seconds: 10
+additional_glyph_seconds: 5
+stock_use_mana_cost: 0
+offline_charge: false
+```
+
+```text
+기능 글자 수 n인 Stock 충전시간
+= 10 + 5 × (n - 1)초
+```
+
+## 3. 소환수 승인 기본값
 
 ```yaml
 main_summon: ALWAYS_ACTIVE
-secondary_active_cap: 1
-main_stock_tick_seconds: 20
-main_stock_cap_per_focus_task: 1
-summon_cost_max_mana_percent: 20
-secondary_duration_seconds: 30
-resummon_cooldown_seconds: 20
-spell_tick_seconds: 10
-spell_action_cap: 3
-stock_tick_seconds: 12
-stock_refill_cap: 2
-auto_spell_output_percent: 60
-auto_contribution_cap_percent: 25
-guardian_player_damage_reduction_percent: 35
-guardian_environment_damage_reduction_percent: 25
+additional_active_summon_cap: 1
+duration_limit: NONE
+cooldown: NONE
+summon_spell_mana_cost: 2
+support_cycle_seconds: 5
 ```
 
-- Active Pressure Clock을 사용한다.
-- Pause·Resolve·Focus loss·Background·Save/Load 중 정지한다.
-- Offline catch-up이 없다.
-- 자동 주문은 불안정도 0·치명 목표 완료·마지막 승리 Event가 될 수 없다.
-- `GM-BATTLE-RULES-01`의 수동 1회·자동 행동 금지 수호 소환수 규칙은 이 Decision이 대체한다.
+- 기타 소환수는 `[소환 주문]` Commit 후 활성화한다.
+- 수동 귀환·교체·강제 귀환 전까지 유지한다.
+- 장면 전환·Save/Resume만으로 자동 해제하지 않는다.
+- 무압박 장면에서는 주기 행동만 정지한다.
 
-## 작성·자동화 예산
+### 정수 스탯
+
+```yaml
+main_stock_stat: 1
+secondary_stock_stat: 2
+defense_stat: 2
+attack_stat: 2
+heal_stat: 2
+```
 
 ```text
-의미 있는 주문 해결 7~10회
-= 직접 작성 4~6회
-+ Stock 보조 2~4회
-+ 소환수 자동 행동 1~3회
+[스톡] N
+→ 5초마다 현재 Stock 남은 충전시간 -N초
+
+최종 직접 피해
+= max(1, 원피해 - 총 방어도)
+
+[공격] N
+→ 유효 대상 불안정도 -N, 하한 1
+
+[치유] N
+→ HP +N, 초과 회복 저장 없음
 ```
 
-직접 작성이 전체 유효 해결의 40% 미만이면 `REWORK`한다.
+퍼센트 출력·퍼센트 피해 경감·퍼센트 소환 비용은 사용하지 않는다.
 
-## Cold-start 교정
+## 4. State/Ledger/Save
 
-직접 교정한 권위 문서:
+신규 Decision:
 
-- `START_HERE.md`
-- `docs/ACTIVE_CONTEXT.md`
-- `docs/DEVELOPMENT_GATES.md`
-- `docs/DESIGN_DOCUMENT_REGISTRY.json`
+```yaml
+decision_id: GM-STOCK-SUMMON-STATE-INTERFACE-01
+approved_option: A_SINGLE_ACTIVE_PRESSURE_CLOCK_WITH_ATOMIC_EVENT_LEDGER
+status: USER_DELEGATED_RECOMMENDED_OPTION
+```
+
+확정한 항목:
+
+- Stock 편성·충전·소환·전투·Ledger 단일 소유권.
+- `[소환 주문]`의 마나 차감·교체·활성 원자 Transaction.
+- Stock 소비·효과 적용 원자 Transaction.
+- `summon_event_id`·`stock_charge_event_id` Exactly-once.
+- 동일 시각 Event 순서.
+- 상주 소환 상태 Save/Resume.
+- Offline·Background Event 금지.
+
+## 5. Cold-start 교정
+
+- `START_HERE.md`.
+- `docs/ACTIVE_CONTEXT.md`.
+- `docs/DEVELOPMENT_GATES.md`.
+- `docs/DESIGN_DOCUMENT_REGISTRY.json`.
 
 교정 내용:
 
-- Mobile 우선·Base v9.4.3·최신 main/Sync.
-- 별도 시험 제거.
-- Stock·소환수 상세 계약.
-- Battle Rules 수동 수호 계약 대체.
-- P1/P2/P3 잔여 기획.
-- 구현·검증 증거 상한 보존.
+- 자연충전형 Stock 복원.
+- 정수 소환수 스탯.
+- 시간 제한·Cooldown 제거.
+- 메인 상시 + 보조 1체 상한.
+- State/Ledger/Save 책임 원본 추가.
+- P1 잔여 재산정.
 
-## 잔여 기획 감사
+## 6. 잔여 기획 감사
 
 ```yaml
 audit_id: GR-AUD-PLANNING-REMAINDER-20260802-01
 p0_open: 0
-p1_open: 7
+p1_open: 4
 p2_open: 12
 p3_deferred: 8
 ```
 
-### P1
+P1:
 
-1. Stock·Summon State/Ledger/Save 인터페이스.
-2. 작성·자동화·시간 예산 검증.
-3. Mobile HUD.
-4. 전용 Test 계약.
-5. Godot Toolchain preflight.
-6. Base v9.4.3 Plan 재검증.
-7. Execution Readiness P0=0·P1=0.
+1. Mobile HUD Wireframe.
+2. TDD Plan·Test Matrix 연결.
+3. Godot Toolchain preflight.
+4. Base v9.4.3 Plan 재검증·Execution Readiness.
 
-### P2
+## 7. Google Sheet
 
-- Battle Tuning·Result Grading.
-- 대표 제작 미니게임과 Slice 범위.
-- Grimoire·Main·Audio.
-- 접근성·난이도.
-- Year-One Chapter Map.
-- 커리큘럼·성장·평가·경제 수치.
-- Slice 시간 예산.
+반영 대상:
 
-## Google Sheet 반영·Readback
+- `00_프로젝트_허브`.
+- `01_작업순서`.
+- `02_현재_확정결정`.
+- `04_누락_충돌_감사`.
+- `12_핵심루프`.
+- `15_조작_게임규칙`.
+- `40_핵심시스템_메인콘텐츠`.
+- `41_성장_경제`.
+- `60_UX_UI_접근성`.
+- `80_데모_버티컬슬라이스_플레이테스트`.
+- `99_변경이력`.
 
-반영·재조회 완료:
+최종 HEAD 검증 전에 revised model Readback을 수행한다.
 
-- `00_프로젝트_허브`
-- `01_작업순서`
-- `02_현재_확정결정`
-- `04_누락_충돌_감사`
-- `12_핵심루프`
-- `15_조작_게임규칙`
-- `40_핵심시스템_메인콘텐츠`
-- `41_성장_경제`
-- `60_UX_UI_접근성`
-- `80_데모_버티컬슬라이스_플레이테스트`
-- `99_변경이력`
-
-확인:
-
-```yaml
-stock_decision_row: PASS
-summon_decision_row: PASS
-stock_system_and_economy_rows: PASS
-summon_system_and_economy_rows: PASS
-hud_contract_rows: PASS
-test_contract_rows: PASS
-planning_remainder_audit_row: PASS
-row_overwrite: 0
-sheet_readback: PASS
-```
-
-## 보호 경계
+## 8. 보호 경계
 
 ```text
 PRODUCT_IMPLEMENTATION = NOT_STARTED
