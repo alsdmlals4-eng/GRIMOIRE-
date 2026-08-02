@@ -106,7 +106,7 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
         "maturity": {
             "level": 2,
             "status": "PLANNING_AND_ART_BIBLE_APPROVED_IMPLEMENTATION_NOT_STARTED",
-            "next_gate": "ASSET_SPEC_01",
+            "next_gate": adapter["current_state"]["next_product_gate"],
         },
         "sheet": {
             "id": adapter["gdd_sheet"]["id"],
@@ -116,16 +116,18 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
             "write_policy": adapter["gdd_sheet"]["write_policy"],
         },
         "validation": {
-            "art_style_01": "APPROVED_A_MODIFIED_LOCKED",
-            "art_bible_01": "APPROVED_DUAL_STANDARD_ART_BIBLE",
-            "battle_rules_01": "APPROVED_SITUATION_RESOLUTION_RULES",
-            "runtime": "NOT_RUN",
-            "human": "NOT_RUN",
-            "ci_gate": "REQUIRED_ON_PULL_REQUEST",
-            "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
+            "art_style_01": adapter["current_state"]["art_style_01"],
+            "art_bible_01": adapter["current_state"]["art_bible_01"],
+            "battle_rules_01": adapter["current_state"]["battle_rules_01"],
+            "runtime": adapter["current_state"]["runtime_validation"],
+            "human": adapter["current_state"]["human_validation"],
+            "ci_gate": adapter["validation"]["ci_gate"],
+            "adversarial_gate": adapter["validation"]["adversarial_gate"],
         },
     }
 
+    primary_platform = adapter["project"]["primary_platform"]
+    asset_spec_approved = adapter["current_state"]["asset_spec_01"] == "APPROVED_SPEC"
     skill_view = {
         "schema_version": 2,
         "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
@@ -136,9 +138,13 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
         "base_release": adapter["base_release"],
         "project": adapter["project"],
         "platforms": {
-            "primary": "PC",
-            "follow_up": "Mobile",
-            "touch_input": "FOLLOW_UP_SEPARATE_VALIDATION",
+            "primary": primary_platform,
+            "follow_up": adapter["project"]["follow_up_platform"],
+            "touch_input": (
+                "PRIMARY_VALIDATION_REQUIRED"
+                if primary_platform == "Mobile"
+                else "FOLLOW_UP_SEPARATE_VALIDATION"
+            ),
             "gamepad": "DEFERRED_NOT_PROMISED",
         },
         "engine": {
@@ -174,7 +180,11 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
         "asset_and_license": {
             "approved_visual_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
             "locked_reference_edit": "PROHIBITED",
-            "mass_asset_generation": "BLOCKED_BY_ASSET_SPEC",
+            "mass_asset_generation": (
+                "BLOCKED_BY_EXECUTION_PROFILE"
+                if asset_spec_approved
+                else "BLOCKED_BY_ASSET_SPEC"
+            ),
             "third_party_inventory": "docs/ASSET_LICENSE_LEDGER.md",
         },
         "validation": adapter["validation"],
