@@ -19,7 +19,8 @@ pull_request: 51
 head: RESOLVE_FROM_FINAL_PR_HEAD
 grill_counter: 4_of_10
 pending_decisions: 4
-sheet_readback: PENDING
+sheet_readback: PASS
+sheet_text_integrity_sentinel: PASS
 final_head_ci: PENDING
 adversarial_gate: PENDING
 text_integrity_gate: PENDING
@@ -149,6 +150,19 @@ Readback sentinel:
 마도서
 ```
 
+Sheet 재조회 결과:
+
+```yaml
+secondary_summon_s1_s2_s3: PASS
+secondary_role_uniqueness: PASS
+benchmark_row: PASS
+quality_gate_row: PASS
+utf8_visible_text: PASS
+replacement_character_visible: 0
+sentinel_readback: PASS
+obsolete_secondary_cap_1_in_current_decision_range: 0
+```
+
 CI·GitHub·Sheet Readback을 모두 통과하기 전 최종 PASS를 주장하지 않는다.
 
 ## 7. GitHub 반영 범위
@@ -169,21 +183,26 @@ CI·GitHub·Sheet Readback을 모두 통과하기 전 최종 PASS를 주장하�
 - `.github/workflows/validate-base-v9-adoption.yml`.
 - 이 Sync Receipt.
 
-## 8. Google Sheet 반영 예정
+## 8. Google Sheet 반영·Readback
+
+반영·재조회 완료:
 
 - `00_프로젝트_허브`.
 - `01_작업순서`.
 - `02_현재_확정결정`.
+- `03_근거_라이브러리`.
 - `04_누락_충돌_감사`.
+- `05_GDD_요약`.
 - `12_핵심루프`.
 - `15_조작_게임규칙`.
 - `40_핵심시스템_메인콘텐츠`.
 - `41_성장_경제`.
 - `60_UX_UI_접근성`.
 - `80_데모_버티컬슬라이스_플레이테스트`.
+- `98_Base_반영후보`.
 - `99_변경이력`.
 
-같은 Decision·Benchmark·Sync ID로 반영하고 sentinel Readback을 수행한다.
+같은 Decision·Benchmark·Sync ID를 사용했다. 역사 행은 보존하고 현재 권위 행만 교체했다.
 
 ## 9. 적대적 위험
 
