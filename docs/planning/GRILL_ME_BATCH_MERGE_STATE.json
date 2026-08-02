@@ -52,7 +52,7 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "THREE_SECONDARY_SUMMON_AND_WORK_QUALITY_GATE_SYNC_IN_PROGRESS",
+    "status": "THREE_SECONDARY_SUMMON_AND_WORK_QUALITY_GATE_SYNCED_TO_WORKING_BRANCH_PENDING_FINAL_HEAD_VALIDATION",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "working_pull_request": 51,
@@ -92,10 +92,7 @@
       }
     ],
     "stock_defaults": {
-      "types": [
-        "FULL_SPELL",
-        "SUB_GLYPH"
-      ],
+      "types": ["FULL_SPELL", "SUB_GLYPH"],
       "shared_capacity": 8,
       "one_glyph_charge_seconds": 10,
       "additional_glyph_seconds": 5,
@@ -107,17 +104,8 @@
       "persistent_main": 1,
       "secondary_active_cap": 3,
       "total_active_cap": 4,
-      "secondary_slots": [
-        "S1",
-        "S2",
-        "S3"
-      ],
-      "secondary_roles": [
-        "PRODUCTION",
-        "GUARDIAN",
-        "ASSAULT",
-        "RECOVERY"
-      ],
+      "secondary_slots": ["S1", "S2", "S3"],
+      "secondary_roles": ["PRODUCTION", "GUARDIAN", "ASSAULT", "RECOVERY"],
       "secondary_role_duplicate_cap_in_slice": 1,
       "duration_limit": null,
       "cooldown": null,
@@ -128,12 +116,7 @@
       "guardian_defense_stat": 2,
       "assault_attack_stat": 2,
       "recovery_heal_stat": 2,
-      "same_time_event_order": [
-        "MAIN",
-        "S1",
-        "S2",
-        "S3"
-      ]
+      "same_time_event_order": ["MAIN", "S1", "S2", "S3"]
     },
     "state_interface": {
       "status": "APPROVED_DESIGN_ONLY_REVISED_FOR_THREE_SECONDARIES",
@@ -171,7 +154,8 @@
     "codex_plan": "ALLOWED",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PENDING",
+    "sheet_readback": "PASS",
+    "sheet_text_integrity_sentinel": "PASS",
     "final_head_ci": "PENDING",
     "adversarial_gate": "PENDING",
     "text_integrity_gate": "PENDING",
