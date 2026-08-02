@@ -34,7 +34,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "NOT_RUN_FOR_CURRENT_REVISED_HEAD",
+  "pre_merge_gate_status": "PENDING_FOR_CURRENT_REVISED_HEAD",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T22:18:00+09:00",
@@ -124,7 +124,8 @@
     "codex_plan": "ALLOWED",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PASS"
+    "sheet_readback": "PASS",
+    "final_head_ci": "PENDING"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
