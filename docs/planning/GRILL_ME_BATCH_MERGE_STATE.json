@@ -12,7 +12,8 @@
     "next_merge_at": 10,
     "merge_required": true,
     "merge_trigger": "GATE_OR_IMPLEMENTATION_BOUNDARY",
-    "merge_authorized": false,
+    "merge_authorized": true,
+    "merge_authorized_at": "2026-08-02T20:59:00+09:00",
     "pending_decision_ids": [
       "GM-IMPLEMENTATION-ENTRY-01"
     ]
@@ -31,7 +32,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "PASS",
+  "pre_merge_gate_status": "PASS_FINAL_REVERIFY_REQUIRED",
   "pre_merge_gate_report": "docs/planning/IMPLEMENTATION_ENTRY_01_PREMERGE_GATE_2026-08-02.md",
   "last_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
@@ -61,29 +62,32 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "MERGE_READY_USER_APPROVAL_REQUIRED",
+    "status": "MERGE_AUTHORIZED_FINAL_REVERIFY",
     "branch": "chatgpt/grimoire-implementation-entry-20260802",
     "draft_pull_request": 43,
     "working_sync_id": "GR-SYNC-20260802-21",
-    "sheet_readback": "PASS",
-    "baseline_main": "f9c6f5fdd59f7c256986b5c817a244d464e0e74c",
-    "final_head_resolution": "CURRENT_BRANCH_CONTAINING_FINAL_IMPLEMENTATION_ENTRY_SYNC_AND_PREMERGE_REPORT; exact SHA recorded in PR 43 and Google Sheet",
+    "sheet_readback": "PASS_REVERIFY_AFTER_BASE_V943_UPDATE",
+    "latest_main": "c114343ac925d734caf0ac8011c8ee25fd6d29e8",
+    "final_head_resolution": "CURRENT_BRANCH_CONTAINING_FINAL_IMPLEMENTATION_ENTRY_SYNC_AND_V943_RECONCILIATION; exact SHA recorded in PR 43 and Google Sheet",
     "decision_id": "GM-IMPLEMENTATION-ENTRY-01",
     "approved_option": "A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK",
     "approved_at": "2026-08-02T20:18:00+09:00",
+    "merge_approved_at": "2026-08-02T20:59:00+09:00",
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "current_gate": "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
     "execution_readiness": "NOT_RUN",
-    "base_release_on_main": "9.4.2",
+    "base_release_on_main": "9.4.3",
     "base_adoption_pr_38": "MERGED",
-    "open_base_adoption_prs": [42],
-    "base_execution_identity": "MAIN_V9_4_2_WITH_OPEN_V9_4_3_ADOPTION_PR_42",
+    "base_adoption_pr_42": "CLOSED_SUPERSEDED",
+    "base_adoption_pr_44": "MERGED",
+    "open_base_adoption_prs": [],
+    "base_execution_identity": "MAIN_V9_4_3_SINGLE_CANONICAL_RELEASE",
     "merge_blocking_p0": 0,
     "merge_blocking_p1": 0,
-    "p1_open_for_execution": 4,
+    "p1_open_for_execution": 3,
     "authority_documents": [
       "START_HERE.md",
       "docs/planning/IMPLEMENTATION_ENTRY_01_GRILL_ME_2026-08-02.md",
@@ -96,7 +100,7 @@
       "docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md",
       "docs/planning/sync/GR-SYNC-20260802-21-WORKING.md"
     ],
-    "next_work": "Await explicit user approval to merge PR 43; after merge resolve Base PR 42 and run GM-FOUNDATION-POC-EXECUTION-READINESS-01"
+    "next_work": "Final exact-head CI and Sheet readback, merge PR 43, then finalize main sync and run execution-readiness preparation"
   },
   "protected_boundaries": {
     "execution_profile": "PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY",
