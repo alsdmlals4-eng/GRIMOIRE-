@@ -1,5 +1,5 @@
 {
-  "schema_version": 17,
+  "schema_version": 18,
   "registry_role": "grimoire-design-document-canonical-source-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -18,13 +18,14 @@
     "summon_system_01": "USER_APPROVED_THREE_SECONDARY_REVISED_DEFAULTS_WORKING_SYNC",
     "stock_summon_state_interface_01": "USER_DELEGATED_RECOMMENDED_OPTION_REVISED_WORKING_SYNC",
     "grill_work_quality_gate_01": "USER_APPROVED_ACTIVE_WORKING_SYNC",
+    "mobile_summon_hud_wireframe_01": "USER_DELEGATED_RECOMMENDED_DESIGN_WRITTEN_AWAITING_SPEC_REVIEW",
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
-    "codex_plan": "ALLOWED",
+    "codex_plan": "ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
-    "canon_sync": "SYNCED_TO_WORKING_BRANCH",
+    "canon_sync": "SYNCED_TO_WORKING_BRANCH_PENDING_SHEET_AND_FINAL_VERIFICATION",
     "authority_main_commit": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
-    "working_sync_id": "GR-SYNC-20260803-01"
+    "working_sync_id": "GR-SYNC-20260803-02"
   },
   "base_pin": {
     "repository": "alsdmlals4-eng/Base",
@@ -51,17 +52,20 @@
     "stock_system_approval": "docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md",
     "summon_system_approval": "docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md",
     "stock_summon_state_interface": "docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md",
+    "mobile_summon_hud_design_spec": "docs/superpowers/specs/2026-08-03-three-slot-mobile-summon-hud-design.md",
+    "mobile_summon_hud_approval": "docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md",
     "grill_work_quality_gate": "docs/planning/GRILL_WORK_BENCHMARK_TEXT_INTEGRITY_01_APPROVAL_2026-08-03.md",
     "benchmark_policy": "docs/planning/PROJECT_BENCHMARKING_POLICY.md",
     "premerge_adversarial_gate": "docs/planning/PRE_MERGE_ADVERSARIAL_REVIEW_CHECKLIST_2026-08-02.md",
     "three_summon_work_quality_benchmark": "docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md",
+    "mobile_summon_hud_benchmark": "docs/planning/benchmarks/MOBILE_SUMMON_HUD_WIREFRAME_STANDARD_BENCHMARK_2026-08-03.md",
     "planning_remainder_audit": "docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md",
     "implementation_entry": "docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md",
     "grill_batch_state": "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
     "main_sync_receipt": "docs/planning/sync/GR-SYNC-20260802-24-MAIN.md",
-    "previous_working_sync_receipt": "docs/planning/sync/GR-SYNC-20260802-25-WORKING.md",
-    "working_sync_receipt": "docs/planning/sync/GR-SYNC-20260803-01-WORKING.md",
+    "previous_working_sync_receipt": "docs/planning/sync/GR-SYNC-20260803-01-WORKING.md",
+    "working_sync_receipt": "docs/planning/sync/GR-SYNC-20260803-02-WORKING.md",
     "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md"
   },
   "canonical_documents": [
@@ -78,12 +82,12 @@
     {
       "id": "active-context",
       "source_path": "docs/ACTIVE_CONTEXT.md",
-      "status": "ACTIVE_CONTEXT_AUTHORITY"
+      "status": "ACTIVE_CONTEXT_AUTHORITY_PENDING_NEXT_RECONCILIATION"
     },
     {
       "id": "development-gates",
       "source_path": "docs/DEVELOPMENT_GATES.md",
-      "status": "ACTIVE_GATE_AUTHORITY"
+      "status": "ACTIVE_GATE_AUTHORITY_PENDING_NEXT_RECONCILIATION"
     },
     {
       "id": "core-system-alignment",
@@ -128,6 +132,18 @@
       "source_path": "docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md",
       "decision_id": "GM-STOCK-SUMMON-STATE-INTERFACE-01",
       "status": "USER_DELEGATED_RECOMMENDED_OPTION_REVISED_WORKING_SYNC"
+    },
+    {
+      "id": "mobile-summon-hud-design-spec",
+      "source_path": "docs/superpowers/specs/2026-08-03-three-slot-mobile-summon-hud-design.md",
+      "decision_id": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01",
+      "status": "DESIGN_WRITTEN_AWAITING_USER_SPEC_REVIEW"
+    },
+    {
+      "id": "mobile-summon-hud-approval",
+      "source_path": "docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md",
+      "decision_id": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01",
+      "status": "USER_DELEGATED_RECOMMENDED_OPTION_ACTIVE"
     },
     {
       "id": "grill-work-quality-gate",
@@ -188,16 +204,22 @@
     },
     {
       "id": "previous-working-sync-receipt",
-      "source_path": "docs/planning/sync/GR-SYNC-20260802-25-WORKING.md",
-      "status": "HISTORICAL_SUPERSEDED_BY_GR_SYNC_20260803_01"
+      "source_path": "docs/planning/sync/GR-SYNC-20260803-01-WORKING.md",
+      "status": "HISTORICAL_PREVIOUS_WORKING_SYNC"
     },
     {
       "id": "working-sync-receipt",
-      "source_path": "docs/planning/sync/GR-SYNC-20260803-01-WORKING.md",
-      "status": "SYNCED_TO_WORKING_BRANCH_PENDING_FINAL_VERIFICATION"
+      "source_path": "docs/planning/sync/GR-SYNC-20260803-02-WORKING.md",
+      "status": "SYNCED_TO_WORKING_BRANCH_PENDING_SHEET_AND_FINAL_VERIFICATION"
     }
   ],
   "evidence_documents": [
+    {
+      "id": "mobile-summon-hud-benchmark",
+      "source_path": "docs/planning/benchmarks/MOBILE_SUMMON_HUD_WIREFRAME_STANDARD_BENCHMARK_2026-08-03.md",
+      "benchmark_id": "GR-BM-MOBILE-SUMMON-HUD-20260803-01",
+      "status": "STANDARD_COMPLETE_FOR_DESIGN"
+    },
     {
       "id": "three-summon-work-quality-benchmark",
       "source_path": "docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md",
@@ -227,9 +249,9 @@
     "summon_system": "PERSISTENT_MAIN_PLUS_THREE_UNIQUE_ROLE_SECONDARIES_APPROVED",
     "stock_summon_state_ledger_save_interface": "APPROVED_DESIGN_ONLY_REVISED_FOR_THREE_SECONDARIES",
     "grill_work_quality_gate": "APPROVED_ACTIVE",
-    "text_integrity_ci": "ADDED_PENDING_FINAL_HEAD_VALIDATION",
-    "stock_summon_mobile_hud": "P1_REQUIRED_THREE_SLOT_RAIL",
-    "stock_summon_tests": "P1_REQUIRED_THREE_SLOT_AND_TEXT_INTEGRITY",
+    "text_integrity_ci": "ADDED_AND_PREVIOUS_HEAD_VERIFIED",
+    "stock_summon_mobile_hud": "DESIGN_WRITTEN_AWAITING_USER_SPEC_REVIEW",
+    "stock_summon_tests": "P1_REQUIRED_AFTER_SPEC_REVIEW",
     "battle_tuning": "P2_REQUIRED",
     "result_grading": "P2_REQUIRED",
     "slice_crafting_minigame": "P2_REQUIRED_RECOMMEND_CATALYST_STABILIZATION",
