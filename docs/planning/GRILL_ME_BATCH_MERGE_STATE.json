@@ -50,7 +50,7 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "STOCK_SUMMON_DEFAULTS_AND_PLANNING_REMAINDER_SYNC_IN_PROGRESS",
+    "status": "STOCK_SUMMON_DEFAULTS_AND_PLANNING_REMAINDER_SYNCED_TO_WORKING_BRANCH",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "working_sync_id": "GR-SYNC-20260802-25",
@@ -108,7 +108,7 @@
     "codex_plan": "ALLOWED",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PENDING"
+    "sheet_readback": "PASS"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
