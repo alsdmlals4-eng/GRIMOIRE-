@@ -10,20 +10,21 @@
     "repository": "alsdmlals4-eng/Base"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "cddccdb6540801ebfe1bca76cfa3d3b9bd6e59cb66729717d71bdb89abdee459",
+  "canonical_source_sha256": "5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb",
   "generated": true,
   "maturity": {
     "level": 2,
-    "next_gate": "ASSET_SPEC_01",
+    "next_gate": "MOBILE-FOUNDATION-01",
     "status": "PLANNING_AND_ART_BIBLE_APPROVED_IMPLEMENTATION_NOT_STARTED"
   },
   "project": {
     "engine": "Godot 4.7.1 stable candidate",
     "execution_profile": "PLANNING_ONLY_PROFILE",
-    "follow_up_platform": "Mobile",
+    "follow_up_platform": "PC",
     "godot_project_status": "NOT_CREATED",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
-    "primary_platform": "PC",
+    "platform_decision": "GM-PLATFORM-02",
+    "primary_platform": "Mobile",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "root": ".",
