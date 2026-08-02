@@ -19,9 +19,9 @@ head: RESOLVE_FROM_PR_HEAD
 grill_counter: 1_of_10
 pending_decisions: 1
 clarification_new_grill_count: false
-sheet_state: PENDING_FINAL_HEAD_READBACK
-merge_request: RECEIVED_BEFORE_MATERIAL_HEAD_CHANGE
-merge_authorization: REAPPROVAL_REQUIRED_FOR_FINAL_HEAD
+sheet_state: PASS
+merge_request: NOT_RECEIVED_FOR_PR_47
+merge_authorization: NOT_AUTHORIZED
 implementation: NOT_STARTED
 codex_execution: BLOCKED
 ```
@@ -36,7 +36,17 @@ codex_execution: BLOCKED
 4. 보조·운용 시스템.
 5. 전달·안전·기술 인프라.
 
-핵심 재미는 `상황 판독 → 의미 설계 → 명시적 Commit → 설명 가능한 세계 변화 → 마도서 복기`다.
+핵심 재미:
+
+```text
+상황 판독
+→ 의미 설계
+→ 직접 작성·Stock·소환수 운용
+→ 명시적 Commit 또는 [소환] Commit
+→ 플레이어 주문·소환수 주기 행동 원자 적용
+→ 설명 가능한 세계 변화
+→ 마도서 복기
+```
 
 ## Stock·소환수 보완 정의
 
@@ -84,24 +94,31 @@ implementation_readiness: NOT_READY
 
 반영 탭:
 
-- `02_현재_확정결정`
-- `05_GDD_요약`
-- `12_핵심루프`
-- `40_핵심시스템_메인콘텐츠`
-- `99_변경이력`
+- `00_프로젝트_허브`.
+- `01_작업순서`.
+- `02_현재_확정결정`.
+- `04_누락_충돌_감사`.
+- `05_GDD_요약`.
+- `12_핵심루프`.
+- `40_핵심시스템_메인콘텐츠`.
+- `99_변경이력`.
 
-확인 대상:
+확인:
 
-- `GM-CORE-SYSTEM-ALIGNMENT-01` 승인·보완 정의.
-- `GR-L-13` 결과 태그·회복·학기말 평가 루프.
-- `GR-L-19` 직접 작성·Stock·소환수 운용 루프.
-- `GR-S-20~24` 다계열·포트폴리오·평가·Stock·소환수 계층.
-- `GR-S-05`는 관계·상시 기초지원, `GR-S-24`는 소환수 자동행동의 단일 소유자로 분리.
+- `GM-CORE-SYSTEM-ALIGNMENT-01` 단일 승인·보완 행.
+- `GR-L-13` 결과 태그·회복·학기말 평가 루프 보존.
+- `GR-L-19` 직접 작성·Stock·소환수 운용 루프 추가.
+- `GR-S-20~22` 다계열·포트폴리오·평가.
+- `GR-S-23` Stock.
+- `GR-S-24` 메인 상시·기타 `[소환]`·주기 주문/Stock 지원.
 - `수업→시험` 표현 제거.
-- 완료된 과거 Pre-merge 상태 교정.
-- 행 덮어쓰기 0, 기존 Decision ID 보존.
+- 완료된 과거 Pre-merge 상태 보존.
+- 행 덮어쓰기·중복 Decision·중복 Loop/System ID 없음.
+- 기존 `GR-SYNC-20260802-22` 보존.
 
-최종 PR HEAD 기록 후 Sheet를 다시 읽어 `PASS`로 마감한다.
+```yaml
+sheet_readback: PASS
+```
 
 ## 시각 권위
 
@@ -111,13 +128,13 @@ implementation_readiness: NOT_READY
 
 ## 병합 승인 경계
 
-사용자는 PR #47 병합을 승인했으나, 그 뒤 소환수 정의로 PR HEAD가 실질적으로 변경됐다. 정확한 HEAD 승인 원칙에 따라 기존 병합 승인은 변경 전 HEAD에만 유효하다.
+`정리안 승인`은 `GM-CORE-SYSTEM-ALIGNMENT-01` 기획 결정 승인이다. PR #47 병합 승인 문구가 아니다.
 
 ```text
 소환수 보완 동기화
 → 최종 HEAD CI·적대 Gate·리뷰·Sheet Readback
 → 최종 변경 내용 보고
-→ 사용자 병합 재승인
+→ 사용자 명시 병합 승인
 → 병합
 ```
 
