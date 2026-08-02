@@ -8,7 +8,7 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 3,
+    "approved_grill_me_since_last_flush": 4,
     "next_merge_at": 10,
     "merge_required": false,
     "merge_trigger": null,
@@ -17,7 +17,8 @@
     "pending_decision_ids": [
       "GM-STOCK-SYSTEM-01",
       "GM-SUMMON-SYSTEM-01",
-      "GM-STOCK-SUMMON-STATE-INTERFACE-01"
+      "GM-STOCK-SUMMON-STATE-INTERFACE-01",
+      "GM-GRILL-WORK-QUALITY-GATE-01"
     ]
   },
   "counting_rule": {
@@ -34,7 +35,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "PASS_FOR_CURRENT_REVISED_HEAD",
+  "pre_merge_gate_status": "NOT_RUN_FOR_CURRENT_HEAD",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T22:18:00+09:00",
@@ -51,11 +52,12 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "NATURAL_CHARGE_STOCK_PERSISTENT_INTEGER_SUMMON_AND_STATE_INTERFACE_VERIFIED_ON_WORKING_BRANCH",
+    "status": "THREE_SECONDARY_SUMMON_AND_WORK_QUALITY_GATE_SYNC_IN_PROGRESS",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "working_pull_request": 51,
-    "working_sync_id": "GR-SYNC-20260802-25",
+    "working_sync_id": "GR-SYNC-20260803-01",
+    "benchmark_id": "GR-BM-SUMMON-ACTIVE-3-WORK-QUALITY-01",
     "decisions": [
       {
         "decision_id": "GM-STOCK-SYSTEM-01",
@@ -67,22 +69,33 @@
       },
       {
         "decision_id": "GM-SUMMON-SYSTEM-01",
-        "approved_option": "B_PERSISTENT_MAIN_PLUS_ONE_SUMMONED_INTEGER_STAT_SUPPORT",
+        "approved_option": "C_PERSISTENT_MAIN_PLUS_THREE_ROLE_UNIQUE_INTEGER_SUPPORT",
         "status": "USER_APPROVED_REVISED_DEFAULTS",
-        "approved_at": "2026-08-02T23:14:00+09:00",
+        "approved_at": "2026-08-03T00:04:00+09:00",
         "grill_count": 1,
         "reapproval_increment": 0
       },
       {
         "decision_id": "GM-STOCK-SUMMON-STATE-INTERFACE-01",
         "approved_option": "A_SINGLE_ACTIVE_PRESSURE_CLOCK_WITH_ATOMIC_EVENT_LEDGER",
-        "status": "USER_DELEGATED_RECOMMENDED_OPTION",
-        "approved_at": "2026-08-02T23:14:00+09:00",
+        "status": "USER_DELEGATED_RECOMMENDED_OPTION_REVISED_FOR_THREE_SECONDARIES",
+        "approved_at": "2026-08-03T00:04:00+09:00",
+        "grill_count": 1,
+        "reapproval_increment": 0
+      },
+      {
+        "decision_id": "GM-GRILL-WORK-QUALITY-GATE-01",
+        "approved_option": "A_BENCHMARK_INDUSTRY_RECOMMENDATION_AND_TEXT_INTEGRITY_GATE",
+        "status": "USER_APPROVED_ACTIVE",
+        "approved_at": "2026-08-03T00:04:00+09:00",
         "grill_count": 1
       }
     ],
     "stock_defaults": {
-      "types": ["FULL_SPELL", "SUB_GLYPH"],
+      "types": [
+        "FULL_SPELL",
+        "SUB_GLYPH"
+      ],
       "shared_capacity": 8,
       "one_glyph_charge_seconds": 10,
       "additional_glyph_seconds": 5,
@@ -91,25 +104,59 @@
       "offline_charge": false
     },
     "summon_defaults": {
-      "main_active": true,
-      "additional_active_cap": 1,
+      "persistent_main": 1,
+      "secondary_active_cap": 3,
+      "total_active_cap": 4,
+      "secondary_slots": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "secondary_roles": [
+        "PRODUCTION",
+        "GUARDIAN",
+        "ASSAULT",
+        "RECOVERY"
+      ],
+      "secondary_role_duplicate_cap_in_slice": 1,
       "duration_limit": null,
       "cooldown": null,
       "summon_spell_mana_cost": 2,
       "support_cycle_seconds": 5,
       "main_stock_stat": 1,
-      "secondary_stock_stat": 2,
-      "defense_stat": 2,
-      "attack_stat": 2,
-      "heal_stat": 2
+      "production_stock_stat": 2,
+      "guardian_defense_stat": 2,
+      "assault_attack_stat": 2,
+      "recovery_heal_stat": 2,
+      "same_time_event_order": [
+        "MAIN",
+        "S1",
+        "S2",
+        "S3"
+      ]
     },
     "state_interface": {
-      "status": "APPROVED_DESIGN_ONLY",
+      "status": "APPROVED_DESIGN_ONLY_REVISED_FOR_THREE_SECONDARIES",
+      "secondary_state_shape": "ARRAY_MAX_3",
+      "slot_uniqueness": true,
+      "role_uniqueness_in_slice": true,
       "transactional_summon": true,
       "transactional_stock_use": true,
       "exactly_once_summon_event": true,
       "exactly_once_stock_charge_event": true,
       "offline_events": false
+    },
+    "work_quality_gate": {
+      "status": "APPROVED_ACTIVE",
+      "benchmark_required_for_grillme": true,
+      "industry_or_standard_comparison_required": true,
+      "adopt_adapt_reject_required": true,
+      "adversarial_review_required": true,
+      "utf8_strict": true,
+      "unicode_nfc": true,
+      "replacement_character_prohibited": true,
+      "mojibake_check_required": true,
+      "github_sheet_readback_required": true
     },
     "planning_remainder": {
       "p0_open": 0,
@@ -117,17 +164,18 @@
       "p2_open": 12,
       "p3_deferred": 8,
       "canon_reconciliation_completed_in_working_branch": true,
-      "next_priority": "MOBILE_HUD_WIREFRAME_AND_TDD_TEST_MATRIX"
+      "next_priority": "THREE_SLOT_MOBILE_HUD_AND_TDD_TEST_MATRIX"
     },
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PASS",
-    "final_head_ci": "PASS",
-    "adversarial_gate": "PASS",
-    "review_threads": 0
+    "sheet_readback": "PENDING",
+    "final_head_ci": "PENDING",
+    "adversarial_gate": "PENDING",
+    "text_integrity_gate": "PENDING",
+    "review_threads": "PENDING"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
@@ -136,13 +184,16 @@
     "prototype_defaults_are_final_balance": false,
     "stock_conditional_auto_cast": "PROHIBITED",
     "stock_offline_generation": "PROHIBITED",
-    "summon_additional_active_cap": 1,
+    "summon_secondary_active_cap": 3,
+    "summon_total_active_cap": 4,
+    "summon_secondary_role_duplicate_in_slice": "PROHIBITED",
     "summon_duration_limit": "NONE",
     "summon_dynamic_optimal_ai": "PROHIBITED",
     "summon_auto_summon_chain": "PROHIBITED",
     "summon_offline_actions": "PROHIBITED",
     "summon_final_situation_resolution": "PROHIBITED",
     "percentage_based_summon_effects": "PROHIBITED",
+    "broken_text_canonical_promotion": "PROHIBITED",
     "runtime_validation": "NOT_RUN",
     "mobile_device_validation": "NOT_RUN",
     "performance_validation": "NOT_RUN",
