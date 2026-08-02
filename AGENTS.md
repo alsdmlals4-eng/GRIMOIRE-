@@ -8,7 +8,7 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: chatgpt/grimoire-mobile-first-canon-20260802
+working_branch: chatgpt/grimoire-grill-batch-merge-policy-20260802
 primary_platform: Mobile
 follow_up_platform: PC
 platform_decision: GM-PLATFORM-02
@@ -26,7 +26,10 @@ queued_design_gates: BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01
 implementation: NOT_STARTED
 codex: BLOCKED
 canon_sync_policy: GM-CANON-SYNC-01
-current_sync_bundle: GR-SYNC-20260802-07
+merge_cadence_policy: GM-GRILL-MERGE-CADENCE-01
+required_pre_merge_gate: GM-PREMERGE-ADVERSARIAL-GATE-01
+grill_me_batch_counter: 0/10
+current_sync_bundle: GR-SYNC-20260802-09
 ```
 
 첨부 Godot Linux 실행 파일은 버전 참고 자료이며 저장소 자산으로 커밋하지 않는다.
@@ -35,7 +38,7 @@ current_sync_bundle: GR-SYNC-20260802-07
 
 1. 사용자의 최신 명시적 결정.
 2. 이 `AGENTS.md`.
-3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`.
+3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 최신 Addendum.
 4. `START_HERE.md`.
 5. `docs/ACTIVE_CONTEXT.md`.
 6. 최신 Decision Addendum 또는 현재 승인 책임 원본.
@@ -56,6 +59,9 @@ AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
+→ docs/planning/CURRENT_CONFIRMED_DECISIONS_ADDENDUM_GRILL_MERGE_2026-08-02.md
+→ docs/planning/PROJECT_CANON_SYNC_POLICY_ADDENDUM_GRILL_BATCH_2026-08-02.md
+→ docs/planning/GRILL_ME_BATCH_MERGE_STATE.json
 → docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md
 → 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
@@ -95,9 +101,12 @@ execution_prompt: VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md
 - 승인 구조의 단순 데이터 입력.
 - 설계를 바꾸지 않는 명백한 버그 수정.
 
-## 6. 승인 정본 즉시 동기화
+## 6. 승인 정본 즉시 동기화와 Grill Me Batch 병합
 
-결정 ID: `GM-CANON-SYNC-01`.
+결정 ID:
+
+- `GM-CANON-SYNC-01`: 승인 정본 즉시 동기화.
+- `GM-GRILL-MERGE-CADENCE-01`: Grill Me 승인 10건 기본 병합 주기.
 
 ```text
 Decision ID
@@ -106,12 +115,59 @@ Decision ID
 → 연결된 Google Sheet
 → 양쪽 Readback
 → SYNCED_TO_WORKING_BRANCH
+→ Grill Me 승인 Decision이면 Counter +1
+→ 10/10 또는 조기 병합 Trigger
+→ GitHub·Sheet·PR 전수 점검
+→ 적대적 검토 루프 PASS
 → PR 병합
 → main·Sheet 재검증
 → SYNCED_TO_MAIN
+→ Counter 0 Reset
 ```
 
-완료 보고에는 Decision ID, GitHub 경로, Commit, Sheet 범위, Readback, 남은 미검증을 기록한다.
+승인 즉시 working branch·Sheet에 반영하는 원칙은 유지한다. 기본 main 병합은 Grill Me 승인 고유 Decision ID가 10건 누적될 때 수행한다.
+
+조기 병합 Trigger:
+
+- 사용자의 명시적 병합 요청.
+- Gate·Codex·구현 권한 전환 경계.
+- P0/P1 정본 안전 수정.
+- 작업 종료·인계 Flush.
+
+같은 Decision ID의 문구 수정·SHA 정정·재승인은 카운트하지 않는다. main sync 전용 PR도 카운트하지 않는다. 기계 판독 상태는 `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`에 기록한다.
+
+완료 보고에는 Decision ID, Batch count, GitHub 경로, Commit, Sheet 범위, Readback, 병합 Trigger, 남은 미검증을 기록한다.
+
+## 6A. 병합 직전 필수 적대적 검토
+
+모든 병합 직전 `docs/planning/PRE_MERGE_ADVERSARIAL_REVIEW_CHECKLIST_2026-08-02.md`를 최신 HEAD 기준으로 실행한다.
+
+필수 확인:
+
+- 최신 main·merge-base·열린/중복/stale/미병합 승인 PR.
+- changed files 전부와 승인 범위 밖 파일 침범.
+- Decision ID·책임 원본·Current Decisions·cold-start·Gate·Registry·Adapter.
+- Generator·Unit·JSON/Registry·Adversarial CI.
+- PR mergeability·최종 HEAD·review thread·requested changes.
+- Sheet `00·01·02·도메인·04·99`와 GitHub 값·경로·SHA 교차 대조.
+- `TODO/TBD/placeholder`, 구형 Gate·PC-first·SUPERSEDED Decision 재활성화.
+- `TEST_VALUE`, `PLAYTEST_TUNING_REQUIRED`, `NOT_RUN` 경계.
+
+다음 중 하나라도 있으면 병합하지 않는다.
+
+```text
+P0/P1 unresolved
+GitHub-Sheet mismatch
+CI or adversarial failure
+merge conflict
+unresolved review
+missing authority path
+failed Sheet readback
+scope creep into protected product files
+false completion claim
+```
+
+병합 후 main·Sheet Readback과 필요 시 cold-start main-sync PR까지 완료해야 `SYNCED_TO_MAIN`과 Counter Reset을 기록할 수 있다.
 
 ## 7. 승인된 프로젝트 코어
 
@@ -188,13 +244,17 @@ Decision ID
 - 1차 플랫폼은 `Mobile`, 후속 플랫폼은 `PC`.
 - `GM-PLATFORM-01 / PC 우선·Mobile 후속`은 `SUPERSEDED_BY GM-PLATFORM-02`.
 - Touch·Stylus 작성과 명시적 Undo·삭제·초기화·취소·확정·구현을 Mobile 입력의 중심으로 재설계한다.
-- OS, Store, 화면 방향, 최소 기기, 성능·메모리·배터리 수치, 인식 처리 방식은 아직 확정하지 않는다.
+- 화면 방향은 `GM-MOBILE-ORIENTATION-01 / LANDSCAPE_FIXED`.
+- 정식 품질 Gate는 Smartphone이며 Tablet은 Best-effort Smoke다.
+- Store, 최소 기기, 성능·메모리·배터리 수치, 인식 처리 방식은 아직 확정하지 않는다.
 - 기존 Mouse/Pen/Keyboard 계약은 후속 PC 적응 자료이며 Mobile 기본 입력으로 사용하지 않는다.
 
 ## 12. 현재 작업 경로
 
 ```text
-MOBILE-FOUNDATION-01
+Smartphone Landscape Writing/Battle Wireframe 계약
+→ Android/iOS·Store·최소 기기·성능 Decision Packet
+→ MOBILE-FOUNDATION-01 통합 승인
 → BOSS-PHASE-01·Grimoire/Main 파생 화면 영향 재검토
 → AUDIO-DIRECTION-01
 → Mobile 기준 기획·아트·UX 통합 검수
@@ -208,8 +268,8 @@ MOBILE-FOUNDATION-01
 `MOBILE-FOUNDATION-01`은 다음을 다룬다.
 
 - Touch·Stylus 작성·복구·확정 계약.
-- 화면 방향·지원 비율·Safe Area·System gesture 후보.
-- 작은 화면의 Battle/Writing 정보 위계.
+- Landscape 지원 비율·Safe Area·System gesture.
+- Smartphone Battle/Writing 정보 위계와 Tablet Smoke 경계.
 - App pause/resume·background/foreground·interrupted stroke·stale request 방어.
 - Device·Memory·Texture·load·frame pacing·battery·thermal 검증 계획.
 - 후속 PC 입력 적응 원칙.
@@ -221,6 +281,7 @@ MOBILE-FOUNDATION-01
 허용:
 
 - Mobile Foundation·기획·아트·UX·전투 규칙 문서.
+- Smartphone Writing/Battle Wireframe 계약.
 - Boss/Grimoire/Main/Audio의 Mobile 영향 분석.
 - 벤치마킹·적대적 검토.
 - GitHub·Sheet 정본 동기화.
@@ -231,8 +292,8 @@ MOBILE-FOUNDATION-01
 - Godot 제품 코드·Scene·Resource·게임 데이터 생성.
 - Codex Build.
 - 잠긴 기준 이미지 편집·재생성.
-- OS·방향·성능·인식 수치를 증거 없이 확정.
+- OS·성능·인식 수치를 증거 없이 확정.
 - 실행하지 않은 Runtime·Mobile device·성능·접근성·사람 검증 완료 주장.
 - 기본 브랜치 직접 수정.
 
-PR 병합은 사용자 승인과 검증 통과가 필요하다.
+PR 병합은 `GM-GRILL-MERGE-CADENCE-01`의 Trigger와 `GM-PREMERGE-ADVERSARIAL-GATE-01` PASS가 모두 필요하다.
