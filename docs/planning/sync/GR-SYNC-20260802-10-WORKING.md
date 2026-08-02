@@ -4,7 +4,9 @@
 
 ```yaml
 sync_id: GR-SYNC-20260802-10
+latest_change_id: GR-SYNC-20260802-11
 status: SYNCED_TO_WORKING_BRANCH
+sheet_readback: PASS
 sequence_decision: GM-FULL-GAME-PLANNING-ORDER-01
 approved_grill_me_decisions:
   - GM-FULL-GAME-MACRO-LOOP-01
@@ -15,6 +17,8 @@ current_grill_me_decision: GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01
 baseline_main: 385b17d84608b6871c7453cdeacc43268c5cea91
 working_branch: chatgpt/grimoire-full-game-structure-20260802
 draft_pr: 36
+authority_head_before_final_receipt: 49e9c3e0c43aeba7252cafb0006e5868a3d4c84c
+final_head_resolution: CURRENT_BRANCH_CONTAINING_THIS_RECEIPT; exact SHA recorded in Google Sheet
 current_design_gate: FULL-GAME-STRUCTURE-01
 mobile_foundation: IN_PROGRESS_PAUSED_AT_UPSTREAM_DESIGN_DEPENDENCY
 grill_me_counter: 2_of_10
@@ -91,8 +95,6 @@ human_validation: NOT_RUN
 
 ## 5. 마법 커리큘럼 정본 대조
 
-다음 자료가 서로 다른 범위를 가진다.
-
 ### 최신 Vertical Slice 정본
 
 - `흐름 + 집중/분산`.
@@ -140,20 +142,37 @@ Chapter 1의 `흐름 + 집중/분산`은 대비 학습을 위한 승인된 예�
 - `GRILL_ME_BATCH_MERGE_STATE.json`.
 - 이 Working Sync Receipt.
 
-## 8. Google Sheet 반영 대상
+## 8. Google Sheet Readback
+
+갱신·재조회 범위:
 
 - `00_프로젝트_허브!H2`.
 - `01_작업순서!A20:J20`.
+- `02_현재_확정결정!E31:J31`.
 - `02_현재_확정결정!A34:J34`.
 - `03_근거_라이브러리!A13:I13`.
 - `04_누락_충돌_감사!A27:H27`.
-- `05_GDD_요약`.
-- `10_제품방향`.
-- `12_핵심루프`.
-- `30_데모범위_품질기준_제작기반`.
-- `50_메인콘텐츠`.
-- `80_데모_버티컬슬라이스_플레이테스트`.
+- `05_GDD_요약!A4:J4`.
+- `10_제품방향!A9:F9`.
+- `12_핵심루프!A10:J11`.
+- `30_데모범위_품질기준_제작기반!A6:H6`.
+- `50_메인콘텐츠!A8:J8`.
+- `80_데모_버티컬슬라이스_플레이테스트!A17:J17`.
 - `99_변경이력!A28:H28`.
+
+Readback 판정:
+
+```text
+Decision ID match = PASS
+Approved option match = PASS
+Counter 2/10 = PASS
+Pending decisions 2 = PASS
+Next Grill Me match = PASS
+Chapter function contract match = PASS
+Legacy curriculum conflict boundary match = PASS
+Existing authority row overwrite = NONE
+Implementation/Runtime/Device/Human boundary = PRESERVED
+```
 
 ## 9. 병합 경계
 
