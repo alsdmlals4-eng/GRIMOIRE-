@@ -39,7 +39,8 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "IN_PROGRESS",
+  "pre_merge_gate_status": "PASS",
+  "pre_merge_gate_report": "docs/planning/PREMERGE_ADVERSARIAL_GATE_01_2026-08-02.md",
   "last_complete_flush": {
     "decision_main": "b905413e34263c8a004239efd018497dcc7e77ae",
     "cold_start_main_resolution": "CURRENT_MAIN_CONTAINING_THIS_FILE; exact SHA recorded in Google Sheet 00/02/04/99",
@@ -52,16 +53,19 @@
     "branch": "chatgpt/grimoire-full-game-structure-20260802",
     "draft_pull_request": 36,
     "working_sync_id": "GR-SYNC-20260802-19",
-    "sheet_readback": "PENDING",
-    "final_head_resolution": "CURRENT_BRANCH_CONTAINING_FINAL_PREMERGE_REPORT; exact SHA recorded in Google Sheet",
+    "sheet_readback": "PASS",
+    "final_head_resolution": "CURRENT_BRANCH_CONTAINING_THIS_FILE; exact SHA and final CI run recorded in Google Sheet and PR 36",
+    "latest_main_included": "046b0e7b418974d3684017d3d2e3d9a2b4e62045",
+    "main_sync_pull_request": 39,
     "sequence_decision_id": "GM-FULL-GAME-PLANNING-ORDER-01",
     "completed_design_gates": [
       "FULL-GAME-STRUCTURE-01",
       "VERTICAL-SLICE-REPRESENTATIVENESS-01",
       "MOBILE-UX-FLOW-01",
-      "MOBILE-WRITING-BATTLE-WIREFRAME-01"
+      "MOBILE-WRITING-BATTLE-WIREFRAME-01",
+      "PREMERGE-ADVERSARIAL-01"
     ],
-    "current_design_gate": "PREMERGE-ADVERSARIAL-01",
+    "current_design_gate": "MERGE-APPROVAL-REQUIRED",
     "mobile_foundation_status": "PLANNING_CONTRACTS_COMPLETE_IMPLEMENTATION_GATE_NOT_APPROVED",
     "approved_grill_me_decisions": [
       {"decision_id":"GM-FULL-GAME-MACRO-LOOP-01","approved_option":"A_ACADEMIC_SPIRAL_WITH_OPTIONAL_FIELD_PRACTICUM","approved_at":"2026-08-02T16:03:00+09:00"},
@@ -78,8 +82,8 @@
     "latest_approved_grill_me_decision": "GM-MOBILE-WRITING-BATTLE-WIREFRAME-01",
     "latest_approved_grill_me_option": "A_CONTEXT_PRESERVING_EXPANDABLE_RIGHT_WRITING_FOCUS_PANEL",
     "current_grill_me_candidate": null,
-    "current_grill_me_status": "BATCH_THRESHOLD_REACHED",
-    "next_planning_work": "Run GM-PREMERGE-ADVERSARIAL-GATE-01 and report Draft PR 36 merge readiness",
+    "current_grill_me_status": "BATCH_THRESHOLD_REACHED_PREMERGE_PASS",
+    "next_planning_work": "Await explicit user approval to merge Draft PR 36; implementation remains blocked behind a separate entry gate",
     "product_scope": {
       "stages": ["INTERNAL_VERTICAL_SLICE", "YEAR_ONE_DEMO_BUILD", "THREE_SCHOOL_YEAR_FULL_GAME"],
       "internal_vertical_slice": {
@@ -156,10 +160,23 @@
       "recognition_policy": "NO_LOW_CONFIDENCE_AUTO_CONFIRM",
       "detail_values": "TEST_VALUE"
     },
+    "pre_merge_gate": {
+      "verdict": "PASS",
+      "p0_open": 0,
+      "p1_open": 0,
+      "changed_files": 38,
+      "change_scope": "DOCS_PLANNING_ONLY",
+      "main_behind_by": 0,
+      "unresolved_review_threads": 0,
+      "blocking_reviews": 0,
+      "sheet_readback": "PASS_AFTER_TWO_OVERWRITE_REPAIRS",
+      "final_head_ci_resolution": "RECORDED_IN_PR_36_AND_GOOGLE_SHEET"
+    },
     "authority_documents": [
       "docs/planning/MOBILE_WRITING_BATTLE_WIREFRAME_01_GRILL_ME_2026-08-02.md",
       "docs/planning/MOBILE_WRITING_BATTLE_WIREFRAME_01_APPROVAL_2026-08-02.md",
       "docs/planning/FULL_GAME_STRUCTURE_GAP_AUDIT_2026-08-02.md",
+      "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
       "docs/planning/GRIMOIRE_FULL_GAME_STRUCTURE_COMPLETION_OVERRIDE_2026-08-02.md",
       "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
       "docs/planning/sync/GR-SYNC-20260802-19-WORKING.md",
@@ -177,7 +194,7 @@
     "human_validation": "NOT_RUN",
     "year_one_demo_content_production": "BLOCKED_UNTIL_VERTICAL_SLICE_RUNTIME_AND_HUMAN_PASS",
     "year_two_three_content_production": "BLOCKED_UNTIL_YEAR_ONE_DEMO_VALIDATION",
-    "pull_request_merge": "BLOCKED_UNTIL_PREMERGE_GATE_PASS_AND_EXPLICIT_USER_APPROVAL",
+    "pull_request_merge": "BLOCKED_UNTIL_EXPLICIT_USER_APPROVAL",
     "product_implementation": "BLOCKED_UNTIL_IMPLEMENTATION_ENTRY_GATE_APPROVAL"
   }
 }
