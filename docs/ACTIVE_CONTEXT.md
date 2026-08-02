@@ -6,7 +6,7 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: chatgpt/grimoire-mobile-first-canon-20260802
+working_branch: main
 pull_request: 27
 primary_platform: Mobile
 follow_up_platform: PC
@@ -27,16 +27,16 @@ codex: BLOCKED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 human_validation: NOT_RUN
-canon_sync_state: SYNCED_TO_WORKING_BRANCH
+canon_sync_state: SYNCED_TO_MAIN
 sync_bundle: GR-SYNC-20260802-07
-authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
-verified_code_head: 3aa1b7cd2bd49362e20982f63abb8182345e14c0
+authority_commit: fe88236946a87362a43aafe598348b84c42a2243
+verified_code_head: fe88236946a87362a43aafe598348b84c42a2243
 sheet_readback: PASS
 generator_check: PASS
 unit_json_registry_checks: PASS
 adversarial_gate: PASS
-main_baseline_commit: 3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03
-main_sync: PENDING_USER_REVIEW_AND_MERGE
+main_baseline_commit: fe88236946a87362a43aafe598348b84c42a2243
+main_sync: SYNCED_TO_MAIN
 ```
 
 제품용 `project.godot`, Scene, Script, Resource, 게임 데이터, 런타임 Asset은 없다.
@@ -49,7 +49,7 @@ AGENTS.md
 → 이 문서
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
 → docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md
-→ docs/planning/sync/GR-SYNC-20260802-07-WORKING.md
+→ docs/planning/sync/GR-SYNC-20260802-07-MAIN.md
 → 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
@@ -152,7 +152,7 @@ evidence_commit: ef1fba11167e4da0b298123b0c85ebd268191a42
 finalization_commit: 87a0b54c2847ce4b685879209205957c170cc1cd
 registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
 canonical_adapter: skills/PROJECT_BASE_ADAPTER.json
-canonical_adapter_sha256: 5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb
+canonical_adapter_sha256: 980e2f4e21bd09ac49946f90d095680220013cbab6cdf62421fc01ca1b7be8c5
 generator: tools/generate_project_operating_views.py
 generated_views: CURRENT
 ```
@@ -175,18 +175,19 @@ Snapshot과 Compatibility View는 Generator 생성물이며 직접 편집하지 
 
 ## 현재 작업
 
-Sync Bundle `GR-SYNC-20260802-07`은 `SYNCED_TO_WORKING_BRANCH`다.
+Sync Bundle `GR-SYNC-20260802-07`은 `SYNCED_TO_MAIN`이다.
 
-남은 운영 작업:
-
-- 사용자 Draft PR #27 검토.
-- 승인 시 main 병합.
-- 병합 뒤 main·Sheet 재검증과 `SYNCED_TO_MAIN` 영수증.
+- PR #27은 main `fe88236...`로 병합됐다.
+- GitHub 정본·Adapter·Generated Views·Sheet 변경이력의 main SHA Readback를 유지한다.
+- 현재 작업은 적대적 총기획 감사와 중요 기획 Decision의 Grill Me다.
 
 ## 다음 제품 작업
 
 ```text
-MOBILE-FOUNDATION-01
+적대적 총기획 감사
+→ 중요 기획 충돌 Grill Me
+→ 승인 정본·Sheet 즉시 동기화
+→ MOBILE-FOUNDATION-01
 → BOSS-PHASE-01·Grimoire/Main 파생 화면 영향 재검토
 → AUDIO-DIRECTION-01
 → Mobile 기준 기획·아트·UX 통합 검수
@@ -211,4 +212,4 @@ MOBILE-FOUNDATION-01
 - 환경 결과 임계값.
 - Godot Runtime·Mobile device·PC 적응·성능·접근성·사람 플레이.
 
-PR #27은 Draft이며 자동 병합하지 않는다.
+PR #27은 사용자 승인 후 main에 병합됐으며, 제품 구현은 별도 기획 완료 Gate 전까지 시작하지 않는다.
