@@ -5,7 +5,7 @@
 ```yaml
 sync_id: GR-SYNC-20260802-17
 status: SYNCED_TO_WORKING_BRANCH
-sheet_readback: PENDING
+sheet_readback: PASS
 authority_head_before_sheet: aa3431ce8ccb68b943e44e79cf6b37490116827f
 final_head_resolution: CURRENT_BRANCH_CONTAINING_FINAL_BATCH_STATE; exact SHA recorded in Google Sheet
 approved_decision: GM-VERTICAL-SLICE-REPRESENTATIVENESS-01
@@ -76,19 +76,24 @@ MOBILE-UX-FLOW-01 = CURRENT
 - Full Game Structure Completion Override created.
 - 이 Working Sync Receipt 생성.
 
-## 6. Google Sheet 반영 대상
+## 6. Google Sheet 반영·Readback
+
+반영 탭:
 
 - `00·01·02·03·04·05·10·12·20·30·40·60·80·90·99`.
 
-검증 항목:
+Readback 결과:
 
-- Decision ID와 승인 옵션 A.
-- 실제 구현·Mock 경계.
-- 46/53/60분 시간 경계.
-- 대표 미니게임 최소 1개와 자유일정 최소 2축.
-- Counter `8/10`과 pending 8개.
-- Full Game Structure·Representativeness 완료와 Mobile UX Flow 전환.
+- Decision ID와 승인 옵션 A 일치.
+- 실제 구현·Mock 경계 일치.
+- 46/53/60분 시간 경계 일치.
+- 대표 미니게임 최소 1개와 자유일정 최소 2축 일치.
+- Counter `8/10`과 pending 8개 일치.
+- Full Game Structure·Representativeness 완료와 Mobile UX Flow 전환 일치.
+- 기존 인접 Decision·Loop·System·Test·Milestone·Sync 행 보존.
 - 구현·Runtime·Device·Accessibility·Human 차단 유지.
+
+`SHEET_READBACK_PASS`.
 
 ## 7. 병합 경계
 
