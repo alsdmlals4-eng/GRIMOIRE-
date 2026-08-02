@@ -24,13 +24,18 @@ follow_up_platform: PC
 mobile_orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 planning_contracts: APPROVED_AND_MERGED_TO_MAIN
-last_finalized_main: b9e7a6ba3a029c45a59bd20213bc4b7a561609f4
+current_main: f9c6f5fdd59f7c256986b5c817a244d464e0e74c
+base_release_on_main: 9.4.2
+base_adoption_pr_38: MERGED
+open_base_adoption_prs:
+  - 42
 last_completed_sync: GR-SYNC-20260802-20
 last_sheet_readback: PASS
 grill_counter_before_this_decision: 0_of_10
 current_decision: GM-IMPLEMENTATION-ENTRY-01
 current_approved_option: A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK
 current_batch_counter: 1_of_10
+current_draft_pr: 43
 implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
 implementation: NOT_STARTED
 codex_plan: ALLOWED
@@ -45,15 +50,12 @@ human_validation: NOT_RUN
 
 ## Base 상태
 
-현재 open Draft PR:
-
-- #38 — Base v9.4.2 planning-first adoption.
-- #42 — Base v9.4.3 first-prompt adapter adoption.
-
-두 PR이 같은 Adapter 계층을 다루므로 제품 코드 실행 전 반드시 병합·통합·supersede·close 중 하나로 정리한다.
+- PR #38은 병합되어 main이 Base v9.4.2 planning-first 정본을 가진다.
+- PR #42는 Base v9.4.3 first-prompt adapter Draft로 열려 있다.
+- #42의 병합·종료·supersede 결과에 따라 실행 시점의 최종 Base identity와 Required Workflow를 다시 확인해야 한다.
 
 ```yaml
-base_execution_identity: UNRESOLVED_MULTIPLE_OPEN_ADOPTION_PRS
+base_execution_identity: MAIN_V9_4_2_WITH_OPEN_V9_4_3_ADOPTION_PR_42
 product_code_execution: BLOCKED
 ```
 
@@ -90,12 +92,12 @@ AGENTS.md
 
 ## 직접 정본 갱신 조건
 
-Base PR #38·#42가 정리된 후 다음 파일을 직접 최신화한다.
+PR #42가 병합·종료·supersede 중 하나로 정리된 후 다음 파일을 직접 최신화한다.
 
 1. `START_HERE.md`.
 2. `docs/ACTIVE_CONTEXT.md`.
 3. `docs/DEVELOPMENT_GATES.md`.
 4. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
-5. `skills/PROJECT_BASE_ADAPTER.json`과 생성 View는 Base 채택 PR의 정본만 사용한다.
+5. `skills/PROJECT_BASE_ADAPTER.json`과 생성 View는 최종 Base 채택 정본만 사용한다.
 
 직접 갱신과 Readback이 끝나면 이 Override는 `ABSORBED_SUPERSEDED`로 전환할 수 있다.
