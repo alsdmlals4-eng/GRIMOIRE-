@@ -7,15 +7,17 @@ decision_id: GM-IMPLEMENTATION-ENTRY-01
 status: USER_APPROVED_ACTIVE
 approved_option: A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK
 approved_at: 2026-08-02T20:18+09:00
+merge_approved_at: 2026-08-02T20:59+09:00
 implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
 implementation: NOT_STARTED
 codex_plan: APPROVED_TO_PREPARE
 codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
 next_gate: GM-FOUNDATION-POC-EXECUTION-READINESS-01
 batch_counter: 1_of_10
-base_release_on_main: 9.4.2
+base_release_on_main: 9.4.3
 base_pr_38: MERGED
-base_pr_42: OPEN_DRAFT
+base_pr_42: CLOSED_SUPERSEDED
+base_pr_44: MERGED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -59,18 +61,23 @@ human_validation: NOT_RUN
 - 확정 밸런스·확정 Touch 허용치·확정 성능 목표.
 - Store·배포·결제·사업화 구현.
 
+## Base 정리 결과
+
+- PR #38 병합으로 Base v9.4.2 planning-first 정본이 도입됐다.
+- 기존 PR #42는 supersede 종료됐다.
+- 대체 PR #44가 병합되어 main의 단일 Base 정본은 v9.4.3이다.
+- v9.4.3은 v9.4.2 planning-first 계약을 보존하고 first-prompt governance를 추가한다.
+
 ## 실행 잠금
 
 다음 조건이 모두 만족되기 전에는 Codex가 제품 파일을 생성하거나 수정하지 않는다.
 
-1. PR #38 병합으로 Base v9.4.2 planning-first 정본이 main에 존재함을 확인한다. **완료**.
-2. Draft PR #42가 병합·종료·supersede 중 하나로 정리된다.
-3. 최종 main의 `skills/PROJECT_BASE_ADAPTER.json`이 단일 Base release identity를 가진다.
-4. Base Adapter·Snapshot·Generator·Required Workflow가 PASS한다.
-5. Cold-start 핵심 문서를 최종 Base 상태에 직접 맞추고 Override 우선순위를 확인한다.
-6. Godot Toolchain preflight를 실행한다.
-7. Implementation Plan을 최신 main에 재대조한다.
-8. `GM-FOUNDATION-POC-EXECUTION-READINESS-01`이 P0=0, P1=0으로 통과한다.
+1. 최종 main의 `skills/PROJECT_BASE_ADAPTER.json`이 Base v9.4.3 단일 release identity를 가진다. **완료**.
+2. Base Adapter·Snapshot·Generator·Required Workflow가 PASS한다. **Base 채택 범위 완료, 구현 진입 후 재검증 필요**.
+3. Cold-start 핵심 문서를 최종 Base 상태에 직접 맞추고 Override를 흡수한다.
+4. Godot Toolchain preflight를 실행한다.
+5. Implementation Plan을 최신 main에 재대조한다.
+6. `GM-FOUNDATION-POC-EXECUTION-READINESS-01`이 P0=0, P1=0으로 통과한다.
 
 ## Stop Gate
 
@@ -92,5 +99,6 @@ POC 자동 테스트 PASS
 - `docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md`
 - `docs/planning/IMPLEMENTATION_ENTRY_01_ADVERSARIAL_REVIEW_2026-08-02.md`
 - `docs/planning/IMPLEMENTATION_ENTRY_01_COLD_START_OVERRIDE_2026-08-02.md`
+- `docs/planning/IMPLEMENTATION_ENTRY_01_PREMERGE_GATE_2026-08-02.md`
 
 이 승인은 기획·설계·구현 계획을 허용하지만, 실행 준비 Gate 전 코드 작성 승인은 아니다.
