@@ -1,23 +1,21 @@
 # GRIMOIRE 시작 지점
 
-> 과거 대화 없이 현재 상태와 다음 작업을 복원하는 첫 화면이다. 세부 기획은 연결된 책임 원본을 우선한다.
+> 과거 대화 없이 현재 상태와 다음 작업을 복원하는 첫 화면이다. 세부 규칙은 연결된 책임 원본을 우선한다.
 
 ## 현재 상태
 
 | 항목 | 현재 기준 |
 |---|---|
 | 프로젝트 | `GRIMOIRE: 세계를 다시 쓰는 법` |
-| 1차 플랫폼 | `Mobile` |
+| 1차 플랫폼 | `Mobile / Landscape Fixed` |
 | 후속 플랫폼 | `PC` |
-| 방향 | `LANDSCAPE_FIXED` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | Base 정본 | `v9.4.3` |
 | 기준 main | `50a00f9f4ec992338a93e3dc75726b5bc6075a8b` |
-| 마지막 main Sync | `GR-SYNC-20260802-24 / SHEET_READBACK_PASS` |
 | 현재 Working Sync | `GR-SYNC-20260802-25` |
-| 현재 Decision | `GM-STOCK-SYSTEM-01 / GM-SUMMON-SYSTEM-01` |
-| 승인 방식 | `USER_DELEGATED_RECOMMENDED_OPTION` |
-| Grill Batch | `2/10 / pending 2` |
+| Draft PR | `#51` |
+| 현재 Decision | `GM-STOCK-SYSTEM-01 / GM-SUMMON-SYSTEM-01 / GM-STOCK-SUMMON-STATE-INTERFACE-01` |
+| Grill Batch | `3/10 / pending 3` |
 | 구현 진입 | `APPROVED_CONDITIONAL_FOUNDATION_POC` |
 | 제품 구현 | `NOT_STARTED` |
 | Codex Plan | `ALLOWED` |
@@ -30,79 +28,109 @@
 2. `docs/ACTIVE_CONTEXT.md`
 3. `docs/DEVELOPMENT_GATES.md`
 4. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-5. `docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`
-6. `docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md`
-7. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`
-8. `docs/planning/benchmarks/STOCK_SUMMON_SYSTEM_01_QUICK_BENCHMARK_2026-08-02.md`
-9. `docs/planning/CORE_SYSTEM_ALIGNMENT_01_APPROVAL_2026-08-02.md`
-10. `docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md`
+5. `docs/planning/STOCK_SYSTEM.md`
+6. `docs/planning/STOCK_CHARGE_TIME_SYSTEM.md`
+7. `docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`
+8. `docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md`
+9. `docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md`
+10. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`
 11. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
 12. `docs/planning/sync/GR-SYNC-20260802-25-WORKING.md`
-13. 질문 주제의 세부 책임 원본
 
 ## 플레이어 약속
 
-> 마법학교 학생이 되어 글자의 의미와 상황의 조건을 배우고, 직접 작성·Stock·소환수 주기 지원을 상황에 맞게 운용해 주문을 설계하며, 명시적으로 구현한 결과와 대가를 책임지고 마도서에 기록하는 마법 RPG.
+> 마법학교 학생이 글자의 의미와 상황 조건을 배우고, 직접 작성·준비 Stock·상주 소환수를 조합해 주문을 설계하며, 명시적으로 구현한 결과와 대가를 책임지고 마도서에 기록하는 마법 RPG.
 
 ## 핵심 재미
 
 ```text
-상황·조건·위험 판독
-→ 직접 작성·Stock·소환 운용 중 수단 선택
+상황·위험 판독
+→ 직접 작성·준비 Stock·[소환 주문] 중 수단 선택
 → 의미·대상·범위·출력·대가 설계
-→ 명시적 Commit 또는 [소환] Commit
+→ 명시적 Commit
 → 원자 결과 적용
 → 설명 가능한 세계 변화
 → 마도서 기록·복기
 ```
 
-## Stock 권장 기본값
+## Stock 최신 계약
+
+PR #51 초기의 `확인 글자 Token Rack 4칸` 해석은 폐기됐다.
+
+최신 Stock:
 
 ```text
-Stock = 확인된 글자 Token
-Rack 4칸
-동일 글자 최대 2개
-Anchor에서 2개 미만이면 2개까지 보정
-직접 첫 유효 Commit 후 글자별·Task별 +1
-Commit 승인 시 소비
-영구·Offline 누적 없음
+완성 주문·하위 글자를 전투 전에 공용 용량 안에서 준비
+→ 지정 대상 1종 자연 충전
+→ 플레이어가 필요한 순간에 사용
 ```
 
-Stock은 완성 주문·대상·상황·자동 최적 조합을 저장하지 않는다.
+Prototype 기본값:
 
-## 소환수 권장 기본값
+```yaml
+shared_capacity: 8
+one_glyph_charge: 10초
+additional_glyph_charge: +5초
+active_charge_targets: 1
+stock_use_mana_cost: 0
+offline_charge: false
+```
+
+충전시간:
+
+```text
+기능 글자 수 n
+→ 10 + 5 × (n - 1)초
+```
+
+## 소환수 최신 계약
 
 ```text
 메인 소환수 1체 = 상시 활성
-메인 Stock 지원 = 20초 후 Token 1개 / Task당 1회
-기타 소환수 = [소환] Commit 후 최대 1체
-비용 = 최대 마나 20%
-지속 = Active Pressure 30초
-Cooldown = 20초
-주문형 Tick = 10초 / 최대 3회 / 비교 효과 60%
-Stock형 Tick = 12초 / 최대 2개
-소환수 Stock 합산 = Task당 최대 3개
+기타 소환수 = [소환 주문] Commit 후 활성
+Slice 추가 활성 상한 = 1체
+지속시간·Cooldown = 없음
 ```
 
-Slice 수호형:
+- 다른 소환수는 수동 귀환·교체·강제 귀환 전까지 유지한다.
+- 소환 주문 비용은 고정 `마나 2`다.
+- 일반 장면 전환·Save/Resume 뒤에도 소환 상태를 유지한다.
+- 시간 압박이 없는 장면에서는 주기 행동만 정지한다.
 
-- 플레이어 피해 35% 완화.
-- 환경 피해 25% 완화.
-- 중첩 불가.
-- 자동 주문은 불안정도 0·치명 목표 완료·마지막 승리 Event 금지.
+### 정수 스탯
 
-`GM-SUMMON-SYSTEM-01`은 과거 Battle Rules의 수동 1회·자동 행동 금지 수호 소환수 규칙을 대체한다.
-
-## 작성·자동화 예산
+| 스탯 | 효과 |
+|---|---|
+| `[스톡] N` | 5초마다 현재 자연충전 남은 시간을 `N초` 감소 |
+| `[방어도] N` | 활성 중 직접 피해에서 `N`을 차감 |
+| `[공격] N` | 5초마다 유효 대상 불안정도를 `N` 감소 |
+| `[치유] N` | 5초마다 플레이어 HP를 `N` 회복 |
 
 ```text
-의미 있는 주문 해결 7~10회
-= 직접 작성 4~6회
-+ Stock 보조 2~4회
-+ 소환수 자동 행동 1~3회
+최종 직접 피해 = max(1, 원피해 - 총 방어도)
 ```
 
-직접 작성이 4회 미만 또는 전체 유효 해결의 40% 미만이면 핵심 경험 약화로 재작업한다.
+Slice 기본 소환수:
+
+- 메인 동반 정령 `[스톡] 1`.
+- 생산형 `[스톡] 2`.
+- 수호형 `[방어도] 2`.
+- 공격형 `[공격] 2`.
+- 치유형 `[치유] 2`.
+
+자동 공격은 불안정도를 `1` 아래로 낮추거나 마지막 해결 Event가 될 수 없다.
+
+## State/Ledger/Save
+
+책임 원본: `GM-STOCK-SUMMON-STATE-INTERFACE-01`.
+
+핵심 원칙:
+
+- 준비 Stock·충전 진행·소환 상태·전투 상태·Result Ledger의 소유자를 분리한다.
+- `[소환 주문]`은 마나 차감·기존 보조 귀환·새 보조 활성화를 한 Transaction으로 처리한다.
+- Stock 소비와 주문 효과 적용도 한 Transaction으로 처리한다.
+- 소환수 행동은 고유 `summon_event_id`로 정확히 한 번만 적용한다.
+- Background·Offline 경과로 공격·치유·충전 지원을 실행하지 않는다.
 
 ## Vertical Slice
 
@@ -117,80 +145,46 @@ Slice 수호형:
 ```
 
 - 별도 시험 Chapter 없음.
-- 목표 46분, 콘텐츠 상한 53분, 하드 상한 60분.
+- 목표 `46분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
 - 대표 글자 `흐름 / 집중 / 분산`.
-- 대표 제작 미니게임 권장: `촉매 배합·안정화 1개`.
-- 추가 선택형 현장실습 전투는 실제 Slice에서 빼고 Preview로 제시하는 안을 권장한다.
+- 대표 제작 권장: `촉매 배합·안정화 1개`.
 
 ## 남은 기획
 
-### P1 — 구현 준비 전 필수
+### P1 — 구현 준비 전
 
-- Stock·Summon State/Ledger/Save 인터페이스.
-- 작성·자동화·시간 예산 검증.
-- Mobile HUD.
-- 전용 자동화·사람 Test 계약.
-- Godot Toolchain·Implementation Plan 재검증.
+- 정수 스탯·자연충전 State Interface의 TDD Plan 연결.
+- Stock·소환수 Mobile HUD Wireframe.
+- 전용 자동화·Save/Resume Test.
+- Godot Toolchain preflight.
+- Base v9.4.3 Implementation Plan 재검증.
+- Execution Readiness P0=0·P1=0.
 
-### P2 — Vertical Slice 제작 전 필수
+### P2 — Vertical Slice 제작 전
 
 - Battle Tuning·Result Grading.
-- 대표 제작 미니게임 최종 계약.
+- 대표 제작 미니게임 확정.
 - Grimoire·Main·Audio.
-- 접근성·난이도 기본값.
-- Year-One 6~8 Chapter Map.
-- 커리큘럼 글자 Catalog·수강 슬롯·전문화 시점.
-- 성장·학기평가·재료·레시피·인벤토리 수치.
+- 접근성·난이도.
+- Year-One Chapter Map·글자 Catalog.
+- 성장·평가·경제 수치.
 - Slice 장면별 시간 예산.
 
-### P3 — Slice 검증 후
-
-- Boss 다중 페이즈.
-- 소환수 장기 성장·탑승·전체 Roster.
-- 2·3학년 상세 콘텐츠.
-- 출시·Store·PC Adaptation.
-- 최종 대량 Asset.
-
-## 구현 진입 경계
-
-Execution Readiness PASS 뒤 최소 Foundation POC만 허용 후보이다.
+## 구현 경계
 
 계속 금지:
 
-- 전체 46~53분 콘텐츠.
-- 실제 글자 인식·ML·훈련 데이터.
-- 최종 Art·Audio·Asset Import.
-- 완성 Grimoire/Main.
-- Stock·Summon Runtime의 무단 추가.
+- 전체 Vertical Slice 제품 구현.
+- 실제 글자 인식·ML.
+- 최종 Art·Audio·Asset.
+- Stock·소환수 Runtime의 무단 추가.
 - 최종 밸런스·Store·사업화.
-
-## 다음 작업 순서
-
-```text
-GM-STOCK-SYSTEM-01·GM-SUMMON-SYSTEM-01 PR 검증
-→ 사용자 병합 승인
-→ main·Sheet Readback
-→ State/Ledger/Save Interface
-→ Stock·Summon HUD·Test
-→ Slice 제작 미니게임·시간 예산
-→ Battle/Result Tuning
-→ Grimoire/Main/Audio·접근성
-→ Toolchain preflight·Plan 재검증
-→ GM-FOUNDATION-POC-EXECUTION-READINESS-01
-→ P0=0·P1=0일 때만 코드 실행
-```
-
-## 검증 경계
 
 ```text
 GODOT_PROJECT = NOT_STARTED
 PRODUCT_CODE = NOT_STARTED
-CODE_EXECUTION = BLOCKED
-STOCK_DEFAULTS = APPROVED_FOR_PROTOTYPE
-SUMMON_DEFAULTS = APPROVED_FOR_PROTOTYPE
+CODEX_EXECUTION = BLOCKED
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
-PERFORMANCE_VALIDATION = NOT_RUN
-ACCESSIBILITY_VALIDATION = NOT_RUN
 HUMAN_PLAYTEST = NOT_RUN
 ```
