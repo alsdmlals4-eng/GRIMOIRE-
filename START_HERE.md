@@ -25,6 +25,8 @@
 | main 기준선 | `3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03` |
 | 현재 Sync | `GR-SYNC-20260802-07 / SYNCED_TO_WORKING_BRANCH / SHEET_READBACK_PASS` |
 | Authority Commit | `b9279e8c690a8406035675ebbe8a007e9b3f093f` |
+| 검증된 코드 HEAD | `3aa1b7cd2bd49362e20982f63abb8182345e14c0` |
+| Draft PR | `#27 / OPEN / CI·ADVERSARIAL PASS` |
 | Sync Receipt | `docs/planning/sync/GR-SYNC-20260802-07-WORKING.md` |
 
 ## 먼저 읽을 문서
@@ -113,11 +115,26 @@ Android/iOS, Store, 가로/세로, 최소 기기, 성능 수치, 인식 처리 �
 - Finalization: `87a0b54c2847ce4b685879209205957c170cc1cd`.
 - Registry: `693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59`.
 - Adapter: `skills/PROJECT_BASE_ADAPTER.json`.
+- Adapter SHA-256: `5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb`.
+
+## 검증된 운영 상태
+
+PR #27 workflow run `30728081535`에서 다음을 통과했다.
+
+- Generator check.
+- Base v9.4·Mobile-first 회귀 단위 테스트.
+- JSON·Registry·권위 경로 검사.
+- Adversarial gate.
+
+Generator의 구형 `PC/ASSET_SPEC_01` 하드코딩도 Adapter 파생형으로 교정했고, Snapshot·Compatibility View를 재생성했다.
 
 ## 다음 작업
 
 ```text
-MOBILE-FOUNDATION-01
+사용자 Draft PR #27 검토
+→ 승인 시 main 병합
+→ main·Sheet 재검증 및 SYNCED_TO_MAIN
+→ MOBILE-FOUNDATION-01
 → BOSS-PHASE-01·Grimoire/Main 영향 재검토
 → AUDIO-DIRECTION-01
 → Mobile 기준 통합 검수
@@ -128,9 +145,10 @@ MOBILE-FOUNDATION-01
 ## 현재 검증 경계
 
 - Sheet 14개 탭 Readback: `PASS`.
-- Generator·Generated Views: `NOT_RUN / STALE_PENDING_GENERATOR`.
-- PR·CI: `PENDING`.
-- Godot Runtime·Mobile device·성능·접근성·사람 플레이: `NOT_RUN`.
+- Generator·Generated Views: `PASS / CURRENT`.
+- Unit·JSON·Registry·Adversarial CI: `PASS`.
+- PR: `DRAFT_OPEN`, main 병합 전.
+- Godot Runtime·Mobile device·PC adaptation·성능·접근성·사람 플레이: `NOT_RUN`.
 
 ## 현재 금지
 
