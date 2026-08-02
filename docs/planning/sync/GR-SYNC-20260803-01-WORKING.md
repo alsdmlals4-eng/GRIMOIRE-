@@ -4,7 +4,7 @@
 
 ```yaml
 sync_id: GR-SYNC-20260803-01
-status: SYNCED_TO_WORKING_BRANCH_PENDING_FINAL_VERIFICATION
+status: SYNCED_TO_WORKING_BRANCH_STATUS_COMMIT_RECHECK
 decision_ids:
   - GM-STOCK-SYSTEM-01
   - GM-SUMMON-SYSTEM-01
@@ -21,48 +21,40 @@ grill_counter: 4_of_10
 pending_decisions: 4
 sheet_readback: PASS
 sheet_text_integrity_sentinel: PASS
-final_head_ci: PENDING
-adversarial_gate: PENDING
-text_integrity_gate: PENDING
-review_threads: PENDING
+verification_candidate_head: 378de008a1a2f15426dbc82aea9848dd56f7591f
+verification_candidate_ci_run: 30754760376
+candidate_ci_gate: PASS
+candidate_adversarial_gate: PASS
+candidate_text_integrity_gate: PASS
+candidate_review_threads: 0
+candidate_reviews: 0
+final_status_commit_head_ci: RECHECK_REQUIRED
 implementation: NOT_STARTED
 codex_execution: BLOCKED
 ```
 
 ## 2. 승인 변경
 
-### 소환수 활성 상한
-
 ```yaml
 persistent_main_summon: 1
 secondary_active_summon_cap: 3
 total_active_summon_cap: 4
 secondary_slots: [S1, S2, S3]
+secondary_roles: [PRODUCTION, GUARDIAN, ASSAULT, RECOVERY]
+secondary_role_duplicate_cap_in_slice: 1
 duration_limit: NONE
 cooldown: NONE
 summon_spell_mana_cost: 2
+support_cycle_seconds: 5
 ```
 
 - 보조는 `[소환 주문]` Commit 후 활성화한다.
-- 수동 귀환·교체·강제 귀환 전까지 유지한다.
-- 세 슬롯이 가득 차면 교체할 슬롯을 먼저 명시하고 마나 2를 다시 지불한다.
-
-### 역할 편성 가드
-
-```yaml
-secondary_roles:
-  - PRODUCTION
-  - GUARDIAN
-  - ASSAULT
-  - RECOVERY
-secondary_role_duplicate_cap_in_slice: 1
-```
-
 - Slice에서는 네 역할 중 최대 세 역할을 선택한다.
 - 보조 사이 같은 역할 중복을 금지한다.
 - 메인 `[스톡] 1`은 보조 역할 중복 검사에서 제외한다.
+- 세 슬롯이 가득 차면 교체할 슬롯을 먼저 명시하고 마나 2를 다시 지불한다.
 
-### 정수 스탯
+정수 기본값:
 
 ```yaml
 main_stock_stat: 1
@@ -70,7 +62,6 @@ production_stock_stat: 2
 guardian_defense_stat: 2
 assault_attack_stat: 2
 recovery_heal_stat: 2
-support_cycle_seconds: 5
 ```
 
 - 활성 `[스톡]` 합계 상한은 3을 유지한다.
@@ -150,7 +141,7 @@ Readback sentinel:
 마도서
 ```
 
-Sheet 재조회 결과:
+Sheet 재조회:
 
 ```yaml
 secondary_summon_s1_s2_s3: PASS
@@ -163,10 +154,26 @@ sentinel_readback: PASS
 obsolete_secondary_cap_1_in_current_decision_range: 0
 ```
 
-CI·GitHub·Sheet Readback을 모두 통과하기 전 최종 PASS를 주장하지 않는다.
+검증 후보 `378de008a1a2f15426dbc82aea9848dd56f7591f`:
+
+```yaml
+ci_run: 30754760376
+ci_gate: PASS
+json_parse: PASS
+utf8_nfc_text_integrity: PASS
+adversarial_gate: PASS
+review_threads: 0
+reviews: 0
+ahead: 50
+behind: 0
+changed_files: 20
+```
+
+이 증거를 기록한 상태 마감 HEAD 자체를 한 번 더 검증한다.
 
 ## 7. GitHub 반영 범위
 
+- `.github/workflows/validate-base-v9-adoption.yml`.
 - `AGENTS.md`.
 - `START_HERE.md`.
 - `docs/ACTIVE_CONTEXT.md`.
@@ -180,8 +187,7 @@ CI·GitHub·Sheet Readback을 모두 통과하기 전 최종 PASS를 주장하�
 - `docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md`.
 - `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`.
 - `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
-- `.github/workflows/validate-base-v9-adoption.yml`.
-- 이 Sync Receipt.
+- 이전 Working Sync 기록과 이 Sync Receipt.
 
 ## 8. Google Sheet 반영·Readback
 
