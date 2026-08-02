@@ -5,8 +5,9 @@
 ```yaml
 sync_id: GR-SYNC-20260802-14
 status: SYNCED_TO_WORKING_BRANCH
-sheet_readback: PENDING
+sheet_readback: PASS
 authority_head_before_sheet: ade542322b53ca12dca2ae6229d53c34eb35b6da
+final_head_resolution: CURRENT_BRANCH_CONTAINING_FINAL_BATCH_STATE; exact SHA recorded in Google Sheet
 approved_decision: GM-FULL-GAME-REWARD-ECONOMY-01
 approved_option: A_PRIMARY_PLUS_C_MATERIAL_CRAFTING_MINIGAME_CONTENT
 approved_at: 2026-08-02T18:04+09:00
@@ -91,9 +92,30 @@ human_validation: NOT_RUN
 - Batch State advanced to `5/10`.
 - 이 Working Sync Receipt 생성.
 
-## 8. Sheet 반영 대상
+## 8. Google Sheet Readback
 
-- `00·01·02·03·04·05·10·12·30·40·41·50·52·80·99`.
+검증 범위:
+
+- `00·01·02·03·04·05·10·12·30·40·41·50·51·52·80·99`.
+
+판정:
+
+```text
+Decision ID match = PASS
+Approved option A_PRIMARY_PLUS_C = PASS
+Counter 5/10 = PASS
+Pending decisions 5 = PASS
+A permanent reward layers = PASS
+C material/crafting layer = PASS
+Minigames and additional content required = PASS
+Vertical Slice representative minigame minimum 1 = PASS
+GR-S-15 / GR-EC-06 / GR-CT-10 = PASS
+GR-MINI-04 through GR-MINI-09 = PASS
+Old practical-exam content reclassification = PASS
+Existing authority row overwrite = NONE
+Next Grill Me match = PASS
+Implementation/Runtime/Device/Human boundary = PRESERVED
+```
 
 ## 9. 병합 경계
 
