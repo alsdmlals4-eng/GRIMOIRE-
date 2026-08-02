@@ -7,17 +7,17 @@
     "third_party_inventory": "docs/ASSET_LICENSE_LEDGER.md"
   },
   "base_release": {
-    "finalization_commit": "87a0b54c2847ce4b685879209205957c170cc1cd",
+    "finalization_commit": "ac9466edc2d93b59f274c9ac55ca719eba2809e3",
     "integrated_execution_prompt": "templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
     "registry_path": "skills/SKILL_REGISTRY.json",
     "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
-    "release_commit": "3f2c4a624d302b704c1b5322eb5c9f34ad55abb9",
-    "release_evidence_commit": "ff117d24d5bdb121314e109a6aa9b4f552e0fdc1",
+    "release_commit": "dd705d7f48a7919187bc0507610ba5fc5b43a658",
+    "release_evidence_commit": "0c6cdd128bf1f5782e96b3a6240c9585f8d1ef6d",
     "repository": "alsdmlals4-eng/Base",
-    "version": "9.4.1"
+    "version": "9.4.2"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "c570aaf5c861cd73e5ee2f97f15d9d7b4f77d71a5d22937ffaa9c049057455fd",
+  "canonical_source_sha256": "a48b20874815e847a2d897054b335133ff58fb13964b7e181f5849814fc69231",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "AGENTS.md",
@@ -189,6 +189,7 @@
   "validation": {
     "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
     "base_shared_external_ai_adapter": "REQUIRED_ON_PULL_REQUEST",
+    "base_v942_planning_first_adoption": "REQUIRED_ON_PULL_REQUEST",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
     "generated_views": "CURRENT",
     "generator_check": "REQUIRED",
