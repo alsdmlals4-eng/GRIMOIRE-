@@ -1,70 +1,49 @@
-# GR-AUD-FULL-GAME-STRUCTURE-20260802-01 — 전체 게임 구조·대표성·Mobile UX 누락 감사
+# GR-AUD-FULL-GAME-STRUCTURE-20260802-01 — 전체 게임 구조·대표성·Mobile UX·Wireframe 누락 감사
 
 ## 1. 감사 대상
 
-- GitHub main `385b17d84608b6871c7453cdeacc43268c5cea91`.
-- Working branch `chatgpt/grimoire-full-game-structure-20260802`.
-- Vertical Slice·Macro Loop·Chapter Rhythm·다계열 커리큘럼·성장·보상·실패 평가·본편 범위·대표성·Mobile UX Flow 정본.
+- 최신 GitHub `main`과 working branch `chatgpt/grimoire-full-game-structure-20260802`.
+- 전체 게임 Macro Loop·Chapter Rhythm·커리큘럼·성장·보상·실패 평가·제품 범위.
+- Internal Vertical Slice 대표성·Mobile UX Flow·Writing/Battle Wireframe 정본.
 - Google Sheet `00·01·02·03·04·05·10·12·20·30·40·41·50·51·52·60·80·90·99`.
-- 승인된 Battle·Mobile·Art·Save/Resume 계약.
+- Battle·Mobile·Art·Save/Resume 계약과 Draft PR #36 전체 diff·CI·리뷰.
 
 ## 2. 현재 결론
 
 ```yaml
-verdict: FULL_GAME_STRUCTURE_REPRESENTATIVENESS_AND_MOBILE_UX_FLOW_APPROVED / MOBILE_WRITING_BATTLE_WIREFRAME_CURRENT
+verdict: TEN_PLANNING_DECISIONS_APPROVED / PREMERGE_ADVERSARIAL_GATE_CURRENT
 p0_open: 0
 p1_open: 0
-p2_closed: 9
+p2_closed: 10
 p2_open: 0
-approved_decisions:
-  - GM-FULL-GAME-MACRO-LOOP-01
-  - GM-FULL-GAME-CHAPTER-RHYTHM-01
-  - GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01
-  - GM-FULL-GAME-GROWTH-CHOICE-COST-01
-  - GM-FULL-GAME-REWARD-ECONOMY-01
-  - GM-FULL-GAME-FAILURE-LONG-TERM-IMPACT-01
-  - GM-FULL-GAME-SCOPE-ENDING-01
-  - GM-VERTICAL-SLICE-REPRESENTATIVENESS-01
-  - GM-MOBILE-UX-FLOW-01
+grill_counter: 10_of_10
 completed_gates:
   - FULL-GAME-STRUCTURE-01
   - VERTICAL-SLICE-REPRESENTATIVENESS-01
   - MOBILE-UX-FLOW-01
-current_gate: MOBILE-WRITING-BATTLE-WIREFRAME-01
-current_question: GM-MOBILE-WRITING-BATTLE-WIREFRAME-01
+  - MOBILE-WRITING-BATTLE-WIREFRAME-01
+current_gate: PREMERGE-ADVERSARIAL-01
+current_question: GM-PREMERGE-ADVERSARIAL-GATE-01
+implementation: NOT_STARTED
+codex: BLOCKED
 ```
 
-전체 게임 구조·Internal Vertical Slice 대표성·Mobile Landscape 상태 전환 계약이 닫혔다. 다음 작업은 승인된 Scene-first Focus Flow를 실제 화면 영역 관계로 변환하는 Writing/Battle Wireframe 결정이다.
+## 3. 승인된 결정
 
-## 3. 승인된 구조
+1. `GM-FULL-GAME-MACRO-LOOP-01 / A_ACADEMIC_SPIRAL_WITH_OPTIONAL_FIELD_PRACTICUM`.
+2. `GM-FULL-GAME-CHAPTER-RHYTHM-01 / A_FIXED_FUNCTIONS_VARIABLE_ORDER`.
+3. `GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01 / B_MULTI_SCHOOL_ENROLLMENT_SPECIALIZATION_TREE`.
+4. `GM-FULL-GAME-GROWTH-CHOICE-COST-01 / A_COURSE_SLOTS_PLUS_CONTEXTUAL_PORTFOLIO_EVIDENCE_NO_SEPARATE_EXAM`.
+5. `GM-FULL-GAME-REWARD-ECONOMY-01 / A_PRIMARY_PLUS_C_MATERIAL_CRAFTING_MINIGAME_CONTENT`.
+6. `GM-FULL-GAME-FAILURE-LONG-TERM-IMPACT-01 / A_RESULT_TAG_RECOVERY_SPIRAL_WITH_HIDDEN_MINOR_SEMESTER_EVALUATION`.
+7. `GM-FULL-GAME-SCOPE-ENDING-01 / B_THREE_SCHOOL_YEAR_FULL_GAME_WITH_A_YEAR_ONE_DEMO_BOUNDARY`.
+8. `GM-VERTICAL-SLICE-REPRESENTATIVENESS-01 / A_CORE_SYSTEMS_PLAYABLE_PLUS_LONG_TERM_STRUCTURE_COMPRESSED_MOCK`.
+9. `GM-MOBILE-UX-FLOW-01 / A_SCENE_FIRST_CONTEXTUAL_FOCUS_FLOW`.
+10. `GM-MOBILE-WRITING-BATTLE-WIREFRAME-01 / A_CONTEXT_PRESERVING_EXPANDABLE_RIGHT_WRITING_FOCUS_PANEL`.
 
-### P2-01 — Macro Loop / CLOSED
+## 4. 최종 기획 계약
 
-`GM-FULL-GAME-MACRO-LOOP-01 / A_ACADEMIC_SPIRAL_WITH_OPTIONAL_FIELD_PRACTICUM`.
-
-### P2-02 — 마법 커리큘럼 / CLOSED
-
-`GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01 / B_MULTI_SCHOOL_ENROLLMENT_SPECIALIZATION_TREE`.
-
-### P2-03 — 성장·평가 / CLOSED
-
-`GM-FULL-GAME-GROWTH-CHOICE-COST-01 / A_COURSE_SLOTS_PLUS_CONTEXTUAL_PORTFOLIO_EVIDENCE_NO_SEPARATE_EXAM`.
-
-### P2-04 — 보상·제작·미니게임 / CLOSED
-
-`GM-FULL-GAME-REWARD-ECONOMY-01 / A_PRIMARY_PLUS_C_MATERIAL_CRAFTING_MINIGAME_CONTENT`.
-
-### P2-05 — Chapter 변주 / CLOSED
-
-`GM-FULL-GAME-CHAPTER-RHYTHM-01 / A_FIXED_FUNCTIONS_VARIABLE_ORDER`.
-
-### P2-06 — 실패·학기말 평가 / CLOSED
-
-`GM-FULL-GAME-FAILURE-LONG-TERM-IMPACT-01 / A_RESULT_TAG_RECOVERY_SPIRAL_WITH_HIDDEN_MINOR_SEMESTER_EVALUATION`.
-
-### P2-07 — 본편 범위·종결 / CLOSED
-
-`GM-FULL-GAME-SCOPE-ENDING-01 / B_THREE_SCHOOL_YEAR_FULL_GAME_WITH_A_YEAR_ONE_DEMO_BOUNDARY`.
+### 제품 단계
 
 ```text
 46–53분 Internal Vertical Slice
@@ -72,101 +51,73 @@ current_question: GM-MOBILE-WRITING-BATTLE-WIREFRAME-01
 → 3학년 전체 Full Game
 ```
 
-### P2-08 — Vertical Slice 대표성 / CLOSED
-
-`GM-VERTICAL-SLICE-REPRESENTATIVENESS-01 / A_CORE_SYSTEMS_PLAYABLE_PLUS_LONG_TERM_STRUCTURE_COMPRESSED_MOCK`.
-
-실제 작성·비전투·제작 미니게임·최소 2축 자유일정·단일 강적 현장 전투·마도서·학기말 평가를 플레이로 검증하고, 이후 학기·학년·전문화는 상태를 명시한 Preview Mock으로 제한한다.
-
-### P2-09 — Mobile UX Flow / CLOSED
-
-`GM-MOBILE-UX-FLOW-01 / A_SCENE_FIRST_CONTEXTUAL_FOCUS_FLOW`.
+### 핵심 UX
 
 ```text
 장면·현재 목표
-→ 한 번에 하나의 Focus Task
-→ 필요 시 Writing Panel
-→ 결과 원자 적용
+→ 하나의 Focus Task
+→ 필요 시 확장 우측 Writing Panel
+→ 단일 원자 Commit
+→ 결과·세계 변화
 → Grimoire 기록
 → Hub 또는 다음 Anchor
 ```
 
-확정 규칙:
+### Writing·Battle 영역
 
-- 안전 장면에서만 일정·마도서·설정의 일관된 얇은 전역 진입점을 제공한다.
-- 수업·비전투·제작·전투는 공통 Focus Task 진입·취소·Commit·결과·복귀 계약을 공유한다.
-- Writing Panel은 상황 내부의 임시 Focus Layer다.
-- 시간 압박 전투 중 전역 메뉴는 제한하고 Pause·접근성·안전 종료만 보장한다.
-- Focus Task 전·결과 원자 적용 후를 우선 Save/Resume Anchor로 사용한다.
-- 중단복귀 시 중단 상태·Draft·미적용/적용 결과·다음 안전 행동을 설명한다.
+- 기본 상태는 적·환경 중심이다.
+- 작성 시 우측 Panel을 확장하고 상황 영역을 압축하되 제거하지 않는다.
+- 적 의도·타이머·대상·환경 위험·핵심 HP/마나는 작성 중 필수 잔존 정보다.
+- 캔버스는 Panel의 최대 단일 입력 영역이다.
+- 후보·의미·신뢰·비용·문법·Undo·삭제·취소·`[구현]`은 캔버스와 분리한다.
+- 낮은 확신 자동 확정은 금지한다.
+- Panel 축소·중단복귀에는 Draft를 유지하고 명시적 전체 취소에서만 폐기한다.
+- 비전투·제작·전투가 같은 Panel 생명주기를 공유하되 입력 판단과 결과는 독립적이다.
 
-## 4. 제품·제작 경계
+## 5. 적대적 위험과 보호
 
-- Year-One Demo는 본편의 1학년 정본이며 평행 캠페인이 아니다.
-- Vertical Slice 대표성·Mobile UX Flow 승인만으로 구현 준비가 완료된 것은 아니다.
-- Writing/Battle Wireframe과 구현 진입 Gate 승인 전 Godot 제품 구현을 시작하지 않는다.
-- Vertical Slice Runtime·실기기·접근성·사람 검증 PASS 전 Year-One Demo 6~8 Chapter 본제작을 시작하지 않는다.
-- Year-One Demo 검증 전 2·3학년 전용 대형 콘텐츠를 본제작하지 않는다.
-- 모든 Panel 비율·Touch target·Anchor 수·전환 시간·통과 수치는 `TEST_VALUE`다.
+### RISK-01 — 상황 보존 명목의 정보 과밀
 
-## 5. 현재 Gate
+- 작성 중 적 의도·타이머·대상·환경 위험·핵심 상태만 남기고 부가 정보는 접는다.
+- 캔버스 위 버튼·툴팁·후보를 금지한다.
 
-### MOBILE-WRITING-BATTLE-WIREFRAME-01 / CURRENT
+### RISK-02 — Panel 확장이 사실상 전체 화면 Takeover
 
-현재 질문:
+- 적·대상·환경·타이머의 지속 가시성을 필수 통과 조건으로 둔다.
+- 상황 인과가 소실되면 Wireframe을 재작업한다.
 
-`GM-MOBILE-WRITING-BATTLE-WIREFRAME-01`.
+### RISK-03 — 작은 캔버스가 핵심 난도가 됨
 
-검증 대상:
+- Touch·Stylus·접근성 확대 상태에서 캔버스 면적과 판독 실패를 검증한다.
+- Panel 비율·캔버스 크기·후보 수는 `TEST_VALUE`다.
 
-- 적·행동 예고·타이머·환경 위험과 작성 캔버스의 동시 가시성.
-- 기본 관찰 상태와 Writing Focus 상태의 영역 확장·축소 관계.
-- 인식 후보·의미·비용·문법·Undo·삭제·취소·`[구현]`의 분리.
-- Writing Panel 축소·복귀 시 Draft 보존.
-- 비전투·제작·전투의 공통 Panel 계약.
-- Mobile Safe Area·Touch·Stylus·접근성 확대에서 핵심 정보 가림 여부.
+### RISK-04 — 오시전·Draft 손실·중복 결과
 
-권장 후보:
+- 낮은 확신 자동 확정 금지.
+- 취소와 `[구현]`을 위치·형태·문구로 분리.
+- Commit 단일 소유권과 Result/Grimoire 공통 Ledger 유지.
+- Panel 축소·App 중단복귀 시 Draft 보존.
 
-`A_CONTEXT_PRESERVING_EXPANDABLE_RIGHT_WRITING_FOCUS_PANEL`.
+### RISK-05 — 3년 본편 범위 폭증
 
-## 6. 적대적 위험
+- Internal Slice 통과 전 Year-One Demo 대량 제작 금지.
+- Year-One Demo 검증 전 2·3학년 전용 대형 콘텐츠 제작 금지.
+- 공통 사건·장소·미니게임·Asset 변주를 우선한다.
 
-### RISK-UX-01 — 전역 기능 은닉
+## 6. 사전 병합 Gate 검증 항목
 
-보호:
+`GM-PREMERGE-ADVERSARIAL-GATE-01`은 다음을 새로 확인한다.
 
-- 안전 장면에서 일정·마도서·설정의 위치와 아이콘 의미를 고정한다.
-- 첫 노출과 중단복귀 후 Context Card에서 위치를 재확인한다.
-
-### RISK-UX-02 — Focus Task의 획일화
-
-보호:
-
-- 공통 상태 계약은 공유하되 수업·비전투·제작·전투의 입력 방식과 상황 판단은 유지한다.
-- 모든 콘텐츠를 같은 미니게임으로 치환하지 않는다.
-
-### RISK-WIRE-01 — 작성 Panel과 상황 보존 영역의 동시 과밀
-
-보호:
-
-- 작성 중 상황 영역은 적 의도·타이머·대상·환경 위험·핵심 상태만 남긴다.
-- 캔버스 위 버튼·툴팁·후보 겹침을 금지한다.
-- Panel 비율은 기기 종횡비별 `TEST_VALUE`로 검증한다.
-
-### RISK-WIRE-02 — 전체 화면 작성으로 상황 인과 소실
-
-보호:
-
-- 권장안은 적·대상·환경을 제거하지 않는 확장 우측 Panel이다.
-- 작성은 별도 앱이 아니라 상황 내부 Focus Layer로 유지한다.
-
-### RISK-SCOPE-01 — Year-One Demo와 3년 전체 범위 폭증
-
-보호:
-
-- 단계별 Gate와 공통 사건·장소·미니게임·Asset 변주 원칙을 유지한다.
-- 계열별 완전 별도 캠페인을 만들지 않는다.
+1. 최신 main SHA와 PR base 일치·mergeability.
+2. PR 전체 changed files가 계획 문서·검증 도구 범위인지.
+3. Godot Scene·Script·Resource·게임 데이터·잠금 Asset 변경이 없는지.
+4. 열 개 Decision ID와 승인 옵션이 GitHub·Sheet에 동일한지.
+5. Sheet `10/10`, pending 10개, Readback PASS, 행 덮어쓰기 없음.
+6. CI와 adversarial-gate가 최종 HEAD에서 성공했는지.
+7. 미해결 review thread와 blocking review가 없는지.
+8. 구현·Runtime·Device·Accessibility·Human 상태가 과장되지 않았는지.
+9. `TEST_VALUE`가 확정 수치로 오인되지 않는지.
+10. PR 병합 후 main·Sheet 최종화 절차가 정의됐는지.
 
 ## 7. 보호된 경계
 
@@ -174,6 +125,6 @@ current_question: GM-MOBILE-WRITING-BATTLE-WIREFRAME-01
 - 구현 `NOT_STARTED`.
 - Codex `BLOCKED`.
 - Runtime·실기기·접근성·사람 검증 `NOT_RUN`.
-- Writing/Battle Wireframe 승인 전 구체 화면 제작·제품 구현 금지.
-- Wireframe 승인 후에도 구현 진입 Gate 전 Godot 제품 코드·Scene·Resource 작성 금지.
-- Full Game의 2·3학년 본제작은 Year-One Demo 검증 이후.
+- 사전 적대 검토 통과 전 PR 병합 금지.
+- Gate 통과 후에도 사용자 명시 승인 없이 자동 병합 금지.
+- 병합 후 별도 구현 진입 Gate 승인 전 Godot 제품 구현 금지.
