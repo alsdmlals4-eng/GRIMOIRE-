@@ -5,7 +5,9 @@
 ```yaml
 sync_id: GR-SYNC-20260802-13
 status: SYNCED_TO_WORKING_BRANCH
-sheet_readback: PENDING
+sheet_readback: PASS
+authority_head_before_final_receipt: 9ab6b17ad9668fbf2f74fef90dd2bfe5ace3b895
+final_head_resolution: CURRENT_BRANCH_CONTAINING_FINAL_BATCH_STATE; exact SHA recorded in Google Sheet
 approved_decision: GM-FULL-GAME-GROWTH-CHOICE-COST-01
 approved_option: A_COURSE_SLOTS_PLUS_CONTEXTUAL_PORTFOLIO_EVIDENCE_NO_SEPARATE_EXAM
 approved_at: 2026-08-02T17:39+09:00
@@ -85,12 +87,26 @@ human_validation: NOT_RUN
 - `GRILL_ME_BATCH_MERGE_STATE.json`.
 - 이 Working Sync Receipt.
 
-## 8. Sheet 반영 대상
+## 8. Google Sheet Readback
 
-- 프로젝트 허브·작업 순서·확정 결정.
-- GDD·제품 방향·핵심 루프.
-- 성장 경제·메인 콘텐츠·Vertical Slice 플레이테스트.
-- 감사·변경 이력.
+검증 범위:
+
+- `00·01·02·03·04·05·10·12·30·41·50·80·99`.
+
+판정:
+
+```text
+Decision ID match = PASS
+Approved option match = PASS
+Counter 4/10 = PASS
+Pending decisions 4 = PASS
+No separate exam = PASS
+Class / noncombat / field / reflection evidence = PASS
+Old practical-exam slot reclassified = PASS
+Next Grill Me match = PASS
+Existing authority row overwrite = NONE
+Implementation/Runtime/Device/Human boundary = PRESERVED
+```
 
 ## 9. 병합 경계
 
