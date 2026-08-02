@@ -17,7 +17,7 @@ pull_request: 51
 head: RESOLVE_FROM_FINAL_PR_HEAD
 grill_counter: 3_of_10
 pending_decisions: 3
-sheet_readback: PENDING_FOR_REVISED_MODEL
+sheet_readback: PASS
 implementation: NOT_STARTED
 codex_execution: BLOCKED
 ```
@@ -154,9 +154,9 @@ P1:
 3. Godot Toolchain preflight.
 4. Base v9.4.3 Plan 재검증·Execution Readiness.
 
-## 7. Google Sheet
+## 7. Google Sheet Readback
 
-반영 대상:
+반영·재조회:
 
 - `00_프로젝트_허브`.
 - `01_작업순서`.
@@ -170,7 +170,17 @@ P1:
 - `80_데모_버티컬슬라이스_플레이테스트`.
 - `99_변경이력`.
 
-최종 HEAD 검증 전에 revised model Readback을 수행한다.
+확인:
+
+```yaml
+natural_charge_stock_rows: PASS
+persistent_integer_summon_rows: PASS
+state_ledger_save_rows: PASS
+obsolete_token_rack_current_rows: REPLACED
+obsolete_timed_percentage_current_rows: REPLACED
+row_overwrite: 0
+sheet_readback: PASS
+```
 
 ## 8. 보호 경계
 
