@@ -154,7 +154,7 @@ REJECT:
 - `80_데모_버티컬슬라이스_플레이테스트`.
 - `99_변경이력`.
 
-같은 Decision·Benchmark·Sync ID를 재조회했다. `소환수·자연충전·적대적 검토·벤치마킹·마도서` Sentinel은 PASS이고 대체문자 `�` 검색 결과는 0건이다.
+같은 Decision·Benchmark·Sync ID를 재조회했다. `소환수·자연충전·적대적 검토·벤치마킹·마도서` Sentinel은 PASS이고 대체문자 `U+FFFD` 검색 결과는 0건이다.
 
 ## 11. 적대적 위험
 
