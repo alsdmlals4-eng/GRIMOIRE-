@@ -4,10 +4,13 @@
 
 ```yaml
 decision_id: GM-MOBILE-UX-FLOW-01
-status: USER_DECISION_REQUIRED
+status: USER_APPROVED_RESOLVED
+approved_option: A_SCENE_FIRST_CONTEXTUAL_FOCUS_FLOW
+approved_at: 2026-08-02T19:27+09:00
 parent_decision: GM-VERTICAL-SLICE-REPRESENTATIVENESS-01
-current_grill_me_batch_if_approved: 9_of_10
-gate: MOBILE-UX-FLOW-01
+grill_me_batch: 9_of_10
+completed_gate: MOBILE-UX-FLOW-01
+next_gate: MOBILE-WRITING-BATTLE-WIREFRAME-01
 implementation: NOT_STARTED
 codex: BLOCKED
 ```
@@ -18,7 +21,7 @@ Mobile Landscape에서 학교 Hub·자유일정·수업·비전투 응용·제�
 
 이 결정은 화면의 픽셀 배치가 아니라 **상태 전환·정보 우선순위·복귀 규칙**을 잠근다. 구체 Wireframe은 다음 결정에서 작성한다.
 
-## 3. A안 — 장면 중심 Contextual Focus Flow / 권장
+## 3. A안 — 장면 중심 Contextual Focus Flow / 승인
 
 ```text
 학교·현장 장면
@@ -68,7 +71,7 @@ Mobile Landscape에서 학교 Hub·자유일정·수업·비전투 응용·제�
 - 같은 결과를 여러 중간 화면에서 반복 설명하지 않는다.
 - Reduced Motion에서는 전환을 즉시화한다.
 
-## 4. B안 — 상시 Dashboard·다중 패널형
+## 4. B안 — 상시 Dashboard·다중 패널형 / 미채택
 
 학교·현장·전투 모든 화면에 일정·관계·재료·마도서·목표·작성 진입점을 상시 표시한다.
 
@@ -83,7 +86,7 @@ Mobile Landscape에서 학교 Hub·자유일정·수업·비전투 응용·제�
 - 플레이어가 현재 문제보다 메뉴·수치 최적화에 집중할 수 있다.
 - Touch target과 Safe Area를 만족시키면서 정보 과밀을 피하기 어렵다.
 
-## 5. C안 — 앱형 독립 화면·메뉴 중심
+## 5. C안 — 앱형 독립 화면·메뉴 중심 / 미채택
 
 ```text
 학교 메뉴
@@ -105,9 +108,9 @@ Mobile Landscape에서 학교 Hub·자유일정·수업·비전투 응용·제�
 - 장면의 원인·작성·세계 변화·기록이 분절된다.
 - 화면 왕복과 로딩·중단복귀 지점이 늘어난다.
 
-## 6. 권장 판정
+## 6. 승인 판정
 
-`A — 장면 중심 Contextual Focus Flow`를 권장한다.
+`A — 장면 중심 Contextual Focus Flow`를 사용자 승인 정본으로 채택한다.
 
 핵심 이유:
 
@@ -115,12 +118,13 @@ Mobile Landscape에서 학교 Hub·자유일정·수업·비전투 응용·제�
 - 수업·비전투·제작·전투를 공통 Focus Task 상태기로 연결하면 Mobile Save/Resume와 결과 원자 적용을 함께 검증할 수 있다.
 - 구체적인 Writing/Battle 화면 배치는 흐름 계약이 잠긴 뒤 결정해야 화면이 게임 규칙을 대신 만들지 않는다.
 
-## 7. A안 승인 시 확정되는 것
+## 7. 확정 사항
 
 - 장면 중심 + 한 번에 하나의 Focus Task를 기본 UX 흐름으로 사용한다.
 - 안전 장면에서만 일정·마도서·설정의 일관된 전역 진입점을 제공한다.
 - Writing Panel은 상황 내부의 임시 Focus Layer로 사용한다.
 - Battle·Crafting·Noncombat은 공통 진입/결과/복귀 계약을 공유한다.
 - Save/Resume Anchor는 Focus Task 전·결과 적용 후를 우선한다.
+- 결과 적용은 원자적으로 처리해 중복 보상·부분 적용·Draft 손실을 방지한다.
 - 다음 결정은 `GM-MOBILE-WRITING-BATTLE-WIREFRAME-01`이다.
-- Grill Me counter는 `9/10`이 된다.
+- Grill Me counter는 `9/10`이다.
