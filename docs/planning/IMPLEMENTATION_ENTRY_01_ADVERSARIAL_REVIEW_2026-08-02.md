@@ -13,36 +13,40 @@ p2_open: 4
 implementation: NOT_STARTED
 codex_plan: ALLOWED
 codex_execution: BLOCKED
+current_main: f9c6f5fdd59f7c256986b5c817a244d464e0e74c
+base_release_on_main: 9.4.2
+base_pr_38: MERGED
+base_pr_42: OPEN_DRAFT
 ```
 
 현재 상태에서 전체 Vertical Slice 구현을 시작하는 것은 승인하지 않는다. Foundation POC 설계와 TDD 계획은 진행할 수 있지만, 제품 코드 실행은 아래 P1이 닫힐 때까지 차단한다.
 
 ## 검토 근거
 
-- `skills/PROJECT_BASE_ADAPTER.json`은 `godot_project_status: NOT_CREATED`, `implementation: NOT_STARTED`, `codex: BLOCKED`를 선언한다.
+- main의 `skills/PROJECT_BASE_ADAPTER.json`은 Base v9.4.2와 planning-first 계약을 채택하고 `implementation: NOT_STARTED`, `codex: BLOCKED`를 유지한다.
 - `docs/DEVELOPMENT_GATES.md`는 전체 구현 전 BOSS·Grimoire·Audio·통합 검수와 Base 정합화를 요구한다.
 - `docs/ACTIVE_CONTEXT.md`는 제품용 project·Scene·Script·Resource가 없다고 선언한다.
-- 현재 open Draft PR #38과 #42는 모두 Base Adapter 계층을 변경하며 서로 다른 Base release를 목표로 한다.
+- PR #38은 병합됐고, PR #42가 Base v9.4.3 first-prompt adapter Draft로 남아 최종 실행 identity가 아직 고정되지 않았다.
 
 ## P1 — 실행 차단 문제
 
-### P1-BASE-IDENTITY-01 — Base 채택 PR 중첩
+### P1-BASE-IDENTITY-01 — 후속 Base 채택 PR 미정리
 
-PR #38은 Base v9.4.2 planning-first 계약, PR #42는 Base v9.4.3 first-prompt 계약을 채택하려 한다. 두 PR 모두 `skills/PROJECT_BASE_ADAPTER.json`과 관련 검증을 변경한다.
+PR #38 병합으로 main은 Base v9.4.2 planning-first 정본을 가진다. 그러나 PR #42가 같은 Adapter 계층에 Base v9.4.3 first-prompt 계약을 적용하려 한다.
 
 위험:
 
-- 한 PR 병합 후 다른 PR이 오래된 main 기준으로 충돌하거나 이전 identity를 되살릴 수 있다.
-- 실행자가 어느 Base 정책을 따라야 하는지 달라질 수 있다.
+- #42 처리 결과에 따라 Adapter identity·Required Workflow·cold-start routing이 달라질 수 있다.
+- v9.4.2 기준으로 제품 코드를 시작하면 #42 병합 후 즉시 운영 계약 재검토가 필요해질 수 있다.
 
 종료 조건:
 
-- #38과 #42를 병합 순서·통합·supersede 중 하나로 명시적으로 정리한다.
+- #42를 병합·종료·supersede 중 하나로 명시적으로 정리한다.
 - 최종 main에 단일 Base release identity와 passing Required Workflow가 존재한다.
 
 ### P1-COLD-START-STALE-01 — 시작 문서의 구형 상태
 
-`START_HERE.md`, `docs/ACTIVE_CONTEXT.md`, `docs/DEVELOPMENT_GATES.md`, `docs/DESIGN_DOCUMENT_REGISTRY.json`의 일부 필드가 최신 main·플랫폼·Gate·Base·Sync 상태보다 오래됐다.
+`docs/ACTIVE_CONTEXT.md`, `docs/DEVELOPMENT_GATES.md`, `docs/DESIGN_DOCUMENT_REGISTRY.json`의 일부 필드가 최신 main·플랫폼·Gate·Base·Sync 상태보다 오래됐다. `START_HERE.md`는 이번 Branch에서 최신화했다.
 
 대표 예:
 
@@ -56,11 +60,11 @@ PR #38은 Base v9.4.2 planning-first 계약, PR #42는 Base v9.4.3 first-prompt 
 
 현재 완화:
 
-- `IMPLEMENTATION_ENTRY_01_COLD_START_OVERRIDE_2026-08-02.md`가 관련 상태 필드에 우선한다.
+- `START_HERE.md`와 `IMPLEMENTATION_ENTRY_01_COLD_START_OVERRIDE_2026-08-02.md`가 관련 상태 필드에 우선한다.
 
 종료 조건:
 
-- Base 채택 완료 후 네 문서를 직접 최신화하고 Override를 흡수한다.
+- #42 처리 후 세 문서를 직접 최신화하고 Override를 흡수한다.
 
 ### P1-TOOLCHAIN-01 — Godot 실행 환경 미검증
 
@@ -73,7 +77,7 @@ Engine candidate는 기록돼 있지만 실제 설치 Binary, Renderer, export t
 
 ### P1-PLAN-BASE-DRIFT-01 — 계획 작성 시점과 실행 main 차이
 
-이 계획은 Base PR #38·#42가 열려 있는 main에서 작성됐다.
+계획 초안 이후 PR #38이 병합돼 main이 Base v9.4.2로 전진했고, PR #42 처리 결과도 남아 있다.
 
 종료 조건:
 
