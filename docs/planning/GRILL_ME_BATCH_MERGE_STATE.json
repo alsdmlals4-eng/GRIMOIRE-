@@ -8,7 +8,7 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 5,
+    "approved_grill_me_since_last_flush": 6,
     "next_merge_at": 10,
     "merge_required": false,
     "merge_trigger": null,
@@ -19,7 +19,8 @@
       "GM-SUMMON-SYSTEM-01",
       "GM-STOCK-SUMMON-STATE-INTERFACE-01",
       "GM-GRILL-WORK-QUALITY-GATE-01",
-      "GM-MOBILE-SUMMON-HUD-WIREFRAME-01"
+      "GM-MOBILE-SUMMON-HUD-WIREFRAME-01",
+      "GM-INGAME-ART-CHECKPOINT-01"
     ]
   },
   "counting_rule": {
@@ -36,7 +37,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "PASS_ON_VERIFICATION_CANDIDATE_RECHECK_FINAL_STATUS_HEAD",
+  "pre_merge_gate_status": "PENDING_FOR_NEW_VISUAL_APPROVAL_HEAD",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T22:18:00+09:00",
@@ -53,26 +54,21 @@
     "counter_reset": true
   },
   "previous_working_sync": {
-    "sync_id": "GR-SYNC-20260803-01",
+    "sync_id": "GR-SYNC-20260803-02",
     "status": "FINAL_HEAD_VERIFIED",
-    "final_head": "0637487358a0489952245cde0f7c426cb174fba4",
-    "ci_run": 30754959865,
+    "final_head": "5205947739e87d52673cc38a72dc761605e0e14f",
+    "ci_run": 30771665442,
     "sheet_readback": "PASS",
     "text_integrity": "PASS",
     "review_threads": 0
   },
   "current_work": {
-    "status": "MOBILE_SUMMON_HUD_WIREFRAME_SYNCED_AWAITING_USER_SPEC_REVIEW_FINAL_STATUS_RECHECK",
+    "status": "INGAME_ART_CHECKPOINT_TWO_BOARDS_USER_APPROVED_PENDING_SHEET_AND_FINAL_VERIFICATION",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "working_pull_request": 51,
-    "working_sync_id": "GR-SYNC-20260803-02",
-    "benchmark_id": "GR-BM-MOBILE-SUMMON-HUD-20260803-01",
-    "verification_candidate_head": "d56a2105357593222fef3e7b26ca36a5725b45b1",
-    "verification_candidate_ci_run": 30771278479,
-    "verification_candidate_ahead": 58,
-    "verification_candidate_behind": 0,
-    "verification_candidate_changed_files": 24,
+    "working_sync_id": "GR-SYNC-20260803-03",
+    "benchmark_id": "N_A_REUSES_ART_BIBLE_AND_MOBILE_HUD_BENCHMARK_NO_NEW_DESIGN_CHANGE",
     "decisions": [
       {
         "decision_id": "GM-STOCK-SYSTEM-01",
@@ -112,10 +108,24 @@
         "approved_at": "2026-08-03T07:49:00+09:00",
         "grill_count": 1,
         "spec_user_review": "PENDING"
+      },
+      {
+        "decision_id": "GM-INGAME-ART-CHECKPOINT-01",
+        "approved_option": "A_TWO_BOARD_SCENE_SET_WITH_CANON_BOUNDARY",
+        "status": "USER_APPROVED_VISUAL_CHECKPOINT",
+        "approved_at": "2026-08-03T08:40:00+09:00",
+        "grill_count": 1,
+        "approved_assets": [
+          "GR-VISUAL-CHECKPOINT-BOARD-A-01",
+          "GR-VISUAL-CHECKPOINT-BOARD-B-01"
+        ]
       }
     ],
     "stock_defaults": {
-      "types": ["FULL_SPELL", "SUB_GLYPH"],
+      "types": [
+        "FULL_SPELL",
+        "SUB_GLYPH"
+      ],
       "shared_capacity": 8,
       "one_glyph_charge_seconds": 10,
       "additional_glyph_seconds": 5,
@@ -127,8 +137,17 @@
       "persistent_main": 1,
       "secondary_active_cap": 3,
       "total_active_cap": 4,
-      "secondary_slots": ["S1", "S2", "S3"],
-      "secondary_roles": ["PRODUCTION", "GUARDIAN", "ASSAULT", "RECOVERY"],
+      "secondary_slots": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "secondary_roles": [
+        "PRODUCTION",
+        "GUARDIAN",
+        "ASSAULT",
+        "RECOVERY"
+      ],
       "secondary_role_duplicate_cap_in_slice": 1,
       "duration_limit": null,
       "cooldown": null,
@@ -139,7 +158,12 @@
       "guardian_defense_stat": 2,
       "assault_attack_stat": 2,
       "recovery_heal_stat": 2,
-      "same_time_event_order": ["MAIN", "S1", "S2", "S3"]
+      "same_time_event_order": [
+        "MAIN",
+        "S1",
+        "S2",
+        "S3"
+      ]
     },
     "state_interface": {
       "status": "APPROVED_DESIGN_ONLY_REVISED_FOR_THREE_SECONDARIES",
@@ -155,7 +179,12 @@
     "mobile_summon_hud": {
       "status": "DESIGN_WRITTEN_AWAITING_USER_SPEC_REVIEW",
       "layout": "LEFT_SAFE_AREA_VERTICAL_COMPACT_RAIL",
-      "slot_order": ["MAIN", "S1", "S2", "S3"],
+      "slot_order": [
+        "MAIN",
+        "S1",
+        "S2",
+        "S3"
+      ],
       "detail": "ONE_CONTEXTUAL_DRAWER",
       "writing_focus_detail": "READ_ONLY_MICRO_DETAIL",
       "drawer_read_pauses_clock": false,
@@ -164,8 +193,30 @@
       "ios_min_touch_pt": 44,
       "required_text_scale": 1.3,
       "safe_area_runtime_query": true,
-      "aspect_ratio_tests": ["16:9", "19.5:9", "20:9"],
+      "aspect_ratio_tests": [
+        "16:9",
+        "19.5:9",
+        "20:9"
+      ],
       "hud_mutates_gameplay_state": false
+    },
+    "ingame_art_checkpoint": {
+      "status": "USER_APPROVED_VISUAL_CHECKPOINT",
+      "decision_id": "GM-INGAME-ART-CHECKPOINT-01",
+      "approved_board_count": 2,
+      "board_a_asset_id": "GR-VISUAL-CHECKPOINT-BOARD-A-01",
+      "board_b_asset_id": "GR-VISUAL-CHECKPOINT-BOARD-B-01",
+      "approval_scope": [
+        "SCENE_SET",
+        "VISUAL_DIRECTION",
+        "CHARACTER_AND_COMPANION_CONTINUITY",
+        "NAVY_GOLD_UI_LANGUAGE",
+        "AUXILIARY_SUMMON_BADGE_AND_SHORT_CUTIN_PRESENTATION"
+      ],
+      "final_text_approved": false,
+      "final_numbers_approved": false,
+      "runtime_screen_approved": false,
+      "asset_production_authorized": false
     },
     "work_quality_gate": {
       "status": "APPROVED_ACTIVE",
@@ -193,14 +244,12 @@
     "codex_plan": "ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PASS",
-    "sheet_text_integrity_sentinel": "PASS",
-    "candidate_ci_gate": "PASS",
-    "candidate_adversarial_gate": "PASS",
-    "candidate_text_integrity_gate": "PASS",
-    "candidate_review_threads": 0,
-    "candidate_reviews": 0,
-    "final_status_commit_head_ci": "RECHECK_REQUIRED"
+    "sheet_readback": "PENDING",
+    "sheet_text_integrity_sentinel": "PENDING",
+    "final_head_ci": "PENDING",
+    "adversarial_gate": "PENDING",
+    "text_integrity_gate": "PENDING",
+    "review_threads": "PENDING"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
@@ -221,6 +270,10 @@
     "summon_final_situation_resolution": "PROHIBITED",
     "percentage_based_summon_effects": "PROHIBITED",
     "broken_text_canonical_promotion": "PROHIBITED",
+    "approved_visual_boards_are_final_runtime": false,
+    "approved_visual_board_text_is_canonical": false,
+    "approved_visual_board_numbers_are_canonical": false,
+    "approved_visual_boards_authorize_asset_production": false,
     "runtime_validation": "NOT_RUN",
     "mobile_device_validation": "NOT_RUN",
     "performance_validation": "NOT_RUN",
