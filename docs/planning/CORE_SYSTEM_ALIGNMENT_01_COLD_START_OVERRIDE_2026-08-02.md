@@ -3,8 +3,8 @@
 ```yaml
 status: ACTIVE_CANON_OVERRIDE_ON_WORKING_BRANCH
 decision_id: GM-CORE-SYSTEM-ALIGNMENT-01
-approved_at: 2026-08-02T21:44:00+09:00
-clarified_at: 2026-08-02T21:44:00+09:00
+approved_at: 2026-08-02T21:49:00+09:00
+clarified_at: 2026-08-02T21:57:00+09:00
 working_sync_id: GR-SYNC-20260802-23
 pull_request: 47
 main_baseline: eaf05c24b90d233964d093b0e772e5e94b505f36
