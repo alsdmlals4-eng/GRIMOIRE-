@@ -38,9 +38,10 @@
   "current_policy_adoption": {
     "sync_id": "GR-SYNC-20260802-09",
     "branch": "chatgpt/grimoire-grill-batch-merge-policy-20260802",
-    "status": "SYNCED_TO_WORKING_BRANCH",
+    "status": "PR_OPEN_DRAFT",
     "authority_commit": "276f09e832e7651cc5fa1918388759a275f4bf65",
-    "pull_request": null,
+    "working_receipt_commit": "6cc2c8363e4d51070792fe757ccf8f8f143dc893",
+    "pull_request": 33,
     "sheet_ranges": [
       "00_프로젝트_허브!H2",
       "01_작업순서!A19:J19",
@@ -49,6 +50,8 @@
       "99_변경이력!A26:H26"
     ],
     "sheet_readback": "PASS",
+    "pre_merge_audit": "PENDING_LATEST_HEAD",
+    "ci": "PENDING_LATEST_HEAD",
     "main_commit": null,
     "cold_start_main_commit": null
   },
