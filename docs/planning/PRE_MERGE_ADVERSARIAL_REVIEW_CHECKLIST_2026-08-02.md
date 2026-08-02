@@ -100,20 +100,23 @@ benchmark_applicability: N/A_NO_DESIGN_CHANGE
 - [ ] 모든 대상 파일 UTF-8 strict decode PASS.
 - [ ] UTF-8 BOM 0건.
 - [ ] Unicode NFC PASS.
-- [ ] replacement character `U+FFFD` 0건.
+- [ ] Unicode replacement character `U+FFFD` 0건.
 - [ ] 허용되지 않은 C0 제어문자 0건.
 - [ ] 알려진 mojibake 패턴 0건.
 - [ ] JSON parse PASS.
 
-알려진 의심 패턴:
+의심 패턴 선행 코드 포인트:
 
 ```text
-Ã
-Â
-â€
-ðŸ
-ï»¿
-한글 문맥의 비정상 ì/í/ë/ê 연속 토큰
+U+00C3
+U+00C2
+U+00E2
+U+00F0
+U+00EF
+U+00EC
+U+00ED
+U+00EB
+U+00EA
 ```
 
 Readback sentinel:
