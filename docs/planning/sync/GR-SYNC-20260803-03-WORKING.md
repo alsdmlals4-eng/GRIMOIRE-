@@ -4,7 +4,7 @@
 
 ```yaml
 sync_id: GR-SYNC-20260803-03
-status: SYNCED_TO_WORKING_BRANCH_PENDING_SHEET_AND_FINAL_VERIFICATION
+status: SHEET_AND_VERIFICATION_CANDIDATE_PASS_AWAITING_FINAL_STATUS_HEAD_RECHECK
 decision_id: GM-INGAME-ART-CHECKPOINT-01
 approved_option: A_TWO_BOARD_SCENE_SET_WITH_CANON_BOUNDARY
 approved_at: 2026-08-03T08:40:00+09:00
@@ -12,14 +12,21 @@ approval_mode: USER_EXPLICIT_APPROVAL_OF_BOTH_IMAGES
 baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
 working_branch: agent/grimoire-stock-summon-detail-audit
 pull_request: 51
-head: RESOLVE_FROM_FINAL_PR_HEAD
+verification_candidate_head: c1484027f7a9039fe244790670b78a4a659858fd
+verification_candidate_ci_run: 30773010765
+verification_candidate_ahead: 66
+verification_candidate_behind: 0
+verification_candidate_changed_files: 27
 grill_counter: 6_of_10
 pending_decisions: 6
-sheet_readback: PENDING
-final_head_ci: PENDING
-adversarial_gate: PENDING
-text_integrity_gate: PENDING
-review_threads: PENDING
+sheet_readback: PASS
+sheet_text_integrity_sentinel: PASS
+candidate_ci_gate: PASS
+candidate_adversarial_gate: PASS
+candidate_text_integrity_gate: PASS
+candidate_review_threads: 0
+candidate_reviews: 0
+final_status_head_ci: RECHECK_REQUIRED
 implementation: NOT_STARTED
 codex_execution: BLOCKED
 ```
@@ -130,7 +137,39 @@ adversarial_review: REQUIRED_AND_RECORDED
 - 정적 Board는 Touch·Safe Area·성능·접근성 검증이 아니다.
 - 승인 Board는 Runtime Screenshot 또는 최종 Asset이 아니다.
 
-## 10. 다음 Gate
+## 10. Sheet Readback
+
+다음 탭에 같은 Decision·Sync ID를 기록하고 재조회했다.
+
+```text
+00·01·02·03·04·05·60·80·99
+```
+
+- `GM-INGAME-ART-CHECKPOINT-01`: PASS.
+- Board A·B 2장: PASS.
+- Grill `6/10`, pending `6`: PASS.
+- 비정본 자리표시자 경계: PASS.
+- 대체문자 검색: 0건.
+- 한글·기호 Readback: PASS.
+
+## 11. 검증 후보
+
+```text
+HEAD c1484027f7a9039fe244790670b78a4a659858fd
+→ main ahead 66 / behind 0
+→ changed files 27
+→ Generator PASS
+→ Unit PASS
+→ JSON PASS
+→ UTF-8/NFC PASS
+→ Adversarial Gate PASS
+→ Review threads 0
+→ Reviews 0
+```
+
+이 문서와 Batch 상태 마감으로 HEAD가 전진하므로 최종 상태 HEAD에서 동일 Gate를 다시 확인한다.
+
+## 12. 다음 Gate
 
 ```text
 GM-MOBILE-SUMMON-HUD-WIREFRAME-01 사용자 명세 검토
@@ -140,7 +179,7 @@ GM-MOBILE-SUMMON-HUD-WIREFRAME-01 사용자 명세 검토
 → Execution Readiness
 ```
 
-## 11. 보호 경계
+## 13. 보호 경계
 
 ```text
 APPROVED_VISUAL_BOARDS = 2
