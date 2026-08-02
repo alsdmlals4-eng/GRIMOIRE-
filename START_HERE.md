@@ -12,19 +12,18 @@
 | 방향 | `LANDSCAPE_FIXED` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | 기획 계약 | `APPROVED_AND_MERGED_TO_MAIN` |
-| 병합 직전 main | `c114343ac925d734caf0ac8011c8ee25fd6d29e8` |
+| Implementation Entry 병합 | `PR #43 / 9f7cc7ca803b518b7dbe6e7471797e34fec02350` |
 | Base 정본 | `v9.4.3 / PR #44 MERGED / PR #42 SUPERSEDED` |
 | 마지막 완료 Sync | `GR-SYNC-20260802-20 / SHEET_READBACK_PASS` |
-| 현재 Sync | `GR-SYNC-20260802-21` |
-| 현재 Decision | `GM-IMPLEMENTATION-ENTRY-01` |
+| 현재 최종화 Sync | `GR-SYNC-20260802-22` |
+| 완료 Decision | `GM-IMPLEMENTATION-ENTRY-01` |
 | 승인안 | `A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK` |
-| 병합 승인 | `RECEIVED_2026-08-02T20:59+09:00` |
-| 새 Batch | `1/10` |
+| Grill Batch | `0/10 / pending 0` |
 | 구현 진입 | `APPROVED_CONDITIONAL_FOUNDATION_POC` |
 | 제품 구현 | `NOT_STARTED` |
 | Codex Plan | `ALLOWED` |
 | Codex 실행 | `BLOCKED` |
-| 다음 Gate | `GM-FOUNDATION-POC-EXECUTION-READINESS-01` |
+| 현재 Gate | `GM-FOUNDATION-POC-EXECUTION-READINESS-01` 준비 |
 | Runtime·실기기·성능·접근성·사람 검증 | `NOT_RUN` |
 
 ## 반드시 먼저 읽을 문서
@@ -37,14 +36,15 @@
 6. `docs/planning/IMPLEMENTATION_ENTRY_01_ADVERSARIAL_REVIEW_2026-08-02.md`
 7. `docs/planning/IMPLEMENTATION_ENTRY_01_PREMERGE_GATE_2026-08-02.md`
 8. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-9. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
-10. `docs/planning/GRIMOIRE_FULL_GAME_STRUCTURE_COMPLETION_OVERRIDE_2026-08-02.md`
-11. `docs/planning/MOBILE_UX_FLOW_01_APPROVAL_2026-08-02.md`
-12. `docs/planning/MOBILE_WRITING_BATTLE_WIREFRAME_01_APPROVAL_2026-08-02.md`
-13. `docs/DEVELOPMENT_GATES.md`
-14. `docs/ACTIVE_CONTEXT.md`
-15. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-16. 질문 주제의 세부 승인 책임 원본
+9. `docs/planning/sync/GR-SYNC-20260802-22-MAIN.md`
+10. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+11. `docs/planning/GRIMOIRE_FULL_GAME_STRUCTURE_COMPLETION_OVERRIDE_2026-08-02.md`
+12. `docs/planning/MOBILE_UX_FLOW_01_APPROVAL_2026-08-02.md`
+13. `docs/planning/MOBILE_WRITING_BATTLE_WIREFRAME_01_APPROVAL_2026-08-02.md`
+14. `docs/DEVELOPMENT_GATES.md`
+15. `docs/ACTIVE_CONTEXT.md`
+16. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+17. 질문 주제의 세부 승인 책임 원본
 
 ## 플레이어 약속
 
@@ -84,7 +84,7 @@ Panel collapse·일시 중단은 Draft를 보존하고, 명시적인 전체 취�
 
 이번 승인은 전체 Vertical Slice 본제작 승인이 아니다.
 
-허용된 Foundation POC:
+실행 준비 Gate 통과 후 허용되는 Foundation POC:
 
 - 최소 Godot 프로젝트와 Headless 테스트 계약.
 - Focus Task 순수 상태 전이.
@@ -107,20 +107,19 @@ Panel collapse·일시 중단은 Draft를 보존하고, 명시적인 전체 취�
 
 ## Base 및 실행 차단 상태
 
-- PR `#38`은 Base v9.4.2 planning-first 계약을 도입했다.
-- 기존 PR `#42`는 supersede 종료됐다.
-- 대체 PR `#44`가 병합되어 main의 단일 Base 정본은 `v9.4.3`이다.
-- v9.4.3 first-prompt governance는 planning-first와 external-AI 경계를 보존한다.
 - Base PR 중첩 문제는 해소됐다.
-- Cold-start 핵심 문서 직접 재조정, Godot Toolchain 확인, Base v9.4.3 main 기준 Plan 재검증은 남아 있다.
+- main의 단일 Base 정본은 `v9.4.3`이다.
+- Cold-start 핵심 문서 직접 재조정, Godot Toolchain 확인, Base v9.4.3 최종 main 기준 Plan 재검증은 남아 있다.
+- 위 세 항목과 Execution Readiness Gate가 끝나기 전에는 제품 코드를 만들지 않는다.
 
 ## 다음 작업
 
 ```text
-PR #43 병합·main/Sheet 최종화
-→ Cold-start 권위 문서 직접 재조정·Override 흡수
+GR-SYNC-20260802-22 main/Sheet 최종화
+→ ACTIVE_CONTEXT·DEVELOPMENT_GATES·DESIGN_DOCUMENT_REGISTRY 직접 재조정
+→ Cold-start Override 흡수
 → Godot Toolchain preflight
-→ Base v9.4.3 main에서 Plan 재검증
+→ Base v9.4.3 최종 main에서 Plan 재검증
 → GM-FOUNDATION-POC-EXECUTION-READINESS-01
 → P0=0·P1=0일 때만 Foundation POC 코드 실행
 ```
