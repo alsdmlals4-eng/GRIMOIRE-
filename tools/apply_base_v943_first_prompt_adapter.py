@@ -1,16 +1,24 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PATH = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
+ADAPTER = ROOT / "skills/PROJECT_BASE_ADAPTER.json"
+GENERATOR = ROOT / "tools/generate_project_operating_views.py"
 PAYLOAD = "7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8"
 EVIDENCE = "da33a350d61b8adc52df97fccc7001708a933370"
 FINALIZATION = "0b7c94f38d959efc0fc9442274c60b2e268a3c97"
 
-data = json.loads(PATH.read_text(encoding="utf-8"))
-data["base_release"].update({"version": "9.4.3", "release_commit": PAYLOAD, "release_evidence_commit": EVIDENCE, "finalization_commit": FINALIZATION})
+data = json.loads(ADAPTER.read_text(encoding="utf-8"))
+data["base_release"].update({
+    "version": "9.4.3",
+    "release_commit": PAYLOAD,
+    "release_evidence_commit": EVIDENCE,
+    "finalization_commit": FINALIZATION,
+})
 contract = data.setdefault("base_v94_contract", {})
 planning = contract.get("planning_first_grill_me")
 if isinstance(planning, dict):
@@ -25,9 +33,22 @@ contract["first_prompt_governance"] = {
     "direction_anchor_reference": "skills/managing-project-intake-and-work-contract/references/first-prompt-direction-anchoring.md",
     "instruction_flow": ["route", "first-prompt", "contract", "clarify"],
     "l0_exceptions": ["TYPO", "OBVIOUS_FORMAT", "IDENTICAL_VALIDATION_RERUN"],
-    "unconfirmed_state": "AWAITING_USER_CONFIRMATION"
+    "unconfirmed_state": "AWAITING_USER_CONFIRMATION",
 }
 data.setdefault("validation", {})["base_v943_first_prompt_adoption"] = "REQUIRED_ON_PULL_REQUEST"
-PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+ADAPTER.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-# workflow trigger: canonical Adapter sync
+text = GENERATOR.read_text(encoding="utf-8")
+replacements = {
+    '"version": "9.4.2"': '"version": "9.4.3"',
+    '"release_commit": "dd705d7f48a7919187bc0507610ba5fc5b43a658"': f'"release_commit": "{PAYLOAD}"',
+    '"release_evidence_commit": "0c6cdd128bf1f5782e96b3a6240c9585f8d1ef6d"': f'"release_evidence_commit": "{EVIDENCE}"',
+    '"finalization_commit": "ac9466edc2d93b59f274c9ac55ca719eba2809e3"': f'"finalization_commit": "{FINALIZATION}"',
+    '"release_line": "v9.4.2"': '"release_line": "v9.4.3"',
+}
+for old, new in replacements.items():
+    if old not in text:
+        raise SystemExit(f"missing generator token: {old}")
+    text = text.replace(old, new)
+GENERATOR.write_text(text, encoding="utf-8")
+subprocess.run([sys.executable, str(GENERATOR)], cwd=ROOT, check=True)
