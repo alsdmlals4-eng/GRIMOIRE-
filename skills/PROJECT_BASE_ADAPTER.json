@@ -36,6 +36,7 @@
     "current_confirmed_decisions": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "current_platform_decision": "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
     "current_project_audit": "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
+    "current_sync_receipt": "docs/planning/sync/GR-SYNC-20260802-07-WORKING.md",
     "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
@@ -50,7 +51,25 @@
     "role": "USER_FACING_GDD_WORKSPACE",
     "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
     "sync_bundle": "GR-SYNC-20260802-07",
-    "sync_status": "GITHUB_ONLY",
+    "sync_status": "SYNCED_TO_WORKING_BRANCH",
+    "authority_commit": "b9279e8c690a8406035675ebbe8a007e9b3f093f",
+    "sheet_readback": "PASS",
+    "readback_tabs": [
+      "00_프로젝트_허브",
+      "01_작업순서",
+      "02_현재_확정결정",
+      "04_누락_충돌_감사",
+      "05_GDD_요약",
+      "10_제품방향",
+      "15_조작_게임규칙",
+      "20_코어경험_데모목표",
+      "30_데모범위_품질기준_제작기반",
+      "60_UX_UI_접근성",
+      "70_아트_오디오_에셋",
+      "80_데모_버티컬슬라이스_플레이테스트",
+      "90_본제작_출시_사업",
+      "99_변경이력"
+    ],
     "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC"
   },
   "generated_outputs": {
@@ -60,7 +79,9 @@
     ],
     "generator": "tools/generate_project_operating_views.py",
     "hand_edit": "PROHIBITED",
-    "snapshot": "skills/PROJECT_SKILL_SNAPSHOT.json"
+    "snapshot": "skills/PROJECT_SKILL_SNAPSHOT.json",
+    "status": "STALE_PENDING_GENERATOR",
+    "generator_check": "NOT_RUN"
   },
   "planning_authority": {
     "art_bible": "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
@@ -221,7 +242,8 @@
   "validation": {
     "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
-    "generator_check": "REQUIRED",
+    "generator_check": "NOT_RUN",
+    "generated_views": "STALE_PENDING_GENERATOR",
     "godot_runtime": "NOT_RUN",
     "godot_static": "NOT_AVAILABLE_NO_PROJECT",
     "human": "NOT_RUN",
