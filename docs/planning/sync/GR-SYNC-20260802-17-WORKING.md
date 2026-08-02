@@ -7,7 +7,7 @@ sync_id: GR-SYNC-20260802-17
 status: SYNCED_TO_WORKING_BRANCH
 sheet_readback: PASS
 authority_head_before_sheet: aa3431ce8ccb68b943e44e79cf6b37490116827f
-final_head_resolution: CURRENT_BRANCH_CONTAINING_FINAL_BATCH_STATE; exact SHA recorded in Google Sheet
+final_authority_head: 51004971c06644436180f818556f046b9b144552
 approved_decision: GM-VERTICAL-SLICE-REPRESENTATIVENESS-01
 approved_option: A_CORE_SYSTEMS_PLAYABLE_PLUS_LONG_TERM_STRUCTURE_COMPRESSED_MOCK
 approved_at: 2026-08-02T19:06+09:00
@@ -74,7 +74,7 @@ MOBILE-UX-FLOW-01 = CURRENT
 - Gap Audit advanced to `P2_CLOSED_8 / OPEN_0`.
 - Batch State advanced to `8/10`.
 - Full Game Structure Completion Override created.
-- 이 Working Sync Receipt 생성.
+- 이 Working Sync Receipt 생성·완료.
 
 ## 6. Google Sheet 반영·Readback
 
@@ -91,11 +91,16 @@ Readback 결과:
 - Counter `8/10`과 pending 8개 일치.
 - Full Game Structure·Representativeness 완료와 Mobile UX Flow 전환 일치.
 - 기존 인접 Decision·Loop·System·Test·Milestone·Sync 행 보존.
+- 최종 Authority HEAD 포인터 `5100497` Readback PASS.
 - 구현·Runtime·Device·Accessibility·Human 차단 유지.
 
 `SHEET_READBACK_PASS`.
 
-## 7. 병합 경계
+## 7. 운영 메모
+
+최종 포인터 갱신 과정에서 잘못된 JSON 키를 포함한 두 번의 Sheets 요청이 실행 전에 전체 거부되었다. 해당 요청으로 변경된 셀은 없었으며, 수정 요청을 분리 실행한 뒤 최종 범위를 재조회해 PASS를 확인했다.
+
+## 8. 병합 경계
 
 - Draft PR #36은 병합하지 않는다.
 - 기본 병합은 `10/10`이다.
