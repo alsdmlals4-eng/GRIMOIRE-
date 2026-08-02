@@ -4,7 +4,7 @@
 
 ```yaml
 sync_id: GR-SYNC-20260803-02
-status: SYNCED_TO_WORKING_BRANCH_PENDING_SHEET_AND_FINAL_VERIFICATION
+status: SYNCED_TO_WORKING_BRANCH_CANDIDATE_VERIFIED_AWAITING_FINAL_STATUS_RECHECK_AND_USER_SPEC_REVIEW
 decision_id: GM-MOBILE-SUMMON-HUD-WIREFRAME-01
 approved_option: B_LEFT_COMPACT_RAIL_WITH_CONTEXTUAL_DETAIL_DRAWER
 benchmark_id: GR-BM-MOBILE-SUMMON-HUD-20260803-01
@@ -13,14 +13,21 @@ approval_mode: USER_DELEGATED_RECOMMENDED_OPTION
 baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
 working_branch: agent/grimoire-stock-summon-detail-audit
 pull_request: 51
-head: RESOLVE_FROM_FINAL_PR_HEAD
+verification_candidate_head: d56a2105357593222fef3e7b26ca36a5725b45b1
+verification_candidate_ci_run: 30771278479
+verification_candidate_ahead: 58
+verification_candidate_behind: 0
+verification_candidate_changed_files: 24
 grill_counter: 5_of_10
 pending_decisions: 5
-sheet_readback: PENDING
-final_head_ci: PENDING
-adversarial_gate: PENDING
-text_integrity_gate: PENDING
-review_threads: PENDING
+sheet_readback: PASS
+sheet_sentinel: PASS
+candidate_ci_gate: PASS
+candidate_adversarial_gate: PASS
+candidate_text_integrity_gate: PASS
+candidate_review_threads: 0
+candidate_reviews: 0
+final_status_head_ci: RECHECK_REQUIRED
 spec_user_review: PENDING
 implementation: NOT_STARTED
 codex_execution: BLOCKED
@@ -125,7 +132,7 @@ REJECT:
   - FREE_PAUSE_DETAIL_PANEL
 ```
 
-## 9. GitHub 반영
+## 9. GitHub 반영 완료
 
 - `docs/superpowers/specs/2026-08-03-three-slot-mobile-summon-hud-design.md`.
 - `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`.
@@ -134,7 +141,7 @@ REJECT:
 - `docs/DESIGN_DOCUMENT_REGISTRY.json`.
 - 이 Working Sync.
 
-## 10. Google Sheet 반영 예정
+## 10. Google Sheet 반영 완료
 
 - `00_프로젝트_허브`.
 - `01_작업순서`.
@@ -147,7 +154,7 @@ REJECT:
 - `80_데모_버티컬슬라이스_플레이테스트`.
 - `99_변경이력`.
 
-같은 Decision·Benchmark·Sync ID로 쓰고 한글 Sentinel을 재조회한다.
+같은 Decision·Benchmark·Sync ID를 재조회했다. `소환수·자연충전·적대적 검토·벤치마킹·마도서` Sentinel은 PASS이고 대체문자 `�` 검색 결과는 0건이다.
 
 ## 11. 적대적 위험
 
@@ -167,7 +174,27 @@ REJECT:
 - 장식 우선 축소.
 - 읽기 전용 View Model.
 
-## 12. 다음 Gate
+## 12. 검증 후보 증거
+
+```yaml
+head: d56a2105357593222fef3e7b26ca36a5725b45b1
+baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
+ahead: 58
+behind: 0
+changed_files: 24
+product_code_changed: false
+ci_run: 30771278479
+ci_gate: PASS
+json_parse: PASS
+utf8_nfc_text_integrity: PASS
+adversarial_gate: PASS
+review_threads: 0
+reviews: 0
+```
+
+이 Receipt와 Batch 상태를 기록한 최종 상태 HEAD는 별도로 재검증한다.
+
+## 13. 다음 Gate
 
 ```text
 사용자 Spec Review
@@ -177,7 +204,7 @@ REJECT:
 → Execution Readiness
 ```
 
-## 13. 보호 경계
+## 14. 보호 경계
 
 ```text
 PRODUCT_IMPLEMENTATION = NOT_STARTED
