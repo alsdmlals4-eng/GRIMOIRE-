@@ -9,7 +9,9 @@
 | 프로젝트 | `GRIMOIRE: 세계를 다시 쓰는 법` |
 | 1차 플랫폼 | `Mobile` |
 | 후속 플랫폼 | `PC` |
-| 플랫폼 Decision | `GM-PLATFORM-02` (`GM-PLATFORM-01` 대체) |
+| 플랫폼 Decision | `GM-PLATFORM-02` |
+| Mobile 방향 | `GM-MOBILE-ORIENTATION-01 / LANDSCAPE_FIXED` |
+| Portrait·자동 회전 | `VERTICAL_SLICE 제외` |
 | 엔진 기준 후보 | `Godot 4.7.1 stable` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | 기획 | `APPROVED` |
@@ -18,16 +20,14 @@
 | 전투 규칙 | `APPROVED_SITUATION_RESOLUTION_RULES` |
 | Asset Spec | `APPROVED_SPEC` |
 | 현재 제품 Gate | `MOBILE-FOUNDATION-01` |
-| 후속 설계 | `BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01` |
 | 구현 | `NOT_STARTED` |
 | Codex | `BLOCKED` |
 | Base | `v9.4.0` |
-| main 기준선 | `fe88236946a87362a43aafe598348b84c42a2243` |
-| 현재 Sync | `GR-SYNC-20260802-07 / SYNCED_TO_MAIN / SHEET_READBACK_PASS` |
-| Authority Commit | `fe88236946a87362a43aafe598348b84c42a2243` |
-| main Merge Commit | `fe88236946a87362a43aafe598348b84c42a2243` |
-| 병합 PR | `#27 / MERGED / CI·ADVERSARIAL PASS` |
-| Sync Receipt | `docs/planning/sync/GR-SYNC-20260802-07-MAIN.md` |
+| Orientation Authority | `ebc3f8f38d4346cc8b5751f5981e3c5997d0b41b` |
+| Orientation Main | `0bb1f4e2ee48f426579228e716abdba7edcbfc9c` |
+| PR | `#29 / MERGED / CI·ADVERSARIAL PASS` |
+| Sheet | `SYNCED_TO_MAIN / MAIN_SHEET_READBACK_PASS` |
+| Sync Receipt | `docs/planning/sync/GM-MOBILE-ORIENTATION-01-MAIN.md` |
 
 ## 먼저 읽을 문서
 
@@ -35,18 +35,29 @@
 2. `docs/ACTIVE_CONTEXT.md`
 3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
 4. `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`
-5. `docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md`
-6. `docs/planning/sync/GR-SYNC-20260802-07-MAIN.md`
-7. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
-8. `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`
-9. `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`
-10. `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`
-11. `docs/DEVELOPMENT_GATES.md`
-12. `skills/PROJECT_BASE_ADAPTER.json`
+5. `docs/planning/MOBILE_ORIENTATION_01_APPROVAL_2026-08-02.md`
+6. `docs/planning/TOTAL_PLANNING_ADVERSARIAL_AUDIT_2026-08-02.md`
+7. `docs/planning/sync/GM-MOBILE-ORIENTATION-01-MAIN.md`
+8. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+9. `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`
+10. `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`
+11. `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`
+12. `docs/DEVELOPMENT_GATES.md`
+13. `docs/UX_UI_SYSTEM.md`
+14. `skills/PROJECT_BASE_ADAPTER.json`
 
 ## 현재 플레이어 약속
 
 > 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
+
+비타협 코어:
+
+- 의미를 가진 글자와 직접 작성.
+- `메인 글자 1개 + 보조 글자 0개 이상`.
+- 상황·목표·위험에 따른 주문 설계 판단.
+- 입력 실패·문법 실패·상황 설계 실패·비용 부족 분리.
+- 즉각적이고 설명 가능한 세계 변화.
+- 학습→증명→표현→응용→발견·기록 순환.
 
 ## Vertical Slice
 
@@ -64,6 +75,7 @@
 - 글자: `흐름 / 집중 / 분산`.
 - 목표 `45~50분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
 - 직접 작성 성공 7회, 안내형 복구 포함 목표 상한 10회.
+- 같은 문제에서 확인한 글자는 Token 재선택 허용.
 - 메인 동반 정령 초기 형상 1개, 수호형 보조 소환수 1체.
 - 마도서는 해결 과정·결과·부작용·발견을 기록하며 자동 주문 Stock이 아니다.
 
@@ -81,61 +93,96 @@
 
 - 일반 적은 단일 페이즈.
 - 판단·작성 중 타이머 진행, 시스템 해결 중 정지.
+- 선택형 작성 감속 초기 후보 `0.5×`는 `TEST_VALUE`.
 - 기본 적의 승리는 HP 0 처치가 아니라 `불안정도 0 → 진정·해결`.
 - 플레이어 HP 0 또는 선언된 치명적 환경 붕괴가 패배.
 - 환경 보존도·부작용·남은 HP가 결과 품질을 만든다.
 
+## Mobile Landscape 계약
+
+`GM-MOBILE-ORIENTATION-01`에 따라 Mobile Vertical Slice의 핵심 화면은 Landscape 고정이다.
+
+```text
+Landscape Main
+→ Landscape Field / Dialogue / Schedule
+→ Landscape Writing Overlay
+→ Landscape Battle
+→ Landscape Result
+→ Landscape Field Return
+→ Landscape Grimoire
+```
+
+적용:
+
+- Main·Field·Dialogue·Schedule·Writing·Battle·Result·Grimoire·Settings 전부 Landscape.
+- Portrait Gameplay·화면별 혼합 방향·Runtime 자동 회전은 Vertical Slice 제외.
+- 기존 16:9 자료는 Landscape 파생 기준으로 보존하지만 Mobile 실기기 통과 증거가 아니다.
+- 직접 작성 Canvas와 적 위험·상태·작성 정보의 동시 판독을 우선한다.
+- Landscape 고정의 세션 마찰은 Resume Anchor·자동 저장·이어하기로 보완한다.
+
 ## 현재 화면·아트
 
-- 승인 기준은 16:9 고정 3/4 Field, 같은 장소 Half-body Dialogue, 별도 Battle, Result 후 Field 복귀다.
+- 고정 3/4 Field, 같은 장소 Half-body Dialogue, 별도 Battle, Result 후 Field 복귀.
 - Soft Storybook 배경 + Anime Cel 캐릭터, Navy/Gold UI + Blue Glyph.
+- 우측 Writing Panel은 축소 Rail에서 작성 시 확장한다.
 - Grimoire 파생 화면을 Main보다 먼저 설계한다.
 - 잠긴 기준 이미지 SHA-256: `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`.
-- 기존 16:9·PC 해상도 규격은 보존되지만 Mobile 실기기 적합성은 `NOT_RUN`이다.
+- 잠긴 원본 수정·재생성·리터치·재배치 금지.
 
-## Mobile 우선 전환
+## MOBILE-FOUNDATION-01
 
-`GM-PLATFORM-02`에 따라 1차 플랫폼을 Mobile로 전환했다. 기존 PC 중심 입력은 후속 적응 자료로 보존한다.
+현재 작성 순서:
 
-`MOBILE-FOUNDATION-01`에서 확정·검증할 항목:
+1. Resume Anchor·Save Ownership.
+2. Landscape 지원 Aspect·Safe Area·Notch·System gesture.
+3. Touch·Stylus stroke, 후보, Undo·부분 삭제·초기화·취소·확정·구현.
+4. 작은 화면에서 적 위험·목표·주인공 상태·Writing Panel 정보 위계.
+5. App pause/resume·background/foreground·interrupted stroke·stale request.
+6. Device·Memory·Texture·load·frame pacing·battery·thermal 검증 계획.
+7. 후속 PC Mouse·Pen·Keyboard 적응 원칙.
 
-- Touch·Stylus 작성, 후보 선택, Undo·부분 삭제·초기화·취소·확정·구현.
-- 방향·화면 비율·Safe Area·Notch·System gesture.
-- 작은 화면에서 적 위험·상태·작성 Panel의 가림 방지.
-- App pause/resume, background/foreground, interrupted stroke, stale request.
-- Device·Memory·Texture·load·frame pacing·battery·thermal 검증 계획.
-- 후속 PC의 Mouse/Pen/Keyboard 적응 원칙.
+아직 확정하지 않는 것:
 
-Android/iOS, Store, 가로/세로, 최소 기기, 성능 수치, 인식 처리 방식은 아직 확정하지 않는다.
+- Android/iOS·Store 우선순위.
+- 지원 Aspect Ratio와 최소 기기.
+- Touch target·Canvas·Text scale 최종값.
+- Frame rate·Memory·Battery·Thermal 수치.
+- 인식 알고리즘·Latency·허용치.
 
-## Base v9.4
+## 적대적 총기획 감사
 
-- Release: `a728712cb776ec98f4875914a580fcf7d0156593`.
-- Evidence: `ef1fba11167e4da0b298123b0c85ebd268191a42`.
-- Finalization: `87a0b54c2847ce4b685879209205957c170cc1cd`.
-- Registry: `693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59`.
-- Adapter: `skills/PROJECT_BASE_ADAPTER.json`.
-- Adapter SHA-256: `980e2f4e21bd09ac49946f90d095680220013cbab6cdf62421fc01ca1b7be8c5`.
+확인된 첫 P0 충돌인 “방향 미확정 ↔ 가로형·16:9 활성 소비자”는 `GM-MOBILE-ORIENTATION-01`로 해결했다.
+
+남은 분류:
+
+- 자동 보완: Resume Anchor, Save Ownership, 자유일정 효과, PC 입력의 후속 부록화.
+- 테스트 필요: Active Timer 접근성, 7~10회 필기 피로, 기기·성능.
+- 사용자 중요 결정: 실제 범위 분기나 기획 충돌이 확인될 때만 Grill Me.
 
 ## 검증된 운영 상태
 
-PR #27 final workflow run `30728196595`에서 다음을 통과했다.
+PR #29 branch head `ebc3f8f...`, Actions run `30729161745`:
 
-- Generator check.
-- Base v9.4·Mobile-first 회귀 단위 테스트.
-- JSON·Registry·권위 경로 검사.
-- Adversarial gate.
+- Generator check: PASS.
+- Base v9.4 adoption unit tests: PASS.
+- JSON·Registry·authority path checks: PASS.
+- Adversarial gate: PASS.
 
-Generator의 구형 `PC/ASSET_SPEC_01` 하드코딩도 Adapter 파생형으로 교정했고, Snapshot·Compatibility View를 재생성했다.
+Sheet:
+
+- `00·02·04·10·60·99` 관련 범위 반영.
+- Main commit `0bb1f4e...` 재조회.
+- `04!H23`, `99!H24`: `MAIN_SHEET_READBACK_PASS`.
 
 ## 다음 작업
 
 ```text
-적대적 총기획 감사
-→ 핵심 기획 충돌만 Grill Me
-→ 승인된 기획 정본·Sheet 즉시 동기화
-→ MOBILE-FOUNDATION-01
-→ BOSS-PHASE-01·Grimoire/Main 영향 재검토
+Resume Anchor·Save Ownership 명세
+→ Landscape Aspect·Safe Area·Touch 정보 위계
+→ 작은 화면 Writing/Battle 레이아웃 후보
+→ MOBILE-FOUNDATION-01 통합 계약
+→ 중요 충돌만 Grill Me
+→ BOSS-PHASE-01·GRIMOIRE-SCREEN-01
 → AUDIO-DIRECTION-01
 → Mobile 기준 통합 검수
 → Codex Plan 승인·기술 검수
@@ -144,11 +191,10 @@ Generator의 구형 `PC/ASSET_SPEC_01` 하드코딩도 Adapter 파생형으로 �
 
 ## 현재 검증 경계
 
-- Sheet 14개 탭 Readback: `PASS`.
-- Generator·Generated Views: `PASS / CURRENT`.
-- Unit·JSON·Registry·Adversarial CI: `PASS`.
-- PR #27: `MERGED`; GitHub·Sheet `SYNCED_TO_MAIN`.
-- Godot Runtime·Mobile device·PC adaptation·성능·접근성·사람 플레이: `NOT_RUN`.
+- Planning·Orientation 문서 정합성: `PASS`.
+- GitHub PR #29: `MERGED`.
+- Sheet Main Readback: `PASS`.
+- Godot Runtime·Mobile device·Aspect·Performance·Accessibility·Human: `NOT_RUN`.
 
 ## 현재 금지
 
@@ -156,5 +202,5 @@ Generator의 구형 `PC/ASSET_SPEC_01` 하드코딩도 Adapter 파생형으로 �
 - Godot 제품 코드·Scene·Resource·게임 데이터 생성.
 - Codex Build.
 - 잠긴 기준 이미지 편집·재생성.
-- OS·방향·성능·인식 수치를 증거 없이 확정.
-- 런타임·Mobile device·성능·접근성·사람 검증을 실행 없이 완료 처리.
+- Portrait·자동 회전을 승인 없이 Vertical Slice 범위로 확장.
+- 미검증 수치를 최종값 또는 검증 완료로 표시.
