@@ -32,7 +32,22 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "FINAL_HEAD_VERIFICATION_PENDING_AFTER_SUMMON_CLARIFICATION",
+  "pre_merge_gate_status": "PASS_AWAITING_EXPLICIT_MERGE_APPROVAL",
+  "pre_merge_evidence": {
+    "evidence_head": "d3a943b1a7c882ca41814b57452888071a8a3a90",
+    "main_baseline": "eaf05c24b90d233964d093b0e772e5e94b505f36",
+    "ahead_by": 24,
+    "behind_by": 0,
+    "changed_files": 7,
+    "product_code_changed": false,
+    "sheet_readback": "PASS",
+    "workflow_run": 30749514405,
+    "ci_gate": "PASS",
+    "adversarial_gate": "PASS",
+    "unresolved_review_threads": 0,
+    "blocking_reviews": 0,
+    "final_state_delta_after_evidence": "BATCH_STATE_AND_SYNC_RECEIPT_ONLY_REVERIFY_REQUIRED"
+  },
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T20:59:00+09:00",
@@ -53,7 +68,7 @@
     "counter_reset": true
   },
   "current_work": {
-    "status": "SUMMON_CLARIFICATION_SYNCED_FINAL_HEAD_REVERIFY_PENDING",
+    "status": "CORE_ALIGNMENT_PREMERGE_PASS_AWAITING_EXPLICIT_APPROVAL",
     "decision_id": "GM-CORE-SYSTEM-ALIGNMENT-01",
     "approved_option": "A_CORE_FUN_FIRST_TAXONOMY_WITH_STOCK_AND_SUMMON_FATIGUE_RELIEF_GUARDS",
     "approved_at": "2026-08-02T21:49:00+09:00",
@@ -83,7 +98,7 @@
     "merge_blocking_p0": 0,
     "merge_blocking_p1": 0,
     "p1_open_for_direct_canon_reconciliation": 3,
-    "next_work": "Run PR 47 final-head CI, adversarial gate and review checks; report exact changes and request explicit merge approval. After merge/readback, absorb the cold-start override, then design GM-STOCK-SYSTEM-01 and GM-SUMMON-SYSTEM-01"
+    "next_work": "Reverify the final metadata-only state commit, report the exact head and request explicit PR 47 merge approval"
   },
   "protected_boundaries": {
     "execution_profile": "PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY",
