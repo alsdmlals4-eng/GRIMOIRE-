@@ -7,7 +7,7 @@ sync_id: GR-SYNC-20260802-17
 status: SYNCED_TO_WORKING_BRANCH
 sheet_readback: PASS
 authority_head_before_sheet: aa3431ce8ccb68b943e44e79cf6b37490116827f
-final_authority_head: 51004971c06644436180f818556f046b9b144552
+final_head_resolution: CURRENT_BRANCH_CONTAINING_THIS_RECEIPT; exact SHA recorded in Google Sheet 00/01/02/04/99
 approved_decision: GM-VERTICAL-SLICE-REPRESENTATIVENESS-01
 approved_option: A_CORE_SYSTEMS_PLAYABLE_PLUS_LONG_TERM_STRUCTURE_COMPRESSED_MOCK
 approved_at: 2026-08-02T19:06+09:00
@@ -91,7 +91,7 @@ Readback 결과:
 - Counter `8/10`과 pending 8개 일치.
 - Full Game Structure·Representativeness 완료와 Mobile UX Flow 전환 일치.
 - 기존 인접 Decision·Loop·System·Test·Milestone·Sync 행 보존.
-- 최종 Authority HEAD 포인터 `5100497` Readback PASS.
+- 최종 Authority HEAD는 이 Receipt를 포함한 현재 브랜치 HEAD로 해석하며 Sheet `00/01/02/04/99`에 기록한다.
 - 구현·Runtime·Device·Accessibility·Human 차단 유지.
 
 `SHEET_READBACK_PASS`.
