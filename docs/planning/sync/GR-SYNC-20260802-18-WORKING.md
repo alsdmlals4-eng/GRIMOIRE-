@@ -5,7 +5,7 @@
 ```yaml
 sync_id: GR-SYNC-20260802-18
 status: SYNCED_TO_WORKING_BRANCH
-sheet_readback: PENDING
+sheet_readback: PASS
 authority_head_before_sheet: 2167543d8292677ee83a598a9c8fd58cf6512754
 final_head_resolution: CURRENT_BRANCH_CONTAINING_FINAL_BATCH_STATE; exact SHA recorded in Google Sheet
 approved_decision: GM-MOBILE-UX-FLOW-01
@@ -71,19 +71,27 @@ MOBILE-WRITING-BATTLE-WIREFRAME-01 = CURRENT
 - Batch State advanced to `9/10`.
 - 이 Working Sync Receipt 생성.
 
-## 6. Google Sheet 반영 대상
+## 6. Google Sheet 반영·Readback
+
+반영·재조회 탭:
 
 - `00·01·02·03·04·05·10·12·20·30·40·60·80·90·99`.
 
-검증 항목:
+Readback 결과:
 
-- Decision ID와 승인 옵션 A.
-- Scene-first Contextual Focus Flow와 공통 Focus Task 상태 계약.
-- 안전 장면 전역 진입·전투 메뉴 제한·Writing Focus Layer.
-- Save/Resume Anchor와 결과 원자 적용.
-- Counter `9/10`과 pending 9개.
-- Mobile UX Flow 완료와 Writing/Battle Wireframe Gate 전환.
-- 구현·Runtime·Device·Accessibility·Human 차단 유지.
+- `GM-MOBILE-UX-FLOW-01 / A_SCENE_FIRST_CONTEXTUAL_FOCUS_FLOW / GRILL_9_OF_10` 일치.
+- `GR-L-16·GR-S-18·GR-UX-12·GR-TEST-022·GR-M-10` 승인 상태 일치.
+- 신규 후보 `GR-L-17·GR-UX-17·GR-TEST-023·GR-M-11`과 `GM-MOBILE-WRITING-BATTLE-WIREFRAME-01` 일치.
+- `GR-SYNC-20260802-18`, pending 9개, 현재 Gate와 다음 Decision 일치.
+- 기존 인접 Decision·Loop·System·UX·Test·Milestone·Sync 행 보존.
+- 구현·Runtime·Device·Accessibility·Human 상태는 `NOT_STARTED/NOT_RUN` 유지.
+
+```yaml
+sheet_readback_verdict: PASS
+row_overwrite_detected: false
+id_sequence_conflict_detected: false
+canon_conflict_detected: false
+```
 
 ## 7. 병합 경계
 
