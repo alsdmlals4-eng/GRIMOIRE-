@@ -10,6 +10,8 @@ execution_profile: PLANNING_ONLY_PROFILE
 primary_platform: Mobile
 follow_up_platform: PC
 platform_decision: GM-PLATFORM-02
+mobile_orientation_decision: GM-MOBILE-ORIENTATION-01
+mobile_orientation: LANDSCAPE_FIXED
 planning: APPROVED
 art_style_01: APPROVED_A_MODIFIED_LOCKED
 art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
@@ -25,7 +27,7 @@ implementation_ready: false
 codex: BLOCKED
 ```
 
-현재 승인은 기획·시각 규칙·전투 구조·Asset 제작 계약을 확정한다. Mobile 실기기 구현·성능·접근성·사람 플레이 통과를 의미하지 않는다.
+현재 승인은 기획·시각 규칙·전투 구조·Asset 제작 계약과 Mobile Landscape 방향을 확정한다. Mobile 실기기 구현·성능·접근성·사람 플레이 통과를 의미하지 않는다.
 
 ## 1. 전체 경로
 
@@ -37,6 +39,7 @@ Gate 1 콘셉트·Vertical Slice — 완료
 → 전투 화면·단일 강적·Active Timer·Time Flow·Battle Rules — 완료
 → ASSET-SPEC-01 — 완료
 → GM-PLATFORM-02 — Mobile 우선 승인
+→ GM-MOBILE-ORIENTATION-01 — Landscape 고정 승인
 → MOBILE-FOUNDATION-01 — 현재 Gate
 → BOSS-PHASE-01·Grimoire/Main 파생 화면 영향 재검토
 → AUDIO-DIRECTION-01
@@ -148,11 +151,23 @@ Gate 1 콘셉트·Vertical Slice — 완료
 - 승인 코어·Slice·Art·Battle·Asset Spec은 보존한다.
 - PC 전용 입력·해상도·테스트·출시 순서는 Mobile 기준으로 재검토한다.
 
-## 5. MOBILE-FOUNDATION-01
+## 5. GM-MOBILE-ORIENTATION-01
+
+상태: `USER_APPROVED_ACTIVE`.
+
+책임 원본: `docs/planning/MOBILE_ORIENTATION_01_APPROVAL_2026-08-02.md`.
+
+- Mobile Vertical Slice의 Main·Field·Dialogue·Schedule·Writing·Battle·Result·Grimoire·Settings는 Landscape 고정.
+- Portrait Gameplay와 Runtime 자동 회전은 Vertical Slice 범위에서 제외.
+- 기존 16:9 자료는 Landscape 파생 기준으로 보존하지만 Mobile 실기기 품질 통과 증거로 자동 승격하지 않음.
+- 한손 Portrait 편의보다 직접 작성 Canvas와 적 위험·상태·작성 정보의 동시 판독을 우선.
+- Landscape 고정의 진입 마찰과 작은 기기 피로는 Resume Anchor·실기기 테스트·접근성 검증으로 다룸.
+
+## 6. MOBILE-FOUNDATION-01
 
 상태: `CURRENT_RECONCILIATION_GATE`.
 
-목표: 승인된 직접 작성·상황 해결 코어가 Mobile에서 입력·화면·중단·성능 문제로 약화되지 않는 최소 기반을 확정한다.
+목표: 승인된 직접 작성·상황 해결 코어가 Landscape Mobile에서 입력·화면·중단·성능 문제로 약화되지 않는 최소 기반을 확정한다.
 
 확정·검증 대상:
 
@@ -160,29 +175,31 @@ Gate 1 콘셉트·Vertical Slice — 완료
 2. 화면 내 Undo·부분 삭제·전체 초기화·취소·확정·`[구현]`.
 3. interrupted stroke·multi-touch·system gesture·stale recognition·중복 Commit 방어.
 4. App pause/resume·background/foreground·focus loss 상태 유지.
-5. 화면 방향·지원 비율·Safe Area·Notch·최소 Touch target 후보.
+5. Landscape 지원 Aspect Ratio·Safe Area·Notch·최소 Touch target 후보.
 6. 작은 화면에서 적 위험·목표·주인공 상태·작성 Panel의 가림 방지.
-7. Memory·Texture·load·frame pacing·battery·thermal 측정 계획.
-8. Android/iOS·Store·최소 기기·성능 목표 결정을 위한 사용자 패킷.
-9. 후속 PC Mouse/Pen/Keyboard 적응 원칙.
+7. Resume Anchor·자동 저장·이어하기·Draft 저장 소유권.
+8. Memory·Texture·load·frame pacing·battery·thermal 측정 계획.
+9. Android/iOS·Store·최소 기기·성능 목표 결정을 위한 사용자 패킷.
+10. 후속 PC Mouse/Pen/Keyboard 적응 원칙.
 
 통과 조건:
 
 - 입력 실패·문법 실패·상황 설계 실패·비용 부족을 구분한다.
 - 낮은 확신 후보 자동 선택과 자동 시전을 하지 않는다.
 - 앱 중단·복귀와 입력 재진입에서 중복 시전·보상·기록·손상 상태가 없다.
-- Mobile 기준 화면 후보가 적·위험·작성 정보를 동시에 가리지 않는다.
-- OS·방향·성능 수치는 근거 또는 사용자 승인 없이 확정하지 않는다.
+- Landscape 화면 후보가 적·위험·작성 정보를 동시에 가리지 않는다.
+- Portrait·자동 회전을 Vertical Slice 필수 지원으로 조용히 확장하지 않는다.
+- Aspect Ratio·Safe Area·성능 수치는 근거 또는 사용자 승인 없이 최종 확정하지 않는다.
 - 사용자가 Mobile Foundation 계약을 승인한다.
 
-## 6. 후속 설계 Gate
+## 7. 후속 설계 Gate
 
 ### BOSS-PHASE-01
 
 상태: `QUEUED_REVIEW_AFTER_MOBILE_FOUNDATION`.
 
 - 보스 페이즈 수·전환 상태·Attack Timer·작성 Draft·환경 변화·반복 악용 방지.
-- Mobile 화면과 중단·복귀 계약에 맞는지 재검토 후 확정.
+- Landscape 화면과 중단·복귀 계약에 맞는지 재검토 후 확정.
 
 ### GRIMOIRE-SCREEN-01
 
@@ -190,7 +207,7 @@ Gate 1 콘셉트·Vertical Slice — 완료
 
 - 상황·글자·의도·결과·부작용·발견 관리.
 - 자동 최적 추천·자동 시전 금지.
-- 작은 화면 탐색·텍스트·Touch 조작 검증 필요.
+- Landscape 작은 화면 탐색·텍스트·Touch 조작 검증 필요.
 
 ### MAIN-SCREEN-01
 
@@ -198,6 +215,7 @@ Gate 1 콘셉트·Vertical Slice — 완료
 
 - `새 게임 / 이어하기 / 설정` 중심 최소 구조.
 - 수집형 로비 UI 금지.
+- Portrait 별도 Main을 Vertical Slice 범위에 추가하지 않음.
 
 ### NAMING-PASS-01
 
@@ -206,7 +224,7 @@ Gate 1 콘셉트·Vertical Slice — 완료
 - 세계 명명 규칙과 주요 이름.
 - Mobile Foundation을 차단하지 않음.
 
-## 7. AUDIO-DIRECTION-01
+## 8. AUDIO-DIRECTION-01
 
 상태: `QUEUED`.
 
@@ -215,22 +233,22 @@ Gate 1 콘셉트·Vertical Slice — 완료
 - 적 공격 예고·Time State·Instability·Result 피드백.
 - 무음 대체·haptic-off·Mobile speaker/headphone 환경과 License 우선순위.
 
-## 8. 통합 검수
+## 9. 통합 검수
 
 상태: `BLOCKED_BY_MOBILE_FOUNDATION_DERIVATIVE_SCREENS_AND_AUDIO`.
 
 확인:
 
 - Glyph·대상·위험 판독성.
-- Art Bible·Asset Spec과 Mobile 화면 소비자 일치.
-- 45~50/53/60분 시간 계약.
+- Art Bible·Asset Spec과 Landscape Mobile 화면 소비자 일치.
+- 45~50/53/60분 시간 계약과 Resume Anchor.
 - Touch·Stylus 입력과 UI 일치.
 - 작은 화면·Safe Area·중단/복귀·성능·접근성.
 - 단일 강적이 HP 스펀지로 변질되지 않음.
 - 수호 소환수가 주문 설계보다 복잡하지 않음.
 - Grimoire가 자동 주문 Stock으로 변질되지 않음.
 
-## 9. Codex Plan 진입
+## 10. Codex Plan 진입
 
 상태: `BLOCKED`.
 
@@ -240,22 +258,23 @@ Gate 1 콘셉트·Vertical Slice — 완료
 2. `BOSS-PHASE-01`, `GRIMOIRE-SCREEN-01`, `AUDIO-DIRECTION-01`의 Mobile 영향 검수.
 3. 기획·아트·UX 통합 검수 통과.
 4. Base v9.4 Adapter·Snapshot·CI 정합화.
-5. Godot 버전·Renderer·Mobile OS·방향·최소 기기 범위 재확인.
+5. Godot 버전·Renderer·Mobile OS·Landscape Aspect·최소 기기 범위 재확인.
 6. 사용자의 Codex Plan 승인.
 
 그 뒤에만 Codex read-only Plan을 작성한다.
 
-## 10. PLAYTEST_TUNING_REQUIRED
+## 11. PLAYTEST_TUNING_REQUIRED
 
 - 공격 간격·피해·HP·마나.
 - 불안정도 변화량.
 - 수호 완화율·사용 횟수.
 - 환경 결과 임계값.
 - 작성 감속 최종값·복귀 유예.
-- Touch target·Canvas 크기·Gesture·인식 허용치·보정·Latency.
+- Landscape Touch target·Canvas 크기·Gesture·인식 허용치·보정·Latency.
+- 지원 Aspect Ratio·Text scale·Safe Area 세부값.
 - Memory·Texture·load·frame pacing·battery·thermal.
 
-## 11. 검증 경계
+## 12. 검증 경계
 
 ```text
 GODOT_PROJECT = NOT_STARTED
