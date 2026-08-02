@@ -13,6 +13,9 @@ codex_plan: APPROVED_TO_PREPARE
 codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
 next_gate: GM-FOUNDATION-POC-EXECUTION-READINESS-01
 batch_counter: 1_of_10
+base_release_on_main: 9.4.2
+base_pr_38: MERGED
+base_pr_42: OPEN_DRAFT
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -60,12 +63,14 @@ human_validation: NOT_RUN
 
 다음 조건이 모두 만족되기 전에는 Codex가 제품 파일을 생성하거나 수정하지 않는다.
 
-1. Draft PR #38과 #42가 병합·종료·supersede 중 하나로 정리된다.
-2. main의 `skills/PROJECT_BASE_ADAPTER.json`이 단일 Base release identity를 가진다.
-3. Base Adapter·Snapshot·Generator·Required Workflow가 PASS한다.
-4. 최신 Cold-start Override가 `START_HERE`보다 먼저 적용된다는 작업 계약을 확인한다.
-5. Implementation Plan을 최신 main에 재대조한다.
-6. `GM-FOUNDATION-POC-EXECUTION-READINESS-01`이 P0=0, P1=0으로 통과한다.
+1. PR #38 병합으로 Base v9.4.2 planning-first 정본이 main에 존재함을 확인한다. **완료**.
+2. Draft PR #42가 병합·종료·supersede 중 하나로 정리된다.
+3. 최종 main의 `skills/PROJECT_BASE_ADAPTER.json`이 단일 Base release identity를 가진다.
+4. Base Adapter·Snapshot·Generator·Required Workflow가 PASS한다.
+5. Cold-start 핵심 문서를 최종 Base 상태에 직접 맞추고 Override 우선순위를 확인한다.
+6. Godot Toolchain preflight를 실행한다.
+7. Implementation Plan을 최신 main에 재대조한다.
+8. `GM-FOUNDATION-POC-EXECUTION-READINESS-01`이 P0=0, P1=0으로 통과한다.
 
 ## Stop Gate
 
