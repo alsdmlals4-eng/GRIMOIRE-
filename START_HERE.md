@@ -1,52 +1,50 @@
 # GRIMOIRE 시작 지점
 
-> 과거 대화 없이 현재 상태와 다음 작업을 복원하는 첫 화면이다.
+> 과거 대화 없이 현재 상태와 다음 작업을 복원하는 첫 화면이다. 상세 기획은 링크된 책임 원본에서 읽고, 이 문서는 현재 Gate와 작업 순서만 관리한다.
 
-## 한눈에 보기
+## 현재 상태
 
 | 항목 | 현재 기준 |
 |---|---|
 | 프로젝트 | `GRIMOIRE: 세계를 다시 쓰는 법` |
 | 1차 플랫폼 | `Mobile` |
 | 후속 플랫폼 | `PC` |
-| 플랫폼 Decision | `GM-PLATFORM-02` |
-| Mobile 방향 | `GM-MOBILE-ORIENTATION-01 / LANDSCAPE_FIXED` |
-| 기기 범위 | `GM-MOBILE-DEVICE-CLASS-01 / Smartphone REQUIRED / Tablet BEST_EFFORT` |
-| Portrait·자동 회전 | `VERTICAL_SLICE 제외` |
-| 엔진 기준 후보 | `Godot 4.7.1 stable` |
+| 방향 | `LANDSCAPE_FIXED` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
-| 현재 제품 Gate | `MOBILE-FOUNDATION-01 / IN_PROGRESS` |
-| Resume·Save | `CONTRACT_DEFINED` |
-| Landscape UX | `CONTRACT_DEFINED_WITH_TEST_VALUES` |
-| 구현 | `NOT_STARTED` |
-| Codex | `BLOCKED` |
-| Base | `v9.4.0` |
-| Decision Main | `2aec51244ea96fc4d4c9088fcb133f41862faa1d` |
-| PR | `#31 / MERGED / CI·ADVERSARIAL PASS` |
-| Sheet | `SYNCED_TO_MAIN / MAIN_SHEET_READBACK_PASS` |
-| Main Sync Receipt | `docs/planning/sync/GR-SYNC-20260802-08-MAIN.md` |
+| 기획 계약 | `APPROVED_AND_MERGED_TO_MAIN` |
+| 병합 직전 main | `c114343ac925d734caf0ac8011c8ee25fd6d29e8` |
+| Base 정본 | `v9.4.3 / PR #44 MERGED / PR #42 SUPERSEDED` |
+| 마지막 완료 Sync | `GR-SYNC-20260802-20 / SHEET_READBACK_PASS` |
+| 현재 Sync | `GR-SYNC-20260802-21` |
+| 현재 Decision | `GM-IMPLEMENTATION-ENTRY-01` |
+| 승인안 | `A_FOUNDATION_POC_ONLY_TDD_WITH_HARD_CONTENT_LOCK` |
+| 병합 승인 | `RECEIVED_2026-08-02T20:59+09:00` |
+| 새 Batch | `1/10` |
+| 구현 진입 | `APPROVED_CONDITIONAL_FOUNDATION_POC` |
+| 제품 구현 | `NOT_STARTED` |
+| Codex Plan | `ALLOWED` |
+| Codex 실행 | `BLOCKED` |
+| 다음 Gate | `GM-FOUNDATION-POC-EXECUTION-READINESS-01` |
+| Runtime·실기기·성능·접근성·사람 검증 | `NOT_RUN` |
 
-## 먼저 읽을 문서
+## 반드시 먼저 읽을 문서
 
 1. `AGENTS.md`
-2. `docs/ACTIVE_CONTEXT.md`
-3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-4. `docs/planning/CURRENT_CONFIRMED_DECISIONS_ADDENDUM_MOBILE_FOUNDATION_2026-08-02.md`
-5. `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`
-6. `docs/planning/MOBILE_ORIENTATION_01_APPROVAL_2026-08-02.md`
-7. `docs/planning/MOBILE_SESSION_RESUME_SAVE_01_2026-08-02.md`
-8. `docs/planning/MOBILE_LANDSCAPE_UX_FOUNDATION_01_2026-08-02.md`
-9. `docs/planning/MOBILE_LANDSCAPE_UX_FOUNDATION_01_DEVICE_CLASS_ADDENDUM_2026-08-02.md`
-10. `docs/planning/MOBILE_DEVICE_CLASS_01_APPROVAL_2026-08-02.md`
-11. `docs/planning/TOTAL_PLANNING_ADVERSARIAL_AUDIT_2026-08-02.md`
-12. `docs/planning/TOTAL_PLANNING_ADVERSARIAL_AUDIT_ADDENDUM_2026-08-02A.md`
-13. `docs/planning/sync/GR-SYNC-20260802-08-MAIN.md`
-14. `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`
-15. `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md`
-16. `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`
-17. `docs/DEVELOPMENT_GATES.md`
-18. `docs/UX_UI_SYSTEM.md`
-19. `skills/PROJECT_BASE_ADAPTER.json`
+2. `docs/planning/IMPLEMENTATION_ENTRY_01_COLD_START_OVERRIDE_2026-08-02.md`
+3. `docs/planning/IMPLEMENTATION_ENTRY_01_APPROVAL_2026-08-02.md`
+4. `docs/superpowers/specs/2026-08-02-mobile-foundation-poc-implementation-entry-design.md`
+5. `docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md`
+6. `docs/planning/IMPLEMENTATION_ENTRY_01_ADVERSARIAL_REVIEW_2026-08-02.md`
+7. `docs/planning/IMPLEMENTATION_ENTRY_01_PREMERGE_GATE_2026-08-02.md`
+8. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
+9. `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md`
+10. `docs/planning/GRIMOIRE_FULL_GAME_STRUCTURE_COMPLETION_OVERRIDE_2026-08-02.md`
+11. `docs/planning/MOBILE_UX_FLOW_01_APPROVAL_2026-08-02.md`
+12. `docs/planning/MOBILE_WRITING_BATTLE_WIREFRAME_01_APPROVAL_2026-08-02.md`
+13. `docs/DEVELOPMENT_GATES.md`
+14. `docs/ACTIVE_CONTEXT.md`
+15. `docs/DESIGN_DOCUMENT_REGISTRY.json`
+16. 질문 주제의 세부 승인 책임 원본
 
 ## 플레이어 약속
 
@@ -55,164 +53,89 @@
 비타협 코어:
 
 - 의미를 가진 글자와 직접 작성.
-- `메인 글자 1개 + 보조 글자 0개 이상`.
 - 상황·목표·위험에 따른 주문 설계 판단.
-- 입력 실패·문법 실패·상황 설계 실패·비용 부족 분리.
-- 즉각적이고 설명 가능한 세계 변화.
-- 학습→증명→표현→응용→발견·기록 순환.
+- 입력 실패·인식 실패·문법 실패·상황 설계 실패·비용 부족 분리.
+- 명시적 Commit 뒤에만 설명 가능한 세계 변화 적용.
+- 의도·결과·부작용·발견을 Grimoire에 기록.
 
-## Vertical Slice
-
-```text
-첫 수업·교내 연습
-→ 자유일정 A
-→ 첫 실기시험
-→ 자유일정 B
-→ 학교축제
-→ 자유일정 C
-→ 첫 현장실습
-→ 귀환·마도서 기록
-```
-
-- 글자: `흐름 / 집중 / 분산`.
-- 목표 `45~50분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
-- 직접 작성 성공 7회, 안내형 복구 포함 목표 상한 10회.
-- 같은 문제에서 확인한 글자는 Token 재선택 허용.
-- 메인 동반 정령 초기 형상 1개, 수호형 보조 소환수 1체.
-- 마도서는 과정·결과·부작용·발견을 기록하며 자동 주문 Stock이 아니다.
-
-## 화면·전투·아트 코어
+## 승인된 Mobile UX 코어
 
 ```text
-Landscape 고정 3/4 Field
-→ 같은 장소 Half-body Dialogue
-→ Landscape Writing Overlay
-→ 별도 Battle
-→ Result
-→ Field 변화 복귀
-→ Landscape Grimoire 기록
+장면
+→ Context Card
+→ 하나의 Focus Task
+→ 필요 시 확장형 우측 Writing Panel
+→ 단일 원자 Commit
+→ 결과·세계 변화
+→ Grimoire
+→ Hub 또는 다음 Anchor
 ```
 
-- Main·Field·Dialogue·Schedule·Writing·Battle·Result·Grimoire·Settings 전부 Landscape.
-- Portrait Gameplay·화면별 혼합 방향·Runtime 자동 회전 제외.
-- Soft Storybook 배경 + Anime Cel 캐릭터.
-- Navy/Gold UI + 고대비 Blue Glyph.
-- 우측 Writing Panel은 축소 Rail에서 작성 시 확장.
-- Grimoire 파생 화면을 Main보다 먼저 설계.
-- 잠긴 기준 이미지 SHA-256: `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`.
-- 잠긴 원본 수정·재생성·리터치·재배치 금지.
+작성 중에도 다음을 유지한다.
 
-전투:
+- 적 또는 대상.
+- 적 의도와 남은 시간.
+- 환경 위험과 보존 대상.
+- 플레이어 핵심 HP·마나.
 
-- 강한 적 1개체, 일반 적 단일 페이즈.
-- 다음 공격 예고·타이머→직접 작성→`[구현]`→마나 검증·즉시 시전.
-- 판단·작성 중 타이머 진행, 시스템 해결 중 정지.
-- 작성 감속 `0.5×`는 `TEST_VALUE`이며 보상 불이익 없음.
-- 승리는 HP 0 처치가 아니라 `불안정도 0 → 진정·해결`.
-- 플레이어 HP 0 또는 치명적 환경 붕괴가 패배.
+Panel collapse·일시 중단은 Draft를 보존하고, 명시적인 전체 취소에서만 폐기한다. 낮은 확신 후보는 자동 확정하지 않는다.
 
-## Resume·Save 계약
+## 구현 진입 승인 범위
 
-Resume Anchor:
+이번 승인은 전체 Vertical Slice 본제작 승인이 아니다.
 
-```text
-첫 수업·교내 연습 → A
-자유일정 A·실기시험 → B
-자유일정 B·학교축제 → C
-자유일정 C·현장 전투 → D
-현장 환경·귀환·마도서 기록 → Slice Complete
-```
+허용된 Foundation POC:
 
-상태 소유권:
+- 최소 Godot 프로젝트와 Headless 테스트 계약.
+- Focus Task 순수 상태 전이.
+- Atomic Result Ledger.
+- Stroke Buffer·Draft·Candidate 상태.
+- Deterministic Test Recognizer.
+- pause/resume·focus loss Snapshot.
+- 무아트 Smartphone Landscape Harness.
+- 합성 비전투 1개·합성 단일 강적 1개.
 
-```text
-Draft → Recognizing → Candidate → Committed → Resolved → Recorded
-```
+계속 금지:
 
-- Buffer·Session Snapshot·Persistent Transaction·Progress Save를 분리한다.
-- 중복 Commit·비용·피해·보상·Result·마도서 기록은 0이어야 한다.
-- 완료 획은 보존하고 미완성 획·stale Recognition 결과는 안전하게 폐기한다.
-- 손상 Save는 직전 안전 Anchor로 복구하고 원인을 표시한다.
+- 46–53분 전체 콘텐츠.
+- 실제 글자 인식·ML·훈련 데이터.
+- 최종 Art·Audio·Asset Import.
+- Boss 다중 페이즈.
+- 완성 Grimoire/Main.
+- 최종 밸런스·성능·Touch 수치.
+- Store·배포·사업화.
 
-## Smartphone Landscape UX 계약
+## Base 및 실행 차단 상태
 
-Safe Root 정보 위계:
-
-1. Objective / Threat / Timer.
-2. Player Status.
-3. World / Enemy / Situation Focus.
-4. Writing Rail / Panel.
-5. Confirm / Recovery / System Feedback.
-
-Smartphone 필수 검증 Matrix:
-
-```text
-16:9
-18:9
-19.5:9
-20:9
-좌측 Cutout
-우측 Cutout
-하단 System indicator·gesture 영역
-```
-
-Tablet:
-
-- `4:3 / 3:2` Best-effort Smoke Test만 수행.
-- 실행·Safe Area·핵심 정보·기본 Touch·저장 복구만 확인.
-- Tablet 전용 Layout·동일 품질·Store 정식 지원은 약속하지 않음.
-- Foldable·Multi-window·Portrait Tablet·Tablet 전용 Stylus 최적화 제외.
-
-계속 시험값:
-
-- Android 공식 하한 `48dp`, Apple 주요 Control `44pt`.
-- 프로젝트 일반 Control `48 UI unit`, 핵심 Control `56 UI unit`.
-- Rail `12~16%`, Full Writing `36~44%`.
-- UI/Text Scale `100 / 115 / 130%`.
-- Canvas 최소 크기·최종 Touch 허용치·Latency.
-
-## 현재 적대적 감사 상태
-
-닫힘:
-
-- 방향 미확정 ↔ 가로형 소비자 충돌.
-- Mobile 세션 구획·Resume Anchor 누락.
-- Draft·Commit·Result·Record 저장 소유권 누락.
-- Smartphone·Tablet 정식 지원 범위 충돌.
-
-시험 필요:
-
-- Active Timer+필기 접근성.
-- 7~10회 직접 작성 피로·손가락 가림.
-- Smartphone Aspect·Cutout·Touch 실기기 검증.
-- Android/iOS·Store·최소 기기·성능·배터리·발열.
+- PR `#38`은 Base v9.4.2 planning-first 계약을 도입했다.
+- 기존 PR `#42`는 supersede 종료됐다.
+- 대체 PR `#44`가 병합되어 main의 단일 Base 정본은 `v9.4.3`이다.
+- v9.4.3 first-prompt governance는 planning-first와 external-AI 경계를 보존한다.
+- Base PR 중첩 문제는 해소됐다.
+- Cold-start 핵심 문서 직접 재조정, Godot Toolchain 확인, Base v9.4.3 main 기준 Plan 재검증은 남아 있다.
 
 ## 다음 작업
 
 ```text
-Smartphone Landscape Writing/Battle Wireframe 계약
-→ Android/iOS·Store·최소 기기·성능 Decision Packet
-→ MOBILE-FOUNDATION-01 통합 승인
-→ 중요 충돌만 Grill Me
-→ BOSS-PHASE-01·GRIMOIRE-SCREEN-01
-→ AUDIO-DIRECTION-01
-→ Mobile 기준 통합 검수
-→ Codex Plan 승인·기술 검수
-→ 구현
+PR #43 병합·main/Sheet 최종화
+→ Cold-start 권위 문서 직접 재조정·Override 흡수
+→ Godot Toolchain preflight
+→ Base v9.4.3 main에서 Plan 재검증
+→ GM-FOUNDATION-POC-EXECUTION-READINESS-01
+→ P0=0·P1=0일 때만 Foundation POC 코드 실행
 ```
 
-## 현재 검증 경계
+## 검증 경계
 
-- Planning·Decision·Sheet 정합성: `PASS`.
-- PR #31: `MERGED`.
-- Sheet Main Readback: `PASS`.
-- Godot Runtime·Smartphone device·Tablet Smoke·Aspect·Performance·Accessibility·Human: `NOT_RUN`.
+```text
+GODOT_PROJECT = NOT_STARTED
+PRODUCT_CODE = NOT_STARTED
+CODE_EXECUTION = BLOCKED
+RUNTIME_VALIDATION = NOT_RUN
+MOBILE_DEVICE_VALIDATION = NOT_RUN
+PERFORMANCE_VALIDATION = NOT_RUN
+ACCESSIBILITY_VALIDATION = NOT_RUN
+HUMAN_PLAYTEST = NOT_RUN
+```
 
-## 현재 금지
-
-- 기본 브랜치 직접 수정.
-- Godot 제품 코드·Scene·Resource·게임 데이터 생성.
-- Codex Build.
-- 잠긴 기준 이미지 편집·재생성.
-- Portrait·자동 회전·Tablet 정식 지원을 별도 승인 없이 범위로 확장.
-- `TEST_VALUE`를 최종값 또는 검증 완료로 표시.
+`TEST_VALUE`, Harness, CI PASS를 실기기·성능·접근성·사람 검증 완료로 표시하지 않는다.
