@@ -7,6 +7,7 @@ project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
 working_branch: chatgpt/grimoire-mobile-first-canon-20260802
+pull_request: 27
 primary_platform: Mobile
 follow_up_platform: PC
 platform_decision: GM-PLATFORM-02
@@ -29,9 +30,13 @@ human_validation: NOT_RUN
 canon_sync_state: SYNCED_TO_WORKING_BRANCH
 sync_bundle: GR-SYNC-20260802-07
 authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
+verified_code_head: 3aa1b7cd2bd49362e20982f63abb8182345e14c0
 sheet_readback: PASS
+generator_check: PASS
+unit_json_registry_checks: PASS
+adversarial_gate: PASS
 main_baseline_commit: 3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03
-main_sync: PENDING_PR_MERGE
+main_sync: PENDING_USER_REVIEW_AND_MERGE
 ```
 
 제품용 `project.godot`, Scene, Script, Resource, 게임 데이터, 런타임 Asset은 없다.
@@ -147,10 +152,12 @@ evidence_commit: ef1fba11167e4da0b298123b0c85ebd268191a42
 finalization_commit: 87a0b54c2847ce4b685879209205957c170cc1cd
 registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
 canonical_adapter: skills/PROJECT_BASE_ADAPTER.json
+canonical_adapter_sha256: 5df9840dd07b0cb93132471d9a2c7e12cc7ebf4d581c8f5cac8c3c26689aacdb
 generator: tools/generate_project_operating_views.py
+generated_views: CURRENT
 ```
 
-Snapshot과 Compatibility View는 생성물이며 직접 편집하지 않는다.
+Snapshot과 Compatibility View는 Generator 생성물이며 직접 편집하지 않는다.
 
 ## 완료된 작업
 
@@ -161,6 +168,10 @@ Snapshot과 Compatibility View는 생성물이며 직접 편집하지 않는다.
 - 프로젝트 코어·Vertical Slice·잠긴 시각 기준 보존.
 - `GM-PLATFORM-02` GitHub authority와 Sheet 14개 탭 동기화·Readback PASS.
 - `60_UX_UI_접근성`의 `GR-UX-13/14` 위치 오류 적대적 교정.
+- Generator의 PC·Asset Spec Gate 하드코딩 제거.
+- 생성 Snapshot·Compatibility View 재생성.
+- PR #27 Generator·Unit·JSON·Registry·Adversarial CI PASS.
+- Issue #9 Mobile-first 검증 범위 갱신, Issue #16 완료 처리.
 
 ## 현재 작업
 
@@ -168,10 +179,9 @@ Sync Bundle `GR-SYNC-20260802-07`은 `SYNCED_TO_WORKING_BRANCH`다.
 
 남은 운영 작업:
 
-- Issue #9/#16의 구형 상태 교정.
-- Draft PR 생성과 변경 파일 검토.
-- Generator·Generated Views·CI 검증.
-- 사용자 검토 후 main 병합 및 `SYNCED_TO_MAIN` 재검증.
+- 사용자 Draft PR #27 검토.
+- 승인 시 main 병합.
+- 병합 뒤 main·Sheet 재검증과 `SYNCED_TO_MAIN` 영수증.
 
 ## 다음 제품 작업
 
@@ -195,10 +205,10 @@ MOBILE-FOUNDATION-01
 
 ## 미검증
 
-- Generator와 생성 Snapshot·Compatibility View.
-- PR CI와 adversarial gate.
 - Mobile OS·Store·방향·최소 기기.
 - Touch target·Canvas 크기·인식 알고리즘·허용치·지연.
 - 적 공격 간격·피해량·HP·마나·불안정도 변화량·수호 완화율.
 - 환경 결과 임계값.
 - Godot Runtime·Mobile device·PC 적응·성능·접근성·사람 플레이.
+
+PR #27은 Draft이며 자동 병합하지 않는다.
