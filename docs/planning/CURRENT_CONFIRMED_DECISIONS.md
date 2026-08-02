@@ -21,13 +21,18 @@ next_product_gate: MOBILE-FOUNDATION-01
 queued_design_gates: BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01
 implementation: NOT_STARTED
 codex: BLOCKED
-canon_sync: GITHUB_ONLY
+canon_sync: SYNCED_TO_WORKING_BRANCH
 sync_bundle: GR-SYNC-20260802-07
+authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
+sheet_readback: PASS
+sync_receipt: docs/planning/sync/GR-SYNC-20260802-07-WORKING.md
 main_baseline_commit: 3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03
+main_sync: PENDING_PR_MERGE
 ```
 
 최신 플랫폼 승인: `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`.
 현재 적대적 감사: `docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md`.
+Working Sync 영수증: `docs/planning/sync/GR-SYNC-20260802-07-WORKING.md`.
 
 ## 2. 프로젝트 코어
 
@@ -95,7 +100,8 @@ next_reconciliation_gate: MOBILE-FOUNDATION-01
 - 자동 최적 추천·기록 클릭 자동 시전 금지.
 - 입력 실패·문법 실패·상황 설계 실패·비용 부족을 서로 다른 원인과 복구로 표현한다.
 - 낮은 확신 후보 자동 확정과 자동 시전을 금지한다.
-- 모바일의 exact gesture, Touch target, Canvas 크기, 접근성 대체는 `MOBILE-FOUNDATION-01`에서 확정한다.
+- Mobile의 exact gesture, Touch target, Canvas 크기, 접근성 대체는 `MOBILE-FOUNDATION-01`에서 확정한다.
+- App pause/resume·background/foreground·interrupted stroke·stale recognition에서 중복 Commit·Reward·Save를 금지한다.
 
 ## 7. ART-STYLE-01 / ART-BIBLE-01 / ASSET-SPEC-01
 
@@ -123,6 +129,7 @@ locked_reference_sha256: b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289
 - Grimoire 파생 화면을 Main보다 먼저 설계.
 - 잠긴 원본 수정·재생성·리터치·크롭 대체·Text 교체·Panel 재배치·색 변경 금지.
 - Asset 수량·형식·Manifest·License 계약은 승인됐지만 실제 Asset 제작·Godot Import·Memory·Runtime 검증은 `NOT_STARTED/NOT_RUN`.
+- 승인 PC 해상도 규격은 후속 참고로 보존하며 Mobile 방향·비율·Safe Area·Touch 판독은 재검증한다.
 
 ## 8. 전투 화면·조우
 
@@ -192,7 +199,8 @@ generator: tools/generate_project_operating_views.py
 - Snapshot·Compatibility View 직접 편집 금지.
 - GitHub·Sheet 승인 정본 즉시 동기화.
 - Base v9.4 PR #26 main merge commit은 `3ecf67cb9e39145976c66cb1f0bc2c42d9c17d03`.
-- v9.4 적용 당시 Sheet write는 `NOT_RUN`이므로 이번 Sync에서 활성 Sheet 상태를 교정한다.
+- `PROJECT_BASE_ADAPTER.json`은 Mobile-first와 Sheet Readback를 반영했다.
+- 생성 Snapshot·Compatibility View는 `STALE_PENDING_GENERATOR`, Generator 검사는 `NOT_RUN`이다.
 
 ## 12. 현재 Gate
 
@@ -210,11 +218,27 @@ generator: tools/generate_project_operating_views.py
 | Codex | `BLOCKED` |
 | Godot 구현 | `NOT_STARTED` |
 
-## 13. 다음 작업
+## 13. 정본 동기화 결과
+
+```yaml
+sync_id: GR-SYNC-20260802-07
+decision_id: GM-PLATFORM-02
+status: SYNCED_TO_WORKING_BRANCH
+authority_commit: b9279e8c690a8406035675ebbe8a007e9b3f093f
+sheet_tabs_updated: 14
+sheet_readback: PASS
+ux_location_correction: PASS
+main_sync: PENDING_PR_MERGE
+```
+
+- Sheet `00·01·02·04·05·10·15·20·30·60·70·80·90·99` 반영·재조회 완료.
+- `GR-UX-13`은 Mobile interruption 계약, `GR-UX-14`는 승인 PC 규격 보존+Mobile 재검증으로 분리.
+- Issue·Draft PR·Generator·CI는 별도 운영 단계다.
+
+## 14. 다음 작업
 
 ```text
-GR-SYNC-20260802-07 완료
-→ MOBILE-FOUNDATION-01
+MOBILE-FOUNDATION-01
 → BOSS-PHASE-01·GRIMOIRE-SCREEN-01 영향 재검토
 → AUDIO-DIRECTION-01
 → Mobile 기준 기획·아트·UX 통합 검수
@@ -223,7 +247,7 @@ GR-SYNC-20260802-07 완료
 → Validation-First 구현
 ```
 
-## 14. PLAYTEST_TUNING_REQUIRED / NOT_RUN
+## 15. PLAYTEST_TUNING_REQUIRED / NOT_RUN
 
 - Mobile OS·Store·방향·최소 기기.
 - Touch target·Canvas 크기·gesture·인식 알고리즘·허용치·Latency.
@@ -233,6 +257,7 @@ GR-SYNC-20260802-07 완료
 - 환경 결과 임계값.
 - 작성 감속 최종값·복귀 유예.
 - Memory·Texture·load·frame pacing·battery·thermal.
+- Generator·Generated Views·CI.
 - Godot Runtime·Mobile device·PC 적응·접근성·사람 플레이.
 
 실행 증거 전에는 위 값을 최종 확정하거나 검증 완료로 표시하지 않는다.
