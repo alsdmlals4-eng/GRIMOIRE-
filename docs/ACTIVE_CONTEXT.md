@@ -6,11 +6,13 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: main
-pull_request: 27
 primary_platform: Mobile
 follow_up_platform: PC
 platform_decision: GM-PLATFORM-02
+mobile_orientation_decision: GM-MOBILE-ORIENTATION-01
+mobile_orientation: LANDSCAPE_FIXED
+portrait_gameplay: NOT_SUPPORTED_IN_VERTICAL_SLICE
+runtime_rotation: DISABLED_IN_VERTICAL_SLICE
 engine_baseline_candidate: Godot 4.7.1 stable
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE
@@ -26,17 +28,14 @@ implementation: NOT_STARTED
 codex: BLOCKED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
+performance_validation: NOT_RUN
+accessibility_validation: NOT_RUN
 human_validation: NOT_RUN
-canon_sync_state: SYNCED_TO_MAIN
-sync_bundle: GR-SYNC-20260802-07
-authority_commit: fe88236946a87362a43aafe598348b84c42a2243
-verified_code_head: fe88236946a87362a43aafe598348b84c42a2243
-sheet_readback: PASS
-generator_check: PASS
-unit_json_registry_checks: PASS
-adversarial_gate: PASS
-main_baseline_commit: fe88236946a87362a43aafe598348b84c42a2243
-main_sync: SYNCED_TO_MAIN
+orientation_authority_head: ebc3f8f38d4346cc8b5751f5981e3c5997d0b41b
+orientation_main_commit: 0bb1f4e2ee48f426579228e716abdba7edcbfc9c
+orientation_pr: 29
+orientation_sheet_sync: SYNCED_TO_MAIN
+orientation_sheet_readback: PASS
 ```
 
 제품용 `project.godot`, Scene, Script, Resource, 게임 데이터, 런타임 Asset은 없다.
@@ -49,9 +48,12 @@ AGENTS.md
 → 이 문서
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
 → docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md
-→ docs/planning/sync/GR-SYNC-20260802-07-MAIN.md
+→ docs/planning/MOBILE_ORIENTATION_01_APPROVAL_2026-08-02.md
+→ docs/planning/TOTAL_PLANNING_ADVERSARIAL_AUDIT_2026-08-02.md
+→ docs/planning/sync/GM-MOBILE-ORIENTATION-01-MAIN.md
 → 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
+→ docs/UX_UI_SYSTEM.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
 → skills/PROJECT_BASE_ADAPTER.json
 ```
@@ -65,7 +67,7 @@ AGENTS.md
 - 의미를 가진 글자와 직접 작성.
 - `메인 글자 1개 + 보조 글자 0개 이상`.
 - 상황·목표·위험에 따른 주문 설계 판단.
-- 입력 실패·문법 실패·상황 설계 실패 분리.
+- 입력 실패·문법 실패·상황 설계 실패·비용 부족 분리.
 - 즉각적이고 설명 가능한 세계 변화.
 - 학습→증명→표현→응용→발견·기록 순환.
 
@@ -86,6 +88,7 @@ AGENTS.md
 - 글자 `흐름 / 집중 / 분산`.
 - 자유일정 `휴식 / 준비 / 교류`.
 - 필수 성공 작성 7회, 안내형 복구 포함 목표 상한 10회.
+- 같은 문제에서 확인한 글자는 Token으로 재선택 가능.
 - 메인 동반 정령 초기 형상 1개, 수호형 보조 소환수 1체.
 - 마도서는 과정·결과·부작용·발견을 기록하며 자동 주문 Stock이 아니다.
 
@@ -100,13 +103,13 @@ AGENTS.md
 화면 계약:
 
 ```text
-고정 3/4 Field
+Landscape 고정 3/4 Field
 → 같은 장소 Half-body Dialogue
-→ Writing Overlay
+→ Landscape Writing Overlay
 → 별도 3/4 Battle
 → Result
 → 원래 Field 변화 복귀
-→ Grimoire 기록
+→ Landscape Grimoire 기록
 ```
 
 - Soft Storybook 배경 + Anime Cel 캐릭터.
@@ -115,7 +118,7 @@ AGENTS.md
 - 동반 정령·수호 소환수 상태 배지.
 - 우측 Writing Panel 축소→확장.
 - Grimoire 파생 화면을 Main보다 먼저 설계.
-- 기존 16:9·PC 해상도 기준은 승인 Asset 기준이지만 Mobile 적합성은 미검증이다.
+- 기존 16:9 자료는 Landscape 파생 기준이지만 Mobile 적합성은 미검증이다.
 
 ## 전투 계약
 
@@ -123,13 +126,14 @@ AGENTS.md
 상단·중앙 = 강한 적 1개체·환경 목표·공격 예고
 좌측 하단 = 주인공 초상·HP·마나·상태
 좌측 보조 = 동반 정령·수호 상태 배지
-작성 영역 = 직접 글자·마법진 작성
+우측 = 직접 글자·마법진 작성
 ```
 
 - 일반 적은 단일 페이즈.
 - 적은 일정 시간마다 공격.
 - 작성 후 `[구현]`과 마나 검증을 거쳐 즉시 시전.
 - 판단·작성 중 타이머 진행, 시스템 해결 중 정지.
+- 선택형 작성 감속 초기 후보 `0.5×`는 `TEST_VALUE`.
 - 기본 적은 HP 대신 `불안정도`를 사용하며 0이면 진정·해결.
 - 플레이어 HP 0 또는 치명적 환경 붕괴가 패배.
 - 환경 보존도·부작용·남은 HP·해결 방식은 결과 품질을 만든다.
@@ -140,65 +144,85 @@ AGENTS.md
 - 1차 플랫폼: `Mobile`.
 - 후속 플랫폼: `PC`.
 - 기존 `GM-PLATFORM-01 / PC 우선·Mobile 후속`은 `SUPERSEDED`.
-- Touch·Stylus 직접 작성과 화면 내 명시적 Undo·부분 삭제·초기화·취소·확정·구현을 재설계한다.
+- Touch·Stylus 직접 작성과 화면 내 Undo·부분 삭제·초기화·취소·확정·구현을 우선한다.
 - Mouse/Pen/Keyboard는 후속 PC 적응 자료다.
-- Android/iOS, Store, Landscape/Portrait, 최소 기기, 성능 수치, 인식 처리 방식은 미확정이다.
 
-## Base v9.4 운영체계
+## GM-MOBILE-ORIENTATION-01
 
-```yaml
-release_commit: a728712cb776ec98f4875914a580fcf7d0156593
-evidence_commit: ef1fba11167e4da0b298123b0c85ebd268191a42
-finalization_commit: 87a0b54c2847ce4b685879209205957c170cc1cd
-registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
-canonical_adapter: skills/PROJECT_BASE_ADAPTER.json
-canonical_adapter_sha256: 980e2f4e21bd09ac49946f90d095680220013cbab6cdf62421fc01ca1b7be8c5
-generator: tools/generate_project_operating_views.py
-generated_views: CURRENT
+- Mobile Vertical Slice 전체 `Landscape 고정`.
+- Main·Field·Dialogue·Schedule·Writing·Battle·Result·Grimoire·Settings에 적용.
+- Portrait Gameplay·혼합 방향·Runtime 자동 회전 제외.
+- 직접 작성 Canvas와 적 위험·상태·작성 정보 동시 판독을 우선.
+- 기존 16:9 자료는 파생 기준으로 보존하되 실기기 검증을 대체하지 않음.
+- 지원 Aspect·Safe Area·Touch target·Canvas·Text scale은 Mobile Foundation에서 시험값으로 작성.
+- Portrait 지원은 별도 Decision 없이는 추가하지 않음.
+
+## Resume·Save 권장 기본안
+
+전체 콘텐츠와 46분 목표는 유지하면서 핵심 경계에 Resume Anchor를 둔다.
+
+```text
+첫 수업·교내 연습
+→ Anchor A
+→ 자유일정 A·실기시험
+→ Anchor B
+→ 자유일정 B·학교축제
+→ Anchor C
+→ 자유일정 C·현장 전투
+→ Anchor D
+→ 현장 환경·귀환·마도서 기록
 ```
 
-Snapshot과 Compatibility View는 Generator 생성물이며 직접 편집하지 않는다.
+상태 소유권 후보:
+
+```text
+Draft → Recognizing → Candidate → Committed → Resolved → Recorded
+```
+
+- Commit·Reward·Result·Record는 각각 한 번만 확정.
+- interrupted stroke·stale recognition은 안전하게 폐기하거나 복구 이유 표시.
+- 이어하기는 마지막 완료 Anchor 또는 복구 가능한 현재 단계에서 시작.
 
 ## 완료된 작업
 
-- Base v9.4 운영 계약 채택(PR #26, main `3ecf67c...`).
-- 프로젝트 GitHub·27개 Sheet 탭 감사.
-- Art Style, Art Bible, 전투 화면·시간·승패 규칙 승인.
-- Asset Spec 승인 및 main·Sheet 동기화(PR #24·#25).
-- 프로젝트 코어·Vertical Slice·잠긴 시각 기준 보존.
-- `GM-PLATFORM-02` GitHub authority와 Sheet 14개 탭 동기화·Readback PASS.
-- `60_UX_UI_접근성`의 `GR-UX-13/14` 위치 오류 적대적 교정.
-- Generator의 PC·Asset Spec Gate 하드코딩 제거.
-- 생성 Snapshot·Compatibility View 재생성.
-- PR #27 Generator·Unit·JSON·Registry·Adversarial CI PASS.
-- Issue #9 Mobile-first 검증 범위 갱신, Issue #16 완료 처리.
+- Base v9.4 운영 계약 채택.
+- GitHub·27개 Sheet 탭 감사.
+- 프로젝트 코어·Vertical Slice·Art Style·Art Bible·Battle Rules·Asset Spec 승인.
+- `GM-PLATFORM-02 / Mobile 우선·PC 후속` main·Sheet 동기화.
+- `GM-MOBILE-ORIENTATION-01 / Landscape 고정` 승인.
+- 방향 미확정과 가로형·16:9 활성 소비자의 P0 충돌 해결.
+- PR #29 main `0bb1f4e...` 병합.
+- Sheet `00·02·04·10·60·99` 관련 범위 main SHA Readback PASS.
+- PR #29 Generator·Unit·JSON·Registry·Adversarial PASS.
 
 ## 현재 작업
 
-Sync Bundle `GR-SYNC-20260802-07`은 `SYNCED_TO_MAIN`이다.
+```text
+Resume Anchor·Save Ownership 명세
+→ Landscape Aspect·Safe Area·Touch 정보 위계
+→ 작은 화면 Writing/Battle 레이아웃 후보
+→ MOBILE-FOUNDATION-01 통합 계약
+```
 
-- PR #27은 main `fe88236...`로 병합됐다.
-- GitHub 정본·Adapter·Generated Views·Sheet 변경이력의 main SHA Readback를 유지한다.
-- 현재 작업은 적대적 총기획 감사와 중요 기획 Decision의 Grill Me다.
+세부 수치와 데이터는 `RECOMMENDED_DEFAULT / TEST_VALUE`로 작성한다. 핵심 방향·범위 충돌만 Grill Me로 사용자에게 질문한다.
 
-## 다음 제품 작업
+## 후속 제품 작업
 
 ```text
-적대적 총기획 감사
-→ 중요 기획 충돌 Grill Me
-→ 승인 정본·Sheet 즉시 동기화
-→ MOBILE-FOUNDATION-01
-→ BOSS-PHASE-01·Grimoire/Main 파생 화면 영향 재검토
+MOBILE-FOUNDATION-01 승인
+→ BOSS-PHASE-01·GRIMOIRE-SCREEN-01
 → AUDIO-DIRECTION-01
 → Mobile 기준 기획·아트·UX 통합 검수
-→ Codex Plan 승인·기술 검수
+→ 사용자 Codex Plan 승인
+→ Codex read-only Plan·기술 검수
 → Validation-First 구현
 ```
 
 ## MOBILE-FOUNDATION-01 범위
 
+- Resume Anchor·Save Ownership.
+- Landscape 지원 Aspect·Safe Area·Notch·System gesture.
 - Touch·Stylus 입력·복구·확정 상태 계약.
-- 방향·비율·Safe Area·Notch·System gesture 결정 패킷.
 - 작은 화면 Battle/Writing 정보 위계와 가림 방지.
 - App pause/resume·background/foreground·interrupted stroke·stale request 방어.
 - Device·Memory·Texture·load·frame pacing·battery·thermal 측정 계획.
@@ -206,10 +230,10 @@ Sync Bundle `GR-SYNC-20260802-07`은 `SYNCED_TO_MAIN`이다.
 
 ## 미검증
 
-- Mobile OS·Store·방향·최소 기기.
-- Touch target·Canvas 크기·인식 알고리즘·허용치·지연.
+- Android/iOS·Store·지원 Aspect·최소 기기.
+- Touch target·Canvas·Text scale·인식 알고리즘·허용치·지연.
 - 적 공격 간격·피해량·HP·마나·불안정도 변화량·수호 완화율.
 - 환경 결과 임계값.
-- Godot Runtime·Mobile device·PC 적응·성능·접근성·사람 플레이.
+- Godot Runtime·Mobile device·PC 적응·Performance·Accessibility·Human.
 
-PR #27은 사용자 승인 후 main에 병합됐으며, 제품 구현은 별도 기획 완료 Gate 전까지 시작하지 않는다.
+제품 구현은 기획 완료 Gate와 사용자 승인 전까지 시작하지 않는다.
