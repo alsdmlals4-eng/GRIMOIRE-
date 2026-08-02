@@ -10,16 +10,16 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class BaseV94AdoptionTests(unittest.TestCase):
-    def test_canonical_adapter_pins_base_v94(self) -> None:
+    def test_canonical_adapter_pins_base_v941(self) -> None:
         data = json.loads((ROOT / "skills/PROJECT_BASE_ADAPTER.json").read_text(encoding="utf-8"))
-        self.assertEqual(data["base_release"]["version"], "9.4.0")
+        self.assertEqual(data["base_release"]["version"], "9.4.1")
         self.assertEqual(
             data["base_release"]["release_commit"],
-            "a728712cb776ec98f4875914a580fcf7d0156593",
+            "3f2c4a624d302b704c1b5322eb5c9f34ad55abb9",
         )
         self.assertEqual(
             data["base_release"]["release_evidence_commit"],
-            "ef1fba11167e4da0b298123b0c85ebd268191a42",
+            "ff117d24d5bdb121314e109a6aa9b4f552e0fdc1",
         )
         self.assertEqual(
             data["base_release"]["registry_sha256"],
@@ -77,7 +77,7 @@ class BaseV94AdoptionTests(unittest.TestCase):
     def test_generated_views_do_not_claim_runtime_validation(self) -> None:
         base_view = json.loads((ROOT / "skills/BASE_V9_ADAPTER.json").read_text(encoding="utf-8"))
         snapshot = json.loads((ROOT / "skills/PROJECT_SKILL_SNAPSHOT.json").read_text(encoding="utf-8"))
-        self.assertEqual(base_view["base"]["release_line"], "v9.4.0")
+        self.assertEqual(base_view["base"]["release_line"], "v9.4.1")
         self.assertEqual(base_view["validation"]["runtime"], "NOT_RUN")
         self.assertEqual(base_view["validation"]["human"], "NOT_RUN")
         self.assertEqual(snapshot["generation_status"], "CURRENT")
