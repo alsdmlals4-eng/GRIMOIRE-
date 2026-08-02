@@ -8,9 +8,10 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: agent/grimoire-v93-canon
-primary_platform: PC
-follow_up_platform: Mobile
+working_branch: chatgpt/grimoire-mobile-first-canon-20260802
+primary_platform: Mobile
+follow_up_platform: PC
+platform_decision: GM-PLATFORM-02
 engine_baseline_candidate: Godot 4.7.1 stable
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE
@@ -19,11 +20,13 @@ planning: APPROVED
 art_style_01: APPROVED_A_MODIFIED_LOCKED
 art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
 battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
-next_product_gate: ASSET-SPEC-01
-parallel_design_gate: BOSS-PHASE-01
+asset_spec_01: APPROVED_SPEC
+next_product_gate: MOBILE-FOUNDATION-01
+queued_design_gates: BOSS-PHASE-01 / GRIMOIRE-SCREEN-01 / AUDIO-DIRECTION-01
 implementation: NOT_STARTED
 codex: BLOCKED
 canon_sync_policy: GM-CANON-SYNC-01
+current_sync_bundle: GR-SYNC-20260802-07
 ```
 
 첨부 Godot Linux 실행 파일은 버전 참고 자료이며 저장소 자산으로 커밋하지 않는다.
@@ -35,7 +38,7 @@ canon_sync_policy: GM-CANON-SYNC-01
 3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`.
 4. `START_HERE.md`.
 5. `docs/ACTIVE_CONTEXT.md`.
-6. 최신 Decision Addendum.
+6. 최신 Decision Addendum 또는 현재 승인 책임 원본.
 7. 주제별 승인 책임 원본.
 8. `docs/DEVELOPMENT_GATES.md`.
 9. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
@@ -44,7 +47,7 @@ canon_sync_policy: GM-CANON-SYNC-01
 12. 고정 Base Release·Evidence Commit.
 13. Legacy·과거 대화·외부 AI 결과·추정.
 
-Sheet 단독 값이나 생성 이미지는 승인 근거와 상태가 없으면 정본이 아니다.
+Sheet 단독 값이나 생성 이미지는 승인 근거와 상태가 없으면 정본이 아니다. 역사 기록의 PC-first 문구는 `GM-PLATFORM-02`를 대체하지 않는다.
 
 ## 3. 필수 읽기 순서
 
@@ -53,7 +56,7 @@ AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md
+→ docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md
 → 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
@@ -110,7 +113,7 @@ Decision ID
 
 완료 보고에는 Decision ID, GitHub 경로, Commit, Sheet 범위, Readback, 남은 미검증을 기록한다.
 
-## 7. 승인된 코어
+## 7. 승인된 프로젝트 코어
 
 > 마법학교 학생이 되어 글자의 의미를 배우고, 수업과 현장실습에서 주문을 직접 설계해 내가 생각한 해결법으로 세계를 바꾸는 마법 RPG.
 
@@ -145,9 +148,12 @@ Decision ID
 - 수호형 보조 소환수 1체 우선.
 - 마도서는 과정과 결과를 기록하며 자동 주문 Stock이 아니다.
 
-## 9. 승인된 Art Bible
+## 9. 승인된 시각·Asset 계약
 
-책임 원본: `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`.
+책임 원본:
+
+- `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`.
+- `docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md`.
 
 - Soft Storybook 배경 + 선명한 Anime Cel 캐릭터.
 - Navy/Gold UI + 고대비 Blue Glyph.
@@ -155,9 +161,9 @@ Decision ID
 - 고정 주인공 1명, 전투 상시 초상 1개.
 - 동반 정령·수호 소환수는 상태 배지로 분리.
 - Battle Writing Panel은 축소 Rail에서 작성 시 확장.
-- 본문 고딕계, 제목 제한적 세리프계 방향.
 - Grimoire 파생 화면을 Main보다 먼저 설계.
 - 잠긴 기준 이미지 SHA-256 `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`는 수정·재생성 금지.
+- 기존 16:9·PC 해상도 규격은 승인 Asset 기준이지만 Mobile 실기기 적합성을 증명하지 않는다.
 
 ## 10. 승인된 전투 규칙
 
@@ -173,27 +179,49 @@ Decision ID
 - 상황에 맞는 주문으로 불안정도 0에 도달하면 진정·해결.
 - 플레이어 HP 0 또는 선언된 치명적 환경 붕괴가 패배.
 - 환경 보존도·부작용·남은 HP·해결 방식이 결과 품질을 결정.
-- 수호 소환수는 다음 공격 피해를 완화하지만 타이머·작성·판단을 대신하지 않음.
+- 수호 소환수는 다음 공격 피해를 완화하지만 타이머·작성·판단을 대신하지 않는다.
 
-## 11. 현재 작업 경로
+## 11. GM-PLATFORM-02 / Mobile 우선
+
+책임 원본: `docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md`.
+
+- 1차 플랫폼은 `Mobile`, 후속 플랫폼은 `PC`.
+- `GM-PLATFORM-01 / PC 우선·Mobile 후속`은 `SUPERSEDED_BY GM-PLATFORM-02`.
+- Touch·Stylus 작성과 명시적 Undo·삭제·초기화·취소·확정·구현을 Mobile 입력의 중심으로 재설계한다.
+- OS, Store, 화면 방향, 최소 기기, 성능·메모리·배터리 수치, 인식 처리 방식은 아직 확정하지 않는다.
+- 기존 Mouse/Pen/Keyboard 계약은 후속 PC 적응 자료이며 Mobile 기본 입력으로 사용하지 않는다.
+
+## 12. 현재 작업 경로
 
 ```text
-ASSET-SPEC-01
-→ BOSS-PHASE-01·Grimoire/Main 파생 화면
+MOBILE-FOUNDATION-01
+→ BOSS-PHASE-01·Grimoire/Main 파생 화면 영향 재검토
 → AUDIO-DIRECTION-01
-→ 기획·아트 통합 검수
+→ Mobile 기준 기획·아트·UX 통합 검수
 → 사용자 Codex Plan 승인
 → Codex read-only Plan
 → 기술 검수
-→ 구현
+→ 실행 프로필 전환 승인
+→ Validation-First 구현
 ```
 
-## 12. 현재 허용·금지
+`MOBILE-FOUNDATION-01`은 다음을 다룬다.
+
+- Touch·Stylus 작성·복구·확정 계약.
+- 화면 방향·지원 비율·Safe Area·System gesture 후보.
+- 작은 화면의 Battle/Writing 정보 위계.
+- App pause/resume·background/foreground·interrupted stroke·stale request 방어.
+- Device·Memory·Texture·load·frame pacing·battery·thermal 검증 계획.
+- 후속 PC 입력 적응 원칙.
+
+정확한 공격 간격·피해·마나·불안정도 변화량·수호 완화율·Touch target·인식 허용치는 `PLAYTEST_TUNING_REQUIRED`다.
+
+## 13. 현재 허용·금지
 
 허용:
 
-- 기획·아트·UX·전투 규칙 문서.
-- Asset Specification·Audio Direction.
+- Mobile Foundation·기획·아트·UX·전투 규칙 문서.
+- Boss/Grimoire/Main/Audio의 Mobile 영향 분석.
 - 벤치마킹·적대적 검토.
 - GitHub·Sheet 정본 동기화.
 - 운영 Adapter·검증 Tooling.
@@ -203,8 +231,8 @@ ASSET-SPEC-01
 - Godot 제품 코드·Scene·Resource·게임 데이터 생성.
 - Codex Build.
 - 잠긴 기준 이미지 편집·재생성.
-- Asset Spec 전 대량 이미지·사운드 제작.
-- 실행하지 않은 런타임·성능·접근성·사람 검증 완료 주장.
+- OS·방향·성능·인식 수치를 증거 없이 확정.
+- 실행하지 않은 Runtime·Mobile device·성능·접근성·사람 검증 완료 주장.
 - 기본 브랜치 직접 수정.
 
-PR 병합은 사용자 승인과 검증 통과가 필요하다. 2026-08-01F 작업에는 사용자의 일괄 승인이 기록되어 있으나 CI·Readback 실패 시 병합하지 않는다.
+PR 병합은 사용자 승인과 검증 통과가 필요하다.
