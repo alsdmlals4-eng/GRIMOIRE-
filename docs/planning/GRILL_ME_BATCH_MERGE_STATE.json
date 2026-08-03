@@ -13,7 +13,7 @@
     "merge_required": false,
     "merge_trigger": null,
     "merge_authorized": false,
-    "authorization_state": "IDLE_AFTER_PR51_MAIN_MERGE",
+    "authorization_state": "IDLE_READY_FOR_NEXT_GRILLME",
     "pending_decision_ids": []
   },
   "counting_rule": {
@@ -33,7 +33,7 @@
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
   "pre_merge_gate_status": "PASS_FOR_PR51_HEAD_C2B1989236A831D73B7F32F70E6EA02CEB4828F9",
   "previous_complete_flush": {
-    "status": "DECISION_PR_MERGED_MAIN_FINALIZATION_RECEIPT_PUBLISHED_AWAITING_POST_MERGE_SHEET_READBACK",
+    "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
     "approved_at": "2026-08-03T09:18:00+09:00",
     "decision_ids": [
       "GM-STOCK-SYSTEM-01",
@@ -47,10 +47,22 @@
     "decision_merge_pull_request": 51,
     "decision_merge_head": "c2b1989236a831d73b7f32f70e6ea02ceb4828f9",
     "decision_merge_commit": "81852a767d60eb2aa835ac3e36309f1dc43c861d",
+    "finalization_pull_request": 52,
+    "finalization_merge_commit": "651ea71ad093be58b5aa0c5b3ff94d5b376faae5",
+    "sheet_readback_source_main": "651ea71ad093be58b5aa0c5b3ff94d5b376faae5",
     "working_sync_id": "GR-SYNC-20260803-03",
     "main_finalization_sync_id": "GR-SYNC-20260803-04",
-    "main_authority": "CURRENT_DEFAULT_BRANCH_HEAD_AFTER_FINALIZATION_MERGE",
-    "sheet_state": "POST_FINALIZATION_MERGE_READBACK_REQUIRED",
+    "main_authority": "CURRENT_DEFAULT_BRANCH_HEAD",
+    "sheet_state": "SYNCED_TO_MAIN_AFTER_FINALIZATION_MERGE_AND_READBACK",
+    "sheet_ranges": [
+      "00_프로젝트_허브!H2:K2",
+      "01_작업순서!I33:J33",
+      "02_현재_확정결정!A45:J50",
+      "04_누락_충돌_감사!A42:H42",
+      "05_GDD_요약!H4:I4",
+      "05_GDD_요약!I7:J8",
+      "99_변경이력!A47:H47"
+    ],
     "counter_reset": true,
     "pending_decisions_after_reset": 0
   },
@@ -67,10 +79,12 @@
     "merge_commit": "81852a767d60eb2aa835ac3e36309f1dc43c861d"
   },
   "current_work": {
-    "status": "MAIN_FINALIZATION_RECEIPT_PUBLISHED_AWAITING_POST_MERGE_SHEET_READBACK",
+    "status": "IDLE_READY_FOR_NEXT_GRILLME",
     "default_branch": "main",
     "main_authority": "CURRENT_DEFAULT_BRANCH_HEAD",
     "main_finalization_sync_id": "GR-SYNC-20260803-04",
+    "finalization_pull_request": 52,
+    "finalization_merge_commit": "651ea71ad093be58b5aa0c5b3ff94d5b376faae5",
     "benchmark_id": "N_A_NO_NEW_DESIGN_CHANGE_POST_MERGE_FINALIZATION",
     "next_priority": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01_USER_SPEC_REVIEW",
     "decisions_merged": [
@@ -223,8 +237,9 @@
     "codex_plan": "ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PENDING_AFTER_FINALIZATION_MERGE",
-    "sheet_text_integrity_sentinel": "PENDING_AFTER_FINALIZATION_MERGE"
+    "sheet_readback": "PASS",
+    "sheet_text_integrity_sentinel": "PASS",
+    "sheet_readback_main": "651ea71ad093be58b5aa0c5b3ff94d5b376faae5"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
