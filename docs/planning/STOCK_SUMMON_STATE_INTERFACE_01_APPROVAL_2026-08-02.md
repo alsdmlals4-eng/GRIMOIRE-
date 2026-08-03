@@ -4,15 +4,16 @@
 
 ```yaml
 decision_id: GM-STOCK-SUMMON-STATE-INTERFACE-01
-status: USER_DELEGATED_RECOMMENDED_OPTION_REVISED_FOR_THREE_SECONDARIES
+status: USER_DELEGATED_RECOMMENDED_OPTION_REVISED_FOR_THREE_SECONDARIES_AND_HUD_CONTRACT
 approved_at: 2026-08-03T00:04:00+09:00
+hud_contract_hardened_at: 2026-08-03T21:11:00+09:00
 approved_option: A_SINGLE_ACTIVE_PRESSURE_CLOCK_WITH_ATOMIC_EVENT_LEDGER
-grill_me_batch: 3_of_10_reapproval_no_increment
+grill_me_batch: REAPPROVAL_NO_INCREMENT_0_OF_10
 implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 ```
 
-사용자의 보조 소환수 최대 3체 결정에 따라 기존 단일 `secondary_summon_state`를 `S1/S2/S3` 배열 계약으로 확장한다.
+사용자의 보조 소환수 최대 3체 결정에 따라 기존 단일 `secondary_summon_state`를 `S1/S2/S3` 배열 계약으로 확장한다. Mobile HUD 사용자 명세 승인에 따라 빈 슬롯 표현, Event 표시 소유권, 관리 확인 Pause 경계를 명확히 한다.
 
 ## 2. 소유권 분리
 
@@ -27,8 +28,10 @@ runtime_validation: NOT_RUN
 | 적 불안정도·공격 | `SituationCombatState` |
 | 원자 결과·중복 방지 | `ResultLedger` |
 | Pause·Resume 저장 | `SessionSnapshot` |
+| HUD 읽기 모델 생성 | `SummonHudViewModelBuilder` |
+| HUD 연출 Queue | `SummonEventPresentationQueue` |
 
-한 상태를 둘 이상의 시스템이 직접 수정하지 않는다.
+한 상태를 둘 이상의 시스템이 직접 수정하지 않는다. HUD와 Presentation Queue는 Event 적용·중복 판단을 수행하지 않는다.
 
 ## 3. Stock 데이터
 
@@ -114,7 +117,7 @@ MAIN은 정확히 1개
 
 - 중복 슬롯: Snapshot을 자동 덮어쓰지 않고 복구 UI로 이동.
 - 중복 보조 역할: 가장 최근 Transaction을 롤백하고 기존 상태 유지.
-- 알 수 없는 역할: 안전 귀환 처리.
+- 알 수 없는 역할: 해당 슬롯을 `INVALID`로 표시하고 명시적 복구를 요구.
 - 보조 4개 이상: 초과 항목을 임의 삭제하지 않고 Save 오류로 처리.
 
 ## 6. 파생 전투 수치
@@ -197,7 +200,7 @@ active_heal_stat_cap: 2
 
 효과 적용 실패 시 Stock 차감도 롤백한다.
 
-## 8. 소환수 주기 Event
+## 8. 소환수 주기 Event와 표시 분리
 
 각 소환수 주기마다 고유 `summon_event_id`를 생성한다.
 
@@ -210,10 +213,25 @@ due_active_pressure_ms: integer
 transaction_parent_id: string | null
 ```
 
-- 동일 ID는 정확히 한 번만 적용한다.
+- 동일 ID는 `ResultLedger`에서 정확히 한 번만 적용한다.
 - Save 직전 적용된 Event는 복귀 후 재실행하지 않는다.
 - Background 경과시간으로 Event를 생성하지 않는다.
 - 비활성화된 슬롯의 예약 Event는 취소 Ledger를 남긴다.
+- HUD는 `applied_event_ids`를 직접 읽어 중복을 판단하지 않는다.
+- ResultLedger가 만든 정본 표시 레코드만 `SummonEventPresentationQueue`로 전달한다.
+
+정본 표시 레코드:
+
+```yaml
+event_id: string
+batch_id: string
+batch_index: integer
+batch_size: integer
+source_slot_id: MAIN | S1 | S2 | S3
+result_code: string
+signed_integer_delta: integer | null
+result_summary: string
+```
 
 ## 9. 동일 시각 Event 순서
 
@@ -234,6 +252,8 @@ transaction_parent_id: string | null
 각 슬롯 Event 내부는 `치유 → [스톡] → 공격` 순서로 처리한다. 해당 스탯이 0이면 단계를 건너뛴다.
 
 플레이어 주문 Commit과 System Resolve 중에는 Active Pressure Clock이 정지하므로 주기 Event와 동시에 진행하지 않는다.
+
+동일 시각 Batch의 HUD 연출은 계산을 지연시키지 않으며 전체 `1.2초 TEST_VALUE` 안에서 처리한다.
 
 ## 10. Save Snapshot
 
@@ -264,66 +284,104 @@ applied_stock_charge_event_ids: array
 
 ## 11. HUD가 읽는 View Model
 
+상위 모델:
+
 ```yaml
 stock_capacity_text: string
-active_stock_name: string
+active_stock_name: string | null
 stock_current_count: integer
 stock_max_count: integer
-stock_remaining_seconds: integer
+stock_remaining_seconds: integer | null
 active_stock_support_total: integer
-main_summon_summary: object
-secondary_summon_summaries: array<object>
-selected_secondary_slot_detail: object | null
+summon_slots: array<object>
+selected_slot_id: MAIN | S1 | S2 | S3 | null
 defense_total: integer
-summon_target_rule_text: string
+management_state: NONE | REQUESTED | CONFIRMING
+same_time_event_batch: array<object>
 ```
 
-보조 요약 View Model:
+슬롯 View Model:
 
 ```yaml
-slot_id: S1 | S2 | S3
-summon_name: string
-role: string
-primary_stat_label: string
-primary_stat_value: integer
-next_action_seconds: integer | null
-state_label: string
+slot_id: MAIN | S1 | S2 | S3
+summon_id: string | null
+summon_name: string | null
+primary_role: MAIN | PRODUCTION | GUARDIAN | ASSAULT | RECOVERY | null
+representative_stat_type: STOCK | DEFENSE | ATTACK | HEAL | null
+representative_stat_value: integer | null
+remaining_cycle_ms: integer | null
+timing_mode: PERSISTENT | CYCLIC | NONE
+target_rule_text: string | null
+state_code: EMPTY | ACTIVE | PAUSED | SEALED | INVALID | ERROR
+last_event_id: string | null
+last_result_summary: string | null
+can_recall: boolean
+can_replace: boolean
+unavailable_reason: string | null
+error_message: string | null
 ```
 
-HUD는 State를 수정하지 않고 읽기 전용 View Model만 사용한다.
+- 빈 슬롯은 `summon_id`, 역할, 스탯, 대상, 주기가 `null`이고 `timing_mode: NONE`, `state_code: EMPTY`다.
+- MAIN은 `timing_mode: PERSISTENT`를 사용하며 가짜 남은 초를 만들지 않는다.
+- 오류 슬롯은 원본 오류를 보존하며 임의 보정값을 표시하지 않는다.
+- HUD는 읽기 전용 View Model만 사용한다.
 
-## 12. 실패 처리
+## 12. 관리 확인 Pause 경계
 
-- 손상된 소환수 ID: 해당 보조 안전 귀환, 메인은 유지, Save 오류 기록.
+```text
+관리 요청
+→ Active Stroke 종료 확인
+→ Draft 안전 보존
+→ MANAGEMENT_CONFIRM 진입
+→ Active Pressure Clock 정지
+→ Transaction 확인 또는 취소
+```
+
+- Drawer 열람·슬롯 선택만으로 Clock을 정지하지 않는다.
+- Active Stroke 중 관리 요청은 실행하지 않고 요청 상태만 보존하거나 무시한다.
+- 확인 취소는 마나·슬롯·주기·Draft를 변경하지 않는다.
+- 실제 귀환·교체는 Transaction 계층에서만 수행한다.
+
+## 13. 실패 처리
+
+- 손상된 소환수 ID: 해당 슬롯 `INVALID`, 메인은 유지, Save 오류 기록.
 - 손상된 Stock 대상: 충전 대상 해제, 보존 가능한 대상별 진행도 유지.
-- 음수 남은 시간: 0으로 보정 후 Event 중복 ID 검사.
+- 음수 남은 시간: 원본 오류를 기록한 뒤 안전 검증 결과에 따라 0 보정 여부를 Transaction/Recovery 계층이 결정한다. HUD가 보정하지 않는다.
 - 중복 Transaction ID: 재적용하지 않고 기존 결과 반환.
 - 준비 용량 초과 Save: 자동 덮어쓰지 않고 복구 UI로 이동.
 - 슬롯·역할 중복 Save: 자동 수정하지 않고 복구 후보와 충돌 원인을 표시.
+- 알 수 없는 Event ID: 재적용하지 않고 ResultLedger 경고 레코드 생성.
 
-## 13. 필수 Test
+## 14. 필수 Test
 
 1. S1/S2/S3 각각 소환·귀환·교체 Transaction.
 2. 네 번째 보조 활성 시도 차단.
 3. 같은 보조 역할 두 번째 활성 시도 롤백.
 4. 교체 Transaction 중간 실패 시 마나·기존 소환 상태 복구.
 5. Stock 사용과 효과 적용 원자성.
-6. Pause·Background 중 Clock 0 진행.
-7. 같은 시각 MAIN/S1/S2/S3 Event 순서 결정성.
-8. Save 직전·직후 동일 `summon_event_id` 중복 0.
-9. `[스톡]` 감소 초과분 다음 충전 이월 0.
-10. 방어도 계산 후 최소 직접 피해 1 유지.
-11. 공격으로 불안정도 0 도달 0.
-12. 치유 초과 저장 0.
-13. 장면 전환·Save/Resume 후 보조 3체 상태 유지.
-14. 손상 Snapshot 자동 덮어쓰기 0.
+6. Drawer 열람 중 Clock 진행.
+7. 안전한 Draft 보존 뒤 관리 확인에서만 Clock 정지.
+8. Pause·Background 중 Clock 0 진행.
+9. 같은 시각 MAIN/S1/S2/S3 Event 순서 결정성.
+10. 같은 시각 HUD 표시 Batch 전체 `1.2초 TEST_VALUE` 예산.
+11. Save 직전·직후 동일 `summon_event_id` 중복 0.
+12. HUD가 Event 중복 판단·적용을 수행하지 않음.
+13. `[스톡]` 감소 초과분 다음 충전 이월 0.
+14. 방어도 계산 후 최소 직접 피해 1 유지.
+15. 공격으로 불안정도 0 도달 0.
+16. 치유 초과 저장 0.
+17. 장면 전환·Save/Resume 후 보조 3체 상태 유지.
+18. 빈 슬롯 nullable View Model 생성.
+19. 손상 Snapshot 자동 덮어쓰기 0.
+20. Active Stroke 중 Rail 접촉으로 State·Focus 변경 0.
 
-## 14. 보호 경계
+## 15. 보호 경계
 
 ```text
 PRODUCT_IMPLEMENTATION = NOT_STARTED
 CODEX_EXECUTION = BLOCKED
 THIS_DECISION_AUTHORIZES_RUNTIME = false
+TDD_PLAN = WRITTEN_NOT_EXECUTED
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
 HUMAN_VALIDATION = NOT_RUN
