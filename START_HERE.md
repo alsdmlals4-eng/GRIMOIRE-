@@ -16,65 +16,90 @@
 | Working Sync | `GR-SYNC-20260803-07` |
 | Grill Batch | `1/10 / pending 1` |
 | 현재 Decision | `GM-FOUNDATION-POC-EXECUTION-READINESS-01` |
-| 사용자 선택 | `B_STAGE_0_PREFLIGHT_BOOTSTRAP` |
-| 작성 명세 | `READY_FOR_USER_REVIEW` |
-| Stage 0 구현 계획 | `NOT_WRITTEN` |
-| Stage 0 진단 코드 | `NOT_STARTED` |
-| Execution Readiness | `FAIL_CLOSED_REMEDIATION_REQUIRED` |
-| 제품·Godot 구현 | `NOT_STARTED / NOT_AUTHORIZED` |
-| Codex 실행 | `BLOCKED` |
+| 로컬 Godot | `USER_CONFIRMED_INSTALLED` |
+| CI Godot | `4.7.1.stable.official.a13da4feb / PASS` |
+| Foundation POC 기획 | `SUFFICIENT_TO_START` |
+| Codex 실행 계획 | `WRITTEN_READY` |
+| 제품 Godot 프로젝트 | `NOT_CREATED` |
+| 제품 코드 | `NOT_STARTED` |
+| Codex 실행 | `AUTHORIZED_FOR_LATER_CODEX_SESSION / NOT_RUN` |
 | Runtime·Device·Performance·Accessibility·Human | `NOT_RUN` |
+
+## 핵심 결론
+
+- 사용자 PC에는 Godot이 설치되어 있다고 사용자가 확인했다.
+- Godot 설치 여부는 더 이상 기획 승인 Gate가 아니다.
+- 채팅에서는 제품 구현을 하지 않는다.
+- 실제 `project.godot`, GDScript, Scene, Headless 테스트는 이후 Codex에서 수행한다.
+- Foundation POC 시작을 막는 필수 기획·디자인은 없다.
+- 남은 P2 기획은 Vertical Slice 개발과 병행한다.
 
 ## 먼저 읽을 문서
 
 1. `AGENTS.md`.
 2. `docs/ACTIVE_CONTEXT.md`.
 3. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
-4. `docs/planning/FOUNDATION_POC_STAGE_0_PREFLIGHT_BOOTSTRAP_APPROVAL_2026-08-03.md`.
-5. `docs/superpowers/specs/2026-08-03-foundation-poc-stage-0-preflight-bootstrap-design.md`.
-6. `docs/planning/FOUNDATION_POC_EXECUTION_READINESS_01_ADVERSARIAL_REVIEW_2026-08-03.md`.
-7. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
-8. `docs/DEVELOPMENT_GATES.md`.
-9. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
-10. `docs/planning/sync/GR-SYNC-20260803-06-MAIN.md`.
+4. `docs/planning/CODEX_FOUNDATION_POC_HANDOFF_2026-08-03.md`.
+5. `docs/superpowers/plans/2026-08-03-foundation-poc-codex-execution-overlay.md`.
+6. `docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md`.
+7. `docs/validation/GODOT_TOOLCHAIN_SETUP_REPORT_2026-08-03.md`.
+8. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
+9. `docs/DEVELOPMENT_GATES.md`.
+10. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
 
-## Stage 0 승인 범위
-
-향후 작성 명세 검토와 TDD 계획 승인 뒤에만 다음 진단 패키지를 만들 수 있다.
+## Codex 시작 규칙
 
 ```text
-tools/check_godot_toolchain.py
-tests/test_foundation_preflight_contract.py
-.github/workflows/validate-godot-preflight.yml
-docs/validation/GODOT_TOOLCHAIN_PREFLIGHT_REPORT.md
+최신 main 확인
+→ 격리 Worktree와 codex/foundation-poc 브랜치 생성
+→ 기존 로컬 Godot 실행 파일 찾기
+→ --version 실행
+→ Headless baseline 확인
+→ TDD로 Foundation POC 구현
+→ Validation Report와 Stop Gate
+→ Draft PR
 ```
 
-목적:
+- 기존 Godot이 사용 가능하면 재설치하지 않는다.
+- PATH에 없으면 기존 설치 경로만 확인한다.
+- 기존 설치를 찾을 수 없거나 실행 불가능할 때만 `tools/setup_godot_toolchain.py`를 복구 수단으로 사용한다.
+- Godot 설치 승인을 다시 묻지 않는다.
 
-- 공식 Godot exact pin 확인.
-- 실제 binary·version·headless·renderer startup 증거.
-- matching export templates 확인.
-- Android SDK·JDK·adb 상태 분리.
-- iOS host 경계 기록.
-- 정본·Adapter·생성물 최신성 복구.
-- Base v9.4.3 계획 읽기 전용 재검수.
-
-## 금지 범위
+## Foundation POC 허용 범위
 
 ```text
 project.godot
-.godot/**
-src/**
-scenes/**
-addons/**
-data/**
-assets/**
-content/**
-ml/**
-training-data/**
+src/core/**
+src/input/**
+src/persistence/**
+src/platform/**
+src/ui/**
+src/app/**
+tests/test_case.gd
+tests/test_runner.gd
+tests/unit/**
+tests/integration/**
+tools/check_foundation_poc_scope.py
+.github/workflows/validate-foundation-poc.yml
+artifacts/foundation-poc/**
+docs/validation/FOUNDATION_POC_VALIDATION_REPORT.md
+docs/planning/FOUNDATION_POC_STOP_GATE_01_<date>.md
 ```
 
-Renderer startup에 프로젝트 문맥이 필요하면 운영체제 임시 디렉터리의 일회성 probe project만 허용하며, 성공·실패·timeout과 무관하게 삭제해야 한다. 저장소에는 Godot project나 cache를 만들지 않는다.
+## Foundation POC 금지 범위
+
+```text
+실제 Glyph Recognition ML
+training-data/**
+final Art·Audio
+Boss
+전체 Main·Grimoire 제작 UI
+전체 Chapter 콘텐츠
+최종 경제·밸런스
+Foundation POC 밖의 대규모 리팩터링
+```
+
+모든 POC 화면에는 `POC / TEST_VALUE / NOT_CONTENT_COMPLETE`를 표시한다.
 
 ## 기존 확정 계약 유지
 
@@ -83,19 +108,35 @@ Renderer startup에 프로젝트 문맥이 필요하면 운영체제 임시 디�
 - Mobile Summon HUD: 좌측 Rail, Contextual Drawer, 안전 Draft 뒤 관리 Pause, ResultLedger exactly-once, Writing Canvas active-stroke 소유.
 - Mobile HUD TDD Plan과 Test Matrix는 작성됐지만 실행되지 않았다.
 
+## 남은 기획·디자인
+
+Foundation POC와 병행할 P2 항목:
+
+1. 전투 수치와 난이도.
+2. 결과 평가·등급과 기여도.
+3. 대표 제작 미니게임.
+4. Main·Grimoire 화면 최종 정보구조.
+5. Audio 방향.
+6. 접근성 옵션.
+7. 1학년 Chapter Map.
+8. 글자 Catalog.
+9. 성장·평가·경제.
+10. Slice 시간 예산.
+11. 추가 현장실습 Preview.
+12. 실제 사람 검증을 포함한 Vertical Slice 조립.
+
+이 항목은 초기 Foundation POC 구현을 막지 않는다.
+
 ## 현재 검증 경계
 
 ```text
-STAGE_0_DESIGN_SCOPE = USER_APPROVED
-STAGE_0_WRITTEN_SPEC = READY_FOR_USER_REVIEW
-STAGE_0_IMPLEMENTATION_PLAN = NOT_WRITTEN
-STAGE_0_DIAGNOSTIC_CODE = NOT_STARTED
-OFFICIAL_ENGINE_PIN = UNVERIFIED
-GODOT_BINARY = NOT_RUN
-GODOT_PROJECT = NOT_STARTED
+LOCAL_GODOT_INSTALLATION = USER_CONFIRMED
+LOCAL_GODOT_BINARY_AND_VERSION = TO_BE_VERIFIED_BY_CODEX
+CI_GODOT_4_7_1 = PASS
+FOUNDATION_POC_PLAN = READY
+GODOT_PRODUCT_PROJECT = NOT_CREATED
 PRODUCT_IMPLEMENTATION = NOT_STARTED
-FOUNDATION_POC_BUILD_AUTHORIZATION = NOT_GRANTED
-CODEX_EXECUTION = BLOCKED
+CODEX_EXECUTION = AUTHORIZED_NOT_RUN
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
 PERFORMANCE_VALIDATION = NOT_RUN
@@ -105,8 +146,8 @@ HUMAN_VALIDATION = NOT_RUN
 
 ## 다음 순서
 
-1. 사용자가 작성된 Stage 0 설계 명세를 검토한다.
-2. 승인 후 `writing-plans` 절차로 Stage 0 TDD 구현 계획을 작성한다.
-3. 별도 실행 승인 전에는 진단 코드도 생성하지 않는다.
-4. 실제 증거와 정본 최신성 PASS 뒤 Execution Readiness를 재판정한다.
-5. Foundation POC 제품 구현은 이후 별도 Scope 결정이다.
+1. PR #57의 계획·인계·상태 동기화를 검증한다.
+2. 사용자 병합 정책에 따라 PR #57을 처리한다.
+3. 이후 Codex에서 `docs/planning/CODEX_FOUNDATION_POC_HANDOFF_2026-08-03.md`를 사용한다.
+4. `docs/superpowers/plans/2026-08-03-foundation-poc-codex-execution-overlay.md` Task 0부터 구현한다.
+5. Foundation POC Stop Gate와 Draft PR까지 완료한다.
