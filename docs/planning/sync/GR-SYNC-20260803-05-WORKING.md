@@ -4,11 +4,13 @@
 
 ```yaml
 sync_id: GR-SYNC-20260803-05
-status: SYNCED_TO_WORKING_BRANCH_PENDING_PR_CI_SHEET_FINAL_READBACK
+status: READY_FOR_USER_MERGE_APPROVAL_AFTER_FINAL_HEAD_CI
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
 baseline_main: 7fd2c137469120a9ccf942df5b9860af135acc87
 working_branch: agent/mobile-summon-hud-spec-hardening
+pull_request: 54
+pull_request_state: OPEN_DRAFT_NOT_MERGED
 decision_id: GM-MOBILE-SUMMON-HUD-WIREFRAME-01
 review_id: GR-REVIEW-MOBILE-SUMMON-HUD-20260803-01
 user_approved_at: 2026-08-03T21:11:00+09:00
@@ -74,21 +76,37 @@ next_p1:
   - BASE_V9_4_3_PLAN_REVALIDATION_AND_EXECUTION_READINESS
 ```
 
-## 5. Google Sheet 동기화 범위
+## 5. Google Sheet 동기화·Readback
 
 대상 Spreadsheet: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`.
 
-계획 범위:
+반영·재조회 완료:
 
 - `00_프로젝트_허브!H2:K2`.
 - `01_작업순서!I33:J33`.
 - `02_현재_확정결정!A49:J49`.
-- `04_누락_충돌_감사!A42:H42`.
-- `05_GDD_요약!H4:J8` 중 기존 Sync 셀.
-- `60_UX_UI_접근성`의 Mobile Summon HUD 행.
-- `99_변경이력` 신규 append 행.
+- `04_누락_충돌_감사!A43:H43`.
+- `05_GDD_요약!H4:J4`, `H7:J8`.
+- `60_UX_UI_접근성!A24:J24`.
+- `99_변경이력!A49:H49`.
 
-Sheet에는 같은 Decision ID와 `GR-SYNC-20260803-05`, PR 번호, 최종 PR HEAD, Counter `0/10`, Plan `WRITTEN_NOT_EXECUTED`, 검증 `NOT_RUN` 경계를 기록한다.
+```yaml
+sheet_write: PASS
+sheet_readback: PASS
+sheet_decision_id_match: PASS
+sheet_sync_id_match: PASS
+sheet_counter: 0_of_10
+sheet_pending_distinct_decisions: 0
+sheet_text_integrity_sentinel: PASS
+sheet_sentinels:
+  - 소환수
+  - 자연충전
+  - 적대적 검토
+  - 벤치마킹
+  - 마도서
+```
+
+Sheet에는 PR #54, 사전 마감 HEAD `c1df7ea9`, Counter `0/10`, Plan `WRITTEN_NOT_EXECUTED`, 제품·Runtime 검증 `NOT_RUN` 경계를 기록했다. 최종 HEAD와 CI Run은 GitHub 최종 검증 뒤 Sheet에서 갱신한다.
 
 ## 6. 적대적 검토 요약
 
@@ -100,30 +118,49 @@ Sheet에는 같은 Decision ID와 `GR-SYNC-20260803-05`, PR 번호, 최종 PR HE
 - **HUD 이중 정본:** ResultLedger 단독 Exactly-once 소유권을 유지한다.
 - **필기 손실:** Canvas가 Active Stroke를 끝까지 소유한다.
 
-## 7. 검증 상태
+제품 구현·실기기·사람 검증 전까지 잔여 위험이 해소됐다고 주장하지 않는다.
+
+## 7. 사전 마감 HEAD 검증
 
 ```yaml
-branch_diff_scope: PENDING_FINAL_COMPARE
-json_parse: PENDING_FINAL_HEAD
-utf8_nfc_text_integrity: PENDING_FINAL_HEAD_CI
-adapter_generator: PENDING_FINAL_HEAD_CI
-unit_tests: PENDING_FINAL_HEAD_CI
-adversarial_gate: PENDING_FINAL_HEAD
-sheet_write: PENDING_PR_NUMBER_AND_FINAL_HEAD
-sheet_readback: PENDING
-sheet_sentinel: PENDING
-review_threads: PENDING_PR
-reviews: PENDING_PR
-runtime_validation: NOT_RUN
-mobile_device_validation: NOT_RUN
-performance_validation: NOT_RUN
-accessibility_validation: NOT_RUN
-human_validation: NOT_RUN
+pre_finalization_head: c1df7ea97b3068870b8fde22e23195a3e0d416e8
+workflow_run: 30814628515
+workflow: Validate_GRIMOIRE_planning_and_Base_v9_4_3
+workflow_status: PASS
+adapter_generator: PASS
+unit_tests: PASS
+json_parse: PASS
+utf8_nfc_text_integrity: PASS
+adversarial_gate: PASS
+review_threads: 0
+reviews: 0
+comments: 0
+pull_request_mergeable: true
 ```
 
-## 8. 병합 경계
+이 커밋 이후 Batch·Working Sync Readback 마감 문서가 추가되므로, 병합 판단은 PR #54의 **새 최종 HEAD CI**를 권위로 사용한다.
 
-이 Sync는 Working Branch 정본이다. PR 생성과 검증이 끝나도 사용자 명시 병합 승인 전에는 main에 병합하지 않는다.
+## 8. 최종 HEAD 검증 계약
+
+```yaml
+final_head: RESOLVED_FROM_PR_54_AFTER_THIS_COMMIT
+final_head_ci_authority: PR_54_EXACT_HEAD_CHECKS
+required_checks:
+  - ADAPTER_GENERATOR
+  - UNIT_TESTS
+  - JSON_PARSE
+  - UTF8_NFC_TEXT_INTEGRITY
+  - ADVERSARIAL_GATE
+required_review_threads: 0
+required_unresolved_reviews: 0
+required_mergeable: true
+```
+
+GitHub 문서를 다시 수정해 자기 참조형 HEAD 루프를 만들지 않는다. 최종 HEAD·CI Run·Sheet 최종 상태는 PR 검증과 Sheet 변경이력에 기록한다.
+
+## 9. 병합 경계
+
+이 Sync는 Working Branch 정본이다. 모든 Gate가 통과해도 사용자 명시 병합 승인 전에는 main에 병합하지 않는다.
 
 ```text
 PRODUCT_IMPLEMENTATION = NOT_STARTED
@@ -131,5 +168,10 @@ GODOT_PROJECT = NOT_STARTED
 MOBILE_SUMMON_HUD_IMPLEMENTATION = NOT_AUTHORIZED
 TDD_PLAN = WRITTEN_NOT_EXECUTED
 CODEX_EXECUTION = BLOCKED
+RUNTIME_VALIDATION = NOT_RUN
+MOBILE_DEVICE_VALIDATION = NOT_RUN
+PERFORMANCE_VALIDATION = NOT_RUN
+ACCESSIBILITY_VALIDATION = NOT_RUN
+HUMAN_VALIDATION = NOT_RUN
 MERGE_AUTHORIZATION = NOT_RECEIVED
 ```
