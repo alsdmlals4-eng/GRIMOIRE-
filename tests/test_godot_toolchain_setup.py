@@ -1,0 +1,80 @@
+from __future__ import annotations
+
+import tempfile
+import unittest
+import zipfile
+from pathlib import Path
+
+from tools.setup_godot_toolchain import (
+    GODOT_VERSION,
+    build_engine_url,
+    build_templates_url,
+    resolve_platform,
+    safe_extract_zip,
+    version_matches,
+)
+
+
+class GodotToolchainSetupTests(unittest.TestCase):
+    def test_windows_x86_64_uses_official_standard_package(self) -> None:
+        spec = resolve_platform("Windows", "AMD64")
+        self.assertEqual("windows.64", spec.download_platform)
+        self.assertEqual("win64.exe.zip", spec.slug)
+        self.assertEqual("Godot_v4.7.1-stable_win64.exe", spec.executable_name)
+        self.assertEqual(
+            "https://downloads.godotengine.org/?flavor=stable&platform=windows.64&slug=win64.exe.zip&version=4.7.1",
+            build_engine_url(spec),
+        )
+
+    def test_linux_x86_64_uses_official_standard_package(self) -> None:
+        spec = resolve_platform("Linux", "x86_64")
+        self.assertEqual("linux.64", spec.download_platform)
+        self.assertEqual("linux.x86_64.zip", spec.slug)
+        self.assertEqual("Godot_v4.7.1-stable_linux.x86_64", spec.executable_name)
+        self.assertEqual(
+            "https://downloads.godotengine.org/?flavor=stable&platform=linux.64&slug=linux.x86_64.zip&version=4.7.1",
+            build_engine_url(spec),
+        )
+
+    def test_templates_use_same_exact_version(self) -> None:
+        self.assertEqual("4.7.1", GODOT_VERSION)
+        self.assertEqual(
+            "https://downloads.godotengine.org/?flavor=stable&platform=templates&slug=export_templates.tpz&version=4.7.1",
+            build_templates_url(),
+        )
+
+    def test_unsupported_architecture_fails_clearly(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "Unsupported Godot host"):
+            resolve_platform("Windows", "ARM32")
+
+    def test_version_match_requires_exact_stable_line(self) -> None:
+        self.assertTrue(version_matches("4.7.1.stable.official.abcdef"))
+        self.assertTrue(version_matches("4.7.1.stable"))
+        self.assertFalse(version_matches("4.7.stable.official.abcdef"))
+        self.assertFalse(version_matches("4.7.1.rc1.official.abcdef"))
+        self.assertFalse(version_matches("4.8.dev2.official.abcdef"))
+
+    def test_safe_extract_rejects_parent_traversal(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            archive = root / "bad.zip"
+            destination = root / "out"
+            with zipfile.ZipFile(archive, "w") as bundle:
+                bundle.writestr("../escape.txt", "bad")
+            with self.assertRaisesRegex(RuntimeError, "unsafe archive member"):
+                safe_extract_zip(archive, destination)
+            self.assertFalse((root / "escape.txt").exists())
+
+    def test_safe_extract_writes_normal_members(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            archive = root / "good.zip"
+            destination = root / "out"
+            with zipfile.ZipFile(archive, "w") as bundle:
+                bundle.writestr("folder/file.txt", "ok")
+            safe_extract_zip(archive, destination)
+            self.assertEqual("ok", (destination / "folder/file.txt").read_text(encoding="utf-8"))
+
+
+if __name__ == "__main__":
+    unittest.main()
