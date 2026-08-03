@@ -12,7 +12,7 @@
     "merge_required": false,
     "merge_trigger": "NONE",
     "merge_authorized": false,
-    "authorization_state": "FINALIZATION_IN_PROGRESS_AFTER_USER_APPROVED_MERGE",
+    "authorization_state": "IDLE_READY_FOR_NEXT_GRILLME",
     "pending_decision_ids": []
   },
   "counting_rule": {
@@ -30,35 +30,35 @@
     "finalization_merge_commit": "651ea71ad093be58b5aa0c5b3ff94d5b376faae5",
     "sheet_readback_pull_request": 53,
     "sheet_readback_merge_commit": "7fd2c137469120a9ccf942df5b9860af135acc87",
-    "main_finalization_sync_id": "GR-SYNC-20260803-04",
-    "counter_reset": true,
-    "pending_decisions_after_reset": 0
+    "main_finalization_sync_id": "GR-SYNC-20260803-04"
   },
   "current_work": {
-    "status": "PR54_MERGED_MAIN_FINALIZATION_AND_SHEET_READBACK_IN_PROGRESS",
+    "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
     "decision_id": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01",
     "review_id": "GR-REVIEW-MOBILE-SUMMON-HUD-20260803-01",
     "selected_approach": "B_TARGETED_HARDENING_WITH_LAYOUT_PRESERVED",
     "default_branch": "main",
-    "main_authority_before_merge": "7fd2c137469120a9ccf942df5b9860af135acc87",
+    "working_branch": "NONE",
     "working_sync_id": "GR-SYNC-20260803-05",
     "main_sync_id": "GR-SYNC-20260803-06",
     "decision_pull_request": 54,
     "decision_head": "5f0689d78f60fa5bdfe8b33d71a874ecf453b120",
     "decision_merge_commit": "bf964063b3fa35413f9e5efb07ad831f1617c412",
-    "decision_pull_request_state": "MERGED",
+    "finalization_pull_request": 55,
+    "finalization_merge_commit": "f693089a76138d6f061591e011bcb6c098f14dc5",
+    "sheet_readback_pull_request": 56,
     "pre_merge_ci_run": 30815546367,
-    "pre_merge_ci_status": "PASS",
-    "pre_merge_gates": {
+    "finalization_ci_run": 30816905584,
+    "verification": {
       "adapter_generator": "PASS",
       "unit_tests": "PASS",
       "json_parse": "PASS",
       "utf8_nfc_text_integrity": "PASS",
-      "adversarial_gate": "PASS"
+      "adversarial_gate": "PASS",
+      "review_threads": 0,
+      "reviews": 0,
+      "comments": 0
     },
-    "review_threads": 0,
-    "reviews": 0,
-    "comments": 0,
     "spec_status": "USER_APPROVED_HARDENED_SPEC_ACTIVE",
     "tdd_plan_status": "WRITTEN_NOT_EXECUTED",
     "test_matrix_status": "WRITTEN_NOT_EXECUTED",
@@ -95,10 +95,11 @@
     "implementation": "NOT_STARTED",
     "godot_mobile_summon_hud_implementation": "NOT_AUTHORIZED",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
-    "sheet_sync": "PENDING_POST_MERGE_UPDATE",
-    "sheet_readback": "PENDING_POST_MERGE_READBACK",
-    "sheet_text_integrity_sentinel": "PENDING_POST_MERGE_READBACK",
-    "next_priority_after_finalization": "GODOT_TOOLCHAIN_PREFLIGHT_AND_BASE_V9_4_3_PLAN_REVALIDATION"
+    "sheet_sync": "PASS",
+    "sheet_readback": "PASS",
+    "sheet_text_integrity_sentinel": "PASS",
+    "sheet_sentinels": ["소환수", "자연충전", "적대적 검토", "벤치마킹", "마도서"],
+    "next_priority": "GODOT_TOOLCHAIN_PREFLIGHT_AND_BASE_V9_4_3_PLAN_REVALIDATION"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
