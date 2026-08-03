@@ -7,7 +7,7 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 2,
+    "approved_grill_me_since_last_flush": 3,
     "next_merge_at": 10,
     "merge_required": false,
     "merge_trigger": "NONE",
@@ -15,15 +15,16 @@
     "authorization_state": "ACCUMULATING_APPROVED_DECISIONS",
     "pending_decision_ids": [
       "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
-      "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01"
+      "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
+      "GM-SCHOOL-CRISIS-PEDAGOGY-01"
     ]
   },
   "counting_rule": {
     "count_distinct_user_approved_grill_me_decision_id": true,
     "count_reapproval_or_copy_edit": false,
     "count_main_sync_receipt": false,
-    "current_operation_counted": false,
-    "current_operation_reason": "SAME_DECISION_ROUTE_PATTERNS_AND_PRECAST_GUIDANCE_APPROVAL"
+    "current_operation_counted": true,
+    "current_operation_reason": "DISTINCT_USER_APPROVED_SCHOOL_CRISIS_PEDAGOGY_AND_FACULTY_INTERVENTION_BOUNDARY"
   },
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
@@ -36,15 +37,16 @@
     "main_finalization_sync_id": "GR-SYNC-20260803-06"
   },
   "current_work": {
-    "status": "NARRATIVE_ROUTE_PATTERNS_AND_PRECAST_GUIDANCE_USER_APPROVED",
-    "decision_id": "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
+    "status": "SCHOOL_CRISIS_PEDAGOGY_USER_APPROVED_FROSTBLOOM_SCENE_FLOW_WRITTEN_FOR_REVIEW",
+    "decision_id": "GM-SCHOOL-CRISIS-PEDAGOGY-01",
+    "parent_situation_decision_id": "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
     "default_branch": "main",
     "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
     "working_branch": "agent/foundation-poc-readiness-review",
     "working_sync_id": "GR-SYNC-20260803-07",
     "pull_request": 57,
-    "selected_approach": "NARRATIVE_INTENT_CHOICE_THEN_SPELL_DESIGN_WITH_LAYERED_PRECAST_GUIDANCE",
-    "counter_increment": false,
+    "selected_approach": "STUDENT_SELF_RELIANCE_WITH_DIRECTIONAL_FACULTY_GUIDANCE_AND_LIFE_SAFETY_INTERVENTION",
+    "counter_increment": true,
     "role_split": {
       "gpt": [
         "CORE_FUN",
@@ -73,23 +75,30 @@
       "choice_layer": "INTENT_AND_PRIORITY",
       "guidance_layer": "CHARACTER_DIALOGUE_PLUS_DIRECTIONAL_EFFECT_PREVIEW",
       "spell_layer": "PLAYER_DESIGNED_EXECUTION",
-      "minimum_approaches": 3,
       "recommended_approaches": 5,
-      "minimum_noncombat_approaches": 2,
-      "recommended_noncombat_approaches": 4,
-      "combat_is_mandatory": false,
-      "minimum_valid_spell_plans_per_approach": 2,
       "target_solution_patterns_per_approach": 4,
       "target_total_recognized_patterns": 20,
-      "minimum_valid_endings": 3,
+      "combat_is_mandatory": false,
       "single_true_ending": false,
-      "spec_review": "USER_APPROVED_WRITTEN_SPEC",
       "route_pattern_design": "USER_APPROVED",
-      "precast_guidance_design": "USER_APPROVED",
-      "preview_success_percentage": false,
-      "preview_final_ending": false,
-      "dialogue_names_correct_combination": false,
-      "reading_consumes_realtime_timer": false
+      "precast_guidance_design": "USER_APPROVED"
+    },
+    "school_crisis_pedagogy": {
+      "approval": "docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md",
+      "scene_flow_spec": "docs/superpowers/specs/2026-08-04-frostbloom-school-crisis-scene-flow-design.md",
+      "school_goal": "FIELD_READY_MAGE_SELF_RELIANCE",
+      "faculty_default_role": "OBSERVE_SET_BOUNDARIES_AND_GIVE_DIRECTIONAL_QUESTIONS",
+      "faculty_solves_core_objective": false,
+      "student_withdrawal_allowed": true,
+      "intervention_levels": {
+        "L0": "OBSERVE_NORMAL_NONLETHAL_FAILURE",
+        "L1": "DIRECTIONAL_QUESTION_NO_CORRECT_COMBINATION",
+        "L2": "SAFETY_WARNING_BEFORE_IRREVERSIBLE_DANGER",
+        "L3": "DIRECT_LIFESAVING_INTERVENTION_ONLY"
+      },
+      "life_threat_without_faculty_response": false,
+      "faculty_intervention_is_humiliation": false,
+      "scene_flow_review": "PENDING_USER_REVIEW"
     },
     "slice_glyph_contract": {
       "main_glyphs": [
@@ -113,9 +122,9 @@
     },
     "planning": {
       "creative_scope": "docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md",
-      "current_priority_1": "WRITE_FROSTBLOOM_GREENHOUSE_SCENE_FLOW",
-      "current_priority_2": "WRITE_COMMON_INVESTIGATION_AND_CHARACTER_DIALOGUE",
-      "current_priority_3": "WRITE_ROUTE_SPECIFIC_PRECAST_HINTS_AND_EFFECT_PREVIEWS",
+      "current_priority_1": "USER_REVIEW_FROSTBLOOM_SCHOOL_CRISIS_SCENE_FLOW",
+      "current_priority_2": "WRITE_FINAL_TEXT_NOVEL_DIALOGUE_SCRIPT",
+      "current_priority_3": "WRITE_ROUTE_SPECIFIC_EFFECT_PREVIEW_COPY",
       "current_priority_4": "DESIGN_SITUATION_UX_WIREFRAME",
       "current_priority_5": "DEFINE_GREENHOUSE_SPIRIT_MAGIC_CORE_ART_DIRECTION",
       "foundation_poc_core_design": "SUFFICIENT_FOR_LATER_CODEX_IMPLEMENTATION"
@@ -124,7 +133,7 @@
     "godot_product_project": "NOT_CREATED",
     "foundation_poc_build_authorization": "AVAILABLE_FOR_LATER_CODEX_SESSION",
     "codex_execution": "DEFERRED_UNTIL_SELECTED_CREATIVE_SCOPE_IS_READY",
-    "next_priority": "WRITE_FROSTBLOOM_GREENHOUSE_SCENE_FLOW_AND_PRECAST_DIALOGUE"
+    "next_priority": "USER_REVIEW_FROSTBLOOM_SCHOOL_CRISIS_SCENE_FLOW"
   },
   "protected_boundaries": {
     "text_choice_auto_selects_spell": "PROHIBITED",
@@ -139,6 +148,12 @@
     "preview_reveals_final_ending": "PROHIBITED",
     "mandatory_relationship_for_critical_clue": "PROHIBITED",
     "reading_time_consumes_realtime_timer": "PROHIBITED",
+    "professor_solves_core_objective": "PROHIBITED",
+    "property_damage_alone_triggers_direct_intervention": "PROHIBITED",
+    "low_grade_alone_triggers_direct_intervention": "PROHIBITED",
+    "life_threat_without_faculty_response": "PROHIBITED",
+    "withdrawal_as_automatic_game_over": "PROHIBITED",
+    "faculty_intervention_as_humiliation": "PROHIBITED",
     "gpt_product_implementation": "PROHIBITED_AS_PRIMARY_WORKFLOW",
     "codex_implementation_before_selected_creative_scope": "DEFERRED",
     "foundation_poc_scope_expansion": "PROHIBITED_WITHOUT_NEW_DECISION",
