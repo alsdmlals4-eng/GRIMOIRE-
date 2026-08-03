@@ -14,25 +14,16 @@ primary_platform: Mobile
 follow_up_platform: PC
 mobile_orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
-execution_profile: FOUNDATION_POC_CODEX_EXECUTION_PREPARED
-work_mode: PLAN_AND_CODEX_HANDOFF
 base_release: v9.4.3
 main_authority: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
 last_main_sync: GR-SYNC-20260803-06
 current_working_sync: GR-SYNC-20260803-07
-current_decision_id: GM-FOUNDATION-POC-EXECUTION-READINESS-01
 grill_counter: 1_of_10
 pending_distinct_decisions: 1
 local_godot_installation: USER_CONFIRMED_INSTALLED
-local_godot_path: TO_BE_RESOLVED_BY_CODEX
-local_godot_version: TO_BE_VERIFIED_BY_CODEX
-ci_godot_version: 4.7.1.stable.official.a13da4feb
-ci_toolchain: PASS
-foundation_poc_core_planning: SUFFICIENT_TO_START
-foundation_poc_codex_plan: WRITTEN_READY
-foundation_poc_build_authorization: GRANTED_FOR_LATER_CODEX_SESSION
+foundation_poc_technical_plan: READY_FOR_LATER_CODEX_SESSION
 foundation_poc_product_code: NOT_STARTED
-codex_execution: READY_NOT_RUN
+current_gpt_focus: CORE_FUN_CONTENT_UX_IMAGE_ART
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -40,20 +31,43 @@ accessibility_validation: NOT_RUN
 human_validation: NOT_RUN
 ```
 
+## 역할 분리
+
+```text
+GPT
+→ 핵심 재미를 정의·검증한다.
+→ 콘텐츠와 플레이 경험을 설계한다.
+→ UX·Wireframe·이미지·아트 방향을 만든다.
+→ 적대적 검토로 충돌·누락·제작비용을 찾는다.
+→ 승인된 결과를 Codex 구현 명세로 넘긴다.
+
+Codex
+→ 승인된 명세를 Godot에서 구현한다.
+→ project.godot·GDScript·Scene·Resource·테스트·CI를 만든다.
+→ Runtime·실기기·성능 증거를 실제 실행으로 남긴다.
+```
+
+사용자 PC에는 Godot이 설치되어 있다고 확인됐다. 로컬 실행 파일 경로·정확한 버전·Headless 증거는 이후 Codex 세션에서 확인한다. 이 설치 확인은 GPT의 핵심 재미·콘텐츠·아트 작업을 막지 않는다.
+
 ## 복원 순서
+
+GPT 기획 작업:
 
 1. `AGENTS.md`.
 2. `START_HERE.md`.
 3. 이 문서.
-4. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
-5. `docs/planning/CODEX_FOUNDATION_POC_HANDOFF_2026-08-03.md`.
-6. `docs/superpowers/plans/2026-08-03-foundation-poc-codex-execution-overlay.md`.
-7. `docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md`.
-8. `docs/validation/GODOT_TOOLCHAIN_SETUP_REPORT_2026-08-03.md`.
-9. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
-10. `docs/DEVELOPMENT_GATES.md`.
-11. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
-12. `docs/planning/sync/GR-SYNC-20260803-06-MAIN.md`.
+4. `docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md`.
+5. 질문 주제의 최신 승인 책임 원본.
+6. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
+7. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
+8. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
+
+Codex 구현 작업:
+
+1. 위 공통 정본.
+2. `docs/planning/CODEX_FOUNDATION_POC_HANDOFF_2026-08-03.md`.
+3. `docs/superpowers/plans/2026-08-03-foundation-poc-codex-execution-overlay.md`.
+4. `docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md`.
 
 ## 플레이어 약속
 
@@ -61,13 +75,46 @@ human_validation: NOT_RUN
 
 ```text
 상황·위험 판독
-→ 직접 작성·준비 Stock·[소환 주문] 중 수단 선택
+→ 직접 작성·Stock·소환수 중 수단 선택
 → 의미·대상·범위·출력·대가 설계
 → 명시적 Commit
 → 원자 결과 적용
-→ 설명 가능한 세계 변화
-→ 마도서 기록·복기
+→ 예상과 실제 결과 비교
+→ 마도서 기록·복기·발견
 ```
+
+## 현재 GPT 기획 질문
+
+### 핵심 재미
+
+- 플레이어가 반복해서 하고 싶은 가장 뾰족한 행동은 무엇인가.
+- 글자를 직접 쓰는 행위가 단순 입력이 아니라 판단과 책임을 만드는가.
+- 직접 작성·Stock·소환수의 선택이 상황에 따라 달라지는가.
+- 결과가 플레이어가 설계한 의미와 대가를 설명 가능하게 보여주는가.
+- 마도서 복기가 다음 플레이의 발견으로 이어지는가.
+
+### 콘텐츠
+
+- Vertical Slice에서 어떤 한 사이클로 게임의 약속을 증명할 것인가.
+- 첫 수업·제작·현장실습·전투를 어떤 순서로 경험하게 할 것인가.
+- 어떤 글자와 조합을 먼저 가르칠 것인가.
+- 대표 사건·적·환경 퍼즐이 시스템 선택을 어떻게 요구하는가.
+- 실패가 입력·문법·상황 판단 중 무엇 때문인지 어떻게 전달하는가.
+
+### UX
+
+- Main·Grimoire·수업·제작·현장·전투 화면이 어떻게 이어지는가.
+- 작성 Canvas, 후보, Commit, 결과 설명이 한 흐름으로 읽히는가.
+- Stock과 소환수 HUD가 작성 판단을 방해하지 않는가.
+- Mobile Landscape에서 Safe Area·터치 영역·텍스트 크기가 유지되는가.
+
+### 이미지·아트
+
+- GRIMOIRE만의 시각적 정체성은 무엇인가.
+- 글자·마도서·주문·소환수가 기능을 시각적으로 설명하는가.
+- 학교와 전투 공간이 같은 세계의 규칙을 공유하는가.
+- 캐릭터·환경·UI·아이콘·이펙트에 일관된 형태·재질·조명 규칙이 있는가.
+- Concept Art가 실제 Godot Asset으로 분해 가능한가.
 
 ## 기존 확정 시스템 계약
 
@@ -124,115 +171,42 @@ event_dedup_owner: RESULT_LEDGER
 hud_mutates_gameplay_state: false
 ```
 
-Mobile HUD TDD Plan과 Test Matrix는 `WRITTEN_NOT_EXECUTED`다. Foundation POC Harness는 이 좌측 Rail을 나중에 추가할 수 없게 만드는 고정 레이아웃을 만들지 않는다.
+## 현재 GPT 산출물 우선순위
 
-## Godot 개발환경 상태
+1. 핵심 재미 정의와 반례 검증.
+2. Vertical Slice 대표 콘텐츠 조립안.
+3. 전체 UX Map과 핵심 화면 Wireframe.
+4. Art Direction·Moodboard·Style Guide.
+5. Concept Art·UI Mockup·이미지 Prompt.
+6. 1학년 Chapter Map과 글자 Catalog.
+7. 결과 평가·성장·경제·전투 수치.
+8. Codex 구현용 명세와 Acceptance Criteria.
 
-`Stage 0`은 게임 단계가 아니며 더 이상 사용자-facing 작업 단계로 사용하지 않는다.
+## 기술 구현 보관 상태
 
 ```yaml
-user_pc_installation: USER_CONFIRMED_INSTALLED
-chat_direct_local_verification: NOT_AVAILABLE
-codex_local_path_resolution: REQUIRED_AT_SESSION_START
-codex_local_version_check: REQUIRED_AT_SESSION_START
-ci_download: PASS
-ci_headless: PASS
-ci_export_templates: PASS
-ci_actual_version: 4.7.1.stable.official.a13da4feb
-ci_run: 30823725209
+codex_handoff: docs/planning/CODEX_FOUNDATION_POC_HANDOFF_2026-08-03.md
+codex_execution_overlay: docs/superpowers/plans/2026-08-03-foundation-poc-codex-execution-overlay.md
+local_godot: USER_CONFIRMED_INSTALLED
+ci_godot: PASS_4_7_1
+product_project: NOT_CREATED
+product_code: NOT_STARTED
+codex_execution: DEFERRED_UNTIL_CREATIVE_SCOPE_IS_READY
 ```
 
-Codex는 기존 설치를 먼저 사용한다. PATH에 없으면 설치 경로만 확인하며, 기존 설치를 찾을 수 없거나 실행할 수 없을 때만 `tools/setup_godot_toolchain.py`를 복구 수단으로 사용한다. Godot 설치 여부를 다시 기획 승인 질문으로 만들지 않는다.
-
-## Foundation POC Codex 실행
-
-사용자는 실제 구현을 이후 Codex에서 진행한다고 명시했다.
-
-책임 원본:
-
-- `docs/planning/CODEX_FOUNDATION_POC_HANDOFF_2026-08-03.md`.
-- `docs/superpowers/plans/2026-08-03-foundation-poc-codex-execution-overlay.md`.
-- 상세 구현 본문: `docs/superpowers/plans/2026-08-02-mobile-foundation-poc-implementation-plan.md`.
-
-기존 상세 계획의 Toolchain 대기 Task는 폐기한다. Tasks 2–12는 새 Overlay 아래에서 실행한다.
-
-Codex 허용 범위:
+## 현재 하지 않는 것
 
 ```text
-project.godot
-src/core/**
-src/input/**
-src/persistence/**
-src/platform/**
-src/ui/**
-src/app/**
-tests/test_case.gd
-tests/test_runner.gd
-tests/unit/**
-tests/integration/**
-tools/check_foundation_poc_scope.py
-.github/workflows/validate-foundation-poc.yml
-artifacts/foundation-poc/**
-docs/validation/FOUNDATION_POC_VALIDATION_REPORT.md
-docs/planning/FOUNDATION_POC_STOP_GATE_01_<date>.md
+GPT 대화에서 제품 Godot 프로젝트 구현
+GPT 대화에서 GDScript·Scene 작업을 주 작업으로 전환
+구현 준비를 핵심 재미·콘텐츠·아트보다 우선
+실행하지 않은 Runtime·실기기·성능·접근성·사람 검증을 PASS 처리
 ```
-
-금지 범위:
-
-```text
-실제 Glyph Recognition ML
-training-data/**
-final Art·Audio
-Boss
-전체 Main·Grimoire 제작 UI
-전체 Chapter 콘텐츠
-최종 경제·밸런스
-Foundation POC 밖의 대규모 리팩터링
-```
-
-## 기획·디자인 상태
-
-Foundation POC 시작을 막는 필수 기획은 없다.
-
-개발과 병행할 P2:
-
-1. 전투 수치와 난이도.
-2. 결과 평가·등급과 기여도.
-3. 대표 제작 미니게임.
-4. Main·Grimoire 화면 최종 정보구조.
-5. Audio 방향.
-6. 접근성 옵션.
-7. 1학년 Chapter Map.
-8. 글자 Catalog.
-9. 성장·평가·경제.
-10. Slice 시간 예산.
-11. 추가 현장실습 Preview.
-12. 실제 사람 검증을 포함한 Vertical Slice 조립.
-
-이 항목은 초기 Foundation POC 구현을 막지 않는다.
 
 ## 다음 작업
 
-1. PR #57의 계획·인계·상태 문서를 검증한다.
-2. 사용자 병합 정책에 따라 PR #57을 처리한다.
-3. 이후 Codex에서 최신 main 기반 격리 Worktree와 `codex/foundation-poc` 브랜치를 만든다.
-4. 기존 로컬 Godot 실행 파일과 버전을 확인한다.
-5. Codex Execution Overlay Task 0부터 TDD 구현한다.
-6. Validation Report, Stop Gate, Draft PR을 만든다.
-
-## 검증 경계
-
-```text
-LOCAL_GODOT_INSTALLATION = USER_CONFIRMED
-LOCAL_GODOT_BINARY_AND_VERSION = TO_BE_VERIFIED_BY_CODEX
-CI_GODOT_TOOLCHAIN = PASS
-FOUNDATION_POC_BUILD_SCOPE = AUTHORIZED_FOR_LATER_CODEX_SESSION
-GODOT_PRODUCT_PROJECT = NOT_CREATED
-PRODUCT_CODE = NOT_STARTED
-CODEX_EXECUTION = READY_NOT_RUN
-RUNTIME_VALIDATION = NOT_RUN
-MOBILE_DEVICE_VALIDATION = NOT_RUN
-PERFORMANCE_VALIDATION = NOT_RUN
-ACCESSIBILITY_VALIDATION = NOT_RUN
-HUMAN_PLAYTEST = NOT_RUN
-```
+1. 핵심 재미를 플레이 단위로 재검증한다.
+2. Vertical Slice 대표 콘텐츠를 선정한다.
+3. Main·Grimoire·전투·작성 전체 UX 지도를 만든다.
+4. 게임 전체 Art Direction과 첫 이미지 시안을 만든다.
+5. 기획이 충분히 구체화된 범위만 Codex 구현 명세로 넘긴다.
