@@ -4,7 +4,7 @@
 
 ```yaml
 sync_id: GR-SYNC-20260803-07
-status: USER_APPROVED_STAGE_0_DESIGN_SCOPE_SPEC_READY_FOR_REVIEW
+status: USER_APPROVED_STAGE_0_DESIGN_SCOPE_SHEET_READBACK_PASS_SPEC_READY_FOR_REVIEW
 repository: alsdmlals4-eng/GRIMOIRE-
 baseline_main: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
 working_branch: agent/foundation-poc-readiness-review
@@ -23,6 +23,8 @@ foundation_poc_build_authorization: NOT_GRANTED
 grill_counter: 1_of_10
 counter_increment: true
 pending_approved_decisions: 1
+sheet_write: PASS
+sheet_readback: PASS
 implementation: NOT_STARTED
 codex_execution: BLOCKED
 ```
@@ -110,18 +112,30 @@ base_plan_revalidation: NOT_RUN
 
 `docs/DESIGN_DOCUMENT_REGISTRY.json`, `skills/PROJECT_BASE_ADAPTER.json`, generated views의 활성 상태 갱신은 Stage 0 구현 계획에서 Generator·reference-freshness 검증과 함께 수행한다. 현재 Readiness는 PASS가 아니다.
 
-## Google Sheet 승인 동기화 계획
+## Google Sheet 동기화·Readback
 
 Spreadsheet: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`.
 
-갱신 대상:
+반영·재조회 완료:
 
 - `00_프로젝트_허브!H2:K2`.
 - `01_작업순서!H34:J34`.
-- `02_현재_확정결정` 신규 승인 행.
+- `02_현재_확정결정!A50:J50`.
 - `04_누락_충돌_감사!E44:H44`.
 - `30_데모범위_품질기준_제작기반!G9:H9`.
-- `99_변경이력` 신규 승인 행.
+- `99_변경이력!A53:H53`.
+
+```yaml
+sheet_write: PASS
+sheet_readback: PASS
+sheet_decision_id_match: PASS
+sheet_sync_id_match: PASS
+sheet_selected_approach_match: PASS
+sheet_counter: 1_of_10
+sheet_pending_approved_decisions: 1
+sheet_product_implementation: NOT_STARTED
+sheet_spec_state: READY_FOR_USER_REVIEW
+```
 
 ## 검증 경계
 
@@ -142,6 +156,10 @@ PRODUCT_IMPLEMENTATION = NOT_STARTED
 FOUNDATION_POC_BUILD_AUTHORIZATION = NOT_GRANTED
 CODEX_EXECUTION = BLOCKED
 ```
+
+## 최종 HEAD 증거 기록 규칙
+
+이 파일을 갱신하는 커밋 자체가 HEAD를 변경하므로 exact final HEAD와 CI Run은 자기 참조를 피하기 위해 PR #57 설명과 Google Sheet 변경이력에 기록한다.
 
 ## 다음 사용자 Gate
 
