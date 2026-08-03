@@ -8,7 +8,7 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: agent/grimoire-stock-summon-detail-audit
+working_branch: NONE
 primary_platform: Mobile
 follow_up_platform: PC
 orientation: LANDSCAPE_FIXED
@@ -16,15 +16,15 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
 work_mode: PLAN
 base_release: v9.4.3
-baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
-current_working_sync: GR-SYNC-20260803-03
-current_pull_request: 51
-grill_me_batch_counter: 6/10
-pending_decisions: 6
-early_checkpoint: APPROVED_AT_6_OF_10
+main_authority: CURRENT_DEFAULT_BRANCH_HEAD
+last_decision_merge_pull_request: 51
+last_decision_merge_commit: 81852a767d60eb2aa835ac3e36309f1dc43c861d
+last_working_sync: GR-SYNC-20260803-03
+current_main_sync: GR-SYNC-20260803-04
+grill_me_batch_counter: 0/10
+pending_decisions: 0
+last_checkpoint: MERGED_AT_6_OF_10_AND_COUNTER_RESET
 checkpoint_reason: DIFF_SIZE_AND_CANON_DRIFT
-checkpoint_scope: CANON_AND_SHEET_DRIFT_CORRECTION_ONLY
-merge_authorization: NOT_RECEIVED
 implementation: NOT_STARTED
 codex_plan: ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS
 codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
@@ -60,7 +60,7 @@ AGENTS.md
 → docs/planning/GRILL_WORK_BENCHMARK_TEXT_INTEGRITY_01_APPROVAL_2026-08-03.md
 → docs/planning/PROJECT_BENCHMARKING_POLICY.md
 → 질문 주제의 승인 책임 원본
-→ 최신 Working Sync Receipt
+→ 최신 Main Sync Receipt
 ```
 
 GitHub·Sheet 조회로 해결되는 사실을 사용자에게 다시 묻지 않는다. 확정된 결정은 기억 확인 목적으로 재질문하지 않는다.
