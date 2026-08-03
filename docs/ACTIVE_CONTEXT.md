@@ -1,6 +1,6 @@
 # GRIMOIRE Active Context
 
-> 과거 대화 없이 프로젝트의 현재 승인 상태와 검토 중 Draft를 구분해 복원하는 권위 문서다.
+> 현재 승인 상태와 다음 작업을 복원하는 권위 문서다.
 
 ## 현재 상태
 
@@ -15,14 +15,13 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
 main_authority: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
 last_main_sync: GR-SYNC-20260803-06
-current_working_sync: GR-SYNC-20260804-07-HEAT-FLOW-INVESTIGATION-DRAFT
-approved_current_decision: GM-SCHOOL-CRISIS-PEDAGOGY-01
+current_working_sync: GR-SYNC-20260804-08-HEAT-FLOW-APPROVAL
+approved_current_decision: GM-SLICE-HEAT-FLOW-OBSERVATION-01
 approved_situation_decision: GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01
-draft_glyph_observation_decision: GM-SLICE-HEAT-FLOW-OBSERVATION-01
-draft_cast_dialogue_decision: GM-FROSTBLOOM-CAST-DIALOGUE-01
-grill_counter: 3_of_10
-pending_approved_decisions: 3
-current_gpt_focus: TEXT_NOVEL_GLYPH_INVESTIGATION_AND_SENSORY_OBSERVATION
+approved_pedagogy_decision: GM-SCHOOL-CRISIS-PEDAGOGY-01
+grill_counter: 4_of_10
+pending_approved_decisions: 4
+current_gpt_focus: FROSTBLOOM_UX_MAP_WIREFRAME_AND_ART_DIRECTION
 product_project_godot: NOT_CREATED
 product_code: NOT_STARTED
 runtime_validation: NOT_RUN
@@ -31,8 +30,6 @@ performance_validation: NOT_RUN
 accessibility_validation: NOT_RUN
 human_validation: NOT_RUN
 ```
-
-Draft 수정은 아직 별도 승인 Decision으로 계산하지 않는다.
 
 ---
 
@@ -56,34 +53,48 @@ Codex
 
 1. `START_HERE.md`
 2. 이 문서
-3. `docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_DRAFT_2026-08-04.md`
-4. `docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_DRAFT_2026-08-04.md`
-5. `docs/content/vertical_slice/FROSTBLOOM_GREENHOUSE_DIALOGUE_SCRIPT_DRAFT_2026-08-04.md`
-6. `docs/superpowers/specs/2026-08-04-frostbloom-cast-dialogue-design.md`
-7. `docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md`
-8. `docs/superpowers/specs/2026-08-04-frostbloom-school-crisis-scene-flow-design.md`
-9. `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md`
-10. `docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md`
-11. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-12. `docs/planning/sync/GR-SYNC-20260804-07-HEAT-FLOW-INVESTIGATION-DRAFT.md`
+3. `docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_APPROVAL_2026-08-04.md`
+4. `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md`
+5. `docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md`
+6. `docs/content/vertical_slice/FROSTBLOOM_GREENHOUSE_DIALOGUE_SCRIPT_DRAFT_2026-08-04.md`
+7. `docs/superpowers/specs/2026-08-04-frostbloom-cast-dialogue-design.md`
+8. `docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md`
+9. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
+10. `docs/planning/sync/GR-SYNC-20260804-08-HEAT-FLOW-APPROVAL.md`
 
 ---
 
 ## 승인된 플레이어 약속
 
-> 마법학교 학생이 상황을 읽고 무엇을 지킬지 선택한 뒤, 의미를 가진 글자와 회로로 해결 의도를 구현하고 결과와 대가를 책임지는 마법 RPG.
+> 상황을 읽고 무엇을 지킬지 선택한 뒤, 의미를 가진 글자와 회로로 해결 의도를 구현하고 결과와 대가를 책임진다.
 
 ```text
 상황·환경·인물 조사
 → 해결 의도와 우선순위 선택
-→ 주문 설계와 예상 효과 확인
+→ 주문 설계·예상 효과 확인
 → 직접 작성·Stock·소환수 중 실행 수단 선택
 → 명시적 Commit
 → 설명 가능한 세계 변화
 → 결과·대가·발견 기록
 ```
 
-전투는 여러 해결 방식 중 하나이며 필수가 아니다.
+---
+
+## 승인된 Vertical Slice 글자 문법
+
+```yaml
+main_glyph: HEAT
+connection_grammar: FLOW
+optional_support_glyphs: [FOCUS, DISPERSE]
+representative_known_circuit: HEAT_PLUS_FLOW
+safe_grammar: MAIN_1_PLUS_CONNECTION_AND_OPTIONAL_SUPPORT
+```
+
+이 계약은 과거 `FLOW main + FOCUS/DISPERSE support` 계약을 명시적으로 대체한다.
+
+- `열`은 열을 만들거나 기존 열원을 주문의 중심 현상으로 지정한다.
+- `흐름`은 대상·경로·순서·순환을 구성한다.
+- `집중·분산`은 출력과 범위를 조절한다.
 
 ---
 
@@ -96,16 +107,14 @@ L2: 돌이킬 수 없는 위험 직전 안전 경고
 L3: 생명 위험만 직접 차단·구조
 ```
 
-- 교수는 핵심 목표를 대신 해결하지 않는다.
-- 교수는 외곽 확산과 생명 위험만 통제한다.
-- 학생은 접근 변경·지원 요청·봉쇄 후 철수를 선택할 수 있다.
-- 철수는 자동 실패나 비겁함으로 처리하지 않는다.
+교수는 핵심 목표를 대신 해결하지 않는다. 학생은 접근 변경·지원 요청·봉쇄 후 철수를 선택할 수 있다.
 
 ---
 
-## 대표 사건의 최소 인물 구조 Draft
+## 대표 사건과 최소 인물
 
 ```yaml
+situation: FROSTBLOOM_GREENHOUSE_HEART
 persistent_cast:
   - 에일린_로스베르_교수
   - 카시안_렌_동급생
@@ -113,122 +122,55 @@ persistent_cast:
 upperclass_present: false
 ```
 
-- 카시안은 같은 1학년이다.
-- 상급생은 이번 사건에 등장하지 않는다.
-- 시설 정보는 도면·계기·표식·주문 잔향으로 전달한다.
-- 필수 정보는 최소 두 경로로 제공한다.
+카시안은 닫힌 회수 밸브와 압력을 확인하지 않고 `열 + 흐름`을 사용해 배관 균열과 냉기 누출을 일으킨다. 입력과 문법은 맞았지만 상황·경로·출구 판단에 실패한 사례다. 카시안은 즉시 책임을 인정하고 내부 밸브·격벽 조작으로 해결에 협력한다.
 
 ---
 
-## 열·흐름 문법 Draft
+## 교수의 외곽 회로
 
-기존 확정 상태:
-
-```yaml
-main_glyph: FLOW
-support_glyphs: [FOCUS, DISPERSE]
-```
-
-사용자 수정 Draft:
-
-```yaml
-main_glyph: HEAT
-connection_grammar: FLOW
-optional_support_glyphs: [FOCUS, DISPERSE]
-representative_known_circuit: HEAT_PLUS_FLOW
-status: REQUIRES_EXPLICIT_SUPERSESSION
-```
-
-- `열`은 현상을 발생시키는 메인 글자다.
-- `흐름`은 열을 목표와 경로에 따라 전달·순환시키는 연결 문법이다.
-- `집중·분산`은 열의 강도와 범위를 조절한다.
-- 승인 전 기존 `흐름 메인` 책임 원본을 폐기하지 않는다.
-
----
-
-## 카시안 사고 Draft
-
-```text
-결빙 보조관을 빠르게 해빙하려 함
-→ 열 발생
-→ 닫힌 회수 밸브 안으로 흐름 전달
-→ 열팽창·압력 상승
-→ 배관 균열
-→ 냉기 누출·핵 안전 정지
-→ 자동 격벽과 카시안 고립
-→ 정령 과부하
-```
-
-```yaml
-input: VALID
-circuit_grammar: VALID
-situation_fit: INVALID
-failure_type: SITUATION_DESIGN_FAILURE
-```
-
-카시안은 즉시 사고를 인정하고 수동 밸브·격벽 조작과 내부 정보 제공으로 해결에 기여한다.
-
----
-
-## 교수의 비언어적 안전 회로 Draft
-
-교수는 외부로 번지는 냉기만 회로로 막으며 사용법을 설명하지 않는다.
+교수는 학교 회랑으로 퍼지는 냉기만 외곽 `열 + 흐름` 회로로 막는다.
 
 ```text
 호박색 빛이 외벽을 따라 이동
 → 따뜻한 기운이 퍼짐
-→ 지나간 유리의 서리가 녹음
-→ 밖으로 나가려던 냉기의 방향이 바뀜
-→ 학교 회랑 확산만 차단
+→ 유리 서리가 녹음
+→ 밖으로 향하던 냉기의 방향이 바뀜
+→ 외부 확산만 차단
 ```
-
-상태:
 
 ```yaml
-external_spread: RISING -> CONTAINED
-internal_pressure: CRITICAL -> CRITICAL
-greenhouse_core: STOPPED -> STOPPED
-cassian: TRAPPED -> TRAPPED
-spirit_overload: RISING -> RISING
+role: ONE_VALID_EXAMPLE_NOT_CANONICAL_ANSWER
+required_player_route: false
+default_best_solution: false
+used_as_grading_key: false
+full_circuit_copy: false
+faculty_solves_internal_objective: false
 ```
 
-교수 발화 허용:
-
-- `외부 확산은 막았다.`
-- `내부 문제는 그대로다.`
-- L2·L3 안전 경고
-
-교수는 회로 이름·효과 원리·추천 목표를 설명하지 않는다.
+교수의 방식은 “이렇게도 할 수 있다”는 예시다. 플레이어는 교수와 다른 목표·열원·경로·보조·물리 협력으로 해결할 수 있다.
 
 ---
 
-## 조사형 키워드 확인 Draft
+## 조사형 키워드 확인
 
-자동 `[인식]` 오버레이를 사용하지 않는다. 플레이어가 텍스트 노벨 조사로 이미 배운 키워드를 다시 확인한다.
+자동 글자 판독 오버레이를 사용하지 않는다.
 
 ```text
-빛이 시작된 문양을 살핀다
-→ 수업에서 익힌 형태와 따뜻한 기운
+빛이 시작된 문양 조사
 → [확인한 키워드: 열]
 
-빛이 이동한 선을 따라간다
-→ 익숙한 연결선이 외벽을 따라 이어짐
+빛이 이동한 선 조사
 → [확인한 키워드: 흐름]
 
-모서리 문양을 살핀다
-→ 미학습 고급 구조
-→ 해독 불가
+모서리 문양 조사
+→ 미학습 고급 구조 / 해독 불가
 ```
 
-- 조사 선택은 행동 횟수와 실시간 시간을 소모하지 않는다.
-- 조사하지 않아도 사건 진행과 안전 봉쇄·철수는 가능하다.
-- 키워드 확인은 새 글자 해금이 아니다.
+조사는 신규 글자 해금이 아니며 행동 횟수와 실시간 시간을 소모하지 않는다.
 
 ---
 
-## 관찰 결과 UX Draft
-
-플레이어에게는 감각과 실제 상태 변화만 표시한다.
+## 관찰 결과 UX
 
 ```text
 따뜻한 기운이 느껴진다.
@@ -237,35 +179,7 @@ spirit_overload: RISING -> RISING
 온실 안쪽의 붉은 압력계는 그대로다.
 ```
 
-상황에 따라 2~4줄만 사용한다.
-
-금지:
-
-- `열이 흐름 경로를 따라 이동했다` 같은 시스템 해설
-- 자동 `열+흐름 회로 확인` 표시
-- 해결 가능한 대상·경로 추천
-- 성공률·최종 결말·교수 회로 복사
-
----
-
-## 사건 흐름 Draft
-
-```text
-1학년 실습
-→ 카시안의 열·흐름 오용
-→ 교수 외곽 안전 회로
-→ 감각 중심 관찰 결과
-→ 선택형 회로 조사로 열·흐름 확인
-→ 조사 4개 중 2개
-→ 교수·카시안·모트 관점 확인
-→ 5개 해결 접근 선택
-→ 주문 초안·예상 효과
-→ 첫 시전
-→ 두 번째 균열과 재설계
-→ 최종 대응 또는 철수
-→ 결과·교수 개입 여부
-→ 마도서 기록
-```
+2~4줄의 감각과 실제 변화만 표시한다. 시스템은 원리·추천 주문·정답·성공률·결말을 설명하지 않는다.
 
 ---
 
@@ -276,12 +190,20 @@ approaches: 5
 solution_patterns_per_approach: 4
 total_reference_patterns: 20
 explicit_answer_menu: false
-reasonable_unlisted_solution: MEANING_BASED_EVALUATION
+reasonable_unlisted_solution: ALLOWED_BY_MEANING_AND_SITUATION_EVALUATION
 combat_is_mandatory: false
 single_true_ending: false
 ```
 
-기존 20개 패턴은 승인된 `흐름 메인` 문법을 사용한다. 새 Draft가 승인되면 `열 메인 + 흐름 경로` 문법으로 명시적으로 보정한다.
+대표 접근:
+
+1. 시설 복구
+2. 생존 확보
+3. 정령 안정화·교섭
+4. 현상 봉쇄
+5. 제압·시간 확보
+
+다른 합리적 방법도 허용한다. 판정은 교수 예시와의 일치가 아니라 글자 의미·출발점·경로·목표·대가·실제 상태 변화로 수행한다.
 
 ---
 
@@ -322,26 +244,27 @@ same_time_event_order: [MAIN, S1, S2, S3]
 ## 보호 경계
 
 ```text
-PROFESSOR_VERBALLY_NAMES_SOLUTION = PROHIBITED
+FACULTY_EXAMPLE_AS_ONLY_SOLUTION = PROHIBITED
+FACULTY_EXAMPLE_AS_GRADING_KEY = PROHIBITED
+PLAYER_REQUIRED_TO_COPY_FACULTY_CIRCUIT = PROHIBITED
+REASONABLE_UNLISTED_SOLUTION_REJECTED_BY_DEFAULT = PROHIBITED
 AUTOMATIC_GLYPH_RECOGNITION_OVERLAY = PROHIBITED
 OBSERVATION_RESULT_EXPLAINS_CAUSAL_SOLUTION = PROHIBITED
+PROFESSOR_VERBALLY_NAMES_SOLUTION = PROHIBITED
 PROFESSOR_CIRCUIT_COPY_BUTTON = PROHIBITED
 UNKNOWN_ADVANCED_GLYPH_AUTOMATICALLY_GRANTED = PROHIBITED
 UPPERCLASS_APPEARANCE_IN_FROSTBLOOM_EVENT = PROHIBITED
-CLASSMATE_ACCIDENT_AS_MALICIOUS_PRANK = PROHIBITED
-CLASSMATE_AS_PASSIVE_NUISANCE_ONLY = PROHIBITED
 HEAT_DELETES_COLD_WITHOUT_COST = PROHIBITED
 FACULTY_SOLVES_INTERNAL_OBJECTIVE = PROHIBITED
-SILENT_CANON_SUPERSESSION_BEFORE_APPROVAL = PROHIBITED
+SINGLE_TRUE_ENDING = PROHIBITED
 ```
 
 ---
 
 ## 다음 우선순위
 
-1. 조사형 `열·흐름` 확인과 감각 중심 관찰 결과 검토
-2. `열 메인 + 흐름 경로` Draft 검토
-3. 승인 시 20개 해결 패턴과 상위 Curriculum 정본 보정
-4. 상황 UX Wireframe
-5. 온실·정령·회로 Art Direction
-6. 승인 범위의 Codex 구현 명세
+1. 사건 UX Map.
+2. Mobile Landscape Wireframe.
+3. 온실·열 회로·서리 정령 Art Direction.
+4. 장면별 Asset Brief.
+5. 선택 범위의 Codex 구현 명세.
