@@ -4,7 +4,7 @@
 
 ```yaml
 sync_id: GR-SYNC-20260803-03
-status: EARLY_CHECKPOINT_APPROVED_CANON_AND_SHEET_DRIFT_CORRECTION_IN_PROGRESS
+status: EARLY_CHECKPOINT_READY_WHEN_CURRENT_PR_HEAD_REQUIRED_CHECKS_PASS_AWAITING_EXPLICIT_MERGE_APPROVAL
 decision_ids:
   - GM-STOCK-SYSTEM-01
   - GM-SUMMON-SYSTEM-01
@@ -21,20 +21,19 @@ early_checkpoint_reason: DIFF_SIZE_AND_CANON_DRIFT
 baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
 working_branch: agent/grimoire-stock-summon-detail-audit
 pull_request: 51
-last_verified_head_before_checkpoint_corrections: ba0a73cdf6760e23eb87da6222870485f2d8f650
-last_verified_ci_run: 30773199505
-last_verified_ahead: 68
+last_verified_pre_finalization_head: b9222dafc326b043fa6f2b3201af171e38c82b32
+last_verified_pre_finalization_ci_run: 30773920400
+last_verified_ahead: 72
 last_verified_behind: 0
 last_verified_changed_files: 27
 grill_counter: 6_of_10
 pending_decisions: 6
-sheet_readback: RECHECK_REQUIRED_AFTER_CHECKPOINT_WRITE
-sheet_text_integrity_sentinel: RECHECK_REQUIRED_AFTER_CHECKPOINT_WRITE
-pre_checkpoint_ci_gate: PASS
-pre_checkpoint_adversarial_gate: PASS
-pre_checkpoint_text_integrity_gate: PASS
-pre_checkpoint_review_threads: 0
-current_head_ci: REQUIRED_AFTER_ALL_CHECKPOINT_CORRECTIONS
+sheet_readback: PASS
+sheet_text_integrity_sentinel: PASS
+required_checks_authority: CURRENT_PR_HEAD
+current_pr_head_required_checks: REQUIRED
+current_pr_head_unresolved_threads: MUST_BE_0
+current_pr_head_blocking_reviews: MUST_BE_0
 merge_authorization: NOT_RECEIVED
 implementation: NOT_STARTED
 codex_execution: BLOCKED
@@ -143,7 +142,7 @@ adversarial_review: REQUIRED_AND_RECORDED
 - 두 Board의 주인공·메인 동반 정령·UI Frame이 연속된다.
 - 보조 3체는 상시 몸체가 아니라 배지·순간 FX로 표현된다.
 - 결과가 환경 변화로 연결된다.
-- `6/10`에서 새 기획을 멈추고 정본·Sheet 드리프트만 교정하므로 배치 범위가 더 커지지 않는다.
+- `6/10`에서 새 기획을 멈추고 정본·Sheet 드리프트만 교정했으므로 배치 범위가 더 커지지 않는다.
 
 ### 보호 경계
 
@@ -155,33 +154,35 @@ adversarial_review: REQUIRED_AND_RECORDED
 
 ## 10. Sheet Readback
 
-기존 승인 시 다음 탭에 같은 Decision·Sync ID를 기록하고 재조회했다.
+다음 범위를 같은 `GR-SYNC-20260803-03`으로 교정하고 재조회했다.
 
 ```text
-00·01·02·03·04·05·60·80·99
+00_프로젝트_허브 H2:K2
+01_작업순서 A33:J33
+04_누락_충돌_감사 A42:H42
+05_GDD_요약 H4:I4 / B7:J8
+40_핵심시스템_메인콘텐츠 D3:E3
+99_변경이력 A46:H46
 ```
 
-- `GM-INGAME-ART-CHECKPOINT-01`: PASS.
-- Board A·B 2장: PASS.
-- Grill `6/10`, pending `6`: PASS.
-- 비정본 자리표시자 경계: PASS.
-- 대체문자 검색: 0건.
+확인 결과:
+
+- 조기 체크포인트 `6/10`: PASS.
+- pending Decision `6`: PASS.
+- 새 Decision 증가 `0`: PASS.
+- 병합 미승인: PASS.
+- 기술 로드맵 최신화: PASS.
+- `GR-S-02` 메인 글자·보조 글자와 소환수 용어 분리: PASS.
+- 제품·Godot·Asset 변경 없음 및 NOT_RUN 경계: PASS.
 - 한글·기호 Readback: PASS.
 
-조기 체크포인트 교정에서는 다음을 같은 `GR-SYNC-20260803-03` 범위로 다시 기록한다.
-
-- PR #51 조기 체크포인트 승인과 병합 미승인 상태.
-- 최신 기술·로드맵 상태.
-- `GR-S-02`의 글자 조합과 소환수 용어 분리.
-- GitHub 최종 교정 HEAD·CI·Readback.
-
-## 11. 검증된 직전 HEAD
+## 11. 최종화 직전 검증 HEAD
 
 ```text
-HEAD ba0a73cdf6760e23eb87da6222870485f2d8f650
-→ main ahead 68 / behind 0
+HEAD b9222dafc326b043fa6f2b3201af171e38c82b32
+→ main ahead 72 / behind 0
 → changed files 27
-→ CI run 30773199505 PASS
+→ CI run 30773920400 PASS
 → Generator PASS
 → Unit PASS
 → JSON PASS
@@ -191,7 +192,7 @@ HEAD ba0a73cdf6760e23eb87da6222870485f2d8f650
 → Reviews 0
 ```
 
-이 조기 체크포인트 교정으로 HEAD가 전진하므로 모든 GitHub·Sheet 수정이 끝난 현재 PR HEAD에서 동일 Gate를 다시 확인해야 한다.
+최종화 문서 Commit 이후에는 GitHub PR의 현재 HEAD Required Checks를 다시 조회한다. 문서에는 고정된 과거 HEAD를 최종 권위로 쓰지 않고 `CURRENT_PR_HEAD`를 검사 권위로 둔다.
 
 ## 12. 조기 체크포인트 계약
 
@@ -213,20 +214,21 @@ forbidden_changes:
   - MERGE_WITHOUT_EXPLICIT_APPROVAL
 ```
 
-완료 순서:
+체크포인트 Ready 조건:
 
 ```text
-GitHub 정본 교정
-→ Sheet 상태·용어 교정
-→ 양쪽 Readback
-→ 현재 PR HEAD CI·Adversarial·Text Integrity
-→ 사용자에게 결과와 Commit 보고
+현재 PR HEAD
+→ Generator·Unit·JSON·Text Integrity PASS
+→ Adversarial Gate PASS
+→ unresolved thread 0
+→ blocking review 0
+→ mergeable true
 → 사용자 명시 병합 승인 대기
 ```
 
 ## 13. 다음 Gate
 
-PR #51 체크포인트를 닫고 사용자 명시 병합 승인을 받은 뒤에만 다음 기획으로 이동한다.
+PR #51 체크포인트 병합과 main·Sheet 최종화를 완료한 뒤에만 다음 기획으로 이동한다.
 
 ```text
 GM-MOBILE-SUMMON-HUD-WIREFRAME-01 사용자 명세 검토
