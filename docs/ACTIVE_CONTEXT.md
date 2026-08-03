@@ -8,7 +8,8 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: NONE
+working_branch: agent/foundation-poc-readiness-review
+pull_request: 57
 primary_platform: Mobile
 follow_up_platform: PC
 mobile_orientation: LANDSCAPE_FIXED
@@ -16,27 +17,24 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
 work_mode: PLAN
 base_release: v9.4.3
-main_authority: CURRENT_DEFAULT_BRANCH_HEAD_AFTER_PR56
+main_authority: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
 last_main_sync: GR-SYNC-20260803-06
-last_working_sync: GR-SYNC-20260803-05
-last_decision_pull_request: 54
-last_decision_merge_commit: bf964063b3fa35413f9e5efb07ad831f1617c412
-last_finalization_pull_request: 55
-last_finalization_merge_commit: f693089a76138d6f061591e011bcb6c098f14dc5
-sheet_readback_pull_request: 56
-grill_counter: 0_of_10
-pending_distinct_decisions: 0
-mobile_summon_hud_spec: USER_APPROVED_HARDENED_SPEC_ACTIVE
-mobile_summon_hud_tdd_plan: WRITTEN_NOT_EXECUTED
-sheet_readback: PASS
-sheet_sentinel: PASS
-next_priority: GODOT_TOOLCHAIN_PREFLIGHT_AND_BASE_V9_4_3_PLAN_REVALIDATION
+current_working_sync: GR-SYNC-20260803-07
+current_decision_id: GM-FOUNDATION-POC-EXECUTION-READINESS-01
+selected_approach: B_STAGE_0_PREFLIGHT_BOOTSTRAP
+stage_0_design_scope: USER_APPROVED
+stage_0_written_spec: READY_FOR_USER_REVIEW
+stage_0_implementation_plan: NOT_WRITTEN
+stage_0_diagnostic_code: NOT_STARTED
+grill_counter: 1_of_10
+pending_distinct_decisions: 1
+execution_readiness: FAIL_CLOSED_REMEDIATION_REQUIRED
 p0_open: 0
-p1_open: 2
+p1_blocking: 4
 implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
+foundation_poc_build_authorization: NOT_GRANTED
 implementation: NOT_STARTED
-codex_plan: WRITTEN_NOT_EXECUTED
-codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
+codex_execution: BLOCKED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -49,18 +47,14 @@ human_validation: NOT_RUN
 1. `AGENTS.md`.
 2. `START_HERE.md`.
 3. 이 문서.
-4. `docs/DEVELOPMENT_GATES.md`.
-5. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
-6. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
-7. `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`.
-8. `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_USER_SPEC_REVIEW_2026-08-03.md`.
-9. `docs/superpowers/specs/2026-08-03-three-slot-mobile-summon-hud-design.md`.
-10. `docs/superpowers/plans/2026-08-03-three-slot-mobile-summon-hud-implementation-plan.md`.
-11. `docs/planning/MOBILE_SUMMON_HUD_01_TDD_TEST_MATRIX_2026-08-03.md`.
-12. `docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md`.
-13. `docs/planning/benchmarks/MOBILE_SUMMON_HUD_WIREFRAME_STANDARD_BENCHMARK_2026-08-03.md`.
-14. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`.
-15. `docs/planning/sync/GR-SYNC-20260803-06-MAIN.md`.
+4. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
+5. `docs/planning/FOUNDATION_POC_STAGE_0_PREFLIGHT_BOOTSTRAP_APPROVAL_2026-08-03.md`.
+6. `docs/superpowers/specs/2026-08-03-foundation-poc-stage-0-preflight-bootstrap-design.md`.
+7. `docs/planning/FOUNDATION_POC_EXECUTION_READINESS_01_ADVERSARIAL_REVIEW_2026-08-03.md`.
+8. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
+9. `docs/DEVELOPMENT_GATES.md`.
+10. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
+11. `docs/planning/sync/GR-SYNC-20260803-06-MAIN.md`.
 
 ## 플레이어 약속
 
@@ -76,7 +70,9 @@ human_validation: NOT_RUN
 → 마도서 기록·복기
 ```
 
-## Stock 최신 계약
+## 기존 확정 시스템 계약
+
+### Stock
 
 ```yaml
 stock_types: [FULL_SPELL, SUB_GLYPH]
@@ -88,12 +84,7 @@ stock_use_mana_cost: 0
 offline_charge: false
 ```
 
-- 지정 대상 1종만 자연충전한다.
-- 충전 대상 전환 시 대상별 진행도를 보존한다.
-- 소환수 `[스톡] N`은 5초마다 현재 지정 Stock 남은 시간을 `N초` 감소시킨다.
-- 초과 감소량 이월·자동 대상 변경·Offline 충전을 금지한다.
-
-## 소환수 최신 계약
+### Summon
 
 ```yaml
 persistent_main_summon: 1
@@ -105,82 +96,129 @@ summon_duration_limit: NONE
 resummon_cooldown: NONE
 summon_spell_mana_cost: 2
 support_cycle_seconds: 5
+same_time_event_order: [MAIN, S1, S2, S3]
 ```
 
-- 보조 역할은 `PRODUCTION / GUARDIAN / ASSAULT / RECOVERY`다.
-- 보조 사이 역할 중복을 금지한다.
-- 같은 시각 Event는 `MAIN → S1 → S2 → S3`다.
-- 자동 공격은 불안정도 `1` 아래·마지막 해결 Event를 만들 수 없다.
+### State·Ledger·Save
 
-## State·Ledger·Save
-
-- 보조 상태는 `secondary_summon_states` 배열로 저장하며 최대 3개다.
-- `slot_id`와 보조 `primary_role`은 각각 유일하다.
-- `[소환 주문]`의 마나 차감·교체·활성은 한 Transaction이다.
-- Stock 소비와 효과 적용도 한 Transaction이다.
-- 소환수 행동은 고유 `summon_event_id`로 정확히 한 번만 적용한다.
+- 보조 `slot_id`와 `primary_role`은 Slice에서 각각 유일하다.
+- 소환·교체·마나·활성은 한 Transaction이다.
+- Stock 소비와 결과 적용은 한 Transaction이다.
+- Exactly-once 소유자는 `ResultLedger`다.
 - 손상 Snapshot은 자동 덮어쓰지 않는다.
-- Background·Offline 경과로 행동·충전 지원을 생성하지 않는다.
+- Background·Offline 경과로 공격·치유·Stock 지원을 생성하지 않는다.
 
-## Mobile Summon HUD 확정 계약
+### Mobile Summon HUD
 
 ```yaml
 layout: LEFT_SAFE_AREA_VERTICAL_COMPACT_RAIL
 slot_order: [MAIN, S1, S2, S3]
 detail: ONE_CONTEXTUAL_DRAWER
-writing_focus_detail: READ_ONLY_MICRO_DETAIL
 drawer_read_pauses_clock: false
 management_confirmation_pauses_clock: true
 management_entry_requires_safe_draft: true
-same_time_event_resolution: ATOMIC_DETERMINISTIC_MAIN_S1_S2_S3
 same_time_event_presentation_budget_seconds_total: 1.2_TEST_VALUE
 text_scale_tests: [1.00, 1.30, ANDROID_MAX_2.00]
 timer_announcement: FOCUS_OR_MEANINGFUL_CHANGE_ONLY
 active_stroke_owner: WRITING_CANVAS
 event_dedup_owner: RESULT_LEDGER
-nullable_empty_error_view_model: true
 hud_mutates_gameplay_state: false
 ```
 
-항상 표시:
+Mobile HUD TDD Plan과 Test Matrix는 `WRITTEN_NOT_EXECUTED`다.
 
-- Stock 준비 용량 `현재/8`.
-- 현재 충전 대상·수량·남은 초.
-- 활성 `[스톡]` 합계.
-- 메인·보조 3슬롯 역할·대표 정수·다음 행동 초·상태.
-- 적 의도·불안정도·환경·HP·마나.
-- Writing Panel과 Commit.
-
-## 병합·검증 증거
+## 현재 Readiness 적대적 검토
 
 ```yaml
-pr54_head: 5f0689d78f60fa5bdfe8b33d71a874ecf453b120
-pr54_merge: bf964063b3fa35413f9e5efb07ad831f1617c412
-pr54_ci_run: 30815546367
-pr55_merge: f693089a76138d6f061591e011bcb6c098f14dc5
-pr55_ci_run: 30816905584
-generator: PASS
-unit_tests: PASS
-json_parse: PASS
-utf8_nfc: PASS
-adversarial_gate: PASS
-sheet_readback: PASS
-sheet_sentinel: PASS
+base_v9_4_3_identity: PASS
+planning_ci_at_review_head: PASS
+circular_preflight_gate: P1_BLOCKING
+official_engine_pin: UNVERIFIED
+godot_binary_and_runtime: NOT_RUN
+export_templates_and_android: NOT_RUN
+canon_reference_freshness: FAIL
+foundation_plan_revalidation: NOT_RUN
+execution_readiness: FAIL_CLOSED
 ```
 
-## 잔여 P1
+순환 잠금은 기존 Foundation POC 계획의 Task 1이 Toolchain 증거를 만들면서도 Readiness PASS 전 실행 금지에 포함된 데서 발생했다.
 
-1. Godot Toolchain preflight.
-2. Base v9.4.3 최종 main 기준 Plan 재검증과 `GM-FOUNDATION-POC-EXECUTION-READINESS-01`.
+## 사용자 승인 Stage 0
+
+Decision: `GM-FOUNDATION-POC-EXECUTION-READINESS-01 / B_STAGE_0_PREFLIGHT_BOOTSTRAP`.
+
+작성 명세 검토와 후속 TDD 계획 승인 뒤 허용 가능한 진단 패키지:
+
+```text
+tools/check_godot_toolchain.py
+tests/test_foundation_preflight_contract.py
+.github/workflows/validate-godot-preflight.yml
+docs/validation/GODOT_TOOLCHAIN_PREFLIGHT_REPORT.md
+```
+
+필수 특성:
+
+- 실제 binary와 테스트 대역 증거 분리.
+- 공식 source 확인 후 exact engine pin.
+- Headless·renderer startup·template·Android 상태 기록.
+- Renderer probe가 필요하면 저장소 밖 임시 프로젝트만 사용하고 완전 삭제.
+- 저장소 제품 경로와 `.godot/` 생성 금지.
+- 진단 실패·미설치·네트워크 차단을 PASS로 승격 금지.
+- 정본·Adapter·생성물 최신성 해소.
+- Base v9.4.3 계획 읽기 전용 재검수.
+
+## 금지 범위
+
+```text
+project.godot
+.godot/**
+src/**
+scenes/**
+addons/**
+data/**
+assets/**
+content/**
+ml/**
+training-data/**
+```
+
+Stage 0 완료도 Foundation POC 제품 구현을 자동 허가하지 않는다.
+
+## 증거 상태
+
+```yaml
+review_pr: 57
+review_head_before_approval: 117f4a33ce5ec3ae01e3c734fcf6f6409cee5e2a
+review_ci_run: 30819176521
+review_generator: PASS
+review_unit_tests: PASS
+review_json_parse: PASS
+review_utf8_nfc: PASS
+review_adversarial_gate: PASS
+review_sheet_readback: PASS
+approval_branch_head_verification: PENDING
+```
+
+## 다음 작업
+
+1. 사용자가 작성 명세 `docs/superpowers/specs/2026-08-03-foundation-poc-stage-0-preflight-bootstrap-design.md`를 검토한다.
+2. 승인 후 `writing-plans`로 Stage 0 TDD 구현 계획을 작성한다.
+3. 별도 실행 승인 전에는 진단 코드와 Workflow를 만들지 않는다.
+4. 실제 Toolchain 증거와 정본 최신성 PASS 뒤 Readiness를 재판정한다.
+5. Foundation POC 제품 구현은 별도 Scope 결정으로 남긴다.
 
 ## 검증 경계
 
 ```text
+STAGE_0_DESIGN_SCOPE = USER_APPROVED
+STAGE_0_WRITTEN_SPEC = READY_FOR_USER_REVIEW
+STAGE_0_IMPLEMENTATION_PLAN = NOT_WRITTEN
+STAGE_0_DIAGNOSTIC_CODE = NOT_STARTED
+OFFICIAL_ENGINE_PIN = UNVERIFIED
+GODOT_BINARY = NOT_RUN
 GODOT_PROJECT = NOT_STARTED
 PRODUCT_CODE = NOT_STARTED
-MOBILE_SUMMON_HUD_SPEC = USER_APPROVED_HARDENED_SPEC_ACTIVE
-MOBILE_SUMMON_HUD_TDD_PLAN = WRITTEN_NOT_EXECUTED
-MOBILE_SUMMON_HUD_IMPLEMENTATION = NOT_AUTHORIZED
+FOUNDATION_POC_BUILD_AUTHORIZATION = NOT_GRANTED
 CODEX_EXECUTION = BLOCKED
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
