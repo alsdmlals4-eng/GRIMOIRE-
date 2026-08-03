@@ -8,7 +8,8 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: NONE
+working_branch: agent/foundation-poc-readiness-review
+working_pull_request: 57
 primary_platform: Mobile
 follow_up_platform: PC
 orientation: LANDSCAPE_FIXED
@@ -16,22 +17,21 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
 work_mode: PLAN
 base_release: v9.4.3
-main_authority: CURRENT_DEFAULT_BRANCH_HEAD_AFTER_PR56
-last_decision_pull_request: 54
-last_decision_head: 5f0689d78f60fa5bdfe8b33d71a874ecf453b120
-last_decision_merge_commit: bf964063b3fa35413f9e5efb07ad831f1617c412
-last_finalization_pull_request: 55
-last_finalization_merge_commit: f693089a76138d6f061591e011bcb6c098f14dc5
-sheet_readback_pull_request: 56
-last_working_sync: GR-SYNC-20260803-05
+main_authority: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
 current_main_sync: GR-SYNC-20260803-06
-grill_me_batch_counter: 0/10
-pending_decisions: 0
-last_checkpoint: PR54_MERGED_AND_FINALIZED_SHEET_READBACK_PASS
-checkpoint_reason: USER_MERGE_APPROVAL_CANON_FINALIZATION_AND_READBACK
+current_working_sync: GR-SYNC-20260803-07
+current_decision: GM-FOUNDATION-POC-EXECUTION-READINESS-01
+selected_approach: B_STAGE_0_PREFLIGHT_BOOTSTRAP
+grill_me_batch_counter: 1/10
+pending_decisions: 1
+stage_0_design_scope: USER_APPROVED
+stage_0_written_spec: READY_FOR_USER_REVIEW
+stage_0_implementation_plan: NOT_WRITTEN
+stage_0_diagnostic_code: NOT_STARTED
+execution_readiness: FAIL_CLOSED_REMEDIATION_REQUIRED
+foundation_poc_build_authorization: NOT_GRANTED
 implementation: NOT_STARTED
-codex_plan: WRITTEN_NOT_EXECUTED
-codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
+codex_execution: BLOCKED
 ```
 
 현재 브랜치·pending Decision·카운터의 기계 권위는 `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`이다.
@@ -58,16 +58,18 @@ Sheet 단독 값이나 외부 사례는 승인 Decision과 상태가 없으면 �
 AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
+→ docs/planning/GRILL_ME_BATCH_MERGE_STATE.json
+→ docs/planning/FOUNDATION_POC_STAGE_0_PREFLIGHT_BOOTSTRAP_APPROVAL_2026-08-03.md
+→ docs/superpowers/specs/2026-08-03-foundation-poc-stage-0-preflight-bootstrap-design.md
+→ docs/planning/FOUNDATION_POC_EXECUTION_READINESS_01_ADVERSARIAL_REVIEW_2026-08-03.md
+→ docs/planning/sync/GR-SYNC-20260803-07-WORKING.md
 → docs/DEVELOPMENT_GATES.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
-→ docs/planning/GRILL_ME_BATCH_MERGE_STATE.json
-→ docs/planning/GRILL_WORK_BENCHMARK_TEXT_INTEGRITY_01_APPROVAL_2026-08-03.md
-→ docs/planning/PROJECT_BENCHMARKING_POLICY.md
 → 질문 주제의 승인 책임 원본
 → docs/planning/sync/GR-SYNC-20260803-06-MAIN.md
 ```
 
-GitHub·Sheet 조회로 해결되는 사실을 사용자에게 다시 묻지 않는다. 확정된 결정은 기억 확인 목적으로 재질문하지 않는다.
+GitHub·Sheet 조회로 해결되는 사실을 사용자에게 다시 묻지 않는다. 확정된 결정을 기억 확인 목적으로 재질문하지 않는다.
 
 ## 4. Base 계약
 
@@ -81,9 +83,10 @@ registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c5
 ```
 
 - `skills/PROJECT_BASE_ADAPTER.json`만 편집 가능한 프로젝트 통합 권위다.
-- 생성물은 직접 편집하지 않고 `tools/generate_project_operating_views.py`로 검사한다.
+- 생성물은 직접 편집하지 않고 `tools/generate_project_operating_views.py`로 갱신·검사한다.
 - Base Skill 본문을 프로젝트에 복제하지 않는다.
-- Trigger에 맞는 최소 Skill을 사용하되 필수 품질 Gate는 생략하지 않는다.
+- Trigger에 맞는 최소 Skill을 사용하되 필수 품질 Gate를 생략하지 않는다.
+- Codex Plan은 읽기 전용이며, Codex Build는 별도 승인 Scope에서만 실행한다.
 
 ## 5. 모든 GrillMe·실질 작업의 필수 루프
 
@@ -119,6 +122,8 @@ registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c5
 - 제작량·QA·콘텐츠 비용이 숨겨지지 않았는가.
 - GitHub와 Sheet가 동일 Decision·Sync ID를 가지는가.
 - 실행하지 않은 검증을 PASS로 표시하지 않았는가.
+- 진단 테스트 대역을 실제 Toolchain 증거로 오인하지 않았는가.
+- 임시 probe가 저장소나 호스트 설정을 오염시키지 않는가.
 
 ## 7. Text Integrity Gate
 
@@ -166,7 +171,7 @@ Decision ID
 → Counter Reset 또는 유지
 ```
 
-같은 Decision ID의 재승인·문구·SHA 교정은 카운트하지 않는다. `GM-MOBILE-SUMMON-HUD-WIREFRAME-01` 사용자 명세 보강은 같은 Decision ID 재승인이므로 Counter는 `0/10`을 유지한다.
+같은 Decision ID의 재승인·문구·SHA 교정은 카운트하지 않는다. 이번 `GM-FOUNDATION-POC-EXECUTION-READINESS-01 / B_STAGE_0_PREFLIGHT_BOOTSTRAP`은 이전 미승인 후보를 새로 승인한 고유 Decision이므로 Counter를 `1/10`으로 올리고 pending에 유지한다.
 
 ## 9. 승인된 프로젝트 코어
 
@@ -224,7 +229,17 @@ support_cycle_seconds: 5
 - 자동 공격은 불안정도 `1` 아래 또는 마지막 해결 Event를 만들 수 없다.
 - 같은 시각 Event는 `MAIN → S1 → S2 → S3`다.
 
-## 12. Mobile Summon HUD 확정 계약
+## 12. State·Ledger·Save 계약
+
+- 보조 상태는 최대 3개의 `secondary_summon_states` 배열이다.
+- 보조 `slot_id`와 `primary_role`은 각각 유일하다.
+- `[소환 주문]`의 마나·교체·활성은 한 Transaction이다.
+- Stock 소비와 주문 결과 적용은 한 Transaction이다.
+- `summon_event_id`와 `stock_charge_event_id`는 `ResultLedger`가 exactly-once를 소유한다.
+- 손상 Snapshot은 자동 덮어쓰지 않는다.
+- Background·Offline 경과로 공격·치유·Stock 지원을 생성하지 않는다.
+
+## 13. Mobile Summon HUD 확정 계약
 
 책임 원본:
 
@@ -238,11 +253,10 @@ support_cycle_seconds: 5
 layout: LEFT_SAFE_AREA_VERTICAL_COMPACT_RAIL
 slot_order: [MAIN, S1, S2, S3]
 detail: ONE_CONTEXTUAL_DRAWER
-writing_focus_detail: READ_ONLY_MICRO_DETAIL
 drawer_read_pauses_clock: false
 management_confirmation_pauses_clock: true
 management_entry_requires_safe_draft: true
-same_time_event_resolution: ATOMIC_DETERMINISTIC
+same_time_event_resolution: ATOMIC_DETERMINISTIC_MAIN_S1_S2_S3
 same_time_event_presentation_budget_seconds_total: 1.2_TEST_VALUE
 text_scale_tests: [1.00, 1.30, ANDROID_MAX_2.00]
 timer_announcement: FOCUS_OR_MEANINGFUL_CHANGE_ONLY
@@ -251,32 +265,65 @@ event_dedup_owner: RESULT_LEDGER
 hud_mutates_gameplay_state: false
 ```
 
-- Active Stroke 중 Rail 접촉은 선택·Focus 이동·귀환·교체를 발생시키지 않는다.
-- 빈 슬롯·오류 슬롯은 nullable ViewModel과 `timing_mode: NONE`을 사용한다.
-- 전체 동시 Event 표시 예산은 `1.2초 TEST_VALUE`이며 슬롯별 누적이 아니다.
-- TDD 계획과 Test Matrix는 작성됐지만 실행되지 않았다.
+Mobile HUD TDD 계획과 Test Matrix는 작성됐지만 실행되지 않았다.
 
-## 13. 현재 허용·금지
+## 14. Stage 0 Preflight Bootstrap 확정 범위
 
-허용:
+책임 원본:
 
-- 기획·정본·Benchmark·TDD 계획·Test Matrix 작성.
-- Godot Toolchain preflight 계획 및 증거 수집.
-- Base v9.4.3 최종 main 기준 계획 재검증.
-- Execution Readiness Gate 판정 문서 작성.
+- `docs/planning/FOUNDATION_POC_STAGE_0_PREFLIGHT_BOOTSTRAP_APPROVAL_2026-08-03.md`.
+- `docs/superpowers/specs/2026-08-03-foundation-poc-stage-0-preflight-bootstrap-design.md`.
+- `docs/planning/FOUNDATION_POC_EXECUTION_READINESS_01_ADVERSARIAL_REVIEW_2026-08-03.md`.
 
-금지:
+사용자가 `B_STAGE_0_PREFLIGHT_BOOTSTRAP` 설계 범위를 승인했다.
 
-- Execution Readiness PASS 전 Godot 프로젝트 생성과 제품 코드 실행.
-- Mobile Summon HUD 실제 구현·Scene·Resource·Asset 제작.
+향후 작성 명세 검토와 TDD 계획 승인 뒤 허용 가능한 진단 패키지:
+
+```text
+tools/check_godot_toolchain.py
+tests/test_foundation_preflight_contract.py
+.github/workflows/validate-godot-preflight.yml
+docs/validation/GODOT_TOOLCHAIN_PREFLIGHT_REPORT.md
+```
+
+필수 계약:
+
+- 공식 source 확인 후 exact engine pin.
+- 실제 binary와 테스트 대역 증거 분리.
+- Headless·renderer startup·matching templates·Android 상태 기록.
+- Renderer probe가 프로젝트 문맥을 요구하면 저장소 밖 임시 디렉터리만 사용한다.
+- 임시 probe project와 cache는 성공·실패·timeout 후 삭제한다.
+- 저장소 제품 경로와 `.godot/` 생성은 범위 위반이다.
+- 정본·Adapter·생성물 최신성 PASS가 필요하다.
+- Base v9.4.3 Implementation Plan 재검수는 Codex Plan 읽기 전용으로 수행한다.
+
+## 15. 현재 허용·금지
+
+현재 허용:
+
+- Stage 0 작성 설계 명세 검토와 문서 정합화.
+- Google Sheet와 GitHub의 같은 Decision·Sync ID 동기화.
+- 후속 사용자 승인 뒤 Stage 0 TDD 구현 계획 작성.
+
+현재 금지:
+
+- 사용자 작성 명세 검토 전 Stage 0 구현 계획 작성.
+- 별도 실행 승인 전 진단 Script·Workflow 생성.
+- `project.godot`, `.godot/**`, `src/**`, `scenes/**`, `addons/**`, 제품 데이터·Asset·콘텐츠 생성.
+- Foundation POC 런타임·Mobile HUD 구현.
 - 실제 Glyph Recognition·ML·최종 Art·Audio·전체 Vertical Slice 제작.
 - Runtime·Device·Performance·Accessibility·Human 검증을 실행 없이 PASS 처리.
 
 ```text
-PRODUCT_IMPLEMENTATION = NOT_STARTED
+STAGE_0_DESIGN_SCOPE = USER_APPROVED
+STAGE_0_WRITTEN_SPEC = READY_FOR_USER_REVIEW
+STAGE_0_IMPLEMENTATION_PLAN = NOT_WRITTEN
+STAGE_0_DIAGNOSTIC_CODE = NOT_STARTED
+OFFICIAL_ENGINE_PIN = UNVERIFIED
+GODOT_BINARY = NOT_RUN
 GODOT_PROJECT = NOT_STARTED
-MOBILE_SUMMON_HUD_IMPLEMENTATION = NOT_AUTHORIZED
-TDD_PLAN = WRITTEN_NOT_EXECUTED
+PRODUCT_IMPLEMENTATION = NOT_STARTED
+FOUNDATION_POC_BUILD_AUTHORIZATION = NOT_GRANTED
 CODEX_EXECUTION = BLOCKED
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
@@ -285,10 +332,10 @@ ACCESSIBILITY_VALIDATION = NOT_RUN
 HUMAN_VALIDATION = NOT_RUN
 ```
 
-## 14. 다음 작업
+## 16. 다음 작업
 
-1. Godot Toolchain preflight.
-2. Base v9.4.3 최종 main 기준 Implementation Plan 재검증.
-3. `GM-FOUNDATION-POC-EXECUTION-READINESS-01` 판정.
-
-P0는 `0`, 남은 P1은 `2`다.
+1. 사용자가 `docs/superpowers/specs/2026-08-03-foundation-poc-stage-0-preflight-bootstrap-design.md`를 검토한다.
+2. 승인 뒤 `writing-plans`로 Stage 0 TDD 구현 계획을 작성한다.
+3. 구현 계획과 Scope를 별도 승인하기 전에는 진단 코드도 생성하지 않는다.
+4. 실제 Toolchain 증거·정본 최신성·Base Plan 재검수 뒤 Execution Readiness를 재판정한다.
+5. Foundation POC 제품 구현은 별도 Scope 결정으로 남긴다.
