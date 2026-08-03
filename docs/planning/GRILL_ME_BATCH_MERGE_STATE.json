@@ -13,7 +13,7 @@
     "merge_required": true,
     "merge_trigger": "WORK_HANDOFF_FLUSH",
     "merge_authorized": false,
-    "authorization_state": "AWAITING_USER_MERGE_APPROVAL_AFTER_PR_VERIFICATION",
+    "authorization_state": "AWAITING_USER_MERGE_APPROVAL_AFTER_FINAL_HEAD_VERIFICATION",
     "pending_decision_ids": []
   },
   "counting_rule": {
@@ -33,7 +33,7 @@
     "DIFF_SIZE_OR_CANON_DRIFT_CHECKPOINT"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "REQUIRED_FOR_CURRENT_PR_HEAD_BEFORE_MERGE",
+  "pre_merge_gate_status": "PRE_FINALIZATION_HEAD_PASS_FINAL_HEAD_CI_REQUIRED",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
     "approved_at": "2026-08-03T09:18:00+09:00",
@@ -61,7 +61,7 @@
     "pending_decisions_after_reset": 0
   },
   "current_work": {
-    "status": "USER_SPEC_REVIEW_APPROVED_TDD_PLAN_WRITTEN_AWAITING_PR_VERIFICATION_AND_MERGE_APPROVAL",
+    "status": "SPEC_REVIEW_APPROVED_TDD_PLAN_WRITTEN_SHEET_READBACK_PASS_AWAITING_FINAL_HEAD_CI_AND_USER_MERGE_APPROVAL",
     "decision_id": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01",
     "review_id": "GR-REVIEW-MOBILE-SUMMON-HUD-20260803-01",
     "approved_at": "2026-08-03T21:11:00+09:00",
@@ -71,7 +71,22 @@
     "main_sync_id": "GR-SYNC-20260803-04",
     "working_branch": "agent/mobile-summon-hud-spec-hardening",
     "working_sync_id": "GR-SYNC-20260803-05",
-    "pull_request": "TO_BE_RECORDED_IN_PR_METADATA_AND_SHEET",
+    "pull_request": 54,
+    "pull_request_state": "OPEN_DRAFT_NOT_MERGED",
+    "pre_finalization_head": "c1df7ea97b3068870b8fde22e23195a3e0d416e8",
+    "pre_finalization_ci_run": 30814628515,
+    "pre_finalization_ci_status": "PASS",
+    "pre_finalization_gates": {
+      "adapter_generator": "PASS",
+      "unit_tests": "PASS",
+      "json_parse": "PASS",
+      "utf8_nfc_text_integrity": "PASS",
+      "adversarial_gate": "PASS"
+    },
+    "final_head_ci_authority": "PR_54_EXACT_HEAD_CHECKS",
+    "review_threads": 0,
+    "reviews": 0,
+    "comments": 0,
     "benchmark_id": "GR-BM-MOBILE-SUMMON-HUD-20260803-01",
     "benchmark_status": "COMPLETE_HARDENED_AFTER_USER_SPEC_REVIEW",
     "spec_status": "USER_APPROVED_HARDENED_SPEC_ACTIVE",
@@ -82,12 +97,7 @@
     "next_priority_after_merge": "GODOT_TOOLCHAIN_PREFLIGHT_AND_BASE_V9_4_3_PLAN_REVALIDATION",
     "mobile_summon_hud": {
       "layout": "LEFT_SAFE_AREA_VERTICAL_COMPACT_RAIL",
-      "slot_order": [
-        "MAIN",
-        "S1",
-        "S2",
-        "S3"
-      ],
+      "slot_order": ["MAIN", "S1", "S2", "S3"],
       "detail": "ONE_CONTEXTUAL_DRAWER",
       "writing_focus_detail": "READ_ONLY_MICRO_DETAIL",
       "drawer_read_pauses_clock": false,
@@ -97,26 +107,14 @@
       "same_time_event_presentation_budget_seconds_total": "1.2_TEST_VALUE",
       "android_min_touch_dp": 48,
       "ios_min_touch_pt": 44,
-      "required_text_scale_cases": [
-        "1.00",
-        "1.30",
-        "ANDROID_MAX_2.00"
-      ],
+      "required_text_scale_cases": ["1.00", "1.30", "ANDROID_MAX_2.00"],
       "timer_accessibility_announcement": "ON_FOCUS_OR_MEANINGFUL_CHANGE_ONLY",
       "active_stroke_owner": "WRITING_CANVAS",
       "event_dedup_owner": "RESULT_LEDGER",
       "nullable_empty_error_view_model": true,
-      "timing_mode": [
-        "PERSISTENT",
-        "CYCLIC",
-        "NONE"
-      ],
+      "timing_mode": ["PERSISTENT", "CYCLIC", "NONE"],
       "safe_area_runtime_query": true,
-      "aspect_ratio_tests": [
-        "16:9",
-        "19.5:9",
-        "20:9"
-      ],
+      "aspect_ratio_tests": ["16:9", "19.5:9", "20:9"],
       "hud_mutates_gameplay_state": false
     },
     "planning_remainder": {
@@ -135,9 +133,10 @@
     "codex_plan": "WRITTEN_AWAITING_MERGE_AND_READINESS_REVALIDATION",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_sync": "PENDING_PR_NUMBER_AND_FINAL_HEAD_WRITE",
-    "sheet_readback": "PENDING",
-    "sheet_text_integrity_sentinel": "PENDING"
+    "sheet_sync": "PASS_PR54_PRE_FINALIZATION_HEAD_RECORDED",
+    "sheet_readback": "PASS",
+    "sheet_text_integrity_sentinel": "PASS",
+    "sheet_sentinels": ["소환수", "자연충전", "적대적 검토", "벤치마킹", "마도서"]
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
