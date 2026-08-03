@@ -8,7 +8,7 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: agent/grimoire-stock-summon-detail-audit
+working_branch: NONE
 primary_platform: Mobile
 follow_up_platform: PC
 mobile_orientation: LANDSCAPE_FIXED
@@ -16,19 +16,21 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
 work_mode: PLAN
 base_release: v9.4.3
-baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
-last_main_sync: GR-SYNC-20260802-24
-current_working_sync: GR-SYNC-20260803-03
-current_pull_request: 51
-current_decisions:
+main_authority: CURRENT_DEFAULT_BRANCH_HEAD
+last_main_sync: GR-SYNC-20260803-04
+last_working_sync: GR-SYNC-20260803-03
+last_merged_pull_request: 51
+last_decision_merge_commit: 81852a767d60eb2aa835ac3e36309f1dc43c861d
+last_merged_decisions:
   - GM-STOCK-SYSTEM-01
   - GM-SUMMON-SYSTEM-01
   - GM-STOCK-SUMMON-STATE-INTERFACE-01
   - GM-GRILL-WORK-QUALITY-GATE-01
   - GM-MOBILE-SUMMON-HUD-WIREFRAME-01
   - GM-INGAME-ART-CHECKPOINT-01
-grill_counter: 6_of_10
-pending_decisions: 6
+grill_counter: 0_of_10
+pending_decisions: 0
+next_priority: GM-MOBILE-SUMMON-HUD-WIREFRAME-01_USER_SPEC_REVIEW
 implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
 implementation: NOT_STARTED
 codex_plan: ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS
@@ -60,7 +62,8 @@ human_validation: NOT_RUN
 16. `docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md`
 17. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`
 18. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-19. `docs/planning/sync/GR-SYNC-20260803-03-WORKING.md`
+19. `docs/planning/sync/GR-SYNC-20260803-04-MAIN.md`
+20. `docs/planning/sync/GR-SYNC-20260803-03-WORKING.md`
 
 ## 플레이어 약속
 
@@ -280,6 +283,20 @@ Readback sentinel:
 - 목표 `46분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
 - 대표 글자 `흐름 / 집중 / 분산`.
 - 대표 제작 권장: `촉매 배합·안정화 1개`.
+
+## 최근 병합
+
+```yaml
+working_sync: GR-SYNC-20260803-03
+main_sync: GR-SYNC-20260803-04
+decision_merge_pull_request: 51
+decision_merge_commit: 81852a767d60eb2aa835ac3e36309f1dc43c861d
+merged_decision_count: 6
+batch_counter_reset: true
+pending_decisions_after_merge: 0
+product_code_changed: false
+scene_resource_asset_changed: false
+```
 
 ## 구현 진입
 
