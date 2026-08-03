@@ -13,7 +13,7 @@
     "merge_required": true,
     "merge_trigger": "DIFF_SIZE",
     "merge_authorized": false,
-    "authorization_state": "EARLY_CHECKPOINT_APPROVED_AWAITING_EXPLICIT_MERGE_APPROVAL",
+    "authorization_state": "EARLY_CHECKPOINT_READY_AWAITING_EXPLICIT_MERGE_APPROVAL",
     "pending_decision_ids": [
       "GM-STOCK-SYSTEM-01",
       "GM-SUMMON-SYSTEM-01",
@@ -37,7 +37,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "RECHECK_REQUIRED_AFTER_CANON_AND_SHEET_DRIFT_CORRECTION",
+  "pre_merge_gate_status": "CURRENT_PR_HEAD_REQUIRED_CHECKS_ARE_AUTHORITATIVE",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T22:18:00+09:00",
@@ -55,25 +55,34 @@
   },
   "previous_working_sync": {
     "sync_id": "GR-SYNC-20260803-03",
-    "status": "VISUAL_CHECKPOINT_FINAL_HEAD_VERIFIED_BEFORE_EARLY_CHECKPOINT_CORRECTIONS",
-    "final_head": "ba0a73cdf6760e23eb87da6222870485f2d8f650",
-    "ci_run": 30773199505,
+    "status": "CANON_AND_SHEET_DRIFT_CORRECTIONS_VERIFIED_BEFORE_FINALIZATION_COMMIT",
+    "final_head": "b9222dafc326b043fa6f2b3201af171e38c82b32",
+    "ci_run": 30773920400,
     "sheet_readback": "PASS",
     "text_integrity": "PASS",
-    "review_threads": 0
+    "adversarial_gate": "PASS",
+    "review_threads": 0,
+    "reviews": 0
   },
   "current_work": {
-    "status": "EARLY_CHECKPOINT_APPROVED_CANON_AND_SHEET_DRIFT_CORRECTION_IN_PROGRESS",
+    "status": "EARLY_CHECKPOINT_READY_WHEN_CURRENT_PR_HEAD_REQUIRED_CHECKS_PASS_AWAITING_EXPLICIT_MERGE_APPROVAL",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "working_pull_request": 51,
     "working_sync_id": "GR-SYNC-20260803-03",
     "benchmark_id": "N_A_NO_NEW_DESIGN_CHANGE_CANON_AND_SHEET_DRIFT_CORRECTION",
-    "verification_candidate_head": "ba0a73cdf6760e23eb87da6222870485f2d8f650",
-    "verification_candidate_ci_run": 30773199505,
-    "verification_candidate_ahead": 68,
-    "verification_candidate_behind": 0,
-    "verification_candidate_changed_files": 27,
+    "required_checks_authority": "CURRENT_PR_HEAD",
+    "required_checks": [
+      "GENERATOR",
+      "UNIT",
+      "JSON",
+      "UTF8_NFC_TEXT_INTEGRITY",
+      "ADVERSARIAL_GATE"
+    ],
+    "required_review_state": {
+      "unresolved_threads": 0,
+      "blocking_reviews": 0
+    },
     "early_checkpoint": {
       "approved_at": "2026-08-03T09:07:00+09:00",
       "approved_option": "A_EARLY_CHECKPOINT_AT_6_OF_10",
@@ -262,23 +271,26 @@
       "p1_design_written_awaiting_review": 1,
       "p2_open": 12,
       "p3_deferred": 8,
-      "canon_reconciliation_completed_in_working_branch": false,
-      "next_priority": "FINALIZE_EARLY_CHECKPOINT_CANON_AND_SHEET_DRIFT"
+      "canon_reconciliation_completed_in_working_branch": true,
+      "next_priority": "AWAIT_EXPLICIT_PR51_MERGE_APPROVAL"
     },
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "RECHECK_REQUIRED_AFTER_CHECKPOINT_WRITE",
-    "sheet_text_integrity_sentinel": "RECHECK_REQUIRED_AFTER_CHECKPOINT_WRITE",
-    "candidate_ci_gate": "PASS_AT_BA0A73CDF6760E23EB87DA6222870485F2D8F650",
-    "candidate_adversarial_gate": "PASS_AT_BA0A73CDF6760E23EB87DA6222870485F2D8F650",
-    "candidate_text_integrity_gate": "PASS_AT_BA0A73CDF6760E23EB87DA6222870485F2D8F650",
-    "candidate_review_threads": 0,
-    "candidate_reviews": 0,
-    "checkpoint_head_resolution": "USE_CURRENT_PR_HEAD_AFTER_ALL_CORRECTIONS",
-    "final_status_commit_head_ci": "REQUIRED_ON_CURRENT_PR_HEAD_AFTER_CHECKPOINT_CORRECTIONS"
+    "sheet_readback": "PASS",
+    "sheet_text_integrity_sentinel": "PASS",
+    "last_verified_pre_finalization_head": "b9222dafc326b043fa6f2b3201af171e38c82b32",
+    "last_verified_pre_finalization_ci_run": 30773920400,
+    "last_verified_generator": "PASS",
+    "last_verified_unit": "PASS",
+    "last_verified_json": "PASS",
+    "last_verified_text_integrity": "PASS",
+    "last_verified_adversarial_gate": "PASS",
+    "current_pr_head_must_pass_required_checks": true,
+    "current_pr_head_must_have_zero_unresolved_threads": true,
+    "current_pr_head_must_have_zero_blocking_reviews": true
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
