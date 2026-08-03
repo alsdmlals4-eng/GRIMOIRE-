@@ -14,11 +14,13 @@
 | Working Branch | `agent/foundation-poc-readiness-review` |
 | Draft PR | `#57` |
 | Working Sync | `GR-SYNC-20260803-07` |
-| 현재 Decision | `GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01` |
-| Grill Batch | `2/10 / pending 2` |
-| 현재 GPT 작업 | `복수 해결 사건·텍스트 노벨·주문 설계·UX·Art` |
+| 현재 Decision | `GM-SCHOOL-CRISIS-PEDAGOGY-01` |
+| 상위 사건 Decision | `GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01` |
+| Grill Batch | `3/10 / pending 3` |
+| 현재 GPT 작업 | `서리꽃 온실 장면 흐름·대사·UX·Art` |
 | 대표 사건 | `서리꽃 온실의 심장` |
-| 작성 명세 | `WRITTEN_READY_FOR_USER_REVIEW` |
+| 학교 위기 교육 원칙 | `USER_APPROVED` |
+| 장면 흐름 | `WRITTEN_FOR_USER_REVIEW` |
 | 로컬 Godot | `USER_CONFIRMED_INSTALLED` |
 | Codex 기술 계획 | `READY_FOR_LATER_SESSION` |
 | 제품 Godot 프로젝트 | `NOT_CREATED` |
@@ -43,13 +45,14 @@ Codex
 
 1. `AGENTS.md`.
 2. `docs/ACTIVE_CONTEXT.md`.
-3. `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_APPROVAL_2026-08-04.md`.
-4. `docs/superpowers/specs/2026-08-04-narrative-multi-solution-situation-design.md`.
-5. `docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md`.
-6. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
-7. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
-8. 질문 주제의 최신 승인 책임 원본.
-9. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
+3. `docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md`.
+4. `docs/superpowers/specs/2026-08-04-frostbloom-school-crisis-scene-flow-design.md`.
+5. `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md`.
+6. `docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md`.
+7. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
+8. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
+9. 질문 주제의 최신 승인 책임 원본.
+10. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
 
 Codex 실행 시에만 다음을 추가로 읽는다.
 
@@ -64,6 +67,7 @@ Codex 실행 시에만 다음을 추가로 읽는다.
 ```text
 사건·인물·환경 조사
 → 해결 의도와 우선순위 선택
+→ 등장인물 관점과 예상 효과 확인
 → 주문 설계
 → 직접 작성·Stock·소환수 중 실행 수단 선택
 → Commit
@@ -71,11 +75,32 @@ Codex 실행 시에만 다음을 추가로 읽는다.
 → 결과·대가·발견 기록
 ```
 
+## 학교 위기 교육 원칙
+
+> 마법사는 위기에서 스스로 상황을 읽고 해결할 수 있어야 한다. 교수는 정답을 대신 실행하지 않고 방향성과 안전 기준만 제시한다. 직접 개입은 학생 또는 민간인의 생명이 즉시 위험한 수준에서만 허용한다.
+
+```yaml
+L0: 정상 시행착오·비치명적 손실 관찰
+L1: 판단 질문과 원리 방향 제시
+L2: 돌이킬 수 없는 위험 직전 안전 경고
+L3: 치명 위험만 직접 차단·구조
+```
+
+교수는 외곽 확산과 치명 위험을 통제하지만 사건의 핵심 목표를 대신 해결하지 않는다.
+
+학생은 언제든 접근 변경·지원 요청·봉쇄 후 철수를 선택할 수 있다. 철수는 자동 실패가 아니라 위험 관리와 책임 판단으로 평가한다.
+
 ## 텍스트 노벨과 주문 설계의 경계
 
 ```text
 텍스트 선택
 = 무엇을 지키고 어떤 방식으로 해결할지 결정
+
+대화 힌트
+= 관찰 사실·인물의 편향·위험 방향
+
+예상 효과
+= 직접 변화·속도·범위·압력·위험·미해결 문제
 
 주문 설계
 = 그 의도를 실제로 어떻게 실행할지 결정
@@ -85,8 +110,10 @@ Codex 실행 시에만 다음을 추가로 읽는다.
 
 - 선택지가 주문 이름을 직접 제시
 - 선택 직후 자동 성공
+- 교수가 정확한 글자 조합을 지시
 - 전투를 기본 또는 필수 해결법으로 사용
 - 대표 사건에 단 하나의 진짜 결말 설정
+- 생명 위험인데도 교육을 이유로 교수 방관
 
 ## 대표 사건 — 서리꽃 온실의 심장
 
@@ -101,38 +128,41 @@ Codex 실행 시에만 다음을 추가로 읽는다.
 5. 전투·강제 제압
 
 ```yaml
-minimum_approaches: 3
-recommended_approaches: 5
-minimum_noncombat_approaches: 2
-recommended_noncombat_approaches: 4
-minimum_valid_spell_plans_per_approach: 2
-minimum_valid_endings: 3
+approaches: 5
+solution_patterns_per_approach: 4
+total_reference_patterns: 20
+reasonable_unlisted_solution: MEANING_BASED_EVALUATION
 combat_is_mandatory: false
 single_true_ending: false
 ```
 
-## 텍스트 노벨 UX 흐름
+## 대표 사건 장면 흐름
 
 ```text
-상황 서술
-→ 핵심 인물 반응
-→ 조사 가능한 요소
+현장실습 브리핑
+→ 온실 외부 도착과 교수 안전선 선언
+→ 최초 위기와 공통 관찰
+→ 조사 4개 중 2개
+→ 등장인물 관점 대화
 → 해결 접근 선택
-→ 접근별 조건·위험 요약
-→ 주문 설계 화면
-→ 결과 연출
-→ 추가 변수·후속 선택
+→ 접근별 힌트
+→ 주문 초안·예상 효과
+→ 첫 시전
+→ 예상 밖 변수와 접근 수정
+→ 최종 대응 또는 철수
+→ 결과·교수 개입 여부
 → 마도서 기록
 ```
 
-- 한 화면의 접근 선택지는 3~5개다.
-- 선택지는 주문이 아니라 행동 목적을 표현한다.
-- 예상 결과의 경향과 위험만 보여준다.
-- 후속 정보에 따라 접근을 수정할 수 있다.
+- 자유일정 C에서 현장 조사를 선택했다면 조사 3개까지 가능.
+- 기본 관찰만으로도 안전 봉쇄·철수 접근이 가능하다.
+- 대화·조사·예상 효과 확인 중 실시간 타이머는 흐르지 않는다.
+- 첫 시전 뒤에도 접근을 바꿀 수 있다.
+- L3 교수 개입은 `FACULTY_LIFESAVING_INTERVENTION`으로 기록하고 비징벌 복기를 진행한다.
 
 ## 기존 확정 계약 유지
 
-- 마법 글자: 메인 1개 + 보조 0개 이상.
+- 마법 글자: `흐름` + 보조 `집중`, `분산`; 메인 1 + 보조 0~1.
 - Stock: 용량 `8`, 지정 대상 1종 자연충전, `10 + 5 × (n-1)초`, Offline 충전 금지.
 - Summon: 메인 1 + 보조 S1/S2/S3, 같은 시각 `MAIN → S1 → S2 → S3`.
 - 소환수는 전투뿐 아니라 조사·수호·견제·운반·안정화 보조에 사용하지만 주문 설계를 대신하지 않는다.
@@ -140,10 +170,10 @@ single_true_ending: false
 
 ## 현재 GPT 산출물 우선순위
 
-1. 작성된 복수 해결 상황 명세 사용자 검토.
-2. `서리꽃 온실의 심장` 전체 장면 흐름.
-3. 조사 정보·선택지·인물 대사.
-4. 접근별 주문 계획·결과 태그.
+1. 작성된 학교 위기 장면 흐름 검토.
+2. 고유 인물 이름·성격 확정.
+3. 실제 텍스트 노벨 대사 원고.
+4. 접근별 예상 효과 카드 문구.
 5. 사건 UX Map과 Wireframe.
 6. 온실·서리 정령·마력 핵 Art Direction과 Concept Art Brief.
 7. Vertical Slice 전체 콘텐츠 조립.
@@ -161,8 +191,9 @@ Codex 구현 작업을 핵심 기획보다 우선
 
 ## 다음 순서
 
-1. 사용자가 작성된 명세를 검토한다.
-2. 승인 후 대표 사건의 전체 텍스트 노벨 장면을 작성한다.
-3. 사건 UX Wireframe을 설계한다.
-4. Art Direction과 첫 이미지 시안을 만든다.
-5. 충분히 구체화된 범위만 Codex 구현 명세로 넘긴다.
+1. 작성된 `서리꽃 온실의 심장` 장면 흐름을 검토한다.
+2. 고유 인물 이름과 역할 대비를 확정한다.
+3. 실제 장면별 대사·선택지·예상 효과 카드 원고를 작성한다.
+4. 사건 UX Wireframe을 설계한다.
+5. Art Direction과 첫 이미지 시안을 만든다.
+6. 충분히 구체화된 범위만 Codex 구현 명세로 넘긴다.
