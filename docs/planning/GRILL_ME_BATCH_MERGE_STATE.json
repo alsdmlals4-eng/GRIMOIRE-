@@ -7,7 +7,7 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 3,
+    "approved_grill_me_since_last_flush": 4,
     "next_merge_at": 10,
     "merge_required": false,
     "merge_trigger": "NONE",
@@ -16,15 +16,16 @@
     "pending_decision_ids": [
       "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
       "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
-      "GM-SCHOOL-CRISIS-PEDAGOGY-01"
+      "GM-SCHOOL-CRISIS-PEDAGOGY-01",
+      "GM-SLICE-HEAT-FLOW-OBSERVATION-01"
     ]
   },
   "counting_rule": {
     "count_distinct_user_approved_grill_me_decision_id": true,
     "count_reapproval_or_copy_edit": false,
     "count_main_sync_receipt": false,
-    "current_operation_counted": false,
-    "current_operation_reason": "TEXT_NOVEL_GLYPH_INVESTIGATION_AND_SENSORY_ONLY_OBSERVATION_DRAFT_AWAITING_FINAL_APPROVAL"
+    "current_operation_counted": true,
+    "current_operation_reason": "NEW_DISTINCT_USER_APPROVED_SLICE_HEAT_FLOW_GRAMMAR_AND_INVESTIGATION_DECISION"
   },
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
@@ -37,19 +38,20 @@
     "main_finalization_sync_id": "GR-SYNC-20260803-06"
   },
   "current_work": {
-    "status": "HEAT_FLOW_TEXT_NOVEL_INVESTIGATION_AND_SENSORY_OBSERVATION_WRITTEN_FOR_REVIEW",
-    "approved_decision_id": "GM-SCHOOL-CRISIS-PEDAGOGY-01",
-    "draft_decision_id": "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
-    "cast_dialogue_draft_id": "GM-FROSTBLOOM-CAST-DIALOGUE-01",
-    "decision_status": "DRAFT_NOT_COUNTED",
+    "status": "HEAT_FLOW_SLICE_GRAMMAR_AND_INVESTIGATION_USER_APPROVED_ACTIVE",
+    "approved_decision_id": "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
     "parent_situation_decision_id": "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
+    "parent_pedagogy_decision_id": "GM-SCHOOL-CRISIS-PEDAGOGY-01",
+    "cast_dialogue_content_id": "GM-FROSTBLOOM-CAST-DIALOGUE-01",
+    "cast_dialogue_status": "APPROVED_LINKED_CONTENT_BASELINE",
+    "decision_status": "USER_APPROVED_ACTIVE",
     "default_branch": "main",
     "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
     "working_branch": "agent/foundation-poc-readiness-review",
-    "working_sync_id": "GR-SYNC-20260804-07-HEAT-FLOW-INVESTIGATION-DRAFT",
+    "working_sync_id": "GR-SYNC-20260804-08-HEAT-FLOW-APPROVAL",
     "pull_request": 57,
-    "selected_approach": "TEXT_NOVEL_GLYPH_INVESTIGATION_WITH_SENSORY_ONLY_OBSERVATION_RESULTS",
-    "counter_increment": false,
+    "selected_approach": "HEAT_MAIN_FLOW_CONNECTION_WITH_TEXT_NOVEL_INVESTIGATION_AND_NONEXCLUSIVE_FACULTY_EXAMPLE",
+    "counter_increment": true,
     "role_split": {
       "gpt": [
         "CORE_FUN",
@@ -74,18 +76,19 @@
       "guidance_layer": "TEXT_NOVEL_INVESTIGATION_PLUS_SENSORY_STATE_OBSERVATION",
       "spell_layer": "PLAYER_DESIGNED_EXECUTION",
       "recommended_approaches": 5,
-      "target_solution_patterns_per_approach": 4,
-      "target_total_recognized_patterns": 20,
+      "solution_patterns_per_approach": 4,
+      "total_reference_patterns": 20,
+      "patterns_are_explicit_answers": false,
+      "reasonable_unlisted_solution": "ALLOWED_BY_MEANING_AND_SITUATION_EVALUATION",
       "combat_is_mandatory": false,
       "single_true_ending": false,
-      "route_pattern_design": "USER_APPROVED_BUT_GLYPH_ROLE_SUPERSESSION_DRAFT_PENDING",
+      "route_pattern_design": "USER_APPROVED_HEAT_FLOW_MIGRATED",
       "precast_guidance_design": "USER_APPROVED"
     },
     "school_crisis_pedagogy": {
       "approval": "docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md",
-      "scene_flow_spec": "docs/superpowers/specs/2026-08-04-frostbloom-school-crisis-scene-flow-design.md",
       "school_goal": "FIELD_READY_MAGE_SELF_RELIANCE",
-      "faculty_default_role": "SET_SAFETY_BOUNDARY_DEMONSTRATE_WITHOUT_EXPLANATION_AND_ALLOW_STUDENT_INVESTIGATION",
+      "faculty_default_role": "SET_SAFETY_BOUNDARY_AND_DEMONSTRATE_ONE_VALID_EXAMPLE_WITHOUT_EXPLAINING_SOLUTION",
       "faculty_solves_core_objective": false,
       "student_withdrawal_allowed": true,
       "intervention_levels": {
@@ -96,49 +99,47 @@
       }
     },
     "cast_dialogue_design": {
-      "draft": "docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_DRAFT_2026-08-04.md",
+      "approval_owner": "docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_APPROVAL_2026-08-04.md",
+      "draft_source": "docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_DRAFT_2026-08-04.md",
       "spec": "docs/superpowers/specs/2026-08-04-frostbloom-cast-dialogue-design.md",
       "dialogue_script": "docs/content/vertical_slice/FROSTBLOOM_GREENHOUSE_DIALOGUE_SCRIPT_DRAFT_2026-08-04.md",
-      "review_status": "PENDING_USER_REVIEW",
+      "review_status": "USER_APPROVED_LINKED_CONTENT_BASELINE",
       "cast": [
         "에일린 로스베르",
         "카시안 렌",
         "모트"
       ],
       "upperclass_present_in_event": false,
-      "classmate_accident_trigger": true,
-      "classmate_remains_cooperator": true,
       "professor_verbal_solution": false,
       "glyph_confirmation": "TEXT_NOVEL_INVESTIGATION",
       "automatic_recognition_overlay": false,
-      "observation_copy": "SENSORY_AND_VISIBLE_STATE_CHANGE_ONLY",
-      "required_information_has_multiple_sources": true
+      "observation_copy": "SENSORY_AND_VISIBLE_STATE_CHANGE_ONLY"
     },
     "slice_glyph_contract": {
       "approved_current": {
-        "main_glyphs": ["FLOW"],
-        "support_glyphs": ["FOCUS", "DISPERSE"],
-        "grammar": "MAIN_1_PLUS_SUPPORT_0_OR_1"
-      },
-      "proposed_draft": {
         "decision_id": "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
         "main_glyph": "HEAT",
         "connection_grammar": "FLOW",
         "optional_support_glyphs": ["FOCUS", "DISPERSE"],
         "representative_known_circuit": "HEAT_PLUS_FLOW",
-        "status": "USER_DIRECTED_DRAFT_FOR_REVIEW",
-        "requires_explicit_supersession": true
+        "grammar": "MAIN_1_PLUS_CONNECTION_AND_OPTIONAL_SUPPORT",
+        "status": "USER_APPROVED_ACTIVE"
+      },
+      "superseded_previous": {
+        "main_glyphs": ["FLOW"],
+        "support_glyphs": ["FOCUS", "DISPERSE"],
+        "grammar": "MAIN_1_PLUS_SUPPORT_0_OR_1",
+        "status": "SUPERSEDED_BY_GM_SLICE_HEAT_FLOW_OBSERVATION_01"
       }
     },
     "faculty_demonstration": {
       "objective": "STOP_EXTERNAL_COLD_SPREAD_ONLY",
+      "role": "ONE_VALID_EXAMPLE_NOT_CANONICAL_ANSWER",
+      "required_player_route": false,
+      "default_best_solution": false,
+      "used_as_grading_key": false,
       "verbal_explanation": false,
       "glyph_confirmation_method": "OPTIONAL_TEXT_NOVEL_INVESTIGATION",
-      "recognized_keyword_sources": {
-        "HEAT": "INSPECT_START_GLYPH",
-        "FLOW": "TRACE_MOVING_LINE"
-      },
-      "unknown_visible_parts": ["ANCHOR", "AUTOMATIC_TEMPERATURE_PRESSURE_FEEDBACK"],
       "automatic_recognition_overlay": false,
       "copy_action": false,
       "observation_examples": [
@@ -166,20 +167,24 @@
     },
     "planning": {
       "creative_scope": "docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md",
-      "current_priority_1": "USER_REVIEW_TEXT_NOVEL_GLYPH_INVESTIGATION_AND_SENSORY_OBSERVATION_COPY",
-      "current_priority_2": "APPROVE_OR_REVISE_HEAT_MAIN_FLOW_CONNECTION_GRAMMAR",
-      "current_priority_3": "MIGRATE_TWENTY_ROUTE_PATTERNS_TO_HEAT_FLOW_GRAMMAR_AFTER_APPROVAL",
-      "current_priority_4": "DESIGN_SITUATION_UX_WIREFRAME",
-      "current_priority_5": "DEFINE_GREENHOUSE_SPIRIT_MAGIC_CORE_ART_DIRECTION",
+      "current_priority_1": "DESIGN_FROSTBLOOM_SITUATION_UX_MAP_AND_MOBILE_WIREFRAME",
+      "current_priority_2": "DEFINE_GREENHOUSE_SPIRIT_HEAT_FLOW_CIRCUIT_ART_DIRECTION",
+      "current_priority_3": "REFINE_SCENE_DIALOGUE_AND_RESULT_COPY_DURING_UX_DESIGN",
+      "current_priority_4": "PREPARE_SELECTED_SCOPE_FOR_CODEX_HANDOFF",
       "foundation_poc_core_design": "SUFFICIENT_FOR_LATER_CODEX_IMPLEMENTATION"
     },
     "implementation": "PRODUCT_IMPLEMENTATION_NOT_STARTED",
     "godot_product_project": "NOT_CREATED",
     "foundation_poc_build_authorization": "AVAILABLE_FOR_LATER_CODEX_SESSION",
     "codex_execution": "DEFERRED_UNTIL_SELECTED_CREATIVE_SCOPE_IS_READY",
-    "next_priority": "USER_REVIEW_HEAT_FLOW_INVESTIGATION_DRAFT"
+    "next_priority": "FROSTBLOOM_SITUATION_UX_MAP_AND_MOBILE_WIREFRAME"
   },
   "protected_boundaries": {
+    "faculty_example_as_only_valid_solution": "PROHIBITED",
+    "faculty_example_as_default_best_solution": "PROHIBITED",
+    "faculty_example_as_grading_key": "PROHIBITED",
+    "player_required_to_copy_faculty_circuit": "PROHIBITED",
+    "reasonable_unlisted_solution_rejected_by_default": "PROHIBITED",
     "text_choice_auto_selects_spell": "PROHIBITED",
     "text_choice_auto_guarantees_success": "PROHIBITED",
     "combat_as_default_or_mandatory_resolution": "PROHIBITED",
