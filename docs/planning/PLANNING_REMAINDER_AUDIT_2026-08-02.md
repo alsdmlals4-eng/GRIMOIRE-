@@ -4,11 +4,14 @@
 
 ```yaml
 audit_id: GR-AUD-PLANNING-REMAINDER-20260802-01
-baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
-status: COMPLETE_REVISED_FOR_THREE_SECONDARIES
-updated_at: 2026-08-03T00:04:00+09:00
+baseline_main: 7fd2c137469120a9ccf942df5b9860af135acc87
+status: COMPLETE_REVISED_AFTER_MOBILE_HUD_USER_SPEC_REVIEW
+updated_at: 2026-08-03T21:11:00+09:00
+working_sync: GR-SYNC-20260803-05
 p0_open: 0
-p1_open: 4
+p1_open: 2
+p1_closed_spec: 1
+p1_closed_plan_only: 1
 p2_open: 12
 p3_deferred: 8
 implementation: NOT_STARTED
@@ -21,130 +24,67 @@ human_validation: NOT_RUN
 
 GRIMOIRE의 핵심 재미·전체 구조·자연충전 Stock·정수 상주 소환수 방향은 유지 가능하다.
 
-이번 변경:
-
 ```text
 메인 소환수 1체 상시
 + 보조 소환수 S1/S2/S3 최대 3체
 = 총 활성 최대 4체
 ```
 
-단순 활성 수 상향은 자동화 지배·스탯 몰아넣기·Mobile HUD 과밀을 만들 수 있으므로 다음 권장 가드레일을 함께 승인했다.
+가드레일:
 
 - 보조 역할 `PRODUCTION / GUARDIAN / ASSAULT / RECOVERY`.
 - Slice에서는 네 역할 중 최대 세 역할 선택.
 - 보조 사이 같은 역할 중복 금지.
 - 메인 `[스톡] 1`은 보조 역할 중복 검사에서 제외.
 - 같은 시각 Event는 `MAIN → S1 → S2 → S3`.
-- Mobile은 보조 3슬롯 압축 Rail + 선택 슬롯 상세.
+- Mobile은 좌측 보조 3슬롯 압축 Rail + 선택 슬롯 상세.
 
-## 3. 벤치마킹·현업 비교 결론
+## 3. Mobile HUD 사용자 명세 검토 결과
 
-Benchmark: `GR-BM-SUMMON-ACTIVE-3-WORK-QUALITY-01`.
+Decision: `GM-MOBILE-SUMMON-HUD-WIREFRAME-01`.
 
-- 다중 소환 분류 사례에서 세 역할 범주가 편성 정체성을 만드는 원리를 `ADAPT`했다.
-- 단일 동반체 사례에서 메인 소환수의 별도 상시 정체성을 `ADOPT`했다.
-- 현재 활성 상태만 강조하거나 Unit 상세를 선택 조회하는 HUD 패턴을 Mobile 압축 Rail에 `ADAPT`했다.
-- Unicode NFC·UTF-8 strict decode를 Text Integrity Gate에 `ADOPT`했다.
-
-자유 중복 3체는 생산·방어·공격 특화가 핵심 플레이를 대체할 위험이 커 `REJECT_FOR_PROTOTYPE`했다.
-
-## 4. 이번에 닫힌 항목
-
-### 4.1 최상위·Cold-start 정본
-
-교정:
-
-- `AGENTS.md`.
-- `START_HERE.md`.
-- `docs/ACTIVE_CONTEXT.md`.
-- `docs/DEVELOPMENT_GATES.md`.
-- `docs/DESIGN_DOCUMENT_REGISTRY.json`.
-
-### 4.2 소환수 활성·중첩
+상태:
 
 ```yaml
-persistent_main_summon: 1
-secondary_active_summon_cap: 3
-total_active_summon_cap: 4
-secondary_slot_ids: [S1, S2, S3]
-secondary_role_duplicate_cap_in_slice: 1
+status: USER_APPROVED_HARDENED_SPEC_ACTIVE
+selected_approach: B_TARGETED_HARDENING_WITH_LAYOUT_PRESERVED
+counter_increment: false
+counter_after: 0_of_10
 ```
 
-### 4.3 State/Ledger/Save
+확정 보강:
 
-- `secondary_summon_states` 배열 최대 3개.
-- 슬롯·보조 역할 유일성.
-- 네 번째 보조 활성 차단.
-- 역할 중복 소환 Transaction 롤백.
-- `MAIN → S1 → S2 → S3` 결정적 Event 순서.
-- 보조 3체 Save/Resume.
-- 손상 Snapshot 자동 덮어쓰기 금지.
+1. Drawer 열람은 Clock을 정지하지 않는다.
+2. Active Stroke 종료와 Draft 안전 보존 뒤 `MANAGEMENT_CONFIRM`만 Clock을 정지한다.
+3. 같은 시각 Event 계산·Ledger 적용은 `MAIN → S1 → S2 → S3`, 전체 HUD 표시 예산은 `1.2초 TEST_VALUE`다.
+4. Text Scale Test는 `100%·130%·Android 최대 200%`다.
+5. 타이머는 Focus 또는 의미 있는 변화만 발표하며 매초 자동 발표하지 않는다.
+6. 빈 슬롯·오류 슬롯은 nullable ViewModel과 `timing_mode: NONE`을 사용한다.
+7. Exactly-once는 ResultLedger가 소유하고 Active Stroke 입력은 Writing Canvas가 소유한다.
 
-### 4.4 작업 품질 Gate
+## 4. 이번에 닫힌 P1
 
-Decision: `GM-GRILL-WORK-QUALITY-GATE-01`.
+### P1-01 — 보조 3슬롯 Mobile HUD Wireframe: `CLOSED_SPEC`
 
-- 모든 GrillMe·실질 작업 벤치마킹.
-- 직접 사례 + 인접/현업/표준 비교.
-- `ADOPT / ADAPT / REJECT`.
-- 중립 권장안과 반대 대안.
-- 적대적 검토.
-- UTF-8·NFC·replacement·제어문자·mojibake 검증.
-- GitHub·Sheet sentinel Readback.
+책임 원본:
 
-### 4.5 CI Text Integrity
+- `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`.
+- `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_USER_SPEC_REVIEW_2026-08-03.md`.
+- `docs/superpowers/specs/2026-08-03-three-slot-mobile-summon-hud-design.md`.
+- `docs/planning/benchmarks/MOBILE_SUMMON_HUD_WIREFRAME_STANDARD_BENCHMARK_2026-08-03.md`.
 
-PR CI에 다음 검사를 추가했다.
+닫힘 의미는 **명세 승인 완료**다. Runtime·실기기·접근성·사람 검증 완료를 뜻하지 않는다.
 
-- UTF-8 strict decode.
-- UTF-8 BOM 금지.
-- Unicode NFC.
-- replacement character `U+FFFD` 금지.
-- 허용되지 않은 제어문자 금지.
-- mojibake 휴리스틱.
-- JSON parse.
+### P1-02 — TDD Plan·Test Matrix: `CLOSED_PLAN_ONLY`
 
-최종 HEAD CI 실행 전에는 `PASS`로 간주하지 않는다.
+책임 원본:
 
-## 5. P0 — 즉시 중단 수준
+- `docs/superpowers/plans/2026-08-03-three-slot-mobile-summon-hud-implementation-plan.md`.
+- `docs/planning/MOBILE_SUMMON_HUD_01_TDD_TEST_MATRIX_2026-08-03.md`.
 
-```yaml
-p0_open: 0
-```
+계획은 8개 TDD Task와 ViewModel·Clock·Event·Input·Layout·A11y·Save Matrix를 정의한다. 모든 실행 상태는 `NOT_RUN`이다.
 
-제품 코드 실행은 별도 Execution Readiness가 계속 차단한다.
-
-## 6. P1 — 구현 준비 전에 남은 4개
-
-### P1-01 — 보조 3슬롯 Mobile HUD Wireframe
-
-동시에 보여야 하는 정보:
-
-- Stock 준비 용량 `현재/8`.
-- 지정 충전 대상·현재/최대·남은 초.
-- 활성 `[스톡]` 합계.
-- 메인 소환수 배지.
-- S1/S2/S3 역할·대표 정수·다음 행동 초·상태.
-- 선택 슬롯 대상·예상 적용값·귀환·교체.
-- 적 의도·불안정도·환경·HP·마나·Writing Panel.
-
-Phone Landscape와 Text Scale 130에서 정보가림이 없어야 한다.
-
-### P1-02 — TDD Plan·Test Matrix
-
-필수:
-
-- S1/S2/S3 소환·귀환·교체.
-- 네 번째 보조 차단.
-- 같은 보조 역할 중복 롤백.
-- 교체 Transaction 실패 시 마나·기존 소환 상태 복구.
-- 같은 시각 MAIN/S1/S2/S3 Event 순서 결정성.
-- 중복 `summon_event_id` 0.
-- Background Clock 0 진행.
-- Save/Resume 뒤 보조 3체 유지.
-- 손상 Snapshot 자동 덮어쓰기 0.
-- Text Integrity 정상·실패 Fixture.
+## 5. 남은 P1 — 2개
 
 ### P1-03 — Godot Toolchain Preflight
 
@@ -159,11 +99,53 @@ Phone Landscape와 Text Scale 130에서 정보가림이 없어야 한다.
 - 최종 main 기준 Implementation Plan 재검증.
 - 3슬롯 State Interface와 Foundation POC 범위 연결.
 - `GM-FOUNDATION-POC-EXECUTION-READINESS-01`.
-- P0=0·P1=0일 때만 코드 실행.
+- P0=0·P1=0·별도 Scope 승인 때만 코드 실행.
+
+## 6. 현재 닫힌 주요 구조
+
+### 6.1 최상위·Cold-start 정본
+
+- `AGENTS.md`.
+- `START_HERE.md`.
+- `docs/ACTIVE_CONTEXT.md`.
+- `docs/DEVELOPMENT_GATES.md`.
+- `docs/DESIGN_DOCUMENT_REGISTRY.json`.
+
+### 6.2 소환수 활성·중첩
+
+```yaml
+persistent_main_summon: 1
+secondary_active_summon_cap: 3
+total_active_summon_cap: 4
+secondary_slot_ids: [S1, S2, S3]
+secondary_role_duplicate_cap_in_slice: 1
+```
+
+### 6.3 State/Ledger/Save
+
+- `secondary_summon_states` 배열 최대 3개.
+- 슬롯·보조 역할 유일성.
+- 네 번째 보조 활성 차단.
+- 역할 중복 Transaction 롤백.
+- `MAIN → S1 → S2 → S3` 결정적 Event 순서.
+- Exactly-once 소유권은 ResultLedger.
+- 보조 3체 Save/Resume.
+- 손상 Snapshot 자동 덮어쓰기 금지.
+- HUD nullable ViewModel·canonical presentation record.
+
+### 6.4 작업 품질 Gate
+
+- 모든 GrillMe·실질 작업 벤치마킹.
+- 직접 사례 + 인접/현업/표준 비교.
+- `ADOPT / ADAPT / REJECT`.
+- 중립 권장안과 반대 대안.
+- 적대적 검토.
+- UTF-8·NFC·replacement·제어문자·mojibake 검증.
+- GitHub·Sheet sentinel Readback.
 
 ## 7. P2 — Vertical Slice 제작 전에 남은 12개
 
-1. Battle Tuning: 플레이어 HP·마나·적 불안정도·공격 간격·정수 스탯 스케일·보조 3체 기회비용.
+1. Battle Tuning: HP·마나·적 불안정도·공격 간격·정수 스탯 스케일·보조 3체 기회비용.
 2. Result Grading: 소환수별 기여 출처와 결과 품질.
 3. 대표 제작 미니게임: `촉매 배합·안정화 1개` 권장.
 4. 추가 현장실습 전투: 실제 Slice 제외·Preview 권장.
@@ -187,71 +169,58 @@ Phone Landscape와 Text Scale 130에서 정보가림이 없어야 한다.
 7. Store·사업화·PC Adaptation.
 8. 최종 Art·Audio·Asset 대량 제작.
 
-## 9. 적대적 위험
+## 9. 적대적 위험과 가드
 
-### 9.1 자동화 지배
-
-세 보조가 5초 주기로 행동하면 플레이어의 직접 작성보다 소환수 Event가 더 자주 보일 수 있다.
-
-가드:
+### 자동화 지배
 
 - 역할 중복 금지.
 - 공격 불안정도 하한 `1`.
 - 마지막 해결 Event는 플레이어 담당.
 - 소환수별 출처 기록.
-- 실제 작성 비율·대기 플레이 사람 검증.
+- 실제 작성 비율·대기 플레이 사람 검증은 `NOT_RUN`.
 
-### 9.2 Stock 과가속
+### Stock 과가속
 
-- 메인 `[스톡] 1` + 생산형 `[스톡] 2`만 허용.
-- 활성 `[스톡]` 합계 상한 `3` 유지.
-- 보조 생산형 중복 금지.
+- 메인 `[스톡] 1` + 생산형 `[스톡] 2`.
+- 활성 `[스톡]` 합계 상한 `3`.
 - 초과 감소량 이월 없음.
 - 최소 실제 충전시간 `3초`.
 
-### 9.3 상시 무적·과회복
+### Mobile HUD 과밀
 
-```text
-최종 직접 피해 = max(1, 원피해 - 총 방어도)
-```
-
-- 수호형 중복 금지.
-- 치유형 중복 금지.
-- 초과 회복 저장 없음.
-
-### 9.4 Mobile HUD 과밀
-
-- 메인 배지 + S1/S2/S3 압축 Rail.
+- MAIN + S1/S2/S3 압축 Rail.
 - 상세는 선택 슬롯 1개만 확장.
-- 세 소환수의 모든 문구를 동시에 상시 표시하지 않음.
-- Text Scale 130·Safe Area 검증 전 완료 주장 금지.
+- Writing 중 읽기 전용 Micro Detail.
+- 100%·130%·Android 최대 200% 검증.
+- 같은 시각 Event 전체 `1.2초 TEST_VALUE` 표시 예산.
 
-### 9.5 제작·QA 비용
+### 무료 Pause·필기 손실
 
-보조 3체는 다음 비용을 증가시킨다.
+- Drawer 읽기 중 Clock 진행.
+- 안전한 Draft 보존 뒤 관리 Confirm만 정지.
+- Active Stroke 입력 소유권은 Writing Canvas.
+
+### 접근성 과잉 발표
+
+- 타이머 매초 발표 금지.
+- Focus·상태·Event·오류·중요 임계점만 발표.
+
+### 제작·QA 비용
 
 - 동시 모델·FX·오디오 식별.
 - 슬롯별 상태·대상·Event 로그.
-- 조합 Test 수.
-- Save/Resume Fixture.
-
-Slice에서는 동시 표시 보조 모델 3체를 상한으로 하며, 추가 Roster는 Preview·합성 데이터로 제한한다.
-
-### 9.6 깨진 글자·인코딩
-
-- UTF-8 strict decode·NFC·BOM·U+FFFD·제어문자·mojibake Gate.
-- GitHub·Sheet sentinel Readback.
-- 오류 발견 시 추측 자동 복원 금지.
+- 조합 Test·Save/Resume Fixture.
+- Slice에서 동시 표시 보조 모델은 3체 상한.
 
 ## 10. 다음 순서
 
 ```text
-1. 보조 3슬롯 Mobile HUD Wireframe
-2. TDD Plan·Test Matrix
+1. GR-SYNC-20260803-05 Working Branch·Sheet·PR 검증
+2. 사용자 병합 승인 Gate
 3. Godot Toolchain preflight
 4. Base v9.4.3 Plan 재검증
 5. Execution Readiness
-6. Foundation POC 여부 판단
+6. 별도 HUD/Foundation POC Scope 판단
 ```
 
 ## 11. 최종 판정
@@ -260,10 +229,11 @@ Slice에서는 동시 표시 보조 모델 3체를 상한으로 하며, 추가 R
 core_concept: APPROVED_AND_COHERENT
 stock_model: NATURAL_CHARGE_RESTORED
 summon_model: PERSISTENT_MAIN_PLUS_THREE_UNIQUE_ROLE_SECONDARIES_APPROVED
-state_interface: APPROVED_DESIGN_ONLY_REVISED
+state_interface: APPROVED_DESIGN_ONLY_HARDENED_FOR_HUD
+mobile_summon_hud_spec: USER_APPROVED_HARDENED
+mobile_summon_hud_plan: WRITTEN_NOT_EXECUTED
 work_quality_gate: APPROVED_ACTIVE
-text_integrity_ci: ADDED_PENDING_FINAL_HEAD_VALIDATION
 planning_complete_for_full_vertical_slice: false
-planning_sufficient_for_foundation_poc_plan: true
+planning_sufficient_for_execution_readiness_review: true
 execution_ready: false
 ```

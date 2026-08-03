@@ -8,7 +8,7 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: NONE
+working_branch: agent/mobile-summon-hud-spec-hardening
 primary_platform: Mobile
 follow_up_platform: PC
 orientation: LANDSCAPE_FIXED
@@ -19,14 +19,14 @@ base_release: v9.4.3
 main_authority: CURRENT_DEFAULT_BRANCH_HEAD
 last_decision_merge_pull_request: 51
 last_decision_merge_commit: 81852a767d60eb2aa835ac3e36309f1dc43c861d
-last_working_sync: GR-SYNC-20260803-03
+last_working_sync: GR-SYNC-20260803-05
 current_main_sync: GR-SYNC-20260803-04
 grill_me_batch_counter: 0/10
 pending_decisions: 0
-last_checkpoint: MERGED_AT_6_OF_10_AND_COUNTER_RESET
-checkpoint_reason: DIFF_SIZE_AND_CANON_DRIFT
+last_checkpoint: MOBILE_SUMMON_HUD_SPEC_REVIEW_APPROVED_PLAN_WRITTEN_AWAITING_MERGE
+checkpoint_reason: SAME_DECISION_ID_TARGETED_HARDENING_AND_P1_PLAN_CLOSURE
 implementation: NOT_STARTED
-codex_plan: ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS
+codex_plan: WRITTEN_AWAITING_MERGE_AND_READINESS_REVALIDATION
 codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
 ```
 
@@ -60,7 +60,7 @@ AGENTS.md
 → docs/planning/GRILL_WORK_BENCHMARK_TEXT_INTEGRITY_01_APPROVAL_2026-08-03.md
 → docs/planning/PROJECT_BENCHMARKING_POLICY.md
 → 질문 주제의 승인 책임 원본
-→ 최신 Main Sync Receipt
+→ 최신 Working/Main Sync Receipt
 ```
 
 GitHub·Sheet 조회로 해결되는 사실을 사용자에게 다시 묻지 않는다. 확정된 결정은 기억 확인 목적으로 재질문하지 않는다.
@@ -176,7 +176,7 @@ Decision ID
 → Counter Reset
 ```
 
-같은 Decision ID의 재승인·문구·SHA 교정은 카운트하지 않는다.
+같은 Decision ID의 재승인·문구·SHA 교정은 카운트하지 않는다. 이번 Mobile HUD 사용자 명세 검토는 같은 Decision ID의 표적 보강이므로 Counter는 `0/10`을 유지한다.
 
 조기 병합 Trigger:
 
@@ -245,17 +245,49 @@ support_cycle_seconds: 5
 - 메인 `[스톡] 1`은 보조 역할 중복 판정에서 제외한다.
 - 보조 기본 정수값은 `[스톡] 2 / [방어도] 2 / [공격] 2 / [치유] 2`다.
 - 자동 공격은 불안정도 `1` 아래 또는 마지막 해결 Event를 만들 수 없다.
-- 같은 시각 보조 Event는 `S1 → S2 → S3` 순서다.
+- 같은 시각 Event는 `MAIN → S1 → S2 → S3` 순서다.
 
-## 12. Mobile·Save·기술 경계
+## 12. Mobile Summon HUD 확정 계약
+
+책임 원본:
+
+- `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`.
+- `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_USER_SPEC_REVIEW_2026-08-03.md`.
+- `docs/superpowers/specs/2026-08-03-three-slot-mobile-summon-hud-design.md`.
+- `docs/superpowers/plans/2026-08-03-three-slot-mobile-summon-hud-implementation-plan.md`.
+- `docs/planning/MOBILE_SUMMON_HUD_01_TDD_TEST_MATRIX_2026-08-03.md`.
+
+```yaml
+layout: LEFT_SAFE_AREA_VERTICAL_COMPACT_RAIL
+slot_order: [MAIN, S1, S2, S3]
+detail: ONE_CONTEXTUAL_DRAWER
+writing_focus_detail: READ_ONLY_MICRO_DETAIL
+drawer_read_pauses_clock: false
+management_confirmation_pauses_clock: true
+management_entry_requires_safe_draft: true
+same_time_event_resolution: ATOMIC_DETERMINISTIC
+same_time_event_presentation_budget_seconds_total: 1.2_TEST_VALUE
+text_scale_tests: [1.00, 1.30, ANDROID_MAX_2.00]
+timer_announcement: FOCUS_OR_MEANINGFUL_CHANGE_ONLY
+active_stroke_owner: WRITING_CANVAS
+event_dedup_owner: RESULT_LEDGER
+hud_mutates_gameplay_state: false
+```
+
+- Active Stroke 중 Rail 접촉은 선택·Focus 이동·귀환·교체를 발생시키지 않는다.
+- 빈 슬롯·오류 슬롯은 nullable ViewModel과 `timing_mode: NONE`을 사용한다.
+- 같은 시각 Event의 전체 HUD 표시 예산은 `1.2초 TEST_VALUE`이며 슬롯별 시간을 누적하지 않는다.
+- TDD 계획과 Test Matrix는 작성됐지만 실행되지 않았다.
+
+## 13. Mobile·Save·기술 경계
 
 - Smartphone Landscape가 정식 품질 Gate다.
 - Writing Panel과 상황·적·환경·타이머를 동시에 보존한다.
-- 소환수 HUD는 메인 배지 + 보조 3슬롯 압축 Rail + 선택 슬롯 상세를 사용한다.
 - Stock·소환수 State는 단일 소유권·원자 Transaction·Exactly-once Event를 사용한다.
 - Background·Offline 경과로 충전·공격·치유 Event를 생성하지 않는다.
+- HUD는 정본화된 표시 Event만 읽고 State·Event 적용을 직접 수행하지 않는다.
 
-## 13. 현재 허용·금지
+## 14. 현재 허용·금지
 
 허용:
 
@@ -276,6 +308,7 @@ support_cycle_seconds: 5
 
 ```text
 PRODUCT_IMPLEMENTATION = NOT_STARTED
+TDD_PLAN = WRITTEN_NOT_EXECUTED
 CODEX_EXECUTION = BLOCKED
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN

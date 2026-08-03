@@ -10,17 +10,19 @@
   "counter": {
     "approved_grill_me_since_last_flush": 0,
     "next_merge_at": 10,
-    "merge_required": false,
-    "merge_trigger": null,
+    "merge_required": true,
+    "merge_trigger": "WORK_HANDOFF_FLUSH",
     "merge_authorized": false,
-    "authorization_state": "IDLE_READY_FOR_NEXT_GRILLME",
+    "authorization_state": "AWAITING_USER_MERGE_APPROVAL_AFTER_FINAL_HEAD_VERIFICATION",
     "pending_decision_ids": []
   },
   "counting_rule": {
     "count_distinct_user_approved_grill_me_decision_id": true,
     "count_reapproval_or_copy_edit": false,
     "count_main_sync_receipt": false,
-    "count_unapproved_candidate": false
+    "count_unapproved_candidate": false,
+    "current_operation_counted": false,
+    "current_operation_reason": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01_SAME_DECISION_ID_USER_SPEC_REAPPROVAL"
   },
   "merge_triggers": [
     "COUNTER_REACHES_10",
@@ -31,7 +33,7 @@
     "DIFF_SIZE_OR_CANON_DRIFT_CHECKPOINT"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "PASS_FOR_PR51_HEAD_C2B1989236A831D73B7F32F70E6EA02CEB4828F9",
+  "pre_merge_gate_status": "PRE_FINALIZATION_HEAD_PASS_FINAL_HEAD_CI_REQUIRED",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
     "approved_at": "2026-08-03T09:18:00+09:00",
@@ -49,204 +51,99 @@
     "decision_merge_commit": "81852a767d60eb2aa835ac3e36309f1dc43c861d",
     "finalization_pull_request": 52,
     "finalization_merge_commit": "651ea71ad093be58b5aa0c5b3ff94d5b376faae5",
-    "sheet_readback_source_main": "651ea71ad093be58b5aa0c5b3ff94d5b376faae5",
+    "sheet_readback_pull_request": 53,
+    "sheet_readback_merge_commit": "7fd2c137469120a9ccf942df5b9860af135acc87",
     "working_sync_id": "GR-SYNC-20260803-03",
     "main_finalization_sync_id": "GR-SYNC-20260803-04",
     "main_authority": "CURRENT_DEFAULT_BRANCH_HEAD",
     "sheet_state": "SYNCED_TO_MAIN_AFTER_FINALIZATION_MERGE_AND_READBACK",
-    "sheet_ranges": [
-      "00_프로젝트_허브!H2:K2",
-      "01_작업순서!I33:J33",
-      "02_현재_확정결정!A45:J50",
-      "04_누락_충돌_감사!A42:H42",
-      "05_GDD_요약!H4:I4",
-      "05_GDD_요약!I7:J8",
-      "99_변경이력!A47:H47"
-    ],
     "counter_reset": true,
     "pending_decisions_after_reset": 0
   },
-  "previous_working_sync": {
-    "sync_id": "GR-SYNC-20260803-03",
-    "status": "MERGED_TO_MAIN",
-    "final_head": "c2b1989236a831d73b7f32f70e6ea02ceb4828f9",
-    "ci_run": 30774088936,
-    "sheet_readback": "PASS_BEFORE_MERGE",
-    "text_integrity": "PASS",
-    "adversarial_gate": "PASS",
+  "current_work": {
+    "status": "SPEC_REVIEW_APPROVED_TDD_PLAN_WRITTEN_SHEET_READBACK_PASS_AWAITING_FINAL_HEAD_CI_AND_USER_MERGE_APPROVAL",
+    "decision_id": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01",
+    "review_id": "GR-REVIEW-MOBILE-SUMMON-HUD-20260803-01",
+    "approved_at": "2026-08-03T21:11:00+09:00",
+    "selected_approach": "B_TARGETED_HARDENING_WITH_LAYOUT_PRESERVED",
+    "default_branch": "main",
+    "main_authority_commit": "7fd2c137469120a9ccf942df5b9860af135acc87",
+    "main_sync_id": "GR-SYNC-20260803-04",
+    "working_branch": "agent/mobile-summon-hud-spec-hardening",
+    "working_sync_id": "GR-SYNC-20260803-05",
+    "pull_request": 54,
+    "pull_request_state": "OPEN_DRAFT_NOT_MERGED",
+    "pre_finalization_head": "c1df7ea97b3068870b8fde22e23195a3e0d416e8",
+    "pre_finalization_ci_run": 30814628515,
+    "pre_finalization_ci_status": "PASS",
+    "pre_finalization_gates": {
+      "adapter_generator": "PASS",
+      "unit_tests": "PASS",
+      "json_parse": "PASS",
+      "utf8_nfc_text_integrity": "PASS",
+      "adversarial_gate": "PASS"
+    },
+    "final_head_ci_authority": "PR_54_EXACT_HEAD_CHECKS",
     "review_threads": 0,
     "reviews": 0,
-    "merge_commit": "81852a767d60eb2aa835ac3e36309f1dc43c861d"
-  },
-  "current_work": {
-    "status": "IDLE_READY_FOR_NEXT_GRILLME",
-    "default_branch": "main",
-    "main_authority": "CURRENT_DEFAULT_BRANCH_HEAD",
-    "main_finalization_sync_id": "GR-SYNC-20260803-04",
-    "finalization_pull_request": 52,
-    "finalization_merge_commit": "651ea71ad093be58b5aa0c5b3ff94d5b376faae5",
-    "benchmark_id": "N_A_NO_NEW_DESIGN_CHANGE_POST_MERGE_FINALIZATION",
-    "next_priority": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01_USER_SPEC_REVIEW",
-    "decisions_merged": [
-      {
-        "decision_id": "GM-STOCK-SYSTEM-01",
-        "approved_option": "B_PREPARED_SPELL_AND_GLYPH_NATURAL_CHARGE",
-        "status": "SYNCED_TO_MAIN"
-      },
-      {
-        "decision_id": "GM-SUMMON-SYSTEM-01",
-        "approved_option": "C_PERSISTENT_MAIN_PLUS_THREE_ROLE_UNIQUE_INTEGER_SUPPORT",
-        "status": "SYNCED_TO_MAIN"
-      },
-      {
-        "decision_id": "GM-STOCK-SUMMON-STATE-INTERFACE-01",
-        "approved_option": "A_SINGLE_ACTIVE_PRESSURE_CLOCK_WITH_ATOMIC_EVENT_LEDGER",
-        "status": "SYNCED_TO_MAIN"
-      },
-      {
-        "decision_id": "GM-GRILL-WORK-QUALITY-GATE-01",
-        "approved_option": "A_BENCHMARK_INDUSTRY_RECOMMENDATION_AND_TEXT_INTEGRITY_GATE",
-        "status": "SYNCED_TO_MAIN"
-      },
-      {
-        "decision_id": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01",
-        "approved_option": "B_LEFT_COMPACT_RAIL_WITH_CONTEXTUAL_DETAIL_DRAWER",
-        "status": "SYNCED_TO_MAIN_AWAITING_USER_SPEC_REVIEW"
-      },
-      {
-        "decision_id": "GM-INGAME-ART-CHECKPOINT-01",
-        "approved_option": "A_TWO_BOARD_SCENE_SET_WITH_CANON_BOUNDARY",
-        "status": "SYNCED_TO_MAIN_VISUAL_REFERENCE_ONLY"
-      }
-    ],
-    "stock_defaults": {
-      "types": [
-        "FULL_SPELL",
-        "SUB_GLYPH"
-      ],
-      "shared_capacity": 8,
-      "one_glyph_charge_seconds": 10,
-      "additional_glyph_seconds": 5,
-      "active_charge_targets": 1,
-      "stock_use_mana_cost": 0,
-      "offline_charge": false
-    },
-    "summon_defaults": {
-      "persistent_main": 1,
-      "secondary_active_cap": 3,
-      "total_active_cap": 4,
-      "secondary_slots": [
-        "S1",
-        "S2",
-        "S3"
-      ],
-      "secondary_roles": [
-        "PRODUCTION",
-        "GUARDIAN",
-        "ASSAULT",
-        "RECOVERY"
-      ],
-      "secondary_role_duplicate_cap_in_slice": 1,
-      "duration_limit": null,
-      "cooldown": null,
-      "summon_spell_mana_cost": 2,
-      "support_cycle_seconds": 5,
-      "main_stock_stat": 1,
-      "production_stock_stat": 2,
-      "guardian_defense_stat": 2,
-      "assault_attack_stat": 2,
-      "recovery_heal_stat": 2,
-      "same_time_event_order": [
-        "MAIN",
-        "S1",
-        "S2",
-        "S3"
-      ]
-    },
-    "state_interface": {
-      "status": "APPROVED_DESIGN_ONLY_REVISED_FOR_THREE_SECONDARIES",
-      "secondary_state_shape": "ARRAY_MAX_3",
-      "slot_uniqueness": true,
-      "role_uniqueness_in_slice": true,
-      "transactional_summon": true,
-      "transactional_stock_use": true,
-      "exactly_once_summon_event": true,
-      "exactly_once_stock_charge_event": true,
-      "offline_events": false
-    },
+    "comments": 0,
+    "benchmark_id": "GR-BM-MOBILE-SUMMON-HUD-20260803-01",
+    "benchmark_status": "COMPLETE_HARDENED_AFTER_USER_SPEC_REVIEW",
+    "spec_status": "USER_APPROVED_HARDENED_SPEC_ACTIVE",
+    "tdd_plan_status": "WRITTEN_NOT_EXECUTED",
+    "test_matrix_status": "WRITTEN_NOT_EXECUTED",
+    "same_decision_reapproval": true,
+    "counter_increment": false,
+    "next_priority_after_merge": "GODOT_TOOLCHAIN_PREFLIGHT_AND_BASE_V9_4_3_PLAN_REVALIDATION",
     "mobile_summon_hud": {
-      "status": "DESIGN_SYNCED_TO_MAIN_AWAITING_USER_SPEC_REVIEW",
       "layout": "LEFT_SAFE_AREA_VERTICAL_COMPACT_RAIL",
-      "slot_order": [
-        "MAIN",
-        "S1",
-        "S2",
-        "S3"
-      ],
+      "slot_order": ["MAIN", "S1", "S2", "S3"],
       "detail": "ONE_CONTEXTUAL_DRAWER",
       "writing_focus_detail": "READ_ONLY_MICRO_DETAIL",
       "drawer_read_pauses_clock": false,
-      "management_hidden_during_active_writing": true,
+      "management_confirmation_pauses_clock": true,
+      "management_entry_requires_safe_draft": true,
+      "same_time_event_resolution": "ATOMIC_DETERMINISTIC_MAIN_S1_S2_S3",
+      "same_time_event_presentation_budget_seconds_total": "1.2_TEST_VALUE",
       "android_min_touch_dp": 48,
       "ios_min_touch_pt": 44,
-      "required_text_scale": 1.3,
+      "required_text_scale_cases": ["1.00", "1.30", "ANDROID_MAX_2.00"],
+      "timer_accessibility_announcement": "ON_FOCUS_OR_MEANINGFUL_CHANGE_ONLY",
+      "active_stroke_owner": "WRITING_CANVAS",
+      "event_dedup_owner": "RESULT_LEDGER",
+      "nullable_empty_error_view_model": true,
+      "timing_mode": ["PERSISTENT", "CYCLIC", "NONE"],
       "safe_area_runtime_query": true,
-      "aspect_ratio_tests": [
-        "16:9",
-        "19.5:9",
-        "20:9"
-      ],
+      "aspect_ratio_tests": ["16:9", "19.5:9", "20:9"],
       "hud_mutates_gameplay_state": false
-    },
-    "ingame_art_checkpoint": {
-      "status": "USER_APPROVED_VISUAL_CHECKPOINT_SYNCED_TO_MAIN",
-      "decision_id": "GM-INGAME-ART-CHECKPOINT-01",
-      "approved_board_count": 2,
-      "board_a_asset_id": "GR-VISUAL-CHECKPOINT-BOARD-A-01",
-      "board_b_asset_id": "GR-VISUAL-CHECKPOINT-BOARD-B-01",
-      "board_a_library_file_id": "libfile_dab7089fcf708191b7073f24d2ecafb8",
-      "board_b_library_file_id": "libfile_a6941b474c18819197ea95df21dd84f9",
-      "final_text_approved": false,
-      "final_numbers_approved": false,
-      "runtime_screen_approved": false,
-      "asset_production_authorized": false
-    },
-    "work_quality_gate": {
-      "status": "APPROVED_ACTIVE_SYNCED_TO_MAIN",
-      "benchmark_required_for_grillme": true,
-      "industry_or_standard_comparison_required": true,
-      "adopt_adapt_reject_required": true,
-      "adversarial_review_required": true,
-      "utf8_strict": true,
-      "unicode_nfc": true,
-      "replacement_character_prohibited": true,
-      "mojibake_check_required": true,
-      "github_sheet_readback_required": true
     },
     "planning_remainder": {
       "p0_open": 0,
-      "p1_open": 4,
-      "p1_design_written_awaiting_review": 1,
+      "p1_open": 2,
+      "p1_closed_mobile_hud_spec": true,
+      "p1_closed_tdd_plan_only": true,
+      "p1_open_toolchain_preflight": true,
+      "p1_open_plan_revalidation_execution_readiness": true,
       "p2_open": 12,
-      "p3_deferred": 8,
-      "canon_reconciliation_completed_in_main": true,
-      "next_priority": "GM-MOBILE-SUMMON-HUD-WIREFRAME-01_USER_SPEC_REVIEW"
+      "p3_deferred": 8
     },
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
-    "codex_plan": "ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS",
+    "godot_mobile_summon_hud_implementation": "NOT_AUTHORIZED",
+    "codex_plan": "WRITTEN_AWAITING_MERGE_AND_READINESS_REVALIDATION",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
+    "sheet_sync": "PASS_PR54_PRE_FINALIZATION_HEAD_RECORDED",
     "sheet_readback": "PASS",
     "sheet_text_integrity_sentinel": "PASS",
-    "sheet_readback_main": "651ea71ad093be58b5aa0c5b3ff94d5b376faae5"
+    "sheet_sentinels": ["소환수", "자연충전", "적대적 검토", "벤치마킹", "마도서"]
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
     "codex_execution": "BLOCKED",
     "godot_project_creation": "BLOCKED_UNTIL_EXECUTION_READINESS_PASS",
     "godot_mobile_summon_hud_implementation": "NOT_AUTHORIZED",
-    "tdd_implementation_plan": "BLOCKED_UNTIL_USER_SPEC_REVIEW",
+    "tdd_implementation_plan": "WRITTEN_NOT_EXECUTED",
     "prototype_defaults_are_final_balance": false,
     "stock_conditional_auto_cast": "PROHIBITED",
     "stock_offline_generation": "PROHIBITED",
@@ -258,7 +155,11 @@
     "summon_auto_summon_chain": "PROHIBITED",
     "summon_offline_actions": "PROHIBITED",
     "summon_final_situation_resolution": "PROHIBITED",
-    "percentage_based_summon_effects": "PROHIBITED",
+    "hud_drawer_free_pause": "PROHIBITED",
+    "hud_active_stroke_interception": "PROHIBITED",
+    "hud_event_deduplication": "PROHIBITED",
+    "hud_gameplay_state_mutation": "PROHIBITED",
+    "timer_second_by_second_accessibility_announcement": "PROHIBITED",
     "broken_text_canonical_promotion": "PROHIBITED",
     "approved_visual_boards_are_final_runtime": false,
     "approved_visual_board_text_is_canonical": false,
