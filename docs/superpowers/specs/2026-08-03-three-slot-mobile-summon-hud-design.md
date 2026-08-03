@@ -4,15 +4,13 @@
 
 ```yaml
 decision_id: GM-MOBILE-SUMMON-HUD-WIREFRAME-01
-status: USER_DELEGATED_RECOMMENDED_DESIGN_WRITTEN
+status: USER_APPROVED_HARDENED_SPEC_ACTIVE
 approved_option: B_LEFT_COMPACT_RAIL_WITH_CONTEXTUAL_DETAIL_DRAWER
-approved_at: 2026-08-03T07:49:00+09:00
+initial_approval_at: 2026-08-03T07:49:00+09:00
+user_spec_review_approved_at: 2026-08-03T21:11:00+09:00
+review_result: APPROVE_AFTER_TARGETED_HARDENING
 benchmark_id: GR-BM-MOBILE-SUMMON-HUD-20260803-01
-parent_decisions:
-  - GM-MOBILE-UX-FLOW-01
-  - GM-MOBILE-WRITING-BATTLE-WIREFRAME-01
-  - GM-SUMMON-SYSTEM-01
-  - GM-STOCK-SUMMON-STATE-INTERFACE-01
+implementation_plan: WRITTEN_NOT_EXECUTED
 implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
@@ -22,38 +20,19 @@ human_validation: NOT_RUN
 
 ## 1. Problem
 
-The Mobile Landscape screen must show one persistent main summon and up to three secondary summons without obscuring:
+The Mobile Landscape screen must show one persistent main summon and up to three secondary summons without obscuring the target, enemy intent, remaining time, environmental risk, player HP and mana, or the expandable right Writing Focus Panel.
 
-1. target or enemy;
-2. enemy intent and remaining time;
-3. environmental risk and protected target;
-4. player HP and mana;
-5. the expandable right Writing Focus Panel.
+The HUD must expose deterministic support events without becoming a second dashboard, a free tactical pause, or an owner of gameplay State.
 
-The summon HUD must explain deterministic support events without becoming a second dashboard or replacing player judgment.
+## 2. Selected approach
 
-## 2. Explored approaches
+Three approaches were compared:
 
-### A. Top horizontal rail
+- top horizontal rail: rejected because it competes with objective, intent, threat, and timer;
+- left compact vertical rail with one contextual drawer: selected;
+- bottom horizontal rail: rejected because it competes with HP, mana, Stock, Commit controls, and hand occlusion.
 
-- Places MAIN, S1, S2, and S3 below the objective and timer.
-- Advantage: easy left-to-right reading.
-- Rejected for the prototype because it competes with objective, target intent, threat, and timer information.
-
-### B. Left compact vertical rail with contextual detail drawer — selected
-
-- Places MAIN, S1, S2, and S3 in one safe-area-aware left rail.
-- Opens one selected slot toward the center as a temporary detail drawer.
-- Keeps the right side free for the Writing Focus Panel.
-- Preserves a stable slot order and deterministic event source.
-
-### C. Bottom horizontal rail
-
-- Places the four summon states near player resources and common touch reach.
-- Advantage: easy thumb access.
-- Rejected because it competes with player HP, mana, Stock, Commit controls, and hand occlusion during writing.
-
-## 3. Selected architecture
+Selected structure:
 
 ```text
 Safe Area
@@ -69,255 +48,254 @@ Safe Area
 └───────────────────────────────┴────────────────────────────┘
 ```
 
-The diagram shows responsibility zones, not final pixels.
+The diagram defines responsibility zones, not final pixels.
 
-### 3.1 Rail anchor
+## 3. Stable rail contract
 
-- Default anchor: left safe-area column, vertically centered below the objective and threat block.
-- The rail must not overlap the target silhouette, HP and mana, or the left cutout.
-- If the target block uses the left column, the rail moves to the nearest lower-left safe anchor without changing slot order.
-- The right Writing Panel never owns or repositions the rail.
-
-### 3.2 Stable order
+Visual and deterministic event order are identical:
 
 ```text
-MAIN
-S1
-S2
-S3
+MAIN → S1 → S2 → S3
 ```
 
-The visual order matches the deterministic event order `MAIN → S1 → S2 → S3`.
+Each compact slot shows:
 
-## 4. Compact slot contract
-
-Each compact slot shows only:
-
-1. slot ID: `MAIN`, `S1`, `S2`, or `S3`;
-2. summon identity portrait or silhouette;
-3. primary role icon and text abbreviation;
+1. slot ID;
+2. portrait or stable silhouette;
+3. primary role icon and text;
 4. representative integer stat;
-5. next action remaining seconds, or `상시` for Guardian defense;
-6. state label: `정상`, `정지`, `봉인`, `무효`, `오류`, or `빈 슬롯`.
+5. remaining seconds or `상시`;
+6. explicit state text: `정상`, `정지`, `봉인`, `무효`, `오류`, or `빈 슬롯`.
 
-Examples:
+Color is supplementary. Slot, role, number, timer, and state remain understandable in grayscale.
 
-```text
-S1  생산  [스톡] 2   03초
-S2  수호  [방어도] 2 상시
-S3  공격  [공격] 2   정지
-```
+## 4. Contextual detail drawer
 
-Color is supplementary. Slot, role, number, icon, timer, and state text remain readable without color.
-
-## 5. Detail drawer contract
-
-Selecting one compact slot opens one contextual detail drawer toward the screen center.
+Selecting one slot opens one drawer toward the center. Selecting another replaces the current drawer; drawers never stack.
 
 The drawer shows:
 
-- summon name and primary role;
+- summon name and role;
 - fixed target rule;
-- representative integer stat;
-- expected before and after value for the next valid event;
-- remaining cycle time and paused reason;
+- representative stat;
+- expected before/after value for the next valid event;
+- cycle time and paused reason;
 - last event ID and result summary;
-- `귀환` and `교체` actions when interaction is permitted.
+- recall and replace actions only when management is permitted.
 
-Only one drawer may be open. Selecting another slot replaces the previous drawer; it does not stack drawers.
+Reading or comparing slots is non-modal and does not pause the Active Pressure Clock.
 
-### 5.1 Non-modal behavior
+## 5. Management confirmation and Clock ownership
 
-- Reading the drawer does not pause the Active Pressure Clock.
-- Pressing `귀환` or `교체` enters an explicit confirmation state.
-- Confirmation may pause the Clock only after the player has committed to management mode.
-- Closing the drawer changes no State and consumes no mana.
+`귀환` or `교체` does not pause immediately.
 
-This prevents the drawer from becoming a free tactical pause.
+```text
+OBSERVE or WRITING_FOCUS
+→ request management
+→ finish active stroke
+→ preserve Draft safely
+→ enter MANAGEMENT_CONFIRM
+→ pause Active Pressure Clock
+→ confirm or cancel
+```
 
-## 6. Writing Focus behavior
+- `MANAGEMENT_CONFIRM` is the only HUD management state that may pause the Clock.
+- Cancelling confirmation changes no State and consumes no mana.
+- Confirming emits a Command to the Transaction layer.
+- The HUD never performs recall, replacement, mana deduction, or cycle reset directly.
+
+This prevents the drawer from becoming a free tactical pause while still allowing safe confirmation.
+
+## 6. Writing Focus and active-stroke ownership
 
 When the right Writing Focus Panel is expanded:
 
 - the compact rail remains visible;
-- the full detail drawer closes;
-- selecting a slot opens a read-only micro detail containing only target rule, representative stat, next action, and state;
-- `귀환` and `교체` actions are hidden until the Writing Panel is collapsed or the current Draft is safely preserved;
-- rail selection never steals the active drawing stroke;
-- the Writing Panel canvas receives priority over rail hover, tooltip, and animation.
+- the full drawer closes;
+- selecting a slot shows only read-only micro detail;
+- recall and replace actions are hidden;
+- the Writing Canvas owns the active pointer/touch sequence until the stroke ends;
+- touching the rail during an active stroke causes no slot selection, focus transfer, recall, or replacement;
+- decorative portraits, tooltips, and FX do not intercept input;
+- the canvas remains the highest-priority input surface.
 
-This preserves the approved requirement that target, intent, timer, environmental risk, HP, and mana remain visible during writing.
+The Draft must survive panel collapse, management request, app interruption, and safe resume according to the parent Writing Focus contract.
 
-## 7. Result and event-source behavior
+## 7. Event resolution and presentation
 
-When a summon event resolves:
-
-1. the source slot briefly enters `RESULT_SOURCE`;
-2. the affected value shows a signed integer delta;
-3. the result log records the source slot and event ID;
-4. the next cycle starts only after the current event resolves;
-5. simultaneous events display in `MAIN → S1 → S2 → S3` order.
-
-Examples:
+Gameplay resolution and HUD presentation are separate.
 
 ```text
-S1 [스톡] -2초 · event: SUM-S1-0041
-S3 [공격] 불안정도 7→5 · event: SUM-S3-0018
+Summon events
+→ Transaction / ResultLedger exactly-once resolution
+→ canonical presentation records
+→ HUD presentation queue
 ```
 
-The HUD must never imply that an automatic attack completed the Situation. Automatic assault cannot lower instability below 1 or become the final resolution event.
+The `ResultLedger` owns duplicate detection and application. The HUD must not infer whether an event was already applied.
+
+Same-time events are resolved in `MAIN → S1 → S2 → S3` order. The presentation may highlight sources sequentially, but the entire same-time batch must fit inside `1.2 seconds total TEST_VALUE`; it must not spend `0.8–1.2 seconds` per slot and accumulate multi-second delay.
+
+Each presented event keeps:
+
+- source slot;
+- event ID;
+- signed integer delta or concise state result;
+- batch index and batch size when more than one source exists.
+
+Automatic assault never lowers instability below 1 and never becomes the final Situation resolution event.
 
 ## 8. State matrix
 
 | State | Rail | Detail | Clock | Interaction |
 |---|---|---|---|---|
-| OBSERVE | full compact rail | one drawer allowed | running | select, recall, replace |
-| WRITING_FOCUS | full compact rail | read-only micro detail | running except approved blocking states | inspect only |
-| SYSTEM_RESOLVE | source slot highlighted | closed | paused | none |
+| OBSERVE | full compact rail | one drawer | running | inspect, request management |
+| WRITING_FOCUS | full compact rail | read-only micro detail | running except approved blockers | inspect only |
+| MANAGEMENT_CONFIRM | full compact rail | confirmation summary | paused | confirm or cancel |
+| SYSTEM_RESOLVE | source highlighted | closed | paused | none |
 | RESULT | source and delta | result summary | paused until result completes | acknowledge only |
-| PAUSE/BACKGROUND | static with `정지` | closed | stopped | none |
-| RESUME | restored state and remaining time | closed | resumes after validation | inspect |
-| ERROR | slot ID plus explicit error text | recovery explanation | stopped for invalid state | safe recovery only |
+| PAUSE/BACKGROUND | static `정지` | closed | stopped | none |
+| RESUME | restored remaining values | closed | resumes after validation | inspect |
+| ERROR | explicit slot and error text | recovery explanation | stopped for invalid state | safe recovery only |
 
-## 9. Accessibility and touch contract
-
-- Android interactive target: at least `48dp × 48dp`.
-- iOS interactive target: at least `44pt × 44pt` for primary touch controls.
-- Visual icons may be smaller only when the interactive hit area remains compliant.
-- Each slot receives a unique accessible name containing slot, summon, role, stat, timer, and state.
-- Role and state are never conveyed by color alone.
-- Text scale `130%` is a required layout case.
-- Reduced Motion replaces slot pulses and drawer motion with immediate state changes and static emphasis.
-- Haptic or sound feedback supplements, but never replaces, visible state feedback.
-
-Exact Godot logical-unit conversion is a device-calibrated `TEST_VALUE`.
-
-## 10. Safe area and responsive layout
-
-- Query the display safe area at runtime.
-- Test landscape `16:9`, `19.5:9`, and `20:9` phone classes.
-- Test left and right cutout orientations.
-- The rail uses relative anchors and container constraints rather than fixed screen pixels.
-- The rail may reduce decorative portrait size before reducing touch targets or hiding state text.
-- If `130%` text cannot fit, the compact slot may use two lines but must not overlap another slot.
-- The detail drawer may scroll its history section, but target rule and action buttons remain fixed.
-
-Prototype starting values, not final balance or production pixels:
-
-```yaml
-rail_visual_width_safe_area_ratio: 0.07_to_0.10
-compact_slot_min_touch_target_android_dp: 48
-compact_slot_min_touch_target_ios_pt: 44
-compact_slot_gap_test_value: 4_to_8
-detail_drawer_max_safe_width_ratio: 0.28
-result_source_emphasis_seconds: 0.8_to_1.2
-text_scale_required: 1.30
-```
-
-## 11. View-model boundary
-
-The HUD reads a view model and does not mutate gameplay State directly.
+## 9. View-model boundary
 
 ```text
 SummonRosterState
 + ActivePressureClock
-+ ResultLedger
++ canonical ResultLedger presentation records
 → SummonHudViewModel
-→ Rail / Detail Drawer / Result Source View
+→ Rail / Drawer / Result Source View
 ```
 
-Required view-model fields:
+Required slot fields:
 
 ```yaml
 slot_id: MAIN | S1 | S2 | S3
 summon_id: string | null
-primary_role: MAIN | PRODUCTION | GUARDIAN | ASSAULT | RECOVERY
-representative_stat_type: STOCK | DEFENSE | ATTACK | HEAL
-representative_stat_value: integer
+primary_role: MAIN | PRODUCTION | GUARDIAN | ASSAULT | RECOVERY | null
+representative_stat_type: STOCK | DEFENSE | ATTACK | HEAL | null
+representative_stat_value: integer | null
 remaining_cycle_ms: integer | null
-target_rule_text: string
+timing_mode: PERSISTENT | CYCLIC | NONE
+target_rule_text: string | null
 state_code: EMPTY | ACTIVE | PAUSED | SEALED | INVALID | ERROR
 last_event_id: string | null
 last_result_summary: string | null
 can_recall: boolean
 can_replace: boolean
+unavailable_reason: string | null
 error_message: string | null
 ```
 
-Button actions emit commands to the transaction layer. The HUD never subtracts mana, changes slots, applies events, or repairs Save data itself.
+Nullable fields are required for empty and invalid slots. `timing_mode` distinguishes persistent MAIN behavior, cyclic secondary behavior, and empty/error states without inventing fake timers.
 
-## 12. Error handling
+The HUD never:
 
-- Fourth secondary summon: reject before confirmation and identify the full slot cap.
-- Duplicate secondary role: reject before confirmation and identify the conflicting slot.
-- Missing or duplicated slot in Save: stop the affected slot, show an explicit error, and offer safe-anchor recovery; do not silently rewrite the Save.
-- Unknown event ID: display a non-destructive log warning and prevent duplicate application.
-- Missing portrait or icon: use a stable silhouette and text; never hide the slot.
-- Text overflow: preserve slot, role, number, and state before decorative names.
+- subtracts mana;
+- changes slots;
+- applies summon effects;
+- decides event deduplication;
+- mutates Stock or combat State;
+- silently repairs a damaged Save.
 
-## 13. Acceptance tests
+## 10. Accessibility and responsive layout
 
-### Layout
+- Android interactive target: at least `48dp × 48dp`.
+- iOS primary touch target: at least `44pt × 44pt`.
+- Test text at `100%`, `130%`, and Android maximum `200%`.
+- At 200%, reduce decorative portrait size first; allow two-line slots or safe scrolling while retaining slot, role, stat, state, and touch target.
+- Timer text is available when a slot receives accessibility focus, but is not announced every second.
+- Announce meaningful state changes, events, errors, and important thresholds only.
+- Use non-interrupting queued announcements for ordinary changes; reserve immediate interruption for critical errors only.
+- Reduced Motion replaces pulses and drawer travel with immediate state change and static emphasis.
+- Query safe area at runtime and test `16:9`, `19.5:9`, `20:9`, left cutout, and right cutout.
 
-1. `16:9`, `19.5:9`, and `20:9` with no cutout.
-2. Left and right cutout orientations.
-3. Writing Panel collapsed and expanded.
-4. Text scale `100%` and `130%`.
-5. MAIN plus zero, one, two, and three secondary summons.
-6. Empty, active, paused, sealed, invalid, and error states.
+Prototype values:
 
-### Interaction
+```yaml
+rail_visual_width_safe_area_ratio: 0.07_to_0.10_TEST_VALUE
+compact_slot_gap: 4_to_8_TEST_VALUE
+detail_drawer_max_safe_width_ratio: 0.28_TEST_VALUE
+same_time_event_presentation_budget_seconds_total: 1.2_TEST_VALUE
+text_scale_cases: [1.00, 1.30, ANDROID_MAX_2.00]
+```
 
-1. Slot selection changes only the selected detail view.
-2. Drawer reading does not pause the Clock.
-3. Recall or replace requires explicit confirmation and valid transaction.
-4. Writing stroke is not cancelled by rail input.
-5. Management actions are unavailable during active drawing.
-6. Fourth summon and duplicate role attempts fail without cost.
+## 11. Error handling
 
-### Event and Save
+- fourth secondary summon: reject before confirmation and identify the cap;
+- duplicate secondary role: reject before confirmation and identify the conflicting slot;
+- missing or duplicate slot in Save: stop the affected slot, preserve the source Save, and offer explicit recovery;
+- unknown event ID: ResultLedger records a non-destructive warning and does not reapply it; HUD displays only the canonical warning record;
+- missing portrait or icon: use silhouette plus text;
+- text overflow: preserve slot, role, stat, state, and touch area before decorative names;
+- active-stroke conflict: keep canvas ownership and ignore management interaction until stroke completion.
 
-1. Same-time events render in `MAIN → S1 → S2 → S3` order.
-2. Each event source and integer delta remain identifiable.
-3. Pause, background, and resume preserve each independent remaining cycle.
-4. Already applied event IDs are not displayed or applied twice.
-5. Damaged slot or role duplication in Save is not silently corrected.
+## 12. Acceptance matrix
 
-### Accessibility
+Layout:
 
-1. Touch targets meet Android and iOS minimums on measured devices.
-2. Every slot has a unique accessible description.
-3. Color-blind and grayscale review preserves role and state distinction.
-4. Reduced Motion removes nonessential motion.
-5. `130%` text preserves critical information and actions.
+- `16:9`, `19.5:9`, `20:9`;
+- left and right cutouts;
+- Writing Panel collapsed and expanded;
+- text `100%`, `130%`, Android maximum `200%`;
+- MAIN plus zero to three secondary summons;
+- empty, active, paused, sealed, invalid, and error slots.
 
-## 14. Rework conditions
+Interaction:
 
-Rework the wireframe if any condition occurs:
+- drawer reading does not pause;
+- management confirmation pauses only after safe Draft preservation;
+- cancel changes no State;
+- active stroke survives rail contact;
+- management actions remain hidden while writing;
+- fourth summon and duplicate role fail without cost.
 
-- the rail or drawer hides enemy intent, timer, environmental risk, HP, mana, or the writing canvas;
-- a slot cannot be reliably selected at platform minimum touch size;
-- three secondary slots cannot be distinguished at a glance;
-- result source or event order is ambiguous;
-- the detail drawer becomes a free tactical pause;
-- rail input cancels a drawing stroke;
-- `130%` text removes role, stat, timer, or state;
-- the HUD mutates gameplay State directly;
+Event and Save:
+
+- same-time events resolve deterministically;
+- full same-time presentation remains inside the total budget;
+- source, event ID, and integer delta remain identifiable;
+- ResultLedger, not HUD, blocks duplicates;
+- pause/background/resume preserve independent remaining cycles;
+- damaged Save is not silently rewritten.
+
+Accessibility:
+
+- platform touch targets pass measured-device checks;
+- each slot has a unique accessible name;
+- timer does not announce every second;
+- meaningful changes are announced once;
+- grayscale and Reduced Motion remain usable;
+- required information survives 200% Android font scaling.
+
+## 13. Rework conditions
+
+Rework when any of the following occurs:
+
+- rail or drawer hides intent, timer, environmental risk, HP, mana, or canvas;
+- drawer reading pauses the Clock;
+- management pause starts before safe Draft preservation;
+- rail contact cancels a stroke or steals focus;
+- same-time presentation delay obscures the next cycle;
+- source or event order is ambiguous;
+- 130% or 200% text removes critical information;
+- timer announces every second;
+- HUD mutates gameplay State or owns event deduplication;
 - Save corruption is silently repaired;
-- runtime, device, accessibility, or human validation is reported as complete without execution.
+- unexecuted validation is reported as complete.
 
-## 15. Scope boundary
+## 14. Scope boundary
 
-This specification approves a wireframe and interface contract only.
+This specification approves the hardened wireframe, interfaces, TDD plan, and test matrix only.
 
 ```text
 PRODUCT_IMPLEMENTATION = NOT_STARTED
 GODOT_UI_IMPLEMENTATION = NOT_AUTHORIZED_BY_THIS_SPEC
+TDD_PLAN = WRITTEN_NOT_EXECUTED
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
 ACCESSIBILITY_VALIDATION = NOT_RUN
 HUMAN_VALIDATION = NOT_RUN
 FINAL_PIXEL_VALUES = TEST_VALUE
 ```
-
-The next step after user review is a TDD implementation plan and test matrix, not direct product implementation.
