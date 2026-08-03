@@ -8,7 +8,7 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: agent/pr54-main-finalization
+working_branch: NONE
 primary_platform: Mobile
 follow_up_platform: PC
 mobile_orientation: LANDSCAPE_FIXED
@@ -16,16 +16,20 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
 work_mode: PLAN
 base_release: v9.4.3
-main_authority_commit: bf964063b3fa35413f9e5efb07ad831f1617c412
+main_authority: CURRENT_DEFAULT_BRANCH_HEAD_AFTER_PR56
 last_main_sync: GR-SYNC-20260803-06
 last_working_sync: GR-SYNC-20260803-05
-last_merged_pull_request: 54
-last_merged_pull_request_head: 5f0689d78f60fa5bdfe8b33d71a874ecf453b120
-last_merged_pull_request_commit: bf964063b3fa35413f9e5efb07ad831f1617c412
+last_decision_pull_request: 54
+last_decision_merge_commit: bf964063b3fa35413f9e5efb07ad831f1617c412
+last_finalization_pull_request: 55
+last_finalization_merge_commit: f693089a76138d6f061591e011bcb6c098f14dc5
+sheet_readback_pull_request: 56
 grill_counter: 0_of_10
 pending_distinct_decisions: 0
 mobile_summon_hud_spec: USER_APPROVED_HARDENED_SPEC_ACTIVE
 mobile_summon_hud_tdd_plan: WRITTEN_NOT_EXECUTED
+sheet_readback: PASS
+sheet_sentinel: PASS
 next_priority: GODOT_TOOLCHAIN_PREFLIGHT_AND_BASE_V9_4_3_PLAN_REVALIDATION
 p0_open: 0
 p1_open: 2
@@ -62,8 +66,6 @@ human_validation: NOT_RUN
 
 > 마법학교 학생이 글자의 의미와 상황 조건을 배우고, 직접 작성·준비 Stock·상주 소환수를 운용해 주문을 설계하며, 명시적으로 구현한 결과와 대가를 책임지고 마도서에 기록하는 마법 RPG.
 
-핵심 재미:
-
 ```text
 상황·위험 판독
 → 직접 작성·준비 Stock·[소환 주문] 중 수단 선택
@@ -86,10 +88,6 @@ stock_use_mana_cost: 0
 offline_charge: false
 ```
 
-```text
-기능 글자 수 n → 10 + 5 × (n - 1)초
-```
-
 - 지정 대상 1종만 자연충전한다.
 - 충전 대상 전환 시 대상별 진행도를 보존한다.
 - 소환수 `[스톡] N`은 5초마다 현재 지정 Stock 남은 시간을 `N초` 감소시킨다.
@@ -110,16 +108,14 @@ support_cycle_seconds: 5
 ```
 
 - 보조 역할은 `PRODUCTION / GUARDIAN / ASSAULT / RECOVERY`다.
-- Slice에서는 최대 세 역할을 편성하고 보조 사이 역할 중복을 금지한다.
+- 보조 사이 역할 중복을 금지한다.
 - 같은 시각 Event는 `MAIN → S1 → S2 → S3`다.
 - 자동 공격은 불안정도 `1` 아래·마지막 해결 Event를 만들 수 없다.
 
 ## State·Ledger·Save
 
-책임 원본: `GM-STOCK-SUMMON-STATE-INTERFACE-01`.
-
 - 보조 상태는 `secondary_summon_states` 배열로 저장하며 최대 3개다.
-- `slot_id`와 보조 `primary_role`은 각각 유일해야 한다.
+- `slot_id`와 보조 `primary_role`은 각각 유일하다.
 - `[소환 주문]`의 마나 차감·교체·활성은 한 Transaction이다.
 - Stock 소비와 효과 적용도 한 Transaction이다.
 - 소환수 행동은 고유 `summon_event_id`로 정확히 한 번만 적용한다.
@@ -155,19 +151,21 @@ hud_mutates_gameplay_state: false
 - 적 의도·불안정도·환경·HP·마나.
 - Writing Panel과 Commit.
 
-선택한 보조 슬롯에만 대상 규칙·예상 적용값·마지막 Event·귀환·교체를 상세 표시한다.
-
-## 병합 결과
+## 병합·검증 증거
 
 ```yaml
-pull_request: 54
-head: 5f0689d78f60fa5bdfe8b33d71a874ecf453b120
-merge_commit: bf964063b3fa35413f9e5efb07ad831f1617c412
-pre_merge_ci_run: 30815546367
-pre_merge_ci: PASS
-changed_files: 15_DOCUMENT_FILES_ONLY
-product_code_changed: false
-godot_scene_resource_asset_changed: false
+pr54_head: 5f0689d78f60fa5bdfe8b33d71a874ecf453b120
+pr54_merge: bf964063b3fa35413f9e5efb07ad831f1617c412
+pr54_ci_run: 30815546367
+pr55_merge: f693089a76138d6f061591e011bcb6c098f14dc5
+pr55_ci_run: 30816905584
+generator: PASS
+unit_tests: PASS
+json_parse: PASS
+utf8_nfc: PASS
+adversarial_gate: PASS
+sheet_readback: PASS
+sheet_sentinel: PASS
 ```
 
 ## 잔여 P1
