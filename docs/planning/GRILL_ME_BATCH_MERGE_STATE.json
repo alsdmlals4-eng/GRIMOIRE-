@@ -7,22 +7,23 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 1,
+    "approved_grill_me_since_last_flush": 2,
     "next_merge_at": 10,
     "merge_required": false,
     "merge_trigger": "NONE",
     "merge_authorized": false,
     "authorization_state": "ACCUMULATING_APPROVED_DECISIONS",
     "pending_decision_ids": [
-      "GM-FOUNDATION-POC-EXECUTION-READINESS-01"
+      "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
+      "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01"
     ]
   },
   "counting_rule": {
     "count_distinct_user_approved_grill_me_decision_id": true,
     "count_reapproval_or_copy_edit": false,
     "count_main_sync_receipt": false,
-    "current_operation_counted": false,
-    "current_operation_reason": "SAME_DECISION_ROLE_CLARIFICATION_GPT_CREATIVE_PLANNING_CODEX_IMPLEMENTATION"
+    "current_operation_counted": true,
+    "current_operation_reason": "DISTINCT_USER_APPROVED_NARRATIVE_MULTI_SOLUTION_SITUATION_DESIGN"
   },
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
@@ -35,15 +36,15 @@
     "main_finalization_sync_id": "GR-SYNC-20260803-06"
   },
   "current_work": {
-    "status": "GPT_CREATIVE_PLANNING_ACTIVE_CODEX_IMPLEMENTATION_DEFERRED",
-    "decision_id": "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
+    "status": "NARRATIVE_MULTI_SOLUTION_SITUATION_DESIGN_USER_APPROVED_SPEC_READY_FOR_REVIEW",
+    "decision_id": "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
     "default_branch": "main",
     "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
     "working_branch": "agent/foundation-poc-readiness-review",
     "working_sync_id": "GR-SYNC-20260803-07",
     "pull_request": 57,
-    "user_clarification": "GPT_FOCUSES_ON_CORE_FUN_CONTENT_IMAGE_AND_ART_CODEX_IMPLEMENTS_LATER",
-    "counter_increment": false,
+    "selected_approach": "NARRATIVE_INTENT_CHOICE_THEN_SPELL_DESIGN",
+    "counter_increment": true,
     "role_split": {
       "gpt": [
         "CORE_FUN",
@@ -62,6 +63,22 @@
         "CI_AND_DEVICE_VALIDATION"
       ]
     },
+    "narrative_situation_design": {
+      "spec": "docs/superpowers/specs/2026-08-04-narrative-multi-solution-situation-design.md",
+      "approval": "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_APPROVAL_2026-08-04.md",
+      "representative_situation": "FROSTBLOOM_GREENHOUSE_HEART",
+      "choice_layer": "INTENT_AND_PRIORITY",
+      "spell_layer": "PLAYER_DESIGNED_EXECUTION",
+      "minimum_approaches": 3,
+      "recommended_approaches": 5,
+      "minimum_noncombat_approaches": 2,
+      "recommended_noncombat_approaches": 4,
+      "combat_is_mandatory": false,
+      "minimum_valid_spell_plans_per_approach": 2,
+      "minimum_valid_endings": 3,
+      "single_true_ending": false,
+      "spec_review": "PENDING_USER_REVIEW"
+    },
     "godot_toolchain": {
       "engine_pin": "4.7.1-stable",
       "user_pc_installation": "USER_CONFIRMED_INSTALLED",
@@ -73,20 +90,24 @@
     },
     "planning": {
       "creative_scope": "docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md",
-      "current_priority_1": "REVALIDATE_CORE_FUN",
-      "current_priority_2": "SELECT_VERTICAL_SLICE_CONTENT",
-      "current_priority_3": "MAP_MAIN_GRIMOIRE_BATTLE_WRITING_UX",
-      "current_priority_4": "DEFINE_ART_DIRECTION_AND_CREATE_IMAGE_CONCEPTS",
-      "current_priority_5": "DESIGN_YEAR_ONE_CHAPTER_MAP_AND_GLYPH_CATALOG",
+      "current_priority_1": "USER_REVIEW_NARRATIVE_MULTI_SOLUTION_SPEC",
+      "current_priority_2": "WRITE_FROSTBLOOM_GREENHOUSE_SCENE_FLOW",
+      "current_priority_3": "DESIGN_INVESTIGATION_CHOICES_AND_DIALOGUE",
+      "current_priority_4": "DESIGN_SITUATION_UX_WIREFRAME",
+      "current_priority_5": "DEFINE_GREENHOUSE_SPIRIT_MAGIC_CORE_ART_DIRECTION",
       "foundation_poc_core_design": "SUFFICIENT_FOR_LATER_CODEX_IMPLEMENTATION"
     },
     "implementation": "PRODUCT_IMPLEMENTATION_NOT_STARTED",
     "godot_product_project": "NOT_CREATED",
     "foundation_poc_build_authorization": "AVAILABLE_FOR_LATER_CODEX_SESSION",
     "codex_execution": "DEFERRED_UNTIL_SELECTED_CREATIVE_SCOPE_IS_READY",
-    "next_priority": "GPT_CORE_FUN_CONTENT_UX_IMAGE_ART"
+    "next_priority": "USER_REVIEW_NARRATIVE_MULTI_SOLUTION_SPEC"
   },
   "protected_boundaries": {
+    "text_choice_auto_selects_spell": "PROHIBITED",
+    "text_choice_auto_guarantees_success": "PROHIBITED",
+    "combat_as_default_or_mandatory_resolution": "PROHIBITED",
+    "single_true_ending_for_representative_situation": "PROHIBITED",
     "gpt_product_implementation": "PROHIBITED_AS_PRIMARY_WORKFLOW",
     "codex_implementation_before_selected_creative_scope": "DEFERRED",
     "foundation_poc_scope_expansion": "PROHIBITED_WITHOUT_NEW_DECISION",
