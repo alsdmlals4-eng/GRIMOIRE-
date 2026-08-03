@@ -23,7 +23,7 @@
     "count_reapproval_or_copy_edit": false,
     "count_main_sync_receipt": false,
     "current_operation_counted": false,
-    "current_operation_reason": "SAME_DECISION_WRITTEN_SPEC_APPROVAL_AND_ROUTE_SOLUTION_PATTERN_DESIGN"
+    "current_operation_reason": "SAME_DECISION_ROUTE_PATTERNS_AND_PRECAST_GUIDANCE_APPROVAL"
   },
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
@@ -36,14 +36,14 @@
     "main_finalization_sync_id": "GR-SYNC-20260803-06"
   },
   "current_work": {
-    "status": "NARRATIVE_MULTI_SOLUTION_WRITTEN_SPEC_APPROVED_ROUTE_PATTERN_DESIGN_ACTIVE",
+    "status": "NARRATIVE_ROUTE_PATTERNS_AND_PRECAST_GUIDANCE_USER_APPROVED",
     "decision_id": "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
     "default_branch": "main",
     "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
     "working_branch": "agent/foundation-poc-readiness-review",
     "working_sync_id": "GR-SYNC-20260803-07",
     "pull_request": 57,
-    "selected_approach": "NARRATIVE_INTENT_CHOICE_THEN_SPELL_DESIGN",
+    "selected_approach": "NARRATIVE_INTENT_CHOICE_THEN_SPELL_DESIGN_WITH_LAYERED_PRECAST_GUIDANCE",
     "counter_increment": false,
     "role_split": {
       "gpt": [
@@ -67,8 +67,11 @@
       "spec": "docs/superpowers/specs/2026-08-04-narrative-multi-solution-situation-design.md",
       "approval": "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_APPROVAL_2026-08-04.md",
       "written_spec_approval": "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_SPEC_APPROVAL_2026-08-04.md",
+      "route_guidance_approval": "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md",
+      "route_guidance_spec": "docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md",
       "representative_situation": "FROSTBLOOM_GREENHOUSE_HEART",
       "choice_layer": "INTENT_AND_PRIORITY",
+      "guidance_layer": "CHARACTER_DIALOGUE_PLUS_DIRECTIONAL_EFFECT_PREVIEW",
       "spell_layer": "PLAYER_DESIGNED_EXECUTION",
       "minimum_approaches": 3,
       "recommended_approaches": 5,
@@ -81,11 +84,21 @@
       "minimum_valid_endings": 3,
       "single_true_ending": false,
       "spec_review": "USER_APPROVED_WRITTEN_SPEC",
-      "route_pattern_design": "IN_USER_REVIEW"
+      "route_pattern_design": "USER_APPROVED",
+      "precast_guidance_design": "USER_APPROVED",
+      "preview_success_percentage": false,
+      "preview_final_ending": false,
+      "dialogue_names_correct_combination": false,
+      "reading_consumes_realtime_timer": false
     },
     "slice_glyph_contract": {
-      "main_glyphs": ["FLOW"],
-      "support_glyphs": ["FOCUS", "DISPERSE"],
+      "main_glyphs": [
+        "FLOW"
+      ],
+      "support_glyphs": [
+        "FOCUS",
+        "DISPERSE"
+      ],
       "grammar": "MAIN_1_PLUS_SUPPORT_0_OR_1",
       "unlearned_glyphs_in_previous_examples": "REMOVED_FROM_VERTICAL_SLICE_SOLUTION_SET"
     },
@@ -100,9 +113,9 @@
     },
     "planning": {
       "creative_scope": "docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md",
-      "current_priority_1": "APPROVE_ROUTE_SOLUTION_PATTERN_DESIGN",
-      "current_priority_2": "WRITE_FROSTBLOOM_GREENHOUSE_SCENE_FLOW",
-      "current_priority_3": "DESIGN_INVESTIGATION_CHOICES_AND_DIALOGUE",
+      "current_priority_1": "WRITE_FROSTBLOOM_GREENHOUSE_SCENE_FLOW",
+      "current_priority_2": "WRITE_COMMON_INVESTIGATION_AND_CHARACTER_DIALOGUE",
+      "current_priority_3": "WRITE_ROUTE_SPECIFIC_PRECAST_HINTS_AND_EFFECT_PREVIEWS",
       "current_priority_4": "DESIGN_SITUATION_UX_WIREFRAME",
       "current_priority_5": "DEFINE_GREENHOUSE_SPIRIT_MAGIC_CORE_ART_DIRECTION",
       "foundation_poc_core_design": "SUFFICIENT_FOR_LATER_CODEX_IMPLEMENTATION"
@@ -111,7 +124,7 @@
     "godot_product_project": "NOT_CREATED",
     "foundation_poc_build_authorization": "AVAILABLE_FOR_LATER_CODEX_SESSION",
     "codex_execution": "DEFERRED_UNTIL_SELECTED_CREATIVE_SCOPE_IS_READY",
-    "next_priority": "USER_REVIEW_ROUTE_SOLUTION_PATTERN_DESIGN"
+    "next_priority": "WRITE_FROSTBLOOM_GREENHOUSE_SCENE_FLOW_AND_PRECAST_DIALOGUE"
   },
   "protected_boundaries": {
     "text_choice_auto_selects_spell": "PROHIBITED",
@@ -121,6 +134,11 @@
     "unlearned_glyph_as_hidden_automatic_effect": "PROHIBITED",
     "explicit_menu_of_all_twenty_solution_patterns": "PROHIBITED",
     "flow_creates_matter_or_energy_from_nothing": "PROHIBITED",
+    "dialogue_directly_names_correct_glyph_combination": "PROHIBITED",
+    "preview_shows_success_percentage": "PROHIBITED",
+    "preview_reveals_final_ending": "PROHIBITED",
+    "mandatory_relationship_for_critical_clue": "PROHIBITED",
+    "reading_time_consumes_realtime_timer": "PROHIBITED",
     "gpt_product_implementation": "PROHIBITED_AS_PRIMARY_WORKFLOW",
     "codex_implementation_before_selected_creative_scope": "DEFERRED",
     "foundation_poc_scope_expansion": "PROHIBITED_WITHOUT_NEW_DECISION",
