@@ -17,12 +17,16 @@ execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
 work_mode: PLAN
 base_release: v9.4.3
 baseline_main: 50a00f9f4ec992338a93e3dc75726b5bc6075a8b
-current_working_sync: GR-SYNC-20260803-01
+current_working_sync: GR-SYNC-20260803-03
 current_pull_request: 51
-grill_me_batch_counter: 4/10
-pending_decisions: 4
+grill_me_batch_counter: 6/10
+pending_decisions: 6
+early_checkpoint: APPROVED_AT_6_OF_10
+checkpoint_reason: DIFF_SIZE_AND_CANON_DRIFT
+checkpoint_scope: CANON_AND_SHEET_DRIFT_CORRECTION_ONLY
+merge_authorization: NOT_RECEIVED
 implementation: NOT_STARTED
-codex_plan: ALLOWED
+codex_plan: ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS
 codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
 ```
 
@@ -180,6 +184,7 @@ Decision ID
 - Gate·Codex·구현 권한 전환.
 - P0/P1 정본 안전 수정.
 - 작업 종료·인계 Flush.
+- Diff 크기 또는 정본 표면 드리프트로 자기완결 검토 단위가 필요할 때.
 
 사용자 명시 승인 전 자동 병합하지 않는다.
 
