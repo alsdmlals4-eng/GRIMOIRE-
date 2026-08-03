@@ -13,14 +13,16 @@
 | Main 기준 | `9632b203 / GR-SYNC-20260803-06` |
 | Working Branch | `agent/foundation-poc-readiness-review` |
 | Draft PR | `#57` |
-| Working Sync | `GR-SYNC-20260803-07` |
-| 현재 Decision | `GM-SCHOOL-CRISIS-PEDAGOGY-01` |
+| Working Sync | `GR-SYNC-20260804-04-FROSTBLOOM-CAST-DIALOGUE-DRAFT` |
+| 승인된 현재 Decision | `GM-SCHOOL-CRISIS-PEDAGOGY-01` |
+| 검토 중 Draft | `GM-FROSTBLOOM-CAST-DIALOGUE-01` |
 | 상위 사건 Decision | `GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01` |
 | Grill Batch | `3/10 / pending 3` |
-| 현재 GPT 작업 | `서리꽃 온실 장면 흐름·대사·UX·Art` |
+| 현재 GPT 작업 | `서리꽃 온실 고유 인물·대사 원고 검토` |
 | 대표 사건 | `서리꽃 온실의 심장` |
 | 학교 위기 교육 원칙 | `USER_APPROVED` |
 | 장면 흐름 | `WRITTEN_FOR_USER_REVIEW` |
+| 캐릭터·대사 | `WRITTEN_FOR_USER_REVIEW / NOT_COUNTED` |
 | 로컬 Godot | `USER_CONFIRMED_INSTALLED` |
 | Codex 기술 계획 | `READY_FOR_LATER_SESSION` |
 | 제품 Godot 프로젝트 | `NOT_CREATED` |
@@ -45,14 +47,15 @@ Codex
 
 1. `AGENTS.md`.
 2. `docs/ACTIVE_CONTEXT.md`.
-3. `docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md`.
-4. `docs/superpowers/specs/2026-08-04-frostbloom-school-crisis-scene-flow-design.md`.
-5. `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md`.
-6. `docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md`.
-7. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
-8. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
-9. 질문 주제의 최신 승인 책임 원본.
-10. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
+3. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
+4. `docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md`.
+5. `docs/superpowers/specs/2026-08-04-frostbloom-school-crisis-scene-flow-design.md`.
+6. `docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_DRAFT_2026-08-04.md`.
+7. `docs/superpowers/specs/2026-08-04-frostbloom-cast-dialogue-design.md`.
+8. `docs/content/vertical_slice/FROSTBLOOM_GREENHOUSE_DIALOGUE_SCRIPT_DRAFT_2026-08-04.md`.
+9. `docs/planning/sync/GR-SYNC-20260804-04-FROSTBLOOM-CAST-DIALOGUE-DRAFT.md`.
+10. 질문 주제의 최신 승인 책임 원본.
+11. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
 
 Codex 실행 시에만 다음을 추가로 읽는다.
 
@@ -136,6 +139,20 @@ combat_is_mandatory: false
 single_true_ending: false
 ```
 
+## 검토 중 캐릭터 초안
+
+```yaml
+cast:
+  - 에일린 로스베르: 현장 대응·마력운용학 교수 / 책임과 안전
+  - 마렌 브리어: 3학년 온실 관리 조교 / 시설과 축적된 생명
+  - 카시안 렌: 동급 경쟁 학생 / 속도와 즉시 행동
+  - 네아 솔렌: 고립된 2학년 온실 당번 / 내부 조작과 협력
+  - 모트: 메인 동반 정령 / 정령 감정과 마력 리듬
+status: WRITTEN_FOR_USER_REVIEW
+```
+
+누구도 정답 조합을 소유하지 않는다. 인물마다 유용한 정보와 위험한 편향을 함께 가진다. 네아는 밸브·격벽·이동으로 해결에 직접 참여하며, 모트의 감각 힌트는 환경 조사로 검증해야 한다.
+
 ## 대표 사건 장면 흐름
 
 ```text
@@ -145,7 +162,7 @@ single_true_ending: false
 → 조사 4개 중 2개
 → 등장인물 관점 대화
 → 해결 접근 선택
-→ 접근별 힌트
+→ 접근별 4개 힌트 패키지
 → 주문 초안·예상 효과
 → 첫 시전
 → 예상 밖 변수와 접근 수정
@@ -170,14 +187,12 @@ single_true_ending: false
 
 ## 현재 GPT 산출물 우선순위
 
-1. 작성된 학교 위기 장면 흐름 검토.
-2. 고유 인물 이름·성격 확정.
-3. 실제 텍스트 노벨 대사 원고.
-4. 접근별 예상 효과 카드 문구.
-5. 사건 UX Map과 Wireframe.
-6. 온실·서리 정령·마력 핵 Art Direction과 Concept Art Brief.
-7. Vertical Slice 전체 콘텐츠 조립.
-8. 선택된 범위의 Codex 구현 명세.
+1. 고유 인물 이름·성격·대사 원고 검토.
+2. 검토 결과를 반영해 캐릭터·대사 확정.
+3. 사건 UX Map과 Wireframe.
+4. 온실·서리 정령·마력 핵 Art Direction과 Concept Art Brief.
+5. Vertical Slice 전체 콘텐츠 조립.
+6. 선택된 범위의 Codex 구현 명세.
 
 ## 현재 하지 않는 것
 
@@ -191,9 +206,9 @@ Codex 구현 작업을 핵심 기획보다 우선
 
 ## 다음 순서
 
-1. 작성된 `서리꽃 온실의 심장` 장면 흐름을 검토한다.
-2. 고유 인물 이름과 역할 대비를 확정한다.
-3. 실제 장면별 대사·선택지·예상 효과 카드 원고를 작성한다.
+1. 캐릭터 이름과 역할 대비를 검토한다.
+2. 실제 S0~S12 대사와 20개 힌트 패키지를 검토한다.
+3. 승인된 수정사항을 반영해 확정 정본화한다.
 4. 사건 UX Wireframe을 설계한다.
 5. Art Direction과 첫 이미지 시안을 만든다.
 6. 충분히 구체화된 범위만 Codex 구현 명세로 넘긴다.
