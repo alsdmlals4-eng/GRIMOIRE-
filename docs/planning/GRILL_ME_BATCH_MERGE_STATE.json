@@ -10,10 +10,10 @@
   "counter": {
     "approved_grill_me_since_last_flush": 6,
     "next_merge_at": 10,
-    "merge_required": false,
-    "merge_trigger": null,
+    "merge_required": true,
+    "merge_trigger": "DIFF_SIZE",
     "merge_authorized": false,
-    "authorization_state": "AWAITING_FUTURE_EXPLICIT_MERGE_APPROVAL",
+    "authorization_state": "EARLY_CHECKPOINT_APPROVED_AWAITING_EXPLICIT_MERGE_APPROVAL",
     "pending_decision_ids": [
       "GM-STOCK-SYSTEM-01",
       "GM-SUMMON-SYSTEM-01",
@@ -37,7 +37,7 @@
     "WORK_HANDOFF_FLUSH"
   ],
   "required_pre_merge_gate": "GM-PREMERGE-ADVERSARIAL-GATE-01",
-  "pre_merge_gate_status": "PASS_ON_VERIFICATION_CANDIDATE_RECHECK_FINAL_STATUS_HEAD",
+  "pre_merge_gate_status": "RECHECK_REQUIRED_AFTER_CANON_AND_SHEET_DRIFT_CORRECTION",
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED",
     "approved_at": "2026-08-02T22:18:00+09:00",
@@ -54,26 +54,45 @@
     "counter_reset": true
   },
   "previous_working_sync": {
-    "sync_id": "GR-SYNC-20260803-02",
-    "status": "FINAL_HEAD_VERIFIED",
-    "final_head": "5205947739e87d52673cc38a72dc761605e0e14f",
-    "ci_run": 30771665442,
+    "sync_id": "GR-SYNC-20260803-03",
+    "status": "VISUAL_CHECKPOINT_FINAL_HEAD_VERIFIED_BEFORE_EARLY_CHECKPOINT_CORRECTIONS",
+    "final_head": "ba0a73cdf6760e23eb87da6222870485f2d8f650",
+    "ci_run": 30773199505,
     "sheet_readback": "PASS",
     "text_integrity": "PASS",
     "review_threads": 0
   },
   "current_work": {
-    "status": "INGAME_ART_CHECKPOINT_TWO_BOARDS_USER_APPROVED_SHEET_PASS_AWAITING_FINAL_STATUS_HEAD_RECHECK",
+    "status": "EARLY_CHECKPOINT_APPROVED_CANON_AND_SHEET_DRIFT_CORRECTION_IN_PROGRESS",
     "baseline_main": "50a00f9f4ec992338a93e3dc75726b5bc6075a8b",
     "working_branch": "agent/grimoire-stock-summon-detail-audit",
     "working_pull_request": 51,
     "working_sync_id": "GR-SYNC-20260803-03",
-    "benchmark_id": "N_A_REUSES_ART_BIBLE_AND_MOBILE_HUD_BENCHMARK_NO_NEW_DESIGN_CHANGE",
-    "verification_candidate_head": "c1484027f7a9039fe244790670b78a4a659858fd",
-    "verification_candidate_ci_run": 30773010765,
-    "verification_candidate_ahead": 66,
+    "benchmark_id": "N_A_NO_NEW_DESIGN_CHANGE_CANON_AND_SHEET_DRIFT_CORRECTION",
+    "verification_candidate_head": "ba0a73cdf6760e23eb87da6222870485f2d8f650",
+    "verification_candidate_ci_run": 30773199505,
+    "verification_candidate_ahead": 68,
     "verification_candidate_behind": 0,
     "verification_candidate_changed_files": 27,
+    "early_checkpoint": {
+      "approved_at": "2026-08-03T09:07:00+09:00",
+      "approved_option": "A_EARLY_CHECKPOINT_AT_6_OF_10",
+      "counts_as_new_decision": false,
+      "reasons": [
+        "DIFF_SIZE",
+        "CANON_DRIFT"
+      ],
+      "allowed_scope": [
+        "AGENTS_AND_COLD_START_ALIGNMENT",
+        "BATCH_STATE_ALIGNMENT",
+        "WORKING_SYNC_ALIGNMENT",
+        "GOOGLE_SHEET_STATUS_AND_TERMINOLOGY_CORRECTION",
+        "EXACT_HEAD_REVALIDATION"
+      ],
+      "new_grill_me_questions_blocked_until_checkpoint_closed": true,
+      "merge_authorized": false,
+      "merge_authorization_required": true
+    },
     "decisions": [
       {
         "decision_id": "GM-STOCK-SYSTEM-01",
@@ -243,22 +262,23 @@
       "p1_design_written_awaiting_review": 1,
       "p2_open": 12,
       "p3_deferred": 8,
-      "canon_reconciliation_completed_in_working_branch": true,
-      "next_priority": "USER_REVIEW_MOBILE_SUMMON_HUD_SPEC"
+      "canon_reconciliation_completed_in_working_branch": false,
+      "next_priority": "FINALIZE_EARLY_CHECKPOINT_CANON_AND_SHEET_DRIFT"
     },
     "implementation_entry": "APPROVED_CONDITIONAL_FOUNDATION_POC",
     "implementation": "NOT_STARTED",
     "codex_plan": "ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS",
     "codex_execution": "BLOCKED_BY_EXECUTION_READINESS_GATE",
     "base_release": "9.4.3",
-    "sheet_readback": "PASS",
-    "sheet_text_integrity_sentinel": "PASS",
-    "candidate_ci_gate": "PASS",
-    "candidate_adversarial_gate": "PASS",
-    "candidate_text_integrity_gate": "PASS",
+    "sheet_readback": "RECHECK_REQUIRED_AFTER_CHECKPOINT_WRITE",
+    "sheet_text_integrity_sentinel": "RECHECK_REQUIRED_AFTER_CHECKPOINT_WRITE",
+    "candidate_ci_gate": "PASS_AT_BA0A73CDF6760E23EB87DA6222870485F2D8F650",
+    "candidate_adversarial_gate": "PASS_AT_BA0A73CDF6760E23EB87DA6222870485F2D8F650",
+    "candidate_text_integrity_gate": "PASS_AT_BA0A73CDF6760E23EB87DA6222870485F2D8F650",
     "candidate_review_threads": 0,
     "candidate_reviews": 0,
-    "final_status_commit_head_ci": "RECHECK_REQUIRED"
+    "checkpoint_head_resolution": "USE_CURRENT_PR_HEAD_AFTER_ALL_CORRECTIONS",
+    "final_status_commit_head_ci": "REQUIRED_ON_CURRENT_PR_HEAD_AFTER_CHECKPOINT_CORRECTIONS"
   },
   "protected_boundaries": {
     "product_implementation": "NOT_STARTED",
