@@ -23,8 +23,8 @@
     "count_distinct_user_approved_grill_me_decision_id": true,
     "count_reapproval_or_copy_edit": false,
     "count_main_sync_receipt": false,
-    "current_operation_counted": true,
-    "current_operation_reason": "DISTINCT_USER_APPROVED_SCHOOL_CRISIS_PEDAGOGY_AND_FACULTY_INTERVENTION_BOUNDARY"
+    "current_operation_counted": false,
+    "current_operation_reason": "FROSTBLOOM_CAST_AND_DIALOGUE_DRAFT_AWAITING_USER_APPROVAL"
   },
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
@@ -37,16 +37,18 @@
     "main_finalization_sync_id": "GR-SYNC-20260803-06"
   },
   "current_work": {
-    "status": "SCHOOL_CRISIS_PEDAGOGY_USER_APPROVED_FROSTBLOOM_SCENE_FLOW_WRITTEN_FOR_REVIEW",
-    "decision_id": "GM-SCHOOL-CRISIS-PEDAGOGY-01",
+    "status": "FROSTBLOOM_CAST_AND_DIALOGUE_WRITTEN_FOR_USER_REVIEW",
+    "decision_id": "GM-FROSTBLOOM-CAST-DIALOGUE-01",
+    "decision_status": "DRAFT_NOT_COUNTED",
+    "parent_pedagogy_decision_id": "GM-SCHOOL-CRISIS-PEDAGOGY-01",
     "parent_situation_decision_id": "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
     "default_branch": "main",
     "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
     "working_branch": "agent/foundation-poc-readiness-review",
     "working_sync_id": "GR-SYNC-20260803-07",
     "pull_request": 57,
-    "selected_approach": "STUDENT_SELF_RELIANCE_WITH_DIRECTIONAL_FACULTY_GUIDANCE_AND_LIFE_SAFETY_INTERVENTION",
-    "counter_increment": true,
+    "selected_approach": "MULTI_PERSPECTIVE_CHARACTER_HINTS_WITH_DIRECTIONAL_PROFESSOR_GUIDANCE",
+    "counter_increment": false,
     "role_split": {
       "gpt": [
         "CORE_FUN",
@@ -66,11 +68,6 @@
       ]
     },
     "narrative_situation_design": {
-      "spec": "docs/superpowers/specs/2026-08-04-narrative-multi-solution-situation-design.md",
-      "approval": "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_APPROVAL_2026-08-04.md",
-      "written_spec_approval": "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_SPEC_APPROVAL_2026-08-04.md",
-      "route_guidance_approval": "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md",
-      "route_guidance_spec": "docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md",
       "representative_situation": "FROSTBLOOM_GREENHOUSE_HEART",
       "choice_layer": "INTENT_AND_PRIORITY",
       "guidance_layer": "CHARACTER_DIALOGUE_PLUS_DIRECTIONAL_EFFECT_PREVIEW",
@@ -95,19 +92,28 @@
         "L1": "DIRECTIONAL_QUESTION_NO_CORRECT_COMBINATION",
         "L2": "SAFETY_WARNING_BEFORE_IRREVERSIBLE_DANGER",
         "L3": "DIRECT_LIFESAVING_INTERVENTION_ONLY"
-      },
-      "life_threat_without_faculty_response": false,
-      "faculty_intervention_is_humiliation": false,
-      "scene_flow_review": "PENDING_USER_REVIEW"
+      }
+    },
+    "cast_dialogue_design": {
+      "draft": "docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_DRAFT_2026-08-04.md",
+      "spec": "docs/superpowers/specs/2026-08-04-frostbloom-cast-dialogue-design.md",
+      "dialogue_script": "docs/content/vertical_slice/FROSTBLOOM_GREENHOUSE_DIALOGUE_SCRIPT_DRAFT_2026-08-04.md",
+      "review_status": "PENDING_USER_REVIEW",
+      "cast": [
+        "에일린 로스베르",
+        "마렌 브리어",
+        "카시안 렌",
+        "네아 솔렌",
+        "모트"
+      ],
+      "dialogue_directly_names_correct_glyph_combination": false,
+      "isolated_student_has_agency": true,
+      "required_information_has_multiple_sources": true,
+      "relationship_reaction_is_answer_score": false
     },
     "slice_glyph_contract": {
-      "main_glyphs": [
-        "FLOW"
-      ],
-      "support_glyphs": [
-        "FOCUS",
-        "DISPERSE"
-      ],
+      "main_glyphs": ["FLOW"],
+      "support_glyphs": ["FOCUS", "DISPERSE"],
       "grammar": "MAIN_1_PLUS_SUPPORT_0_OR_1",
       "unlearned_glyphs_in_previous_examples": "REMOVED_FROM_VERTICAL_SLICE_SOLUTION_SET"
     },
@@ -122,18 +128,18 @@
     },
     "planning": {
       "creative_scope": "docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md",
-      "current_priority_1": "USER_REVIEW_FROSTBLOOM_SCHOOL_CRISIS_SCENE_FLOW",
-      "current_priority_2": "WRITE_FINAL_TEXT_NOVEL_DIALOGUE_SCRIPT",
-      "current_priority_3": "WRITE_ROUTE_SPECIFIC_EFFECT_PREVIEW_COPY",
-      "current_priority_4": "DESIGN_SITUATION_UX_WIREFRAME",
-      "current_priority_5": "DEFINE_GREENHOUSE_SPIRIT_MAGIC_CORE_ART_DIRECTION",
+      "current_priority_1": "USER_REVIEW_FROSTBLOOM_CAST_NAMES_AND_DIALOGUE_SCRIPT",
+      "current_priority_2": "REVISE_AND_APPROVE_CAST_DIALOGUE",
+      "current_priority_3": "DESIGN_SITUATION_UX_WIREFRAME",
+      "current_priority_4": "DEFINE_GREENHOUSE_SPIRIT_MAGIC_CORE_ART_DIRECTION",
+      "current_priority_5": "ASSEMBLE_VERTICAL_SLICE_CONTENT",
       "foundation_poc_core_design": "SUFFICIENT_FOR_LATER_CODEX_IMPLEMENTATION"
     },
     "implementation": "PRODUCT_IMPLEMENTATION_NOT_STARTED",
     "godot_product_project": "NOT_CREATED",
     "foundation_poc_build_authorization": "AVAILABLE_FOR_LATER_CODEX_SESSION",
     "codex_execution": "DEFERRED_UNTIL_SELECTED_CREATIVE_SCOPE_IS_READY",
-    "next_priority": "USER_REVIEW_FROSTBLOOM_SCHOOL_CRISIS_SCENE_FLOW"
+    "next_priority": "USER_REVIEW_FROSTBLOOM_CAST_AND_DIALOGUE_DRAFT"
   },
   "protected_boundaries": {
     "text_choice_auto_selects_spell": "PROHIBITED",
@@ -154,6 +160,9 @@
     "life_threat_without_faculty_response": "PROHIBITED",
     "withdrawal_as_automatic_game_over": "PROHIBITED",
     "faculty_intervention_as_humiliation": "PROHIBITED",
+    "isolated_student_as_passive_reward": "PROHIBITED",
+    "one_character_owns_all_critical_information": "PROHIBITED",
+    "reference_work_character_or_line_copy": "PROHIBITED",
     "gpt_product_implementation": "PROHIBITED_AS_PRIMARY_WORKFLOW",
     "codex_implementation_before_selected_creative_scope": "DEFERRED",
     "foundation_poc_scope_expansion": "PROHIBITED_WITHOUT_NEW_DECISION",
