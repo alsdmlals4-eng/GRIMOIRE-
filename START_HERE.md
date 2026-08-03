@@ -11,39 +11,34 @@
 | 후속 플랫폼 | `PC` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | Base 정본 | `v9.4.3` |
-| main 권위 | `CURRENT_DEFAULT_BRANCH_HEAD` |
-| 현재 Main Sync | `GR-SYNC-20260803-04` |
-| 최근 병합 PR | `#51 / merge 81852a76` |
-| 최근 승인 Decision | `GM-STOCK-SYSTEM-01 / GM-SUMMON-SYSTEM-01 / GM-STOCK-SUMMON-STATE-INTERFACE-01 / GM-GRILL-WORK-QUALITY-GATE-01 / GM-MOBILE-SUMMON-HUD-WIREFRAME-01 / GM-INGAME-ART-CHECKPOINT-01` |
-| Grill Batch | `0/10 / pending 0` |
-| 최근 체크포인트 | `MERGED_AT_6_OF_10 / DIFF_SIZE_AND_CANON_DRIFT / COUNTER_RESET` |
-| 다음 Approval Bundle | `GM-MOBILE-SUMMON-HUD-WIREFRAME-01 사용자 명세 검토` |
+| main 권위 | `7fd2c137469120a9ccf942df5b9860af135acc87 / GR-SYNC-20260803-04` |
+| Working Branch | `agent/mobile-summon-hud-spec-hardening` |
+| Working Sync | `GR-SYNC-20260803-05` |
+| Grill Batch | `0/10 / pending distinct decisions 0` |
+| Mobile HUD 사용자 명세 | `USER_APPROVED_HARDENED_SPEC_ACTIVE` |
+| TDD Plan·Test Matrix | `WRITTEN_NOT_EXECUTED` |
+| 남은 P1 | `2 — Toolchain preflight / Base v9.4.3 Plan 재검증·Execution Readiness` |
 | 제품 구현 | `NOT_STARTED` |
-| Codex Plan | `ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS` |
 | Codex 실행 | `BLOCKED` |
 | Runtime·실기기·성능·접근성·사람 검증 | `NOT_RUN` |
 
 ## 먼저 읽을 문서
 
-1. `AGENTS.md`
-2. `docs/ACTIVE_CONTEXT.md`
-3. `docs/DEVELOPMENT_GATES.md`
-4. `docs/DESIGN_DOCUMENT_REGISTRY.json`
-5. `docs/planning/GRILL_WORK_BENCHMARK_TEXT_INTEGRITY_01_APPROVAL_2026-08-03.md`
-6. `docs/planning/PROJECT_BENCHMARKING_POLICY.md`
-7. `docs/planning/STOCK_SYSTEM.md`
-8. `docs/planning/STOCK_CHARGE_TIME_SYSTEM.md`
-9. `docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`
-10. `docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md`
-11. `docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md`
-12. `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`
-13. `docs/planning/INGAME_ART_CHECKPOINT_01_APPROVAL_2026-08-03.md`
-14. `docs/planning/visual/INGAME_ART_CHECKPOINT_01_APPROVED_MANIFEST.json`
-15. `docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md`
-16. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`
-17. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-18. `docs/planning/sync/GR-SYNC-20260803-04-MAIN.md`
-19. `docs/planning/sync/GR-SYNC-20260803-03-WORKING.md`
+1. `AGENTS.md`.
+2. `docs/ACTIVE_CONTEXT.md`.
+3. `docs/DEVELOPMENT_GATES.md`.
+4. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
+5. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
+6. `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`.
+7. `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_USER_SPEC_REVIEW_2026-08-03.md`.
+8. `docs/superpowers/specs/2026-08-03-three-slot-mobile-summon-hud-design.md`.
+9. `docs/superpowers/plans/2026-08-03-three-slot-mobile-summon-hud-implementation-plan.md`.
+10. `docs/planning/MOBILE_SUMMON_HUD_01_TDD_TEST_MATRIX_2026-08-03.md`.
+11. `docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md`.
+12. `docs/planning/benchmarks/MOBILE_SUMMON_HUD_WIREFRAME_STANDARD_BENCHMARK_2026-08-03.md`.
+13. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`.
+14. `docs/planning/sync/GR-SYNC-20260803-05-WORKING.md`.
+15. `docs/planning/sync/GR-SYNC-20260803-04-MAIN.md`.
 
 ## 플레이어 약속
 
@@ -82,21 +77,23 @@ offline_charge: false
 
 ## 소환수 최신 계약
 
-```text
-메인 소환수 1체 = 상시 활성
-보조 소환수 = [소환 주문] Commit 후 활성
-보조 슬롯 = S1 / S2 / S3
-보조 동시 활성 상한 = 3체
-총 활성 상한 = 4체
-지속시간·Cooldown = 없음
+```yaml
+persistent_main_summon: 1
+secondary_slots: [S1, S2, S3]
+secondary_active_summon_cap: 3
+total_active_summon_cap: 4
+secondary_role_duplicate_cap_in_slice: 1
+summon_duration_limit: NONE
+resummon_cooldown: NONE
+summon_spell_mana_cost: 2
+support_cycle_seconds: 5
 ```
+
+보조 역할은 `PRODUCTION / GUARDIAN / ASSAULT / RECOVERY`다. Slice에서는 네 역할 중 최대 세 역할을 선택하며 보조 사이 같은 역할 중복을 금지한다.
 
 Prototype 기본값:
 
 ```yaml
-summon_spell_mana_cost: 2
-support_cycle_seconds: 5
-secondary_role_duplicate_cap_in_slice: 1
 main_stock_stat: 1
 production_stock_stat: 2
 guardian_defense_stat: 2
@@ -104,47 +101,81 @@ assault_attack_stat: 2
 recovery_heal_stat: 2
 ```
 
-보조 역할:
-
-- `PRODUCTION`.
-- `GUARDIAN`.
-- `ASSAULT`.
-- `RECOVERY`.
-
-Slice에서는 네 역할 중 최대 세 역할을 선택하며 보조 사이 같은 역할 중복을 금지한다. 메인 `[스톡] 1`은 보조 역할 중복 판정에서 제외한다.
-
-```text
-최종 직접 피해 = max(1, 원피해 - 총 방어도)
-```
-
 자동 공격은 불안정도를 `1` 아래로 낮추거나 마지막 해결 Event가 될 수 없다.
 
-## State/Ledger/Save
+## State·Ledger·Save
 
-- 보조 상태는 단일 객체가 아니라 `secondary_summon_states` 최대 3개 배열이다.
-- 각 슬롯·역할은 유일해야 한다.
+- 보조 상태는 `secondary_summon_states` 최대 3개 배열이다.
+- 슬롯·보조 역할은 각각 유일해야 한다.
 - `[소환 주문]`은 마나 차감·교체·활성화를 한 Transaction으로 처리한다.
 - Stock 소비와 주문 효과 적용도 한 Transaction이다.
-- 소환수 행동은 고유 `summon_event_id`로 정확히 한 번만 적용한다.
-- 같은 시각 Event는 `MAIN → S1 → S2 → S3` 순서다.
-- Background·Offline 경과로 행동·충전 지원을 실행하지 않는다.
+- `summon_event_id`의 Exactly-once 적용은 `ResultLedger`가 단독 소유한다.
+- HUD는 canonical presentation record만 읽으며 Event 적용 여부를 판단하지 않는다.
+- Background·Offline 경과로 행동·충전 지원을 생성하지 않는다.
+
+## 승인된 Mobile Summon HUD
+
+```text
+좌측 Safe Area
+MAIN → S1 → S2 → S3 압축 Rail
++ 선택한 1슬롯 Contextual Drawer
++ 우측 Writing Focus Panel
+```
+
+확정 계약:
+
+```yaml
+drawer_read_pauses_clock: false
+management_confirmation_pauses_clock: true
+management_entry_requires_safe_draft: true
+same_time_event_order: [MAIN, S1, S2, S3]
+same_time_event_presentation_budget_seconds_total: 1.2_TEST_VALUE
+text_scale_tests: [100_PERCENT, 130_PERCENT, ANDROID_MAX_200_PERCENT]
+timer_announcement: FOCUS_OR_MEANINGFUL_CHANGE_ONLY
+active_stroke_owner: WRITING_CANVAS
+event_dedup_owner: RESULT_LEDGER
+hud_mutates_gameplay_state: false
+```
+
+- Active Stroke 중 Rail 접촉은 선택·Focus 이동·귀환·교체를 만들지 않는다.
+- 빈 슬롯·오류 슬롯은 nullable ViewModel과 `timing_mode: NONE`을 사용한다.
+- Drawer 읽기는 무료 Pause가 아니다.
+- 안전한 Draft 보존 뒤 명시적 `MANAGEMENT_CONFIRM`에서만 Clock이 정지한다.
+- 동시 Event의 전체 HUD 연출 예산은 `1.2초 TEST_VALUE`다.
+- 타이머는 매초 음성 발표하지 않는다.
+
+## TDD Plan·Test Matrix
+
+작성 완료:
+
+- `docs/superpowers/plans/2026-08-03-three-slot-mobile-summon-hud-implementation-plan.md`.
+- `docs/planning/MOBILE_SUMMON_HUD_01_TDD_TEST_MATRIX_2026-08-03.md`.
+
+주요 미래 Test:
+
+- nullable ViewModel과 안정된 슬롯 순서.
+- Drawer·관리 확인 Clock 계약.
+- `MAIN→S1→S2→S3`와 전체 `1200ms` 표시 예산.
+- Active Stroke 입력 소유권.
+- `16:9 / 19.5:9 / 20:9`, 좌·우 Cutout.
+- Text Scale `100% / 130% / Android 최대 200%`.
+- 타이머 비과잉 발표.
+- Save/Resume·오류 보존·HUD dedup 소유권 금지.
+
+모든 Test는 현재 `NOT_RUN`이다.
 
 ## 작업 품질 Gate
-
-앞으로 모든 GrillMe 질문과 실질 작업은 다음을 따른다.
 
 ```text
 프로젝트 근거
 → 벤치마킹
-→ 현업·공식·표준 비교
+→ 공식·현업·표준 비교
 → ADOPT / ADAPT / REJECT
 → 중립 권장안
 → 적대적 검토
 → UTF-8·NFC·Text Integrity
 → GitHub·Sheet Readback
 ```
-
-설계 의미가 없는 단순 동기화는 `N/A_NO_DESIGN_CHANGE`를 기록할 수 있지만 Text Integrity와 Readback은 생략하지 않는다.
 
 Readback sentinel:
 
@@ -155,16 +186,6 @@ Readback sentinel:
 벤치마킹
 마도서
 ```
-
-## Mobile HUD 권장 구조
-
-```text
-메인 소환수 배지
-+ 보조 S1 / S2 / S3 압축 Rail
-+ 선택 슬롯 상세 Panel
-```
-
-압축 슬롯은 역할·대표 정수 스탯·다음 행동 초·상태만 표시한다. 세 보조의 모든 상세 문구를 동시에 상시 노출하지 않는다.
 
 ## Vertical Slice
 
@@ -178,50 +199,24 @@ Readback sentinel:
 → 축약 학기 평가·장기 Preview
 ```
 
-- 별도 시험 Chapter 없음.
 - 목표 `46분`, 콘텐츠 상한 `53분`, 하드 상한 `60분`.
 - 대표 글자 `흐름 / 집중 / 분산`.
 - 대표 제작 권장: `촉매 배합·안정화 1개`.
 
-## 최근 완료 체크포인트
-
-PR #51은 사용자 명시 승인에 따라 `6/10`에서 병합됐다.
-
-```yaml
-working_sync: GR-SYNC-20260803-03
-main_sync: GR-SYNC-20260803-04
-decision_merge_pull_request: 51
-decision_merge_commit: 81852a767d60eb2aa835ac3e36309f1dc43c861d
-checkpoint_reason:
-  - DIFF_SIZE
-  - CANON_DRIFT
-new_decision_count_from_checkpoint_operation: 0
-batch_counter_after_merge: 0/10
-pending_decisions_after_merge: 0
-```
-
-병합된 범위는 Stock·소환수·State/Ledger/Save·작업 품질 Gate·Mobile HUD 명세·승인 Board A/B 및 정본 드리프트 교정이다. 제품 코드·Scene·Resource·Asset은 변경하지 않았다.
-
 ## 남은 P1
 
-1. 보조 3슬롯 Mobile HUD 사용자 명세 검토.
-2. State/Ledger/Save TDD Plan·Test Matrix.
-3. Godot Toolchain preflight.
-4. Base v9.4.3 Plan 재검증·Execution Readiness.
+1. Godot Toolchain preflight: binary·version·renderer·headless test·Mobile export template·경로 권한.
+2. Base v9.4.3 최종 main 기준 Plan 재검증과 `GM-FOUNDATION-POC-EXECUTION-READINESS-01`.
+
+P0는 `0`이다. P1이 모두 닫히고 별도 Scope가 승인되기 전에는 제품 코드 실행으로 넘어가지 않는다.
 
 ## 구현 경계
-
-계속 금지:
-
-- 전체 Vertical Slice 제품 구현.
-- 실제 글자 인식·ML.
-- 최종 Art·Audio·Asset.
-- Stock·소환수 Runtime의 무단 추가.
-- 최종 밸런스·Store·사업화.
 
 ```text
 GODOT_PROJECT = NOT_STARTED
 PRODUCT_CODE = NOT_STARTED
+MOBILE_SUMMON_HUD_IMPLEMENTATION = NOT_AUTHORIZED
+TDD_PLAN = WRITTEN_NOT_EXECUTED
 CODEX_EXECUTION = BLOCKED
 RUNTIME_VALIDATION = NOT_RUN
 MOBILE_DEVICE_VALIDATION = NOT_RUN
