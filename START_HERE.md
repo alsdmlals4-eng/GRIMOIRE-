@@ -11,9 +11,11 @@
 | 후속 플랫폼 | `PC` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | Base 정본 | `v9.4.3` |
-| main 병합 | `PR #54 / bf964063` |
+| Decision 병합 | `PR #54 / bf964063` |
+| Main Finalization | `PR #55 / f693089a` |
+| Sheet Readback | `PASS / PR #56 receipt` |
 | 현재 Main Sync | `GR-SYNC-20260803-06` |
-| Finalization Branch | `agent/pr54-main-finalization` |
+| Working Branch | `NONE` |
 | Grill Batch | `0/10 / pending distinct decisions 0` |
 | Mobile HUD 사용자 명세 | `USER_APPROVED_HARDENED_SPEC_ACTIVE` |
 | TDD Plan·Test Matrix | `WRITTEN_NOT_EXECUTED` |
@@ -39,18 +41,18 @@
 13. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`.
 14. `docs/planning/sync/GR-SYNC-20260803-06-MAIN.md`.
 
-## 이번 병합의 확정 내용
+## 확정된 Mobile Summon HUD 계약
 
-- 좌측 Safe Area에 `MAIN → S1 → S2 → S3` 압축 Rail을 유지한다.
-- 선택한 슬롯 하나만 Contextual Detail Drawer로 확장한다.
-- Drawer 열람은 Active Pressure Clock을 정지하지 않는다.
-- Active Stroke 종료와 Draft 안전 보존 뒤 `MANAGEMENT_CONFIRM`만 Clock을 정지한다.
-- 같은 시각 Event 계산·Ledger 순서는 `MAIN → S1 → S2 → S3`다.
-- 전체 HUD 표시 예산은 `1.2초 TEST_VALUE`이며 슬롯별 시간을 누적하지 않는다.
-- Text Scale 검증 범위는 `100%`, `130%`, Android 최대 `200%`다.
-- 타이머 접근성 발표는 Focus 또는 의미 있는 변화 때만 수행한다.
-- 빈·오류 슬롯은 nullable ViewModel과 `timing_mode: NONE`을 사용한다.
-- Exactly-once 소유자는 ResultLedger, Active Stroke 소유자는 Writing Canvas다.
+- 좌측 Safe Area `MAIN → S1 → S2 → S3` 압축 Rail.
+- 선택 슬롯 하나만 Contextual Detail Drawer로 확장.
+- Drawer 열람 중 Active Pressure Clock 진행.
+- Active Stroke 종료와 Draft 안전 보존 뒤 `MANAGEMENT_CONFIRM`만 Pause.
+- 같은 시각 Event는 `MAIN → S1 → S2 → S3` 순서로 원자 처리.
+- 전체 HUD 표시 예산 `1.2초 TEST_VALUE`, 슬롯별 누적 금지.
+- Text Scale `100%`, `130%`, Android 최대 `200%` 필수 검증.
+- 타이머는 Focus 또는 의미 있는 변화 때만 접근성 발표.
+- 빈·오류 슬롯은 nullable ViewModel과 `timing_mode: NONE`.
+- Exactly-once는 ResultLedger, Active Stroke는 Writing Canvas가 소유.
 
 ## 현재 경계
 
@@ -69,9 +71,8 @@ HUMAN_VALIDATION = NOT_RUN
 
 ## 다음 순서
 
-1. PR #54 main finalization과 Sheet readback 마감.
-2. Godot Toolchain preflight.
-3. Base v9.4.3 최종 main 기준 Implementation Plan 재검증.
-4. `GM-FOUNDATION-POC-EXECUTION-READINESS-01` 판정.
+1. Godot Toolchain preflight.
+2. Base v9.4.3 최종 main 기준 Implementation Plan 재검증.
+3. `GM-FOUNDATION-POC-EXECUTION-READINESS-01` 판정.
 
 Execution Readiness PASS 전에는 코드·Scene·Resource·Asset 제작을 시작하지 않는다.
