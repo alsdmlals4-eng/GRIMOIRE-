@@ -13,7 +13,7 @@
 | Main 기준 | `9632b203 / GR-SYNC-20260803-06` |
 | Working Branch | `agent/foundation-poc-readiness-review` |
 | Draft PR | `#57` |
-| 최신 Working Sync | `GR-SYNC-20260804-06-HEAT-FLOW-OBSERVATION-DRAFT` |
+| 최신 Working Sync | `GR-SYNC-20260804-07-HEAT-FLOW-INVESTIGATION-DRAFT` |
 | 승인된 현재 Decision | `GM-SCHOOL-CRISIS-PEDAGOGY-01` |
 | 승인된 사건 Decision | `GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01` |
 | 검토 중 Draft | `GM-SLICE-HEAT-FLOW-OBSERVATION-01` |
@@ -56,7 +56,7 @@ Codex
 9. `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md`
 10. `docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md`
 11. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-12. `docs/planning/sync/GR-SYNC-20260804-06-HEAT-FLOW-OBSERVATION-DRAFT.md`
+12. `docs/planning/sync/GR-SYNC-20260804-07-HEAT-FLOW-INVESTIGATION-DRAFT.md`
 
 Codex 실행 시에만 기술 계획과 구현 명세를 추가로 읽는다.
 
@@ -148,24 +148,43 @@ known_representative_circuit: 열 + 흐름
 
 ## 교수의 비언어적 회로 힌트 Draft
 
-교수는 해결법을 말로 설명하지 않는다. 사고 뒤 학교 회랑으로 번지는 냉기만 `열 + 흐름` 외곽 회로로 차단한다.
+교수는 해결법을 말로 설명하지 않는다. 사고 뒤 학교 회랑으로 번지는 냉기만 외곽 회로로 막는다.
 
 ```text
-열 글자 발광
-→ 호박색 열이 외벽 흐름 경로를 따라 이동
-→ 지나간 유리부터 서리가 순서대로 녹음
-→ 냉기 안개가 따뜻한 경계에서 휘어짐
+호박색 빛이 외벽을 따라 이동
+→ 따뜻한 기운이 퍼짐
+→ 지나간 유리의 서리가 녹음
+→ 밖으로 나가려던 냉기의 방향이 바뀜
 → 외부 확산만 차단
 → 내부 압력·핵·카시안·정령 문제는 유지
 ```
 
-플레이어가 아는 부분만 판독한다.
+플레이어에게는 자동 글자 판독 결과를 띄우지 않는다.
+
+### 키워드 확인
 
 ```text
-[인식: 열]
-[인식: 흐름 경로]
-[미해독: 고정·자동 온도·압력 보정]
+텍스트 노벨 조사
+→ 빛이 시작된 문양 조사
+→ 이미 배운 `열` 확인
+
+텍스트 노벨 조사
+→ 빛이 이동한 선 추적
+→ 이미 배운 `흐름` 확인
 ```
+
+모서리의 고급 문양은 해독할 수 없다.
+
+### 관찰 결과
+
+```text
+따뜻한 기운이 느껴진다.
+회로가 지나간 유리의 서리가 녹는다.
+밖으로 나가려던 냉기가 방향을 바꿨다.
+온실 안쪽의 붉은 압력계는 그대로다.
+```
+
+관찰 결과는 감각과 실제 변화만 보여주며 원리·해결법·추천 조합을 설명하지 않는다.
 
 교수의 허용 대사:
 
@@ -176,6 +195,7 @@ known_representative_circuit: 열 + 흐름
 금지:
 
 - `열과 흐름을 사용해라.`
+- 자동 `[인식: 열]`, `[인식: 흐름]` 오버레이
 - 교수 회로 복사 버튼
 - 추천 주문·성공률·최종 결말 표시
 - 미학습 고급 글자 자동 습득
@@ -194,7 +214,7 @@ known_representative_circuit: 열 + 흐름
 = 외부 확산만 차단
 
 플레이어
-= 같은 원리가 대상·경로·출구에 따라 다른 결과를 만든다는 것을 관찰
+= 조사로 익숙한 키워드를 확인하고 관찰한 변화에서 응용 방향을 추론
 ```
 
 카시안은 사고를 숨기지 않고 내부 밸브·격벽·압력 정보를 제공하며 해결에 협력한다.
@@ -206,9 +226,10 @@ known_representative_circuit: 열 + 흐름
 ```text
 1학년 실습 브리핑
 → 카시안의 열·흐름 오용과 사고
-→ 교수의 외곽 열·흐름 회로
-→ 회로 판독·효과·상태 비교
-→ 조사 4개 중 2개
+→ 교수의 외곽 안전 회로
+→ 감각 중심 관찰 결과
+→ 선택형 회로 조사로 열·흐름 확인
+→ 환경 조사 4개 중 2개
 → 교수·카시안·모트 관점 확인
 → 해결 접근 선택
 → 주문 초안·예상 효과
@@ -219,7 +240,7 @@ known_representative_circuit: 열 + 흐름
 → 마도서 기록
 ```
 
-대화·관찰·예상 효과를 읽는 동안 실시간 타이머는 흐르지 않는다.
+대화·조사·예상 효과를 읽는 동안 실시간 타이머는 흐르지 않는다.
 
 ---
 
@@ -235,13 +256,12 @@ known_representative_circuit: 열 + 흐름
 
 ## 현재 우선순위
 
-1. `열 메인 + 흐름 경로` Draft 검토
-2. 교수의 비언어적 시연과 상태 비교 검토
-3. 최소 인물 구조와 카시안 사고 개연성 검토
-4. 승인 시 20개 Route Pattern을 새 문법으로 정본 보정
-5. 사건 UX Map·Wireframe
-6. 온실·정령·회로 Art Direction
-7. 선택된 범위만 Codex 구현 명세로 전환
+1. 조사형 `열·흐름` 키워드 확인과 감각 중심 관찰 문구 검토
+2. `열 메인 + 흐름 경로` Draft 검토
+3. 승인 시 20개 Route Pattern을 새 문법으로 정본 보정
+4. 사건 UX Map·Wireframe
+5. 온실·정령·회로 Art Direction
+6. 선택된 범위만 Codex 구현 명세로 전환
 
 ## 현재 하지 않는 것
 
