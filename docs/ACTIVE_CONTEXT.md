@@ -15,14 +15,14 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
 main_authority: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
 last_main_sync: GR-SYNC-20260803-06
-current_working_sync: GR-SYNC-20260804-06-HEAT-FLOW-OBSERVATION-DRAFT
+current_working_sync: GR-SYNC-20260804-07-HEAT-FLOW-INVESTIGATION-DRAFT
 approved_current_decision: GM-SCHOOL-CRISIS-PEDAGOGY-01
 approved_situation_decision: GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01
 draft_glyph_observation_decision: GM-SLICE-HEAT-FLOW-OBSERVATION-01
 draft_cast_dialogue_decision: GM-FROSTBLOOM-CAST-DIALOGUE-01
 grill_counter: 3_of_10
 pending_approved_decisions: 3
-current_gpt_focus: HEAT_FLOW_OBSERVATION_MINIMAL_CAST_AND_DIALOGUE
+current_gpt_focus: TEXT_NOVEL_GLYPH_INVESTIGATION_AND_SENSORY_OBSERVATION
 product_project_godot: NOT_CREATED
 product_code: NOT_STARTED
 runtime_validation: NOT_RUN
@@ -65,7 +65,7 @@ Codex
 9. `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md`
 10. `docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md`
 11. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-12. `docs/planning/sync/GR-SYNC-20260804-06-HEAT-FLOW-OBSERVATION-DRAFT.md`
+12. `docs/planning/sync/GR-SYNC-20260804-07-HEAT-FLOW-INVESTIGATION-DRAFT.md`
 
 ---
 
@@ -139,14 +139,10 @@ representative_known_circuit: HEAT_PLUS_FLOW
 status: REQUIRES_EXPLICIT_SUPERSESSION
 ```
 
-권장 해석:
-
 - `열`은 현상을 발생시키는 메인 글자다.
 - `흐름`은 열을 목표와 경로에 따라 전달·순환시키는 연결 문법이다.
 - `집중·분산`은 열의 강도와 범위를 조절한다.
-- `흐름`을 두 번째 메인 글자로 취급하지 않는다.
-
-승인 전 기존 `흐름 메인` 책임 원본을 폐기하지 않는다.
+- 승인 전 기존 `흐름 메인` 책임 원본을 폐기하지 않는다.
 
 ---
 
@@ -163,8 +159,6 @@ status: REQUIRES_EXPLICIT_SUPERSESSION
 → 정령 과부하
 ```
 
-판정:
-
 ```yaml
 input: VALID
 circuit_grammar: VALID
@@ -178,27 +172,17 @@ failure_type: SITUATION_DESIGN_FAILURE
 
 ## 교수의 비언어적 안전 회로 Draft
 
-교수는 외부로 번지는 냉기만 `열 + 흐름` 회로로 막는다.
-
-### 연출
+교수는 외부로 번지는 냉기만 회로로 막으며 사용법을 설명하지 않는다.
 
 ```text
-외벽 시작점에 열 글자 발광
-→ 호박색 열 광점이 닫힌 외곽 흐름 경로를 따라 이동
-→ 이동 순서대로 유리 서리가 녹음
-→ 외부 냉기 안개가 따뜻한 경계에서 휘어짐
+호박색 빛이 외벽을 따라 이동
+→ 따뜻한 기운이 퍼짐
+→ 지나간 유리의 서리가 녹음
+→ 밖으로 나가려던 냉기의 방향이 바뀜
 → 학교 회랑 확산만 차단
 ```
 
-### 판독
-
-```text
-[인식: 열]
-[인식: 흐름 경로]
-[미해독: 고정·자동 온도·압력 보정]
-```
-
-### 상태 비교
+상태:
 
 ```yaml
 external_spread: RISING -> CONTAINED
@@ -208,46 +192,59 @@ cassian: TRAPPED -> TRAPPED
 spirit_overload: RISING -> RISING
 ```
 
-### 교수 발화 경계
-
-허용:
+교수 발화 허용:
 
 - `외부 확산은 막았다.`
 - `내부 문제는 그대로다.`
 - L2·L3 안전 경고
 
-금지:
-
-- 사용 회로·목표·경로를 말로 설명
-- 교수 회로 복사 버튼
-- 미학습 고급 회로 자동 습득
-- 내부 사건 해결
+교수는 회로 이름·효과 원리·추천 목표를 설명하지 않는다.
 
 ---
 
-## 플레이어 인식 UX Draft
+## 조사형 키워드 확인 Draft
 
-회로 재관찰은 시간과 행동 횟수를 소모하지 않는다.
+자동 `[인식]` 오버레이를 사용하지 않는다. 플레이어가 텍스트 노벨 조사로 이미 배운 키워드를 다시 확인한다.
 
 ```text
-관찰한 사실
-- 열이 회로를 따라 이동했다.
-- 열이 지나간 곳부터 서리가 녹았다.
-- 외부 냉기 진행 방향이 바뀌었다.
+빛이 시작된 문양을 살핀다
+→ 수업에서 익힌 형태와 따뜻한 기운
+→ [확인한 키워드: 열]
 
-남은 문제
-- 내부 과압
-- 핵 정지
-- 카시안 고립
-- 정령 과부하
-- 묘목 동결
+빛이 이동한 선을 따라간다
+→ 익숙한 연결선이 외벽을 따라 이어짐
+→ [확인한 키워드: 흐름]
 
-알 수 없는 부분
-- 고급 고정 회로
-- 자동 온도·압력 보정
+모서리 문양을 살핀다
+→ 미학습 고급 구조
+→ 해독 불가
 ```
 
-추천 조합·성공률·최종 결말은 표시하지 않는다.
+- 조사 선택은 행동 횟수와 실시간 시간을 소모하지 않는다.
+- 조사하지 않아도 사건 진행과 안전 봉쇄·철수는 가능하다.
+- 키워드 확인은 새 글자 해금이 아니다.
+
+---
+
+## 관찰 결과 UX Draft
+
+플레이어에게는 감각과 실제 상태 변화만 표시한다.
+
+```text
+따뜻한 기운이 느껴진다.
+회로가 지나간 유리의 서리가 녹는다.
+밖으로 나가려던 냉기가 방향을 바꿨다.
+온실 안쪽의 붉은 압력계는 그대로다.
+```
+
+상황에 따라 2~4줄만 사용한다.
+
+금지:
+
+- `열이 흐름 경로를 따라 이동했다` 같은 시스템 해설
+- 자동 `열+흐름 회로 확인` 표시
+- 해결 가능한 대상·경로 추천
+- 성공률·최종 결말·교수 회로 복사
 
 ---
 
@@ -256,8 +253,9 @@ spirit_overload: RISING -> RISING
 ```text
 1학년 실습
 → 카시안의 열·흐름 오용
-→ 교수 외곽 열·흐름 안전 회로
-→ 회로 판독·인과 연출·상태 비교
+→ 교수 외곽 안전 회로
+→ 감각 중심 관찰 결과
+→ 선택형 회로 조사로 열·흐름 확인
 → 조사 4개 중 2개
 → 교수·카시안·모트 관점 확인
 → 5개 해결 접근 선택
@@ -325,6 +323,8 @@ same_time_event_order: [MAIN, S1, S2, S3]
 
 ```text
 PROFESSOR_VERBALLY_NAMES_SOLUTION = PROHIBITED
+AUTOMATIC_GLYPH_RECOGNITION_OVERLAY = PROHIBITED
+OBSERVATION_RESULT_EXPLAINS_CAUSAL_SOLUTION = PROHIBITED
 PROFESSOR_CIRCUIT_COPY_BUTTON = PROHIBITED
 UNKNOWN_ADVANCED_GLYPH_AUTOMATICALLY_GRANTED = PROHIBITED
 UPPERCLASS_APPEARANCE_IN_FROSTBLOOM_EVENT = PROHIBITED
@@ -339,10 +339,9 @@ SILENT_CANON_SUPERSESSION_BEFORE_APPROVAL = PROHIBITED
 
 ## 다음 우선순위
 
-1. `열 메인 + 흐름 경로` Draft 검토
-2. 교수의 비언어적 회로 시연 검토
-3. 카시안 사고와 최소 인물 구성 검토
-4. 승인 시 20개 해결 패턴과 상위 Curriculum 정본 보정
-5. 상황 UX Wireframe
-6. 온실·정령·회로 Art Direction
-7. 승인 범위의 Codex 구현 명세
+1. 조사형 `열·흐름` 확인과 감각 중심 관찰 결과 검토
+2. `열 메인 + 흐름 경로` Draft 검토
+3. 승인 시 20개 해결 패턴과 상위 Curriculum 정본 보정
+4. 상황 UX Wireframe
+5. 온실·정령·회로 Art Direction
+6. 승인 범위의 Codex 구현 명세
