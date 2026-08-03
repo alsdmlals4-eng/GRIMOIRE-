@@ -24,7 +24,7 @@
     "count_reapproval_or_copy_edit": false,
     "count_main_sync_receipt": false,
     "current_operation_counted": false,
-    "current_operation_reason": "HEAT_FLOW_OBSERVATION_AND_CAST_REVISION_DRAFT_AWAITING_USER_APPROVAL"
+    "current_operation_reason": "TEXT_NOVEL_GLYPH_INVESTIGATION_AND_SENSORY_ONLY_OBSERVATION_DRAFT_AWAITING_FINAL_APPROVAL"
   },
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
@@ -37,7 +37,7 @@
     "main_finalization_sync_id": "GR-SYNC-20260803-06"
   },
   "current_work": {
-    "status": "HEAT_FLOW_OBSERVATION_AND_MINIMAL_CAST_WRITTEN_FOR_USER_REVIEW",
+    "status": "HEAT_FLOW_TEXT_NOVEL_INVESTIGATION_AND_SENSORY_OBSERVATION_WRITTEN_FOR_REVIEW",
     "approved_decision_id": "GM-SCHOOL-CRISIS-PEDAGOGY-01",
     "draft_decision_id": "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
     "cast_dialogue_draft_id": "GM-FROSTBLOOM-CAST-DIALOGUE-01",
@@ -46,9 +46,9 @@
     "default_branch": "main",
     "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
     "working_branch": "agent/foundation-poc-readiness-review",
-    "working_sync_id": "GR-SYNC-20260804-06-HEAT-FLOW-OBSERVATION-DRAFT",
+    "working_sync_id": "GR-SYNC-20260804-07-HEAT-FLOW-INVESTIGATION-DRAFT",
     "pull_request": 57,
-    "selected_approach": "NONVERBAL_FACULTY_HEAT_FLOW_DEMONSTRATION_WITH_MINIMAL_FIRST_YEAR_CAST",
+    "selected_approach": "TEXT_NOVEL_GLYPH_INVESTIGATION_WITH_SENSORY_ONLY_OBSERVATION_RESULTS",
     "counter_increment": false,
     "role_split": {
       "gpt": [
@@ -71,7 +71,7 @@
     "narrative_situation_design": {
       "representative_situation": "FROSTBLOOM_GREENHOUSE_HEART",
       "choice_layer": "INTENT_AND_PRIORITY",
-      "guidance_layer": "ENVIRONMENTAL_OBSERVATION_PLUS_DIRECTIONAL_EFFECT_PREVIEW",
+      "guidance_layer": "TEXT_NOVEL_INVESTIGATION_PLUS_SENSORY_STATE_OBSERVATION",
       "spell_layer": "PLAYER_DESIGNED_EXECUTION",
       "recommended_approaches": 5,
       "target_solution_patterns_per_approach": 4,
@@ -85,7 +85,7 @@
       "approval": "docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md",
       "scene_flow_spec": "docs/superpowers/specs/2026-08-04-frostbloom-school-crisis-scene-flow-design.md",
       "school_goal": "FIELD_READY_MAGE_SELF_RELIANCE",
-      "faculty_default_role": "SET_SAFETY_BOUNDARY_AND_ALLOW_OBSERVATION_WITHOUT_VERBAL_SOLUTION",
+      "faculty_default_role": "SET_SAFETY_BOUNDARY_DEMONSTRATE_WITHOUT_EXPLANATION_AND_ALLOW_STUDENT_INVESTIGATION",
       "faculty_solves_core_objective": false,
       "student_withdrawal_allowed": true,
       "intervention_levels": {
@@ -109,6 +109,9 @@
       "classmate_accident_trigger": true,
       "classmate_remains_cooperator": true,
       "professor_verbal_solution": false,
+      "glyph_confirmation": "TEXT_NOVEL_INVESTIGATION",
+      "automatic_recognition_overlay": false,
+      "observation_copy": "SENSORY_AND_VISIBLE_STATE_CHANGE_ONLY",
       "required_information_has_multiple_sources": true
     },
     "slice_glyph_contract": {
@@ -129,10 +132,21 @@
     },
     "faculty_demonstration": {
       "objective": "STOP_EXTERNAL_COLD_SPREAD_ONLY",
-      "known_visible_parts": ["HEAT", "FLOW_PATH"],
-      "unknown_visible_parts": ["ANCHOR", "AUTOMATIC_TEMPERATURE_PRESSURE_FEEDBACK"],
       "verbal_explanation": false,
+      "glyph_confirmation_method": "OPTIONAL_TEXT_NOVEL_INVESTIGATION",
+      "recognized_keyword_sources": {
+        "HEAT": "INSPECT_START_GLYPH",
+        "FLOW": "TRACE_MOVING_LINE"
+      },
+      "unknown_visible_parts": ["ANCHOR", "AUTOMATIC_TEMPERATURE_PRESSURE_FEEDBACK"],
+      "automatic_recognition_overlay": false,
       "copy_action": false,
+      "observation_examples": [
+        "따뜻한 기운이 느껴진다.",
+        "회로가 지나간 유리의 서리가 녹는다.",
+        "밖으로 나가려던 냉기가 방향을 바꿨다.",
+        "온실 안쪽의 붉은 압력계는 그대로다."
+      ],
       "state_after": {
         "external_spread": "CONTAINED",
         "internal_pressure": "CRITICAL",
@@ -152,8 +166,8 @@
     },
     "planning": {
       "creative_scope": "docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md",
-      "current_priority_1": "USER_REVIEW_HEAT_FLOW_GLYPH_ROLE_AND_NONVERBAL_FACULTY_DEMONSTRATION",
-      "current_priority_2": "APPROVE_OR_REVISE_MINIMAL_CAST_AND_CASSIAN_ACCIDENT",
+      "current_priority_1": "USER_REVIEW_TEXT_NOVEL_GLYPH_INVESTIGATION_AND_SENSORY_OBSERVATION_COPY",
+      "current_priority_2": "APPROVE_OR_REVISE_HEAT_MAIN_FLOW_CONNECTION_GRAMMAR",
       "current_priority_3": "MIGRATE_TWENTY_ROUTE_PATTERNS_TO_HEAT_FLOW_GRAMMAR_AFTER_APPROVAL",
       "current_priority_4": "DESIGN_SITUATION_UX_WIREFRAME",
       "current_priority_5": "DEFINE_GREENHOUSE_SPIRIT_MAGIC_CORE_ART_DIRECTION",
@@ -163,7 +177,7 @@
     "godot_product_project": "NOT_CREATED",
     "foundation_poc_build_authorization": "AVAILABLE_FOR_LATER_CODEX_SESSION",
     "codex_execution": "DEFERRED_UNTIL_SELECTED_CREATIVE_SCOPE_IS_READY",
-    "next_priority": "USER_REVIEW_HEAT_FLOW_OBSERVATION_DRAFT"
+    "next_priority": "USER_REVIEW_HEAT_FLOW_INVESTIGATION_DRAFT"
   },
   "protected_boundaries": {
     "text_choice_auto_selects_spell": "PROHIBITED",
@@ -172,6 +186,8 @@
     "single_true_ending_for_representative_situation": "PROHIBITED",
     "explicit_menu_of_all_twenty_solution_patterns": "PROHIBITED",
     "professor_verbally_names_solution": "PROHIBITED",
+    "automatic_glyph_recognition_overlay": "PROHIBITED",
+    "observation_result_explains_causal_solution": "PROHIBITED",
     "professor_circuit_copy_button": "PROHIBITED",
     "unknown_advanced_glyph_automatically_granted": "PROHIBITED",
     "upperclass_appearance_in_frostbloom_event": "PROHIBITED",
