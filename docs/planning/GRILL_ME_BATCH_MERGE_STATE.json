@@ -35,7 +35,7 @@
     "main_finalization_sync_id": "GR-SYNC-20260803-06"
   },
   "current_work": {
-    "status": "USER_APPROVED_DESIGN_SCOPE_AWAITING_WRITTEN_SPEC_REVIEW",
+    "status": "USER_APPROVED_DESIGN_SCOPE_SHEET_READBACK_PASS_AWAITING_WRITTEN_SPEC_REVIEW",
     "decision_id": "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
     "review_id": "GR-REVIEW-FOUNDATION-POC-READINESS-20260803-01",
     "selected_approach": "B_STAGE_0_PREFLIGHT_BOOTSTRAP",
@@ -70,6 +70,7 @@
       ],
       "prohibited_paths": [
         "project.godot",
+        ".godot/**",
         "src/**",
         "scenes/**",
         "addons/**",
@@ -91,19 +92,24 @@
       "renderer": "NOT_RUN",
       "export_templates": "NOT_RUN",
       "android_toolchain": "NOT_RUN",
-      "canon_reference_freshness": "FAIL",
+      "canon_reference_freshness": "PARTIAL_STILL_OPEN_REGISTRY_ADAPTER_GENERATED_VIEWS",
       "base_v9_4_3_plan_revalidation": "NOT_RUN"
     },
     "verification": {
       "previous_review_head": "117f4a33ce5ec3ae01e3c734fcf6f6409cee5e2a",
       "previous_review_ci_run": 30819176521,
-      "adapter_generator": "PASS_AT_PREVIOUS_REVIEW_HEAD",
-      "unit_tests": "PASS_AT_PREVIOUS_REVIEW_HEAD",
-      "json_parse": "PASS_AT_PREVIOUS_REVIEW_HEAD",
-      "utf8_nfc_text_integrity": "PASS_AT_PREVIOUS_REVIEW_HEAD",
-      "adversarial_gate": "PASS_AT_PREVIOUS_REVIEW_HEAD",
-      "sheet_readback": "PASS_AT_PREVIOUS_REVIEW_HEAD",
-      "current_approval_head_verification": "PENDING"
+      "previous_review_adapter_generator": "PASS",
+      "previous_review_unit_tests": "PASS",
+      "previous_review_json_parse": "PASS",
+      "previous_review_utf8_nfc_text_integrity": "PASS",
+      "previous_review_adversarial_gate": "PASS",
+      "approval_sheet_write": "PASS",
+      "approval_sheet_readback": "PASS",
+      "approval_sheet_decision_id_match": "PASS",
+      "approval_sheet_sync_id_match": "PASS",
+      "approval_sheet_counter": "1_OF_10",
+      "approval_sheet_pending_decisions": 1,
+      "current_approval_head_verification": "PENDING_RECORDED_EXTERNALLY_TO_AVOID_SELF_REFERENCE"
     },
     "implementation": "NOT_STARTED",
     "godot_project": "NOT_STARTED",
@@ -118,6 +124,8 @@
     "foundation_poc_build_authorization": "NOT_GRANTED",
     "stage_0_test_double_as_real_evidence": "PROHIBITED",
     "unverified_toolchain_pass": "PROHIBITED",
+    "temporary_probe_inside_repository": "PROHIBITED",
+    "temporary_probe_cleanup_failure": "FAIL_CLOSED",
     "generated_view_hand_edit": "PROHIBITED",
     "runtime_validation": "NOT_RUN",
     "mobile_device_validation": "NOT_RUN",
