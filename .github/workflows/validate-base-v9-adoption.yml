@@ -1,28 +1,88 @@
-name: Validate Base v9.4.2 adoption
+name: Validate GRIMOIRE planning and Base v9.4.3
 on: [pull_request]
+
 jobs:
   ci-gate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.12'}
+        with:
+          python-version: '3.12'
       - run: python tools/generate_project_operating_views.py --check
       - run: python -m unittest tests.test_base_v9_adoption
-      - run: |
+      - name: Validate JSON
+        run: |
           python - <<'PY'
           import json
           from pathlib import Path
+
           for path in Path('.').rglob('*.json'):
               json.loads(path.read_text(encoding='utf-8'))
           print('json parse pass')
           PY
+      - name: Validate UTF-8 NFC text integrity
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+          import unicodedata
+
+          TEXT_SUFFIXES = {
+              '.md', '.json', '.yml', '.yaml', '.py', '.gd',
+              '.tscn', '.tres', '.txt', '.csv'
+          }
+          SKIP_PARTS = {'.git', '.venv', 'venv', 'node_modules', '__pycache__'}
+          ALLOWED_CONTROLS = {'\t', '\n', '\r'}
+          suspicious_leads = ''.join(chr(code) for code in (0x00C3, 0x00C2, 0x00E2, 0x00F0, 0x00EF))
+          korean_mojibake_leads = ''.join(chr(code) for code in (0x00EC, 0x00ED, 0x00EB, 0x00EA))
+          common_mojibake = re.compile(f'[{re.escape(suspicious_leads)}][^\\s]{{1,3}}')
+          korean_mojibake = re.compile(f'[{re.escape(korean_mojibake_leads)}][^\\s]{{2,}}')
+          errors = []
+
+          for path in sorted(Path('.').rglob('*')):
+              if not path.is_file() or path.suffix.lower() not in TEXT_SUFFIXES:
+                  continue
+              if any(part in SKIP_PARTS for part in path.parts):
+                  continue
+              raw = path.read_bytes()
+              if raw.startswith(b'\xef\xbb\xbf'):
+                  errors.append(f'{path}: UTF-8 BOM is prohibited')
+                  continue
+              try:
+                  text = raw.decode('utf-8', errors='strict')
+              except UnicodeDecodeError as exc:
+                  errors.append(f'{path}: UTF-8 decode failed: {exc}')
+                  continue
+              if chr(0xFFFD) in text:
+                  errors.append(f'{path}: contains Unicode replacement character U+FFFD')
+              if not unicodedata.is_normalized('NFC', text):
+                  errors.append(f'{path}: text is not Unicode NFC')
+              bad_controls = sorted({
+                  f'U+{ord(ch):04X}' for ch in text
+                  if unicodedata.category(ch) == 'Cc' and ch not in ALLOWED_CONTROLS
+              })
+              if bad_controls:
+                  errors.append(f'{path}: disallowed control characters {bad_controls}')
+              if common_mojibake.search(text):
+                  errors.append(f'{path}: common mojibake pattern detected')
+              if korean_mojibake.search(text):
+                  errors.append(f'{path}: Korean mojibake-like token detected')
+
+          if errors:
+              print('\n'.join(errors))
+              sys.exit(1)
+          print('utf-8 nfc text integrity pass')
+          PY
+
   adversarial-gate:
     needs: ci-gate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: {fetch-depth: 0}
+        with:
+          fetch-depth: 0
       - run: |
           git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}" > changed.txt
           if grep -E '^(src/|scenes/|data/|assets/|addons/|project\.godot$)' changed.txt; then
@@ -32,4 +92,6 @@ jobs:
           test -f skills/PROJECT_BASE_ADAPTER.json
           test -f skills/PROJECT_SKILL_SNAPSHOT.json
           test -f docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md
+          test -f docs/planning/GRILL_WORK_BENCHMARK_TEXT_INTEGRITY_01_APPROVAL_2026-08-03.md
+          test -f docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md
           ! grep -R "NEXT ART-STYLE-01" AGENTS.md START_HERE.md docs/ACTIVE_CONTEXT.md docs/planning/CURRENT_CONFIRMED_DECISIONS.md

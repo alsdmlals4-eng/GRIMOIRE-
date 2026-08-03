@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-INGAME-ART-CHECKPOINT-01",
+  "status": "USER_APPROVED_VISUAL_CHECKPOINT",
+  "approved_at": "2026-08-03T08:40:00+09:00",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "repository": "alsdmlals4-eng/GRIMOIRE-",
+  "parent_visual_authorities": [
+    "ART-STYLE-01",
+    "ART-BIBLE-01",
+    "GM-MOBILE-SUMMON-HUD-WIREFRAME-01"
+  ],
+  "assets": [
+    {
+      "asset_id": "GR-VISUAL-CHECKPOINT-BOARD-A-01",
+      "status": "APPROVED_VISUAL_CHECKPOINT_REFERENCE",
+      "generation_id": "2484acec-6ed9-4bd1-afd0-8fd4f3617efb",
+      "library_path": "/GRIMOIRE/Visual Checkpoints/GRIMOIRE_INGAME_CHECKPOINT_BOARD_A_APPROVED_2026-08-03.png",
+      "file_id": "file_00000000a31c82069fa4987ca422e01d",
+      "library_file_id": "libfile_dab7089fcf708191b7073f24d2ecafb8",
+      "mime_type": "image/png",
+      "width_px": 1491,
+      "height_px": 1055,
+      "color_mode": "RGB",
+      "byte_size": 2528478,
+      "sha256": "4ac1fe1f5c35e019b2941c4bffdb6b128ed8ba198e4dd68c25f7ef6fad120882",
+      "scenes": [
+        "MAIN_SCREEN",
+        "DAILY_LIFE_FREE_SCHEDULE",
+        "CLASS_GLYPH_PRACTICE",
+        "FESTIVAL_CAMPUS_EVENT"
+      ]
+    },
+    {
+      "asset_id": "GR-VISUAL-CHECKPOINT-BOARD-B-01",
+      "status": "APPROVED_VISUAL_CHECKPOINT_REFERENCE",
+      "generation_id": "d553b6f0-fb23-442e-a9ef-4300fd7758fc",
+      "library_path": "/GRIMOIRE/Visual Checkpoints/GRIMOIRE_INGAME_CHECKPOINT_BOARD_B_APPROVED_2026-08-03.png",
+      "file_id": "file_00000000ca6882068e24267ec1ab4c00",
+      "library_file_id": "libfile_a6941b474c18819197ea95df21dd84f9",
+      "mime_type": "image/png",
+      "width_px": 1491,
+      "height_px": 1055,
+      "color_mode": "RGB",
+      "byte_size": 2433235,
+      "sha256": "9dd562a091fe41f92be2fc0525b49b770ecc3a2bdc151262cdd52b1085771074",
+      "scenes": [
+        "BATTLE_OBSERVE_SUMMON_CONTROL",
+        "WRITING_FOCUS_BATTLE",
+        "SUMMON_EVENT_SUPPORT_ACTIVATION",
+        "RESULT_RETURN"
+      ]
+    }
+  ],
+  "approval_scope": [
+    "SCENE_SET",
+    "VISUAL_DIRECTION",
+    "CHARACTER_AND_COMPANION_CONTINUITY",
+    "NAVY_GOLD_UI_LANGUAGE",
+    "FIELD_CLASS_FESTIVAL_BATTLE_WRITING_RESULT_COMPOSITION",
+    "AUXILIARY_SUMMON_BADGE_AND_SHORT_CUTIN_PRESENTATION"
+  ],
+  "noncanonical_placeholders": [
+    "ALL_TEXT_AND_LOCALIZATION",
+    "LEVELS_AND_CURRENCIES",
+    "HP_MP_STOCK_AND_TIMER_VALUES",
+    "ENEMY_AND_LOCATION_NAMES",
+    "RESULT_GRADE_AND_REWARD_FIELDS",
+    "BOARD_A_MENU_TAXONOMY",
+    "BOARD_B_ATTACK_PLUS_3_AND_HEAL_PLUS_3",
+    "ONE_SHOT_SUPPORT_CHAIN_INTERPRETATION",
+    "FINAL_PIXEL_AND_SAFE_AREA_VALUES"
+  ],
+  "implementation_authority": "NONE",
+  "final_asset_authority": "NONE",
+  "runtime_evidence": "NOT_RUN",
+  "human_playtest_evidence": "NOT_RUN"
+}
