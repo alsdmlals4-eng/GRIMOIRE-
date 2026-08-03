@@ -4,10 +4,12 @@
 
 ```yaml
 sync_id: GR-SYNC-20260803-07
-status: REVIEW_COMPLETE_AWAITING_USER_STAGE_0_DECISION
+status: REVIEW_COMPLETE_SHEET_READBACK_PASS_AWAITING_USER_STAGE_0_DECISION
 repository: alsdmlals4-eng/GRIMOIRE-
 baseline_main: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
 working_branch: agent/foundation-poc-readiness-review
+pull_request: 57
+pull_request_state: OPEN_DRAFT_NOT_MERGED
 decision_id: GM-FOUNDATION-POC-EXECUTION-READINESS-01
 review_id: GR-REVIEW-FOUNDATION-POC-READINESS-20260803-01
 recommended_approach: B_STAGE_0_PREFLIGHT_BOOTSTRAP
@@ -56,13 +58,27 @@ codex_execution: BLOCKED
 
 제품 파일과 실행 도구는 생성하지 않았다.
 
-## Google Sheet 동기화 계획
+## Google Sheet 동기화·Readback
 
-- `00_프로젝트_허브!H2:K2` — Readiness 검토와 사용자 결정 대기.
-- `01_작업순서` — Stage 0 후보 작업 추가.
-- `04_누락_충돌_감사` — P1 4건과 외부 검증 차단 기록.
-- `30_데모범위_품질기준_제작기반` — Implementation Entry Gate 상태를 검토 대기로 갱신.
-- `99_변경이력` — Working review 기록.
+Spreadsheet: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`.
+
+반영·재조회 완료:
+
+- `00_프로젝트_허브!H2:K2`.
+- `01_작업순서!A34:J34`.
+- `04_누락_충돌_감사!A44:H44`.
+- `30_데모범위_품질기준_제작기반!G9:H9`.
+- `99_변경이력!A52:H52`.
+
+```yaml
+sheet_write: PASS
+sheet_readback: PASS
+sheet_sync_id_match: PASS
+sheet_decision_id_match: PASS
+sheet_status: REVIEW_CANDIDATE_NOT_APPROVED_DECISION
+sheet_counter: 0_of_10
+sheet_pending_approved_decisions: 0
+```
 
 ## 검증 경계
 
