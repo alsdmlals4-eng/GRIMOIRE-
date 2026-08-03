@@ -18,14 +18,15 @@ base_release: v9.4.3
 main_authority: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
 last_main_sync: GR-SYNC-20260803-06
 current_working_sync: GR-SYNC-20260803-07
-current_decision_id: GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01
-current_decision_status: USER_APPROVED_DESIGN_WRITTEN_READY_FOR_SPEC_REVIEW
-grill_counter: 2_of_10
-pending_distinct_decisions: 2
+current_decision_id: GM-SCHOOL-CRISIS-PEDAGOGY-01
+parent_situation_decision_id: GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01
+current_decision_status: USER_APPROVED_PEDAGOGY_SCENE_FLOW_WRITTEN_FOR_REVIEW
+grill_counter: 3_of_10
+pending_distinct_decisions: 3
 local_godot_installation: USER_CONFIRMED_INSTALLED
 foundation_poc_technical_plan: READY_FOR_LATER_CODEX_SESSION
 foundation_poc_product_code: NOT_STARTED
-current_gpt_focus: NARRATIVE_MULTI_SOLUTION_CONTENT_UX_ART
+current_gpt_focus: FROSTBLOOM_SCENE_FLOW_DIALOGUE_UX_ART
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -58,13 +59,14 @@ GPT 기획 작업:
 1. `AGENTS.md`.
 2. `START_HERE.md`.
 3. 이 문서.
-4. `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_APPROVAL_2026-08-04.md`.
-5. `docs/superpowers/specs/2026-08-04-narrative-multi-solution-situation-design.md`.
-6. `docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md`.
-7. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
-8. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
-9. 질문 주제의 최신 승인 책임 원본.
-10. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
+4. `docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md`.
+5. `docs/superpowers/specs/2026-08-04-frostbloom-school-crisis-scene-flow-design.md`.
+6. `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md`.
+7. `docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md`.
+8. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
+9. `docs/planning/sync/GR-SYNC-20260803-07-WORKING.md`.
+10. 질문 주제의 최신 승인 책임 원본.
+11. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
 
 Codex 구현 작업:
 
@@ -95,6 +97,12 @@ Decision: `GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01`.
 텍스트 선택
 = 해결 의도·우선순위
 
+등장인물 대화
+= 관찰 사실·편향·위험 방향
+
+예상 효과 카드
+= 직접 효과·속도·범위·압력·위험·미해결 문제
+
 주문 설계
 = 실제 실행 방법
 ```
@@ -104,12 +112,11 @@ Decision: `GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01`.
 ### 복수 해결 계약
 
 ```yaml
-minimum_approaches: 3
 recommended_approaches: 5
-minimum_noncombat_approaches: 2
 recommended_noncombat_approaches: 4
-minimum_valid_spell_plans_per_approach: 2
-minimum_valid_endings: 3
+target_solution_patterns_per_approach: 4
+target_total_reference_patterns: 20
+reasonable_unlisted_solution: MEANING_BASED_EVALUATION
 combat_is_mandatory: false
 single_true_ending: false
 ```
@@ -129,25 +136,58 @@ approaches:
 
 대표 사건에서 정령은 원인처럼 보이지만 실제로는 냉기 누출의 피해자일 수 있다. 조사 정보에 따라 전투 외 교섭·복구·구조·봉쇄가 동등한 유효 해결법이 된다.
 
-## 텍스트 노벨 UX 계약
+## 승인된 학교 위기 교육 원칙
 
-```text
-상황 서술
-→ 핵심 인물 반응
-→ 조사 가능한 요소
-→ 해결 접근 선택
-→ 접근별 조건 요약
-→ 주문 설계 화면
-→ 결과 연출
-→ 추가 변수·후속 선택
-→ 마도서 기록
+Decision: `GM-SCHOOL-CRISIS-PEDAGOGY-01`.
+
+> 마법사는 위기에서 스스로 상황을 읽고 해결할 수 있어야 한다. 교수는 정답을 대신 실행하지 않고 방향성과 안전 기준만 제시한다. 직접 개입은 학생 또는 민간인의 생명이 즉시 위험한 수준에서만 허용한다.
+
+### 교수 개입 단계
+
+```yaml
+L0: 정상 시행착오·비치명적 손실은 관찰
+L1: 판단 질문과 원리 방향만 제시
+L2: 돌이킬 수 없는 위험 직전 안전 경고
+L3: 치명 위험만 직접 차단·구조
 ```
 
-- 접근 선택지는 한 화면에 3~5개다.
-- 선택지는 주문 이름이 아니라 행동 목적을 표현한다.
-- 결과 정답 대신 예상 경향과 위험만 표시한다.
-- 후속 정보에 따라 접근을 수정할 수 있다.
-- 선택 하나가 결말을 즉시 잠그지 않는다.
+교수는 외곽 확산과 치명 위험을 통제하지만 온실 내부의 핵·배관·정령·구조 문제를 대신 해결하지 않는다.
+
+직접 개입 조건:
+
+- 즉시 회피하기 어려운 치명 공격
+- 의식 상실 또는 마력 회로 붕괴
+- 한 번의 판단 기회 안에 발생할 치명 구조물·핵 붕괴
+- 온실 밖 생명까지 위협하는 통제 불가능한 연쇄 폭주
+
+직접 개입 시에도 교수는 치명 위험만 제거하고 사건 전체를 정상화하지 않는다. 개입은 조롱이나 게임 오버가 아니라 `FACULTY_LIFESAVING_INTERVENTION` 결과 태그와 복기 장면으로 처리한다.
+
+학생은 언제든 접근 변경·지원 요청·봉쇄 후 철수를 선택할 수 있다. 철수는 자동 실패가 아니라 위험 관리와 책임 판단으로 평가한다.
+
+## 텍스트 노벨 장면 흐름
+
+```text
+현장실습 브리핑
+→ 온실 외부 도착과 교수의 안전선 선언
+→ 최초 위기와 공통 관찰
+→ 조사 선택 2회
+→ 등장인물 관점 대화
+→ 해결 접근 선택
+→ 접근별 추가 조사·주문 전 힌트
+→ 주문 초안과 예상 효과 카드
+→ 첫 시전과 세계 상태 변화
+→ 예상 밖 변수와 접근 수정
+→ 최종 대응 또는 철수
+→ 결과·교수 개입 여부·후속 반응
+→ 귀환과 마도서 기록
+```
+
+- 기본 조사 4개 중 2개 선택.
+- 자유일정 C에서 현장 조사를 선택했다면 3개까지 가능.
+- 기본 관찰만으로도 안전 봉쇄·철수 해법을 찾을 수 있다.
+- 핵심 생존 정보는 관계 선택 하나에 독점시키지 않는다.
+- 대화·조사·예상 효과 확인 중 실시간 타이머는 흐르지 않는다.
+- 첫 시전 후 공통 변수가 발생하며 접근을 바꿀 수 있다.
 
 ## 결과·평가 계약
 
@@ -163,6 +203,7 @@ evaluation_axes:
   - creative_spell_use
   - spirit_relationship
   - decision_responsibility
+  - independent_completion
 ```
 
 유효 결말 예:
@@ -173,6 +214,7 @@ evaluation_axes:
 - 안전 봉쇄
 - 강제 제압
 - 대가를 동반한 부분 복구
+- 교수 생명 구조 개입 후 복기
 
 ### 실패 구분
 
@@ -182,6 +224,7 @@ GRAMMAR_FAILURE
 SITUATION_DESIGN_FAILURE
 PRIORITY_FAILURE
 RESOURCE_EXHAUSTION
+FACULTY_LIFESAVING_INTERVENTION
 ```
 
 입력 실패를 상황 판단 실패로 기록하지 않는다.
@@ -190,10 +233,16 @@ RESOURCE_EXHAUSTION
 
 ### 마법 글자
 
-- 메인 글자 정확히 1개.
-- 보조 글자 0개 이상.
-- 신규·미숙·중요 글자는 직접 작성.
-- 결과는 글자의 의미와 상황 조건으로 설명 가능해야 한다.
+```yaml
+main_glyphs: [FLOW]
+support_glyphs: [FOCUS, DISPERSE]
+safe_grammar: MAIN_1_PLUS_SUPPORT_0_OR_1
+```
+
+- `흐름`은 이미 존재하는 냉기·온기·마력·공기·물의 이동 경로를 바꾼다.
+- `집중`은 빠르고 정밀하지만 과압·역류·국부 손상 위험이 있다.
+- `분산`은 넓고 안전하지만 느리고 출력이 약해질 수 있다.
+- 미학습 글자의 효과를 숨겨 제공하지 않는다.
 
 ### Stock
 
@@ -262,14 +311,19 @@ SINGLE_TRUE_ENDING_FOR_REPRESENTATIVE_SITUATION = PROHIBITED
 NONCOMBAT_APPROACH_AS_ALWAYS_SLOWER_OR_WORSE = PROHIBITED
 MORAL_GOOD_BAD_BINARY_CHOICES = PROHIBITED
 INDEPENDENT_MAP_PER_BRANCH_IN_VERTICAL_SLICE = PROHIBITED
+PROFESSOR_SOLVES_CORE_OBJECTIVE = PROHIBITED
+PROFESSOR_NAMES_CORRECT_GLYPH_COMBINATION = PROHIBITED
+LIFE_THREAT_WITHOUT_FACULTY_RESPONSE = PROHIBITED
+WITHDRAWAL_AS_AUTOMATIC_GAME_OVER = PROHIBITED
+FACULTY_INTERVENTION_AS_HUMILIATION = PROHIBITED
 ```
 
 ## 현재 GPT 산출물 우선순위
 
-1. 작성된 복수 해결 상황 명세 사용자 검토.
-2. `서리꽃 온실의 심장` 전체 텍스트 노벨 장면 흐름.
-3. 조사 정보·선택지·인물 대사.
-4. 접근별 최소 주문 계획과 결과 태그.
+1. 작성된 `서리꽃 온실의 심장` 학교 위기 장면 흐름 검토.
+2. 고유 인물 이름·성격 확정.
+3. 실제 텍스트 노벨 대사 원고.
+4. 접근별 예상 효과 카드 문구 세트.
 5. 사건 UX Map과 Wireframe.
 6. 온실·서리 정령·마력 핵 Art Direction과 Concept Art Brief.
 7. Vertical Slice 전체 콘텐츠 조립.
@@ -298,8 +352,9 @@ GPT 대화에서 GDScript·Scene 작업을 주 작업으로 전환
 
 ## 다음 작업
 
-1. 사용자가 `docs/superpowers/specs/2026-08-04-narrative-multi-solution-situation-design.md`를 검토한다.
-2. 승인 후 대표 사건의 전체 장면 흐름·선택지·대사를 작성한다.
-3. 사건 UX Wireframe을 설계한다.
-4. Art Direction과 첫 Concept Art Brief를 만든다.
-5. 충분히 구체화된 범위만 Codex 구현 명세로 넘긴다.
+1. `docs/superpowers/specs/2026-08-04-frostbloom-school-crisis-scene-flow-design.md`의 장면 흐름을 검토한다.
+2. 고유 인물 이름과 역할 대비를 확정한다.
+3. 실제 장면별 대사·선택지·예상 효과 카드 원고를 작성한다.
+4. 사건 UX Wireframe을 설계한다.
+5. Art Direction과 첫 Concept Art Brief를 만든다.
+6. 충분히 구체화된 범위만 Codex 구현 명세로 넘긴다.
