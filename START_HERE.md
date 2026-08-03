@@ -12,12 +12,14 @@
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | Base 정본 | `v9.4.3` |
 | 기준 main | `50a00f9f4ec992338a93e3dc75726b5bc6075a8b` |
-| 현재 Working Sync | `GR-SYNC-20260803-01` |
+| 현재 Working Sync | `GR-SYNC-20260803-03` |
 | Draft PR | `#51` |
-| 현재 Decision | `GM-STOCK-SYSTEM-01 / GM-SUMMON-SYSTEM-01 / GM-STOCK-SUMMON-STATE-INTERFACE-01 / GM-GRILL-WORK-QUALITY-GATE-01` |
-| Grill Batch | `4/10 / pending 4` |
+| 현재 Decision | `GM-STOCK-SYSTEM-01 / GM-SUMMON-SYSTEM-01 / GM-STOCK-SUMMON-STATE-INTERFACE-01 / GM-GRILL-WORK-QUALITY-GATE-01 / GM-MOBILE-SUMMON-HUD-WIREFRAME-01 / GM-INGAME-ART-CHECKPOINT-01` |
+| Grill Batch | `6/10 / pending 6` |
+| 조기 체크포인트 | `USER_APPROVED_AT_6_OF_10 / DIFF_SIZE_AND_CANON_DRIFT` |
+| 병합 권한 | `NOT_RECEIVED` |
 | 제품 구현 | `NOT_STARTED` |
-| Codex Plan | `ALLOWED` |
+| Codex Plan | `ALLOWED_AFTER_SPEC_REVIEW_AND_WRITING_PLANS` |
 | Codex 실행 | `BLOCKED` |
 | Runtime·실기기·성능·접근성·사람 검증 | `NOT_RUN` |
 
@@ -34,10 +36,13 @@
 9. `docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`
 10. `docs/planning/SUMMON_SYSTEM_01_APPROVAL_2026-08-02.md`
 11. `docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md`
-12. `docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md`
-13. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`
-14. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-15. `docs/planning/sync/GR-SYNC-20260803-01-WORKING.md`
+12. `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`
+13. `docs/planning/INGAME_ART_CHECKPOINT_01_APPROVAL_2026-08-03.md`
+14. `docs/planning/visual/INGAME_ART_CHECKPOINT_01_APPROVED_MANIFEST.json`
+15. `docs/planning/benchmarks/SUMMON_ACTIVE_3_AND_WORK_QUALITY_QUICK_BENCHMARK_2026-08-03.md`
+16. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`
+17. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
+18. `docs/planning/sync/GR-SYNC-20260803-03-WORKING.md`
 
 ## 플레이어 약속
 
@@ -177,9 +182,28 @@ Readback sentinel:
 - 대표 글자 `흐름 / 집중 / 분산`.
 - 대표 제작 권장: `촉매 배합·안정화 1개`.
 
+## 조기 체크포인트
+
+사용자는 PR #51을 정확히 10건까지 늘리지 않고 `6/10`에서 자기완결 검토 단위로 닫는 권장안을 승인했다.
+
+```yaml
+counts_as_new_decision: false
+checkpoint_reason:
+  - DIFF_SIZE
+  - CANON_DRIFT
+allowed_scope:
+  - AGENTS_AND_COLD_START_ALIGNMENT
+  - BATCH_STATE_ALIGNMENT
+  - WORKING_SYNC_ALIGNMENT
+  - GOOGLE_SHEET_STATUS_AND_TERMINOLOGY_CORRECTION
+merge_authorized: false
+```
+
+새 기획 Decision은 추가하지 않는다. 정본·Sheet 드리프트 교정, 최신 HEAD 검사, 사용자 명시 병합 승인 순서로 진행한다.
+
 ## 남은 P1
 
-1. 보조 3슬롯 Mobile HUD Wireframe.
+1. 보조 3슬롯 Mobile HUD 사용자 명세 검토.
 2. State/Ledger/Save TDD Plan·Test Matrix.
 3. Godot Toolchain preflight.
 4. Base v9.4.3 Plan 재검증·Execution Readiness.
