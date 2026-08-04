@@ -7,7 +7,7 @@
   "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 4,
+    "approved_grill_me_since_last_flush": 5,
     "next_merge_at": 10,
     "merge_required": false,
     "merge_trigger": "NONE",
@@ -17,7 +17,8 @@
       "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
       "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
       "GM-SCHOOL-CRISIS-PEDAGOGY-01",
-      "GM-SLICE-HEAT-FLOW-OBSERVATION-01"
+      "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
+      "GM-3X3-CIRCUIT-STOCK-FOCUS-01"
     ]
   },
   "counting_rule": {
@@ -25,7 +26,7 @@
     "count_reapproval_or_copy_edit": false,
     "count_main_sync_receipt": false,
     "current_operation_counted": true,
-    "current_operation_reason": "NEW_DISTINCT_USER_APPROVED_SLICE_HEAT_FLOW_GRAMMAR_AND_INVESTIGATION_DECISION"
+    "current_operation_reason": "NEW_DISTINCT_USER_APPROVED_3X3_CIRCUIT_GLYPH_STOCK_AND_FOCUS_SCRIBING_DECISION"
   },
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
@@ -38,19 +39,19 @@
     "main_finalization_sync_id": "GR-SYNC-20260803-06"
   },
   "current_work": {
-    "status": "HEAT_FLOW_SLICE_GRAMMAR_AND_INVESTIGATION_USER_APPROVED_ACTIVE",
-    "approved_decision_id": "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
-    "parent_situation_decision_id": "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
-    "parent_pedagogy_decision_id": "GM-SCHOOL-CRISIS-PEDAGOGY-01",
-    "cast_dialogue_content_id": "GM-FROSTBLOOM-CAST-DIALOGUE-01",
-    "cast_dialogue_status": "APPROVED_LINKED_CONTENT_BASELINE",
+    "status": "THREE_BY_THREE_CIRCUIT_GLYPH_STOCK_AND_FOCUS_SCRIBING_USER_APPROVED_ACTIVE",
+    "approved_decision_id": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
+    "parent_decision_ids": [
+      "GM-CIRCUIT-01",
+      "GM-STOCK-SYSTEM-01",
+      "GM-SLICE-HEAT-FLOW-OBSERVATION-01"
+    ],
     "decision_status": "USER_APPROVED_ACTIVE",
     "default_branch": "main",
     "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
     "working_branch": "agent/foundation-poc-readiness-review",
-    "working_sync_id": "GR-SYNC-20260804-08-HEAT-FLOW-APPROVAL",
+    "working_sync_id": "GR-SYNC-20260804-09-3X3-CIRCUIT-STOCK-FOCUS",
     "pull_request": 57,
-    "selected_approach": "HEAT_MAIN_FLOW_CONNECTION_WITH_TEXT_NOVEL_INVESTIGATION_AND_NONEXCLUSIVE_FACULTY_EXAMPLE",
     "counter_increment": true,
     "role_split": {
       "gpt": [
@@ -74,152 +75,120 @@
       "representative_situation": "FROSTBLOOM_GREENHOUSE_HEART",
       "choice_layer": "INTENT_AND_PRIORITY",
       "guidance_layer": "TEXT_NOVEL_INVESTIGATION_PLUS_SENSORY_STATE_OBSERVATION",
-      "spell_layer": "PLAYER_DESIGNED_EXECUTION",
+      "spell_layer": "PLAYER_DESIGNED_3X3_NODE_CIRCUIT",
       "recommended_approaches": 5,
       "solution_patterns_per_approach": 4,
       "total_reference_patterns": 20,
       "patterns_are_explicit_answers": false,
       "reasonable_unlisted_solution": "ALLOWED_BY_MEANING_AND_SITUATION_EVALUATION",
       "combat_is_mandatory": false,
-      "single_true_ending": false,
-      "route_pattern_design": "USER_APPROVED_HEAT_FLOW_MIGRATED",
-      "precast_guidance_design": "USER_APPROVED"
-    },
-    "school_crisis_pedagogy": {
-      "approval": "docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md",
-      "school_goal": "FIELD_READY_MAGE_SELF_RELIANCE",
-      "faculty_default_role": "SET_SAFETY_BOUNDARY_AND_DEMONSTRATE_ONE_VALID_EXAMPLE_WITHOUT_EXPLAINING_SOLUTION",
-      "faculty_solves_core_objective": false,
-      "student_withdrawal_allowed": true,
-      "intervention_levels": {
-        "L0": "OBSERVE_NORMAL_NONLETHAL_FAILURE",
-        "L1": "NARROW_MISSED_CONDITION_WITHOUT_NAMING_SOLUTION",
-        "L2": "SAFETY_WARNING_BEFORE_IRREVERSIBLE_DANGER",
-        "L3": "DIRECT_LIFESAVING_INTERVENTION_ONLY"
-      }
-    },
-    "cast_dialogue_design": {
-      "approval_owner": "docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_APPROVAL_2026-08-04.md",
-      "draft_source": "docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_DRAFT_2026-08-04.md",
-      "spec": "docs/superpowers/specs/2026-08-04-frostbloom-cast-dialogue-design.md",
-      "dialogue_script": "docs/content/vertical_slice/FROSTBLOOM_GREENHOUSE_DIALOGUE_SCRIPT_DRAFT_2026-08-04.md",
-      "review_status": "USER_APPROVED_LINKED_CONTENT_BASELINE",
-      "cast": [
-        "에일린 로스베르",
-        "카시안 렌",
-        "모트"
-      ],
-      "upperclass_present_in_event": false,
-      "professor_verbal_solution": false,
-      "glyph_confirmation": "TEXT_NOVEL_INVESTIGATION",
-      "automatic_recognition_overlay": false,
-      "observation_copy": "SENSORY_AND_VISIBLE_STATE_CHANGE_ONLY"
+      "single_true_ending": false
     },
     "slice_glyph_contract": {
-      "approved_current": {
-        "decision_id": "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
-        "main_glyph": "HEAT",
-        "connection_grammar": "FLOW",
-        "optional_support_glyphs": ["FOCUS", "DISPERSE"],
-        "representative_known_circuit": "HEAT_PLUS_FLOW",
-        "grammar": "MAIN_1_PLUS_CONNECTION_AND_OPTIONAL_SUPPORT",
-        "status": "USER_APPROVED_ACTIVE"
-      },
-      "superseded_previous": {
-        "main_glyphs": ["FLOW"],
-        "support_glyphs": ["FOCUS", "DISPERSE"],
-        "grammar": "MAIN_1_PLUS_SUPPORT_0_OR_1",
-        "status": "SUPERSEDED_BY_GM_SLICE_HEAT_FLOW_OBSERVATION_01"
-      }
+      "decision_id": "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
+      "main_glyph": "HEAT",
+      "connection_grammar": "FLOW",
+      "optional_support_glyphs": [
+        "FOCUS",
+        "DISPERSE"
+      ],
+      "representative_known_circuit": "HEAT_PLUS_FLOW",
+      "status": "USER_APPROVED_ACTIVE"
+    },
+    "three_by_three_circuit": {
+      "grid": "3X3",
+      "main_glyph_nodes": 1,
+      "support_glyph_nodes_slice_max": 2,
+      "target_keyword_nodes_slice_max": 4,
+      "total_nodes_slice_max": 7,
+      "branches_slice_max": 1,
+      "crossing_edges": false,
+      "target_nodes_dynamic_from_situation_or_combat": true,
+      "target_node_stock_cost": 0,
+      "connection_edge_stock_cost": 0,
+      "spell_definition": "GLYPH_NODES_PLUS_TARGET_NODES_PLUS_DIRECTED_TOPOLOGY",
+      "known_spell_name_separate_from_glyph_names": true
+    },
+    "glyph_stock": {
+      "stock_scope": "TYPED_GLYPH_ONLY",
+      "unit": "ONE_GLYPH_NODE_PLACEMENT",
+      "shared_capacity": "8_TEST_VALUE",
+      "completed_spell_stock": false,
+      "one_natural_charge_target_at_a_time": true,
+      "one_glyph_base_charge_seconds": "10_TEST_VALUE",
+      "minimum_actual_charge_seconds": "3_TEST_VALUE",
+      "natural_charge_clock": "ACTIVE_PRESSURE",
+      "summon_support": "INTEGER_SECONDS_REDUCTION",
+      "placement_reserves_stock": true,
+      "commit_consumes_reserved_stock_atomically": true
+    },
+    "focus_scribe": {
+      "state": "FOCUS_SCRIBE",
+      "role": "OPTIONAL_TYPED_GLYPH_STOCK_REPLENISHMENT",
+      "active_pressure_scale": "0.25_TEST_VALUE",
+      "full_pause": false,
+      "enemy_and_environment_continue": true,
+      "mana_drain_per_real_second": "1_TEST_VALUE",
+      "successful_recognition_gain": "SAME_GLYPH_STOCK_PLUS_1",
+      "stock_cost": 0,
+      "item_cost": 0,
+      "drawing_power_bonus": false,
+      "required_for_basic_combat": false,
+      "direct_damage_interrupts_if_hp_loss": true,
+      "partial_trace_saved": false,
+      "natural_charge_uses_slowed_active_pressure": true
     },
     "faculty_demonstration": {
       "objective": "STOP_EXTERNAL_COLD_SPREAD_ONLY",
       "role": "ONE_VALID_EXAMPLE_NOT_CANONICAL_ANSWER",
-      "required_player_route": false,
-      "default_best_solution": false,
-      "used_as_grading_key": false,
       "verbal_explanation": false,
       "glyph_confirmation_method": "OPTIONAL_TEXT_NOVEL_INVESTIGATION",
       "automatic_recognition_overlay": false,
-      "copy_action": false,
-      "observation_examples": [
-        "따뜻한 기운이 느껴진다.",
-        "회로가 지나간 유리의 서리가 녹는다.",
-        "밖으로 나가려던 냉기가 방향을 바꿨다.",
-        "온실 안쪽의 붉은 압력계는 그대로다."
-      ],
-      "state_after": {
-        "external_spread": "CONTAINED",
-        "internal_pressure": "CRITICAL",
-        "greenhouse_core": "STOPPED",
-        "cassian": "TRAPPED",
-        "spirit_overload": "RISING"
-      }
-    },
-    "godot_toolchain": {
-      "engine_pin": "4.7.1-stable",
-      "user_pc_installation": "USER_CONFIRMED_INSTALLED",
-      "user_pc_exact_version": "TO_BE_VERIFIED_BY_CODEX",
-      "chat_local_execution": "NOT_AVAILABLE",
-      "ci_actual_version": "4.7.1.stable.official.a13da4feb",
-      "ci_headless_probe": "PASS",
-      "ci_export_templates": "PASS"
+      "copy_action": false
     },
     "planning": {
-      "creative_scope": "docs/planning/GPT_CREATIVE_PLANNING_SCOPE_2026-08-03.md",
-      "current_priority_1": "DESIGN_FROSTBLOOM_SITUATION_UX_MAP_AND_MOBILE_WIREFRAME",
-      "current_priority_2": "DEFINE_GREENHOUSE_SPIRIT_HEAT_FLOW_CIRCUIT_ART_DIRECTION",
-      "current_priority_3": "REFINE_SCENE_DIALOGUE_AND_RESULT_COPY_DURING_UX_DESIGN",
-      "current_priority_4": "PREPARE_SELECTED_SCOPE_FOR_CODEX_HANDOFF",
-      "foundation_poc_core_design": "SUFFICIENT_FOR_LATER_CODEX_IMPLEMENTATION"
+      "current_priority_1": "DESIGN_3X3_CIRCUIT_AND_FOCUS_SCRIBE_MOBILE_WIREFRAME",
+      "current_priority_2": "APPLY_3X3_CIRCUIT_TO_FROSTBLOOM_UX_MAP",
+      "current_priority_3": "DEFINE_GREENHOUSE_CIRCUIT_AND_SPIRIT_ART_DIRECTION",
+      "current_priority_4": "PREPARE_SELECTED_SCOPE_FOR_CODEX_HANDOFF"
     },
     "implementation": "PRODUCT_IMPLEMENTATION_NOT_STARTED",
     "godot_product_project": "NOT_CREATED",
-    "foundation_poc_build_authorization": "AVAILABLE_FOR_LATER_CODEX_SESSION",
     "codex_execution": "DEFERRED_UNTIL_SELECTED_CREATIVE_SCOPE_IS_READY",
-    "next_priority": "FROSTBLOOM_SITUATION_UX_MAP_AND_MOBILE_WIREFRAME"
-  },
-  "protected_boundaries": {
-    "faculty_example_as_only_valid_solution": "PROHIBITED",
-    "faculty_example_as_default_best_solution": "PROHIBITED",
-    "faculty_example_as_grading_key": "PROHIBITED",
-    "player_required_to_copy_faculty_circuit": "PROHIBITED",
-    "reasonable_unlisted_solution_rejected_by_default": "PROHIBITED",
-    "text_choice_auto_selects_spell": "PROHIBITED",
-    "text_choice_auto_guarantees_success": "PROHIBITED",
-    "combat_as_default_or_mandatory_resolution": "PROHIBITED",
-    "single_true_ending_for_representative_situation": "PROHIBITED",
-    "explicit_menu_of_all_twenty_solution_patterns": "PROHIBITED",
-    "professor_verbally_names_solution": "PROHIBITED",
-    "automatic_glyph_recognition_overlay": "PROHIBITED",
-    "observation_result_explains_causal_solution": "PROHIBITED",
-    "professor_circuit_copy_button": "PROHIBITED",
-    "unknown_advanced_glyph_automatically_granted": "PROHIBITED",
-    "upperclass_appearance_in_frostbloom_event": "PROHIBITED",
-    "classmate_accident_as_malicious_prank": "PROHIBITED",
-    "classmate_as_passive_nuisance_only": "PROHIBITED",
-    "heat_deletes_cold_without_cost": "PROHIBITED",
-    "dialogue_directly_names_correct_glyph_combination": "PROHIBITED",
-    "preview_shows_success_percentage": "PROHIBITED",
-    "preview_reveals_final_ending": "PROHIBITED",
-    "mandatory_relationship_for_critical_clue": "PROHIBITED",
-    "reading_time_consumes_realtime_timer": "PROHIBITED",
-    "professor_solves_core_objective": "PROHIBITED",
-    "property_damage_alone_triggers_direct_intervention": "PROHIBITED",
-    "low_grade_alone_triggers_direct_intervention": "PROHIBITED",
-    "life_threat_without_faculty_response": "PROHIBITED",
-    "withdrawal_as_automatic_game_over": "PROHIBITED",
-    "faculty_intervention_as_humiliation": "PROHIBITED",
-    "one_character_owns_all_critical_information": "PROHIBITED",
-    "reference_work_character_or_line_copy": "PROHIBITED",
-    "silent_canon_supersession_before_approval": "PROHIBITED",
-    "gpt_product_implementation": "PROHIBITED_AS_PRIMARY_WORKFLOW",
-    "codex_implementation_before_selected_creative_scope": "DEFERRED",
-    "foundation_poc_scope_expansion": "PROHIBITED_WITHOUT_NEW_DECISION",
     "runtime_validation": "NOT_RUN",
     "mobile_device_validation": "NOT_RUN",
     "performance_validation": "NOT_RUN",
     "accessibility_validation": "NOT_RUN",
-    "human_validation": "NOT_RUN"
+    "human_validation": "NOT_RUN",
+    "next_priority": "3X3_CIRCUIT_AND_FOCUS_SCRIBE_MOBILE_WIREFRAME"
+  },
+  "protected_boundaries": {
+    "completed_spell_one_tap_stock": "PROHIBITED",
+    "multiple_main_glyphs_in_slice": "PROHIBITED",
+    "crossing_edges_in_slice": "PROHIBITED",
+    "target_node_consumes_glyph_stock": "PROHIBITED",
+    "connection_edge_consumes_glyph_stock": "PROHIBITED",
+    "generic_stock_from_different_drawn_glyph": "PROHIBITED",
+    "full_pause_during_focus_scribe": "PROHIBITED",
+    "passive_charge_real_time_acceleration_during_focus": "PROHIBITED",
+    "drawing_power_bonus": "PROHIBITED",
+    "drawing_required_for_basic_combat": "PROHIBITED",
+    "auto_optimal_target_or_circuit": "PROHIBITED",
+    "faculty_example_as_only_valid_solution": "PROHIBITED",
+    "player_required_to_copy_faculty_circuit": "PROHIBITED",
+    "reasonable_unlisted_solution_rejected_by_default": "PROHIBITED",
+    "text_choice_auto_selects_spell": "PROHIBITED",
+    "combat_as_default_or_mandatory_resolution": "PROHIBITED",
+    "single_true_ending_for_representative_situation": "PROHIBITED",
+    "automatic_glyph_recognition_overlay": "PROHIBITED",
+    "observation_result_explains_causal_solution": "PROHIBITED",
+    "heat_deletes_cold_without_cost": "PROHIBITED",
+    "preview_shows_success_percentage": "PROHIBITED",
+    "preview_reveals_final_ending": "PROHIBITED",
+    "reading_time_consumes_realtime_timer": "PROHIBITED",
+    "professor_solves_core_objective": "PROHIBITED",
+    "withdrawal_as_automatic_game_over": "PROHIBITED",
+    "silent_canon_supersession_before_approval": "PROHIBITED",
+    "gpt_product_implementation": "PROHIBITED_AS_PRIMARY_WORKFLOW"
   }
 }
