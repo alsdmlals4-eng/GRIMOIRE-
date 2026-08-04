@@ -10,10 +10,10 @@ var _current_total: int = 0
 var _reservations: Dictionary = {}
 
 
-static func create(capacity: int) -> UniversalStockPool:
+static func create(capacity: int):
     if capacity <= 0:
         return null
-    var pool := UniversalStockPool.new()
+    var pool = UniversalStockPool.new()
     pool._capacity = capacity
     return pool
 
@@ -32,7 +32,7 @@ static func from_dict(data: Dictionary) -> Dictionary:
     if reservation_data.size() > current_total:
         return _corrupt_result()
 
-    var pool := create(capacity)
+    var pool = create(capacity)
     pool._current_total = current_total
     var seen: Dictionary = {}
 
