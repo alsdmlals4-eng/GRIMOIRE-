@@ -1,18 +1,17 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
   "google_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-  "parent_policy": "GM-CANON-SYNC-01",
   "threshold": 10,
   "counter": {
     "approved_grill_me_since_last_flush": 5,
     "next_merge_at": 10,
-    "merge_required": false,
-    "merge_trigger": "NONE",
-    "merge_authorized": false,
-    "authorization_state": "ACCUMULATING_APPROVED_DECISIONS",
+    "merge_required": true,
+    "merge_trigger": "USER_EXPLICIT_EARLY_FLUSH_AT_5_OF_10",
+    "merge_authorized": true,
+    "authorization_state": "USER_AUTHORIZED_EARLY_BATCH_FLUSH",
     "pending_decision_ids": [
       "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
       "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
@@ -23,10 +22,10 @@
   },
   "counting_rule": {
     "count_distinct_user_approved_grill_me_decision_id": true,
-    "count_reapproval_or_copy_edit": false,
+    "count_reapproval_or_hardening": false,
     "count_main_sync_receipt": false,
-    "current_operation_counted": true,
-    "current_operation_reason": "NEW_DISTINCT_USER_APPROVED_3X3_CIRCUIT_GLYPH_STOCK_AND_FOCUS_SCRIBING_DECISION"
+    "current_operation_counted": false,
+    "current_operation_reason": "PREMERGE_HARDENING_AND_USER_AUTHORIZED_FLUSH"
   },
   "previous_complete_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
@@ -38,157 +37,40 @@
     "sheet_readback_merge_commit": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
     "main_finalization_sync_id": "GR-SYNC-20260803-06"
   },
-  "current_work": {
-    "status": "THREE_BY_THREE_CIRCUIT_GLYPH_STOCK_AND_FOCUS_SCRIBING_USER_APPROVED_ACTIVE",
-    "approved_decision_id": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
-    "parent_decision_ids": [
-      "GM-CIRCUIT-01",
-      "GM-STOCK-SYSTEM-01",
-      "GM-SLICE-HEAT-FLOW-OBSERVATION-01"
-    ],
-    "decision_status": "USER_APPROVED_ACTIVE",
-    "default_branch": "main",
-    "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
-    "working_branch": "agent/foundation-poc-readiness-review",
-    "working_sync_id": "GR-SYNC-20260804-09-3X3-CIRCUIT-STOCK-FOCUS",
+  "current_flush": {
+    "status": "PREMERGE_VALIDATION_IN_PROGRESS",
     "pull_request": 57,
-    "counter_increment": true,
-    "role_split": {
-      "gpt": [
-        "CORE_FUN",
-        "CONTENT_PLANNING",
-        "UX_AND_WIREFRAME",
-        "IMAGE_CONCEPT",
-        "ART_DIRECTION",
-        "ADVERSARIAL_REVIEW",
-        "CODEX_SPEC_HANDOFF"
-      ],
-      "codex": [
-        "PROJECT_GODOT",
-        "GDSCRIPT",
-        "SCENE_RESOURCE",
-        "RUNTIME_TESTS",
-        "CI_AND_DEVICE_VALIDATION"
-      ]
-    },
-    "narrative_situation_design": {
-      "representative_situation": "FROSTBLOOM_GREENHOUSE_HEART",
-      "choice_layer": "INTENT_AND_PRIORITY",
-      "guidance_layer": "TEXT_NOVEL_INVESTIGATION_PLUS_SENSORY_STATE_OBSERVATION",
-      "spell_layer": "PLAYER_DESIGNED_3X3_NODE_CIRCUIT",
-      "recommended_approaches": 5,
-      "solution_patterns_per_approach": 4,
-      "total_reference_patterns": 20,
-      "patterns_are_explicit_answers": false,
-      "reasonable_unlisted_solution": "ALLOWED_BY_MEANING_AND_SITUATION_EVALUATION",
-      "combat_is_mandatory": false,
-      "single_true_ending": false
-    },
-    "slice_glyph_contract": {
-      "decision_id": "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
-      "main_glyph": "HEAT",
-      "connection_grammar": "FLOW",
-      "optional_support_glyphs": [
-        "FOCUS",
-        "DISPERSE"
-      ],
-      "representative_known_circuit": "HEAT_PLUS_FLOW",
-      "status": "USER_APPROVED_ACTIVE"
-    },
-    "three_by_three_circuit": {
-      "grid": "3X3",
-      "main_glyph_nodes": 1,
-      "support_glyph_nodes_slice_max": 2,
-      "target_keyword_nodes_slice_max": 4,
-      "total_nodes_slice_max": 7,
-      "branches_slice_max": 1,
-      "crossing_edges": false,
-      "target_nodes_dynamic_from_situation_or_combat": true,
-      "target_node_stock_cost": 0,
-      "connection_edge_stock_cost": 0,
-      "spell_definition": "GLYPH_NODES_PLUS_TARGET_NODES_PLUS_DIRECTED_TOPOLOGY",
-      "known_spell_name_separate_from_glyph_names": true
-    },
-    "glyph_stock": {
-      "stock_scope": "TYPED_GLYPH_ONLY",
-      "unit": "ONE_GLYPH_NODE_PLACEMENT",
-      "shared_capacity": "8_TEST_VALUE",
-      "completed_spell_stock": false,
-      "one_natural_charge_target_at_a_time": true,
-      "one_glyph_base_charge_seconds": "10_TEST_VALUE",
-      "minimum_actual_charge_seconds": "3_TEST_VALUE",
-      "natural_charge_clock": "ACTIVE_PRESSURE",
-      "summon_support": "INTEGER_SECONDS_REDUCTION",
-      "placement_reserves_stock": true,
-      "commit_consumes_reserved_stock_atomically": true
-    },
-    "focus_scribe": {
-      "state": "FOCUS_SCRIBE",
-      "role": "OPTIONAL_TYPED_GLYPH_STOCK_REPLENISHMENT",
-      "active_pressure_scale": "0.25_TEST_VALUE",
-      "full_pause": false,
-      "enemy_and_environment_continue": true,
-      "mana_drain_per_real_second": "1_TEST_VALUE",
-      "successful_recognition_gain": "SAME_GLYPH_STOCK_PLUS_1",
-      "stock_cost": 0,
-      "item_cost": 0,
-      "drawing_power_bonus": false,
-      "required_for_basic_combat": false,
-      "direct_damage_interrupts_if_hp_loss": true,
-      "partial_trace_saved": false,
-      "natural_charge_uses_slowed_active_pressure": true
-    },
-    "faculty_demonstration": {
-      "objective": "STOP_EXTERNAL_COLD_SPREAD_ONLY",
-      "role": "ONE_VALID_EXAMPLE_NOT_CANONICAL_ANSWER",
-      "verbal_explanation": false,
-      "glyph_confirmation_method": "OPTIONAL_TEXT_NOVEL_INVESTIGATION",
-      "automatic_recognition_overlay": false,
-      "copy_action": false
-    },
-    "planning": {
-      "current_priority_1": "DESIGN_3X3_CIRCUIT_AND_FOCUS_SCRIBE_MOBILE_WIREFRAME",
-      "current_priority_2": "APPLY_3X3_CIRCUIT_TO_FROSTBLOOM_UX_MAP",
-      "current_priority_3": "DEFINE_GREENHOUSE_CIRCUIT_AND_SPIRIT_ART_DIRECTION",
-      "current_priority_4": "PREPARE_SELECTED_SCOPE_FOR_CODEX_HANDOFF"
-    },
-    "implementation": "PRODUCT_IMPLEMENTATION_NOT_STARTED",
-    "godot_product_project": "NOT_CREATED",
-    "codex_execution": "DEFERRED_UNTIL_SELECTED_CREATIVE_SCOPE_IS_READY",
-    "runtime_validation": "NOT_RUN",
-    "mobile_device_validation": "NOT_RUN",
-    "performance_validation": "NOT_RUN",
-    "accessibility_validation": "NOT_RUN",
-    "human_validation": "NOT_RUN",
-    "next_priority": "3X3_CIRCUIT_AND_FOCUS_SCRIBE_MOBILE_WIREFRAME"
+    "working_branch": "agent/foundation-poc-readiness-review",
+    "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
+    "working_sync_id": "GR-SYNC-20260804-09-3X3-CIRCUIT-STOCK-FOCUS",
+    "premerge_review": "docs/planning/THREE_BY_THREE_CANON_PREMERGE_ADVERSARIAL_REVIEW_2026-08-04.md",
+    "canon_status_index": "docs/planning/CANON_STATUS_INDEX_2026-08-04.md",
+    "latest_decision_id": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
+    "hardening_counter_increment": false,
+    "next_action": "VERIFY_HEAD_CI_REVIEW_SHEET_THEN_MERGE_PR57"
   },
-  "protected_boundaries": {
-    "completed_spell_one_tap_stock": "PROHIBITED",
-    "multiple_main_glyphs_in_slice": "PROHIBITED",
-    "crossing_edges_in_slice": "PROHIBITED",
-    "target_node_consumes_glyph_stock": "PROHIBITED",
-    "connection_edge_consumes_glyph_stock": "PROHIBITED",
-    "generic_stock_from_different_drawn_glyph": "PROHIBITED",
-    "full_pause_during_focus_scribe": "PROHIBITED",
-    "passive_charge_real_time_acceleration_during_focus": "PROHIBITED",
-    "drawing_power_bonus": "PROHIBITED",
-    "drawing_required_for_basic_combat": "PROHIBITED",
-    "auto_optimal_target_or_circuit": "PROHIBITED",
-    "faculty_example_as_only_valid_solution": "PROHIBITED",
-    "player_required_to_copy_faculty_circuit": "PROHIBITED",
-    "reasonable_unlisted_solution_rejected_by_default": "PROHIBITED",
-    "text_choice_auto_selects_spell": "PROHIBITED",
-    "combat_as_default_or_mandatory_resolution": "PROHIBITED",
-    "single_true_ending_for_representative_situation": "PROHIBITED",
-    "automatic_glyph_recognition_overlay": "PROHIBITED",
-    "observation_result_explains_causal_solution": "PROHIBITED",
-    "heat_deletes_cold_without_cost": "PROHIBITED",
-    "preview_shows_success_percentage": "PROHIBITED",
-    "preview_reveals_final_ending": "PROHIBITED",
-    "reading_time_consumes_realtime_timer": "PROHIBITED",
-    "professor_solves_core_objective": "PROHIBITED",
-    "withdrawal_as_automatic_game_over": "PROHIBITED",
-    "silent_canon_supersession_before_approval": "PROHIBITED",
-    "gpt_product_implementation": "PROHIBITED_AS_PRIMARY_WORKFLOW"
+  "canonical_contract": {
+    "spell_assembly": "3X3_ADJACENT_DIRECTED_NODE_CIRCUIT",
+    "stock": "TYPED_GLYPH_ONLY",
+    "completed_spell_stock": "PROHIBITED",
+    "focus_scribe": "OPTIONAL_REAL_TIME_MANA_COST_ACTIVE_PRESSURE_SLOW",
+    "focus_capacity_reservation": 1,
+    "blueprint": "NON_BINDING_GHOST_REFERENCE",
+    "target_provider": "VISIBLE_COMBATANTS_AUTO_ENVIRONMENT_AFTER_OBSERVATION"
+  },
+  "validation": {
+    "product_implementation": "NOT_STARTED",
+    "runtime": "NOT_RUN",
+    "mobile_device": "NOT_RUN",
+    "performance": "NOT_RUN",
+    "accessibility": "NOT_RUN",
+    "human": "NOT_RUN",
+    "required_before_merge": [
+      "PLANNING_AND_BASE_CI_SUCCESS_ON_EXACT_HEAD",
+      "GODOT_TOOLCHAIN_CI_SUCCESS_ON_EXACT_HEAD",
+      "UNRESOLVED_REVIEW_THREADS_ZERO",
+      "GOOGLE_SHEET_READBACK_MATCH",
+      "PR_OPEN_MERGEABLE"
+    ]
   }
 }
