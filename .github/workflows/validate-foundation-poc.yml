@@ -35,7 +35,7 @@ jobs:
 
       - name: Run headless POC tests
         run: |
-          .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
+          timeout 30s .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
             --headless --path . --script res://tests/test_runner.gd
 
       - name: Upload test evidence
