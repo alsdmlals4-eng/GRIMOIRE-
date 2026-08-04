@@ -3,6 +3,7 @@ extends RefCounted
 
 const GlyphResourceTypes = preload("res://src/core/resources/glyph_resource_types.gd")
 
+const SELF_PATH := "res://src/core/resources/universal_stock_pool.gd"
 const SCHEMA_VERSION := 1
 
 var _capacity: int
@@ -13,7 +14,10 @@ var _reservations: Dictionary = {}
 static func create(capacity: int):
     if capacity <= 0:
         return null
-    var pool = UniversalStockPool.new()
+    var script = load(SELF_PATH)
+    if script == null or not script.can_instantiate():
+        return null
+    var pool = script.new()
     pool._capacity = capacity
     return pool
 
@@ -33,6 +37,8 @@ static func from_dict(data: Dictionary) -> Dictionary:
         return _corrupt_result()
 
     var pool = create(capacity)
+    if pool == null:
+        return _corrupt_result()
     pool._current_total = current_total
     var seen: Dictionary = {}
 
