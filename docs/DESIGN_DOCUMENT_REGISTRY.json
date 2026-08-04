@@ -96,7 +96,7 @@
     {"path":"docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_LINKED_CONTENT_BASELINE"},
     {"path":"docs/planning/GRILL_ME_BATCH_MERGE_STATE.json","status":"ACTIVE_MACHINE_AUTHORITY_3_OF_10_DRAFT_CHECKPOINT"},
-    {"path":"docs/planning/sync/GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS.md","status":"APPROVED_DRAFT_CHECKPOINT_SHEET_READBACK_PASS"}
+    {"path":"docs/planning/sync/GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS.md","status":"APPROVED_DRAFT_CHECKPOINT_SHEET_READBACK_AND_AUTHORITY_VALIDATION_PASS"}
   ],
   "partial_supersession": [
     {
@@ -177,12 +177,14 @@
     "entrypoint_red_workflow_run": 30928799903,
     "charge_lifecycle_red_workflow_run": 30929106014,
     "spec_review_and_plan_red_workflow_run": 30958182618,
-    "planning_and_adversarial_green_workflow_run": 30958977292,
-    "godot_toolchain_green_workflow_run": 30958977145,
-    "final_exact_head": "RECHECK_PENDING_AFTER_SYNC_RECEIPT",
+    "authority_content_head": "d4081ab08f790cd08463223081d5b2954449de2b",
+    "authority_content_planning_and_adversarial_workflow_run": 30959539628,
+    "authority_content_godot_toolchain_workflow_run": 30959539596,
+    "authority_content_validation": "PASS",
+    "final_metadata_exact_head": "PR_CHECKS_REQUIRED_AND_RECHECKING",
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
-    "review_threads": "CHECK_PENDING",
+    "review_threads": 0,
     "product_implementation": "NOT_STARTED",
     "runtime": "NOT_RUN"
   }
