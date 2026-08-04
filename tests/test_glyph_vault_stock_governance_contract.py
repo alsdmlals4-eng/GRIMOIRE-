@@ -13,6 +13,7 @@ WORKFLOW_APPROVAL = ROOT / "docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_A
 BENCHMARK = ROOT / "docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md"
 AGENTS = ROOT / "AGENTS.md"
 STOCK = ROOT / "docs/planning/STOCK_SYSTEM.md"
+CAPACITY = ROOT / "docs/planning/STOCK_CAPACITY_SYSTEM.md"
 BATCH = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 STATUS = ROOT / "docs/planning/CANON_STATUS_INDEX_2026-08-04.md"
 
@@ -34,6 +35,19 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
             "COMPLETED_SPELL_STOCK_PROHIBITED",
             "FOCUS_SCRIBE_WRITES_TO_VAULT",
             "EXPLICIT_SOURCE_SELECTION",
+        )
+        for token in required:
+            self.assertIn(token, text)
+
+    def test_vault_slots_and_universal_stock_have_separate_capacity(self) -> None:
+        text = GLYPH_SPEC.read_text(encoding="utf-8") + CAPACITY.read_text(encoding="utf-8")
+        required = (
+            "SEPARATE_VAULT_AND_STOCK_CAPACITY",
+            "UNIVERSAL_STOCK_CAPACITY",
+            "EXACT_GLYPH_VAULT_SLOT_CAPACITY",
+            "FOCUS_SCRIBE_RESERVES_VAULT_SLOT",
+            "NATURAL_CHARGE_RESPECTS_STOCK_CAPACITY",
+            "RESOURCE_RESERVATION_DOES_NOT_CREATE_EXTRA_CAPACITY_USAGE",
         )
         for token in required:
             self.assertIn(token, text)
