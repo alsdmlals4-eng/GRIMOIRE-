@@ -5,8 +5,9 @@
 ```yaml
 status: ACTIVE_RESPONSIBILITY_SOURCE
 decision_id: GM-3X3-CIRCUIT-STOCK-FOCUS-01
+resource_decision: GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
 previous_decision: GM-CIRCUIT-01
-updated_at: 2026-08-04T09:37+09:00
+updated_at: 2026-08-05T00:31+09:00
 implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 human_validation: NOT_RUN
@@ -117,21 +118,23 @@ critical_safety_target: MULTI_ROUTE_DISCOVERABLE
 4. 교차·건너뛰기·고립·금지 순환 없음.
 5. 보조 글자와 대상 수 호환.
 6. 현재 Snapshot에서 대상 유효.
-7. Stock 예약과 마나 충족.
+7. 각 글자 노드가 보관함 또는 범용 Stock 출처를 명시적으로 예약했고 마나가 충족되는가.
 8. 예상 효과·위험·미해결 문제 표시.
 9. 명시적 Commit.
+
+대상 노드와 연결선은 자원을 예약하지 않는다. 글자 노드의 출처는 `EXACT_GLYPH_VAULT` 또는 `UNIVERSAL_GLYPH_STOCK` 중 하나다.
 
 ## 알려진 주문
 
 ```yaml
 blueprint_mode: NON_BINDING_GHOST_REFERENCE
-auto_reserve_stock: false
+auto_reserve_resource: false
 auto_target: false
 auto_commit: false
 auto_best_route: false
 ```
 
-등록 주문은 참고 위상을 보여줄 수 있지만 자동 시전·자동 정답·자동 대상 선택이 아니다.
+등록 주문은 참고 위상을 보여줄 수 있지만 자동 시전·자동 정답·자동 대상 선택·자동 자원 소비가 아니다.
 
 ## Preview
 
@@ -145,9 +148,11 @@ ending_reveal: prohibited
 
 ## 책임 경계
 
-- 글자 Stock·집중 필사: `docs/planning/STOCK_SYSTEM.md`.
-- 상세 승인: `docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md`.
-- 상세 Spec: `docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md`.
+- 보관함·범용 Stock·집중 필사: `docs/planning/STOCK_SYSTEM.md`.
+- 새 자원 승인: `docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md`.
+- 새 자원 Spec: `docs/superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md`.
+- 회로 승인: `docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md` `[부분 대체됨]`.
+- 회로 Spec: `docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md` `[부분 대체됨]`.
 - 파일 상태: `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`.
 
 ## 금지
@@ -157,6 +162,6 @@ ending_reveal: prohibited
 복수 메인 글자
 연결선 교차·건너뛰기
 숨은 셀 위치 보너스
-설계도 자동 대상·자동 Commit
+설계도 자동 대상·자동 Commit·자동 자원 예약
 성공 확률 숫자 Preview
 ```
