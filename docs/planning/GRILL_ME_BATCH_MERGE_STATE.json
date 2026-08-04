@@ -1,57 +1,52 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
   "google_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 5,
+    "approved_grill_me_since_last_flush": 0,
     "next_merge_at": 10,
-    "merge_required": true,
-    "merge_trigger": "USER_EXPLICIT_EARLY_FLUSH_AT_5_OF_10",
-    "merge_authorized": true,
-    "authorization_state": "USER_AUTHORIZED_EARLY_BATCH_FLUSH",
-    "pending_decision_ids": [
+    "merge_required": false,
+    "merge_trigger": "NONE",
+    "merge_authorized": false,
+    "authorization_state": "NEW_BATCH_ACCUMULATING",
+    "pending_decision_ids": []
+  },
+  "completed_flush": {
+    "status": "DECISION_MERGED_FINALIZATION_PR_58_IN_PROGRESS",
+    "trigger": "USER_EXPLICIT_EARLY_FLUSH_AT_5_OF_10",
+    "flushed_decision_count": 5,
+    "decision_ids": [
       "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
       "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
       "GM-SCHOOL-CRISIS-PEDAGOGY-01",
       "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
       "GM-3X3-CIRCUIT-STOCK-FOCUS-01"
-    ]
+    ],
+    "decision_merge_pull_request": 57,
+    "decision_merge_commit": "839129524ba14279141add809fb400383949d5ea",
+    "finalization_pull_request": 58,
+    "finalization_merge_commit": null,
+    "sheet_readback_pull_request": null,
+    "sheet_readback_merge_commit": null,
+    "main_sync_id": "GR-SYNC-20260804-10-MAIN"
   },
-  "counting_rule": {
-    "count_distinct_user_approved_grill_me_decision_id": true,
-    "count_reapproval_or_hardening": false,
-    "count_main_sync_receipt": false,
-    "current_operation_counted": false,
-    "current_operation_reason": "PREMERGE_HARDENING_AND_USER_AUTHORIZED_FLUSH"
-  },
-  "previous_complete_flush": {
-    "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
-    "decision_merge_pull_request": 54,
-    "decision_merge_commit": "bf964063b3fa35413f9e5efb07ad831f1617c412",
-    "finalization_pull_request": 55,
-    "finalization_merge_commit": "f693089a76138d6f061591e011bcb6c098f14dc5",
-    "sheet_readback_pull_request": 56,
-    "sheet_readback_merge_commit": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
-    "main_finalization_sync_id": "GR-SYNC-20260803-06"
-  },
-  "current_flush": {
-    "status": "PREMERGE_VALIDATION_IN_PROGRESS",
-    "pull_request": 57,
-    "working_branch": "agent/foundation-poc-readiness-review",
-    "baseline_main": "9632b2036c1b351141f8740a4fc8df572fd2e7f0",
-    "working_sync_id": "GR-SYNC-20260804-09-3X3-CIRCUIT-STOCK-FOCUS",
-    "premerge_review": "docs/planning/THREE_BY_THREE_CANON_PREMERGE_ADVERSARIAL_REVIEW_2026-08-04.md",
-    "canon_status_index": "docs/planning/CANON_STATUS_INDEX_2026-08-04.md",
-    "latest_decision_id": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
-    "hardening_counter_increment": false,
-    "next_action": "VERIFY_HEAD_CI_REVIEW_SHEET_THEN_MERGE_PR57"
+  "current_work": {
+    "status": "THREE_BY_THREE_CANON_MERGED_MAIN_FINALIZATION_IN_PROGRESS",
+    "latest_approved_decision_id": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
+    "default_branch": "main",
+    "main_authority_commit": "839129524ba14279141add809fb400383949d5ea",
+    "current_main_sync": "GR-SYNC-20260804-10-MAIN",
+    "finalization_branch": "agent/finalize-3x3-canon-main-sync",
+    "finalization_pull_request": 58,
+    "next_priority": "THREE_BY_THREE_MOBILE_LANDSCAPE_WIREFRAME"
   },
   "canonical_contract": {
     "spell_assembly": "3X3_ADJACENT_DIRECTED_NODE_CIRCUIT",
     "stock": "TYPED_GLYPH_ONLY",
+    "spell_commit_uses_mana": true,
     "completed_spell_stock": "PROHIBITED",
     "focus_scribe": "OPTIONAL_REAL_TIME_MANA_COST_ACTIVE_PRESSURE_SLOW",
     "focus_capacity_reservation": 1,
@@ -65,12 +60,12 @@
     "performance": "NOT_RUN",
     "accessibility": "NOT_RUN",
     "human": "NOT_RUN",
-    "required_before_merge": [
-      "PLANNING_AND_BASE_CI_SUCCESS_ON_EXACT_HEAD",
-      "GODOT_TOOLCHAIN_CI_SUCCESS_ON_EXACT_HEAD",
-      "UNRESOLVED_REVIEW_THREADS_ZERO",
-      "GOOGLE_SHEET_READBACK_MATCH",
-      "PR_OPEN_MERGEABLE"
+    "finalization_required": [
+      "PR58_EXACT_HEAD_CI_SUCCESS",
+      "PR58_REVIEW_THREADS_ZERO",
+      "SHEET_MAIN_RESET_READBACK",
+      "PR58_MERGE",
+      "EXACT_FINALIZATION_SHA_SHEET_READBACK"
     ]
   }
 }
