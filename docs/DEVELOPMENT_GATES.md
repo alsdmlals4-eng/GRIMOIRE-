@@ -6,10 +6,11 @@
 main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
 main_closure_commit: 4c50b462a8e296e24583b727ab93c82ba1e9c041
 current_main_sync: GR-SYNC-20260804-12-CLOSURE
+draft_sync: GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS
 working_pull_request: 61
-latest_approved_decision: GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
-grill_counter: 2_of_10
-pending_decisions: 2
+latest_approved_decision: GM-GLYPH-VOCABULARY-V1-01
+grill_counter: 3_of_10
+pending_decisions: 3
 merge_authorized: false
 product_project: NOT_CREATED
 product_implementation: NOT_STARTED
@@ -18,9 +19,9 @@ runtime_validation: NOT_RUN
 
 ## Gate 0 — 정본 복원
 
-main 정본과 PR #61 승인·병합 대기 상태를 구분하고, 구형 Typed Glyph Stock 계약은 `[부분 대체됨]`으로 표시한다.
+main 정본과 PR #61 승인·병합 대기 상태를 구분하고, 세 승인 Decision·두 구현 계획·Batch·Sheet를 같은 경로로 복원한다.
 
-현재: `PASS_ON_DRAFT / SHEET_READBACK_PENDING`.
+현재: `PASS_ON_DRAFT / SHEET_READBACK_PASS`.
 
 ## Gate 1 — 핵심 재미
 
@@ -45,36 +46,58 @@ vault: EXACT_GLYPH_VAULT
 stock: UNIVERSAL_GLYPH_STOCK
 stock_pool: LEARNED_MAIN_OR_SUPPORT
 source_selection: EXPLICIT_SOURCE_SELECTION
-natural_charge: UNIVERSAL_STOCK_PLUS_1
+capacity: SEPARATE_VAULT_AND_STOCK_CAPACITY
+natural_charge: UNIVERSAL_STOCK_SINGLE_CHARGE_PROGRESS
 focus_scribe: EXACT_GLYPH_VAULT_PLUS_1
 target_and_edge_cost: 0
 spell_commit_uses_mana: true
 completed_spell_stock: prohibited
 ```
 
-현재: `USER_APPROVED_SPEC_REVIEW_PENDING / IMPLEMENTATION_NOT_STARTED`.
+현재: `USER_APPROVED_SPEC_REVIEW_COMPLETE / IMPLEMENTATION_PLAN_READY / IMPLEMENTATION_NOT_STARTED`.
 
-## Gate 4 — 문양·모바일 UX·접근성
+## Gate 4 — Vocabulary·문양 인식
+
+```yaml
+vocabulary: MAIN_10_SUPPORT_10
+slice_runtime: [HEAT, PROTECT, FLOW, FOCUS, DISPERSE, BURST]
+input_strokes: 1_to_3
+advanced_candidate_max_strokes: 4
+ornament_is_recognition_input: false
+low_confidence: RETRY_NOT_AUTO_CONFIRM
+expansion_gate: HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION
+```
 
 검증 항목:
 
-- 입력 문양 1~3획 후보의 의미 인지와 혼동 행렬.
-- 장식형이 입력형 실루엣을 훼손하지 않는가.
-- 핵심/보조 글자 Tray 전환과 이름·역할 표기.
-- 보관함과 범용 Stock의 출처 선택이 직관적인가.
+- 의미와 핵심/보조 역할 인지.
+- `confusion_matrix`, false accept/reject, retry count.
+- 손가락·스타일러스·왼손/오른손 변형.
+- 낮은 확신·stale revision·selected-glyph mismatch 안전 처리.
+- 장식형이 입력 실루엣을 훼손하지 않는가.
+
+현재: `USER_APPROVED_SPEC / RECOGNITION_PLAN_READY / RUNTIME_DEVICE_HUMAN_NOT_RUN`.
+
+## Gate 5 — 모바일 UX·접근성
+
+검증 항목:
+
+- 핵심/보조 Tray·보관함·Stock의 별도 표시.
+- 명시적 자원 출처 선택.
 - iOS 44pt·Android 48dp 수준 터치 목표와 Safe Area.
 - 필사 중 HP·마나·적 의도·위험 노출.
 - 색 외 모양·라벨·아이콘 구분.
+- 100%·130%·Android 200% 텍스트 배율.
 
-현재: `BENCHMARK_COMPLETE / WIREFRAME_AND_DEVICE_NOT_RUN`.
+현재: `BENCHMARK_COMPLETE / PLAN_READY / WIREFRAME_DEVICE_A11Y_NOT_RUN`.
 
-## Gate 5 — 콘텐츠·서사
+## Gate 6 — 콘텐츠·서사
 
 Frostbloom 복수 해결, 선택지=의도, 교수 예시 비정답, 조사·관찰의 성공률·결말 비공개.
 
 현재: `PLANNING_PASS / HUMAN_NOT_RUN`.
 
-## Gate 6 — TDD·작업 운영
+## Gate 7 — TDD·작업 운영
 
 ```yaml
 benchmark: BENCHMARK_AND_PRO_COMPARISON_REQUIRED
@@ -87,34 +110,57 @@ early_checkpoint:
   - MAJOR_CANON_IMPACT
 ```
 
-- Contract test가 먼저 작성됐다.
-- 최초 CI가 새 테스트를 실행하지 않는 문제를 조사했다.
-- 실행 경로 연결 후 workflow `30925666145`에서 `6 tests / 3 failures / 3 errors` 예상 RED를 확인했다.
-- GREEN과 전체 회귀 검증은 진행 중이다.
+TDD 증거:
 
-현재: `RED_PASS / GREEN_PENDING`.
+```yaml
+initial_red: 30925666145
+capacity_red: 30928418370
+entrypoint_red: 30928799903
+charge_lifecycle_red: 30929106014
+spec_review_and_plan_red: 30958182618
+planning_and_adversarial_green: 30958977292
+godot_toolchain_green: 30958977145
+```
 
-## Gate 7 — 개발환경
+현재: `DOCUMENT_CONTRACT_RED_GREEN_PASS / PRODUCT_TDD_NOT_STARTED`.
 
-Godot `4.7.1.stable` 계약 테스트·실제 다운로드·headless probe는 기존 CI에서 성공했다. 제품 프로젝트·Runtime 증거는 없다. SHA-256 고정 검증은 `[보류/비차단]`이다.
+## Gate 8 — 개발환경
+
+Godot `4.7.1.stable` 계약 테스트·실제 다운로드·headless probe·export template 검증은 CI에서 성공했다. 제품 프로젝트·Runtime 증거는 없다.
 
 현재: `TOOLCHAIN_PASS / PRODUCT_NOT_STARTED`.
 
-## Gate 8 — 정본 동기화·병합
+## Gate 9 — 구현 계획
+
+```text
+Resource Foundation POC
+→ Resource Stop Gate
+→ Vocabulary Recognition POC
+→ Human·Device Gate
+```
+
+- Resource 계획은 자원·예약·Commit·저장·View Model을 순수 상태 계층으로 구현한다.
+- Recognition 계획은 6종 데이터·`$1/$N`·후보/확신·혼동 보고서를 구현한다.
+- 두 계획을 하나의 검토 없는 커밋 묶음으로 실행하지 않는다.
+
+현재: `PLANS_COMPLETE / EXECUTION_NOT_STARTED`.
+
+## Gate 10 — 정본 동기화·병합
 
 ```yaml
 pull_request: 61
 draft: true
-decisions: 2_of_10
-sheet_write: PENDING
-sheet_readback: PENDING
-exact_head_ci: GREEN_PENDING
+decisions: 3_of_10
+sheet_write: PASS
+sheet_readback: PASS
+exact_head_ci: RECHECK_AFTER_FINAL_AUTHORITY_UPDATE
 unresolved_review_threads: CHECK_PENDING
+merge_required: false
 merge_authorized: false
 ```
 
-사용자 Spec 검토, exact-head CI, 적대적 P0/P1 0, Sheet Readback 전에는 병합하지 않는다.
+PR #61은 Draft·미병합이다. 최신 exact-head CI, 적대적 P0/P1 0, Review Thread 확인과 별도 병합 승인 전에는 Ready 전환하거나 병합하지 않는다.
 
 ## 다음 작업
 
-정본·Registry·Sheet 최소 GREEN → exact-head 검증 → 사용자 Spec 검토 → 구현 계획.
+최종 권위 문서·Registry·Sync 02 고정 → exact-head CI·Review Thread 검증 → Codex Resource 계획 TDD 실행.
