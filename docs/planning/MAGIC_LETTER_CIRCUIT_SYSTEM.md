@@ -4,264 +4,159 @@
 
 ```yaml
 status: ACTIVE_RESPONSIBILITY_SOURCE
-decision_status: USER_APPROVED_ACTIVE
-primary_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
-parent_decisions:
-  - GM-CIRCUIT-01
-  - GM-SLICE-HEAT-FLOW-OBSERVATION-01
-updated_at: 2026-08-04T09:14+09:00
+decision_id: GM-3X3-CIRCUIT-STOCK-FOCUS-01
+previous_decision: GM-CIRCUIT-01
+updated_at: 2026-08-04T09:37+09:00
 implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 human_validation: NOT_RUN
 ```
 
-상세 승인:
-
-- `docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md`
-- `docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md`
-
-## 1. 핵심 개념
+## 핵심 정의
 
 ```text
 마법 글자
-→ 마법적 의미를 가진 기능 단위
-
-노드
-→ 글자 또는 현재 상황의 대상을 3×3 회로판에 배치한 단위
+= 마법적 의미를 가진 최소 기능 단위
 
 회로
-→ 노드의 위치·방향성 연결·분기·적용 순서를 구성한 문법
+= 3×3 셀에 글자·대상 노드를 배치하고 방향성 연결로 구성한 문법
 
 주문
-→ 유효하게 완성된 회로가 Commit되어 실제 세계에 적용된 마법
+= 유효한 회로를 명시적으로 Commit한 실행 단위
 ```
 
-> 글자 노드 + 대상 키워드 노드 + 노드 배치 + 방향성 연결 = 회로 = 주문 설계.
+주문명은 글자 이름과 별개다. 같은 글자도 위상·순서·대상 형식에 따라 다른 주문이 된다.
 
-주문명은 구성 글자의 이름과 별개다.
-
-```text
-열 + 폭발 + 투사·충돌 배치
-→ 「파이어볼」
-```
-
-같은 글자를 사용해도 배치·연결·대상 형식이 다르면 다른 주문이 될 수 있다.
-
-## 2. 3×3 회로판
-
-```text
-┌────┬────┬────┐
-│ 1  │ 2  │ 3  │
-├────┼────┼────┤
-│ 4  │ 5  │ 6  │
-├────┼────┼────┤
-│ 7  │ 8  │ 9  │
-└────┴────┴────┘
-```
-
-각 셀은 다음 중 하나다.
+## 노드 종류
 
 ```yaml
-EMPTY: 빈 셀
-MAIN_GLYPH: 중심 현상 글자
-SUPPORT_GLYPH: 출력·범위·전달·시간·안정·행동 변형 글자
-TARGET_KEYWORD: 인물·적·시설·지형·구역 등 실제 적용 대상
+MAIN_GLYPH:
+  count: exactly_1
+  role: 중심 현상·변화
+
+SUPPORT_GLYPH:
+  count_slice: 0_to_2
+  subtypes:
+    - CONNECTION_SUPPORT
+    - MODIFIER
+    - SHAPE
+    - TIMING
+    - STABILITY
+
+TARGET_KEYWORD:
+  count_slice: 1_to_4
+  role: 효과가 도달하는 인물·적·시설·지형·구역
 ```
 
-Vertical Slice 제한:
+Vertical Slice의 `열`은 메인 글자, `흐름`은 `CONNECTION_SUPPORT`, `집중·분산`은 보조 글자다.
+
+## 3×3 위상 규칙
 
 ```yaml
-main_glyph_nodes: exactly_1
-support_glyph_nodes: 0_to_2
-target_keyword_nodes: 1_to_4
-total_nodes: up_to_7
-branches: up_to_1
+grid: 3x3
+total_nodes_slice: up_to_7
+branches_slice: up_to_1
+edge_rule: ADJACENT_8_NEIGHBOR_ONLY
+edge_direction: required
+skip_connection: prohibited
 crossing_edges: prohibited
+all_nodes_reachable_from_main: required
+slice_target_nodes: TERMINAL_LEAF
 multiple_main_glyphs: prohibited
+hidden_position_bonus: prohibited
 ```
 
-- 모든 칸을 채울 필요는 없다.
-- 메인 글자는 어느 칸에든 배치할 수 있다.
-- 화살표 방향이 적용 순서를 결정한다.
-- 셀 간 거리 자체는 위력·마나·Stock 비용에 영향을 주지 않는다.
-- 연결선은 다른 노드 위를 통과하거나 서로 교차하지 않는다.
+- 가로·세로·대각선으로 한 칸 인접한 노드만 연결한다.
+- 노드나 빈 셀을 건너뛰는 연결은 만들 수 없다.
+- 위치는 연결 가능성과 분기 형태를 결정한다.
+- 중앙·모서리·거리·선 길이에는 숨은 위력·마나·성공률 보너스가 없다.
+- Slice의 대상 노드는 회로의 끝점이다.
+- 고학년의 매개체 통과·복수 분기·하위 회로는 별도 승인 전 도입하지 않는다.
 
-## 3. 주문 성립 규칙
-
-한 주문에는 메인 글자가 정확히 하나 필요하다.
-
-```text
-메인 글자 1개
-+ 보조 글자 0개 이상
-+ 필요한 대상 노드
-+ 유효한 연결
-= 주문 성립 후보
-```
-
-Commit 전 다음을 검증한다.
-
-1. 메인 글자 정확히 1개.
-2. 모든 글자·대상 노드가 메인에서 도달 가능.
-3. 보조 글자 규칙과 대상 수가 호환.
-4. 선 교차·고립 노드·금지 순환 없음.
-5. 대상이 현재 사건·전투에서 유효.
-6. 주문 마나와 글자 Stock 예약 가능.
-
-형상·전달 글자는 주문 성립의 보편 필수 조건이 아니다. 메인 글자 하나만으로도 해당 글자의 기본 발현이 가능하지만, 대상형 주문은 최소 하나의 대상 노드가 필요하다.
-
-## 4. 메인 글자
-
-메인 글자는 주문이 무엇을 발생시키거나 변화시키는지 결정한다.
-
-예시 후보:
-
-- 열·불꽃
-- 물·유동
-- 바람·압력
-- 빛
-- 생명·회복
-- 힘·충격
-- 보호·차단
-- 이동·공간
-- 감지
-- 소환
-- 변환
-
-Vertical Slice의 승인 문법은 다음과 같다.
+## 대상 제공
 
 ```yaml
-main_glyph: 열
-connection_grammar: 흐름
-optional_supports: [집중, 분산]
+visible_identified_combatants: AUTO_LIST
+observed_environment_or_device: LIST_AFTER_OBSERVATION
+hidden_part_or_weakness: LIST_AFTER_INVESTIGATION
+critical_safety_target: MULTI_ROUTE_DISCOVERABLE
 ```
 
-`흐름`은 두 번째 메인이 아니라 연결·전달 기능을 가진 보조 글자다.
+대상 후보는 Situation/Combat Snapshot이 제공한다. UI가 임의 대상을 생성하거나 정답 대상을 추천하지 않는다.
 
-## 5. 보조 글자
+## 연결 의미
 
-보조 글자는 메인의 기본 발현을 강화·변형·정밀화한다.
+```text
+직접 연결
+→ 앞 글자의 결과를 다음 글자·대상에 전달
 
-| 역할 | 의미 | 후보 예시 |
-|---|---|---|
-| 형상 | 어떤 모양·범위로 나타나는가 | 투사체, 장벽, 원형, 선형 |
-| 전달 | 어디에 어떻게 도달하는가 | 흐름, 접촉, 발사, 지정, 추적 |
-| 출력 | 얼마나 강하게 발생하는가 | 증폭, 집중, 분산 |
-| 규모 | 범위·수량·대상 수 변화 | 확대, 다중화, 분열 |
-| 시간 | 속도·지속·지연 | 가속, 지속, 지연 |
-| 행동 | 발생 후 움직임 | 관통, 연쇄, 귀환 |
-| 효율 | 마나와 부산물 처리 | 절감, 회수, 재활용 |
-| 안정 | 안전·정밀 유지 | 안정화, 보정, 고정 |
-| 조건 | 내부 효과 발동 조건 | 적중 시, 방어 성공 시 |
-| 순서 | 보조 효과의 적용 순서 | 선행, 후행, 반복, 분기 |
+분기
+→ 허용된 보조 글자 뒤에서 여러 대상에 효과 분배
 
-보조 글자가 많을수록 기능은 늘 수 있지만 작성·마나·Stock·판단 복잡도도 증가한다. 가능한 글자를 모두 붙이는 것이 항상 최적은 아니다.
+순서
+→ 화살표 방향으로 보조 효과 적용
+```
 
-## 6. 대상 키워드 노드
-
-대상 노드는 마법 글자가 아니다. 현재 상황에서 실제로 선택 가능한 적용 대상을 나타낸다.
-
-### 사건 예시
-
-- 카시안
-- 묘목
-- 밸브
-- 배관
-- 정령
-- 환기구
-- 지면
-- 완충 결정
-
-조사·대화·관찰로 발견한 대상만 활성화한다. 단, 생명 안전과 철수에 필요한 최소 정보는 복수 경로로 제공한다.
-
-### 전투 예시
-
-- 플레이어
-- 메인·보조 소환수
-- 전투 참가 동료
-- 현재 식별된 적
-- 지면·엄폐물·출입구·전장 장치·지정 구역
-
-사망·퇴장·비식별·완전 은폐·효과 범위 밖 대상은 비활성화한다.
-
-## 7. 연결과 대상 수 문법
+예:
 
 ```text
 보호 → 집중 → 아군 A
-= 단일 대상에 높은 보호량
+= 단일 강보호
 
 보호 → 분산
           ├→ 아군 A
           └→ 아군 B
-= 여러 대상에 보호량 분배
+= 다중 분산 보호
 ```
 
-- `집중`: 출력·범위를 한곳에 모으고 대상 선택 상한을 1로 제한한다.
-- `분산`: 여러 대상 또는 넓은 구역을 허용하되 개별 출력이 나뉜다.
-- `흐름`: 현상이 이동할 대상·경로·순서를 구성한다.
-- 허용 보조 없이 다중 대상에 분기하면 불완전 또는 불안정 회로다.
+## 검증 순서
 
-## 8. 알려진 주문과 미등록 주문
+1. 메인 글자 정확히 1개.
+2. 모든 사용 노드가 메인에서 도달 가능.
+3. 모든 연결이 인접 셀 사이.
+4. 교차·건너뛰기·고립·금지 순환 없음.
+5. 보조 글자와 대상 수 호환.
+6. 현재 Snapshot에서 대상 유효.
+7. Stock 예약과 마나 충족.
+8. 예상 효과·위험·미해결 문제 표시.
+9. 명시적 Commit.
+
+## 알려진 주문
+
+```yaml
+blueprint_mode: NON_BINDING_GHOST_REFERENCE
+auto_reserve_stock: false
+auto_target: false
+auto_commit: false
+auto_best_route: false
+```
+
+등록 주문은 참고 위상을 보여줄 수 있지만 자동 시전·자동 정답·자동 대상 선택이 아니다.
+
+## Preview
+
+`confidence`는 성공 확률이 아니라 조사 정보의 충분도다.
+
+```yaml
+confidence: [정보_충분, 정보_부분, 정보_부족]
+numeric_success_probability: prohibited
+ending_reveal: prohibited
+```
+
+## 책임 경계
+
+- 글자 Stock·집중 필사: `docs/planning/STOCK_SYSTEM.md`.
+- 상세 승인: `docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md`.
+- 상세 Spec: `docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md`.
+- 파일 상태: `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`.
+
+## 금지
 
 ```text
-글자 집합 + 연결 위상 + 핵심 적용 방식
-→ 등록 설계도와 일치
-→ 알려진 주문명 표시
+완성 주문 원터치 Stock
+복수 메인 글자
+연결선 교차·건너뛰기
+숨은 셀 위치 보너스
+설계도 자동 대상·자동 Commit
+성공 확률 숫자 Preview
 ```
-
-대상 인물의 개별 ID는 일반적으로 주문명을 바꾸지 않는다. 그러나 단일·다중·지면 지정·투사·순환 등 대상 형식과 회로 위상은 주문 식별에 포함된다.
-
-등록 설계도와 일치하지 않지만 유효한 회로는 `[미등록 주문]`으로 사용할 수 있으며, 결과 복기 후 이름을 붙여 마도서에 등록할 수 있다.
-
-## 9. Stock과 직접 필사
-
-```text
-특정 글자 Stock 1
-→ 그 글자를 직접 그리지 않고 글자 노드 1개 배치
-```
-
-- 글자 Stock은 글자 종류가 지정된다.
-- 대상 노드와 연결선은 Stock을 소비하지 않는다.
-- 완성 주문 원터치 Stock은 사용하지 않는다.
-- 주문은 알려진 설계도라도 3×3 노드 배치·연결·대상 선택을 거친다.
-- 직접 필사는 전투 중 `[집중 필사]`로 해당 글자 Stock을 보충하는 보조 행동이다.
-
-세부 책임은 `docs/planning/STOCK_SYSTEM.md`를 따른다.
-
-## 10. 학습·숙련 흐름
-
-```text
-수업에서 글자 학습
-→ 직접 따라 쓰기
-→ 기본 발현 성공
-→ 관련 보조 글자와 3×3 배치 실습
-→ 현장에서 새로운 활용 발견
-→ 미등록 회로 시전·복기
-→ 마도서 설계도 등록
-→ 반복 사용으로 숙련
-→ 해당 글자 Stock 준비·자연충전·집중 필사 허용
-```
-
-- 처음 배우는 글자는 Stock으로 건너뛰지 않는다.
-- 직접 필사는 신규 글자 학습·복원에도 사용하지만 전투 기본 조작은 아니다.
-- 마도서 설계도는 배치 안내 또는 초안을 제공할 수 있으나 자동 Commit하지 않는다.
-
-## 11. 가드레일
-
-```text
-MULTIPLE_MAIN_GLYPHS_IN_SLICE = PROHIBITED
-CROSSING_EDGES_IN_SLICE = PROHIBITED
-TARGET_NODE_STOCK_COST = PROHIBITED
-CONNECTION_EDGE_STOCK_COST = PROHIBITED
-COMPLETED_SPELL_ONE_TAP_STOCK = PROHIBITED
-AUTO_OPTIMAL_TARGET_OR_CIRCUIT = PROHIBITED
-DRAWING_POWER_BONUS = PROHIBITED
-```
-
-- 메인 하나에 여러 독립 현상을 압축하지 않는다.
-- 보조 글자 추가가 순수 피해 증가만 의미하지 않게 한다.
-- 배치 위치의 숨은 수치 보너스를 두지 않는다.
-- 플레이어의 조합 판단을 재능·설계도·UI가 자동으로 대신하지 않는다.
-
-## 12. 검증 상태
-
-제품 코드와 Runtime은 아직 없다. 3×3 터치 조작, 선 교차 방지, 대상 동적 갱신, Stock 예약·Commit 원자성, 접근성은 실제 구현과 사람 검증 전 `NOT_RUN`이다.
