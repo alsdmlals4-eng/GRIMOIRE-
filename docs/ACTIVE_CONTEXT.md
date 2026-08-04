@@ -13,10 +13,12 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
 main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
 current_main_sync: GR-SYNC-20260804-12-CLOSURE
-latest_approved_decision: GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
-grill_counter: 2_of_10
-pending_decisions: 2
+draft_sync: GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS
+latest_approved_decision: GM-GLYPH-VOCABULARY-V1-01
+grill_counter: 3_of_10
+pending_decisions: 3
 checkpoint_state: HIGH_CANON_IMPACT_DRAFT_CHECKPOINT
+current_gate: IMPLEMENTATION_PLANS_READY
 merge_authorized: false
 product_project: NOT_CREATED
 product_code: NOT_STARTED
@@ -29,7 +31,7 @@ human_validation: NOT_RUN
 
 ## 정본 복원
 
-`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → CANON_STATUS_INDEX → CURRENT_CONFIRMED_DECISIONS → 새 자원/운영 승인·Spec → 3×3 회로 문서 → Frostbloom → Batch → PR #61`.
+`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → CANON_STATUS_INDEX → CURRENT_CONFIRMED_DECISIONS → 자원 승인/Spec → 운영 승인/Spec → Vocabulary 승인/Spec → 구현 계획 2종 → 3×3/Frostbloom → Batch → Sync 02 → PR #61`.
 
 ## 플레이어 약속
 
@@ -55,7 +57,7 @@ target_nodes: TERMINAL_LEAF
 hidden_position_bonus: prohibited
 ```
 
-Slice는 `열` 메인, `흐름` 연결 보조, `집중·분산` 보조를 사용한다. 보이고 식별된 전투 참가자는 자동 대상이며 환경·장치·숨은 약점은 조사 후 열린다.
+Frostbloom Slice는 `HEAT` 메인, `FLOW` 연결 보조, 선택 `FOCUS·DISPERSE`를 사용한다. 보이고 식별된 참가자는 자동 대상이며 환경·장치·숨은 약점은 조사 후 열린다.
 
 ## 보관함·Stock·필사
 
@@ -64,7 +66,8 @@ vault: EXACT_GLYPH_VAULT
 stock: UNIVERSAL_GLYPH_STOCK
 stock_allowed_pool: LEARNED_MAIN_OR_SUPPORT
 source_selection: EXPLICIT_SOURCE_SELECTION
-natural_charge: UNIVERSAL_GLYPH_STOCK_PLUS_1
+capacity: SEPARATE_VAULT_AND_STOCK_CAPACITY
+natural_charge: UNIVERSAL_STOCK_SINGLE_CHARGE_PROGRESS
 focus_scribe_gain: EXACT_GLYPH_VAULT_PLUS_1
 target_and_edge_cost: 0
 completed_spell_stock: prohibited
@@ -73,15 +76,27 @@ focus_time_scale: 0.25_TEST_VALUE
 focus_mana: 1_PER_REAL_SECOND_TEST_VALUE
 ```
 
-보관함은 직접 그린 특정 글자만 사용한다. Stock은 사용 시점에 습득한 핵심·보조 글자 중 하나를 고른다. 둘 다 가능하면 플레이어가 출처를 명시적으로 선택한다.
+보관함은 직접 그린 특정 글자만 사용한다. Stock은 사용 시점에 습득한 핵심·보조 글자 중 하나를 고른다. 둘 다 가능하면 출처를 명시적으로 선택한다. 예약은 용량을 이중 차감하지 않는다.
 
-## 문양
+## Vocabulary v1
 
-- 입력형: 단순하고 의미가 읽히는 1~3획 후보, 고급 최대 4획.
-- 표시형: 입력형 실루엣을 유지하고 외곽 룬·광원만 추가.
-- 핵심 단어: 무엇을 일으키는가.
-- 보조 단어: 어떻게 작동하는가.
-- 색상 외 이름·역할 아이콘·형태로 구분.
+```yaml
+main_count: 10
+support_count: 10
+slice_runtime:
+  - HEAT
+  - PROTECT
+  - FLOW
+  - FOCUS
+  - DISPERSE
+  - BURST
+input_strokes: 1_to_3
+advanced_candidate_max_strokes: 4
+ornament_is_recognition_input: false
+expansion_gate: HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION
+```
+
+20종의 의미 범위는 승인됐지만 Runtime 인식은 우선 6종으로 제한한다. 낮은 확신은 자동 확정하지 않으며 실제 사람·기기 검증 전 확대하지 않는다.
 
 ## 작업 운영
 
@@ -97,7 +112,14 @@ early_checkpoint:
   - MAJOR_CANON_IMPACT
 ```
 
-PR #61의 contract test는 CI 실행 경로 연결 후 예상된 `3 failures + 3 errors` RED를 확인했다. 설계 문서·정본·Sheet를 최소 GREEN 범위로 채우는 중이다.
+이번 승인 단계는 contract test를 먼저 확장하고 Workflow `30958182618`에서 Vocabulary 승인·계획·Batch 3 누락 때문에 예상 RED를 확인한 뒤 최소 GREEN을 작성했다. 최신 Planning·Godot workflow는 성공했고 Sheet Readback도 PASS다.
+
+## 구현 계획
+
+1. `docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md`.
+2. Resource Stop Gate 이후 `docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md`.
+
+Resource 계획은 `VaultInventory`, `UniversalStockPool`, `ResourceReservationLedger`, `AtomicSpellCommitService`를 순수 상태 계층으로 구현한다. Recognition 계획은 `GlyphDefinition`, `GlyphTemplateRepository`, `$1/$N`, `RecognitionCandidate`, `confusion_matrix`를 구현한다.
 
 ## Frostbloom
 
@@ -105,12 +127,11 @@ PR #61의 contract test는 CI 실행 경로 연결 후 예상된 `3 failures + 3
 
 ## 다음 우선순위
 
-1. PR #61 Spec·정본·Sheet GREEN 및 적대적 검토.
-2. 사용자 Spec 검토.
-3. 승인 후 구현 계획 작성.
-4. 문양 1차 세트·3×3 Mobile Landscape Wireframe 수용 테스트.
-5. 집중 필사 Overlay와 Frostbloom UX Map.
+1. PR #61 최신 HEAD·Review Thread·Sheet 상태 고정.
+2. Codex 격리 worktree에서 Resource 계획을 TDD로 실행.
+3. Resource Stop Gate 통과 후 Recognition 계획 실행.
+4. 실제 기기·사람 검증 전 Vocabulary 확대 금지.
 
 ## 금지
 
-완성 주문 원터치 Stock, Stock 주문 무마나 실행, 보관함 글자 변환, 미습득 글자 Stock 선택, 자원 출처 자동 소비, 집중 필사 완전 Pause, 그림 위력 보너스, 설계도 자동 대상·자동 Commit, 교수 예시 정답화, 숫자 성공률 Preview, 검증 없는 Runtime PASS.
+완성 주문 원터치 Stock, Stock 주문 무마나 실행, 보관함 글자 변환, 미습득 글자 Stock 선택, 자원 출처 자동 소비, 집중 필사 완전 Pause, 그림 위력 보너스, 설계도 자동 대상·자동 Commit, 교수 예시 정답화, 숫자 성공률 Preview, 낮은 인식 확신 자동 확정, 사람 검증 전 6종 초과 Runtime 확대, 검증 없는 Runtime PASS.
