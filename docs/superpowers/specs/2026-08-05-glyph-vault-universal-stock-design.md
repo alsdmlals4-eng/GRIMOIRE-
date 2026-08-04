@@ -34,6 +34,8 @@ required_tests_before_product_code:
   - commit_consumes_reserved_source_and_mana_atomically
   - focus_scribe_writes_exact_glyph_to_vault_not_universal_stock
   - natural_charge_increases_universal_stock_not_vault
+  - vault_and_stock_capacities_are_separate
+  - reservation_does_not_double_count_capacity
   - completed_spell_stock_path_does_not_exist
 ```
 
@@ -46,6 +48,7 @@ Executable work uses strict `RED → GREEN → REFACTOR`. Product code cannot be
 - 특정 글자 Stock과 보관함이 같은 역할을 한다.
 - 자연충전과 직접 그리기가 같은 결과를 만들어 두 시스템의 의미가 겹친다.
 - 전투 중 필요한 글자를 즉시 선택하는 편의성과 사전 준비의 전략성이 구분되지 않는다.
+- 기존 공용 용량은 보관함과 범용 Stock을 다시 하나의 자원처럼 묶는다.
 
 ## 3. Considered approaches
 
@@ -95,6 +98,42 @@ shared:
 
 대상 키워드와 연결선은 두 자원 모두 소비하지 않는다.
 
+### 4.1 Capacity contract
+
+```text
+SEPARATE_VAULT_AND_STOCK_CAPACITY
+```
+
+```yaml
+universal_stock:
+  capacity_contract: UNIVERSAL_STOCK_CAPACITY
+  capacity: TEST_VALUE
+  current_total: int
+  reserved: int
+
+vault:
+  capacity_contract: EXACT_GLYPH_VAULT_SLOT_CAPACITY
+  slot_capacity: TEST_VALUE
+  slots:
+    - EMPTY
+    - AVAILABLE
+    - RESERVED
+    - RESERVED_FOR_SCRIBE
+```
+
+- 범용 Stock 용량과 보관함 슬롯은 서로 독립적이다.
+- 보관함이 가득 차도 범용 Stock 자연충전은 Stock 용량이 남아 있으면 계속된다.
+- 범용 Stock이 가득 차도 보관함의 빈 슬롯에 필사할 수 있다.
+- 회로 배치 예약은 이미 보유 중인 자원의 상태만 바꾼다.
+
+```text
+RESOURCE_RESERVATION_DOES_NOT_CREATE_EXTRA_CAPACITY_USAGE
+```
+
+- Stock 예약은 `current_total` 안의 일부를 AVAILABLE에서 RESERVED로 바꾼다.
+- 보관함 회로 예약은 기존 AVAILABLE 슬롯을 RESERVED로 바꾼다.
+- 집중 필사만 EMPTY 슬롯 하나를 `RESERVED_FOR_SCRIBE`로 선점한다.
+
 ## 5. Placement source selection
 
 글자 노드 하나는 정확히 하나의 자원 출처를 예약한다.
@@ -143,6 +182,7 @@ Commit 실패·대상 무효·시스템 오류
 
 ```yaml
 charge_output: UNIVERSAL_GLYPH_STOCK_PLUS_1
+capacity_rule: NATURAL_CHARGE_RESPECTS_STOCK_CAPACITY
 clock: ACTIVE_PRESSURE
 base_seconds: TEST_VALUE
 minimum_actual_seconds: TEST_VALUE
@@ -152,6 +192,10 @@ vault_output: prohibited
 
 자연충전은 어떤 글자를 미리 정하지 않는다. Stock 사용 시점에 습득한 핵심·보조 글자 중 하나를 선택한다.
 
+- Stock 용량이 가득 차면 완료 직전에서 정지하고 Stock 소비 후 재개한다.
+- 보관함이 가득 찼다는 이유로 자연충전을 막지 않는다.
+- 가득 찬 Stock을 보관함 글자로 자동 변환하지 않는다.
+
 ## 7. Focus scribing
 
 직접 그리기는 보관함을 채우는 선택적 준비 행동이다.
@@ -159,6 +203,7 @@ vault_output: prohibited
 ```yaml
 state_id: STATE_FOCUS_SCRIBE
 output: FOCUS_SCRIBE_WRITES_TO_VAULT
+capacity_rule: FOCUS_SCRIBE_RESERVES_VAULT_SLOT
 selected_glyph_required: true
 recognized_glyph_must_match_selected: true
 active_pressure_scale: 0.25_TEST_VALUE
@@ -170,7 +215,7 @@ full_pause: false
 
 ```text
 필사할 습득 글자 선택
-→ 보관함 빈 슬롯 1칸 예약
+→ 보관함 EMPTY 슬롯 1칸을 RESERVED_FOR_SCRIBE로 예약
 → 집중 필사 진입
 ```
 
@@ -178,7 +223,8 @@ full_pause: false
 
 ```text
 선택 glyph_id와 인식 glyph_id 일치
-→ 예약한 보관함 슬롯에 해당 glyph_id +1
+→ 예약한 보관함 슬롯에 해당 glyph_id 기록
+→ AVAILABLE로 전환
 ```
 
 ### Interrupt
@@ -190,7 +236,7 @@ full_pause: false
 - 마나 0
 - Focus loss·Background
 
-중단 시 부분 획과 보관함 예약을 폐기한다. 이미 흐른 시간과 소모한 마나는 반환하지 않는다.
+중단 시 부분 획을 폐기하고 필사 예약 슬롯을 EMPTY로 되돌린다. 이미 흐른 시간과 소모한 마나는 반환하지 않는다.
 
 ## 8. Glyph visual and input grammar
 
@@ -245,8 +291,8 @@ ornamented_glyph:
 컴팩트 상태바
 → 글자 Tray 탭 [핵심 단어 | 보조 단어]
 → 습득 글자 목록
-→ 보관함: 미리 필사한 특정 글자 아이콘
-→ Stock: 범용 수량
+→ 보관함: 미리 필사한 특정 글자 아이콘과 슬롯
+→ Stock: 범용 수량과 별도 용량
 ```
 
 글자 선택 후 회로판에 놓을 때 출처를 표시한다.
@@ -258,13 +304,14 @@ ornamented_glyph:
 - 글자와 버튼의 터치 영역은 플랫폼 최소 권장 크기를 따른다.
 - 문양 아이콘에는 텍스트 이름·역할 아이콘을 함께 제공한다.
 - 보관함과 Stock은 모양·라벨·배치로 구분하고 색상에만 의존하지 않는다.
+- 보관함 슬롯과 범용 Stock 용량을 하나의 합산 숫자로 표시하지 않는다.
 - 오른쪽 패널은 상황 설명·키워드/대상·Preview를 유지한다.
 
 ## 10. Data model
 
 ```yaml
 universal_stock:
-  current: int
+  current_total: int
   reserved: int
   capacity: TEST_VALUE
   natural_charge_progress: float
@@ -273,8 +320,8 @@ vault:
   slots:
     - slot_id: string
       glyph_id: string | null
-      state: EMPTY | AVAILABLE | RESERVED
-  capacity: TEST_VALUE
+      state: EMPTY | AVAILABLE | RESERVED | RESERVED_FOR_SCRIBE
+  slot_capacity: TEST_VALUE
 
 node_resource_reservation:
   node_id: string
@@ -299,7 +346,7 @@ Universal Stock가 모든 계획을 무력화
 → 낮은 TEST 용량·충전 속도 검증 + 보관함 준비의 별도 가치
 
 보관함과 Stock이 다시 같은 자원처럼 보임
-→ 고정 glyph_id 아이콘 대 범용 결정형 아이콘 + 명시적 출처 선택
+→ 고정 glyph_id 아이콘 대 범용 결정형 아이콘 + 명시적 출처 선택 + 별도 용량
 
 그리기가 필수 최적 행동
 → Stock 자연충전만으로 기본 전투 가능 + 그림 위력 보너스 금지
@@ -309,6 +356,12 @@ Universal Stock가 모든 계획을 무력화
 
 보관함 글자를 다른 글자로 전환
 → EXACT_GLYPH_VAULT conversion prohibited
+
+예약이 용량을 이중 차감
+→ RESOURCE_RESERVATION_DOES_NOT_CREATE_EXTRA_CAPACITY_USAGE
+
+보관함 가득 참이 Stock 충전을 중단
+→ SEPARATE_VAULT_AND_STOCK_CAPACITY
 
 완성 주문 단축 경로 재등장
 → COMPLETED_SPELL_STOCK_PROHIBITED
@@ -321,8 +374,11 @@ Universal Stock가 모든 계획을 무력화
 - 미습득 글자는 Stock으로 선택할 수 없다.
 - 대상 노드와 연결선은 보관함·Stock을 사용하지 않는다.
 - 보관함과 Stock이 모두 가능하면 출처를 직접 고른다.
+- 보관함 슬롯 용량과 범용 Stock 용량은 별도다.
+- 회로 예약은 기존 자원을 RESERVED로 바꿀 뿐 용량을 이중 차감하지 않는다.
+- 집중 필사는 EMPTY 보관함 슬롯을 먼저 예약한다.
 - 집중 필사 성공은 Universal Stock이 아니라 해당 글자 보관함을 1 증가시킨다.
-- 자연충전은 보관함이 아니라 Universal Stock을 1 증가시킨다.
+- 자연충전은 보관함이 아니라 Universal Stock을 1 증가시키며 Stock 용량을 따른다.
 - 취소·실패에서는 예약 자원과 마나가 소비되지 않는다.
 - Commit 성공에서 예약 자원·마나·결과가 원자 처리된다.
 - 문양은 기본 입력형과 장식 표시형이 같은 의미 실루엣을 공유한다.
