@@ -1,163 +1,104 @@
-# GRIMOIRE Documentation Map
+# GRIMOIRE Documentation Map — 현재 정본 경로
 
-## 현재 기준
-
-```yaml
-project: "GRIMOIRE: 세계를 다시 쓰는 법"
-product_stage: DEMO_FIRST_VERTICAL_SLICE
-execution_profile: PLANNING_ONLY_PROFILE
-planning: APPROVED
-art_style_01: APPROVED_A_MODIFIED_LOCKED
-art_bible_01: APPROVED_DUAL_STANDARD_ART_BIBLE
-battle_rules_01: APPROVED_SITUATION_RESOLUTION_RULES
-next_product_gate: ASSET-SPEC-01
-parallel_design_gate: BOSS-PHASE-01
-implementation: NOT_STARTED
-canon_sync: SYNCED_TO_MAIN
-authority_main_commit: a088252349bee94cecef94b216c8cc5e0b9162cb
-```
-
-## 1. 시작 경로
+## 시작 경로
 
 ```text
-README.md
-→ AGENTS.md
+AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
-→ docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md
-→ 질문 주제의 승인 책임 원본
 → docs/DEVELOPMENT_GATES.md
+→ docs/planning/CANON_STATUS_INDEX_2026-08-04.md
+→ docs/planning/CURRENT_CONFIRMED_DECISIONS.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
-→ skills/PROJECT_BASE_ADAPTER.json
-→ docs/planning/sync/GR-SYNC-20260801-05-MAIN.md
+→ 질문 주제의 최신 승인 책임 원본
 ```
 
-## 2. 활성 권위
+과거 `DECISION_LOG_ADDENDUM`, 과거 main Sync, Planning Canon 단독 진입은 현재 시작 경로가 아니다.
+
+## 최상위 권위
 
 | 책임 | 문서 | 상태 |
 |---|---|---|
-| 최상위 작업 규칙 | `AGENTS.md` | `ACTIVE_PROJECT_AUTHORITY` |
-| 시작·다음 작업 | `START_HERE.md` | `ACTIVE_ENTRYPOINT` |
-| 현재 상태 | `docs/ACTIVE_CONTEXT.md` | `ACTIVE_CONTEXT_AUTHORITY` |
-| 현재 확정 결정 | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` | `ACTIVE_FIRST_READ_AUTHORITY` |
-| 최신 사용자 결정 | `docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md` | `ACTIVE_LATEST_USER_DECISION_AUTHORITY` |
-| 기획 정본 | `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md` | `ACTIVE_APPROVED_PLANNING_CANON` |
-| Art Style | `docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md` | `APPROVED_LOCKED_REFERENCE` |
-| Art Bible | `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md` | `APPROVED_DUAL_STANDARD_ART_BIBLE` |
-| Art Bible 전투 교정 | `docs/planning/ART_BIBLE_01_BATTLE_CORRECTION_ADDENDUM_2026-08-01.md` | `ACTIVE_BATTLE_OVERRIDE` |
-| 전투 화면 | `docs/planning/BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md` | `APPROVED_LAYOUT_DIRECTION` |
-| 단일 강적 | `docs/planning/BATTLE_SINGLE_ENEMY_FOCUS_01_APPROVAL_2026-08-01.md` | `APPROVED_ENCOUNTER_DIRECTION` |
-| 적 Timer·즉시시전 | `docs/planning/BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md` | `APPROVED_CORE_BATTLE_FLOW` |
-| 시간 흐름 | `docs/planning/BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md` | `APPROVED_TIME_FLOW_DIRECTION` |
-| 승패·피해·진정 | `docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md` | `APPROVED_SITUATION_RESOLUTION_RULES` |
-| 벤치마킹 정책 | `docs/planning/PROJECT_BENCHMARKING_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
-| 정본 동기화 정책 | `docs/planning/PROJECT_CANON_SYNC_POLICY.md` | `ACTIVE_PROJECT_WORK_PRINCIPLE` |
-| 전수 감사 | `docs/planning/PROJECT_WIDE_OPERATING_AND_DESIGN_AUDIT_2026-08-01.md` | `PASS_CORRECTIONS_VERIFIED` |
-| main 동기화 영수증 | `docs/planning/sync/GR-SYNC-20260801-05-MAIN.md` | `SYNCED_TO_MAIN_RECEIPT` |
-| 개발 Gate | `docs/DEVELOPMENT_GATES.md` | `ACTIVE_GATE_AUTHORITY` |
-| Design Router | `docs/DESIGN_DOCUMENT_REGISTRY.json` | `ACTIVE_CANONICAL_ROUTER` |
-| Google Sheet 계약 | `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` | `ACTIVE_WORKBOOK_CONTRACT` |
-| Base Version | `docs/BASE_RULES_VERSION.md` | `CURRENT_V9_3` |
-| Base Adapter | `skills/PROJECT_BASE_ADAPTER.json` | `CURRENT_CANONICAL_ADAPTER` |
-| Skill Snapshot | `skills/PROJECT_SKILL_SNAPSHOT.json` | `CURRENT_GENERATED_VIEW` |
+| 작업 규칙 | `AGENTS.md` | 활성 |
+| 첫 화면 | `START_HERE.md` | 활성 |
+| 현재 상태 | `docs/ACTIVE_CONTEXT.md` | 활성 |
+| 개발·기획 Gate | `docs/DEVELOPMENT_GATES.md` | 활성 |
+| 파일 상태 | `docs/planning/CANON_STATUS_INDEX_2026-08-04.md` | 활성 |
+| 확정 결정 Snapshot | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` | 활성 |
+| 문서 Router | `docs/DESIGN_DOCUMENT_REGISTRY.json` | 활성 |
+| Grill Batch | `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json` | 기계 권위 |
+| Google Sheet 계약 | `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` | 활성 |
 
-## 3. 기획·콘텐츠
+## 주문·자원
 
 | 책임 | 문서 |
 |---|---|
-| 전체 승인 Slice | `docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md` |
-| 현재 결정 Snapshot | `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` |
-| 글자·작성 빈도 | Planning Canon + `GM-WRITING-FREQUENCY-01` |
-| 마도서 기록 | Planning Canon + `GM-GRIMOIRE-RECORD-01` |
-| 화면 시퀀스 기술 부록 | `docs/superpowers/specs/2026-07-31-grimoire-situation-screen-design.md` |
-| P0 상세 부록 | `docs/superpowers/specs/grimoire-situations/` |
+| 3×3 승인 | `docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md` |
+| 구현 설계 | `docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md` |
+| 회로 문법 | `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md` |
+| 글자 Stock | `docs/planning/STOCK_SYSTEM.md` |
+| 용량·예약 | `docs/planning/STOCK_CAPACITY_SYSTEM.md` |
+| 자연충전 | `docs/planning/STOCK_CHARGE_TIME_SYSTEM.md` |
+| 충전 대상 전환 | `docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md` |
+| 피격 방해 | `docs/planning/STOCK_HIT_PAUSE_SYSTEM.md` |
+| 마나 | `docs/planning/MANA_SYSTEM.md` |
+| 상태이상 | `docs/planning/STATUS_EFFECT_STOCK_SYSTEM.md` `[보류]` |
 
-기존 P0 Scene·Node·Resource·Signal 명세는 `SUPPORTING_TECHNICAL_APPENDIX_ONLY`이며 구현 권한이 아니다.
+폐기된 문서:
 
-## 4. 아트·화면
+- `docs/planning/AUTO_SPELL_SYSTEM.md`.
+- `docs/planning/CIRCUIT_SYSTEM.md`.
+- 완성 주문 원터치 Stock 계약.
 
-```text
-ART-STYLE-01 — 승인
-→ ART-BIBLE-01 — 승인
-→ ASSET-SPEC-01 — 현재 Gate
-→ Grimoire Board
-→ Main Board
-→ Battle Detail Wireframe
-```
+## Frostbloom 사건
 
-잠긴 원본:
-
-- Library: `/GRIMOIRE/Visual Authority/GRIMOIRE_ART_STYLE_01_LOCKED_REFERENCE.png`.
-- SHA-256: `b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`.
-- 원본 편집·재생성 금지.
-
-## 5. 전투 Router
-
-| 결정 | Authority | Machine State | Benchmark |
-|---|---|---|---|
-| `GM-BATTLE-SCREEN-LAYOUT-01` | `BATTLE_SCREEN_LAYOUT_01_APPROVAL_2026-08-01.md` | `BATTLE_SCREEN_LAYOUT_01_STATE.json` | `BATTLE_SCREEN_LAYOUT_01_QUICK_BENCHMARK_2026-08-01.md` |
-| `GM-BATTLE-SINGLE-ENEMY-FOCUS-01` | `BATTLE_SINGLE_ENEMY_FOCUS_01_APPROVAL_2026-08-01.md` | `BATTLE_SINGLE_ENEMY_FOCUS_01_STATE.json` | `BATTLE_SINGLE_ENEMY_FOCUS_01_QUICK_BENCHMARK_2026-08-01.md` |
-| `GM-BATTLE-ACTIVE-TIMER-INSTANT-CAST-PHASES-01` | `BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_APPROVAL_2026-08-01.md` | `BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_STATE.json` | `BATTLE_ACTIVE_TIMER_INSTANT_CAST_PHASES_01_QUICK_BENCHMARK_2026-08-01.md` |
-| `GM-BATTLE-TIME-FLOW-01` | `BATTLE_TIME_FLOW_01_APPROVAL_2026-08-01.md` | `BATTLE_TIME_FLOW_01_STATE.json` | `BATTLE_TIME_FLOW_01_QUICK_BENCHMARK_2026-08-01.md` |
-| `GM-BATTLE-RULES-01` | `BATTLE_RULES_01_APPROVAL_2026-08-01.md` | `BATTLE_RULES_01_STATE.json` | `BATTLE_RULES_01_QUICK_BENCHMARK_2026-08-01.md` |
-
-## 6. Base v9.3 Router
-
-```text
-skills/SKILL_REGISTRY.json
-→ skills/PROJECT_BASE_ADAPTER.json
-→ tools/generate_project_operating_views.py
-→ PROJECT_SKILL_SNAPSHOT.json
-→ BASE_V9_ADAPTER.json
-→ PROJECT_BASE_SKILL_ADAPTER.json
-→ tests/test_base_v9_adoption.py
-→ GitHub Actions
-```
-
-Generated View 직접 편집 금지.
-
-## 7. Google Sheet
-
-- Spreadsheet ID: `19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM`.
-- 27개 필수 탭.
-- 역할: `USER_FACING_GDD_WORKSPACE`.
-- Authority main Commit `a088252349bee94cecef94b216c8cc5e0b9162cb` 기록·Readback `PASS`.
-- 상태: `GR-SYNC-20260801-05 / SYNCED_TO_MAIN`.
-
-## 8. Legacy
-
-| 자료 | 역할 |
+| 책임 | 문서 |
 |---|---|
-| v6·v8 Vertical Slice 계약 | `LEGACY_REFERENCE_INPUT / SUPERSEDED_COMPATIBILITY` |
-| `Spell` 저장소명 | `LEGACY_ALIAS` |
-| 이전 generic dark fantasy·기술 Dashboard 이미지 | `REJECTED_NOT_AUTHORITY` |
-| 기존 P0 Godot 기술 명세 | `SUPPORTING_TECHNICAL_APPENDIX_ONLY` |
-| Android Touch 연구 | `REFERENCE_CANDIDATE / NOT_PC_RUNTIME_VALIDATED` |
+| Heat·Flow 승인 | `docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_APPROVAL_2026-08-04.md` |
+| 복수 해결 승인 | `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_SPEC_APPROVAL_2026-08-04.md` |
+| Route Guidance | `docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md` |
+| 20개 내부 패턴 | `docs/superpowers/specs/2026-08-04-frostbloom-route-patterns-and-precast-guidance-design.md` |
+| 교육 개입 | `docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md` |
+| 인물·대사 승인 | `docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_APPROVAL_2026-08-04.md` |
+| 실제 대사 Script | `docs/content/vertical_slice/FROSTBLOOM_GREENHOUSE_DIALOGUE_SCRIPT_DRAFT_2026-08-04.md` `[활성 연결 콘텐츠]` |
+| 대사 Design | `docs/superpowers/specs/2026-08-04-frostbloom-cast-dialogue-design.md` `[활성 연결 콘텐츠]` |
 
-## 9. 다음 Gate
+파일명의 `DRAFT`는 생성 당시 이름이며 Approval이 현재 상태를 소유한다.
 
-```text
-ASSET-SPEC-01
-→ BOSS-PHASE-01·Grimoire/Main 파생 화면
-→ AUDIO-DIRECTION-01
-→ 통합 검수
-→ Codex Plan 승인·기술 검수
-→ 구현
+## 운영·검증
+
+| 책임 | 문서 |
+|---|---|
+| 사전 적대적 검토 | `docs/planning/THREE_BY_THREE_CANON_PREMERGE_ADVERSARIAL_REVIEW_2026-08-04.md` |
+| Working Sync | `docs/planning/sync/GR-SYNC-20260804-09-3X3-CIRCUIT-STOCK-FOCUS.md` |
+| Godot 도구 보고 | `docs/validation/GODOT_TOOLCHAIN_SETUP_REPORT_2026-08-03.md` `[구현완료 보관]` |
+| Codex 제품 Handoff | `docs/planning/CODEX_FOUNDATION_POC_HANDOFF_2026-08-03.md` `[보류]` |
+| Codex Overlay | `docs/superpowers/plans/2026-08-03-foundation-poc-codex-execution-overlay.md` `[보류]` |
+
+제품 `project.godot`, Runtime, 모바일 실기기, 성능, 접근성, 사람 검증은 아직 없다.
+
+## Base
+
+```yaml
+release: v9.4.3
+adapter: skills/PROJECT_BASE_ADAPTER.json
+adapter_active_scope:
+  - base_release
+  - routing
+  - protected_paths
+  - generated_outputs
+adapter_noncanonical_snapshots:
+  - current_state
+  - gdd_sheet
+  - old_branch_and_sync_values
 ```
 
-## 10. 검증 경계
+Base 생성 View는 직접 편집하지 않는다.
 
-```text
-GODOT_PROJECT = NOT_STARTED
-PRODUCT_CODE_SCENE_RESOURCE_DATA = NOT_FOUND
-RUNTIME_VALIDATION = NOT_RUN
-PC_INPUT_VALIDATION = NOT_RUN
-MOBILE_VALIDATION = NOT_RUN
-HUMAN_PLAYTEST = NOT_RUN
-```
+## Legacy 정책
 
-## Base v9.4 운영 계약
-
-- `docs/AI_WORKFLOW.md`: 모델 추천·지시 권위·Context 큐레이션·증거 상한.
-- `docs/reviews/2026-08-01_BASE_V9_4_ADOPTION_AUDIT.md`: Base identity와 승인 정본 보호 감사.
+- 상태 색인에서 `[대체됨]·[폐기]`인 파일은 현재 답변·구현·기획의 근거로 사용하지 않는다.
+- `[부분 대체됨]`은 명시된 유지 범위만 사용한다.
+- `[보류]`는 실행 지시로 사용하지 않는다.
+- `[이력]` Sync는 당시 증거일 뿐 현재 상태가 아니다.
+- 분류되지 않은 과거 파일은 최신 정본과 충돌하면 최신 Decision이 우선한다.

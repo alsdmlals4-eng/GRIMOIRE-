@@ -1,0 +1,33 @@
+name: Validate Godot 4.7.1 toolchain
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  godot-toolchain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run toolchain contract tests
+        run: python -m unittest tests.test_godot_toolchain_setup
+
+      - name: Download and verify Godot and export templates
+        run: |
+          python tools/setup_godot_toolchain.py \
+            --install-dir .tooling/godot \
+            --with-templates \
+            --json-report godot-toolchain-report.json
+
+      - name: Upload toolchain report
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-toolchain-report
+          path: godot-toolchain-report.json
+          if-no-files-found: error

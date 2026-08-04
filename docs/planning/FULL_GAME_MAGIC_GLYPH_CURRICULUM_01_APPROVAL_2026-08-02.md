@@ -4,14 +4,15 @@
 
 ```yaml
 decision_id: GM-FULL-GAME-MAGIC-GLYPH-CURRICULUM-01
-status: USER_APPROVED_ACTIVE
+status: USER_APPROVED_ACTIVE_WITH_SLICE_INHERITANCE_UPDATE
 approved_option: B_MULTI_SCHOOL_ENROLLMENT_SPECIALIZATION_TREE
 approved_at: 2026-08-02T17:19+09:00
+slice_inheritance_updated_at: 2026-08-04T08:15+09:00
+slice_update_decision: GM-SLICE-HEAT-FLOW-OBSERVATION-01
 parent_decision: GM-FULL-GAME-CHAPTER-RHYTHM-01
-grill_me_batch: 3_of_10
 gate: FULL-GAME-STRUCTURE-01
 implementation: NOT_STARTED
-codex: BLOCKED
+codex: DEFERRED
 ```
 
 ## 2. 승인된 전체 방향
@@ -34,12 +35,28 @@ codex: BLOCKED
 - 어떤 상황에서 더 정밀하거나 책임 있는 해법을 제시하는가.
 - 어떤 교수·동료·연구·마도서 기록과 연결되는가.
 
-## 3. Vertical Slice 계승
+## 3. Vertical Slice 계승 — GM-SLICE-HEAT-FLOW-OBSERVATION-01 반영
 
-- `흐름`은 첫 기초 메인 계열의 대표 사례다.
-- `집중 / 분산`은 여러 계열에서 재사용 가능한 공통 보조 문법의 첫 사례다.
-- Slice의 메인 1 + 보조 0~1은 입문 단계의 대표 범위로 유지한다.
-- 다계열 구조는 Slice를 폐기하지 않고, Slice 이후 수강 선택과 계열 심화로 확장한다.
+이 절은 2026-08-04 승인된 `GM-SLICE-HEAT-FLOW-OBSERVATION-01`에 따라 갱신됐다.
+
+```yaml
+first_representative_main_glyph: HEAT
+first_reusable_connection_grammar: FLOW
+first_optional_support_grammar:
+  - FOCUS
+  - DISPERSE
+representative_known_circuit: HEAT_PLUS_FLOW
+slice_safe_grammar: MAIN_1_PLUS_CONNECTION_AND_OPTIONAL_SUPPORT
+```
+
+- `열`은 Vertical Slice에서 처음 실제 사건에 적용하는 대표 메인 글자다.
+- `흐름`은 열을 비롯한 여러 메인 현상에 재사용될 수 있는 첫 연결 문법이다.
+- `집중 / 분산`은 출력과 범위를 조절하는 첫 선택 보조 문법이다.
+- Slice의 제한된 문법은 입문 단계의 대표 범위이며, 전체 게임의 다계열 구조를 폐기하지 않는다.
+- 교수의 `열 + 흐름` 외곽 회로는 한 가지 응용 예시일 뿐이며 유일한 해법·필수 루트·평가 기준이 아니다.
+- 플레이어는 같은 글자를 다른 대상·경로·출구·보조·환경 협력에 적용하거나, 사건 목표를 달리하여 복수의 유효 결과를 만들 수 있다.
+
+이전 문장 `흐름은 첫 기초 메인 계열의 대표 사례`는 이 결정으로 명시적으로 대체된다.
 
 ## 4. 필수 보호 규칙
 
@@ -51,6 +68,8 @@ codex: BLOCKED
 6. 초기 계열 선택을 즉시 되돌릴 수 없는 영구 잠금으로 만들지 않는다.
 7. 계열 수 증가와 주문 글자 수 증가를 동시에 무제한 허용하지 않는다.
 8. 특정 계열이 대부분 상황의 상위 호환 정답이 되면 재설계한다.
+9. 교수·NPC가 보여준 예시 주문을 기준 답안으로 사용하지 않는다.
+10. 준비된 대표 패턴 밖의 합리적 주문도 의미·상황·대가 판정으로 허용한다.
 
 ## 5. 유지되는 장기 후보와 미확정 값
 
@@ -60,7 +79,7 @@ codex: BLOCKED
 - 계열별 독립 성장.
 - 기초 체험 후 선택 계열 심화.
 - 전문 연구·졸업 연구.
-- 공통 보조 문법과 계열 친화 보조의 결합.
+- 공통 연결·보조 문법과 계열 친화 보조의 결합.
 
 미확정 `TEST_VALUE`:
 
@@ -83,9 +102,8 @@ solo_scope_risk: HIGH_REQUIRES_BOUNDING
 mobile_writing_fatigue_risk: HIGH_REQUIRES_VALIDATION
 optimal_build_risk: OPEN
 parallel_content_waste_risk: OPEN
+faculty_example_becoming_answer_key: PROHIBITED
 ```
-
-따라서 다음 결정에서 수강 슬롯·성장 증거·전문화 비용과 재선택 규칙을 먼저 닫아야 한다.
 
 ## 7. 후속 결정
 

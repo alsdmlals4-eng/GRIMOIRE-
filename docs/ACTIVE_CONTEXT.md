@@ -1,42 +1,28 @@
 # GRIMOIRE Active Context
 
-> 과거 대화 없이 프로젝트 현재 상태를 복원하는 권위 문서다. 세부 규칙은 연결된 최신 Decision 책임 원본을 우선한다.
-
-## 현재 상태
+## 상태
 
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: NONE
-primary_platform: Mobile
-follow_up_platform: PC
-mobile_orientation: LANDSCAPE_FIXED
+working_branch: agent/foundation-poc-readiness-review
+pull_request: 57
+platform: MOBILE_LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
-execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
-work_mode: PLAN
 base_release: v9.4.3
-main_authority: CURRENT_DEFAULT_BRANCH_HEAD_AFTER_PR56
-last_main_sync: GR-SYNC-20260803-06
-last_working_sync: GR-SYNC-20260803-05
-last_decision_pull_request: 54
-last_decision_merge_commit: bf964063b3fa35413f9e5efb07ad831f1617c412
-last_finalization_pull_request: 55
-last_finalization_merge_commit: f693089a76138d6f061591e011bcb6c098f14dc5
-sheet_readback_pull_request: 56
-grill_counter: 0_of_10
-pending_distinct_decisions: 0
-mobile_summon_hud_spec: USER_APPROVED_HARDENED_SPEC_ACTIVE
-mobile_summon_hud_tdd_plan: WRITTEN_NOT_EXECUTED
-sheet_readback: PASS
-sheet_sentinel: PASS
-next_priority: GODOT_TOOLCHAIN_PREFLIGHT_AND_BASE_V9_4_3_PLAN_REVALIDATION
-p0_open: 0
-p1_open: 2
-implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
-implementation: NOT_STARTED
-codex_plan: WRITTEN_NOT_EXECUTED
-codex_execution: BLOCKED_BY_EXECUTION_READINESS_GATE
+baseline_main: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
+working_sync: GR-SYNC-20260804-09-3X3-CIRCUIT-STOCK-FOCUS
+current_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
+slice_decision: GM-SLICE-HEAT-FLOW-OBSERVATION-01
+situation_decision: GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01
+pedagogy_decision: GM-SCHOOL-CRISIS-PEDAGOGY-01
+grill_counter: 5_of_10
+pending_decisions: 5
+merge_authorized: true
+merge_trigger: USER_EXPLICIT_EARLY_FLUSH_AT_5_OF_10
+product_project: NOT_CREATED
+product_code: NOT_STARTED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -44,147 +30,162 @@ accessibility_validation: NOT_RUN
 human_validation: NOT_RUN
 ```
 
-## 복원 순서
+## 현재 정본
 
-1. `AGENTS.md`.
-2. `START_HERE.md`.
-3. 이 문서.
-4. `docs/DEVELOPMENT_GATES.md`.
-5. `docs/DESIGN_DOCUMENT_REGISTRY.json`.
-6. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
-7. `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_APPROVAL_2026-08-03.md`.
-8. `docs/planning/MOBILE_SUMMON_HUD_WIREFRAME_01_USER_SPEC_REVIEW_2026-08-03.md`.
-9. `docs/superpowers/specs/2026-08-03-three-slot-mobile-summon-hud-design.md`.
-10. `docs/superpowers/plans/2026-08-03-three-slot-mobile-summon-hud-implementation-plan.md`.
-11. `docs/planning/MOBILE_SUMMON_HUD_01_TDD_TEST_MATRIX_2026-08-03.md`.
-12. `docs/planning/STOCK_SUMMON_STATE_INTERFACE_01_APPROVAL_2026-08-02.md`.
-13. `docs/planning/benchmarks/MOBILE_SUMMON_HUD_WIREFRAME_STANDARD_BENCHMARK_2026-08-03.md`.
-14. `docs/planning/PLANNING_REMAINDER_AUDIT_2026-08-02.md`.
-15. `docs/planning/sync/GR-SYNC-20260803-06-MAIN.md`.
+```text
+AGENTS.md
+→ START_HERE.md
+→ ACTIVE_CONTEXT.md
+→ DEVELOPMENT_GATES.md
+→ CANON_STATUS_INDEX_2026-08-04.md
+→ 3×3 승인·Spec
+→ Frostbloom 승인 문서
+→ Batch 기계 권위
+```
+
+파일 상태는 `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`를 따른다. 과거 Draft·Working·Stage 0·FAIL_CLOSED 문서는 현재 상태 권위가 아니다.
 
 ## 플레이어 약속
 
-> 마법학교 학생이 글자의 의미와 상황 조건을 배우고, 직접 작성·준비 Stock·상주 소환수를 운용해 주문을 설계하며, 명시적으로 구현한 결과와 대가를 책임지고 마도서에 기록하는 마법 RPG.
+> 상황을 읽고 무엇을 지킬지 선택한 뒤, 글자·대상·회로로 해결 의도를 구현하고 결과와 대가를 책임진다.
 
 ```text
-상황·위험 판독
-→ 직접 작성·준비 Stock·[소환 주문] 중 수단 선택
-→ 의미·대상·범위·출력·대가 설계
-→ 명시적 Commit
-→ 원자 결과 적용
-→ 설명 가능한 세계 변화
-→ 마도서 기록·복기
+조사
+→ 의도·우선순위
+→ 3×3 회로
+→ Preview
+→ Commit
+→ 변화·대가
+→ 마도서 복기
 ```
 
-## Stock 최신 계약
+## 3×3 회로
 
 ```yaml
-stock_types: [FULL_SPELL, SUB_GLYPH]
-shared_capacity: 8
-one_glyph_charge_seconds: 10
-additional_glyph_seconds: 5
-active_charge_targets: 1
-stock_use_mana_cost: 0
-offline_charge: false
+main_glyph: exactly_1
+support_glyphs: 0_to_2
+targets: 1_to_4
+total_nodes: up_to_7
+branches: up_to_1
+edge_rule: ADJACENT_8_NEIGHBOR_ONLY
+crossing_edges: prohibited
+skip_connection: prohibited
+all_nodes_reachable: required
+target_nodes: TERMINAL_LEAF
+hidden_position_bonus: prohibited
 ```
 
-- 지정 대상 1종만 자연충전한다.
-- 충전 대상 전환 시 대상별 진행도를 보존한다.
-- 소환수 `[스톡] N`은 5초마다 현재 지정 Stock 남은 시간을 `N초` 감소시킨다.
-- 초과 감소량 이월·자동 대상 변경·Offline 충전을 금지한다.
+위치는 연결 가능성과 분기 형태를 결정하고 숨은 수치 보너스는 없다.
 
-## 소환수 최신 계약
+## Slice 글자
 
 ```yaml
-persistent_main_summon: 1
-secondary_active_summon_cap: 3
-total_active_summon_cap: 4
-secondary_slots: [S1, S2, S3]
-secondary_role_duplicate_cap_in_slice: 1
-summon_duration_limit: NONE
-resummon_cooldown: NONE
-summon_spell_mana_cost: 2
-support_cycle_seconds: 5
+main: HEAT
+connection_support: FLOW
+modifiers: [FOCUS, DISPERSE]
 ```
 
-- 보조 역할은 `PRODUCTION / GUARDIAN / ASSAULT / RECOVERY`다.
-- 보조 사이 역할 중복을 금지한다.
-- 같은 시각 Event는 `MAIN → S1 → S2 → S3`다.
-- 자동 공격은 불안정도 `1` 아래·마지막 해결 Event를 만들 수 없다.
+- `열`: 중심 현상 또는 기존 열원.
+- `흐름`: 대상·경로·순서.
+- `집중`: 단일 대상·좁은 범위.
+- `분산`: 여러 대상·넓은 구역.
 
-## State·Ledger·Save
+## 대상
 
-- 보조 상태는 `secondary_summon_states` 배열로 저장하며 최대 3개다.
-- `slot_id`와 보조 `primary_role`은 각각 유일하다.
-- `[소환 주문]`의 마나 차감·교체·활성은 한 Transaction이다.
-- Stock 소비와 효과 적용도 한 Transaction이다.
-- 소환수 행동은 고유 `summon_event_id`로 정확히 한 번만 적용한다.
-- 손상 Snapshot은 자동 덮어쓰지 않는다.
-- Background·Offline 경과로 행동·충전 지원을 생성하지 않는다.
+- 보이고 식별된 전투 참가자: 자동 후보.
+- 환경·장치·숨은 약점: 관찰·조사 후 후보.
+- 핵심 생명 안전 대상: 복수 경로로 확인.
+- UI 자동 정답 대상 추천: 금지.
 
-## Mobile Summon HUD 확정 계약
+## 글자 Stock
 
 ```yaml
-layout: LEFT_SAFE_AREA_VERTICAL_COMPACT_RAIL
-slot_order: [MAIN, S1, S2, S3]
-detail: ONE_CONTEXTUAL_DRAWER
-writing_focus_detail: READ_ONLY_MICRO_DETAIL
-drawer_read_pauses_clock: false
-management_confirmation_pauses_clock: true
-management_entry_requires_safe_draft: true
-same_time_event_resolution: ATOMIC_DETERMINISTIC_MAIN_S1_S2_S3
-same_time_event_presentation_budget_seconds_total: 1.2_TEST_VALUE
-text_scale_tests: [1.00, 1.30, ANDROID_MAX_2.00]
-timer_announcement: FOCUS_OR_MEANINGFUL_CHANGE_ONLY
-active_stroke_owner: WRITING_CANVAS
-event_dedup_owner: RESULT_LEDGER
-nullable_empty_error_view_model: true
-hud_mutates_gameplay_state: false
+stock_scope: TYPED_GLYPH_ONLY
+shared_capacity: 8_TEST_VALUE
+natural_charge_target: ONE_TYPED_GLYPH
+base_charge_seconds: 10_TEST_VALUE
+minimum_actual_seconds: 3_TEST_VALUE
+target_or_edge_cost: 0
+completed_spell_stock: prohibited
 ```
 
-항상 표시:
+글자 노드 배치 시 같은 글자 Stock을 예약하고 Commit 성공 때 마나·결과와 원자 소비한다.
 
-- Stock 준비 용량 `현재/8`.
-- 현재 충전 대상·수량·남은 초.
-- 활성 `[스톡]` 합계.
-- 메인·보조 3슬롯 역할·대표 정수·다음 행동 초·상태.
-- 적 의도·불안정도·환경·HP·마나.
-- Writing Panel과 Commit.
-
-## 병합·검증 증거
+## 집중 필사
 
 ```yaml
-pr54_head: 5f0689d78f60fa5bdfe8b33d71a874ecf453b120
-pr54_merge: bf964063b3fa35413f9e5efb07ad831f1617c412
-pr54_ci_run: 30815546367
-pr55_merge: f693089a76138d6f061591e011bcb6c098f14dc5
-pr55_ci_run: 30816905584
-generator: PASS
-unit_tests: PASS
-json_parse: PASS
-utf8_nfc: PASS
-adversarial_gate: PASS
-sheet_readback: PASS
-sheet_sentinel: PASS
+state: STATE_FOCUS_SCRIBE
+active_pressure_scale: 0.25_TEST_VALUE
+mana_drain_per_real_second: 1_TEST_VALUE
+success_gain: SAME_GLYPH_STOCK_PLUS_1
+capacity_reservation: 1
+full_pause: false
 ```
 
-## 잔여 P1
+- 시작 시 용량 1칸 예약.
+- 적·환경 계속 진행.
+- 자연충전·소환수는 Active Pressure 기준.
+- 직접 HP 피해·마나 0·제어 상태·Focus loss에서 중단.
+- 그림 품질 위력 보너스 없음.
+- 기본 전투에 필사 강제 없음.
 
-1. Godot Toolchain preflight.
-2. Base v9.4.3 최종 main 기준 Plan 재검증과 `GM-FOUNDATION-POC-EXECUTION-READINESS-01`.
+## Frostbloom
 
-## 검증 경계
+```yaml
+cast:
+  - 에일린_로스베르
+  - 카시안_렌
+  - 모트
+upperclass_present: false
+```
+
+카시안은 `열+흐름`의 입력과 문법은 맞았지만 닫힌 밸브·압력·출구 판단에 실패한다. 교수는 외부 확산만 막는 하나의 주문 예시를 보여주며 내부 핵심 목표를 대신 해결하지 않는다.
+
+가능한 접근:
+
+1. 시설 복구.
+2. 생명 구조.
+3. 정령 안정화.
+4. 봉쇄·철수.
+5. 제압·시간 확보.
+6. 의미와 상황에 맞는 미등록 해결.
+
+교수 방식과의 일치가 채점 기준이 아니다.
+
+## Preview·관찰
+
+- Preview는 효과·속도·범위·압력 변화·이익·위험·미해결 문제·정보 충분도를 보여준다.
+- `confidence`는 `정보 충분/부분/부족`이며 숫자 성공률이 아니다.
+- 조사·관찰은 원리·정답·추천 주문·결말을 설명하지 않는다.
+
+## 현재 병합 상태
 
 ```text
-GODOT_PROJECT = NOT_STARTED
-PRODUCT_CODE = NOT_STARTED
-MOBILE_SUMMON_HUD_SPEC = USER_APPROVED_HARDENED_SPEC_ACTIVE
-MOBILE_SUMMON_HUD_TDD_PLAN = WRITTEN_NOT_EXECUTED
-MOBILE_SUMMON_HUD_IMPLEMENTATION = NOT_AUTHORIZED
-CODEX_EXECUTION = BLOCKED
-RUNTIME_VALIDATION = NOT_RUN
-MOBILE_DEVICE_VALIDATION = NOT_RUN
-PERFORMANCE_VALIDATION = NOT_RUN
-ACCESSIBILITY_VALIDATION = NOT_RUN
-HUMAN_PLAYTEST = NOT_RUN
+정본 경화·상태 색인
+→ Sheet 동기화
+→ 최신 HEAD CI·Review 확인
+→ PR #57 병합
+→ finalization PR
+→ Batch 0/10·main sync·Sheet readback
+```
+
+## 병합 후 우선순위
+
+1. 3×3 Mobile Landscape Wireframe.
+2. 집중 필사 Overlay.
+3. Frostbloom UX Map.
+4. Art Direction·Asset Brief.
+5. 선택 범위 Codex 구현 계획.
+
+## 보호 경계
+
+```text
+완성 주문 원터치 Stock 금지
+집중 필사 완전 Pause 금지
+그림 위력 보너스 금지
+교수 예시 정답화 금지
+설계도 자동 대상·자동 Commit 금지
+숨은 셀 위치 보너스 금지
+성공 확률 숫자 Preview 금지
+제품 구현 전 Runtime PASS 주장 금지
 ```

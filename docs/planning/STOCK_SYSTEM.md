@@ -1,198 +1,193 @@
-# Spell Stock 시스템 — 최신 책임 원본
+# Spell 글자 Stock 시스템 — 최신 책임 원본
 
 ## 문서 상태
 
 ```yaml
 status: ACTIVE_RESPONSIBILITY_SOURCE
-decision_status: USER_APPROVED_REVISED_DEFAULTS
-decision_id: GM-STOCK-SYSTEM-01
-updated_at: 2026-08-02T23:14:00+09:00
+decision_id: GM-3X3-CIRCUIT-STOCK-FOCUS-01
+parent_decision: GM-STOCK-SYSTEM-01
+updated_at: 2026-08-04T09:37+09:00
 implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 human_validation: NOT_RUN
 ```
 
-연결 문서:
-
-- 상세 승인: `docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`
-- 준비 용량: `docs/planning/STOCK_CAPACITY_SYSTEM.md`
-- 충전시간: `docs/planning/STOCK_CHARGE_TIME_SYSTEM.md`
-- 대상 전환: `docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md`
-- 직접 피해 정지: `docs/planning/STOCK_HIT_PAUSE_SYSTEM.md`
-- 상태이상: `docs/planning/STATUS_EFFECT_STOCK_SYSTEM.md`
-
-## 1. 시스템 약속
+## 시스템 약속
 
 ```text
-학습·숙련한 주문·하위 글자를 전투 전에 준비
-→ 지정 대상 1종 자연 충전
-→ 플레이어가 필요한 순간에 터치해 사용
-→ 직접 작성·정확 행동·소환수 [스톡] 수치로 충전 지원
+Stock
+= 숙련한 특정 글자 노드 1회를 직접 그리지 않고 배치하는 준비량
+
+집중 필사
+= 실제 시간과 마나를 지불해 같은 글자 Stock 1개를 능동 보충하는 선택 행동
 ```
 
-- 조건부 자동 시전은 사용하지 않는다.
-- Stock 사용 시점과 대상은 플레이어가 결정한다.
-- 신규 발견·즉석 변형·상위 주문은 직접 작성한다.
+완성 주문 Stock은 폐기한다. 알려진 주문도 3×3 회로에서 글자·대상·연결을 구성하고 Commit한다.
 
-## 2. Stock 종류
-
-### 완성 주문 Stock
-
-```text
-준비 주문 선택
-→ 등록 설계도 전체 기동
-→ Stock 1회분 소비
-```
-
-### 하위 글자 Stock
-
-```text
-주문 작성 중 준비 글자 선택
-→ 숙련 글자 한 구간 자동 배치·연결
-→ Stock 1회분 소비
-```
-
-Stock이 없어도 직접 작성은 가능하다.
-
-## 3. 공용 준비 용량
+## Stock 단위
 
 ```yaml
-prototype_initial_capacity: 8
-capacity_unit: FUNCTIONAL_MAGIC_GLYPH
-mana_reservation: NONE
-stock_use_mana_cost: 0
+stock_scope: TYPED_GLYPH_ONLY
+unit: ONE_TYPED_GLYPH_NODE_PLACEMENT
+shared_capacity: 8_TEST_VALUE
+target_node_cost: 0
+connection_edge_cost: 0
+completed_spell_stock: prohibited
 ```
 
-- 하위 글자 Stock 1개는 준비 용량 `1`을 사용한다.
-- 완성 주문 Stock 1개는 설계도 기능 글자 수 `n`만큼 사용한다.
-- 동일 주문·글자를 여러 번 준비할 수 있다.
-- 개별 보유 상한 대신 전체 준비 용량만 사용한다.
+예:
 
-## 4. 자연충전
+```yaml
+stored_stock:
+  열: 2
+  흐름: 1
+  보호: 2
+  집중: 0
+  분산: 1
+```
+
+## 회로 편집과 예약
 
 ```text
-기능 글자 수 n인 Stock 1회분
-= 10 + 5 × (n - 1)초
+글자 노드 배치
+→ 같은 glyph_id Stock 1 예약
+
+노드 이동
+→ 기존 예약 유지
+
+글자 교체
+→ 이전 예약 해제 후 새 글자 Stock 예약
+
+노드 제거·회로 취소
+→ 예약 해제
+
+Commit 성공
+→ 예약 Stock + 주문 마나 + 결과를 같은 Transaction ID로 원자 처리
+
+Commit 실패·대상 취소·시스템 오류
+→ Stock·마나 미소비
 ```
 
-- `1.0단위 = Active Pressure 10초`다.
-- 지정 대상 `1종`만 자연 충전한다.
-- 빈 수량을 한 번에 1회분씩 순차 충전한다.
-- 대상 전환 시 진행도를 대상별로 보존한다.
-- Pause·Resolve·Focus loss·Background·Save/Load 중에는 정지한다.
-- Offline catch-up은 없다.
+대상 노드와 연결선은 Stock을 소비하지 않는다.
 
-## 5. 소환수 `[스톡]` 지원
+## 자연충전
+
+```yaml
+active_charge_target_count: 1
+charge_target: ONE_TYPED_GLYPH
+base_charge_seconds: 10_TEST_VALUE
+minimum_actual_seconds: 3_TEST_VALUE
+clock: ACTIVE_PRESSURE
+progress_storage: PER_GLYPH
+summon_support: INTEGER_REMAINING_SECONDS_REDUCTION
+offline_charge: false
+```
+
+- 충전 대상과 전환 시점은 플레이어가 정한다.
+- 진행도는 글자별로 보존한다.
+- 최대 수량에 도달해도 다른 글자로 자동 전환하지 않는다.
+- Pause·System Resolve·Focus loss·Background·Save/Load에서는 진행하지 않는다.
+- 소환수는 현재 지정 글자의 남은 시간만 줄이고 대상을 바꾸지 않는다.
+
+## 집중 필사
+
+```yaml
+state_id: STATE_FOCUS_SCRIBE
+player_label: 집중_필사
+active_pressure_scale: 0.25_TEST_VALUE
+mana_drain_per_real_second: 1_TEST_VALUE
+successful_gain: SAME_GLYPH_STOCK_PLUS_1
+capacity_reservation_on_entry: 1
+full_pause: false
+```
+
+### 진입
 
 ```text
-소환수 지원 주기 5초
-→ 현재 지정 대상 남은 충전시간
-→ 활성 [스톡] 합계만큼 초 단위 감소
+숙련 글자 선택
+→ 공용 용량 1칸 예약
+→ 집중 필사 시작
 ```
 
-Prototype:
+예약된 용량은 자연충전·소환수 지원이 채울 수 없다. 빈 용량이 없으면 시작할 수 없다.
 
-- 메인 소환수 `[스톡] 1`.
-- 생산형 보조 소환수 `[스톡] 2`.
-- Slice 활성 합계 상한 `[스톡] 3`.
-- Stock 1회분 최소 실제 충전시간 `3초`.
-
-가드레일:
-
-- 감소 초과분을 다음 Stock으로 이월하지 않는다.
-- 지정 대상이 없거나 최대 수량이면 효과를 저장하지 않는다.
-- 소환수는 충전 대상을 자동 변경하지 않는다.
-
-## 6. 플레이어 능동 기여
-
-추가 충전 기여 후보:
-
-- 직접 주문 작성·유효 Commit.
-- 정확한 글자 완성.
-- 방어·반격 성공.
-- 주문 연계 성공.
-- 소환수 공격·수호·동조 성공.
-
-능동 기여의 정수값은 후속 Tuning에서 결정한다. 퍼센트 충전 배율은 사용하지 않는다.
-
-## 7. 사용·소비 원자성
+### 성공
 
 ```text
-Stock 선택
-→ 대상·상황 확인
-→ 사용 승인
-→ Stock 1회분 소비
-→ 주문·글자 적용
+선택 glyph_id와 인식 glyph_id 일치
+→ 예약칸에 같은 글자 Stock +1
+→ stock_generation_event_id 기록
 ```
 
-- 취소·대상 취소·시스템 오류에서는 소비하지 않는다.
-- Stock 소비와 결과 적용은 같은 Transaction ID 아래 원자 처리한다.
-- 하위 글자 Stock은 최종 Commit 전에 삽입한다.
+### 중단
 
-## 8. 피격·상태이상
+- 수동 취소.
+- 인식 실패.
+- 실제 HP 감소를 동반한 직접 피해.
+- 행동 불가 제어 상태.
+- 마나 0.
+- Focus loss·Background.
 
-### 직접 피해
+중단 시 미완성 획을 폐기하고 예약을 해제한다. 이미 소모한 마나와 흐른 시간은 반환하지 않는다.
 
-- 실제 HP 감소량을 기준으로 충전을 잠시 정지한다.
-- 진행도는 보존한다.
-- 완전 방어로 최종 피해가 0이면 정지하지 않는다.
-- 세부 공식은 `STOCK_HIT_PAUSE_SYSTEM.md`를 따른다.
+최종 직접 피해가 0이면 Prototype에서는 필사를 유지한다. 지속 피해는 기본적으로 중단하지 않지만 HP·마나는 계속 감소한다.
 
-### 지속 피해
+## 시간계 경계
 
-- HP를 감소시키지만 충전을 정지하지 않는다.
+- 적·환경은 `0.25배 TEST` Active Pressure로 계속 진행한다.
+- 필사 마나 소모는 실제 시간 기준이다.
+- 자연충전과 소환수 주기는 Active Pressure 기준이다.
+- 따라서 집중 필사는 완전 Pause도, 수동·수동 외 생산 동시 가속도 아니다.
 
-### 주문 봉인
+## 입력·접근성
 
-- 보유 Stock 사용을 막는다.
-- 자연충전과 진행도는 유지한다.
+- 글자 Stock 선택이 주문 조합의 기본 입력이다.
+- 직접 그리기는 보충·교육·복원 기능이다.
+- 그림 정확도는 주문 위력·효율·Stock 지급량 보너스를 주지 않는다.
+- 가이드 추적·스냅·획 순서 보정도 성공 시 같은 Stock 1개를 지급한다.
+- 자연충전만으로 모든 기본 전투를 수행할 수 있어야 한다.
 
-### 마력 교란
+## 알려진 주문 설계도
 
-기존 퍼센트 감속은 폐기 후보다. 후속 정수 상태 수치로 `남은 충전시간 +N` 또는 `주기 감소량 -N` 중 하나를 결정한다.
+```yaml
+mode: NON_BINDING_GHOST_REFERENCE
+auto_stock_reservation: false
+auto_target: false
+auto_commit: false
+```
 
-## 9. Save·Resume
+설계도는 참고 회로이며 원터치 시전이 아니다.
+
+## Save·Resume
 
 저장 필드:
 
-- 준비 편성·수량·용량 사용량.
-- 현재 충전 대상.
-- 대상별 진행도·남은 시간.
-- 소환수 `[스톡]` 주기 잔여시간.
-- 피격 정지 잔여시간.
-- 적용 완료 Transaction ID.
+- 글자별 보유·예약 Stock.
+- 공유 용량 사용량.
+- 현재 자연충전 대상과 글자별 진행도.
+- 소환수 지원 주기 잔여시간.
+- 집중 필사 상태·선택 glyph_id·예약 용량.
+- 적용 완료 Transaction/Event ID.
 
-복귀 순간에 누적 Stock을 일괄 생성하지 않는다.
+Background 복귀로 Stock을 소급 생성하지 않는다. 집중 필사는 Focus loss에서 종료하고 부분 획을 저장하지 않는다.
 
-## 10. UI 필수 정보
-
-- 전체 준비 용량 `현재/8`.
-- 각 항목의 기능 글자 수·비용·현재/최대 수량.
-- 지정 충전 대상과 남은 초.
-- 자연충전량과 소환수 `[스톡] +N` 기여.
-- 피격 정지·봉인·교란 상태.
-
-## 11. 책임 경계
+## 금지
 
 ```text
-직접 작성
-→ 신규·상위·즉석 변형·마나 사용
-
-완성 주문 Stock
-→ 준비 설계도 원터치 사용
-
-하위 글자 Stock
-→ 숙련 글자 자동 배치
-
-소환수 [스톡]
-→ 자연충전 남은 시간 정수 감소
-
-소환수 [공격]/[방어도]/[치유]
-→ 전투 지원, Stock 대상 선택은 하지 않음
+COMPLETED_SPELL_ONE_TAP_STOCK
+GENERIC_STOCK_CONVERSION
+FULL_PAUSE_DURING_FOCUS_SCRIBE
+DRAWING_POWER_BONUS
+DRAWING_REQUIRED_FOR_BASIC_COMBAT
+TARGET_OR_EDGE_STOCK_COST
+PASSIVE_CHARGE_REAL_TIME_ACCELERATION_DURING_FOCUS
 ```
 
-## 12. 검증 경계
+## 연결 정본
 
-- 제품 코드와 Runtime은 아직 없다.
-- 초기 용량 `8`, 1글자 `10초`, `[스톡] 1/2`, 5초 지원 주기는 Prototype 기본값이다.
-- 사람 검증 전 상용 최종 밸런스로 주장하지 않는다.
+- 회로: `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`.
+- 용량: `docs/planning/STOCK_CAPACITY_SYSTEM.md`.
+- 충전: `docs/planning/STOCK_CHARGE_TIME_SYSTEM.md`.
+- 대상 전환: `docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md`.
+- 피격: `docs/planning/STOCK_HIT_PAUSE_SYSTEM.md`.
+- 상태 색인: `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`.

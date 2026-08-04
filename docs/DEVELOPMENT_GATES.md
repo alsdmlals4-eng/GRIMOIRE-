@@ -1,33 +1,20 @@
-# GRIMOIRE 개발·기획 게이트
+# GRIMOIRE 개발·기획 게이트 — 현재 정본
 
-## 현재 상태
+## 상태
 
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
-baseline_date: 2026-08-03
-baseline_main: 7fd2c137469120a9ccf942df5b9860af135acc87
-working_branch: agent/mobile-summon-hud-spec-hardening
-working_sync: GR-SYNC-20260803-05
-primary_platform: Mobile
-follow_up_platform: PC
-orientation: LANDSCAPE_FIXED
-product_stage: DEMO_FIRST_VERTICAL_SLICE
-execution_profile: PLANNING_ONLY_PROFILE_WITH_CONDITIONAL_FOUNDATION_POC_ENTRY
-base_release: v9.4.3
-core_system_alignment: APPROVED_AND_SYNCED_TO_MAIN
-stock_system_01: USER_APPROVED_REVISED_DEFAULTS
-summon_system_01: USER_APPROVED_THREE_SECONDARY_REVISED_DEFAULTS
-stock_summon_state_interface_01: APPROVED_DESIGN_HARDENED_FOR_HUD
-mobile_summon_hud_01: USER_APPROVED_HARDENED_SPEC_ACTIVE
-mobile_summon_hud_tdd_plan: WRITTEN_NOT_EXECUTED
-work_quality_gate_01: USER_APPROVED_ACTIVE
-p0_open: 0
-p1_open: 2
-implementation_entry: APPROVED_CONDITIONAL_FOUNDATION_POC
-implementation_ready: false
-implementation: NOT_STARTED
-codex_plan: WRITTEN_AWAITING_MERGE_AND_READINESS_REVALIDATION
-codex_execution: BLOCKED
+updated_at: 2026-08-04T09:37+09:00
+baseline_main: 9632b2036c1b351141f8740a4fc8df572fd2e7f0
+working_branch: agent/foundation-poc-readiness-review
+working_pull_request: 57
+working_sync: GR-SYNC-20260804-09-3X3-CIRCUIT-STOCK-FOCUS
+current_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
+grill_counter: 5_of_10
+pending_decisions: 5
+merge_authorization: USER_EXPLICIT_EARLY_FLUSH_AT_5_OF_10
+product_project: NOT_CREATED
+product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -35,319 +22,145 @@ accessibility_validation: NOT_RUN
 human_validation: NOT_RUN
 ```
 
-## 1. 전체 경로
+과거 `FAIL_CLOSED_REMEDIATION_REQUIRED`, `Stage 0`, `Codex BLOCKED` 상태는 현재 게이트가 아니다. 개발환경 설치·CI probe는 완료됐지만 제품 Godot 프로젝트는 아직 없다.
+
+## Gate 0 — 정본 복원
+
+통과 조건:
+
+- `AGENTS.md`, `START_HERE.md`, `ACTIVE_CONTEXT.md`가 같은 Decision·Sync를 가리킨다.
+- `CANON_STATUS_INDEX_2026-08-04.md`가 구형 문서를 `[대체됨]·[보류]·[폐기]·[이력]`으로 분류한다.
+- `DESIGN_DOCUMENT_REGISTRY.json`이 최신 활성 문서를 라우팅한다.
+
+현재: `PASS_PENDING_FINAL_MERGE_READBACK`.
+
+## Gate 1 — 핵심 재미·문법
 
 ```text
-핵심 기획·Mobile·전체 게임 구조·시스템 계층 — 완료
-→ 자연충전 Stock·정수 상주 소환수 — 승인
-→ 메인 1 + 보조 S1/S2/S3·역할 중복 금지 — 승인
-→ State/Ledger/Save 계약 — 승인 설계
-→ 벤치마킹·현업 비교·Text Integrity Gate — 승인
-→ 보조 3슬롯 Mobile HUD 사용자 명세 — 승인 완료
-→ Mobile HUD TDD Plan·Test Matrix — 작성 완료·미실행
-→ Godot Toolchain preflight — 남음
-→ Base v9.4.3 Plan 재검증 — 남음
-→ GM-FOUNDATION-POC-EXECUTION-READINESS-01
-→ 별도 Scope 승인
-→ Foundation POC
-→ Runtime·Device·Performance·Accessibility·Human Validation
-→ Vertical Slice Production Approval
+상황 조사
+→ 해결 의도 선택
+→ 3×3 글자·대상 노드 배치
+→ 인접 방향 연결
+→ Preview
+→ Commit
+→ 결과·대가 복기
 ```
 
-## 2. 완료된 큰 방향
+통과 조건:
 
-- 상황 판독·의미 설계·Commit·설명 가능한 결과·마도서 복기.
-- 상황 해결형 단일 강적 전투와 불안정도 0 진정.
-- Mobile Landscape Smartphone 품질 Gate.
-- Scene-first Focus Task·Writing Panel.
-- Save/Resume Anchor·Session Snapshot·Atomic Result Ledger 방향.
-- 학습 나선·다계열 수강·포트폴리오·학기 평가.
-- 1학년 Demo·3학년 Full Game 범위.
-- 핵심/진행/적용/보조/인프라 시스템 계층.
+- 전투와 비전투가 같은 주문 문법을 쓴다.
+- 교수 예시가 정답·채점키가 아니다.
+- 글자 Stock이 반복 입력만 줄이고 대상·배치 판단을 대신하지 않는다.
+- 집중 필사는 선택 기능이며 기본 전투에 필수가 아니다.
 
-별도 시험 Chapter·시험장·시험 전용 미니게임은 사용하지 않는다.
+현재: `PLANNING_PASS / RUNTIME_NOT_RUN`.
 
-## 3. GM-STOCK-SYSTEM-01 Gate
+## Gate 2 — 3×3 회로 안전성
+
+통과 조건:
 
 ```yaml
-status: USER_APPROVED_REVISED_DEFAULTS
-stock_types: [FULL_SPELL, SUB_GLYPH]
-shared_capacity: 8
-active_charge_targets: 1
-one_glyph_charge_seconds: 10
-additional_glyph_seconds: 5
-stock_use_mana_cost: 0
-offline_charge: false
+main_glyph: exactly_1
+edge_rule: adjacent_8_neighbor_only
+crossing_edges: prohibited
+skip_connection: prohibited
+all_nodes_reachable: required
+slice_target_nodes: terminal_leaf
+hidden_position_bonus: prohibited
 ```
+
+현재: `SPEC_PASS / IMPLEMENTATION_NOT_STARTED`.
+
+## Gate 3 — Stock·집중 필사 원자성
+
+통과 조건:
+
+- 글자 Stock 배치 예약과 Commit 소비가 Exactly-once다.
+- 대상·연결선은 Stock을 쓰지 않는다.
+- 필사 진입 시 용량 1칸을 예약한다.
+- 자연충전이 필사 예약칸을 침범하지 않는다.
+- 집중 중 Active Pressure가 0이 아니고 마나는 실제 시간으로 감소한다.
+- 완성 주문 원터치 Stock 경로가 없다.
+
+현재: `SPEC_PASS / IMPLEMENTATION_NOT_STARTED`.
+
+## Gate 4 — 모바일 UX·접근성
+
+통과 조건:
+
+- 메인·보조·대상 노드가 색 없이 구분된다.
+- 인접 연결 가능 셀과 잘못된 연결 이유가 읽힌다.
+- 집중 필사 중 HP·마나·적 의도·시간 상태가 유지된다.
+- 보정·가이드 입력이 위력 차별을 만들지 않는다.
+- 텍스트 배율 `1.00`, `1.30`, Android 최대값에서 검증한다.
+
+현재: `WIREFRAME_NEXT / DEVICE_NOT_RUN`.
+
+## Gate 5 — 콘텐츠·서사
+
+통과 조건:
+
+- 서리꽃 온실에서 시설 복구·구조·정령 안정화·봉쇄·제압과 합리적 미등록 해결이 가능하다.
+- 선택지는 의도만 정하고 주문을 자동 선택하지 않는다.
+- 조사·관찰은 원리·정답·성공률·결말을 설명하지 않는다.
+- 치명 위험 외 교수 직접 개입은 없다.
+
+현재: `PLANNING_PASS / HUMAN_NOT_RUN`.
+
+## Gate 6 — 개발환경
+
+현재 증거:
+
+- Godot `4.7.1.stable` 설치 도구·검증 스크립트.
+- CI headless probe와 export template probe.
+- 최신 PR HEAD에서 Toolchain workflow 성공 필요.
+
+한계:
+
+- 제품 `project.godot` 없음.
+- 모바일·성능·접근성 Runtime 증거 없음.
+- 공식 HTTPS 다운로드 SHA-256 고정 검증은 `[보류/비차단]`.
+
+현재: `TOOLCHAIN_PASS / PRODUCT_NOT_STARTED`.
+
+## Gate 7 — PR 병합
+
+병합 전 필수:
+
+1. PR 전체 변경 파일 검토.
+2. P0/P1 문서 충돌 해소.
+3. 구형 파일 상태 색인 완료.
+4. GitHub·Sheet 동일 Decision ID Readback.
+5. 최신 HEAD CI 전부 성공.
+6. 미해결 Review Thread 0.
+7. 사용자 병합 승인.
+
+현재 사용자 승인:
+
+```yaml
+merge_trigger: USER_EXPLICIT_EARLY_FLUSH_AT_5_OF_10
+merge_authorized: true
+```
+
+PR #57 병합 뒤 별도 finalization PR에서 main 포인터·Batch reset·Sheet readback을 확정한다.
+
+## 현재 다음 작업
 
 ```text
-기능 글자 수 n
-→ 10 + 5 × (n - 1)초
+PR #57 정본 감사 완료
+→ 최신 HEAD CI·Review 검증
+→ PR #57 병합
+→ main finalization/readback
+→ 3×3 Mobile Landscape Wireframe
+→ Frostbloom UX Map·Art Direction
+→ 선택 범위 Codex 구현 계획
 ```
 
-검증 Gate:
+## 금지
 
-- 준비 용량 초과 0건.
-- 자연충전 대상 자동 변경 0건.
-- Stock 소비·결과 적용 중복 0건.
-- Save/Resume 충전 중복 완성 0건.
-- 완성 주문 Stock이 새로운 상황 설계를 전면 대체하지 않음.
-
-## 4. GM-SUMMON-SYSTEM-01 Gate
-
-```yaml
-status: USER_APPROVED_THREE_SECONDARY_REVISED_DEFAULTS
-persistent_main_summon: 1
-secondary_active_summon_cap: 3
-total_active_summon_cap: 4
-secondary_slots: [S1, S2, S3]
-secondary_role_duplicate_cap_in_slice: 1
-duration_limit: NONE
-cooldown: NONE
-summon_spell_mana_cost: 2
-support_cycle_seconds: 5
-```
-
-보조 역할은 `PRODUCTION / GUARDIAN / ASSAULT / RECOVERY`다.
-
-정수 기본값:
-
-- 메인 `[스톡] 1`.
-- 생산형 `[스톡] 2`.
-- 수호형 `[방어도] 2`.
-- 공격형 `[공격] 2`.
-- 치유형 `[치유] 2`.
-
-Slice 가드레일:
-
-- 네 역할 중 최대 세 역할 편성.
-- 보조 사이 같은 역할 중복 금지.
-- 활성 `[스톡]` 합계 상한 `3`.
-- 같은 시각 Event는 `MAIN → S1 → S2 → S3`.
-- 자동 공격으로 불안정도 0·최종 해결 금지.
-- Offline 공격·치유·Stock 지원 금지.
-
-## 5. GM-STOCK-SUMMON-STATE-INTERFACE-01 Gate
-
-```yaml
-status: APPROVED_DESIGN_HARDENED_FOR_HUD
-secondary_state_shape: ARRAY_MAX_3
-secondary_slot_uniqueness: REQUIRED
-secondary_role_uniqueness_in_slice: REQUIRED
-exactly_once_owner: RESULT_LEDGER
-hud_event_application: PROHIBITED
-```
-
-필수 소유권:
-
-- `StockLoadoutState`.
-- `StockChargeState`.
-- `SummonRosterState`.
-- `SummonActionState`.
-- `PlayerCombatState`.
-- `SituationCombatState`.
-- `ResultLedger`.
-- `SessionSnapshot`.
-- `SummonHudViewModelBuilder`.
-- `SummonEventPresentationQueue`.
-
-필수 원자성:
-
-- `[소환 주문]`의 역할·슬롯·마나·교체·활성.
-- 보조 귀환과 파생 스탯 재계산.
-- Stock 소비·주문 효과 적용.
-- `summon_event_id`·`stock_charge_event_id` Exactly-once.
-- 손상 슬롯·역할 중복 Save 자동 덮어쓰기 금지.
-
-## 6. GM-MOBILE-SUMMON-HUD-WIREFRAME-01 Gate — CLOSED_SPEC
-
-```yaml
-status: USER_APPROVED_HARDENED_SPEC_ACTIVE
-layout: LEFT_SAFE_AREA_VERTICAL_COMPACT_RAIL
-slot_order: [MAIN, S1, S2, S3]
-detail: ONE_CONTEXTUAL_DRAWER
-writing_focus_detail: READ_ONLY_MICRO_DETAIL
-drawer_read_pauses_clock: false
-management_confirmation_pauses_clock: true
-management_entry_requires_safe_draft: true
-same_time_event_presentation_budget_seconds_total: 1.2_TEST_VALUE
-text_scale_tests: [1.00, 1.30, ANDROID_MAX_2.00]
-timer_announcement: FOCUS_OR_MEANINGFUL_CHANGE_ONLY
-active_stroke_owner: WRITING_CANVAS
-event_dedup_owner: RESULT_LEDGER
-hud_mutates_state: false
-```
-
-검증 Gate:
-
-- 적 의도·타이머·환경 위험·HP·마나·Writing Canvas 가림 0.
-- Android `48dp`, iOS `44pt` Touch target 실측.
-- Drawer 열람에 따른 Clock 정지 0.
-- 안전한 Draft 보존 전 관리 Pause 0.
-- Active Stroke 중 Rail 선택·Focus 이동·관리 실행 0.
-- 같은 시각 Event 순서 변동 0.
-- 같은 시각 Batch 전체 표시시간 `<=1.2초 TEST_VALUE`.
-- Text Scale 100%·130%·Android 최대 200% 핵심 정보 손실 0.
-- 타이머 매초 Screen-reader 발표 0.
-- HUD의 State 수정·Event dedup 판단 0.
-- 손상 Save 자동 교정 0.
-
-현재 Gate 상태는 **명세 승인 완료**이며 Runtime PASS가 아니다.
-
-## 7. Mobile HUD TDD Plan·Test Matrix Gate — CLOSED_PLAN_ONLY
-
-책임 원본:
-
-- `docs/superpowers/plans/2026-08-03-three-slot-mobile-summon-hud-implementation-plan.md`.
-- `docs/planning/MOBILE_SUMMON_HUD_01_TDD_TEST_MATRIX_2026-08-03.md`.
-
-```yaml
-plan_status: WRITTEN_NOT_EXECUTED
-matrix_status: WRITTEN_NOT_EXECUTED
-task_count: 8
-runtime_tests: NOT_RUN
-device_tests: NOT_RUN
-accessibility_tests: NOT_RUN
-human_tests: NOT_RUN
-```
-
-계획은 nullable ViewModel, 명시적 Management Confirm, bounded Event Queue, Stroke 입력 소유권, Safe Area, 접근성, Save/Resume, Scope CI를 TDD 단위로 분리한다.
-
-실행 조건:
-
-1. Godot Toolchain preflight PASS.
-2. Base v9.4.3 최종 main 기준 Plan 재검증.
-3. `GM-FOUNDATION-POC-EXECUTION-READINESS-01` PASS.
-4. Mobile Summon HUD 구현 Scope 별도 승인.
-
-## 8. GM-GRILL-WORK-QUALITY-GATE-01
-
-```yaml
-status: USER_APPROVED_ACTIVE
-benchmark_required_for_grillme: true
-industry_or_standard_comparison_required: true
-adopt_adapt_reject_required: true
-adversarial_review_required: true
-text_integrity_required: true
-github_sheet_readback_required: true
-```
-
-경량 동기화는 `N/A_NO_DESIGN_CHANGE`를 사용할 수 있지만 Text Integrity와 Readback은 필수다.
-
-## 9. Text Integrity Gate
-
-대상: `.md`, `.json`, `.yml`, `.yaml`, `.py`, `.gd`, `.tscn`, `.tres`, `.txt`, `.csv`.
-
-Hard Gate:
-
-- UTF-8 strict decode PASS.
-- UTF-8 BOM 0건.
-- Unicode NFC PASS.
-- replacement character `U+FFFD` 0건.
-- 허용되지 않은 제어문자 0건.
-- mojibake 의심 패턴 0건 또는 사람 확인 완료.
-- JSON parse PASS.
-- GitHub·Sheet sentinel Readback PASS.
-
-Readback sentinel:
-
-```text
-소환수
-자연충전
-적대적 검토
-벤치마킹
-마도서
-```
-
-실패 시 `TEXT_INTEGRITY_FAILED`이며 병합하지 않는다.
-
-## 10. Active Pressure Clock Gate
-
-진행:
-
-- 관찰·작성·후보·조합.
-- HUD Drawer 열람·슬롯 비교.
-
-정지:
-
-- 주문·소환수 행동·적 공격 System Resolve.
-- 안전한 Draft 보존 뒤 명시적 `MANAGEMENT_CONFIRM`.
-- Pause·강제 Tutorial.
-- Focus loss·Background.
-- Save/Load·입력 차단 Recognition·Loading.
-- 직접 피해 Stock 정지.
-
-Offline catch-up과 복귀 순간 다중 Event를 금지한다.
-
-## 11. P1 — Execution Readiness 전 필수
-
-### P1-01 Mobile HUD Wireframe — CLOSED_SPEC
-
-사용자 명세 검토와 7개 표적 보강이 승인됐다.
-
-### P1-02 TDD Plan·Test Matrix — CLOSED_PLAN_ONLY
-
-계획과 Matrix가 작성됐으며 실행되지 않았다.
-
-### P1-03 Godot Toolchain Preflight — OPEN
-
-- Godot binary·version.
-- renderer.
-- headless test 실행.
-- Mobile export template.
-- 프로젝트 생성 전 경로·권한.
-
-### P1-04 Base v9.4.3 Plan 재검증·Execution Readiness — OPEN
-
-- 최종 main에서 Implementation Plan 재검증.
-- 3슬롯 State Interface와 Foundation POC 범위 연결.
-- `GM-FOUNDATION-POC-EXECUTION-READINESS-01`.
-- P0=0·P1=0 및 별도 Scope 승인 때만 코드 실행.
-
-## 12. P2 — Vertical Slice 제작 전
-
-1. `BATTLE-TUNING-01`.
-2. `RESULT-GRADING-01`.
-3. 대표 제작 미니게임 — `촉매 배합·안정화 1개` 권장.
-4. 선택형 현장실습 전투 — 실제 Slice 제외·Preview 권장.
-5. `GRIMOIRE-SCREEN-01`.
-6. `MAIN-SCREEN-01`.
-7. `AUDIO-DIRECTION-01`.
-8. 접근성·난이도 기본 정책.
-9. Year-One Chapter Map.
-10. 커리큘럼 글자 Catalog.
-11. 성장·평가·재료·레시피·인벤토리 수치.
-12. Slice 장면별 시간 예산.
-
-## 13. Foundation POC 경계
-
-Execution Readiness PASS 뒤 허용 후보:
-
-- 최소 Godot 프로젝트·Headless tests.
-- Focus Task 상태 전이.
-- Atomic Result Ledger.
-- Stroke·Draft·Candidate 생명주기.
-- Deterministic Test Recognizer.
-- Session Snapshot·atomic save.
-- Pause·Resume·Focus loss.
-- 무아트 Smartphone Landscape Harness.
-- 합성 비전투 1개·합성 단일 강적 1개.
-
-Stock·소환수 Runtime과 Mobile Summon HUD 구현은 별도 Scope 승인 없이 자동 포함하지 않는다.
-
-## 14. 검증 경계
-
-```text
-GODOT_PROJECT = NOT_STARTED
-PRODUCT_CODE_SCENE_RESOURCE_DATA = NOT_FOUND
-MOBILE_SUMMON_HUD_SPEC = USER_APPROVED_HARDENED
-MOBILE_SUMMON_HUD_PLAN = WRITTEN_NOT_EXECUTED
-MOBILE_SUMMON_HUD_IMPLEMENTATION = NOT_AUTHORIZED
-CODEX_EXECUTION = BLOCKED
-RUNTIME_VALIDATION = NOT_RUN
-MOBILE_DEVICE_VALIDATION = NOT_RUN
-PC_ADAPTATION_VALIDATION = NOT_RUN
-PERFORMANCE_VALIDATION = NOT_RUN
-ACCESSIBILITY_VALIDATION = NOT_RUN
-HUMAN_PLAYTEST = NOT_RUN
-```
+- 제품 구현 없이 Runtime PASS 주장.
+- Draft/Working/과거 Sync를 현재 정본으로 사용.
+- 완성 주문 원터치 Stock 재도입.
+- 집중 필사 완전 Pause.
+- 그림 실력에 위력 보너스.
+- 교수 예시를 정답·자동 회로로 사용.
