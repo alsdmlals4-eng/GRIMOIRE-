@@ -5,8 +5,8 @@
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 decision_id: GM-3X3-CIRCUIT-STOCK-FOCUS-01
-status: USER_APPROVED_ACTIVE
-written_at: 2026-08-04T09:14+09:00
+status: USER_APPROVED_ACTIVE_HARDENED
+review: GR-ADV-20260804-3X3-CANON-PREMERGE
 implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 human_validation: NOT_RUN
@@ -14,316 +14,312 @@ human_validation: NOT_RUN
 
 ## 1. Design Goal
 
-주문 제작의 주 행동을 `글자 선택 → 3×3 노드 배치 → 방향성 연결 → 대상 선택 → Commit`으로 단순화한다.
-
-직접 그리기는 주문 제작의 필수 입력에서 제외하고, 전투 중 부족한 특정 글자 Stock을 능동적으로 보충하는 보조 숙련 행동으로 재배치한다.
+주문 제작을 다음 하나의 공통 문법으로 통합한다.
 
 ```text
-기본 전투 판단
-→ Stock으로 글자 노드 배치
-→ 대상 노드 배치
-→ 노드 연결
-→ 주문 Commit
-
-선택적 보조 행동
-→ [집중 필사]
-→ 특정 글자 직접 작성
-→ 해당 글자 Stock +1
+글자 선택
+→ 3×3 셀에 글자·대상 노드 배치
+→ 인접 노드 방향 연결
+→ 예상 효과·위험 확인
+→ Commit
 ```
 
-## 2. Why This Approach
+전투·사건 해결은 같은 회로판을 사용한다. 직접 그리기는 주문마다 반복하는 필수 입력이 아니라 특정 글자 Stock을 보충하는 선택적 숙련 행동이다.
 
-### Rejected A — Drawing every glyph directly into the circuit
+## 2. Selected Approach
 
-- 3×3 배치·연결과 손글씨 입력을 동시에 처리해 모바일 조작이 과밀해진다.
-- 빠른 전투에서 그림 입력이 반복 피로와 접근성 장벽이 된다.
-- 그림 실력이 주문 성능과 전투 속도를 독점할 위험이 있다.
+### 폐기 — 모든 글자를 주문 안에서 직접 작성
 
-### Rejected B — Complete spell one-tap Stock
+모바일 조작과 판단이 과밀하고 접근성 부담이 커진다.
 
-- 알려진 주문을 원터치로 실행하면 3×3 회로 판단이 사라진다.
-- 대상·분기·보조 글자 선택을 우회한다.
-- 상황 해결과 전투가 서로 다른 규칙처럼 느껴진다.
+### 폐기 — 완성 주문 원터치 Stock
 
-### Selected C — Typed glyph Stock plus optional focus scribing
+대상·분기·배치 판단을 우회한다.
 
-- 주문 조합은 언제나 3×3 회로를 거친다.
-- Stock은 글자 하나의 직접 입력만 대체한다.
-- 필사는 부족한 글자를 능동 보충하지만 시간과 마나의 위험을 가진다.
-- 자연충전만으로도 기본 전투가 가능해 필사가 강제되지 않는다.
+### 채택 — Typed Glyph Stock + 3×3 Circuit + Focus Scribing
 
-## 3. 3×3 Circuit Model
+- Stock은 숙련 글자 하나의 반복 입력을 대체한다.
+- 주문은 항상 3×3 회로를 거친다.
+- 필사는 시간·마나 위험과 교환해 같은 글자 Stock을 보충한다.
+- 자연충전만으로도 기본 전투가 가능하다.
 
-### Cell model
+## 3. Data Model
+
+### Cell
 
 ```yaml
 rows: 3
 columns: 3
 cell_count: 9
-cell_contents:
+contents:
   - EMPTY
   - MAIN_GLYPH
   - SUPPORT_GLYPH
   - TARGET_KEYWORD
 ```
 
-### Node identity
+### Node
 
 ```yaml
 node_id: string
 cell_index: 0_to_8
 node_type: MAIN_GLYPH | SUPPORT_GLYPH | TARGET_KEYWORD
+glyph_subtype: EFFECT | CONNECTION_SUPPORT | MODIFIER | null
 glyph_id: string | null
 target_id: string | null
 incoming_edge_ids: string[]
 outgoing_edge_ids: string[]
 ```
 
-### Edge identity
+### Edge
 
 ```yaml
 edge_id: string
 from_node_id: string
 to_node_id: string
 direction: DIRECTED
+adjacency: ORTHOGONAL_OR_DIAGONAL_ONE_CELL
 crosses_other_edge: false
-passes_through_unrelated_node: false
+skips_cell: false
 ```
 
-### Validation order
+## 4. Topology Contract
+
+```yaml
+main_glyph_count: exactly_1
+support_glyph_count_slice: 0_to_2
+target_count_slice: 1_to_4
+total_node_count_slice: up_to_7
+branch_count_slice: up_to_1
+edge_rule: ADJACENT_8_NEIGHBOR_ONLY
+crossing_edges: prohibited
+all_nodes_reachable_from_main: required
+slice_target_nodes: TERMINAL_LEAF
+hidden_position_bonus: prohibited
+```
+
+위치는 연결 가능성과 분기 형태를 결정한다. 중앙·모서리·선 길이에는 숨은 수치 보너스가 없다.
+
+`흐름`은 플레이어에게 보조 글자로 보이지만 내부적으로 `CONNECTION_SUPPORT`다.
+
+## 5. Validation Order
 
 ```text
 1. 메인 글자 정확히 1개
-2. 모든 글자·대상 노드가 메인에서 도달 가능
-3. 보조 글자 규칙과 대상 수가 호환
-4. 연결선 교차·고립·순환 오류 확인
-5. 현재 상황에서 대상이 유효한지 확인
-6. 예상 효과와 주요 위험 표시
-7. Commit 허용
+2. 모든 사용 노드가 메인에서 도달 가능
+3. 모든 연결이 인접 셀 사이인가
+4. 교차·건너뛰기·고립·금지 순환이 없는가
+5. 보조 글자와 대상 수가 호환되는가
+6. 대상이 현재 Snapshot에서 유효한가
+7. Stock 예약과 마나가 충족되는가
+8. 예상 효과·주요 위험·미해결 문제 표시
+9. Commit 허용
 ```
 
-## 4. Topology Rules
+## 6. Target Provider
 
-- 셀 간 거리는 위력·마나·Stock 비용을 바꾸지 않는다.
-- 글자의 연결 순서와 분기 구조가 의미를 만든다.
-- 한 노드에서 여러 대상 노드로 나가는 분기는 허용된 보조 글자가 있어야 한다.
-- Vertical Slice에서는 선 교차와 복수 메인을 금지한다.
-- 알려진 주문명은 `글자 집합 + 연결 위상 + 핵심 적용 방식`이 등록 설계도와 일치할 때 표시한다.
-- 대상 인물의 개별 ID는 주문명을 바꾸지 않지만, 단일·다중·지면 지정 같은 대상 형식은 주문 식별에 포함될 수 있다.
+### Situation
 
-## 5. Target Model
+- 눈에 보이는 인물·시설은 기본 후보가 될 수 있다.
+- 내부 부품·숨은 약점·환경 경로는 조사 뒤 제공한다.
+- 핵심 생명 안전 대상은 복수 경로로 확인 가능해야 한다.
 
-### Situation target provider
-
-조사·대화·관찰 결과가 사용할 수 있는 대상 키워드를 제공한다.
+### Combat
 
 ```yaml
-source_examples:
-  - CASSIAN_COMMUNICATION
-  - PIPE_DIAGRAM
-  - GREENHOUSE_IRRIGATION_INSPECTION
-  - SPIRIT_OBSERVATION
-```
-
-### Combat target provider
-
-현재 전투 Snapshot에서 대상 후보를 제공한다.
-
-```yaml
-combat_target_types:
+auto_list:
   - PLAYER
-  - ALLY
+  - IDENTIFIED_ALLY
   - MAIN_SUMMON
-  - SECONDARY_SUMMON
-  - ENEMY
+  - ACTIVE_SECONDARY_SUMMON
+  - IDENTIFIED_VISIBLE_ENEMY
+observed_or_investigated:
   - TERRAIN
   - DEVICE
   - ZONE
+  - HIDDEN_WEAKNESS
 ```
 
-대상 후보는 UI가 임의로 만들지 않는다. 사건·전투 상태가 제공한 읽기 전용 Target ViewModel을 사용한다.
+퇴장·사망·완전 은폐·효과 범위 밖 대상은 비활성화한다. Target Provider는 읽기 전용 Snapshot을 제공하고 회로 UI가 임의 대상을 생성하지 않는다.
 
-## 6. Glyph Stock Model
-
-### Definition
+## 7. Glyph Stock
 
 ```text
 특정 글자 Stock 1
-= 그 글자를 한 번 직접 그리지 않고 노드로 배치할 권리 1회
+= 해당 glyph_id 노드 1회를 그리지 않고 배치할 권리
 ```
-
-### Inventory
 
 ```yaml
 shared_capacity: 8_TEST_VALUE
-entries:
-  - glyph_id: string
-    quantity: integer
-    reserved_quantity: integer
-    natural_charge_remaining_ms: integer | null
+completed_spell_stock: false
+target_stock_cost: 0
+edge_stock_cost: 0
 ```
 
-### Reservation transaction
+### Reservation Transaction
 
 ```text
-노드 배치
-→ Stock 예약
-
-노드 이동
-→ 동일 예약 유지
-
-노드 교체
-→ 이전 예약 해제 + 새 Stock 예약
-
-회로 취소
-→ 전체 예약 해제
-
-Commit 성공
-→ 예약 Stock 소비 + 주문 마나 소비 + 결과 적용
-
-Commit 실패
-→ 예약 유지 또는 안전 취소 선택
+글자 노드 배치 → 같은 글자 Stock 예약
+노드 이동 → 예약 유지
+글자 교체 → 이전 예약 해제 + 새 Stock 예약
+노드 제거·회로 취소 → 예약 해제
+Commit 성공 → Stock·마나·결과 원자 처리
+Commit 실패·대상 취소·시스템 오류 → 소비 없음
 ```
 
-소비와 결과 적용은 하나의 Transaction ID로 Exactly-once 처리한다.
-
-## 7. Natural Charge Model
+## 8. Natural Charge
 
 ```yaml
 active_target_count: 1
 charge_target_type: TYPED_GLYPH
 base_seconds_per_glyph: 10_TEST_VALUE
+minimum_actual_seconds: 3_TEST_VALUE
 clock: ACTIVE_PRESSURE
 progress_persistence: PER_GLYPH
 summon_support: INTEGER_SECONDS_REDUCTION
+offline_charge: false
 ```
 
-완성 주문 충전은 제거한다. 기존 완성 주문 설계도는 주문명·회로 안내용으로 남을 수 있지만 Stock 항목이 되지 않는다.
+완성 주문 충전은 존재하지 않는다.
 
-## 8. Focus Scribing State
+## 9. Focus Scribing
 
 ### Entry
 
-- 학습·숙련해 필사 가능한 글자를 먼저 선택한다.
-- 공용 Stock 용량에 빈칸이 있어야 한다.
-- System Resolve·Pause·Background·제어 불가 상태가 아니어야 한다.
-- 최소 1 이상의 마나가 있어야 한다.
+```text
+필사할 숙련 글자 선택
+→ 빈 공용 용량 1칸 예약
+→ STATE_FOCUS_SCRIBE 진입
+```
 
-### Runtime contract
+진입 불가:
+
+- 공용 용량 여유 없음
+- System Resolve·Pause·Background
+- 행동 불가 제어 상태
+- 마나 0
+
+### Runtime
 
 ```yaml
-state_code: FOCUS_SCRIBE
+state_code: STATE_FOCUS_SCRIBE
+player_label: 집중_필사
 active_pressure_scale: 0.25_TEST_VALUE
 mana_drain_clock: REAL_TIME
 mana_drain_per_second: 1_TEST_VALUE
 enemy_progress: CONTINUES_AT_ACTIVE_PRESSURE_SCALE
-natural_stock_charge: CONTINUES_ONLY_BY_ACTIVE_PRESSURE
-summon_stock_cycle: CONTINUES_ONLY_BY_ACTIVE_PRESSURE
+natural_charge: ACTIVE_PRESSURE_ONLY
+summon_stock_cycle: ACTIVE_PRESSURE_ONLY
+reserved_capacity_slots: 1
 ```
+
+예약된 용량은 자연충전과 소환수 지원이 채울 수 없다.
 
 ### Success
 
 ```text
-선택 글자와 인식 결과가 일치
-+ 완성된 유효 획
-+ Stock 용량 여유
-→ 해당 glyph_id Stock +1
+선택 glyph_id와 인식 glyph_id 일치
++ 유효한 완성 획
+→ 예약칸에 같은 glyph_id Stock +1
 → 고유 stock_generation_event_id 기록
 ```
 
-### Exit and interruption
+### Interrupt
+
+- 수동 취소
+- 인식 실패
+- 실제 HP 감소를 동반한 직접 피해
+- 행동 불가 제어 상태
+- 마나 0
+- Focus loss·Background
+
+중단 시 부분 획은 폐기하고 예약 용량을 해제한다. 시간·마나는 환불하지 않는다. 최종 피해 0과 기본 지속 피해는 Prototype에서 중단하지 않는다.
+
+## 10. Known Spell Blueprint
 
 ```yaml
-manual_cancel:
-  stock_gain: 0
-  mana_refund: 0
-
-direct_damage_interrupt:
-  partial_trace_saved: false
-  stock_gain: 0
-
-mana_zero:
-  auto_exit: true
-  stock_gain_if_not_completed: 0
-
-focus_loss_or_background:
-  auto_exit: true
-  partial_trace_saved: false
+mode: NON_BINDING_GHOST_REFERENCE
+auto_reserve_stock: false
+auto_target: false
+auto_commit: false
+auto_best_route: false
 ```
 
-## 9. UX States
+등록 주문은 반투명 참고 위상을 제공할 수 있다. 플레이어는 실제 노드 배치·Stock 예약·대상 선택·Commit을 직접 수행한다.
 
-### Circuit assembly
-
-- 중앙: 3×3 회로판
-- 좌측 또는 하단: 보유 글자 Stock
-- 우측: 예상 효과·주요 위험·남은 문제
-- 대상 노드는 사건/전투 Target Tray에서 끌어온다.
-- 글자 노드의 Stock 예약 여부를 숫자와 문구로 표시한다.
-
-### Focus scribing
-
-- 3×3 회로판을 축소하거나 읽기 전용으로 유지한다.
-- 필사 캔버스를 우선 영역으로 확장한다.
-- `[집중]`, 현재 시간 흐름 상태, `마나 -1/초 TEST_VALUE`, 예상 Stock 증가를 항상 표시한다.
-- 적 의도·치명 위험·현재 HP·마나는 계속 보여야 한다.
-- 시간을 멈춘 것처럼 보이는 정지 연출을 사용하지 않는다.
-
-## 10. Accessibility
-
-- 직접 필사를 하지 않아도 기본 전투와 사건 해결이 가능해야 한다.
-- 가이드 선·스냅·획 순서 안내는 허용하며 Stock 지급량은 동일하다.
-- 필사 정확도는 성공/재시도 판정만 하고 위력 보너스를 주지 않는다.
-- Reduced Motion에서는 배경 감속 Blur 대신 정적 집중 테두리와 명확한 시간 상태 문구를 사용한다.
-- 타이머와 마나 소모는 색뿐 아니라 숫자·아이콘·텍스트로 표시한다.
-
-## 11. Adversarial Review
-
-### Exploit: Focus becomes a pause button
-
-Countermeasure: Active Pressure와 적 Event가 계속 진행하며 마나는 실제 시간으로 감소한다.
-
-### Exploit: Focus farms passive charge and summon cycles
-
-Countermeasure: 자연충전과 소환수 주기는 Active Pressure 기준이라 집중 중 느려진다.
-
-### Exploit: Easiest glyph generates universal Stock
-
-Countermeasure: Stock은 typed glyph이며 그린 glyph_id와 생성 glyph_id가 같아야 한다.
-
-### Exploit: Cancel duplicates reserved Stock
-
-Countermeasure: placement reservation과 commit consumption을 단일 Stock Transaction 계층이 소유한다.
-
-### Usability risk: 3×3 becomes visual spaghetti
-
-Countermeasure: Slice에서 교차선 금지, 메인 1개, 보조 2개, 분기 1회를 사용한다.
-
-### Accessibility risk: drawing skill becomes mandatory DPS
-
-Countermeasure: 자연충전은 항상 존재하고 필사는 위력 보너스를 주지 않는다.
-
-## 12. Prototype Test Values
+## 11. Preview
 
 ```yaml
-shared_capacity: 8
-one_glyph_natural_charge_seconds: 10
-minimum_actual_natural_charge_seconds: 3
-focus_active_pressure_scale: 0.25
-focus_mana_drain_per_real_second: 1
-successful_scribe_stock_gain: 1
+fields:
+  - primary_effect
+  - speed
+  - scope
+  - pressure_change
+  - likely_benefit
+  - main_risk
+  - unresolved_problem
+  - confidence
+confidence_values:
+  - 정보_충분
+  - 정보_부분
+  - 정보_부족
 ```
 
-이 값은 밸런스 가설이며 Runtime·사람 검증 후 조정한다.
+성공 확률 숫자와 결말 미리보기는 금지한다.
 
-## 13. Acceptance Criteria
+## 12. Mobile UX
 
-- `보호 → 집중 → 아군 A`가 단일 보호로 검증된다.
-- `보호 → 분산 → 아군 A/아군 B`가 분산 보호로 검증된다.
-- 대상 노드와 연결선은 Stock을 소비하지 않는다.
-- 직접 필사 성공 시 선택한 글자 Stock만 1 증가한다.
-- 필사 중 적·환경 진행이 0이 되지 않는다.
-- 필사 중 실제 시간 기준 마나가 감소한다.
-- 필사 중 자연충전·소환수 생산이 실제 시간 기준으로 가속되지 않는다.
-- 완성 주문 Stock 원터치 경로가 존재하지 않는다.
-- 편의성 입력 사용자가 주문 위력·마나 효율에서 불이익을 받지 않는다.
+### Circuit Assembly
+
+- 중앙: 3×3 회로판.
+- 한쪽: 보유 글자 Stock과 수량.
+- 반대쪽: 효과·위험·미해결 문제.
+- 대상 Tray: 현재 Situation/Combat Provider가 제공한 후보.
+- 인접 연결 가능 셀만 드래그 중 강조.
+- 메인·보조·대상은 색 없이도 모양·라벨·아이콘으로 구분.
+
+### Focus Scribing
+
+- 회로판은 축소·읽기 전용으로 유지.
+- 필사 Canvas를 우선 영역으로 확장.
+- `[집중 필사]`, `시간 0.25배 TEST`, `마나 -1/초 TEST`, 획득 글자·예약 용량을 표시.
+- HP·적 의도·치명 위험·마나는 계속 노출.
+- 완전 정지처럼 보이는 연출 금지.
+
+## 13. Accessibility
+
+- 자연충전과 Stock 선택만으로 기본 전투 가능.
+- 가이드 선·스냅·획 순서 안내 허용.
+- 보정 입력도 같은 Stock 1개 지급.
+- 그림 품질은 위력·마나 효율·지급량 보너스 없음.
+- Reduced Motion은 Blur 대신 정적 테두리와 시간 상태 문구 사용.
+- 시간·마나·위험은 색 외 숫자·아이콘·텍스트로 중복 표현.
+
+## 14. Adversarial Guards
+
+```text
+완전 Pause 악용 → Active Pressure와 마나 비용 유지
+수동+수동 외 생산 가속 → 자연충전·소환수는 Active Pressure만 사용
+범용 Stock 변환 → 그린 glyph_id와 생성 glyph_id 동일
+필사 중 마지막 용량 경합 → 진입 시 1칸 예약
+Stock 예약 복제 → 단일 Transaction 계층 소유
+3×3 장식화 → 인접 연결만 허용
+Visual spaghetti → 교차 금지·분기 1·노드 7
+설계도 정답 버튼화 → Ghost Reference only
+그림 실력 강제 → 위력 보너스 없음·기본 전투 필사 불필요
+```
+
+## 15. Acceptance Criteria
+
+- 인접하지 않은 노드는 연결할 수 없다.
+- 모든 사용 노드는 메인에서 도달 가능하다.
+- 대상 노드는 Slice에서 끝점이다.
+- `보호→집중→A`와 `보호→분산→A/B`가 다른 대상 규칙으로 검증된다.
+- 대상과 연결선은 Stock을 쓰지 않는다.
+- 필사 성공은 선택한 같은 글자 Stock만 1 증가시킨다.
+- 필사 예약칸은 수동 외 충전이 침범하지 않는다.
+- 필사 중 적·환경 진행과 마나 소모가 유지된다.
+- 완성 주문 원터치 경로가 없다.
+- 접근성 입력 사용자가 성능 불이익을 받지 않는다.
+
+모든 수치는 Runtime·사람 검증 전 `TEST_VALUE`다.
