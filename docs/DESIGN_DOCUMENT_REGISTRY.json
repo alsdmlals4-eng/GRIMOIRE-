@@ -1,21 +1,24 @@
 {
-  "schema_version": 23,
-  "registry_role": "grimoire-current-canon-router",
+  "schema_version": 24,
+  "registry_role": "grimoire-current-canon-and-approved-draft-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
     "default_branch": "main",
-    "closure_pull_request": 60,
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "primary_platform": "Mobile",
     "orientation": "LANDSCAPE_FIXED",
     "base_release": "v9.4.3",
     "main_authority_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
+    "main_closure_commit": "4c50b462a8e296e24583b727ab93c82ba1e9c041",
     "current_main_sync": "GR-SYNC-20260804-12-CLOSURE",
-    "latest_decision": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
-    "grill_counter": "0_of_10",
-    "pending_decisions": 0,
-    "canon_status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
+    "working_pull_request": 61,
+    "working_branch": "agent/glyph-vault-stock-governance-design",
+    "latest_approved_decision": "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
+    "grill_counter": "2_of_10",
+    "pending_decisions": 2,
+    "checkpoint_state": "HIGH_CANON_IMPACT_DRAFT_CHECKPOINT",
+    "merge_authorized": false,
     "product_implementation": "NOT_STARTED",
     "runtime_validation": "NOT_RUN"
   },
@@ -27,7 +30,7 @@
     "finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
     "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
     "adapter": "skills/PROJECT_BASE_ADAPTER.json",
-    "adapter_scope": "BASE_PIN_ROUTING_PROTECTED_PATHS_ONLY_CURRENT_STATE_SNAPSHOTS_NON_CANONICAL"
+    "promotion_of_current_work": "HOLD_OVERLAPPING_BASE_PRS_AND_PROJECT_EVIDENCE_REQUIRED"
   },
   "restoration_order": [
     "AGENTS.md",
@@ -36,64 +39,109 @@
     "docs/DEVELOPMENT_GATES.md",
     "docs/planning/CANON_STATUS_INDEX_2026-08-04.md",
     "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md",
+    "docs/superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md",
+    "docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md",
+    "docs/superpowers/specs/2026-08-05-benchmark-tdd-checkpoint-governance-design.md",
+    "docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md",
     "docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md",
     "docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md",
     "docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_APPROVAL_2026-08-04.md",
-    "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md",
-    "docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md",
     "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
-    "docs/planning/sync/GR-SYNC-20260804-12-CLOSURE.md"
+    "docs/planning/sync/GR-SYNC-20260805-01-GLYPH-VAULT-STOCK-GOVERNANCE.md"
   ],
   "canonical_documents": [
-    {"path":"AGENTS.md","status":"ACTIVE_TOP_LEVEL_AUTHORITY"},
+    {"path":"AGENTS.md","status":"ACTIVE_TOP_LEVEL_AUTHORITY_WITH_APPROVED_DRAFT_CHECKPOINT"},
     {"path":"START_HERE.md","status":"ACTIVE_ENTRYPOINT"},
     {"path":"docs/ACTIVE_CONTEXT.md","status":"ACTIVE_CONTEXT"},
     {"path":"docs/DEVELOPMENT_GATES.md","status":"ACTIVE_GATE_AUTHORITY"},
-    {"path":"docs/planning/CANON_STATUS_INDEX_2026-08-04.md","status":"ACTIVE_LEGACY_STATUS_AUTHORITY"},
+    {"path":"docs/planning/CANON_STATUS_INDEX_2026-08-04.md","status":"ACTIVE_LEGACY_AND_DRAFT_STATUS_AUTHORITY"},
     {"path":"docs/planning/CURRENT_CONFIRMED_DECISIONS.md","status":"ACTIVE_DECISION_SNAPSHOT"},
-    {"path":"docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md","decision_id":"GM-3X3-CIRCUIT-STOCK-FOCUS-01","status":"USER_APPROVED_ACTIVE_HARDENED"},
-    {"path":"docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md","status":"ACTIVE_IMPLEMENTATION_DESIGN_NOT_STARTED"},
+    {"path":"docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md","decision_id":"GM-GLYPH-VAULT-UNIVERSAL-STOCK-01","status":"USER_APPROVED_PENDING_MERGE_DESIGN_REVIEW"},
+    {"path":"docs/superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md","decision_id":"GM-GLYPH-VAULT-UNIVERSAL-STOCK-01","status":"ACTIVE_APPROVED_DRAFT_IMPLEMENTATION_DESIGN"},
+    {"path":"docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md","decision_id":"GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01","status":"USER_APPROVED_PENDING_MERGE_DESIGN_REVIEW"},
+    {"path":"docs/superpowers/specs/2026-08-05-benchmark-tdd-checkpoint-governance-design.md","decision_id":"GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01","status":"ACTIVE_APPROVED_DRAFT_OPERATING_DESIGN"},
+    {"path":"docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md","status":"CURRENT_RESEARCH_INPUT"},
+    {"path":"docs/planning/STOCK_SYSTEM.md","status":"USER_APPROVED_PENDING_MERGE_RESPONSIBILITY_SOURCE"},
+    {"path":"docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md","decision_id":"GM-3X3-CIRCUIT-STOCK-FOCUS-01","status":"ACTIVE_TOPOLOGY_PARTIALLY_SUPERSEDED_RESOURCE_MODEL"},
+    {"path":"docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md","status":"ACTIVE_CIRCUIT_SPEC_PARTIALLY_SUPERSEDED_RESOURCE_SECTION"},
     {"path":"docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE"},
-    {"path":"docs/planning/STOCK_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE"},
-    {"path":"docs/planning/STOCK_CAPACITY_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE"},
     {"path":"docs/planning/MANA_SYSTEM.md","status":"ACTIVE_DIRECTION_TUNING_DEFERRED"},
     {"path":"docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_LINKED_CONTENT_BASELINE"},
-    {"path":"docs/planning/GRILL_ME_BATCH_MERGE_STATE.json","status":"ACTIVE_MACHINE_AUTHORITY_RESET_0_OF_10"},
-    {"path":"docs/planning/sync/GR-SYNC-20260804-12-CLOSURE.md","status":"FINAL_CANON_CLOSURE_SYNC"}
+    {"path":"docs/planning/GRILL_ME_BATCH_MERGE_STATE.json","status":"ACTIVE_MACHINE_AUTHORITY_2_OF_10_DRAFT_CHECKPOINT"},
+    {"path":"docs/planning/sync/GR-SYNC-20260805-01-GLYPH-VAULT-STOCK-GOVERNANCE.md","status":"APPROVED_DRAFT_CHECKPOINT_SHEET_PENDING"}
   ],
-  "legacy_status_authority": "docs/planning/CANON_STATUS_INDEX_2026-08-04.md",
+  "partial_supersession": [
+    {
+      "old_decision": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
+      "new_decision": "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
+      "superseded_scope": [
+        "TYPED_GLYPH_ONLY_STOCK",
+        "NATURAL_CHARGE_TO_SELECTED_TYPED_GLYPH",
+        "FOCUS_SCRIBE_TO_SAME_GLYPH_STOCK",
+        "COMBINED_TYPED_STOCK_CAPACITY_MODEL"
+      ],
+      "preserved_scope": [
+        "3X3_TOPOLOGY",
+        "TARGET_PROVIDER",
+        "TARGET_AND_EDGE_COST_ZERO",
+        "SPELL_COMMIT_USES_MANA",
+        "COMPLETED_SPELL_STOCK_PROHIBITED",
+        "ACTIVE_PRESSURE_FOCUS_STATE"
+      ]
+    }
+  ],
+  "workflow_contract": {
+    "decision_id": "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
+    "benchmark": "BENCHMARK_AND_PRO_COMPARISON_REQUIRED",
+    "source_evidence": "SOURCE_VERSION_TRANSFER_LIMIT_REQUIRED",
+    "executable_work": "STRICT_RED_GREEN_REFACTOR",
+    "non_executable_work": "TEST_FIRST_ACCEPTANCE_FOR_NON_EXECUTABLE_WORK",
+    "max_approved_decisions_per_batch": 10,
+    "early_checkpoint_triggers": [
+      "HIGH_RISK_CONFLICT",
+      "SESSION_END_OR_CONTEXT_LOSS",
+      "MAJOR_CANON_IMPACT"
+    ]
+  },
   "deprecated_contracts": [
+    "TYPED_GLYPH_ONLY_AS_CURRENT_STOCK",
+    "NATURAL_CHARGE_TO_TYPED_GLYPH",
+    "FOCUS_SCRIBE_TO_TYPED_STOCK",
     "COMPLETED_SPELL_ONE_TAP_STOCK",
     "STOCK_CASTS_WITHOUT_SPELL_MANA",
+    "VAULT_GLYPH_CONVERSION",
+    "AUTOMATIC_RESOURCE_SOURCE_PRIORITY",
     "FLOW_AS_SLICE_MAIN_GLYPH",
     "FACULTY_CIRCUIT_AS_ANSWER_KEY",
     "FULL_PAUSE_DURING_FOCUS_SCRIBE",
-    "DRAWING_POWER_BONUS",
-    "STAGE_0_AS_CURRENT_ENTRY_GATE"
+    "DRAWING_POWER_BONUS"
   ],
   "deferred": [
     "PRODUCT_GODOT_IMPLEMENTATION",
-    "STATUS_EFFECT_TYPED_GLYPH_STOCK_REDESIGN",
+    "STATUS_EFFECT_NEW_RESOURCE_REDESIGN",
     "MANA_COST_TUNING",
+    "GLYPH_HUMAN_RECOGNITION_TEST",
     "MOBILE_DEVICE_VALIDATION",
     "PERFORMANCE_VALIDATION",
     "ACCESSIBILITY_VALIDATION",
     "HUMAN_PLAYTEST",
-    "OFFICIAL_DOWNLOAD_SHA256_HARDENING"
+    "OFFICIAL_DOWNLOAD_SHA256_HARDENING",
+    "BASE_POLICY_PROMOTION"
   ],
   "validation": {
-    "decision_merge_pull_request": 57,
-    "decision_merge_commit": "839129524ba14279141add809fb400383949d5ea",
-    "finalization_pull_request": 58,
-    "finalization_merge_commit": "39da99fbc56ccdf90904b24b5725cb0d0779595a",
-    "sheet_readback_pull_request": 59,
-    "sheet_readback_merge_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
-    "closure_pull_request": 60,
-    "sheet_readback": "PASS",
-    "review_threads": 0,
+    "draft_pull_request": 61,
+    "red_test_commit": "fc9134598bc3ffb427d6801074eba9ef9c2df25f",
+    "ci_test_connection_commit": "64ca7465f5e5624be2e8e001f97dbe70d5131ef1",
+    "red_workflow_run": 30925666145,
+    "red_result": "6_TESTS_3_FAILURES_3_ERRORS_EXPECTED",
+    "green": "PENDING",
+    "sheet_write": "PENDING",
+    "sheet_readback": "PENDING",
+    "review_threads": "CHECK_PENDING",
     "runtime": "NOT_RUN"
   }
 }
