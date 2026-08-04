@@ -11,6 +11,7 @@ working_pull_request: 61
 latest_approved_decision: GM-GLYPH-VOCABULARY-V1-01
 grill_counter: 3_of_10
 pending_decisions: 3
+merge_required: false
 merge_authorized: false
 product_project: NOT_CREATED
 product_implementation: NOT_STARTED
@@ -68,14 +69,6 @@ low_confidence: RETRY_NOT_AUTO_CONFIRM
 expansion_gate: HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION
 ```
 
-검증 항목:
-
-- 의미와 핵심/보조 역할 인지.
-- `confusion_matrix`, false accept/reject, retry count.
-- 손가락·스타일러스·왼손/오른손 변형.
-- 낮은 확신·stale revision·selected-glyph mismatch 안전 처리.
-- 장식형이 입력 실루엣을 훼손하지 않는가.
-
 현재: `USER_APPROVED_SPEC / RECOGNITION_PLAN_READY / RUNTIME_DEVICE_HUMAN_NOT_RUN`.
 
 ## Gate 5 — 모바일 UX·접근성
@@ -110,7 +103,7 @@ early_checkpoint:
   - MAJOR_CANON_IMPACT
 ```
 
-TDD 증거:
+TDD·검증 증거:
 
 ```yaml
 initial_red: 30925666145
@@ -118,8 +111,11 @@ capacity_red: 30928418370
 entrypoint_red: 30928799903
 charge_lifecycle_red: 30929106014
 spec_review_and_plan_red: 30958182618
-planning_and_adversarial_green: 30958977292
-godot_toolchain_green: 30958977145
+authority_content_head: d4081ab08f790cd08463223081d5b2954449de2b
+planning_and_adversarial_green: 30959539628
+godot_toolchain_green: 30959539596
+review_threads: 0
+final_metadata_exact_head: PR_CHECKS_RECHECKING
 ```
 
 현재: `DOCUMENT_CONTRACT_RED_GREEN_PASS / PRODUCT_TDD_NOT_STARTED`.
@@ -153,14 +149,15 @@ draft: true
 decisions: 3_of_10
 sheet_write: PASS
 sheet_readback: PASS
-exact_head_ci: RECHECK_AFTER_FINAL_AUTHORITY_UPDATE
-unresolved_review_threads: CHECK_PENDING
+authority_content_ci: PASS
+final_metadata_exact_head: PR_CHECKS_RECHECKING
+unresolved_review_threads: 0
 merge_required: false
 merge_authorized: false
 ```
 
-PR #61은 Draft·미병합이다. 최신 exact-head CI, 적대적 P0/P1 0, Review Thread 확인과 별도 병합 승인 전에는 Ready 전환하거나 병합하지 않는다.
+PR #61은 Draft·미병합이다. 상태 기록을 포함한 최종 PR checks와 별도 병합 승인 전에는 Ready 전환하거나 병합하지 않는다.
 
 ## 다음 작업
 
-최종 권위 문서·Registry·Sync 02 고정 → exact-head CI·Review Thread 검증 → Codex Resource 계획 TDD 실행.
+최종 PR checks 확인 → Codex Resource 계획 TDD 실행 → Resource Stop Gate 이후 Recognition 계획 실행.
