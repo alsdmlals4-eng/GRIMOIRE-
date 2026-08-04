@@ -14,6 +14,10 @@ BENCHMARK = ROOT / "docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05
 AGENTS = ROOT / "AGENTS.md"
 STOCK = ROOT / "docs/planning/STOCK_SYSTEM.md"
 CAPACITY = ROOT / "docs/planning/STOCK_CAPACITY_SYSTEM.md"
+OLD_STOCK_APPROVAL = ROOT / "docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md"
+CHARGE = ROOT / "docs/planning/STOCK_CHARGE_TIME_SYSTEM.md"
+TARGET_SWITCH = ROOT / "docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md"
+HIT_PAUSE = ROOT / "docs/planning/STOCK_HIT_PAUSE_SYSTEM.md"
 BATCH = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 STATUS = ROOT / "docs/planning/CANON_STATUS_INDEX_2026-08-04.md"
 DOC_MAP = ROOT / "docs/DOCUMENTATION_MAP.md"
@@ -53,6 +57,26 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
         )
         for token in required:
             self.assertIn(token, text)
+
+    def test_universal_stock_has_single_charge_progress_and_no_glyph_target_switch(self) -> None:
+        text = (
+            OLD_STOCK_APPROVAL.read_text(encoding="utf-8")
+            + CHARGE.read_text(encoding="utf-8")
+            + TARGET_SWITCH.read_text(encoding="utf-8")
+            + HIT_PAUSE.read_text(encoding="utf-8")
+        )
+        required = (
+            "[부분 대체됨]",
+            "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
+            "UNIVERSAL_STOCK_SINGLE_CHARGE_PROGRESS",
+            "NO_CHARGE_TARGET_SWITCH_WITH_UNIVERSAL_STOCK",
+            "UNIVERSAL_STOCK_CHARGE_PAUSE",
+            "FOCUS_SCRIBE_VAULT_INTERRUPTED",
+        )
+        for token in required:
+            self.assertIn(token, text)
+        self.assertNotIn("stock_target_glyph_id", text)
+        self.assertNotIn("SAME_GLYPH_STOCK_PLUS_1", text)
 
     def test_workflow_contract_requires_benchmark_tdd_and_bounded_checkpoints(self) -> None:
         text = WORKFLOW_SPEC.read_text(encoding="utf-8") + AGENTS.read_text(encoding="utf-8")
