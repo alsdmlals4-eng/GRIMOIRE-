@@ -1,17 +1,17 @@
 {
-  "schema_version": 21,
+  "schema_version": 22,
   "registry_role": "grimoire-current-canon-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
     "default_branch": "main",
-    "finalization_pull_request": 58,
+    "sheet_readback_pull_request": 59,
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "primary_platform": "Mobile",
     "orientation": "LANDSCAPE_FIXED",
     "base_release": "v9.4.3",
-    "main_authority_commit": "839129524ba14279141add809fb400383949d5ea",
-    "current_main_sync": "GR-SYNC-20260804-10-MAIN",
+    "main_authority_commit": "39da99fbc56ccdf90904b24b5725cb0d0779595a",
+    "current_main_sync": "GR-SYNC-20260804-11-MAIN-READBACK",
     "latest_decision": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
     "grill_counter": "0_of_10",
     "pending_decisions": 0,
@@ -41,7 +41,7 @@
     "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md",
     "docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md",
     "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
-    "docs/planning/sync/GR-SYNC-20260804-10-MAIN.md"
+    "docs/planning/sync/GR-SYNC-20260804-11-MAIN-READBACK.md"
   ],
   "canonical_documents": [
     {"path":"AGENTS.md","status":"ACTIVE_TOP_LEVEL_AUTHORITY"},
@@ -55,17 +55,13 @@
     {"path":"docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE"},
     {"path":"docs/planning/STOCK_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE"},
     {"path":"docs/planning/STOCK_CAPACITY_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE"},
-    {"path":"docs/planning/STOCK_CHARGE_TIME_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE"},
-    {"path":"docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE"},
-    {"path":"docs/planning/STOCK_HIT_PAUSE_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE"},
     {"path":"docs/planning/MANA_SYSTEM.md","status":"ACTIVE_DIRECTION_TUNING_DEFERRED"},
     {"path":"docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_LINKED_CONTENT_BASELINE"},
-    {"path":"docs/content/vertical_slice/FROSTBLOOM_GREENHOUSE_DIALOGUE_SCRIPT_DRAFT_2026-08-04.md","status":"ACTIVE_LINKED_CONTENT_FILENAME_HISTORICAL"},
     {"path":"docs/planning/GRILL_ME_BATCH_MERGE_STATE.json","status":"ACTIVE_MACHINE_AUTHORITY_RESET_0_OF_10"},
-    {"path":"docs/planning/sync/GR-SYNC-20260804-10-MAIN.md","status":"MAIN_FINALIZATION_SYNC"}
+    {"path":"docs/planning/sync/GR-SYNC-20260804-11-MAIN-READBACK.md","status":"FINAL_MAIN_READBACK_SYNC"}
   ],
   "legacy_status_authority": "docs/planning/CANON_STATUS_INDEX_2026-08-04.md",
   "deprecated_contracts": [
@@ -91,6 +87,8 @@
     "decision_merge_pull_request": 57,
     "decision_merge_commit": "839129524ba14279141add809fb400383949d5ea",
     "finalization_pull_request": 58,
+    "finalization_merge_commit": "39da99fbc56ccdf90904b24b5725cb0d0779595a",
+    "sheet_readback_pull_request": 59,
     "json_parse": "REQUIRED",
     "text_integrity": "REQUIRED",
     "ci_on_exact_head": "REQUIRED",
