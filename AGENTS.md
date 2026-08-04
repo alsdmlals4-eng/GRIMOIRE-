@@ -14,20 +14,22 @@ main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
 current_main_sync: GR-SYNC-20260804-12-CLOSURE
 working_branch: agent/glyph-vault-stock-governance-design
 working_pull_request: 61
-latest_approved_decision: GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
+latest_approved_decision: GM-GLYPH-VOCABULARY-V1-01
 related_approved_decisions:
   - GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
   - GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
-grill_counter: 2_of_10
-pending_decisions: 2
+  - GM-GLYPH-VOCABULARY-V1-01
+grill_counter: 3_of_10
+pending_decisions: 3
 checkpoint_state: HIGH_CANON_IMPACT_DRAFT_CHECKPOINT
+current_gate: IMPLEMENTATION_PLANS_READY
 merge_authorized: false
 product_project: NOT_CREATED
 product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 ```
 
-PR #57~#60의 main 정본은 유지된다. PR #61은 사용자가 승인한 자원 의미 변경과 작업 운영 규칙을 기록한 조기 Draft 체크포인트이며 아직 main에 병합되지 않았다.
+PR #57~#60의 main 정본은 유지된다. PR #61은 사용자가 승인한 자원 의미, 작업 운영, Vocabulary v1과 구현 계획을 기록한 조기 Draft 체크포인트이며 아직 main에 병합되지 않았다.
 
 ## 권위 우선순위
 
@@ -54,10 +56,11 @@ AGENTS.md
 → docs/DEVELOPMENT_GATES.md
 → docs/planning/CANON_STATUS_INDEX_2026-08-04.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ 새 보관함·Stock 승인과 Spec
-→ 새 운영 승인과 Spec
-→ 3×3 회로 승인·Spec [자원 범위 부분 대체됨]
-→ Frostbloom 승인 문서
+→ 보관함·범용 Stock 승인·Spec
+→ 벤치마크·TDD 운영 승인·Spec
+→ Vocabulary v1 승인·Spec
+→ 구현 계획 2종
+→ 3×3 회로·Frostbloom 승인
 → Batch
 → PR #61
 ```
@@ -78,11 +81,11 @@ Base 공용 승격은 프로젝트 증거가 생긴 뒤 검토한다. 현재 Bas
 ## 역할 분리
 
 ```text
-GPT → 핵심 재미·콘텐츠·대사·UX·이미지·아트·벤치마킹·적대적 검토·정본 동기화
+GPT → 핵심 재미·콘텐츠·대사·UX·이미지·아트·벤치마킹·적대적 검토·정본 동기화·구현 계획
 Codex → 승인 범위의 Godot 구현·TDD·Runtime·실기기 검증
 ```
 
-제품 구현은 사용자 Spec 검토와 구현 계획 승인 전 `[보류]`다.
+제품 구현은 구현 계획과 exact-head Gate가 준비됐으나 실제 코드 시작 전까지 `NOT_STARTED`다.
 
 ## 프로젝트 코어
 
@@ -118,16 +121,6 @@ hidden_position_bonus: prohibited
 
 주문명은 글자 이름과 별개다. 설계도는 `NON_BINDING_GHOST_REFERENCE`이며 자동 대상·자동 자원 예약·자동 Commit을 하지 않는다.
 
-## Slice·대상
-
-```yaml
-main: HEAT
-connection_support: FLOW
-modifiers: [FOCUS, DISPERSE]
-```
-
-보이고 식별된 전투 참가자는 자동 대상이며 환경·장치·숨은 약점은 관찰·조사 후 열린다. 정답 대상 자동 추천은 금지한다.
-
 ## 보관함·Stock·마나·필사
 
 ```yaml
@@ -135,7 +128,8 @@ vault: EXACT_GLYPH_VAULT
 stock: UNIVERSAL_GLYPH_STOCK
 stock_allowed_pool: LEARNED_MAIN_OR_SUPPORT
 resource_source: EXPLICIT_SOURCE_SELECTION
-natural_charge_output: UNIVERSAL_GLYPH_STOCK_PLUS_1
+capacity: SEPARATE_VAULT_AND_STOCK_CAPACITY
+natural_charge: UNIVERSAL_STOCK_SINGLE_CHARGE_PROGRESS
 focus_scribe_output: FOCUS_SCRIBE_WRITES_TO_VAULT
 target_or_edge_cost: 0
 completed_spell_stock: prohibited
@@ -149,21 +143,28 @@ full_pause: false
 - Stock 1개는 사용 시점에 습득한 핵심·보조 글자 중 하나를 선택한다.
 - 둘 다 사용 가능하면 출처를 직접 고른다.
 - 자연충전은 범용 Stock을, 집중 필사는 특정 글자 보관함을 증가시킨다.
+- 보관함 슬롯과 Stock 용량은 별도이며 예약은 용량을 이중 차감하지 않는다.
 - 직접 그리기는 위력 보너스가 없고 기본 전투의 필수 입력이 아니다.
 
-## 문양 원칙
+## Vocabulary v1
 
 ```yaml
-input_glyph:
-  preferred_strokes: 1_to_3
-  advanced_max_strokes: 4
-  contract: SIMPLE_DISTINCT_SEMANTIC_SILHOUETTE
-ornamented_display_glyph:
-  preserves_input_silhouette: true
-  recognition_input: false
+main_glyphs: 10
+support_glyphs: 10
+slice_runtime_glyphs:
+  - HEAT
+  - PROTECT
+  - FLOW
+  - FOCUS
+  - DISPERSE
+  - BURST
+expansion_gate: HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION
+input_strokes: 1_to_3
+advanced_candidate_max_strokes: 4
+ornament_is_recognition_input: false
 ```
 
-핵심 단어는 현상을, 보조 단어는 방향·작동 방식을 단순한 실루엣으로 보여준다. 실제 입력형과 장식 표시형은 같은 기본 형태를 공유한다.
+Runtime 인식 범위는 6종으로 제한한다. 사람 인지·손가락 입력·혼동·피로 검증 전 Vocabulary 확대를 금지한다.
 
 ## 벤치마크·현업 비교 규칙
 
@@ -213,6 +214,8 @@ Stock 주문 무마나 실행
 설계도 자동 대상·자동 Commit
 숨은 셀 위치 보너스
 숫자 성공률·결말 Preview
+낮은 인식 확신 자동 확정
+사람 검증 전 6종 초과 Runtime 확대
 = 금지
 ```
 
@@ -220,10 +223,10 @@ Stock 주문 무마나 실행
 
 Godot 4.7.1 개발환경 CI는 통과했지만 제품 `project.godot`, Runtime, 모바일, 성능, 접근성, 사람 검증은 미실행이다. Prototype 수치는 `TEST_VALUE`다.
 
-## 다음 우선순위
+## 구현 계획
 
-1. 사용자에게 PR #61의 두 Spec 검토 요청.
-2. 승인 후 `writing-plans`로 구현 계획 작성.
-3. 문양 1차 세트와 3×3 Mobile Landscape Wireframe 수용 테스트 설계.
-4. 집중 필사 Overlay.
-5. Frostbloom UX Map.
+1. `docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md`.
+2. Resource Stop Gate 통과 후 `docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md`.
+3. Codex 실행은 격리 worktree·TDD·작업별 검증·빈번한 커밋으로 진행한다.
+
+PR #61은 Draft·미병합이며 별도 병합 승인 전 Ready 전환하지 않는다.
