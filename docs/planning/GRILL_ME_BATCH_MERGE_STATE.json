@@ -11,7 +11,7 @@
     "merge_required": false,
     "merge_trigger": "NONE",
     "merge_authorized": false,
-    "authorization_state": "APPROVED_PENDING_SPEC_REVIEW_AND_BATCH_ACCUMULATION",
+    "authorization_state": "APPROVED_PENDING_USER_SPEC_REVIEW_AND_BATCH_ACCUMULATION",
     "checkpoint_state": "HIGH_CANON_IMPACT_DRAFT_CHECKPOINT",
     "checkpoint_pull_request": 61,
     "early_checkpoint_triggers": [
@@ -46,18 +46,20 @@
     "main_sync_id": "GR-SYNC-20260804-12-CLOSURE"
   },
   "current_work": {
-    "status": "GLYPH_VAULT_UNIVERSAL_STOCK_GOVERNANCE_SPEC_REVIEW",
+    "status": "GLYPH_VAULT_UNIVERSAL_STOCK_GOVERNANCE_USER_SPEC_REVIEW",
     "latest_approved_decision_id": "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
     "related_approved_decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
       "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01"
     ],
+    "proposal_not_counted": "GLYPH_VOCABULARY_V1_10_PLUS_10",
     "default_branch": "main",
     "working_branch": "agent/glyph-vault-stock-governance-design",
     "working_pull_request": 61,
     "main_authority_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
     "current_main_sync": "GR-SYNC-20260804-12-CLOSURE",
-    "next_priority": "USER_SPEC_REVIEW_THEN_IMPLEMENTATION_PLAN"
+    "draft_sync": "GR-SYNC-20260805-01-GLYPH-VAULT-STOCK-GOVERNANCE",
+    "next_priority": "USER_SPEC_AND_GLYPH_VOCABULARY_REVIEW_THEN_IMPLEMENTATION_PLAN"
   },
   "canonical_contract": {
     "spell_assembly": "3X3_ADJACENT_DIRECTED_NODE_CIRCUIT",
@@ -85,10 +87,12 @@
     "tdd_red_commit": "64ca7465f5e5624be2e8e001f97dbe70d5131ef1",
     "tdd_red_workflow_run": 30925666145,
     "tdd_red_result": "6_TESTS_3_FAILURES_3_ERRORS_EXPECTED",
-    "planning_ci": "RED_VERIFIED_GREEN_PENDING",
-    "godot_toolchain_ci": "NOT_REQUIRED_FOR_DESIGN_BUT_PR_WORKFLOW_RUNNING",
-    "unresolved_review_threads": 0,
-    "sheet_readback": "PENDING",
+    "focused_green_workflow_run": 30927476468,
+    "planning_ci": "FOCUSED_GREEN_PASS_EXACT_HEAD_RECHECK_PENDING",
+    "godot_toolchain_ci": "EXACT_HEAD_RECHECK_PENDING",
+    "unresolved_review_threads": "CHECK_PENDING",
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
     "product_implementation": "NOT_STARTED",
     "runtime": "NOT_RUN",
     "mobile_device": "NOT_RUN",
