@@ -18,24 +18,24 @@
 ## 현재 main
 
 ```yaml
-main_authority_commit: 39da99fbc56ccdf90904b24b5725cb0d0779595a
-current_main_sync: GR-SYNC-20260804-11-MAIN-READBACK
-sheet_readback_pull_request: 59
+main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
+current_main_sync: GR-SYNC-20260804-12-CLOSURE
+closure_pull_request: 60
 latest_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
 grill_counter: 0_of_10
 pending_decisions: 0
+canon_status: MERGED_AND_FINALIZED_SHEET_READBACK_PASS
 ```
 
 ## 복원 순서
 
-`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → 이 색인 → CURRENT_CONFIRMED_DECISIONS → Registry → 3×3 승인·Spec → Frostbloom 승인 → Batch → Sync 11`.
+`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → 이 색인 → CURRENT_CONFIRMED_DECISIONS → Registry → 3×3 승인·Spec → Frostbloom 승인 → Batch → Sync 12`.
 
 ## 활성
 
 ### 주문·자원
 
-- `THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md`.
-- `2026-08-04-3x3-circuit-stock-focus-scribing-design.md`.
+- 3×3 승인·상세 Spec.
 - `MAGIC_LETTER_CIRCUIT_SYSTEM.md`.
 - `STOCK_SYSTEM.md`, `STOCK_CAPACITY_SYSTEM.md`, 충전·전환·피격 책임 원본.
 - `MANA_SYSTEM.md` — 방향 활성, 수치 보류.
@@ -51,54 +51,41 @@ pending_decisions: 0
 ### 운영
 
 - `GRILL_ME_BATCH_MERGE_STATE.json`.
-- `GR-SYNC-20260804-11-MAIN-READBACK.md`.
+- `GR-SYNC-20260804-12-CLOSURE.md`.
 - premerge adversarial review.
 - Google Sheet workbook·sync policy.
 
 ## 부분 대체됨
 
 - `STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`: 자연충전·공유 용량·소환수 단축·Offline 금지만 유지.
-- `2026-08-04-narrative-multi-solution-situation-design.md`: 복수 해결 코어만 유지.
+- Narrative multi-solution design: 복수 해결 코어만 유지.
 - `SPELL_GAME_DESIGN.md`: 마법학교·학습·응용·복기 코어 입력만 유지.
-- `GRIMOIRE_PLANNING_CANON_2026-07-31.md`: 최신 Decision이 변경한 항목은 사용 금지.
+- `GRIMOIRE_PLANNING_CANON_2026-07-31.md`: 최신 Decision이 변경한 항목 사용 금지.
 - `PROJECT_BASE_ADAPTER.json`: Base pin·routing·protected paths·generated outputs만 활성, 상태 Snapshot 비권위.
 
 ## 대체됨
 
-- Heat·Flow Draft.
-- Frostbloom Cast Planning Draft.
-- 과거 Frostbloom Flow-main Scene Spec.
-- 과거 FAIL_CLOSED Readiness Review.
-- Legacy `CIRCUIT_SYSTEM.md`.
+Heat·Flow Draft, Frostbloom Cast Planning Draft, 과거 Flow-main Scene Spec, 과거 FAIL_CLOSED Review, Legacy `CIRCUIT_SYSTEM.md`.
 
 ## 보류
 
-- `STATUS_EFFECT_STOCK_SYSTEM.md` — typed glyph Stock 재설계.
-- Codex 제품 Handoff·execution overlay.
-- 마나 비용 수치.
-- 배포물 SHA-256 고정 검증.
+상태이상–typed glyph Stock 재설계, Codex 제품 Handoff·Overlay, 마나 비용 수치, 배포물 SHA-256 고정 검증.
 
 ## 구현완료 보관
 
-Godot toolchain setup plan·approval·report·script·tests. 이는 제품 Godot 프로젝트 완료가 아니다.
+Godot toolchain setup plan·approval·report·script·tests. 제품 Godot 프로젝트 완료를 뜻하지 않는다.
 
 ## 폐기
 
-- `AUTO_SPELL_SYSTEM.md`.
-- Stage 0 Spec과 현재 Gate 명칭.
-- 완성 주문 원터치 Stock.
-- Stock 주문 무마나 실행.
-- `흐름` Slice 메인 계약.
-- 교수 회로 정답표·자동 복사.
-- 집중 필사 완전 Pause.
-- 그림 정확도 위력·마나·추가 Stock 보너스.
+`AUTO_SPELL_SYSTEM.md`, Stage 0 Spec·Gate 명칭, 완성 주문 원터치 Stock, Stock 주문 무마나 실행, `흐름` Slice 메인 계약, 교수 회로 정답표·자동 복사, 집중 필사 완전 Pause, 그림 정확도 위력·마나·추가 Stock 보너스.
 
 ## Sync
 
-- Draft·Working·Premerge Sync `03-07`부터 `09B`까지 `[이력]`.
-- `GR-SYNC-20260804-10-MAIN`은 `[이력/Finalization]`.
-- `GR-SYNC-20260804-11-MAIN-READBACK`은 `[활성 Main Readback]`.
+- Draft·Working·Premerge Sync `03-07`부터 `09B`: `[이력]`.
+- `GR-SYNC-20260804-10-MAIN`: `[이력/Finalization]`.
+- `GR-SYNC-20260804-11-MAIN-READBACK`: `[이력/Readback]`.
+- `GR-SYNC-20260804-12-CLOSURE`: `[활성 완료 Sync]`.
 
 ## 미실행
 
-3×3 Mobile Wireframe, 제품 Runtime, 모바일 실기기, 성능, 접근성, 사람 검증. Prototype 수치는 모두 `TEST_VALUE`다.
+3×3 Mobile Wireframe, 제품 Runtime, 모바일 실기기, 성능, 접근성, 사람 검증. Prototype 수치는 `TEST_VALUE`다.

@@ -1,20 +1,21 @@
 {
-  "schema_version": 22,
+  "schema_version": 23,
   "registry_role": "grimoire-current-canon-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
     "default_branch": "main",
-    "sheet_readback_pull_request": 59,
+    "closure_pull_request": 60,
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
     "primary_platform": "Mobile",
     "orientation": "LANDSCAPE_FIXED",
     "base_release": "v9.4.3",
-    "main_authority_commit": "39da99fbc56ccdf90904b24b5725cb0d0779595a",
-    "current_main_sync": "GR-SYNC-20260804-11-MAIN-READBACK",
+    "main_authority_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
+    "current_main_sync": "GR-SYNC-20260804-12-CLOSURE",
     "latest_decision": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
     "grill_counter": "0_of_10",
     "pending_decisions": 0,
+    "canon_status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
     "product_implementation": "NOT_STARTED",
     "runtime_validation": "NOT_RUN"
   },
@@ -41,7 +42,7 @@
     "docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md",
     "docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md",
     "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
-    "docs/planning/sync/GR-SYNC-20260804-11-MAIN-READBACK.md"
+    "docs/planning/sync/GR-SYNC-20260804-12-CLOSURE.md"
   ],
   "canonical_documents": [
     {"path":"AGENTS.md","status":"ACTIVE_TOP_LEVEL_AUTHORITY"},
@@ -61,7 +62,7 @@
     {"path":"docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_LINKED_CONTENT_BASELINE"},
     {"path":"docs/planning/GRILL_ME_BATCH_MERGE_STATE.json","status":"ACTIVE_MACHINE_AUTHORITY_RESET_0_OF_10"},
-    {"path":"docs/planning/sync/GR-SYNC-20260804-11-MAIN-READBACK.md","status":"FINAL_MAIN_READBACK_SYNC"}
+    {"path":"docs/planning/sync/GR-SYNC-20260804-12-CLOSURE.md","status":"FINAL_CANON_CLOSURE_SYNC"}
   ],
   "legacy_status_authority": "docs/planning/CANON_STATUS_INDEX_2026-08-04.md",
   "deprecated_contracts": [
@@ -89,11 +90,10 @@
     "finalization_pull_request": 58,
     "finalization_merge_commit": "39da99fbc56ccdf90904b24b5725cb0d0779595a",
     "sheet_readback_pull_request": 59,
-    "json_parse": "REQUIRED",
-    "text_integrity": "REQUIRED",
-    "ci_on_exact_head": "REQUIRED",
-    "review_threads": "ZERO_REQUIRED",
-    "sheet_readback": "REQUIRED",
+    "sheet_readback_merge_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
+    "closure_pull_request": 60,
+    "sheet_readback": "PASS",
+    "review_threads": 0,
     "runtime": "NOT_RUN"
   }
 }

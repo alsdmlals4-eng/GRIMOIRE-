@@ -6,15 +6,16 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-sheet_readback_pull_request: 59
+closure_pull_request: 60
 platform: MOBILE_LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
-main_authority_commit: 39da99fbc56ccdf90904b24b5725cb0d0779595a
-current_main_sync: GR-SYNC-20260804-11-MAIN-READBACK
+main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
+current_main_sync: GR-SYNC-20260804-12-CLOSURE
 latest_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
 grill_counter: 0_of_10
 pending_decisions: 0
+canon_status: MERGED_AND_FINALIZED_SHEET_READBACK_PASS
 product_project: NOT_CREATED
 product_code: NOT_STARTED
 runtime_validation: NOT_RUN
@@ -26,11 +27,7 @@ human_validation: NOT_RUN
 
 ## 정본
 
-```text
-AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES
-→ CANON_STATUS_INDEX → CURRENT_CONFIRMED_DECISIONS
-→ 3×3 승인·Spec → Frostbloom 승인 → Batch → Sync 11
-```
+`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → CANON_STATUS_INDEX → CURRENT_CONFIRMED_DECISIONS → 3×3 승인·Spec → Frostbloom 승인 → Batch → Sync 12`.
 
 ## 플레이어 약속
 
@@ -91,13 +88,4 @@ focus_capacity_reservation: 1
 
 ## 금지
 
-```text
-완성 주문 원터치 Stock
-Stock 주문 무마나 실행
-집중 필사 완전 Pause
-그림 위력 보너스
-설계도 자동 대상·자동 Commit
-교수 예시 정답화
-숫자 성공률 Preview
-검증 없는 Runtime PASS
-```
+완성 주문 원터치 Stock, Stock 주문 무마나 실행, 집중 필사 완전 Pause, 그림 위력 보너스, 설계도 자동 대상·자동 Commit, 교수 예시 정답화, 숫자 성공률 Preview, 검증 없는 Runtime PASS.
