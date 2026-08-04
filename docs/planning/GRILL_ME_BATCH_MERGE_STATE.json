@@ -1,18 +1,28 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
   "google_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
   "threshold": 10,
   "counter": {
-    "approved_grill_me_since_last_flush": 0,
+    "approved_grill_me_since_last_flush": 2,
     "next_merge_at": 10,
     "merge_required": false,
     "merge_trigger": "NONE",
     "merge_authorized": false,
-    "authorization_state": "NEW_BATCH_ACCUMULATING",
-    "pending_decision_ids": []
+    "authorization_state": "APPROVED_PENDING_SPEC_REVIEW_AND_BATCH_ACCUMULATION",
+    "checkpoint_state": "HIGH_CANON_IMPACT_DRAFT_CHECKPOINT",
+    "checkpoint_pull_request": 61,
+    "early_checkpoint_triggers": [
+      "HIGH_RISK_CONFLICT",
+      "SESSION_END_OR_CONTEXT_LOSS",
+      "MAJOR_CANON_IMPACT"
+    ],
+    "pending_decision_ids": [
+      "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
+      "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01"
+    ]
   },
   "completed_flush": {
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
@@ -32,31 +42,53 @@
     "sheet_readback_pull_request": 59,
     "sheet_readback_merge_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
     "closure_pull_request": 60,
+    "closure_merge_commit": "4c50b462a8e296e24583b727ab93c82ba1e9c041",
     "main_sync_id": "GR-SYNC-20260804-12-CLOSURE"
   },
   "current_work": {
-    "status": "THREE_BY_THREE_CANON_COMPLETE_NEXT_WIREFRAME",
-    "latest_approved_decision_id": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
+    "status": "GLYPH_VAULT_UNIVERSAL_STOCK_GOVERNANCE_SPEC_REVIEW",
+    "latest_approved_decision_id": "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
+    "related_approved_decision_ids": [
+      "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
+      "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01"
+    ],
     "default_branch": "main",
+    "working_branch": "agent/glyph-vault-stock-governance-design",
+    "working_pull_request": 61,
     "main_authority_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
     "current_main_sync": "GR-SYNC-20260804-12-CLOSURE",
-    "next_priority": "THREE_BY_THREE_MOBILE_LANDSCAPE_WIREFRAME"
+    "next_priority": "USER_SPEC_REVIEW_THEN_IMPLEMENTATION_PLAN"
   },
   "canonical_contract": {
     "spell_assembly": "3X3_ADJACENT_DIRECTED_NODE_CIRCUIT",
-    "stock": "TYPED_GLYPH_ONLY",
+    "vault": "EXACT_GLYPH_VAULT",
+    "stock": "UNIVERSAL_GLYPH_STOCK_FOR_LEARNED_MAIN_OR_SUPPORT",
+    "resource_source": "EXPLICIT_SOURCE_SELECTION",
+    "natural_charge": "UNIVERSAL_STOCK_PLUS_1",
+    "focus_scribe": "OPTIONAL_REAL_TIME_MANA_COST_ACTIVE_PRESSURE_SLOW_TO_EXACT_VAULT",
     "spell_commit_uses_mana": true,
     "completed_spell_stock": "PROHIBITED",
-    "focus_scribe": "OPTIONAL_REAL_TIME_MANA_COST_ACTIVE_PRESSURE_SLOW",
-    "focus_capacity_reservation": 1,
+    "target_or_edge_cost": 0,
     "blueprint": "NON_BINDING_GHOST_REFERENCE",
     "target_provider": "VISIBLE_COMBATANTS_AUTO_ENVIRONMENT_AFTER_OBSERVATION"
   },
+  "workflow_contract": {
+    "benchmark": "BENCHMARK_AND_PRO_COMPARISON_REQUIRED",
+    "benchmark_evidence": "SOURCE_VERSION_TRANSFER_LIMIT_REQUIRED",
+    "executable_work": "STRICT_RED_GREEN_REFACTOR",
+    "non_executable_work": "TEST_FIRST_ACCEPTANCE_AND_ADVERSARIAL_REVIEW",
+    "max_batch_size": 10,
+    "early_checkpoint_allowed": true,
+    "early_checkpoint_is_merge_authorization": false
+  },
   "validation": {
-    "planning_ci": "PASS_ON_PR59_EXACT_HEAD",
-    "godot_toolchain_ci": "PASS_ON_PR59_EXACT_HEAD",
+    "tdd_red_commit": "64ca7465f5e5624be2e8e001f97dbe70d5131ef1",
+    "tdd_red_workflow_run": 30925666145,
+    "tdd_red_result": "6_TESTS_3_FAILURES_3_ERRORS_EXPECTED",
+    "planning_ci": "RED_VERIFIED_GREEN_PENDING",
+    "godot_toolchain_ci": "NOT_REQUIRED_FOR_DESIGN_BUT_PR_WORKFLOW_RUNNING",
     "unresolved_review_threads": 0,
-    "sheet_readback": "PASS",
+    "sheet_readback": "PENDING",
     "product_implementation": "NOT_STARTED",
     "runtime": "NOT_RUN",
     "mobile_device": "NOT_RUN",
