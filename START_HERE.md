@@ -8,15 +8,16 @@
 | 플랫폼 | `Mobile / Landscape Fixed`, 후속 `PC` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | Base | `v9.4.3` |
-| Main 정본 커밋 | `39da99fbc56ccdf90904b24b5725cb0d0779595a` |
-| Main Sync | `GR-SYNC-20260804-11-MAIN-READBACK` |
+| Main 정본 커밋 | `a27b75ea9aabcbb84159356b857e22b3acd30a43` |
+| Main Sync | `GR-SYNC-20260804-12-CLOSURE` |
 | 최신 Decision | `GM-3X3-CIRCUIT-STOCK-FOCUS-01` |
-| Readback PR | `#59` |
+| 종료 PR | `#60` |
 | Grill Batch | `0/10 / pending 0` |
+| 정본 상태 | `MERGED_AND_FINALIZED_SHEET_READBACK_PASS` |
 | 제품 Godot 프로젝트 | `NOT_CREATED` |
 | Runtime·Device·Performance·Accessibility·Human | `NOT_RUN` |
 
-PR #57에서 정본 Decision을 병합했고 PR #58에서 main 포인터와 Batch를 finalization했다. PR #59는 finalization SHA·Sheet Readback을 기록한다.
+PR #57 결정 병합, PR #58 finalization, PR #59 Sheet Readback이 완료됐다. PR #60은 완료 상태 기록만 담당한다.
 
 ## 읽기 순서
 
@@ -25,11 +26,10 @@ PR #57에서 정본 Decision을 병합했고 PR #58에서 main 포인터와 Batc
 3. `docs/DEVELOPMENT_GATES.md`
 4. `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`
 5. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-6. `docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md`
-7. `docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md`
-8. Frostbloom 승인 문서
-9. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-10. `docs/planning/sync/GR-SYNC-20260804-11-MAIN-READBACK.md`
+6. 3×3 승인·Spec
+7. Frostbloom 승인 문서
+8. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
+9. `docs/planning/sync/GR-SYNC-20260804-12-CLOSURE.md`
 
 ## 핵심 재미
 
