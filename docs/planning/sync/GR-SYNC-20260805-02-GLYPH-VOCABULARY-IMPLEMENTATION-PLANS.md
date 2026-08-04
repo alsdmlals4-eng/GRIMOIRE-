@@ -2,7 +2,7 @@
 
 ```yaml
 sync_id: GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS
-status: APPROVED_DRAFT_CHECKPOINT_SHEET_READBACK_PASS
+status: APPROVED_DRAFT_CHECKPOINT_SHEET_READBACK_AND_AUTHORITY_VALIDATION_PASS
 created_at: 2026-08-05T07:52+09:00
 repository: alsdmlals4-eng/GRIMOIRE-
 main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
@@ -92,16 +92,20 @@ Human·Device Stop Gate
 
 Resource Stop Gate를 먼저 통과한 뒤 Recognition 계획을 실행한다.
 
-## TDD 증거
+## TDD·검증 증거
 
 ```yaml
 contract_test: tests/test_glyph_vault_stock_governance_contract.py
 spec_review_and_plan_red_commit: f9476ffd3bdfa5f67183cf28606a3663b7809a82
 spec_review_and_plan_red_workflow: 30958182618
 red_result: EXPECTED_FAILURE_MISSING_VOCABULARY_APPROVAL_PLANS_AND_BATCH_3
-planning_and_adversarial_green_before_final_authority_update: 30958977292
-godot_toolchain_green_before_final_authority_update: 30958977145
-final_exact_head_validation: RECHECK_PENDING
+authority_content_head: d4081ab08f790cd08463223081d5b2954449de2b
+planning_and_adversarial_workflow: 30959539628
+planning_and_adversarial_result: PASS
+godot_toolchain_workflow: 30959539596
+godot_toolchain_result: PASS
+unresolved_review_threads: 0
+final_metadata_exact_head: PR_CHECKS_RECHECKING
 ```
 
 실행 가능한 제품 코드는 아직 작성하지 않았다. 이번 TDD는 문서·정본·계획 계약을 보호하는 자동 테스트이며, 실제 자원·인식 동작 TDD는 두 구현 계획에서 시작한다.
@@ -135,9 +139,8 @@ GitHub와 Sheet는 같은 세 Decision ID, PR #61, Grill `3/10`, 구현 계획 �
 
 ## 다음 Gate
 
-1. 최신 exact HEAD에서 Planning·adversarial·Godot CI 성공.
-2. 미해결 Review Thread 0 확인.
-3. PR #61 Draft·미병합 상태 유지.
-4. Codex에서 Resource 계획부터 격리 worktree·TDD로 실행.
+1. 상태 기록을 포함한 최종 HEAD의 PR checks 성공.
+2. PR #61 Draft·미병합 상태 유지.
+3. Codex에서 Resource 계획부터 격리 worktree·TDD로 실행.
 
 PR #61은 `merge_required: false`, `merge_authorized: false`다.
