@@ -16,6 +16,8 @@ STOCK = ROOT / "docs/planning/STOCK_SYSTEM.md"
 CAPACITY = ROOT / "docs/planning/STOCK_CAPACITY_SYSTEM.md"
 BATCH = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 STATUS = ROOT / "docs/planning/CANON_STATUS_INDEX_2026-08-04.md"
+DOC_MAP = ROOT / "docs/DOCUMENTATION_MAP.md"
+PLANNING_INDEX = ROOT / "docs/planning/README.md"
 
 
 class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
@@ -67,6 +69,18 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
         )
         for token in required:
             self.assertIn(token, text)
+
+    def test_active_entrypoints_route_to_pr61_and_new_decisions(self) -> None:
+        text = DOC_MAP.read_text(encoding="utf-8") + PLANNING_INDEX.read_text(encoding="utf-8")
+        for token in (
+            "working_pull_request: 61",
+            "grill_counter: 2_of_10",
+            "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
+            "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
+            "USER_SPEC_REVIEW_PENDING",
+        ):
+            self.assertIn(token, text)
+        self.assertNotIn("현재 제품 차단 결정은 계속 `ART-STYLE-01`", text)
 
     def test_batch_registers_two_approved_decisions_without_forcing_merge(self) -> None:
         data = json.loads(BATCH.read_text(encoding="utf-8"))
