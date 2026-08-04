@@ -8,6 +8,7 @@
 |---|---|
 | `[활성]` | main 현재 정본 |
 | `[승인·병합 대기]` | 사용자가 승인했으나 Draft PR 검토·병합 전 |
+| `[사용자 검토 제안]` | 승인 전 제안이며 Decision 집계 제외 |
 | `[활성 연결 콘텐츠]` | 과거/DRAFT 이름이지만 승인 래퍼가 승격 |
 | `[부분 대체됨]` | 명시 범위만 유효 |
 | `[대체됨]` | 현재 참조 금지, Git 이력만 보존 |
@@ -32,7 +33,7 @@ merge_authorized: false
 
 ## 복원 순서
 
-`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → 이 색인 → CURRENT_CONFIRMED_DECISIONS → 새 승인·Spec 2종 → 3×3 승인·Spec → Frostbloom 승인 → Batch → PR #61`.
+`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → 이 색인 → CURRENT_CONFIRMED_DECISIONS → 새 승인·Spec 2종 → Vocabulary 제안 → 3×3 승인·Spec → Frostbloom → Batch → PR #61`.
 
 ## 승인·병합 대기
 
@@ -40,7 +41,13 @@ merge_authorized: false
 
 - 승인: `GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md`.
 - 상세 설계: `2026-08-05-glyph-vault-universal-stock-design.md`.
-- 책임 원본: `STOCK_SYSTEM.md`.
+- 책임 원본:
+  - `STOCK_SYSTEM.md`.
+  - `STOCK_CAPACITY_SYSTEM.md`.
+  - `STOCK_CHARGE_TIME_SYSTEM.md`.
+  - `STOCK_HIT_PAUSE_SYSTEM.md`.
+  - `MANA_SYSTEM.md`.
+  - `MAGIC_LETTER_CIRCUIT_SYSTEM.md`.
 - 벤치마크: `GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md`.
 - 상태: `[승인·병합 대기]`.
 
@@ -50,12 +57,15 @@ merge_authorized: false
 - 상세 설계: `2026-08-05-benchmark-tdd-checkpoint-governance-design.md`.
 - 상태: `[승인·병합 대기]`.
 
+## 사용자 검토 제안
+
+- `2026-08-05-glyph-vocabulary-v1-proposal.md`: 핵심 10·보조 10·Slice 우선 6종 후보. 승인 전 Decision·Batch 집계 제외.
+
 ## 활성 main
 
 ### 주문·회로
 
 - 3×3 인접 방향 회로 문법.
-- `MAGIC_LETTER_CIRCUIT_SYSTEM.md`.
 - 주문 Commit 마나 사용.
 - 대상·연결선 자원 비용 0.
 - 완성 주문 원터치 Stock 금지.
@@ -74,10 +84,10 @@ merge_authorized: false
 
 ## 부분 대체됨
 
-- `GM-3X3-CIRCUIT-STOCK-FOCUS-01` `[부분 대체됨]`: 3×3 회로·대상·마나·시간 압박 계약은 유지. `TYPED_GLYPH_ONLY` Stock, 특정 글자 자연충전, 필사 결과가 같은 글자 Stock이라는 범위는 `GM-GLYPH-VAULT-UNIVERSAL-STOCK-01`이 대체한다.
+- `GM-3X3-CIRCUIT-STOCK-FOCUS-01` `[부분 대체됨]`: 3×3 회로·대상·마나·시간 압박은 유지. Typed Glyph Stock, 특정 글자 자연충전, 필사 결과가 같은 글자 Stock, 공용 자원 용량은 새 Decision이 대체한다.
 - `THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md` `[부분 대체됨]`.
 - `2026-08-04-3x3-circuit-stock-focus-scribing-design.md` `[부분 대체됨]`.
-- `STOCK_SYSTEM_01_APPROVAL_2026-08-02.md`: 자연충전·소환수 단축·Offline 금지 방향만 유지.
+- `STOCK_SYSTEM_01_APPROVAL_2026-08-02.md` `[부분 대체됨]`: Active Pressure 충전·Offline 금지·Transaction 원칙만 계승.
 - Narrative multi-solution design: 복수 해결 코어만 유지.
 - `SPELL_GAME_DESIGN.md`: 마법학교·학습·응용·복기 코어 입력만 유지.
 - `GRIMOIRE_PLANNING_CANON_2026-07-31.md`: 최신 Decision이 변경한 항목 사용 금지.
@@ -97,7 +107,16 @@ Godot toolchain setup plan·approval·report·script·tests. 제품 Godot 프로
 
 ## 폐기
 
-`AUTO_SPELL_SYSTEM.md`, Stage 0 Spec·Gate 명칭, 완성 주문 원터치 Stock, Stock 주문 무마나 실행, `흐름` Slice 메인 계약, 교수 회로 정답표·자동 복사, 집중 필사 완전 Pause, 그림 정확도 위력·마나·추가 자원 보너스, 보관함 글자 변환, 미습득 글자 범용 Stock 선택, 자동 자원 출처 소비.
+- `AUTO_SPELL_SYSTEM.md`.
+- Stage 0 Spec·Gate 명칭.
+- 완성 주문 원터치 Stock과 Stock 주문 무마나 실행.
+- 특정 글자별 자연충전 진행도와 `STOCK_TARGET_SWITCH_SYSTEM.md`.
+- 공용 보관함·Stock 용량.
+- `흐름` Slice 메인 계약.
+- 교수 회로 정답표·자동 복사.
+- 집중 필사 완전 Pause.
+- 그림 정확도 위력·마나·추가 자원 보너스.
+- 보관함 글자 변환, 미습득 글자 범용 Stock 선택, 자동 자원 출처 소비.
 
 ## Sync·PR
 
@@ -105,6 +124,7 @@ Godot toolchain setup plan·approval·report·script·tests. 제품 Godot 프로
 - `GR-SYNC-20260804-10-MAIN`: `[이력/Finalization]`.
 - `GR-SYNC-20260804-11-MAIN-READBACK`: `[이력/Readback]`.
 - `GR-SYNC-20260804-12-CLOSURE`: `[활성 완료 Sync]`.
+- `GR-SYNC-20260805-01-GLYPH-VAULT-STOCK-GOVERNANCE`: `[승인·병합 대기/Sheet Readback PASS]`.
 - PR #61: `[승인·병합 대기/고위험 정본 영향 조기 체크포인트]`.
 
 ## 미실행
