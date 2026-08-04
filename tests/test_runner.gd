@@ -1,0 +1,30 @@
+extends SceneTree
+
+const TestCase = preload("res://tests/test_case.gd")
+
+const SUITES: Array[String] = [
+    "res://tests/unit/test_glyph_resource_types.gd",
+]
+
+func _init() -> void:
+    var case = TestCase.new()
+    for suite_path in SUITES:
+        var suite_script = load(suite_path)
+        if suite_script == null:
+            case.fail("Could not load suite: %s" % suite_path)
+            continue
+        var suite = suite_script.new()
+        if not suite.has_method("run"):
+            case.fail("Suite has no run(case): %s" % suite_path)
+            continue
+        suite.run(case)
+
+    var report := {
+        "schema_version": 1,
+        "suite_count": SUITES.size(),
+        "assertions": case.assertion_count(),
+        "failures": case.failure_count(),
+        "failure_messages": case.failures(),
+    }
+    print(JSON.stringify(report))
+    quit(0 if case.failure_count() == 0 else 1)

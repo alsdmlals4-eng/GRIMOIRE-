@@ -1,0 +1,47 @@
+name: Validate Foundation POC
+
+on:
+  pull_request:
+    paths:
+      - 'project.godot'
+      - 'src/**'
+      - 'tests/**'
+      - 'tools/check_glyph_resource_scope.py'
+      - '.github/workflows/validate-foundation-poc.yml'
+  workflow_dispatch:
+
+jobs:
+  foundation-poc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: .tooling/godot
+          key: godot-4.7.1-linux-x86_64
+
+      - name: Install verified Godot
+        run: |
+          python tools/setup_godot_toolchain.py \
+            --install-dir .tooling/godot \
+            --json-report godot-foundation-toolchain-report.json
+
+      - name: Run headless POC tests
+        run: |
+          .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
+            --headless --path . --script res://tests/test_runner.gd
+
+      - name: Upload test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundation-poc-evidence
+          path: godot-foundation-toolchain-report.json
+          if-no-files-found: error

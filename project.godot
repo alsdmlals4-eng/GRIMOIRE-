@@ -1,0 +1,15 @@
+; GRIMOIRE Glyph Resource Foundation POC
+config_version=5
+
+[application]
+config/name="GRIMOIRE Glyph Resource POC"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/handheld/orientation=6
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
