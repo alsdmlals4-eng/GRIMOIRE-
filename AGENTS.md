@@ -6,22 +6,23 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-sheet_readback_pull_request: 59
+closure_pull_request: 60
 primary_platform: Mobile
 orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
-main_authority_commit: 39da99fbc56ccdf90904b24b5725cb0d0779595a
-current_main_sync: GR-SYNC-20260804-11-MAIN-READBACK
+main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
+current_main_sync: GR-SYNC-20260804-12-CLOSURE
 latest_approved_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
 grill_counter: 0_of_10
 pending_decisions: 0
+canon_status: MERGED_AND_FINALIZED_SHEET_READBACK_PASS
 product_project: NOT_CREATED
 product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 ```
 
-PR #57에서 Decision 5개와 3×3 정본을 병합했고 PR #58에서 main 포인터와 Batch `0/10`을 finalization했다. PR #59는 finalization SHA와 Sheet Readback을 기록하는 행정 단계다.
+PR #57에서 승인 Decision 5개와 3×3 주문 정본을 병합했고, PR #58 main finalization과 PR #59 Sheet Readback을 완료했다. PR #60은 해당 완료 상태를 GitHub 권위에 기록하는 행정 종료 단계다.
 
 ## 권위 우선순위
 
@@ -51,7 +52,7 @@ AGENTS.md
 → 3×3 승인·Spec
 → Frostbloom 승인 문서
 → Batch
-→ GR-SYNC-20260804-11-MAIN-READBACK
+→ GR-SYNC-20260804-12-CLOSURE
 ```
 
 ## Base 계약
@@ -71,7 +72,7 @@ registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c5
 
 ```text
 GPT → 핵심 재미·콘텐츠·대사·UX·이미지·아트·적대적 검토·정본 동기화
-Codex → 승인 범위의 Godot 코드·Scene·Resource·테스트·Runtime·실기기 검증
+Codex → 승인 범위의 Godot 구현·테스트·Runtime·실기기 검증
 ```
 
 제품 구현은 3×3 Mobile Wireframe과 Frostbloom UX·Art 범위가 준비될 때까지 `[보류]`다.
@@ -110,7 +111,7 @@ hidden_position_bonus: prohibited
 
 주문명은 글자 이름과 별개다. 설계도는 `NON_BINDING_GHOST_REFERENCE`이며 자동 대상·자동 Stock 예약·자동 Commit을 하지 않는다.
 
-## Slice 글자·대상
+## Slice·대상
 
 ```yaml
 main: HEAT
@@ -120,7 +121,7 @@ modifiers: [FOCUS, DISPERSE]
 
 보이고 식별된 전투 참가자는 자동 대상이며 환경·장치·숨은 약점은 관찰·조사 후 열린다. 정답 대상 자동 추천은 금지한다.
 
-## Stock·마나·집중 필사
+## Stock·마나·필사
 
 ```yaml
 stock_scope: TYPED_GLYPH_ONLY
@@ -158,7 +159,7 @@ Stock 주문 무마나 실행
 
 ## 검증 경계
 
-Godot 4.7.1 개발환경 CI는 통과했지만 제품 `project.godot`, Runtime, 모바일, 성능, 접근성, 사람 검증은 미실행이다. 모든 Prototype 수치는 `TEST_VALUE`다.
+Godot 4.7.1 개발환경 CI는 통과했지만 제품 `project.godot`, Runtime, 모바일, 성능, 접근성, 사람 검증은 미실행이다. Prototype 수치는 `TEST_VALUE`다.
 
 ## 다음 우선순위
 
