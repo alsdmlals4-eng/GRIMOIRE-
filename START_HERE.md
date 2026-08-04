@@ -10,14 +10,15 @@
 | Base | `v9.4.3` |
 | Main 정본 커밋 | `a27b75ea9aabcbb84159356b857e22b3acd30a43` |
 | Main Sync | `GR-SYNC-20260804-12-CLOSURE` |
-| 최신 Decision | `GM-3X3-CIRCUIT-STOCK-FOCUS-01` |
-| 종료 PR | `#60` |
-| Grill Batch | `0/10 / pending 0` |
-| 정본 상태 | `MERGED_AND_FINALIZED_SHEET_READBACK_PASS` |
+| 작업 PR | `#61 Draft` |
+| 최신 승인 Decision | `GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01` |
+| 관련 자원 Decision | `GM-GLYPH-VAULT-UNIVERSAL-STOCK-01` |
+| Grill Batch | `2/10 / pending 2` |
+| 병합 권한 | `false` |
 | 제품 Godot 프로젝트 | `NOT_CREATED` |
 | Runtime·Device·Performance·Accessibility·Human | `NOT_RUN` |
 
-PR #57 결정 병합, PR #58 finalization, PR #59 Sheet Readback이 완료됐다. PR #60은 완료 상태 기록만 담당한다.
+main의 PR #57~#60 정본은 유지된다. PR #61은 자원 의미와 작업 운영 규칙을 기록한 사용자 승인·병합 대기 조기 체크포인트다.
 
 ## 읽기 순서
 
@@ -26,10 +27,13 @@ PR #57 결정 병합, PR #58 finalization, PR #59 Sheet Readback이 완료됐다
 3. `docs/DEVELOPMENT_GATES.md`
 4. `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`
 5. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-6. 3×3 승인·Spec
-7. Frostbloom 승인 문서
-8. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
-9. `docs/planning/sync/GR-SYNC-20260804-12-CLOSURE.md`
+6. `docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md`
+7. `docs/superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md`
+8. `docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md`
+9. `docs/superpowers/specs/2026-08-05-benchmark-tdd-checkpoint-governance-design.md`
+10. `docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md`
+11. 3×3 회로·Frostbloom 승인 문서
+12. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
 
 ## 핵심 재미
 
@@ -58,27 +62,40 @@ target_nodes: TERMINAL_LEAF
 hidden_position_bonus: prohibited
 ```
 
-Slice는 `열` 메인, `흐름` 연결 보조, `집중·분산` 수정 보조를 사용한다.
+## 보관함·Stock
 
-## Stock·필사
+```text
+보관함 = 직접 그려 저장한 특정 글자만 사용
+Stock = 습득한 핵심·보조 단어 중 원하는 글자 1개를 즉시 선택
+```
 
-- 특정 글자 Stock 1개는 같은 글자 노드 1회 배치를 대체한다.
-- 대상·연결선은 Stock 무료다.
+- 자연충전은 범용 Stock을 증가시킨다.
+- 집중 필사는 선택한 글자의 보관함을 증가시킨다.
+- 대상과 연결선은 자원 비용 0이다.
 - 모든 주문 Commit은 마나를 사용한다.
-- 완성 주문 원터치 Stock은 폐기됐다.
-- `[집중 필사]`: `0.25배 TEST`, 실제 시간 `마나 1/초 TEST`, 같은 글자 Stock `+1`, 진입 시 용량 `1` 예약.
-- 그리기는 선택 기능이며 위력 보너스가 없다.
+- 둘 다 가능하면 자원 출처를 직접 고른다.
+- 완성 주문 원터치 Stock은 금지된다.
 
-## Frostbloom
+## 문양
 
-에일린 교수, 카시안, 모트가 등장한다. 교수 주문은 하나의 예시일 뿐 정답·필수 루트·채점키가 아니다. 시설 복구·생명 구조·정령 안정화·봉쇄·제압·합리적 미등록 해결을 허용한다.
+- 실제 입력형은 1~3획 권장, 고급 최대 4획 후보.
+- 장식형은 입력 실루엣을 유지하고 외곽 룬·광원만 추가한다.
+- 핵심 단어는 현상, 보조 단어는 방향·작동 방식을 보여준다.
+- 이름·역할 아이콘·형태를 함께 사용한다.
+
+## 작업 규칙
+
+- 의미 있는 작업은 벤치마크·현업 비교와 프로젝트 불일치 분석을 포함한다.
+- 실행 가능한 변경은 `RED → GREEN → REFACTOR`를 지킨다.
+- 기획·아트는 제작 전에 수용·거부 사례와 검증 한계를 선언한다.
+- 승인 Batch 최대 크기는 10건이다.
+- 고위험 충돌·세션 종료·큰 정본 영향은 조기 Draft 체크포인트를 허용한다.
 
 ## 다음 작업
 
-1. 3×3 Mobile Landscape Wireframe.
-2. 집중 필사 Overlay.
-3. Frostbloom UX Map.
-4. Art Direction·Asset Brief.
-5. 선택 범위 Codex 구현 계획.
+1. PR #61 exact-head GREEN·적대적 검토·Sheet Readback.
+2. 사용자에게 두 Spec 검토 요청.
+3. 승인 후 구현 계획 작성.
+4. 문양 1차 세트와 3×3 Mobile Landscape Wireframe 테스트 설계.
 
 제품 구현과 Runtime 검증은 아직 시작하지 않는다.
