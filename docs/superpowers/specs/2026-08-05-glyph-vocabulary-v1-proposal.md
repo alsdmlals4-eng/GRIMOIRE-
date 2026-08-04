@@ -1,18 +1,25 @@
-# Glyph Vocabulary v1 — 핵심·보조 단어 10+10 제안
+# Glyph Vocabulary v1 — 핵심·보조 단어 10+10 승인 Spec
 
 ## Status
 
 ```yaml
-status: PROPOSED_FOR_USER_REVIEW
+decision_id: GM-GLYPH-VOCABULARY-V1-01
+status: USER_APPROVED_ACTIVE_PENDING_MERGE
+approved_at: 2026-08-05T07:52+09:00
 parent_decision: GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
-proposal_counter_increment: false
+counter_increment: true
+grill_counter_after_approval: 3_of_10
 purpose: VERTICAL_SLICE_AND_FUTURE_VOCABULARY_DIRECTION
 visual_assets: NOT_CREATED
 recognizer: NOT_IMPLEMENTED
 human_comprehension_test: NOT_RUN
 ```
 
-이 문서는 글자 목록과 입력 문양 방향을 제안한다. 사용자 승인 전 확정 Vocabulary가 아니며, 이름·형태·획수는 인지·혼동 테스트 결과에 따라 바뀔 수 있다.
+이 문서는 승인된 Vocabulary 의미 범위와 입력 문양 방향을 정의한다. 20종의 의미·역할 분류는 승인됐지만 정확한 좌표·인식 임계치·실제 조작감은 검증 전 `TEST_VALUE`다. Runtime 인식 범위는 우선 6종으로 제한한다.
+
+```text
+HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION
+```
 
 ## 1. 공통 문양 문법
 
@@ -29,9 +36,9 @@ required_properties:
 ornament_rule: DISPLAY_ONLY_KEEP_BASE_SILHOUETTE
 ```
 
-문양 후보는 실제 SVG나 이미지가 아니라 **입력 형태 설계 지시**다. 장식형은 기본 획에 외곽 원·눈금·룬·광원을 더하지만 인식 입력에는 포함하지 않는다.
+문양 정의는 실제 SVG 완성물이 아니라 **입력 형태 설계 지시**다. 장식형은 기본 획에 외곽 원·눈금·룬·광원을 더할 수 있지만 인식 입력에는 포함하지 않는다.
 
-## 2. 핵심 단어 후보 10종
+## 2. 핵심 단어 10종
 
 핵심 단어는 “무엇을 일으키는가”를 나타낸다.
 
@@ -50,12 +57,12 @@ ornament_rule: DISPLAY_ONLY_KEEP_BASE_SILHOUETTE
 
 ### 핵심 단어 적대 검토
 
-- `열`과 `빛`: 열은 삼각·상향, 빛은 십자·방사로 구별한다.
-- `냉기`와 `빛`: 냉기는 3분기 결정, 빛은 2획 직교 십자로 구별한다.
-- `물`과 `어둠`: 물은 닫히는 방울, 어둠은 열린 초승달이다.
-- `보호`와 `정화`: 보호는 둥근 방패, 정화는 각진 열린 마름모다.
+- `HEAT`와 `LIGHT`: 삼각·상향 대 십자·방사.
+- `COLD`와 `LIGHT`: 3분기 결정 대 직교 십자.
+- `WATER`와 `SHADOW`: 닫히는 방울 대 열린 초승달.
+- `PROTECT`와 `PURIFY`: 둥근 방패 대 각진 열린 마름모.
 
-## 3. 보조 단어 후보 10종
+## 3. 보조 단어 10종
 
 보조 단어는 “어떻게 작동하는가”를 나타낸다.
 
@@ -74,15 +81,17 @@ ornament_rule: DISPLAY_ONLY_KEEP_BASE_SILHOUETTE
 
 ### 보조 단어 적대 검토
 
-- `흐름`과 `반복`: 흐름은 열린 S 한 획, 반복은 분리된 두 반원이다.
-- `집중`과 `흡수`: 집중은 좌우 대칭 V 수렴, 흡수는 용기형 U와 하강선이다.
-- `고정`과 `지속`: 고정은 각진 마름모, 지속은 원이다.
-- `분산`과 `폭발`: 분산은 방향성 Y, 폭발은 중심 교차 별이다.
-- `투사`와 `지연`: 투사는 앞쪽 열린 꺾쇠, 지연은 뒤쪽 아래 갈고리다.
+- `FLOW`와 `REPEAT`: 열린 S 한 획 대 분리된 두 반원.
+- `FOCUS`와 `ABSORB`: 좌우 수렴 대 U형 용기와 하강선.
+- `ANCHOR`와 `SUSTAIN`: 각진 마름모 대 원.
+- `DISPERSE`와 `BURST`: 방향성 Y 대 중심 교차 별.
+- `PROJECT`와 `DELAY`: 앞쪽 열린 꺾쇠 대 뒤쪽 아래 갈고리.
 
-## 4. Vertical Slice 우선 범위
+## 4. Vertical Slice Runtime 범위
 
-20종을 한꺼번에 구현하지 않는다.
+```text
+SLICE_GLYPHS_6
+```
 
 ```yaml
 slice_main:
@@ -102,13 +111,12 @@ slice_targets:
   - FROST_SPIRIT
 ```
 
-- Frostbloom POC의 필수 인식 문양은 우선 6종이다.
-- 나머지 14종은 의미·실루엣 후보로만 유지한다.
-- 첫 플레이테스트에서 6종이 안정적으로 구분되지 않으면 Vocabulary 확대를 금지한다.
+- Frostbloom의 필수 문법은 `HEAT`, `FLOW`, 선택 `FOCUS·DISPERSE`다.
+- `PROTECT`, `BURST`는 전투·비교 문법과 혼동 검증을 위한 Slice 범위다.
+- 나머지 14종은 승인된 의미 Vocabulary지만 Runtime 인식 템플릿을 만들지 않는다.
+- 첫 6종이 안정적으로 구분되지 않으면 확대를 금지한다.
 
-## 5. Recognition TDD plan
-
-제품 인식 코드보다 먼저 다음 테스트 데이터를 만든다.
+## 5. Recognition TDD 계약
 
 ```yaml
 per_glyph_templates:
@@ -130,15 +138,21 @@ required_reports:
   - false_reject_rate
 ```
 
-### RED tests before recognizer
+제품 인식 코드보다 먼저 다음 RED를 작성한다.
 
-1. `HEAT` 입력이 `LIGHT`로 오인되는 샘플을 구별한다.
-2. `FLOW`와 `REPEAT`의 열린/닫힌 특성을 구별한다.
-3. 획 순서 보정 모드에서도 의미가 같은 문양으로 인식된다.
-4. 미완성 문양을 가장 가까운 글자로 자동 확정하지 않는다.
-5. 인식 신뢰가 낮으면 후보와 재시도를 제시하고 자원을 생성하지 않는다.
+1. `HEAT`와 `LIGHT` 혼동 샘플.
+2. `FLOW`와 `REPEAT`의 열린/닫힌 차이.
+3. 허용된 획 순서·방향 변형.
+4. 미완성 문양 자동 확정 금지.
+5. 낮은 확신 후보·재시도와 자원 미생성.
+6. stale revision 결과 폐기.
+7. 선택한 필사 글자와 인식 글자가 다르면 보관함 미생성.
 
-## 6. Comprehension acceptance test
+```text
+LOW_CONFIDENCE_REQUIRES_RETRY
+```
+
+## 6. 사람 인지 수용 테스트
 
 라벨을 2초간 숨긴 뒤 다음을 확인한다.
 
@@ -149,14 +163,14 @@ questions:
   - most_confusable_other_glyph
   - confidence
 pass_gate_before_expansion:
-  meaning_accuracy: TEST_THRESHOLD_TO_BE_SET_BEFORE_SESSION
-  role_accuracy: TEST_THRESHOLD_TO_BE_SET_BEFORE_SESSION
+  meaning_accuracy: PRE_REGISTER_BEFORE_SESSION
+  role_accuracy: PRE_REGISTER_BEFORE_SESSION
   no_single_confusion_pair_dominates: required
 ```
 
-임계치는 플레이테스트 계획 단계에서 사전 등록한다. 결과를 본 뒤 기준을 낮추지 않는다.
+임계치는 결과 확인 전에 사전 등록하며 결과를 본 뒤 낮추지 않는다.
 
-## 7. Visual consistency
+## 7. 시각 일관성
 
 ```yaml
 shared_style:
@@ -169,16 +183,14 @@ shared_style:
   palette: secondary_to_shape
 ```
 
-- 글자마다 다른 미술 사조를 사용하지 않는다.
-- 입력형은 읽기 쉬운 단색 선으로도 성립해야 한다.
-- 장식형의 색·입자·외곽 장식이 사라져도 같은 글자로 인식돼야 한다.
+- 입력형은 단색 선으로도 성립한다.
+- 장식형의 색·입자·외곽 장식을 제거해도 같은 글자로 인식돼야 한다.
+- 색상만으로 역할이나 의미를 구분하지 않는다.
 
-## 8. Review questions
+## 8. 구현 경계
 
-1. 핵심 단어 10종의 범위가 현상 중심으로 충분한가.
-2. `보호`를 핵심 단어로 유지하는가.
-3. `폭발`을 보조 단어로 유지하는가.
-4. Slice 우선 6종이 너무 많거나 적지 않은가.
-5. `정화·흡수·반복·지연`을 첫 정식 Vocabulary에 포함할 가치가 있는가.
-
-사용자 검토 후 승인된 목록만 별도 Decision으로 승격한다.
+- 자원 계획: `docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md`.
+- 인식 계획: `docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md`.
+- Resource Stop Gate 통과 전 인식 계획을 실행하지 않는다.
+- 자동 fixture 검증은 실제 손가락·사람 인지 검증을 대체하지 않는다.
+- 제품 구현·실기기·사람 검증은 현재 `NOT_STARTED / NOT_RUN`이다.
