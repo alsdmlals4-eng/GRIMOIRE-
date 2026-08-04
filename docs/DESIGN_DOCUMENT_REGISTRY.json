@@ -1,5 +1,5 @@
 {
-  "schema_version": 26,
+  "schema_version": 27,
   "registry_role": "grimoire-current-canon-and-approved-draft-router",
   "project": {
     "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -12,13 +12,15 @@
     "main_authority_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
     "main_closure_commit": "4c50b462a8e296e24583b727ab93c82ba1e9c041",
     "current_main_sync": "GR-SYNC-20260804-12-CLOSURE",
-    "draft_sync": "GR-SYNC-20260805-01-GLYPH-VAULT-STOCK-GOVERNANCE",
+    "draft_sync": "GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS",
     "working_pull_request": 61,
     "working_branch": "agent/glyph-vault-stock-governance-design",
-    "latest_approved_decision": "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
-    "grill_counter": "2_of_10",
-    "pending_decisions": 2,
+    "latest_approved_decision": "GM-GLYPH-VOCABULARY-V1-01",
+    "grill_counter": "3_of_10",
+    "pending_decisions": 3,
     "checkpoint_state": "HIGH_CANON_IMPACT_DRAFT_CHECKPOINT",
+    "current_gate": "IMPLEMENTATION_PLANS_READY",
+    "merge_required": false,
     "merge_authorized": false,
     "product_implementation": "NOT_STARTED",
     "runtime_validation": "NOT_RUN"
@@ -31,7 +33,7 @@
     "finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
     "registry_sha256": "693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59",
     "adapter": "skills/PROJECT_BASE_ADAPTER.json",
-    "promotion_of_current_work": "HOLD_OVERLAPPING_BASE_PRS_AND_PROJECT_EVIDENCE_REQUIRED"
+    "promotion_of_current_work": "HOLD_PROJECT_EVIDENCE_AND_CROSS_PROJECT_REUSE_REVIEW_REQUIRED"
   },
   "restoration_order": [
     "AGENTS.md",
@@ -44,9 +46,12 @@
     "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md",
     "docs/superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md",
-    "docs/superpowers/specs/2026-08-05-glyph-vocabulary-v1-proposal.md",
     "docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md",
     "docs/superpowers/specs/2026-08-05-benchmark-tdd-checkpoint-governance-design.md",
+    "docs/planning/GLYPH_VOCABULARY_V1_01_APPROVAL_2026-08-05.md",
+    "docs/superpowers/specs/2026-08-05-glyph-vocabulary-v1-proposal.md",
+    "docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md",
+    "docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md",
     "docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md",
     "docs/planning/STOCK_SYSTEM.md",
     "docs/planning/STOCK_CAPACITY_SYSTEM.md",
@@ -55,10 +60,9 @@
     "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
     "docs/planning/MANA_SYSTEM.md",
     "docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md",
-    "docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md",
     "docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_APPROVAL_2026-08-04.md",
     "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
-    "docs/planning/sync/GR-SYNC-20260805-01-GLYPH-VAULT-STOCK-GOVERNANCE.md"
+    "docs/planning/sync/GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS.md"
   ],
   "canonical_documents": [
     {"path":"AGENTS.md","status":"ACTIVE_TOP_LEVEL_AUTHORITY_WITH_APPROVED_DRAFT_CHECKPOINT"},
@@ -69,11 +73,14 @@
     {"path":"docs/planning/README.md","status":"ACTIVE_PLANNING_ENTRYPOINT"},
     {"path":"docs/planning/CANON_STATUS_INDEX_2026-08-04.md","status":"ACTIVE_LEGACY_AND_DRAFT_STATUS_AUTHORITY"},
     {"path":"docs/planning/CURRENT_CONFIRMED_DECISIONS.md","status":"ACTIVE_DECISION_SNAPSHOT"},
-    {"path":"docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md","decision_id":"GM-GLYPH-VAULT-UNIVERSAL-STOCK-01","status":"USER_APPROVED_PENDING_MERGE_DESIGN_REVIEW"},
+    {"path":"docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md","decision_id":"GM-GLYPH-VAULT-UNIVERSAL-STOCK-01","status":"USER_APPROVED_SPEC_REVIEW_COMPLETE_PENDING_MERGE"},
     {"path":"docs/superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md","decision_id":"GM-GLYPH-VAULT-UNIVERSAL-STOCK-01","status":"ACTIVE_APPROVED_DRAFT_IMPLEMENTATION_DESIGN"},
-    {"path":"docs/superpowers/specs/2026-08-05-glyph-vocabulary-v1-proposal.md","status":"PROPOSED_FOR_USER_REVIEW_NOT_COUNTED"},
-    {"path":"docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md","decision_id":"GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01","status":"USER_APPROVED_PENDING_MERGE_DESIGN_REVIEW"},
+    {"path":"docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md","decision_id":"GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01","status":"USER_APPROVED_SPEC_REVIEW_COMPLETE_PENDING_MERGE"},
     {"path":"docs/superpowers/specs/2026-08-05-benchmark-tdd-checkpoint-governance-design.md","decision_id":"GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01","status":"ACTIVE_APPROVED_DRAFT_OPERATING_DESIGN"},
+    {"path":"docs/planning/GLYPH_VOCABULARY_V1_01_APPROVAL_2026-08-05.md","decision_id":"GM-GLYPH-VOCABULARY-V1-01","status":"USER_APPROVED_ACTIVE_PENDING_MERGE"},
+    {"path":"docs/superpowers/specs/2026-08-05-glyph-vocabulary-v1-proposal.md","decision_id":"GM-GLYPH-VOCABULARY-V1-01","status":"ACTIVE_APPROVED_DRAFT_VOCABULARY_SPEC_FILENAME_LEGACY"},
+    {"path":"docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md","status":"APPROVED_SCOPE_IMPLEMENTATION_PLAN_NOT_STARTED"},
+    {"path":"docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md","status":"APPROVED_SCOPE_IMPLEMENTATION_PLAN_AFTER_RESOURCE_STOP_GATE"},
     {"path":"docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md","status":"CURRENT_RESEARCH_INPUT"},
     {"path":"docs/planning/STOCK_SYSTEM.md","status":"USER_APPROVED_PENDING_MERGE_RESPONSIBILITY_SOURCE"},
     {"path":"docs/planning/STOCK_CAPACITY_SYSTEM.md","status":"USER_APPROVED_PENDING_MERGE_SEPARATE_CAPACITY_SOURCE"},
@@ -82,15 +89,14 @@
     {"path":"docs/planning/STOCK_TARGET_SWITCH_SYSTEM.md","status":"RETIRED_SUPERSEDED"},
     {"path":"docs/planning/STOCK_SYSTEM_01_APPROVAL_2026-08-02.md","status":"HISTORY_PARTIALLY_SUPERSEDED"},
     {"path":"docs/planning/THREE_BY_THREE_CIRCUIT_STOCK_FOCUS_01_APPROVAL_2026-08-04.md","decision_id":"GM-3X3-CIRCUIT-STOCK-FOCUS-01","status":"ACTIVE_TOPOLOGY_PARTIALLY_SUPERSEDED_RESOURCE_MODEL"},
-    {"path":"docs/superpowers/specs/2026-08-04-3x3-circuit-stock-focus-scribing-design.md","status":"ACTIVE_CIRCUIT_SPEC_PARTIALLY_SUPERSEDED_RESOURCE_SECTION"},
     {"path":"docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md","status":"ACTIVE_RESPONSIBILITY_SOURCE_ALIGNED_TO_NEW_RESOURCES"},
     {"path":"docs/planning/MANA_SYSTEM.md","status":"ACTIVE_DIRECTION_ALIGNED_TO_NEW_RESOURCES_TUNING_DEFERRED"},
     {"path":"docs/planning/SLICE_HEAT_FLOW_OBSERVATION_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/NARRATIVE_MULTI_SOLUTION_SITUATION_01_ROUTE_GUIDANCE_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/SCHOOL_CRISIS_PEDAGOGY_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_ACTIVE"},
     {"path":"docs/planning/FROSTBLOOM_CAST_DIALOGUE_01_APPROVAL_2026-08-04.md","status":"USER_APPROVED_LINKED_CONTENT_BASELINE"},
-    {"path":"docs/planning/GRILL_ME_BATCH_MERGE_STATE.json","status":"ACTIVE_MACHINE_AUTHORITY_2_OF_10_DRAFT_CHECKPOINT"},
-    {"path":"docs/planning/sync/GR-SYNC-20260805-01-GLYPH-VAULT-STOCK-GOVERNANCE.md","status":"APPROVED_DRAFT_CHECKPOINT_SHEET_READBACK_PASS"}
+    {"path":"docs/planning/GRILL_ME_BATCH_MERGE_STATE.json","status":"ACTIVE_MACHINE_AUTHORITY_3_OF_10_DRAFT_CHECKPOINT"},
+    {"path":"docs/planning/sync/GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS.md","status":"APPROVED_DRAFT_CHECKPOINT_SHEET_READBACK_PASS"}
   ],
   "partial_supersession": [
     {
@@ -114,6 +120,17 @@
       ]
     }
   ],
+  "vocabulary_contract": {
+    "decision_id": "GM-GLYPH-VOCABULARY-V1-01",
+    "main_count": 10,
+    "support_count": 10,
+    "slice_runtime_glyphs": ["HEAT", "PROTECT", "FLOW", "FOCUS", "DISPERSE", "BURST"],
+    "input_strokes": "1_TO_3",
+    "advanced_candidate_max_strokes": 4,
+    "ornament_is_recognition_input": false,
+    "low_confidence": "LOW_CONFIDENCE_REQUIRES_RETRY",
+    "expansion_gate": "HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION"
+  },
   "workflow_contract": {
     "decision_id": "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
     "benchmark": "BENCHMARK_AND_PRO_COMPARISON_REQUIRED",
@@ -121,11 +138,7 @@
     "executable_work": "STRICT_RED_GREEN_REFACTOR",
     "non_executable_work": "TEST_FIRST_ACCEPTANCE_FOR_NON_EXECUTABLE_WORK",
     "max_approved_decisions_per_batch": 10,
-    "early_checkpoint_triggers": [
-      "HIGH_RISK_CONFLICT",
-      "SESSION_END_OR_CONTEXT_LOSS",
-      "MAJOR_CANON_IMPACT"
-    ]
+    "early_checkpoint_triggers": ["HIGH_RISK_CONFLICT", "SESSION_END_OR_CONTEXT_LOSS", "MAJOR_CANON_IMPACT"]
   },
   "deprecated_contracts": [
     "TYPED_GLYPH_ONLY_AS_CURRENT_STOCK",
@@ -138,6 +151,8 @@
     "STOCK_CASTS_WITHOUT_SPELL_MANA",
     "VAULT_GLYPH_CONVERSION",
     "AUTOMATIC_RESOURCE_SOURCE_PRIORITY",
+    "LOW_CONFIDENCE_AUTO_CONFIRM",
+    "RUNTIME_VOCABULARY_EXPANSION_BEFORE_HUMAN_GATE",
     "FLOW_AS_SLICE_MAIN_GLYPH",
     "FACULTY_CIRCUIT_AS_ANSWER_KEY",
     "FULL_PAUSE_DURING_FOCUS_SCRIBE",
@@ -157,17 +172,18 @@
   ],
   "validation": {
     "draft_pull_request": 61,
-    "initial_red_test_commit": "fc9134598bc3ffb427d6801074eba9ef9c2df25f",
-    "ci_test_connection_commit": "64ca7465f5e5624be2e8e001f97dbe70d5131ef1",
     "initial_red_workflow_run": 30925666145,
     "capacity_red_workflow_run": 30928418370,
     "entrypoint_red_workflow_run": 30928799903,
     "charge_lifecycle_red_workflow_run": 30929106014,
-    "latest_green_workflow_run": 30929333702,
-    "green": "PASS_BEFORE_FINAL_REGISTRY_HARDENING_EXACT_HEAD_RECHECK_PENDING",
+    "spec_review_and_plan_red_workflow_run": 30958182618,
+    "planning_and_adversarial_green_workflow_run": 30958977292,
+    "godot_toolchain_green_workflow_run": 30958977145,
+    "final_exact_head": "RECHECK_PENDING_AFTER_SYNC_RECEIPT",
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
     "review_threads": "CHECK_PENDING",
+    "product_implementation": "NOT_STARTED",
     "runtime": "NOT_RUN"
   }
 }
