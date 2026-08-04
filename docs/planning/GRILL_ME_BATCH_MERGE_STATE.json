@@ -1,5 +1,5 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -15,7 +15,7 @@
     "pending_decision_ids": []
   },
   "completed_flush": {
-    "status": "FINALIZATION_MERGED_SHEET_READBACK_PR_59_IN_PROGRESS",
+    "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
     "trigger": "USER_EXPLICIT_EARLY_FLUSH_AT_5_OF_10",
     "flushed_decision_count": 5,
     "decision_ids": [
@@ -30,17 +30,16 @@
     "finalization_pull_request": 58,
     "finalization_merge_commit": "39da99fbc56ccdf90904b24b5725cb0d0779595a",
     "sheet_readback_pull_request": 59,
-    "sheet_readback_merge_commit": null,
-    "main_sync_id": "GR-SYNC-20260804-11-MAIN-READBACK"
+    "sheet_readback_merge_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
+    "closure_pull_request": 60,
+    "main_sync_id": "GR-SYNC-20260804-12-CLOSURE"
   },
   "current_work": {
-    "status": "THREE_BY_THREE_CANON_FINALIZED_SHEET_READBACK_IN_PROGRESS",
+    "status": "THREE_BY_THREE_CANON_COMPLETE_NEXT_WIREFRAME",
     "latest_approved_decision_id": "GM-3X3-CIRCUIT-STOCK-FOCUS-01",
     "default_branch": "main",
-    "main_authority_commit": "39da99fbc56ccdf90904b24b5725cb0d0779595a",
-    "current_main_sync": "GR-SYNC-20260804-11-MAIN-READBACK",
-    "sheet_readback_branch": "agent/finalize-3x3-canon-sheet-readback",
-    "sheet_readback_pull_request": 59,
+    "main_authority_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
+    "current_main_sync": "GR-SYNC-20260804-12-CLOSURE",
     "next_priority": "THREE_BY_THREE_MOBILE_LANDSCAPE_WIREFRAME"
   },
   "canonical_contract": {
@@ -54,18 +53,15 @@
     "target_provider": "VISIBLE_COMBATANTS_AUTO_ENVIRONMENT_AFTER_OBSERVATION"
   },
   "validation": {
+    "planning_ci": "PASS_ON_PR59_EXACT_HEAD",
+    "godot_toolchain_ci": "PASS_ON_PR59_EXACT_HEAD",
+    "unresolved_review_threads": 0,
+    "sheet_readback": "PASS",
     "product_implementation": "NOT_STARTED",
     "runtime": "NOT_RUN",
     "mobile_device": "NOT_RUN",
     "performance": "NOT_RUN",
     "accessibility": "NOT_RUN",
-    "human": "NOT_RUN",
-    "readback_required": [
-      "PR59_EXACT_HEAD_CI_SUCCESS",
-      "PR59_REVIEW_THREADS_ZERO",
-      "SHEET_FINALIZATION_SHA_READBACK",
-      "PR59_MERGE",
-      "SHEET_PR59_MERGE_SHA_HISTORY"
-    ]
+    "human": "NOT_RUN"
   }
 }
