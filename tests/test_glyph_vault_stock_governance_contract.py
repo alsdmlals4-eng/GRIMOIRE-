@@ -8,8 +8,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 GLYPH_SPEC = ROOT / "docs/superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md"
 WORKFLOW_SPEC = ROOT / "docs/superpowers/specs/2026-08-05-benchmark-tdd-checkpoint-governance-design.md"
+VOCABULARY_SPEC = ROOT / "docs/superpowers/specs/2026-08-05-glyph-vocabulary-v1-proposal.md"
 GLYPH_APPROVAL = ROOT / "docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md"
 WORKFLOW_APPROVAL = ROOT / "docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md"
+VOCABULARY_APPROVAL = ROOT / "docs/planning/GLYPH_VOCABULARY_V1_01_APPROVAL_2026-08-05.md"
+RESOURCE_PLAN = ROOT / "docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md"
+RECOGNITION_PLAN = ROOT / "docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md"
 BENCHMARK = ROOT / "docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md"
 AGENTS = ROOT / "AGENTS.md"
 STOCK = ROOT / "docs/planning/STOCK_SYSTEM.md"
@@ -25,8 +29,18 @@ PLANNING_INDEX = ROOT / "docs/planning/README.md"
 
 
 class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
-    def test_required_design_and_approval_documents_exist(self) -> None:
-        for path in (GLYPH_SPEC, WORKFLOW_SPEC, GLYPH_APPROVAL, WORKFLOW_APPROVAL, BENCHMARK):
+    def test_required_design_approval_and_plan_documents_exist(self) -> None:
+        for path in (
+            GLYPH_SPEC,
+            WORKFLOW_SPEC,
+            VOCABULARY_SPEC,
+            GLYPH_APPROVAL,
+            WORKFLOW_APPROVAL,
+            VOCABULARY_APPROVAL,
+            RESOURCE_PLAN,
+            RECOGNITION_PLAN,
+            BENCHMARK,
+        ):
             self.assertTrue(path.is_file(), path)
 
     def test_glyph_resource_contract_separates_vault_and_universal_stock(self) -> None:
@@ -94,28 +108,74 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
         for token in required:
             self.assertIn(token, text)
 
-    def test_active_entrypoints_route_to_pr61_and_new_decisions(self) -> None:
+    def test_spec_review_and_vocabulary_approval_are_recorded(self) -> None:
+        reviewed = GLYPH_APPROVAL.read_text(encoding="utf-8") + WORKFLOW_APPROVAL.read_text(encoding="utf-8")
+        self.assertIn("USER_APPROVED_SPEC_REVIEW_COMPLETE_PENDING_MERGE", reviewed)
+
+        vocabulary = VOCABULARY_APPROVAL.read_text(encoding="utf-8") + VOCABULARY_SPEC.read_text(encoding="utf-8")
+        for token in (
+            "GM-GLYPH-VOCABULARY-V1-01",
+            "USER_APPROVED_ACTIVE_PENDING_MERGE",
+            "SLICE_GLYPHS_6",
+            "HEAT",
+            "PROTECT",
+            "FLOW",
+            "FOCUS",
+            "DISPERSE",
+            "BURST",
+            "HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION",
+        ):
+            self.assertIn(token, vocabulary)
+
+    def test_implementation_plans_are_tdd_complete_and_separately_scoped(self) -> None:
+        resource = RESOURCE_PLAN.read_text(encoding="utf-8")
+        recognition = RECOGNITION_PLAN.read_text(encoding="utf-8")
+        for token in (
+            "# Glyph Resource Foundation POC Implementation Plan",
+            "RED_TEST_WRITTEN_FIRST",
+            "VaultInventory",
+            "UniversalStockPool",
+            "ResourceReservationLedger",
+            "AtomicSpellCommitService",
+            "EXPLICIT_SOURCE_SELECTION",
+        ):
+            self.assertIn(token, resource)
+        for token in (
+            "# Glyph Vocabulary Recognition POC Implementation Plan",
+            "RED_TEST_WRITTEN_FIRST",
+            "GlyphDefinition",
+            "GlyphTemplateRepository",
+            "DollarOneRecognizer",
+            "RecognitionCandidate",
+            "confusion_matrix",
+            "LOW_CONFIDENCE_REQUIRES_RETRY",
+        ):
+            self.assertIn(token, recognition)
+
+    def test_active_entrypoints_route_to_pr61_and_three_approved_decisions(self) -> None:
         text = DOC_MAP.read_text(encoding="utf-8") + PLANNING_INDEX.read_text(encoding="utf-8")
         for token in (
             "working_pull_request: 61",
-            "grill_counter: 2_of_10",
+            "grill_counter: 3_of_10",
             "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
             "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
-            "USER_SPEC_REVIEW_PENDING",
+            "GM-GLYPH-VOCABULARY-V1-01",
+            "IMPLEMENTATION_PLANS_READY",
         ):
             self.assertIn(token, text)
         self.assertNotIn("현재 제품 차단 결정은 계속 `ART-STYLE-01`", text)
 
-    def test_batch_registers_two_approved_decisions_without_forcing_merge(self) -> None:
+    def test_batch_registers_three_approved_decisions_without_forcing_merge(self) -> None:
         data = json.loads(BATCH.read_text(encoding="utf-8"))
         counter = data["counter"]
         self.assertEqual(10, data["threshold"])
-        self.assertEqual(2, counter["approved_grill_me_since_last_flush"])
+        self.assertEqual(3, counter["approved_grill_me_since_last_flush"])
         self.assertFalse(counter["merge_required"])
         self.assertEqual(
             [
                 "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
                 "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
+                "GM-GLYPH-VOCABULARY-V1-01",
             ],
             counter["pending_decision_ids"],
         )
