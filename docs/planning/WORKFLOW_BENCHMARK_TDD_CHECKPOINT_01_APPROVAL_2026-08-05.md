@@ -4,8 +4,9 @@
 
 ```yaml
 decision_id: GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
-status: USER_APPROVED_PENDING_MERGE_DESIGN_REVIEW
+status: USER_APPROVED_SPEC_REVIEW_COMPLETE_PENDING_MERGE
 approved_at: 2026-08-05T00:31+09:00
+spec_reviewed_at: 2026-08-05T07:52+09:00
 approval_source: conversation_user_explicit_approval
 counter_increment: true
 grill_counter_after_approval: 2_of_10
@@ -65,7 +66,7 @@ RED 테스트 작성
 
 ```yaml
 max_approved_decisions_per_batch: 10
-current_approved_decisions: 2
+current_approved_decisions: 3
 merge_required: false
 counter_reset: false
 ```
@@ -87,18 +88,19 @@ counter_reset: false
 - 제품 구현 완료.
 - Runtime·사람 검증 완료.
 
-## TDD RED 증거
+## TDD 증거
 
 ```yaml
 contract_test: tests/test_glyph_vault_stock_governance_contract.py
-red_commit: fc9134598bc3ffb427d6801074eba9ef9c2df25f
+initial_red_workflow: 30925666145
 ci_discovery_fix_commit: 64ca7465f5e5624be2e8e001f97dbe70d5131ef1
-red_workflow_run: 30925666145
-red_result: 6_tests_3_failures_3_errors
-root_cause_found: new_test_was_not_in_ci_execution_path
+capacity_red_workflow: 30928418370
+entrypoint_red_workflow: 30928799903
+charge_lifecycle_red_workflow: 30929106014
+spec_review_red_workflow: 30958182618
 ```
 
-최초 테스트 커밋은 기존 CI가 새 모듈을 호출하지 않아 잘못된 PASS가 발생했다. 실행 경로를 조사해 테스트 모듈을 명시적으로 연결한 뒤, 누락된 설계·승인·벤치마크·Batch 계약 때문에 예상대로 RED가 발생하는 것을 확인했다.
+최초 테스트 커밋은 기존 CI가 새 모듈을 호출하지 않아 잘못된 PASS가 발생했다. 실행 경로를 조사해 테스트 모듈을 명시적으로 연결한 뒤 예상 RED를 확인했다. 이후 문서와 구현 계획도 같은 테스트 우선 계약으로 검증한다.
 
 ## Base 경계
 
@@ -114,10 +116,12 @@ reason:
 ## 연결 문서
 
 - 상세 운영 설계: `docs/superpowers/specs/2026-08-05-benchmark-tdd-checkpoint-governance-design.md`.
-- 벤치마크 예시: `docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md`.
+- 자원 구현 계획: `docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md`.
+- 인식 구현 계획: `docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md`.
+- 벤치마크: `docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md`.
 - Batch: `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`.
 - 최상위 규칙: `AGENTS.md`.
 
 ## 병합 경계
 
-PR #61은 고위험·정본 영향 조기 Draft 체크포인트다. 사용자의 서면 Spec 검토, exact-head CI, 적대적 검토, Google Sheet Readback 전에는 병합하지 않는다.
+Spec 검토는 완료됐지만 PR #61은 고위험·정본 영향 조기 Draft 체크포인트다. 최신 exact-head CI, 적대적 검토, Google Sheet Readback과 별도 병합 승인 전에는 Ready 전환이나 병합을 하지 않는다.
