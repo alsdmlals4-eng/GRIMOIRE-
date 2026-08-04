@@ -8,16 +8,19 @@ main_closure_commit: 4c50b462a8e296e24583b727ab93c82ba1e9c041
 current_main_sync: GR-SYNC-20260804-12-CLOSURE
 working_pull_request: 61
 working_branch: agent/glyph-vault-stock-governance-design
-grill_counter: 2_of_10
-pending_decisions: 2
-latest_approved_decision: GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
-related_approved_decision: GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
+grill_counter: 3_of_10
+pending_decisions: 3
+latest_approved_decision: GM-GLYPH-VOCABULARY-V1-01
+approved_decisions:
+  - GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
+  - GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
+  - GM-GLYPH-VOCABULARY-V1-01
 checkpoint_state: HIGH_CANON_IMPACT_DRAFT_CHECKPOINT
 merge_authorized: false
-current_gate: USER_SPEC_REVIEW_PENDING
+current_gate: IMPLEMENTATION_PLANS_READY
 ```
 
-main 정본은 PR #57~#60 상태를 유지한다. PR #61은 사용자 승인된 자원·작업 운영 변경을 기록한 Draft 체크포인트이며 아직 병합되지 않았다.
+main 정본은 PR #57~#60 상태를 유지한다. PR #61은 사용자 승인된 자원·작업 운영·Vocabulary 결정을 기록한 Draft 체크포인트이며 아직 병합되지 않았다.
 
 ## 시작 경로
 
@@ -29,9 +32,10 @@ AGENTS.md
 → docs/planning/CANON_STATUS_INDEX_2026-08-04.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
 → docs/DESIGN_DOCUMENT_REGISTRY.json
-→ 새 승인·Spec·책임 원본
+→ 승인 3종·Spec·책임 원본
+→ 구현 계획 2종
 → Batch
-→ GR-SYNC-20260805-01
+→ GR-SYNC-20260805-02
 → PR #61
 ```
 
@@ -44,33 +48,31 @@ AGENTS.md
 - `docs/planning/CANON_STATUS_INDEX_2026-08-04.md` — 구형·부분 대체·Draft 상태.
 - `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` — 완료 Decision과 승인·병합 대기 Decision Snapshot.
 - `docs/DESIGN_DOCUMENT_REGISTRY.json` — Router.
-- `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json` — Batch `2/10`.
-- `docs/planning/sync/GR-SYNC-20260805-01-GLYPH-VAULT-STOCK-GOVERNANCE.md` — Draft Sheet Readback 영수증.
+- `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json` — Batch `3/10`.
+- `docs/planning/sync/GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS.md` — 승인·계획·Sheet 동기화 영수증.
 
-## 보관함·Stock·문양
+## 보관함·Stock
 
-### 승인·병합 대기
-
-- `GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md`.
-- `2026-08-05-glyph-vault-universal-stock-design.md`.
-- `STOCK_SYSTEM.md`.
-- `STOCK_CAPACITY_SYSTEM.md`.
-- `MANA_SYSTEM.md`.
-- `MAGIC_LETTER_CIRCUIT_SYSTEM.md`.
+- 승인: `docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md`.
+- Spec: `docs/superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md`.
+- 책임 원본: `STOCK_SYSTEM.md`, `STOCK_CAPACITY_SYSTEM.md`, `STOCK_CHARGE_TIME_SYSTEM.md`, `STOCK_HIT_PAUSE_SYSTEM.md`, `MANA_SYSTEM.md`, `MAGIC_LETTER_CIRCUIT_SYSTEM.md`.
+- 구현 계획: `docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md`.
 
 ```text
 보관함 = 미리 그린 특정 글자 전용
 Stock = 습득한 핵심·보조 글자 범용
 용량 = 보관함 슬롯과 Stock 별도
+충전 = 단일 범용 Stock 진행도
 ```
 
-### 사용자 검토 제안·미승인
+## Vocabulary·인식
 
-- `2026-08-05-glyph-vocabulary-v1-proposal.md` — 핵심 10·보조 10 및 Slice 우선 6종 후보. Decision으로 아직 집계하지 않는다.
-
-### 부분 대체
-
-- `GM-3X3-CIRCUIT-STOCK-FOCUS-01`: 3×3 회로·대상·마나·시간 압박은 유지하고 Typed Glyph Stock·특정 글자 충전·필사 출력만 새 Decision이 대체한다.
+- 승인: `docs/planning/GLYPH_VOCABULARY_V1_01_APPROVAL_2026-08-05.md`.
+- 상세 제안/Spec: `docs/superpowers/specs/2026-08-05-glyph-vocabulary-v1-proposal.md`.
+- 구현 계획: `docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md`.
+- 의미 Vocabulary: 핵심 10종 + 보조 10종.
+- Runtime Slice: `HEAT`, `PROTECT`, `FLOW`, `FOCUS`, `DISPERSE`, `BURST`.
+- 확대 Gate: `HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION`.
 
 ## 벤치마크·TDD 운영
 
@@ -99,12 +101,12 @@ EARLY_CHECKPOINT_MAJOR_CANON_IMPACT
 ## 운영·검증
 
 - main 완료 Sync: `GR-SYNC-20260804-12-CLOSURE`.
-- Draft 체크포인트 Sync: `GR-SYNC-20260805-01-GLYPH-VAULT-STOCK-GOVERNANCE`.
+- Draft 체크포인트 Sync: `GR-SYNC-20260805-02-GLYPH-VOCABULARY-IMPLEMENTATION-PLANS`.
 - Godot toolchain 자료 `[구현완료 보관]`.
-- 제품 Handoff·Overlay `[보류]`.
+- 제품 구현은 아직 `NOT_STARTED`.
 - Base 공용 정책 승격 `[보류]`.
 
-제품 `project.godot`, Runtime, 문양 인식, 모바일, 성능, 접근성, 사람 검증은 미실행이다.
+제품 `project.godot`, Runtime, 실제 문양 인식, 모바일, 성능, 접근성, 사람 검증은 미실행이다.
 
 ## Legacy 정책
 
@@ -116,11 +118,10 @@ EARLY_CHECKPOINT_MAJOR_CANON_IMPACT
 ## 다음 Gate
 
 ```text
-Contract·회귀 GREEN
+Contract·회귀 exact-head GREEN
 → 적대적 P0/P1 0
 → Sheet Readback PASS
-→ 사용자 Spec·Vocabulary 검토
-→ 구현 계획
+→ Codex에서 Resource 계획부터 TDD 실행
 ```
 
 PR #61은 Draft이며 병합 권한이 없다.
