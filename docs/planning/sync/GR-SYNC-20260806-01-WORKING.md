@@ -7,7 +7,7 @@ sync_id: GR-SYNC-20260806-01
 decision_id: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 status: SYNCED_TO_WORKING_BRANCH
 working_branch: agent/star-circuit-mastery-balance
-authority_commit: 69d631c2f55b07cbc67bf824880122f431ffd7b4
+authority_commit: 209eecc5beed77920ca601a2b377b8e900a0d5ac
 main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
 main_sync_status: NOT_MERGED
 spreadsheet_id: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
@@ -30,11 +30,13 @@ human_validation: NOT_RUN
 
 ## GitHub Authority
 
-Authority commit `69d631c2f55b07cbc67bf824880122f431ffd7b4`에 다음이 포함된다.
+Authority snapshot `209eecc5beed77920ca601a2b377b8e900a0d5ac`에는 다음 책임 범위가 포함된다.
 
 - `AGENTS.md`
 - `START_HERE.md`
 - `docs/ACTIVE_CONTEXT.md`
+- `docs/DEVELOPMENT_GATES.md`
+- `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`
 - `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
 - `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`
 - `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`
@@ -45,6 +47,9 @@ Authority commit `69d631c2f55b07cbc67bf824880122f431ffd7b4`에 다음이 포함�
 - `docs/superpowers/plans/2026-08-06-star-glyph-circuit-canon-sync.md`
 - `docs/DESIGN_DOCUMENT_REGISTRY.json`
 - `tests/test_star_glyph_circuit_canon_contract.py`
+- required planning CI integration.
+
+후속 커밋은 이 authority snapshot을 Sheet·Sync receipt·PR metadata에 기록하는 추적 보정이며 설계 수치를 변경하지 않는다.
 
 ## Google Sheet 반영 범위
 
@@ -58,7 +63,7 @@ Authority commit `69d631c2f55b07cbc67bf824880122f431ffd7b4`에 다음이 포함�
 | `40_핵심시스템_메인콘텐츠` | Row 28, `GR-S-STAR-01` PASS |
 | `41_성장_경제` | Row 12, `GR-EC-STAR-01` PASS |
 | `60_UX_UI_접근성` | Row 34, `GR-UX-STAR-01` PASS |
-| `99_변경이력` | Row 79, Sync ID·범위·Readback PASS |
+| `99_변경이력` | Row 79, Sync ID·authority SHA·범위·Readback PASS |
 
 ## 충돌·보존 판정
 
@@ -75,7 +80,7 @@ SUPERSEDED_BY_GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 ## Readback 결과
 
 - Decision ID: PASS.
-- Authority commit SHA: PASS.
+- Authority snapshot SHA `209eecc5...`: PASS.
 - 대체 Decision·충돌 범위: PASS.
 - 회로 흐름·숙련도·성공률·마나·정밀·절감: PASS.
 - UX·성장·핵심 시스템 연결: PASS.
@@ -84,7 +89,7 @@ SUPERSEDED_BY_GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 ## 남은 Gate
 
 - Draft PR exact-head CI.
-- 문서 Registry·active authority 회귀 테스트.
+- 문서 Spec review와 리뷰 스레드 0개.
 - 별형 회로 Mobile Landscape Wireframe.
 - 부분 성공·실패·역류 세부 계약.
 - 제품 Godot 프로젝트 생성 및 테스트 우선 구현.
