@@ -6,23 +6,24 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-closure_pull_request: 60
+working_branch: agent/star-circuit-mastery-balance
 primary_platform: Mobile
 orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
 main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
-current_main_sync: GR-SYNC-20260804-12-CLOSURE
-latest_approved_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
+previous_main_sync: GR-SYNC-20260804-12-CLOSURE
+current_working_sync: GR-SYNC-20260806-01
+latest_approved_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 grill_counter: 0_of_10
 pending_decisions: 0
-canon_status: MERGED_AND_FINALIZED_SHEET_READBACK_PASS
+canon_status: WORKING_BRANCH_GITHUB_AND_SHEET_SYNC_IN_PROGRESS
 product_project: NOT_CREATED
 product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 ```
 
-PR #57에서 승인 Decision 5개와 3×3 주문 정본을 병합했고, PR #58 main finalization과 PR #59 Sheet Readback을 완료했다. PR #60은 해당 완료 상태를 GitHub 권위에 기록하는 행정 종료 단계다.
+사용자는 2026-08-06 중앙 메인 글자 1개와 별 꼭짓점 보조 글자 5개의 새 회로, 회로 Preview 뒤 대상 키워드 선택, 숫자 성공률, 글자별 숙련도, 강한 성공률·마나 복잡도, 정밀·절감 글자를 승인했다. 이 결정은 `GM-3X3-CIRCUIT-STOCK-FOCUS-01`의 회로 위상·대상 노드·보조 상한·숫자 성공률 금지 범위를 대체한다.
 
 ## 권위 우선순위
 
@@ -49,10 +50,10 @@ AGENTS.md
 → docs/DEVELOPMENT_GATES.md
 → docs/planning/CANON_STATUS_INDEX_2026-08-04.md
 → docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ 3×3 승인·Spec
+→ 별형 회로 승인·Spec
+→ MAGIC_LETTER_CIRCUIT_SYSTEM·MANA_SYSTEM·SUPPORT_LETTER_MASTERY_SYSTEM
 → Frostbloom 승인 문서
-→ Batch
-→ GR-SYNC-20260804-12-CLOSURE
+→ GR-SYNC-20260806-01
 ```
 
 ## Base 계약
@@ -66,7 +67,7 @@ finalization_commit: 0b7c94f38d959efc0fc9442274c60b2e268a3c97
 registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
 ```
 
-`skills/PROJECT_BASE_ADAPTER.json`에서는 Base pin·routing·protected paths·generated outputs만 현재 권위다. 과거 상태 Snapshot은 비권위다.
+`skills/PROJECT_BASE_ADAPTER.json`에서는 Base pin·routing·protected paths·generated outputs만 현재 권위다. 이번 주문 설계 변경은 Base adapter 마이그레이션을 수행하지 않는다.
 
 ## 역할 분리
 
@@ -75,51 +76,48 @@ GPT → 핵심 재미·콘텐츠·대사·UX·이미지·아트·적대적 검�
 Codex → 승인 범위의 Godot 구현·테스트·Runtime·실기기 검증
 ```
 
-제품 구현은 3×3 Mobile Wireframe과 Frostbloom UX·Art 범위가 준비될 때까지 `[보류]`다.
+제품 구현은 별형 회로 Mobile Wireframe과 Frostbloom UX·Art 범위가 준비될 때까지 `[보류]`다.
 
 ## 프로젝트 코어
 
-> 상황과 위험을 읽고 무엇을 지킬지 선택한 뒤, 글자·대상·회로로 의도를 구현하고 결과와 대가를 책임지는 마법학교 RPG.
+> 상황과 위험을 읽고 무엇을 지킬지 선택한 뒤, 글자·회로·대상 키워드로 의도를 구현하고 결과와 대가를 책임지는 마법학교 RPG.
 
 ```text
-조사 → 의도·우선순위 → 3×3 회로 → Preview → Commit → 세계 변화 → 복기·발견
+조사 → 의도·우선순위 → 별형 글자 회로 → 회로 Preview → 대상 키워드 → 최종 Preview → Commit → 세계 변화 → 복기·발견
 ```
 
 전투와 비전투는 같은 주문 문법을 쓴다.
 
-## 3×3 회로
+## FIVE_POINT_STAR 회로
 
 ```yaml
-grid: 3x3
-main_glyph: exactly_1
-support_glyphs_slice: 0_to_2
-targets_slice: 1_to_4
-total_nodes_slice: up_to_7
-branches_slice: up_to_1
-edge_rule: ADJACENT_8_NEIGHBOR_ONLY
-crossing_edges: prohibited
-skip_connection: prohibited
-all_nodes_reachable: required
-slice_target_nodes: TERMINAL_LEAF
-hidden_position_bonus: prohibited
+layout: FIVE_POINT_STAR
+main_glyph: exactly_1_center
+auxiliary_glyphs: 0_to_5_vertices
+target_selection: AFTER_CIRCUIT_PREVIEW_BY_KEYWORD
+target_nodes_inside_circuit: prohibited
+hidden_vertex_bonus: prohibited
+slot_order_effect: deferred_until_separately_approved
+numeric_success_preview: required
 ```
 
-```text
-글자 노드 + 대상 노드 + 셀 위치 + 방향성 인접 연결 = 회로
-유효 회로 Commit = 주문
-```
+외곽 슬롯은 초기 버전에서 기능적으로 동등하다. 별 위치·선 길이에 숨은 위력·마나·성공률 보너스를 두지 않는다. 대상은 관찰·조사로 열린 키워드 중에서 회로 Preview 뒤 선택한다.
 
-주문명은 글자 이름과 별개다. 설계도는 `NON_BINDING_GHOST_REFERENCE`이며 자동 대상·자동 Stock 예약·자동 Commit을 하지 않는다.
-
-## Slice·대상
+## 글자별 숙련도·복잡도
 
 ```yaml
-main: HEAT
-connection_support: FLOW
-modifiers: [FOCUS, DISPERSE]
+glyph_mastery: 0_to_100
+year_direct_success_bonus: prohibited
+first_year_selected_foundation_mastery_cap: 70_TEST_VALUE
+success_complexity_by_auxiliary_count: [0, -10, -20, -30, -40, -50]
+mana_complexity_by_auxiliary_count: [0, +10%, +20%, +30%, +40%, +50%]
+precision: MANA_PLUS_25_PERCENT_SUCCESS_PLUS_MASTERY_DIV_10_PP
+reduction: MANA_MINUS_10_PLUS_MASTERY_DIV_10_PERCENT_SUCCESS_PLUS_0_PP
 ```
 
-보이고 식별된 전투 참가자는 자동 대상이며 환경·장치·숨은 약점은 관찰·조사 후 열린다. 정답 대상 자동 추천은 금지한다.
+숙련도는 해당 글자를 직접 그리고 의미 있게 사용하거나 수업·연습·과제·연구로 쌓는다. 학년은 성공률을 직접 주지 않고 상위 수업과 숙련도 상한을 연다.
+
+1학년 집중 숙련 기준은 보조 1개 안정, 보조 2개 60% 이상 안정권 경계, 보조 3개부터 위험 구간이다.
 
 ## Stock·마나·필사
 
@@ -129,7 +127,6 @@ shared_capacity: 8_TEST_VALUE
 natural_charge_target_count: 1
 one_glyph_charge_seconds: 10_TEST_VALUE
 minimum_actual_charge_seconds: 3_TEST_VALUE
-target_or_edge_cost: 0
 completed_spell_stock: prohibited
 spell_commit_uses_mana: true
 focus_time_scale: 0.25_TEST_VALUE
@@ -139,11 +136,11 @@ focus_capacity_reservation: 1
 full_pause: false
 ```
 
-글자 배치 시 Stock을 예약하고 Commit 성공 때 Stock·마나·결과를 원자 처리한다. 필사는 선택적 보충 기능이며 위력 보너스가 없다. 자연충전만으로 기본 전투가 가능해야 한다.
+글자 배치 시 Stock을 예약하고 Commit 성공 때 Stock·마나·결과를 원자 처리한다. 직접 그리기와 Stock은 같은 주문 효과·마나·성공 공식을 사용한다. 직접 그리기는 숙련도 근거이지 숨은 위력 보너스가 아니다.
 
 ## Frostbloom 보호 경계
 
-교수 주문은 하나의 해결 예시이며 정답·필수 루트·최적해·채점키가 아니다. 선택지는 의도를 확인하고 주문은 플레이어가 3×3 회로로 구현한다. 합리적 미등록 해결을 허용한다.
+교수 주문은 하나의 해결 예시이며 정답·필수 루트·최적해·채점키가 아니다. 선택지는 의도를 확인하고 주문은 플레이어가 별형 회로로 구현한다. 합리적 미등록 해결을 허용한다.
 
 ```text
 완성 주문 원터치 Stock
@@ -152,21 +149,22 @@ Stock 주문 무마나 실행
 그림 위력 보너스
 교수 회로 정답화·자동 복사
 설계도 자동 대상·자동 Commit
-숨은 셀 위치 보너스
-숫자 성공률·결말 Preview
+숨은 별 꼭짓점 보너스
+학년 직접 성공률 보너스
+Runtime 검증 없는 밸런스 완료 주장
 = 금지
 ```
 
 ## 검증 경계
 
-Godot 4.7.1 개발환경 CI는 통과했지만 제품 `project.godot`, Runtime, 모바일, 성능, 접근성, 사람 검증은 미실행이다. Prototype 수치는 `TEST_VALUE`다.
+설계·Prototype 수치는 사용자 승인 상태지만 제품 `project.godot`, Runtime, 모바일, 성능, 접근성, 사람 검증은 미실행이다. 모든 수치는 `PLAYTEST_TUNING_REQUIRED`다.
 
 ## 다음 우선순위
 
-1. 3×3 Mobile Landscape Wireframe.
-2. 집중 필사 Overlay.
-3. Frostbloom UX Map.
-4. Art Direction·Asset Brief.
+1. 별형 회로 Mobile Landscape Wireframe.
+2. 부분 성공·실패·역류 세부 계약.
+3. 집중 필사 Overlay.
+4. Frostbloom UX Map.
 5. 선택 범위 Codex 구현 계획.
 
 ## 플랫폼 출시·에셋 권리
