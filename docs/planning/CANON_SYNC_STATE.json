@@ -54,7 +54,15 @@
       "collection_fix_commit": "af17247db3dd89c5b8ede3fd3dc920284564efa7",
       "red_workflow_run": 31004483858,
       "red_result": "EXPECTED_FAILURE_CURRENT_CHECKPOINT_AUTHORITY",
-      "green_workflow_run": "PENDING_EXACT_HEAD"
+      "green_evidence_head": "c93c091be6827dbb6ff888ebb889e379c86407bb",
+      "foundation_green_workflow_run": 31005032419,
+      "planning_base_green_workflow_run": 31005032390,
+      "godot_toolchain_green_workflow_run": 31005032414,
+      "green_result": "PASS",
+      "closure_test_commit": "d88f70ab0078b8b50501997d3cda52cd010cb9a6",
+      "closure_red_workflow_run": 31005564491,
+      "closure_red_result": "EXPECTED_FAILURE_GREEN_EVIDENCE_PENDING",
+      "closure_fix_scope": "CANON_SYNC_STATE_AND_DEVELOPMENT_GATES"
     }
   },
   "previous_main_bundle": {

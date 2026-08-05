@@ -15,7 +15,7 @@ merge_authorized: false
 
 현재 진입점, 상태 JSON, Sync Receipt, PR #62·#63, Sheet가 같은 상태를 가리켜야 한다.
 
-현재: `RECONCILING_TO_PR63 / SHEET_SOURCE_PRODUCT_READBACK_PASS`.
+현재: `CURRENT_PR63_CANON_SYNCED / SHEET_FINAL_READBACK_PASS`.
 
 ## Gate 1 — 핵심 재미
 
@@ -79,9 +79,12 @@ Frostbloom 복수 해결과 교수 비정답 원칙은 유지한다. 현재 Reco
 - 제품 POC: 기존 RED→GREEN 기록 유지.
 - 정본 보정: `tests/test_current_checkpoint_authority.py`를 먼저 추가.
 - CI 수집 누락 발견 후 Foundation Workflow에 계약 테스트를 명시 등록.
-- RED run `31004483858`: 기존 Resource·Vocabulary 성공, Current Checkpoint Authority만 예상 실패.
+- 첫 RED run `31004483858`: 기존 Resource·Vocabulary 성공, Current Checkpoint Authority만 예상 실패.
+- GREEN evidence head `c93c091be6827dbb6ff888ebb889e379c86407bb`.
+- GREEN runs: Foundation `31005032419`, Planning/Base `31005032390`, Godot Toolchain `31005032414`.
+- 닫힘 RED run `31005564491`: GREEN 실행 후에도 기계 상태가 pending인 결함만 예상 실패.
 
-현재: `RED_CONFIRMED / GREEN_PENDING_THIS_CHECKPOINT`.
+현재: `GREEN_CONFIRMED_AT_C93C091B / CLOSURE_METADATA_FIXED`.
 
 ## Gate 8 — Base 계약
 
