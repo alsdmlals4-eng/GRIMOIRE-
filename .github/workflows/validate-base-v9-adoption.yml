@@ -84,11 +84,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: |
+      - name: Validate planning-only or approved implementation boundary
+        env:
+          PR_BASE_REF: ${{ github.base_ref }}
+          PR_HEAD_REF: ${{ github.head_ref }}
+        run: |
           git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}" > changed.txt
           if grep -E '^(src/|scenes/|data/|assets/|addons/|project\.godot$)' changed.txt; then
-            echo "product implementation changed in planning-only PR"
-            exit 1
+            if [[ "$PR_BASE_REF" == "agent/glyph-vault-stock-governance-design" && "$PR_HEAD_REF" == "agent/glyph-resource-foundation-poc" ]]; then
+              echo "approved glyph resource implementation child PR detected"
+              python -m unittest tests.test_glyph_resource_scope -v
+              python tools/check_glyph_resource_scope.py
+            else
+              echo "product implementation changed outside an approved implementation child PR"
+              exit 1
+            fi
           fi
           test -f skills/PROJECT_BASE_ADAPTER.json
           test -f skills/PROJECT_SKILL_SNAPSHOT.json
