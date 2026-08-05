@@ -12,14 +12,10 @@
     "merge_required": false,
     "merge_trigger": "NONE",
     "merge_authorized": false,
-    "authorization_state": "STAGE2_HX_COMPLETE_RUNTIME_AND_HUMAN_NOT_RUN",
+    "authorization_state": "STAGE2_HX_GREEN_RUNTIME_AND_HUMAN_NOT_RUN",
     "checkpoint_state": "HIGH_CANON_IMPACT_DRAFT_CHECKPOINT",
     "checkpoint_pull_request": 63,
-    "early_checkpoint_triggers": [
-      "HIGH_RISK_CONFLICT",
-      "SESSION_END_OR_CONTEXT_LOSS",
-      "MAJOR_CANON_IMPACT"
-    ],
+    "early_checkpoint_triggers": ["HIGH_RISK_CONFLICT", "SESSION_END_OR_CONTEXT_LOSS", "MAJOR_CANON_IMPACT"],
     "pending_decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
       "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
@@ -90,7 +86,10 @@
     "human_protocol": "APPROVED_NOT_RUN",
     "stage2_hx_contract_test": "tests/test_stage2_harness_ux_hx_contract.py",
     "stage2_hx_red_workflow_run": 31009239386,
-    "stage2_hx_green_workflow_run": "PENDING_EXACT_HEAD",
+    "stage2_hx_foundation_green_workflow_run": 31010459174,
+    "stage2_hx_planning_base_green_workflow_run": 31010459218,
+    "stage2_hx_godot_toolchain_green_workflow_run": 31010459183,
+    "stage2_hx_green_result": "PASS",
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
     "mobile_device": "NOT_RUN",
