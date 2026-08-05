@@ -50,6 +50,14 @@ jobs:
           timeout 30s .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
             --headless --path . --script res://tests/test_runner.gd | tee glyph-resource-headless.log
 
+      - name: Build synthetic glyph confusion report
+        run: |
+          python tools/build_glyph_confusion_report.py \
+            artifacts/foundation-poc/glyph-fixture-rows.json \
+            --thresholds artifacts/foundation-poc/glyph-recognition-thresholds.json \
+            > artifacts/foundation-poc/glyph-confusion-report.json
+          python -m json.tool artifacts/foundation-poc/glyph-confusion-report.json > /dev/null
+
       - name: Upload test evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -58,4 +66,7 @@ jobs:
           path: |
             godot-foundation-toolchain-report.json
             glyph-resource-headless.log
+            artifacts/foundation-poc/glyph-recognition-thresholds.json
+            artifacts/foundation-poc/glyph-fixture-rows.json
+            artifacts/foundation-poc/glyph-confusion-report.json
           if-no-files-found: warn

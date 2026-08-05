@@ -19,6 +19,7 @@ const SUITES: Array[String] = [
     "res://tests/unit/test_dollar_n_recognizer.gd",
     "res://tests/unit/test_glyph_recognition_service.gd",
     "res://tests/unit/test_focus_scribe_recognition.gd",
+    "res://tests/integration/test_slice_glyph_recognition.gd",
 ]
 
 func _init() -> void:
