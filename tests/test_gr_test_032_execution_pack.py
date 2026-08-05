@@ -13,6 +13,13 @@ RESULT_TEMPLATE = ROOT / "artifacts/human-validation/gr-test-032-result-template
 
 
 class GrTest032ExecutionPackContractTests(unittest.TestCase):
+    def _read_required(self, path: Path) -> str:
+        self.assertTrue(path.is_file(), path)
+        return path.read_text(encoding="utf-8")
+
+    def _read_json_required(self, path: Path) -> dict:
+        return json.loads(self._read_required(path))
+
     def test_required_execution_pack_files_exist(self) -> None:
         for path in (
             RUNBOOK,
@@ -25,7 +32,7 @@ class GrTest032ExecutionPackContractTests(unittest.TestCase):
             self.assertTrue(path.is_file(), path)
 
     def test_runbook_preserves_approved_scope_and_honest_boundary(self) -> None:
-        text = RUNBOOK.read_text(encoding="utf-8")
+        text = self._read_required(RUNBOOK)
         required = (
             "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
             "GR-TEST-032",
@@ -50,7 +57,7 @@ class GrTest032ExecutionPackContractTests(unittest.TestCase):
             self.assertIn(token, text)
 
     def test_moderator_script_does_not_leak_solution_or_score(self) -> None:
-        text = MODERATOR.read_text(encoding="utf-8")
+        text = self._read_required(MODERATOR)
         required = (
             "NO_SOLUTION_PROMPT",
             "NO_BEST_GLYPH_RECOMMENDATION",
@@ -63,7 +70,7 @@ class GrTest032ExecutionPackContractTests(unittest.TestCase):
             self.assertIn(token, text)
 
     def test_device_preflight_covers_required_mobile_conditions(self) -> None:
-        text = PREFLIGHT.read_text(encoding="utf-8")
+        text = self._read_required(PREFLIGHT)
         required = (
             "NARROW_LANDSCAPE_16_9_TO_18_9",
             "TALL_LANDSCAPE_19_5_9_TO_20_9",
@@ -78,9 +85,9 @@ class GrTest032ExecutionPackContractTests(unittest.TestCase):
             self.assertIn(token, text)
 
     def test_templates_are_empty_not_run_and_pii_safe(self) -> None:
-        session = json.loads(SESSION_TEMPLATE.read_text(encoding="utf-8"))
-        attempt = json.loads(ATTEMPT_SCHEMA.read_text(encoding="utf-8"))
-        result = json.loads(RESULT_TEMPLATE.read_text(encoding="utf-8"))
+        session = self._read_json_required(SESSION_TEMPLATE)
+        attempt = self._read_json_required(ATTEMPT_SCHEMA)
+        result = self._read_json_required(RESULT_TEMPLATE)
 
         self.assertEqual(session["test_id"], "GR-TEST-032")
         self.assertEqual(session["status"], "READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN")
