@@ -76,17 +76,18 @@ def build_report(rows: list[dict[str, Any]], prereg: dict[str, Any]) -> dict[str
 
         expected_known = expected in GLYPH_IDS
         predicted_known = predicted in GLYPH_IDS
+        accepted = status in ACCEPT_STATUSES
         if expected_known:
             known_rows += 1
-        if expected_known and predicted_known:
+        if expected_known and predicted_known and accepted:
             matrix[str(expected)][str(predicted)] += 1
-        if expected_known and predicted == expected and status in ACCEPT_STATUSES:
+        if expected_known and predicted == expected and accepted:
             correct_first_attempt += 1
         if status in RETRY_STATUSES:
             retry_required_count += 1
             if expected_known:
                 false_reject_count += 1
-        if predicted_known and status in ACCEPT_STATUSES and predicted != expected:
+        if predicted_known and accepted and predicted != expected:
             false_accept_count += 1
 
     first_attempt_rate = 0.0 if known_rows == 0 else correct_first_attempt / known_rows
@@ -98,6 +99,7 @@ def build_report(rows: list[dict[str, Any]], prereg: dict[str, Any]) -> dict[str
         "confidence_threshold": confidence,
         "margin_threshold": margin,
         "confusion_matrix": matrix,
+        "confusion_matrix_scope": "ACCEPTED_RESULTS_ONLY",
         "fixture_first_attempt_match_rate": round(first_attempt_rate, 6),
         "false_accept_count": false_accept_count,
         "false_reject_count": false_reject_count,

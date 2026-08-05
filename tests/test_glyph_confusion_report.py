@@ -31,7 +31,7 @@ class GlyphConfusionReportTests(unittest.TestCase):
             {
                 "fixture_id": "heat-incomplete",
                 "expected": "HEAT",
-                "predicted": None,
+                "predicted": "HEAT",
                 "status": "LOW_CONFIDENCE_REQUIRES_RETRY",
                 "top_score": 0.54,
                 "second_score": 0.49,
@@ -66,6 +66,8 @@ class GlyphConfusionReportTests(unittest.TestCase):
         self.assertEqual(6, len(report["confusion_matrix"]))
         for expected in GLYPH_IDS:
             self.assertEqual(GLYPH_IDS, list(report["confusion_matrix"][expected]))
+        self.assertEqual("ACCEPTED_RESULTS_ONLY", report["confusion_matrix_scope"])
+        self.assertEqual(1, report["confusion_matrix"]["HEAT"]["HEAT"])
         self.assertEqual("SYNTHETIC_FIXTURES_ONLY", report["evidence_scope"])
         self.assertEqual("NOT_RUN", report["human_comprehension"])
         self.assertEqual("NOT_RUN", report["physical_touch"])

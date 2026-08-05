@@ -95,6 +95,11 @@ jobs:
               echo "approved glyph resource implementation child PR detected"
               python -m unittest tests.test_glyph_resource_scope -v
               python tools/check_glyph_resource_scope.py
+            elif [[ "$PR_BASE_REF" == "agent/glyph-resource-foundation-poc" && "$PR_HEAD_REF" == "agent/glyph-vocabulary-recognition-poc" ]]; then
+              echo "approved six-glyph recognition implementation child PR detected"
+              python -m unittest tests.test_glyph_resource_scope tests.test_glyph_vocabulary_scope tests.test_glyph_confusion_report -v
+              python tools/check_glyph_resource_scope.py
+              python tools/check_glyph_vocabulary_scope.py
             else
               echo "product implementation changed outside an approved implementation child PR"
               exit 1
