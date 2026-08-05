@@ -1,85 +1,58 @@
 # GRIMOIRE Planning Index — 현재 경로
 
-## 상태
-
 ```yaml
-main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
-working_pull_request: 61
+working_pull_request: 63
+working_branch: agent/glyph-vocabulary-recognition-poc
+current_sync: GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC
+current_gate: RESOURCE_AND_RECOGNITION_POC_AUTOMATED_PASS
+human_device_validation: NOT_RUN
+runtime_expansion_7_plus: BLOCKED
 grill_counter: 3_of_10
-latest_approved_decision: GM-GLYPH-VOCABULARY-V1-01
-approved_decisions:
-  - GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
-  - GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
-  - GM-GLYPH-VOCABULARY-V1-01
-current_gate: IMPLEMENTATION_PLANS_READY
 merge_authorized: false
-product_implementation: NOT_STARTED
 ```
-
-이 디렉터리의 과거 Gate 2·합성 검토 문서는 현재 정본을 대체하지 않는다. 현재 작업 차단점은 `ART-STYLE-01`이 아니라 **latest exact-head 검증과 Codex Resource 계획 실행 시작**이다.
 
 ## 현재 읽기 순서
 
-1. `../../AGENTS.md`.
-2. `../../START_HERE.md`.
-3. `../ACTIVE_CONTEXT.md`.
-4. `../DEVELOPMENT_GATES.md`.
-5. `CANON_STATUS_INDEX_2026-08-04.md`.
+1. `../../START_HERE.md`.
+2. `../ACTIVE_CONTEXT.md`.
+3. `../DEVELOPMENT_GATES.md`.
+4. `CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md`.
+5. `CANON_STATUS_INDEX_2026-08-05.md`.
 6. `CURRENT_CONFIRMED_DECISIONS.md`.
-7. `GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md`.
-8. `../superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md`.
-9. `WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md`.
-10. `../superpowers/specs/2026-08-05-benchmark-tdd-checkpoint-governance-design.md`.
-11. `GLYPH_VOCABULARY_V1_01_APPROVAL_2026-08-05.md`.
-12. `../superpowers/specs/2026-08-05-glyph-vocabulary-v1-proposal.md`.
-13. `../superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md`.
-14. `../superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md`.
-15. `GRILL_ME_BATCH_MERGE_STATE.json`.
+7. `PR63_CANON_AND_BASE_DRIFT_ADVERSARIAL_REVIEW_2026-08-05.md`.
+8. `GLYPH_RESOURCE_POC_STOP_GATE_01_2026-08-05.md`.
+9. `GLYPH_RECOGNITION_POC_STOP_GATE_01_2026-08-05.md`.
+10. `sync/GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC.md`.
+11. `GRILL_ME_BATCH_MERGE_STATE.json`.
 
-## 현재 자원 계약
+## 승인 Decision
 
-```text
-보관함 = 직접 그려 저장한 특정 글자만 사용
-범용 Stock = 습득한 핵심·보조 글자 중 원하는 하나를 사용 시점에 선택
-```
+- `GM-GLYPH-VAULT-UNIVERSAL-STOCK-01` — Exact Vault·Universal Stock·명시적 출처·별도 용량.
+- `GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01` — 벤치마크·TDD·최대 Batch 10·조기 체크포인트.
+- `GM-GLYPH-VOCABULARY-V1-01` — 의미 20종, Slice Runtime 6종, 사람 검증 전 확대 금지.
 
-```yaml
-vault: EXACT_GLYPH_VAULT
-stock: UNIVERSAL_GLYPH_STOCK
-source_selection: EXPLICIT_SOURCE_SELECTION
-capacity: SEPARATE_VAULT_AND_STOCK_CAPACITY
-natural_charge: UNIVERSAL_STOCK_SINGLE_CHARGE_PROGRESS
-focus_scribe: EXACT_GLYPH_VAULT_PLUS_1
-target_and_edge_cost: 0
-spell_commit_uses_mana: true
-completed_spell_stock: prohibited
-```
+세 Decision은 승인됐으나 Batch는 `3/10`, PR #61~#63은 병합 미승인이다.
 
-## 현재 Vocabulary 계약
+## 현재 구현 결과
 
 ```yaml
-main_glyphs: 10
-support_glyphs: 10
-slice_runtime_glyphs:
-  - HEAT
-  - PROTECT
-  - FLOW
-  - FOCUS
-  - DISPERSE
-  - BURST
-expansion_gate: HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION
+resource_foundation_pr: 62
+resource_gate: AUTOMATED_PASS
+recognition_pr: 63
+recognition_gate: AUTOMATED_PASS
+semantic_entries: 20
+runtime_glyphs: 6
+runtime_templates: 6
+evidence_scope: SYNTHETIC_FIXTURES_ONLY
+human_device_validation: NOT_RUN
 ```
 
-- 입력 문양은 1~3획 권장, 고급 후보 최대 4획.
-- 장식 표시형은 같은 기본 실루엣을 유지하며 인식 입력으로 사용하지 않는다.
-- 20종 의미 범위는 승인됐지만 Runtime 인식은 우선 6종으로 제한한다.
-- 사람 인지·혼동 행렬·모바일 입력 검증은 `NOT_RUN`이다.
+Recognition은 입력 기반이며 핵심 재미가 아니다. 핵심 검증은 상황·의미·회로·Commit·결과의 사람 대상 전체 루프다.
 
-## 현재 작업 운영 계약
+## 작업 계약
 
 ```text
 BENCHMARK_AND_PRO_COMPARISON_REQUIRED
-SOURCE_VERSION_LIMIT_REQUIRED
 STRICT_RED_GREEN_REFACTOR
 TEST_FIRST_ACCEPTANCE_FOR_NON_EXECUTABLE_WORK
 MAX_APPROVED_DECISIONS_PER_BATCH_10
@@ -88,61 +61,23 @@ EARLY_CHECKPOINT_SESSION_END
 EARLY_CHECKPOINT_MAJOR_CANON_IMPACT
 ```
 
-승인 Decision은 최대 10건까지 Batch로 누적한다. 고위험 충돌·세션 종료/컨텍스트 손실 위험·큰 정본 영향에서는 Draft 조기 체크포인트를 허용하지만 자동 병합이나 counter 초기화를 의미하지 않는다.
+기획 충돌은 GrillMe 승인 전 확정하지 않는다. 합성 증거는 사람 검증을 대체하지 않는다. 이미지·애니메이션·Codex 후속 작업은 기획 완료와 검토 완료 이후 진행한다.
 
-## 구현 계획
+## 이력 호환 블록
 
-```text
-1. Glyph Resource Foundation POC
-   VaultInventory
-   UniversalStockPool
-   ResourceReservationLedger
-   AtomicSpellCommitService
-
-2. Glyph Vocabulary Recognition POC
-   GlyphDefinition
-   GlyphTemplateRepository
-   DollarOneRecognizer
-   DollarNRecognizer
-   RecognitionCandidate
-   confusion_matrix
-```
-
-두 계획 모두 실제 구현 전에 RED를 실행 경로에서 확인하고, Resource 계획의 Stop Gate 이후 Recognition 계획을 시작한다.
-
-## 과거 마법 작성·인식 연구
-
-다음 자료는 참고·이력이며 현재 자원 정본이 아니다.
-
-| 질문 | 문서 | 상태 |
-|---|---|---|
-| 입력·인식·의미 설계 책임 | `GATE_2_MAGIC_WRITING_INPUT_EVIDENCE_PACK_2026-07-29.md` | `[부분 참고 / NOT_CANON]` |
-| Android 저충실도 세션 준비 | `../superpowers/plans/2026-07-29-magic-writing-input-validation-artifact.md` | `[보류 / HUMAN_AND_DEVICE_NOT_RUN]` |
-| 합성 테스터 적용 구조 | `GATE_2_SYNTHETIC_TESTER_STRUCTURE_ANALYSIS_2026-07-29.md` | `[이력 / T6_AI_INFERENCE]` |
-| 합성 검토 보고 | `GATE_2_MAGIC_WRITING_SYNTHETIC_TESTER_REPORT_2026-07-29.md` | `[이력 / HUMAN_NOT_RUN]` |
-
-합성 보고서는 실제 사람 행동·재미·조작감·인식 성능을 증명하지 않는다.
-
-## TDD 현재 증거
+아래는 PR #61 계획 완료 시점의 테스트·추적용 이력이며 현재 권위가 아니다.
 
 ```yaml
-contract_test: tests/test_glyph_vault_stock_governance_contract.py
-initial_red_workflow: 30925666145
-capacity_red_workflow: 30928418370
-entrypoint_red_workflow: 30928799903
-charge_lifecycle_red_workflow: 30929106014
-spec_review_and_plan_red_workflow: 30958182618
-latest_exact_head_green: PENDING
+historical_checkpoint: PR61_IMPLEMENTATION_PLANS_READY
+working_pull_request: 61
+current_gate: IMPLEMENTATION_PLANS_READY
+grill_counter: 3_of_10
+approved_decisions:
+  - GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
+  - GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
+  - GM-GLYPH-VOCABULARY-V1-01
 ```
 
-## 다음 Gate
+## 다음 기획 Gate
 
-```text
-최신 exact-head CI
-→ 적대적 P0/P1 0
-→ Review Thread 확인
-→ Sheet Decision 3 Readback
-→ Codex Resource Plan 실행 시작
-```
-
-PR #61은 Draft이며 병합 권한이 없다.
+`GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01`로 사람·실기기 검증 범위를 승인한다. 승인 전 7번째 Runtime 글자, 제품 품질 PASS, PR Ready/merge를 금지한다.

@@ -2,88 +2,66 @@
 
 ## 현재 상태
 
-| 항목 | 기준 |
-|---|---|
-| 프로젝트 | `GRIMOIRE: 세계를 다시 쓰는 법` |
-| 플랫폼 | `Mobile / Landscape Fixed`, 후속 `PC` |
-| 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
-| Base | `v9.4.3` |
-| Main 정본 커밋 | `a27b75ea9aabcbb84159356b857e22b3acd30a43` |
-| Main Sync | `GR-SYNC-20260804-12-CLOSURE` |
-| 작업 PR | `#61 Draft` |
-| 최신 승인 Decision | `GM-GLYPH-VOCABULARY-V1-01` |
-| 승인 Decision | `자원·운영·Vocabulary 3종` |
-| Grill Batch | `3/10 / pending 3` |
-| 현재 Gate | `IMPLEMENTATION_PLANS_READY` |
-| 병합 권한 | `false` |
-| 제품 Godot 프로젝트 | `NOT_CREATED` |
-| Runtime·Device·Performance·Accessibility·Human | `NOT_RUN` |
+```yaml
+project: "GRIMOIRE: 세계를 다시 쓰는 법"
+platform: MOBILE_LANDSCAPE_FIXED_PC_LATER
+product_stage: DEMO_FIRST_VERTICAL_SLICE
+base_release: v9.4.3
+working_pull_request: 63
+working_branch: agent/glyph-vocabulary-recognition-poc
+current_sync: GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC
+current_gate: RESOURCE_AND_RECOGNITION_POC_AUTOMATED_PASS
+human_device_validation: NOT_RUN
+runtime_expansion_7_plus: BLOCKED
+grill_counter: 3_of_10
+merge_authorized: false
+```
 
-main의 PR #57~#60 정본은 유지된다. PR #61은 자원 의미, 작업 운영 규칙, Vocabulary v1과 두 구현 계획을 기록한 사용자 승인·병합 대기 조기 체크포인트다.
+PR #62 Resource Foundation과 PR #63 Recognition은 자동화 Gate를 통과했지만 모두 Open·Draft·미병합이다. 제품 품질, 사람 재미, 실기기 조작감은 아직 PASS가 아니다.
 
 ## 읽기 순서
 
 1. `AGENTS.md`
 2. `docs/ACTIVE_CONTEXT.md`
 3. `docs/DEVELOPMENT_GATES.md`
-4. `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`
-5. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-6. `docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md`
-7. `docs/superpowers/specs/2026-08-05-glyph-vault-universal-stock-design.md`
-8. `docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md`
-9. `docs/superpowers/specs/2026-08-05-benchmark-tdd-checkpoint-governance-design.md`
-10. `docs/planning/GLYPH_VOCABULARY_V1_01_APPROVAL_2026-08-05.md`
-11. `docs/superpowers/specs/2026-08-05-glyph-vocabulary-v1-proposal.md`
-12. `docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md`
-13. `docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md`
-14. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
+4. `docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md`
+5. `docs/planning/CANON_STATUS_INDEX_2026-08-05.md`
+6. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
+7. `docs/planning/PR63_CANON_AND_BASE_DRIFT_ADVERSARIAL_REVIEW_2026-08-05.md`
+8. `docs/planning/sync/GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC.md`
+9. `docs/planning/GRILL_ME_BATCH_MERGE_STATE.json`
 
 ## 핵심 재미
 
-> 상황을 조사하고 의도를 정한 뒤, 글자·대상·3×3 회로로 주문을 설계하고 결과와 대가를 책임진다.
+> 상황과 위험을 읽고 무엇을 지킬지 선택한 뒤, 글자·대상·회로로 의도를 구현하고 결과와 대가를 책임진다.
 
 ```text
-조사 → 의도 → 3×3 회로 → Preview → Commit → 변화 → 복기
+조사·상황 → 의도·의미 → 3×3 회로 → Preview → Commit → 변화·대가 → 귀환·복기·Grimoire
 ```
 
-## 주문·자원
+- 핵심 시스템: 상황 조사, 의미 선택, 3×3 방향 회로, Preview/Commit, 결과·대가와 기록.
+- 보조 시스템: Recognition, Exact Glyph Vault, Universal Glyph Stock, 마나·예약·저장, 모바일 UX·접근성, 학교·동료 콘텐츠.
+- `RECOGNITION_IS_INPUT_INFRASTRUCTURE_NOT_THE_CORE_FUN`.
 
-```text
-글자 노드 + 대상 노드 + 셀 위치 + 방향성 인접 연결 = 회로
-유효 회로 Commit = 주문
+## 현재 구현 경계
 
-보관함 = 직접 그려 저장한 특정 글자만 사용
-Stock = 습득한 핵심·보조 단어 중 원하는 글자 1개를 즉시 선택
-```
-
-- 보관함 슬롯과 범용 Stock 용량은 별도다.
-- 자연충전은 단일 범용 Stock 진행도다.
-- 집중 필사는 선택한 글자의 보관함을 증가시킨다.
-- 대상과 연결선은 자원 비용 0이다.
-- 모든 주문 Commit은 마나를 사용한다.
-- 둘 다 가능하면 자원 출처를 직접 고른다.
-- 완성 주문 원터치 Stock은 금지된다.
-
-## Vocabulary v1
-
-- 핵심 단어 10종, 보조 단어 10종.
-- Slice Runtime 6종: `HEAT`, `PROTECT`, `FLOW`, `FOCUS`, `DISPERSE`, `BURST`.
-- 실제 입력형은 1~3획 권장, 고급 후보 최대 4획.
-- 장식형은 입력 실루엣을 유지하며 인식 입력에 포함하지 않는다.
-- 사람 인지·혼동·손가락 입력 검증 전 6종 초과 확대 금지.
+- 의미 Registry: Main 10 + Support 10.
+- Runtime Recognition: `HEAT`, `PROTECT`, `FLOW`, `FOCUS`, `DISPERSE`, `BURST` 6종.
+- 성공 결과는 Exact Glyph Vault에만 저장하며 Recognition으로 Universal Stock을 만들지 않는다.
+- 낮은 확신·혼동·stale revision·선택 불일치는 자동 확정/저장을 차단한다.
+- 합성 증거만 존재하므로 사람·실기기 검증 전 7종 이상 확대하지 않는다.
 
 ## 작업 규칙
 
-- 의미 있는 작업은 벤치마크·현업 비교와 프로젝트 불일치 분석을 포함한다.
-- 실행 가능한 변경은 `RED → GREEN → REFACTOR`를 지킨다.
-- 기획·아트는 제작 전에 수용·거부 사례와 검증 한계를 선언한다.
-- 승인 Batch 최대 크기는 10건이다.
-- 고위험 충돌·세션 종료·큰 정본 영향은 조기 Draft 체크포인트를 허용한다.
+- 기획 우선. 기획 충돌은 GrillMe 승인 전 확정·구현 금지.
+- 수치성 테스트 값은 명시적으로 `TEST_VALUE`로 관리한다.
+- 실행 변경은 `RED → GREEN → REFACTOR`.
+- 승인 Batch 최대 10건. 고위험 충돌·세션 종료·큰 정본 영향은 조기 Draft 체크포인트 가능.
+- 정본·Sheet는 같은 Decision/Sync ID로 즉시 동기화하고 Readback한다.
 
 ## 다음 작업
 
-1. PR #61 최신 exact-head CI·Review Thread·Sheet Readback 검증.
-2. Codex에서 Resource Foundation POC 계획부터 격리 worktree·TDD로 실행.
-3. Resource Stop Gate 통과 후 Recognition POC 계획 실행.
-
-제품 구현과 Runtime 검증은 아직 시작하지 않았다.
+1. PR #63 현재 정본 체크포인트 GREEN과 exact-head CI 확인.
+2. 같은 Sync ID로 Google Sheet 최종 HEAD Readback.
+3. GrillMe `GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01`로 사람·실기기 검증 범위 승인.
+4. 승인 전 이미지·애니메이션·후속 Codex 제품 작업 확정 금지.
