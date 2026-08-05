@@ -1,13 +1,10 @@
-# GRIMOIRE 개발·기획 게이트 — 현재 정본
-
-## 상태
+# GRIMOIRE 개발·기획 게이트 — Main
 
 ```yaml
-working_branch: agent/star-circuit-runtime-godot-poc
-working_pull_request: 69
-current_working_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION
+main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
+current_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-canon_status: SYNCED_TO_WORKING_BRANCH_MERGE_AUTHORIZED
+canon_status: SYNCED_TO_MAIN
 product_project: CREATED
 product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
 runtime_validation: AUTOMATED_HEADLESS_PASS
@@ -18,55 +15,55 @@ human_validation: NOT_RUN
 full_vertical_slice_representativeness: NOT_RUN
 ```
 
-## Gate 0 — 최신 정본
+## Gate 0 — 정본
 
-3×3은 역사로만 보존하고 활성 코드·Suite에 Stage2/3×3 경로를 두지 않는다. 별형 승인·Wireframe·Resolution·Focus·Frostbloom·Sync03이 동일 Decision을 가리킨다. 현재: `PASS`.
+별형 승인·Completion 승인·Runtime·Main Sync·Sheet가 동일 Decision을 가리킨다. 3×3은 역사로만 보존한다. `PASS`.
 
-## Gate 1 — 핵심 재미
+## Gate 1 — 핵심 루프
 
-`조사 → 의도 → FIVE_POINT_STAR → 회로 Preview → Target Keyword → 최종 Preview → Commit → 결과·대가 → 복기`. 현재: `RUNTIME_FLOW_PASS / HUMAN_NOT_RUN`.
+`조사 → 의도 → FIVE_POINT_STAR → 회로 Preview → Target Keyword → 최종 Preview → Commit → 결과·복기`. `RUNTIME_PASS / HUMAN_NOT_RUN`.
 
-## Gate 2 — 회로 문법
+## Gate 2 — 별형 회로
 
-중앙 메인 정확히 1개, 동등 외곽 0~5개, Target node 금지, 중복 Vertex·보조 글자 금지, 자동 수정·숨은 위치 보너스 금지. 현재: `AUTOMATED_RUNTIME_PASS`.
+중앙 Main 1, 동등 Auxiliary 0~5, Target node·중복 Auxiliary·중복 Vertex·자동 수정·숨은 위치 보너스 금지. `AUTOMATED_PASS`.
 
-## Gate 3 — 숙련도·성공률
+## Gate 3 — 숙련도·성공률·Mana
 
-글자별 0~100, `메인45%+보조평균35%+최저20%`, 보조당 -10%p, 5~98 Clamp, PRECISION 반영. 현재: `CALCULATION_RUNTIME_PASS / PLAYTEST_TUNING_REQUIRED`.
+글자별 0~100, 승인 가중식, 보조 복잡도, PRECISION·REDUCTION, 성공률 5~98, Main base Mana 하한. `AUTOMATED_PASS / PLAYTEST_TUNING_REQUIRED`.
 
-## Gate 4 — Typed Stock·Mana·Commit
+## Gate 4 — Typed Stock·Atomic Commit
 
-같은 glyph_id Typed Stock 또는 같은 glyph_id Vault만 예약한다. 보조당 Mana +10%, PRECISION +25%, REDUCTION 감소, Main base 미만 금지, 명시 Commit, Exactly-once, 실패 Reservation 해제, Cancel 무변이. 다른 글자 Stock 대체를 거부한다. 현재: `AUTOMATED_ATOMIC_TYPED_RESOURCE_PASS`.
+같은 glyph_id Stock/Vault만 사용한다. 다른 glyph Stock 대체를 거부한다. Mana·Resource·Result Exactly-once, Cancel·검증 실패·중복 Commit 추가 소비 0. `AUTOMATED_PASS`.
 
 ## Gate 5 — Mobile Wireframe·접근성
 
-중앙·외곽5, 숙련도·성공률·Mana Breakdown, Warning, Circuit Preview·Target·Final Preview 분리, Mana 부족·불안정·접근성 입력 상태, 48dp, Text130%, 색 외 라벨, Reduced Motion 0ms. 현재: `AUTOMATED_SCENE_CONTRACT_PASS / DEVICE_NOT_RUN / SCREEN_READER_NOT_RUN`.
+중앙·외곽5, Mastery·Breakdown·Warning, Mana 부족·불안정·접근성 상태, 48dp, Text130%, 색 외 라벨, Reduced Motion 0ms. `SCENE_CONTRACT_PASS / DEVICE_NOT_RUN`.
 
 ## Gate 6 — 결과 Policy
 
-`FULL_SUCCESS / PARTIAL_SUCCESS / IMPERFECT_EXECUTION / FAILURE / BACKLASH`를 제공하고 원인 글자·새 정보·다음 기회를 남긴다. 숨은 추가 Mana·중복 Stock·무작위 잘못된 Target을 금지한다. 현재: `AUTOMATED_POLICY_PASS / HUMAN_FAIRNESS_NOT_RUN`.
+`FULL_SUCCESS / PARTIAL_SUCCESS / IMPERFECT_EXECUTION / FAILURE / BACKLASH`; 원인 glyph·새 정보·다음 기회 필수. 숨은 추가 Mana·중복 Stock·무작위 Target 금지. `POLICY_PASS / HUMAN_FAIRNESS_NOT_RUN`.
 
 ## Gate 7 — 집중 필사
 
-0.25 Active Pressure, 실제 시간 Mana 1/s TEST, 같은 glyph_id Stock +1, 공유 용량 예약, 취소·HP 피해·행동 불가·Mana0·Focus loss·Background 중단 무생성·무환불. 현재: `AUTOMATED_SESSION_AND_OVERLAY_PASS / DEVICE_FATIGUE_NOT_RUN`.
+0.25 Active Pressure, 실제 시간 Mana, 같은 glyph Stock+1, 용량 예약, 중단 무생성·무환불. `SESSION_OVERLAY_PASS / DEVICE_FATIGUE_NOT_RUN`.
 
 ## Gate 8 — Frostbloom
 
-시설 복구·생명 구조·정령 안정화·봉쇄 철수·제압 시간 확보·합리적 미등록 해결을 허용한다. 교수 예시는 정답이 아니며 Best route·자동 Target·자동 Commit·결말 Preview를 금지한다. 현재: `DATA_FLOW_PASS / HUMAN_NARRATIVE_NOT_RUN`.
+시설 복구·생명 구조·정령 안정화·봉쇄 철수·제압 시간 확보·합리적 미등록 해결. 교수 예시 비정답, Best route·자동 Target/Commit·결말 Preview 금지. `FIXTURE_PASS / HUMAN_NARRATIVE_NOT_RUN`.
 
-## Gate 9 — 개발환경
+## Gate 9 — Godot
 
-`project.godot`과 Main Scene이 존재한다. `tools/run_star_runtime.py`가 Godot 4.7.1·Export Template을 검증하고 Headless Test, Main Scene Run, Editor를 실행한다. 현재: `LOCAL_GODOT_READY / TOOLCHAIN_PASS`.
+`project.godot`, Main Scene, local Test·Run·Editor가 준비됐다. PR exact-head 네 Workflow PASS, main Push Star Runtime·Rights PASS. `LOCAL_GODOT_READY / 31_SUITES_1137_ASSERTIONS_0_FAILURES`.
 
-## Gate 10 — PR·Sheet
+## Gate 10 — Main·Sheet
 
 ```yaml
 pull_request: 69
-sheet_ranges: H2_K2__02_ROW63__04_ROW67__05_ROW21__12_ROW28__15_ROW16__40_ROW30__41_ROW14__60_ROW36__99_ROW81
-sheet_write: PASS
+runtime_main_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
+main_star_runtime_run: 31055213468
+main_platform_rights_run: 31055213609
+sheet_status: SYNCED_TO_MAIN
 sheet_readback: PASS
-merge_authorized: true
-main_merge: PENDING
 ```
 
-병합 전 final exact-head Workflow·PR diff·리뷰 스레드·구형 Runtime 부재를 확인한다. 병합 후 main Push Workflow와 Sheet main SHA Readback 전에는 `SYNCED_TO_MAIN`으로 올리지 않는다.
+현재 Gate는 Main 폐쇄 완료다. 다음 단계는 실제 Mobile Device·Performance·Screen Reader·Human 검증이며 증거 없이 승격하지 않는다.
