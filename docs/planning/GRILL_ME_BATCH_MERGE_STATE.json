@@ -60,6 +60,8 @@
     "stage2_harness_automated": "PASS",
     "headless_suites": 28,
     "headless_assertions": 1342,
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
     "merge_authorized": false,
     "next_priority": "HUMAN_PHYSICAL_DEVICE_GR_TEST_032"
   },
@@ -90,8 +92,8 @@
     "stage2_foundation_green_workflow_run": 31016191300,
     "stage2_planning_base_green_workflow_run": 31016191141,
     "stage2_godot_toolchain_green_workflow_run": 31016191132,
-    "sheet_write": "PENDING_THIS_SYNC",
-    "sheet_readback": "PENDING_THIS_SYNC",
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
     "mobile_device": "NOT_RUN",
     "accessibility": "NOT_RUN",
     "human": "NOT_RUN"
