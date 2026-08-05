@@ -1,5 +1,5 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -20,49 +20,54 @@
     "SYNC_CONFLICT"
   ],
   "current_bundle": {
-    "sync_id": "GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC",
+    "sync_id": "GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
     "status": "SYNCED_TO_WORKING_BRANCH",
     "decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
       "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
-      "GM-GLYPH-VOCABULARY-V1-01"
+      "GM-GLYPH-VOCABULARY-V1-01",
+      "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01"
     ],
     "pull_request": 63,
     "working_branch": "agent/glyph-vocabulary-recognition-poc",
     "base_pull_request": 62,
     "source_product_commit": "ec947f232b533d5a2acac20683287080c34a811f",
-    "working_branch_receipt": "docs/planning/sync/GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC.md",
+    "previous_canon_head": "0ed147518c6624d91e9e5b0c9b40bdf50e54e6ad",
+    "working_branch_receipt": "docs/planning/sync/GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE.md",
     "sheet_ranges": [
       "00_프로젝트_허브!H2:K2",
-      "01_작업순서!H50:J50",
-      "02_현재_확정결정!A57:J57",
-      "04_누락_충돌_감사!E60:H60",
-      "30_데모범위_품질기준_제작기반!G24:H24",
-      "60_UX_UI_접근성!A29:J29",
-      "99_변경이력!A74:H74"
+      "01_작업순서!H51:J51",
+      "02_현재_확정결정!A58:J58",
+      "04_누락_충돌_감사!E61:H61",
+      "60_UX_UI_접근성!A30:J30",
+      "80_데모_버티컬슬라이스_플레이테스트!A33:J33",
+      "99_변경이력!A75:H75"
     ],
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
-    "automated_gate": "PASS",
-    "evidence_scope": "SYNTHETIC_FIXTURES_ONLY",
+    "automated_gate": "PASS_BEFORE_PROTOCOL_CHANGE",
+    "human_validation_protocol": "APPROVED_NOT_RUN",
+    "human_validation_mode": "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
+    "evidence_scope": "SYNTHETIC_FIXTURES_PLUS_APPROVED_HUMAN_PROTOCOL_NOT_RUN",
     "human_device_validation": "NOT_RUN",
     "human_end_to_end_core_loop": "NOT_RUN",
+    "full_vertical_slice_representativeness": "NOT_RUN",
     "runtime_expansion_7_plus": "BLOCKED",
+    "visual_hx": "REQUIRED_NEXT_FOR_STAGE_2_HARNESS",
+    "codex": "BLOCKED_BY_VISUAL_HX_AND_RUNTIME_HARNESS",
     "merge_authorized": false,
     "tdd": {
       "authority_test": "tests/test_current_checkpoint_authority.py",
-      "collection_fix_commit": "af17247db3dd89c5b8ede3fd3dc920284564efa7",
-      "red_workflow_run": 31004483858,
-      "red_result": "EXPECTED_FAILURE_CURRENT_CHECKPOINT_AUTHORITY",
-      "green_evidence_head": "c93c091be6827dbb6ff888ebb889e379c86407bb",
-      "foundation_green_workflow_run": 31005032419,
-      "planning_base_green_workflow_run": 31005032390,
-      "godot_toolchain_green_workflow_run": 31005032414,
-      "green_result": "PASS",
-      "closure_test_commit": "d88f70ab0078b8b50501997d3cda52cd010cb9a6",
-      "closure_red_workflow_run": 31005564491,
-      "closure_red_result": "EXPECTED_FAILURE_GREEN_EVIDENCE_PENDING",
-      "closure_fix_scope": "CANON_SYNC_STATE_AND_DEVELOPMENT_GATES"
+      "human_protocol_test": "tests/test_human_circuit_bridge_decision.py",
+      "previous_green_evidence_head": "c93c091be6827dbb6ff888ebb889e379c86407bb",
+      "previous_foundation_green_workflow_run": 31005032419,
+      "previous_planning_base_green_workflow_run": 31005032390,
+      "previous_godot_toolchain_green_workflow_run": 31005032414,
+      "previous_closure_green_workflow_run": 31005726796,
+      "protocol_red_head": "84099f391e25517cb79bb249071eb709083ccfd8",
+      "protocol_red_workflow_run": 31006599965,
+      "protocol_red_result": "EXPECTED_FAILURE_MISSING_APPROVAL_PROTOCOL_STATE",
+      "protocol_green_workflow_run": "PENDING_EXACT_HEAD"
     }
   },
   "previous_main_bundle": {
@@ -78,9 +83,9 @@
     "observed_ahead_commits": 54,
     "migration_status": "DEFERRED_TO_SEPARATE_TDD_CHANGE"
   },
-  "latest_product_gate": "RESOURCE_AND_RECOGNITION_POC_AUTOMATED_PASS",
-  "codex_status": "BLOCKED_BY_HUMAN_DEVICE_SCOPE_GRILLME",
-  "implementation": "FOUNDATION_AND_RECOGNITION_POC_IMPLEMENTED",
+  "latest_product_gate": "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
+  "codex_status": "BLOCKED_BY_MINIMAL_STAGE_2_HARNESS_HX",
+  "implementation": "RESOURCE_AND_RECOGNITION_POC_IMPLEMENTED_PROTOCOL_APPROVED",
   "runtime_validation": "AUTOMATED_SYNTHETIC_ONLY",
   "human_validation": "NOT_RUN"
 }

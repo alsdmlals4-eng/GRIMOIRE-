@@ -23,16 +23,16 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         self.assertTrue(CURRENT_CHECKPOINT.is_file())
         self.assertTrue(CURRENT_STATUS.is_file())
 
-    def test_active_entrypoints_route_to_pr63_checkpoint(self) -> None:
+    def test_active_entrypoints_route_to_current_checkpoint(self) -> None:
         text = "\n".join(path.read_text(encoding="utf-8") for path in ENTRYPOINTS)
         required = (
             "working_pull_request: 63",
             "working_branch: agent/glyph-vocabulary-recognition-poc",
-            "current_sync: GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC",
-            "current_gate: RESOURCE_AND_RECOGNITION_POC_AUTOMATED_PASS",
+            "current_sync: GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
+            "current_gate: HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
             "human_device_validation: NOT_RUN",
             "runtime_expansion_7_plus: BLOCKED",
-            "grill_counter: 3_of_10",
+            "grill_counter: 4_of_10",
             "merge_authorized: false",
         )
         for token in required:
@@ -45,7 +45,7 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         current_bundle = sync_state["current_bundle"]
         self.assertEqual(
             current_bundle["sync_id"],
-            "GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC",
+            "GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
         )
         self.assertEqual(current_bundle["pull_request"], 63)
         self.assertEqual(
@@ -57,16 +57,16 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
             "ec947f232b533d5a2acac20683287080c34a811f",
         )
         self.assertEqual(current_bundle["sheet_readback"], "PASS")
-        self.assertEqual(current_bundle["automated_gate"], "PASS")
+        self.assertEqual(current_bundle["human_validation_protocol"], "APPROVED_NOT_RUN")
         self.assertEqual(current_bundle["human_device_validation"], "NOT_RUN")
         self.assertEqual(current_bundle["runtime_expansion_7_plus"], "BLOCKED")
         self.assertFalse(current_bundle["merge_authorized"])
 
-        self.assertEqual(grill_state["current_count"], 3)
+        self.assertEqual(grill_state["current_count"], 4)
         self.assertEqual(grill_state["current_work"]["pull_request"], 63)
         self.assertEqual(
             grill_state["current_work"]["gate"],
-            "RESOURCE_AND_RECOGNITION_POC_AUTOMATED_PASS",
+            "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
         )
         self.assertEqual(
             grill_state["current_work"]["human_device_validation"],
@@ -84,25 +84,22 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
             "RECOGNITION_IS_INPUT_INFRASTRUCTURE_NOT_THE_CORE_FUN",
             "EXACT_GLYPH_VAULT_AND_UNIVERSAL_GLYPH_STOCK_ARE_SUPPORT_SYSTEMS",
             "HUMAN_END_TO_END_CORE_LOOP_VALIDATION_PENDING",
+            "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
         )
         for token in required:
             self.assertIn(token, text)
 
-    def test_green_evidence_is_closed_not_pending(self) -> None:
+    def test_previous_green_evidence_is_preserved(self) -> None:
         sync_state = json.loads(CANON_SYNC_STATE.read_text(encoding="utf-8"))
         tdd = sync_state["current_bundle"]["tdd"]
         self.assertEqual(
-            tdd["green_evidence_head"],
+            tdd["previous_green_evidence_head"],
             "c93c091be6827dbb6ff888ebb889e379c86407bb",
         )
-        self.assertEqual(tdd["foundation_green_workflow_run"], 31005032419)
-        self.assertEqual(tdd["planning_base_green_workflow_run"], 31005032390)
-        self.assertEqual(tdd["godot_toolchain_green_workflow_run"], 31005032414)
-        self.assertEqual(tdd["green_result"], "PASS")
-
-        gates = DEVELOPMENT_GATES.read_text(encoding="utf-8")
-        self.assertIn("GREEN_CONFIRMED_AT_C93C091B", gates)
-        self.assertNotIn("GREEN_PENDING_THIS_CHECKPOINT", gates)
+        self.assertEqual(tdd["previous_foundation_green_workflow_run"], 31005032419)
+        self.assertEqual(tdd["previous_planning_base_green_workflow_run"], 31005032390)
+        self.assertEqual(tdd["previous_godot_toolchain_green_workflow_run"], 31005032414)
+        self.assertEqual(tdd["previous_closure_green_workflow_run"], 31005726796)
 
 
 if __name__ == "__main__":

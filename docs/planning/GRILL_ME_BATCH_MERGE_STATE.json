@@ -1,18 +1,18 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
   "google_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
   "threshold": 10,
-  "current_count": 3,
+  "current_count": 4,
   "counter": {
-    "approved_grill_me_since_last_flush": 3,
+    "approved_grill_me_since_last_flush": 4,
     "next_merge_at": 10,
     "merge_required": false,
     "merge_trigger": "NONE",
     "merge_authorized": false,
-    "authorization_state": "AUTOMATED_POC_PASS_HUMAN_DEVICE_SCOPE_PENDING",
+    "authorization_state": "HUMAN_PROTOCOL_APPROVED_EXECUTION_NOT_RUN",
     "checkpoint_state": "HIGH_CANON_IMPACT_DRAFT_CHECKPOINT",
     "checkpoint_pull_request": 63,
     "early_checkpoint_triggers": [
@@ -23,7 +23,8 @@
     "pending_decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
       "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
-      "GM-GLYPH-VOCABULARY-V1-01"
+      "GM-GLYPH-VOCABULARY-V1-01",
+      "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01"
     ]
   },
   "completed_flush": {
@@ -44,26 +45,30 @@
     "main_sync_id": "GR-SYNC-20260804-12-CLOSURE"
   },
   "current_work": {
-    "status": "RESOURCE_AND_RECOGNITION_POC_AUTOMATED_PASS",
-    "gate": "RESOURCE_AND_RECOGNITION_POC_AUTOMATED_PASS",
-    "latest_approved_decision_id": "GM-GLYPH-VOCABULARY-V1-01",
+    "status": "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
+    "gate": "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
+    "latest_approved_decision_id": "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
     "related_approved_decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
       "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
-      "GM-GLYPH-VOCABULARY-V1-01"
+      "GM-GLYPH-VOCABULARY-V1-01",
+      "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01"
     ],
     "default_branch": "main",
     "working_branch": "agent/glyph-vocabulary-recognition-poc",
     "pull_request": 63,
     "working_pull_request": 63,
     "base_pull_request": 62,
-    "current_sync": "GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC",
+    "current_sync": "GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
     "source_product_commit": "ec947f232b533d5a2acac20683287080c34a811f",
+    "human_validation_protocol": "STAGED_HYBRID_APPROVED_NOT_RUN",
     "human_device_validation": "NOT_RUN",
     "human_end_to_end_core_loop": "NOT_RUN",
     "runtime_expansion_7_plus": "BLOCKED",
+    "visual_hx": "REQUIRED_NEXT_FOR_STAGE_2_HARNESS",
+    "codex": "BLOCKED_BY_VISUAL_HX_AND_RUNTIME_HARNESS",
     "merge_authorized": false,
-    "next_priority": "GRILLME_HUMAN_DEVICE_VALIDATION_SCOPE"
+    "next_priority": "MINIMAL_STAGE_2_HARNESS_UX_HX"
   },
   "canonical_contract": {
     "core_fun": "SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE",
@@ -83,7 +88,8 @@
       "DISPERSE",
       "BURST"
     ],
-    "vocabulary_expansion_gate": "HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION"
+    "human_validation_mode": "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
+    "vocabulary_expansion_gate": "HUMAN_COMPREHENSION_AND_CORE_LOOP_REVIEW_REQUIRED_BEFORE_EXPANSION"
   },
   "workflow_contract": {
     "benchmark": "BENCHMARK_AND_PRO_COMPARISON_REQUIRED",
@@ -98,12 +104,12 @@
     "resource_automated_gate": "PASS",
     "recognition_pr": 63,
     "recognition_automated_gate": "PASS",
-    "authority_test": "tests/test_current_checkpoint_authority.py",
-    "authority_red_workflow_run": 31004483858,
-    "authority_red_result": "EXPECTED_FAILURE",
-    "sheet_write": "PASS",
-    "sheet_readback": "PASS",
-    "evidence_scope": "SYNTHETIC_FIXTURES_ONLY",
+    "human_protocol_decision_test": "tests/test_human_circuit_bridge_decision.py",
+    "human_protocol_red_workflow_run": 31006599965,
+    "human_protocol_red_result": "EXPECTED_FAILURE_MISSING_APPROVAL_PROTOCOL_STATE",
+    "sheet_write": "PENDING_THIS_SYNC",
+    "sheet_readback": "PENDING_THIS_SYNC",
+    "evidence_scope": "SYNTHETIC_FIXTURES_ONLY_PLUS_HUMAN_PROTOCOL_NOT_RUN",
     "mobile_device": "NOT_RUN",
     "accessibility": "NOT_RUN",
     "human": "NOT_RUN"

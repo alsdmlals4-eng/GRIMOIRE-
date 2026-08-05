@@ -3,19 +3,19 @@
 ```yaml
 working_pull_request: 63
 working_branch: agent/glyph-vocabulary-recognition-poc
-current_sync: GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC
-current_gate: RESOURCE_AND_RECOGNITION_POC_AUTOMATED_PASS
+current_sync: GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE
+current_gate: HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN
 human_device_validation: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
-grill_counter: 3_of_10
+grill_counter: 4_of_10
 merge_authorized: false
 ```
 
-## Gate 0 — 정본 복원
+## Gate 0 — 정본 동기화
 
-현재 진입점, 상태 JSON, Sync Receipt, PR #62·#63, Sheet가 같은 상태를 가리켜야 한다.
+GitHub Decision·Protocol·적대 검토·상태 JSON과 Sheet `GR-SYNC-20260805-05`가 같은 결정을 가리켜야 한다.
 
-현재: `CURRENT_PR63_CANON_SYNCED / SHEET_FINAL_READBACK_PASS`.
+현재: `SHEET_WRITE_READBACK_PASS / GITHUB_IMPLEMENTATION_PENDING_EXACT_HEAD_GREEN`.
 
 ## Gate 1 — 핵심 재미
 
@@ -23,95 +23,84 @@ merge_authorized: false
 상황 → 의미 → 3×3 회로 → Preview → Commit → 결과·대가 → Grimoire
 ```
 
-Recognition과 자원 시스템이 회로 판단을 대신하면 실패다.
-
 현재: `PLANNING_PASS / HUMAN_END_TO_END_NOT_RUN`.
 
-## Gate 2 — 3×3 회로
+## Gate 2 — Resource·Recognition
 
-메인 1, 보조 0~2, 대상 1~4, 최대 7노드·1분기, 8방향 인접, 교차·건너뛰기 금지, 전체 도달 가능, 대상 끝점.
+- PR #62 Resource Foundation 자동화 PASS.
+- PR #63 Runtime 6종 Recognition 자동화 PASS.
+- Recognition은 입력 기반이며 핵심 재미를 대신하지 않는다.
 
-현재: `SPEC_PASS / END_TO_END_RUNTIME_NOT_RUN`.
+현재: `AUTOMATED_PASS / HUMAN_DEVICE_NOT_RUN`.
 
-## Gate 3 — 자원 Foundation
+## Gate 3 — 단계형 사람 검증
 
-```yaml
-vault: EXACT_GLYPH_VAULT
-stock: UNIVERSAL_GLYPH_STOCK
-source_selection: EXPLICIT_SOURCE_SELECTION
-capacity: SEPARATE_VAULT_AND_STOCK_CAPACITY
-natural_charge: UNIVERSAL_STOCK_SINGLE_CHARGE_PROGRESS
-spell_commit_uses_mana: true
-completed_spell_stock: prohibited
+```text
+C_STAGED_RECOGNITION_THEN_CORE_LOOP
+STAGE_1_RECOGNITION_DIAGNOSTIC
+SAME_PARTICIPANT_WITH_BREAK
+STAGE_2_CORE_LOOP_BRIDGE
+FIRST_ATTEMPT_AND_POST_FEEDBACK_SEPARATED
+NOT_A_FULL_VERTICAL_SLICE_REPRESENTATIVENESS_PASS
 ```
 
-현재: `PR62_AUTOMATED_PASS / OPEN_DRAFT_UNMERGED / HUMAN_NOT_RUN`.
+현재: `PROTOCOL_AND_ADVERSARIAL_REVIEW_PASS / HUMAN_EXECUTION_NOT_RUN`.
 
-## Gate 4 — Vocabulary·Recognition
+## Gate 4 — 모바일·접근성
+
+```text
+ANDROID_TOUCH_TARGET_48DP
+IOS_TOUCH_TARGET_44PT
+WCAG_2_2_TARGET_SIZE_MINIMUM_24_CSS_PX
+NON_DRAG_ALTERNATIVE_REQUIRED
+PROJECT_USES_STRICTER_PLATFORM_TARGETS
+```
+
+실제 기기·접근성 실행은 `NOT_RUN`이다.
+
+## Gate 5 — Hard Stop
+
+```text
+ACCEPTED_FALSE_ZERO_HARD_STOP
+ACCIDENTAL_COMMIT_ZERO_HARD_STOP
+DUPLICATE_SAVE_OR_REWARD_ZERO_HARD_STOP
+STALE_RESULT_APPLICATION_ZERO_HARD_STOP
+```
+
+Hard Stop 발생 시 Stage 2·7종 이상 확대·병합을 중단한다.
+
+## Gate 6 — TDD
+
+- 신규 계약 테스트: `tests/test_human_circuit_bridge_decision.py`.
+- RED HEAD: `84099f391e25517cb79bb249071eb709083ccfd8`.
+- RED Workflow: `31006599965`.
+- 기존 Resource·Vocabulary·현재 정본 계약 PASS, 신규 Decision 계약만 예상 실패.
+
+현재: `RED_CONFIRMED / GREEN_PENDING_EXACT_HEAD`.
+
+## Gate 7 — UX/HX·Codex
+
+```text
+FINAL_ART_AND_CODEX_BLOCKED_UNTIL_REVIEW_GATE
+```
+
+Spec·적대 검토 Gate는 완료됐다. 다음은 최종 아트가 아니라 Stage 2 최소 Harness의 상태·전환·피드백 UX/HX다. 그 상태팩 전 Codex를 시작하지 않는다.
+
+현재: `MINIMAL_STAGE_2_HARNESS_HX_REQUIRED`.
+
+## Gate 8 — 전체 Slice 대표성
+
+기존 `GR-TEST-021`의 46–53분 Internal Slice는 별도 검증이다. `GR-TEST-032` 결과로 대체하지 않는다.
+
+현재: `NOT_RUN`.
+
+## Gate 9 — 확대·병합
 
 ```yaml
-semantic_registry: MAIN_10_SUPPORT_10
-runtime_glyphs: [HEAT, PROTECT, FLOW, FOCUS, DISPERSE, BURST]
-recognizers: DOLLAR_ONE_PLUS_BOUNDED_DOLLAR_N
-low_confidence_or_confusion: RETRY_NOT_AUTO_CONFIRM
-stale_revision: BLOCK
-selected_recognized_mismatch: BLOCK_SAVE
-success_destination: EXACT_GLYPH_VAULT_ONLY
+all_numeric_thresholds: TEST_VALUE
 runtime_expansion_7_plus: BLOCKED
-```
-
-현재: `PR63_AUTOMATED_PASS / SYNTHETIC_FIXTURES_ONLY / HUMAN_DEVICE_NOT_RUN`.
-
-## Gate 5 — 모바일 UX·접근성
-
-Landscape Safe Area, 최소 48dp, 텍스트 확대 Layout POC는 존재한다. 실제 기기, 좌우손, 피로, 100/130/200% 텍스트, 스크린리더·색 외 구분 검증은 미실행이다.
-
-현재: `LAYOUT_POC / DEVICE_A11Y_NOT_RUN`.
-
-## Gate 6 — 콘텐츠·서사 대표성
-
-Frostbloom 복수 해결과 교수 비정답 원칙은 유지한다. 현재 Recognition 화면만으로 Vertical Slice 대표성을 선언하지 않는다.
-
-현재: `PLANNING_PASS / HUMAN_REPRESENTATIVENESS_NOT_RUN`.
-
-## Gate 7 — TDD·CI
-
-- 제품 POC: 기존 RED→GREEN 기록 유지.
-- 정본 보정: `tests/test_current_checkpoint_authority.py`를 먼저 추가.
-- CI 수집 누락 발견 후 Foundation Workflow에 계약 테스트를 명시 등록.
-- 첫 RED run `31004483858`: 기존 Resource·Vocabulary 성공, Current Checkpoint Authority만 예상 실패.
-- GREEN evidence head `c93c091be6827dbb6ff888ebb889e379c86407bb`.
-- GREEN runs: Foundation `31005032419`, Planning/Base `31005032390`, Godot Toolchain `31005032414`.
-- 닫힘 RED run `31005564491`: GREEN 실행 후에도 기계 상태가 pending인 결함만 예상 실패.
-
-현재: `GREEN_CONFIRMED_AT_C93C091B / CLOSURE_METADATA_FIXED`.
-
-## Gate 8 — Base 계약
-
-```yaml
-project_pin: c987647d01ad2baa028a16e03d85ddfc1572a727
-observed_base_main: 339a48be688e312b7894e1f2372aecfe0ee3f6f4
-ahead_commits: 54
-migration: SEPARATE_TDD_CHANGE_REQUIRED
-```
-
-현재 PR에서 pin만 교체하지 않는다. Live Editor Contract v2와 증거 거버넌스는 별도 영향 분석·TDD·필요 시 GrillMe 대상으로 분리한다.
-
-## Gate 9 — 사람·실기기
-
-다음 승인 대상은 인식 단독 정확도, 의미 이해, 자원 출처, 3×3 회로, Preview/Commit, 결과 인지 중 어디까지 한 검증 배치에 넣을지다.
-
-현재: `GRILLME_REQUIRED / HUMAN_END_TO_END_CORE_LOOP_VALIDATION_PENDING`.
-
-## Gate 10 — 정본 동기화·병합
-
-```yaml
 pull_request: 63
 draft: true
-sheet_sync_id: GR-SYNC-20260805-04-GLYPH-RECOGNITION-POC
-grill_counter: 3_of_10
 merge_required: false
 merge_authorized: false
 ```
-
-exact-head CI와 Sheet Readback을 마쳐도 별도 사용자 승인 없이는 Ready 전환·병합하지 않는다.
