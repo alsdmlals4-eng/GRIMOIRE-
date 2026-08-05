@@ -12,11 +12,11 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
 main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
 current_main_sync: GR-SYNC-20260804-12-CLOSURE
-working_branch: agent/glyph-vocabulary-recognition-poc
-working_pull_request: 63
-active_child_branch: agent/stage2-circuit-bridge-harness-poc
-active_child_pull_request: 65
-current_sync: GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX
+working_branch: agent/stage2-circuit-bridge-harness-poc
+working_pull_request: 65
+parent_branch: agent/glyph-vocabulary-recognition-poc
+parent_pull_request: 63
+current_sync: GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED
 latest_approved_decision: GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01
 related_approved_decisions:
   - GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
@@ -26,16 +26,16 @@ related_approved_decisions:
 grill_counter: 4_of_10
 pending_decisions: 4
 checkpoint_state: HIGH_CANON_IMPACT_DRAFT_CHECKPOINT
-current_gate: STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD
+current_gate: STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
 human_device_validation: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
 merge_authorized: false
 product_project: CREATED_POC
-product_implementation: RESOURCE_AND_RECOGNITION_POC_PASS_STAGE2_HARNESS_IN_TDD
-runtime_validation: AUTOMATED_SYNTHETIC_ONLY
+product_implementation: RESOURCE_RECOGNITION_AND_STAGE2_HARNESS_AUTOMATED_PASS
+runtime_validation: AUTOMATED_SYNTHETIC_AND_DETERMINISTIC_FIXTURES_ONLY
 ```
 
-PR #57~#60의 main 정본은 유지한다. PR #61~#63과 현재 자식 PR #65는 Stacked Draft이며 별도 승인 전 Ready 전환·병합하지 않는다. PR #65는 승인된 Stage 2 Low-fi Harness의 TDD 구현만 수행한다.
+PR #57~#60의 main 정본은 유지한다. PR #61~#63과 현재 PR #65는 Stacked Draft이며 별도 사용자 승인 전 Ready 전환·병합하지 않는다. PR #65의 승인된 Stage 2 Low-fi Harness 구현은 자동화 Gate를 통과했지만 사람·실기기 결과는 아직 없다.
 
 ## 권위 우선순위
 
@@ -47,7 +47,7 @@ PR #57~#60의 main 정본은 유지한다. PR #61~#63과 현재 자식 PR #65는
 6. `docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md`.
 7. `docs/planning/CANON_STATUS_INDEX_2026-08-05.md`.
 8. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`.
-9. 최신 승인 Decision·Protocol·UX/HX 원본.
+9. 최신 승인 Decision·Protocol·UX/HX·Stop Gate 원본.
 10. 실제 제품 코드·테스트·Runtime 증거.
 11. Base pin·공유 Skill 계약.
 12. 과거 Draft·Working·Sync·추정.
@@ -67,7 +67,8 @@ AGENTS.md
 → GLYPH_HUMAN_CIRCUIT_BRIDGE 승인·Protocol·적대 검토
 → STAGE2_CIRCUIT_BRIDGE_HARNESS UX/HX·State Matrix
 → Stage 2 Harness 구현 계획
-→ Sync06 Receipt·Sheet
+→ Stage 2 Harness 자동 검증 보고서·Stop Gate
+→ Sync07 Receipt·Sheet
 → PR #63
 → PR #65
 ```
@@ -113,6 +114,7 @@ SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE
 ## Stage 2 Harness 경계
 
 ```text
+STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
 LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART
 TOP_OBJECTIVE_THREAT_SITUATION_PERSISTENT
 LEFT_MAIN_S1_S2_S3_READ_ONLY_RAIL
@@ -172,7 +174,7 @@ full_pause: false
 - 보관함은 직접 그려 저장한 특정 `glyph_id`에만 사용한다.
 - Stock 1개는 사용 시점에 습득한 핵심·보조 글자 중 하나를 선택한다.
 - 둘 다 사용 가능하면 출처를 직접 고른다.
-- 예약·Commit은 기존 Resource Reservation·Atomic Commit 계층을 우선 재사용한다.
+- 예약·Commit은 기존 Resource Reservation·Atomic Commit 계층을 재사용한다.
 - 직접 그리기는 위력 보너스가 없고 기본 전투의 필수 입력이 아니다.
 
 ## Vocabulary v1
@@ -206,6 +208,20 @@ TEST_FIRST_ACCEPTANCE_FOR_NON_EXECUTABLE_WORK
 - 최소 GREEN 후 전체 회귀를 확인하고 GREEN 상태에서만 Refactor한다.
 - 새 기능은 기존 API를 먼저 확인하고 존재하지 않는 Production API를 추정하지 않는다.
 - 자동 판정할 수 없는 재미·직관성·피로도는 실제 검증 전 `HUMAN_NOT_RUN`으로 유지한다.
+
+## 자동 검증 증거
+
+```yaml
+stage2_harness_automated: PASS
+headless_suites: 28
+headless_assertions: 1342
+headless_failures: 0
+foundation_green_run: 31016191300
+planning_base_green_run: 31016191141
+godot_toolchain_green_run: 31016191132
+```
+
+이 증거는 합성·결정적 Fixture와 Headless 계약 범위에 한정된다.
 
 ## 로그·개인정보 경계
 
@@ -248,7 +264,7 @@ EARLY_CHECKPOINT_MAJOR_CANON_IMPACT
 ```yaml
 resource_foundation_automated: PASS
 recognition_six_glyph_automated: PASS
-stage2_harness_automated: IN_TDD
+stage2_harness_automated: PASS
 human_device_validation: NOT_RUN
 human_end_to_end_core_loop: NOT_RUN
 full_vertical_slice_representativeness: NOT_RUN
@@ -259,11 +275,11 @@ merge_authorized: false
 
 모든 Prototype 수치는 `TEST_VALUE`다.
 
-## 구현 계획
+## 다음 Gate
 
-1. `docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md`.
-2. `docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md`.
-3. `docs/superpowers/plans/2026-08-05-stage2-circuit-bridge-harness-implementation-plan.md`.
-4. PR #65에서 State·Fixture·Recognition Bridge·Circuit·Commit·Low-fi Scene·Event Recorder를 TDD로 구현한다.
+1. GitHub 정본과 Google Sheet Sync07 Readback을 닫는다.
+2. `GR-TEST-032` 실제 사람·실기기 Stage 1→휴식→Stage 2를 실행한다.
+3. first attempt와 post-feedback 결과를 분리한다.
+4. 결과 적대 검토 후 다음 GrillMe를 진행한다.
 
 PR #63과 PR #65는 Draft·미병합이며 별도 사용자 승인 전 Ready 전환·병합하지 않는다.
