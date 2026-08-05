@@ -69,7 +69,7 @@ class StarRuntimeImplementationContractTests(unittest.TestCase):
         ):
             self.assertIn(token, scene)
 
-    def test_cross_platform_runner_builds_headless_and_editor_commands(self) -> None:
+    def test_cross_platform_runner_builds_test_run_and_editor_commands(self) -> None:
         path = ROOT / "tools/run_star_runtime.py"
         spec = importlib.util.spec_from_file_location("run_star_runtime", path)
         self.assertIsNotNone(spec)
@@ -79,15 +79,16 @@ class StarRuntimeImplementationContractTests(unittest.TestCase):
         root = ROOT.resolve()
         binary = Path("C:/Godot/Godot.exe")
         self.assertEqual(module.build_test_command(binary, root)[1:], ["--headless", "--path", str(root), "--script", "res://tests/test_runner.gd"])
+        self.assertEqual(module.build_run_command(binary, root)[1:], ["--path", str(root)])
         self.assertEqual(module.build_editor_command(binary, root)[1:], ["--editor", "--path", str(root)])
 
     def test_current_runtime_sync_receipt_preserves_human_boundaries(self) -> None:
-        text = self.read("docs/planning/sync/GR-SYNC-20260806-02-STAR-RUNTIME-POC.md")
+        text = self.read("docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION.md")
         for token in (
-            "RUNTIME_POC_IMPLEMENTED_AUTOMATED_PASS", "AUTOMATED_HEADLESS_PASS",
-            "MOBILE_DEVICE_VALIDATION_NOT_RUN", "PERFORMANCE_VALIDATION_NOT_RUN",
-            "ACCESSIBILITY_VALIDATION_NOT_RUN", "HUMAN_VALIDATION_NOT_RUN",
-            "FULL_VERTICAL_SLICE_REPRESENTATIVENESS_NOT_RUN",
+            "STAR_RUNTIME_COMPLETION", "AUTOMATED_HEADLESS_PASS",
+            "mobile_device_validation: NOT_RUN", "performance_validation: NOT_RUN",
+            "accessibility_device_validation: NOT_RUN", "human_validation: NOT_RUN",
+            "full_vertical_slice_representativeness: NOT_RUN",
         ):
             self.assertIn(token, text)
 

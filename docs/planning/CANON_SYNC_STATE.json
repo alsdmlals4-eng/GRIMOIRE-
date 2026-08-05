@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -19,52 +19,57 @@
     "SYNCED_TO_MAIN",
     "SYNC_CONFLICT"
   ],
-  "current_bundle": {
-    "sync_id": "GR-SYNC-20260801-05",
+  "previous_main_bundle": {
+    "sync_id": "GR-SYNC-20260806-01-MAIN",
+    "decision_id": "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
     "status": "SYNCED_TO_MAIN",
-    "decision_ids": [
-      "GM-PROJECT-OPERATING-RECONCILIATION-01",
-      "ART-BIBLE-01",
-      "GM-BATTLE-RULES-01",
-      "GM-CANON-SYNC-01"
+    "authority_main_commit": "2012a9f4c2da09a1defec07f8d8f7a0d3c867d93",
+    "design_pull_request": 68,
+    "finalization_pull_request": 70,
+    "product_implementation": "NOT_STARTED_AT_THAT_BUNDLE",
+    "runtime_validation": "NOT_RUN_AT_THAT_BUNDLE"
+  },
+  "current_bundle": {
+    "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION",
+    "decision_ids": ["GM-STAR-CIRCUIT-MASTERY-BALANCE-01"],
+    "status": "SYNCED_TO_WORKING_BRANCH",
+    "working_branch": "agent/star-circuit-runtime-godot-poc",
+    "authority_pull_request": 69,
+    "implementation_green_head": "f3187672bc18c989052d9e3f84a5306a272d9083",
+    "main_merge": "PENDING",
+    "sheet_sync": "VERIFIED_WORKING_BRANCH_READBACK",
+    "sheet_readback": "PASS",
+    "sheet_ranges": [
+      "00_프로젝트_허브!H2:K2",
+      "02_현재_확정결정!A63:J63",
+      "04_누락_충돌_감사!E67:H67",
+      "05_GDD_요약!A21:J21",
+      "12_핵심루프!A28:J28",
+      "15_조작_게임규칙!A16:J16",
+      "40_핵심시스템_메인콘텐츠!A30:J30",
+      "41_성장_경제!A14:I14",
+      "60_UX_UI_접근성!A36:J36",
+      "99_변경이력!A81:H81"
     ],
-    "authority_pull_request": 22,
-    "authority_main_commit": "a088252349bee94cecef94b216c8cc5e0b9162cb",
-    "authority_main_readback": "PASS",
-    "audit_commit": "fabbc6b33d08260ce311ed25b76ea394728aafcd",
-    "art_bible_authority_commit": "434040c263be6f2c4946efba944bd72657c5ba6d",
-    "battle_rules_authority_commit": "12690d43cf9e4c73f186097144c900dfe0e7722e",
-    "adapter_commit": "36c1cc50f3620677450522e9de62c6c3fb963236",
-    "generator_commit": "e8648bb018c96109492bad9efe8fca8336a8e8de",
-    "working_branch_receipt": "docs/planning/sync/GR-SYNC-20260801-05.md",
-    "working_branch_receipt_commit": "3b5c164e6488986ab55db1a36ae4d22085653d93",
-    "main_receipt": "docs/planning/sync/GR-SYNC-20260801-05-MAIN.md",
-    "main_receipt_delivery": "THIS_STATE_AND_RECEIPT_MERGED_TO_MAIN",
-    "sheet_sync": "VERIFIED_BY_MAIN_AUTHORITY_READBACK",
-    "sheet_tabs_audited": 27,
-    "sheet_tabs_modified": 20,
-    "main_sheet_readback_ranges": [
-      "00_프로젝트_허브!H2",
-      "01_작업순서!I11:J17",
-      "02_현재_확정결정!J18:J24",
-      "04_누락_충돌_감사!D17:H18",
-      "99_변경이력!E17:H19"
-    ],
-    "main_sheet_readback": "PASS",
     "ci": {
-      "workflow": "Validate Base v9.3 adoption",
-      "run_id": 30677453818,
-      "ci_gate": "SUCCESS",
-      "adversarial_gate": "SUCCESS",
-      "unit_tests": "4_PASS",
-      "json_parse": "PASS",
-      "generator_check": "PASS"
+      "completion_red_run": 31052151348,
+      "star_runtime_run": 31053300711,
+      "planning_base_adversarial_run": 31053301043,
+      "godot_toolchain_run": 31053300879,
+      "platform_rights_run": 31053300688,
+      "godot_suites": 31,
+      "assertions": 1137,
+      "failures": 0
     }
   },
-  "latest_product_gate": "ASSET-SPEC-01",
-  "parallel_design_gate": "BOSS-PHASE-01",
-  "codex_status": "BLOCKED_BY_ASSET_SPEC_AUDIO_INTEGRATED_REVIEW_AND_TECHNICAL_ENTRY",
-  "implementation": "NOT_STARTED",
-  "runtime_validation": "NOT_RUN",
-  "human_validation": "NOT_RUN"
+  "latest_product_gate": "STAR_RUNTIME_COMPLETION",
+  "codex_status": "AUTOMATED_RUNTIME_COMPLETION_PASS_LOCAL_GODOT_READY",
+  "implementation": "STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
+  "runtime_validation": "AUTOMATED_HEADLESS_PASS",
+  "mobile_device_validation": "NOT_RUN",
+  "performance_validation": "NOT_RUN",
+  "accessibility_validation": "AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN",
+  "human_validation": "NOT_RUN",
+  "full_vertical_slice_representativeness": "NOT_RUN",
+  "merge_authorized": true
 }

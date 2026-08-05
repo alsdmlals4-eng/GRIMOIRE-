@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install the pinned Godot toolchain and run or open the star-circuit POC."""
+"""Install the pinned Godot toolchain and test, run, or open the star-circuit POC."""
 from __future__ import annotations
 
 import argparse
@@ -20,6 +20,10 @@ def build_test_command(binary: Path, root: Path) -> list[str]:
 
 def build_editor_command(binary: Path, root: Path) -> list[str]:
     return [str(binary), "--editor", "--path", str(root)]
+
+
+def build_run_command(binary: Path, root: Path) -> list[str]:
+    return [str(binary), "--path", str(root)]
 
 
 def install_toolchain(install_dir: Path, report: Path) -> Path:
@@ -46,6 +50,8 @@ def binary_from_report(report: Path) -> Path:
     if not report.is_file():
         raise FileNotFoundError(f"Toolchain report not found: {report}")
     payload = json.loads(report.read_text(encoding="utf-8"))
+    if payload.get("verdict") != "PASS":
+        raise RuntimeError("Existing Godot toolchain report is not PASS")
     binary = Path(payload["engine"]["binary"])
     if not binary.is_file():
         raise FileNotFoundError(f"Godot binary from report not found: {binary}")
@@ -54,7 +60,9 @@ def binary_from_report(report: Path) -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--editor", action="store_true", help="Open the project in the verified Godot editor")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--editor", action="store_true", help="Open the project in the verified Godot editor")
+    mode.add_argument("--run", action="store_true", help="Run the configured project main scene")
     parser.add_argument("--skip-setup", action="store_true", help="Reuse the existing verified toolchain report")
     parser.add_argument("--install-dir", type=Path, default=DEFAULT_INSTALL_DIR)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
@@ -62,7 +70,12 @@ def main() -> int:
 
     try:
         binary = binary_from_report(args.report) if args.skip_setup else install_toolchain(args.install_dir, args.report)
-        command = build_editor_command(binary, ROOT) if args.editor else build_test_command(binary, ROOT)
+        if args.editor:
+            command = build_editor_command(binary, ROOT)
+        elif args.run:
+            command = build_run_command(binary, ROOT)
+        else:
+            command = build_test_command(binary, ROOT)
         return subprocess.run(command, cwd=ROOT, check=False).returncode
     except (OSError, KeyError, ValueError, RuntimeError, json.JSONDecodeError) as error:
         print(f"star-runtime error: {error}", file=sys.stderr)
