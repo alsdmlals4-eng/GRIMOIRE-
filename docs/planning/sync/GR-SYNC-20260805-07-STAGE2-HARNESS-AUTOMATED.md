@@ -67,7 +67,7 @@ headless_failures: 0
 - 자동 검증 보고서·Stop Gate·Fixture/Event 증거.
 - PR #65 승인 구현 Governance.
 
-## Sheet 예정 범위
+## Google Sheet Write·Readback
 
 ```yaml
 ranges:
@@ -78,8 +78,8 @@ ranges:
   - 60_UX_UI_접근성!A32:J32
   - 80_데모_버티컬슬라이스_플레이테스트!A34:J34
   - 99_변경이력!A77:H77
-sheet_write: PENDING
-sheet_readback: PENDING
+sheet_write: PASS
+sheet_readback: PASS
 ```
 
 ## 정직한 경계
@@ -94,4 +94,4 @@ RUNTIME_EXPANSION_7_PLUS_BLOCKED
 MERGE_NOT_AUTHORIZED
 ```
 
-자동화 PASS는 실제 사람·실기기 PASS나 전체 Vertical Slice 대표성 PASS가 아니다.
+자동화 PASS는 실제 사람·실기기 PASS나 전체 Vertical Slice 대표성 PASS가 아니다. 다음 Gate는 `GR-TEST-032` 실제 실행이다.
