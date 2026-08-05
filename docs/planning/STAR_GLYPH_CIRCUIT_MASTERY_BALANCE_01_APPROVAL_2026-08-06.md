@@ -4,9 +4,13 @@
 
 ```yaml
 decision_id: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-status: USER_APPROVED_WORKING_BRANCH
+status: USER_APPROVED_ACTIVE_MAIN
 approved_at: 2026-08-06T01:44+09:00
 sync_id: GR-SYNC-20260806-01
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
+merged_pull_request: 68
+sheet_sync: SYNCED_TO_MAIN
+sheet_readback: PASS
 supersedes_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
 supersession_scope: CIRCUIT_TOPOLOGY_TARGET_PLACEMENT_SUCCESS_PREVIEW_SUPPORT_CAP
 responsibility_source: docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md
@@ -62,7 +66,7 @@ human_validation: NOT_RUN
 
 ## 다음 Gate
 
-1. 활성 정본·상태 색인·Sheet를 같은 Decision ID로 동기화한다.
-2. 별형 회로 Mobile Landscape Wireframe을 작성한다.
-3. 부분 성공·실패·역류 세부 계약을 별도 GrillMe 대상으로 정리한다.
+1. 별형 회로 Mobile Landscape Wireframe을 작성한다.
+2. 부분 성공·실패·역류 세부 계약을 별도 GrillMe 대상으로 정리한다.
+3. 집중 필사 Overlay와 Frostbloom UX Map을 작성한다.
 4. 제품 프로젝트 생성 후 테스트 우선 구현 계획을 실행한다.

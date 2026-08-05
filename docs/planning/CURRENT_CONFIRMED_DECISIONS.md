@@ -3,13 +3,15 @@
 ## 상태
 
 ```yaml
-status: ACTIVE_CANONICAL_DECISION_SNAPSHOT_WORKING_BRANCH
-main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
+status: ACTIVE_CANONICAL_DECISION_SNAPSHOT_MAIN
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
 previous_main_sync: GR-SYNC-20260804-12-CLOSURE
-current_working_sync: GR-SYNC-20260806-01
+current_main_sync: GR-SYNC-20260806-01
+merged_pull_request: 68
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 previous_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
-canon_status: WORKING_BRANCH_GITHUB_AND_SHEET_SYNC_IN_PROGRESS
+canon_status: SYNCED_TO_MAIN
+sheet_readback: PASS
 product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN

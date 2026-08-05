@@ -1,4 +1,4 @@
-# GRIMOIRE 정본 상태 색인 — 2026-08-04 / 2026-08-06 Addendum
+# GRIMOIRE 정본 상태 색인 — 2026-08-04 / 2026-08-06 Main Addendum
 
 > 파일명에 `DRAFT`, `WORKING`, 과거 날짜 또는 `CURRENT`가 남아 있어도 이 문서가 현재 참조 가능 여부를 판정한다.
 
@@ -15,23 +15,24 @@
 | `[폐기]` | 현재 설계에서 사용하지 않음 |
 | `[이력]` | 당시 상태 증거, 현재 권위 아님 |
 
-## 현재 작업 브랜치
+## 현재 Main
 
 ```yaml
-main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
 previous_main_sync: GR-SYNC-20260804-12-CLOSURE
-working_branch: agent/star-circuit-mastery-balance
-working_sync: GR-SYNC-20260806-01
+current_main_sync: GR-SYNC-20260806-01
+merged_pull_request: 68
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 previous_decision: GM-3X3-CIRCUIT-STOCK-FOCUS-01
-canon_status: WORKING_BRANCH_GITHUB_AND_SHEET_SYNC_IN_PROGRESS
+canon_status: SYNCED_TO_MAIN
+sheet_readback: PASS
 product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 ```
 
 ## 복원 순서
 
-`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → 이 색인 → CURRENT_CONFIRMED_DECISIONS → 별형 회로 승인·Spec → 회로·마나·숙련 책임 원본 → Frostbloom 승인 → GR-SYNC-20260806-01`.
+`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → 이 색인 → CURRENT_CONFIRMED_DECISIONS → 별형 회로 승인·Spec → 회로·마나·숙련 책임 원본 → Frostbloom 승인 → GR-SYNC-20260806-01-MAIN`.
 
 ## 활성
 
@@ -57,7 +58,7 @@ runtime_validation: NOT_RUN
 - `GRILL_ME_BATCH_MERGE_STATE.json`.
 - `PROJECT_CANON_SYNC_POLICY.md`.
 - Google Sheet workbook.
-- `GR-SYNC-20260806-01` Working Sync receipt — 작성 후 활성.
+- `GR-SYNC-20260806-01-MAIN.md` — `[활성 Main Sync / Readback PASS]`.
 
 ## 부분 대체됨
 
@@ -124,7 +125,8 @@ Godot toolchain setup plan·approval·report·script·tests. 제품 Godot 프로
 - `GR-SYNC-20260804-10-MAIN`: `[이력/Finalization]`.
 - `GR-SYNC-20260804-11-MAIN-READBACK`: `[이력/Readback]`.
 - `GR-SYNC-20260804-12-CLOSURE`: `[이력/이전 Main 완료 Sync]`.
-- `GR-SYNC-20260806-01`: `[활성 Working Sync / Readback 완료 전 진행 중]`.
+- `GR-SYNC-20260806-01-WORKING`: `[이력/Working Branch Readback]`.
+- `GR-SYNC-20260806-01-MAIN`: `[활성/Main Readback PASS]`.
 
 ## 미실행
 

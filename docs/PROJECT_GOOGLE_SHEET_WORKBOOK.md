@@ -14,15 +14,14 @@ primary_platform: Mobile
 follow_up_platform: PC
 base_release: v9.4.3
 base_registry_route_commit: c987647d01ad2baa028a16e03d85ddfc1572a727
-main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
-working_branch: agent/star-circuit-mastery-balance
-working_authority_commit: 209eecc5beed77920ca601a2b377b8e900a0d5ac
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
+merged_pull_request: 68
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 sync_bundle: GR-SYNC-20260806-01
-sync_status: SYNCED_TO_WORKING_BRANCH
+sync_status: SYNCED_TO_MAIN
 sheet_readback: PASS
-main_sync: NOT_MERGED
-sync_receipt: docs/planning/sync/GR-SYNC-20260806-01-WORKING.md
+main_sync: MERGED_AND_READBACK_PASS
+sync_receipt: docs/planning/sync/GR-SYNC-20260806-01-MAIN.md
 product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
@@ -72,7 +71,7 @@ Sheet는 사용자가 기획을 확인·수정하는 작업면이다. GitHub 승
 | 마나·정밀·절감 | `docs/planning/MANA_SYSTEM.md` |
 | 글자별 숙련도 | `docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md` |
 | 상태 색인 | `docs/planning/CANON_STATUS_INDEX_2026-08-04.md` |
-| Working Sync | `docs/planning/sync/GR-SYNC-20260806-01-WORKING.md` |
+| Main Sync | `docs/planning/sync/GR-SYNC-20260806-01-MAIN.md` |
 | 개발 Gate | `docs/DEVELOPMENT_GATES.md` |
 | Base Adapter | `skills/PROJECT_BASE_ADAPTER.json` |
 | 동기화 정책 | `docs/planning/PROJECT_CANON_SYNC_POLICY.md` |
@@ -96,7 +95,7 @@ Decision ID: `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`.
 
 | 탭 | 위치 | 결과 |
 |---|---:|---|
-| `02_현재_확정결정` | Row 61 | PASS |
+| `02_현재_확정결정` | Row 61 | PASS / main SHA |
 | `04_누락_충돌_감사` | Row 65 | PASS |
 | `05_GDD_요약` | Row 19 | PASS |
 | `12_핵심루프` | Row 26 | PASS |
@@ -104,7 +103,7 @@ Decision ID: `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`.
 | `40_핵심시스템_메인콘텐츠` | Row 28 | PASS |
 | `41_성장_경제` | Row 12 | PASS |
 | `60_UX_UI_접근성` | Row 34 | PASS |
-| `99_변경이력` | Row 79 | PASS |
+| `99_변경이력` | Row 79 | PASS / `SYNCED_TO_MAIN` |
 
 ## 동기화 절차
 
@@ -114,10 +113,9 @@ Decision ID 확정
 → Authority Snapshot Commit
 → 관련 Sheet 범위 갱신
 → GitHub·Sheet Readback
-→ Sync Receipt
 → SYNCED_TO_WORKING_BRANCH
-→ Draft PR 검증·병합
-→ main SHA와 Sheet 재검증
+→ PR 검증·병합
+→ main authority SHA와 Sheet 재검증
 → SYNCED_TO_MAIN
 ```
 
@@ -126,11 +124,11 @@ Decision ID 확정
 | 상태 | 의미 |
 |---|---|
 | `PROPOSED_SHEET_CHANGE` | GitHub 승인 근거 없는 Sheet 단독 편집 |
-| `GITHUB_ONLY` | GitHub 반영, Sheet 실패·대기 |
-| `SHEET_ONLY` | Sheet 반영, GitHub 실패 |
+| `GITHUB_ONLY` | GitHub 반영 성공, Sheet 실패·대기 |
+| `SHEET_ONLY` | Sheet 반영 성공, GitHub 실패 |
 | `SYNCED_TO_WORKING_BRANCH` | 작업 브랜치 Authority Snapshot과 Sheet가 같은 Decision ID·값으로 Readback 됨 |
-| `SYNCED_TO_MAIN` | PR 병합 후 main Commit과 Sheet가 다시 일치 |
-| `SYNC_CONFLICT` | 값·상태·책임 경로 충돌 |
+| `SYNCED_TO_MAIN` | PR 병합 후 main authority Commit과 Sheet가 다시 일치 |
+| `SYNC_CONFLICT` | 양쪽 값·상태·책임 경로 충돌 |
 
 ## 보존·검증 경계
 
@@ -138,4 +136,3 @@ Decision ID 확정
 - Sheet는 Code·Scene·Resource·Asset·Test·Runtime 증거를 대체하지 않는다.
 - 승인된 수치는 `USER_APPROVED_PROTOTYPE_BASELINE / PLAYTEST_TUNING_REQUIRED`다.
 - 제품 프로젝트·Runtime·모바일·성능·접근성·사람 검증은 `NOT_STARTED / NOT_RUN`이다.
-- PR 병합 전 상태는 `SYNCED_TO_WORKING_BRANCH`이며 main 완료로 승격하지 않는다.

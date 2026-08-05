@@ -3,13 +3,13 @@
 ## 상태
 
 ```yaml
-main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
 previous_main_sync: GR-SYNC-20260804-12-CLOSURE
-working_branch: agent/star-circuit-mastery-balance
-working_authority_commit: 209eecc5beed77920ca601a2b377b8e900a0d5ac
-current_working_sync: GR-SYNC-20260806-01
+current_main_sync: GR-SYNC-20260806-01
+merged_pull_request: 68
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-canon_status: SYNCED_TO_WORKING_BRANCH
+canon_status: SYNCED_TO_MAIN
+sheet_readback: PASS
 product_project: NOT_CREATED
 product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
@@ -17,9 +17,9 @@ runtime_validation: NOT_RUN
 
 ## Gate 0 — 정본 복원
 
-상위 포인터·Registry·상태 색인·Sheet가 `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`과 `GR-SYNC-20260806-01`을 가리켜야 한다. 과거 3×3 문서는 역사로 보존하되 활성 문법으로 읽히면 안 된다.
+상위 포인터·Registry·상태 색인·Sheet가 `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`, `GR-SYNC-20260806-01`, main authority `6ee87a452ebb5793fb6739249287dfd537f4ee89`를 가리켜야 한다. 과거 3×3 문서는 역사로 보존하되 활성 문법으로 읽히면 안 된다.
 
-현재: `WORKING_BRANCH_PASS / MAIN_MERGE_PENDING`.
+현재: `PASS / SYNCED_TO_MAIN`.
 
 ## Gate 1 — 핵심 재미
 
@@ -89,21 +89,20 @@ Frostbloom 복수 해결, 선택지=의도, 교수 예시 비정답, 조사로 �
 
 Godot `4.7.1.stable` 계약 테스트와 다운로드 검증은 개발환경 증거일 뿐 제품 구현 증거가 아니다. 제품 `project.godot`, 회로 Runtime, 모바일 실기기 증거는 없다.
 
-현재: `TOOLCHAIN_CHECK_REQUIRED_ON_PR / PRODUCT_NOT_STARTED`.
+현재: `TOOLCHAIN_PASS / PRODUCT_NOT_STARTED`.
 
 ## Gate 8 — 정본 PR·Sheet Readback
 
 ```text
-Working authority snapshot: 209eecc5beed77920ca601a2b377b8e900a0d5ac
+PR #68 merge commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
 Sheet tabs: 02·04·05·12·15·40·41·60·99
-Working Sheet readback: PASS
-Draft PR: #68
-Main merge readback: NOT_RUN
+Main Sheet readback: PASS
+Sync state: SYNCED_TO_MAIN
 ```
 
-Draft PR exact-head CI, 문서 검토, 리뷰 스레드 0개를 확인한 뒤 병합한다. 병합 후 main SHA를 Sheet에 다시 기록하고 `SYNCED_TO_MAIN`으로 전환하기 전에는 완료로 처리하지 않는다.
+PR #68 exact-head CI, 적대적 검토, 리뷰 스레드 0개, main 병합, Sheet의 main authority SHA·Decision ID·상태 재조회가 완료됐다.
 
-현재: `SYNCED_TO_WORKING_BRANCH / DRAFT_PR_REVIEW_PENDING`.
+현재: `PASS / SYNCED_TO_MAIN`.
 
 ## 다음 작업
 

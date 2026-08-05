@@ -3,12 +3,16 @@
 ## 문서 상태
 
 ```yaml
-status: ACTIVE_RESPONSIBILITY_SOURCE_WORKING_BRANCH
+status: ACTIVE_RESPONSIBILITY_SOURCE_MAIN
 decision_id: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 sync_id: GR-SYNC-20260806-01
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
+merged_pull_request: 68
+sheet_sync: SYNCED_TO_MAIN
+sheet_readback: PASS
 supersedes: GM-3X3-CIRCUIT-STOCK-FOCUS-01
 supersession_scope: CIRCUIT_TOPOLOGY_TARGET_PLACEMENT_SUCCESS_PREVIEW_SUPPORT_CAP
-updated_at: 2026-08-06T01:44+09:00
+updated_at: 2026-08-06T06:27+09:00
 implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 mobile_validation: NOT_RUN
@@ -239,6 +243,7 @@ trivial_repeat_gain: DIMINISHING_RETURNS
 - 글자 숙련도: `docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md`.
 - 승인: `docs/planning/STAR_GLYPH_CIRCUIT_MASTERY_BALANCE_01_APPROVAL_2026-08-06.md`.
 - 상세 Spec: `docs/superpowers/specs/2026-08-06-star-glyph-circuit-mastery-balance-design.md`.
+- Main Sync: `docs/planning/sync/GR-SYNC-20260806-01-MAIN.md`.
 - 과거 3×3 승인: 역사 보존, 활성 문법은 이 문서가 대체.
 
 ## 금지

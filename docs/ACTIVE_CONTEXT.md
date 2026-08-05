@@ -6,15 +6,16 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: agent/star-circuit-mastery-balance
 platform: MOBILE_LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
-main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
 previous_main_sync: GR-SYNC-20260804-12-CLOSURE
-current_working_sync: GR-SYNC-20260806-01
+current_main_sync: GR-SYNC-20260806-01
+merged_pull_request: 68
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-canon_status: WORKING_BRANCH_GITHUB_AND_SHEET_SYNC_IN_PROGRESS
+canon_status: SYNCED_TO_MAIN
+sheet_readback: PASS
 product_project: NOT_CREATED
 product_code: NOT_STARTED
 runtime_validation: NOT_RUN
@@ -26,7 +27,7 @@ human_validation: NOT_RUN
 
 ## 정본
 
-`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → CANON_STATUS_INDEX → CURRENT_CONFIRMED_DECISIONS → 별형 회로 승인·Spec → 회로·마나·숙련 책임 원본 → Sync 20260806-01`.
+`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → CANON_STATUS_INDEX → CURRENT_CONFIRMED_DECISIONS → 별형 회로 승인·Spec → 회로·마나·숙련 책임 원본 → GR-SYNC-20260806-01-MAIN`.
 
 ## 플레이어 약속
 
