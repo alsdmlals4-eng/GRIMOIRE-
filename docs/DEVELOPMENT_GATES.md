@@ -6,6 +6,7 @@
 main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
 previous_main_sync: GR-SYNC-20260804-12-CLOSURE
 working_branch: agent/star-circuit-mastery-balance
+working_authority_commit: 209eecc5beed77920ca601a2b377b8e900a0d5ac
 current_working_sync: GR-SYNC-20260806-01
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 canon_status: SYNCED_TO_WORKING_BRANCH
@@ -93,7 +94,7 @@ Godot `4.7.1.stable` 계약 테스트와 다운로드 검증은 개발환경 증
 ## Gate 8 — 정본 PR·Sheet Readback
 
 ```text
-Working authority commit: 69d631c2f55b07cbc67bf824880122f431ffd7b4
+Working authority snapshot: 209eecc5beed77920ca601a2b377b8e900a0d5ac
 Sheet tabs: 02·04·05·12·15·40·41·60·99
 Working Sheet readback: PASS
 Draft PR: #68
