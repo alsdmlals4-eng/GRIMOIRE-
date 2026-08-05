@@ -29,6 +29,17 @@ C_STAGED_RECOGNITION_THEN_CORE_LOOP
 READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN
 ```
 
+## 실행 준비 산출물
+
+- `docs/validation/GR_TEST_032_EXECUTION_RUNBOOK.md`
+- `docs/validation/GR_TEST_032_MODERATOR_SCRIPT.md`
+- `docs/validation/GR_TEST_032_DEVICE_PREFLIGHT.md`
+- 익명 Session·Attempt·Result JSON 템플릿
+- `tools/analyze_gr_test_032.py`
+- `docs/planning/GR_TEST_032_AUTHORITY_PRESERVATION_2026-08-06.md`
+
+분석기는 `PENDING_NOT_RUN·PROMISING·TUNE·REWORK·STOP`만 생성하며 Human PASS·출시 PASS·병합 권한을 생성하지 않는다.
+
 ## TDD 증거
 
 ```yaml
@@ -40,7 +51,28 @@ execution_pack_analyzer_green_head: f5d235b686c06867dd31ff72083d4803cf08c7b2
 execution_pack_analyzer_green_run: 31025279869
 authority_red_head: d65d0c59d0a75356e6209e6faf4afec868a5f463
 authority_red_run: 31025447928
+raw_evidence_red_head: 715abd34bf079640ff85c61ebc14df66a33a971f
+raw_evidence_red_run: 31026128217
+raw_evidence_green_head: 7bc761af330f671386a518fa2736c682c3bca53b
+raw_evidence_green_run: 31026381453
+authority_preservation_red_head: f77a22e353bd79a79f02c32a70dbfb73fb7b8a15
+authority_preservation_red_run: 31026511615
+authority_preservation_green_head: dd59261bf7b9b11f628dda05e1d875888a99f8d1
+authority_preservation_foundation_run: 31026878447
+authority_preservation_planning_run: 31026878460
+machine_evidence_closure_red_head: 443a88f170266094ad03dec88637d9fa0dce744f
+machine_evidence_closure_red_run: 31027039396
 ```
+
+## 원시 증거 무결성
+
+```text
+SOURCE_ATTEMPT_SHA256_REQUIRED
+SOURCE_STAGE2_SHA256_REQUIRED
+SOURCE_RECORD_COUNT_MUST_MATCH_AGGREGATE
+```
+
+완료 세션은 Stage 1 원시 Attempt SHA-256·레코드 수와 Stage 2 관찰 SHA-256·레코드 수가 집계값과 일치해야만 분석된다. PII 키와 정확히 6종이 아닌 Runtime 세트는 거부한다.
 
 ## Sheet 범위
 
@@ -52,4 +84,16 @@ authority_red_run: 31025447928
 - `80_데모_버티컬슬라이스_플레이테스트!A35:J35`
 - `99_변경이력!A78:H78`
 
-다음은 물리 기기 Preflight와 P01~P06 실제 실행이다.
+## 다음 Gate
+
+```text
+PHYSICAL_DEVICE_PREFLIGHT
+→ P01_TO_P06_STAGE_1
+→ SAME_PARTICIPANT_10_MINUTE_BREAK
+→ STAGE_2_CORE_LOOP_BRIDGE
+→ RAW_EVIDENCE_HASH_AND_COUNT_CHECK
+→ EXPLORATORY_ANALYSIS
+→ ADVERSARIAL_REVIEW
+```
+
+실제 참가자·물리 기기 결과는 아직 없다. `HUMAN_EXECUTION_NOT_RUN`과 `NO_HUMAN_PASS_CLAIM`을 유지한다.
