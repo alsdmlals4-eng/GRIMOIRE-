@@ -16,6 +16,9 @@ func _init() -> void:
         if suite_script == null:
             case.fail("Could not load suite: %s" % suite_path)
             continue
+        if not suite_script.can_instantiate():
+            case.fail("Suite cannot instantiate: %s" % suite_path)
+            continue
         var suite = suite_script.new()
         if not suite.has_method("run"):
             case.fail("Suite has no run(case): %s" % suite_path)
