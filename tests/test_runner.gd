@@ -12,6 +12,7 @@ const SUITES: Array[String] = [
     "res://tests/unit/test_atomic_spell_commit_service.gd",
     "res://tests/unit/test_glyph_resource_snapshot.gd",
     "res://tests/integration/test_glyph_resource_lifecycle.gd",
+    "res://tests/unit/test_glyph_resource_view_model.gd",
 ]
 
 func _init() -> void:
