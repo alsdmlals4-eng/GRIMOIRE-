@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "test_id": "GR-TEST-032",
   "decision_id": "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
   "approved_option": "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
@@ -12,33 +12,21 @@
   "participants": [],
   "participant_id_pattern": "^P0[1-6]$",
   "raw_personal_identifier_prohibited": true,
-  "runtime_glyph_ids": [
-    "HEAT",
-    "PROTECT",
-    "FLOW",
-    "FOCUS",
-    "DISPERSE",
-    "BURST"
-  ],
-  "required_device_classes": [
-    "NARROW_LANDSCAPE_16_9_TO_18_9",
-    "TALL_LANDSCAPE_19_5_9_TO_20_9"
-  ],
-  "hands": [
-    "DOMINANT",
-    "NON_DOMINANT"
-  ],
+  "runtime_glyph_ids": ["HEAT", "PROTECT", "FLOW", "FOCUS", "DISPERSE", "BURST"],
+  "required_device_classes": ["NARROW_LANDSCAPE_16_9_TO_18_9", "TALL_LANDSCAPE_19_5_9_TO_20_9"],
+  "hands": ["DOMINANT", "NON_DOMINANT"],
   "warmup_attempts_per_participant": 2,
   "scored_attempts_per_glyph_per_hand": 2,
   "scored_attempts_per_participant": 24,
   "planned_total_scored_attempts": 144,
   "break_between_stages_minutes": 10,
-  "stage2_fixture_ids": [
-    "SCENARIO_A_NONCOMBAT_PROTECT_CONTROL",
-    "SCENARIO_B_PRESSURED_FIELD_RESPONSE"
-  ],
+  "stage2_fixture_ids": ["SCENARIO_A_NONCOMBAT_PROTECT_CONTROL", "SCENARIO_B_PRESSURED_FIELD_RESPONSE"],
   "artifact_sha": null,
   "build_id": null,
+  "source_attempt_record_count": null,
+  "source_attempt_sha256": null,
+  "source_stage2_observation_count": null,
+  "source_stage2_sha256": null,
   "session_started_at": null,
   "session_completed_at": null,
   "hard_stop_count": 0,
