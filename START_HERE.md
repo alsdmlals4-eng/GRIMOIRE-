@@ -8,6 +8,7 @@ working_branch: agent/gr-test-032-human-execution-pack
 parent_pull_request: 65
 current_sync: GR-SYNC-20260806-01-GR-TEST-032-EXECUTION-READY
 current_gate: GR_TEST_032_READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN
+authority_preservation: docs/planning/GR_TEST_032_AUTHORITY_PRESERVATION_2026-08-06.md
 human_execution_pack: READY
 human_execution: NOT_RUN
 human_device_validation: NOT_RUN
@@ -24,11 +25,12 @@ merge_authorized: false
 3. `docs/DEVELOPMENT_GATES.md`
 4. `docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md`
 5. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-6. `docs/validation/GR_TEST_032_EXECUTION_RUNBOOK.md`
-7. `docs/validation/GR_TEST_032_MODERATOR_SCRIPT.md`
-8. `docs/validation/GR_TEST_032_DEVICE_PREFLIGHT.md`
-9. `docs/planning/GR_TEST_032_EXECUTION_READY_GATE_2026-08-06.md`
-10. Sync08 Receipt
+6. `docs/planning/GR_TEST_032_AUTHORITY_PRESERVATION_2026-08-06.md`
+7. `docs/validation/GR_TEST_032_EXECUTION_RUNBOOK.md`
+8. `docs/validation/GR_TEST_032_MODERATOR_SCRIPT.md`
+9. `docs/validation/GR_TEST_032_DEVICE_PREFLIGHT.md`
+10. `docs/planning/GR_TEST_032_EXECUTION_READY_GATE_2026-08-06.md`
+11. Sync08 Receipt
 
 ```text
 SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE
