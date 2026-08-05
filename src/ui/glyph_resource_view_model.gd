@@ -27,22 +27,22 @@ static func build(
             "selection_state": &"NO_SOURCE_AVAILABLE",
         }
 
-    var stock_current := int(stock.current_total())
-    var stock_capacity := int(stock.capacity())
-    var matching_count := int(vault.matching_available_count(glyph_id))
-    var slot_capacity := int(vault.slot_capacity())
-    var stock_enabled := is_learned and stock.available_count() > 0
-    var vault_enabled := is_learned and matching_count > 0
-    var display_name := String(GLYPH_NAMES.get(glyph_id, String(glyph_id)))
+    var stock_current: int = int(stock.current_total())
+    var stock_capacity: int = int(stock.capacity())
+    var matching_count: int = int(vault.matching_available_count(glyph_id))
+    var slot_capacity: int = int(vault.slot_capacity())
+    var stock_enabled: bool = bool(is_learned and int(stock.available_count()) > 0)
+    var vault_enabled: bool = bool(is_learned and matching_count > 0)
+    var display_name: String = String(GLYPH_NAMES.get(glyph_id, String(glyph_id)))
 
-    var required_seconds := float(charge.required_seconds())
-    var progress_ratio := 0.0
+    var required_seconds: float = float(charge.required_seconds())
+    var progress_ratio: float = 0.0
     if required_seconds > 0.0:
         progress_ratio = clampf(float(charge.progress_seconds()) / required_seconds, 0.0, 1.0)
-    var waiting := bool(charge.waiting_for_capacity())
-    var charge_label := "충전 완료 대기" if waiting else "충전 %d%%" % int(round(progress_ratio * 100.0))
+    var waiting: bool = bool(charge.waiting_for_capacity())
+    var charge_label: String = "충전 완료 대기" if waiting else "충전 %d%%" % int(round(progress_ratio * 100.0))
 
-    var selection_state := &"NO_SOURCE_AVAILABLE"
+    var selection_state: StringName = &"NO_SOURCE_AVAILABLE"
     if stock_enabled or vault_enabled:
         selection_state = &"SOURCE_SELECTION_REQUIRED"
 
