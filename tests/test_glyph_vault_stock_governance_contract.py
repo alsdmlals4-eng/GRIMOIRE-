@@ -145,16 +145,17 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
         ):
             self.assertIn(token, recognition)
 
-    def test_active_entrypoints_route_to_pr63_and_four_approved_decisions(self) -> None:
+    def test_active_entrypoints_route_to_pr65_and_four_approved_decisions(self) -> None:
         text = DOC_MAP.read_text(encoding="utf-8") + PLANNING_INDEX.read_text(encoding="utf-8")
         for token in (
-            "working_pull_request: 63",
+            "working_pull_request: 65",
+            "working_branch: agent/stage2-circuit-bridge-harness-poc",
             "grill_counter: 4_of_10",
             "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
             "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
             "GM-GLYPH-VOCABULARY-V1-01",
             "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
-            "STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD",
+            "STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN",
         ):
             self.assertIn(token, text)
         self.assertNotIn("현재 제품 차단 결정은 계속 `ART-STYLE-01`", text)
@@ -175,6 +176,7 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
             counter["pending_decision_ids"],
         )
         self.assertEqual("HIGH_CANON_IMPACT_DRAFT_CHECKPOINT", counter["checkpoint_state"])
+        self.assertEqual(65, counter["checkpoint_pull_request"])
         self.assertFalse(counter["merge_authorized"])
 
     def test_old_typed_stock_contract_is_marked_partially_superseded(self) -> None:
