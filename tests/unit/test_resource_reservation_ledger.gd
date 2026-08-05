@@ -17,6 +17,9 @@ func run(case) -> void:
     case.assert_true(Ledger != null, "ResourceReservationLedger must load")
     if Ledger == null:
         return
+    case.assert_true(Ledger.can_instantiate(), "ResourceReservationLedger must compile")
+    if not Ledger.can_instantiate():
+        return
 
     var stock = Stock.create(3)
     stock.add_one()
@@ -26,6 +29,24 @@ func run(case) -> void:
     var scribe = vault.reserve_for_scribe(&"HEAT", &"seed-vault")
     vault.complete_scribe(scribe.reservation_id)
     var ledger = Ledger.create(stock, vault)
+    case.assert_true(ledger != null, "ResourceReservationLedger factory must succeed")
+    if ledger == null:
+        return
+
+    var required_methods := [
+        &"available_sources",
+        &"reserve_node",
+        &"release_node",
+        &"replace_node_source",
+        &"reservation_for_node",
+    ]
+    var methods_ready := true
+    for method_name in required_methods:
+        var exists := ledger.has_method(method_name)
+        case.assert_true(exists, "Ledger method must exist: %s" % String(method_name))
+        methods_ready = methods_ready and exists
+    if not methods_ready:
+        return
 
     case.assert_equal(
         [Types.Source.UNIVERSAL_STOCK, Types.Source.VAULT],
