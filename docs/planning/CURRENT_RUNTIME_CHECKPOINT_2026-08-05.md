@@ -37,8 +37,9 @@ HUMAN_END_TO_END_CORE_LOOP_VALIDATION_PENDING
 - PR #65 Stage 2 Harness 구현과 자동 Stop Gate 완료.
 - 상황 Fixture 2종·Runtime 글자 정확히 6종.
 - State·Recognition Bridge·3×3 Validator·Atomic Commit·Layout·Event Recorder 구현.
-- Headless 28 Suites·1,342 assertions·0 failures.
+- Headless 28 Suites·1,343 assertions·0 failures.
 - Foundation `31016191300`, Planning/Base `31016191141`, Godot Toolchain `31016191132` PASS.
+- 교차 간선 회귀 RED `31018302521`→GREEN `31018467326`.
 - Sync07 Sheet 7개 범위 Write·Readback PASS.
 
 ## Stage 2 Harness 공간
@@ -57,7 +58,7 @@ Retry는 Scenario·Target·Source·Circuit Draft를 보존한다. Recognition �
 ## 자동화가 증명한 것
 
 - 허용 상태 전환과 Hard Stop.
-- 3×3 인접·도달·Target Leaf·명시적 출처 규칙.
+- 3×3 인접·도달·Target Leaf·명시적 출처·교차 간선 금지 규칙.
 - stale·선택 불일치 Recognition 차단.
 - Cancel·중복 Confirm의 추가 Mutation 0.
 - Active Stroke 중 Writing Canvas 입력 독점.
