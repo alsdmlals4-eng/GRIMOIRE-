@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-GLYPH-VOCABULARY-V1-01",
+  "runtime_scope": "SLICE_GLYPHS_6",
+  "main": [
+    "HEAT",
+    "COLD",
+    "WATER",
+    "WIND",
+    "LIGHT",
+    "SHADOW",
+    "PROTECT",
+    "LIFE",
+    "IMPACT",
+    "PURIFY"
+  ],
+  "support": [
+    "FLOW",
+    "FOCUS",
+    "DISPERSE",
+    "BURST",
+    "ANCHOR",
+    "SUSTAIN",
+    "DELAY",
+    "REPEAT",
+    "PROJECT",
+    "ABSORB"
+  ],
+  "slice": [
+    "HEAT",
+    "PROTECT",
+    "FLOW",
+    "FOCUS",
+    "DISPERSE",
+    "BURST"
+  ],
+  "entries": [
+    {
+      "id": "HEAT",
+      "name_ko": "열",
+      "role": "MAIN",
+      "meaning": "온도 상승·가열",
+      "preferred_strokes": 2,
+      "slice_enabled": true,
+      "shape_description": "위가 열린 삼각 불꽃 안에 짧은 중심선",
+      "ornament_direction": "방사광·열 아지랑이",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "COLD",
+      "name_ko": "냉기",
+      "role": "MAIN",
+      "meaning": "온도 하강·결빙",
+      "preferred_strokes": 3,
+      "slice_enabled": false,
+      "shape_description": "한 중심에서 갈라지는 세 갈래 결정",
+      "ornament_direction": "육각 결정·서리",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "WATER",
+      "name_ko": "물",
+      "role": "MAIN",
+      "meaning": "액체·습윤·세척",
+      "preferred_strokes": 1,
+      "slice_enabled": false,
+      "shape_description": "아래에서 닫히는 한 방울 곡선",
+      "ornament_direction": "물결 고리",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "WIND",
+      "name_ko": "바람",
+      "role": "MAIN",
+      "meaning": "공기 이동·압력 이동",
+      "preferred_strokes": 2,
+      "slice_enabled": false,
+      "shape_description": "같은 방향의 두 열린 곡선",
+      "ornament_direction": "흐르는 입자",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "LIGHT",
+      "name_ko": "빛",
+      "role": "MAIN",
+      "meaning": "조명·노출·광선",
+      "preferred_strokes": 2,
+      "slice_enabled": false,
+      "shape_description": "짧은 세로선과 가로선의 십자 광점",
+      "ornament_direction": "사방 광선",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "SHADOW",
+      "name_ko": "어둠",
+      "role": "MAIN",
+      "meaning": "차광·은폐·감쇠",
+      "preferred_strokes": 1,
+      "slice_enabled": false,
+      "shape_description": "한 획 초승달",
+      "ornament_direction": "안쪽 암영",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "PROTECT",
+      "name_ko": "보호",
+      "role": "MAIN",
+      "meaning": "차단·완충·방벽",
+      "preferred_strokes": 2,
+      "slice_enabled": true,
+      "shape_description": "위가 둥근 방패 외곽과 짧은 바닥선",
+      "ornament_direction": "이중 방벽 링",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "LIFE",
+      "name_ko": "생명",
+      "role": "MAIN",
+      "meaning": "회복·성장·활성",
+      "preferred_strokes": 2,
+      "slice_enabled": false,
+      "shape_description": "줄기 한 획과 양쪽 잎 한 획",
+      "ornament_direction": "맥동·잎맥",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "IMPACT",
+      "name_ko": "충격",
+      "role": "MAIN",
+      "meaning": "순간 힘·타격·진동",
+      "preferred_strokes": 1,
+      "slice_enabled": false,
+      "shape_description": "한 획 번개형 지그재그",
+      "ornament_direction": "파동 균열",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "PURIFY",
+      "name_ko": "정화",
+      "role": "MAIN",
+      "meaning": "오염·저주·이물 제거",
+      "preferred_strokes": 2,
+      "slice_enabled": false,
+      "shape_description": "열린 마름모와 중앙 세로선",
+      "ornament_direction": "바깥으로 벗겨지는 입자",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "FLOW",
+      "name_ko": "흐름",
+      "role": "SUPPORT",
+      "meaning": "효과를 경로로 전달",
+      "preferred_strokes": 1,
+      "slice_enabled": true,
+      "shape_description": "한 획 S자 곡선",
+      "ornament_direction": "선을 따라 이동하는 광점",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "FOCUS",
+      "name_ko": "집중",
+      "role": "SUPPORT",
+      "meaning": "범위·출력을 한 점에 수렴",
+      "preferred_strokes": 2,
+      "slice_enabled": true,
+      "shape_description": "양쪽에서 중앙으로 모이는 두 대각선",
+      "ornament_direction": "중심 수렴 링",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "DISPERSE",
+      "name_ko": "분산",
+      "role": "SUPPORT",
+      "meaning": "여러 방향·대상으로 나눔",
+      "preferred_strokes": 2,
+      "slice_enabled": true,
+      "shape_description": "아래 한 줄기에서 위로 갈라지는 Y",
+      "ornament_direction": "분기 끝 광점",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "BURST",
+      "name_ko": "폭발",
+      "role": "SUPPORT",
+      "meaning": "축적 효과를 순간 방출",
+      "preferred_strokes": 3,
+      "slice_enabled": true,
+      "shape_description": "중심을 교차하는 세 짧은 선",
+      "ornament_direction": "바깥 충격파",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "ANCHOR",
+      "name_ko": "고정",
+      "role": "SUPPORT",
+      "meaning": "위치·상태를 붙잡음",
+      "preferred_strokes": 1,
+      "slice_enabled": false,
+      "shape_description": "한 획 닫힌 마름모",
+      "ornament_direction": "네 모서리 고정점",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "SUSTAIN",
+      "name_ko": "지속",
+      "role": "SUPPORT",
+      "meaning": "효과 시간을 유지",
+      "preferred_strokes": 1,
+      "slice_enabled": false,
+      "shape_description": "한 획 닫힌 원",
+      "ornament_direction": "천천히 도는 외곽 링",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "DELAY",
+      "name_ko": "지연",
+      "role": "SUPPORT",
+      "meaning": "발동을 뒤로 미룸",
+      "preferred_strokes": 1,
+      "slice_enabled": false,
+      "shape_description": "가로선 뒤에 아래로 꺾이는 갈고리",
+      "ornament_direction": "대기 눈금",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "REPEAT",
+      "name_ko": "반복",
+      "role": "SUPPORT",
+      "meaning": "효과를 다시 실행",
+      "preferred_strokes": 2,
+      "slice_enabled": false,
+      "shape_description": "서로 마주 보는 두 반원",
+      "ornament_direction": "순환 화살 광점",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "PROJECT",
+      "name_ko": "투사",
+      "role": "SUPPORT",
+      "meaning": "효과를 한 방향으로 발사",
+      "preferred_strokes": 2,
+      "slice_enabled": false,
+      "shape_description": "직선과 끝의 열린 꺾쇠",
+      "ornament_direction": "전방 꼬리광",
+      "ornament_is_recognition_input": false
+    },
+    {
+      "id": "ABSORB",
+      "name_ko": "흡수",
+      "role": "SUPPORT",
+      "meaning": "외부 효과를 안으로 받아들임",
+      "preferred_strokes": 2,
+      "slice_enabled": false,
+      "shape_description": "위가 열린 U형과 중앙 하강선",
+      "ornament_direction": "안쪽으로 빨려드는 입자",
+      "ornament_is_recognition_input": false
+    }
+  ]
+}
