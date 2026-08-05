@@ -19,6 +19,8 @@ TEST_ID = "GR-TEST-032"
 APPROVED_GLYPHS = ["HEAT", "PROTECT", "FLOW", "FOCUS", "DISPERSE", "BURST"]
 PARTICIPANT_ID = re.compile(r"^P0[1-6]$")
 SHA256 = re.compile(r"^[0-9a-fA-F]{64}$")
+EMAIL_PATTERN = re.compile(r"(?<![\w.+-])[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}(?![\w.-])", re.IGNORECASE)
+KOREAN_MOBILE_PATTERN = re.compile(r"(?<!\d)01[016789][ -]?\d{3,4}[ -]?\d{4}(?!\d)")
 FORBIDDEN_PII_KEYS = {"name", "full_name", "email", "phone", "account", "username", "address"}
 
 
@@ -31,6 +33,9 @@ def _reject_forbidden_keys(value: Any, path: str = "$") -> None:
     elif isinstance(value, list):
         for index, nested in enumerate(value):
             _reject_forbidden_keys(nested, f"{path}[{index}]")
+    elif isinstance(value, str):
+        if EMAIL_PATTERN.search(value) or KOREAN_MOBILE_PATTERN.search(value):
+            raise ValueError(f"potential personal identifier value at {path}")
 
 
 def _require_approved_scope(session: dict[str, Any]) -> None:
