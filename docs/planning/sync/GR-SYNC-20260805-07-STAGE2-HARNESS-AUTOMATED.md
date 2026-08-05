@@ -26,7 +26,7 @@ merge_authorized: false
 - 명시적 상태 머신과 Hard Stop.
 - 상황 Fixture 2종·Runtime 글자 정확히 6종.
 - Recognition→Exact Vault Bridge.
-- 3×3 Circuit Validator.
+- 3×3 Circuit Validator와 교차 간선 차단.
 - Preview·별도 Confirm·Atomic Commit·Rollback.
 - Active Stroke 입력 소유권을 적용한 Low-fi Landscape Scene.
 - Recognition/Core-loop/Moderator Event Stream과 익명 개인정보 경계.
@@ -53,8 +53,12 @@ implementation_evidence_head: ffbd769ecdf1ca1a4f7c06101d0d8215ac8a387e
 foundation_green_run: 31016191300
 planning_base_green_run: 31016191141
 godot_toolchain_green_run: 31016191132
+crossing_edges_red_head: c60d4913faee9927f48133ec216dbd7256b666f9
+crossing_edges_red_run: 31018302521
+crossing_edges_green_head: f703e29266f8965a34beded9cb4ebdcd0cc1ed3f
+crossing_edges_green_run: 31018467326
 headless_suites: 28
-headless_assertions: 1342
+headless_assertions: 1343
 headless_failures: 0
 ```
 
