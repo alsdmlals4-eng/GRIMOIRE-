@@ -14,9 +14,9 @@ merge_authorized: false
 
 ## Gate 0 — 정본·Sheet
 
-GitHub 구현·자동 검증 보고서·Stop Gate·상태 JSON과 Sheet가 같은 Sync07을 가리켜야 한다.
+GitHub 구현·자동 검증 보고서·Stop Gate·상태 JSON과 Sheet 7개 범위가 같은 Sync07을 가리킨다.
 
-현재: `GITHUB_SYNC07_UPDATED / SHEET_WRITE_READBACK_PENDING`.
+현재: `GITHUB_SYNC07_PASS / SHEET_WRITE_READBACK_PASS`.
 
 ## Gate 1 — 핵심 재미
 
