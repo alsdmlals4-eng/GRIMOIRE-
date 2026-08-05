@@ -100,6 +100,17 @@ jobs:
               python -m unittest tests.test_glyph_resource_scope tests.test_glyph_vocabulary_scope tests.test_glyph_confusion_report -v
               python tools/check_glyph_resource_scope.py
               python tools/check_glyph_vocabulary_scope.py
+            elif [[ "$PR_BASE_REF" == "agent/glyph-vocabulary-recognition-poc" && "$PR_HEAD_REF" == "agent/stage2-circuit-bridge-harness-poc" ]]; then
+              echo "approved Stage2 circuit bridge validation Harness child PR detected"
+              python -m unittest \
+                tests.test_glyph_resource_scope \
+                tests.test_glyph_vocabulary_scope \
+                tests.test_current_checkpoint_authority \
+                tests.test_human_circuit_bridge_decision \
+                tests.test_stage2_harness_ux_hx_contract \
+                tests.test_stage2_harness_implementation_contract -v
+              python tools/check_glyph_resource_scope.py
+              python tools/check_glyph_vocabulary_scope.py
             else
               echo "product implementation changed outside an approved implementation child PR"
               exit 1
