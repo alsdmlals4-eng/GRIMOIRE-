@@ -130,6 +130,26 @@ class GrTest032AnalyzerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "exact approved runtime glyph set"):
             module.analyze(session)
 
+    def test_pii_patterns_inside_free_text_values_are_rejected(self) -> None:
+        module = self._module()
+        session = self._base_session()
+        session["hard_stop_events"] = [{
+            "code": "TECHNICAL_NOTE",
+            "participant_id": "P01",
+            "summary": "contact participant@example.com",
+        }]
+        with self.assertRaisesRegex(ValueError, "potential personal identifier value"):
+            module.analyze(session)
+
+        session = self._base_session()
+        session["hard_stop_events"] = [{
+            "code": "TECHNICAL_NOTE",
+            "participant_id": "P01",
+            "summary": "call 010-1234-5678",
+        }]
+        with self.assertRaisesRegex(ValueError, "potential personal identifier value"):
+            module.analyze(session)
+
     def test_completed_session_requires_raw_evidence_hashes_and_matching_counts(self) -> None:
         module = self._module()
         session = self._base_session()
