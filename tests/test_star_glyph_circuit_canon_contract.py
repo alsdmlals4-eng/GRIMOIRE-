@@ -6,9 +6,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DECISION = "GM-STAR-CIRCUIT-MASTERY-BALANCE-01"
-SYNC = "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION"
-MAIN_AUTHORITY = "2012a9f4c2da09a1defec07f8d8f7a0d3c867d93"
-PREVIOUS_MAIN_SYNC = "GR-SYNC-20260806-01-MAIN"
+SYNC = "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN"
+MAIN_AUTHORITY = "6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b"
 SPEC = "docs/superpowers/specs/2026-08-06-star-glyph-circuit-mastery-balance-design.md"
 ACTIVE_AUTHORITY = (
     "AGENTS.md",
@@ -60,50 +59,26 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
         self.assertIn("GM-3X3-CIRCUIT-STOCK-FOCUS-01", status)
         self.assertIn("SUPERSEDED_BY_GM-STAR-CIRCUIT-MASTERY-BALANCE-01", status)
 
-    def test_registry_points_to_current_runtime_completion(self) -> None:
+    def test_registry_points_to_main_runtime_completion(self) -> None:
         registry = json.loads((ROOT / "docs/DESIGN_DOCUMENT_REGISTRY.json").read_text(encoding="utf-8"))
         encoded = json.dumps(registry, ensure_ascii=False)
         for token in (
             DECISION,
             SPEC,
             SYNC,
+            MAIN_AUTHORITY,
             "src/core/resources/typed_glyph_stock_pool.gd",
-            "docs/planning/FOCUS_SCRIBING_OVERLAY_01_APPROVAL_2026-08-06.md",
             "STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
+            "SYNCED_TO_MAIN",
         ):
             self.assertIn(token, encoded)
 
-    def test_rebase_preserves_latest_main_authority(self) -> None:
-        combined = "\n".join(self.read(path) for path in (
-            "AGENTS.md",
-            "docs/planning/CANON_STATUS_INDEX_2026-08-04.md",
-            "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
-            "docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION.md",
-        ))
-        self.assertIn(MAIN_AUTHORITY, combined)
-        self.assertIn(PREVIOUS_MAIN_SYNC, combined)
-        self.assertNotIn("main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89", combined)
-
-    def test_sheet_workbook_routes_to_runtime_completion_sync(self) -> None:
-        workbook = self.read("docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md")
-        for token in (
-            DECISION,
-            SYNC,
-            "SYNCED_TO_WORKING_BRANCH",
-            "sheet_readback: PASS",
-            "product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
-            "runtime_validation: AUTOMATED_HEADLESS_PASS",
-            "mobile_device_validation: NOT_RUN",
-            "human_validation: NOT_RUN",
-            "31 Suites",
-            "1,137 assertions",
-        ):
-            self.assertIn(token, workbook)
-
-    def test_runtime_state_is_honest_and_current(self) -> None:
+    def test_main_authority_is_closed_and_not_working_branch(self) -> None:
         combined = "\n".join(self.read(path) for path in ACTIVE_AUTHORITY[:5])
         for token in (
             SYNC,
+            MAIN_AUTHORITY,
+            "canon_status: SYNCED_TO_MAIN",
             "product_project: CREATED",
             "product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
             "runtime_validation: AUTOMATED_HEADLESS_PASS",
@@ -113,7 +88,43 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
             "PLAYTEST_TUNING_REQUIRED",
         ):
             self.assertIn(token, combined)
-        self.assertNotIn("product_implementation: NOT_STARTED", combined)
+        for stale in (
+            "working_branch: agent/star-circuit-runtime-godot-poc",
+            "canon_status: SYNCED_TO_WORKING_BRANCH_MERGE_AUTHORIZED",
+            "main_merge: PENDING",
+        ):
+            self.assertNotIn(stale, combined)
+
+    def test_sheet_workbook_routes_to_main_sync(self) -> None:
+        workbook = self.read("docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md")
+        for token in (
+            DECISION,
+            SYNC,
+            MAIN_AUTHORITY,
+            "sync_status: SYNCED_TO_MAIN",
+            "sheet_readback: PASS",
+            "product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
+            "runtime_validation: AUTOMATED_HEADLESS_PASS",
+            "31 Suites",
+            "1,137 assertions",
+        ):
+            self.assertIn(token, workbook)
+
+    def test_main_sync_receipt_exists_and_preserves_boundaries(self) -> None:
+        receipt = self.read("docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN.md")
+        for token in (
+            SYNC,
+            MAIN_AUTHORITY,
+            "status: SYNCED_TO_MAIN",
+            "main_star_runtime_run: 31055213468",
+            "main_platform_rights_run: 31055213609",
+            "mobile_device_validation: NOT_RUN",
+            "performance_validation: NOT_RUN",
+            "accessibility_device_validation: NOT_RUN",
+            "human_validation: NOT_RUN",
+            "full_vertical_slice_representativeness: NOT_RUN",
+        ):
+            self.assertIn(token, receipt)
 
 
 if __name__ == "__main__":

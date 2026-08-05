@@ -1,68 +1,57 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
   "google_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-  "sync_contract": {
-    "major_change_or_approval_requires_immediate_sync": true,
-    "same_decision_id_required": true,
-    "working_branch_and_main_states_are_distinct": true,
-    "readback_verification_required": true,
-    "change_location_and_commit_required": true
-  },
-  "statuses": [
-    "SYNC_PENDING",
-    "GITHUB_ONLY",
-    "SHEET_ONLY",
-    "SYNCED_TO_WORKING_BRANCH",
-    "SYNCED_TO_MAIN",
-    "SYNC_CONFLICT"
-  ],
-  "previous_main_bundle": {
-    "sync_id": "GR-SYNC-20260806-01-MAIN",
-    "decision_id": "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
-    "status": "SYNCED_TO_MAIN",
-    "authority_main_commit": "2012a9f4c2da09a1defec07f8d8f7a0d3c867d93",
-    "design_pull_request": 68,
-    "finalization_pull_request": 70,
-    "product_implementation": "NOT_STARTED_AT_THAT_BUNDLE",
-    "runtime_validation": "NOT_RUN_AT_THAT_BUNDLE"
-  },
   "current_bundle": {
-    "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION",
+    "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN",
     "decision_ids": ["GM-STAR-CIRCUIT-MASTERY-BALANCE-01"],
-    "status": "SYNCED_TO_WORKING_BRANCH",
-    "working_branch": "agent/star-circuit-runtime-godot-poc",
-    "authority_pull_request": 69,
-    "implementation_green_head": "f3187672bc18c989052d9e3f84a5306a272d9083",
-    "main_merge": "PENDING",
-    "sheet_sync": "VERIFIED_WORKING_BRANCH_READBACK",
+    "status": "SYNCED_TO_MAIN",
+    "runtime_pull_request": 69,
+    "pr_exact_head": "c68a553d77d6d7e0cc6f92f4c318f00c267db6c5",
+    "runtime_main_commit": "6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b",
+    "sheet_sync": "VERIFIED_MAIN_READBACK",
     "sheet_readback": "PASS",
     "sheet_ranges": [
       "00_프로젝트_허브!H2:K2",
-      "02_현재_확정결정!A63:J63",
-      "04_누락_충돌_감사!E67:H67",
-      "05_GDD_요약!A21:J21",
-      "12_핵심루프!A28:J28",
-      "15_조작_게임규칙!A16:J16",
-      "40_핵심시스템_메인콘텐츠!A30:J30",
-      "41_성장_경제!A14:I14",
-      "60_UX_UI_접근성!A36:J36",
-      "99_변경이력!A81:H81"
+      "02_현재_확정결정!A64:J64",
+      "04_누락_충돌_감사!E68:H68",
+      "05_GDD_요약!A22:J22",
+      "12_핵심루프!A29:J29",
+      "15_조작_게임규칙!A17:J17",
+      "40_핵심시스템_메인콘텐츠!A31:J31",
+      "41_성장_경제!A15:I15",
+      "60_UX_UI_접근성!A37:J37",
+      "99_변경이력!A82:H82"
     ],
     "ci": {
-      "completion_red_run": 31052151348,
-      "star_runtime_run": 31053300711,
-      "planning_base_adversarial_run": 31053301043,
-      "godot_toolchain_run": 31053300879,
-      "platform_rights_run": 31053300688,
+      "pr_star_runtime_run": 31054934827,
+      "pr_planning_base_adversarial_run": 31054934887,
+      "pr_godot_toolchain_run": 31054934882,
+      "pr_platform_rights_run": 31054934838,
+      "main_star_runtime_run": 31055213468,
+      "main_platform_rights_run": 31055213609,
       "godot_suites": 31,
       "assertions": 1137,
       "failures": 0
     }
   },
-  "latest_product_gate": "STAR_RUNTIME_COMPLETION",
+  "history": [
+    {
+      "sync_id": "GR-SYNC-20260806-01-MAIN",
+      "status": "SYNCED_TO_MAIN_DESIGN"
+    },
+    {
+      "sync_id": "GR-SYNC-20260806-02-STAR-RUNTIME-POC",
+      "status": "HISTORICAL_INITIAL_RUNTIME_POC"
+    },
+    {
+      "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION",
+      "status": "HISTORICAL_WORKING_BRANCH_READBACK_PASS"
+    }
+  ],
+  "latest_product_gate": "STAR_RUNTIME_COMPLETION_MAIN",
   "codex_status": "AUTOMATED_RUNTIME_COMPLETION_PASS_LOCAL_GODOT_READY",
   "implementation": "STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
   "runtime_validation": "AUTOMATED_HEADLESS_PASS",
@@ -71,5 +60,6 @@
   "accessibility_validation": "AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN",
   "human_validation": "NOT_RUN",
   "full_vertical_slice_representativeness": "NOT_RUN",
-  "merge_authorized": true
+  "merge_authorized": true,
+  "runtime_merged": true
 }

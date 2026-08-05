@@ -82,12 +82,16 @@ class StarRuntimeImplementationContractTests(unittest.TestCase):
         self.assertEqual(module.build_run_command(binary, root)[1:], ["--path", str(root)])
         self.assertEqual(module.build_editor_command(binary, root)[1:], ["--editor", "--path", str(root)])
 
-    def test_current_runtime_sync_receipt_preserves_human_boundaries(self) -> None:
-        text = self.read("docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION.md")
+    def test_main_sync_receipt_preserves_human_boundaries(self) -> None:
+        text = self.read("docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN.md")
         for token in (
-            "STAR_RUNTIME_COMPLETION", "AUTOMATED_HEADLESS_PASS",
-            "mobile_device_validation: NOT_RUN", "performance_validation: NOT_RUN",
-            "accessibility_device_validation: NOT_RUN", "human_validation: NOT_RUN",
+            "STAR_RUNTIME_COMPLETION",
+            "status: SYNCED_TO_MAIN",
+            "runtime_validation: AUTOMATED_HEADLESS_PASS",
+            "mobile_device_validation: NOT_RUN",
+            "performance_validation: NOT_RUN",
+            "accessibility_device_validation: NOT_RUN",
+            "human_validation: NOT_RUN",
             "full_vertical_slice_representativeness: NOT_RUN",
         ):
             self.assertIn(token, text)
