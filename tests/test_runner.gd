@@ -5,9 +5,11 @@ const TestCase = preload("res://tests/test_case.gd")
 const SUITES: Array[String] = [
     "res://tests/unit/test_glyph_resource_types.gd",
     "res://tests/unit/test_universal_stock_pool.gd",
+    "res://tests/unit/test_typed_glyph_stock_pool.gd",
     "res://tests/unit/test_vault_inventory.gd",
     "res://tests/unit/test_resource_reservation_ledger.gd",
     "res://tests/unit/test_universal_stock_charge.gd",
+    "res://tests/unit/test_focus_scribing_session.gd",
     "res://tests/unit/test_atomic_result_ledger.gd",
     "res://tests/unit/test_atomic_spell_commit_service.gd",
     "res://tests/unit/test_glyph_resource_snapshot.gd",
@@ -27,9 +29,13 @@ const SUITES: Array[String] = [
     "res://tests/unit/test_star_circuit_state.gd",
     "res://tests/unit/test_star_circuit_commit_coordinator.gd",
     "res://tests/unit/test_star_circuit_layout_model.gd",
+    "res://tests/unit/test_spell_resolution_policy.gd",
+    "res://tests/unit/test_focus_scribing_overlay.gd",
     "res://tests/integration/test_star_circuit_harness_scene.gd",
     "res://tests/integration/test_star_circuit_end_to_end.gd",
+    "res://tests/integration/test_frostbloom_star_ux_map.gd",
 ]
+
 
 func _init() -> void:
     var case = TestCase.new()
