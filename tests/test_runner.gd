@@ -26,6 +26,10 @@ const SUITES: Array[String] = [
     "res://tests/unit/test_stage2_bridge_fixture_repository.gd",
     "res://tests/unit/test_stage2_circuit_validator.gd",
     "res://tests/unit/test_stage2_bridge_event_recorder.gd",
+    "res://tests/unit/test_stage2_recognition_bridge.gd",
+    "res://tests/unit/test_stage2_commit_coordinator.gd",
+    "res://tests/unit/test_stage2_harness_layout_model.gd",
+    "res://tests/integration/test_stage2_harness_scene.gd",
 ]
 
 func _init() -> void:
