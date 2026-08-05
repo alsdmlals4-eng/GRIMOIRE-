@@ -74,18 +74,20 @@ SCENARIO_BRIEF
 ```yaml
 stage2_harness: STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
 headless_suites: 28
-headless_assertions: 1342
+headless_assertions: 1343
 headless_failures: 0
 runtime_glyphs: EXACTLY_6
 fixtures: 2
 foundation_green_run: 31016191300
 planning_base_green_run: 31016191141
 godot_toolchain_green_run: 31016191132
+crossing_edges_red_run: 31018302521
+crossing_edges_green_run: 31018467326
 ```
 
 - Recognition 성공은 Exact Vault에만 저장한다.
 - stale·선택 불일치를 차단한다.
-- 회로는 3×3 인접·도달·Target Leaf 규칙을 지킨다.
+- 회로는 3×3 인접·도달·Target Leaf·교차 간선 금지 규칙을 지킨다.
 - Preview는 자원을 변경하지 않는다.
 - 별도 Confirm 후 기존 Reservation·Atomic Commit을 실행한다.
 - Cancel과 중복 Confirm은 추가 Mutation 0이다.
