@@ -1,10 +1,11 @@
 # GRIMOIRE 개발·기획 게이트 — 현재 체크포인트
 
 ```yaml
-working_pull_request: 63
-working_branch: agent/glyph-vocabulary-recognition-poc
-current_sync: GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX
-current_gate: STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD
+working_pull_request: 65
+working_branch: agent/stage2-circuit-bridge-harness-poc
+parent_pull_request: 63
+current_sync: GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED
+current_gate: STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
 human_device_validation: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
 grill_counter: 4_of_10
@@ -13,13 +14,14 @@ merge_authorized: false
 
 ## Gate 0 — 정본·Sheet
 
-GitHub HX·State Matrix·Codex Plan·상태 JSON과 Sheet 7개 범위가 같은 Sync ID를 가리킨다.
+GitHub 구현·자동 검증 보고서·Stop Gate·상태 JSON과 Sheet가 같은 Sync07을 가리켜야 한다.
 
-현재: `SHEET_WRITE_READBACK_PASS / HX_GREEN_EVIDENCE_PASS`.
+현재: `GITHUB_SYNC07_UPDATED / SHEET_WRITE_READBACK_PENDING`.
 
 ## Gate 1 — 핵심 재미
 
 ```text
+SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE
 상황 → 의미 → 3×3 회로 → Preview → Commit → 결과·대가 → Grimoire
 ```
 
@@ -45,7 +47,7 @@ NOT_A_FULL_VERTICAL_SLICE_REPRESENTATIVENESS_PASS
 
 현재: `PROTOCOL_PASS / HUMAN_EXECUTION_NOT_RUN`.
 
-## Gate 4 — Stage 2 UX/HX
+## Gate 4 — Stage 2 UX/HX·Harness
 
 ```text
 LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART
@@ -58,62 +60,76 @@ BOTTOM_HP_MANA_SOURCE_PREVIEW_COMMIT
 
 Retry 시 Scenario Context를 유지하고 Commit은 Preview 뒤 별도 Confirm으로만 실행한다.
 
-현재: `HX_SPEC_COMPLETE / READY_FOR_CODEX_TDD_HARNESS`.
+현재: `HX_SPEC_COMPLETE / HARNESS_IMPLEMENTED_AUTOMATED_PASS`.
 
-## Gate 5 — 접근성·Commit 안전
+## Gate 5 — 접근성·입력 소유권·Commit 안전
 
 ```text
 ANDROID_TOUCH_TARGET_48DP
 IOS_TOUCH_TARGET_44PT
 NON_DRAG_ALTERNATIVE_REQUIRED
+ACTIVE_STROKE_OWNER_WRITING_CANVAS
 ACCEPTED_FALSE_ZERO_HARD_STOP
 ACCIDENTAL_COMMIT_ZERO_HARD_STOP
+DUPLICATE_SAVE_OR_REWARD_ZERO_HARD_STOP
+STALE_RESULT_APPLICATION_ZERO_HARD_STOP
 ```
 
-실제 기기 접근성은 `NOT_RUN`이다.
+자동 Layout·Scene 계약은 PASS지만 실제 기기 접근성은 `NOT_RUN`이다.
 
-## Gate 6 — UX/HX TDD·PR 체크
+## Gate 6 — Harness TDD·PR 체크
 
 ```yaml
-red_head: 9280e9bf54f633cd8db051fbfe6809512262d29a
-red_foundation_run: 31009239386
-red_result: EXISTING_CONTRACTS_PASS_STAGE2_HX_ONLY_EXPECTED_FAILURE
-green_head: a892ddf83abfe3e41809579e9b09f4f0078776db
-foundation_green_run: 31010459174
-planning_base_green_run: 31010459218
-godot_toolchain_green_run: 31010459183
-green_result: PASS
+core_missing_files_red_run: 31013920871
+core_green_run: 31014230452
+bridge_red_run: 31014687639
+bridge_green_run: 31014941773
+adversarial_red_run: 31015197871
+harness_green_run: 31015631868
+evidence_red_run: 31015782924
+implementation_evidence_head: ffbd769ecdf1ca1a4f7c06101d0d8215ac8a387e
+foundation_green_run: 31016191300
+planning_base_green_run: 31016191141
+godot_toolchain_green_run: 31016191132
+headless_suites: 28
+headless_assertions: 1342
+headless_failures: 0
 ```
 
-현재: `GREEN_CONFIRMED_AT_A892DDF8`.
+현재: `STRICT_RED_GREEN_REFACTOR_PASS`.
 
-## Gate 7 — Codex
+## Gate 7 — 자동 Stop Gate
 
 ```text
-READY_FOR_CODEX_TDD_HARNESS
-RED_TEST_WRITTEN_FIRST
-STRICT_RED_GREEN_REFACTOR
+STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
+EXACTLY_6_RUNTIME_GLYPHS
+MERGE_NOT_AUTHORIZED
 ```
 
-Codex는 별도 `agent/stage2-circuit-bridge-harness-poc` Stacked Draft에서 구현한다.
+자동화가 증명한 범위는 상태·Fixture·회로·자원·Commit·Low-fi Layout·이벤트 계약이다. 사람의 의미 이해·피로·실기기 가림·진행자 개입 영향은 증명하지 않았다.
 
-금지:
+## Gate 8 — 사람·실기기
+
+다음은 `GR-TEST-032` 실제 실행이다.
 
 ```text
-NO_FINAL_ART_ASSET_REQUIRED
-NO_SEVENTH_GLYPH
-NO_FULL_VERTICAL_SLICE_CONTENT_EXPANSION
-HUMAN_EXECUTION_NOT_RUN
+STAGE_1_RECOGNITION_DIAGNOSTIC
+→ SAME_PARTICIPANT_WITH_BREAK
+→ STAGE_2_CORE_LOOP_BRIDGE
+FIRST_ATTEMPT_AND_POST_FEEDBACK_SEPARATED
 ```
 
-## Gate 8 — 전체 Slice·확대·병합
+현재: `HUMAN_DEVICE_VALIDATION_NOT_RUN / HUMAN_END_TO_END_CORE_LOOP_NOT_RUN`.
+
+## Gate 9 — 전체 Slice·확대·병합
 
 `GR-TEST-032`는 `GR-TEST-021` 전체 Slice 대표성을 대체하지 않는다.
 
 ```yaml
 all_numeric_thresholds: TEST_VALUE
+full_vertical_slice_representativeness: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
-pull_request: 63
+pull_request: 65
 draft: true
 merge_required: false
 merge_authorized: false
