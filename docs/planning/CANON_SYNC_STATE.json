@@ -27,6 +27,7 @@
     "previous_sync_id": "GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
     "previous_canon_head": "b03152d3af9e99405bdb4afbcf87d2b038b7db9f",
     "protocol_green_evidence_head": "d9fe985ec18419f47c50bc7c7b3896e611a30e6a",
+    "hx_green_evidence_head": "a892ddf83abfe3e41809579e9b09f4f0078776db",
     "working_branch_receipt": "docs/planning/sync/GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX.md",
     "sheet_ranges": [
       "00_프로젝트_허브!H2:K2",
@@ -61,7 +62,12 @@
       "hx_red_head": "9280e9bf54f633cd8db051fbfe6809512262d29a",
       "hx_red_workflow_run": 31009239386,
       "hx_red_result": "EXPECTED_FAILURE_STAGE2_HX_ARTIFACTS_AND_STATE_ONLY",
-      "hx_green_workflow_run": "PENDING_EXACT_HEAD"
+      "hx_green_head": "a892ddf83abfe3e41809579e9b09f4f0078776db",
+      "hx_foundation_green_workflow_run": 31010459174,
+      "hx_planning_base_green_workflow_run": 31010459218,
+      "hx_godot_toolchain_green_workflow_run": 31010459183,
+      "hx_green_result": "PASS",
+      "closure_head": "PENDING_METADATA_COMMIT"
     }
   },
   "base_contract": {
