@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DECISION = "GM-STAR-CIRCUIT-MASTERY-BALANCE-01"
+SYNC = "GR-SYNC-20260806-01"
 SPEC = "docs/superpowers/specs/2026-08-06-star-glyph-circuit-mastery-balance-design.md"
 
 
@@ -18,6 +19,7 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
             "AGENTS.md",
             "START_HERE.md",
             "docs/ACTIVE_CONTEXT.md",
+            "docs/DEVELOPMENT_GATES.md",
             "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
             "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
         ):
@@ -48,6 +50,18 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
         encoded = json.dumps(registry, ensure_ascii=False)
         self.assertIn(DECISION, encoded)
         self.assertIn(SPEC, encoded)
+
+    def test_sheet_workbook_routes_to_working_sync(self) -> None:
+        workbook = self.read("docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md")
+        for token in (
+            DECISION,
+            SYNC,
+            "SYNCED_TO_WORKING_BRANCH",
+            "sheet_readback: PASS",
+            "product_implementation: NOT_STARTED",
+            "runtime_validation: NOT_RUN",
+        ):
+            self.assertIn(token, workbook)
 
     def test_runtime_state_is_not_overclaimed(self) -> None:
         decisions = self.read("docs/planning/CURRENT_CONFIRMED_DECISIONS.md")
