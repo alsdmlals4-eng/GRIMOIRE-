@@ -47,7 +47,7 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
 
     def test_glyph_resource_contract_separates_vault_and_universal_stock(self) -> None:
         text = GLYPH_SPEC.read_text(encoding="utf-8") + STOCK.read_text(encoding="utf-8")
-        required = (
+        for token in (
             "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
             "EXACT_GLYPH_VAULT",
             "UNIVERSAL_GLYPH_STOCK",
@@ -57,21 +57,19 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
             "COMPLETED_SPELL_STOCK_PROHIBITED",
             "FOCUS_SCRIBE_WRITES_TO_VAULT",
             "EXPLICIT_SOURCE_SELECTION",
-        )
-        for token in required:
+        ):
             self.assertIn(token, text)
 
     def test_vault_slots_and_universal_stock_have_separate_capacity(self) -> None:
         text = GLYPH_SPEC.read_text(encoding="utf-8") + CAPACITY.read_text(encoding="utf-8")
-        required = (
+        for token in (
             "SEPARATE_VAULT_AND_STOCK_CAPACITY",
             "UNIVERSAL_STOCK_CAPACITY",
             "EXACT_GLYPH_VAULT_SLOT_CAPACITY",
             "FOCUS_SCRIBE_RESERVES_VAULT_SLOT",
             "NATURAL_CHARGE_RESPECTS_STOCK_CAPACITY",
             "RESOURCE_RESERVATION_DOES_NOT_CREATE_EXTRA_CAPACITY_USAGE",
-        )
-        for token in required:
+        ):
             self.assertIn(token, text)
 
     def test_universal_stock_has_single_charge_progress_and_no_glyph_target_switch(self) -> None:
@@ -81,22 +79,21 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
             + TARGET_SWITCH.read_text(encoding="utf-8")
             + HIT_PAUSE.read_text(encoding="utf-8")
         )
-        required = (
+        for token in (
             "[부분 대체됨]",
             "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
             "UNIVERSAL_STOCK_SINGLE_CHARGE_PROGRESS",
             "NO_CHARGE_TARGET_SWITCH_WITH_UNIVERSAL_STOCK",
             "UNIVERSAL_STOCK_CHARGE_PAUSE",
             "FOCUS_SCRIBE_VAULT_INTERRUPTED",
-        )
-        for token in required:
+        ):
             self.assertIn(token, text)
         self.assertNotIn("stock_target_glyph_id", text)
         self.assertNotIn("SAME_GLYPH_STOCK_PLUS_1", text)
 
     def test_workflow_contract_requires_benchmark_tdd_and_bounded_checkpoints(self) -> None:
         text = WORKFLOW_SPEC.read_text(encoding="utf-8") + AGENTS.read_text(encoding="utf-8")
-        required = (
+        for token in (
             "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
             "BENCHMARK_AND_PRO_COMPARISON_REQUIRED",
             "SOURCE_VERSION_LIMIT_REQUIRED",
@@ -106,8 +103,7 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
             "EARLY_CHECKPOINT_HIGH_RISK_CONFLICT",
             "EARLY_CHECKPOINT_SESSION_END",
             "EARLY_CHECKPOINT_MAJOR_CANON_IMPACT",
-        )
-        for token in required:
+        ):
             self.assertIn(token, text)
 
     def test_spec_review_and_vocabulary_approval_are_recorded(self) -> None:
@@ -119,12 +115,7 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
             "GM-GLYPH-VOCABULARY-V1-01",
             "USER_APPROVED_ACTIVE_PENDING_MERGE",
             "SLICE_GLYPHS_6",
-            "HEAT",
-            "PROTECT",
-            "FLOW",
-            "FOCUS",
-            "DISPERSE",
-            "BURST",
+            "HEAT", "PROTECT", "FLOW", "FOCUS", "DISPERSE", "BURST",
             "HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION",
         ):
             self.assertIn(token, vocabulary)
@@ -163,7 +154,7 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
             "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
             "GM-GLYPH-VOCABULARY-V1-01",
             "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
-            "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
+            "STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD",
         ):
             self.assertIn(token, text)
         self.assertNotIn("현재 제품 차단 결정은 계속 `ART-STYLE-01`", text)
