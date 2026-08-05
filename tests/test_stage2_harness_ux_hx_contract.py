@@ -5,7 +5,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DECISION_ID = "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01"
-SYNC_ID = "GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX"
+HX_SYNC_ID = "GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX"
+CURRENT_SYNC_ID = "GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED"
 UX_HX = ROOT / "docs/planning/STAGE2_CIRCUIT_BRIDGE_HARNESS_UX_HX_2026-08-05.md"
 STATE_MATRIX = ROOT / "docs/planning/STAGE2_CIRCUIT_BRIDGE_HARNESS_STATE_MATRIX_2026-08-05.md"
 CODEX_PLAN = ROOT / "docs/superpowers/plans/2026-08-05-stage2-circuit-bridge-harness-implementation-plan.md"
@@ -25,6 +26,7 @@ class Stage2HarnessUxHxContractTests(unittest.TestCase):
     def test_required_hx_and_codex_artifacts_exist(self) -> None:
         for path in (UX_HX, STATE_MATRIX, CODEX_PLAN, SYNC_RECEIPT):
             self.assertTrue(path.is_file(), path)
+        self.assertIn(HX_SYNC_ID, SYNC_RECEIPT.read_text(encoding="utf-8"))
 
     def test_harness_preserves_core_information_and_existing_mobile_layout(self) -> None:
         text = UX_HX.read_text(encoding="utf-8") + STATE_MATRIX.read_text(encoding="utf-8")
@@ -106,11 +108,12 @@ class Stage2HarnessUxHxContractTests(unittest.TestCase):
         for token in required:
             self.assertIn(token, text)
 
-    def test_current_authority_advances_sync_without_incrementing_grill(self) -> None:
+    def test_current_authority_advances_to_implementation_without_incrementing_grill(self) -> None:
         text = "\n".join(path.read_text(encoding="utf-8") for path in ENTRYPOINTS)
         for token in (
-            f"current_sync: {SYNC_ID}",
-            "current_gate: STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD",
+            f"current_sync: {CURRENT_SYNC_ID}",
+            "working_pull_request: 65",
+            "current_gate: STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN",
             "grill_counter: 4_of_10",
             "human_device_validation: NOT_RUN",
             "runtime_expansion_7_plus: BLOCKED",
@@ -120,14 +123,18 @@ class Stage2HarnessUxHxContractTests(unittest.TestCase):
 
         sync = json.loads(CANON_SYNC_STATE.read_text(encoding="utf-8"))
         grill = json.loads(GRILL_STATE.read_text(encoding="utf-8"))
-        self.assertEqual(sync["current_bundle"]["sync_id"], SYNC_ID)
-        self.assertEqual(sync["current_bundle"]["decision_ids"][-1], DECISION_ID)
-        self.assertEqual(sync["current_bundle"]["visual_hx"], "COMPLETE")
-        self.assertEqual(sync["current_bundle"]["codex"], "READY_FOR_TDD_HARNESS")
-        self.assertEqual(sync["current_bundle"]["human_device_validation"], "NOT_RUN")
+        bundle = sync["current_bundle"]
+        self.assertEqual(bundle["sync_id"], CURRENT_SYNC_ID)
+        self.assertEqual(bundle["previous_sync_id"], HX_SYNC_ID)
+        self.assertEqual(bundle["decision_ids"][-1], DECISION_ID)
+        self.assertEqual(bundle["visual_hx"], "COMPLETE")
+        self.assertEqual(bundle["codex"], "HARNESS_IMPLEMENTED_AUTOMATED_PASS")
+        self.assertEqual(bundle["stage2_harness_automated"], "PASS")
+        self.assertEqual(bundle["human_device_validation"], "NOT_RUN")
         self.assertEqual(grill["current_count"], 4)
         self.assertEqual(grill["current_work"]["visual_hx"], "COMPLETE")
-        self.assertEqual(grill["current_work"]["codex"], "READY_FOR_TDD_HARNESS")
+        self.assertEqual(grill["current_work"]["codex"], "HARNESS_IMPLEMENTED_AUTOMATED_PASS")
+        self.assertEqual(grill["current_work"]["stage2_harness_automated"], "PASS")
         self.assertFalse(grill["counter"]["merge_authorized"])
 
 
