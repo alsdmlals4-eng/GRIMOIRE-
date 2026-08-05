@@ -11,11 +11,16 @@ on:
       - 'tools/check_glyph_resource_scope.py'
       - 'tools/check_glyph_vocabulary_scope.py'
       - 'tools/build_glyph_confusion_report.py'
+      - 'tools/analyze_gr_test_032.py'
       - 'artifacts/foundation-poc/**'
+      - 'artifacts/human-validation/**'
       - 'docs/validation/GLYPH_RESOURCE_POC_VALIDATION_REPORT.md'
       - 'docs/validation/GLYPH_RECOGNITION_POC_REPORT.md'
       - 'docs/validation/GLYPH_HUMAN_CIRCUIT_BRIDGE_PROTOCOL.md'
       - 'docs/validation/STAGE2_CIRCUIT_BRIDGE_HARNESS_REPORT.md'
+      - 'docs/validation/GR_TEST_032_EXECUTION_RUNBOOK.md'
+      - 'docs/validation/GR_TEST_032_MODERATOR_SCRIPT.md'
+      - 'docs/validation/GR_TEST_032_DEVICE_PREFLIGHT.md'
       - 'docs/planning/GLYPH_RESOURCE_POC_STOP_GATE_01_2026-08-05.md'
       - 'docs/planning/GLYPH_RECOGNITION_POC_STOP_GATE_01_2026-08-05.md'
       - 'docs/planning/GLYPH_HUMAN_CIRCUIT_BRIDGE_01_APPROVAL_2026-08-05.md'
@@ -72,6 +77,9 @@ jobs:
       - name: Validate Stage2 harness implementation evidence
         run: python -m unittest tests.test_stage2_harness_implementation_contract -v
 
+      - name: Validate GR-TEST-032 execution pack
+        run: python -m unittest tests.test_gr_test_032_execution_pack -v
+
       - name: Validate glyph confusion report contract
         run: python -m unittest tests.test_glyph_confusion_report -v
 
@@ -114,4 +122,7 @@ jobs:
             artifacts/foundation-poc/glyph-confusion-report.json
             artifacts/foundation-poc/stage2-bridge-fixture-report.json
             artifacts/foundation-poc/stage2-bridge-event-schema.json
+            artifacts/human-validation/gr-test-032-session-template.json
+            artifacts/human-validation/gr-test-032-attempt-schema.json
+            artifacts/human-validation/gr-test-032-result-template.json
           if-no-files-found: warn
