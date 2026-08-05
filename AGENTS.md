@@ -151,7 +151,7 @@ hidden_position_bonus: prohibited
 유효 회로 Preview → 별도 Confirm → Commit = 주문
 ```
 
-Validator는 자동 수정·자동 최적화·Best Glyph를 제공하지 않는다.
+Validator는 자동 수정·자동 최적화·Best Glyph를 제공하지 않으며, 공유 끝점 없는 교차 간선을 차단한다.
 
 ## 보관함·Stock·마나·필사
 
@@ -214,11 +214,10 @@ TEST_FIRST_ACCEPTANCE_FOR_NON_EXECUTABLE_WORK
 ```yaml
 stage2_harness_automated: PASS
 headless_suites: 28
-headless_assertions: 1342
+headless_assertions: 1343
 headless_failures: 0
-foundation_green_run: 31016191300
-planning_base_green_run: 31016191141
-godot_toolchain_green_run: 31016191132
+crossing_edges_red_run: 31018302521
+crossing_edges_green_run: 31018467326
 ```
 
 이 증거는 합성·결정적 Fixture와 Headless 계약 범위에 한정된다.
