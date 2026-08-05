@@ -6,24 +6,25 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
-working_branch: agent/star-circuit-mastery-balance
 primary_platform: Mobile
 orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
-main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
 previous_main_sync: GR-SYNC-20260804-12-CLOSURE
-current_working_sync: GR-SYNC-20260806-01
+current_main_sync: GR-SYNC-20260806-01
+merged_pull_request: 68
 latest_approved_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 grill_counter: 0_of_10
 pending_decisions: 0
-canon_status: WORKING_BRANCH_GITHUB_AND_SHEET_SYNC_IN_PROGRESS
+canon_status: SYNCED_TO_MAIN
+sheet_readback: PASS
 product_project: NOT_CREATED
 product_implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 ```
 
-사용자는 2026-08-06 중앙 메인 글자 1개와 별 꼭짓점 보조 글자 5개의 새 회로, 회로 Preview 뒤 대상 키워드 선택, 숫자 성공률, 글자별 숙련도, 강한 성공률·마나 복잡도, 정밀·절감 글자를 승인했다. 이 결정은 `GM-3X3-CIRCUIT-STOCK-FOCUS-01`의 회로 위상·대상 노드·보조 상한·숫자 성공률 금지 범위를 대체한다.
+사용자는 2026-08-06 중앙 메인 글자 1개와 별 꼭짓점 보조 글자 5개의 새 회로, 회로 Preview 뒤 대상 키워드 선택, 숫자 성공률, 글자별 숙련도, 강한 성공률·마나 복잡도, 정밀·절감 글자를 승인했다. PR #68이 `main`에 병합됐고 같은 Decision ID와 main authority SHA가 Google Sheet에서 재조회됐다. 이 결정은 `GM-3X3-CIRCUIT-STOCK-FOCUS-01`의 회로 위상·대상 노드·보조 상한·숫자 성공률 금지 범위를 대체한다.
 
 ## 권위 우선순위
 
@@ -53,7 +54,7 @@ AGENTS.md
 → 별형 회로 승인·Spec
 → MAGIC_LETTER_CIRCUIT_SYSTEM·MANA_SYSTEM·SUPPORT_LETTER_MASTERY_SYSTEM
 → Frostbloom 승인 문서
-→ GR-SYNC-20260806-01
+→ docs/planning/sync/GR-SYNC-20260806-01-MAIN.md
 ```
 
 ## Base 계약
