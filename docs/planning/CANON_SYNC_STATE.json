@@ -39,8 +39,8 @@
       "80_데모_버티컬슬라이스_플레이테스트!A34:J34",
       "99_변경이력!A77:H77"
     ],
-    "sheet_write": "PENDING_THIS_SYNC",
-    "sheet_readback": "PENDING_THIS_SYNC",
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
     "human_validation_protocol": "APPROVED_NOT_RUN",
     "human_validation_mode": "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
     "visual_hx": "COMPLETE",
@@ -73,7 +73,8 @@
       "foundation_green_workflow_run": 31016191300,
       "planning_base_green_workflow_run": 31016191141,
       "godot_toolchain_green_workflow_run": 31016191132,
-      "result": "PASS"
+      "result": "PASS",
+      "closure_head": "PENDING_FINAL_CANON_COMMIT"
     }
   },
   "base_contract": {
