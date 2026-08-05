@@ -27,7 +27,7 @@ merge: MERGE_NOT_AUTHORIZED
 - 상황·대상·출처·회로 Draft를 Recognition Retry 중 보존.
 - 승인된 상황 Fixture 2종.
 - Runtime 글자 `HEAT·PROTECT·FLOW·FOCUS·DISPERSE·BURST` 정확히 6종.
-- 3×3 인접 방향 회로 Validator.
+- 3×3 인접 방향 회로 Validator와 교차 간선 차단.
 - 기존 Recognition 결과를 Exact Glyph Vault에만 연결하는 얇은 Bridge.
 - 기존 Vault·Universal Stock·Reservation·Mana·Atomic Commit 서비스 재사용.
 - Preview에서 자원 변경 0, 별도 Confirm 후 원자적 Commit.
@@ -43,36 +43,38 @@ merge: MERGE_NOT_AUTHORIZED
 STRICT_RED_GREEN_REFACTOR
 ```
 
-### Core RED
+### Core RED/GREEN
 
-- 첫 RED HEAD: `d45d2772142a55f7414c1f840a03d027bb6c8b90`.
-- 권위 RED Run: `31013683297` — 최상위 `AGENTS.md` 구형 라우팅 탐지.
-- 제품 부재 RED Run: `31013920871` — 기존 19 Suite·913 assertions PASS, 신규 5개 파일 부재만 실패.
-
-### Core GREEN
-
-- Core GREEN HEAD: `832127d712b766a6d21bd9e78b1bc4f97723e4d6`.
-- Run `31014230452` PASS — 23 Godot Suites.
+- 첫 RED HEAD `d45d2772142a55f7414c1f840a03d027bb6c8b90`, 권위 RED Run `31013683297`.
+- 제품 부재 RED Run `31013920871`: 기존 19 Suites·913 assertions PASS, 신규 파일 부재만 실패.
+- Core GREEN HEAD `832127d712b766a6d21bd9e78b1bc4f97723e4d6`, Run `31014230452` PASS — 23 Suites.
 
 ### Bridge·Low-fi RED/GREEN
 
-- 교정된 RED HEAD: `eb2e54e2d9db283392d1d8a772e2690d6d6373b2`.
-- RED Run `31014687639` — 기존 23 Suite PASS, Bridge·Coordinator·Layout·Scene 부재 4건만 실패.
-- GREEN HEAD `9fc3555b1c32ddc157082d6a6d2f2a6d80cf6607`.
-- GREEN Run `31014941773` PASS — 27 Godot Suites.
+- RED HEAD `eb2e54e2d9db283392d1d8a772e2690d6d6373b2`, Run `31014687639`.
+- 기존 23 Suites PASS, Bridge·Coordinator·Layout·Scene 부재 4건만 실패.
+- GREEN HEAD `9fc3555b1c32ddc157082d6a6d2f2a6d80cf6607`, Run `31014941773` PASS — 27 Suites.
 
-### 적대 검토 보완 RED/GREEN
+### 입력 소유권·이벤트 적대 검토 RED/GREEN
 
-- RED HEAD `9e60a795819118f22470b8380941abb080c2d7fd`.
-- RED Run `31015197871` — Scene Runtime 제어 3개와 Core-loop Recorder 연결 1개만 실패.
-- 구현 증거 HEAD `c9e27b0e149384ab2b9c229300a71e94526092cc`.
-- Foundation Run `31015631868` PASS.
-- `28_GODOT_SUITES`, `1342_ASSERTIONS`, `0_FAILURES`.
+- RED HEAD `9e60a795819118f22470b8380941abb080c2d7fd`, Run `31015197871`.
+- Scene Runtime 제어 3개와 Core-loop Recorder 연결 1개만 실패.
+- GREEN HEAD `c9e27b0e149384ab2b9c229300a71e94526092cc`, Run `31015631868` PASS — 28 Suites·1,342 assertions.
 
-### 증거 계약 RED
+### 증거 계약 RED/GREEN
 
-- Evidence RED HEAD `7380b21341c107bc02559b599bce28a4a98a2234`.
-- Evidence RED Run `31015782924` — 기존 계약 PASS, 구현 보고서·Stop Gate·Fixture/Event 증거 부재만 실패.
+- Evidence RED HEAD `7380b21341c107bc02559b599bce28a4a98a2234`, Run `31015782924`.
+- 기존 계약 PASS, 보고서·Stop Gate·Fixture/Event 증거 부재만 실패.
+- Implementation evidence HEAD `ffbd769ecdf1ca1a4f7c06101d0d8215ac8a387e`.
+- Foundation `31016191300`, Planning/Base `31016191141`, Godot Toolchain `31016191132` PASS.
+
+### 코드 리뷰 교차 간선 RED/GREEN
+
+- 적대 코드 리뷰에서 정본의 `crossing_edges: prohibited`가 Validator에 누락된 것을 발견.
+- RED HEAD `c60d4913faee9927f48133ec216dbd7256b666f9`, Run `31018302521`.
+- 기존 1,342 assertions는 PASS하고 교차 간선 회귀 1건만 실패.
+- GREEN HEAD `f703e29266f8965a34beded9cb4ebdcd0cc1ed3f`, Foundation Run `31018467326` PASS.
+- 최종 Headless: `28_GODOT_SUITES`, `1343_ASSERTIONS`, `0_FAILURES`.
 
 ## 자동으로 증명한 것
 
@@ -80,7 +82,7 @@ STRICT_RED_GREEN_REFACTOR
 - Recognition Retry의 Context 보존.
 - Exact Glyph Vault 전용 저장과 stale·mismatch 차단.
 - 명시적 Vault/Stock 출처.
-- 회로 인접성·도달성·Target Leaf 규칙.
+- 회로 인접성·도달성·Target Leaf·교차 간선 금지.
 - Preview·Confirm·Atomic Commit·Rollback·중복 Commit 방지.
 - 모바일 저충실도 정보 구조와 입력 소유권.
 - 이벤트 Stream 분리와 PII 키 거부.
