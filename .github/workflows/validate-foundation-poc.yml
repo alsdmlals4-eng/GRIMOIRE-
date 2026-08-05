@@ -77,8 +77,10 @@ jobs:
       - name: Validate Stage2 harness implementation evidence
         run: python -m unittest tests.test_stage2_harness_implementation_contract -v
 
-      - name: Validate GR-TEST-032 execution pack
-        run: python -m unittest tests.test_gr_test_032_execution_pack -v
+      - name: Validate GR-TEST-032 execution pack and analyzer
+        run: |
+          python -m unittest tests.test_gr_test_032_execution_pack -v
+          python -m unittest tests.test_gr_test_032_analyzer -v
 
       - name: Validate glyph confusion report contract
         run: python -m unittest tests.test_glyph_confusion_report -v
