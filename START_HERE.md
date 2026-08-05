@@ -8,11 +8,13 @@
 | 플랫폼 | `Mobile / Landscape Fixed`, 후속 `PC` |
 | 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
 | Base | `v9.4.3` |
-| Main 정본 커밋 | `a27b75ea9aabcbb84159356b857e22b3acd30a43` |
+| Main 정본 커밋 | `6ee87a452ebb5793fb6739249287dfd537f4ee89` |
 | 이전 Main Sync | `GR-SYNC-20260804-12-CLOSURE` |
-| 현재 Working Sync | `GR-SYNC-20260806-01` |
+| 현재 Main Sync | `GR-SYNC-20260806-01` |
+| 병합 PR | `#68` |
 | 최신 Decision | `GM-STAR-CIRCUIT-MASTERY-BALANCE-01` |
-| 정본 상태 | `WORKING_BRANCH_GITHUB_AND_SHEET_SYNC_IN_PROGRESS` |
+| 정본 상태 | `SYNCED_TO_MAIN` |
+| Sheet Readback | `PASS` |
 | 제품 Godot 프로젝트 | `NOT_CREATED` |
 | Runtime·Device·Performance·Accessibility·Human | `NOT_RUN` |
 
@@ -30,6 +32,7 @@
 8. `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`
 9. `docs/planning/MANA_SYSTEM.md`
 10. `docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md`
+11. `docs/planning/sync/GR-SYNC-20260806-01-MAIN.md`
 
 ## 핵심 재미
 
