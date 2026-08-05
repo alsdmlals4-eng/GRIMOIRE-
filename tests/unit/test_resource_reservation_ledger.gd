@@ -42,7 +42,7 @@ func run(case) -> void:
     ]
     var methods_ready := true
     for method_name in required_methods:
-        var exists := ledger.has_method(method_name)
+        var exists: bool = bool(ledger.has_method(method_name))
         case.assert_true(exists, "Ledger method must exist: %s" % String(method_name))
         methods_ready = methods_ready and exists
     if not methods_ready:
