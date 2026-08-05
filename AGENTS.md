@@ -14,6 +14,7 @@ working_pull_request: 67
 parent_pull_request: 65
 current_sync: GR-SYNC-20260806-01-GR-TEST-032-EXECUTION-READY
 current_gate: GR_TEST_032_READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN
+authority_preservation: docs/planning/GR_TEST_032_AUTHORITY_PRESERVATION_2026-08-06.md
 latest_approved_decision: GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01
 grill_counter: 4_of_10
 human_execution_pack: READY
@@ -34,10 +35,11 @@ PR #67은 PR #65 위의 Stacked Draft다. 실행 Runbook·진행자 스크립트
 4. `docs/ACTIVE_CONTEXT.md`
 5. `docs/DEVELOPMENT_GATES.md`
 6. 현재 Runtime 체크포인트와 정본 상태 인덱스
-7. 승인 원본·Protocol·실행 Runbook
-8. 실제 코드·테스트·증거
-9. Base pin·공유 Skill 계약
-10. 과거 Draft·Sync·추정
+7. `docs/planning/GR_TEST_032_AUTHORITY_PRESERVATION_2026-08-06.md`
+8. 승인 원본·Protocol·실행 Runbook
+9. 실제 코드·테스트·증거
+10. Base pin·공유 Skill 계약
+11. 과거 Draft·Sync·추정
 
 ## 프로젝트 코어
 
