@@ -7,7 +7,7 @@ const MATH_PATH := "res://src/input/point_cloud_math.gd"
 
 
 func compile(points: PackedVector2Array) -> PackedVector2Array:
-    var result := compile_checked(points)
+    var result: Dictionary = compile_checked(points)
     if result.get("status", &"") != &"OK":
         return PackedVector2Array()
     return result.get("points", PackedVector2Array())
@@ -24,7 +24,7 @@ func compile_checked(points: PackedVector2Array) -> Dictionary:
     var resampled: PackedVector2Array = math_script.resample(points, SAMPLE_COUNT)
     if resampled.size() != SAMPLE_COUNT:
         return {"status": &"RESAMPLE_FAILED", "points": PackedVector2Array()}
-    var angle := math_script.indicative_angle(resampled)
+    var angle: float = float(math_script.indicative_angle(resampled))
     var rotated: PackedVector2Array = math_script.rotate_by(resampled, -angle)
     var scaled: PackedVector2Array = math_script.scale_to_square(rotated, SQUARE_SIZE)
     var normalized: PackedVector2Array = math_script.translate_to_origin(scaled)
@@ -36,10 +36,10 @@ func compile_checked(points: PackedVector2Array) -> Dictionary:
 func distance(input_points: PackedVector2Array, compiled_template: PackedVector2Array) -> float:
     if compiled_template.size() != SAMPLE_COUNT:
         return INF
-    var input_result := compile_checked(input_points)
+    var input_result: Dictionary = compile_checked(input_points)
     if input_result.get("status", &"") != &"OK":
         return INF
     var math_script = load(MATH_PATH)
     if math_script == null:
         return INF
-    return math_script.path_distance(input_result.get("points", PackedVector2Array()), compiled_template)
+    return float(math_script.path_distance(input_result.get("points", PackedVector2Array()), compiled_template))
