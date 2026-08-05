@@ -14,6 +14,7 @@ pull_request: 65
 parent_pull_request: 63
 previous_sync: GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX
 implementation_evidence_head: ffbd769ecdf1ca1a4f7c06101d0d8215ac8a387e
+closure_evidence_head: 35ca4e1148500d6c718e552f6c96aaffc48ee19a
 human_execution: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
 merge_authorized: false
@@ -57,6 +58,10 @@ crossing_edges_red_head: c60d4913faee9927f48133ec216dbd7256b666f9
 crossing_edges_red_run: 31018302521
 crossing_edges_green_head: f703e29266f8965a34beded9cb4ebdcd0cc1ed3f
 crossing_edges_green_run: 31018467326
+closure_evidence_head: 35ca4e1148500d6c718e552f6c96aaffc48ee19a
+closure_foundation_green_run: 31019905779
+closure_planning_base_green_run: 31019906137
+closure_godot_toolchain_green_run: 31019908738
 headless_suites: 28
 headless_assertions: 1343
 headless_failures: 0
