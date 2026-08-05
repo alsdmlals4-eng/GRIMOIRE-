@@ -34,6 +34,7 @@ SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE
 - 사람검증 방식 `C_STAGED_RECOGNITION_THEN_CORE_LOOP` 승인.
 - Stage 2 UX/HX·State Matrix·TDD 구현·Stop Gate 완료.
 - Headless: 28 Suites·1,342 assertions·0 failures.
+- Sync07 Sheet 7개 범위 Write·Readback PASS.
 - 사람·실기기와 전체 Slice 대표성은 `NOT_RUN`.
 
 ## Stage 2 Harness 구현
@@ -79,7 +80,7 @@ MERGE_NOT_AUTHORIZED
 
 ## 다음 우선순위
 
-1. Sync07 Google Sheet Write·Readback 완료.
-2. 실제 사람·실기기 `GR-TEST-032` Stage 1→휴식→Stage 2 실행.
-3. first attempt와 post-feedback 결과 분리.
-4. 결과 적대 검토와 다음 GrillMe.
+1. 실제 사람·실기기 `GR-TEST-032` Stage 1→휴식→Stage 2 실행.
+2. first attempt와 post-feedback 결과 분리.
+3. Hard Stop·피로·기기·진행자 개입 영향 적대 검토.
+4. 결과에 따른 다음 GrillMe.
