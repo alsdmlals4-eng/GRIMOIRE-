@@ -30,6 +30,7 @@ const SUITES: Array[String] = [
     "res://tests/unit/test_stage2_commit_coordinator.gd",
     "res://tests/unit/test_stage2_harness_layout_model.gd",
     "res://tests/integration/test_stage2_harness_scene.gd",
+    "res://tests/integration/test_stage2_bridge_end_to_end.gd",
 ]
 
 func _init() -> void:
