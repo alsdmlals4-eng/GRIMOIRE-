@@ -44,3 +44,17 @@ func run(case) -> void:
     target_branch_edges.append({"from": &"target", "to": &"support"})
     var target_branch: Dictionary = validator.validate(valid_nodes, target_branch_edges)
     case.assert_equal(&"TARGET_MUST_BE_TERMINAL_LEAF", target_branch.status, "Targets are terminal leaves")
+
+    var crossing_nodes := [
+        {"id": &"main", "kind": &"MAIN", "cell": Vector2i(0, 0), "glyph_id": &"PROTECT", "source": &"VAULT"},
+        {"id": &"support_a", "kind": &"SUPPORT", "cell": Vector2i(1, 1), "glyph_id": &"FLOW", "source": &"STOCK"},
+        {"id": &"support_b", "kind": &"SUPPORT", "cell": Vector2i(1, 0), "glyph_id": &"FOCUS", "source": &"STOCK"},
+        {"id": &"target", "kind": &"TARGET", "cell": Vector2i(0, 1), "target_id": &"ward"},
+    ]
+    var crossing_edges := [
+        {"from": &"main", "to": &"support_a"},
+        {"from": &"main", "to": &"support_b"},
+        {"from": &"support_b", "to": &"target"},
+    ]
+    var crossing: Dictionary = validator.validate(crossing_nodes, crossing_edges)
+    case.assert_equal(&"CROSSING_EDGES_PROHIBITED", crossing.status, "Diagonal edges cannot cross")
