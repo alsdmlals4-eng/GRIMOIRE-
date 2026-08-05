@@ -91,8 +91,10 @@ implementation_evidence_head: ffbd769ecdf1ca1a4f7c06101d0d8215ac8a387e
 foundation_green_run: 31016191300
 planning_base_green_run: 31016191141
 godot_toolchain_green_run: 31016191132
+crossing_edges_red_run: 31018302521
+crossing_edges_green_run: 31018467326
 headless_suites: 28
-headless_assertions: 1342
+headless_assertions: 1343
 headless_failures: 0
 ```
 
@@ -103,10 +105,11 @@ headless_failures: 0
 ```text
 STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
 EXACTLY_6_RUNTIME_GLYPHS
+CROSSING_EDGES_PROHIBITED
 MERGE_NOT_AUTHORIZED
 ```
 
-자동화가 증명한 범위는 상태·Fixture·회로·자원·Commit·Low-fi Layout·이벤트 계약이다. 사람의 의미 이해·피로·실기기 가림·진행자 개입 영향은 증명하지 않았다.
+자동화가 증명한 범위는 상태·Fixture·회로 인접·도달·Target Leaf·교차 금지·자원·Commit·Low-fi Layout·이벤트 계약이다. 사람의 의미 이해·피로·실기기 가림·진행자 개입 영향은 증명하지 않았다.
 
 ## Gate 8 — 사람·실기기
 
