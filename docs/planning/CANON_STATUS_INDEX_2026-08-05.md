@@ -1,10 +1,11 @@
 # GRIMOIRE 정본 상태 인덱스 — 2026-08-05
 
 ```yaml
-working_pull_request: 63
-working_branch: agent/glyph-vocabulary-recognition-poc
-current_sync: GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX
-current_gate: STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD
+working_pull_request: 65
+working_branch: agent/stage2-circuit-bridge-harness-poc
+parent_pull_request: 63
+current_sync: GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED
+current_gate: STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
 human_device_validation: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
 grill_counter: 4_of_10
@@ -14,15 +15,16 @@ merge_authorized: false
 ## 현재 권위 경로
 
 ```text
-START_HERE
+AGENTS
+→ START_HERE
 → ACTIVE_CONTEXT
 → DEVELOPMENT_GATES
 → CURRENT_RUNTIME_CHECKPOINT
 → CURRENT_CONFIRMED_DECISIONS
 → Human Circuit Bridge Approval·Protocol
 → Stage2 UX/HX·State Matrix
-→ Codex TDD Plan
-→ Sync Receipt 06
+→ Stage2 자동 검증 보고서·Stop Gate
+→ Sync Receipt 07
 → Google Sheet 동일 Sync ID
 ```
 
@@ -35,11 +37,13 @@ START_HERE
 | Runtime Recognition 6종 | 자동화 PASS / 합성 증거 |
 | 단계형 사람검증 방식·Protocol | 승인·검토 완료 |
 | Stage 2 Low-fi UX/HX | `COMPLETE` |
-| Codex Runtime Harness | `READY_FOR_TDD_HARNESS` |
-| Stage 1·2 사람 실행 | `HUMAN_EXECUTION_NOT_RUN` |
+| Stage 2 Runtime Harness | `AUTOMATED_PASS / HUMAN_NOT_RUN` |
+| Headless | `28 Suites / 1342 assertions / 0 failures` |
+| Stage 1·2 사람·실기기 실행 | `HUMAN_DEVICE_VALIDATION_NOT_RUN` |
+| 사람 핵심 루프 연결 | `HUMAN_END_TO_END_CORE_LOOP_NOT_RUN` |
 | 전체 Vertical Slice 대표성 | `NOT_RUN` |
 | Runtime 7종 이상 | `BLOCKED` |
-| PR #62·#63 병합 | `NOT_AUTHORIZED` |
+| PR #62·#63·#65 병합 | `NOT_AUTHORIZED` |
 
 ## 핵심 경계
 
@@ -50,13 +54,24 @@ EXACT_GLYPH_VAULT_AND_UNIVERSAL_GLYPH_STOCK_ARE_SUPPORT_SYSTEMS
 HUMAN_END_TO_END_CORE_LOOP_VALIDATION_PENDING
 NOT_A_FULL_VERTICAL_SLICE_REPRESENTATIVENESS_PASS
 LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART
+STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
+```
+
+## 자동 증거
+
+```yaml
+foundation_green_run: 31016191300
+planning_base_green_run: 31016191141
+godot_toolchain_green_run: 31016191132
+runtime_glyph_count: 6
+fixture_count: 2
 ```
 
 ## 다음 Gate
 
-1. Codex Stacked Draft TDD Harness.
-2. 자동화 Stop Gate.
-3. 사람·실기기 실행.
-4. 결과 적대 검토.
+1. Sync07 Sheet Write·Readback.
+2. `GR-TEST-032` 실제 사람·실기기 실행.
+3. first attempt/post-feedback 분리 분석.
+4. 결과 적대 검토와 다음 GrillMe.
 
 모든 수치 임계값은 `TEST_VALUE`다.
