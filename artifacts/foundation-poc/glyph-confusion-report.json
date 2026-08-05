@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-GLYPH-VOCABULARY-V1-01",
+  "glyph_ids": [
+    "HEAT",
+    "PROTECT",
+    "FLOW",
+    "FOCUS",
+    "DISPERSE",
+    "BURST"
+  ],
+  "confidence_threshold": 0.8,
+  "margin_threshold": 0.1,
+  "confusion_matrix": {
+    "HEAT": {
+      "HEAT": 2,
+      "PROTECT": 0,
+      "FLOW": 0,
+      "FOCUS": 0,
+      "DISPERSE": 0,
+      "BURST": 0
+    },
+    "PROTECT": {
+      "HEAT": 0,
+      "PROTECT": 1,
+      "FLOW": 0,
+      "FOCUS": 0,
+      "DISPERSE": 0,
+      "BURST": 0
+    },
+    "FLOW": {
+      "HEAT": 0,
+      "PROTECT": 0,
+      "FLOW": 1,
+      "FOCUS": 0,
+      "DISPERSE": 0,
+      "BURST": 0
+    },
+    "FOCUS": {
+      "HEAT": 0,
+      "PROTECT": 0,
+      "FLOW": 0,
+      "FOCUS": 1,
+      "DISPERSE": 0,
+      "BURST": 0
+    },
+    "DISPERSE": {
+      "HEAT": 0,
+      "PROTECT": 0,
+      "FLOW": 0,
+      "FOCUS": 0,
+      "DISPERSE": 1,
+      "BURST": 0
+    },
+    "BURST": {
+      "HEAT": 0,
+      "PROTECT": 0,
+      "FLOW": 0,
+      "FOCUS": 0,
+      "DISPERSE": 0,
+      "BURST": 1
+    }
+  },
+  "confusion_matrix_scope": "ACCEPTED_RESULTS_ONLY",
+  "fixture_first_attempt_match_rate": 0.875,
+  "false_accept_count": 0,
+  "false_reject_count": 1,
+  "retry_required_count": 4,
+  "median_recognition_us": 1712,
+  "evidence_scope": "SYNTHETIC_FIXTURES_ONLY",
+  "human_comprehension": "NOT_RUN",
+  "physical_touch": "NOT_RUN"
+}
