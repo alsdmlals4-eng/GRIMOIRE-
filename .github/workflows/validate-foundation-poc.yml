@@ -15,6 +15,15 @@ on:
       - 'docs/validation/GLYPH_RECOGNITION_POC_REPORT.md'
       - 'docs/planning/GLYPH_RESOURCE_POC_STOP_GATE_01_2026-08-05.md'
       - 'docs/planning/GLYPH_RECOGNITION_POC_STOP_GATE_01_2026-08-05.md'
+      - 'docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md'
+      - 'docs/planning/CANON_STATUS_INDEX_2026-08-05.md'
+      - 'docs/planning/CANON_SYNC_STATE.json'
+      - 'docs/planning/GRILL_ME_BATCH_MERGE_STATE.json'
+      - 'START_HERE.md'
+      - 'docs/ACTIVE_CONTEXT.md'
+      - 'docs/DEVELOPMENT_GATES.md'
+      - 'docs/DOCUMENTATION_MAP.md'
+      - 'docs/planning/README.md'
       - '.github/workflows/validate-foundation-poc.yml'
   workflow_dispatch:
 
@@ -38,6 +47,9 @@ jobs:
         run: |
           python -m unittest tests.test_glyph_vocabulary_scope -v
           python tools/check_glyph_vocabulary_scope.py
+
+      - name: Validate current checkpoint authority contract
+        run: python -m unittest tests.test_current_checkpoint_authority -v
 
       - name: Validate glyph confusion report contract
         run: python -m unittest tests.test_glyph_confusion_report -v
