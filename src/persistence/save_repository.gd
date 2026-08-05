@@ -19,8 +19,8 @@ func save(data: Dictionary) -> Dictionary:
     file.store_string(JSON.stringify(data))
     file.close()
 
-    var parsed = JSON.parse_string(FileAccess.get_file_as_string(temp))
-    if typeof(parsed) != TYPE_DICTIONARY:
+    var parsed: Dictionary = _parse_dictionary(FileAccess.get_file_as_string(temp))
+    if parsed.is_empty() and not data.is_empty():
         _remove_if_exists(temp)
         return {"ok": false, "error": &"TEMP_VALIDATION_FAILED"}
 
@@ -49,10 +49,19 @@ func load_latest() -> Dictionary:
     for candidate in [_path, _path + ".bak"]:
         if not FileAccess.file_exists(candidate):
             continue
-        var parsed = JSON.parse_string(FileAccess.get_file_as_string(candidate))
-        if typeof(parsed) == TYPE_DICTIONARY:
+        var parsed: Dictionary = _parse_dictionary(FileAccess.get_file_as_string(candidate))
+        if not parsed.is_empty():
             return {"ok": true, "data": parsed, "source": candidate}
     return {"ok": false, "error": &"SAVE_CORRUPTION"}
+
+
+func _parse_dictionary(text: String) -> Dictionary:
+    var parser := JSON.new()
+    if parser.parse(text) != OK:
+        return {}
+    if typeof(parser.data) != TYPE_DICTIONARY:
+        return {}
+    return Dictionary(parser.data).duplicate(true)
 
 
 func _remove_if_exists(path: String) -> void:
