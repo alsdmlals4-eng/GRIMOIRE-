@@ -58,7 +58,7 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         self.assertEqual(bundle["codex"], "HARNESS_IMPLEMENTED_AUTOMATED_PASS")
         self.assertEqual(bundle["stage2_harness_automated"], "PASS")
         self.assertEqual(bundle["headless_suite_count"], 28)
-        self.assertEqual(bundle["headless_assertion_count"], 1342)
+        self.assertEqual(bundle["headless_assertion_count"], 1343)
         self.assertEqual(bundle["headless_failure_count"], 0)
         self.assertEqual(bundle["runtime_glyph_count"], 6)
         self.assertEqual(bundle["human_device_validation"], "NOT_RUN")
@@ -75,6 +75,7 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         self.assertEqual(current_work["visual_hx"], "COMPLETE")
         self.assertEqual(current_work["codex"], "HARNESS_IMPLEMENTED_AUTOMATED_PASS")
         self.assertEqual(current_work["stage2_harness_automated"], "PASS")
+        self.assertEqual(current_work["headless_assertions"], 1343)
         self.assertEqual(current_work["sheet_readback"], "PASS")
         self.assertEqual(current_work["human_device_validation"], "NOT_RUN")
         self.assertFalse(current_work["merge_authorized"])
@@ -112,6 +113,8 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         self.assertEqual(tdd["foundation_green_workflow_run"], 31016191300)
         self.assertEqual(tdd["planning_base_green_workflow_run"], 31016191141)
         self.assertEqual(tdd["godot_toolchain_green_workflow_run"], 31016191132)
+        self.assertEqual(tdd["crossing_edges_red_workflow_run"], 31018302521)
+        self.assertEqual(tdd["crossing_edges_green_foundation_run"], 31018467326)
 
 
 if __name__ == "__main__":
