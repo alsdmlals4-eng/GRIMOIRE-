@@ -3,10 +3,14 @@
 ## 문서 상태
 
 ```yaml
-status: ACTIVE_DIRECTION_WORKING_BRANCH
+status: ACTIVE_PROTOTYPE_NUMERIC_DIRECTION_MAIN
 decision_alignment: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 sync_id: GR-SYNC-20260806-01
-updated_at: 2026-08-06T01:44+09:00
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
+merged_pull_request: 68
+sheet_sync: SYNCED_TO_MAIN
+sheet_readback: PASS
+updated_at: 2026-08-06T06:27+09:00
 implementation: NOT_STARTED
 runtime_validation: NOT_RUN
 human_validation: NOT_RUN
@@ -187,6 +191,13 @@ refund_on_cancel_or_interrupt: 0
 ```
 
 필사는 같은 글자 Stock을 보충하는 선택 기능이며 마나 회복이나 주문 위력 증가 수단이 아니다.
+
+## 책임 경계
+
+- 회로·성공률: `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`.
+- 글자 숙련도: `docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md`.
+- 승인: `docs/planning/STAR_GLYPH_CIRCUIT_MASTERY_BALANCE_01_APPROVAL_2026-08-06.md`.
+- Main Sync: `docs/planning/sync/GR-SYNC-20260806-01-MAIN.md`.
 
 ## 금지
 
