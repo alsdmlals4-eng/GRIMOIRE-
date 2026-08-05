@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "scenario_id": "FROSTBLOOM_GREENHOUSE",
+  "decision_id": "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
+  "target_keyword_step": "AFTER_CIRCUIT_PREVIEW",
+  "recommend_best_route": false,
+  "professor_example_is_answer": false,
+  "preview_reveals_ending": false,
+  "auto_target": false,
+  "auto_commit": false,
+  "flow": [
+    "SITUATION_BRIEF",
+    "INVESTIGATE_CLUES",
+    "CHOOSE_INTENT",
+    "BUILD_FIVE_POINT_STAR_CIRCUIT",
+    "CIRCUIT_PREVIEW",
+    "SELECT_TARGET_KEYWORD",
+    "FINAL_PREVIEW",
+    "EXPLICIT_COMMIT",
+    "NPC_AND_ENVIRONMENT_REACTION",
+    "GRIMOIRE_RECORD"
+  ],
+  "solution_intents": [
+    {
+      "id": "FACILITY_REPAIR",
+      "target_keywords": ["ward", "heater", "irrigation"],
+      "promise": "Restore a failing facility without prescribing one spell."
+    },
+    {
+      "id": "LIFE_RESCUE",
+      "target_keywords": ["student", "familiar", "frostbloom"],
+      "promise": "Prioritize living targets and accept that the facility may worsen."
+    },
+    {
+      "id": "SPIRIT_STABILIZATION",
+      "target_keywords": ["ice_spirit", "mana_current", "root_network"],
+      "promise": "Reduce instability rather than overpower the event."
+    },
+    {
+      "id": "CONTAIN_AND_EVACUATE",
+      "target_keywords": ["door", "corridor", "greenhouse_boundary"],
+      "promise": "Limit spread and create a safe withdrawal path."
+    },
+    {
+      "id": "SUPPRESS_AND_BUY_TIME",
+      "target_keywords": ["cold_surge", "fracture", "pressure_point"],
+      "promise": "Trade resources for a temporary tactical window."
+    },
+    {
+      "id": "REASONABLE_UNREGISTERED_SOLUTION",
+      "target_keywords": ["observed_keyword"],
+      "promise": "Accept a coherent player-authored solution that respects discovered evidence."
+    }
+  ],
+  "ui_prohibitions": [
+    "NO_BEST_ROUTE_RECOMMENDATION",
+    "NO_PROFESSOR_ANSWER_BONUS",
+    "NO_AUTO_TARGET",
+    "NO_AUTO_COMMIT",
+    "NO_ENDING_SPOILER_IN_PREVIEW"
+  ]
+}

@@ -10,9 +10,14 @@ STAR_FILES = (
     "src/core/star/star_circuit_calculator.gd",
     "src/core/star/star_circuit_state.gd",
     "src/core/star/star_circuit_commit_coordinator.gd",
+    "src/core/star/spell_resolution_policy.gd",
+    "src/core/resources/typed_glyph_stock_pool.gd",
+    "src/core/resources/focus_scribing_session.gd",
     "src/ui/star_circuit_layout_model.gd",
     "src/ui/star_circuit_harness.gd",
     "src/ui/star_circuit_harness.tscn",
+    "src/ui/focus_scribing_overlay.gd",
+    "src/ui/focus_scribing_overlay.tscn",
 )
 
 
@@ -37,14 +42,19 @@ class StarRuntimeImplementationContractTests(unittest.TestCase):
         for token in ("* 0.45", "* 0.35", "* 0.20", "* 10.0", "+= 0.25", "/ 1000.0", "clampi(roundi(success_raw), 5, 98)", "ceili"):
             self.assertIn(token, text)
 
-    def test_coordinator_uses_atomic_resource_and_mana_commit(self) -> None:
-        for path in ("src/core/resources/resource_reservation_ledger.gd", "src/core/spells/spell_commit_request.gd", "src/core/spells/atomic_spell_commit_service.gd"):
+    def test_coordinator_uses_atomic_typed_resource_and_mana_commit(self) -> None:
+        for path in (
+            "src/core/resources/typed_glyph_stock_pool.gd",
+            "src/core/resources/resource_reservation_ledger.gd",
+            "src/core/spells/spell_commit_request.gd",
+            "src/core/spells/atomic_spell_commit_service.gd",
+        ):
             self.assertTrue((ROOT / path).is_file(), path)
         text = self.read("src/core/star/star_circuit_commit_coordinator.gd")
-        for token in ("reserve_node", "release_node", "_request_script.create", "_service.commit", "COMMIT_CONFIRMATION_REQUIRED"):
+        for token in ("reserve_node", "release_node", "_request_script.create", "_service.commit", "COMMIT_CONFIRMATION_REQUIRED", "GlyphResourceTypes.TYPED_STOCK"):
             self.assertIn(token, text)
         test = self.read("tests/unit/test_star_circuit_commit_coordinator.gd")
-        for token in ("Duplicate commit", "Cancel mutates no stock", "Vault main glyph is consumed", "Stock auxiliary is consumed"):
+        for token in ("Duplicate commit", "Cancel mutates no stock", "Vault main glyph is consumed", "Stock auxiliary is consumed", "NO_MATCHING_TYPED_STOCK"):
             self.assertIn(token, test)
 
     def test_scene_and_project_are_ready_for_visual_godot_testing(self) -> None:
@@ -52,7 +62,11 @@ class StarRuntimeImplementationContractTests(unittest.TestCase):
         scene = self.read("src/ui/star_circuit_harness.tscn")
         self.assertIn('run/main_scene="res://src/ui/star_circuit_harness.tscn"', project)
         self.assertIn('config/features=PackedStringArray("4.7"', project)
-        for token in ("CenterGlyph", "Vertex0", "Vertex1", "Vertex2", "Vertex3", "Vertex4", "CircuitPreviewPanel", "TargetKeywordPanel", "FinalPreviewPanel", "CommitButton"):
+        for token in (
+            "CenterGlyph", "Vertex0", "Vertex1", "Vertex2", "Vertex3", "Vertex4",
+            "CircuitPreviewPanel", "TargetKeywordPanel", "MasteryPanel", "BreakdownPanel",
+            "WarningPanel", "FinalPreviewPanel", "AccessibilityInputPanel", "CommitButton",
+        ):
             self.assertIn(token, scene)
 
     def test_cross_platform_runner_builds_headless_and_editor_commands(self) -> None:
@@ -69,7 +83,12 @@ class StarRuntimeImplementationContractTests(unittest.TestCase):
 
     def test_current_runtime_sync_receipt_preserves_human_boundaries(self) -> None:
         text = self.read("docs/planning/sync/GR-SYNC-20260806-02-STAR-RUNTIME-POC.md")
-        for token in ("RUNTIME_POC_IMPLEMENTED_AUTOMATED_PASS", "AUTOMATED_HEADLESS_PASS", "26", "1010", "31050121154", "MOBILE_DEVICE_VALIDATION_NOT_RUN", "PERFORMANCE_VALIDATION_NOT_RUN", "ACCESSIBILITY_VALIDATION_NOT_RUN", "HUMAN_VALIDATION_NOT_RUN", "FULL_VERTICAL_SLICE_REPRESENTATIVENESS_NOT_RUN"):
+        for token in (
+            "RUNTIME_POC_IMPLEMENTED_AUTOMATED_PASS", "AUTOMATED_HEADLESS_PASS",
+            "MOBILE_DEVICE_VALIDATION_NOT_RUN", "PERFORMANCE_VALIDATION_NOT_RUN",
+            "ACCESSIBILITY_VALIDATION_NOT_RUN", "HUMAN_VALIDATION_NOT_RUN",
+            "FULL_VERTICAL_SLICE_REPRESENTATIVENESS_NOT_RUN",
+        ):
             self.assertIn(token, text)
 
 

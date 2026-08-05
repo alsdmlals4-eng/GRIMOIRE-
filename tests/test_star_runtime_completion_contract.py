@@ -45,10 +45,14 @@ PLANNING_FILES = {
 }
 
 RUNTIME_FILES = (
+    "src/core/resources/typed_glyph_stock_pool.gd",
+    "src/core/resources/focus_scribing_session.gd",
     "src/core/star/spell_resolution_policy.gd",
     "src/ui/focus_scribing_overlay.gd",
     "src/ui/focus_scribing_overlay.tscn",
     "data/testing/frostbloom_star_ux_map.json",
+    "tests/unit/test_typed_glyph_stock_pool.gd",
+    "tests/unit/test_focus_scribing_session.gd",
     "tests/unit/test_spell_resolution_policy.gd",
     "tests/unit/test_focus_scribing_overlay.gd",
     "tests/integration/test_frostbloom_star_ux_map.gd",
@@ -71,6 +75,18 @@ class StarRuntimeCompletionContractTests(unittest.TestCase):
     def test_runtime_completion_files_exist(self) -> None:
         for path in RUNTIME_FILES:
             self.assertTrue((ROOT / path).is_file(), path)
+
+    def test_active_star_runtime_uses_typed_glyph_stock(self) -> None:
+        types = self.read("src/core/resources/glyph_resource_types.gd")
+        typed_pool = self.read("src/core/resources/typed_glyph_stock_pool.gd")
+        ledger = self.read("src/core/resources/resource_reservation_ledger.gd")
+        coordinator = self.read("src/core/star/star_circuit_commit_coordinator.gd")
+        coordinator_test = self.read("tests/unit/test_star_circuit_commit_coordinator.gd")
+        for token in ("TYPED_STOCK", "matching_available_count", "NO_MATCHING_TYPED_STOCK"):
+            self.assertIn(token, types + typed_pool + ledger + coordinator + coordinator_test)
+        self.assertIn('const STOCK_PATH := "res://src/core/resources/typed_glyph_stock_pool.gd"', coordinator_test)
+        self.assertIn("GlyphResourceTypes.TYPED_STOCK", coordinator)
+        self.assertIn('stock.add_one(&"FLOW")', coordinator_test)
 
     def test_mobile_wireframe_states_are_exposed_by_scene(self) -> None:
         scene = self.read("src/ui/star_circuit_harness.tscn")
@@ -107,7 +123,8 @@ class StarRuntimeCompletionContractTests(unittest.TestCase):
             self.assertIn(token, text)
 
     def test_focus_overlay_preserves_risk_and_no_refund_contract(self) -> None:
-        text = self.read("src/ui/focus_scribing_overlay.gd")
+        session = self.read("src/core/resources/focus_scribing_session.gd")
+        overlay = self.read("src/ui/focus_scribing_overlay.gd")
         for token in (
             "0.25",
             "mana_per_real_second",
@@ -115,7 +132,7 @@ class StarRuntimeCompletionContractTests(unittest.TestCase):
             "stock_gain",
             "interruption_risk",
         ):
-            self.assertIn(token, text)
+            self.assertIn(token, session + overlay)
 
     def test_frostbloom_map_is_multi_solution_and_never_recommends_best_route(self) -> None:
         payload = json.loads(self.read("data/testing/frostbloom_star_ux_map.json"))
@@ -127,6 +144,8 @@ class StarRuntimeCompletionContractTests(unittest.TestCase):
     def test_godot_runner_registers_completion_suites(self) -> None:
         runner = self.read("tests/test_runner.gd")
         for path in (
+            "res://tests/unit/test_typed_glyph_stock_pool.gd",
+            "res://tests/unit/test_focus_scribing_session.gd",
             "res://tests/unit/test_spell_resolution_policy.gd",
             "res://tests/unit/test_focus_scribing_overlay.gd",
             "res://tests/integration/test_frostbloom_star_ux_map.gd",

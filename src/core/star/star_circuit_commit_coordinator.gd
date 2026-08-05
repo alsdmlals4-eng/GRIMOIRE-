@@ -14,6 +14,7 @@ var _request_script
 var _plan: Dictionary = {}
 var _committed_result: Dictionary = {}
 
+
 static func create(state, validator, calculator, ledger, mana, service, request_script):
     if state == null or validator == null or calculator == null or ledger == null or mana == null or service == null or request_script == null:
         return null
@@ -41,6 +42,7 @@ static func create(state, validator, calculator, ledger, mana, service, request_
     coordinator._request_script = request_script
     return coordinator
 
+
 func prepare_circuit_preview(transaction_id: StringName, main: Dictionary, auxiliaries: Array) -> Dictionary:
     if transaction_id.is_empty():
         return {"status": &"INVALID_TRANSACTION"}
@@ -48,7 +50,7 @@ func prepare_circuit_preview(transaction_id: StringName, main: Dictionary, auxil
     if StringName(validation.get("status", &"")) != &"OK":
         return validation
     var preview: Dictionary = _calculator.preview(main, auxiliaries, {})
-    var preview_contract := validation.duplicate(true)
+    var preview_contract: Dictionary = validation.duplicate(true)
     preview_contract["preview"] = preview.duplicate(true)
     if not _state.set_circuit_draft(main, auxiliaries):
         return {"status": &"CIRCUIT_DRAFT_REJECTED"}
@@ -67,6 +69,7 @@ func prepare_circuit_preview(transaction_id: StringName, main: Dictionary, auxil
         "validation": validation.duplicate(true),
         "preview": preview.duplicate(true),
     }
+
 
 func select_target_and_prepare_final_preview(
     target_keyword: StringName,
@@ -95,18 +98,21 @@ func select_target_and_prepare_final_preview(
     _plan["result_payload"] = payload
     return {"status": &"FINAL_PREVIEW_READY", "preview": preview.duplicate(true)}
 
+
 func request_confirmation() -> bool:
     return not _plan.is_empty() and _plan.has("preview") and _state.request_commit_confirmation()
 
+
 func cancel_confirmation() -> bool:
     return _state.cancel_commit_confirmation()
+
 
 func confirm_commit() -> Dictionary:
     if not _committed_result.is_empty():
         return _committed_result.duplicate(true)
     if _plan.is_empty() or not _state.can_commit():
         return {"status": &"COMMIT_CONFIRMATION_REQUIRED"}
-    var transaction_id: StringName = StringName(_plan.transaction_id)
+    var transaction_id := StringName(_plan.transaction_id)
     var reserved_nodes: Array[StringName] = []
     var glyphs: Array = [_plan.main]
     glyphs.append_array(_plan.auxiliaries)
@@ -138,12 +144,14 @@ func confirm_commit() -> Dictionary:
     _committed_result = result.duplicate(true)
     return _committed_result.duplicate(true)
 
+
 func _source_value(source_name: StringName) -> int:
     if source_name == &"VAULT":
         return GlyphResourceTypes.Source.VAULT
     if source_name == &"STOCK":
-        return GlyphResourceTypes.Source.UNIVERSAL_STOCK
+        return GlyphResourceTypes.TYPED_STOCK
     return -1
+
 
 func _release_nodes(node_ids: Array[StringName]) -> void:
     for node_id in node_ids:

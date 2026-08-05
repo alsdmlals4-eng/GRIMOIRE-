@@ -4,7 +4,7 @@ const COORDINATOR_PATH := "res://src/core/star/star_circuit_commit_coordinator.g
 const VALIDATOR_PATH := "res://src/core/star/star_circuit_validator.gd"
 const CALCULATOR_PATH := "res://src/core/star/star_circuit_calculator.gd"
 const STATE_PATH := "res://src/core/star/star_circuit_state.gd"
-const STOCK_PATH := "res://src/core/resources/universal_stock_pool.gd"
+const STOCK_PATH := "res://src/core/resources/typed_glyph_stock_pool.gd"
 const VAULT_PATH := "res://src/core/resources/vault_inventory.gd"
 const LEDGER_PATH := "res://src/core/resources/resource_reservation_ledger.gd"
 const MANA_PATH := "res://src/core/resources/mana_pool.gd"
@@ -12,8 +12,9 @@ const REQUEST_PATH := "res://src/core/spells/spell_commit_request.gd"
 const SERVICE_PATH := "res://src/core/spells/atomic_spell_commit_service.gd"
 const RESULT_LEDGER_PATH := "res://src/core/atomic_result_ledger.gd"
 
+
 func run(case) -> void:
-    var required := [COORDINATOR_PATH, VALIDATOR_PATH, CALCULATOR_PATH, STATE_PATH]
+    var required := [COORDINATOR_PATH, VALIDATOR_PATH, CALCULATOR_PATH, STATE_PATH, STOCK_PATH]
     for path in required:
         case.assert_true(FileAccess.file_exists(path), "Coordinator dependency exists: %s" % path)
     for path in required:
@@ -36,12 +37,24 @@ func run(case) -> void:
     var committed: Dictionary = flow.coordinator.confirm_commit()
     case.assert_equal(&"COMMITTED", committed.status, "Confirmed star spell commits")
     case.assert_equal(4, fixture.mana.current(), "Final preview mana is consumed")
-    case.assert_equal(0, fixture.stock.current_total(), "Stock auxiliary is consumed")
+    case.assert_equal(0, fixture.stock.matching_count(&"FLOW"), "Stock auxiliary is consumed")
+    case.assert_equal(0, fixture.stock.matching_count(&"HEAT"), "FLOW consume never mutates another typed stock")
     case.assert_equal(0, fixture.vault.matching_available_count(&"HEAT"), "Vault main glyph is consumed")
     case.assert_equal(0, fixture.ledger.reservation_count(), "Reservations are cleared")
     var duplicate: Dictionary = flow.coordinator.confirm_commit()
     case.assert_equal(committed, duplicate, "Duplicate commit returns immutable first result")
     case.assert_equal(4, fixture.mana.current(), "Duplicate commit spends no mana")
+
+    var wrong_fixture := _fixture()
+    wrong_fixture.stock = load(STOCK_PATH).create(1)
+    wrong_fixture.stock.add_one(&"HEAT")
+    wrong_fixture.ledger = load(LEDGER_PATH).create(wrong_fixture.stock, wrong_fixture.vault)
+    var wrong_flow := _prepare_flow(wrong_fixture, Coordinator)
+    case.assert_true(wrong_flow.coordinator.request_confirmation(), "Wrong typed stock fixture reaches confirmation")
+    var wrong_result: Dictionary = wrong_flow.coordinator.confirm_commit()
+    case.assert_equal(&"NO_MATCHING_TYPED_STOCK", wrong_result.status, "HEAT stock cannot substitute for FLOW")
+    case.assert_equal(20, wrong_fixture.mana.current(), "Typed stock mismatch spends no mana")
+    case.assert_equal(1, wrong_fixture.stock.matching_count(&"HEAT"), "Typed stock mismatch consumes nothing")
 
     var cancel_fixture := _fixture()
     var cancel_flow := _prepare_flow(cancel_fixture, Coordinator)
@@ -51,6 +64,7 @@ func run(case) -> void:
     case.assert_equal(before, _resource_state(cancel_fixture), "Cancel mutates no stock, vault, reservation or mana")
     case.assert_equal(&"COMMIT_CONFIRMATION_REQUIRED", cancel_flow.coordinator.confirm_commit().status, "Cancelled flow cannot commit")
 
+
 func _fixture() -> Dictionary:
     var Stock = load(STOCK_PATH)
     var Vault = load(VAULT_PATH)
@@ -59,7 +73,7 @@ func _fixture() -> Dictionary:
     var Service = load(SERVICE_PATH)
     var ResultLedger = load(RESULT_LEDGER_PATH)
     var stock = Stock.create(1)
-    stock.add_one()
+    stock.add_one(&"FLOW")
     var vault = Vault.create(1)
     var scribe: Dictionary = vault.reserve_for_scribe(&"HEAT", &"seed")
     vault.complete_scribe(scribe.reservation_id)
@@ -76,6 +90,7 @@ func _fixture() -> Dictionary:
         "validator": load(VALIDATOR_PATH).new(),
         "calculator": load(CALCULATOR_PATH).new(),
     }
+
 
 func _prepare_flow(fixture: Dictionary, Coordinator) -> Dictionary:
     fixture.state.configure_scenario({
@@ -97,6 +112,7 @@ func _prepare_flow(fixture: Dictionary, Coordinator) -> Dictionary:
         &"flower", {"difficulty": 5, "mana_cost": 0}, {"effect": &"HEAT_FLOW"}
     )
     return {"coordinator": coordinator, "circuit": circuit, "final": final}
+
 
 func _resource_state(fixture: Dictionary) -> Dictionary:
     return {

@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource path="res://src/ui/focus_scribing_overlay.gd" type="Script" id="1"]
+
+[node name="FocusScribingOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 112.0
+offset_right = 928.0
+offset_bottom = 608.0
+
+[node name="Content" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Panel/Content"]
+layout_mode = 2
+text = "FOCUS SCRIBING"
+
+[node name="SelectedGlyph" type="Label" parent="Panel/Content"]
+layout_mode = 2
+text = "Glyph: --"
+
+[node name="RemainingTime" type="Label" parent="Panel/Content"]
+layout_mode = 2
+text = "Remaining: --"
+
+[node name="ManaDrain" type="Label" parent="Panel/Content"]
+layout_mode = 2
+text = "Mana: 1 / real sec"
+
+[node name="InterruptionRisk" type="Label" parent="Panel/Content"]
+layout_mode = 2
+text = "Risk: Direct HP loss / control / mana zero / focus loss"
+autowrap_mode = 2
+
+[node name="StockCapacity" type="Label" parent="Panel/Content"]
+layout_mode = 2
+text = "Stock: -- / --"
+
+[node name="NoRefundWarning" type="Label" parent="Panel/Content"]
+layout_mode = 2
+text = "Cancel: elapsed time and spent mana are not refunded"
+autowrap_mode = 2
+
+[node name="CancelButton" type="Button" parent="Panel/Content"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+text = "CANCEL SCRIBING"
