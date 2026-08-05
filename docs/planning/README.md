@@ -45,8 +45,10 @@ STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
 ```
 
 - Stage 2 Low-fi UX/HX와 Godot Harness 구현 완료.
-- 28 Godot Suites·1,342 assertions·0 failures.
+- 28 Godot Suites·1,343 assertions·0 failures.
+- 교차 간선 금지 RED `31018302521`→GREEN `31018467326`.
 - Runtime 글자 정확히 6종, 상황 Fixture 2종.
+- Sync07 Sheet Write·Readback PASS.
 - PR #65 Draft·미병합.
 
 ```text
@@ -55,4 +57,4 @@ STAGE_1_RECOGNITION_DIAGNOSTIC
 → STAGE_2_CORE_LOOP_BRIDGE
 ```
 
-다음은 Sync07 Sheet Readback 후 `GR-TEST-032` 실제 사람·실기기 실행이다. 사람 결과·전체 Slice 대표성·7종 이상 확대는 `NOT_RUN / BLOCKED`다.
+다음은 `GR-TEST-032` 실제 사람·실기기 실행이다. 사람 결과·전체 Slice 대표성·7종 이상 확대는 `NOT_RUN / BLOCKED`다.
