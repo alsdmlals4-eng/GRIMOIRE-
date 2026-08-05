@@ -86,4 +86,4 @@ TDD 증거: RED `c5b8c0b5 / 31049468374`, 강화 RED `7ef9f58a / 31050745948`, R
 4. Frostbloom 실제 결과 Pipeline·UX Map.
 5. 사람 핵심 재미 검증.
 
-출시·외부 자산 작업은 `PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md`, `ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`, `GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`를 따른다. 실기기·사람·스토어 증거가 없으면 출시 완료를 주장하지 않는다.
+출시·외부 자산 작업은 `docs/PLATFORM_RELEASE_AND_ASSET_RIGHTS_PROFILE.md`, `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`, `docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`를 따른다. 실기기·사람·스토어 증거가 없으면 출시 완료를 주장하지 않는다.
