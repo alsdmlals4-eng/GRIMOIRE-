@@ -1,0 +1,165 @@
+[gd_scene format=3]
+
+[node name="Stage2CircuitBridgeHarness" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SafeRoot" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="ObjectiveThreatSituation" type="PanelContainer" parent="SafeRoot"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+
+[node name="ContextText" type="Label" parent="SafeRoot/ObjectiveThreatSituation"]
+layout_mode = 2
+text = "목표 · 위협 · 상황 — Recognition Retry 중에도 유지"
+autowrap_mode = 2
+
+[node name="Body" type="HBoxContainer" parent="SafeRoot"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="GlyphRail" type="PanelContainer" parent="SafeRoot/Body"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="RailText" type="Label" parent="SafeRoot/Body/GlyphRail"]
+layout_mode = 2
+text = "MAIN\nS1\nS2\nS3\n\n읽기 전용"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TargetCircuit" type="VBoxContainer" parent="SafeRoot/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="TargetSummary" type="Label" parent="SafeRoot/Body/TargetCircuit"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "대상 1–4 · 자동 해법 없음"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CircuitGrid" type="GridContainer" parent="SafeRoot/Body/TargetCircuit"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+
+[node name="Cell00" type="Button" parent="SafeRoot/Body/TargetCircuit/CircuitGrid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+
+[node name="Cell01" type="Button" parent="SafeRoot/Body/TargetCircuit/CircuitGrid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "2"
+
+[node name="Cell02" type="Button" parent="SafeRoot/Body/TargetCircuit/CircuitGrid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "3"
+
+[node name="Cell10" type="Button" parent="SafeRoot/Body/TargetCircuit/CircuitGrid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "4"
+
+[node name="Cell11" type="Button" parent="SafeRoot/Body/TargetCircuit/CircuitGrid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "5"
+
+[node name="Cell12" type="Button" parent="SafeRoot/Body/TargetCircuit/CircuitGrid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "6"
+
+[node name="Cell20" type="Button" parent="SafeRoot/Body/TargetCircuit/CircuitGrid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "7"
+
+[node name="Cell21" type="Button" parent="SafeRoot/Body/TargetCircuit/CircuitGrid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "8"
+
+[node name="Cell22" type="Button" parent="SafeRoot/Body/TargetCircuit/CircuitGrid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "9"
+
+[node name="WritingFocus" type="PanelContainer" parent="SafeRoot/Body"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+
+[node name="WritingText" type="Label" parent="SafeRoot/Body/WritingFocus"]
+layout_mode = 2
+text = "필사 Focus\n\nActive Stroke 중\nCanvas 입력 독점\n\n취소 · 초기화 · 후보 선택"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ResourcePreviewCommit" type="HBoxContainer" parent="SafeRoot"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ResourceStatus" type="Label" parent="SafeRoot/ResourcePreviewCommit"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HP · Mana · 글자별 VAULT/STOCK 출처"
+vertical_alignment = 1
+
+[node name="PreviewButton" type="Button" parent="SafeRoot/ResourcePreviewCommit"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+text = "미리보기"
+
+[node name="CommitButton" type="Button" parent="SafeRoot/ResourcePreviewCommit"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+text = "별도 확정"
+
+[node name="CancelButton" type="Button" parent="SafeRoot/ResourcePreviewCommit"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+text = "취소"
