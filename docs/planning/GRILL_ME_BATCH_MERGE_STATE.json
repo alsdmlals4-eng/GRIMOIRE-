@@ -1,5 +1,5 @@
 {
-  "schema_version": 9,
+  "schema_version": 10,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -12,7 +12,7 @@
     "merge_required": false,
     "merge_trigger": "NONE",
     "merge_authorized": false,
-    "authorization_state": "HUMAN_PROTOCOL_APPROVED_EXECUTION_NOT_RUN",
+    "authorization_state": "STAGE2_HX_COMPLETE_RUNTIME_AND_HUMAN_NOT_RUN",
     "checkpoint_state": "HIGH_CANON_IMPACT_DRAFT_CHECKPOINT",
     "checkpoint_pull_request": 63,
     "early_checkpoint_triggers": [
@@ -31,13 +31,6 @@
     "status": "MERGED_AND_FINALIZED_SHEET_READBACK_PASS",
     "trigger": "USER_EXPLICIT_EARLY_FLUSH_AT_5_OF_10",
     "flushed_decision_count": 5,
-    "decision_ids": [
-      "GM-FOUNDATION-POC-EXECUTION-READINESS-01",
-      "GM-NARRATIVE-MULTI-SOLUTION-SITUATION-01",
-      "GM-SCHOOL-CRISIS-PEDAGOGY-01",
-      "GM-SLICE-HEAT-FLOW-OBSERVATION-01",
-      "GM-3X3-CIRCUIT-STOCK-FOCUS-01"
-    ],
     "decision_merge_pull_request": 57,
     "finalization_pull_request": 58,
     "sheet_readback_pull_request": 59,
@@ -45,8 +38,8 @@
     "main_sync_id": "GR-SYNC-20260804-12-CLOSURE"
   },
   "current_work": {
-    "status": "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
-    "gate": "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
+    "status": "STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD",
+    "gate": "STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD",
     "latest_approved_decision_id": "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
     "related_approved_decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
@@ -59,36 +52,28 @@
     "pull_request": 63,
     "working_pull_request": 63,
     "base_pull_request": 62,
-    "current_sync": "GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
+    "current_sync": "GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX",
     "source_product_commit": "ec947f232b533d5a2acac20683287080c34a811f",
     "human_validation_protocol": "STAGED_HYBRID_APPROVED_NOT_RUN",
     "human_device_validation": "NOT_RUN",
     "human_end_to_end_core_loop": "NOT_RUN",
     "runtime_expansion_7_plus": "BLOCKED",
-    "visual_hx": "REQUIRED_NEXT_FOR_STAGE_2_HARNESS",
-    "codex": "BLOCKED_BY_VISUAL_HX_AND_RUNTIME_HARNESS",
+    "visual_hx": "COMPLETE",
+    "visual_hx_scope": "LOW_FIDELITY_STAGE2_VALIDATION_HARNESS",
+    "codex": "READY_FOR_TDD_HARNESS",
+    "recommended_codex_branch": "agent/stage2-circuit-bridge-harness-poc",
     "merge_authorized": false,
-    "next_priority": "MINIMAL_STAGE_2_HARNESS_UX_HX"
+    "next_priority": "CODEX_STACKED_DRAFT_STAGE2_HARNESS"
   },
   "canonical_contract": {
     "core_fun": "SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE",
     "spell_assembly": "3X3_ADJACENT_DIRECTED_NODE_CIRCUIT",
-    "vault": "EXACT_GLYPH_VAULT",
-    "stock": "UNIVERSAL_GLYPH_STOCK_FOR_LEARNED_MAIN_OR_SUPPORT",
     "recognition_role": "INPUT_INFRASTRUCTURE_NOT_CORE_FUN",
     "resource_role": "SUPPORT_SYSTEM_NOT_CORE_FUN",
-    "recognition_success_output": "EXACT_GLYPH_VAULT_ONLY",
-    "recognition_creates_universal_stock": false,
     "vocabulary_v1": "MAIN_10_SUPPORT_10",
-    "slice_runtime_glyphs": [
-      "HEAT",
-      "PROTECT",
-      "FLOW",
-      "FOCUS",
-      "DISPERSE",
-      "BURST"
-    ],
+    "slice_runtime_glyphs": ["HEAT", "PROTECT", "FLOW", "FOCUS", "DISPERSE", "BURST"],
     "human_validation_mode": "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
+    "stage2_hx": "LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART",
     "vocabulary_expansion_gate": "HUMAN_COMPREHENSION_AND_CORE_LOOP_REVIEW_REQUIRED_BEFORE_EXPANSION"
   },
   "workflow_contract": {
@@ -100,16 +85,14 @@
     "early_checkpoint_is_merge_authorization": false
   },
   "validation": {
-    "resource_foundation_pr": 62,
     "resource_automated_gate": "PASS",
-    "recognition_pr": 63,
     "recognition_automated_gate": "PASS",
-    "human_protocol_decision_test": "tests/test_human_circuit_bridge_decision.py",
-    "human_protocol_red_workflow_run": 31006599965,
-    "human_protocol_red_result": "EXPECTED_FAILURE_MISSING_APPROVAL_PROTOCOL_STATE",
-    "sheet_write": "PENDING_THIS_SYNC",
-    "sheet_readback": "PENDING_THIS_SYNC",
-    "evidence_scope": "SYNTHETIC_FIXTURES_ONLY_PLUS_HUMAN_PROTOCOL_NOT_RUN",
+    "human_protocol": "APPROVED_NOT_RUN",
+    "stage2_hx_contract_test": "tests/test_stage2_harness_ux_hx_contract.py",
+    "stage2_hx_red_workflow_run": 31009239386,
+    "stage2_hx_green_workflow_run": "PENDING_EXACT_HEAD",
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
     "mobile_device": "NOT_RUN",
     "accessibility": "NOT_RUN",
     "human": "NOT_RUN"
