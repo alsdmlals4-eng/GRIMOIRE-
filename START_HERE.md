@@ -50,7 +50,7 @@ STAGE_1_RECOGNITION_DIAGNOSTIC
 → STAGE_2_CORE_LOOP_BRIDGE
 ```
 
-자동 Harness는 28 Godot Suites·1,342 assertions·0 failures로 PASS했다. 그러나 이는 합성·결정적 Fixture 범위다.
+자동 Harness는 28 Godot Suites·1,343 assertions·0 failures로 PASS했다. 교차 간선 금지 회귀까지 포함하며, 이는 합성·결정적 Fixture 범위다.
 
 ```text
 LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART
