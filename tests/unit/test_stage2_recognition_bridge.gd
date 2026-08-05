@@ -14,7 +14,7 @@ func run(case) -> void:
     var State = load(STATE_PATH)
     var Vault = load(VAULT_PATH)
     var Recorder = load(RECORDER_PATH)
-    var scripts_ready := Bridge != null and Bridge.can_instantiate()
+    var scripts_ready: bool = Bridge != null and Bridge.can_instantiate()
     case.assert_true(scripts_ready, "Stage2 recognition bridge must load")
     if not scripts_ready:
         return
@@ -42,21 +42,21 @@ func run(case) -> void:
     if bridge == null:
         return
 
-    var stale := bridge.accept_to_vault(
+    var stale: Dictionary = bridge.accept_to_vault(
         {"status": &"STALE_RECOGNITION_RESULT", "glyph_id": &"PROTECT"},
         &"PROTECT", &"scribe-stale", &"FIRST_ATTEMPT", &"rec-stale"
     )
     case.assert_equal(&"STALE_RECOGNITION_RESULT", stale.status, "Stale acceptance is blocked")
     case.assert_equal(0, vault.matching_available_count(&"PROTECT"), "Stale result creates no Vault glyph")
 
-    var mismatch := bridge.accept_to_vault(
+    var mismatch: Dictionary = bridge.accept_to_vault(
         {"status": &"ACCEPTED", "glyph_id": &"FLOW"},
         &"PROTECT", &"scribe-mismatch", &"FIRST_ATTEMPT", &"rec-mismatch"
     )
     case.assert_equal(&"RECOGNIZED_GLYPH_DOES_NOT_MATCH_SELECTED", mismatch.status, "Selection mismatch is blocked")
     case.assert_equal(0, vault.matching_available_count(&"PROTECT"), "Mismatch creates no Vault glyph")
 
-    var accepted := bridge.accept_to_vault(
+    var accepted: Dictionary = bridge.accept_to_vault(
         {"status": &"ACCEPTED", "glyph_id": &"PROTECT"},
         &"PROTECT", &"scribe-ok", &"POST_FEEDBACK", &"rec-ok"
     )
