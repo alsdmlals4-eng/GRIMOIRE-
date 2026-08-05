@@ -7,6 +7,9 @@ on:
       - 'src/**'
       - 'tests/**'
       - 'tools/check_glyph_resource_scope.py'
+      - 'artifacts/foundation-poc/**'
+      - 'docs/validation/GLYPH_RESOURCE_POC_VALIDATION_REPORT.md'
+      - 'docs/planning/GLYPH_RESOURCE_POC_STOP_GATE_01_2026-08-05.md'
       - '.github/workflows/validate-foundation-poc.yml'
   workflow_dispatch:
 
@@ -20,6 +23,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Validate glyph resource scope contract
+        run: |
+          python -m unittest tests.test_glyph_resource_scope -v
+          python tools/check_glyph_resource_scope.py
 
       - name: Cache Godot
         uses: actions/cache@v4
@@ -36,12 +44,14 @@ jobs:
       - name: Run headless POC tests
         run: |
           timeout 30s .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
-            --headless --path . --script res://tests/test_runner.gd
+            --headless --path . --script res://tests/test_runner.gd | tee glyph-resource-headless.log
 
       - name: Upload test evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: foundation-poc-evidence
-          path: godot-foundation-toolchain-report.json
+          path: |
+            godot-foundation-toolchain-report.json
+            glyph-resource-headless.log
           if-no-files-found: error
