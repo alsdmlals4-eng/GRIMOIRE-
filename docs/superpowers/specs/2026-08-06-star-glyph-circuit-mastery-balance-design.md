@@ -4,8 +4,13 @@
 
 ```yaml
 decision_id: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-status: USER_APPROVED_DESIGN_CANON_WORKING_BRANCH
+status: USER_APPROVED_DESIGN_CANON_MAIN
 approved_at: 2026-08-06T01:44+09:00
+sync_id: GR-SYNC-20260806-01
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
+merged_pull_request: 68
+sheet_sync: SYNCED_TO_MAIN
+sheet_readback: PASS
 supersedes:
   - GM-3X3-CIRCUIT-STOCK-FOCUS-01:circuit_topology
   - GM-3X3-CIRCUIT-STOCK-FOCUS-01:target_node_in_circuit
