@@ -6,16 +6,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT_CHECKPOINT = ROOT / "docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md"
 CURRENT_STATUS = ROOT / "docs/planning/CANON_STATUS_INDEX_2026-08-05.md"
-DEVELOPMENT_GATES = ROOT / "docs/DEVELOPMENT_GATES.md"
 CANON_SYNC_STATE = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 GRILL_STATE = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 ENTRYPOINTS = (
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
-    DEVELOPMENT_GATES,
+    ROOT / "docs/DEVELOPMENT_GATES.md",
     ROOT / "docs/DOCUMENTATION_MAP.md",
     ROOT / "docs/planning/README.md",
 )
+
+SYNC_ID = "GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX"
+GATE = "STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD"
 
 
 class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
@@ -28,8 +30,8 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         required = (
             "working_pull_request: 63",
             "working_branch: agent/glyph-vocabulary-recognition-poc",
-            "current_sync: GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
-            "current_gate: HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
+            f"current_sync: {SYNC_ID}",
+            f"current_gate: {GATE}",
             "human_device_validation: NOT_RUN",
             "runtime_expansion_7_plus: BLOCKED",
             "grill_counter: 4_of_10",
@@ -39,42 +41,30 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
             self.assertIn(token, text)
 
     def test_machine_state_tracks_same_sync_and_preserves_gates(self) -> None:
-        sync_state = json.loads(CANON_SYNC_STATE.read_text(encoding="utf-8"))
-        grill_state = json.loads(GRILL_STATE.read_text(encoding="utf-8"))
+        sync = json.loads(CANON_SYNC_STATE.read_text(encoding="utf-8"))
+        grill = json.loads(GRILL_STATE.read_text(encoding="utf-8"))
+        bundle = sync["current_bundle"]
 
-        current_bundle = sync_state["current_bundle"]
-        self.assertEqual(
-            current_bundle["sync_id"],
-            "GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
-        )
-        self.assertEqual(current_bundle["pull_request"], 63)
-        self.assertEqual(
-            current_bundle["working_branch"],
-            "agent/glyph-vocabulary-recognition-poc",
-        )
-        self.assertEqual(
-            current_bundle["source_product_commit"],
-            "ec947f232b533d5a2acac20683287080c34a811f",
-        )
-        self.assertEqual(current_bundle["sheet_readback"], "PASS")
-        self.assertEqual(current_bundle["human_validation_protocol"], "APPROVED_NOT_RUN")
-        self.assertEqual(current_bundle["human_device_validation"], "NOT_RUN")
-        self.assertEqual(current_bundle["runtime_expansion_7_plus"], "BLOCKED")
-        self.assertFalse(current_bundle["merge_authorized"])
+        self.assertEqual(bundle["sync_id"], SYNC_ID)
+        self.assertEqual(bundle["pull_request"], 63)
+        self.assertEqual(bundle["working_branch"], "agent/glyph-vocabulary-recognition-poc")
+        self.assertEqual(bundle["sheet_readback"], "PASS")
+        self.assertEqual(bundle["human_validation_protocol"], "APPROVED_NOT_RUN")
+        self.assertEqual(bundle["visual_hx"], "COMPLETE")
+        self.assertEqual(bundle["codex"], "READY_FOR_TDD_HARNESS")
+        self.assertEqual(bundle["human_device_validation"], "NOT_RUN")
+        self.assertEqual(bundle["runtime_expansion_7_plus"], "BLOCKED")
+        self.assertFalse(bundle["merge_authorized"])
 
-        self.assertEqual(grill_state["current_count"], 4)
-        self.assertEqual(grill_state["current_work"]["pull_request"], 63)
-        self.assertEqual(
-            grill_state["current_work"]["gate"],
-            "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
-        )
-        self.assertEqual(
-            grill_state["current_work"]["human_device_validation"],
-            "NOT_RUN",
-        )
-        self.assertFalse(grill_state["current_work"]["merge_authorized"])
+        self.assertEqual(grill["current_count"], 4)
+        self.assertEqual(grill["current_work"]["pull_request"], 63)
+        self.assertEqual(grill["current_work"]["gate"], GATE)
+        self.assertEqual(grill["current_work"]["visual_hx"], "COMPLETE")
+        self.assertEqual(grill["current_work"]["codex"], "READY_FOR_TDD_HARNESS")
+        self.assertEqual(grill["current_work"]["human_device_validation"], "NOT_RUN")
+        self.assertFalse(grill["current_work"]["merge_authorized"])
 
-    def test_checkpoint_keeps_core_fun_above_recognition_accuracy(self) -> None:
+    def test_checkpoint_keeps_core_fun_and_human_boundaries(self) -> None:
         text = "\n".join(
             path.read_text(encoding="utf-8")
             for path in (CURRENT_CHECKPOINT, CURRENT_STATUS)
@@ -85,21 +75,20 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
             "EXACT_GLYPH_VAULT_AND_UNIVERSAL_GLYPH_STOCK_ARE_SUPPORT_SYSTEMS",
             "HUMAN_END_TO_END_CORE_LOOP_VALIDATION_PENDING",
             "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
+            "LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART",
         )
         for token in required:
             self.assertIn(token, text)
 
-    def test_previous_green_evidence_is_preserved(self) -> None:
-        sync_state = json.loads(CANON_SYNC_STATE.read_text(encoding="utf-8"))
-        tdd = sync_state["current_bundle"]["tdd"]
-        self.assertEqual(
-            tdd["previous_green_evidence_head"],
-            "c93c091be6827dbb6ff888ebb889e379c86407bb",
-        )
-        self.assertEqual(tdd["previous_foundation_green_workflow_run"], 31005032419)
-        self.assertEqual(tdd["previous_planning_base_green_workflow_run"], 31005032390)
-        self.assertEqual(tdd["previous_godot_toolchain_green_workflow_run"], 31005032414)
-        self.assertEqual(tdd["previous_closure_green_workflow_run"], 31005726796)
+    def test_previous_protocol_green_evidence_is_preserved(self) -> None:
+        sync = json.loads(CANON_SYNC_STATE.read_text(encoding="utf-8"))
+        bundle = sync["current_bundle"]
+        tdd = bundle["tdd"]
+        self.assertEqual(bundle["protocol_green_evidence_head"], "d9fe985ec18419f47c50bc7c7b3896e611a30e6a")
+        self.assertEqual(tdd["protocol_foundation_green_workflow_run"], 31007581881)
+        self.assertEqual(tdd["protocol_planning_base_green_workflow_run"], 31007581877)
+        self.assertEqual(tdd["protocol_godot_toolchain_green_workflow_run"], 31007581876)
+        self.assertEqual(tdd["hx_red_workflow_run"], 31009239386)
 
 
 if __name__ == "__main__":
