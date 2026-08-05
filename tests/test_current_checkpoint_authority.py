@@ -6,12 +6,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT_CHECKPOINT = ROOT / "docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md"
 CURRENT_STATUS = ROOT / "docs/planning/CANON_STATUS_INDEX_2026-08-05.md"
+DEVELOPMENT_GATES = ROOT / "docs/DEVELOPMENT_GATES.md"
 CANON_SYNC_STATE = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 GRILL_STATE = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 ENTRYPOINTS = (
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
-    ROOT / "docs/DEVELOPMENT_GATES.md",
+    DEVELOPMENT_GATES,
     ROOT / "docs/DOCUMENTATION_MAP.md",
     ROOT / "docs/planning/README.md",
 )
@@ -86,6 +87,22 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         )
         for token in required:
             self.assertIn(token, text)
+
+    def test_green_evidence_is_closed_not_pending(self) -> None:
+        sync_state = json.loads(CANON_SYNC_STATE.read_text(encoding="utf-8"))
+        tdd = sync_state["current_bundle"]["tdd"]
+        self.assertEqual(
+            tdd["green_evidence_head"],
+            "c93c091be6827dbb6ff888ebb889e379c86407bb",
+        )
+        self.assertEqual(tdd["foundation_green_workflow_run"], 31005032419)
+        self.assertEqual(tdd["planning_base_green_workflow_run"], 31005032390)
+        self.assertEqual(tdd["godot_toolchain_green_workflow_run"], 31005032414)
+        self.assertEqual(tdd["green_result"], "PASS")
+
+        gates = DEVELOPMENT_GATES.read_text(encoding="utf-8")
+        self.assertIn("GREEN_CONFIRMED_AT_C93C091B", gates)
+        self.assertNotIn("GREEN_PENDING_THIS_CHECKPOINT", gates)
 
 
 if __name__ == "__main__":
