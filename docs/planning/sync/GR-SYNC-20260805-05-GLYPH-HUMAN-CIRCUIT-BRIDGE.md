@@ -12,6 +12,7 @@ working_branch: agent/glyph-vocabulary-recognition-poc
 pull_request: 63
 source_product_commit: ec947f232b533d5a2acac20683287080c34a811f
 previous_canon_head: 0ed147518c6624d91e9e5b0c9b40bdf50e54e6ad
+protocol_green_evidence_head: d9fe985ec18419f47c50bc7c7b3896e611a30e6a
 grill_counter: 4_of_10
 human_execution: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
@@ -24,18 +25,21 @@ merge_authorized: false
 - Stage 1 Recognition·Stage 2 Core-loop Bridge Protocol.
 - 플랫폼·현업 비교와 적대 검토.
 - Current authority·Grill Batch·Sync JSON 갱신.
-- `tests/test_human_circuit_bridge_decision.py`와 CI 수집.
+- 신규 Decision 계약과 기존 Governance 계약의 PR #63·Grill 4 마이그레이션.
 
-## TDD
+## TDD·exact-head 증거
 
 ```yaml
 red_head: 84099f391e25517cb79bb249071eb709083ccfd8
 red_workflow_run: 31006599965
 red_result: EXPECTED_FAILURE_NEW_DECISION_CONTRACT_ONLY
-existing_resource_contract: PASS
-existing_vocabulary_contract: PASS
-existing_current_authority_contract: PASS
-green_workflow_run: PENDING_EXACT_HEAD
+first_green_head: f60651c0e00718cacab7f43db949d776b3db9d96
+stale_governance_contract_found: true
+final_green_evidence_head: d9fe985ec18419f47c50bc7c7b3896e611a30e6a
+foundation_green_workflow_run: 31007581881
+planning_base_green_workflow_run: 31007581877
+godot_toolchain_green_workflow_run: 31007581876
+result: PASS
 ```
 
 ## Google Sheet Write·Readback

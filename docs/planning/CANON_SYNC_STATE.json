@@ -33,6 +33,7 @@
     "base_pull_request": 62,
     "source_product_commit": "ec947f232b533d5a2acac20683287080c34a811f",
     "previous_canon_head": "0ed147518c6624d91e9e5b0c9b40bdf50e54e6ad",
+    "protocol_green_evidence_head": "d9fe985ec18419f47c50bc7c7b3896e611a30e6a",
     "working_branch_receipt": "docs/planning/sync/GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE.md",
     "sheet_ranges": [
       "00_프로젝트_허브!H2:K2",
@@ -45,7 +46,7 @@
     ],
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
-    "automated_gate": "PASS_BEFORE_PROTOCOL_CHANGE",
+    "automated_gate": "PASS",
     "human_validation_protocol": "APPROVED_NOT_RUN",
     "human_validation_mode": "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
     "evidence_scope": "SYNTHETIC_FIXTURES_PLUS_APPROVED_HUMAN_PROTOCOL_NOT_RUN",
@@ -67,7 +68,11 @@
       "protocol_red_head": "84099f391e25517cb79bb249071eb709083ccfd8",
       "protocol_red_workflow_run": 31006599965,
       "protocol_red_result": "EXPECTED_FAILURE_MISSING_APPROVAL_PROTOCOL_STATE",
-      "protocol_green_workflow_run": "PENDING_EXACT_HEAD"
+      "protocol_green_head": "d9fe985ec18419f47c50bc7c7b3896e611a30e6a",
+      "protocol_foundation_green_workflow_run": 31007581881,
+      "protocol_planning_base_green_workflow_run": 31007581877,
+      "protocol_godot_toolchain_green_workflow_run": 31007581876,
+      "protocol_green_result": "PASS"
     }
   },
   "previous_main_bundle": {

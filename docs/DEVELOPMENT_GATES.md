@@ -13,9 +13,9 @@ merge_authorized: false
 
 ## Gate 0 — 정본 동기화
 
-GitHub Decision·Protocol·적대 검토·상태 JSON과 Sheet `GR-SYNC-20260805-05`가 같은 결정을 가리켜야 한다.
+GitHub Decision·Protocol·적대 검토·상태 JSON과 Sheet가 같은 Sync ID를 가리킨다.
 
-현재: `SHEET_WRITE_READBACK_PASS / GITHUB_IMPLEMENTATION_PENDING_EXACT_HEAD_GREEN`.
+현재: `SHEET_WRITE_READBACK_PASS / GITHUB_PROTOCOL_GREEN_PASS`.
 
 ## Gate 1 — 핵심 재미
 
@@ -27,9 +27,7 @@ GitHub Decision·Protocol·적대 검토·상태 JSON과 Sheet `GR-SYNC-20260805
 
 ## Gate 2 — Resource·Recognition
 
-- PR #62 Resource Foundation 자동화 PASS.
-- PR #63 Runtime 6종 Recognition 자동화 PASS.
-- Recognition은 입력 기반이며 핵심 재미를 대신하지 않는다.
+PR #62 Resource Foundation과 PR #63 Runtime 6종 Recognition 자동화는 PASS다. Recognition은 입력 기반이며 핵심 재미를 대신하지 않는다.
 
 현재: `AUTOMATED_PASS / HUMAN_DEVICE_NOT_RUN`.
 
@@ -67,16 +65,17 @@ DUPLICATE_SAVE_OR_REWARD_ZERO_HARD_STOP
 STALE_RESULT_APPLICATION_ZERO_HARD_STOP
 ```
 
-Hard Stop 발생 시 Stage 2·7종 이상 확대·병합을 중단한다.
+## Gate 6 — TDD·PR 체크
 
-## Gate 6 — TDD
+- RED HEAD `84099f391e25517cb79bb249071eb709083ccfd8`.
+- RED Foundation `31006599965`: 기존 계약 PASS, 신규 Decision 계약만 예상 실패.
+- 첫 GREEN `f60651c0...`: 신규 계약 PASS, 구형 PR #61 강제 Governance 테스트 발견.
+- Governance 마이그레이션 HEAD `d9fe985ec18419f47c50bc7c7b3896e611a30e6a`.
+- Foundation `31007581881` PASS.
+- Planning/Base·Adversarial `31007581877` PASS.
+- Godot Toolchain `31007581876` PASS.
 
-- 신규 계약 테스트: `tests/test_human_circuit_bridge_decision.py`.
-- RED HEAD: `84099f391e25517cb79bb249071eb709083ccfd8`.
-- RED Workflow: `31006599965`.
-- 기존 Resource·Vocabulary·현재 정본 계약 PASS, 신규 Decision 계약만 예상 실패.
-
-현재: `RED_CONFIRMED / GREEN_PENDING_EXACT_HEAD`.
+현재: `GREEN_CONFIRMED_AT_D9FE985E`.
 
 ## Gate 7 — UX/HX·Codex
 
@@ -90,7 +89,7 @@ Spec·적대 검토 Gate는 완료됐다. 다음은 최종 아트가 아니라 S
 
 ## Gate 8 — 전체 Slice 대표성
 
-기존 `GR-TEST-021`의 46–53분 Internal Slice는 별도 검증이다. `GR-TEST-032` 결과로 대체하지 않는다.
+`GR-TEST-032`는 인식 원인 분리와 짧은 Bridge다. 기존 `GR-TEST-021` 46–53분 Internal Slice 대표성 검증을 대체하지 않는다.
 
 현재: `NOT_RUN`.
 
