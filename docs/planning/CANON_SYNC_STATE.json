@@ -1,5 +1,5 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -11,16 +11,8 @@
     "readback_verification_required": true,
     "change_location_and_commit_required": true
   },
-  "statuses": [
-    "SYNC_PENDING",
-    "GITHUB_ONLY",
-    "SHEET_ONLY",
-    "SYNCED_TO_WORKING_BRANCH",
-    "SYNCED_TO_MAIN",
-    "SYNC_CONFLICT"
-  ],
   "current_bundle": {
-    "sync_id": "GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
+    "sync_id": "GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX",
     "status": "SYNCED_TO_WORKING_BRANCH",
     "decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
@@ -32,55 +24,45 @@
     "working_branch": "agent/glyph-vocabulary-recognition-poc",
     "base_pull_request": 62,
     "source_product_commit": "ec947f232b533d5a2acac20683287080c34a811f",
-    "previous_canon_head": "0ed147518c6624d91e9e5b0c9b40bdf50e54e6ad",
+    "previous_sync_id": "GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE",
+    "previous_canon_head": "b03152d3af9e99405bdb4afbcf87d2b038b7db9f",
     "protocol_green_evidence_head": "d9fe985ec18419f47c50bc7c7b3896e611a30e6a",
-    "working_branch_receipt": "docs/planning/sync/GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE.md",
+    "working_branch_receipt": "docs/planning/sync/GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX.md",
     "sheet_ranges": [
       "00_프로젝트_허브!H2:K2",
-      "01_작업순서!H51:J51",
+      "01_작업순서!H52:J52",
       "02_현재_확정결정!A58:J58",
-      "04_누락_충돌_감사!E61:H61",
-      "60_UX_UI_접근성!A30:J30",
-      "80_데모_버티컬슬라이스_플레이테스트!A33:J33",
-      "99_변경이력!A75:H75"
+      "04_누락_충돌_감사!E62:H62",
+      "60_UX_UI_접근성!A31:J31",
+      "71_이미지기획_생성목록!A9:F9",
+      "99_변경이력!A76:H76"
     ],
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
-    "automated_gate": "PASS",
     "human_validation_protocol": "APPROVED_NOT_RUN",
     "human_validation_mode": "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
-    "evidence_scope": "SYNTHETIC_FIXTURES_PLUS_APPROVED_HUMAN_PROTOCOL_NOT_RUN",
+    "visual_hx": "COMPLETE",
+    "visual_hx_scope": "LOW_FIDELITY_STAGE2_VALIDATION_HARNESS",
+    "codex": "READY_FOR_TDD_HARNESS",
+    "codex_plan": "docs/superpowers/plans/2026-08-05-stage2-circuit-bridge-harness-implementation-plan.md",
     "human_device_validation": "NOT_RUN",
     "human_end_to_end_core_loop": "NOT_RUN",
     "full_vertical_slice_representativeness": "NOT_RUN",
     "runtime_expansion_7_plus": "BLOCKED",
-    "visual_hx": "REQUIRED_NEXT_FOR_STAGE_2_HARNESS",
-    "codex": "BLOCKED_BY_VISUAL_HX_AND_RUNTIME_HARNESS",
     "merge_authorized": false,
     "tdd": {
       "authority_test": "tests/test_current_checkpoint_authority.py",
       "human_protocol_test": "tests/test_human_circuit_bridge_decision.py",
-      "previous_green_evidence_head": "c93c091be6827dbb6ff888ebb889e379c86407bb",
-      "previous_foundation_green_workflow_run": 31005032419,
-      "previous_planning_base_green_workflow_run": 31005032390,
-      "previous_godot_toolchain_green_workflow_run": 31005032414,
-      "previous_closure_green_workflow_run": 31005726796,
-      "protocol_red_head": "84099f391e25517cb79bb249071eb709083ccfd8",
-      "protocol_red_workflow_run": 31006599965,
-      "protocol_red_result": "EXPECTED_FAILURE_MISSING_APPROVAL_PROTOCOL_STATE",
+      "stage2_hx_test": "tests/test_stage2_harness_ux_hx_contract.py",
       "protocol_green_head": "d9fe985ec18419f47c50bc7c7b3896e611a30e6a",
       "protocol_foundation_green_workflow_run": 31007581881,
       "protocol_planning_base_green_workflow_run": 31007581877,
       "protocol_godot_toolchain_green_workflow_run": 31007581876,
-      "protocol_green_result": "PASS"
+      "hx_red_head": "9280e9bf54f633cd8db051fbfe6809512262d29a",
+      "hx_red_workflow_run": 31009239386,
+      "hx_red_result": "EXPECTED_FAILURE_STAGE2_HX_ARTIFACTS_AND_STATE_ONLY",
+      "hx_green_workflow_run": "PENDING_EXACT_HEAD"
     }
-  },
-  "previous_main_bundle": {
-    "sync_id": "GR-SYNC-20260804-12-CLOSURE",
-    "status": "SYNCED_TO_MAIN",
-    "authority_main_commit": "a27b75ea9aabcbb84159356b857e22b3acd30a43",
-    "closure_commit": "4c50b462a8e296e24583b727ab93c82ba1e9c041",
-    "sheet_readback": "PASS"
   },
   "base_contract": {
     "project_pin": "c987647d01ad2baa028a16e03d85ddfc1572a727",
@@ -88,9 +70,9 @@
     "observed_ahead_commits": 54,
     "migration_status": "DEFERRED_TO_SEPARATE_TDD_CHANGE"
   },
-  "latest_product_gate": "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
-  "codex_status": "BLOCKED_BY_MINIMAL_STAGE_2_HARNESS_HX",
-  "implementation": "RESOURCE_AND_RECOGNITION_POC_IMPLEMENTED_PROTOCOL_APPROVED",
+  "latest_product_gate": "STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD",
+  "codex_status": "READY_FOR_STACKED_DRAFT_TDD_HARNESS",
+  "implementation": "RESOURCE_RECOGNITION_AND_HX_SPEC_READY_RUNTIME_HARNESS_NOT_IMPLEMENTED",
   "runtime_validation": "AUTOMATED_SYNTHETIC_ONLY",
   "human_validation": "NOT_RUN"
 }
