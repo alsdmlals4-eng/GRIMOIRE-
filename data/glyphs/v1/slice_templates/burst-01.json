@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "template_id": "burst-01",
+  "glyph_id": "BURST",
+  "source": "DEVELOPER_REFERENCE",
+  "strokes": [
+    [[0.18, 0.50], [0.82, 0.50]],
+    [[0.28, 0.22], [0.72, 0.78]],
+    [[0.72, 0.22], [0.28, 0.78]]
+  ]
+}
