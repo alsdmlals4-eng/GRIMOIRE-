@@ -3,8 +3,8 @@
 ```yaml
 working_pull_request: 63
 working_branch: agent/glyph-vocabulary-recognition-poc
-current_sync: GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE
-current_gate: HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN
+current_sync: GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX
+current_gate: STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD
 human_device_validation: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
 grill_counter: 4_of_10
@@ -20,9 +20,11 @@ merge_authorized: false
 5. `CURRENT_CONFIRMED_DECISIONS.md`.
 6. `GLYPH_HUMAN_CIRCUIT_BRIDGE_01_APPROVAL_2026-08-05.md`.
 7. `../validation/GLYPH_HUMAN_CIRCUIT_BRIDGE_PROTOCOL.md`.
-8. `GLYPH_HUMAN_CIRCUIT_BRIDGE_01_ADVERSARIAL_REVIEW_2026-08-05.md`.
-9. `sync/GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE.md`.
-10. `GRILL_ME_BATCH_MERGE_STATE.json`.
+8. `STAGE2_CIRCUIT_BRIDGE_HARNESS_UX_HX_2026-08-05.md`.
+9. `STAGE2_CIRCUIT_BRIDGE_HARNESS_STATE_MATRIX_2026-08-05.md`.
+10. `../superpowers/plans/2026-08-05-stage2-circuit-bridge-harness-implementation-plan.md`.
+11. `sync/GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX.md`.
+12. `GRILL_ME_BATCH_MERGE_STATE.json`.
 
 ## 승인 Decision
 
@@ -33,16 +35,12 @@ merge_authorized: false
 
 승인 Batch는 `4/10`이며 병합 권한은 없다.
 
-## 현재 검증 계획
+## 현재 Gate
 
 ```text
 STAGE_1_RECOGNITION_DIAGNOSTIC
-→ 10분 휴식
+→ SAME_PARTICIPANT_WITH_BREAK
 → STAGE_2_CORE_LOOP_BRIDGE
 ```
 
-사람·실기기 실행은 `NOT_RUN`, 전체 Vertical Slice 대표성은 별도 `NOT_RUN`이다. 모든 수치 임계값은 `TEST_VALUE`다.
-
-## 다음 작업
-
-Stage 2 최소 UX/HX 상태팩을 완성한 뒤 Codex TDD Harness로 이동한다. 사람 결과 전 7번째 Runtime 글자·최종 아트·Ready/merge를 금지한다.
+Stage 2 Low-fi UX/HX는 완료됐다. 다음은 Codex Stacked Draft TDD Harness다. 사람 실행·전체 Slice 대표성·7종 이상 확대는 `NOT_RUN / BLOCKED`다.
