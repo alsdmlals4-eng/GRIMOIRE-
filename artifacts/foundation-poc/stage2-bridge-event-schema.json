@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
+  "streams": [
+    "RECOGNITION_EVENT_STREAM",
+    "CORE_LOOP_EVENT_STREAM",
+    "MODERATOR_INTERVENTION_EVENT"
+  ],
+  "participant_identity": "ANONYMOUS_PARTICIPANT_ID_ONLY",
+  "required_session_fields": [
+    "participant_id",
+    "artifact_sha",
+    "fixture_id",
+    "hand",
+    "device_class"
+  ],
+  "first_attempt_and_post_feedback_separated": true,
+  "event_id_deduplication_required": true,
+  "raw_personal_identifier_prohibited": true,
+  "prohibited_personal_identifier_keys": [
+    "name",
+    "email",
+    "phone",
+    "contact",
+    "account",
+    "address",
+    "real_name"
+  ],
+  "human_execution": "NOT_RUN",
+  "verdict": "PASS"
+}
