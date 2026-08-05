@@ -19,11 +19,10 @@ jobs:
         run: python -m unittest tests.test_star_glyph_circuit_canon_contract -v
       - name: Validate runtime implementation and local runner contracts
         run: python -m unittest tests.test_star_runtime_implementation_contract -v
-      - name: Install verified Godot 4.7.1
+      - name: Install verified Godot 4.7.1 engine
         run: |
           python tools/setup_godot_toolchain.py \
             --install-dir .tooling/godot \
-            --with-templates \
             --json-report godot-star-runtime-toolchain-report.json
       - name: Run Godot headless runtime tests
         run: |
