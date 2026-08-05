@@ -13,9 +13,13 @@ on:
       - 'artifacts/foundation-poc/**'
       - 'docs/validation/GLYPH_RESOURCE_POC_VALIDATION_REPORT.md'
       - 'docs/validation/GLYPH_RECOGNITION_POC_REPORT.md'
+      - 'docs/validation/GLYPH_HUMAN_CIRCUIT_BRIDGE_PROTOCOL.md'
       - 'docs/planning/GLYPH_RESOURCE_POC_STOP_GATE_01_2026-08-05.md'
       - 'docs/planning/GLYPH_RECOGNITION_POC_STOP_GATE_01_2026-08-05.md'
+      - 'docs/planning/GLYPH_HUMAN_CIRCUIT_BRIDGE_01_APPROVAL_2026-08-05.md'
+      - 'docs/planning/GLYPH_HUMAN_CIRCUIT_BRIDGE_01_ADVERSARIAL_REVIEW_2026-08-05.md'
       - 'docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md'
+      - 'docs/planning/CURRENT_CONFIRMED_DECISIONS.md'
       - 'docs/planning/CANON_STATUS_INDEX_2026-08-05.md'
       - 'docs/planning/CANON_SYNC_STATE.json'
       - 'docs/planning/GRILL_ME_BATCH_MERGE_STATE.json'
@@ -50,6 +54,9 @@ jobs:
 
       - name: Validate current checkpoint authority contract
         run: python -m unittest tests.test_current_checkpoint_authority -v
+
+      - name: Validate staged human circuit bridge decision contract
+        run: python -m unittest tests.test_human_circuit_bridge_decision -v
 
       - name: Validate glyph confusion report contract
         run: python -m unittest tests.test_glyph_confusion_report -v
