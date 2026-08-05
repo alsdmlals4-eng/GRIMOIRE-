@@ -17,8 +17,8 @@ ENTRYPOINTS = (
     ROOT / "docs/planning/README.md",
 )
 
-SYNC_ID = "GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX"
-GATE = "STAGE2_HARNESS_UX_HX_READY_FOR_CODEX_TDD"
+SYNC_ID = "GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED"
+GATE = "STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN"
 
 
 class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
@@ -27,13 +27,10 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         self.assertTrue(CURRENT_STATUS.is_file())
 
     def test_active_entrypoints_route_to_current_checkpoint(self) -> None:
-        texts = {
-            path: path.read_text(encoding="utf-8")
-            for path in ENTRYPOINTS
-        }
+        texts = {path: path.read_text(encoding="utf-8") for path in ENTRYPOINTS}
         required = (
-            "working_pull_request: 63",
-            "working_branch: agent/glyph-vocabulary-recognition-poc",
+            "working_pull_request: 65",
+            "working_branch: agent/stage2-circuit-bridge-harness-poc",
             f"current_sync: {SYNC_ID}",
             f"current_gate: {GATE}",
             "human_device_validation: NOT_RUN",
@@ -51,23 +48,36 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         bundle = sync["current_bundle"]
 
         self.assertEqual(bundle["sync_id"], SYNC_ID)
-        self.assertEqual(bundle["pull_request"], 63)
-        self.assertEqual(bundle["working_branch"], "agent/glyph-vocabulary-recognition-poc")
+        self.assertEqual(bundle["pull_request"], 65)
+        self.assertEqual(bundle["working_branch"], "agent/stage2-circuit-bridge-harness-poc")
+        self.assertEqual(bundle["parent_pull_request"], 63)
+        self.assertEqual(bundle["sheet_write"], "PASS")
         self.assertEqual(bundle["sheet_readback"], "PASS")
         self.assertEqual(bundle["human_validation_protocol"], "APPROVED_NOT_RUN")
         self.assertEqual(bundle["visual_hx"], "COMPLETE")
-        self.assertEqual(bundle["codex"], "READY_FOR_TDD_HARNESS")
+        self.assertEqual(bundle["codex"], "HARNESS_IMPLEMENTED_AUTOMATED_PASS")
+        self.assertEqual(bundle["stage2_harness_automated"], "PASS")
+        self.assertEqual(bundle["headless_suite_count"], 28)
+        self.assertEqual(bundle["headless_assertion_count"], 1342)
+        self.assertEqual(bundle["headless_failure_count"], 0)
+        self.assertEqual(bundle["runtime_glyph_count"], 6)
         self.assertEqual(bundle["human_device_validation"], "NOT_RUN")
+        self.assertEqual(bundle["human_end_to_end_core_loop"], "NOT_RUN")
+        self.assertEqual(bundle["full_vertical_slice_representativeness"], "NOT_RUN")
         self.assertEqual(bundle["runtime_expansion_7_plus"], "BLOCKED")
         self.assertFalse(bundle["merge_authorized"])
 
+        current_work = grill["current_work"]
         self.assertEqual(grill["current_count"], 4)
-        self.assertEqual(grill["current_work"]["pull_request"], 63)
-        self.assertEqual(grill["current_work"]["gate"], GATE)
-        self.assertEqual(grill["current_work"]["visual_hx"], "COMPLETE")
-        self.assertEqual(grill["current_work"]["codex"], "READY_FOR_TDD_HARNESS")
-        self.assertEqual(grill["current_work"]["human_device_validation"], "NOT_RUN")
-        self.assertFalse(grill["current_work"]["merge_authorized"])
+        self.assertEqual(current_work["pull_request"], 65)
+        self.assertEqual(current_work["working_branch"], "agent/stage2-circuit-bridge-harness-poc")
+        self.assertEqual(current_work["gate"], GATE)
+        self.assertEqual(current_work["visual_hx"], "COMPLETE")
+        self.assertEqual(current_work["codex"], "HARNESS_IMPLEMENTED_AUTOMATED_PASS")
+        self.assertEqual(current_work["stage2_harness_automated"], "PASS")
+        self.assertEqual(current_work["sheet_readback"], "PASS")
+        self.assertEqual(current_work["human_device_validation"], "NOT_RUN")
+        self.assertFalse(current_work["merge_authorized"])
 
     def test_checkpoint_keeps_core_fun_and_human_boundaries(self) -> None:
         text = "\n".join(
@@ -81,19 +91,27 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
             "HUMAN_END_TO_END_CORE_LOOP_VALIDATION_PENDING",
             "C_STAGED_RECOGNITION_THEN_CORE_LOOP",
             "LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART",
+            "STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN",
+            "HUMAN_DEVICE_VALIDATION_NOT_RUN",
+            "FULL_VERTICAL_SLICE_REPRESENTATIVENESS_NOT_RUN",
         )
         for token in required:
             self.assertIn(token, text)
 
-    def test_previous_protocol_green_evidence_is_preserved(self) -> None:
+    def test_previous_protocol_hx_and_harness_evidence_is_preserved(self) -> None:
         sync = json.loads(CANON_SYNC_STATE.read_text(encoding="utf-8"))
         bundle = sync["current_bundle"]
         tdd = bundle["tdd"]
         self.assertEqual(bundle["protocol_green_evidence_head"], "d9fe985ec18419f47c50bc7c7b3896e611a30e6a")
-        self.assertEqual(tdd["protocol_foundation_green_workflow_run"], 31007581881)
-        self.assertEqual(tdd["protocol_planning_base_green_workflow_run"], 31007581877)
-        self.assertEqual(tdd["protocol_godot_toolchain_green_workflow_run"], 31007581876)
-        self.assertEqual(tdd["hx_red_workflow_run"], 31009239386)
+        self.assertEqual(bundle["hx_green_evidence_head"], "a892ddf83abfe3e41809579e9b09f4f0078776db")
+        self.assertEqual(bundle["harness_green_evidence_head"], "ffbd769ecdf1ca1a4f7c06101d0d8215ac8a387e")
+        self.assertEqual(tdd["core_missing_files_red_run"], 31013920871)
+        self.assertEqual(tdd["bridge_red_run"], 31014687639)
+        self.assertEqual(tdd["adversarial_red_run"], 31015197871)
+        self.assertEqual(tdd["evidence_red_run"], 31015782924)
+        self.assertEqual(tdd["foundation_green_workflow_run"], 31016191300)
+        self.assertEqual(tdd["planning_base_green_workflow_run"], 31016191141)
+        self.assertEqual(tdd["godot_toolchain_green_workflow_run"], 31016191132)
 
 
 if __name__ == "__main__":
