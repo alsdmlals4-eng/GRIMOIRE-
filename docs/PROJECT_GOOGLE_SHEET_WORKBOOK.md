@@ -59,6 +59,8 @@ assertions: 1137
 failures: 0
 ```
 
+요약: `31 Suites / 1,137 assertions / 0 failures`.
+
 ## 책임 원본
 
 - 현재 결정: `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
