@@ -12,6 +12,8 @@ jobs:
       - run: python tools/generate_project_operating_views.py --check
       - run: python -m unittest tests.test_base_v9_adoption
       - run: python -m unittest tests.test_star_glyph_circuit_canon_contract -v
+      - run: python -m unittest tests.test_star_runtime_implementation_contract -v
+      - run: python -m unittest tests.test_star_runtime_completion_contract -v
       - name: Validate JSON
         run: |
           python - <<'PY'
@@ -87,8 +89,16 @@ jobs:
       - run: |
           git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}" > changed.txt
           if grep -E '^(src/|scenes/|data/|assets/|addons/|project\.godot$)' changed.txt; then
-            echo "product implementation changed in planning-only PR"
-            exit 1
+            echo "product implementation detected; enforcing runtime implementation gates"
+            test -f project.godot
+            test -f .github/workflows/validate-star-runtime-poc.yml
+            test -f tests/test_star_runtime_implementation_contract.py
+            test -f tests/test_star_runtime_completion_contract.py
+            python -m unittest tests.test_star_runtime_implementation_contract -v
+            python -m unittest tests.test_star_runtime_completion_contract -v
+            ! find src -type f \( -path '*/stage2/*' -o -name 'stage2_*' \) | grep .
+          else
+            echo "planning-only change; product implementation paths absent"
           fi
           test -f skills/PROJECT_BASE_ADAPTER.json
           test -f skills/PROJECT_SKILL_SNAPSHOT.json

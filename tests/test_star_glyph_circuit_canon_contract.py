@@ -6,8 +6,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DECISION = "GM-STAR-CIRCUIT-MASTERY-BALANCE-01"
-SYNC = "GR-SYNC-20260806-01"
-MAIN_AUTHORITY = "6ee87a452ebb5793fb6739249287dfd537f4ee89"
+SYNC = "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION"
+MAIN_AUTHORITY = "2012a9f4c2da09a1defec07f8d8f7a0d3c867d93"
+PREVIOUS_MAIN_SYNC = "GR-SYNC-20260806-01-MAIN"
 SPEC = "docs/superpowers/specs/2026-08-06-star-glyph-circuit-mastery-balance-design.md"
 ACTIVE_AUTHORITY = (
     "AGENTS.md",
@@ -16,16 +17,6 @@ ACTIVE_AUTHORITY = (
     "docs/DEVELOPMENT_GATES.md",
     "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
-)
-MAIN_STATUS_AUTHORITY = (
-    "AGENTS.md",
-    "START_HERE.md",
-    "docs/ACTIVE_CONTEXT.md",
-    "docs/DEVELOPMENT_GATES.md",
-    "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
-    "docs/planning/CANON_STATUS_INDEX_2026-08-04.md",
-    "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
-    "docs/planning/sync/GR-SYNC-20260806-01-MAIN.md",
 )
 
 
@@ -53,21 +44,6 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
             for token in stale_tokens:
                 self.assertNotIn(token, text, f"{path}: stale token {token}")
 
-    def test_main_status_authority_is_finalized(self) -> None:
-        stale_status_tokens = (
-            "WORKING_BRANCH_GITHUB_AND_SHEET_SYNC_IN_PROGRESS",
-            "current_working_sync:",
-            "main_sync: NOT_MERGED",
-        )
-        for path in MAIN_STATUS_AUTHORITY:
-            text = self.read(path)
-            self.assertIn(DECISION, text, path)
-            self.assertIn(SYNC, text, path)
-            self.assertIn(MAIN_AUTHORITY, text, path)
-            self.assertIn("SYNCED_TO_MAIN", text, path)
-            for token in stale_status_tokens:
-                self.assertNotIn(token, text, f"{path}: stale status token {token}")
-
     def test_numeric_complexity_contract_is_present(self) -> None:
         circuit = self.read("docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md")
         mana = self.read("docs/planning/MANA_SYSTEM.md")
@@ -84,33 +60,60 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
         self.assertIn("GM-3X3-CIRCUIT-STOCK-FOCUS-01", status)
         self.assertIn("SUPERSEDED_BY_GM-STAR-CIRCUIT-MASTERY-BALANCE-01", status)
 
-    def test_registry_points_to_new_spec_and_main_sync(self) -> None:
-        registry = json.loads(
-            (ROOT / "docs/DESIGN_DOCUMENT_REGISTRY.json").read_text(encoding="utf-8")
-        )
+    def test_registry_points_to_current_runtime_completion(self) -> None:
+        registry = json.loads((ROOT / "docs/DESIGN_DOCUMENT_REGISTRY.json").read_text(encoding="utf-8"))
         encoded = json.dumps(registry, ensure_ascii=False)
-        self.assertIn(DECISION, encoded)
-        self.assertIn(SPEC, encoded)
-        self.assertIn(MAIN_AUTHORITY, encoded)
-        self.assertIn("SYNCED_TO_MAIN", encoded)
+        for token in (
+            DECISION,
+            SPEC,
+            SYNC,
+            "src/core/resources/typed_glyph_stock_pool.gd",
+            "docs/planning/FOCUS_SCRIBING_OVERLAY_01_APPROVAL_2026-08-06.md",
+            "STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
+        ):
+            self.assertIn(token, encoded)
 
-    def test_sheet_workbook_routes_to_main_sync(self) -> None:
+    def test_rebase_preserves_latest_main_authority(self) -> None:
+        combined = "\n".join(self.read(path) for path in (
+            "AGENTS.md",
+            "docs/planning/CANON_STATUS_INDEX_2026-08-04.md",
+            "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+            "docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION.md",
+        ))
+        self.assertIn(MAIN_AUTHORITY, combined)
+        self.assertIn(PREVIOUS_MAIN_SYNC, combined)
+        self.assertNotIn("main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89", combined)
+
+    def test_sheet_workbook_routes_to_runtime_completion_sync(self) -> None:
         workbook = self.read("docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md")
         for token in (
             DECISION,
             SYNC,
-            MAIN_AUTHORITY,
-            "SYNCED_TO_MAIN",
+            "SYNCED_TO_WORKING_BRANCH",
             "sheet_readback: PASS",
-            "product_implementation: NOT_STARTED",
-            "runtime_validation: NOT_RUN",
+            "product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
+            "runtime_validation: AUTOMATED_HEADLESS_PASS",
+            "mobile_device_validation: NOT_RUN",
+            "human_validation: NOT_RUN",
+            "31 Suites",
+            "1,137 assertions",
         ):
             self.assertIn(token, workbook)
 
-    def test_runtime_state_is_not_overclaimed(self) -> None:
-        decisions = self.read("docs/planning/CURRENT_CONFIRMED_DECISIONS.md")
-        self.assertIn("product_implementation: NOT_STARTED", decisions)
-        self.assertIn("runtime_validation: NOT_RUN", decisions)
+    def test_runtime_state_is_honest_and_current(self) -> None:
+        combined = "\n".join(self.read(path) for path in ACTIVE_AUTHORITY[:5])
+        for token in (
+            SYNC,
+            "product_project: CREATED",
+            "product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
+            "runtime_validation: AUTOMATED_HEADLESS_PASS",
+            "mobile_device_validation: NOT_RUN",
+            "performance_validation: NOT_RUN",
+            "human_validation: NOT_RUN",
+            "PLAYTEST_TUNING_REQUIRED",
+        ):
+            self.assertIn(token, combined)
+        self.assertNotIn("product_implementation: NOT_STARTED", combined)
 
 
 if __name__ == "__main__":

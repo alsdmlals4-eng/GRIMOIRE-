@@ -4,21 +4,16 @@
 
 | 항목 | 기준 |
 |---|---|
-| 프로젝트 | `GRIMOIRE: 세계를 다시 쓰는 법` |
 | 플랫폼 | `Mobile / Landscape Fixed`, 후속 `PC` |
-| 제품 단계 | `DEMO_FIRST_VERTICAL_SLICE` |
-| Base | `v9.4.3` |
-| Main 정본 커밋 | `6ee87a452ebb5793fb6739249287dfd537f4ee89` |
-| 이전 Main Sync | `GR-SYNC-20260804-12-CLOSURE` |
-| 현재 Main Sync | `GR-SYNC-20260806-01` |
-| 병합 PR | `#68` |
 | 최신 Decision | `GM-STAR-CIRCUIT-MASTERY-BALANCE-01` |
-| 정본 상태 | `SYNCED_TO_MAIN` |
-| Sheet Readback | `PASS` |
-| 제품 Godot 프로젝트 | `NOT_CREATED` |
-| Runtime·Device·Performance·Accessibility·Human | `NOT_RUN` |
-
-새 결정은 3×3 회로의 위상·대상 노드·일반 보조 2개 상한·숫자 성공률 금지를 대체한다. Typed glyph Stock, 명시적 Commit, 자동 대상·자동 Commit 금지, 모든 주문 마나 소모는 유지한다.
+| Working Sync | `GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION` |
+| PR | `#69 / merge authorized` |
+| 제품 Godot 프로젝트 | `CREATED` |
+| 제품 구현 | `STAR_RUNTIME_COMPLETION_AUTOMATED_PASS` |
+| Runtime | `31 Suites / 1,137 assertions / 0 failures` |
+| Sheet | `WRITE_AND_READBACK_PASS` |
+| Mobile Device·Performance·A11y Device·Human | `NOT_RUN` |
+| Prototype 수치 | `PLAYTEST_TUNING_REQUIRED` |
 
 ## 읽기 순서
 
@@ -27,59 +22,43 @@
 3. `docs/DEVELOPMENT_GATES.md`
 4. `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`
 5. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-6. `docs/planning/STAR_GLYPH_CIRCUIT_MASTERY_BALANCE_01_APPROVAL_2026-08-06.md`
-7. `docs/superpowers/specs/2026-08-06-star-glyph-circuit-mastery-balance-design.md`
-8. `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`
-9. `docs/planning/MANA_SYSTEM.md`
-10. `docs/planning/SUPPORT_LETTER_MASTERY_SYSTEM.md`
-11. `docs/planning/sync/GR-SYNC-20260806-01-MAIN.md`
+6. 별형 회로 승인·Spec·회로·마나·숙련·Stock 책임 원본
+7. `docs/planning/STAR_CIRCUIT_MOBILE_LANDSCAPE_WIREFRAME_01_APPROVAL_2026-08-06.md`
+8. `docs/planning/SPELL_RESOLUTION_PARTIAL_FAILURE_BACKLASH_01_APPROVAL_2026-08-06.md`
+9. `docs/planning/FOCUS_SCRIBING_OVERLAY_01_APPROVAL_2026-08-06.md`
+10. `docs/planning/FROSTBLOOM_STAR_CIRCUIT_UX_MAP_01_APPROVAL_2026-08-06.md`
+11. `docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION.md`
+12. `docs/validation/GODOT_STAR_RUNTIME_TEST_GUIDE_2026-08-06.md`
 
-## 핵심 재미
-
-> 상황을 조사하고 의도를 정한 뒤, 글자·별형 회로·대상 키워드로 주문을 설계하고 결과와 대가를 책임진다.
+## 핵심 흐름
 
 ```text
-조사 → 의도 → 별형 글자 회로 → 회로 Preview → 대상 키워드 → 최종 Preview → Commit → 변화 → 복기
+조사 → 의도 → FIVE_POINT_STAR → 회로 Preview → 대상 키워드 → 최종 성공률·마나·위험 Preview → 명시 Commit → 결과·대가 → 복기
 ```
 
-## FIVE_POINT_STAR 주문
+중앙 메인 1개와 동등한 외곽 보조 0~5개를 사용한다. Target은 회로 밖 키워드이며 자동 추천하지 않는다. Vault·같은 glyph_id Typed Stock·Mana·결과는 Commit에서 원자 처리하고 Cancel·검증 실패·중복 Commit은 추가 소비하지 않는다.
 
-```yaml
-layout: FIVE_POINT_STAR
-main: exactly_1_center
-auxiliaries: 0_to_5_vertices
-target: selected_after_circuit_preview_by_keyword
-numeric_success_preview: required
-hidden_vertex_bonus: prohibited
+## 바로 테스트
+
+Windows 저장소 루트:
+
+```powershell
+py -3 tools/run_star_runtime.py
+py -3 tools/run_star_runtime.py --run --skip-setup
+py -3 tools/run_star_runtime.py --editor --skip-setup
 ```
 
-보조 슬롯은 최대 용량이며 전부 채우지 않아도 된다. 대상은 회로 안에 배치하지 않는다.
+F5/F6 및 직접 Run의 Main Scene은 `res://src/ui/star_circuit_harness.tscn`이다.
 
-## 숙련도·복잡도
+## 구현 확인 항목
 
-- 각 메인·보조 글자는 `0~100` 독립 숙련도를 가진다.
-- 직접 그리기·의미 있는 사용·수업·연습·과제·연구로 숙련한다.
-- 학년은 성공률을 직접 더하지 않고 수업 접근과 숙련도 상한을 연다.
-- 보조 0~5개의 성공률 패널티: `0,-10,-20,-30,-40,-50%p`.
-- 보조 0~5개의 마나 가산: `0,+10,+20,+30,+40,+50%`.
-- `PRECISION`: 마나 `+25%`, 성공률 `정밀 숙련도÷10%p`.
-- `REDUCTION`: 마나 `10%+절감 숙련도÷10` 감소, 성공률 직접 보너스 없음.
-- 1학년 집중 숙련 기준: 보조 1개 안정, 보조 2개 60% 안정권 경계.
+- 중앙 Main·외곽 5·빈 보조 슬롯.
+- 숙련도·성공률·Mana Breakdown과 원인 글자 경고.
+- Mana 부족·불안정 회로·접근성 입력 상태.
+- 회로 Preview 이후 Target Keyword, 이후 최종 Preview와 Commit.
+- Typed Stock의 glyph_id 격리.
+- 부분 성공·불완전 실행·실패·역류의 설명 가능한 결과.
+- 집중 필사의 실제 시간 Mana·동일 글자 Stock+1·취소 무환불.
+- Frostbloom의 다중 해결과 교수 예시 비정답.
 
-## Stock·필사
-
-- 특정 글자 Stock 1개는 같은 글자 1회 입력을 대체한다.
-- 모든 주문 Commit은 마나를 사용한다.
-- 완성 주문 원터치 Stock은 사용하지 않는다.
-- 직접 그리기와 Stock은 같은 주문 결과·마나·성공 공식을 사용한다.
-- 직접 그리기는 숙련도 근거이며 숨은 위력 보너스가 아니다.
-
-## 다음 작업
-
-1. 별형 회로 Mobile Landscape Wireframe.
-2. 부분 성공·실패·역류 세부 규칙.
-3. 집중 필사 Overlay.
-4. Frostbloom UX Map.
-5. 제품 프로젝트 생성 후 테스트 우선 구현 계획.
-
-제품 구현과 Runtime 검증은 아직 시작하지 않는다.
+자동 PASS는 Low-fi Runtime 계약 증거다. 실제 Touch·Stylus·기기 성능·Screen Reader·사람 핵심 재미·Full Slice는 검증되지 않았다.

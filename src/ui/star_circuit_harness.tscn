@@ -1,0 +1,198 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource path="res://src/ui/star_circuit_harness.gd" type="Script" id="1"]
+
+[node name="StarCircuitHarness" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="SafeArea" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterGlyph" type="Button" parent="SafeArea"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 284.0
+offset_right = 704.0
+offset_bottom = 412.0
+custom_minimum_size = Vector2(48, 48)
+text = "MAIN"
+tooltip_text = "Main glyph: exactly one"
+
+[node name="StarVertices" type="Control" parent="SafeArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Vertex0" type="Button" parent="SafeArea/StarVertices"]
+offset_left = 600.0
+offset_top = 80.0
+offset_right = 680.0
+offset_bottom = 160.0
+custom_minimum_size = Vector2(48, 48)
+text = "A0"
+tooltip_text = "Optional auxiliary glyph 1 of 5"
+
+[node name="Vertex1" type="Button" parent="SafeArea/StarVertices"]
+offset_left = 820.0
+offset_top = 240.0
+offset_right = 900.0
+offset_bottom = 320.0
+custom_minimum_size = Vector2(48, 48)
+text = "A1"
+tooltip_text = "Optional auxiliary glyph 2 of 5"
+
+[node name="Vertex2" type="Button" parent="SafeArea/StarVertices"]
+offset_left = 740.0
+offset_top = 500.0
+offset_right = 820.0
+offset_bottom = 580.0
+custom_minimum_size = Vector2(48, 48)
+text = "A2"
+tooltip_text = "Optional auxiliary glyph 3 of 5"
+
+[node name="Vertex3" type="Button" parent="SafeArea/StarVertices"]
+offset_left = 460.0
+offset_top = 500.0
+offset_right = 540.0
+offset_bottom = 580.0
+custom_minimum_size = Vector2(48, 48)
+text = "A3"
+tooltip_text = "Optional auxiliary glyph 4 of 5"
+
+[node name="Vertex4" type="Button" parent="SafeArea/StarVertices"]
+offset_left = 380.0
+offset_top = 240.0
+offset_right = 460.0
+offset_bottom = 320.0
+custom_minimum_size = Vector2(48, 48)
+text = "A4"
+tooltip_text = "Optional auxiliary glyph 5 of 5"
+
+[node name="CircuitPreviewPanel" type="PanelContainer" parent="SafeArea"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 336.0
+offset_bottom = 112.0
+
+[node name="Label" type="Label" parent="SafeArea/CircuitPreviewPanel"]
+text = "Circuit Preview"
+autowrap_mode = 2
+
+[node name="TargetKeywordPanel" type="PanelContainer" parent="SafeArea"]
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 336.0
+offset_bottom = 224.0
+
+[node name="Label" type="Label" parent="SafeArea/TargetKeywordPanel"]
+text = "Target Keywords · available after circuit preview"
+autowrap_mode = 2
+
+[node name="MasteryPanel" type="PanelContainer" parent="SafeArea"]
+offset_left = 16.0
+offset_top = 240.0
+offset_right = 336.0
+offset_bottom = 400.0
+
+[node name="Label" type="Label" parent="SafeArea/MasteryPanel"]
+text = "Mastery\n--"
+autowrap_mode = 2
+
+[node name="BreakdownPanel" type="PanelContainer" parent="SafeArea"]
+offset_left = 920.0
+offset_top = 160.0
+offset_right = 1232.0
+offset_bottom = 344.0
+
+[node name="Label" type="Label" parent="SafeArea/BreakdownPanel"]
+text = "Success: --\nMana: --"
+autowrap_mode = 2
+
+[node name="WarningPanel" type="PanelContainer" parent="SafeArea"]
+offset_left = 920.0
+offset_top = 360.0
+offset_right = 1232.0
+offset_bottom = 448.0
+
+[node name="Label" type="Label" parent="SafeArea/WarningPanel"]
+text = "WARNING: none"
+autowrap_mode = 2
+
+[node name="FinalPreviewPanel" type="PanelContainer" parent="SafeArea"]
+offset_left = 920.0
+offset_top = 16.0
+offset_right = 1232.0
+offset_bottom = 144.0
+
+[node name="Label" type="Label" parent="SafeArea/FinalPreviewPanel"]
+text = "Success --% · Mana --"
+autowrap_mode = 2
+
+[node name="InsufficientManaState" type="PanelContainer" parent="SafeArea"]
+visible = false
+offset_left = 352.0
+offset_top = 16.0
+offset_right = 904.0
+offset_bottom = 72.0
+
+[node name="Label" type="Label" parent="SafeArea/InsufficientManaState"]
+text = "INSUFFICIENT MANA"
+horizontal_alignment = 1
+
+[node name="UnstableCircuitState" type="PanelContainer" parent="SafeArea"]
+visible = false
+offset_left = 352.0
+offset_top = 80.0
+offset_right = 904.0
+offset_bottom = 136.0
+
+[node name="Label" type="Label" parent="SafeArea/UnstableCircuitState"]
+text = "UNSTABLE CIRCUIT"
+horizontal_alignment = 1
+
+[node name="AccessibilityInputPanel" type="PanelContainer" parent="SafeArea"]
+offset_left = 16.0
+offset_top = 416.0
+offset_right = 336.0
+offset_bottom = 520.0
+
+[node name="Label" type="Label" parent="SafeArea/AccessibilityInputPanel"]
+text = "ACCESSIBLE INPUT · Tap / Guided trace / Stylus"
+autowrap_mode = 2
+
+[node name="CancelButton" type="Button" parent="SafeArea"]
+offset_left = 920.0
+offset_top = 560.0
+offset_right = 1008.0
+offset_bottom = 624.0
+custom_minimum_size = Vector2(48, 48)
+text = "CANCEL"
+tooltip_text = "Cancel without resource mutation"
+
+[node name="CommitButton" type="Button" parent="SafeArea"]
+offset_left = 1024.0
+offset_top = 560.0
+offset_right = 1216.0
+offset_bottom = 624.0
+custom_minimum_size = Vector2(48, 48)
+text = "COMMIT"
+tooltip_text = "Explicit commit after final preview"
