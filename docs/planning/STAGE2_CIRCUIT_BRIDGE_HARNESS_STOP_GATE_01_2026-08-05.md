@@ -20,19 +20,30 @@ grill_counter: 4_of_10
 ## 통과한 자동 Gate
 
 - `STRICT_RED_GREEN_REFACTOR` 이력 보존.
-- `28_GODOT_SUITES`·`1342_ASSERTIONS`·0 failures.
+- `28_GODOT_SUITES`·`1343_ASSERTIONS`·0 failures.
 - 기존 Resource·Recognition·Authority·Protocol·UX/HX 회귀 0.
 - Runtime 글자 정확히 6종.
 - 상황 Fixture 정확히 2종이며 복수 해결 Frame 유지.
 - Recognition 결과는 Exact Vault에만 저장.
 - stale·low-confidence·선택 불일치 차단.
-- 3×3 회로 인접·도달·Target Leaf·출처 규칙 통과.
+- 3×3 회로 인접·도달·Target Leaf·출처·교차 간선 금지 규칙 통과.
 - Preview 자원 변경 0.
 - Commit은 별도 확인 이후 1회만 실행.
 - Cancel·중복 Confirm 추가 Mutation 0.
 - Active Stroke 중 Writing Canvas 입력 독점.
 - Android 48dp·iOS 44pt·Text Scale·Reduced Motion 자동 계약 통과.
 - Recognition/Core-loop/Moderator Stream 분리와 원시 PII 차단.
+
+## 코드 리뷰 보완 증거
+
+```yaml
+crossing_edges_red_head: c60d4913faee9927f48133ec216dbd7256b666f9
+crossing_edges_red_run: 31018302521
+crossing_edges_green_head: f703e29266f8965a34beded9cb4ebdcd0cc1ed3f
+crossing_edges_green_foundation_run: 31018467326
+```
+
+적대 코드 리뷰에서 정본의 `crossing_edges: prohibited`가 최소 Validator에 누락된 것을 발견했다. 회귀 테스트를 먼저 추가해 기존 1,342 assertions는 통과하고 신규 교차 간선 테스트 1건만 RED임을 확인한 뒤, 공유 끝점이 없는 선분 교차를 차단해 1,343 assertions GREEN으로 전환했다.
 
 ## Hard Stop 유지
 
