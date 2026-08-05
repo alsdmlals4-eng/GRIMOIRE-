@@ -9,6 +9,7 @@ CURRENT_STATUS = ROOT / "docs/planning/CANON_STATUS_INDEX_2026-08-05.md"
 CANON_SYNC_STATE = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 GRILL_STATE = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 ENTRYPOINTS = (
+    ROOT / "AGENTS.md",
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
     ROOT / "docs/DEVELOPMENT_GATES.md",
@@ -26,7 +27,10 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
         self.assertTrue(CURRENT_STATUS.is_file())
 
     def test_active_entrypoints_route_to_current_checkpoint(self) -> None:
-        text = "\n".join(path.read_text(encoding="utf-8") for path in ENTRYPOINTS)
+        texts = {
+            path: path.read_text(encoding="utf-8")
+            for path in ENTRYPOINTS
+        }
         required = (
             "working_pull_request: 63",
             "working_branch: agent/glyph-vocabulary-recognition-poc",
@@ -37,8 +41,9 @@ class CurrentCheckpointAuthorityContractTests(unittest.TestCase):
             "grill_counter: 4_of_10",
             "merge_authorized: false",
         )
-        for token in required:
-            self.assertIn(token, text)
+        for path, text in texts.items():
+            for token in required:
+                self.assertIn(token, text, f"{path} missing {token}")
 
     def test_machine_state_tracks_same_sync_and_preserves_gates(self) -> None:
         sync = json.loads(CANON_SYNC_STATE.read_text(encoding="utf-8"))
