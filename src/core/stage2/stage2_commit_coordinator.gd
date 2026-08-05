@@ -10,6 +10,7 @@ var _ledger = null
 var _mana = null
 var _service = null
 var _request_script = null
+var _recorder = null
 var _plan: Dictionary = {}
 var _committed_result: Dictionary = {}
 
@@ -41,6 +42,13 @@ static func create(state, validator, ledger, mana, service, request_script):
     coordinator._service = service
     coordinator._request_script = request_script
     return coordinator
+
+
+func attach_event_recorder(recorder) -> bool:
+    if recorder == null or not recorder.has_method(&"record"):
+        return false
+    _recorder = recorder
+    return true
 
 
 func prepare_preview(
@@ -85,6 +93,12 @@ func prepare_preview(
         "validation": validation.duplicate(true),
     }
     _committed_result.clear()
+    _record_core_event(&"preview", {
+        "state": &"PREVIEW_READY",
+        "mana_cost": mana_cost,
+        "node_count": nodes.size(),
+        "edge_count": edges.size(),
+    })
     return {
         "status": &"PREVIEW_READY",
         "transaction_id": transaction_id,
@@ -95,11 +109,17 @@ func prepare_preview(
 
 
 func request_confirmation() -> bool:
-    return not _plan.is_empty() and _state.request_commit_confirmation()
+    var accepted: bool = not _plan.is_empty() and _state.request_commit_confirmation()
+    if accepted:
+        _record_core_event(&"confirm", {"state": &"COMMIT_CONFIRM"})
+    return accepted
 
 
 func cancel_confirmation() -> bool:
-    return _state.cancel_commit_confirmation()
+    var cancelled: bool = _state.cancel_commit_confirmation()
+    if cancelled:
+        _record_core_event(&"cancel", {"state": &"PREVIEW_READY", "mutation": 0})
+    return cancelled
 
 
 func confirm_commit() -> Dictionary:
@@ -148,10 +168,18 @@ func confirm_commit() -> Dictionary:
     var result: Dictionary = _service.commit(request, _ledger, _mana)
     if result.get("status", &"") != &"COMMITTED":
         _release_nodes(reserved_nodes)
+        _record_core_event(&"commit_failed", {
+            "state": &"COMMIT_CONFIRM",
+            "status": result.get("status", &"UNKNOWN"),
+        })
         return result
 
     _state.transition_to(_state.State.SYSTEM_RESOLVE)
     _committed_result = result.duplicate(true)
+    _record_core_event(&"commit", {
+        "state": &"SYSTEM_RESOLVE",
+        "status": &"COMMITTED",
+    })
     return _committed_result.duplicate(true)
 
 
@@ -166,3 +194,15 @@ func _source_value(source_name: StringName) -> int:
 func _release_nodes(node_ids: Array[StringName]) -> void:
     for node_id in node_ids:
         _ledger.release_node(node_id)
+
+
+func _record_core_event(suffix: StringName, payload: Dictionary) -> void:
+    if _recorder == null or _plan.is_empty():
+        return
+    var transaction_id := StringName(_plan.get("transaction_id", &""))
+    if transaction_id.is_empty():
+        return
+    var event_id := StringName("%s:%s" % [String(transaction_id), String(suffix)])
+    var event := payload.duplicate(true)
+    event["transaction_id"] = transaction_id
+    _recorder.record(&"CORE_LOOP_EVENT_STREAM", event_id, event)
