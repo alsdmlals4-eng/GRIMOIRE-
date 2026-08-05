@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "runtime_glyph_ids": [
+    "HEAT",
+    "PROTECT",
+    "FLOW",
+    "FOCUS",
+    "DISPERSE",
+    "BURST"
+  ],
+  "fixtures": [
+    {
+      "fixture_id": "SCENARIO_A_NONCOMBAT_PROTECT_CONTROL",
+      "objective": "Keep the classroom ward intact while students evacuate.",
+      "threat": "Three cracks are spreading across the ward boundary.",
+      "situation": "The ward is unstable but no hostile creature is present.",
+      "targets": ["WARD_CORE", "NORTH_CRACK", "SOUTH_CRACK"],
+      "allowed_runtime_glyph_ids": ["HEAT", "PROTECT", "FLOW", "FOCUS", "DISPERSE", "BURST"],
+      "solution_frames": [
+        {
+          "intent": "STABILIZE_AND_PROTECT",
+          "main_candidates": ["PROTECT"],
+          "support_candidates": ["FLOW", "FOCUS"]
+        },
+        {
+          "intent": "CONTROL_SPREAD_THEN_REINFORCE",
+          "main_candidates": ["FLOW", "PROTECT"],
+          "support_candidates": ["FOCUS", "DISPERSE"]
+        }
+      ],
+      "consequence_frame": {
+        "success": "The chosen circuit slows the cracks and preserves the evacuation route.",
+        "cost": "Mana and selected Vault or Stock resources are consumed only after confirmation."
+      }
+    },
+    {
+      "fixture_id": "SCENARIO_B_PRESSURED_FIELD_RESPONSE",
+      "objective": "Open a safe route through a collapsing practice field.",
+      "threat": "Pressure waves are closing the route and the timer continues during editing.",
+      "situation": "Two allies and one unstable obstacle require a rapid but deliberate response.",
+      "targets": ["ALLY_A", "ALLY_B", "BLOCKING_DEBRIS"],
+      "allowed_runtime_glyph_ids": ["HEAT", "PROTECT", "FLOW", "FOCUS", "DISPERSE", "BURST"],
+      "solution_frames": [
+        {
+          "intent": "CREATE_PROTECTED_ROUTE",
+          "main_candidates": ["PROTECT", "FLOW"],
+          "support_candidates": ["DISPERSE", "FOCUS"]
+        },
+        {
+          "intent": "CLEAR_OBSTACLE_WITH_CONTROLLED_FORCE",
+          "main_candidates": ["BURST", "DISPERSE"],
+          "support_candidates": ["PROTECT", "FLOW"]
+        }
+      ],
+      "consequence_frame": {
+        "success": "The route changes according to target order, circuit meaning, and accepted cost.",
+        "cost": "A faster solution may preserve time while spending different resources or exposing risk."
+      }
+    }
+  ]
+}
