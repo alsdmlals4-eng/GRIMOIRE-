@@ -57,6 +57,9 @@ class HumanCircuitBridgeDecisionContractTests(unittest.TestCase):
             "ACCIDENTAL_COMMIT_ZERO_HARD_STOP",
             "RUNTIME_EXPANSION_7_PLUS_BLOCKED",
             "ALL_NUMERIC_THRESHOLDS_ARE_TEST_VALUE",
+            "STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN",
+            "HUMAN_DEVICE_VALIDATION_NOT_RUN",
+            "HUMAN_END_TO_END_CORE_LOOP_NOT_RUN",
         ):
             self.assertIn(token, text)
 
@@ -69,15 +72,21 @@ class HumanCircuitBridgeDecisionContractTests(unittest.TestCase):
         self.assertIn(DECISION_ID, grill["counter"]["pending_decision_ids"])
         self.assertEqual(grill["current_work"]["latest_approved_decision_id"], DECISION_ID)
         self.assertEqual(grill["current_work"]["human_validation_protocol"], "STAGED_HYBRID_APPROVED_NOT_RUN")
+        self.assertEqual(grill["current_work"]["stage2_harness_automated"], "PASS")
+        self.assertEqual(grill["current_work"]["human_device_validation"], "NOT_RUN")
         self.assertFalse(grill["counter"]["merge_required"])
         self.assertFalse(grill["counter"]["merge_authorized"])
 
         bundle = sync["current_bundle"]
-        self.assertEqual(bundle["sync_id"], "GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX")
-        self.assertEqual(bundle["previous_sync_id"], "GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE")
+        self.assertEqual(bundle["sync_id"], "GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED")
+        self.assertEqual(bundle["previous_sync_id"], "GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX")
+        self.assertEqual(bundle["pull_request"], 65)
         self.assertIn(DECISION_ID, bundle["decision_ids"])
         self.assertEqual(bundle["human_validation_protocol"], "APPROVED_NOT_RUN")
+        self.assertEqual(bundle["stage2_harness_automated"], "PASS")
         self.assertEqual(bundle["human_device_validation"], "NOT_RUN")
+        self.assertEqual(bundle["human_end_to_end_core_loop"], "NOT_RUN")
+        self.assertEqual(bundle["full_vertical_slice_representativeness"], "NOT_RUN")
         self.assertEqual(bundle["runtime_expansion_7_plus"], "BLOCKED")
         self.assertFalse(bundle["merge_authorized"])
 
