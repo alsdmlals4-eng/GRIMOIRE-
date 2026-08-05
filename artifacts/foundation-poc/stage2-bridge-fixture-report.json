@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
+  "sync_source": "GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX",
+  "fixture_count": 2,
+  "fixture_ids": [
+    "SCENARIO_A_NONCOMBAT_PROTECT_CONTROL",
+    "SCENARIO_B_PRESSURED_FIELD_RESPONSE"
+  ],
+  "runtime_glyph_count": 6,
+  "runtime_glyph_ids": [
+    "HEAT",
+    "PROTECT",
+    "FLOW",
+    "FOCUS",
+    "DISPERSE",
+    "BURST"
+  ],
+  "multiple_solution_frames_required": true,
+  "automatic_best_glyph_prohibited": true,
+  "single_correct_solution_prohibited": true,
+  "human_execution": "NOT_RUN",
+  "full_vertical_slice_representativeness": "NOT_RUN",
+  "verdict": "PASS"
+}
