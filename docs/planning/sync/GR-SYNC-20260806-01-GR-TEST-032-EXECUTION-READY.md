@@ -10,6 +10,7 @@ pull_request: 67
 parent_pull_request: 65
 previous_sync: GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED
 status: READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN
+canon_state: PASS_CLOSED
 sheet_write: PASS
 sheet_readback: PASS
 human_execution: HUMAN_EXECUTION_NOT_RUN
@@ -62,17 +63,28 @@ authority_preservation_foundation_run: 31026878447
 authority_preservation_planning_run: 31026878460
 machine_evidence_closure_red_head: 443a88f170266094ad03dec88637d9fa0dce744f
 machine_evidence_closure_red_run: 31027039396
+pii_value_red_head: 3483d871d8cd6d84214c6a0e5906beb6fba59e62
+pii_value_red_run: 31027342071
+pii_value_green_head: e55ec5bf2a337b52cfa418523cf440f1a0d16bf7
+pii_value_green_foundation_run: 31027453373
+pii_value_green_planning_run: 31027453385
+closure_evidence_head: e55ec5bf2a337b52cfa418523cf440f1a0d16bf7
+final_closure_red_head: 276372483a44ed68a69ad288feb3afbacd476294
+final_closure_red_run: 31027665272
+result: PASS_CLOSED
 ```
 
-## 원시 증거 무결성
+## 원시 증거·개인정보 무결성
 
 ```text
 SOURCE_ATTEMPT_SHA256_REQUIRED
 SOURCE_STAGE2_SHA256_REQUIRED
 SOURCE_RECORD_COUNT_MUST_MATCH_AGGREGATE
+NO_RAW_PERSONAL_IDENTIFIER
+EMAIL_AND_KOREAN_MOBILE_PATTERN_REJECTED
 ```
 
-완료 세션은 Stage 1 원시 Attempt SHA-256·레코드 수와 Stage 2 관찰 SHA-256·레코드 수가 집계값과 일치해야만 분석된다. PII 키와 정확히 6종이 아닌 Runtime 세트는 거부한다.
+완료 세션은 Stage 1 원시 Attempt SHA-256·레코드 수와 Stage 2 관찰 SHA-256·레코드 수가 집계값과 일치해야만 분석된다. 금지 PII 키뿐 아니라 자유 텍스트의 이메일과 한국 휴대전화 형식도 거부한다. 정확히 6종이 아닌 Runtime 세트도 거부한다.
 
 ## Sheet 범위
 
