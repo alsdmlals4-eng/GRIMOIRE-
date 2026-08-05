@@ -5,12 +5,16 @@ on:
     paths:
       - 'project.godot'
       - 'src/**'
+      - 'data/glyphs/**'
       - 'tests/**'
       - 'tools/check_glyph_resource_scope.py'
+      - 'tools/check_glyph_vocabulary_scope.py'
       - 'tools/build_glyph_confusion_report.py'
       - 'artifacts/foundation-poc/**'
       - 'docs/validation/GLYPH_RESOURCE_POC_VALIDATION_REPORT.md'
+      - 'docs/validation/GLYPH_RECOGNITION_POC_REPORT.md'
       - 'docs/planning/GLYPH_RESOURCE_POC_STOP_GATE_01_2026-08-05.md'
+      - 'docs/planning/GLYPH_RECOGNITION_POC_STOP_GATE_01_2026-08-05.md'
       - '.github/workflows/validate-foundation-poc.yml'
   workflow_dispatch:
 
@@ -29,6 +33,11 @@ jobs:
         run: |
           python -m unittest tests.test_glyph_resource_scope -v
           python tools/check_glyph_resource_scope.py
+
+      - name: Validate glyph vocabulary scope contract
+        run: |
+          python -m unittest tests.test_glyph_vocabulary_scope -v
+          python tools/check_glyph_vocabulary_scope.py
 
       - name: Validate glyph confusion report contract
         run: python -m unittest tests.test_glyph_confusion_report -v
