@@ -27,47 +27,62 @@ func run(case) -> void:
     vault.complete_scribe(scribe.reservation_id)
     var ledger = Ledger.create(stock, vault)
 
-    var omitted = ledger.reserve_node(&"HEAT", &"node-none", &"tx-none", -1)
-    case.assert_equal(&"SOURCE_REQUIRED", omitted.status, "source is never chosen automatically")
+    case.assert_equal(
+        [Types.Source.UNIVERSAL_STOCK, Types.Source.VAULT],
+        ledger.available_sources(&"HEAT", true),
+        "both sources are presented in stable UI order"
+    )
+    case.assert_equal([], ledger.available_sources(&"PURIFY", false), "unlearned glyph has no source")
+
+    var omitted = ledger.reserve_node(&"node-none", &"HEAT", -1, &"tx-none", true)
+    case.assert_equal(&"SOURCE_SELECTION_REQUIRED", omitted.status, "source is never chosen automatically")
     case.assert_equal(3, stock.available_count(), "omitted source consumes no Stock")
     case.assert_equal(1, vault.matching_available_count(&"HEAT"), "omitted source consumes no Vault glyph")
 
+    var unlearned = ledger.reserve_node(
+        &"node-unlearned", &"PURIFY", Types.Source.UNIVERSAL_STOCK, &"tx-unlearned", false
+    )
+    case.assert_equal(&"GLYPH_NOT_LEARNED", unlearned.status, "Stock cannot select unlearned glyph")
+
     var stock_result = ledger.reserve_node(
-        &"HEAT", &"node-a", &"tx-a", Types.Source.UNIVERSAL_STOCK
+        &"node-a", &"HEAT", Types.Source.UNIVERSAL_STOCK, &"tx-a", true
     )
     case.assert_equal(&"OK", stock_result.status, "explicit Stock source reserves")
     case.assert_equal(Types.Source.UNIVERSAL_STOCK, stock_result.source, "source is retained")
     case.assert_equal(2, stock.available_count(), "one Stock is reserved")
 
     var duplicate_node = ledger.reserve_node(
-        &"FLOW", &"node-a", &"tx-other", Types.Source.UNIVERSAL_STOCK
+        &"node-a", &"FLOW", Types.Source.UNIVERSAL_STOCK, &"tx-other", true
     )
     case.assert_equal(&"NODE_ALREADY_RESERVED", duplicate_node.status, "one node owns one reservation")
 
-    var vault_result = ledger.reserve_node(&"HEAT", &"node-b", &"tx-b", Types.Source.VAULT)
+    var vault_result = ledger.reserve_node(&"node-b", &"HEAT", Types.Source.VAULT, &"tx-b", true)
     case.assert_equal(&"OK", vault_result.status, "matching Vault source reserves")
     case.assert_equal(0, vault.matching_available_count(&"HEAT"), "Vault glyph becomes reserved")
 
-    case.assert_true(ledger.cancel_node(&"node-a"), "cancel releases node Stock")
+    case.assert_true(ledger.release_node(&"node-a"), "cancel releases node Stock")
     case.assert_equal(3, stock.available_count(), "cancel restores Stock")
 
-    var replace = ledger.replace_source(&"node-b", Types.Source.UNIVERSAL_STOCK)
+    var replace = ledger.replace_node_source(&"node-b", Types.Source.UNIVERSAL_STOCK)
     case.assert_equal(&"OK", replace.status, "source can be replaced explicitly")
     case.assert_equal(Types.Source.UNIVERSAL_STOCK, replace.source, "replacement source is visible")
     case.assert_equal(1, vault.matching_available_count(&"HEAT"), "old Vault source is released")
     case.assert_equal(2, stock.available_count(), "new Stock source is reserved")
 
-    var flow = ledger.reserve_node(&"FLOW", &"node-c", &"tx-c", Types.Source.UNIVERSAL_STOCK)
+    var flow = ledger.reserve_node(
+        &"node-c", &"FLOW", Types.Source.UNIVERSAL_STOCK, &"tx-c", true
+    )
     case.assert_equal(&"OK", flow.status, "second Stock node reserves")
     case.assert_equal(1, stock.available_count(), "two Stock reservations are active")
 
-    var failed_replace = ledger.replace_source(&"node-c", Types.Source.VAULT)
-    case.assert_equal(&"NO_MATCHING_VAULT_GLYPH", failed_replace.status, "unavailable replacement fails")
+    var failed_replace = ledger.replace_node_source(&"node-c", Types.Source.VAULT)
+    case.assert_equal(&"REPLACEMENT_ROLLED_BACK", failed_replace.status, "failed replacement reports rollback")
+    case.assert_equal(&"NO_MATCHING_VAULT_GLYPH", failed_replace.replacement_status, "root failure is preserved")
     var rolled_back = ledger.reservation_for_node(&"node-c")
     case.assert_equal(Types.Source.UNIVERSAL_STOCK, rolled_back.source, "failed replacement restores old source")
     case.assert_equal(1, stock.available_count(), "rollback preserves original Stock reservation")
 
-    case.assert_true(ledger.cancel_node(&"node-b"), "first node cancels")
-    case.assert_true(ledger.cancel_node(&"node-c"), "second node cancels")
+    case.assert_true(ledger.release_node(&"node-b"), "first node cancels")
+    case.assert_true(ledger.release_node(&"node-c"), "second node cancels")
     case.assert_equal(3, stock.available_count(), "all Stock reservations are released")
-    case.assert_false(ledger.cancel_node(&"node-c"), "duplicate cancel is rejected")
+    case.assert_false(ledger.release_node(&"node-c"), "duplicate cancel is rejected")
