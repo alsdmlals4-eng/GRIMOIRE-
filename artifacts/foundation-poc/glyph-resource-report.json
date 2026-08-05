@@ -9,15 +9,17 @@
   "implementation_pull_request": 62,
   "parent_design_pull_request": 61,
   "validated_code_head": "8071bb395e79749900612773466ba002c6be59cc",
+  "evidence_head": "aa0c3dd8fba4bc7cf581ab7644901c3791ab804a",
+  "sync_id": "GR-SYNC-20260805-03-GLYPH-RESOURCE-POC",
   "status": "RESOURCE_FOUNDATION_POC_AUTOMATED_PASS",
   "toolchain": {
     "godot_version": "4.7.1.stable.official.a13da4feb",
-    "workflow_run": 30964414190,
+    "workflow_run": 30964676128,
     "result": "PASS"
   },
   "scope": {
-    "workflow_run": 30964414128,
-    "required_files": 30,
+    "workflow_run": 30964676191,
+    "required_files": 31,
     "scanned_gdscript_files": 12,
     "forbidden_roots": 5,
     "forbidden_tokens": 5,
@@ -25,16 +27,21 @@
     "result": "PASS"
   },
   "headless": {
-    "workflow_run": 30964414128,
+    "workflow_run": 30964676191,
     "suite_count": 10,
     "assertions": 225,
     "failures": 0,
     "result": "PASS"
   },
   "planning_and_adversarial": {
-    "workflow_run": 30964414155,
+    "workflow_run": 30964676130,
     "planning_result": "PASS",
     "adversarial_result": "PASS"
+  },
+  "sheet": {
+    "write": "PASS",
+    "readback": "PASS",
+    "ranges": 7
   },
   "automated_scenarios": {
     "duplicate_transaction_attempts": 3,

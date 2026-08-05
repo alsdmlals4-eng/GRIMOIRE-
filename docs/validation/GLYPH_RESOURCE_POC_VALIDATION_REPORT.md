@@ -10,7 +10,10 @@ related_decisions:
 implementation_pull_request: 62
 parent_design_pull_request: 61
 validated_code_head: 8071bb395e79749900612773466ba002c6be59cc
+evidence_head: aa0c3dd8fba4bc7cf581ab7644901c3791ab804a
+sync_id: GR-SYNC-20260805-03-GLYPH-RESOURCE-POC
 status: RESOURCE_FOUNDATION_POC_AUTOMATED_PASS
+sheet_readback: PASS
 merge_authorized: false
 recognition_implementation: NOT_STARTED
 physical_device: NOT_RUN
@@ -50,22 +53,24 @@ accessibility_human: NOT_RUN
 ## 최신 자동화 증거
 
 ```yaml
-foundation_workflow: 30964414128
+foundation_workflow: 30964676191
 headless:
   suites: 10
   assertions: 225
   failures: 0
 scope:
-  required_files: 30
+  required_files: 31
   scanned_gdscript_files: 12
   forbidden_root_errors: 0
   forbidden_token_errors: 0
-planning_and_adversarial_workflow: 30964414155
+planning_and_adversarial_workflow: 30964676130
 planning_result: PASS
 adversarial_result: PASS
-godot_toolchain_workflow: 30964414190
+godot_toolchain_workflow: 30964676128
 godot_version: 4.7.1.stable.official.a13da4feb
 toolchain_result: PASS
+sheet_ranges: 7
+sheet_readback: PASS
 ```
 
 손상된 main Save는 이전 valid backup으로 복구하며, 손상 JSON은 자동 수정하거나 덮어쓰지 않는다. 테스트 로그에는 의도된 손상 파일이 엔진 오류처럼 출력되지 않도록 비투척형 파서를 사용했다.

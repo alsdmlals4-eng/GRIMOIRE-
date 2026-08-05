@@ -6,8 +6,11 @@
 decision_id: GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
 implementation_pull_request: 62
 validated_code_head: 8071bb395e79749900612773466ba002c6be59cc
+evidence_head: aa0c3dd8fba4bc7cf581ab7644901c3791ab804a
+sync_id: GR-SYNC-20260805-03-GLYPH-RESOURCE-POC
 gate: RESOURCE_FOUNDATION_AUTOMATED_GATE
 result: PASS
+sheet_readback: PASS
 recognition_plan: READY_NOT_STARTED
 merge_authorized: false
 physical_device: NOT_RUN
@@ -25,7 +28,7 @@ human_validation: NOT_RUN
 | 마나 없는 Commit | PASS | `INSUFFICIENT_MANA` 사전검증 |
 | 실패 Commit 상태 변경 | PASS | target·mana·result failure snapshot 비교 |
 | 재개 후 transaction 재적용 | PASS | result ledger Save Envelope 복원 |
-| Scope·Headless 실패 | PASS | Scope 30 files, 10 Suites, 225 assertions |
+| Scope·Headless 실패 | PASS | Scope 31 files, 10 Suites, 225 assertions |
 
 ## 진행 허용 범위
 
@@ -56,8 +59,7 @@ Glyph Vocabulary Recognition POC
 ## 다음 체크포인트
 
 ```text
-GitHub·Sheet 구현 상태 동기화
-→ PR #62 최종 exact-head 검증
+PR #62 최종 exact-head 검증
 → Draft·미병합 체크포인트 유지
 → 별도 Recognition POC 실행 여부 결정
 ```

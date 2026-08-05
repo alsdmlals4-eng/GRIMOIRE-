@@ -37,6 +37,7 @@ REQUIRED_FILES = (
     "artifacts/foundation-poc/glyph-resource-report.json",
     "docs/validation/GLYPH_RESOURCE_POC_VALIDATION_REPORT.md",
     "docs/planning/GLYPH_RESOURCE_POC_STOP_GATE_01_2026-08-05.md",
+    "docs/planning/sync/GR-SYNC-20260805-03-GLYPH-RESOURCE-POC.md",
 )
 
 FORBIDDEN_ROOTS = (
