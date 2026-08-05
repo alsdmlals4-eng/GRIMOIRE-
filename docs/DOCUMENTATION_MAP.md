@@ -45,7 +45,8 @@ GrillMe는 `4/10`이며 이번 구현 완료 기록으로 증가하지 않는다
 - 사람검증 방식·Protocol: 승인 완료.
 - Stage 2 Low-fi UX/HX·State Matrix: 완료.
 - Stage 2 Godot Harness: 자동화 PASS.
-- Headless: 28 Suites·1,342 assertions·0 failures.
+- Headless: 28 Suites·1,343 assertions·0 failures.
+- 교차 간선 금지: RED `31018302521`→GREEN `31018467326`.
 - Runtime: 정확히 6종.
 - 실제 사람·실기기·전체 Slice 대표성: `NOT_RUN`.
 - PR #65: Draft·미병합.
@@ -54,6 +55,7 @@ GrillMe는 `4/10`이며 이번 구현 완료 기록으로 증가하지 않는다
 STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
 LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART
 HUMAN_END_TO_END_CORE_LOOP_VALIDATION_PENDING
+CROSSING_EDGES_PROHIBITED
 ```
 
 `GR-TEST-032`는 인식 원인 분리와 짧은 Bridge이며 `GR-TEST-021` 전체 Vertical Slice 대표성 검증을 대체하지 않는다.
