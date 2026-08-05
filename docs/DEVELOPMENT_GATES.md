@@ -15,7 +15,7 @@ merge_authorized: false
 
 GitHub HX·State Matrix·Codex Plan·상태 JSON과 Sheet 7개 범위가 같은 Sync ID를 가리킨다.
 
-현재: `SHEET_WRITE_READBACK_PASS / EXACT_HEAD_GREEN_PENDING`.
+현재: `SHEET_WRITE_READBACK_PASS / HX_GREEN_EVIDENCE_PASS`.
 
 ## Gate 1 — 핵심 재미
 
@@ -56,12 +56,7 @@ RIGHT_WRITING_FOCUS_PANEL
 BOTTOM_HP_MANA_SOURCE_PREVIEW_COMMIT
 ```
 
-- Retry 시 Scenario Context 유지.
-- Canvas가 Active Stroke Pointer 독점.
-- Vault/Stock 출처 명시.
-- Preview 후 별도 Commit Confirm.
-- Reduced Motion 0ms, Active Stroke 중 Motion 없음.
-- 자동 추천·Best Glyph·확률 표시 금지.
+Retry 시 Scenario Context를 유지하고 Commit은 Preview 뒤 별도 Confirm으로만 실행한다.
 
 현재: `HX_SPEC_COMPLETE / READY_FOR_CODEX_TDD_HARNESS`.
 
@@ -77,22 +72,30 @@ ACCIDENTAL_COMMIT_ZERO_HARD_STOP
 
 실제 기기 접근성은 `NOT_RUN`이다.
 
-## Gate 6 — UX/HX TDD
+## Gate 6 — UX/HX TDD·PR 체크
 
-- RED HEAD `9280e9bf54f633cd8db051fbfe6809512262d29a`.
-- RED Foundation `31009239386`.
-- 기존 Resource·Vocabulary·Authority·Human Protocol 계약 PASS.
-- Stage 2 HX Artifact·State 계약만 예상 실패.
+```yaml
+red_head: 9280e9bf54f633cd8db051fbfe6809512262d29a
+red_foundation_run: 31009239386
+red_result: EXISTING_CONTRACTS_PASS_STAGE2_HX_ONLY_EXPECTED_FAILURE
+green_head: a892ddf83abfe3e41809579e9b09f4f0078776db
+foundation_green_run: 31010459174
+planning_base_green_run: 31010459218
+godot_toolchain_green_run: 31010459183
+green_result: PASS
+```
 
-현재: `RED_CONFIRMED / GREEN_PENDING_EXACT_HEAD`.
+현재: `GREEN_CONFIRMED_AT_A892DDF8`.
 
 ## Gate 7 — Codex
 
 ```text
 READY_FOR_CODEX_TDD_HARNESS
+RED_TEST_WRITTEN_FIRST
+STRICT_RED_GREEN_REFACTOR
 ```
 
-Codex는 별도 `agent/stage2-circuit-bridge-harness-poc` Stacked Draft에서 `RED_TEST_WRITTEN_FIRST`와 `STRICT_RED_GREEN_REFACTOR`로 구현한다.
+Codex는 별도 `agent/stage2-circuit-bridge-harness-poc` Stacked Draft에서 구현한다.
 
 금지:
 
