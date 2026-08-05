@@ -12,6 +12,7 @@ VOCABULARY_SPEC = ROOT / "docs/superpowers/specs/2026-08-05-glyph-vocabulary-v1-
 GLYPH_APPROVAL = ROOT / "docs/planning/GLYPH_VAULT_UNIVERSAL_STOCK_01_APPROVAL_2026-08-05.md"
 WORKFLOW_APPROVAL = ROOT / "docs/planning/WORKFLOW_BENCHMARK_TDD_CHECKPOINT_01_APPROVAL_2026-08-05.md"
 VOCABULARY_APPROVAL = ROOT / "docs/planning/GLYPH_VOCABULARY_V1_01_APPROVAL_2026-08-05.md"
+HUMAN_APPROVAL = ROOT / "docs/planning/GLYPH_HUMAN_CIRCUIT_BRIDGE_01_APPROVAL_2026-08-05.md"
 RESOURCE_PLAN = ROOT / "docs/superpowers/plans/2026-08-05-glyph-resource-foundation-poc-implementation-plan.md"
 RECOGNITION_PLAN = ROOT / "docs/superpowers/plans/2026-08-05-glyph-vocabulary-recognition-poc-implementation-plan.md"
 BENCHMARK = ROOT / "docs/research/GLYPH_INPUT_AND_MOBILE_UI_BENCHMARK_2026-08-05.md"
@@ -37,6 +38,7 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
             GLYPH_APPROVAL,
             WORKFLOW_APPROVAL,
             VOCABULARY_APPROVAL,
+            HUMAN_APPROVAL,
             RESOURCE_PLAN,
             RECOGNITION_PLAN,
             BENCHMARK,
@@ -152,34 +154,37 @@ class GlyphVaultStockGovernanceContractTests(unittest.TestCase):
         ):
             self.assertIn(token, recognition)
 
-    def test_active_entrypoints_route_to_pr61_and_three_approved_decisions(self) -> None:
+    def test_active_entrypoints_route_to_pr63_and_four_approved_decisions(self) -> None:
         text = DOC_MAP.read_text(encoding="utf-8") + PLANNING_INDEX.read_text(encoding="utf-8")
         for token in (
-            "working_pull_request: 61",
-            "grill_counter: 3_of_10",
+            "working_pull_request: 63",
+            "grill_counter: 4_of_10",
             "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
             "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
             "GM-GLYPH-VOCABULARY-V1-01",
-            "IMPLEMENTATION_PLANS_READY",
+            "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
+            "HUMAN_CIRCUIT_BRIDGE_PROTOCOL_APPROVED_NOT_RUN",
         ):
             self.assertIn(token, text)
         self.assertNotIn("현재 제품 차단 결정은 계속 `ART-STYLE-01`", text)
 
-    def test_batch_registers_three_approved_decisions_without_forcing_merge(self) -> None:
+    def test_batch_registers_four_approved_decisions_without_forcing_merge(self) -> None:
         data = json.loads(BATCH.read_text(encoding="utf-8"))
         counter = data["counter"]
         self.assertEqual(10, data["threshold"])
-        self.assertEqual(3, counter["approved_grill_me_since_last_flush"])
+        self.assertEqual(4, counter["approved_grill_me_since_last_flush"])
         self.assertFalse(counter["merge_required"])
         self.assertEqual(
             [
                 "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
                 "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
                 "GM-GLYPH-VOCABULARY-V1-01",
+                "GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01",
             ],
             counter["pending_decision_ids"],
         )
         self.assertEqual("HIGH_CANON_IMPACT_DRAFT_CHECKPOINT", counter["checkpoint_state"])
+        self.assertFalse(counter["merge_authorized"])
 
     def test_old_typed_stock_contract_is_marked_partially_superseded(self) -> None:
         text = STATUS.read_text(encoding="utf-8")
