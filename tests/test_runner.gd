@@ -6,6 +6,7 @@ const SUITES: Array[String] = [
     "res://tests/unit/test_glyph_resource_types.gd",
     "res://tests/unit/test_universal_stock_pool.gd",
     "res://tests/unit/test_vault_inventory.gd",
+    "res://tests/unit/test_resource_reservation_ledger.gd",
 ]
 
 func _init() -> void:
