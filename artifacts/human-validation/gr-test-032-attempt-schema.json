@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "test_id": "GR-TEST-032",
+  "participant_identity": "ANONYMOUS_PARTICIPANT_ID_ONLY",
+  "participant_id_pattern": "^P0[1-6]$",
+  "raw_personal_identifier_prohibited": true,
+  "required_fields": [
+    "test_id",
+    "participant_id",
+    "session_id",
+    "stage",
+    "attempt_id",
+    "artifact_sha",
+    "build_id",
+    "device_id",
+    "device_class",
+    "platform",
+    "os_version",
+    "screen_resolution_px",
+    "hand",
+    "fixture_id",
+    "glyph_id",
+    "first_attempt",
+    "post_feedback",
+    "moderator_intervention",
+    "started_at_ms",
+    "completed_at_ms",
+    "hard_stop_flags"
+  ],
+  "allowed_stage_values": [
+    "STAGE_1_RECOGNITION_DIAGNOSTIC",
+    "STAGE_2_CORE_LOOP_BRIDGE"
+  ],
+  "allowed_hand_values": [
+    "DOMINANT",
+    "NON_DOMINANT",
+    "NOT_APPLICABLE"
+  ],
+  "allowed_device_class_values": [
+    "NARROW_LANDSCAPE_16_9_TO_18_9",
+    "TALL_LANDSCAPE_19_5_9_TO_20_9",
+    "IOS_PHYSICAL_SMOKE"
+  ],
+  "allowed_runtime_glyph_ids": [
+    "HEAT",
+    "PROTECT",
+    "FLOW",
+    "FOCUS",
+    "DISPERSE",
+    "BURST",
+    "NOT_APPLICABLE"
+  ],
+  "first_attempt": {
+    "required_fields": [
+      "recognized_glyph_id",
+      "candidate_status",
+      "correct_accept",
+      "accepted_false",
+      "mismatch_save",
+      "stale_application",
+      "duplicate_save",
+      "duration_ms",
+      "semantic_identification_correct"
+    ]
+  },
+  "post_feedback": {
+    "required_fields": [
+      "retry_shown",
+      "retry_attempted",
+      "recognized_glyph_id",
+      "correct_accept",
+      "accepted_false",
+      "duration_ms"
+    ]
+  },
+  "moderator_intervention": {
+    "required_fields": [
+      "occurred",
+      "event_id",
+      "timestamp_ms",
+      "prompt_category",
+      "solution_content_provided"
+    ]
+  },
+  "stage2_fields": [
+    "objective_recalled",
+    "threat_recalled",
+    "intent_explained_before_commit",
+    "explicit_source_selected",
+    "circuit_valid",
+    "preview_cost_understood",
+    "preview_risk_understood",
+    "accidental_commit",
+    "duplicate_cost_or_result",
+    "consequence_explained",
+    "grimoire_summary_completed"
+  ],
+  "hard_stop_flags": [
+    "ACCEPTED_FALSE",
+    "STALE_RESULT_APPLICATION",
+    "MISMATCH_SAVE",
+    "DUPLICATE_SAVE",
+    "ACCIDENTAL_COMMIT",
+    "DUPLICATE_COST_OR_RESULT",
+    "DATA_CORRUPTION",
+    "MODERATOR_SOLUTION_PROMPT",
+    "CRITICAL_ACCESSIBILITY_FAILURE"
+  ],
+  "forbidden_keys": [
+    "name",
+    "full_name",
+    "email",
+    "phone",
+    "account",
+    "username",
+    "address"
+  ]
+}
