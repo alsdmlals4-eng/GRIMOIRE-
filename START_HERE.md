@@ -3,12 +3,15 @@
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 platform: MOBILE_LANDSCAPE_FIXED_PC_LATER
-working_pull_request: 65
-working_branch: agent/stage2-circuit-bridge-harness-poc
-parent_pull_request: 63
-current_sync: GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED
-current_gate: STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
+working_pull_request: 67
+working_branch: agent/gr-test-032-human-execution-pack
+parent_pull_request: 65
+current_sync: GR-SYNC-20260806-01-GR-TEST-032-EXECUTION-READY
+current_gate: GR_TEST_032_READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN
+human_execution_pack: READY
+human_execution: NOT_RUN
 human_device_validation: NOT_RUN
+human_end_to_end_core_loop: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
 grill_counter: 4_of_10
 merge_authorized: false
@@ -21,42 +24,19 @@ merge_authorized: false
 3. `docs/DEVELOPMENT_GATES.md`
 4. `docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md`
 5. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-6. `docs/planning/GLYPH_HUMAN_CIRCUIT_BRIDGE_01_APPROVAL_2026-08-05.md`
-7. `docs/validation/GLYPH_HUMAN_CIRCUIT_BRIDGE_PROTOCOL.md`
-8. `docs/planning/STAGE2_CIRCUIT_BRIDGE_HARNESS_UX_HX_2026-08-05.md`
-9. `docs/planning/STAGE2_CIRCUIT_BRIDGE_HARNESS_STATE_MATRIX_2026-08-05.md`
-10. `docs/validation/STAGE2_CIRCUIT_BRIDGE_HARNESS_REPORT.md`
-11. `docs/planning/STAGE2_CIRCUIT_BRIDGE_HARNESS_STOP_GATE_01_2026-08-05.md`
-12. `docs/planning/sync/GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED.md`
-
-## 핵심 재미
+6. `docs/validation/GR_TEST_032_EXECUTION_RUNBOOK.md`
+7. `docs/validation/GR_TEST_032_MODERATOR_SCRIPT.md`
+8. `docs/validation/GR_TEST_032_DEVICE_PREFLIGHT.md`
+9. `docs/planning/GR_TEST_032_EXECUTION_READY_GATE_2026-08-06.md`
+10. Sync08 Receipt
 
 ```text
 SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE
-상황·조사 → 의도·의미 → 3×3 회로 → Preview → Commit → 변화·대가 → Grimoire
+RECOGNITION_IS_INPUT_INFRASTRUCTURE_NOT_THE_CORE_FUN
+EXACT_GLYPH_VAULT_AND_UNIVERSAL_GLYPH_STOCK_ARE_SUPPORT_SYSTEMS
+READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN
+HUMAN_EXECUTION_NOT_RUN
+NO_HUMAN_PASS_CLAIM
 ```
 
-`RECOGNITION_IS_INPUT_INFRASTRUCTURE_NOT_THE_CORE_FUN`.
-
-`EXACT_GLYPH_VAULT_AND_UNIVERSAL_GLYPH_STOCK_ARE_SUPPORT_SYSTEMS`.
-
-## 현재 상태
-
-`GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01`의 권장안 C와 사람검증 Protocol, Stage 2 Low-fi UX/HX, 자동 Harness 구현을 완료했다.
-
-```text
-STAGE_1_RECOGNITION_DIAGNOSTIC
-→ SAME_PARTICIPANT_WITH_BREAK
-→ STAGE_2_CORE_LOOP_BRIDGE
-```
-
-자동 Harness는 28 Godot Suites·1,343 assertions·0 failures로 PASS했다. 교차 간선 금지 회귀까지 포함하며, 이는 합성·결정적 Fixture 범위다.
-
-```text
-LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART
-HUMAN_END_TO_END_CORE_LOOP_VALIDATION_PENDING
-HUMAN_DEVICE_VALIDATION_NOT_RUN
-FULL_VERTICAL_SLICE_REPRESENTATIVENESS_NOT_RUN
-```
-
-다음 Gate는 `GR-TEST-032` 실제 사람·실기기 실행이다. 사람 결과 전 7종 이상 확대와 Ready/merge는 차단한다.
+다음 실제 작업은 물리 기기 Preflight와 P01~P06 Stage 1→10분 휴식→Stage 2 실행이다.

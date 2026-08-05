@@ -8,277 +8,107 @@ repository: alsdmlals4-eng/GRIMOIRE-
 default_branch: main
 primary_platform: Mobile
 orientation: LANDSCAPE_FIXED
-product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
-main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
-current_main_sync: GR-SYNC-20260804-12-CLOSURE
-working_branch: agent/stage2-circuit-bridge-harness-poc
-working_pull_request: 65
-parent_branch: agent/glyph-vocabulary-recognition-poc
-parent_pull_request: 63
-current_sync: GR-SYNC-20260805-07-STAGE2-HARNESS-AUTOMATED
+working_branch: agent/gr-test-032-human-execution-pack
+working_pull_request: 67
+parent_pull_request: 65
+current_sync: GR-SYNC-20260806-01-GR-TEST-032-EXECUTION-READY
+current_gate: GR_TEST_032_READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN
 latest_approved_decision: GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01
-related_approved_decisions:
-  - GM-GLYPH-VAULT-UNIVERSAL-STOCK-01
-  - GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01
-  - GM-GLYPH-VOCABULARY-V1-01
-  - GM-GLYPH-HUMAN-CIRCUIT-BRIDGE-01
 grill_counter: 4_of_10
-pending_decisions: 4
-checkpoint_state: HIGH_CANON_IMPACT_DRAFT_CHECKPOINT
-current_gate: STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
+human_execution_pack: READY
+human_execution: NOT_RUN
 human_device_validation: NOT_RUN
+human_end_to_end_core_loop: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
 merge_authorized: false
-product_project: CREATED_POC
-product_implementation: RESOURCE_RECOGNITION_AND_STAGE2_HARNESS_AUTOMATED_PASS
-runtime_validation: AUTOMATED_SYNTHETIC_AND_DETERMINISTIC_FIXTURES_ONLY
 ```
 
-PR #57~#60의 main 정본은 유지한다. PR #61~#63과 현재 PR #65는 Stacked Draft이며 별도 사용자 승인 전 Ready 전환·병합하지 않는다. PR #65의 승인된 Stage 2 Low-fi Harness 구현은 자동화 Gate를 통과했지만 사람·실기기 결과는 아직 없다.
+PR #67은 PR #65 위의 Stacked Draft다. 실행 Runbook·진행자 스크립트·기기 Preflight·익명 템플릿·분석기만 준비하며 실제 참가자 결과를 생성하거나 추정하지 않는다.
 
-## 권위 우선순위
+## 권위 순서
 
-1. 사용자의 최신 명시 결정.
-2. 이 파일.
-3. `START_HERE.md`.
-4. `docs/ACTIVE_CONTEXT.md`.
-5. `docs/DEVELOPMENT_GATES.md`.
-6. `docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md`.
-7. `docs/planning/CANON_STATUS_INDEX_2026-08-05.md`.
-8. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`.
-9. 최신 승인 Decision·Protocol·UX/HX·Stop Gate 원본.
-10. 실제 제품 코드·테스트·Runtime 증거.
-11. Base pin·공유 Skill 계약.
-12. 과거 Draft·Working·Sync·추정.
-
-구형 파일은 상태 색인의 `[부분 대체됨]·[대체됨]·[보류]·[구현완료 보관]·[폐기]·[이력]` 분류를 따른다.
-
-## 복원 순서
-
-```text
-AGENTS.md
-→ START_HERE.md
-→ docs/ACTIVE_CONTEXT.md
-→ docs/DEVELOPMENT_GATES.md
-→ docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md
-→ docs/planning/CANON_STATUS_INDEX_2026-08-05.md
-→ docs/planning/CURRENT_CONFIRMED_DECISIONS.md
-→ GLYPH_HUMAN_CIRCUIT_BRIDGE 승인·Protocol·적대 검토
-→ STAGE2_CIRCUIT_BRIDGE_HARNESS UX/HX·State Matrix
-→ Stage 2 Harness 구현 계획
-→ Stage 2 Harness 자동 검증 보고서·Stop Gate
-→ Sync07 Receipt·Sheet
-→ PR #63
-→ PR #65
-```
-
-## Base 계약
-
-```yaml
-base_repository: alsdmlals4-eng/Base
-release: v9.4.3
-release_commit: 7dd1a4f80388bc5faca767ff74a3eb32dc9d0ac8
-release_evidence_commit: da33a350d61b8adc52df97fccc7001708a933370
-finalization_commit: 0b7c94f38d959efc0fc9442274c60b2e268a3c97
-registry_sha256: 693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59
-```
-
-Base 공용 승격은 프로젝트 증거가 생긴 뒤 별도 검토한다. 이번 PR에서 Base 파일을 변경하지 않는다.
-
-## 역할 분리
-
-```text
-GPT → 핵심 재미·콘텐츠·UX/HX·벤치마킹·적대적 검토·정본 동기화·구현 계획
-Codex형 구현 → 승인 범위의 Godot 코드·TDD·자동 Runtime 증거
-사람 검증 → 실제 참가자·실기기 실행과 관찰
-```
-
-자동화 PASS는 사람 검증 PASS가 아니다. 실제 사람·실기기 결과는 계속 `NOT_RUN`으로 유지한다.
+1. 사용자의 최신 명시 결정
+2. `AGENTS.md`
+3. `START_HERE.md`
+4. `docs/ACTIVE_CONTEXT.md`
+5. `docs/DEVELOPMENT_GATES.md`
+6. 현재 Runtime 체크포인트와 정본 상태 인덱스
+7. 승인 원본·Protocol·실행 Runbook
+8. 실제 코드·테스트·증거
+9. Base pin·공유 Skill 계약
+10. 과거 Draft·Sync·추정
 
 ## 프로젝트 코어
 
-> 상황과 위험을 읽고 무엇을 지킬지 선택한 뒤, 글자·대상·회로로 의도를 구현하고 결과와 대가를 책임지는 마법학교 RPG.
-
 ```text
 SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE
-조사·상황 → 의도·의미 → 3×3 회로 → Preview → Commit → 변화·대가 → 복기·Grimoire
+조사·상황 → 의도·의미 → 3×3 회로 → Preview → Commit → 변화·대가 → Grimoire
+RECOGNITION_IS_INPUT_INFRASTRUCTURE_NOT_THE_CORE_FUN
+EXACT_GLYPH_VAULT_AND_UNIVERSAL_GLYPH_STOCK_ARE_SUPPORT_SYSTEMS
 ```
 
-`RECOGNITION_IS_INPUT_INFRASTRUCTURE_NOT_THE_CORE_FUN`.
+## 현재 검증 흐름
 
-`EXACT_GLYPH_VAULT_AND_UNIVERSAL_GLYPH_STOCK_ARE_SUPPORT_SYSTEMS`.
+```text
+C_STAGED_RECOGNITION_THEN_CORE_LOOP
+STAGE_1_RECOGNITION_DIAGNOSTIC
+→ SAME_PARTICIPANT_WITH_BREAK
+→ STAGE_2_CORE_LOOP_BRIDGE
+FIRST_ATTEMPT_AND_POST_FEEDBACK_SEPARATED
+```
 
-전투와 비전투는 같은 주문 문법을 쓴다.
+실행 패키지는 `READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN`이다. 준비 완료는 Human PASS가 아니다.
 
-## Stage 2 Harness 경계
+## 자동·사람 경계
 
 ```text
 STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
-LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART
-TOP_OBJECTIVE_THREAT_SITUATION_PERSISTENT
-LEFT_MAIN_S1_S2_S3_READ_ONLY_RAIL
-CENTER_TARGET_AND_3X3_CIRCUIT
-RIGHT_WRITING_FOCUS_PANEL
-BOTTOM_HP_MANA_SOURCE_PREVIEW_COMMIT
-SCENARIO_CONTEXT_SURVIVES_RECOGNITION_RETRY
-EXPLICIT_VAULT_OR_STOCK_SOURCE_PER_GLYPH
-COMMIT_REQUIRES_SEPARATE_CONFIRMATION
-NO_AUTOMATIC_SOLUTION_OR_BEST_GLYPH_RECOMMENDATION
+GR_TEST_032_READY_FOR_HUMAN_EXECUTION_HUMAN_NOT_RUN
+HUMAN_EXECUTION_NOT_RUN
+HUMAN_DEVICE_VALIDATION_NOT_RUN
+HUMAN_END_TO_END_CORE_LOOP_NOT_RUN
+FULL_VERTICAL_SLICE_REPRESENTATIVENESS_NOT_RUN
+NO_HUMAN_PASS_CLAIM
+RUNTIME_EXPANSION_7_PLUS_BLOCKED
+MERGE_NOT_AUTHORIZED
 ```
 
-Harness는 상황 2종·Runtime 6종·기본 도형과 텍스트만 사용한다. 최종 전투 HUD, 최종 아트, 7번째 글자, 전체 콘텐츠 확장을 만들지 않는다.
-
-## 3×3 회로
-
-```yaml
-grid: 3x3
-main_glyph: exactly_1
-support_glyphs_slice: 0_to_2
-targets_slice: 1_to_4
-total_nodes_slice: up_to_7
-branches_slice: up_to_1
-edge_rule: ADJACENT_8_NEIGHBOR_ONLY
-crossing_edges: prohibited
-skip_connection: prohibited
-all_nodes_reachable: required
-slice_target_nodes: TERMINAL_LEAF
-hidden_position_bonus: prohibited
-```
-
-```text
-글자 노드 + 대상 노드 + 셀 위치 + 방향성 인접 연결 = 회로
-유효 회로 Preview → 별도 Confirm → Commit = 주문
-```
-
-Validator는 자동 수정·자동 최적화·Best Glyph를 제공하지 않으며, 공유 끝점 없는 교차 간선을 차단한다.
-
-## 보관함·Stock·마나·필사
-
-```yaml
-vault: EXACT_GLYPH_VAULT
-stock: UNIVERSAL_GLYPH_STOCK
-stock_allowed_pool: LEARNED_MAIN_OR_SUPPORT
-resource_source: EXPLICIT_SOURCE_SELECTION
-capacity: SEPARATE_VAULT_AND_STOCK_CAPACITY
-natural_charge: UNIVERSAL_STOCK_SINGLE_CHARGE_PROGRESS
-focus_scribe_output: FOCUS_SCRIBE_WRITES_TO_VAULT
-target_or_edge_cost: 0
-completed_spell_stock: prohibited
-spell_commit_uses_mana: true
-focus_time_scale: 0.25_TEST_VALUE
-focus_mana_per_real_second: 1_TEST_VALUE
-full_pause: false
-```
-
-- 보관함은 직접 그려 저장한 특정 `glyph_id`에만 사용한다.
-- Stock 1개는 사용 시점에 습득한 핵심·보조 글자 중 하나를 선택한다.
-- 둘 다 사용 가능하면 출처를 직접 고른다.
-- 예약·Commit은 기존 Resource Reservation·Atomic Commit 계층을 재사용한다.
-- 직접 그리기는 위력 보너스가 없고 기본 전투의 필수 입력이 아니다.
-
-## Vocabulary v1
-
-```yaml
-main_glyphs: 10
-support_glyphs: 10
-slice_runtime_glyphs:
-  - HEAT
-  - PROTECT
-  - FLOW
-  - FOCUS
-  - DISPERSE
-  - BURST
-expansion_gate: HUMAN_COMPREHENSION_TEST_REQUIRED_BEFORE_EXPANSION
-input_strokes: 1_to_3
-advanced_candidate_max_strokes: 4
-ornament_is_recognition_input: false
-```
-
-Runtime은 정확히 6종이다. 사람 인지·손가락 입력·혼동·피로와 핵심 루프 연결 검증 전 확대하지 않는다.
-
-## TDD 규칙
-
-```text
-STRICT_RED_GREEN_REFACTOR
-TEST_FIRST_ACCEPTANCE_FOR_NON_EXECUTABLE_WORK
-```
-
-- 실행 가능한 기능은 테스트를 먼저 쓰고 예상 이유의 RED를 실제 CI 경로에서 확인한다.
-- 최소 GREEN 후 전체 회귀를 확인하고 GREEN 상태에서만 Refactor한다.
-- 새 기능은 기존 API를 먼저 확인하고 존재하지 않는 Production API를 추정하지 않는다.
-- 자동 판정할 수 없는 재미·직관성·피로도는 실제 검증 전 `HUMAN_NOT_RUN`으로 유지한다.
-
-## 자동 검증 증거
-
-```yaml
-stage2_harness_automated: PASS
-headless_suites: 28
-headless_assertions: 1343
-headless_failures: 0
-crossing_edges_red_run: 31018302521
-crossing_edges_green_run: 31018467326
-```
-
-이 증거는 합성·결정적 Fixture와 Headless 계약 범위에 한정된다.
-
-## 로그·개인정보 경계
-
-```text
-ANONYMOUS_PARTICIPANT_ID_ONLY
-NO_RAW_PERSONAL_IDENTIFIER
-FIRST_ATTEMPT_AND_POST_FEEDBACK_SEPARATED
-RECOGNITION_EVENT_STREAM
-CORE_LOOP_EVENT_STREAM
-MODERATOR_INTERVENTION_EVENT
-ARTIFACT_SHA_AND_FIXTURE_ID_REQUIRED
-```
-
-이름·연락처·계정 등 원시 개인식별정보를 저장하지 않는다. Recognition과 Core Loop 이벤트를 분리하고 진행자 개입을 별도 기록한다.
+Runtime 글자는 HEAT·PROTECT·FLOW·FOCUS·DISPERSE·BURST 정확히 6종이다.
 
 ## Hard Stop
 
 ```text
 ACCEPTED_FALSE_ZERO_HARD_STOP
+STALE_RESULT_APPLICATION_ZERO_HARD_STOP
 ACCIDENTAL_COMMIT_ZERO_HARD_STOP
 DUPLICATE_SAVE_OR_REWARD_ZERO_HARD_STOP
-STALE_RESULT_APPLICATION_ZERO_HARD_STOP
+MODERATOR_SOLUTION_PROMPT_ZERO_HARD_STOP
 ```
 
-Hard Stop 발생 시 다음 Scenario 진행과 자동 PASS 처리를 금지한다.
-
-## 승인 Batch·병합
+## 개인정보·진행자 경계
 
 ```text
+ANONYMOUS_PARTICIPANT_ID_ONLY
+NO_RAW_PERSONAL_IDENTIFIER
+NO_SOLUTION_PROMPT
+NO_BEST_GLYPH_RECOMMENDATION
+NO_PARTICIPANT_RANKING_OR_SCORE_FEEDBACK
+MODERATOR_INTERVENTION_EVENT
+ARTIFACT_SHA_AND_FIXTURE_ID_REQUIRED
+```
+
+## 작업 계약
+
+```text
+BENCHMARK_AND_PRO_COMPARISON_REQUIRED
+SOURCE_VERSION_LIMIT_REQUIRED
+STRICT_RED_GREEN_REFACTOR
+TEST_FIRST_ACCEPTANCE_FOR_NON_EXECUTABLE_WORK
 MAX_APPROVED_DECISIONS_PER_BATCH_10
 EARLY_CHECKPOINT_HIGH_RISK_CONFLICT
 EARLY_CHECKPOINT_SESSION_END
 EARLY_CHECKPOINT_MAJOR_CANON_IMPACT
 ```
 
-이번 Harness는 기존 승인 Decision의 구현 상세이므로 GrillMe는 `4/10`을 유지한다. Draft 체크포인트와 자동화 PASS는 병합 승인이 아니다.
-
-## 검증 경계
-
-```yaml
-resource_foundation_automated: PASS
-recognition_six_glyph_automated: PASS
-stage2_harness_automated: PASS
-human_device_validation: NOT_RUN
-human_end_to_end_core_loop: NOT_RUN
-full_vertical_slice_representativeness: NOT_RUN
-runtime_expansion_7_plus: BLOCKED
-final_art: NOT_REQUIRED_FOR_HARNESS
-merge_authorized: false
-```
-
-모든 Prototype 수치는 `TEST_VALUE`다.
-
-## 다음 Gate
-
-1. GitHub 정본과 Google Sheet Sync07 Readback을 닫는다.
-2. `GR-TEST-032` 실제 사람·실기기 Stage 1→휴식→Stage 2를 실행한다.
-3. first attempt와 post-feedback 결과를 분리한다.
-4. 결과 적대 검토 후 다음 GrillMe를 진행한다.
-
-PR #63과 PR #65는 Draft·미병합이며 별도 사용자 승인 전 Ready 전환·병합하지 않는다.
+모든 실행 수치·임계값은 `ALL_NUMERIC_THRESHOLDS_ARE_TEST_VALUE`다. PR #63·#65·#67은 별도 사용자 승인 전 Ready 또는 Merge하지 않는다.
