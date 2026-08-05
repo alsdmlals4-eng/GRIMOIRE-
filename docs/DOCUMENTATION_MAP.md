@@ -6,7 +6,7 @@
 main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
 previous_main_sync: GR-SYNC-20260804-12-CLOSURE
 working_branch: agent/star-circuit-mastery-balance
-working_authority_commit: 69d631c2f55b07cbc67bf824880122f431ffd7b4
+working_authority_commit: 209eecc5beed77920ca601a2b377b8e900a0d5ac
 current_working_sync: GR-SYNC-20260806-01
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 canon_status: SYNCED_TO_WORKING_BRANCH
@@ -33,6 +33,7 @@ AGENTS.md
 - `START_HERE.md` — 첫 화면과 읽기 순서.
 - `docs/ACTIVE_CONTEXT.md` — 현재 작업 상태.
 - `docs/DEVELOPMENT_GATES.md` — Gate.
+- `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` — Sheet 계약과 Working Sync 상태.
 - `docs/planning/CANON_STATUS_INDEX_2026-08-04.md` — 구형 파일·대체 범위 상태.
 - `docs/planning/CURRENT_CONFIRMED_DECISIONS.md` — 결정 Snapshot.
 - `docs/DESIGN_DOCUMENT_REGISTRY.json` — 기계 판독 Router.
@@ -69,7 +70,8 @@ Heat·Flow 승인, 복수 해결 Spec·Route Guidance·내부 패턴, 교육 승
 
 ## 운영·검증
 
-- `tests/test_star_glyph_circuit_canon_contract.py` — 활성 정본 회귀 계약.
+- `tests/test_star_glyph_circuit_canon_contract.py` — 활성 정본 존재·구형 토큰 부재·Sheet 경계 회귀 계약.
+- `.github/workflows/validate-base-v9-adoption.yml` — 회귀 계약을 필수 Planning CI로 실행.
 - `docs/planning/sync/GR-SYNC-20260806-01-WORKING.md` — Sheet `02·04·05·12·15·40·41·60·99` Readback PASS.
 - 별형 회로 Mobile Wireframe `[보류/다음 작업]`.
 - 부분 성공·실패·역류 세부 계약 `[보류/다음 GrillMe]`.
