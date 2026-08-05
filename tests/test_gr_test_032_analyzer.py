@@ -25,6 +25,10 @@ class GrTest032AnalyzerTests(unittest.TestCase):
             "artifact_sha": "a" * 40,
             "runtime_glyph_ids": GLYPHS,
             "participants": [f"P0{i}" for i in range(1, 7)],
+            "source_attempt_record_count": 144,
+            "source_attempt_sha256": "b" * 64,
+            "source_stage2_observation_count": 12,
+            "source_stage2_sha256": "c" * 64,
             "stage1": {
                 "scored_attempt_count": 144,
                 "first_attempt_correct_accept_count": 122,
@@ -83,6 +87,10 @@ class GrTest032AnalyzerTests(unittest.TestCase):
         self.assertAlmostEqual(result["stage1"]["one_retry_inclusive_correct_rate"], 140 / 144)
         self.assertAlmostEqual(result["stage1"]["semantic_identification_rate"], 136 / 144)
         self.assertEqual(result["stage1"]["median_fatigue_24"], 3.0)
+        self.assertEqual(result["source_attempt_record_count"], 144)
+        self.assertEqual(result["source_attempt_sha256"], "b" * 64)
+        self.assertEqual(result["source_stage2_observation_count"], 12)
+        self.assertEqual(result["source_stage2_sha256"], "c" * 64)
         self.assertFalse(result["human_pass_claimed"])
         self.assertEqual(result["full_vertical_slice_representativeness"], "NOT_RUN")
         self.assertFalse(result["merge_authorized"])
@@ -120,6 +128,28 @@ class GrTest032AnalyzerTests(unittest.TestCase):
         session = self._base_session()
         session["runtime_glyph_ids"] = GLYPHS + ["SEVENTH"]
         with self.assertRaisesRegex(ValueError, "exact approved runtime glyph set"):
+            module.analyze(session)
+
+    def test_completed_session_requires_raw_evidence_hashes_and_matching_counts(self) -> None:
+        module = self._module()
+        session = self._base_session()
+        session.pop("source_attempt_sha256")
+        with self.assertRaisesRegex(ValueError, "source_attempt_sha256"):
+            module.analyze(session)
+
+        session = self._base_session()
+        session["source_attempt_record_count"] = 143
+        with self.assertRaisesRegex(ValueError, "source attempt record count"):
+            module.analyze(session)
+
+        session = self._base_session()
+        session["source_stage2_observation_count"] = 11
+        with self.assertRaisesRegex(ValueError, "stage2 observation count"):
+            module.analyze(session)
+
+        session = self._base_session()
+        session["stage1"]["first_attempt_correct_accept_count"] = 145
+        with self.assertRaisesRegex(ValueError, "stage1 counts must be within"):
             module.analyze(session)
 
 
