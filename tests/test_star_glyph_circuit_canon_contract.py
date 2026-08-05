@@ -8,6 +8,14 @@ ROOT = Path(__file__).resolve().parents[1]
 DECISION = "GM-STAR-CIRCUIT-MASTERY-BALANCE-01"
 SYNC = "GR-SYNC-20260806-01"
 SPEC = "docs/superpowers/specs/2026-08-06-star-glyph-circuit-mastery-balance-design.md"
+ACTIVE_AUTHORITY = (
+    "AGENTS.md",
+    "START_HERE.md",
+    "docs/ACTIVE_CONTEXT.md",
+    "docs/DEVELOPMENT_GATES.md",
+    "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
+)
 
 
 class StarGlyphCircuitCanonContractTests(unittest.TestCase):
@@ -15,17 +23,24 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
         return (ROOT / path).read_text(encoding="utf-8")
 
     def test_active_authority_uses_star_circuit(self) -> None:
-        for path in (
-            "AGENTS.md",
-            "START_HERE.md",
-            "docs/ACTIVE_CONTEXT.md",
-            "docs/DEVELOPMENT_GATES.md",
-            "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
-            "docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md",
-        ):
+        for path in ACTIVE_AUTHORITY:
             text = self.read(path)
             self.assertIn(DECISION, text, path)
             self.assertIn("FIVE_POINT_STAR", text, path)
+
+    def test_active_authority_rejects_stale_three_by_three_contracts(self) -> None:
+        stale_tokens = (
+            "grid: 3x3",
+            "support_glyphs: 0_to_2",
+            "support_glyphs_slice: 0_to_2",
+            "target_nodes: TERMINAL_LEAF",
+            "slice_target_nodes: TERMINAL_LEAF",
+            "numeric_success_probability: prohibited",
+        )
+        for path in ACTIVE_AUTHORITY:
+            text = self.read(path)
+            for token in stale_tokens:
+                self.assertNotIn(token, text, f"{path}: stale token {token}")
 
     def test_numeric_complexity_contract_is_present(self) -> None:
         circuit = self.read("docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md")
