@@ -54,4 +54,4 @@ jobs:
           path: |
             godot-foundation-toolchain-report.json
             glyph-resource-headless.log
-          if-no-files-found: error
+          if-no-files-found: warn

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "decision_ids": [
+    "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
+    "GM-WORKFLOW-BENCHMARK-TDD-CHECKPOINT-01",
+    "GM-GLYPH-VOCABULARY-V1-01"
+  ],
+  "implementation_pull_request": 62,
+  "parent_design_pull_request": 61,
+  "validated_code_head": "8071bb395e79749900612773466ba002c6be59cc",
+  "status": "RESOURCE_FOUNDATION_POC_AUTOMATED_PASS",
+  "toolchain": {
+    "godot_version": "4.7.1.stable.official.a13da4feb",
+    "workflow_run": 30964414190,
+    "result": "PASS"
+  },
+  "scope": {
+    "workflow_run": 30964414128,
+    "required_files": 30,
+    "scanned_gdscript_files": 12,
+    "forbidden_roots": 5,
+    "forbidden_tokens": 5,
+    "errors": 0,
+    "result": "PASS"
+  },
+  "headless": {
+    "workflow_run": 30964414128,
+    "suite_count": 10,
+    "assertions": 225,
+    "failures": 0,
+    "result": "PASS"
+  },
+  "planning_and_adversarial": {
+    "workflow_run": 30964414155,
+    "planning_result": "PASS",
+    "adversarial_result": "PASS"
+  },
+  "automated_scenarios": {
+    "duplicate_transaction_attempts": 3,
+    "rollback_scenarios": 2,
+    "save_resume_exactly_once": "PASS",
+    "implicit_source_selection_blocked": "PASS",
+    "vault_glyph_conversion_blocked": "PASS",
+    "reservation_capacity_double_count_blocked": "PASS",
+    "commit_without_mana_blocked": "PASS",
+    "failed_commit_state_mutation_blocked": "PASS"
+  },
+  "test_values": {
+    "universal_stock_capacities_exercised": [1, 2, 3],
+    "vault_slot_capacities_exercised": [1, 2],
+    "natural_charge_seconds": 10.0,
+    "direct_hit_pause_seconds": 0.5,
+    "mana_initial": 5,
+    "spell_mana_cost": 3
+  },
+  "evidence_limits": {
+    "final_balance": "TEST_VALUE",
+    "physical_mobile_device": "NOT_RUN",
+    "performance_battery_thermal": "NOT_RUN",
+    "assistive_technology": "NOT_RUN",
+    "human_playtest": "NOT_RUN",
+    "glyph_recognition": "NOT_STARTED",
+    "finished_ui": "NOT_STARTED",
+    "final_art_audio_content": "NOT_STARTED"
+  }
+}

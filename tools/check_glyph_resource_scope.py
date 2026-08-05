@@ -22,6 +22,7 @@ REQUIRED_FILES = (
     "src/ui/glyph_resource_view_model.gd",
     "tests/test_case.gd",
     "tests/test_runner.gd",
+    "tests/test_glyph_resource_scope.py",
     "tests/unit/test_universal_stock_pool.gd",
     "tests/unit/test_vault_inventory.gd",
     "tests/unit/test_resource_reservation_ledger.gd",
@@ -31,7 +32,11 @@ REQUIRED_FILES = (
     "tests/unit/test_glyph_resource_snapshot.gd",
     "tests/unit/test_glyph_resource_view_model.gd",
     "tests/integration/test_glyph_resource_lifecycle.gd",
+    "tools/check_glyph_resource_scope.py",
     ".github/workflows/validate-foundation-poc.yml",
+    "artifacts/foundation-poc/glyph-resource-report.json",
+    "docs/validation/GLYPH_RESOURCE_POC_VALIDATION_REPORT.md",
+    "docs/planning/GLYPH_RESOURCE_POC_STOP_GATE_01_2026-08-05.md",
 )
 
 FORBIDDEN_ROOTS = (
