@@ -13,6 +13,7 @@ working_branch: agent/glyph-vocabulary-recognition-poc
 pull_request: 63
 previous_sync: GR-SYNC-20260805-05-GLYPH-HUMAN-CIRCUIT-BRIDGE
 previous_canon_head: b03152d3af9e99405bdb4afbcf87d2b038b7db9f
+hx_green_evidence_head: a892ddf83abfe3e41809579e9b09f4f0078776db
 human_execution: NOT_RUN
 runtime_expansion_7_plus: BLOCKED
 merge_authorized: false
@@ -22,7 +23,7 @@ merge_authorized: false
 
 승인된 단계형 사람검증의 Stage 2를 Codex가 구현할 수 있도록 최소 UX/HX 상태팩, State Matrix, TDD 구현 계획을 고정한다. 최종 아트나 사람 결과를 생성하지 않는다.
 
-## TDD
+## TDD·exact-head 증거
 
 ```yaml
 red_head: 9280e9bf54f633cd8db051fbfe6809512262d29a
@@ -32,7 +33,11 @@ existing_resource_contract: PASS
 existing_vocabulary_contract: PASS
 existing_current_authority_contract: PASS
 existing_human_protocol_contract: PASS
-green_workflow_run: PENDING_EXACT_HEAD
+green_head: a892ddf83abfe3e41809579e9b09f4f0078776db
+foundation_green_workflow_run: 31010459174
+planning_base_green_workflow_run: 31010459218
+godot_toolchain_green_workflow_run: 31010459183
+green_result: PASS
 ```
 
 ## GitHub 변경
@@ -68,7 +73,7 @@ SCENARIO_BRIEF
 
 오류는 Context를 보존한 `ERROR_SAFE_RECOVERY`로 이동한다.
 
-## Sheet 예정 범위
+## Google Sheet Write·Readback
 
 ```yaml
 ranges:
@@ -79,8 +84,8 @@ ranges:
   - 60_UX_UI_접근성!A31:J31
   - 71_이미지기획_생성목록!A9:F9
   - 99_변경이력!A76:H76
-sheet_write: PENDING
-sheet_readback: PENDING
+sheet_write: PASS
+sheet_readback: PASS
 ```
 
 ## 경계
@@ -93,4 +98,4 @@ NO_FULL_VERTICAL_SLICE_CONTENT_EXPANSION
 HUMAN_EXECUTION_NOT_RUN
 ```
 
-UX/HX Green 후 Codex는 별도 Stacked Draft PR에서 TDD Harness만 구현한다.
+Codex는 별도 Stacked Draft PR에서 TDD Harness만 구현한다.
