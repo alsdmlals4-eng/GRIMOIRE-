@@ -33,7 +33,8 @@ SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE
 - Runtime 6종: HEAT·PROTECT·FLOW·FOCUS·DISPERSE·BURST.
 - 사람검증 방식 `C_STAGED_RECOGNITION_THEN_CORE_LOOP` 승인.
 - Stage 2 UX/HX·State Matrix·TDD 구현·Stop Gate 완료.
-- Headless: 28 Suites·1,342 assertions·0 failures.
+- Headless: 28 Suites·1,343 assertions·0 failures.
+- 교차 간선 금지 회귀 RED `31018302521`→GREEN `31018467326`.
 - Sync07 Sheet 7개 범위 Write·Readback PASS.
 - 사람·실기기와 전체 Slice 대표성은 `NOT_RUN`.
 
@@ -51,6 +52,7 @@ BOTTOM_HP_MANA_SOURCE_PREVIEW_COMMIT
 - Retry 중 상황·대상·출처·회로 Draft 보존.
 - Recognition 성공은 Exact Vault에만 저장.
 - 글자마다 Vault/Stock 출처 명시.
+- 3×3 인접·도달·Target Leaf·교차 간선 금지 검증.
 - Preview에서 자원 변경 0.
 - 별도 Confirm 후 기존 Atomic Commit 실행.
 - Active Stroke 중 Writing Canvas 입력 독점.
