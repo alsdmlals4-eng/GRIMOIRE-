@@ -38,7 +38,8 @@ AGENTS
 | 단계형 사람검증 방식·Protocol | 승인·검토 완료 |
 | Stage 2 Low-fi UX/HX | `COMPLETE` |
 | Stage 2 Runtime Harness | `AUTOMATED_PASS / HUMAN_NOT_RUN` |
-| Headless | `28 Suites / 1342 assertions / 0 failures` |
+| Headless | `28 Suites / 1343 assertions / 0 failures` |
+| 교차 간선 금지 회귀 | `RED 31018302521 / GREEN 31018467326` |
 | Stage 1·2 사람·실기기 실행 | `HUMAN_DEVICE_VALIDATION_NOT_RUN` |
 | 사람 핵심 루프 연결 | `HUMAN_END_TO_END_CORE_LOOP_NOT_RUN` |
 | 전체 Vertical Slice 대표성 | `NOT_RUN` |
@@ -55,6 +56,7 @@ HUMAN_END_TO_END_CORE_LOOP_VALIDATION_PENDING
 NOT_A_FULL_VERTICAL_SLICE_REPRESENTATIVENESS_PASS
 LOW_FIDELITY_VALIDATION_HARNESS_NOT_FINAL_ART
 STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
+CROSSING_EDGES_PROHIBITED
 ```
 
 ## 자동 증거
@@ -63,15 +65,15 @@ STAGE2_HARNESS_AUTOMATED_PASS_HUMAN_NOT_RUN
 foundation_green_run: 31016191300
 planning_base_green_run: 31016191141
 godot_toolchain_green_run: 31016191132
+crossing_edges_green_run: 31018467326
 runtime_glyph_count: 6
 fixture_count: 2
 ```
 
 ## 다음 Gate
 
-1. Sync07 Sheet Write·Readback.
-2. `GR-TEST-032` 실제 사람·실기기 실행.
-3. first attempt/post-feedback 분리 분석.
-4. 결과 적대 검토와 다음 GrillMe.
+1. `GR-TEST-032` 실제 사람·실기기 실행.
+2. first attempt/post-feedback 분리 분석.
+3. 결과 적대 검토와 다음 GrillMe.
 
 모든 수치 임계값은 `TEST_VALUE`다.
