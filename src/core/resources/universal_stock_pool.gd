@@ -146,6 +146,18 @@ func reservation_record(reservation_id: StringName) -> Dictionary:
     return _reservations[reservation_id].duplicate(true)
 
 
+func restore_state(data: Dictionary) -> bool:
+    var script = load(SELF_PATH)
+    var restored = script.from_dict(data)
+    if restored.get("status", &"") != &"OK":
+        return false
+    var pool = restored.pool
+    _capacity = pool._capacity
+    _current_total = pool._current_total
+    _reservations = pool._reservations.duplicate(true)
+    return true
+
+
 func to_dict() -> Dictionary:
     var reservation_ids: Array = _reservations.keys()
     reservation_ids.sort()

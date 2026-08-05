@@ -183,6 +183,17 @@ func reservation_record(reservation_id: StringName) -> Dictionary:
     return _reservation_record(_slots[index])
 
 
+func restore_state(data: Dictionary) -> bool:
+    var script = load(SELF_PATH)
+    var restored = script.from_dict(data)
+    if restored.get("status", &"") != &"OK":
+        return false
+    var vault = restored.vault
+    _slot_capacity = vault._slot_capacity
+    _slots = vault._slots.duplicate(true)
+    return true
+
+
 func to_dict() -> Dictionary:
     var serialized_slots: Array = []
     for slot in _slots:
