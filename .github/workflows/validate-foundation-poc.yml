@@ -18,6 +18,10 @@ on:
       - 'docs/planning/GLYPH_RECOGNITION_POC_STOP_GATE_01_2026-08-05.md'
       - 'docs/planning/GLYPH_HUMAN_CIRCUIT_BRIDGE_01_APPROVAL_2026-08-05.md'
       - 'docs/planning/GLYPH_HUMAN_CIRCUIT_BRIDGE_01_ADVERSARIAL_REVIEW_2026-08-05.md'
+      - 'docs/planning/STAGE2_CIRCUIT_BRIDGE_HARNESS_UX_HX_2026-08-05.md'
+      - 'docs/planning/STAGE2_CIRCUIT_BRIDGE_HARNESS_STATE_MATRIX_2026-08-05.md'
+      - 'docs/superpowers/plans/2026-08-05-stage2-circuit-bridge-harness-implementation-plan.md'
+      - 'docs/planning/sync/GR-SYNC-20260805-06-STAGE2-HARNESS-UX-HX.md'
       - 'docs/planning/CURRENT_RUNTIME_CHECKPOINT_2026-08-05.md'
       - 'docs/planning/CURRENT_CONFIRMED_DECISIONS.md'
       - 'docs/planning/CANON_STATUS_INDEX_2026-08-05.md'
@@ -57,6 +61,9 @@ jobs:
 
       - name: Validate staged human circuit bridge decision contract
         run: python -m unittest tests.test_human_circuit_bridge_decision -v
+
+      - name: Validate Stage2 harness UX HX contract
+        run: python -m unittest tests.test_stage2_harness_ux_hx_contract -v
 
       - name: Validate glyph confusion report contract
         run: python -m unittest tests.test_glyph_confusion_report -v
