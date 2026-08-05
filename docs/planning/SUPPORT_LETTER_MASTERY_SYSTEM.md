@@ -3,10 +3,14 @@
 ## 문서 상태
 
 ```yaml
-status: ACTIVE_RESPONSIBILITY_SOURCE_WORKING_BRANCH
+status: ACTIVE_RESPONSIBILITY_SOURCE_MAIN
 decision_id: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 sync_id: GR-SYNC-20260806-01
-updated_at: 2026-08-06T01:44+09:00
+main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
+merged_pull_request: 68
+sheet_sync: SYNCED_TO_MAIN
+sheet_readback: PASS
+updated_at: 2026-08-06T06:27+09:00
 glyph_mastery: 0_to_100
 implementation: NOT_STARTED
 runtime_validation: NOT_RUN
@@ -195,6 +199,7 @@ failed_but_meaningful_attempt: SMALL_MASTERY_EVIDENCE
 - 마나·정밀·절감: `docs/planning/MANA_SYSTEM.md`.
 - 수업·전문화: `docs/planning/FULL_GAME_MAGIC_GLYPH_CURRICULUM_01_APPROVAL_2026-08-02.md`.
 - 승인: `docs/planning/STAR_GLYPH_CIRCUIT_MASTERY_BALANCE_01_APPROVAL_2026-08-06.md`.
+- Main Sync: `docs/planning/sync/GR-SYNC-20260806-01-MAIN.md`.
 
 ## 가드레일
 
