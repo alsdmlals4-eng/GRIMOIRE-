@@ -7,8 +7,7 @@ project: "GRIMOIRE: 세계를 다시 쓰는 법"
 project_sheet_status: PROJECT_SHEET_CONFIGURED
 spreadsheet_id: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
 workbook_role: USER_FACING_GDD_WORKSPACE
-sheet_edit_policy: PROPOSED_SHEET_CHANGE
-approved_canon_sync_policy: IMMEDIATE_APPROVED_CANON_SYNC
+sheet_edit_policy: IMMEDIATE_APPROVED_CANON_SYNC
 canon_sync_policy_id: GM-CANON-SYNC-01
 required_tabs: 27
 primary_platform: Mobile
