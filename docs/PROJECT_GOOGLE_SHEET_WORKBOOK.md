@@ -16,7 +16,7 @@ base_release: v9.4.3
 base_registry_route_commit: c987647d01ad2baa028a16e03d85ddfc1572a727
 main_authority_commit: a27b75ea9aabcbb84159356b857e22b3acd30a43
 working_branch: agent/star-circuit-mastery-balance
-working_authority_commit: 69d631c2f55b07cbc67bf824880122f431ffd7b4
+working_authority_commit: 209eecc5beed77920ca601a2b377b8e900a0d5ac
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 sync_bundle: GR-SYNC-20260806-01
 sync_status: SYNCED_TO_WORKING_BRANCH
@@ -111,7 +111,7 @@ Decision ID: `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`.
 ```text
 Decision ID 확정
 → GitHub Authority·State·Registry 갱신
-→ Authority Commit
+→ Authority Snapshot Commit
 → 관련 Sheet 범위 갱신
 → GitHub·Sheet Readback
 → Sync Receipt
@@ -128,7 +128,7 @@ Decision ID 확정
 | `PROPOSED_SHEET_CHANGE` | GitHub 승인 근거 없는 Sheet 단독 편집 |
 | `GITHUB_ONLY` | GitHub 반영, Sheet 실패·대기 |
 | `SHEET_ONLY` | Sheet 반영, GitHub 실패 |
-| `SYNCED_TO_WORKING_BRANCH` | 작업 브랜치 Commit과 Sheet가 같은 Decision ID·값으로 Readback 됨 |
+| `SYNCED_TO_WORKING_BRANCH` | 작업 브랜치 Authority Snapshot과 Sheet가 같은 Decision ID·값으로 Readback 됨 |
 | `SYNCED_TO_MAIN` | PR 병합 후 main Commit과 Sheet가 다시 일치 |
 | `SYNC_CONFLICT` | 값·상태·책임 경로 충돌 |
 
