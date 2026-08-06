@@ -17,9 +17,11 @@ CRITICAL_RUNTIME_PATHS = (
     "addons/gut/gut_cmdln.gd",
     "addons/gut/cli/gut_cli.gd",
     "addons/gut/gut_config.gd",
+    "addons/gut/gut.gd",
     "addons/gut/test.gd",
     "addons/gut/gut_loader.gd",
     "addons/gut/version_conversion.gd",
+    "addons/gut/gui/GutRunner.tscn",
 )
 
 
