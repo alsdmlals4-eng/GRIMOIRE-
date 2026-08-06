@@ -36,6 +36,14 @@ jobs:
           set -o pipefail
           timeout 45s .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
             --headless --path . --script res://tests/test_runner.gd | tee star-runtime-headless.log
+      - name: Capture rendered 1280x720 star UI evidence
+        run: |
+          set -o pipefail
+          mkdir -p build/visual
+          timeout 45s .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
+            --headless --rendering-method gl_compatibility --path . \
+            --script res://tools/capture_star_ui_snapshot.gd | tee star-ui-snapshot.log
+          test -s build/visual/star-ui-kit-v1.png
       - name: Upload runtime evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -45,4 +53,6 @@ jobs:
             godot-star-runtime-toolchain-report.json
             star-runtime-import.log
             star-runtime-headless.log
+            star-ui-snapshot.log
+            build/visual/star-ui-kit-v1.png
           if-no-files-found: warn
