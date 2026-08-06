@@ -4,53 +4,38 @@
 
 | 항목 | 기준 |
 |---|---|
-| 플랫폼 | `Mobile / Landscape Fixed`, 후속 `PC` |
+| Runtime | `FIVE_POINT_STAR / TYPED_GLYPH_ONLY` |
 | Decision | `GM-STAR-CIRCUIT-MASTERY-BALANCE-01` |
-| Main Sync | `GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN` |
-| Runtime Main | `6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b` |
-| 제품 구현 | `STAR_RUNTIME_COMPLETION_AUTOMATED_PASS` |
-| Godot | `4.7.1 / 31 Suites / 1,137 assertions / 0 failures` |
-| Google Sheet | `SYNCED_TO_MAIN / READBACK_PASS` |
-| Mobile Device·Performance·A11y Device·Human | `NOT_RUN` |
-| 수치 | `PLAYTEST_TUNING_REQUIRED` |
+| Validation Sync | `GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY` |
+| Gate | `GR-TEST-033` |
+| 실행 패키지 | `READY_FOR_PHYSICAL_EXECUTION` |
+| 자동 Runtime | `31 Suites / 1,137 assertions / 0 failures` |
+| Device·Performance·Screen Reader·Human·Full Slice | `NOT_RUN` |
+| PR | `#72 OPEN_DRAFT_UNMERGED` |
 
 ## 읽기 순서
 
 1. `AGENTS.md`
 2. `docs/ACTIVE_CONTEXT.md`
 3. `docs/DEVELOPMENT_GATES.md`
-4. `docs/planning/CANON_STATUS_INDEX_2026-08-04.md`
-5. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-6. 별형 회로 승인·Spec·회로·Mana·숙련·Stock 책임 원본
-7. Mobile Wireframe·Resolution·Focus Scribing·Frostbloom 승인
-8. `docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN.md`
-9. `docs/validation/GODOT_STAR_RUNTIME_TEST_GUIDE_2026-08-06.md`
+4. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
+5. `docs/superpowers/specs/2026-08-06-star-circuit-physical-validation-design.md`
+6. `docs/validation/GR_TEST_033_STAR_PHYSICAL_RUNBOOK.md`
+7. `docs/validation/GR_TEST_033_MODERATOR_SCRIPT.md`
+8. `docs/validation/GR_TEST_033_DEVICE_PREFLIGHT.md`
+9. `docs/planning/GR_TEST_033_STAR_PHYSICAL_EXECUTION_READY_GATE_2026-08-06.md`
+10. `docs/planning/sync/GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY.md`
 
-## 핵심 루프
-
-```text
-조사 → 의도 → FIVE_POINT_STAR → 회로 Preview → 대상 키워드 → 최종 성공률·마나·위험 Preview → 명시 Commit → 결과·대가 → 복기
-```
-
-중앙 Main 1개와 동등한 외곽 Auxiliary 0~5개를 사용한다. Target은 회로 밖 키워드이며 자동 추천하지 않는다. 같은 glyph_id Typed Stock 또는 Vault·Mana·결과를 Commit에서 Exactly-once 처리한다.
-
-## Godot 실행
+## 실행 준비
 
 ```powershell
-py -3 tools/run_star_runtime.py
 py -3 tools/run_star_runtime.py --run --skip-setup
-py -3 tools/run_star_runtime.py --editor --skip-setup
 ```
 
-Main Scene은 `res://src/ui/star_circuit_harness.tscn`이다. 현재 화면은 최종 아트가 아닌 Low-fi 검증 Harness다.
+실제 세션 후 원시 JSON을 봉인하고 다음을 실행한다.
 
-## 구현 확인
+```powershell
+py -3 tools/analyze_gr_test_033.py --session session.json --attempts attempts.json --observations observations.json --output result.json
+```
 
-- 중앙 Main·외곽5·빈 슬롯 허용.
-- 숙련도·성공률·Mana Breakdown과 원인 glyph 경고.
-- Mana 부족·불안정 회로·접근성 입력 상태.
-- 부분 성공·불완전 실행·실패·역류 설명.
-- 집중 필사 실제 시간 Mana·동일 glyph Stock+1·취소 무환불.
-- Frostbloom 다중 해결과 교수 예시 비정답.
-
-자동 PASS는 Runtime 계약 증거이며 실제 기기·사람·Full Slice 증거가 아니다.
+현재는 패키지만 준비됐으며 실제 물리 기기·사람 결과는 없다. `PROMISING`도 Human PASS나 출시 준비 완료를 뜻하지 않는다.

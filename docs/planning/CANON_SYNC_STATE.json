@@ -1,65 +1,43 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
   "google_sheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
   "current_bundle": {
-    "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN",
+    "sync_id": "GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY",
     "decision_ids": ["GM-STAR-CIRCUIT-MASTERY-BALANCE-01"],
-    "status": "SYNCED_TO_MAIN",
-    "runtime_pull_request": 69,
-    "pr_exact_head": "c68a553d77d6d7e0cc6f92f4c318f00c267db6c5",
-    "runtime_main_commit": "6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b",
-    "sheet_sync": "VERIFIED_MAIN_READBACK",
-    "sheet_readback": "PASS",
-    "sheet_ranges": [
-      "00_프로젝트_허브!H2:K2",
-      "02_현재_확정결정!A64:J64",
-      "04_누락_충돌_감사!E68:H68",
-      "05_GDD_요약!A22:J22",
-      "12_핵심루프!A29:J29",
-      "15_조작_게임규칙!A17:J17",
-      "40_핵심시스템_메인콘텐츠!A31:J31",
-      "41_성장_경제!A15:I15",
-      "60_UX_UI_접근성!A37:J37",
-      "99_변경이력!A82:H82"
-    ],
+    "gate_id": "GR-TEST-033",
+    "status": "EXECUTION_PACK_READY_DRAFT",
+    "source_main": "ccacb730775056c8d7ea5d7bae6cebcfc260b5df",
+    "pull_request": 72,
+    "implementation_evidence_head": "a263c5567b6341aaac3a9e2cd883e7f304e65106",
+    "sheet_sync": "PENDING_WRITE_READBACK",
+    "sheet_readback": "NOT_RUN",
     "ci": {
-      "pr_star_runtime_run": 31054934827,
-      "pr_planning_base_adversarial_run": 31054934887,
-      "pr_godot_toolchain_run": 31054934882,
-      "pr_platform_rights_run": 31054934838,
-      "main_star_runtime_run": 31055213468,
-      "main_platform_rights_run": 31055213609,
-      "godot_suites": 31,
-      "assertions": 1137,
-      "failures": 0
+      "red_run": 31064303029,
+      "pack_implementation_run": 31064739240,
+      "runtime_godot_suites": 31,
+      "runtime_assertions": 1137,
+      "runtime_failures": 0
     }
   },
   "history": [
     {
-      "sync_id": "GR-SYNC-20260806-01-MAIN",
-      "status": "SYNCED_TO_MAIN_DESIGN"
-    },
-    {
-      "sync_id": "GR-SYNC-20260806-02-STAR-RUNTIME-POC",
-      "status": "HISTORICAL_INITIAL_RUNTIME_POC"
-    },
-    {
-      "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION",
-      "status": "HISTORICAL_WORKING_BRANCH_READBACK_PASS"
+      "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN",
+      "status": "SYNCED_TO_MAIN_FINALIZATION_CLOSED",
+      "main_commit": "ccacb730775056c8d7ea5d7bae6cebcfc260b5df"
     }
   ],
-  "latest_product_gate": "STAR_RUNTIME_COMPLETION_MAIN",
-  "codex_status": "AUTOMATED_RUNTIME_COMPLETION_PASS_LOCAL_GODOT_READY",
+  "latest_product_gate": "GR_TEST_033_READY_FOR_PHYSICAL_EXECUTION_HUMAN_NOT_RUN",
   "implementation": "STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
   "runtime_validation": "AUTOMATED_HEADLESS_PASS",
-  "mobile_device_validation": "NOT_RUN",
-  "performance_validation": "NOT_RUN",
+  "physical_pack_validation": "AUTOMATED_CONTRACT_PASS",
+  "mobile_device_validation": "DEVICE_NOT_RUN",
+  "performance_validation": "PERFORMANCE_NOT_RUN",
   "accessibility_validation": "AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN",
-  "human_validation": "NOT_RUN",
-  "full_vertical_slice_representativeness": "NOT_RUN",
-  "merge_authorized": true,
+  "human_validation": "HUMAN_NOT_RUN",
+  "full_vertical_slice_representativeness": "FULL_VERTICAL_SLICE_NOT_RUN",
+  "merge_authorized": false,
   "runtime_merged": true
 }
