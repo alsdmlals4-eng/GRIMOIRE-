@@ -1,10 +1,10 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
   "sync_id": "GR-SYNC-20260806-10-GODOT-AUTHORING-GUT-AUTHORITY",
-  "status": "DESIGN_APPROVED_PR83_REVIEW_EXCEPTION_APPROVED",
+  "status": "GUT_ADOPTION_IMPLEMENTATION_IN_PROGRESS",
   "design_review": "USER_APPROVED_2026-08-06",
-  "source_main": "917ead7499482801610ba95ce37efafd1662d994",
+  "source_main": "252063ccad18b885fc75cbeba3b807fefd76496e",
   "base_policy_observation": {
     "current_main": "4f98f968a377f7b6a11aafa4fc94d11bddbebedc",
     "project_pin": "9.4.3",
@@ -42,7 +42,7 @@
     "project_plugin_enabled": false,
     "adoption_mode": "CLI_ONLY_WITHOUT_EDITOR_PLUGIN",
     "editor_plugin_enablement": "DEFERRED_UNTIL_HIGODOT_RECEIPT",
-    "current_consumption": "VENDORED_NOT_CONSUMED",
+    "current_consumption": "ADOPTION_IMPLEMENTATION_IN_PROGRESS",
     "target_authority": "FORMAL_TEST_AUTHORITY",
     "actual_product_tests": 0,
     "ci_enabled": false,
@@ -51,17 +51,16 @@
     "legacy_coverage_parity": "NOT_PROVEN",
     "must_not_mutate_product_files": true,
     "implementation_plan": "docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md",
+    "implementation_branch": "agent/gut-9-7-1-formal-adoption-tdd",
     "implementation_pr_required": true
   },
   "pr83_merge_gate": {
     "review_exception_receipt": "docs/planning/PR83_INDEPENDENT_REVIEW_EXCEPTION_2026-08-06.md",
     "independent_review_exception": "USER_APPROVED_PR83_ONLY",
     "approved_at": "2026-08-06T23:28+09:00",
-    "pre_exception_reviewed_head": "9d1a97f0ece4746f87ecb44ccd01b7aa0c656bb8",
-    "merge_condition": "REQUIRE_CURRENT_EXACT_HEAD_CHECKS_PASS",
-    "current_exact_head_source": "GITHUB_PR_HEAD_AT_MERGE",
-    "current_head_checks": "REQUIRED_PASS_EXTERNAL_EVIDENCE",
-    "sheet_exception_sync": "REQUIRED_WRITE_READBACK_BEFORE_MERGE",
+    "head": "50b0645f13c9267de34b53478b26e8567dd2ecb3",
+    "merged_main": "252063ccad18b885fc75cbeba3b807fefd76496e",
+    "status": "MERGED_MAIN_READBACK_PASS",
     "waives_future_pr_review": false,
     "pr82_task2_authorized": false
   },
@@ -81,7 +80,6 @@
       "docs/DEVELOPMENT_GATES.md"
     ],
     "resume_conditions": [
-      "DESIGN_PR_MERGED_TO_MAIN",
       "GUT_ADOPTION_IMPLEMENTATION_PR_GREEN",
       "GUT_ACTUAL_PRODUCT_TEST_CONSUMPTION_PASS",
       "GUT_CI_AND_JUNIT_PASS",
@@ -114,10 +112,8 @@
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "write": "PASS",
     "readback": "PASS",
-    "hub_and_work_order_correction": "PASS",
-    "review_exception_write": "REQUIRED_BEFORE_MERGE",
-    "review_exception_readback": "REQUIRED_BEFORE_MERGE",
-    "receipt_commit": "4f6870ca8c7df3b708191bf21f347128deb9c7ee"
+    "pr83_main_sync": "GR-SYNC-20260806-12-PR83-MAIN",
+    "pr83_main_readback": "PASS"
   },
   "validation": {
     "windows_export": "NOT_RUN",
