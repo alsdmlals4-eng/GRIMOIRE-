@@ -56,6 +56,7 @@ func visual_snapshot() -> Dictionary:
         "active_vertices": _active_vertices,
         "active_slots": _active_slots.duplicate(),
         "cause_vertex": _cause_vertex,
+        "vertex_layout": &"MATCHES_HARNESS_SLOT_ANCHORS",
         "reduced_motion_ms": 0,
         "owns_gameplay_state": false,
     }
@@ -63,16 +64,15 @@ func visual_snapshot() -> Dictionary:
 
 func _draw() -> void:
     var center := size * 0.5
-    var radius := maxf(80.0, minf(size.x, size.y) * 0.36)
-    var guide_radius := radius * 1.08
-    var vertices := _vertex_points(center, radius)
+    var guide_radius := maxf(92.0, minf(size.x, size.y) * 0.43)
+    var vertices := _vertex_points(center)
     var state_color := _state_color()
     var dim_line := Color(GrimoireThemeFactory.LINE_BRASS, 0.22)
     var guide_line := Color(GrimoireThemeFactory.LINE_BRASS, 0.36)
 
     draw_circle(center, guide_radius, Color(GrimoireThemeFactory.SURFACE_INSET, 0.55), true)
     draw_arc(center, guide_radius, 0.0, TAU, 96, guide_line, 2.0, true)
-    draw_arc(center, radius * 0.64, 0.0, TAU, 72, dim_line, 1.0, true)
+    draw_arc(center, guide_radius * 0.64, 0.0, TAU, 72, dim_line, 1.0, true)
     draw_circle(center, 76.0, Color(GrimoireThemeFactory.SURFACE_PANEL_EMPHASIS, 0.55), true)
     draw_arc(center, 76.0, 0.0, TAU, 48, state_color, 3.0, true)
 
@@ -135,12 +135,15 @@ func _draw() -> void:
         )
 
 
-func _vertex_points(center: Vector2, radius: float) -> PackedVector2Array:
-    var result := PackedVector2Array()
-    for index in range(5):
-        var angle := deg_to_rad(-90.0 + index * 72.0)
-        result.append(center + Vector2(cos(angle), sin(angle)) * radius)
-    return result
+func _vertex_points(center: Vector2) -> PackedVector2Array:
+    var half := size * 0.5
+    return PackedVector2Array([
+        center + Vector2(0.0, -half.y * 0.853),
+        center + Vector2(half.x * 0.731, -half.y * 0.206),
+        center + Vector2(half.x * 0.5, half.y * 0.765),
+        center + Vector2(-half.x * 0.5, half.y * 0.765),
+        center + Vector2(-half.x * 0.731, -half.y * 0.206),
+    ])
 
 
 func _state_color() -> Color:
