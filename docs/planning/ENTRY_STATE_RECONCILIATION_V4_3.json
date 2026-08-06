@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "contract_version": "4.3",
+  "binding_decision_id": "GM-CONTRACT-V4-3-BINDING-01",
+  "tool_authority_decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+  "evaluated_at": "2026-08-06T23:53+09:00",
+  "base": {
+    "repository": "alsdmlals4-eng/Base",
+    "main_sha": "4f98f968a377f7b6a11aafa4fc94d11bddbebedc",
+    "project_pin": "9.4.3",
+    "pin_update": "NOT_APPROVED_NOT_PERFORMED"
+  },
+  "project": {
+    "repository": "alsdmlals4-eng/GRIMOIRE-",
+    "default_branch": "main",
+    "main_sha": "252063ccad18b885fc75cbeba3b807fefd76496e",
+    "open_prs": [82, 84],
+    "local_path": "C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-",
+    "local_access": "BLOCKED_UNVERIFIED"
+  },
+  "sheet": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "decision_ledger_readback": "PASS",
+    "unresolved_list_readback": "PASS",
+    "image_review_sheet_readback": "PASS",
+    "ranges": [
+      "00_프로젝트_허브!E2:K2",
+      "01_작업순서!A31:N31",
+      "02_현재_확정결정!A69:M69",
+      "04_누락_충돌_감사!A74:I74",
+      "72_이미지검수_승인로그!K6:M6",
+      "99_변경이력!A94:H94"
+    ]
+  },
+  "entry_gate": {
+    "originally_ready_items": [
+      "GUT_FORMAL_ADOPTION_IMPLEMENTATION_NEXT"
+    ],
+    "originally_awaiting_items": [],
+    "corrected_statuses": [
+      {
+        "item": "GUT_FORMAL_ADOPTION_IMPLEMENTATION_NEXT",
+        "from": "NEXT",
+        "to": "BLOCKED_BY_GUT_ADOPTION_SPEC",
+        "reason": "Contract v4.3 requires a separate adoption-spec Draft PR merged before formal installation"
+      },
+      {
+        "item": "GUT_ADOPTION_REVIEW_MODEL",
+        "from": "EXTERNAL_INDEPENDENT_REVIEW_REQUIRED",
+        "to": "GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY",
+        "reason": "Contract v4.3 solo-development review model"
+      },
+      {
+        "item": "VISUAL_COMPLETION_STAGE",
+        "from": "IMAGE_ONLY",
+        "to": "VISUAL_AUDIO",
+        "reason": "Contract v4.3 compatibility mapping"
+      }
+    ],
+    "blocking_reasons": [
+      "GUT_ADOPTION_SPEC_NOT_MERGED",
+      "HIGODOT_SOURCE_OR_VERSION_UNVERIFIED",
+      "GUT_SOURCE_OR_VERSION_UNVERIFIED",
+      "GUT_GODOT_COMPATIBILITY_UNVERIFIED",
+      "AUDIO_VAULT_PATH_UNVERIFIED"
+    ],
+    "allowed_next_actions": [
+      "PR84_SPEC_ONLY_WORK",
+      "OFFICIAL_SOURCE_LICENSE_COMPATIBILITY_REVIEW",
+      "GITHUB_AND_SHEET_SYNC",
+      "EXACT_HEAD_CI_AND_ROLE_SEPARATED_REVIEW"
+    ],
+    "forbidden_next_actions": [
+      "GUT_FORMAL_INSTALLATION",
+      "GUT_EDITOR_PLUGIN_ENABLEMENT",
+      "PROJECT_GODOT_MUTATION",
+      "SCENE_RESOURCE_MUTATION",
+      "PR82_TASK2_START"
+    ],
+    "decision": "BLOCK"
+  },
+  "prior_implementation_branch": {
+    "branch": "agent/gut-9-7-1-formal-adoption-tdd",
+    "status": "FROZEN_SUPERSEDED_BY_V4_3_SPEC_GATE",
+    "merge_or_cherry_pick_authorized": false,
+    "counts_as_adoption_evidence": false
+  },
+  "spec_pr": {
+    "branch": "chore/gut-9.7.1-adoption-spec",
+    "pr": 84,
+    "state": "DRAFT_IN_REVIEW",
+    "base_sha": "252063ccad18b885fc75cbeba3b807fefd76496e",
+    "red_head": "39c352d2ea353184cf239a79829f486d9adc4c7e",
+    "red_run": 31113151792,
+    "red_result": "EXPECTED_FAIL"
+  }
+}
