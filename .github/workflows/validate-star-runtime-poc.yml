@@ -26,6 +26,11 @@ jobs:
           python tools/setup_godot_toolchain.py \
             --install-dir .tooling/godot \
             --json-report godot-star-runtime-toolchain-report.json
+      - name: Import project vector assets
+        run: |
+          set -o pipefail
+          timeout 60s .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
+            --headless --path . --import | tee star-runtime-import.log
       - name: Run Godot headless runtime tests
         run: |
           set -o pipefail
@@ -38,5 +43,6 @@ jobs:
           name: star-runtime-poc-evidence
           path: |
             godot-star-runtime-toolchain-report.json
+            star-runtime-import.log
             star-runtime-headless.log
           if-no-files-found: warn
