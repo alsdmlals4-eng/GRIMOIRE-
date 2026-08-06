@@ -15,9 +15,13 @@ gut_adoption_spec_pr: 84
 gut_adoption_spec_status: OPEN_DRAFT_IN_REVIEW
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 higodot_authority: SOLE_AUTHORING_AUTHORITY
-gut_version: 9.7.1
+higodot_source_version_license: PASS
+higodot_vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
+gut_source_version_license: PASS
+gut_vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
 gut_status: VENDORED_NOT_CONSUMED
 gut_adoption_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
+sheet_v4_3_sync: READBACK_PASS
 implementation_entry: BLOCKED
 merge_authorized: false
 mobile_device_validation: DEVICE_NOT_RUN
@@ -45,7 +49,7 @@ full_vertical_slice_representativeness: FULL_VERTICAL_SLICE_NOT_RUN
 reconciliation: docs/planning/ENTRY_STATE_RECONCILIATION_V4_3.json
 prior_state: GUT_FORMAL_ADOPTION_IMPLEMENTATION_NEXT
 corrected_state: BLOCKED_BY_GUT_ADOPTION_SPEC
-allowed_next_action: PR84_SPEC_ONLY_REVIEW_AND_SYNC
+allowed_next_action: PR84_SPEC_ONLY_EXACT_HEAD_REVIEW_AND_MERGE
 ```
 
 GUT adoption spec이 merged main에 없으면 formal installation·PR82 Task2·Scene 전환을 시작하지 않는다.
@@ -73,27 +77,22 @@ status: PAUSED_AFTER_TASK1_GREEN
 
 ```yaml
 canonical_repository: hi-godot/godot-ai
-bundled_version: 3.1.2
-pinned_source_commit: BLOCKED_UNVERIFIED
-license: MIT_EXPECTED_VERIFICATION_REQUIRED
-godot_compatibility: 4.7.x_REQUIRED
+release: v3.1.2
+pinned_source_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+release_asset_sha256: 60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33
+official_plugin_source_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
+project_vendor_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+license: MIT
+source_version_license: PASS
+vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
+godot_compatibility: 4.7.x_REQUIRED_RUNTIME_NOT_RUN
 telemetry: VERIFY_AND_CONFIGURE
 authority: SINGLE_GODOT_SCENE_NODE_RESOURCE_PROJECT_SETTINGS_AUTHOR
 ```
 
-다음의 유일한 write authority다.
+`project.godot`, Scene·Node 구조, `*.tscn`, `*.tres`, `*.res`, Theme·Animation·signal, Project Settings의 유일한 write authority다. protected diff에는 `HIGODOT_AUTHORING_MANIFEST`와 Scene/Resource/Project Settings readback이 필요하다.
 
-```text
-project.godot
-Scene·Node 구조
-*.tscn
-*.tres
-*.res
-Theme·Animation·signal
-Project Settings·Editor Plugin·Autoload·Main Scene·Input Map
-```
-
-protected diff에는 `HIGODOT_AUTHORING_MANIFEST`와 Scene/Resource/Project Settings readback이 필요하다. HiGodot은 테스트 expected value·fixture·`.gutconfig.json`·CI 성공 기준을 수정하지 않는다.
+프로젝트 vendor tree가 official source tree와 다르므로 release ZIP 추출 hash manifest와 비교하거나 승인된 교체를 완료하기 전 integrity PASS를 선언하지 않는다.
 
 ## Gate 15.2 — GUT 9.7.1 Adoption Spec Draft PR
 
@@ -104,12 +103,17 @@ branch: chore/gut-9.7.1-adoption-spec
 pr: 84
 spec: docs/testing/GUT_9_7_1_ADOPTION_SPEC.md
 decision: docs/decisions/DEC-GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01-adopt-gut-9-7-1.md
-source: bitwes/Gut
+canonical_repository: bitwes/Gut
+release: v9.7.1
 source_branch_or_release: godot_4_7
-version: 9.7.1
+pinned_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+pinned_commit_signature: VERIFIED
+official_addons_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
+project_vendor_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
 license: MIT
-godot_compatibility: 4.7.x
-bundled: PREEXISTING_NOT_ADOPTION_EVIDENCE
+source_version_license: PASS
+vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
+godot_compatibility: 4.7.x_METADATA_PASS_RUNTIME_NOT_RUN
 project_plugin_enabled: false
 adoption_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
 formal_installation_authorized: false
@@ -118,10 +122,10 @@ formal_installation_authorized: false
 PR #84 허용 범위:
 
 - v4.3 바인딩.
+- official release·commit·license·tree 확인과 vendor mismatch 기록.
 - adoption spec·Decision.
 - entry reconciliation·active canon.
-- contract tests.
-- Sheet sync.
+- contract tests·Sheet sync.
 
 PR #84 금지 범위:
 
@@ -134,7 +138,7 @@ project.godot
 *.tres
 *.res
 product script/data/asset mutation
-addons/gut replacement
+addons/gut or addons/godot_ai replacement
 ```
 
 병합 조건:
@@ -158,14 +162,15 @@ merge + main readback
 필수 RED→GREEN:
 
 ```text
-official source commit·license·integrity verification
+official GUT tree replacement or approved file-level audit
+→ HiGodot release archive integrity comparison
+→ actual Godot 4.7.1 compatibility smoke
 → .gutconfig.json
 → actual GRIMOIRE product GutTest
 → Godot 4.7.1 CLI CI + JUnit
 → user:// JUnit workspace copy + artifact
 → production hash 무변경
-→ legacy runner 병행
-→ 필수 계약 parity
+→ legacy runner 병행·필수 계약 parity
 → HiGodot authoring manifest gate
 → Windows·Android shared-core evidence
 → rollback dry-run
