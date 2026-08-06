@@ -13,6 +13,7 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 base_release: v9.4.3
 runtime_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
 runtime_main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
+validation_ready_sync: GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY
 validation_main_sync: GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN
 validation_merge_commit: 292d2b850b38945e404f81dbcf209220067729d2
 latest_approved_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -22,11 +23,15 @@ product_project: CREATED
 product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
 runtime_validation: AUTOMATED_HEADLESS_PASS
 physical_pack_validation: AUTOMATED_CONTRACT_PASS
-mobile_device_validation: DEVICE_NOT_RUN
-performance_validation: PERFORMANCE_NOT_RUN
+mobile_device_validation: NOT_RUN
+physical_device_status: DEVICE_NOT_RUN
+performance_validation: NOT_RUN
+performance_status: PERFORMANCE_NOT_RUN
 accessibility_validation: AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN
-human_validation: HUMAN_NOT_RUN
-full_vertical_slice_representativeness: FULL_VERTICAL_SLICE_NOT_RUN
+human_validation: NOT_RUN
+human_status: HUMAN_NOT_RUN
+full_vertical_slice_representativeness: NOT_RUN
+full_vertical_slice_status: FULL_VERTICAL_SLICE_NOT_RUN
 numeric_status: PLAYTEST_TUNING_REQUIRED
 validation_pack_merged: true
 ```
