@@ -23,23 +23,30 @@ const ALLOWED_STATES: Array[StringName] = [
 
 var _visual_state: StringName = EDIT
 var _active_vertices := 0
+var _active_slots: Array[int] = []
 var _cause_vertex := -1
 
 
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_IGNORE
-    resized.connect(queue_redraw)
+    resized.connect(Callable(self, "queue_redraw"))
     queue_redraw()
 
 
 func set_visual_state(
     state: StringName,
     active_vertices: int,
-    cause_vertex: int = -1
+    cause_vertex: int = -1,
+    active_slots: Array[int] = []
 ) -> void:
     _visual_state = state if state in ALLOWED_STATES else EDIT
     _active_vertices = clampi(active_vertices, 0, 5)
     _cause_vertex = clampi(cause_vertex, -1, 4)
+    _active_slots = []
+    for slot in active_slots:
+        if slot >= 0 and slot <= 4 and slot not in _active_slots:
+            _active_slots.append(slot)
+    _active_slots.sort()
     queue_redraw()
 
 
@@ -47,6 +54,7 @@ func visual_snapshot() -> Dictionary:
     return {
         "state": _visual_state,
         "active_vertices": _active_vertices,
+        "active_slots": _active_slots.duplicate(),
         "cause_vertex": _cause_vertex,
         "reduced_motion_ms": 0,
         "owns_gameplay_state": false,
@@ -84,7 +92,11 @@ func _draw() -> void:
 
     for index in range(vertices.size()):
         var point: Vector2 = vertices[index]
-        var is_active := index < _active_vertices
+        var is_active := (
+            index in _active_slots
+            if not _active_slots.is_empty()
+            else index < _active_vertices
+        )
         var ring_color := state_color if is_active else Color(GrimoireThemeFactory.LINE_BRASS, 0.55)
         var fill_color := (
             Color(state_color, 0.22)
