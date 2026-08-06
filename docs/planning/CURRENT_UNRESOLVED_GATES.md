@@ -10,6 +10,7 @@ spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 gut_adoption_spec_pr: 84
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
+sheet_v4_3_sync: READBACK_PASS
 ```
 
 ## 현재 최우선 차단 항목
@@ -21,7 +22,6 @@ review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 | `GUT_SOURCE_OR_VERSION_UNVERIFIED` | BLOCKING_BEFORE_INSTALLATION | `bitwes/Gut` 9.7.1 `godot_4_7` source commit과 vendor tree 일치 검증 |
 | `GUT_GODOT_COMPATIBILITY_UNVERIFIED` | BLOCKING_BEFORE_INSTALLATION | Godot 4.7.1 exact CLI smoke와 GUT discovery PASS |
 | `GPT_ROLE_SEPARATED_REVIEW_NOT_COMPLETE` | BLOCKING_FOR_PR84_MERGE | 구현자 설명과 분리된 exact diff·정본·테스트 입력으로 검토, P0/P1 0 |
-| `SHEET_V4_3_BINDING_NOT_SYNCED` | BLOCKING_FOR_PR84_MERGE | 같은 Decision ID로 00·01·02·04·72·99 write/readback PASS |
 
 ## 명세 병합 후에도 남는 구현 차단 항목
 
@@ -55,6 +55,8 @@ pr83_only_review_exception: HISTORICAL_VALID_FOR_PR83_ONLY
 external_independent_reviewer_requirement: SUPERSEDED_BY_V4_3_SOLO_REVIEW_MODEL
 active_review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 image_completion_term: VISUAL_AUDIO_COMPATIBILITY_MAPPING_ACTIVE
+sheet_v4_3_binding_write_readback: PASS
+sheet_sync_receipt: docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md
 ```
 
 PR #83의 병합은 당시 사용자 승인과 exact-HEAD 증거로 유효하다. 후속 PR에는 PR83 예외를 재사용하지 않는다. v4.3에 따라 별도 인간 reviewer가 있다고 가장하지 않고, 역할 분리 검토·사용자 결정권·GUT/CI 객관 증거·exact-HEAD Check로 품질 Gate를 구성한다.
@@ -77,7 +79,7 @@ counts_as_adoption_evidence: false
 historical_status: GUT_FORMAL_ADOPTION_IMPLEMENTATION_NEXT
 current_status: BLOCKED_BY_GUT_ADOPTION_SPEC
 reason: CONTRACT_V4_3_REQUIRES_SPEC_DRAFT_PR_AND_MERGED_MAIN_BEFORE_INSTALLATION
-allowed_next_action: PR84_SPEC_ONLY_REVIEW_AND_SYNC
+allowed_next_action: PR84_SPEC_ONLY_EXACT_HEAD_REVIEW_AND_MERGE
 ```
 
 ## 이미지·오디오 판정
