@@ -9,10 +9,12 @@ validation_merge_commit: 292d2b850b38945e404f81dbcf209220067729d2
 latest_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_design_sync: GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2
 working_pull_request: 78
-current_gate: SPELL_WORKFLOW_UI_V2_WRITTEN_SPEC_REVIEW
+current_gate: SPELL_WORKFLOW_UI_V2_IMPLEMENTATION_PLAN
+written_spec_review: USER_APPROVED
 layout: FIVE_POINT_STAR
-canon_status: SYNCED_TO_WORKING_BRANCH_PENDING_MERGE
+canon_status: USER_APPROVED_MERGE_AUTHORIZED
 existing_runtime: AUTOMATED_HEADLESS_PASS
+spell_workflow_ui_v2_implementation_plan: IN_PROGRESS
 spell_workflow_ui_v2_implementation: NOT_STARTED
 mobile_device_validation: DEVICE_NOT_RUN
 performance_validation: PERFORMANCE_NOT_RUN
@@ -44,11 +46,15 @@ Draft PR #78에서 다음을 정본화했다.
 - 마나는 예상 비용 영역에 한 번만 표시한다.
 - 2단계 기본 성공률과 3단계 대상 적용 성공률을 분리한다.
 
-상태는 `WRITTEN_SPEC_USER_REVIEW_REQUIRED`다.
+상태는 `USER_WRITTEN_SPEC_APPROVED`다.
 
 ## Gate 14 — 구현 계획
 
-사용자가 `docs/superpowers/specs/2026-08-06-spell-workflow-ui-v2-design.md`를 검토한 뒤에만 작성한다.
+2026-08-06 19:48 KST 사용자 승인으로 활성화되었다. 실제 저장소 구조·기존 Runtime API·PR #77 UI Kit 의존성을 기준으로 TDD 작업을 독립 검토 가능한 단위로 분해한다.
+
+계획 경로:
+
+`docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md`
 
 ## Gate 15 — TDD 구현
 
@@ -56,15 +62,16 @@ Draft PR #78에서 다음을 정본화했다.
 
 ```text
 RED 계약
-→ 최소 Core Adapter와 3개 Screen
-→ Incident Overlay
+→ 완성 주문 모델·보관소
+→ 회로 확정과 글자 소비 분리
+→ 주문 사용과 마나·결과 적용 분리
+→ 3개 Screen·Incident Overlay
 → Vault/Stock Equal-count Source Panel
-→ Spell Inventory와 Use Transaction
 → 자동 렌더·접근성·회귀
 → 적대적 재검토
 ```
 
-PR #77에는 공용 UI Kit만 유지하며 3단계 전체 기능을 섞지 않는다.
+PR #77에는 공용 UI Kit만 유지하며 3단계 전체 기능을 섞지 않는다. 구현 브랜치는 PR #77의 공용 UI 컴포넌트를 소비하되, PR #77이 main에 병합되기 전에는 stacked Draft 상태로만 유지한다.
 
 ## Godot Gate
 
@@ -72,4 +79,4 @@ PR #77에는 공용 UI Kit만 유지하며 3단계 전체 기능을 섞지 않�
 - 현재 Main Scene: `res://src/ui/star_circuit_harness.tscn`
 - Godot `4.7.1`
 - 1280×720 Mobile Landscape / GL Compatibility
-- UI v2 Main Scene 전환은 구현 계획 승인 전 금지
+- UI v2 Main Scene 전환은 구현 PR의 전체 자동 회귀와 렌더 증거가 PASS하기 전 금지
