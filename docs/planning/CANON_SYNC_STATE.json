@@ -60,8 +60,9 @@
     "final_art": "NOT_CLAIMED"
   },
   "tool_authority": {
-    "sync_id": "GR-SYNC-20260806-10-GODOT-AUTHORING-GUT-AUTHORITY",
+    "sync_id": "GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC",
     "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+    "contract_binding_decision_id": "GM-CONTRACT-V4-3-BINDING-01",
     "design_pull_request": 83,
     "design_main_merge_commit": "252063ccad18b885fc75cbeba3b807fefd76496e",
     "status": "DESIGN_MERGED_GUT_SPEC_IN_REVIEW",
@@ -100,8 +101,9 @@
       "status": "FROZEN_SUPERSEDED_BY_V4_3_SPEC_GATE",
       "merge_authorized": false
     },
-    "sheet_write": "PENDING_V4_3_SYNC",
-    "sheet_readback": "PENDING_V4_3_SYNC",
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
+    "sheet_receipt": "docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md",
     "merge_authorized": false
   },
   "visual_audio_review": {
@@ -117,5 +119,5 @@
   "entry_reconciliation": "docs/planning/ENTRY_STATE_RECONCILIATION_V4_3.json",
   "unresolved_gate_file": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "merge_authorized": false,
-  "sheet_finalization_readback": "PENDING_V4_3_SYNC"
+  "sheet_finalization_readback": "PASS"
 }
