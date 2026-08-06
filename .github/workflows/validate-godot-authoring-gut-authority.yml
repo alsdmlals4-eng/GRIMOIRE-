@@ -1,0 +1,19 @@
+name: Validate Godot Authoring and GUT Authority Gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  authority-entry-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate tool authority adoption contract
+        run: python -m unittest tests.test_godot_authoring_gut_authority_contract -v
