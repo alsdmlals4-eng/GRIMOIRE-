@@ -3,6 +3,7 @@
 ```yaml
 runtime_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
 runtime_main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
+preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 validation_main_sync: GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN
 validation_merge_commit: 292d2b850b38945e404f81dbcf209220067729d2
 latest_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -22,7 +23,7 @@ full_vertical_slice_representativeness: FULL_VERTICAL_SLICE_NOT_RUN
 
 ## Gate 0–12 — 기존 별형 Runtime과 검증 Pack
 
-기존 Main의 FIVE_POINT_STAR·숙련도·Typed Glyph Stock·Atomic Commit·GR-TEST-033 실행 Pack은 보존한다. 실제 Android/iOS·Screen Reader·Performance·Human 실행은 계속 `NOT_RUN`이다.
+`GM-STAR-CIRCUIT-MASTERY-BALANCE-01`의 `FIVE_POINT_STAR`·숙련도·Typed Glyph Stock·Atomic Commit·GR-TEST-033 실행 Pack은 보존한다. 실제 Android/iOS·Screen Reader·Performance·Human 실행은 계속 `NOT_RUN`이다.
 
 ## Gate 13 — 주문 3단계 UX/UI v2 설계
 
