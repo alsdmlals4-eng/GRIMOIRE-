@@ -30,15 +30,6 @@ if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($repoRoot)) {
 
 Set-Location $repoRoot
 
-$python = Get-Command py -ErrorAction SilentlyContinue
-if ($null -ne $python) {
-    $pythonCommand = @('py', '-3')
-}
-else {
-    $python = Get-Command python -ErrorAction Stop
-    $pythonCommand = @($python.Source)
-}
-
 $arguments = @(
     'tools/run_local_gut_validation.py',
     '--expected-head', $ExpectedHead,
@@ -52,7 +43,14 @@ if (-not [string]::IsNullOrWhiteSpace($GodotExecutable)) {
     $arguments += @('--godot-executable', $GodotExecutable)
 }
 
-& $pythonCommand[0] $pythonCommand[1..($pythonCommand.Count - 1)] $arguments
+$pyLauncher = Get-Command py -ErrorAction SilentlyContinue
+if ($null -ne $pyLauncher) {
+    & $pyLauncher.Source -3 @arguments
+}
+else {
+    $python = Get-Command python -ErrorAction Stop
+    & $python.Source @arguments
+}
 $exitCode = $LASTEXITCODE
 
 $manifestPath = Join-Path $repoRoot (Join-Path $EvidenceDir 'manifest.json')
