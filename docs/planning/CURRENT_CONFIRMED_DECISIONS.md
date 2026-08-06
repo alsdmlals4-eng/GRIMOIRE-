@@ -18,9 +18,15 @@ gut_adoption_spec_status: OPEN_DRAFT_IN_REVIEW
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 external_independent_reviewer: NOT_PLANNED_SOLO_DEVELOPMENT
 higodot_authority: SOLE_AUTHORING_AUTHORITY
+higodot_release: v3.1.2
+higodot_source_verification: PASS
+higodot_vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
 gut_version: 9.7.1
+gut_source_verification: PASS
+gut_vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
 gut_status: VENDORED_NOT_CONSUMED
 gut_adoption_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
+sheet_v4_3_sync: READBACK_PASS
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 merge_authorized: false
 mobile_device_validation: DEVICE_NOT_RUN
@@ -42,8 +48,6 @@ full_vertical_slice_representativeness: FULL_VERTICAL_SLICE_NOT_RUN
 docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md
 ```
 
-### 프로젝트 권위 입력
-
 ```yaml
 project_repository: alsdmlals4-eng/GRIMOIRE-
 project_default_branch: main
@@ -57,7 +61,7 @@ v4.3 원문의 Switchy-Express 경로는 범용 예시이며 GRIMOIRE 권위 값
 
 ### v4.3 핵심 변경
 
-- 작업 진입 전에 Decision Ledger·미확정 목록·이미지 검수 Sheet를 다시 읽고 상태를 재계산한다.
+- Decision Ledger·미확정 목록·이미지 검수 Sheet를 다시 읽고 entry status를 재계산한다.
 - `[이미지 완료]`는 `[이미지·오디오 완료]`와 같은 단계로 해석한다.
 - 공유 오디오 Vault를 새 사운드 생성보다 먼저 확인한다.
 - GUT 정식 설치 전에 adoption-spec 전용 branch와 Draft PR을 먼저 병합한다.
@@ -81,19 +85,40 @@ PR #82 Task 1은 10종 Glyph Catalog와 `BURST → AMPLIFY` 호환을 구현해 
 
 ### HiGodot
 
-- `project.godot`, Scene·Node·`*.tscn`, `*.tres`, `*.res`, Resource, Theme, Animation, signal, Project Settings의 단일 저작 권위.
+```yaml
+canonical_repository: hi-godot/godot-ai
+release: v3.1.2
+pinned_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+official_repository_tree: 646fb8365cc39de7b0a88e056cc03de7e7eb008a
+official_plugin_source_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
+project_vendor_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+release_asset_sha256: 60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33
+license: MIT
+source_version_license: PASS
+vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
+godot_compatibility: 4.7.x_REQUIRED_RUNTIME_NOT_RUN
+```
+
+- `project.godot`, Scene·Node·`*.tscn`, `*.tres`, `*.res`, Resource, Theme, Animation, signal, Project Settings의 단일 저작 권위다.
 - protected diff에는 `HIGODOT_AUTHORING_MANIFEST`와 Scene/Resource/Project Settings readback이 필요하다.
-- 테스트 assertion·expected value·fixture·CI 성공 기준 수정 금지.
-- canonical source commit·license·Godot 4.7.x·telemetry는 아직 `BLOCKED_UNVERIFIED`다.
+- 테스트 assertion·expected value·fixture·CI 성공 기준을 수정하지 않는다.
+- 공식 release는 확인됐지만 프로젝트 vendor tree가 official plugin source tree와 다르다. release ZIP 추출 manifest와의 정확한 비교 전 integrity PASS를 주장하지 않는다.
 
 ### GUT 9.7.1
 
 ```yaml
 canonical_repository: bitwes/Gut
+release: v9.7.1
 source_branch_or_release: godot_4_7
-version: 9.7.1
+pinned_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+pinned_commit_signature: VERIFIED
+official_repository_tree: bb624be66fd3aab7378d053b391d80cc7762d331
+official_addons_gut_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
+project_addons_gut_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
 license: MIT
-godot_compatibility: 4.7.x
+source_version_license: PASS
+vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
+godot_compatibility: 4.7.x_METADATA_PASS_RUNTIME_NOT_RUN
 repository_state: VENDORED_NOT_CONSUMED
 formal_adoption: NOT_YET_IMPLEMENTED
 adoption_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
@@ -102,6 +127,8 @@ adoption_spec_branch: chore/gut-9.7.1-adoption-spec
 adoption_spec_pr: 84
 ```
 
+버전 문자열과 license는 맞지만 project subtree가 official v9.7.1 subtree와 다르다. 구현 PR은 official tree로 교체하거나 file-level audit·사용자 승인을 완료하기 전 runtime 소비를 활성화할 수 없다.
+
 채택 명세:
 
 ```text
@@ -109,7 +136,7 @@ docs/testing/GUT_9_7_1_ADOPTION_SPEC.md
 docs/decisions/DEC-GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01-adopt-gut-9-7-1.md
 ```
 
-PR #84는 원칙적으로 명세·Decision·검증 계획만 포함한다. `.gutconfig.json`, actual `GutTest`, GUT runtime workflow, `project.godot`, Scene, Resource, asset 변경은 금지한다.
+PR #84는 명세·Decision·검증 계획만 포함한다. `.gutconfig.json`, actual `GutTest`, GUT runtime workflow, `project.godot`, Scene, Resource, asset, addon 교체는 금지한다.
 
 ## v4.3 진입 상태 재판정
 
@@ -148,7 +175,21 @@ PR #83의 사용자 한정 리뷰 예외는 당시 병합의 역사 증거로 �
 
 ## Base 정합성
 
-프로젝트 Base pin은 9.4.3이다. Base 최신 main `4f98f968a377f7b6a11aafa4fc94d11bddbebedc`의 선택적 애드온 소비 정책은 GUT의 실제 소비·제거 계획을 요구하는 v4.3과 정합한다. pin 변경은 승인·수행하지 않았다.
+프로젝트 Base pin은 9.4.3이다. Base 최신 main `4f98f968a377f7b6a11aafa4fc94d11bddbebedc`의 선택적 애드온 소비 정책은 실제 소비·source pin·integrity·제거 계획을 요구하는 v4.3과 정합한다. pin 변경은 승인·수행하지 않았다.
+
+## Google Sheet 정합성
+
+```yaml
+sync_id: GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC
+00_프로젝트_허브: READBACK_PASS
+01_작업순서: READBACK_PASS
+02_현재_확정결정: READBACK_PASS
+04_누락_충돌_감사: READBACK_PASS
+72_이미지검수_승인로그: READBACK_PASS
+99_변경이력: READBACK_PASS
+```
+
+공식 release와 vendor mismatch addendum은 `GR-SYNC-20260806-14-TOOL-SOURCE-INTEGRITY`로 추가 동기화한다.
 
 ## 이미지·오디오 상태
 
@@ -167,10 +208,11 @@ status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 - PR #82 Task 2.
 - GUT formal installation 또는 채택 완료 선언.
 - GUT Editor Plugin 활성화.
+- 승인 없는 addon vendor 교체.
 - UI v2 Main Scene 전환.
 - 최종 시각·오디오·Runtime·기기 완료 선언.
 - 로컬 sync·Godot run 완료 주장.
 
 ## 다음 Gate
 
-PR #84의 v4.3 바인딩·adoption-spec·Decision을 같은 ID로 Google Sheet에 동기화하고 exact-HEAD CI와 역할 분리 검토를 통과시킨다. 병합·main readback 후에만 새 GUT formal-installation TDD PR을 시작한다.
+PR #84의 공식 source pin·vendor mismatch를 Sheet에 추가 동기화하고 exact-HEAD CI와 역할 분리 검토를 통과시킨다. 병합·main readback 후에만 새 GUT formal-installation TDD PR을 시작한다.
