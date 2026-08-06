@@ -102,7 +102,8 @@
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "write": "PASS",
     "readback": "PASS",
-    "hub_and_work_order_correction": "PENDING_CURRENT_PR_UPDATE"
+    "hub_and_work_order_correction": "PASS",
+    "receipt_commit": "4f6870ca8c7df3b708191bf21f347128deb9c7ee"
   },
   "validation": {
     "windows_export": "NOT_RUN",
