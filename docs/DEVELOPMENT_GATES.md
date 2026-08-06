@@ -9,12 +9,13 @@ validation_merge_commit: 292d2b850b38945e404f81dbcf209220067729d2
 latest_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_design_sync: GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2
 working_pull_request: 78
-current_gate: SPELL_WORKFLOW_UI_V2_IMPLEMENTATION_PLAN
+current_gate: SPELL_WORKFLOW_UI_V2_READY_FOR_TDD
 written_spec_review: USER_APPROVED
 layout: FIVE_POINT_STAR
 canon_status: USER_APPROVED_MERGE_AUTHORIZED
 existing_runtime: AUTOMATED_HEADLESS_PASS
-spell_workflow_ui_v2_implementation_plan: IN_PROGRESS
+spell_workflow_ui_v2_implementation_plan: COMPLETE
+implementation_plan_path: docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md
 spell_workflow_ui_v2_implementation: NOT_STARTED
 mobile_device_validation: DEVICE_NOT_RUN
 performance_validation: PERFORMANCE_NOT_RUN
@@ -50,11 +51,7 @@ Draft PR #78에서 다음을 정본화했다.
 
 ## Gate 14 — 구현 계획
 
-2026-08-06 19:48 KST 사용자 승인으로 활성화되었다. 실제 저장소 구조·기존 Runtime API·PR #77 UI Kit 의존성을 기준으로 TDD 작업을 독립 검토 가능한 단위로 분해한다.
-
-계획 경로:
-
-`docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md`
+완료. `docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md`에 Core 분리, 세 화면, 접근성, 렌더 증거, 정본 동기화를 10개 TDD 작업으로 작성했다.
 
 ## Gate 15 — TDD 구현
 
