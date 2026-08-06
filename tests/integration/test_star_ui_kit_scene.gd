@@ -33,7 +33,8 @@ func run(case) -> void:
     case.assert_true(harness.get_node_or_null("VisualBackground") != null, "Harness has a reusable visual background")
     case.assert_true(harness.get_node_or_null("SafeArea/StarBoard") != null, "Harness has StarCircuitBoard behind glyph slots")
     case.assert_true(harness.get_node_or_null("SafeArea/PhaseBadge") != null, "Harness exposes explicit phase badge")
-    case.assert_true(harness.theme != null, "Harness applies one shared Theme")
+    harness.initialize_demo()
+    case.assert_true(harness.theme != null, "Harness applies one shared Theme during deterministic initialization")
 
     var main_slot := harness.get_node_or_null("SafeArea/CenterGlyph") as Button
     case.assert_true(main_slot != null, "Main glyph slot remains available")
@@ -50,7 +51,6 @@ func run(case) -> void:
             case.assert_true(slot.custom_minimum_size.x >= 48.0, "Auxiliary slot %s touch width remains at least 48" % index)
             case.assert_true(slot.custom_minimum_size.y >= 48.0, "Auxiliary slot %s touch height remains at least 48" % index)
 
-    harness.initialize_demo()
     var board = harness.get_node_or_null("SafeArea/StarBoard")
     if board != null and board.has_method("visual_snapshot"):
         var edit: Dictionary = board.visual_snapshot()
