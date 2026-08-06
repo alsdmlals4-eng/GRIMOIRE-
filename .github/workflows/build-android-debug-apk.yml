@@ -2,15 +2,96 @@ name: Build Android Debug APK
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  android-debug-contract-red:
+  android-debug-apk:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      GODOT_INSTALL_DIR: .tooling/godot
+      GODOT_BINARY: .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64
+      DISTRIBUTION_ZIP: build/distribution/GRIMOIRE-Android-Debug-POC.zip
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Godot 4.7 Android SDK requirements
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager --sdk_root="$ANDROID_HOME" \
+            "platform-tools" \
+            "build-tools;35.0.1" \
+            "platforms;android-35" \
+            "cmdline-tools;latest" \
+            "cmake;3.10.2.4988404" \
+            "ndk;28.1.13356709"
+
       - name: Run Android package contract
         run: python -m unittest tests.test_android_debug_package_contract -v
+
+      - name: Install pinned Godot engine and export templates
+        run: |
+          python tools/setup_godot_toolchain.py \
+            --install-dir "$GODOT_INSTALL_DIR" \
+            --with-templates \
+            --json-report godot-android-toolchain-report.json
+          mkdir -p "$HOME/.local/share/godot/export_templates/4.7.1.stable"
+          cp -R "$GODOT_INSTALL_DIR/export_templates/4.7.1.stable/." \
+            "$HOME/.local/share/godot/export_templates/4.7.1.stable/"
+
+      - name: Create CI-only Android debug keystore
+        run: |
+          mkdir -p "$RUNNER_TEMP/grimoire-android"
+          keytool -keyalg RSA -genkeypair \
+            -alias androiddebugkey \
+            -keypass android \
+            -keystore "$RUNNER_TEMP/grimoire-android/debug.keystore" \
+            -storepass android \
+            -dname "CN=Android Debug,O=GRIMOIRE POC,C=KR" \
+            -validity 9999 \
+            -deststoretype PKCS12
+          echo "GODOT_ANDROID_KEYSTORE_DEBUG_PATH=$RUNNER_TEMP/grimoire-android/debug.keystore" >> "$GITHUB_ENV"
+          echo "GODOT_ANDROID_KEYSTORE_DEBUG_USER=androiddebugkey" >> "$GITHUB_ENV"
+          echo "GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD=android" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> "$GITHUB_ENV"
+
+      - name: Build Android APK distribution ZIP
+        run: |
+          python tools/build_android_debug.py \
+            --godot "$GODOT_BINARY" \
+            --project-dir . \
+            --output-dir build/android \
+            --zip-path "$DISTRIBUTION_ZIP"
+
+      - name: Verify distribution ZIP
+        run: |
+          test -s "$DISTRIBUTION_ZIP"
+          unzip -l "$DISTRIBUTION_ZIP"
+          unzip -p "$DISTRIBUTION_ZIP" SHA256SUMS.txt
+
+      - name: Upload phone-downloadable ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: GRIMOIRE-Android-Debug-POC
+          path: build/distribution/GRIMOIRE-Android-Debug-POC.zip
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
