@@ -15,8 +15,8 @@ ui_kit_pull_request: 77
 ui_kit_exact_head: 64116046ab17adac81ce4d238ebf19ddd2ec2293
 main_merge_commit: 8165ac983a8236bd780ac0ac0af1c121d36efd67
 status: SYNCED_TO_MAIN_AUTOMATED_RENDER_PASS
-sheet_write: PENDING
-sheet_readback: PENDING
+sheet_write: PASS
+sheet_readback: PASS
 runtime_behavior_changes: NONE
 final_art: NOT_CLAIMED
 mobile_device_validation: NOT_RUN
@@ -60,6 +60,22 @@ asset_rights_run: 31098150603
 review_threads: 0
 result: PASS
 ```
+
+## Google Sheet Write·Readback
+
+다음 권위 범위를 동일 Sync ID와 병합 상태로 갱신하고 Readback을 확인했다.
+
+```text
+00_프로젝트_허브!H2:K2
+01_작업순서!H57:J57
+02_현재_확정결정!E68:J68
+04_누락_충돌_감사!E72:H72
+60_UX_UI_접근성!A41:J41
+71_이미지기획_생성목록!A11:J11
+99_변경이력!A90:H90
+```
+
+Readback은 `PR77 merge 8165ac98`, `READY_FOR_TDD`, `FINAL_ART·DEVICE·HUMAN NOT_RUN` 경계를 확인했다.
 
 ## 사용자 승인 해석
 
