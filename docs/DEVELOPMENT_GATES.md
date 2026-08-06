@@ -7,6 +7,7 @@ validation_main_sync: GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN
 validation_merge_commit: 292d2b850b38945e404f81dbcf209220067729d2
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 current_gate: GR-TEST-033
+layout: FIVE_POINT_STAR
 canon_status: SYNCED_TO_MAIN
 product_project: CREATED
 product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
@@ -20,7 +21,7 @@ full_vertical_slice_representativeness: FULL_VERTICAL_SLICE_NOT_RUN
 
 ## Gate 0–10 — Runtime Completion
 
-별형 회로·숙련도·성공률·Mana·Typed Stock·Atomic Commit·Mobile Wireframe·결과 Policy·집중 필사·Frostbloom·Godot Runtime은 기존 Main Sync03에서 `AUTOMATED_PASS`다. `31 Suites / 1,137 assertions / 0 failures`를 유지한다.
+`FIVE_POINT_STAR` 별형 회로·숙련도·성공률·Mana·Typed Stock·Atomic Commit·Mobile Wireframe·결과 Policy·집중 필사·Frostbloom·Godot Runtime은 기존 Main Sync03에서 `AUTOMATED_PASS`다. `31 Suites / 1,137 assertions / 0 failures`를 유지한다.
 
 ## Gate 11 — GR-TEST-033 실행 패키지
 
