@@ -17,3 +17,5 @@ jobs:
           python-version: '3.12'
       - name: Validate tool authority adoption contract
         run: python -m unittest tests.test_godot_authoring_gut_authority_contract -v
+      - name: Validate PR83 review-exception contract
+        run: python -m unittest tests.test_pr83_review_exception_contract -v
