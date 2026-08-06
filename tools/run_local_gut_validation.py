@@ -4,10 +4,13 @@ import argparse
 import datetime as dt
 import json
 import os
+import platform
+import shutil
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any, Mapping, Sequence
 
 from tools.hash_gut_protected_products import build_manifest
 
@@ -23,17 +26,136 @@ def utc_now() -> str:
     return dt.datetime.now(dt.timezone.utc).isoformat()
 
 
+def python_runtime_info() -> dict[str, str]:
+    return {
+        "implementation": platform.python_implementation(),
+        "major_minor": f"{sys.version_info.major}.{sys.version_info.minor}",
+        "version": platform.python_version(),
+        "executable": str(Path(sys.executable).resolve()),
+    }
+
+
+def python_version_matches(info: Mapping[str, str], expected: str) -> bool:
+    return info.get("implementation") == "CPython" and info.get("major_minor") == expected
+
+
+def host_runtime_info() -> dict[str, Any]:
+    release = platform.release()
+    return {
+        "system": platform.system(),
+        "release": release,
+        "machine": platform.machine(),
+        "wsl": bool(os.environ.get("WSL_DISTRO_NAME")) or "microsoft" in release.lower(),
+        "wsl_distribution": os.environ.get("WSL_DISTRO_NAME"),
+    }
+
+
+def full_unittest_command(executable: str | Path = sys.executable) -> list[str]:
+    return [
+        str(executable),
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py",
+        "-v",
+    ]
+
+
+def isolated_godot_environment(
+    evidence_dir: Path,
+    *,
+    base_env: Mapping[str, str] | None = None,
+    system: str | None = None,
+) -> tuple[dict[str, str], Path]:
+    env = dict(os.environ if base_env is None else base_env)
+    user_data_root = evidence_dir.resolve() / "user-data"
+    user_data_root.mkdir(parents=True, exist_ok=True)
+    detected_system = platform.system() if system is None else system
+
+    if detected_system == "Windows":
+        local = user_data_root / "local"
+        local.mkdir(parents=True, exist_ok=True)
+        env["APPDATA"] = str(user_data_root)
+        env["LOCALAPPDATA"] = str(local)
+    else:
+        home = user_data_root / "home"
+        data = user_data_root / "data"
+        config = user_data_root / "config"
+        cache = user_data_root / "cache"
+        for path in (home, data, config, cache):
+            path.mkdir(parents=True, exist_ok=True)
+        env["HOME"] = str(home)
+        env["XDG_DATA_HOME"] = str(data)
+        env["XDG_CONFIG_HOME"] = str(config)
+        env["XDG_CACHE_HOME"] = str(cache)
+
+    return env, user_data_root
+
+
+def _parse_int(value: str | None) -> int:
+    try:
+        return int(value or "0")
+    except ValueError as exc:
+        raise RuntimeError(f"JUNIT_INVALID_COUNT:{value!r}") from exc
+
+
+def parse_junit(path: Path) -> dict[str, int]:
+    try:
+        root = ET.parse(path).getroot()
+    except (ET.ParseError, OSError) as exc:
+        raise RuntimeError(f"JUNIT_INVALID_XML:{exc}") from exc
+
+    if root.tag not in {"testsuite", "testsuites"}:
+        raise RuntimeError(f"JUNIT_INVALID_ROOT:{root.tag}")
+
+    if root.get("tests") is not None:
+        return {
+            "tests": _parse_int(root.get("tests")),
+            "failures": _parse_int(root.get("failures")),
+            "errors": _parse_int(root.get("errors")),
+        }
+
+    suites = root.findall(".//testsuite")
+    return {
+        "tests": sum(_parse_int(suite.get("tests")) for suite in suites),
+        "failures": sum(_parse_int(suite.get("failures")) for suite in suites),
+        "errors": sum(_parse_int(suite.get("errors")) for suite in suites),
+    }
+
+
+def copy_and_parse_junit(user_data_root: Path, evidence_dir: Path) -> tuple[Path, dict[str, int]]:
+    candidates = sorted(user_data_root.rglob("gut-results.xml")) if user_data_root.exists() else []
+    if not candidates:
+        raise RuntimeError("JUNIT_MISSING")
+    if len(candidates) != 1:
+        raise RuntimeError(f"JUNIT_AMBIGUOUS:{len(candidates)}")
+
+    evidence_dir.mkdir(parents=True, exist_ok=True)
+    destination = evidence_dir / "gut-results.xml"
+    shutil.copy2(candidates[0], destination)
+    counts = parse_junit(destination)
+    if counts["tests"] < 1:
+        raise RuntimeError("JUNIT_DISCOVERY_ZERO")
+    return destination, counts
+
+
 def run_process(
     name: str,
     command: Sequence[str],
     cwd: Path,
     logs_dir: Path,
+    *,
+    env: Mapping[str, str] | None = None,
 ) -> dict[str, Any]:
     logs_dir.mkdir(parents=True, exist_ok=True)
     log_path = logs_dir / f"{name}.log"
     completed = subprocess.run(
         list(command),
         cwd=cwd,
+        env=None if env is None else dict(env),
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
@@ -87,10 +209,11 @@ def write_manifest(path: Path, manifest: dict[str, Any]) -> None:
 
 def initial_manifest(args: argparse.Namespace) -> dict[str, Any]:
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "decision_id": DECISION_ID,
         "repository": REPOSITORY,
         "pull_request": args.pull_request,
+        "lane_id": args.lane_id,
         "expected_head": args.expected_head,
         "actual_head": "0" * 40,
         "tree_sha": "0" * 40,
@@ -99,41 +222,45 @@ def initial_manifest(args: argparse.Namespace) -> dict[str, Any]:
         "branch": "UNKNOWN",
         "started_at": utc_now(),
         "completed_at": utc_now(),
+        "host": host_runtime_info(),
+        "python": python_runtime_info(),
         "preflight": {
-            "head_match": False,
-            "clean_before": False,
-            "operation_in_progress": True,
-            "remote_match": False,
+            "head_match": false,
+            "clean_before": false,
+            "operation_in_progress": true,
+            "remote_match": false,
+            "python_match": false
         },
         "commands": [],
         "vendor": {
             "expected_commit": PINNED_GUT_COMMIT,
             "expected_tree": PINNED_GUT_TREE,
-            "actual_tree": None,
-            "status": "NOT_RUN",
+            "actual_tree": null,
+            "status": "NOT_RUN"
         },
         "godot": {
-            "executable": None,
-            "version": None,
+            "executable": null,
+            "version": null,
             "expected_version": EXPECTED_GODOT_VERSION,
-            "status": "NOT_RUN",
+            "status": "NOT_RUN"
         },
         "gut": {
             "version": "9.7.1",
             "discovered": 0,
             "passed": 0,
             "failed": 0,
-            "junit_path": None,
-            "status": "NOT_RUN",
+            "errors": 0,
+            "junit_path": null,
+            "status": "NOT_RUN"
         },
         "production_hash": {
-            "before_path": None,
-            "after_path": None,
-            "equal": None,
-            "status": "NOT_RUN",
+            "before_path": null,
+            "after_path": null,
+            "equal": null,
+            "status": "NOT_RUN"
         },
         "result": "NOT_RUN",
-        "limitations": [],
+        "limitations": []
     }
 
 
@@ -159,13 +286,15 @@ def parse_gut_counts(log_text: str) -> tuple[int, int, int]:
     return discovered, passed, failed
 
 
-def main() -> int:
+def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Run fail-closed local validation for GRIMOIRE GUT adoption."
     )
     parser.add_argument("--expected-head", required=True)
     parser.add_argument("--base-sha", required=True)
     parser.add_argument("--pull-request", type=int, required=True)
+    parser.add_argument("--lane-id", required=True)
+    parser.add_argument("--expected-python", required=True)
     parser.add_argument(
         "--mode", choices=("contract", "vendor", "full"), default="contract"
     )
@@ -173,9 +302,9 @@ def main() -> int:
     parser.add_argument(
         "--evidence-dir",
         type=Path,
-        default=Path("artifacts/local-validation"),
+        default=Path("artifacts/local-validation")
     )
-    args = parser.parse_args()
+    args = parser.parse_args(sys.argv[1:] if argv is None else argv)
 
     root = Path(git_text(Path.cwd(), "rev-parse", "--show-toplevel")).resolve()
     evidence_dir = (root / args.evidence_dir).resolve()
@@ -190,11 +319,12 @@ def main() -> int:
         try:
             origin_main = git_text(root, "rev-parse", "origin/main")
         except RuntimeError:
-            origin_main = None
+            origin_main = null
         remote = git_text(root, "remote", "get-url", "origin")
         clean_before = git_text(root, "status", "--porcelain") == ""
         in_progress = operation_in_progress(root)
         remote_match = "alsdmlals4-eng/GRIMOIRE-" in remote
+        python_match = python_version_matches(manifest["python"], args.expected_python)
 
         manifest.update(
             {
@@ -207,7 +337,8 @@ def main() -> int:
                     "clean_before": clean_before,
                     "operation_in_progress": in_progress,
                     "remote_match": remote_match,
-                },
+                    "python_match": python_match
+                }
             }
         )
 
@@ -219,19 +350,14 @@ def main() -> int:
             raise RuntimeError("OPERATION_IN_PROGRESS")
         if not remote_match:
             raise RuntimeError("REMOTE_MISMATCH")
+        if not python_match:
+            raise RuntimeError("PYTHON_VERSION_MISMATCH")
 
         contract = run_process(
             "python-contract",
-            [
-                sys.executable,
-                "-m",
-                "unittest",
-                "tests.test_gut_formal_adoption_contract",
-                "tests.test_gut_product_mutation_hash_gate",
-                "-v",
-            ],
+            full_unittest_command(sys.executable),
             root,
-            logs_dir,
+            logs_dir
         )
         manifest["commands"].append(contract)
         if contract["exit_code"] != 0:
@@ -241,7 +367,7 @@ def main() -> int:
             try:
                 actual_tree = git_text(root, "rev-parse", "HEAD:addons/gut")
             except RuntimeError:
-                actual_tree = None
+                actual_tree = null
             manifest["vendor"]["actual_tree"] = actual_tree
             manifest["vendor"]["status"] = (
                 "PASS" if actual_tree == PINNED_GUT_TREE else "FAIL"
@@ -250,7 +376,7 @@ def main() -> int:
                 raise RuntimeError("OFFICIAL_GUT_TREE_MISMATCH")
 
         if args.mode == "full":
-            if args.godot_executable is None:
+            if args.godot_executable is null:
                 raise RuntimeError("GODOT_EXECUTABLE_REQUIRED")
             executable = args.godot_executable.resolve()
             manifest["godot"]["executable"] = str(executable)
@@ -267,7 +393,7 @@ def main() -> int:
 
             required = (
                 root / ".gutconfig.json",
-                root / "tests/gut/integration/test_gut_product_smoke.gd",
+                root / "tests/gut/integration/test_gut_product_smoke.gd"
             )
             if not all(path.is_file() for path in required):
                 raise RuntimeError("GUT_CONSUMPTION_FILES_MISSING")
@@ -275,11 +401,13 @@ def main() -> int:
             before_path = evidence_dir / "gut-products-before.json"
             after_path = evidence_dir / "gut-products-after.json"
             before = build_manifest(root)
+            before_path.parent.mkdir(parents=True, exist_ok=True)
             before_path.write_text(
                 json.dumps(before, sort_keys=True, indent=2) + "\n", encoding="utf-8"
             )
             manifest["production_hash"]["before_path"] = before_path.as_posix()
 
+            godot_env, user_data_root = isolated_godot_environment(evidence_dir)
             gut_result = run_process(
                 "gut-headless",
                 [
@@ -291,24 +419,36 @@ def main() -> int:
                     "addons/gut/gut_cmdln.gd",
                     "-gconfig=res://.gutconfig.json",
                     "-gjunit_xml_file=user://gut-results.xml",
-                    "-gexit",
+                    "-gexit"
                 ],
                 root,
                 logs_dir,
+                env=godot_env
             )
             manifest["commands"].append(gut_result)
             gut_log = Path(gut_result["log_path"]).read_text(encoding="utf-8")
-            discovered, passed, failed = parse_gut_counts(gut_log)
+            log_discovered, log_passed, log_failed = parse_gut_counts(gut_log)
+
+            junit_path, junit = copy_and_parse_junit(user_data_root, evidence_dir)
+            discovered = max(log_discovered, junit["tests"])
+            failed = max(log_failed, junit["failures"])
+            errors = junit["errors"]
+            passed = max(log_passed, discovered - failed - errors)
             manifest["gut"].update(
                 {
                     "discovered": discovered,
                     "passed": passed,
                     "failed": failed,
+                    "errors": errors,
+                    "junit_path": junit_path.as_posix(),
                     "status": (
                         "PASS"
-                        if gut_result["exit_code"] == 0 and discovered > 0 and failed == 0
+                        if gut_result["exit_code"] == 0
+                        and discovered > 0
+                        and failed == 0
+                        and errors == 0
                         else "FAIL"
-                    ),
+                    )
                 }
             )
 
@@ -321,7 +461,7 @@ def main() -> int:
                 {
                     "after_path": after_path.as_posix(),
                     "equal": hashes_equal,
-                    "status": "PASS" if hashes_equal else "FAIL",
+                    "status": "PASS" if hashes_equal else "FAIL"
                 }
             )
             if not hashes_equal:
@@ -329,16 +469,14 @@ def main() -> int:
             if manifest["gut"]["status"] != "PASS":
                 raise RuntimeError("GUT_EXECUTION_FAILURE_OR_DISCOVERY_ZERO")
 
-            manifest["limitations"].append(
-                "JUnit copy/readback remains blocked until the repository helper is implemented."
-            )
-            raise RuntimeError("JUNIT_WORKSPACE_COPY_NOT_IMPLEMENTED")
-
         manifest["result"] = "PASS"
         return_code = 0
-    except Exception as exc:  # fail closed while preserving evidence
+    except Exception as exc:
         manifest["limitations"].append(str(exc))
-        manifest["result"] = "BLOCKED" if "REQUIRED" in str(exc) or "MISMATCH" in str(exc) else "FAIL"
+        manifest["result"] = "BLOCKED" if any(
+            marker in str(exc)
+            for marker in ("REQUIRED", "MISMATCH", "MISSING", "AMBIGUOUS")
+        ) else "FAIL"
         return_code = 1
     finally:
         manifest["completed_at"] = utc_now()
