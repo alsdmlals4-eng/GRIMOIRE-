@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
+from tools.gut_failure_evidence import render_failure_evidence, resolve_evidence_dir
 from tools.run_local_gut_validation import (
     copy_and_parse_junit,
     full_unittest_command,
@@ -82,6 +84,39 @@ class LocalGutValidationEnvironmentTests(unittest.TestCase):
                 )
             with self.assertRaisesRegex(RuntimeError, "JUNIT_AMBIGUOUS"):
                 copy_and_parse_junit(root / "user-data", root / "evidence")
+
+    def test_failed_manifest_and_command_log_are_rendered(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            evidence = Path(tmp)
+            logs = evidence / "logs"
+            logs.mkdir()
+            failed_log = logs / "python-contract.log"
+            failed_log.write_text("FAILED (failures=2)\n", encoding="utf-8")
+            manifest = {
+                "result": "FAIL",
+                "limitations": ["PYTHON_CONTRACT_FAILURE"],
+                "commands": [
+                    {
+                        "name": "python-contract",
+                        "exit_code": 1,
+                        "log_path": str(failed_log),
+                    }
+                ],
+            }
+            (evidence / "manifest.json").write_text(
+                json.dumps(manifest), encoding="utf-8"
+            )
+
+            rendered = render_failure_evidence(evidence)
+
+            self.assertIn('"result": "FAIL"', rendered)
+            self.assertIn("PYTHON_CONTRACT_FAILURE", rendered)
+            self.assertIn("FAILED (failures=2)", rendered)
+            self.assertEqual(evidence, resolve_evidence_dir(["--evidence-dir", str(evidence)]))
+            self.assertEqual(
+                evidence,
+                resolve_evidence_dir([f"--evidence-dir={evidence}"]),
+            )
 
 
 if __name__ == "__main__":
