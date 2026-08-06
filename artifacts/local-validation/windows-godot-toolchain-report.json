@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "engine": {
+    "requested": "4.7.1-stable",
+    "version_output": "4.7.1.stable.official.a13da4feb",
+    "binary": "C:\\Users\\user\\Documents\\GitHub\\Ninza\\GRIMOIRE-\\.tooling\\godot\\4.7.1-stable\\windows\\Godot_v4.7.1-stable_win64.exe",
+    "download_url": "https://downloads.godotengine.org/?flavor=stable&platform=windows.64&slug=win64.exe.zip&version=4.7.1"
+  },
+  "host": {
+    "system": "Windows",
+    "architecture": "x86_64"
+  },
+  "headless_probe": "PASS",
+  "export_templates": {
+    "status": "NOT_REQUESTED",
+    "path": null,
+    "download_url": null
+  },
+  "product_project_created": false,
+  "verdict": "PASS"
+}

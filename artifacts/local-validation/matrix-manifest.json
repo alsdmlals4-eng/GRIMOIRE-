@@ -1,0 +1,21 @@
+{
+  "base_sha": "312e491c8e9b333cb585b4e0550f80e3aea5f3f7",
+  "decision_id": "GM-ACTIONS-BUDGET-LOCAL-VERIFICATION-MODE-01",
+  "expected_head": "ae9c9112e624cb205a51a50f1bd630d769808e0a",
+  "expected_lane_ids": [
+    "windows-py311",
+    "windows-py312",
+    "windows-py313",
+    "wsl-ubuntu-py312"
+  ],
+  "failures": [
+    "AGGREGATION_ERROR:[Errno 2] No such file or directory: 'C:\\\\Users\\\\user\\\\Documents\\\\GitHub\\\\Ninza\\\\GRIMOIRE-\\\\artifacts\\\\local-validation\\\\windows-py311\\\\manifest.json'"
+  ],
+  "generated_at": "2026-08-06T22:48:35.735495+00:00",
+  "github_actions": "NOT_RUN_BUDGET_BLOCKED",
+  "lanes": [],
+  "pull_request": 85,
+  "repository": "alsdmlals4-eng/GRIMOIRE-",
+  "result": "FAIL",
+  "schema_version": 1
+}
