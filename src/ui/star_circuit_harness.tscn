@@ -30,8 +30,8 @@ offset_top = 284.0
 offset_right = 704.0
 offset_bottom = 412.0
 custom_minimum_size = Vector2(48, 48)
-text = "MAIN"
-tooltip_text = "Main glyph: exactly one"
+text = "MAIN\nHEAT"
+tooltip_text = "Click to cycle the main glyph"
 
 [node name="StarVertices" type="Control" parent="SafeArea"]
 layout_mode = 1
@@ -48,8 +48,8 @@ offset_top = 80.0
 offset_right = 680.0
 offset_bottom = 160.0
 custom_minimum_size = Vector2(48, 48)
-text = "A0"
-tooltip_text = "Optional auxiliary glyph 1 of 5"
+text = "A0\nFLOW"
+tooltip_text = "Click to cycle optional auxiliary glyph 1 of 5"
 
 [node name="Vertex1" type="Button" parent="SafeArea/StarVertices"]
 offset_left = 820.0
@@ -57,8 +57,8 @@ offset_top = 240.0
 offset_right = 900.0
 offset_bottom = 320.0
 custom_minimum_size = Vector2(48, 48)
-text = "A1"
-tooltip_text = "Optional auxiliary glyph 2 of 5"
+text = "A1\nEMPTY"
+tooltip_text = "Click to cycle optional auxiliary glyph 2 of 5"
 
 [node name="Vertex2" type="Button" parent="SafeArea/StarVertices"]
 offset_left = 740.0
@@ -66,8 +66,8 @@ offset_top = 500.0
 offset_right = 820.0
 offset_bottom = 580.0
 custom_minimum_size = Vector2(48, 48)
-text = "A2"
-tooltip_text = "Optional auxiliary glyph 3 of 5"
+text = "A2\nEMPTY"
+tooltip_text = "Click to cycle optional auxiliary glyph 3 of 5"
 
 [node name="Vertex3" type="Button" parent="SafeArea/StarVertices"]
 offset_left = 460.0
@@ -75,8 +75,8 @@ offset_top = 500.0
 offset_right = 540.0
 offset_bottom = 580.0
 custom_minimum_size = Vector2(48, 48)
-text = "A3"
-tooltip_text = "Optional auxiliary glyph 4 of 5"
+text = "A3\nEMPTY"
+tooltip_text = "Click to cycle optional auxiliary glyph 4 of 5"
 
 [node name="Vertex4" type="Button" parent="SafeArea/StarVertices"]
 offset_left = 380.0
@@ -84,8 +84,8 @@ offset_top = 240.0
 offset_right = 460.0
 offset_bottom = 320.0
 custom_minimum_size = Vector2(48, 48)
-text = "A4"
-tooltip_text = "Optional auxiliary glyph 5 of 5"
+text = "A4\nEMPTY"
+tooltip_text = "Click to cycle optional auxiliary glyph 5 of 5"
 
 [node name="CircuitPreviewPanel" type="PanelContainer" parent="SafeArea"]
 offset_left = 16.0
@@ -94,24 +94,47 @@ offset_right = 336.0
 offset_bottom = 112.0
 
 [node name="Label" type="Label" parent="SafeArea/CircuitPreviewPanel"]
-text = "Circuit Preview"
+text = "Circuit Preview\nEdit glyphs, then press PREVIEW CIRCUIT"
 autowrap_mode = 2
 
 [node name="TargetKeywordPanel" type="PanelContainer" parent="SafeArea"]
 offset_left = 16.0
 offset_top = 128.0
 offset_right = 336.0
-offset_bottom = 224.0
+offset_bottom = 248.0
 
-[node name="Label" type="Label" parent="SafeArea/TargetKeywordPanel"]
-text = "Target Keywords · available after circuit preview"
+[node name="Content" type="VBoxContainer" parent="SafeArea/TargetKeywordPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="SafeArea/TargetKeywordPanel/Content"]
+layout_mode = 2
+text = "Target Keywords · locked until circuit preview"
 autowrap_mode = 2
+
+[node name="TargetButtons" type="HBoxContainer" parent="SafeArea/TargetKeywordPanel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FlowerButton" type="Button" parent="SafeArea/TargetKeywordPanel/Content/TargetButtons"]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+disabled = true
+text = "FLOWER"
+tooltip_text = "Select the flower as the explicit target"
+
+[node name="WardButton" type="Button" parent="SafeArea/TargetKeywordPanel/Content/TargetButtons"]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+disabled = true
+text = "WARD"
+tooltip_text = "Select the ward as the explicit target"
 
 [node name="MasteryPanel" type="PanelContainer" parent="SafeArea"]
 offset_left = 16.0
-offset_top = 240.0
+offset_top = 264.0
 offset_right = 336.0
-offset_bottom = 400.0
+offset_bottom = 424.0
 
 [node name="Label" type="Label" parent="SafeArea/MasteryPanel"]
 text = "Mastery\n--"
@@ -124,17 +147,17 @@ offset_right = 1232.0
 offset_bottom = 344.0
 
 [node name="Label" type="Label" parent="SafeArea/BreakdownPanel"]
-text = "Success: --\nMana: --"
+text = "Success: --\nMana: --\nResources: --"
 autowrap_mode = 2
 
 [node name="WarningPanel" type="PanelContainer" parent="SafeArea"]
 offset_left = 920.0
 offset_top = 360.0
 offset_right = 1232.0
-offset_bottom = 448.0
+offset_bottom = 464.0
 
 [node name="Label" type="Label" parent="SafeArea/WarningPanel"]
-text = "WARNING: none"
+text = "READY: edit Main/Aux glyphs"
 autowrap_mode = 2
 
 [node name="FinalPreviewPanel" type="PanelContainer" parent="SafeArea"]
@@ -144,7 +167,7 @@ offset_right = 1232.0
 offset_bottom = 144.0
 
 [node name="Label" type="Label" parent="SafeArea/FinalPreviewPanel"]
-text = "Success --% · Mana --"
+text = "Success --% · Mana --\nTarget --"
 autowrap_mode = 2
 
 [node name="InsufficientManaState" type="PanelContainer" parent="SafeArea"]
@@ -171,13 +194,22 @@ horizontal_alignment = 1
 
 [node name="AccessibilityInputPanel" type="PanelContainer" parent="SafeArea"]
 offset_left = 16.0
-offset_top = 416.0
+offset_top = 440.0
 offset_right = 336.0
-offset_bottom = 520.0
+offset_bottom = 544.0
 
 [node name="Label" type="Label" parent="SafeArea/AccessibilityInputPanel"]
 text = "ACCESSIBLE INPUT · Tap / Guided trace / Stylus"
 autowrap_mode = 2
+
+[node name="PreviewButton" type="Button" parent="SafeArea"]
+offset_left = 560.0
+offset_top = 600.0
+offset_right = 720.0
+offset_bottom = 656.0
+custom_minimum_size = Vector2(48, 48)
+text = "PREVIEW CIRCUIT"
+tooltip_text = "Validate the selected star circuit before target selection"
 
 [node name="CancelButton" type="Button" parent="SafeArea"]
 offset_left = 920.0
@@ -186,7 +218,7 @@ offset_right = 1008.0
 offset_bottom = 624.0
 custom_minimum_size = Vector2(48, 48)
 text = "CANCEL"
-tooltip_text = "Cancel without resource mutation"
+tooltip_text = "Cancel without resource mutation and reset the demo"
 
 [node name="CommitButton" type="Button" parent="SafeArea"]
 offset_left = 1024.0
@@ -194,5 +226,6 @@ offset_top = 560.0
 offset_right = 1216.0
 offset_bottom = 624.0
 custom_minimum_size = Vector2(48, 48)
+disabled = true
 text = "COMMIT"
-tooltip_text = "Explicit commit after final preview"
+tooltip_text = "Explicit two-step commit after final preview"
