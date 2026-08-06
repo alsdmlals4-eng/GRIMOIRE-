@@ -225,24 +225,24 @@ def initial_manifest(args: argparse.Namespace) -> dict[str, Any]:
         "host": host_runtime_info(),
         "python": python_runtime_info(),
         "preflight": {
-            "head_match": false,
-            "clean_before": false,
-            "operation_in_progress": true,
-            "remote_match": false,
-            "python_match": false
+            "head_match": False,
+            "clean_before": False,
+            "operation_in_progress": True,
+            "remote_match": False,
+            "python_match": False,
         },
         "commands": [],
         "vendor": {
             "expected_commit": PINNED_GUT_COMMIT,
             "expected_tree": PINNED_GUT_TREE,
-            "actual_tree": null,
-            "status": "NOT_RUN"
+            "actual_tree": None,
+            "status": "NOT_RUN",
         },
         "godot": {
-            "executable": null,
-            "version": null,
+            "executable": None,
+            "version": None,
             "expected_version": EXPECTED_GODOT_VERSION,
-            "status": "NOT_RUN"
+            "status": "NOT_RUN",
         },
         "gut": {
             "version": "9.7.1",
@@ -250,17 +250,17 @@ def initial_manifest(args: argparse.Namespace) -> dict[str, Any]:
             "passed": 0,
             "failed": 0,
             "errors": 0,
-            "junit_path": null,
-            "status": "NOT_RUN"
+            "junit_path": None,
+            "status": "NOT_RUN",
         },
         "production_hash": {
-            "before_path": null,
-            "after_path": null,
-            "equal": null,
-            "status": "NOT_RUN"
+            "before_path": None,
+            "after_path": None,
+            "equal": None,
+            "status": "NOT_RUN",
         },
         "result": "NOT_RUN",
-        "limitations": []
+        "limitations": [],
     }
 
 
@@ -302,7 +302,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--evidence-dir",
         type=Path,
-        default=Path("artifacts/local-validation")
+        default=Path("artifacts/local-validation"),
     )
     args = parser.parse_args(sys.argv[1:] if argv is None else argv)
 
@@ -319,7 +319,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         try:
             origin_main = git_text(root, "rev-parse", "origin/main")
         except RuntimeError:
-            origin_main = null
+            origin_main = None
         remote = git_text(root, "remote", "get-url", "origin")
         clean_before = git_text(root, "status", "--porcelain") == ""
         in_progress = operation_in_progress(root)
@@ -337,8 +337,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                     "clean_before": clean_before,
                     "operation_in_progress": in_progress,
                     "remote_match": remote_match,
-                    "python_match": python_match
-                }
+                    "python_match": python_match,
+                },
             }
         )
 
@@ -357,7 +357,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "python-contract",
             full_unittest_command(sys.executable),
             root,
-            logs_dir
+            logs_dir,
         )
         manifest["commands"].append(contract)
         if contract["exit_code"] != 0:
@@ -367,7 +367,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             try:
                 actual_tree = git_text(root, "rev-parse", "HEAD:addons/gut")
             except RuntimeError:
-                actual_tree = null
+                actual_tree = None
             manifest["vendor"]["actual_tree"] = actual_tree
             manifest["vendor"]["status"] = (
                 "PASS" if actual_tree == PINNED_GUT_TREE else "FAIL"
@@ -376,7 +376,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 raise RuntimeError("OFFICIAL_GUT_TREE_MISMATCH")
 
         if args.mode == "full":
-            if args.godot_executable is null:
+            if args.godot_executable is None:
                 raise RuntimeError("GODOT_EXECUTABLE_REQUIRED")
             executable = args.godot_executable.resolve()
             manifest["godot"]["executable"] = str(executable)
@@ -393,7 +393,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
             required = (
                 root / ".gutconfig.json",
-                root / "tests/gut/integration/test_gut_product_smoke.gd"
+                root / "tests/gut/integration/test_gut_product_smoke.gd",
             )
             if not all(path.is_file() for path in required):
                 raise RuntimeError("GUT_CONSUMPTION_FILES_MISSING")
@@ -419,11 +419,11 @@ def main(argv: Sequence[str] | None = None) -> int:
                     "addons/gut/gut_cmdln.gd",
                     "-gconfig=res://.gutconfig.json",
                     "-gjunit_xml_file=user://gut-results.xml",
-                    "-gexit"
+                    "-gexit",
                 ],
                 root,
                 logs_dir,
-                env=godot_env
+                env=godot_env,
             )
             manifest["commands"].append(gut_result)
             gut_log = Path(gut_result["log_path"]).read_text(encoding="utf-8")
@@ -448,7 +448,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                         and failed == 0
                         and errors == 0
                         else "FAIL"
-                    )
+                    ),
                 }
             )
 
@@ -461,7 +461,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 {
                     "after_path": after_path.as_posix(),
                     "equal": hashes_equal,
-                    "status": "PASS" if hashes_equal else "FAIL"
+                    "status": "PASS" if hashes_equal else "FAIL",
                 }
             )
             if not hashes_equal:
