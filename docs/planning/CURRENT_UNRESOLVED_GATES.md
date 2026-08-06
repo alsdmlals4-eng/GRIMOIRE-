@@ -6,6 +6,7 @@ status: BLOCKING
 implementation_entry: BLOCKED_PENDING_GUT_FORMAL_ADOPTION
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
+pr83_review_exception: USER_APPROVED_PR83_ONLY
 ```
 
 ## 실제 남은 차단 항목
@@ -17,7 +18,7 @@ spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 | `HIGODOT_AUTHORING_RECEIPT_GATE_NOT_IMPLEMENTED` | BLOCKING | protected Godot artifact diff 0 또는 HiGodot 영수증 대응 CI PASS |
 | `GUT_PRODUCT_MUTATION_HASH_GATE_NOT_IMPLEMENTED` | BLOCKING | GUT 실행 전후 product path hash 무변경 PASS |
 | `LEGACY_TO_GUT_COVERAGE_PARITY_NOT_PROVEN` | BLOCKING | 커스텀 runner와 GUT 필수 계약 병행·coverage mapping PASS |
-| `DESIGN_PR_NOT_MERGED_TO_MAIN` | BLOCKING | PR #83 exact-head 검수·독립 리뷰·병합·main readback |
+| `DESIGN_PR_NOT_MERGED_TO_MAIN` | BLOCKING | PR #83 현재 exact-head CI PASS·Sheet 예외 readback·병합·main readback |
 | `SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN` | BLOCKING_FOR_VISUAL_COMPLETION | 3개 실제 Godot Screen 렌더·상호작용 검증 |
 | `DEVICE_PERFORMANCE_SCREEN_READER_HUMAN_NOT_RUN` | RELEASE_BLOCKING | 실제 실행 증거 |
 
@@ -28,7 +29,18 @@ tool_authority_design_review: USER_APPROVED_2026-08-06
 sheet_02_04_72_99_write_readback: PASS
 image_direction_approval: COMPLETE
 implementation_plan: docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md
+pr83_external_independent_review: STRUCTURALLY_UNAVAILABLE
+pr83_review_exception: USER_APPROVED_2026-08-06T23:28+09:00 / PR83_ONLY
+pr83_exception_receipt: docs/planning/PR83_INDEPENDENT_REVIEW_EXCEPTION_2026-08-06.md
 ```
+
+`GUT_ADOPTION_PR_INDEPENDENT_REVIEW_REQUIRED`
+
+PR #83 한정 예외는 후속 GUT formal-adoption 구현 PR의 독립 리뷰를 면제하지 않는다.
+
+`PR82_TASK2_NOT_AUTHORIZED`
+
+PR #82 Task 2는 GUT formal-adoption 구현·병합·main readback과 blocker-zero 판정 전까지 시작할 수 없다.
 
 ## READY 판정
 
@@ -57,16 +69,15 @@ correct_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN
 
 ## 진입 규칙
 
-다음 상태 전환은 실제 차단 항목이 0이 되기 전 금지한다.
+PR #83 설계 병합은 PR83_ONLY 예외와 현재 exact-head 증거로 별도 판정한다. 다음 제품·채택 상태 전환은 실제 차단 항목이 0이 되기 전 금지한다.
 
 ```text
 SPELL_WORKFLOW_TASK2_START
 PROJECT_MAIN_SCENE_SWITCH_TO_UI_V2
 GUT_FORMALLY_ADOPTED
-READY_FOR_REVIEW
-MERGE_AUTHORIZED
+GUT_ADOPTION_PR_MERGE_AUTHORIZED
 FINAL_ART_APPROVED
 RUNTIME_VALIDATED
 ```
 
-체크리스트 확인만으로 해소하지 않는다. 각 항목은 exact-head 실행 로그, Artifact, hash, Sheet readback 또는 독립 검토 증거를 요구한다.
+체크리스트 확인만으로 해소하지 않는다. 각 항목은 exact-head 실행 로그, Artifact, hash, Sheet readback 또는 해당 PR에 요구되는 검토 증거를 요구한다.
