@@ -19,3 +19,5 @@ jobs:
         run: python -m unittest tests.test_godot_authoring_gut_authority_contract -v
       - name: Validate PR83 review-exception contract
         run: python -m unittest tests.test_pr83_review_exception_contract -v
+      - name: Validate v4.3 binding and GUT adoption-spec contract
+        run: python -m unittest tests.test_v4_3_contract_binding -v
