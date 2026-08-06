@@ -1,5 +1,5 @@
 {
-  "schema_version": 14,
+  "schema_version": 15,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -13,7 +13,7 @@
     "merge_trigger": "NONE",
     "merge_authorized": false,
     "authorization_state": "NO_PENDING_CANON_MERGE",
-    "checkpoint_state": "SPELL_WORKFLOW_DESIGN_PLAN_SYNCED_TO_MAIN",
+    "checkpoint_state": "SPELL_WORKFLOW_AND_UI_KIT_SYNCED_TO_MAIN",
     "early_checkpoint_triggers": ["HIGH_RISK_CONFLICT", "SESSION_END_OR_CONTEXT_LOSS", "MAJOR_CANON_IMPACT"],
     "pending_decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
@@ -34,22 +34,27 @@
     "main_sync_id": "GR-SYNC-20260804-12-CLOSURE"
   },
   "current_work": {
-    "status": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD_PR77_DEPENDENCY",
-    "gate": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD_PR77_DEPENDENCY",
+    "status": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD",
+    "gate": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD",
     "latest_approved_decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
     "default_branch": "main",
     "design_pull_request": 78,
-    "main_merge_commit": "6c39ab683fe7f4cd15fbcdb50bc4cee153deebec",
-    "main_sync": "GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2-MAIN",
-    "related_ui_pull_request": 77,
+    "spell_workflow_main_merge": "6c39ab683fe7f4cd15fbcdb50bc4cee153deebec",
+    "spell_workflow_main_sync": "GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2-MAIN",
+    "ui_kit_pull_request": 77,
+    "ui_kit_exact_head": "64116046ab17adac81ce4d238ebf19ddd2ec2293",
+    "ui_kit_main_merge": "8165ac983a8236bd780ac0ac0af1c121d36efd67",
+    "ui_kit_main_sync": "GR-SYNC-20260806-08-STAR-UI-KIT-V1-MAIN",
+    "ui_kit_status": "SYNCED_TO_MAIN_AUTOMATED_RENDER_PASS",
     "written_spec_approved_at": "2026-08-06T19:48:00+09:00",
     "implementation_plan": "COMPLETE",
     "implementation_plan_path": "docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md",
     "implementation": "NOT_STARTED",
     "human_device_validation": "NOT_RUN",
+    "human_visual_validation": "NOT_RUN",
     "final_art": "NOT_CLAIMED",
     "merge_authorized": false,
-    "next_priority": "RESOLVE_PR77_DEPENDENCY_THEN_OPEN_DRAFT_TDD_PR"
+    "next_priority": "OPEN_MAIN_BASED_DRAFT_TDD_IMPLEMENTATION_PR"
   },
   "canonical_contract": {
     "core_fun": "SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE",
@@ -80,6 +85,8 @@
     "adversarial_review": "PASS",
     "user_written_spec_review": "PASS",
     "implementation_plan": "PASS",
+    "ui_kit_exact_head": "PASS",
+    "ui_kit_main_merge": "PASS",
     "product_implementation": "NOT_STARTED",
     "runtime": "NOT_RUN_FOR_UI_V2",
     "sheet_write": "PASS",
