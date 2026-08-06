@@ -1,18 +1,22 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
   "sync_id": "GR-SYNC-20260806-10-GODOT-AUTHORING-GUT-AUTHORITY",
-  "status": "DESIGN_DRAFT_REVIEW_REQUIRED",
+  "status": "DESIGN_APPROVED_IMPLEMENTATION_PLAN_READY",
+  "design_review": "USER_APPROVED_2026-08-06",
   "source_main": "917ead7499482801610ba95ce37efafd1662d994",
-  "authority_snapshot": "c5fb316b678501bbca9a67ed90d971e2880820c2",
-  "authority_gate_run": 31105606479,
-  "authority_gate_result": "PASS",
+  "base_policy_observation": {
+    "current_main": "4f98f968a377f7b6a11aafa4fc94d11bddbebedc",
+    "project_pin": "9.4.3",
+    "pin_update": "NOT_APPROVED_NOT_PERFORMED"
+  },
   "higodot": {
     "repository_path": "addons/godot_ai",
     "plugin_name": "Godot AI",
     "bundled_version": "3.1.2",
     "project_plugin_enabled": true,
     "authority": "SOLE_AUTHORING_AUTHORITY",
+    "authoring_receipt_gate": "NOT_IMPLEMENTED",
     "protected_surfaces": [
       "project.godot",
       "**/*.tscn",
@@ -36,17 +40,25 @@
     "license": "MIT",
     "godot_compatibility": "4.7.x",
     "project_plugin_enabled": false,
+    "adoption_mode": "CLI_ONLY_WITHOUT_EDITOR_PLUGIN",
+    "editor_plugin_enablement": "DEFERRED_UNTIL_HIGODOT_RECEIPT",
     "current_consumption": "VENDORED_NOT_CONSUMED",
     "target_authority": "FORMAL_TEST_AUTHORITY",
     "actual_product_tests": 0,
     "ci_enabled": false,
+    "junit": "NOT_ENABLED",
+    "product_mutation_hash_gate": "NOT_IMPLEMENTED",
+    "legacy_coverage_parity": "NOT_PROVEN",
     "must_not_mutate_product_files": true,
+    "implementation_plan": "docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md",
     "implementation_pr_required": true
   },
   "entry_gate": {
-    "status": "BLOCKED_PENDING_GODOT_AUTHORING_GUT_AUTHORITY_REVIEW",
+    "status": "BLOCKED_PENDING_GUT_FORMAL_ADOPTION",
     "implementation": "BLOCKED",
     "required_live_reads": [
+      "00_프로젝트_허브",
+      "01_작업순서",
       "02_현재_확정결정",
       "04_누락_충돌_감사",
       "72_이미지검수_승인로그"
@@ -57,12 +69,15 @@
       "docs/DEVELOPMENT_GATES.md"
     ],
     "resume_conditions": [
-      "DESIGN_PR_APPROVED_AND_MERGED",
+      "DESIGN_PR_MERGED_TO_MAIN",
       "GUT_ADOPTION_IMPLEMENTATION_PR_GREEN",
       "GUT_ACTUAL_PRODUCT_TEST_CONSUMPTION_PASS",
       "GUT_CI_AND_JUNIT_PASS",
+      "GUT_PRODUCT_MUTATION_HASH_GATE_PASS",
+      "LEGACY_TO_GUT_COVERAGE_PARITY_PASS",
       "HIGODOT_AUTHORING_RECEIPT_GATE_PASS",
       "SHEET_WRITE_AND_READBACK_PASS",
+      "INDEPENDENT_REVIEW_PASS",
       "UNRESOLVED_BLOCKERS_ZERO"
     ]
   },
@@ -83,24 +98,25 @@
     "final_art": "NOT_CLAIMED",
     "awaiting_user_direction_approval": false
   },
-  "sheet_readback": {
+  "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "observed_at": "2026-08-06T22:24:00+09:00",
-    "decision_range": "02_현재_확정결정!A69:M69",
-    "audit_range": "04_누락_충돌_감사!A74:I74",
-    "image_range": "72_이미지검수_승인로그!A6:M6",
-    "history_range": "99_변경이력!A92:H92",
-    "write_status": "PASS",
-    "readback_status": "PASS"
+    "write": "PASS",
+    "readback": "PASS",
+    "hub_and_work_order_correction": "PENDING_CURRENT_PR_UPDATE"
+  },
+  "validation": {
+    "windows_export": "NOT_RUN",
+    "android_export": "NOT_RUN",
+    "shared_core_test": "NOT_RUN_FOR_GUT_ADOPTION",
+    "device": "NOT_RUN",
+    "performance": "NOT_RUN",
+    "screen_reader": "NOT_RUN",
+    "human": "NOT_RUN"
   },
   "claims": {
     "gut_formally_adopted": false,
     "gut_runtime_ci_pass": false,
     "higodot_receipt_gate_implemented": false,
-    "spell_workflow_task2_authorized": false,
-    "device_validation": "NOT_RUN",
-    "performance_validation": "NOT_RUN",
-    "screen_reader_validation": "NOT_RUN",
-    "human_validation": "NOT_RUN"
+    "spell_workflow_task2_authorized": false
   }
 }
