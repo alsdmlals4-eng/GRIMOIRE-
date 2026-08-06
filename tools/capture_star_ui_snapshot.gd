@@ -2,15 +2,16 @@ extends SceneTree
 
 const HARNESS_SCENE := "res://src/ui/star_circuit_harness.tscn"
 const DEFAULT_OUTPUT := "res://build/visual/star-ui-kit-v1.png"
+const SNAPSHOT_SIZE := Vector2i(1280, 720)
 
 var _output_path := DEFAULT_OUTPUT
+var _capture_viewport: SubViewport
 
 
 func _initialize() -> void:
     for argument in OS.get_cmdline_user_args():
         if argument.begins_with("--output="):
             _output_path = argument.trim_prefix("--output=")
-    root.size = Vector2i(1280, 720)
     call_deferred("_capture")
 
 
@@ -21,19 +22,28 @@ func _capture() -> void:
         quit(1)
         return
 
+    _capture_viewport = SubViewport.new()
+    _capture_viewport.name = "StarUiCaptureViewport"
+    _capture_viewport.size = SNAPSHOT_SIZE
+    _capture_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+    _capture_viewport.transparent_bg = false
+    _capture_viewport.disable_3d = true
+    root.add_child(_capture_viewport)
+
     var harness := packed.instantiate()
-    root.add_child(harness)
+    _capture_viewport.add_child(harness)
+    if harness is Control:
+        harness.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     if harness.has_method("initialize_demo"):
         harness.call("initialize_demo")
 
-    await process_frame
-    await process_frame
-    RenderingServer.force_draw(false, 0.0)
-    await process_frame
+    for _frame in range(5):
+        await process_frame
+        RenderingServer.force_draw(false, 0.0)
 
-    var viewport_texture := root.get_texture()
+    var viewport_texture := _capture_viewport.get_texture()
     if viewport_texture == null:
-        push_error("Root viewport has no render texture")
+        push_error("Capture viewport has no render texture")
         quit(1)
         return
     var image := viewport_texture.get_image()
@@ -41,7 +51,7 @@ func _capture() -> void:
         push_error("Captured star UI image is empty")
         quit(1)
         return
-    if image.get_width() != 1280 or image.get_height() != 720:
+    if image.get_width() != SNAPSHOT_SIZE.x or image.get_height() != SNAPSHOT_SIZE.y:
         push_error("Unexpected star UI snapshot size: %sx%s" % [image.get_width(), image.get_height()])
         quit(1)
         return
@@ -73,6 +83,7 @@ func _capture() -> void:
         "height": image.get_height(),
         "bytes": byte_count,
         "state": "EDIT",
+        "renderer": RenderingServer.get_current_rendering_method(),
         "final_art": false,
     }))
     quit(0)
