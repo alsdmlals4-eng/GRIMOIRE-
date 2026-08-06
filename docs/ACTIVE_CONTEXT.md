@@ -25,12 +25,17 @@ gut_adoption_spec_status: OPEN_DRAFT_IN_REVIEW
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 external_independent_reviewer: NOT_PLANNED_SOLO_DEVELOPMENT
 higodot_authority: SOLE_AUTHORING_AUTHORITY
-higodot_source_version: BLOCKED_UNVERIFIED
-gut_pinned_version: 9.7.1
+higodot_release: v3.1.2
+higodot_source_version_license: PASS
+higodot_vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
+gut_release: v9.7.1
+gut_source_version_license: PASS
+gut_vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
 gut_current_consumption: VENDORED_NOT_CONSUMED
 gut_adoption_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
 gut_formal_installation: NOT_AUTHORIZED_BEFORE_SPEC_MERGE
 gut_ci: NOT_ENABLED
+sheet_v4_3_sync: READBACK_PASS
 base_release_pin: 9.4.3
 base_current_main_observed: 4f98f968a377f7b6a11aafa4fc94d11bddbebedc
 visual_direction_approval: COMPLETE
@@ -61,6 +66,28 @@ v4.3에 따라 entry state를 다시 계산했다. 기존 `GUT_FORMAL_ADOPTION_I
 
 PR #82 Task 1은 10종 Glyph Catalog와 legacy `BURST → AMPLIFY` 정규화를 RED→GREEN으로 완료했다. Task 2는 현재 차단된다.
 
+## 공식 도구 소스·무결성
+
+```yaml
+higodot:
+  release: v3.1.2
+  commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+  release_asset_sha256: 60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33
+  official_plugin_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
+  project_vendor_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+  license: MIT
+  vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
+gut:
+  release: v9.7.1
+  commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+  official_addons_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
+  project_vendor_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
+  license: MIT
+  vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
+```
+
+공식 release·commit·license는 확인됐다. 하지만 프로젝트 vendor subtree가 official subtree와 다르므로 tool installation integrity는 실패 상태다. PR #84는 이 mismatch를 기록하며 addon 파일을 교체하거나 실행하지 않는다.
+
 ## 권위 상태
 
 HiGodot은 protected Godot serialization과 Editor API mutation의 단일 write authority다. GUT은 별도 read/execute/assert 테스트 권위다. GUT Editor Plugin은 켜지 않으며 `project.godot` 변경을 만들지 않는다.
@@ -68,12 +95,10 @@ HiGodot은 protected Godot serialization과 Editor API mutation의 단일 write 
 현재 없는 것:
 
 - merged GUT adoption spec.
-- pinned official GUT source commit와 integrity hash.
-- verified HiGodot source commit·license·telemetry.
-- `.gutconfig.json`.
-- 실제 제품을 검증하는 `GutTest`.
-- Godot 4.7.1 headless GUT CI와 JUnit.
-- 실행 전후 production hash 무변경 Gate.
+- 승인된 official vendor replacement 또는 file-level audit.
+- actual Godot 4.7.1 GUT CLI compatibility evidence.
+- `.gutconfig.json`과 실제 제품 `GutTest`.
+- GUT CI·JUnit·production hash guard.
 - legacy/GUT 필수 계약 parity.
 - protected diff용 HiGodot authoring manifest Gate.
 
@@ -89,7 +114,7 @@ docs/planning/ENTRY_STATE_RECONCILIATION_V4_3.json
 Sheet 동기화
 ```
 
-PR #84는 spec-only다. `.gutconfig.json`, actual `GutTest`, runtime GUT workflow, `project.godot`, Scene, Resource, asset 변경을 포함하지 않는다.
+PR #84는 spec-only다. `.gutconfig.json`, actual `GutTest`, runtime GUT workflow, `project.godot`, Scene, Resource, product, asset, addon 교체를 포함하지 않는다.
 
 ## 동결 브랜치
 
@@ -105,4 +130,4 @@ PR #84는 spec-only다. `.gutconfig.json`, actual `GutTest`, runtime GUT workflo
 
 ## 현재 작업
 
-PR #84의 v4.3 바인딩과 adoption spec을 같은 Decision ID로 Google Sheet에 동기화하고, exact-HEAD CI와 역할 분리 검토를 완료한다. 병합된 main을 기준으로만 새 GUT formal-installation TDD PR을 시작한다.
+공식 source/vendor mismatch를 Google Sheet에 추가 동기화하고 PR #84 exact-HEAD CI와 역할 분리 검토를 완료한다. 병합된 main을 기준으로만 새 GUT formal-installation TDD PR을 시작한다.
