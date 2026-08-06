@@ -5,6 +5,7 @@
 | 항목 | 기준 |
 |---|---|
 | Latest Decision | `GM-SPELL-WORKFLOW-UI-V2-01` |
+| Preserved Runtime Decision | `GM-STAR-CIRCUIT-MASTERY-BALANCE-01` |
 | Runtime Main | `FIVE_POINT_STAR / TYPED_GLYPH_ONLY` |
 | Runtime Main Sync | `GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN` |
 | Validation Main Sync | `GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN` |
