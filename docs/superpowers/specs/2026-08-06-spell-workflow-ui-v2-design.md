@@ -11,6 +11,8 @@ engine: Godot 4.7.1
 source_main: 46a4abfa6a94c732c70eb50cae365b7dc2939543
 related_ui_pr: 77
 related_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+supersedes_runtime_flow: TARGET_BEFORE_COMMIT_AND_MANA_AT_DESIGN_COMMIT
+new_resource_timing: GLYPHS_AT_SPELL_CONFIRM_MANA_AT_SPELL_USE
 human_device_validation: NOT_RUN
 final_art: NOT_CLAIMED
 ```
@@ -66,6 +68,24 @@ final_art: NOT_CLAIMED
 | 주문 사용 | 완성된 주문을 어디에 사용하고 어떤 결과를 감수할 것인가? | 주문 사용 |
 
 공통 상단 자원은 금화만 표시한다. 캐릭터 패널의 MP는 현재 보유 마나이며, 주문 비용은 해당 단계의 예상 비용 영역에만 표시한다. 보라색 보석·프리미엄 재화·복수 주문 비용은 사용하지 않는다.
+
+### 자원 소비 시점
+
+```text
+1단계 보관함 저장
+→ 새 글자를 Vault에 추가
+
+2단계 주문 확정
+→ 예약된 보관함·스톡 글자를 exactly-once 소비
+→ 완성 주문을 생성
+→ 마나는 소비하지 않음
+
+3단계 주문 사용
+→ 선택 대상 기준 최종 마나를 exactly-once 소비
+→ 판정과 결과를 exactly-once 적용
+```
+
+주문 설계와 주문 사용을 분리하므로 현재 Runtime의 `대상 선택 뒤 Commit`과 `모든 Commit에서 마나 소비` 흐름은 이 결정으로 대체한다.
 
 ## 4. 사건 상태와 상황 설명 Overlay
 
@@ -188,11 +208,15 @@ Stroke 입력
 
 - 대상 선택은 존재하지 않는다.
 - 연관 키워드는 설계 참고 정보이며 실행 대상 버튼이 아니다.
-- Preview에는 주문 이름, 효과 요약, 성공률, 예상 비용을 표시한다.
-- 마나는 `예상 비용: 마나 N`으로 한 번만 표시한다.
+- Preview에는 주문 이름, 효과 요약, **대상 미적용 기본 성공률**, 예상 마나를 표시한다.
+- 마나는 `예상 비용: 마나 N`으로 한 번만 표시하되 이 단계에서는 소비하지 않는다.
 - 회로 배치는 자원을 소비하지 않고 출처별 예약만 만든다.
 - 초기화·되돌리기·취소는 예약을 원래 출처로 완전히 복구한다.
-- 주문 확정은 예약된 글자를 exactly-once 소비하고 완성 주문을 만든다.
+- 주문 확정은 예약된 글자만 exactly-once 소비하고 완성 주문을 만든다.
+
+### 성공률 구분
+
+2단계 성공률은 글자 숙련·회로 복잡도·보조 구성만 반영한 `BASE_SPELL_SUCCESS`다. 대상 난도·상황 상태·환경 저항은 반영하지 않는다.
 
 ## 9. 3단계 — 주문 사용
 
@@ -211,10 +235,15 @@ Stroke 입력
 
 - 직접 대상 선택은 이 단계에만 존재한다.
 - 대상 변경 시 예상 결과와 위험을 다시 계산한다.
-- 상세 예상 결과는 성공률, 주요 효과, 가능한 위험, 예상 비용을 제공한다.
-- 마나는 예상 비용에 한 번만 표시한다.
+- 상세 예상 결과는 **대상 적용 최종 성공률**, 주요 효과, 가능한 위험, 최종 예상 비용을 제공한다.
+- 마나는 `예상 비용: 마나 N`으로 한 번만 표시한다.
+- 주문 사용 시점에만 최종 마나를 exactly-once 소비한다.
 - 주문 사용은 선택된 대상에 결과를 exactly-once 적용한다.
 - 숨은 대상 변경·숨은 추가 마나·중복 결과 적용을 금지한다.
+
+### 성공률 구분
+
+3단계 성공률은 `BASE_SPELL_SUCCESS`에 대상 난도·상황 상태·환경 저항을 적용한 `FINAL_TARGET_SUCCESS`다. 2단계보다 같거나 낮을 수 있으며 변화 이유를 Breakdown으로 설명한다.
 
 ## 10. Godot 컴포넌트 경계
 
@@ -235,7 +264,7 @@ SpellWorkflowCoordinator
 ### 상태 권위
 
 - 화면은 표시 데이터와 사용자 의도를 주고받는다.
-- Vault·Typed Stock·Mana·Reservation·Commit·Result는 기존 Core Runtime이 소유한다.
+- Vault·Typed Stock·Mana·Reservation·Spell Inventory·Use Transaction·Result는 Core Runtime이 소유한다.
 - `AnimationPlayer`, `Tween`, 파티클은 표현만 담당한다.
 - 모션 완료 signal은 저장·소비·결과 성공의 권위가 아니다.
 
@@ -261,9 +290,10 @@ PR #77의 `GrimoireThemeFactory`, 공용 Panel·Button·Badge·Glyph Slot·Statu
 | 보관함 가득 참 | 저장 차단 이유와 정리 경로 제공 |
 | 출처 수량 부족 | 해당 카드·슬롯 원인 표시, 대체 글자 자동 사용 금지 |
 | 회로 무효 | 원인 슬롯 표시, 예약 유지 또는 명시 취소 |
-| 마나 부족 | 사용 차단, 글자·주문·대상 선택 유지 |
+| 주문 확정 중 실패 | 글자 소비·완성 주문 생성 모두 0 또는 모두 성공 |
+| 마나 부족 | 3단계 사용 차단, 완성 주문·대상 선택 유지 |
 | Overlay 중단 | 원래 단계와 포커스 복귀 |
-| 연타·중복 입력 | 저장·소비·결과 exactly-once |
+| 연타·중복 입력 | 저장·글자 소비·마나 소비·결과 exactly-once |
 
 ## 13. TDD 수용 계약
 
@@ -277,17 +307,48 @@ PR #77의 `GrimoireThemeFactory`, 공용 Panel·Button·Badge·Glyph Slot·Statu
 6. 1단계 저장 확인 전에는 보관함이 변하지 않는다.
 7. 2단계 배치는 자원을 예약하지만 소비하지 않는다.
 8. 초기화·되돌리기는 예약을 완전히 복구한다.
-9. 주문 확정은 예약된 글자를 정확히 한 번 소비한다.
+9. 주문 확정은 예약된 글자만 정확히 한 번 소비하고 마나는 소비하지 않는다.
 10. 2단계에는 대상 선택 컨트롤이 없다.
-11. 3단계에서만 대상 선택이 가능하다.
-12. 단계별 주문 비용 마나는 화면에 한 번만 표시된다.
-13. 보라색 보석·프리미엄 재화 계약이 없다.
-14. 주문 사용은 선택된 대상에 정확히 한 번 적용된다.
-15. Reduced Motion에서도 정보·입력·결과가 동일하다.
-16. 1280×720·Text130%·48dp 계약을 만족한다.
-17. 자동 렌더 PASS를 사람·기기 PASS로 승격하지 않는다.
+11. 2단계 성공률은 대상 난도를 포함하지 않는다.
+12. 3단계에서만 대상 선택이 가능하다.
+13. 3단계 성공률은 대상·상황 보정을 포함하고 이유를 설명한다.
+14. 마나는 3단계 주문 사용에서만 정확히 한 번 소비된다.
+15. 단계별 예상 비용 마나는 화면에 한 번만 표시된다.
+16. 보라색 보석·프리미엄 재화 계약이 없다.
+17. 주문 사용은 선택된 대상에 정확히 한 번 적용된다.
+18. Reduced Motion에서도 정보·입력·결과가 동일하다.
+19. 1280×720·Text130%·48dp 계약을 만족한다.
+20. 자동 렌더 PASS를 사람·기기 PASS로 승격하지 않는다.
 
-## 14. 적대적 검토 결론
+## 14. 대체 관계
+
+`GM-STAR-CIRCUIT-MASTERY-BALANCE-01`의 다음 부분은 보존한다.
+
+- FIVE_POINT_STAR
+- Main 1개·Auxiliary 0~5개
+- 글자별 숙련도
+- 회로 복잡도 기반 성공률·마나 계산
+- Typed Glyph Stock
+- 명시 Preview와 exactly-once
+
+다음 부분은 `GM-SPELL-WORKFLOW-UI-V2-01`로 대체한다.
+
+- 회로 Preview 뒤 같은 화면에서 Target Keyword 선택
+- Target 선택 뒤 Final Preview와 Commit
+- Commit 때마다 마나 소비
+
+새 흐름은 다음과 같다.
+
+```text
+회로 Preview
+→ 글자 소비와 주문 확정
+→ 완성 주문 보유
+→ 별도 주문 사용 화면에서 Target 선택
+→ Final Target Preview
+→ 마나 소비와 실제 판정
+```
+
+## 15. 적대적 검토 결론
 
 ### 보호한 강점
 
@@ -302,12 +363,14 @@ PR #77의 `GrimoireThemeFactory`, 공용 Panel·Button·Badge·Glyph Slot·Statu
 - 필사 미니게임이 핵심 재미를 대체하는 문제
 - 회로 배치와 주문 사용 단계 혼합
 - 대상 선택의 조기 노출
+- 주문 설계 확정과 실제 마나 소비 혼동
+- 기본 성공률과 대상 적용 성공률 혼동
 - 마나 중복과 프리미엄 재화 오인
 - 보관함·스톡 수량 비대칭
 - 장식 모션이 정보·입력을 압도하는 문제
 - PR #77에 과도한 기능 범위를 혼합하는 문제
 
-## 15. 다음 게이트
+## 16. 다음 게이트
 
 ```text
 이 설계 문서 사용자 검토
