@@ -1,5 +1,5 @@
 {
-  "schema_version": 7,
+  "schema_version": 11,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -8,7 +8,6 @@
     "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN",
     "main_authority_commit": "6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b",
     "status": "SYNCED_TO_MAIN",
-    "product_project": "CREATED",
     "implementation": "STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
     "runtime_validation": "AUTOMATED_HEADLESS_PASS",
     "godot_suites": 31,
@@ -20,7 +19,6 @@
     "decision_ids": ["GM-STAR-CIRCUIT-MASTERY-BALANCE-01"],
     "gate_id": "GR-TEST-033",
     "pull_request": 72,
-    "pr_exact_head": "e390f878b2d6356b5117dfd6803e84b4c3cfd046",
     "merge_commit": "292d2b850b38945e404f81dbcf209220067729d2",
     "status": "SYNCED_TO_MAIN",
     "physical_pack_validation": "AUTOMATED_CONTRACT_PASS",
@@ -28,11 +26,29 @@
     "performance_validation": "PERFORMANCE_NOT_RUN",
     "accessibility_validation": "AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN",
     "human_validation": "HUMAN_NOT_RUN",
-    "full_vertical_slice_representativeness": "FULL_VERTICAL_SLICE_NOT_RUN",
-    "sheet_sync": "VERIFIED_MAIN_READBACK",
-    "sheet_readback": "PASS"
+    "full_vertical_slice_representativeness": "FULL_VERTICAL_SLICE_NOT_RUN"
   },
-  "latest_product_gate": "GR_TEST_033_EXECUTION_PACK_MAIN",
-  "merge_authorized": true,
+  "spell_workflow_main": {
+    "sync_id": "GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2-MAIN",
+    "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
+    "design_pull_request": 78,
+    "design_exact_head": "392175aae0dfef674f943265f4f6965afa6c2ff4",
+    "main_merge_commit": "6c39ab683fe7f4cd15fbcdb50bc4cee153deebec",
+    "status": "SYNCED_TO_MAIN_PLAN_COMPLETE_READY_FOR_TDD",
+    "written_spec_approved_at": "2026-08-06T19:48:00+09:00",
+    "design_spec": "docs/superpowers/specs/2026-08-06-spell-workflow-ui-v2-design.md",
+    "implementation_plan": "docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md",
+    "implementation_plan_validation": "PASS",
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
+    "implementation": "NOT_STARTED",
+    "runtime_validation": "NOT_RUN_FOR_UI_V2",
+    "related_ui_pull_request": 77,
+    "ui_dependency_status": "DRAFT_UNMERGED_VISUAL_APPROVAL_REQUIRED",
+    "human_device_validation": "NOT_RUN",
+    "final_art": "NOT_CLAIMED"
+  },
+  "latest_product_gate": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD_PR77_DEPENDENCY",
+  "merge_authorized": false,
   "validation_pack_merged": true
 }
