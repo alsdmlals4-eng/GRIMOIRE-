@@ -1,5 +1,5 @@
 {
-  "schema_version": 10,
+  "schema_version": 11,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -16,9 +16,7 @@
   },
   "validation_main": {
     "sync_id": "GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN",
-    "decision_ids": [
-      "GM-STAR-CIRCUIT-MASTERY-BALANCE-01"
-    ],
+    "decision_ids": ["GM-STAR-CIRCUIT-MASTERY-BALANCE-01"],
     "gate_id": "GR-TEST-033",
     "pull_request": 72,
     "merge_commit": "292d2b850b38945e404f81dbcf209220067729d2",
@@ -30,30 +28,27 @@
     "human_validation": "HUMAN_NOT_RUN",
     "full_vertical_slice_representativeness": "FULL_VERTICAL_SLICE_NOT_RUN"
   },
-  "working_design": {
-    "sync_id": "GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2",
+  "spell_workflow_main": {
+    "sync_id": "GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2-MAIN",
     "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
-    "working_branch": "agent/spell-workflow-ui-v2-design",
-    "pull_request": 78,
-    "source_main": "46a4abfa6a94c732c70eb50cae365b7dc2939543",
-    "design_authority_head": "efae6d7d54c9d8c5aef6dd0443624450811e8e59",
-    "status": "USER_WRITTEN_SPEC_APPROVED_PLAN_COMPLETE_MERGE_AUTHORIZED",
+    "design_pull_request": 78,
+    "design_exact_head": "392175aae0dfef674f943265f4f6965afa6c2ff4",
+    "main_merge_commit": "6c39ab683fe7f4cd15fbcdb50bc4cee153deebec",
+    "status": "SYNCED_TO_MAIN_PLAN_COMPLETE_READY_FOR_TDD",
     "written_spec_approved_at": "2026-08-06T19:48:00+09:00",
     "design_spec": "docs/superpowers/specs/2026-08-06-spell-workflow-ui-v2-design.md",
     "implementation_plan": "docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md",
-    "approval_record": "docs/planning/SPELL_WORKFLOW_UI_V2_01_APPROVAL_2026-08-06.md",
-    "adversarial_review": "docs/planning/SPELL_WORKFLOW_UI_V2_ADVERSARIAL_REVIEW_2026-08-06.md",
-    "sync_receipt": "docs/planning/sync/GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2.md",
+    "implementation_plan_validation": "PASS",
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
-    "implementation_plan_validation": "PASS",
     "implementation": "NOT_STARTED",
     "runtime_validation": "NOT_RUN_FOR_UI_V2",
+    "related_ui_pull_request": 77,
+    "ui_dependency_status": "DRAFT_UNMERGED_VISUAL_APPROVAL_REQUIRED",
     "human_device_validation": "NOT_RUN",
-    "final_art": "NOT_CLAIMED",
-    "merge_authorized": true
+    "final_art": "NOT_CLAIMED"
   },
-  "latest_product_gate": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD",
-  "merge_authorized": true,
+  "latest_product_gate": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD_PR77_DEPENDENCY",
+  "merge_authorized": false,
   "validation_pack_merged": true
 }
