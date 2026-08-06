@@ -1,5 +1,5 @@
 {
-  "schema_version": 19,
+  "schema_version": 20,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -50,8 +50,14 @@
     "spell_workflow_implementation": "PAUSED_AFTER_TASK1_GREEN",
     "spell_workflow_task2": "NOT_STARTED_ON_BRANCH",
     "higodot_authority": "SOLE_AUTHORING_AUTHORITY",
-    "higodot_source_version": "BLOCKED_UNVERIFIED",
-    "gut_version": "9.7.1",
+    "higodot_release": "v3.1.2",
+    "higodot_pinned_commit": "678b16a6a0a335cf80cbb7d3f85c183cd3e616de",
+    "higodot_source_version_license": "PASS",
+    "higodot_vendor_integrity": "MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT",
+    "gut_release": "v9.7.1",
+    "gut_pinned_commit": "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605",
+    "gut_source_version_license": "PASS",
+    "gut_vendor_integrity": "MISMATCH_OFFICIAL_V9_7_1",
     "gut_status": "VENDORED_NOT_CONSUMED",
     "gut_adoption_mode": "CLI_ONLY_WITHOUT_EDITOR_PLUGIN",
     "formal_installation_authorized": false,
@@ -62,8 +68,9 @@
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
     "sheet_receipt": "docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md",
+    "source_integrity_sheet_addendum": "PENDING",
     "merge_authorized": false,
-    "next_priority": "EXACT_HEAD_REVIEW_AND_MERGE_PR84_THEN_OPEN_NEW_GUT_INSTALLATION_TDD_PR"
+    "next_priority": "SYNC_SOURCE_INTEGRITY_THEN_EXACT_HEAD_REVIEW_AND_MERGE_PR84"
   },
   "base": {
     "project_pin": "9.4.3",
@@ -84,6 +91,8 @@
   "validation": {
     "contract_v4_3_binding": "IN_PR84",
     "entry_state_reconciliation": "PASS_BLOCK_DECISION",
+    "official_tool_releases": "PASS",
+    "tool_vendor_integrity": "FAIL_MISMATCH",
     "gut_adoption_spec": "IN_REVIEW",
     "gut_formal_adoption": "NOT_IMPLEMENTED",
     "gut_actual_product_consumption": "NOT_RUN",
