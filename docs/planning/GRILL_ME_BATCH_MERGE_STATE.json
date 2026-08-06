@@ -1,5 +1,5 @@
 {
-  "schema_version": 12,
+  "schema_version": 13,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -13,7 +13,7 @@
     "merge_trigger": "USER_EXPLICIT_WRITTEN_SPEC_APPROVAL",
     "merge_authorized": true,
     "authorization_state": "USER_WRITTEN_SPEC_APPROVED",
-    "checkpoint_state": "DESIGN_CANON_SHEET_READBACK_PASS_USER_APPROVED",
+    "checkpoint_state": "DESIGN_AND_IMPLEMENTATION_PLAN_COMPLETE_SHEET_READBACK_PASS",
     "checkpoint_pull_request": 78,
     "early_checkpoint_triggers": [
       "HIGH_RISK_CONFLICT",
@@ -39,8 +39,8 @@
     "main_sync_id": "GR-SYNC-20260804-12-CLOSURE"
   },
   "current_work": {
-    "status": "SPELL_WORKFLOW_UI_V2_IMPLEMENTATION_PLAN_AUTHORIZED",
-    "gate": "SPELL_WORKFLOW_UI_V2_IMPLEMENTATION_PLAN",
+    "status": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD",
+    "gate": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD",
     "latest_approved_decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
     "related_approved_decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
@@ -57,12 +57,13 @@
     "source_main": "46a4abfa6a94c732c70eb50cae365b7dc2939543",
     "design_authority_head": "efae6d7d54c9d8c5aef6dd0443624450811e8e59",
     "written_spec_approved_at": "2026-08-06T19:48:00+09:00",
-    "implementation_plan": "IN_PROGRESS",
+    "implementation_plan": "COMPLETE",
+    "implementation_plan_path": "docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md",
     "implementation": "NOT_STARTED",
     "human_device_validation": "NOT_RUN",
     "final_art": "NOT_CLAIMED",
     "merge_authorized": true,
-    "next_priority": "MERGE_DESIGN_CANON_THEN_COMPLETE_IMPLEMENTATION_PLAN"
+    "next_priority": "MERGE_DESIGN_PLAN_CANON_THEN_RESOLVE_PR77_DEPENDENCY"
   },
   "canonical_contract": {
     "core_fun": "SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE",
@@ -108,7 +109,7 @@
     "spec_self_review": "PASS",
     "adversarial_review": "PASS",
     "user_written_spec_review": "PASS",
-    "implementation_plan": "IN_PROGRESS",
+    "implementation_plan": "PASS",
     "product_implementation": "NOT_STARTED",
     "runtime": "NOT_RUN_FOR_UI_V2",
     "sheet_write": "PASS",
