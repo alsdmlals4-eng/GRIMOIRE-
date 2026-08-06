@@ -33,6 +33,21 @@ func run(case) -> void:
     case.assert_true(harness.get_node_or_null("VisualBackground") != null, "Harness has a reusable visual background")
     case.assert_true(harness.get_node_or_null("SafeArea/StarBoard") != null, "Harness has StarCircuitBoard behind glyph slots")
     case.assert_true(harness.get_node_or_null("SafeArea/PhaseBadge") != null, "Harness exposes explicit phase badge")
+
+    var texture_paths := [
+        "CornerTopLeft",
+        "CornerTopRight",
+        "SafeArea/PhaseBadge/Content/Icon",
+        "SafeArea/ManaIcon",
+        "SafeArea/StockIcon",
+        "SafeArea/WarningIcon",
+    ]
+    for path in texture_paths:
+        var texture_rect := harness.get_node_or_null(path) as TextureRect
+        case.assert_true(texture_rect != null, "%s texture node exists" % path)
+        if texture_rect != null:
+            case.assert_true(texture_rect.texture != null, "%s imports a real vector texture" % path)
+
     harness.initialize_demo()
     case.assert_true(harness.theme != null, "Harness applies one shared Theme during deterministic initialization")
 
