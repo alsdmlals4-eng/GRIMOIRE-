@@ -10,15 +10,13 @@
 | Product Decision | `GM-SPELL-WORKFLOW-UI-V2-01` |
 | Preserved Runtime Decision | `GM-STAR-CIRCUIT-MASTERY-BALANCE-01` |
 | Runtime Main | `FIVE_POINT_STAR / TYPED_GLYPH_ONLY` |
-| UI Kit Merge | `PR #77 / 8165ac98` |
-| Spell Workflow Design·Plan Merge | `PR #78 / 6c39ab68` |
 | Spell Workflow Implementation | `PR #82 / Task 1 GREEN / PAUSED` |
 | Tool Authority Design | `PR #83 / merged main 252063cc` |
 | GUT Adoption Spec | `PR #84 / Draft / IN_REVIEW` |
 | Current Gate | `BLOCKED_BY_GUT_ADOPTION_SPEC` |
 | Review Model | `GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY` |
-| HiGodot | `SOLE_AUTHORING_AUTHORITY / SOURCE_VERSION_UNVERIFIED` |
-| GUT | `9.7.1 / VENDORED_NOT_CONSUMED / SPEC_ONLY` |
+| HiGodot | `v3.1.2 source PASS / vendor integrity mismatch` |
+| GUT | `v9.7.1 source PASS / vendor tree mismatch / NOT_CONSUMED` |
 | Audio Vault | `C:/Users/user/Documents/GitHub/shered audio vault / BLOCKED_UNVERIFIED` |
 | Base | `9.4.3 pinned / main 4f98f968 observed` |
 | Device·Performance·Screen Reader·Human·Full Slice | `NOT_RUN` |
@@ -45,16 +43,42 @@ v4.3에서는 다음이 필수다.
 글자 그리기 → 회로 배치 → 주문 사용
 ```
 
-- 글자 그리기: 인식·획득·보관함 저장.
-- 회로 배치: 보관함·스톡 글자를 사용해 FIVE_POINT_STAR 주문을 완성하고 글자만 소비.
-- 주문 사용: 대상 선택·상세 예상·마나 소비·실제 판정.
-
 PR #82 Task 1의 10종 Glyph Catalog와 `BURST → AMPLIFY` 호환은 GREEN이다. Task 2는 GUT adoption-spec·formal installation·남은 Gate가 닫히기 전 시작하지 않는다.
+
+## 공식 도구 판정
+
+### HiGodot
+
+```yaml
+release: v3.1.2
+pinned_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+release_asset_sha256: 60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33
+official_plugin_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
+project_vendor_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+license: MIT
+source_version_license: PASS
+vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
+```
+
+### GUT
+
+```yaml
+release: v9.7.1
+pinned_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+official_addons_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
+project_vendor_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
+license: MIT
+source_version_license: PASS
+vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
+formal_consumption: NONE
+```
+
+버전 문자열이 맞더라도 subtree가 다르면 공식 설치물과 동일하다고 주장하지 않는다. PR #84는 mismatch를 명세에 고정할 뿐 addon을 교체하거나 실행하지 않는다.
 
 ## 저작·테스트 권위
 
 - HiGodot/Godot AI는 `project.godot`, Scene·Node·Resource·Theme·Animation·signal·Project Settings의 단일 저작 권위다.
-- GUT은 제품 결과를 읽고 실행하는 테스트 권위이며 production 파일을 수정하지 않는다.
+- GUT은 승인된 제품 결과를 읽고 실행하는 테스트 권위이며 production 파일을 수정하지 않는다.
 - 초기 채택은 CLI-only다. GUT Editor Plugin은 활성화하지 않으며 `project.godot`을 변경하지 않는다.
 - 실제 GUT product test·CI·JUnit·hash·legacy parity·HiGodot manifest Gate는 아직 `NOT_IMPLEMENTED`다.
 
@@ -107,7 +131,7 @@ Godot 4.7.1 CI target, 1280×720 Mobile Landscape, GL Compatibility다. 로컬 e
 8. `docs/testing/GUT_9_7_1_ADOPTION_SPEC.md`
 9. `docs/decisions/DEC-GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01-adopt-gut-9-7-1.md`
 10. `docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json`
-11. `docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md`
-12. `docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md`
+11. `docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md`
+12. `docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md`
 
-다음 작업은 PR #84의 Sheet 동기화·exact-HEAD CI·역할 분리 검토다. PR #84가 merged main에 존재하기 전에는 GUT formal installation을 시작하지 않는다.
+다음 작업은 공식 source/vendor mismatch Sheet addendum, PR #84 exact-HEAD CI, 역할 분리 검토다. PR #84가 merged main에 존재하기 전에는 GUT formal installation을 시작하지 않는다.
