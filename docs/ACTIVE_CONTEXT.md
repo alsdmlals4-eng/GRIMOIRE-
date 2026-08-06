@@ -7,6 +7,8 @@ current_branch: agent/spell-workflow-ui-v2-design
 platform: MOBILE_LANDSCAPE_FIXED
 runtime_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
 runtime_main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
+preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+runtime_layout: FIVE_POINT_STAR
 validation_main_sync: GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN
 validation_merge_commit: 292d2b850b38945e404f81dbcf209220067729d2
 latest_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -35,7 +37,7 @@ grill_counter: 5_of_10
 ```
 
 - 글자 그리기: 직접 필기·인식·획득·보관함 저장.
-- 회로 배치: 보관함/스톡에서 같은 수의 최대 5개 준비 글자를 사용해 별형 회로를 설계하고, 글자 소비로 완성 주문을 만든다.
+- 회로 배치: 보관함/스톡에서 같은 수의 최대 5개 준비 글자를 사용해 `FIVE_POINT_STAR` 회로를 설계하고, 글자 소비로 완성 주문을 만든다.
 - 주문 사용: 대상 키워드를 선택하고 대상 적용 최종 성공률·효과·위험·마나를 확인한 뒤 실제 판정을 실행한다.
 
 사건 상태 카드는 상황 설명 Overlay를 열며 해결 목표까지만 알려주고 정답 글자 조합은 노출하지 않는다.
