@@ -13,7 +13,8 @@ latest_design_sync: GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2
 working_branch: agent/spell-workflow-ui-v2-design
 working_pull_request: 78
 written_spec_review: USER_APPROVED_2026-08-06T19:48+09:00
-implementation_plan: AUTHORIZED_IN_PROGRESS
+implementation_plan: COMPLETE
+implementation_plan_path: docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md
 canon_status: USER_APPROVED_MERGE_AUTHORIZED
 product_project: CREATED
 product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS_UI_V2_NOT_STARTED
@@ -59,9 +60,9 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 신규: 회로 Preview → 주문 확정·글자 소비 → 별도 사용 화면 Target → 마나 소비·실제 판정
 ```
 
-## 사용자 승인과 다음 단계
+## 사용자 승인과 구현 계획
 
-사용자는 2026-08-06 19:48 KST에 Written Spec을 승인했다. PR #78 기획 정본 병합과 구현 계획 작성은 허용되었다. 제품 구현은 별도 TDD PR에서만 진행하며 PR #77 공용 UI Kit 병합은 별도 시각 승인 대상이다.
+사용자는 2026-08-06 19:48 KST에 Written Spec을 승인했다. 구현 계획은 10개 TDD 작업으로 완료되었으며 PR #78 기획·계획 정본 병합이 허용되었다. 제품 구현은 별도 Draft TDD PR에서만 진행하며 PR #77 공용 UI Kit 병합은 별도 시각 승인 대상이다.
 
 ## 검증 경계
 
