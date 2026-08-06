@@ -20,17 +20,35 @@ GRIMOIRE는 GUT 9.7.1을 정식 테스트 실행·assertion 권위로 채택한�
 framework: GUT
 version: "9.7.1"
 canonical_repository: "bitwes/Gut"
+release_tag: "v9.7.1"
 source_branch_or_release: "godot_4_7"
+pinned_commit: "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605"
+pinned_commit_signature: VERIFIED
+official_addons_gut_tree: "5d6893836af4917ee62b1a395125a7530b1f239d"
+project_addons_gut_tree: "09d040309bbed0e07420ad72c4aa69cbd0e58190"
+license: MIT
 godot_target: "4.7.x"
+source_version_license: PASS
+vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
 adoption_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
 spec_only_pr: true
 formal_installation_authorized_now: false
 ```
 
+## 공식 source 판정
+
+- 공식 `v9.7.1` release는 `godot_4_7`을 대상으로 한다.
+- tag commit `aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605`는 verified commit이다.
+- 공식 `addons/gut` subtree는 `5d6893836af4917ee62b1a395125a7530b1f239d`다.
+- 프로젝트 main `252063cc...`의 `addons/gut` subtree는 `09d040309bbed0e07420ad72c4aa69cbd0e58190`다.
+- MIT license는 확인됐다.
+
+따라서 source·version·license는 PASS지만 vendor integrity는 FAIL/mismatch다. 구현 PR은 official subtree로 교체하거나 모든 file/blob 차이를 감사해 사용자 승인을 얻기 전 GUT runtime 소비를 활성화할 수 없다.
+
 ## 근거
 
 - 기존 `addons/gut` 파일은 9.7.1과 Godot 4.7.x metadata를 포함하지만 실제 product `GutTest`, `.gutconfig.json`, GUT CI/JUnit, mutation guard가 없다.
-- 파일 보관은 정식 채택 증거가 아니다.
+- 버전 문자열과 파일 보관은 정식 채택 또는 official tree identity 증거가 아니다.
 - HiGodot의 단일 저작 권위와 GUT의 read/execute/assert 권위를 분리하면 Scene·Resource mutation과 테스트 기준 변경이 섞이는 위험을 줄일 수 있다.
 - v4.3은 source·version·license·compatibility·consumer·CI·removal을 검토하는 adoption-spec Draft PR을 설치보다 먼저 요구한다.
 
@@ -39,6 +57,10 @@ formal_installation_authorized_now: false
 ```yaml
 higodot:
   authority: SINGLE_GODOT_SCENE_NODE_RESOURCE_PROJECT_SETTINGS_AUTHOR
+  release: v3.1.2
+  pinned_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+  source_version_license: PASS
+  vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
   may_edit:
     - project.godot
     - "*.tscn"
@@ -77,21 +99,24 @@ prior_branch_merge_authorized: false
 - `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`과 `FIVE_POINT_STAR`를 변경하지 않는다.
 - `GM-SPELL-WORKFLOW-UI-V2-01`을 변경하지 않는다.
 - PR #82 Task 1 GREEN을 보존하고 Task 2는 계속 차단한다.
-- 이 명세 PR은 `project.godot`, Scene, Resource, asset, product script, `.gutconfig.json`, actual GutTest, runtime GUT workflow를 변경하지 않는다.
+- 이 명세 PR은 `project.godot`, Scene, Resource, asset, product script, `.gutconfig.json`, actual GutTest, runtime GUT workflow, addon 교체를 변경하지 않는다.
 
 ## 명세 병합 후 다음 단계
 
 1. merged main readback.
-2. official GUT source commit, license, integrity hash, Godot 4.7.1 compatibility 확인.
-3. 새 implementation branch에서 RED→GREEN.
-4. actual product GutTest, `.gutconfig.json`, CLI/JUnit, production hash guard, legacy parity, HiGodot manifest gate 구현.
-5. Windows·Android shared-core validation.
-6. exact-HEAD check와 GPT 역할 분리 검토.
-7. 사용자 권위 정책에 따른 병합.
+2. official GUT subtree 교체 또는 file-level audit 승인.
+3. HiGodot release ZIP 추출 manifest와 프로젝트 vendor 비교.
+4. 새 implementation branch에서 strict RED→GREEN.
+5. actual product GutTest, `.gutconfig.json`, Godot 4.7.1 CLI/JUnit, production hash guard, legacy parity, HiGodot manifest gate 구현.
+6. Windows·Android shared-core validation.
+7. exact-HEAD check와 GPT 역할 분리 검토.
+8. 사용자 권위 정책에 따른 병합.
 
 ## 완료가 아닌 항목
 
 ```text
+GUT_VENDOR_INTEGRITY_PASS
+HIGODOT_VENDOR_INTEGRITY_PASS
 GUT_FORMALLY_ADOPTED
 GUT_RUNTIME_CI_PASS
 HIGODOT_AUTHORING_RECEIPT_GATE_PASS
