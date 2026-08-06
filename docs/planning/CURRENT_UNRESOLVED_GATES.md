@@ -11,6 +11,8 @@ spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 gut_adoption_spec_pr: 84
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 sheet_v4_3_sync: READBACK_PASS
+official_tool_release_verification: PASS
+vendor_integrity: FAIL_MISMATCH
 ```
 
 ## 현재 최우선 차단 항목
@@ -18,10 +20,32 @@ sheet_v4_3_sync: READBACK_PASS
 | ID | 현재 상태 | 해소 조건 |
 |---|---|---|
 | `GUT_ADOPTION_SPEC_NOT_MERGED` | BLOCKING | PR #84 명세·Decision·검증 계획 exact-HEAD PASS 후 main 병합·readback |
-| `HIGODOT_SOURCE_OR_VERSION_UNVERIFIED` | BLOCKING_BEFORE_AUTHORING | `hi-godot/godot-ai` source commit·license·Godot 4.7.x·telemetry 검증 |
-| `GUT_SOURCE_OR_VERSION_UNVERIFIED` | BLOCKING_BEFORE_INSTALLATION | `bitwes/Gut` 9.7.1 `godot_4_7` source commit과 vendor tree 일치 검증 |
-| `GUT_GODOT_COMPATIBILITY_UNVERIFIED` | BLOCKING_BEFORE_INSTALLATION | Godot 4.7.1 exact CLI smoke와 GUT discovery PASS |
+| `HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2` | BLOCKING_BEFORE_AUTHORING | 공식 v3.1.2 release ZIP 추출 hash manifest와 `addons/godot_ai` 비교·승인 또는 공식 release 설치물로 교체 |
+| `GUT_VENDOR_TREE_MISMATCH_OFFICIAL_V9_7_1` | BLOCKING_BEFORE_INSTALLATION | 프로젝트 tree `09d04030…`를 공식 v9.7.1 tree `5d689383…`로 교체하거나 file-level audit·승인 |
+| `GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN` | BLOCKING_BEFORE_INSTALLATION | 승인된 GUT tree에서 Godot 4.7.1 CLI discovery·actual product test PASS |
 | `GPT_ROLE_SEPARATED_REVIEW_NOT_COMPLETE` | BLOCKING_FOR_PR84_MERGE | 구현자 설명과 분리된 exact diff·정본·테스트 입력으로 검토, P0/P1 0 |
+
+## 공식 소스 확인 결과
+
+```yaml
+gut:
+  release: v9.7.1
+  commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+  official_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
+  project_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
+  license: MIT
+  version_and_source: PASS
+  vendor_integrity: MISMATCH
+higodot:
+  release: v3.1.2
+  commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+  release_asset_sha256: 60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33
+  official_plugin_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
+  project_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+  license: MIT
+  version_and_source: PASS
+  vendor_integrity: MISMATCH_OR_DISTRIBUTION_LAYOUT_DIFFERENCE
+```
 
 ## 명세 병합 후에도 남는 구현 차단 항목
 
@@ -56,6 +80,8 @@ external_independent_reviewer_requirement: SUPERSEDED_BY_V4_3_SOLO_REVIEW_MODEL
 active_review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 image_completion_term: VISUAL_AUDIO_COMPATIBILITY_MAPPING_ACTIVE
 sheet_v4_3_binding_write_readback: PASS
+official_gut_source_version_license: PASS
+official_higodot_source_version_license: PASS
 sheet_sync_receipt: docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md
 ```
 
