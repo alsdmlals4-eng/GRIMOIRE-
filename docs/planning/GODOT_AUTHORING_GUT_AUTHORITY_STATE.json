@@ -59,9 +59,9 @@
     "approved_at": "2026-08-06T23:28+09:00",
     "pre_exception_reviewed_head": "9d1a97f0ece4746f87ecb44ccd01b7aa0c656bb8",
     "merge_condition": "REQUIRE_CURRENT_EXACT_HEAD_CHECKS_PASS",
-    "current_exact_head": "PENDING_FINAL_SYNC_COMMIT",
-    "current_head_checks": "PENDING",
-    "sheet_exception_sync": "PENDING",
+    "current_exact_head_source": "GITHUB_PR_HEAD_AT_MERGE",
+    "current_head_checks": "REQUIRED_PASS_EXTERNAL_EVIDENCE",
+    "sheet_exception_sync": "REQUIRED_WRITE_READBACK_BEFORE_MERGE",
     "waives_future_pr_review": false,
     "pr82_task2_authorized": false
   },
@@ -115,8 +115,8 @@
     "write": "PASS",
     "readback": "PASS",
     "hub_and_work_order_correction": "PASS",
-    "review_exception_write": "PENDING",
-    "review_exception_readback": "PENDING",
+    "review_exception_write": "REQUIRED_BEFORE_MERGE",
+    "review_exception_readback": "REQUIRED_BEFORE_MERGE",
     "receipt_commit": "4f6870ca8c7df3b708191bf21f347128deb9c7ee"
   },
   "validation": {
