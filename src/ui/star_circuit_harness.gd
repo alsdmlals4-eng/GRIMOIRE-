@@ -489,7 +489,7 @@ func _render_breakdown(preview: Dictionary) -> void:
         ]
     _set_label(
         "SafeArea/BreakdownPanel/Label",
-        "Success: %s\nMana: %s\nTyped Stock: %s" % [
+        "Success: %s\nMana: %s\nTyped Stock:\n%s" % [
             success_text,
             mana_text,
             _stock_summary(),
@@ -503,7 +503,10 @@ func _stock_summary() -> String:
     var parts: Array[String] = []
     for glyph_id in GLYPH_IDS:
         parts.append("%s:%s" % [String(glyph_id), int(_stock.matching_count(glyph_id))])
-    return " ".join(parts)
+    return "%s\n%s" % [
+        " · ".join(parts.slice(0, 3)),
+        " · ".join(parts.slice(3, 6)),
+    ]
 
 
 func _auxiliary_names(auxiliaries: Array) -> Array[String]:
@@ -567,19 +570,19 @@ func _update_visual_state(state: StringName, cause_vertex: int = -1) -> void:
 func _phase_label(state: StringName) -> String:
     match state:
         PHASE_TARGET:
-            return "대상 선택"
+            return "TARGET SELECT"
         PHASE_FINAL:
-            return "최종 미리보기"
+            return "FINAL PREVIEW"
         PHASE_CONFIRM:
-            return "시전 확인"
+            return "COMMIT CONFIRM"
         PHASE_COMMITTED:
-            return "시전 완료"
+            return "COMMITTED"
         VISUAL_INVALID:
-            return "회로 불안정"
+            return "CIRCUIT INVALID"
         &"VALID":
-            return "회로 유효"
+            return "CIRCUIT VALID"
         _:
-            return "회로 편집"
+            return "CIRCUIT EDIT"
 
 
 func _set_edit_enabled(value: bool) -> void:
