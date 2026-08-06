@@ -4,18 +4,17 @@
 
 | 항목 | 기준 |
 |---|---|
-| Latest Decision | `GM-SPELL-WORKFLOW-UI-V2-01` |
+| Latest Decision | `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` |
+| Product Decision | `GM-SPELL-WORKFLOW-UI-V2-01` |
 | Preserved Runtime Decision | `GM-STAR-CIRCUIT-MASTERY-BALANCE-01` |
 | Runtime Main | `FIVE_POINT_STAR / TYPED_GLYPH_ONLY` |
-| Runtime Main Sync | `GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN` |
-| Validation Main Sync | `GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN` |
-| Star UI Kit Main Sync | `GR-SYNC-20260806-08-STAR-UI-KIT-V1-MAIN` |
-| Spell Workflow Main Sync | `GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2-MAIN` |
 | UI Kit Merge | `PR #77 / 8165ac98` |
-| Design·Plan Merge | `PR #78 / 6c39ab68` |
-| Current Gate | `READY_FOR_TDD` |
-| GrillMe | `5/10` |
-| UI v2 Implementation | `NOT_STARTED` |
+| Spell Workflow Design·Plan Merge | `PR #78 / 6c39ab68` |
+| Spell Workflow Implementation | `PR #82 / Task 1 GREEN / PAUSED` |
+| Tool Authority Design | `PR #83 / DRAFT_REVIEW_REQUIRED` |
+| Current Gate | `BLOCKED_PENDING_GODOT_AUTHORING_GUT_AUTHORITY_REVIEW` |
+| HiGodot | `SOLE_AUTHORING_AUTHORITY_DESIGN` |
+| GUT | `9.7.1 / VENDORED_NOT_CONSUMED` |
 | Device·Performance·Screen Reader·Human·Full Slice | `NOT_RUN` |
 
 ## 현재 주문 흐름
@@ -30,9 +29,25 @@
 - 2단계는 보관함·스톡 글자를 사용해 FIVE_POINT_STAR 주문을 완성하고 글자만 소비한다.
 - 3단계는 대상 선택·상세 예상 결과·마나 소비·실제 판정을 담당한다.
 
-공용 Navy/Gold/Cyan 테마, `StarCircuitBoard`, 공통 SVG 5종은 main에 병합되어 후속 3단계 화면에서 재사용할 수 있다.
+Task 1에서 10종 Glyph Catalog와 `BURST → AMPLIFY` 호환 ViewModel이 RED→GREEN을 통과했다. Task 2는 도구 권위 Draft PR #83이 승인·병합되고 GUT 실제 소비·CI 채택 구현이 완료되기 전 시작하지 않는다.
 
-설계는 `docs/superpowers/specs/2026-08-06-spell-workflow-ui-v2-design.md`, 구현 계획은 `docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md`다.
+## 저작·검증 권위
+
+- HiGodot/Godot AI는 Scene·Node·Resource·`project.godot`·Project Settings의 단일 저작 권위다.
+- GUT은 검증 권위이며 제품 파일을 수정하지 않는다.
+- 현재 GUT 9.7.1 파일은 `addons/gut`에 있지만 plugin 활성화·제품 test 소비·CI 실행이 없으므로 채택 완료가 아니다.
+- 미확정 항목은 `docs/planning/CURRENT_UNRESOLVED_GATES.md`를 따른다.
+
+## 이미지 상태
+
+주문 UI 3화면 이미지는 사용자 방향 승인 완료다. 다만 실제 3화면 Runtime과 최종 아트 검증은 실행하지 않았다.
+
+```yaml
+status: APPROVED_DIRECTION_RUNTIME_NOT_RUN
+awaiting_user_direction_approval: false
+implementation_visual_review: PENDING
+final_art: NOT_CLAIMED
+```
 
 ## Godot에서 열기
 
@@ -43,7 +58,7 @@ GRIMOIRE-/project.godot
 └─ 현재 Main Scene: res://src/ui/star_circuit_harness.tscn
 ```
 
-권장 Godot 버전은 `4.7.1`, 화면은 1280×720 Mobile Landscape, GL Compatibility다. 현재 Main Scene에서 병합된 UI Kit를 확인할 수 있다. UI v2 Main Scene 전환은 구현 PR의 전체 자동 회귀와 렌더 증거가 PASS하기 전 금지한다.
+권장 Godot 버전은 `4.7.1`, 화면은 1280×720 Mobile Landscape, GL Compatibility다. UI v2 Main Scene 전환은 구현 완료·GUT/legacy 병행 회귀·렌더 증거·저작 영수증 Gate가 모두 PASS하기 전 금지한다.
 
 ## 읽기 순서
 
@@ -51,10 +66,10 @@ GRIMOIRE-/project.godot
 2. `docs/ACTIVE_CONTEXT.md`
 3. `docs/DEVELOPMENT_GATES.md`
 4. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-5. `docs/planning/SPELL_WORKFLOW_UI_V2_01_APPROVAL_2026-08-06.md`
-6. `docs/superpowers/specs/2026-08-06-spell-workflow-ui-v2-design.md`
-7. `docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md`
-8. `docs/planning/sync/GR-SYNC-20260806-08-STAR-UI-KIT-V1-MAIN.md`
-9. `docs/validation/GR_TEST_033_STAR_PHYSICAL_RUNBOOK.md`
+5. `docs/planning/CURRENT_UNRESOLVED_GATES.md`
+6. `docs/planning/GODOT_AUTHORING_GUT_TEST_AUTHORITY_ADOPTION_2026-08-06.md`
+7. `docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json`
+8. `docs/superpowers/specs/2026-08-06-spell-workflow-ui-v2-design.md`
+9. `docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md`
 
-다음 작업은 main에서 별도 Draft TDD 구현 PR을 여는 것이다. UI Kit 자동 렌더 PASS는 최종 아트·실기기·사람 검증 PASS가 아니다.
+다음 작업은 PR #83의 RED 계약을 GREEN으로 만들고 Sheet 상태를 같은 Decision ID로 Write·Readback하는 것이다. 제품 Task 2가 아니다.

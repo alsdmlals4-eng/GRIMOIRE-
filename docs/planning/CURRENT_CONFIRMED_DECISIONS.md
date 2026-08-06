@@ -1,42 +1,33 @@
 # GRIMOIRE 현재 확정 결정 스냅샷
 
 ```yaml
-status: ACTIVE_CANON_SYNCED_TO_MAIN_PLAN_AND_UI_KIT_COMPLETE
-runtime_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
-runtime_main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
+status: ACTIVE_CANON_TOOL_AUTHORITY_DRAFT_BLOCKING
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+latest_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 runtime_layout: FIVE_POINT_STAR
-validation_main_sync: GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN
-ui_kit_main_sync: GR-SYNC-20260806-08-STAR-UI-KIT-V1-MAIN
-ui_kit_pull_request: 77
-ui_kit_exact_head: 64116046ab17adac81ce4d238ebf19ddd2ec2293
-ui_kit_main_merge: 8165ac983a8236bd780ac0ac0af1c121d36efd67
-ui_kit_status: SYNCED_TO_MAIN_AUTOMATED_RENDER_PASS
-latest_decision: GM-SPELL-WORKFLOW-UI-V2-01
-spell_workflow_main_sync: GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2-MAIN
-spell_workflow_main_merge: 6c39ab683fe7f4cd15fbcdb50bc4cee153deebec
-written_spec_review: USER_APPROVED_2026-08-06T19:48+09:00
-implementation_plan: COMPLETE
-implementation_plan_path: docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md
-canon_status: SYNCED_TO_MAIN
-product_project: CREATED
-product_implementation: STAR_RUNTIME_AND_UI_KIT_AUTOMATED_PASS_UI_V2_NOT_STARTED
-runtime_validation: AUTOMATED_HEADLESS_AND_UI_RENDER_PASS_EXISTING_HARNESS
+current_gate: BLOCKED_PENDING_GODOT_AUTHORING_GUT_AUTHORITY_REVIEW
+spell_workflow_implementation_pr: 82
+spell_workflow_implementation_status: PAUSED_AFTER_TASK1_GREEN
+tool_authority_design_pr: 83
+tool_authority_design_status: DESIGN_DRAFT_REVIEW_REQUIRED
+higodot_authority: SOLE_AUTHORING_AUTHORITY_DESIGN
+gut_version: 9.7.1
+gut_status: VENDORED_NOT_CONSUMED
+image_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN
+merge_authorized: false
 mobile_device_validation: DEVICE_NOT_RUN
 performance_validation: PERFORMANCE_NOT_RUN
 accessibility_validation: AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN
 human_visual_validation: HUMAN_NOT_RUN
 full_vertical_slice_representativeness: FULL_VERTICAL_SLICE_NOT_RUN
-numeric_status: PLAYTEST_TUNING_REQUIRED
 ```
 
-## 보존되는 Runtime
+## 보존되는 제품 정본
 
 `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`의 `FIVE_POINT_STAR`, 중앙 Main 1개, Auxiliary 0~5개, 글자별 숙련도, Typed Glyph Stock, 명시 Preview, Exactly-once 자원 처리를 유지한다.
 
-## 주문 3단계 정본
-
-`GM-SPELL-WORKFLOW-UI-V2-01`은 주문 UX를 다음으로 분리한다.
+`GM-SPELL-WORKFLOW-UI-V2-01`의 주문 흐름도 유지한다.
 
 ```text
 1. 글자 그리기 → 인식·획득·보관함 저장
@@ -44,39 +35,66 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 3. 주문 사용 → 대상 선택·상세 예상 결과·마나 소비·실제 판정
 ```
 
-- 사건 상태 Overlay는 문제·위험·필요 대응 방향·관찰 키워드를 제공하되 정답 글자 조합은 숨긴다.
-- 보관함과 스톡은 같은 수를 준비하며 각각 1~5개다.
-- 핵심 글자: 열·흐름·보호·냉각·수복.
-- 보조 글자: 집중·분산·안정·지속·증폭.
-- 공통 경제 재화는 금화, 주문 사용 비용은 마나만 사용한다.
-- 2단계 기본 성공률과 3단계 대상 적용 최종 성공률을 구분한다.
+PR #82의 Task 1은 승인된 10종 Glyph Catalog와 `BURST → AMPLIFY` 호환을 구현하고 자동 회귀를 통과했다. Task 2는 시작하지 않는다.
 
-## 대체 관계
+## 새 도구 권위 결정
 
-```text
-기존: 회로 Preview → 같은 화면 Target → Final Preview → Commit·마나 소비
-신규: 회로 Preview → 주문 확정·글자 소비 → 별도 사용 화면 Target → 마나 소비·실제 판정
+### HiGodot
+
+HiGodot/Godot AI를 Scene·Node·Resource·Project Settings 직렬화의 단일 저작 권위로 설계한다.
+
+- `project.godot`, `*.tscn`, `*.tres`, `*.res`의 최종 수정은 HiGodot 경로를 사용한다.
+- protected diff에는 저작 영수증과 Scene open/reload evidence가 필요하다.
+- HiGodot은 테스트 assertion·expected value·fixture·CI 성공 기준을 수정하지 않는다.
+
+### GUT 9.7.1
+
+GUT을 정식 테스트 권위로 채택하는 방향은 사용자 승인되었다. 다만 실제 채택 완료는 별도 구현·검증 뒤 선언한다.
+
+```yaml
+source: https://github.com/bitwes/Gut
+version: 9.7.1
+license: MIT
+godot_compatibility: 4.7.x
+repository_state: VENDORED_NOT_CONSUMED
+formal_adoption: NOT_YET_IMPLEMENTED
 ```
 
-## 공용 UI Kit 정본
+현재 `addons/gut`은 포함되어 있으나 `project.godot` plugin 활성화, `.gutconfig.json`, 제품 GUT test, GUT CI, JUnit Artifact가 없다.
 
-PR #77은 다음 기반을 main에 제공한다.
+GUT은 제품 파일을 읽고 실행할 수 있지만 수정할 수 없다.
 
-- 공용 `GrimoireThemeFactory`
-- Draw-only `StarCircuitBoard`
-- Navy/Gold/Cyan UI 토큰과 상태 Variation
-- 프로젝트 원본 공통 SVG 5종
-- Godot import·Texture2D·1280×720 GL Compatibility 자동 렌더 계약
-- UI 자산 Rights Workflow와 `GR-UI-VECTOR-COMMON-01` provenance
+## 이미지 승인 상태
 
-이는 후속 3개 화면에서 직접 재사용한다. 자동 렌더 PASS를 최종 아트나 사람 시각 검증으로 확대 해석하지 않는다.
+주문 UI 3화면 방향은 사용자 승인 완료다.
 
-## 구현 계획과 다음 Gate
+```yaml
+user_direction_approval: COMPLETE
+runtime_validation: NOT_RUN
+implementation_visual_review: PENDING
+final_art: NOT_CLAIMED
+status: APPROVED_DIRECTION_RUNTIME_NOT_RUN
+```
 
-설계와 10개 TDD 작업 계획은 PR #78, merge `6c39ab683fe7f4cd15fbcdb50bc4cee153deebec`로 main에 반영되었다. UI Kit 선행 의존성도 PR #77, merge `8165ac983a8236bd780ac0ac0af1c121d36efd67`로 해소되었다.
+동일 방향 승인을 다시 기다리는 상태로 기록하지 않는다.
 
-다음 Gate는 main 기반 별도 Draft TDD 구현 PR을 여는 것이다.
+## 현재 차단 목록
 
-## 검증 경계
+`docs/planning/CURRENT_UNRESOLVED_GATES.md`의 blocking 항목이 0이 되기 전 다음을 금지한다.
 
-현재 PASS는 기존 별형 Runtime, UI Kit 자동 렌더, 기획·계획 계약에 해당한다. UI v2 3단계 코드·Scene·실기기·사람 검증은 `NOT_STARTED / NOT_RUN`이다.
+- PR #82 Task 2 시작.
+- GUT formal adoption 완료 선언.
+- UI v2 Main Scene 전환.
+- Ready 전환·병합 승인.
+- 최종 아트·Runtime·기기 검증 완료 선언.
+
+## 다음 Gate
+
+Draft PR #83에서 다음을 완료한다.
+
+1. 도구 권위 명세 검토.
+2. 활성 정본의 stale 작업 진입 상태 복구.
+3. Sheet 02·04·72·99 같은 Decision ID 동기화.
+4. exact-head CI와 Sheet readback.
+
+그 뒤 별도 GUT 채택 구현 PR을 RED→GREEN으로 실행한다.

@@ -6,31 +6,34 @@ repository: alsdmlals4-eng/GRIMOIRE-
 current_branch: main
 platform: MOBILE_LANDSCAPE_FIXED
 runtime_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
-runtime_main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 runtime_layout: FIVE_POINT_STAR
-validation_main_sync: GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN
 ui_kit_main_sync: GR-SYNC-20260806-08-STAR-UI-KIT-V1-MAIN
-ui_kit_main_merge: 8165ac983a8236bd780ac0ac0af1c121d36efd67
-latest_decision: GM-SPELL-WORKFLOW-UI-V2-01
-spell_workflow_main_sync: GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2-MAIN
-spell_workflow_main_merge: 6c39ab683fe7f4cd15fbcdb50bc4cee153deebec
-current_gate: SPELL_WORKFLOW_UI_V2_READY_FOR_TDD
-written_spec_review: USER_APPROVED
-canon_status: SYNCED_TO_MAIN_PLAN_AND_UI_KIT_COMPLETE
-existing_runtime: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
-ui_kit_status: SYNCED_TO_MAIN_AUTOMATED_RENDER_PASS
-ui_kit_pull_request: 77
-ui_kit_exact_head: 64116046ab17adac81ce4d238ebf19ddd2ec2293
-spell_workflow_ui_v2_implementation_plan: COMPLETE
-implementation_plan_path: docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md
-spell_workflow_ui_v2_implementation: NOT_STARTED
+product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+latest_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
+tool_authority_sync: GR-SYNC-20260806-10-GODOT-AUTHORING-GUT-AUTHORITY
+current_gate: BLOCKED_PENDING_GODOT_AUTHORING_GUT_AUTHORITY_REVIEW
+canon_status: ACTIVE_PRODUCT_CANON_TOOL_AUTHORITY_DRAFT_REQUIRED
+spell_workflow_implementation_pr: 82
+spell_workflow_implementation_head: 0919b71dfec3c6f57b88e1290789302267936960
+spell_workflow_implementation_status: PAUSED_AFTER_TASK1_GREEN
+spell_workflow_task2: NOT_STARTED_ON_BRANCH
+tool_authority_design_pr: 83
+tool_authority_design_status: DESIGN_DRAFT_REVIEW_REQUIRED
+higodot_authority: SOLE_AUTHORING_AUTHORITY_DESIGN
+higodot_bundled_version: 3.1.2
+gut_pinned_version: 9.7.1
+gut_current_consumption: VENDORED_NOT_CONSUMED
+gut_target_authority: FORMAL_TEST_AUTHORITY
+gut_ci: NOT_ENABLED
+image_direction_approval: COMPLETE
+image_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN
 mobile_device_validation: DEVICE_NOT_RUN
 performance_validation: PERFORMANCE_NOT_RUN
 accessibility_validation: AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN
 human_visual_validation: HUMAN_NOT_RUN
 full_vertical_slice_representativeness: FULL_VERTICAL_SLICE_NOT_RUN
-grill_counter: 5_of_10
+merge_authorized: false
 ```
 
 ## 활성 주문 UX 방향
@@ -43,14 +46,29 @@ grill_counter: 5_of_10
 - 회로 배치: 보관함/스톡에서 같은 수의 최대 5개 준비 글자를 사용해 `FIVE_POINT_STAR` 회로를 설계하고 글자만 소비해 완성 주문을 만든다.
 - 주문 사용: 대상 키워드를 선택하고 최종 성공률·효과·위험·마나를 확인한 뒤 실제 판정을 실행한다.
 
-공통 경제 재화는 금화, 주문 비용은 마나다. 핵심 글자는 열·흐름·보호·냉각·수복, 보조 글자는 집중·분산·안정·지속·증폭이다.
+PR #82의 Task 1은 10종 Glyph Catalog와 legacy `BURST → AMPLIFY` 정규화를 RED→GREEN으로 완료했다. 이후 구현은 새 차단 Gate 때문에 중지했다.
 
-## UI 기반 상태
+## 저작·테스트 권위 상태
 
-PR #77의 `GrimoireThemeFactory`, `StarCircuitBoard`, 공통 SVG 5종, 렌더·권리 검증은 main에 병합되었다. 후속 화면은 이를 재사용하며 별도 테마를 복제하지 않는다.
+현재 `project.godot`은 `addons/godot_ai`를 활성화한다. Scene·Node·Resource·Project Settings 변경은 HiGodot을 통한 저작 영수증이 필요하도록 설계한다.
 
-자동 렌더는 1280×720 GL Compatibility 구현 증거다. 실제 Android/iOS, 성능, Screen Reader, 사람 시각 검증과 최종 아트 승인은 아직 실행하지 않았다.
+GUT 9.7.1은 `addons/gut`에 포함되어 있으나 다음이 없다.
+
+- GUT Editor Plugin 활성화.
+- `.gutconfig.json`.
+- 제품 test가 `GutTest`를 실제 상속하는 경로.
+- Godot 4.7.1 headless GUT CLI CI.
+- JUnit Artifact.
+- GUT 실행 전후 제품 파일 hash 무변경 Gate.
+
+따라서 formal adoption 완료를 주장하지 않는다.
+
+## 이미지 상태
+
+사용자 방향 승인은 완료되었다. 다시 방향 승인을 기다리지 않는다. 남은 것은 실제 Godot 3화면 구현·렌더·기기·사람 검토다.
 
 ## 현재 작업
 
-설계와 10개 TDD 작업 계획, 공용 UI Kit 선행 조건이 모두 main에 반영되었다. 다음 우선순위는 main 기반 별도 Draft TDD 구현 PR을 열고 계획의 Task 1부터 RED→GREEN으로 실행하는 것이다.
+우선순위는 Draft PR #83에서 권위 분리 명세·활성 상태 복구·미확정 차단 목록·Sheet Write/Readback을 완료하는 것이다.
+
+제품 구현 PR #82 Task 2는 `docs/planning/CURRENT_UNRESOLVED_GATES.md`의 blocking 항목이 0이 되기 전 재개하지 않는다.

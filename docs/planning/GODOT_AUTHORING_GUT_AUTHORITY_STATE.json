@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+  "sync_id": "GR-SYNC-20260806-10-GODOT-AUTHORING-GUT-AUTHORITY",
+  "status": "DESIGN_DRAFT_REVIEW_REQUIRED",
+  "source_main": "917ead7499482801610ba95ce37efafd1662d994",
+  "higodot": {
+    "repository_path": "addons/godot_ai",
+    "plugin_name": "Godot AI",
+    "bundled_version": "3.1.2",
+    "project_plugin_enabled": true,
+    "authority": "SOLE_AUTHORING_AUTHORITY",
+    "protected_surfaces": [
+      "project.godot",
+      "**/*.tscn",
+      "**/*.tres",
+      "**/*.res",
+      "scene_node_structure",
+      "resource_properties",
+      "project_settings"
+    ],
+    "must_not_edit": [
+      "tests/**",
+      ".gutconfig.json",
+      "test_expected_values",
+      "ci_success_criteria"
+    ]
+  },
+  "gut": {
+    "source": "https://github.com/bitwes/Gut",
+    "repository_path": "addons/gut",
+    "pinned_version": "9.7.1",
+    "license": "MIT",
+    "godot_compatibility": "4.7.x",
+    "project_plugin_enabled": false,
+    "current_consumption": "VENDORED_NOT_CONSUMED",
+    "target_authority": "FORMAL_TEST_AUTHORITY",
+    "actual_product_tests": 0,
+    "ci_enabled": false,
+    "must_not_mutate_product_files": true,
+    "implementation_pr_required": true
+  },
+  "entry_gate": {
+    "status": "BLOCKED_PENDING_GODOT_AUTHORING_GUT_AUTHORITY_REVIEW",
+    "implementation": "BLOCKED",
+    "required_live_reads": [
+      "02_현재_확정결정",
+      "04_누락_충돌_감사",
+      "72_이미지검수_승인로그"
+    ],
+    "required_static_sources": [
+      "docs/planning/CURRENT_UNRESOLVED_GATES.md",
+      "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+      "docs/DEVELOPMENT_GATES.md"
+    ],
+    "resume_conditions": [
+      "DESIGN_PR_APPROVED_AND_MERGED",
+      "GUT_ADOPTION_IMPLEMENTATION_PR_GREEN",
+      "GUT_ACTUAL_PRODUCT_TEST_CONSUMPTION_PASS",
+      "GUT_CI_AND_JUNIT_PASS",
+      "HIGODOT_AUTHORING_RECEIPT_GATE_PASS",
+      "SHEET_WRITE_AND_READBACK_PASS",
+      "UNRESOLVED_BLOCKERS_ZERO"
+    ]
+  },
+  "implementation_pr": {
+    "number": 82,
+    "head": "0919b71dfec3c6f57b88e1290789302267936960",
+    "status": "PAUSED_AFTER_TASK1_GREEN",
+    "task2": "NOT_STARTED_ON_BRANCH",
+    "merge_authorized": false
+  },
+  "image_review": {
+    "review_id": "GR-REV-SPELL-WORKFLOW-UI-V2",
+    "image_id": "GR-IMG-011",
+    "user_direction_approval": "COMPLETE",
+    "status": "APPROVED_DIRECTION_RUNTIME_NOT_RUN",
+    "implementation_visual_review": "PENDING",
+    "runtime_validation": "NOT_RUN",
+    "final_art": "NOT_CLAIMED",
+    "awaiting_user_direction_approval": false
+  },
+  "sheet_readback": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "observed_at": "2026-08-06T22:12:00+09:00",
+    "decision_range": "02_현재_확정결정!A64:N72",
+    "audit_range": "04_누락_충돌_감사!A68:I78",
+    "image_range": "72_이미지검수_승인로그!A1:N10",
+    "write_status": "PENDING_BRANCH_EXACT_HEAD",
+    "readback_status": "INITIAL_READ_PASS"
+  },
+  "claims": {
+    "gut_formally_adopted": false,
+    "gut_runtime_ci_pass": false,
+    "higodot_receipt_gate_implemented": false,
+    "spell_workflow_task2_authorized": false,
+    "device_validation": "NOT_RUN",
+    "performance_validation": "NOT_RUN",
+    "screen_reader_validation": "NOT_RUN",
+    "human_validation": "NOT_RUN"
+  }
+}
