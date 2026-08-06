@@ -68,9 +68,10 @@
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
     "sheet_receipt": "docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md",
-    "source_integrity_sheet_addendum": "PENDING",
+    "source_integrity_sheet_addendum": "PASS",
+    "source_integrity_receipt": "docs/planning/sync/GR-SYNC-20260806-14-TOOL-SOURCE-INTEGRITY.md",
     "merge_authorized": false,
-    "next_priority": "SYNC_SOURCE_INTEGRITY_THEN_EXACT_HEAD_REVIEW_AND_MERGE_PR84"
+    "next_priority": "EXACT_HEAD_REVIEW_AND_MERGE_PR84_THEN_OPEN_NEW_GUT_INSTALLATION_TDD_PR"
   },
   "base": {
     "project_pin": "9.4.3",
