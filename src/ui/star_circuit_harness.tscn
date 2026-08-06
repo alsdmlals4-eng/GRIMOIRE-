@@ -118,7 +118,7 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="SafeArea/PhaseBadge/Content"]
 layout_mode = 2
-text = "회로 편집"
+text = "CIRCUIT EDIT"
 vertical_alignment = 1
 
 [node name="CenterGlyph" type="Button" parent="SafeArea"]
@@ -230,7 +230,7 @@ theme_type_variation = &"AcademyPanelEmphasis"
 
 [node name="Label" type="Label" parent="SafeArea/CircuitPreviewPanel"]
 layout_mode = 2
-text = "회로 미리보기\n글자를 편집한 뒤 미리보기를 실행하세요."
+text = "Circuit Preview\nEdit glyphs, then preview the circuit."
 autowrap_mode = 2
 
 [node name="TargetKeywordPanel" type="PanelContainer" parent="SafeArea"]
@@ -247,7 +247,7 @@ theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="SafeArea/TargetKeywordPanel/Content"]
 layout_mode = 2
-text = "대상 키워드 · 회로 확인 후 선택 가능"
+text = "Target Keywords · available after preview"
 autowrap_mode = 2
 
 [node name="TargetButtons" type="HBoxContainer" parent="SafeArea/TargetKeywordPanel/Content"]
@@ -280,7 +280,7 @@ theme_type_variation = &"AcademyPanel"
 
 [node name="Label" type="Label" parent="SafeArea/MasteryPanel"]
 layout_mode = 2
-text = "글자 숙련도\n--"
+text = "Mastery\n--"
 autowrap_mode = 2
 
 [node name="AccessibilityInputPanel" type="PanelContainer" parent="SafeArea"]
@@ -293,7 +293,7 @@ theme_type_variation = &"AcademyPanel"
 
 [node name="Label" type="Label" parent="SafeArea/AccessibilityInputPanel"]
 layout_mode = 2
-text = "접근성 입력 · 탭 / 유도 필사 / 스타일러스"
+text = "ACCESSIBLE INPUT · Tap / Guided trace / Stylus"
 autowrap_mode = 2
 
 [node name="FinalPreviewPanel" type="PanelContainer" parent="SafeArea"]
@@ -308,7 +308,7 @@ theme_type_variation = &"AcademyPanelEmphasis"
 
 [node name="Label" type="Label" parent="SafeArea/FinalPreviewPanel"]
 layout_mode = 2
-text = "성공률 --% · 마나 --\n대상 --"
+text = "Success --% · Mana --\nTarget --"
 autowrap_mode = 2
 
 [node name="ManaIcon" type="TextureRect" parent="SafeArea"]
@@ -336,7 +336,7 @@ theme_type_variation = &"AcademyPanel"
 
 [node name="Label" type="Label" parent="SafeArea/BreakdownPanel"]
 layout_mode = 2
-text = "성공률: 미리보기 필요\n마나: 미리보기 필요\nTyped Stock: --"
+text = "Success: preview required\nMana: preview required\nTyped Stock: --"
 autowrap_mode = 2
 
 [node name="StockIcon" type="TextureRect" parent="SafeArea"]
@@ -364,7 +364,7 @@ theme_type_variation = &"StatusBanner"
 
 [node name="Label" type="Label" parent="SafeArea/WarningPanel"]
 layout_mode = 2
-text = "준비됨 · 메인/보조 글자를 편집하세요."
+text = "READY · edit Main/Aux glyphs"
 autowrap_mode = 2
 
 [node name="WarningIcon" type="TextureRect" parent="SafeArea"]
@@ -396,7 +396,7 @@ theme_type_variation = &"StatusBannerWarning"
 
 [node name="Label" type="Label" parent="SafeArea/InsufficientManaState"]
 layout_mode = 2
-text = "마나가 부족합니다"
+text = "INSUFFICIENT MANA"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -416,7 +416,7 @@ theme_type_variation = &"StatusBannerWarning"
 
 [node name="Label" type="Label" parent="SafeArea/UnstableCircuitState"]
 layout_mode = 2
-text = "회로가 불안정합니다"
+text = "UNSTABLE CIRCUIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
