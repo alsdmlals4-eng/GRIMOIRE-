@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource path="res://src/ui/star_circuit_harness.gd" type="Script" id="1"]
+[ext_resource path="res://src/ui/theme/grimoire_theme_factory.gd" type="Script" id="2"]
+[ext_resource path="res://src/ui/components/star_circuit_board.tscn" type="PackedScene" id="3"]
+[ext_resource path="res://assets/art/ui/common/icon_phase_diamond.svg" type="Texture2D" id="4"]
+[ext_resource path="res://assets/art/ui/common/icon_warning_diamond.svg" type="Texture2D" id="5"]
+[ext_resource path="res://assets/art/ui/common/icon_typed_stock.svg" type="Texture2D" id="6"]
+[ext_resource path="res://assets/art/ui/common/icon_mana.svg" type="Texture2D" id="7"]
+[ext_resource path="res://assets/art/ui/common/academy_corner_ornament.svg" type="Texture2D" id="8"]
 
 [node name="StarCircuitHarness" type="Control"]
 layout_mode = 3
@@ -10,6 +17,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
+metadata/theme_factory = ExtResource("2")
+
+[node name="VisualBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.027451, 0.082353, 0.141176, 1)
+
+[node name="BackgroundInset" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.031373, 0.094118, 0.152941, 0.72)
+
+[node name="CornerTopLeft" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 106.0
+offset_bottom = 106.0
+mouse_filter = 2
+texture = ExtResource("8")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 0.72)
+
+[node name="CornerTopRight" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -106.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 106.0
+mouse_filter = 2
+texture = ExtResource("8")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+modulate = Color(1, 1, 1, 0.72)
 
 [node name="SafeArea" type="Control" parent="."]
 layout_mode = 1
@@ -23,7 +82,47 @@ offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="StarBoard" parent="SafeArea" instance=ExtResource("3")]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -272.0
+offset_right = 260.0
+offset_bottom = 272.0
+
+[node name="PhaseBadge" type="PanelContainer" parent="SafeArea"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 52.0
+theme_type_variation = &"AcademyBadge"
+
+[node name="Content" type="HBoxContainer" parent="SafeArea/PhaseBadge"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="SafeArea/PhaseBadge/Content"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/PhaseBadge/Content"]
+layout_mode = 2
+text = "CIRCUIT EDIT"
+vertical_alignment = 1
+
 [node name="CenterGlyph" type="Button" parent="SafeArea"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -33,7 +132,7 @@ offset_left = -64.0
 offset_top = -64.0
 offset_right = 64.0
 offset_bottom = 64.0
-custom_minimum_size = Vector2(48, 48)
+theme_type_variation = &"GlyphSlotMain"
 text = "MAIN\nHEAT"
 tooltip_text = "Click to cycle the main glyph"
 
@@ -47,6 +146,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Vertex0" type="Button" parent="SafeArea/StarVertices"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -56,11 +156,12 @@ offset_left = -40.0
 offset_top = -272.0
 offset_right = 40.0
 offset_bottom = -192.0
-custom_minimum_size = Vector2(48, 48)
+theme_type_variation = &"GlyphSlot"
 text = "A0\nFLOW"
 tooltip_text = "Click to cycle optional auxiliary glyph 1 of 5"
 
 [node name="Vertex1" type="Button" parent="SafeArea/StarVertices"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -70,11 +171,12 @@ offset_left = 150.0
 offset_top = -96.0
 offset_right = 230.0
 offset_bottom = -16.0
-custom_minimum_size = Vector2(48, 48)
+theme_type_variation = &"GlyphSlot"
 text = "A1\nEMPTY"
 tooltip_text = "Click to cycle optional auxiliary glyph 2 of 5"
 
 [node name="Vertex2" type="Button" parent="SafeArea/StarVertices"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -84,11 +186,12 @@ offset_left = 90.0
 offset_top = 168.0
 offset_right = 170.0
 offset_bottom = 248.0
-custom_minimum_size = Vector2(48, 48)
+theme_type_variation = &"GlyphSlot"
 text = "A2\nEMPTY"
 tooltip_text = "Click to cycle optional auxiliary glyph 3 of 5"
 
 [node name="Vertex3" type="Button" parent="SafeArea/StarVertices"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -98,11 +201,12 @@ offset_left = -170.0
 offset_top = 168.0
 offset_right = -90.0
 offset_bottom = 248.0
-custom_minimum_size = Vector2(48, 48)
+theme_type_variation = &"GlyphSlot"
 text = "A3\nEMPTY"
 tooltip_text = "Click to cycle optional auxiliary glyph 4 of 5"
 
 [node name="Vertex4" type="Button" parent="SafeArea/StarVertices"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -112,27 +216,30 @@ offset_left = -230.0
 offset_top = -96.0
 offset_right = -150.0
 offset_bottom = -16.0
-custom_minimum_size = Vector2(48, 48)
+theme_type_variation = &"GlyphSlot"
 text = "A4\nEMPTY"
 tooltip_text = "Click to cycle optional auxiliary glyph 5 of 5"
 
 [node name="CircuitPreviewPanel" type="PanelContainer" parent="SafeArea"]
 layout_mode = 1
-offset_left = 64.0
+offset_left = 40.0
 offset_top = 16.0
-offset_right = 352.0
-offset_bottom = 112.0
+offset_right = 328.0
+offset_bottom = 118.0
+theme_type_variation = &"AcademyPanelEmphasis"
 
 [node name="Label" type="Label" parent="SafeArea/CircuitPreviewPanel"]
-text = "Circuit Preview\nEdit glyphs, then press PREVIEW CIRCUIT"
+layout_mode = 2
+text = "Circuit Preview\nEdit glyphs, then preview the circuit."
 autowrap_mode = 2
 
 [node name="TargetKeywordPanel" type="PanelContainer" parent="SafeArea"]
 layout_mode = 1
-offset_left = 64.0
-offset_top = 128.0
-offset_right = 352.0
-offset_bottom = 248.0
+offset_left = 40.0
+offset_top = 130.0
+offset_right = 328.0
+offset_bottom = 250.0
+theme_type_variation = &"AcademyPanel"
 
 [node name="Content" type="VBoxContainer" parent="SafeArea/TargetKeywordPanel"]
 layout_mode = 2
@@ -140,7 +247,7 @@ theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="SafeArea/TargetKeywordPanel/Content"]
 layout_mode = 2
-text = "Target Keywords · locked until circuit preview"
+text = "Target Keywords · available after preview"
 autowrap_mode = 2
 
 [node name="TargetButtons" type="HBoxContainer" parent="SafeArea/TargetKeywordPanel/Content"]
@@ -148,68 +255,131 @@ layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="FlowerButton" type="Button" parent="SafeArea/TargetKeywordPanel/Content/TargetButtons"]
-custom_minimum_size = Vector2(96, 48)
+custom_minimum_size = Vector2(104, 48)
 layout_mode = 2
+theme_type_variation = &"AcademyButton"
 disabled = true
 text = "FLOWER"
 tooltip_text = "Select the flower as the explicit target"
 
 [node name="WardButton" type="Button" parent="SafeArea/TargetKeywordPanel/Content/TargetButtons"]
-custom_minimum_size = Vector2(96, 48)
+custom_minimum_size = Vector2(104, 48)
 layout_mode = 2
+theme_type_variation = &"AcademyButton"
 disabled = true
 text = "WARD"
 tooltip_text = "Select the ward as the explicit target"
 
 [node name="MasteryPanel" type="PanelContainer" parent="SafeArea"]
 layout_mode = 1
-offset_left = 64.0
-offset_top = 264.0
-offset_right = 352.0
-offset_bottom = 424.0
+offset_left = 40.0
+offset_top = 262.0
+offset_right = 328.0
+offset_bottom = 430.0
+theme_type_variation = &"AcademyPanel"
 
 [node name="Label" type="Label" parent="SafeArea/MasteryPanel"]
+layout_mode = 2
 text = "Mastery\n--"
 autowrap_mode = 2
 
-[node name="BreakdownPanel" type="PanelContainer" parent="SafeArea"]
+[node name="AccessibilityInputPanel" type="PanelContainer" parent="SafeArea"]
 layout_mode = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -352.0
-offset_top = 160.0
-offset_right = -40.0
-offset_bottom = 344.0
+offset_left = 40.0
+offset_top = 442.0
+offset_right = 328.0
+offset_bottom = 552.0
+theme_type_variation = &"AcademyPanel"
 
-[node name="Label" type="Label" parent="SafeArea/BreakdownPanel"]
-text = "Success: --\nMana: --\nResources: --"
-autowrap_mode = 2
-
-[node name="WarningPanel" type="PanelContainer" parent="SafeArea"]
-layout_mode = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -352.0
-offset_top = 360.0
-offset_right = -40.0
-offset_bottom = 464.0
-
-[node name="Label" type="Label" parent="SafeArea/WarningPanel"]
-text = "READY: edit Main/Aux glyphs"
+[node name="Label" type="Label" parent="SafeArea/AccessibilityInputPanel"]
+layout_mode = 2
+text = "ACCESSIBLE INPUT · Tap / Guided trace / Stylus"
 autowrap_mode = 2
 
 [node name="FinalPreviewPanel" type="PanelContainer" parent="SafeArea"]
 layout_mode = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -352.0
+offset_left = -336.0
 offset_top = 16.0
-offset_right = -40.0
-offset_bottom = 144.0
+offset_right = -16.0
+offset_bottom = 154.0
+theme_type_variation = &"AcademyPanelEmphasis"
 
 [node name="Label" type="Label" parent="SafeArea/FinalPreviewPanel"]
+layout_mode = 2
 text = "Success --% · Mana --\nTarget --"
 autowrap_mode = 2
+
+[node name="ManaIcon" type="TextureRect" parent="SafeArea"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -326.0
+offset_top = 26.0
+offset_right = -298.0
+offset_bottom = 54.0
+mouse_filter = 2
+texture = ExtResource("7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BreakdownPanel" type="PanelContainer" parent="SafeArea"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -336.0
+offset_top = 166.0
+offset_right = -16.0
+offset_bottom = 354.0
+theme_type_variation = &"AcademyPanel"
+
+[node name="Label" type="Label" parent="SafeArea/BreakdownPanel"]
+layout_mode = 2
+text = "Success: preview required\nMana: preview required\nTyped Stock: --"
+autowrap_mode = 2
+
+[node name="StockIcon" type="TextureRect" parent="SafeArea"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -326.0
+offset_top = 316.0
+offset_right = -298.0
+offset_bottom = 344.0
+mouse_filter = 2
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WarningPanel" type="PanelContainer" parent="SafeArea"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -336.0
+offset_top = 366.0
+offset_right = -16.0
+offset_bottom = 482.0
+theme_type_variation = &"StatusBanner"
+
+[node name="Label" type="Label" parent="SafeArea/WarningPanel"]
+layout_mode = 2
+text = "READY · edit Main/Aux glyphs"
+autowrap_mode = 2
+
+[node name="WarningIcon" type="TextureRect" parent="SafeArea"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -326.0
+offset_top = 376.0
+offset_right = -298.0
+offset_bottom = 404.0
+mouse_filter = 2
+texture = ExtResource("5")
+expand_mode = 1
+stretch_mode = 5
+visible = false
 
 [node name="InsufficientManaState" type="PanelContainer" parent="SafeArea"]
 visible = false
@@ -218,12 +388,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = -166.0
-offset_right = 260.0
-offset_bottom = -110.0
+offset_left = -250.0
+offset_top = -146.0
+offset_right = 250.0
+offset_bottom = -90.0
+theme_type_variation = &"StatusBannerWarning"
 
 [node name="Label" type="Label" parent="SafeArea/InsufficientManaState"]
+layout_mode = 2
 text = "INSUFFICIENT MANA"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -236,67 +408,61 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = -166.0
-offset_right = 260.0
-offset_bottom = -110.0
+offset_left = -250.0
+offset_top = -146.0
+offset_right = 250.0
+offset_bottom = -90.0
+theme_type_variation = &"StatusBannerWarning"
 
 [node name="Label" type="Label" parent="SafeArea/UnstableCircuitState"]
+layout_mode = 2
 text = "UNSTABLE CIRCUIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="AccessibilityInputPanel" type="PanelContainer" parent="SafeArea"]
-layout_mode = 1
-offset_left = 64.0
-offset_top = 440.0
-offset_right = 352.0
-offset_bottom = 544.0
-
-[node name="Label" type="Label" parent="SafeArea/AccessibilityInputPanel"]
-text = "ACCESSIBLE INPUT · Tap / Guided trace / Stylus"
-autowrap_mode = 2
-
 [node name="PreviewButton" type="Button" parent="SafeArea"]
+custom_minimum_size = Vector2(208, 56)
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
+offset_left = -104.0
 offset_top = -72.0
-offset_right = 100.0
+offset_right = 104.0
 offset_bottom = -16.0
-custom_minimum_size = Vector2(48, 48)
+theme_type_variation = &"AcademyButtonPrimary"
 text = "PREVIEW CIRCUIT"
 tooltip_text = "Validate the selected star circuit before target selection"
 
 [node name="CancelButton" type="Button" parent="SafeArea"]
+custom_minimum_size = Vector2(120, 64)
 layout_mode = 1
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -352.0
+offset_left = -336.0
 offset_top = -88.0
-offset_right = -240.0
+offset_right = -216.0
 offset_bottom = -24.0
-custom_minimum_size = Vector2(48, 48)
+theme_type_variation = &"AcademyButton"
 text = "CANCEL"
 tooltip_text = "Cancel without resource mutation and reset the demo"
 
 [node name="CommitButton" type="Button" parent="SafeArea"]
+custom_minimum_size = Vector2(184, 64)
 layout_mode = 1
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -224.0
+offset_left = -200.0
 offset_top = -88.0
-offset_right = -40.0
+offset_right = -16.0
 offset_bottom = -24.0
-custom_minimum_size = Vector2(48, 48)
+theme_type_variation = &"AcademyButtonPrimary"
 disabled = true
 text = "COMMIT"
 tooltip_text = "Explicit two-step commit after final preview"

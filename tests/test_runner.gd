@@ -32,6 +32,7 @@ const SUITES: Array[String] = [
     "res://tests/unit/test_spell_resolution_policy.gd",
     "res://tests/unit/test_focus_scribing_overlay.gd",
     "res://tests/integration/test_star_circuit_harness_scene.gd",
+    "res://tests/integration/test_star_ui_kit_scene.gd",
     "res://tests/integration/test_star_circuit_end_to_end.gd",
     "res://tests/integration/test_frostbloom_star_ux_map.gd",
 ]
