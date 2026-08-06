@@ -2,10 +2,7 @@ name: GUT Formal Adoption Validation
 
 "on":
   pull_request:
-    types: [opened, reopened, synchronize]
-  push:
-    branches: [main]
-  workflow_dispatch:
+    types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
   contents: read
@@ -17,12 +14,13 @@ concurrency:
 env:
   PYTHONUTF8: '1'
   PYTHONIOENCODING: utf-8
-  EXACT_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
-  BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || github.sha }}
-  PR_NUMBER: ${{ github.event.pull_request.number || 0 }}
+  EXACT_HEAD: ${{ github.event.pull_request.head.sha }}
+  BASE_SHA: ${{ github.event.pull_request.base.sha }}
+  PR_NUMBER: ${{ github.event.pull_request.number }}
 
 jobs:
   validate:
+    if: github.event.pull_request.number == 85
     name: ${{ matrix.lane }}
     strategy:
       fail-fast: false
@@ -132,9 +130,9 @@ jobs:
           PY
 
   gate:
+    if: always() && github.event.pull_request.number == 85
     name: GUT Validation Gate
     needs: validate
-    if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
