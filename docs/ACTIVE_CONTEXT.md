@@ -14,10 +14,12 @@ validation_merge_commit: 292d2b850b38945e404f81dbcf209220067729d2
 latest_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_design_sync: GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2
 working_pull_request: 78
-current_gate: SPELL_WORKFLOW_UI_V2_WRITTEN_SPEC_REVIEW
-canon_status: SYNCED_TO_WORKING_BRANCH_PENDING_MERGE
+current_gate: SPELL_WORKFLOW_UI_V2_IMPLEMENTATION_PLAN
+written_spec_review: USER_APPROVED
+canon_status: USER_APPROVED_MERGE_AUTHORIZED
 product_project: CREATED
 existing_runtime: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
+spell_workflow_ui_v2_implementation_plan: IN_PROGRESS
 spell_workflow_ui_v2_implementation: NOT_STARTED
 runtime_validation: EXISTING_RUNTIME_AUTOMATED_HEADLESS_PASS
 mobile_device_validation: DEVICE_NOT_RUN
@@ -53,4 +55,4 @@ grill_counter: 5_of_10
 
 ## 현재 작업
 
-설계 정본은 Draft PR #78에 있다. 사용자가 작성된 Spec을 검토하기 전에는 구현 계획·제품 코드·Scene 변경을 시작하지 않는다. PR #77은 공용 UI Kit 범위로 유지한다.
+작성된 Spec은 2026-08-06 19:48 KST에 사용자 승인을 받았다. PR #78의 기획 정본 병합과 구현 계획 작성이 허용되었다. 제품 코드 구현은 계획 완료 후 별도 TDD PR에서 진행하며, PR #77 공용 UI Kit 병합은 별도 시각 승인 상태를 유지한다.
