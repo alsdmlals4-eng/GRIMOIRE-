@@ -1,9 +1,9 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "contract_version": "4.3",
   "binding_decision_id": "GM-CONTRACT-V4-3-BINDING-01",
   "tool_authority_decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
-  "evaluated_at": "2026-08-06T23:53+09:00",
+  "evaluated_at": "2026-08-07T00:20+09:00",
   "base": {
     "repository": "alsdmlals4-eng/Base",
     "main_sha": "4f98f968a377f7b6a11aafa4fc94d11bddbebedc",
@@ -23,14 +23,38 @@
     "decision_ledger_readback": "PASS",
     "unresolved_list_readback": "PASS",
     "image_review_sheet_readback": "PASS",
+    "v4_3_write_readback": "PASS",
     "ranges": [
       "00_프로젝트_허브!E2:K2",
-      "01_작업순서!A31:N31",
-      "02_현재_확정결정!A69:M69",
-      "04_누락_충돌_감사!A74:I74",
+      "01_작업순서!A31:N32",
+      "02_현재_확정결정!A69:M70",
+      "04_누락_충돌_감사!A74:I75",
       "72_이미지검수_승인로그!K6:M6",
-      "99_변경이력!A94:H94"
+      "99_변경이력!A95:H95"
     ]
+  },
+  "official_sources": {
+    "gut": {
+      "repository": "bitwes/Gut",
+      "release": "v9.7.1",
+      "commit": "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605",
+      "official_addons_tree": "5d6893836af4917ee62b1a395125a7530b1f239d",
+      "project_addons_tree": "09d040309bbed0e07420ad72c4aa69cbd0e58190",
+      "license": "MIT",
+      "source_version_license": "PASS",
+      "vendor_integrity": "MISMATCH"
+    },
+    "higodot": {
+      "repository": "hi-godot/godot-ai",
+      "release": "v3.1.2",
+      "commit": "678b16a6a0a335cf80cbb7d3f85c183cd3e616de",
+      "release_asset_sha256": "60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33",
+      "official_plugin_tree": "e559376d95c12f67ae0117a23bcc1dd2519206c2",
+      "project_addons_tree": "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35",
+      "license": "MIT",
+      "source_version_license": "PASS",
+      "vendor_integrity": "MISMATCH_OR_DISTRIBUTION_LAYOUT_DIFFERENCE"
+    }
   },
   "entry_gate": {
     "originally_ready_items": [
@@ -55,18 +79,24 @@
         "from": "IMAGE_ONLY",
         "to": "VISUAL_AUDIO",
         "reason": "Contract v4.3 compatibility mapping"
+      },
+      {
+        "item": "TOOL_SOURCE_VERIFICATION",
+        "from": "SOURCE_OR_VERSION_UNVERIFIED",
+        "to": "SOURCE_VERSION_LICENSE_PASS_VENDOR_INTEGRITY_MISMATCH",
+        "reason": "Official releases and commits were verified; project vendor subtrees differ"
       }
     ],
     "blocking_reasons": [
       "GUT_ADOPTION_SPEC_NOT_MERGED",
-      "HIGODOT_SOURCE_OR_VERSION_UNVERIFIED",
-      "GUT_SOURCE_OR_VERSION_UNVERIFIED",
-      "GUT_GODOT_COMPATIBILITY_UNVERIFIED",
+      "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2",
+      "GUT_VENDOR_TREE_MISMATCH_OFFICIAL_V9_7_1",
+      "GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN",
       "AUDIO_VAULT_PATH_UNVERIFIED"
     ],
     "allowed_next_actions": [
       "PR84_SPEC_ONLY_WORK",
-      "OFFICIAL_SOURCE_LICENSE_COMPATIBILITY_REVIEW",
+      "PINNED_VENDOR_REPLACEMENT_OR_AUDIT_PLANNING",
       "GITHUB_AND_SHEET_SYNC",
       "EXACT_HEAD_CI_AND_ROLE_SEPARATED_REVIEW"
     ],
@@ -92,6 +122,7 @@
     "base_sha": "252063ccad18b885fc75cbeba3b807fefd76496e",
     "red_head": "39c352d2ea353184cf239a79829f486d9adc4c7e",
     "red_run": 31113151792,
-    "red_result": "EXPECTED_FAIL"
+    "red_result": "EXPECTED_FAIL",
+    "current_head_source": "GITHUB_PR_HEAD_AT_REVIEW"
   }
 }
