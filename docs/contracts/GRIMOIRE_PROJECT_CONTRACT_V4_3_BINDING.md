@@ -82,7 +82,51 @@ v4.3 원문의 `C:/Users/user/Documents/GitHub/Ninza/Switchy-Express-Cargo-Puzzl
 | 이미지 단계 | `[이미지 완료]` | `[이미지·오디오 완료]` 호환 해석 | ACTIVE |
 | audio vault | `shered audio vault` | 원문 철자 그대로, 로컬 확인 전 미검증 | BLOCKED_UNVERIFIED |
 
-## 4. 보존 결정과 금지 사항
+## 4. 공식 도구 소스·무결성 재검증
+
+2026-08-06 현재 공식 release/tag를 다시 조회했다.
+
+### GUT
+
+```yaml
+canonical_repository: bitwes/Gut
+release: v9.7.1
+release_name: "9.7.1"
+release_target_branch: godot_4_7
+release_published_at: 2026-07-10T00:01:38Z
+pinned_commit_sha: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+verified_commit: true
+official_repository_tree_sha: bb624be66fd3aab7378d053b391d80cc7762d331
+official_addons_gut_tree_sha: 5d6893836af4917ee62b1a395125a7530b1f239d
+project_addons_gut_tree_sha_at_main_252063cc: 09d040309bbed0e07420ad72c4aa69cbd0e58190
+license: MIT
+official_license_blob_sha: a38ac231fed3febe257c9e5fc31efb8ec7a39f90
+vendor_integrity: MISMATCH_REQUIRES_REPLACEMENT_OR_AUDIT
+```
+
+버전 metadata는 9.7.1이지만 프로젝트 vendor subtree가 공식 v9.7.1 subtree와 다르다. 현재 vendor를 공식 source와 동일하다고 주장하지 않는다.
+
+### HiGodot / Godot AI
+
+```yaml
+canonical_repository: hi-godot/godot-ai
+release: v3.1.2
+release_published_at: 2026-08-05T19:37:35Z
+pinned_commit_sha: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+official_repository_tree_sha: 646fb8365cc39de7b0a88e056cc03de7e7eb008a
+official_plugin_source_tree_sha: e559376d95c12f67ae0117a23bcc1dd2519206c2
+project_addons_godot_ai_tree_sha_at_main_252063cc: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+release_asset: godot-ai-plugin.zip
+release_asset_sha256: 60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33
+checksum_asset_sha256: 7ad9079790773fc3f8fde3e06935d7578f710e1279ee7e5034853b0c8bcd3287
+license: MIT
+official_license_blob_sha: 7806d2217ecf773ab83bb8a1ec0b2a81c3cc8546
+vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
+```
+
+프로젝트 plugin은 3.1.2를 표기하지만 official plugin source tree와 다르다. release ZIP 기준 설치물과의 정확한 일치는 archive 추출·hash manifest 검증 전까지 미확정이다.
+
+## 5. 보존 결정과 금지 사항
 
 ```yaml
 protected_decisions:
@@ -101,8 +145,9 @@ gut_formally_adopted: false
 - Scene·Node·Resource·Theme·Animation·signal·Project Settings 변경은 HiGodot만 저작한다.
 - GUT·CI·fixture는 production 파일을 수정하지 않는다.
 - 오디오 Vault의 절대 경로를 runtime에서 참조하지 않는다.
+- 공식 source와 다른 vendor tree를 승인 없이 유지·교체·정식 채택 완료로 선언하지 않는다.
 
-## 5. v4.3 전환에 따른 진입 상태 재판정
+## 6. v4.3 전환에 따른 진입 상태 재판정
 
 ```yaml
 entry_gate:
@@ -121,18 +166,18 @@ entry_gate:
       reason: v4.3 solo-development review model
   blocking_reasons:
     - GUT_ADOPTION_SPEC_NOT_MERGED
-    - HIGODOT_SOURCE_OR_VERSION_UNVERIFIED
-    - GUT_SOURCE_OR_VERSION_UNVERIFIED
-    - GUT_GODOT_COMPATIBILITY_UNVERIFIED
+    - HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2
+    - GUT_VENDOR_TREE_MISMATCH_OFFICIAL_V9_7_1
+    - GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN
     - AUDIO_VAULT_PATH_UNVERIFIED
   allowed_next_actions:
     - CREATE_AND_REVIEW_GUT_ADOPTION_SPEC_DRAFT_PR
     - SYNC_V4_3_BINDING_TO_GITHUB_AND_SHEET
-    - VERIFY_OFFICIAL_SOURCE_LICENSE_COMPATIBILITY_AND_REMOVAL_PLAN
+    - PLAN_PINNED_VENDOR_REPLACEMENT_OR_AUDIT
   decision: BLOCK
 ```
 
-## 6. 브랜치 전환
+## 7. 브랜치 전환
 
 ```yaml
 required_spec_branch: "chore/gut-9.7.1-adoption-spec"
@@ -144,7 +189,7 @@ prior_branch_commits_mergeable_as_adoption_evidence: false
 
 방금 생성된 구현 브랜치는 v4.3 선행 명세 Gate보다 먼저 시작되었으므로 동결한다. 해당 브랜치의 테스트·상태 변경은 main에 병합하거나 GUT 채택 완료 증거로 사용하지 않는다.
 
-## 7. 로컬·오디오 제한
+## 8. 로컬·오디오 제한
 
 이 실행 환경에서는 사용자 Windows 경로와 `shered audio vault`를 읽을 수 없다.
 
