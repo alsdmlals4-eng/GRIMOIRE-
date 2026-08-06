@@ -12,6 +12,7 @@ const ManaScript = preload("res://src/core/resources/mana_pool.gd")
 const CommitRequestScript = preload("res://src/core/spells/spell_commit_request.gd")
 const CommitServiceScript = preload("res://src/core/spells/atomic_spell_commit_service.gd")
 const ResultLedgerScript = preload("res://src/core/atomic_result_ledger.gd")
+const GrimoireThemeFactory = preload("res://src/ui/theme/grimoire_theme_factory.gd")
 
 const GLYPH_IDS: Array[StringName] = [
     &"HEAT", &"PROTECT", &"FLOW", &"FOCUS", &"DISPERSE", &"BURST",
@@ -21,6 +22,7 @@ const PHASE_TARGET := &"TARGET"
 const PHASE_FINAL := &"FINAL"
 const PHASE_CONFIRM := &"CONFIRM"
 const PHASE_COMMITTED := &"COMMITTED"
+const VISUAL_INVALID := &"INVALID"
 
 var _signals_connected := false
 var _phase: StringName = PHASE_EDIT
@@ -47,6 +49,8 @@ func _ready() -> void:
 
 
 func initialize_demo() -> void:
+    if theme == null:
+        theme = GrimoireThemeFactory.create_theme()
     _connect_signals_once()
     _reset_demo()
 
@@ -67,6 +71,8 @@ func test_contract_snapshot() -> Dictionary:
         "accessibility_input_alternative": true,
         "interactive_demo": true,
         "core_runtime_connected": true,
+        "shared_theme": theme != null,
+        "visual_component": &"STAR_CIRCUIT_BOARD",
     }
 
 
@@ -143,6 +149,7 @@ func show_insufficient_mana(required_mana: int, available_mana: int) -> void:
         "SafeArea/InsufficientManaState/Label",
         "INSUFFICIENT MANA · Required %s / Available %s" % [required_mana, available_mana]
     )
+    _update_visual_state(VISUAL_INVALID)
 
 
 func show_unstable_circuit(cause_glyph_id: StringName, reason: String) -> void:
@@ -167,6 +174,7 @@ func clear_transient_states() -> void:
         "SafeArea/UnstableCircuitState",
     ]:
         _set_visible(path, false)
+    _set_visible("SafeArea/WarningIcon", false)
 
 
 func _connect_signals_once() -> void:
@@ -253,6 +261,7 @@ func _reset_demo() -> void:
     _set_label("SafeArea/FinalPreviewPanel/Label", "Success --% · Mana --\nTarget --")
     show_warning("Ready · default HEAT + FLOW example loaded")
     _render_breakdown({})
+    _update_visual_state(PHASE_EDIT)
 
 
 func _on_main_pressed() -> void:
@@ -262,6 +271,7 @@ func _on_main_pressed() -> void:
     _last_status = &"EDITED"
     _refresh_selection_ui()
     show_warning("Main glyph changed · preview again when ready")
+    _update_visual_state(PHASE_EDIT)
 
 
 func _on_auxiliary_pressed(slot: int) -> void:
@@ -272,6 +282,7 @@ func _on_auxiliary_pressed(slot: int) -> void:
     _last_status = &"EDITED"
     _refresh_selection_ui()
     show_warning("Auxiliary slot A%s changed · empty slots are allowed" % slot)
+    _update_visual_state(PHASE_EDIT)
 
 
 func _on_preview_pressed() -> void:
@@ -288,8 +299,10 @@ func _on_preview_pressed() -> void:
     )
     _last_status = StringName(result.get("status", &"UNKNOWN"))
     if _last_status != &"CIRCUIT_PREVIEW_READY":
+        var cause_vertex := _validation_cause_vertex(auxiliaries)
         show_unstable_circuit(_validation_cause(main, auxiliaries), String(_last_status))
         show_warning("Circuit rejected · change duplicate or invalid auxiliary glyphs")
+        _update_visual_state(VISUAL_INVALID, cause_vertex)
         return
     _last_preview = Dictionary(result.get("preview", {})).duplicate(true)
     _phase = PHASE_TARGET
@@ -307,6 +320,7 @@ func _on_preview_pressed() -> void:
     show_target_keywords(["FLOWER", "WARD"])
     show_warning("Circuit valid · select an explicit target keyword")
     _render_breakdown(_last_preview)
+    _update_visual_state(PHASE_TARGET)
 
 
 func _on_target_pressed(keyword: StringName) -> void:
@@ -321,6 +335,7 @@ func _on_target_pressed(keyword: StringName) -> void:
     _last_status = StringName(result.get("status", &"UNKNOWN"))
     if _last_status != &"FINAL_PREVIEW_READY":
         show_warning("Target rejected · %s" % String(_last_status))
+        _update_visual_state(PHASE_TARGET)
         return
     _selected_target = keyword
     _last_preview = Dictionary(result.get("preview", {})).duplicate(true)
@@ -337,6 +352,7 @@ func _on_target_pressed(keyword: StringName) -> void:
     )
     show_warning("Final preview ready · COMMIT requires a second confirmation press")
     _render_breakdown(_last_preview)
+    _update_visual_state(PHASE_FINAL)
 
 
 func _on_commit_pressed() -> void:
@@ -346,11 +362,13 @@ func _on_commit_pressed() -> void:
         if not _coordinator.request_confirmation():
             _last_status = &"CONFIRMATION_REJECTED"
             show_warning("Commit confirmation could not be opened")
+            _update_visual_state(PHASE_FINAL)
             return
         _phase = PHASE_CONFIRM
         _last_status = &"CONFIRMATION_REQUIRED"
         _set_button_text("SafeArea/CommitButton", "CONFIRM COMMIT")
         show_warning("Press CONFIRM COMMIT again · resources are still unchanged")
+        _update_visual_state(PHASE_CONFIRM)
         return
     if _phase != PHASE_CONFIRM:
         return
@@ -363,6 +381,7 @@ func _on_commit_pressed() -> void:
                 int(_mana.current())
             )
         show_warning("Commit failed safely · %s" % String(_last_status))
+        _update_visual_state(VISUAL_INVALID)
         return
     _phase = PHASE_COMMITTED
     _set_button_disabled("SafeArea/CommitButton", true)
@@ -375,6 +394,7 @@ func _on_commit_pressed() -> void:
         ]
     )
     _render_breakdown(_last_preview)
+    _update_visual_state(PHASE_COMMITTED)
 
 
 func _on_cancel_pressed() -> void:
@@ -503,6 +523,65 @@ func _validation_cause(main: Dictionary, auxiliaries: Array) -> StringName:
     return StringName(main.get("glyph_id", &""))
 
 
+func _validation_cause_vertex(auxiliaries: Array) -> int:
+    var seen: Dictionary = {}
+    for item in auxiliaries:
+        var auxiliary := Dictionary(item)
+        var glyph_id := StringName(auxiliary.get("glyph_id", &""))
+        var slot := int(auxiliary.get("slot", -1))
+        if seen.has(glyph_id):
+            return slot
+        seen[glyph_id] = slot
+    return -1
+
+
+func _active_auxiliary_slots() -> Array[int]:
+    var slots: Array[int] = []
+    for index in range(_auxiliary_indices.size()):
+        if _auxiliary_indices[index] >= 0:
+            slots.append(index)
+    return slots
+
+
+func _update_visual_state(state: StringName, cause_vertex: int = -1) -> void:
+    var active_slots := _active_auxiliary_slots()
+    var board := get_node_or_null("SafeArea/StarBoard")
+    if board != null and board.has_method("set_visual_state"):
+        board.call("set_visual_state", state, active_slots.size(), cause_vertex, active_slots)
+    _set_label("SafeArea/PhaseBadge/Content/Label", _phase_label(state))
+
+    var warning_variation := &"StatusBanner"
+    var warning_icon_visible := false
+    if state == VISUAL_INVALID:
+        warning_variation = &"StatusBannerWarning"
+        warning_icon_visible = true
+    elif state == PHASE_COMMITTED:
+        warning_variation = &"StatusBannerSuccess"
+    elif state == PHASE_CONFIRM:
+        warning_variation = &"StatusBannerWarning"
+        warning_icon_visible = true
+    _set_panel_variation("SafeArea/WarningPanel", warning_variation)
+    _set_visible("SafeArea/WarningIcon", warning_icon_visible)
+
+
+func _phase_label(state: StringName) -> String:
+    match state:
+        PHASE_TARGET:
+            return "대상 선택"
+        PHASE_FINAL:
+            return "최종 미리보기"
+        PHASE_CONFIRM:
+            return "시전 확인"
+        PHASE_COMMITTED:
+            return "시전 완료"
+        VISUAL_INVALID:
+            return "회로 불안정"
+        &"VALID":
+            return "회로 유효"
+        _:
+            return "회로 편집"
+
+
 func _set_edit_enabled(value: bool) -> void:
     _set_button_disabled("SafeArea/CenterGlyph", not value)
     for index in range(5):
@@ -547,6 +626,12 @@ func _set_label(path: NodePath, text: String) -> void:
     var label := get_node_or_null(path) as Label
     if label != null:
         label.text = text
+
+
+func _set_panel_variation(path: NodePath, variation: StringName) -> void:
+    var control := get_node_or_null(path) as Control
+    if control != null:
+        control.theme_type_variation = variation
 
 
 func _set_visible(path: NodePath, value: bool) -> void:
