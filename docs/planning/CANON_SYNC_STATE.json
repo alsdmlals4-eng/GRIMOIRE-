@@ -71,5 +71,5 @@
   "latest_product_gate": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD",
   "merge_authorized": false,
   "validation_pack_merged": true,
-  "sheet_finalization_readback": "PENDING"
+  "sheet_finalization_readback": "PASS"
 }
