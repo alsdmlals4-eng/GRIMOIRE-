@@ -1,4 +1,4 @@
-# GRIMOIRE 프로젝트 Google Sheets Workbook — Main
+# GRIMOIRE 프로젝트 Google Sheets Workbook — Main + Validation Overlay
 
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
@@ -61,14 +61,51 @@ failures: 0
 
 요약: `31 Suites / 1,137 assertions / 0 failures`.
 
+## GR-TEST-033 Validation Overlay
+
+```yaml
+validation_sync: GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY
+validation_gate: GR-TEST-033
+pull_request: 72
+implementation_evidence_head: 829d1c68729ab3702fa33015ffe27faad64fe9be
+status: EXECUTION_PACK_AUTOMATED_PASS_HUMAN_NOT_RUN
+physical_pack_run: 31065294476
+star_runtime_run: 31065294439
+planning_base_adversarial_run: 31065294443
+godot_toolchain_run: 31065294442
+platform_rights_run: 31065294446
+sheet_write: PASS
+sheet_readback: PASS
+mobile_device_execution: DEVICE_NOT_RUN
+performance_execution: PERFORMANCE_NOT_RUN
+screen_reader_execution: DEVICE_NOT_RUN
+human_execution: HUMAN_NOT_RUN
+full_vertical_slice_execution: FULL_VERTICAL_SLICE_NOT_RUN
+```
+
+### Validation Readback
+
+```yaml
+00_프로젝트_허브: H2:K2 PASS
+01_작업순서: H55:J55 PASS
+02_현재_확정결정: A65:J65 PASS
+04_누락_충돌_감사: E69:H69 PASS
+60_UX_UI_접근성: A38:J38 PASS
+80_데모_버티컬슬라이스_플레이테스트: A36:J36 PASS
+99_변경이력: A83:H83 PASS
+```
+
 ## 책임 원본
 
 - 현재 결정: `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
 - 별형 회로 승인·Spec·회로·Mana·숙련·Stock 책임 원본.
 - Mobile Wireframe·결과 Policy·집중 필사·Frostbloom UX 승인.
 - `docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN.md`
-- `docs/validation/GODOT_STAR_RUNTIME_TEST_GUIDE_2026-08-06.md`
+- `docs/superpowers/specs/2026-08-06-star-circuit-physical-validation-design.md`
+- `docs/validation/GR_TEST_033_STAR_PHYSICAL_RUNBOOK.md`
+- `docs/validation/GR_TEST_033_DEVICE_PREFLIGHT.md`
+- `docs/planning/sync/GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY.md`
 
 ## 경계
 
-Main Sync는 제품 Runtime POC의 자동 계약 완료를 뜻한다. 실제 Mobile Device·Performance·Screen Reader·Human·Full Slice는 `NOT_RUN`; 수치는 `PLAYTEST_TUNING_REQUIRED`다.
+Main Sync는 제품 Runtime 자동 계약 완료를 뜻하고 Validation Overlay는 실행 패키지 자동 준비 완료를 뜻한다. 실제 Mobile Device·Performance·Screen Reader·Human·Full Slice는 `NOT_RUN`; 수치는 `PLAYTEST_TUNING_REQUIRED`다.

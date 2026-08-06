@@ -1,19 +1,22 @@
-# GRIMOIRE Documentation Map — Main
+# GRIMOIRE Documentation Map — Main + GR-TEST-033 Overlay
 
 ```yaml
 main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
 current_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
+current_validation_sync: GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY
+current_validation_gate: GR-TEST-033
 latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 canon_status: SYNCED_TO_MAIN
+validation_status: EXECUTION_PACK_AUTOMATED_PASS_HUMAN_NOT_RUN
 product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
 runtime_validation: AUTOMATED_HEADLESS_PASS
 ```
 
 ## 시작 경로
 
-`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → CANON_STATUS_INDEX → CURRENT_CONFIRMED_DECISIONS → DESIGN_DOCUMENT_REGISTRY → 최신 승인 원본 → Main Sync03 → Runtime·Tests`.
+`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → CANON_STATUS_INDEX → CURRENT_CONFIRMED_DECISIONS → DESIGN_DOCUMENT_REGISTRY → 별형 Runtime 승인 원본 → Main Sync03 → GR-TEST-033 Design·Runbook·Preflight → Sync04 → Runtime·Tests·Raw Evidence`.
 
-## 승인·책임 원본
+## Runtime 승인·책임 원본
 
 - `docs/planning/STAR_GLYPH_CIRCUIT_MASTERY_BALANCE_01_APPROVAL_2026-08-06.md`
 - `docs/superpowers/specs/2026-08-06-star-glyph-circuit-mastery-balance-design.md`
@@ -38,19 +41,29 @@ runtime_validation: AUTOMATED_HEADLESS_PASS
 - `data/testing/frostbloom_star_ux_map.json`
 - `src/input/`
 - `tests/test_runner.gd`
-- `tests/test_star_runtime_implementation_contract.py`
-- `tests/test_star_runtime_completion_contract.py`
-- `.github/workflows/validate-star-runtime-poc.yml`
-- `.github/workflows/validate-base-v9-adoption.yml`
 - `tools/run_star_runtime.py`
-- `docs/validation/GODOT_STAR_RUNTIME_TEST_GUIDE_2026-08-06.md`
+- `.github/workflows/validate-star-runtime-poc.yml`
+
+## GR-TEST-033 실행 패키지
+
+- `docs/superpowers/specs/2026-08-06-star-circuit-physical-validation-design.md`
+- `docs/superpowers/plans/2026-08-06-star-circuit-physical-validation-implementation-plan.md`
+- `docs/validation/GR_TEST_033_STAR_PHYSICAL_RUNBOOK.md`
+- `docs/validation/GR_TEST_033_MODERATOR_SCRIPT.md`
+- `docs/validation/GR_TEST_033_DEVICE_PREFLIGHT.md`
+- `docs/planning/GR_TEST_033_STAR_PHYSICAL_EXECUTION_READY_GATE_2026-08-06.md`
+- `artifacts/human-validation/gr-test-033-session-template.json`
+- `artifacts/human-validation/gr-test-033-attempt-schema.json`
+- `artifacts/human-validation/gr-test-033-observation-schema.json`
+- `artifacts/human-validation/gr-test-033-result-template.json`
+- `tools/analyze_gr_test_033.py`
+- `tests/test_gr_test_033_star_physical_contract.py`
+- `.github/workflows/validate-star-physical-pack.yml`
 
 ## Sync
 
-- `docs/planning/sync/GR-SYNC-20260806-01-MAIN.md` — 별형 설계 Main.
-- `docs/planning/sync/GR-SYNC-20260806-02-STAR-RUNTIME-POC.md` — 초기 Runtime POC 이력.
-- `docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION.md` — Working 이력.
-- `docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN.md` — 현재 Main 권위.
+- `docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN.md` — Runtime Main 권위.
+- `docs/planning/sync/GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY.md` — 실행 패키지 자동 PASS·Sheet Readback·실제 검증 NOT_RUN.
 
 ## 역사
 
@@ -58,4 +71,4 @@ runtime_validation: AUTOMATED_HEADLESS_PASS
 
 ## 검증 경계
 
-자동 Runtime은 31 Suites·1,137 assertions·0 failures다. 실제 Mobile Device·Performance·Screen Reader·Human·Full Slice는 `NOT_RUN`이다.
+자동 Runtime은 31 Suites·1,137 assertions·0 failures이고 GR-TEST-033 실행 패키지 계약은 PASS다. 실제 Mobile Device·Performance·Screen Reader·Human·Full Slice는 `NOT_RUN`이다.

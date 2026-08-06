@@ -8,15 +8,29 @@
     "sync_id": "GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY",
     "decision_ids": ["GM-STAR-CIRCUIT-MASTERY-BALANCE-01"],
     "gate_id": "GR-TEST-033",
-    "status": "EXECUTION_PACK_READY_DRAFT",
+    "status": "EXECUTION_PACK_AUTOMATED_PASS_HUMAN_NOT_RUN",
     "source_main": "ccacb730775056c8d7ea5d7bae6cebcfc260b5df",
     "pull_request": 72,
-    "implementation_evidence_head": "a263c5567b6341aaac3a9e2cd883e7f304e65106",
-    "sheet_sync": "PENDING_WRITE_READBACK",
-    "sheet_readback": "NOT_RUN",
+    "implementation_evidence_head": "829d1c68729ab3702fa33015ffe27faad64fe9be",
+    "sheet_sync": "VERIFIED_READBACK",
+    "sheet_readback": "PASS",
+    "sheet_ranges": [
+      "00_프로젝트_허브!H2:K2",
+      "01_작업순서!H55:J55",
+      "02_현재_확정결정!A65:J65",
+      "04_누락_충돌_감사!E69:H69",
+      "60_UX_UI_접근성!A38:J38",
+      "80_데모_버티컬슬라이스_플레이테스트!A36:J36",
+      "99_변경이력!A83:H83"
+    ],
     "ci": {
       "red_run": 31064303029,
-      "pack_implementation_run": 31064739240,
+      "core_pack_authority_red_run": 31064739240,
+      "physical_pack_run": 31065294476,
+      "star_runtime_run": 31065294439,
+      "planning_base_adversarial_run": 31065294443,
+      "godot_toolchain_run": 31065294442,
+      "platform_rights_run": 31065294446,
       "runtime_godot_suites": 31,
       "runtime_assertions": 1137,
       "runtime_failures": 0
@@ -26,7 +40,8 @@
     {
       "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN",
       "status": "SYNCED_TO_MAIN_FINALIZATION_CLOSED",
-      "main_commit": "ccacb730775056c8d7ea5d7bae6cebcfc260b5df"
+      "runtime_main_commit": "6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b",
+      "finalized_main_commit": "ccacb730775056c8d7ea5d7bae6cebcfc260b5df"
     }
   ],
   "latest_product_gate": "GR_TEST_033_READY_FOR_PHYSICAL_EXECUTION_HUMAN_NOT_RUN",
@@ -38,6 +53,8 @@
   "accessibility_validation": "AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN",
   "human_validation": "HUMAN_NOT_RUN",
   "full_vertical_slice_representativeness": "FULL_VERTICAL_SLICE_NOT_RUN",
+  "human_pass_claimed": false,
+  "release_ready_claimed": false,
   "merge_authorized": false,
   "runtime_merged": true
 }

@@ -1,4 +1,6 @@
-# GRIMOIRE 정본 상태 색인 — Main Runtime Completion
+# GRIMOIRE 정본 상태 색인 — Main Runtime + GR-TEST-033
+
+## Runtime Main 폐쇄
 
 ```yaml
 main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
@@ -14,29 +16,37 @@ accessibility_validation: AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN
 human_validation: NOT_RUN
 ```
 
-## 활성
+## 현재 검증 Overlay
 
-- 별형 회로 승인·Spec.
-- `MAGIC_LETTER_CIRCUIT_SYSTEM`, `MANA_SYSTEM`, `SUPPORT_LETTER_MASTERY_SYSTEM`, `STOCK_SYSTEM`, `STOCK_CAPACITY_SYSTEM`.
-- Mobile Landscape Wireframe 승인.
-- 부분 성공·실패·역류 승인.
-- 집중 필사 Overlay 승인.
-- Frostbloom 별형 UX 승인.
-- Godot Runtime·Typed Stock·Resolution Policy·Focus Session/Overlay·Frostbloom Fixture.
-- Main Sync03와 Sheet Main Readback.
+```yaml
+current_validation_sync: GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY
+current_validation_gate: GR-TEST-033
+validation_status: EXECUTION_PACK_AUTOMATED_PASS_HUMAN_NOT_RUN
+runtime_layout: FIVE_POINT_STAR
+stock_scope: TYPED_GLYPH_ONLY
+physical_device_execution: DEVICE_NOT_RUN
+performance_execution: PERFORMANCE_NOT_RUN
+screen_reader_execution: DEVICE_NOT_RUN
+human_execution: HUMAN_NOT_RUN
+full_vertical_slice_execution: FULL_VERTICAL_SLICE_NOT_RUN
+```
 
 ## 활성 Runtime
 
-- `project.godot`
-- `src/core/star/`
-- `src/core/resources/typed_glyph_stock_pool.gd`
-- `src/core/resources/focus_scribing_session.gd`
-- `src/ui/star_circuit_harness.*`
-- `src/ui/focus_scribing_overlay.*`
-- `data/testing/frostbloom_star_ux_map.json`
-- `src/input/`
-- `tests/test_runner.gd`
-- Runtime·Completion Python 계약과 CI.
+- 별형 회로 승인·Spec.
+- `MAGIC_LETTER_CIRCUIT_SYSTEM`, `MANA_SYSTEM`, `SUPPORT_LETTER_MASTERY_SYSTEM`, `STOCK_SYSTEM`, `STOCK_CAPACITY_SYSTEM`.
+- Mobile Landscape Wireframe·결과 Policy·집중 필사·Frostbloom 승인.
+- Godot Runtime·Typed Stock·Resolution Policy·Focus Session/Overlay·Frostbloom Fixture.
+- Main Sync03와 Sheet Main Readback.
+
+## 활성 검증 실행 패키지
+
+- GR-TEST-033 Design·Implementation Plan.
+- Star Physical Runbook·Moderator Script·Device Preflight.
+- Session·Attempt·Observation·Result Schema.
+- SHA-256·record count·PII·Hard Stop Analyzer.
+- FIRST_ATTEMPT·POST_FEEDBACK_RETRY 분리.
+- Sync04와 Google Sheet Validation Readback.
 
 ## 부분 대체됨 — GM-3X3-CIRCUIT-STOCK-FOCUS-01
 
@@ -50,15 +60,13 @@ SUPERSEDED_BY_GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 
 - `UniversalStockPool`과 과거 회귀 Suite는 저장 호환·이전 POC 증거다.
 - 활성 별형 Commit·집중 필사는 `TypedGlyphStockPool`을 사용한다.
-- Sync02는 초기 Runtime 이력, Sync03 Working은 병합 전 이력, Sync03 Main이 현재 권위다.
+- Sync02는 초기 Runtime 이력, Sync03 Working은 병합 전 이력, Sync03 Main이 Runtime 권위다.
 
 ## Sync
 
-- `GR-SYNC-20260806-01-MAIN`: 별형 설계 Main 이력.
-- `GR-SYNC-20260806-02-STAR-RUNTIME-POC`: 초기 Runtime POC 이력.
-- `GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION`: Working 이력.
-- `GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN`: `[활성 / SYNCED_TO_MAIN / READBACK_PASS]`.
+- `GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN`: `[Runtime 활성 / SYNCED_TO_MAIN / READBACK_PASS]`.
+- `GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY`: `[Validation Overlay 활성 / AUTOMATED_PACK_PASS / HUMAN_NOT_RUN / READBACK_PASS]`.
 
 ## 미실행
 
-실제 Mobile Device·Performance·Screen Reader·Human·Full Vertical Slice. Prototype 수치는 `PLAYTEST_TUNING_REQUIRED`다.
+실제 Mobile Device·Performance·Screen Reader·Human·Full Vertical Slice. Prototype 수치는 `PLAYTEST_TUNING_REQUIRED`다. `PROMISING`도 Human PASS나 출시 승인이 아니다.
