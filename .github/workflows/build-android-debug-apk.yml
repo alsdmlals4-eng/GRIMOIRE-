@@ -1,0 +1,16 @@
+name: Build Android Debug APK
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  android-debug-contract-red:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run Android package contract
+        run: python -m unittest tests.test_android_debug_package_contract -v
