@@ -40,21 +40,33 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("NOT_PLANNED_SOLO_DEVELOPMENT", data["review"]["external_independent_reviewer"])
         self.assertEqual("MERGED_MAIN_READBACK_PASS", data["pr83_merge_gate"]["status"])
         self.assertFalse(data["pr83_merge_gate"]["waives_future_pr_review"])
+
         self.assertEqual("SOLE_AUTHORING_AUTHORITY", data["higodot"]["authority"])
         self.assertEqual("3.1.2", data["higodot"]["bundled_version"])
+        self.assertEqual("678b16a6a0a335cf80cbb7d3f85c183cd3e616de", data["higodot"]["pinned_source_commit"])
+        self.assertEqual("PASS", data["higodot"]["source_or_version_verification"])
+        self.assertEqual("MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT", data["higodot"]["vendor_integrity"])
+
         self.assertEqual("FORMAL_TEST_AUTHORITY", data["gut"]["target_authority"])
         self.assertEqual("9.7.1", data["gut"]["pinned_version"])
+        self.assertEqual("aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605", data["gut"]["pinned_source_commit"])
         self.assertEqual("VENDORED_NOT_CONSUMED", data["gut"]["current_consumption"])
         self.assertEqual("MIT", data["gut"]["license"])
-        self.assertEqual("4.7.x", data["gut"]["godot_compatibility"])
+        self.assertTrue(data["gut"]["godot_compatibility"].startswith("4.7.x"))
+        self.assertEqual("PASS", data["gut"]["source_or_version_verification"])
+        self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", data["gut"]["vendor_integrity"])
         self.assertEqual("CLI_ONLY_WITHOUT_EDITOR_PLUGIN", data["gut"]["adoption_mode"])
         self.assertEqual("chore/gut-9.7.1-adoption-spec", data["gut"]["adoption_spec_branch"])
         self.assertEqual("OPEN_DRAFT_IN_REVIEW", data["gut"]["adoption_spec_pr_state"])
         self.assertFalse(data["gut"]["formal_installation_authorized"])
+
         self.assertEqual("BLOCKED_BY_GUT_ADOPTION_SPEC", data["entry_gate"]["status"])
         self.assertEqual("BLOCKED", data["entry_gate"]["implementation"])
         self.assertEqual("PAUSED_AFTER_TASK1_GREEN", data["implementation_pr"]["status"])
         self.assertEqual("APPROVED_DIRECTION_RUNTIME_NOT_RUN", data["image_review"]["status"])
+        self.assertEqual("PASS", data["sheet_sync"]["readback"])
+        self.assertTrue(data["claims"]["official_tool_releases_verified"])
+        self.assertFalse(data["claims"]["tool_vendor_integrity_pass"])
         self.assertFalse(data["claims"]["gut_adoption_spec_merged"])
         self.assertFalse(data["claims"]["gut_formally_adopted"])
         self.assertFalse(data["claims"]["spell_workflow_task2_authorized"])
@@ -89,11 +101,15 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         for token in required:
             self.assertIn(token, text)
 
-    def test_v4_3_spec_covers_consumption_ci_mutation_and_rollback(self):
+    def test_v4_3_spec_covers_source_identity_consumption_ci_and_rollback(self):
         text = ADOPTION_SPEC.read_text(encoding="utf-8")
         for token in (
             "# GUT 9.7.1 정식 채택 설계 명세",
             "SPEC_ONLY_NO_INSTALLATION",
+            "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605",
+            "5d6893836af4917ee62b1a395125a7530b1f239d",
+            "09d040309bbed0e07420ad72c4aa69cbd0e58190",
+            "MISMATCH_OFFICIAL_V9_7_1",
             ".gutconfig.json",
             "addons/gut/gut_cmdln.gd",
             "-gjunit_xml_file",
@@ -106,7 +122,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         ):
             self.assertIn(token, text)
 
-    def test_bundled_gut_metadata_matches_spec_but_is_not_adoption_evidence(self):
+    def test_bundled_gut_metadata_matches_version_but_tree_is_not_adoption_evidence(self):
         plugin = (ROOT / "addons/gut/plugin.cfg").read_text(encoding="utf-8")
         versions = json.loads((ROOT / "addons/gut/versions.json").read_text(encoding="utf-8"))
         license_text = (ROOT / "addons/gut/LICENSE.md").read_text(encoding="utf-8")
@@ -118,21 +134,25 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertIn("The MIT License", license_text)
         self.assertIn('res://addons/godot_ai/plugin.cfg', project)
         self.assertNotIn('res://addons/gut/plugin.cfg', project)
-        self.assertIn("VENDORED_PREEXISTING", spec)
+        self.assertIn("VENDORED_PREEXISTING_TREE_MISMATCH", spec)
         self.assertIn("formal_consumption: NONE", spec)
+        self.assertIn("tree_identity: MISMATCH", spec)
 
-    def test_unresolved_gate_list_contains_v4_3_and_future_installation_blockers(self):
+    def test_unresolved_gate_list_contains_verified_mismatch_and_future_installation_blockers(self):
         text = UNRESOLVED.read_text(encoding="utf-8")
         for resolved in (
             "TOOL_AUTHORITY_REVIEW_NOT_APPROVED",
             "SHEET_STATUS_CORRECTION_NOT_FINALIZED",
             "DESIGN_PR_NOT_MERGED_TO_MAIN",
+            "HIGODOT_SOURCE_OR_VERSION_UNVERIFIED",
+            "GUT_SOURCE_OR_VERSION_UNVERIFIED",
         ):
             self.assertNotIn(resolved, text)
         for token in (
             "GUT_ADOPTION_SPEC_NOT_MERGED",
-            "HIGODOT_SOURCE_OR_VERSION_UNVERIFIED",
-            "GUT_SOURCE_OR_VERSION_UNVERIFIED",
+            "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2",
+            "GUT_VENDOR_TREE_MISMATCH_OFFICIAL_V9_7_1",
+            "GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN",
             "AUDIO_VAULT_PATH_UNVERIFIED",
             "GUT_ACTUAL_CONSUMPTION_NOT_ENABLED",
             "GUT_CI_NOT_ENABLED",
