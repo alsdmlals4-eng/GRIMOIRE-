@@ -9,6 +9,7 @@
   },
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
   "sync_id": "GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC",
+  "source_integrity_sync_id": "GR-SYNC-20260806-14-TOOL-SOURCE-INTEGRITY",
   "status": "CONTRACT_V4_3_BOUND_GUT_ADOPTION_SPEC_IN_REVIEW",
   "design_review": "USER_APPROVED_2026-08-06",
   "source_main": "252063ccad18b885fc75cbeba3b807fefd76496e",
@@ -180,6 +181,7 @@
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "sync_id": "GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC",
+    "source_integrity_sync_id": "GR-SYNC-20260806-14-TOOL-SOURCE-INTEGRITY",
     "write": "PASS",
     "readback": "PASS",
     "ranges": [
@@ -190,8 +192,14 @@
       "72_이미지검수_승인로그!K6:M6",
       "99_변경이력!A95:H95"
     ],
+    "source_integrity_ranges": [
+      "02_현재_확정결정!I69:M70",
+      "04_누락_충돌_감사!A76:I76",
+      "99_변경이력!A96:H96"
+    ],
     "receipt": "docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md",
-    "source_verification_sheet_update": "PENDING",
+    "source_integrity_receipt": "docs/planning/sync/GR-SYNC-20260806-14-TOOL-SOURCE-INTEGRITY.md",
+    "source_verification_sheet_update": "PASS",
     "pr83_main_sync": "PASS"
   },
   "validation": {
