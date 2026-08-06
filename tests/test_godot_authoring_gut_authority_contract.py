@@ -28,8 +28,10 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
     def test_user_approved_design_transitions_to_formal_adoption_block(self):
         data = json.loads(STATE.read_text(encoding="utf-8"))
         self.assertEqual("GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01", data["decision_id"])
-        self.assertEqual("DESIGN_APPROVED_IMPLEMENTATION_PLAN_READY", data["status"])
+        self.assertEqual("DESIGN_APPROVED_PR83_REVIEW_EXCEPTION_APPROVED", data["status"])
         self.assertEqual("USER_APPROVED_2026-08-06", data["design_review"])
+        self.assertEqual("USER_APPROVED_PR83_ONLY", data["pr83_merge_gate"]["independent_review_exception"])
+        self.assertFalse(data["pr83_merge_gate"]["waives_future_pr_review"])
         self.assertEqual("SOLE_AUTHORING_AUTHORITY", data["higodot"]["authority"])
         self.assertEqual("3.1.2", data["higodot"]["bundled_version"])
         self.assertEqual("FORMAL_TEST_AUTHORITY", data["gut"]["target_authority"])
