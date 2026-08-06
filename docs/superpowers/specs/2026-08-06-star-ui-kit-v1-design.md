@@ -13,6 +13,7 @@ status: IMPLEMENTATION_DESIGN_FOR_APPROVED_VISUAL_DIRECTION
 source_runtime: FIVE_POINT_STAR_INTERACTIVE_POC
 source_main: d682d9955cf4a75ac3953fb33a0cfed235fd2473
 godot_ai_addon: PRESERVED_FROM_MAIN
+font_localization_status: ENGLISH_SAFE_COPY_UNTIL_LICENSED_KOREAN_FONT
 final_art: NOT_CLAIMED
 physical_device_validation: NOT_RUN
 human_visual_validation: NOT_RUN
@@ -76,9 +77,11 @@ Color never acts as the only status signal; text labels, icons, line styles, and
 - Glyph slots use circular or rounded-octagonal frames distinct from rectangular panels.
 - Warning states use diamond marker plus text; no full-screen red wash.
 
-### Typography
+### Typography and localization
 
-- Runtime v1 uses Godot's available dynamic default font until a licensed Korean font is approved.
+- Runtime v1 uses Godot's available default font and English-safe copy only.
+- The CI-rendered 1280×720 image proved that the unapproved default font did not contain Korean glyphs; tofu boxes are a blocking visual defect, not acceptable localization evidence.
+- Korean runtime copy begins only after a licensed Korean font, redistribution rights, import settings, fallback behavior, and 100%/130% text-scale screenshots are approved.
 - Title labels: 20–24 px equivalent, semibold direction.
 - Body: 16–18 px equivalent at 1280×720.
 - Numeric preview: 22–28 px equivalent.
@@ -103,9 +106,10 @@ Existing Label, ProgressBar, Tooltip, Modal, Divider, Focus Ring, and Cursor fam
 
 Responsibilities:
 
-- draw the five-point star and five vertex guide rings;
+- draw the five-point star and five vertex guide rings aligned to the actual A0–A4 button anchors;
 - draw the central main ring;
 - show inactive, valid-preview, target-ready, confirm, committed, and invalid states;
+- highlight only the exact active auxiliary slots;
 - never own gameplay validation or resource mutation;
 - expose read-only visual state setters only;
 - support reduced motion with immediate state replacement and no looping animation requirement.
@@ -128,7 +132,7 @@ No Korean or English text is baked into these images. Approved Board A/B files r
 ### Edit
 
 - Main and Aux slots show role label separately from glyph name.
-- Empty slots clearly read `비어 있음` rather than relying on dark color.
+- Empty slots explicitly read `EMPTY` rather than relying on dark color.
 - Preview is the only primary action.
 
 ### Circuit Ready
@@ -168,6 +172,7 @@ No Korean or English text is baked into these images. Approved Board A/B files r
 - no final background illustration;
 - no protagonist or companion sprite production;
 - no final font licensing decision;
+- no Korean runtime localization before approved font evidence;
 - no battle HUD or summon rail implementation;
 - no new gameplay formula, target, glyph, stock, or mana behavior;
 - no mobile portrait layout;
@@ -179,4 +184,6 @@ No Korean or English text is baked into these images. Approved Board A/B files r
 - Theme is applied from one shared resource/factory rather than per-node duplicated colors.
 - At least one reusable star-board component and one shared icon asset are loaded in the Scene.
 - Runtime uses approved Navy/Gold/Cyan state semantics.
+- SVG files are imported before texture assertions and must resolve to real Texture2D resources.
+- CI captures a rendered 1280×720 PNG through a real GL compatibility renderer, not the dummy headless renderer.
 - Automated tests validate theme tokens, component families, touch targets, node paths, and existing interaction behavior.
