@@ -37,11 +37,14 @@ jobs:
           timeout 45s .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
             --headless --path . --script res://tests/test_runner.gd | tee star-runtime-headless.log
       - name: Capture rendered 1280x720 star UI evidence
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -o pipefail
           mkdir -p build/visual
-          timeout 45s .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
-            --headless --rendering-method gl_compatibility --path . \
+          timeout 45s xvfb-run -a -s '-screen 0 1280x720x24' \
+            .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64 \
+            --display-driver x11 --rendering-method gl_compatibility --path . \
             --script res://tools/capture_star_ui_snapshot.gd | tee star-ui-snapshot.log
           test -s build/visual/star-ui-kit-v1.png
       - name: Upload runtime evidence
