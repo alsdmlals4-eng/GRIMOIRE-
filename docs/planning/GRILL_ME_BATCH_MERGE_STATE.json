@@ -1,5 +1,5 @@
 {
-  "schema_version": 17,
+  "schema_version": 18,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -12,12 +12,13 @@
     "merge_required": false,
     "merge_trigger": "HIGH_RISK_CONFLICT_EARLY_CHECKPOINT",
     "merge_authorized": false,
-    "authorization_state": "NO_PENDING_CANON_MERGE",
-    "checkpoint_state": "BLOCKED_PENDING_GODOT_AUTHORING_GUT_AUTHORITY_REVIEW",
+    "authorization_state": "CURRENT_CONVERSATION_RECOMMENDED_MERGE_AUTHORITY_CONDITIONAL",
+    "checkpoint_state": "BLOCKED_PENDING_GUT_FORMAL_ADOPTION",
     "early_checkpoint_triggers": [
       "HIGH_RISK_CONFLICT",
       "SESSION_END_OR_CONTEXT_LOSS",
-      "MAJOR_CANON_IMPACT"
+      "MAJOR_CANON_IMPACT",
+      "CROSS_SYSTEM_OR_PLATFORM_RISK"
     ],
     "pending_decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
@@ -29,27 +30,32 @@
     ]
   },
   "current_work": {
-    "status": "BLOCKED_PENDING_GODOT_AUTHORING_GUT_AUTHORITY_REVIEW",
-    "gate": "BLOCKED_PENDING_GODOT_AUTHORING_GUT_AUTHORITY_REVIEW",
+    "status": "BLOCKED_PENDING_GUT_FORMAL_ADOPTION",
+    "gate": "BLOCKED_PENDING_GUT_FORMAL_ADOPTION",
     "latest_approved_decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
     "default_branch": "main",
     "tool_authority_design_pull_request": 83,
-    "tool_authority_authority_snapshot": "c5fb316b678501bbca9a67ed90d971e2880820c2",
-    "tool_authority_design_status": "DESIGN_DRAFT_REVIEW_REQUIRED",
-    "tool_authority_gate_run": 31105606479,
-    "tool_authority_gate_result": "PASS",
+    "tool_authority_design_status": "DESIGN_APPROVED_IMPLEMENTATION_PLAN_READY",
+    "tool_authority_design_review": "USER_APPROVED_2026-08-06",
+    "gut_adoption_plan": "docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md",
     "spell_workflow_implementation_pull_request": 82,
     "spell_workflow_implementation_head": "0919b71dfec3c6f57b88e1290789302267936960",
     "spell_workflow_implementation": "PAUSED_AFTER_TASK1_GREEN",
     "spell_workflow_task2": "NOT_STARTED_ON_BRANCH",
-    "higodot_authority": "SOLE_AUTHORING_AUTHORITY_DESIGN",
+    "higodot_authority": "SOLE_AUTHORING_AUTHORITY",
     "gut_version": "9.7.1",
     "gut_status": "VENDORED_NOT_CONSUMED",
+    "gut_adoption_mode": "CLI_ONLY_WITHOUT_EDITOR_PLUGIN",
     "image_status": "APPROVED_DIRECTION_RUNTIME_NOT_RUN",
     "sheet_write": "PASS",
     "sheet_readback": "PASS",
     "merge_authorized": false,
-    "next_priority": "REVIEW_TOOL_AUTHORITY_DESIGN_THEN_OPEN_GUT_ADOPTION_IMPLEMENTATION_PR"
+    "next_priority": "EXACT_HEAD_REVIEW_AND_MERGE_PR83_THEN_OPEN_GUT_ADOPTION_IMPLEMENTATION_PR"
+  },
+  "base": {
+    "project_pin": "9.4.3",
+    "current_main_observed": "4f98f968a377f7b6a11aafa4fc94d11bddbebedc",
+    "pin_update": "NOT_APPROVED_NOT_PERFORMED"
   },
   "workflow_contract": {
     "benchmark": "BENCHMARK_AND_PRO_COMPARISON_REQUIRED",
@@ -61,8 +67,8 @@
     "early_checkpoint_is_merge_authorization": false
   },
   "validation": {
-    "tool_authority_spec": "DRAFT_COMPLETE",
-    "tool_authority_contract": "PASS",
+    "tool_authority_spec": "USER_APPROVED",
+    "tool_authority_contract": "RED_THEN_GREEN_REQUIRED_ON_CURRENT_HEAD",
     "gut_formal_adoption": "NOT_IMPLEMENTED",
     "gut_actual_product_consumption": "NOT_RUN",
     "gut_ci": "NOT_ENABLED",
