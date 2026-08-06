@@ -23,6 +23,56 @@ func run(case) -> void:
     case.assert_true(scene.get_node_or_null("SafeArea/TargetKeywordPanel/Content/TargetButtons/FlowerButton") != null, "Flower target button exists")
     case.assert_true(scene.get_node_or_null("SafeArea/TargetKeywordPanel/Content/TargetButtons/WardButton") != null, "Ward target button exists")
     case.assert_true(scene.get_node_or_null("SafeArea/CommitButton") != null, "Explicit commit button exists")
+
+    var left_panel_paths := [
+        "SafeArea/CircuitPreviewPanel",
+        "SafeArea/TargetKeywordPanel",
+        "SafeArea/MasteryPanel",
+        "SafeArea/AccessibilityInputPanel",
+    ]
+    for path in left_panel_paths:
+        var panel := scene.get_node(path) as Control
+        case.assert_equal(0.0, panel.anchor_left, "%s remains anchored to the left edge" % path)
+        case.assert_equal(0.0, panel.anchor_right, "%s does not stretch from a fixed 1280 coordinate" % path)
+        case.assert_true(panel.offset_left >= 40.0, "%s preserves a visible left safe margin" % path)
+
+    var right_control_paths := [
+        "SafeArea/FinalPreviewPanel",
+        "SafeArea/BreakdownPanel",
+        "SafeArea/WarningPanel",
+        "SafeArea/CancelButton",
+        "SafeArea/CommitButton",
+    ]
+    for path in right_control_paths:
+        var control := scene.get_node(path) as Control
+        case.assert_equal(1.0, control.anchor_left, "%s follows the right viewport edge" % path)
+        case.assert_equal(1.0, control.anchor_right, "%s follows the right viewport edge" % path)
+        case.assert_true(control.offset_right <= -16.0, "%s preserves a visible right safe margin" % path)
+
+    var centered_paths := [
+        "SafeArea/CenterGlyph",
+        "SafeArea/PreviewButton",
+        "SafeArea/InsufficientManaState",
+        "SafeArea/UnstableCircuitState",
+    ]
+    for path in centered_paths:
+        var control := scene.get_node(path) as Control
+        case.assert_equal(0.5, control.anchor_left, "%s follows the horizontal center" % path)
+        case.assert_equal(0.5, control.anchor_right, "%s follows the horizontal center" % path)
+
+    for index in range(5):
+        var vertex := scene.get_node("SafeArea/StarVertices/Vertex%s" % index) as Control
+        case.assert_equal(0.5, vertex.anchor_left, "Vertex %s follows the horizontal center" % index)
+        case.assert_equal(0.5, vertex.anchor_right, "Vertex %s follows the horizontal center" % index)
+        case.assert_equal(0.5, vertex.anchor_top, "Vertex %s follows the vertical center" % index)
+        case.assert_equal(0.5, vertex.anchor_bottom, "Vertex %s follows the vertical center" % index)
+
+    var vertex_zero := scene.get_node("SafeArea/StarVertices/Vertex0") as Control
+    var unstable_state := scene.get_node("SafeArea/UnstableCircuitState") as Control
+    var vertex_zero_rect := Rect2(vertex_zero.position, vertex_zero.size)
+    var unstable_rect := Rect2(unstable_state.position, unstable_state.size)
+    case.assert_false(vertex_zero_rect.intersects(unstable_rect), "Unstable-circuit banner never covers A0")
+
     case.assert_true(scene.has_method("test_contract_snapshot"), "Harness exposes read-only test contract snapshot")
     if scene.has_method("test_contract_snapshot"):
         var snapshot: Dictionary = scene.test_contract_snapshot()
