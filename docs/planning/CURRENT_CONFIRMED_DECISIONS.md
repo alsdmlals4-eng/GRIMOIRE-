@@ -4,6 +4,8 @@
 status: ACTIVE_CANON_WITH_WORKING_DESIGN_OVERLAY
 runtime_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
 runtime_main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
+preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+runtime_layout: FIVE_POINT_STAR
 validation_main_sync: GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN
 validation_merge_commit: 292d2b850b38945e404f81dbcf209220067729d2
 latest_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -25,7 +27,7 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 
 ## 보존되는 Runtime
 
-`FIVE_POINT_STAR`, 중앙 Main 1개, Auxiliary 0~5개, 글자별 숙련도, Typed Glyph Stock, 명시 Preview, Exactly-once 자원 처리를 유지한다.
+`GM-STAR-CIRCUIT-MASTERY-BALANCE-01`의 `FIVE_POINT_STAR`, 중앙 Main 1개, Auxiliary 0~5개, 글자별 숙련도, Typed Glyph Stock, 명시 Preview, Exactly-once 자원 처리를 유지한다.
 
 ## 새 주문 3단계 결정
 
