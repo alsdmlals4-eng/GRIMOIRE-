@@ -4,14 +4,15 @@
 decision_id: GM-SPELL-WORKFLOW-UI-V2-01
 date: 2026-08-06
 written_spec_approved_at: 2026-08-06T19:48:00+09:00
-status: USER_WRITTEN_SPEC_APPROVED_IMPLEMENTATION_PLAN_AUTHORIZED
+status: USER_WRITTEN_SPEC_APPROVED_PLAN_COMPLETE_READY_FOR_TDD
 approved_option: C_ADAPTIVE_LAYERED_THREE_STAGE_WORKFLOW
 sync_id: GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2
 working_branch: agent/spell-workflow-ui-v2-design
 pull_request: 78
 source_main: 46a4abfa6a94c732c70eb50cae365b7dc2939543
 design_spec: docs/superpowers/specs/2026-08-06-spell-workflow-ui-v2-design.md
-implementation_plan: AUTHORIZED_NOT_STARTED
+implementation_plan: docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md
+implementation_plan_status: COMPLETE
 implementation: NOT_STARTED
 merge_authorized: true
 human_device_validation: NOT_RUN
@@ -63,8 +64,12 @@ human_visual_validation: NOT_RUN
 
 ## 사용자 Written Spec 승인
 
-사용자는 2026-08-06 19:48 KST에 작성된 Spec을 명시적으로 승인했다. 이 승인은 PR #78의 기획 정본 병합과 구현 계획 작성까지 허용한다. 제품 코드 구현·PR #77 병합·최종 아트·실기기·사람 PASS는 별도다.
+사용자는 2026-08-06 19:48 KST에 작성된 Spec을 명시적으로 승인했다. 이 승인은 PR #78의 기획·계획 정본 병합까지 허용한다. 제품 코드 구현·PR #77 병합·최종 아트·실기기·사람 PASS는 별도다.
+
+## 구현 계획
+
+10개 TDD 작업으로 완료했다. Core에서는 글자 소비와 마나 소비를 별도 원자 트랜잭션으로 분리하고, UI에서는 그리기·회로·사용 화면과 사건 Overlay를 독립 컴포넌트로 구성한다. 마지막 작업에서만 Main Scene 전환과 렌더 증거·정본 동기화를 허용한다.
 
 ## 다음 Gate
 
-구현 계획을 `docs/superpowers/plans/2026-08-06-spell-workflow-ui-v2-implementation-plan.md`에 작성한다. PR #77에는 공용 UI Kit만 유지하고, 3단계 기능은 별도 TDD 구현 PR에서 진행한다.
+PR #78을 병합한 뒤 PR #77 UI Kit 의존성을 해결하고 별도 Draft TDD 구현 PR을 연다.
