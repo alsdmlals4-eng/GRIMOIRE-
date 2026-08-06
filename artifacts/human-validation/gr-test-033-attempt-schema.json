@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gr-test-033-attempt-schema.json",
+  "title": "GR-TEST-033 Attempts",
+  "type": "object",
+  "required": ["records"],
+  "additionalProperties": false,
+  "properties": {
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["participant_id", "task_id", "attempt_phase", "task_completed", "preview_understood", "result_cause_explained"],
+        "additionalProperties": true,
+        "properties": {
+          "participant_id": {"type": "string", "pattern": "^P[0-9]{2}$"},
+          "task_id": {
+            "enum": ["SIMPLE_ZERO_AUX", "MULTI_AUX", "TYPED_STOCK_MISMATCH", "FOCUS_COMPLETE", "FOCUS_CANCEL", "FROSTBLOOM_MULTI_SOLUTION"]
+          },
+          "attempt_phase": {"enum": ["FIRST_ATTEMPT", "POST_FEEDBACK_RETRY"]},
+          "task_completed": {"type": "boolean"},
+          "preview_understood": {"type": "boolean"},
+          "result_cause_explained": {"type": "boolean"},
+          "target_keyword_understood": {"type": "boolean"},
+          "commit_control_understood": {"type": "boolean"},
+          "typed_stock_rule_understood": {"type": "boolean"},
+          "duration_seconds": {"type": "number", "minimum": 0},
+          "moderator_intervention_count": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}
