@@ -109,6 +109,14 @@ class StarUiKitContractTest(unittest.TestCase):
             self.assertIn(token, script)
         self.assertNotRegex(scene, re.compile(r'theme_override_colors/(font_color|font_hover_color)'))
 
+    def test_runtime_copy_avoids_missing_korean_glyphs_until_font_is_approved(self) -> None:
+        scene = self.read_required("src/ui/star_circuit_harness.tscn")
+        script = self.read_required("src/ui/star_circuit_harness.gd")
+        self.assertNotRegex(scene, re.compile(r"[가-힣]"))
+        self.assertNotRegex(script, re.compile(r"[가-힣]"))
+        spec = self.read_required("docs/superpowers/specs/2026-08-06-star-ui-kit-v1-design.md")
+        self.assertIn("ENGLISH_SAFE_COPY_UNTIL_LICENSED_KOREAN_FONT", spec)
+
     def test_design_keeps_validation_boundaries_honest(self) -> None:
         spec = self.read_required("docs/superpowers/specs/2026-08-06-star-ui-kit-v1-design.md")
         for token in [
