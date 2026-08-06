@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/alsdmlals4-eng/GRIMOIRE-/docs/validation/GUT_ACTIONS_VALIDATION_MANIFEST.schema.json",
+  "title": "GRIMOIRE GUT GitHub Actions Validation Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "decision_id",
+    "repository",
+    "pull_request",
+    "lane_id",
+    "expected_head",
+    "actual_head",
+    "tree_sha",
+    "base_sha",
+    "origin_main",
+    "branch",
+    "started_at",
+    "completed_at",
+    "host",
+    "python",
+    "preflight",
+    "commands",
+    "vendor",
+    "godot",
+    "gut",
+    "production_hash",
+    "result",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "decision_id": {
+      "const": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01"
+    },
+    "repository": {
+      "const": "alsdmlals4-eng/GRIMOIRE-"
+    },
+    "pull_request": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lane_id": {
+      "enum": [
+        "windows-py311",
+        "windows-py312",
+        "windows-py313",
+        "ubuntu-py312"
+      ]
+    },
+    "expected_head": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "actual_head": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "tree_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "base_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "origin_main": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "branch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "host": {
+      "type": "object"
+    },
+    "python": {
+      "type": "object"
+    },
+    "preflight": {
+      "type": "object"
+    },
+    "commands": {
+      "type": "array"
+    },
+    "vendor": {
+      "type": "object"
+    },
+    "godot": {
+      "type": "object"
+    },
+    "gut": {
+      "type": "object"
+    },
+    "production_hash": {
+      "type": "object"
+    },
+    "result": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "NOT_RUN"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

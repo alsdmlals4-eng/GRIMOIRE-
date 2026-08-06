@@ -8,15 +8,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / ".gutconfig.json"
 GUT_TEST = ROOT / "tests/gut/integration/test_gut_product_smoke.gd"
-LOCAL_RUNNER = ROOT / "tools/run_local_gut_validation.ps1"
-EVIDENCE_SCHEMA = ROOT / "docs/validation/GUT_LOCAL_VALIDATION_MANIFEST.schema.json"
+ACTIONS_RUNNER = ROOT / "tools/run_gut_actions_validation.py"
+WORKFLOW = ROOT / ".github/workflows/validate-gut-formal-adoption.yml"
+EVIDENCE_SCHEMA = ROOT / "docs/validation/GUT_ACTIONS_VALIDATION_MANIFEST.schema.json"
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 PROJECT = ROOT / "project.godot"
 
 
 class GutFormalAdoptionContractTests(unittest.TestCase):
-    def test_cli_only_consumption_and_local_evidence_files_exist(self) -> None:
-        for path in (CONFIG, GUT_TEST, LOCAL_RUNNER, EVIDENCE_SCHEMA):
+    def test_cli_only_consumption_and_actions_evidence_files_exist(self) -> None:
+        for path in (CONFIG, GUT_TEST, ACTIONS_RUNNER, WORKFLOW, EVIDENCE_SCHEMA):
             self.assertTrue(path.is_file(), str(path))
 
     def test_state_enters_installation_without_claiming_runtime_success(self) -> None:
@@ -28,9 +29,14 @@ class GutFormalAdoptionContractTests(unittest.TestCase):
         self.assertEqual("ADOPTION_IMPLEMENTATION_IN_PROGRESS", state["gut"]["current_consumption"])
         self.assertEqual("BLOCKED_PENDING_GUT_FORMAL_ADOPTION", state["entry_gate"]["status"])
         self.assertEqual(
-            "LOCAL_EXACT_HEAD_EVIDENCE_REQUIRED",
-            state["validation"]["actions_budget_mode"],
+            "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01",
+            state["github_actions_validation_decision_id"],
         )
+        self.assertEqual(
+            "PUBLIC_REPO_STANDARD_GITHUB_HOSTED",
+            state["validation"]["actions_mode"],
+        )
+        self.assertEqual("CONFIGURED_EXECUTION_PENDING", state["validation"]["github_actions"])
         self.assertFalse(state["claims"]["gut_formally_adopted"])
         self.assertFalse(state["claims"]["gut_runtime_ci_pass"])
         self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])

@@ -1,5 +1,5 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.3",
@@ -8,10 +8,9 @@
     "status": "ACTIVE_MERGED_MAIN"
   },
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
-  "local_validation_decision_id": "GM-ACTIONS-BUDGET-LOCAL-VERIFICATION-MODE-01",
-  "sync_id": "GR-SYNC-20260807-17-LOCAL-EXACT-HEAD-MODE",
+  "sync_id": "GR-SYNC-20260807-19-PUBLIC-REPO-FREE-ACTIONS",
   "source_integrity_sync_id": "GR-SYNC-20260806-14-TOOL-SOURCE-INTEGRITY",
-  "status": "GUT_SPEC_MERGED_IMPLEMENTATION_RED",
+  "status": "GUT_SPEC_MERGED_IMPLEMENTATION_CI_GATE_PENDING",
   "design_review": "USER_APPROVED_2026-08-06",
   "source_main": "312e491c8e9b333cb585b4e0550f80e3aea5f3f7",
   "base_policy_observation": {
@@ -25,7 +24,7 @@
     "required_evidence": [
       "ROLE_SEPARATED_DIFF_REVIEW",
       "USER_DECISION_AUTHORITY",
-      "OBJECTIVE_GUT_AND_LOCAL_EXACT_HEAD_EVIDENCE",
+      "OBJECTIVE_GUT_AND_GITHUB_ACTIONS_EVIDENCE",
       "EXACT_HEAD_PR_CHECK"
     ]
   },
@@ -85,7 +84,7 @@
     "license": "MIT",
     "official_license_blob_sha": "a38ac231fed3febe257c9e5fc31efb8ec7a39f90",
     "godot_compatibility": "4.7.x_METADATA_PASS_RUNTIME_NOT_RUN",
-    "project_exact_godot_version": "4.7.1_TARGET_LOCAL_UNVERIFIED",
+    "project_exact_godot_version": "4.7.1_TARGET_CI_PENDING",
     "project_plugin_enabled": false,
     "adoption_mode": "CLI_ONLY_WITHOUT_EDITOR_PLUGIN",
     "editor_plugin_enablement": "DEFERRED_UNTIL_HIGODOT_RECEIPT",
@@ -100,16 +99,16 @@
     "formal_installation_authorized": true,
     "implementation_branch": "agent/gut-9-7-1-formal-adoption-v4-3-tdd",
     "implementation_pr": 85,
-    "implementation_branch_status": "OPEN_DRAFT_RED",
+    "implementation_branch_status": "OPEN_DRAFT_CI_GATE_PENDING",
     "red_head": "063ce9039ac1c882250494cc5da87c482cde429e",
     "actual_product_tests": 0,
-    "local_evidence_enabled": true,
-    "ci_enabled": false,
-    "junit": "NOT_ENABLED",
+    "local_evidence_enabled": false,
+    "ci_enabled": true,
+    "junit": "CI_CONFIGURED_EXECUTION_PENDING",
     "product_mutation_hash_gate": "IMPLEMENTED_UNIT_PASS_RUNTIME_NOT_RUN",
     "legacy_coverage_parity": "NOT_PROVEN",
     "must_not_mutate_product_files": true,
-    "implementation_plan": "docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md"
+    "implementation_plan": "docs/superpowers/plans/2026-08-07-public-repo-free-github-actions.md"
   },
   "audio": {
     "shared_vault_path": "C:/Users/user/Documents/GitHub/shered audio vault",
@@ -143,6 +142,7 @@
       "docs/testing/GUT_9_7_1_ADOPTION_SPEC.md",
       "docs/decisions/DEC-GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01-adopt-gut-9-7-1.md",
       "docs/decisions/DEC-GM-ACTIONS-BUDGET-LOCAL-VERIFICATION-MODE-01.md",
+      "docs/decisions/DEC-GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01.md",
       "docs/planning/CURRENT_UNRESOLVED_GATES.md",
       "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
     ],
@@ -151,7 +151,7 @@
       "GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_PASS",
       "GUT_ADOPTION_IMPLEMENTATION_PR_GREEN",
       "GUT_ACTUAL_PRODUCT_TEST_CONSUMPTION_PASS",
-      "GUT_LOCAL_EXACT_HEAD_MANIFEST_PASS",
+      "GUT_GITHUB_ACTIONS_STANDARD_RUNNER_GATE_PASS",
       "GUT_JUNIT_PASS",
       "GUT_PRODUCT_MUTATION_HASH_GATE_PASS",
       "LEGACY_TO_GUT_COVERAGE_PARITY_PASS",
@@ -181,23 +181,21 @@
   },
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "sync_id": "GR-SYNC-20260807-17-LOCAL-EXACT-HEAD-MODE",
+    "sync_id": "GR-SYNC-20260807-19-PUBLIC-REPO-FREE-ACTIONS",
     "write": "PASS",
     "readback": "PASS",
     "ranges": [
-      "00_프로젝트_허브!I2:K2",
-      "01_작업순서!A33:N33",
-      "02_현재_확정결정!A72:M72",
-      "04_누락_충돌_감사!A78:I78",
-      "99_변경이력!A99:H99"
+      "00_프로젝트_허브!E2:K2",
+      "02_현재_확정결정!A72:M73",
+      "99_변경이력!A101:H101"
     ],
     "pr84_merged_main_sync": "PASS",
     "pr84_merged_main": "312e491c8e9b333cb585b4e0550f80e3aea5f3f7"
   },
   "validation": {
-    "actions_budget_mode": "LOCAL_EXACT_HEAD_EVIDENCE_REQUIRED",
-    "github_actions": "NOT_RUN_BUDGET_BLOCKED",
-    "local_exact_head": "NOT_RUN_NO_LOCAL_ACCESS",
+    "actions_mode": "PUBLIC_REPO_STANDARD_GITHUB_HOSTED",
+    "github_actions": "CONFIGURED_EXECUTION_PENDING",
+    "local_exact_head": "SUPERSEDED_NOT_REQUIRED",
     "hash_tool_unit": "PASS_3_TESTS_ISOLATED",
     "windows_export": "NOT_RUN",
     "android_export": "NOT_RUN",
@@ -206,8 +204,8 @@
     "performance": "NOT_RUN",
     "screen_reader": "NOT_RUN",
     "human": "NOT_RUN",
-    "local_sync": "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
-    "godot_run": "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS"
+    "local_sync": "SUPERSEDED",
+    "godot_run": "CI_EXECUTION_PENDING"
   },
   "claims": {
     "official_tool_releases_verified": true,
@@ -218,6 +216,8 @@
     "gut_local_exact_head_pass": false,
     "higodot_receipt_gate_implemented": false,
     "visual_audio_complete": false,
-    "spell_workflow_task2_authorized": false
-  }
+    "spell_workflow_task2_authorized": false,
+    "gut_github_actions_pass": false
+  },
+  "github_actions_validation_decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01"
 }
