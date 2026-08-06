@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "gate_id": "GR-TEST-033",
+  "classification": "PENDING_NOT_RUN",
+  "errors": [],
+  "metrics": {
+    "first_attempt_count": 0,
+    "task_completion_rate": 0.0,
+    "preview_comprehension_rate": 0.0,
+    "result_cause_explanation_rate": 0.0,
+    "critical_accessibility_failures": 0
+  },
+  "hard_stops_triggered": [],
+  "human_pass_claimed": false,
+  "release_ready_claimed": false,
+  "full_vertical_slice_claimed": false,
+  "runtime_expansion_authorized": false
+}

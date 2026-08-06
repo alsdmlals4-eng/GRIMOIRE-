@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gr-test-033-observation-schema.json",
+  "title": "GR-TEST-033 Observations",
+  "type": "object",
+  "required": ["records"],
+  "additionalProperties": false,
+  "properties": {
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["participant_id"],
+        "additionalProperties": true,
+        "properties": {
+          "participant_id": {"type": "string", "pattern": "^P[0-9]{2}$"},
+          "device_slot": {"type": "string"},
+          "input_mode": {"enum": ["TOUCH", "STYLUS", "SCREEN_READER", "NON_DRAG_ALTERNATIVE"]},
+          "frame_time_p95_ms": {"type": "number", "minimum": 0},
+          "critical_accessibility_failure": {"type": "boolean"},
+          "finger_occlusion_blocker": {"type": "boolean"},
+          "fatigue_reported": {"type": "boolean"},
+          "notes": {"type": "string", "maxLength": 500}
+        }
+      }
+    }
+  }
+}

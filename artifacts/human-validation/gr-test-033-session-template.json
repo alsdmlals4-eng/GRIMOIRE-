@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "gate_id": "GR-TEST-033",
+  "decision_id": "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
+  "sync_id": "GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY",
+  "execution_status": "NOT_RUN",
+  "runtime_contract": {
+    "layout": "FIVE_POINT_STAR",
+    "main_glyph": "EXACTLY_1_CENTER",
+    "auxiliary_glyphs": "0_TO_5_EQUIVALENT_VERTICES",
+    "target_selection": "AFTER_CIRCUIT_PREVIEW_BY_KEYWORD",
+    "stock_scope": "TYPED_GLYPH_ONLY"
+  },
+  "participant_plan": {
+    "anonymous_ids": ["P01", "P02", "P03", "P04", "P05", "P06"],
+    "participant_count": "6_TEST_VALUE",
+    "attempt_phases": ["FIRST_ATTEMPT", "POST_FEEDBACK_RETRY"]
+  },
+  "source_attempt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "source_attempt_record_count": 0,
+  "source_observation_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "source_observation_record_count": 0,
+  "hard_stops": {
+    "ACCIDENTAL_COMMIT": 0,
+    "MUTATION_BEFORE_COMMIT": 0,
+    "DUPLICATE_COST_OR_RESULT": 0,
+    "CROSS_GLYPH_STOCK_SUBSTITUTION": 0,
+    "HIDDEN_EXTRA_MANA": 0,
+    "RANDOM_UNPREVIEWED_TARGET": 0,
+    "CRITICAL_SCREEN_READER_BLOCKER": 0,
+    "MODERATOR_SOLUTION_PROMPT": 0,
+    "PII_PRESENT": 0
+  },
+  "candidate_thresholds_test_value": {
+    "promising_task_completion_rate": 0.8,
+    "promising_preview_comprehension_rate": 0.8,
+    "promising_result_cause_explanation_rate": 0.75,
+    "tune_minimum_rate": 0.6,
+    "p95_frame_time_ms": 33.3
+  },
+  "human_pass_claimed": false,
+  "release_ready_claimed": false,
+  "full_vertical_slice_claimed": false
+}
