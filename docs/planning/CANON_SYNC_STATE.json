@@ -1,5 +1,5 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -28,6 +28,26 @@
     "human_validation": "HUMAN_NOT_RUN",
     "full_vertical_slice_representativeness": "FULL_VERTICAL_SLICE_NOT_RUN"
   },
+  "ui_kit_main": {
+    "sync_id": "GR-SYNC-20260806-08-STAR-UI-KIT-V1-MAIN",
+    "decision_ids": ["GM-STAR-CIRCUIT-MASTERY-BALANCE-01", "ART-STYLE-01", "ART-BIBLE-01", "ASSET-SPEC-01", "GM-INGAME-ART-CHECKPOINT-01"],
+    "pull_request": 77,
+    "main_sync_pull_request": 80,
+    "exact_head": "64116046ab17adac81ce4d238ebf19ddd2ec2293",
+    "main_merge_commit": "8165ac983a8236bd780ac0ac0af1c121d36efd67",
+    "status": "SYNCED_TO_MAIN_AUTOMATED_RENDER_PASS",
+    "planning_base_run": 31098150640,
+    "star_runtime_run": 31098150617,
+    "physical_pack_run": 31098150564,
+    "godot_toolchain_run": 31098150580,
+    "asset_rights_run": 31098150603,
+    "review_threads": 0,
+    "runtime_behavior_changes": "NONE",
+    "final_art": "NOT_CLAIMED",
+    "mobile_device_validation": "DEVICE_NOT_RUN",
+    "performance_validation": "PERFORMANCE_NOT_RUN",
+    "human_visual_validation": "HUMAN_NOT_RUN"
+  },
   "spell_workflow_main": {
     "sync_id": "GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2-MAIN",
     "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
@@ -43,12 +63,13 @@
     "sheet_readback": "PASS",
     "implementation": "NOT_STARTED",
     "runtime_validation": "NOT_RUN_FOR_UI_V2",
-    "related_ui_pull_request": 77,
-    "ui_dependency_status": "DRAFT_UNMERGED_VISUAL_APPROVAL_REQUIRED",
+    "ui_dependency_status": "RESOLVED_UI_KIT_SYNCED_TO_MAIN",
+    "ui_kit_main_sync": "GR-SYNC-20260806-08-STAR-UI-KIT-V1-MAIN",
     "human_device_validation": "NOT_RUN",
     "final_art": "NOT_CLAIMED"
   },
-  "latest_product_gate": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD_PR77_DEPENDENCY",
+  "latest_product_gate": "SPELL_WORKFLOW_UI_V2_READY_FOR_TDD",
   "merge_authorized": false,
-  "validation_pack_merged": true
+  "validation_pack_merged": true,
+  "sheet_finalization_readback": "PENDING"
 }
