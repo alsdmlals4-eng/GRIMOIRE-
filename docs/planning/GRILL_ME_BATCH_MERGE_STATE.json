@@ -1,5 +1,5 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -10,10 +10,10 @@
     "approved_grill_me_since_last_flush": 5,
     "next_merge_at": 10,
     "merge_required": false,
-    "merge_trigger": "NONE",
-    "merge_authorized": false,
-    "authorization_state": "WRITTEN_SPEC_USER_REVIEW_REQUIRED",
-    "checkpoint_state": "DESIGN_CANON_SHEET_READBACK_PASS",
+    "merge_trigger": "USER_EXPLICIT_WRITTEN_SPEC_APPROVAL",
+    "merge_authorized": true,
+    "authorization_state": "USER_WRITTEN_SPEC_APPROVED",
+    "checkpoint_state": "DESIGN_CANON_SHEET_READBACK_PASS_USER_APPROVED",
     "checkpoint_pull_request": 78,
     "early_checkpoint_triggers": [
       "HIGH_RISK_CONFLICT",
@@ -39,8 +39,8 @@
     "main_sync_id": "GR-SYNC-20260804-12-CLOSURE"
   },
   "current_work": {
-    "status": "SPELL_WORKFLOW_UI_V2_WRITTEN_SPEC_REVIEW_REQUIRED",
-    "gate": "SPELL_WORKFLOW_UI_V2_WRITTEN_SPEC_REVIEW",
+    "status": "SPELL_WORKFLOW_UI_V2_IMPLEMENTATION_PLAN_AUTHORIZED",
+    "gate": "SPELL_WORKFLOW_UI_V2_IMPLEMENTATION_PLAN",
     "latest_approved_decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
     "related_approved_decision_ids": [
       "GM-GLYPH-VAULT-UNIVERSAL-STOCK-01",
@@ -56,13 +56,13 @@
     "current_sync": "GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2",
     "source_main": "46a4abfa6a94c732c70eb50cae365b7dc2939543",
     "design_authority_head": "efae6d7d54c9d8c5aef6dd0443624450811e8e59",
-    "adversarial_review_head": "256c261b95f167e55637cbf75c89d64bded27356",
-    "sync_receipt_head": "d25c5a8f2ca7de91f6f98b34f2d21a28a97ba18e",
+    "written_spec_approved_at": "2026-08-06T19:48:00+09:00",
+    "implementation_plan": "IN_PROGRESS",
     "implementation": "NOT_STARTED",
     "human_device_validation": "NOT_RUN",
     "final_art": "NOT_CLAIMED",
-    "merge_authorized": false,
-    "next_priority": "USER_REVIEW_THEN_IMPLEMENTATION_PLAN"
+    "merge_authorized": true,
+    "next_priority": "MERGE_DESIGN_CANON_THEN_COMPLETE_IMPLEMENTATION_PLAN"
   },
   "canonical_contract": {
     "core_fun": "SITUATION_TO_MEANING_TO_COMMIT_TO_CONSEQUENCE_TO_GRIMOIRE",
@@ -107,8 +107,8 @@
     "written_spec": "COMMITTED",
     "spec_self_review": "PASS",
     "adversarial_review": "PASS",
-    "user_written_spec_review": "PENDING",
-    "implementation_plan": "NOT_STARTED",
+    "user_written_spec_review": "PASS",
+    "implementation_plan": "IN_PROGRESS",
     "product_implementation": "NOT_STARTED",
     "runtime": "NOT_RUN_FOR_UI_V2",
     "sheet_write": "PASS",
