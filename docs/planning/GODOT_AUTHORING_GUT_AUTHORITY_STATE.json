@@ -1,9 +1,12 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
   "sync_id": "GR-SYNC-20260806-10-GODOT-AUTHORING-GUT-AUTHORITY",
   "status": "DESIGN_DRAFT_REVIEW_REQUIRED",
   "source_main": "917ead7499482801610ba95ce37efafd1662d994",
+  "authority_snapshot": "c5fb316b678501bbca9a67ed90d971e2880820c2",
+  "authority_gate_run": 31105606479,
+  "authority_gate_result": "PASS",
   "higodot": {
     "repository_path": "addons/godot_ai",
     "plugin_name": "Godot AI",
@@ -82,12 +85,13 @@
   },
   "sheet_readback": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "observed_at": "2026-08-06T22:12:00+09:00",
-    "decision_range": "02_현재_확정결정!A64:N72",
-    "audit_range": "04_누락_충돌_감사!A68:I78",
-    "image_range": "72_이미지검수_승인로그!A1:N10",
-    "write_status": "PENDING_BRANCH_EXACT_HEAD",
-    "readback_status": "INITIAL_READ_PASS"
+    "observed_at": "2026-08-06T22:24:00+09:00",
+    "decision_range": "02_현재_확정결정!A69:M69",
+    "audit_range": "04_누락_충돌_감사!A74:I74",
+    "image_range": "72_이미지검수_승인로그!A6:M6",
+    "history_range": "99_변경이력!A92:H92",
+    "write_status": "PASS",
+    "readback_status": "PASS"
   },
   "claims": {
     "gut_formally_adopted": false,

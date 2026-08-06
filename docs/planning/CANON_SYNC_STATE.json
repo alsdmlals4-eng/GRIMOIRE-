@@ -1,5 +1,5 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -49,6 +49,9 @@
     "sync_id": "GR-SYNC-20260806-10-GODOT-AUTHORING-GUT-AUTHORITY",
     "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
     "design_pull_request": 83,
+    "authority_snapshot": "c5fb316b678501bbca9a67ed90d971e2880820c2",
+    "authority_gate_run": 31105606479,
+    "authority_gate_result": "PASS",
     "status": "DESIGN_DRAFT_REVIEW_REQUIRED",
     "higodot": {
       "authority": "SOLE_AUTHORING_AUTHORITY_DESIGN",
@@ -67,8 +70,8 @@
       "junit": "NOT_ENABLED",
       "product_mutation_hash_gate": "NOT_IMPLEMENTED"
     },
-    "sheet_write": "PENDING_BRANCH_EXACT_HEAD",
-    "sheet_readback": "INITIAL_READ_PASS",
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
     "merge_authorized": false
   },
   "image_review": {
@@ -81,5 +84,5 @@
   "latest_product_gate": "BLOCKED_PENDING_GODOT_AUTHORING_GUT_AUTHORITY_REVIEW",
   "unresolved_gate_file": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "merge_authorized": false,
-  "sheet_finalization_readback": "PENDING"
+  "sheet_finalization_readback": "PASS"
 }

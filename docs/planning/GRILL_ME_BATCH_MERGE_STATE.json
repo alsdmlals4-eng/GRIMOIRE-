@@ -1,5 +1,5 @@
 {
-  "schema_version": 16,
+  "schema_version": 17,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -34,7 +34,10 @@
     "latest_approved_decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
     "default_branch": "main",
     "tool_authority_design_pull_request": 83,
+    "tool_authority_authority_snapshot": "c5fb316b678501bbca9a67ed90d971e2880820c2",
     "tool_authority_design_status": "DESIGN_DRAFT_REVIEW_REQUIRED",
+    "tool_authority_gate_run": 31105606479,
+    "tool_authority_gate_result": "PASS",
     "spell_workflow_implementation_pull_request": 82,
     "spell_workflow_implementation_head": "0919b71dfec3c6f57b88e1290789302267936960",
     "spell_workflow_implementation": "PAUSED_AFTER_TASK1_GREEN",
@@ -43,8 +46,10 @@
     "gut_version": "9.7.1",
     "gut_status": "VENDORED_NOT_CONSUMED",
     "image_status": "APPROVED_DIRECTION_RUNTIME_NOT_RUN",
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
     "merge_authorized": false,
-    "next_priority": "COMPLETE_TOOL_AUTHORITY_DESIGN_AND_SHEET_READBACK"
+    "next_priority": "REVIEW_TOOL_AUTHORITY_DESIGN_THEN_OPEN_GUT_ADOPTION_IMPLEMENTATION_PR"
   },
   "workflow_contract": {
     "benchmark": "BENCHMARK_AND_PRO_COMPARISON_REQUIRED",
@@ -56,15 +61,15 @@
     "early_checkpoint_is_merge_authorization": false
   },
   "validation": {
-    "tool_authority_spec": "DRAFT",
-    "tool_authority_contract": "RED_TO_GREEN_IN_PROGRESS",
+    "tool_authority_spec": "DRAFT_COMPLETE",
+    "tool_authority_contract": "PASS",
     "gut_formal_adoption": "NOT_IMPLEMENTED",
     "gut_actual_product_consumption": "NOT_RUN",
     "gut_ci": "NOT_ENABLED",
     "higodot_authoring_receipt_gate": "NOT_IMPLEMENTED",
     "sheet_initial_read": "PASS",
-    "sheet_write": "PENDING_BRANCH_EXACT_HEAD",
-    "sheet_readback": "PENDING",
+    "sheet_write": "PASS",
+    "sheet_readback": "PASS",
     "mobile_device": "NOT_RUN",
     "performance": "NOT_RUN",
     "accessibility": "NOT_RUN_FOR_UI_V2",
