@@ -1,7 +1,7 @@
 # GRIMOIRE 현재 확정 결정 스냅샷
 
 ```yaml
-status: ACTIVE_CANON_WITH_WORKING_DESIGN_OVERLAY
+status: ACTIVE_CANON_USER_APPROVED_PENDING_MERGE
 runtime_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
 runtime_main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -12,8 +12,9 @@ latest_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_design_sync: GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2
 working_branch: agent/spell-workflow-ui-v2-design
 working_pull_request: 78
-written_spec_review: REQUIRED_BEFORE_IMPLEMENTATION_PLAN
-canon_status: SYNCED_TO_WORKING_BRANCH_PENDING_MERGE
+written_spec_review: USER_APPROVED_2026-08-06T19:48+09:00
+implementation_plan: AUTHORIZED_IN_PROGRESS
+canon_status: USER_APPROVED_MERGE_AUTHORIZED
 product_project: CREATED
 product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS_UI_V2_NOT_STARTED
 runtime_validation: AUTOMATED_HEADLESS_PASS_EXISTING_RUNTIME_ONLY
@@ -58,6 +59,10 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 신규: 회로 Preview → 주문 확정·글자 소비 → 별도 사용 화면 Target → 마나 소비·실제 판정
 ```
 
+## 사용자 승인과 다음 단계
+
+사용자는 2026-08-06 19:48 KST에 Written Spec을 승인했다. PR #78 기획 정본 병합과 구현 계획 작성은 허용되었다. 제품 구현은 별도 TDD PR에서만 진행하며 PR #77 공용 UI Kit 병합은 별도 시각 승인 대상이다.
+
 ## 검증 경계
 
-작성된 설계는 사용자 방향 승인 상태지만 구현 계획 전 문서 검토가 필요하다. 3단계 UI v2 코드·Scene·자동 테스트·실기기·사람 검증은 아직 실행하지 않았다.
+3단계 UI v2 코드·Scene·자동 테스트·실기기·사람 검증은 아직 실행하지 않았다. 현재 PASS는 기존 별형 Runtime과 기획 문서 계약에만 해당한다.
