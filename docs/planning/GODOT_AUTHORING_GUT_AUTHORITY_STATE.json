@@ -161,8 +161,18 @@
   },
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "write": "PENDING_V4_3_SYNC",
-    "readback": "PENDING_V4_3_SYNC",
+    "sync_id": "GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC",
+    "write": "PASS",
+    "readback": "PASS",
+    "ranges": [
+      "00_프로젝트_허브!E2:K2",
+      "01_작업순서!A31:N32",
+      "02_현재_확정결정!A69:M70",
+      "04_누락_충돌_감사!A74:I75",
+      "72_이미지검수_승인로그!K6:M6",
+      "99_변경이력!A95:H95"
+    ],
+    "receipt": "docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md",
     "pr83_main_sync": "PASS"
   },
   "validation": {
