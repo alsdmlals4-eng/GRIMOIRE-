@@ -40,16 +40,18 @@ class Pr83ReviewExceptionContractTests(unittest.TestCase):
         self.assertFalse(state["claims"]["gut_formally_adopted"])
         self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
 
-    def test_active_docs_use_v4_3_review_model_and_preserve_blocks(self) -> None:
-        combined = "\n".join(
-            path.read_text(encoding="utf-8") for path in (UNRESOLVED, DECISIONS)
-        )
-        self.assertIn("PR83_ONLY", combined)
-        self.assertIn("BLOCKED_BY_GUT_ADOPTION_SPEC", combined)
-        self.assertIn("GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY", combined)
-        self.assertIn("PR #82 Task 2", combined)
-        self.assertIn("FROZEN_SUPERSEDED_BY_V4_3_SPEC_GATE", combined)
-        self.assertNotIn("GUT_ADOPTION_PR_INDEPENDENT_REVIEW_REQUIRED", combined)
+    def test_pr83_exception_is_history_while_current_docs_follow_v4_4_review_model(self) -> None:
+        receipt = RECEIPT.read_text(encoding="utf-8")
+        current = UNRESOLVED.read_text(encoding="utf-8")
+        decisions = DECISIONS.read_text(encoding="utf-8")
+        self.assertIn("PR83_ONLY", receipt)
+        self.assertIn('contract_version: "4.4"', current)
+        self.assertIn("GM-CONTRACT-V4-4-BINDING-01", current)
+        self.assertIn("GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY", current)
+        self.assertIn("spell_workflow_task2_authorized: false", current)
+        self.assertNotIn("GUT_ADOPTION_PR_INDEPENDENT_REVIEW_REQUIRED", current)
+        self.assertIn("FROZEN_SUPERSEDED_BY_V4_3_SPEC_GATE", decisions)
+        self.assertIn("BLOCKED_BY_GUT_ADOPTION_SPEC", decisions)
 
 
 if __name__ == "__main__":
