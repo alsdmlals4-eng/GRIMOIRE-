@@ -5,3 +5,6 @@ __pycache__/
 .godot/
 artifacts/local-validation/
 artifacts/gut-validation/
+
+# Local asset vault
+.asset-vault/
