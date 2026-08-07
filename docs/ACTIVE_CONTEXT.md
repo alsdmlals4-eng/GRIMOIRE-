@@ -7,6 +7,7 @@ active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_
 contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
 current_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+circuit_topology: FIVE_POINT_STAR
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
@@ -28,6 +29,25 @@ visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
+
+## 보존된 Star Circuit runtime authority
+
+```yaml
+decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+circuit_topology: FIVE_POINT_STAR
+sync_id: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
+main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
+canon_status: SYNCED_TO_MAIN
+product_project: CREATED
+product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
+runtime_validation: AUTOMATED_HEADLESS_PASS
+mobile_device_validation: NOT_RUN
+performance_validation: NOT_RUN
+human_validation: NOT_RUN
+tuning_status: PLAYTEST_TUNING_REQUIRED
+```
+
+v4.4/GUT 정본 갱신은 위 제품 runtime 결정과 검증 상태를 대체하지 않는다.
 
 ## GUT formal adoption readback
 
