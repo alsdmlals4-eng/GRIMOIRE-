@@ -10,6 +10,7 @@ from tools.run_local_gut_validation import (
     copy_and_parse_junit,
     full_unittest_command,
     isolated_godot_environment,
+    parse_junit_result,
     python_runtime_info,
     python_version_matches,
 )
@@ -55,6 +56,18 @@ class LocalGutValidationEnvironmentTests(unittest.TestCase):
             self.assertEqual(str(root / "config"), env["XDG_CONFIG_HOME"])
             self.assertEqual(str(root / "cache"), env["XDG_CACHE_HOME"])
 
+    def test_absolute_junit_output_is_parsed_in_place(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "lane/gut-results.xml"
+            output.parent.mkdir(parents=True)
+            output.write_text(
+                '<testsuites tests="2" failures="0" errors="0"><testsuite tests="2" failures="0" errors="0" /></testsuites>',
+                encoding="utf-8",
+            )
+            path, counts = parse_junit_result(output)
+            self.assertEqual(output, path)
+            self.assertEqual({"tests": 2, "failures": 0, "errors": 0}, counts)
+
     def test_junit_is_copied_and_parsed(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -73,6 +86,8 @@ class LocalGutValidationEnvironmentTests(unittest.TestCase):
     def test_junit_missing_or_ambiguous_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
+            with self.assertRaisesRegex(RuntimeError, "JUNIT_MISSING"):
+                parse_junit_result(root / "gut-results.xml")
             with self.assertRaisesRegex(RuntimeError, "JUNIT_MISSING"):
                 copy_and_parse_junit(root / "user-data", root / "evidence")
             (root / "user-data/a").mkdir(parents=True)
