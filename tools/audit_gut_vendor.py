@@ -4,6 +4,7 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import re
 import subprocess
 from pathlib import Path
 from typing import Mapping
@@ -24,6 +25,10 @@ TEXT_NORMALIZED_SUFFIXES = {
     ".txt",
     ".uid",
 }
+GODOT_LOAD_STEPS_SUFFIXES = {".fnt", ".tres", ".tscn"}
+GODOT_LOAD_STEPS_PATTERN = re.compile(
+    rb"^(\[(?:gd_scene|gd_resource)) load_steps=\d+ ", re.MULTILINE
+)
 CRITICAL_RUNTIME_PATHS = (
     "addons/gut/plugin.cfg",
     "addons/gut/versions.json",
@@ -66,10 +71,19 @@ def read_tree_manifest(root: Path, treeish: str, prefix: str = "addons/gut") -> 
     return manifest
 
 
+def _normalized_payload(path: Path, payload: bytes) -> bytes:
+    if path.suffix.lower() not in TEXT_NORMALIZED_SUFFIXES:
+        return payload
+    normalized = payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    if path.suffix.lower() in GODOT_LOAD_STEPS_SUFFIXES:
+        normalized = GODOT_LOAD_STEPS_PATTERN.sub(rb"\1 ", normalized)
+    return normalized
+
+
 def _content_digest(path: Path, *, normalize_text: bool) -> str:
     payload = path.read_bytes()
-    if normalize_text and path.suffix.lower() in TEXT_NORMALIZED_SUFFIXES:
-        payload = payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    if normalize_text:
+        payload = _normalized_payload(path, payload)
     return hashlib.sha256(payload).hexdigest()
 
 
@@ -167,16 +181,16 @@ def build_audit_report(
     result = (
         "FULL_TREE_IDENTICAL"
         if preflight_pass and raw_comparison["full_tree_identical"]
-        else "FULL_TREE_TEXT_NORMALIZED_IDENTICAL"
+        else "FULL_TREE_GODOT_LOAD_STEPS_NORMALIZED_IDENTICAL"
         if preflight_pass and normalized_comparison["full_tree_identical"]
         else "CRITICAL_RUNTIME_SUBSET_IDENTICAL_FULL_TREE_MISMATCH"
         if preflight_pass and raw_comparison["critical_runtime_all_identical"]
-        else "CRITICAL_RUNTIME_TEXT_NORMALIZED_IDENTICAL_FULL_TREE_MISMATCH"
+        else "CRITICAL_RUNTIME_GODOT_LOAD_STEPS_NORMALIZED_IDENTICAL_FULL_TREE_MISMATCH"
         if preflight_pass and normalized_comparison["critical_runtime_all_identical"]
         else "FAIL"
     )
     return {
-        "schema_version": 2,
+        "schema_version": 3,
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "official": {
             "checkout": str(official_root),
@@ -193,7 +207,12 @@ def build_audit_report(
         },
         "preflight": preflight,
         "raw_comparison": raw_comparison,
-        "text_normalized_comparison": normalized_comparison,
+        "normalized_comparison": normalized_comparison,
+        "normalization_policy": {
+            "line_endings": "CRLF_AND_CR_TO_LF",
+            "godot_load_steps": "REMOVE_TOP_LEVEL_LOAD_STEPS_HINT_ONLY",
+            "semantic_fields": "PRESERVED",
+        },
         "result": result,
         "mutation_performed": False,
     }
@@ -230,7 +249,7 @@ def main() -> int:
     print(output_path)
     return 0 if report["result"] in {
         "FULL_TREE_IDENTICAL",
-        "FULL_TREE_TEXT_NORMALIZED_IDENTICAL",
+        "FULL_TREE_GODOT_LOAD_STEPS_NORMALIZED_IDENTICAL",
     } else 1
 
 
