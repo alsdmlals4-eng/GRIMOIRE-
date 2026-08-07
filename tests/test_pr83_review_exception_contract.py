@@ -25,13 +25,17 @@ class Pr83ReviewExceptionContractTests(unittest.TestCase):
         ):
             self.assertIn(token, text)
 
-    def test_state_records_pr83_as_merged_historical_exception(self) -> None:
+    def test_state_records_the_successor_pr84_exception_without_reusing_pr83(self) -> None:
         state = json.loads(STATE.read_text(encoding="utf-8"))
-        gate = state["pr83_merge_gate"]
-        self.assertEqual("USER_APPROVED_PR83_ONLY", gate["independent_review_exception"])
+        self.assertNotIn("pr83_merge_gate", state)
+        gate = state["pr84_merge_gate"]
+        self.assertEqual(
+            "GM-PR84-ACTIONS-BUDGET-LOCAL-EVIDENCE-EXCEPTION-01",
+            gate["actions_exception_decision_id"],
+        )
         self.assertEqual("MERGED_MAIN_READBACK_PASS", gate["status"])
-        self.assertEqual("50b0645f13c9267de34b53478b26e8567dd2ecb3", gate["merged_head"])
-        self.assertEqual("252063ccad18b885fc75cbeba3b807fefd76496e", gate["merged_main"])
+        self.assertEqual("312e491c8e9b333cb585b4e0550f80e3aea5f3f7", gate["merged_main"])
+        self.assertTrue(gate["exception_consumed"])
         self.assertFalse(gate["waives_future_pr_review"])
         self.assertFalse(state["claims"]["gut_formally_adopted"])
         self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
