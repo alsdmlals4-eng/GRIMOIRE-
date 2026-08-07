@@ -62,7 +62,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("IN_PROGRESS_RED", data["entry_gate"]["implementation"])
         self.assertEqual("PAUSED_AFTER_TASK1_GREEN", data["implementation_pr"]["status"])
         self.assertEqual("APPROVED_DIRECTION_RUNTIME_NOT_RUN", data["image_review"]["status"])
-        self.assertEqual("PENDING", data["sheet_sync"]["readback"])
+        self.assertEqual("PASS", data["sheet_sync"]["readback"])
         self.assertTrue(data["claims"]["official_tool_releases_verified"])
         self.assertFalse(data["claims"]["tool_vendor_integrity_pass"])
         self.assertTrue(data["claims"]["gut_adoption_spec_merged"])
