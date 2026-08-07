@@ -19,6 +19,24 @@ env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
 
 jobs:
+  higodot-receipt:
+    if: github.event.pull_request.number == 85
+    name: HiGodot Authoring Receipt Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out exact source head with history
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.EXACT_HEAD }}
+          fetch-depth: 0
+      - name: Require HiGodot receipt or exact zero protected diff
+        shell: bash
+        run: >-
+          python tools/check_higodot_authoring_receipt.py
+          --base-sha "$BASE_SHA"
+          --head-sha "$EXACT_HEAD"
+
   validate:
     if: github.event.pull_request.number == 85
     name: ${{ matrix.lane }}
@@ -132,13 +150,16 @@ jobs:
   gate:
     if: always() && github.event.pull_request.number == 85
     name: GUT Validation Gate
-    needs: validate
+    needs: [validate, higodot-receipt]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Require every standard-runner lane
+      - name: Require every standard-runner lane and HiGodot receipt gate
         env:
           MATRIX_RESULT: ${{ needs.validate.result }}
+          HIGODOT_RECEIPT_RESULT: ${{ needs.higodot-receipt.result }}
         run: |
           echo "Matrix result: $MATRIX_RESULT"
+          echo "HiGodot receipt result: $HIGODOT_RECEIPT_RESULT"
           test "$MATRIX_RESULT" = "success"
+          test "$HIGODOT_RECEIPT_RESULT" = "success"
