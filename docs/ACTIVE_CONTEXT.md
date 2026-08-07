@@ -5,7 +5,10 @@ project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4
 contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
-current_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_pr: 87
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -30,6 +33,8 @@ local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
+`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다.
+
 ## 보존된 Star Circuit runtime authority
 
 ```yaml
@@ -51,7 +56,7 @@ v4.4/GUT 정본 갱신은 위 제품 runtime 결정과 검증 상태를 대체�
 
 ## GUT formal adoption readback
 
-PR #85는 exact head `fc178bdc7a3e12faf4ae7ae78fd1f92dd2735849`에서 current-head repository workflows를 통과한 뒤 squash merge되었다. merged main은 `ea46923fa78c4fe7844ab6bf422e6716a3c785ed`다.
+PR #85의 formal-adoption merge는 `gut_formal_adoption_main`으로 기록한다. PR #87의 current-canon sync는 `post_merge_canon_sync_merge`로 기록한다. 둘 다 live current-main SHA가 아니다.
 
 ```yaml
 gut_release: v9.7.1

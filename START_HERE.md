@@ -5,7 +5,10 @@
 ```yaml
 active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4
 contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
-project_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_pr: 87
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 gut_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 gut_status: GUT_FORMALLY_ADOPTED
 gut_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
@@ -23,7 +26,9 @@ local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-PR #85가 merged main `ea46923fa78c4fe7844ab6bf422e6716a3c785ed`에 반영되어 GUT 9.7.1 CLI/headless deterministic test authority는 정식 채택되었다. `GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01`은 critical-runtime equivalence만 승인하며 full vendor-tree identity를 의미하지 않는다. GUT Editor Plugin은 계속 비활성이다.
+`project_main_authority`는 저장된 SHA가 아니라 GitHub 기본 브랜치 `main`의 live readback이다. `gut_formal_adoption_main`과 `post_merge_canon_sync_merge`는 각각 PR #85와 PR #87의 역사적 merged-main 증거이며 현재 main을 뜻하지 않는다.
+
+PR #85의 GUT 9.7.1 CLI/headless deterministic test authority는 정식 채택되었다. `GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01`은 critical-runtime equivalence만 승인하며 full vendor-tree identity를 의미하지 않는다. GUT Editor Plugin은 계속 비활성이다.
 
 ## 제품 보존 정본
 

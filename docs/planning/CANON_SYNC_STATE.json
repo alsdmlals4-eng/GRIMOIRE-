@@ -1,5 +1,5 @@
 {
-  "schema_version": 18,
+  "schema_version": 19,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -11,15 +11,17 @@
     "binding_path": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md",
     "status": "ACTIVE_MERGED_MAIN"
   },
+  "project_main_authority": "LIVE_GITHUB_DEFAULT_BRANCH_READBACK",
+  "gut_formal_adoption_main": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
+  "post_merge_canon_sync": {
+    "pull_request": 87,
+    "merge_commit": "ce01bb8caa5f1b224279d3fbf418eae29a88af7d",
+    "role": "HISTORICAL_CANON_SYNC_EVIDENCE_NOT_CURRENT_MAIN"
+  },
   "base": {
     "project_pin": "9.4.3",
     "current_main_observed": "fa69a77a14f923a756064f6ae151d34cadb374f7",
     "pin_update": "NOT_APPROVED_NOT_PERFORMED"
-  },
-  "project_main": {
-    "sha": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
-    "latest_merge": "PR85_GUT_FORMAL_ADOPTION",
-    "readback": "PASS"
   },
   "runtime_main": {
     "sync_id": "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN",
@@ -128,5 +130,5 @@
   "entry_reconciliation": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "unresolved_gate_file": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "merge_authorized": false,
-  "sheet_finalization_readback": "PENDING_POST_CANON_MERGE"
+  "sheet_finalization_readback": "PENDING_LIVE_MAIN_SEMANTICS_MERGE"
 }

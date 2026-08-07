@@ -1,5 +1,5 @@
 {
-  "schema_version": 21,
+  "schema_version": 22,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -26,7 +26,10 @@
     "gate": "BLOCKED_BY_BROADER_PROJECT_GATES",
     "latest_approved_decision_id": "GM-CONTRACT-V4-4-BINDING-01",
     "default_branch": "main",
-    "project_main": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
+    "project_main_authority": "LIVE_GITHUB_DEFAULT_BRANCH_READBACK",
+    "gut_formal_adoption_main": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
+    "post_merge_canon_sync_pr": 87,
+    "post_merge_canon_sync_merge": "ce01bb8caa5f1b224279d3fbf418eae29a88af7d",
     "gut_formal_adoption": "GUT_FORMALLY_ADOPTED",
     "gut_implementation_pull_request": 85,
     "gut_exact_head": "fc178bdc7a3e12faf4ae7ae78fd1f92dd2735849",
