@@ -6,8 +6,8 @@ import unittest
 from pathlib import Path
 
 from tools.run_gut_actions_validation import (
-    APPROVAL_REQUIRED_MARKER,
-    apply_pending_vendor_approval,
+    APPROVED_VENDOR_DECISION_ID,
+    apply_approved_vendor_equivalence,
     normalized_audit_allows_runtime,
 )
 
@@ -30,7 +30,7 @@ class GutActionsVendorBridgeTests(unittest.TestCase):
         ):
             self.assertFalse(normalized_audit_allows_runtime({"result": result}), result)
 
-    def test_runtime_success_remains_blocked_until_user_approval(self) -> None:
+    def test_runtime_success_passes_after_approved_vendor_decision(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             manifest_path = root / "manifest.json"
@@ -44,7 +44,7 @@ class GutActionsVendorBridgeTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            return_code = apply_pending_vendor_approval(
+            return_code = apply_approved_vendor_equivalence(
                 manifest_path,
                 audit_path,
                 official_tree="official-tree",
@@ -53,18 +53,19 @@ class GutActionsVendorBridgeTests(unittest.TestCase):
             )
 
             data = json.loads(manifest_path.read_text(encoding="utf-8"))
-            self.assertEqual(1, return_code)
-            self.assertEqual("BLOCKED", data["result"])
+            self.assertEqual(0, return_code)
+            self.assertEqual("PASS", data["result"])
             self.assertEqual(
-                "AUDIT_EQUIVALENT_PENDING_USER_APPROVAL",
+                "CRITICAL_RUNTIME_EQUIVALENCE_USER_APPROVED",
                 data["vendor"]["status"],
             )
+            self.assertEqual(APPROVED_VENDOR_DECISION_ID, data["vendor"]["decision_id"])
             self.assertEqual("official-tree", data["vendor"]["expected_tree"])
             self.assertEqual("project-tree", data["vendor"]["actual_tree"])
             self.assertEqual(CRITICAL_NORMALIZED_RESULT, data["vendor"]["audit_result"])
-            self.assertIn(APPROVAL_REQUIRED_MARKER, data["limitations"])
+            self.assertEqual([], data["limitations"])
 
-    def test_runtime_failure_is_preserved_and_approval_marker_is_added(self) -> None:
+    def test_runtime_failure_is_preserved_after_vendor_decision(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             manifest_path = root / "manifest.json"
@@ -84,7 +85,7 @@ class GutActionsVendorBridgeTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            return_code = apply_pending_vendor_approval(
+            return_code = apply_approved_vendor_equivalence(
                 manifest_path,
                 audit_path,
                 official_tree="official-tree",
@@ -95,8 +96,12 @@ class GutActionsVendorBridgeTests(unittest.TestCase):
             data = json.loads(manifest_path.read_text(encoding="utf-8"))
             self.assertEqual(1, return_code)
             self.assertEqual("FAIL", data["result"])
+            self.assertEqual(
+                "CRITICAL_RUNTIME_EQUIVALENCE_USER_APPROVED",
+                data["vendor"]["status"],
+            )
+            self.assertEqual(APPROVED_VENDOR_DECISION_ID, data["vendor"]["decision_id"])
             self.assertIn("GUT_EXECUTION_FAILURE_OR_DISCOVERY_ZERO", data["limitations"])
-            self.assertIn(APPROVAL_REQUIRED_MARKER, data["limitations"])
 
 
 if __name__ == "__main__":
