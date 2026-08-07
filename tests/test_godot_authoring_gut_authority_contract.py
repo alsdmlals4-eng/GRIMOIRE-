@@ -135,7 +135,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertIn("formal_consumption: NONE", spec)
         self.assertIn("tree_identity: MISMATCH", spec)
 
-    def test_unresolved_gate_list_contains_verified_mismatch_and_future_installation_blockers(self):
+    def test_current_unresolved_closes_resolved_gut_scope_and_preserves_broader_blockers(self):
         text = UNRESOLVED.read_text(encoding="utf-8")
         for resolved in (
             "TOOL_AUTHORITY_REVIEW_NOT_APPROVED",
@@ -143,22 +143,28 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
             "DESIGN_PR_NOT_MERGED_TO_MAIN",
             "HIGODOT_SOURCE_OR_VERSION_UNVERIFIED",
             "GUT_SOURCE_OR_VERSION_UNVERIFIED",
-        ):
-            self.assertNotIn(resolved, text)
-        for token in (
             "GUT_ADOPTION_SPEC_NOT_MERGED",
-            "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2",
-            "GUT_VENDOR_TREE_MISMATCH_OFFICIAL_V9_7_1",
             "GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN",
-            "AUDIO_VAULT_PATH_UNVERIFIED",
             "GUT_ACTUAL_CONSUMPTION_NOT_ENABLED",
             "GUT_CI_NOT_ENABLED",
             "HIGODOT_AUTHORING_RECEIPT_GATE_NOT_IMPLEMENTED",
             "GUT_PRODUCT_MUTATION_HASH_GATE_NOT_IMPLEMENTED",
             "LEGACY_TO_GUT_COVERAGE_PARITY_NOT_PROVEN",
-            "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN",
+            "GPT_ROLE_SEPARATED_REVIEW_NOT_COMPLETE",
         ):
-            self.assertIn(token, text)
+            self.assertNotIn(resolved, text)
+        for blocker in (
+            "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2",
+            "HERA_CLI_ADDON_PAIR_UNVERIFIED",
+            "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
+            "AUDIO_VAULT_PATH_UNVERIFIED",
+            "AUDIO_RIGHTS_UNVERIFIED",
+            "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
+            "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN",
+            "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
+            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
+        ):
+            self.assertIn(blocker, text)
 
 
 if __name__ == "__main__":
