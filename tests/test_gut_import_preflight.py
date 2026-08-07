@@ -8,9 +8,10 @@ from tools.run_local_gut_validation import godot_import_command
 
 class GutImportPreflightTests(unittest.TestCase):
     def test_headless_import_precedes_gut_class_name_consumption(self) -> None:
+        root = Path("project-root")
         self.assertEqual(
-            ["godot-x", "--headless", "--path", "/project", "--import"],
-            godot_import_command("godot-x", Path("/project")),
+            ["godot-x", "--headless", "--path", str(root), "--import"],
+            godot_import_command("godot-x", root),
         )
 
 
