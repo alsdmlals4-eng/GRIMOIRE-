@@ -28,3 +28,5 @@ jobs:
         run: python -m unittest tests.test_v4_4_contract_binding -v
       - name: Validate v4.4 unresolved-gate reconciliation
         run: python -m unittest tests.test_v4_4_formal_adoption_unresolved_reconciliation -v
+      - name: Validate v4.4 post-merge canon synchronization
+        run: python -m unittest tests.test_v4_4_post_merge_canon_sync -v
