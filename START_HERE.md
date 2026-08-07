@@ -2,136 +2,81 @@
 
 ## 현재 상태
 
-| 항목 | 기준 |
-|---|---|
-| Active Contract | `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION v4.3` |
-| Contract Binding | `GM-CONTRACT-V4-3-BINDING-01` |
-| Tool Authority Decision | `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` |
-| Product Decision | `GM-SPELL-WORKFLOW-UI-V2-01` |
-| Preserved Runtime Decision | `GM-STAR-CIRCUIT-MASTERY-BALANCE-01` |
-| Runtime Main | `FIVE_POINT_STAR / TYPED_GLYPH_ONLY` |
-| Spell Workflow Implementation | `PR #82 / Task 1 GREEN / PAUSED` |
-| Tool Authority Design | `PR #83 / merged main 252063cc` |
-| GUT Adoption Spec | `PR #84 / Draft / IN_REVIEW` |
-| Current Gate | `BLOCKED_BY_GUT_ADOPTION_SPEC` |
-| Review Model | `GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY` |
-| HiGodot | `v3.1.2 source PASS / vendor integrity mismatch` |
-| GUT | `v9.7.1 source PASS / vendor tree mismatch / NOT_CONSUMED` |
-| Audio Vault | `C:/Users/user/Documents/GitHub/shered audio vault / BLOCKED_UNVERIFIED` |
-| Base | `9.4.3 pinned / main 4f98f968 observed` |
-| Device·Performance·Screen Reader·Human·Full Slice | `NOT_RUN` |
+```yaml
+active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4
+contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
+project_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+gut_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
+gut_status: GUT_FORMALLY_ADOPTED
+gut_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
+gut_version: 9.7.1
+gut_formal_adoption_pr: 85
+gut_formal_adoption_exact_head: fc178bdc7a3e12faf4ae7ae78fd1f92dd2735849
+gut_formal_adoption_run: 31227323973
+spell_workflow_pr: 82
+spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
+spell_workflow_task2_authorized: false
+review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
+base_release_pin: 9.4.3
+base_current_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
+local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
+godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
+```
 
-## 활성 계약 바인딩
+PR #85가 merged main `ea46923fa78c4fe7844ab6bf422e6716a3c785ed`에 반영되어 GUT 9.7.1 CLI/headless deterministic test authority는 정식 채택되었다. `GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01`은 critical-runtime equivalence만 승인하며 full vendor-tree identity를 의미하지 않는다. GUT Editor Plugin은 계속 비활성이다.
+
+## 제품 보존 정본
+
+- `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`: `FIVE_POINT_STAR`, Typed Glyph Stock, Exactly-once 처리 유지.
+- `GM-SPELL-WORKFLOW-UI-V2-01`: `글자 그리기 → 회로 배치 → 주문 사용` 유지.
+- PR #82 Task 1 GREEN은 보존하지만 Task 2는 아직 시작하지 않는다.
+
+## 현재 broader blockers
 
 ```text
-docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md
+HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2
+HERA_CLI_ADDON_PAIR_UNVERIFIED
+WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
+AUDIO_VAULT_PATH_UNVERIFIED
+AUDIO_RIGHTS_UNVERIFIED
+VISUAL_AUDIO_COMPLETE_NOT_PROVEN
+CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE
+LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
+GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-v4.3 원문의 Switchy-Express 경로는 범용 예시다. GRIMOIRE 권위 경로는 `C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-`다.
+HiGodot은 persistent Godot authoring의 단일 권위다. PR #85에서는 protected product diff가 0이었고 hosted `HiGodot Authoring Receipt Gate`가 PASS했다. 이후 제품/Scene/Resource/project settings를 수정하기 전에는 HiGodot vendor integrity와 실제 authoring 경로를 별도로 닫아야 한다.
 
-v4.3에서는 다음이 필수다.
-
-- Decision Ledger·미확정 목록·이미지 검수 Sheet readback 후 entry status 재판정.
-- `[이미지 완료]`를 `[이미지·오디오 완료]`로 호환 해석.
-- 공유 오디오 Vault 우선 inventory와 출처·권리·hash 검증.
-- GUT formal installation 전 adoption-spec 전용 Draft PR 병합.
-- 별도 인간 reviewer를 가장하지 않고 역할 분리 검토·사용자 결정권·GUT/CI·exact-HEAD 증거 사용.
-
-## 주문 흐름
-
-```text
-글자 그리기 → 회로 배치 → 주문 사용
-```
-
-PR #82 Task 1의 10종 Glyph Catalog와 `BURST → AMPLIFY` 호환은 GREEN이다. Task 2는 GUT adoption-spec·formal installation·남은 Gate가 닫히기 전 시작하지 않는다.
-
-## 공식 도구 판정
-
-### HiGodot
+## 시각·오디오
 
 ```yaml
-release: v3.1.2
-pinned_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
-release_asset_sha256: 60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33
-official_plugin_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
-project_vendor_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
-license: MIT
-source_version_license: PASS
-vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
-```
-
-### GUT
-
-```yaml
-release: v9.7.1
-pinned_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
-official_addons_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
-project_vendor_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
-license: MIT
-source_version_license: PASS
-vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
-formal_consumption: NONE
-```
-
-버전 문자열이 맞더라도 subtree가 다르면 공식 설치물과 동일하다고 주장하지 않는다. PR #84는 mismatch를 명세에 고정할 뿐 addon을 교체하거나 실행하지 않는다.
-
-## 저작·테스트 권위
-
-- HiGodot/Godot AI는 `project.godot`, Scene·Node·Resource·Theme·Animation·signal·Project Settings의 단일 저작 권위다.
-- GUT은 승인된 제품 결과를 읽고 실행하는 테스트 권위이며 production 파일을 수정하지 않는다.
-- 초기 채택은 CLI-only다. GUT Editor Plugin은 활성화하지 않으며 `project.godot`을 변경하지 않는다.
-- 실제 GUT product test·CI·JUnit·hash·legacy parity·HiGodot manifest Gate는 아직 `NOT_IMPLEMENTED`다.
-
-채택 명세:
-
-```text
-docs/testing/GUT_9_7_1_ADOPTION_SPEC.md
-docs/decisions/DEC-GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01-adopt-gut-9-7-1.md
-```
-
-## 동결된 구현 브랜치
-
-```yaml
-branch: agent/gut-9-7-1-formal-adoption-tdd
-status: FROZEN_SUPERSEDED_BY_V4_3_SPEC_GATE
-merge_authorized: false
-```
-
-이 브랜치는 v4.3 adoption-spec Gate보다 먼저 시작되어 동결됐다. PR #84 병합 후 최신 main에서 새 구현 브랜치를 만든다.
-
-## 시각·오디오 상태
-
-```yaml
-status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
-awaiting_user_direction_approval: false
-implementation_visual_review: PENDING
-final_art: NOT_CLAIMED
-audio_vault_path: BLOCKED_UNVERIFIED
+visual_direction_approval: COMPLETE
+visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
+audio_vault_path: "C:/Users/user/Documents/GitHub/shered audio vault"
+audio_vault_status: BLOCKED_UNVERIFIED
 audio_rights: BLOCKED_UNVERIFIED
 ```
 
-## Godot에서 열기
+## Godot
 
 ```text
-GRIMOIRE-/project.godot
+project.godot
 └─ Main Scene: res://src/ui/star_circuit_harness.tscn
 ```
 
-Godot 4.7.1 CI target, 1280×720 Mobile Landscape, GL Compatibility다. 로컬 exact executable과 clean-main runtime은 접근 불가로 검증하지 못했다. UI v2 Main Scene 전환은 전체 구현·GUT/legacy 회귀·렌더·HiGodot manifest PASS 전 금지한다.
+Hosted Godot 4.7.1/GUT 검증은 PR #85에서 PASS했지만 사용자 로컬 `Fetch/Pull` 및 clean merged-main `Run Project`는 이 환경에서 실행하지 못했다.
 
 ## 읽기 순서
 
 1. `AGENTS.md`
-2. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md`
-3. `docs/planning/ENTRY_STATE_RECONCILIATION_V4_3.json`
+2. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md`
+3. `docs/planning/ENTRY_STATE_RECONCILIATION_V4_4.md`
 4. `docs/ACTIVE_CONTEXT.md`
 5. `docs/DEVELOPMENT_GATES.md`
 6. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
 7. `docs/planning/CURRENT_UNRESOLVED_GATES.md`
-8. `docs/testing/GUT_9_7_1_ADOPTION_SPEC.md`
-9. `docs/decisions/DEC-GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01-adopt-gut-9-7-1.md`
-10. `docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json`
-11. `docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md`
-12. `docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md`
+8. `docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json`
+9. `docs/testing/GUT_9_7_1_ADOPTION_SPEC.md`
+10. `docs/validation/GUT_LEGACY_REQUIRED_CONTRACT_PARITY.json`
 
-다음 작업은 공식 source/vendor mismatch Sheet addendum, PR #84 exact-HEAD CI, 역할 분리 검토다. PR #84가 merged main에 존재하기 전에는 GUT formal installation을 시작하지 않는다.
+다음 제품 구현은 위 broader blocker 중 해당 작업 package가 실제 소비하는 선행 Gate를 먼저 닫은 뒤 진행한다.

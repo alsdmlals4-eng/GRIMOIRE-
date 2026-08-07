@@ -15,6 +15,8 @@ CURRENT_DOCS = [
     ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
 ]
+CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
+GRILL = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 
 
 class V44PostMergeCanonSyncTests(unittest.TestCase):
@@ -46,17 +48,26 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
             self.assertIn("spell_workflow_task2_authorized: false", text, str(path))
             self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", text, str(path))
 
+    def test_machine_current_state_surfaces_are_v4_4_post_merge(self) -> None:
+        canon = json.loads(CANON.read_text(encoding="utf-8"))
+        grill = json.loads(GRILL.read_text(encoding="utf-8"))
+        self.assertEqual("4.4", canon["active_contract"]["version"])
+        self.assertEqual(MERGED_MAIN, canon["project_main"]["sha"])
+        self.assertEqual("GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED", canon["tool_authority"]["status"])
+        self.assertFalse(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
+        self.assertEqual("4.4", grill["active_contract"]["version"])
+        self.assertEqual(0, grill["current_count"])
+        self.assertEqual(MERGED_MAIN, grill["current_work"]["project_main"])
+        self.assertEqual("GUT_FORMALLY_ADOPTED", grill["current_work"]["gut_formal_adoption"])
+        self.assertFalse(grill["current_work"]["spell_workflow_task2_authorized"])
+
     def test_broader_blockers_are_preserved_after_formal_adoption(self) -> None:
         text = (ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md").read_text(encoding="utf-8")
         for blocker in (
-            "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2",
-            "HERA_CLI_ADDON_PAIR_UNVERIFIED",
-            "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
-            "AUDIO_VAULT_PATH_UNVERIFIED",
-            "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
-            "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
-            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
-            "CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE",
+            "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", "HERA_CLI_ADDON_PAIR_UNVERIFIED",
+            "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
+            "VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
+            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS", "CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE",
         ):
             self.assertIn(blocker, text)
 
