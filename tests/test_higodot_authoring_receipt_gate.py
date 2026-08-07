@@ -1,10 +1,13 @@
 from __future__ import annotations
 
-import tempfile
 import unittest
 from pathlib import Path
 
 from tools.check_higodot_authoring_receipt import protected_paths
+
+
+ROOT = Path(__file__).resolve().parents[1]
+WORKFLOW = ROOT / ".github/workflows/validate-gut-formal-adoption.yml"
 
 
 class HiGodotAuthoringReceiptGateTests(unittest.TestCase):
@@ -46,6 +49,18 @@ class HiGodotAuthoringReceiptGateTests(unittest.TestCase):
             ["misc/a.res", "misc/b.tres", "misc/c.tscn"],
             protected_paths(["misc/c.tscn", "misc/a.res", "misc/b.tres"]),
         )
+
+    def test_formal_adoption_workflow_executes_receipt_gate_and_aggregates_it(self) -> None:
+        text = WORKFLOW.read_text(encoding="utf-8")
+        for token in (
+            "higodot-receipt:",
+            "fetch-depth: 0",
+            "python tools/check_higodot_authoring_receipt.py",
+            '--base-sha "$BASE_SHA"',
+            '--head-sha "$EXACT_HEAD"',
+            "needs: [validate, higodot-receipt]",
+        ):
+            self.assertIn(token, text)
 
 
 if __name__ == "__main__":
