@@ -126,6 +126,15 @@ def parse_junit(path: Path) -> dict[str, int]:
     }
 
 
+def parse_junit_result(path: Path) -> tuple[Path, dict[str, int]]:
+    if not path.is_file():
+        raise RuntimeError("JUNIT_MISSING")
+    counts = parse_junit(path)
+    if counts["tests"] < 1:
+        raise RuntimeError("JUNIT_DISCOVERY_ZERO")
+    return path, counts
+
+
 def copy_and_parse_junit(user_data_root: Path, evidence_dir: Path) -> tuple[Path, dict[str, int]]:
     candidates = sorted(user_data_root.rglob("gut-results.xml")) if user_data_root.exists() else []
     if not candidates:
@@ -136,10 +145,7 @@ def copy_and_parse_junit(user_data_root: Path, evidence_dir: Path) -> tuple[Path
     evidence_dir.mkdir(parents=True, exist_ok=True)
     destination = evidence_dir / "gut-results.xml"
     shutil.copy2(candidates[0], destination)
-    counts = parse_junit(destination)
-    if counts["tests"] < 1:
-        raise RuntimeError("JUNIT_DISCOVERY_ZERO")
-    return destination, counts
+    return parse_junit_result(destination)
 
 
 def run_process(
@@ -407,7 +413,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             )
             manifest["production_hash"]["before_path"] = before_path.as_posix()
 
-            godot_env, user_data_root = isolated_godot_environment(evidence_dir)
+            junit_output_path = (evidence_dir / "gut-results.xml").resolve()
+            if junit_output_path.exists():
+                junit_output_path.unlink()
+            godot_env, _user_data_root = isolated_godot_environment(evidence_dir)
             gut_result = run_process(
                 "gut-headless",
                 [
@@ -418,7 +427,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     "-s",
                     "addons/gut/gut_cmdln.gd",
                     "-gconfig=res://.gutconfig.json",
-                    "-gjunit_xml_file=user://gut-results.xml",
+                    f"-gjunit_xml_file={junit_output_path}",
                     "-gexit",
                 ],
                 root,
@@ -429,7 +438,22 @@ def main(argv: Sequence[str] | None = None) -> int:
             gut_log = Path(gut_result["log_path"]).read_text(encoding="utf-8")
             log_discovered, log_passed, log_failed = parse_gut_counts(gut_log)
 
-            junit_path, junit = copy_and_parse_junit(user_data_root, evidence_dir)
+            after = build_manifest(root)
+            after_path.write_text(
+                json.dumps(after, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+            )
+            hashes_equal = before == after
+            manifest["production_hash"].update(
+                {
+                    "after_path": after_path.as_posix(),
+                    "equal": hashes_equal,
+                    "status": "PASS" if hashes_equal else "FAIL",
+                }
+            )
+            if not hashes_equal:
+                raise RuntimeError("PRODUCTION_HASH_CHANGED")
+
+            junit_path, junit = parse_junit_result(junit_output_path)
             discovered = max(log_discovered, junit["tests"])
             failed = max(log_failed, junit["failures"])
             errors = junit["errors"]
@@ -451,21 +475,6 @@ def main(argv: Sequence[str] | None = None) -> int:
                     ),
                 }
             )
-
-            after = build_manifest(root)
-            after_path.write_text(
-                json.dumps(after, sort_keys=True, indent=2) + "\n", encoding="utf-8"
-            )
-            hashes_equal = before == after
-            manifest["production_hash"].update(
-                {
-                    "after_path": after_path.as_posix(),
-                    "equal": hashes_equal,
-                    "status": "PASS" if hashes_equal else "FAIL",
-                }
-            )
-            if not hashes_equal:
-                raise RuntimeError("PRODUCTION_HASH_CHANGED")
             if manifest["gut"]["status"] != "PASS":
                 raise RuntimeError("GUT_EXECUTION_FAILURE_OR_DISCOVERY_ZERO")
 
