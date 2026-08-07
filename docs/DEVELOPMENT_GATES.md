@@ -5,6 +5,7 @@ active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_
 contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
 current_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+circuit_topology: FIVE_POINT_STAR
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
@@ -22,6 +23,17 @@ implementation_entry: BLOCKED_BY_BROADER_PROJECT_GATES
 - 바인딩: `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md`
 - Base current main observed: `fa69a77a14f923a756064f6ae151d34cadb374f7`; project pin은 9.4.3 그대로다.
 - Decision/미확정/이미지 Sheet readback을 작업 진입 때마다 다시 계산한다.
+
+## 보존 Runtime Gate
+
+```yaml
+decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+circuit_topology: FIVE_POINT_STAR
+product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
+runtime_validation: AUTOMATED_HEADLESS_PASS
+```
+
+v4.4 적용과 GUT formal adoption은 기존 Five-point Star 핵심 runtime 결정을 삭제하거나 약화하지 않는다.
 
 ## Gate 15.1 — HiGodot single authoring authority
 
