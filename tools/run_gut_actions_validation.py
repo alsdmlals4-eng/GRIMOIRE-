@@ -15,7 +15,7 @@ from tools.gut_failure_evidence import render_failure_evidence, resolve_evidence
 validator.DECISION_ID = "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01"
 
 OFFICIAL_GUT_REPOSITORY = "https://github.com/bitwes/Gut.git"
-APPROVAL_REQUIRED_MARKER = "GUT_VENDOR_CRITICAL_RUNTIME_EQUIVALENCE_APPROVAL_REQUIRED"
+APPROVED_VENDOR_DECISION_ID = "GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01"
 DIAGNOSTIC_AUDIT_RESULTS = {
     "FULL_TREE_GODOT_LOAD_STEPS_NORMALIZED_IDENTICAL",
     "CRITICAL_RUNTIME_GODOT_LOAD_STEPS_NORMALIZED_IDENTICAL_FULL_TREE_MISMATCH",
@@ -71,7 +71,7 @@ def normalized_audit_allows_runtime(report: Mapping[str, Any]) -> bool:
     return report.get("result") in DIAGNOSTIC_AUDIT_RESULTS
 
 
-def apply_pending_vendor_approval(
+def apply_approved_vendor_equivalence(
     manifest_path: Path,
     audit_path: Path,
     *,
@@ -86,21 +86,17 @@ def apply_pending_vendor_approval(
         {
             "expected_tree": official_tree,
             "actual_tree": actual_tree,
-            "status": "AUDIT_EQUIVALENT_PENDING_USER_APPROVAL",
+            "status": "CRITICAL_RUNTIME_EQUIVALENCE_USER_APPROVED",
+            "decision_id": APPROVED_VENDOR_DECISION_ID,
             "audit_result": audit.get("result"),
             "audit_path": audit_path.as_posix(),
         }
     )
-    limitations = manifest.setdefault("limitations", [])
-    if APPROVAL_REQUIRED_MARKER not in limitations:
-        limitations.append(APPROVAL_REQUIRED_MARKER)
-    if runtime_return_code == 0:
-        manifest["result"] = "BLOCKED"
     manifest_path.write_text(
         json.dumps(manifest, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
         encoding="utf-8",
     )
-    return 1
+    return runtime_return_code
 
 
 def _attach_failed_audit(
@@ -134,7 +130,7 @@ def main() -> int:
     audit_path = evidence_dir / "gut-vendor-audit.json"
     mode = _argument_value(argv, "--mode", "contract")
 
-    pending_approval: dict[str, str] | None = None
+    approved_equivalence: dict[str, str] | None = None
     audit_report: Mapping[str, Any] | None = None
     if mode in {"vendor", "full"}:
         actual_tree = validator.git_text(root, "rev-parse", "HEAD:addons/gut")
@@ -168,7 +164,7 @@ def main() -> int:
                 )
             )
             if normalized_audit_allows_runtime(audit_report):
-                pending_approval = {
+                approved_equivalence = {
                     "official_tree": official_tree,
                     "actual_tree": actual_tree,
                 }
@@ -176,12 +172,12 @@ def main() -> int:
 
     return_code = validator.main(argv)
 
-    if pending_approval is not None:
-        return_code = apply_pending_vendor_approval(
+    if approved_equivalence is not None:
+        return_code = apply_approved_vendor_equivalence(
             manifest_path,
             audit_path,
-            official_tree=pending_approval["official_tree"],
-            actual_tree=pending_approval["actual_tree"],
+            official_tree=approved_equivalence["official_tree"],
+            actual_tree=approved_equivalence["actual_tree"],
             runtime_return_code=return_code,
         )
     elif audit_report is not None:
