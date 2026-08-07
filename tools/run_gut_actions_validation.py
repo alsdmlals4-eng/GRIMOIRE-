@@ -154,6 +154,15 @@ def main() -> int:
                 encoding="utf-8",
             )
             print(audit_path)
+            print("--- GUT vendor audit ---")
+            print(
+                json.dumps(
+                    audit_report,
+                    ensure_ascii=False,
+                    sort_keys=True,
+                    indent=2,
+                )
+            )
             if normalized_audit_allows_runtime(audit_report):
                 pending_approval = {
                     "official_tree": official_tree,
