@@ -64,6 +64,10 @@ def full_unittest_command(executable: str | Path = sys.executable) -> list[str]:
     ]
 
 
+def godot_import_command(executable: str | Path, root: Path) -> list[str]:
+    return [str(executable), "--headless", "--path", str(root), "--import"]
+
+
 def isolated_godot_environment(
     evidence_dir: Path,
     *,
@@ -404,6 +408,18 @@ def main(argv: Sequence[str] | None = None) -> int:
             if not all(path.is_file() for path in required):
                 raise RuntimeError("GUT_CONSUMPTION_FILES_MISSING")
 
+            godot_env, _user_data_root = isolated_godot_environment(evidence_dir)
+            import_result = run_process(
+                "godot-import",
+                godot_import_command(executable, root),
+                root,
+                logs_dir,
+                env=godot_env,
+            )
+            manifest["commands"].append(import_result)
+            if import_result["exit_code"] != 0:
+                raise RuntimeError("GODOT_IMPORT_FAILURE")
+
             before_path = evidence_dir / "gut-products-before.json"
             after_path = evidence_dir / "gut-products-after.json"
             before = build_manifest(root)
@@ -416,7 +432,6 @@ def main(argv: Sequence[str] | None = None) -> int:
             junit_output_path = (evidence_dir / "gut-results.xml").resolve()
             if junit_output_path.exists():
                 junit_output_path.unlink()
-            godot_env, _user_data_root = isolated_godot_environment(evidence_dir)
             gut_result = run_process(
                 "gut-headless",
                 [
