@@ -15,7 +15,8 @@ from tools.gut_failure_evidence import render_failure_evidence, resolve_evidence
 validator.DECISION_ID = "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01"
 
 OFFICIAL_GUT_REPOSITORY = "https://github.com/bitwes/Gut.git"
-APPROVAL_REQUIRED_MARKER = "GUT_VENDOR_TEXT_NORMALIZATION_EQUIVALENCE_APPROVAL_REQUIRED"
+APPROVAL_REQUIRED_MARKER = "GUT_VENDOR_GODOT_LOAD_STEPS_EQUIVALENCE_APPROVAL_REQUIRED"
+NORMALIZED_AUDIT_RESULT = "FULL_TREE_GODOT_LOAD_STEPS_NORMALIZED_IDENTICAL"
 
 
 def _argument_value(
@@ -64,7 +65,7 @@ def prepare_official_gut_checkout(root: Path) -> Path:
 
 
 def normalized_audit_allows_runtime(report: Mapping[str, Any]) -> bool:
-    return report.get("result") == "FULL_TREE_TEXT_NORMALIZED_IDENTICAL"
+    return report.get("result") == NORMALIZED_AUDIT_RESULT
 
 
 def apply_pending_vendor_approval(
