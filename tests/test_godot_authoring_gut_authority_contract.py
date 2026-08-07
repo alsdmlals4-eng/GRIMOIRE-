@@ -6,7 +6,8 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 LEGACY_SPEC = ROOT / "docs/planning/GODOT_AUTHORING_GUT_TEST_AUTHORITY_ADOPTION_2026-08-06.md"
 ADOPTION_SPEC = ROOT / "docs/testing/GUT_9_7_1_ADOPTION_SPEC.md"
-BINDING = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md"
+BINDING_V43 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md"
+BINDING_V44 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md"
 PLAN = ROOT / "docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md"
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
@@ -21,17 +22,18 @@ ACTIVE_FILES = [
 
 
 class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
-    def test_authority_design_plan_binding_and_adoption_spec_exist(self):
-        for path in (LEGACY_SPEC, ADOPTION_SPEC, BINDING, PLAN, STATE, UNRESOLVED):
+    def test_authority_design_plan_bindings_and_adoption_spec_exist(self):
+        for path in (LEGACY_SPEC, ADOPTION_SPEC, BINDING_V43, BINDING_V44, PLAN, STATE, UNRESOLVED):
             self.assertTrue(path.is_file(), str(path))
 
-    def test_v4_3_transitions_to_formal_adoption_implementation_gate(self):
+    def test_v4_4_binding_preserves_formal_adoption_implementation_gate(self):
         data = json.loads(STATE.read_text(encoding="utf-8"))
-        self.assertEqual("4.3", data["contract"]["version"])
-        self.assertEqual("GM-CONTRACT-V4-3-BINDING-01", data["contract"]["binding_decision_id"])
+        self.assertEqual("4.4", data["contract"]["version"])
+        self.assertEqual("GM-CONTRACT-V4-4-BINDING-01", data["contract"]["binding_decision_id"])
         self.assertEqual("GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01", data["decision_id"])
         self.assertEqual("GUT_SPEC_MERGED_IMPLEMENTATION_CI_GATE_PENDING", data["status"])
         self.assertEqual("USER_APPROVED_2026-08-06", data["design_review"])
+        self.assertEqual("fa69a77a14f923a756064f6ae151d34cadb374f7", data["base_policy_observation"]["current_main"])
         self.assertEqual("GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY", data["review"]["model"])
         self.assertEqual("NOT_PLANNED_SOLO_DEVELOPMENT", data["review"]["external_independent_reviewer"])
         self.assertEqual("MERGED_MAIN_READBACK_PASS", data["pr84_merge_gate"]["status"])
@@ -60,7 +62,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("IN_PROGRESS_RED", data["entry_gate"]["implementation"])
         self.assertEqual("PAUSED_AFTER_TASK1_GREEN", data["implementation_pr"]["status"])
         self.assertEqual("APPROVED_DIRECTION_RUNTIME_NOT_RUN", data["image_review"]["status"])
-        self.assertEqual("PASS", data["sheet_sync"]["readback"])
+        self.assertEqual("PENDING", data["sheet_sync"]["readback"])
         self.assertTrue(data["claims"]["official_tool_releases_verified"])
         self.assertFalse(data["claims"]["tool_vendor_integrity_pass"])
         self.assertTrue(data["claims"]["gut_adoption_spec_merged"])
