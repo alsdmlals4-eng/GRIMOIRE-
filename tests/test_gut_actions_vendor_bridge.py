@@ -12,15 +12,15 @@ from tools.run_gut_actions_validation import (
 )
 
 
+NORMALIZED_RESULT = "FULL_TREE_GODOT_LOAD_STEPS_NORMALIZED_IDENTICAL"
+
+
 class GutActionsVendorBridgeTests(unittest.TestCase):
-    def test_only_full_text_normalized_identity_allows_runtime_diagnostics(self) -> None:
-        self.assertTrue(
-            normalized_audit_allows_runtime(
-                {"result": "FULL_TREE_TEXT_NORMALIZED_IDENTICAL"}
-            )
-        )
+    def test_only_full_godot_metadata_normalized_identity_allows_runtime_diagnostics(self) -> None:
+        self.assertTrue(normalized_audit_allows_runtime({"result": NORMALIZED_RESULT}))
         for result in (
             "FULL_TREE_IDENTICAL",
+            "FULL_TREE_TEXT_NORMALIZED_IDENTICAL",
             "CRITICAL_RUNTIME_SUBSET_IDENTICAL_FULL_TREE_MISMATCH",
             "CRITICAL_RUNTIME_TEXT_NORMALIZED_IDENTICAL_FULL_TREE_MISMATCH",
             "FAIL",
@@ -33,17 +33,11 @@ class GutActionsVendorBridgeTests(unittest.TestCase):
             manifest_path = root / "manifest.json"
             audit_path = root / "gut-vendor-audit.json"
             manifest_path.write_text(
-                json.dumps(
-                    {
-                        "vendor": {},
-                        "result": "PASS",
-                        "limitations": [],
-                    }
-                ),
+                json.dumps({"vendor": {}, "result": "PASS", "limitations": []}),
                 encoding="utf-8",
             )
             audit_path.write_text(
-                json.dumps({"result": "FULL_TREE_TEXT_NORMALIZED_IDENTICAL"}),
+                json.dumps({"result": NORMALIZED_RESULT}),
                 encoding="utf-8",
             )
 
@@ -64,10 +58,7 @@ class GutActionsVendorBridgeTests(unittest.TestCase):
             )
             self.assertEqual("official-tree", data["vendor"]["expected_tree"])
             self.assertEqual("project-tree", data["vendor"]["actual_tree"])
-            self.assertEqual(
-                "FULL_TREE_TEXT_NORMALIZED_IDENTICAL",
-                data["vendor"]["audit_result"],
-            )
+            self.assertEqual(NORMALIZED_RESULT, data["vendor"]["audit_result"])
             self.assertIn(APPROVAL_REQUIRED_MARKER, data["limitations"])
 
     def test_runtime_failure_is_preserved_and_approval_marker_is_added(self) -> None:
@@ -86,7 +77,7 @@ class GutActionsVendorBridgeTests(unittest.TestCase):
                 encoding="utf-8",
             )
             audit_path.write_text(
-                json.dumps({"result": "FULL_TREE_TEXT_NORMALIZED_IDENTICAL"}),
+                json.dumps({"result": NORMALIZED_RESULT}),
                 encoding="utf-8",
             )
 
