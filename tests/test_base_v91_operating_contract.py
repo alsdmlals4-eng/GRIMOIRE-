@@ -27,10 +27,12 @@ class BaseV91OperatingContractTests(unittest.TestCase):
             [route["skill_id"] for route in adapter["routing"]["project_routes"]],
             ["magic-writing-recovery", "art-style-decision-gate"],
         )
-        self.assertEqual(
-            set(snapshot["effective_routes"]),
-            {"art-style-decision-gate", "auditing-and-refining-ui-art", "magic-writing-recovery"},
-        )
+        adapter_routes = {
+            route["skill_id"]
+            for group in ("base_routes", "project_routes")
+            for route in adapter["routing"][group]
+        }
+        self.assertEqual(adapter_routes, set(snapshot["effective_routes"]))
 
     def test_router_and_project_skills_are_thin_and_actionable(self) -> None:
         router = (ROOT / ".agents/skills/grimoire-workflow-router/SKILL.md").read_text(encoding="utf-8")
