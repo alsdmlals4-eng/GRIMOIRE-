@@ -41,7 +41,7 @@ class GutVendorAuditTests(unittest.TestCase):
         self.assertFalse(result["critical_runtime_all_identical"])
         self.assertEqual("MISSING_PROJECT", result["critical_runtime"][missing])
 
-    def test_text_normalized_manifest_treats_crlf_and_lf_as_equivalent(self) -> None:
+    def test_normalized_manifest_treats_crlf_and_lf_as_equivalent(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             official = root / "official/addons/gut/gui"
@@ -56,7 +56,28 @@ class GutVendorAuditTests(unittest.TestCase):
                 compare_manifests(official_manifest, project_manifest)["full_tree_identical"]
             )
 
-    def test_text_normalized_manifest_still_detects_semantic_change(self) -> None:
+    def test_normalized_manifest_ignores_only_godot_load_steps_hint(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            official = root / "official/addons/gut/gui"
+            project = root / "project/addons/gut/gui"
+            official.mkdir(parents=True)
+            project.mkdir(parents=True)
+            (official / "GutRunner.tscn").write_text(
+                '[gd_scene load_steps=3 format=3 uid="uid://x"]\n[node name="X"]\n',
+                encoding="utf-8",
+            )
+            (project / "GutRunner.tscn").write_text(
+                '[gd_scene format=3 uid="uid://x"]\n[node name="X"]\n',
+                encoding="utf-8",
+            )
+            official_manifest = read_filesystem_manifest(root / "official", normalize_text=True)
+            project_manifest = read_filesystem_manifest(root / "project", normalize_text=True)
+            self.assertTrue(
+                compare_manifests(official_manifest, project_manifest)["full_tree_identical"]
+            )
+
+    def test_normalized_manifest_still_detects_semantic_change(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             official = root / "official/addons/gut"
