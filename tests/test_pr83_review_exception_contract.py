@@ -36,7 +36,7 @@ class Pr83ReviewExceptionContractTests(unittest.TestCase):
         self.assertEqual("MERGED_MAIN_READBACK_PASS", gate["status"])
         self.assertEqual("312e491c8e9b333cb585b4e0550f80e3aea5f3f7", gate["merged_main"])
         self.assertTrue(gate["exception_consumed"])
-        self.assertFalse(gate["waives_future_pr_review"])
+        self.assertFalse(gate["waives_future_pr_checks"])
         self.assertFalse(state["claims"]["gut_formally_adopted"])
         self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
 
