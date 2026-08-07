@@ -24,13 +24,17 @@ def render_failure_evidence(evidence_dir: Path) -> str:
         "--- validation manifest ---",
         json.dumps(data, ensure_ascii=False, sort_keys=True, indent=2),
     ]
+    limitations = {str(item) for item in data.get("limitations", [])}
 
     for command in data.get("commands", []):
-        if command.get("exit_code") == 0:
-            continue
+        exit_code = command.get("exit_code")
         name = str(command.get("name", "unknown-command"))
+        diagnostic_success = "JUNIT_MISSING" in limitations and name == "gut-headless"
+        if exit_code == 0 and not diagnostic_success:
+            continue
         log_path = Path(str(command.get("log_path", "")))
-        sections.append(f"--- failed command log: {name} ---")
+        label = "diagnostic command log" if diagnostic_success else "failed command log"
+        sections.append(f"--- {label}: {name} ---")
         if log_path.is_file():
             sections.append(log_path.read_text(encoding="utf-8", errors="replace"))
         else:
