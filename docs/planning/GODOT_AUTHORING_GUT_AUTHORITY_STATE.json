@@ -1,20 +1,21 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
-    "version": "4.3",
-    "binding_decision_id": "GM-CONTRACT-V4-3-BINDING-01",
-    "binding_path": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md",
-    "status": "ACTIVE_MERGED_MAIN"
+    "version": "4.4",
+    "binding_decision_id": "GM-CONTRACT-V4-4-BINDING-01",
+    "binding_path": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md",
+    "status": "ACTIVE_WORKING_BRANCH_PENDING_MAIN"
   },
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
-  "sync_id": "GR-SYNC-20260807-19-PUBLIC-REPO-FREE-ACTIONS",
+  "sync_id": "GR-SYNC-20260808-01-CONTRACT-V4-4-BINDING",
   "source_integrity_sync_id": "GR-SYNC-20260806-14-TOOL-SOURCE-INTEGRITY",
   "status": "GUT_SPEC_MERGED_IMPLEMENTATION_CI_GATE_PENDING",
   "design_review": "USER_APPROVED_2026-08-06",
-  "source_main": "312e491c8e9b333cb585b4e0550f80e3aea5f3f7",
+  "source_main": "563c2b08cb96354fdd7209a32d7fd8ec26bb334c",
+  "v4_4_entry_reconciliation_path": "docs/planning/ENTRY_STATE_RECONCILIATION_V4_4.md",
   "base_policy_observation": {
-    "current_main": "4f98f968a377f7b6a11aafa4fc94d11bddbebedc",
+    "current_main": "fa69a77a14f923a756064f6ae151d34cadb374f7",
     "project_pin": "9.4.3",
     "pin_update": "NOT_APPROVED_NOT_PERFORMED"
   },
@@ -117,6 +118,13 @@
     "rights_status": "AUDIO_RIGHTS_UNVERIFIED",
     "runtime_reference_policy": "COPY_APPROVED_ASSETS_INTO_RES_NOT_ABSOLUTE_PATH"
   },
+  "asset_vault": {
+    "local_root": "<project-root>/.asset-vault/",
+    "godot_local_projection": "res://assets/_vault_local/",
+    "tracked_manifest": "ASSET_MANIFEST.yml",
+    "current_main_manifest_readback": "MISSING",
+    "status": "NO_PROMOTED_ASSET_CLAIM_BY_V4_4_BINDING"
+  },
   "pr84_merge_gate": {
     "actions_exception_decision_id": "GM-PR84-ACTIONS-BUDGET-LOCAL-EVIDENCE-EXCEPTION-01",
     "reviewed_head": "cd3ffc2cf11ab21269dd5f9678b73cf64d153554",
@@ -129,7 +137,7 @@
   "entry_gate": {
     "status": "BLOCKED_PENDING_GUT_FORMAL_ADOPTION",
     "implementation": "IN_PROGRESS_RED",
-    "reconciliation_path": "docs/planning/ENTRY_STATE_RECONCILIATION_V4_3.json",
+    "reconciliation_path": "docs/planning/ENTRY_STATE_RECONCILIATION_V4_4.md",
     "required_live_reads": [
       "00_프로젝트_허브",
       "01_작업순서",
@@ -138,7 +146,7 @@
       "72_이미지검수_승인로그"
     ],
     "required_static_sources": [
-      "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md",
+      "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md",
       "docs/testing/GUT_9_7_1_ADOPTION_SPEC.md",
       "docs/decisions/DEC-GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01-adopt-gut-9-7-1.md",
       "docs/decisions/DEC-GM-ACTIONS-BUDGET-LOCAL-VERIFICATION-MODE-01.md",
@@ -181,20 +189,19 @@
   },
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "sync_id": "GR-SYNC-20260807-19-PUBLIC-REPO-FREE-ACTIONS",
-    "write": "PASS",
-    "readback": "PASS",
-    "ranges": [
-      "00_프로젝트_허브!E2:K2",
-      "02_현재_확정결정!A72:M73",
-      "99_변경이력!A101:H101"
-    ],
+    "sync_id": "GR-SYNC-20260808-01-CONTRACT-V4-4-BINDING",
+    "write": "PENDING",
+    "readback": "PENDING",
+    "ranges": [],
     "pr84_merged_main_sync": "PASS",
     "pr84_merged_main": "312e491c8e9b333cb585b4e0550f80e3aea5f3f7"
   },
   "validation": {
     "actions_mode": "PUBLIC_REPO_STANDARD_GITHUB_HOSTED",
-    "github_actions": "CONFIGURED_EXECUTION_PENDING",
+    "github_actions": "CURRENT_HEAD_REVALIDATION_REQUIRED",
+    "previous_exact_head": "a264bb7b7172faf250faad2be7b3300785e8e367",
+    "previous_exact_head_run": 31177968404,
+    "previous_exact_head_result": "PASS",
     "local_exact_head": "SUPERSEDED_NOT_REQUIRED",
     "hash_tool_unit": "PASS_3_TESTS_ISOLATED",
     "windows_export": "NOT_RUN",
@@ -205,7 +212,7 @@
     "screen_reader": "NOT_RUN",
     "human": "NOT_RUN",
     "local_sync": "SUPERSEDED",
-    "godot_run": "CI_EXECUTION_PENDING"
+    "godot_run": "CURRENT_HEAD_REVALIDATION_REQUIRED"
   },
   "claims": {
     "official_tool_releases_verified": true,
