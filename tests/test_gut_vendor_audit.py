@@ -1,8 +1,14 @@
 from __future__ import annotations
 
+import tempfile
 import unittest
+from pathlib import Path
 
-from tools.audit_gut_vendor import CRITICAL_RUNTIME_PATHS, compare_manifests
+from tools.audit_gut_vendor import (
+    CRITICAL_RUNTIME_PATHS,
+    compare_manifests,
+    read_filesystem_manifest,
+)
 
 
 class GutVendorAuditTests(unittest.TestCase):
@@ -34,6 +40,36 @@ class GutVendorAuditTests(unittest.TestCase):
         result = compare_manifests(official, project)
         self.assertFalse(result["critical_runtime_all_identical"])
         self.assertEqual("MISSING_PROJECT", result["critical_runtime"][missing])
+
+    def test_text_normalized_manifest_treats_crlf_and_lf_as_equivalent(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            official = root / "official/addons/gut/gui"
+            project = root / "project/addons/gut/gui"
+            official.mkdir(parents=True)
+            project.mkdir(parents=True)
+            (official / "GutRunner.tscn").write_bytes(b"[gd_scene]\r\n[node]\r\n")
+            (project / "GutRunner.tscn").write_bytes(b"[gd_scene]\n[node]\n")
+            official_manifest = read_filesystem_manifest(root / "official", normalize_text=True)
+            project_manifest = read_filesystem_manifest(root / "project", normalize_text=True)
+            self.assertTrue(
+                compare_manifests(official_manifest, project_manifest)["full_tree_identical"]
+            )
+
+    def test_text_normalized_manifest_still_detects_semantic_change(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            official = root / "official/addons/gut"
+            project = root / "project/addons/gut"
+            official.mkdir(parents=True)
+            project.mkdir(parents=True)
+            (official / "gut_cmdln.gd").write_bytes(b"extends SceneTree\r\n")
+            (project / "gut_cmdln.gd").write_bytes(b"extends Node\n")
+            official_manifest = read_filesystem_manifest(root / "official", normalize_text=True)
+            project_manifest = read_filesystem_manifest(root / "project", normalize_text=True)
+            result = compare_manifests(official_manifest, project_manifest)
+            self.assertFalse(result["full_tree_identical"])
+            self.assertEqual(["addons/gut/gut_cmdln.gd"], result["changed_blob"])
 
 
 if __name__ == "__main__":
