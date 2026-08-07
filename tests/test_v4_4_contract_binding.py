@@ -7,13 +7,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BINDING = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md"
+RECONCILIATION = ROOT / "docs/planning/ENTRY_STATE_RECONCILIATION_V4_4.md"
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
-ACTIVE_FILES = [
-    ROOT / "START_HERE.md",
-    ROOT / "docs/ACTIVE_CONTEXT.md",
-    ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
-    ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
-]
 
 
 class V44ContractBindingTests(unittest.TestCase):
@@ -47,11 +42,21 @@ class V44ContractBindingTests(unittest.TestCase):
         self.assertFalse(state["claims"]["visual_audio_complete"])
         self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
 
-    def test_cold_start_authority_files_identify_v4_4_as_active_contract(self) -> None:
-        for path in ACTIVE_FILES:
-            text = path.read_text(encoding="utf-8")
-            self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text, str(path))
-            self.assertIn("v4.4", text, str(path))
+    def test_v4_4_entry_reconciliation_records_current_blockers_without_rewriting_history(self) -> None:
+        self.assertTrue(RECONCILIATION.is_file(), str(RECONCILIATION))
+        text = RECONCILIATION.read_text(encoding="utf-8")
+        for token in (
+            "GM-CONTRACT-V4-4-BINDING-01",
+            "PR #85",
+            "PR #82 Task 2",
+            "LEGACY_TO_GUT_COVERAGE_PARITY_NOT_PROVEN",
+            "HIGODOT_AUTHORING_RECEIPT_GATE_NOT_IMPLEMENTED",
+            "ROLE_SEPARATED_REVIEW_PENDING_CURRENT_HEAD",
+            "AUDIO_VAULT_PATH_UNVERIFIED",
+            "ASSET_MANIFEST_CURRENT_MAIN_MISSING_NO_PROMOTED_ASSET_CLAIM",
+            "decision: BLOCK",
+        ):
+            self.assertIn(token, text)
 
 
 if __name__ == "__main__":
