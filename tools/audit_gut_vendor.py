@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import subprocess
 from pathlib import Path
@@ -10,6 +11,19 @@ from typing import Mapping
 
 PINNED_COMMIT = "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605"
 PINNED_TREE = "5d6893836af4917ee62b1a395125a7530b1f239d"
+TEXT_NORMALIZED_SUFFIXES = {
+    ".cfg",
+    ".fnt",
+    ".gd",
+    ".import",
+    ".json",
+    ".md",
+    ".svg",
+    ".tres",
+    ".tscn",
+    ".txt",
+    ".uid",
+}
 CRITICAL_RUNTIME_PATHS = (
     "addons/gut/plugin.cfg",
     "addons/gut/versions.json",
@@ -50,6 +64,31 @@ def read_tree_manifest(root: Path, treeish: str, prefix: str = "addons/gut") -> 
         if object_type == "blob":
             manifest[path.replace("\\", "/")] = object_id
     return manifest
+
+
+def _content_digest(path: Path, *, normalize_text: bool) -> str:
+    payload = path.read_bytes()
+    if normalize_text and path.suffix.lower() in TEXT_NORMALIZED_SUFFIXES:
+        payload = payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def read_filesystem_manifest(
+    root: Path,
+    prefix: str = "addons/gut",
+    *,
+    normalize_text: bool = False,
+) -> dict[str, str]:
+    vendor_root = root / prefix
+    if not vendor_root.is_dir():
+        raise RuntimeError(f"GUT_VENDOR_DIRECTORY_MISSING:{vendor_root}")
+    return {
+        path.relative_to(root).as_posix(): _content_digest(
+            path, normalize_text=normalize_text
+        )
+        for path in sorted(vendor_root.rglob("*"))
+        if path.is_file()
+    }
 
 
 def compare_manifests(
@@ -96,6 +135,70 @@ def compare_manifests(
     }
 
 
+def build_audit_report(
+    official_root: Path,
+    project_root: Path,
+    *,
+    expected_project_head: str | None = None,
+) -> dict[str, object]:
+    official_root = official_root.resolve()
+    project_root = project_root.resolve()
+    official_head = git_text(official_root, "rev-parse", "HEAD")
+    official_tree = git_text(official_root, "rev-parse", "HEAD:addons/gut")
+    project_head = git_text(project_root, "rev-parse", "HEAD")
+    project_tree = git_text(project_root, "rev-parse", "HEAD:addons/gut")
+
+    raw_comparison = compare_manifests(
+        read_tree_manifest(official_root, "HEAD"),
+        read_tree_manifest(project_root, "HEAD"),
+    )
+    normalized_comparison = compare_manifests(
+        read_filesystem_manifest(official_root, normalize_text=True),
+        read_filesystem_manifest(project_root, normalize_text=True),
+    )
+    preflight = {
+        "official_head_match": official_head == PINNED_COMMIT,
+        "official_tree_match": official_tree == PINNED_TREE,
+        "project_head_match": (
+            expected_project_head is None or project_head == expected_project_head
+        ),
+    }
+    preflight_pass = all(preflight.values())
+    result = (
+        "FULL_TREE_IDENTICAL"
+        if preflight_pass and raw_comparison["full_tree_identical"]
+        else "FULL_TREE_TEXT_NORMALIZED_IDENTICAL"
+        if preflight_pass and normalized_comparison["full_tree_identical"]
+        else "CRITICAL_RUNTIME_SUBSET_IDENTICAL_FULL_TREE_MISMATCH"
+        if preflight_pass and raw_comparison["critical_runtime_all_identical"]
+        else "CRITICAL_RUNTIME_TEXT_NORMALIZED_IDENTICAL_FULL_TREE_MISMATCH"
+        if preflight_pass and normalized_comparison["critical_runtime_all_identical"]
+        else "FAIL"
+    )
+    return {
+        "schema_version": 2,
+        "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "official": {
+            "checkout": str(official_root),
+            "head": official_head,
+            "expected_head": PINNED_COMMIT,
+            "tree": official_tree,
+            "expected_tree": PINNED_TREE,
+        },
+        "project": {
+            "root": str(project_root),
+            "head": project_head,
+            "expected_head": expected_project_head,
+            "tree": project_tree,
+        },
+        "preflight": preflight,
+        "raw_comparison": raw_comparison,
+        "text_normalized_comparison": normalized_comparison,
+        "result": result,
+        "mutation_performed": False,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Read-only comparison of GRIMOIRE's vendored GUT with official v9.7.1."
@@ -110,64 +213,25 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    official_root = args.official_checkout.resolve()
     project_root = args.project_root.resolve()
     output_path = args.output
     if not output_path.is_absolute():
         output_path = project_root / output_path
-
-    official_head = git_text(official_root, "rev-parse", "HEAD")
-    official_tree = git_text(official_root, "rev-parse", "HEAD:addons/gut")
-    project_head = git_text(project_root, "rev-parse", "HEAD")
-    project_tree = git_text(project_root, "rev-parse", "HEAD:addons/gut")
-
-    official_manifest = read_tree_manifest(official_root, "HEAD")
-    project_manifest = read_tree_manifest(project_root, "HEAD")
-    comparison = compare_manifests(official_manifest, project_manifest)
-
-    preflight = {
-        "official_head_match": official_head == PINNED_COMMIT,
-        "official_tree_match": official_tree == PINNED_TREE,
-        "project_head_match": (
-            args.expected_project_head is None
-            or project_head == args.expected_project_head
-        ),
-    }
-    report = {
-        "schema_version": 1,
-        "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-        "official": {
-            "checkout": str(official_root),
-            "head": official_head,
-            "expected_head": PINNED_COMMIT,
-            "tree": official_tree,
-            "expected_tree": PINNED_TREE,
-        },
-        "project": {
-            "root": str(project_root),
-            "head": project_head,
-            "expected_head": args.expected_project_head,
-            "tree": project_tree,
-        },
-        "preflight": preflight,
-        "comparison": comparison,
-        "result": (
-            "FULL_TREE_IDENTICAL"
-            if all(preflight.values()) and comparison["full_tree_identical"]
-            else "CRITICAL_RUNTIME_SUBSET_IDENTICAL_FULL_TREE_MISMATCH"
-            if all(preflight.values()) and comparison["critical_runtime_all_identical"]
-            else "FAIL"
-        ),
-        "mutation_performed": False,
-    }
+    report = build_audit_report(
+        args.official_checkout,
+        project_root,
+        expected_project_head=args.expected_project_head,
+    )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
         json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
         encoding="utf-8",
     )
     print(output_path)
-
-    return 0 if report["result"] == "FULL_TREE_IDENTICAL" else 1
+    return 0 if report["result"] in {
+        "FULL_TREE_IDENTICAL",
+        "FULL_TREE_TEXT_NORMALIZED_IDENTICAL",
+    } else 1
 
 
 if __name__ == "__main__":
