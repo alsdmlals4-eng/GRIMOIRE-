@@ -22,24 +22,20 @@ ACTIVE_FILES = [
 
 class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
     def test_authority_design_plan_binding_and_adoption_spec_exist(self):
-        self.assertTrue(LEGACY_SPEC.is_file(), str(LEGACY_SPEC))
-        self.assertTrue(ADOPTION_SPEC.is_file(), str(ADOPTION_SPEC))
-        self.assertTrue(BINDING.is_file(), str(BINDING))
-        self.assertTrue(PLAN.is_file(), str(PLAN))
-        self.assertTrue(STATE.is_file(), str(STATE))
-        self.assertTrue(UNRESOLVED.is_file(), str(UNRESOLVED))
+        for path in (LEGACY_SPEC, ADOPTION_SPEC, BINDING, PLAN, STATE, UNRESOLVED):
+            self.assertTrue(path.is_file(), str(path))
 
-    def test_v4_3_transitions_to_adoption_spec_block(self):
+    def test_v4_3_transitions_to_formal_adoption_implementation_gate(self):
         data = json.loads(STATE.read_text(encoding="utf-8"))
         self.assertEqual("4.3", data["contract"]["version"])
         self.assertEqual("GM-CONTRACT-V4-3-BINDING-01", data["contract"]["binding_decision_id"])
         self.assertEqual("GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01", data["decision_id"])
-        self.assertEqual("CONTRACT_V4_3_BOUND_GUT_ADOPTION_SPEC_IN_REVIEW", data["status"])
+        self.assertEqual("GUT_SPEC_MERGED_IMPLEMENTATION_CI_GATE_PENDING", data["status"])
         self.assertEqual("USER_APPROVED_2026-08-06", data["design_review"])
         self.assertEqual("GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY", data["review"]["model"])
         self.assertEqual("NOT_PLANNED_SOLO_DEVELOPMENT", data["review"]["external_independent_reviewer"])
-        self.assertEqual("MERGED_MAIN_READBACK_PASS", data["pr83_merge_gate"]["status"])
-        self.assertFalse(data["pr83_merge_gate"]["waives_future_pr_review"])
+        self.assertEqual("MERGED_MAIN_READBACK_PASS", data["pr84_merge_gate"]["status"])
+        self.assertFalse(data["pr84_merge_gate"]["waives_future_pr_review"])
 
         self.assertEqual("SOLE_AUTHORING_AUTHORITY", data["higodot"]["authority"])
         self.assertEqual("3.1.2", data["higodot"]["bundled_version"])
@@ -50,28 +46,28 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("FORMAL_TEST_AUTHORITY", data["gut"]["target_authority"])
         self.assertEqual("9.7.1", data["gut"]["pinned_version"])
         self.assertEqual("aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605", data["gut"]["pinned_source_commit"])
-        self.assertEqual("VENDORED_NOT_CONSUMED", data["gut"]["current_consumption"])
+        self.assertEqual("ADOPTION_IMPLEMENTATION_IN_PROGRESS", data["gut"]["current_consumption"])
         self.assertEqual("MIT", data["gut"]["license"])
         self.assertTrue(data["gut"]["godot_compatibility"].startswith("4.7.x"))
         self.assertEqual("PASS", data["gut"]["source_or_version_verification"])
         self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", data["gut"]["vendor_integrity"])
         self.assertEqual("CLI_ONLY_WITHOUT_EDITOR_PLUGIN", data["gut"]["adoption_mode"])
         self.assertEqual("chore/gut-9.7.1-adoption-spec", data["gut"]["adoption_spec_branch"])
-        self.assertEqual("OPEN_DRAFT_IN_REVIEW", data["gut"]["adoption_spec_pr_state"])
-        self.assertFalse(data["gut"]["formal_installation_authorized"])
+        self.assertEqual("MERGED_MAIN_VERIFIED", data["gut"]["adoption_spec_pr_state"])
+        self.assertTrue(data["gut"]["formal_installation_authorized"])
 
-        self.assertEqual("BLOCKED_BY_GUT_ADOPTION_SPEC", data["entry_gate"]["status"])
-        self.assertEqual("BLOCKED", data["entry_gate"]["implementation"])
+        self.assertEqual("BLOCKED_PENDING_GUT_FORMAL_ADOPTION", data["entry_gate"]["status"])
+        self.assertEqual("IN_PROGRESS_RED", data["entry_gate"]["implementation"])
         self.assertEqual("PAUSED_AFTER_TASK1_GREEN", data["implementation_pr"]["status"])
         self.assertEqual("APPROVED_DIRECTION_RUNTIME_NOT_RUN", data["image_review"]["status"])
         self.assertEqual("PASS", data["sheet_sync"]["readback"])
         self.assertTrue(data["claims"]["official_tool_releases_verified"])
         self.assertFalse(data["claims"]["tool_vendor_integrity_pass"])
-        self.assertFalse(data["claims"]["gut_adoption_spec_merged"])
+        self.assertTrue(data["claims"]["gut_adoption_spec_merged"])
         self.assertFalse(data["claims"]["gut_formally_adopted"])
         self.assertFalse(data["claims"]["spell_workflow_task2_authorized"])
 
-    def test_active_authority_uses_v4_3_spec_gate(self):
+    def test_active_authority_preserves_the_spec_gate_history(self):
         for path in ACTIVE_FILES:
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("SPELL_WORKFLOW_UI_V2_READY_FOR_TDD", text, str(path))
@@ -80,7 +76,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
 
     def test_legacy_spec_preserves_authority_boundary(self):
         text = LEGACY_SPEC.read_text(encoding="utf-8")
-        required = [
+        for token in (
             "HIGODOT_SOLE_AUTHORING_AUTHORITY",
             "GUT_FORMAL_TEST_AUTHORITY",
             "GUT_MUST_NOT_MUTATE_PRODUCT_FILES",
@@ -97,8 +93,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
             "BASE_RELEASE_PIN_REMAINS: 9.4.3",
             "CLI_ONLY_FORMAL_ADOPTION",
             "EDITOR_PLUGIN_ENABLEMENT: DEFERRED_UNTIL_HIGODOT_RECEIPT",
-        ]
-        for token in required:
+        ):
             self.assertIn(token, text)
 
     def test_v4_3_spec_covers_source_identity_consumption_ci_and_rollback(self):
