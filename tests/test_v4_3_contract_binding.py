@@ -54,18 +54,20 @@ class V43ContractBindingTests(unittest.TestCase):
         ):
             self.assertIn(token, text)
 
-    def test_decision_and_state_block_implementation_until_spec_merge(self) -> None:
+    def test_decision_and_state_enter_implementation_after_spec_merge(self) -> None:
         self.assertTrue(DECISION.is_file(), str(DECISION))
         state = json.loads(STATE.read_text(encoding="utf-8"))
-        self.assertEqual("BLOCKED_BY_GUT_ADOPTION_SPEC", state["entry_gate"]["status"])
+        self.assertEqual("BLOCKED_PENDING_GUT_FORMAL_ADOPTION", state["entry_gate"]["status"])
+        self.assertEqual("IN_PROGRESS_RED", state["entry_gate"]["implementation"])
         self.assertEqual("chore/gut-9.7.1-adoption-spec", state["gut"]["adoption_spec_branch"])
-        self.assertEqual("DRAFT_PR_REQUIRED", state["gut"]["adoption_spec_status"])
-        self.assertEqual("FROZEN_SUPERSEDED_BY_V4_3_SPEC_GATE", state["gut"]["implementation_branch_status"])
+        self.assertEqual("GUT_SPEC_MERGED_MAIN_VERIFIED", state["gut"]["adoption_spec_status"])
+        self.assertEqual("OPEN_DRAFT_CI_GATE_PENDING", state["gut"]["implementation_branch_status"])
         self.assertEqual("PASS", state["gut"]["source_or_version_verification"])
         self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", state["gut"]["vendor_integrity"])
         self.assertEqual("PASS", state["higodot"]["source_or_version_verification"])
         self.assertEqual("MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT", state["higodot"]["vendor_integrity"])
         self.assertTrue(state["claims"]["official_tool_releases_verified"])
+        self.assertTrue(state["claims"]["gut_adoption_spec_merged"])
         self.assertFalse(state["claims"]["tool_vendor_integrity_pass"])
         self.assertFalse(state["claims"]["gut_formally_adopted"])
         self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
