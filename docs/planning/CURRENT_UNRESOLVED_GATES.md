@@ -1,6 +1,7 @@
 # GRIMOIRE 현재 미확정·차단 게이트
 
 ```yaml
+active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4
 contract_version: "4.4"
 contract_binding_decision_id: GM-CONTRACT-V4-4-BINDING-01
 decision_id: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
