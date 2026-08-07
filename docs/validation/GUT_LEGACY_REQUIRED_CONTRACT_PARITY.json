@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+  "purpose": "Map each required legacy product contract adopted in this phase to an equivalent GUT suite using the same public product behavior.",
+  "status": "STATIC_MAPPING_COMPLETE_RUNTIME_CURRENT_HEAD_PENDING",
+  "contracts": [
+    {
+      "contract_id": "GLYPH_DEFINITION_CORE",
+      "legacy_suite": "res://tests/unit/test_glyph_definition.gd",
+      "gut_suite": "res://tests/gut/unit/test_glyph_definition.gd",
+      "required": true,
+      "parity_basis": "SAME_PUBLIC_BEHAVIOR",
+      "behaviors": [
+        "VALID_HEAT_DEFINITION",
+        "INVALID_ROLE_REJECTED",
+        "INVALID_ID_REJECTED",
+        "INVALID_STROKE_COUNT_REJECTED"
+      ],
+      "product_path": "res://src/input/glyph_definition.gd"
+    }
+  ],
+  "notes": [
+    "The legacy runner remains available during adoption.",
+    "This manifest proves required-contract mapping, not current-head runtime PASS.",
+    "Current-head hosted validation must execute both the Python parity contract and GUT discovery before LEGACY_TO_GUT_COVERAGE_PARITY_PASS can be claimed."
+  ]
+}
