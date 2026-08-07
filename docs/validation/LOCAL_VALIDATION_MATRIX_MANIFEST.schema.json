@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/alsdmlals4-eng/GRIMOIRE-/docs/validation/LOCAL_VALIDATION_MATRIX_MANIFEST.schema.json",
+  "title": "GRIMOIRE Windows and WSL2 Local Validation Matrix Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "decision_id",
+    "repository",
+    "pull_request",
+    "expected_head",
+    "base_sha",
+    "generated_at",
+    "expected_lane_ids",
+    "lanes",
+    "failures",
+    "result",
+    "github_actions"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "decision_id": {"const": "GM-ACTIONS-BUDGET-LOCAL-VERIFICATION-MODE-01"},
+    "repository": {"const": "alsdmlals4-eng/GRIMOIRE-"},
+    "pull_request": {"type": "integer", "minimum": 1},
+    "expected_head": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "base_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "expected_lane_ids": {
+      "const": [
+        "windows-py311",
+        "windows-py312",
+        "windows-py313",
+        "wsl-ubuntu-py312"
+      ]
+    },
+    "lanes": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["spec", "manifest", "failures"],
+        "properties": {
+          "spec": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["lane_id", "expected_system", "python_version", "runtime"],
+            "properties": {
+              "lane_id": {"type": "string"},
+              "expected_system": {"enum": ["Windows", "Linux"]},
+              "python_version": {"enum": ["3.11", "3.12", "3.13"]},
+              "runtime": {"type": "boolean"}
+            }
+          },
+          "manifest": {"type": ["object", "null"]},
+          "failures": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "failures": {"type": "array", "items": {"type": "string"}},
+    "result": {"enum": ["PASS", "FAIL"]},
+    "github_actions": {"const": "NOT_RUN_BUDGET_BLOCKED"}
+  }
+}

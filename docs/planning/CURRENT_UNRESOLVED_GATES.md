@@ -1,112 +1,105 @@
 # GRIMOIRE 현재 미확정·차단 게이트
 
 ```yaml
-contract_version: "4.3"
-contract_binding_decision_id: GM-CONTRACT-V4-3-BINDING-01
+contract_version: "4.4"
+contract_binding_decision_id: GM-CONTRACT-V4-4-BINDING-01
 decision_id: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
-status: BLOCKING
-implementation_entry: BLOCKED_BY_GUT_ADOPTION_SPEC
+status: FORMAL_ADOPTION_SCOPE_CLEAR_BROADER_PROJECT_BLOCKERS_REMAIN
+formal_adoption_scope: READY_IF_CURRENT_HEAD_CHECKS_PASS
+implementation_entry: PR85_FINAL_EXACT_HEAD_REVALIDATION
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
+spell_workflow_task2_authorized: false
 gut_adoption_spec_pr: 84
+gut_implementation_pr: 85
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
-sheet_v4_3_sync: READBACK_PASS
-official_tool_release_verification: PASS
-vendor_integrity: FAIL_MISMATCH
+sheet_v4_4_sync: READBACK_PASS
+base_current_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
+project_main_observed: 563c2b08cb96354fdd7209a32d7fd8ec26bb334c
+validated_head_before_reconciliation: d20247ac981fb5a934241e13918472a41a93edb6
+validated_gut_run_before_reconciliation: 31226874097
 ```
 
-## 현재 최우선 차단 항목
+## GUT formal-adoption 범위에서 해소된 항목
+
+아래 항목은 PR #85의 직전 exact head `d20247ac981fb5a934241e13918472a41a93edb6`에서 객관 증거가 만들어졌다. 이 문서 변경으로 HEAD가 다시 바뀌므로 최종 병합 증거는 새 exact head에서 재실행한다.
+
+| 항목 | 현재 판정 | 근거 |
+|---|---|---|
+| GUT adoption spec | `MERGED_MAIN_VERIFIED` | PR #84 merged main readback |
+| GUT source/version/license | `PASS` | v9.7.1, commit `aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605`, MIT |
+| GUT vendor equivalence | `APPROVED_LIMITED_EQUIVALENCE` | `GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01`; full tree identity는 주장하지 않음 |
+| Godot 4.7.1 runtime compatibility | `PASS_PREVIOUS_EXACT_HEAD` | hosted Windows/Ubuntu full lanes, official `4.7.1.stable.official.a13da4feb` |
+| actual GUT product consumption | `PASS_PREVIOUS_EXACT_HEAD` | product smoke + `GlyphDefinition` required-contract parity GUT suite |
+| public standard GitHub-hosted CI | `PASS_PREVIOUS_EXACT_HEAD` | run `31226874097`, four lanes + final `GUT Validation Gate` |
+| JUnit/discovery/exit-code | `PASS_PREVIOUS_EXACT_HEAD` | full GUT validation succeeded; zero-discovery is fail-closed in validator |
+| production mutation hash gate | `PASS_PREVIOUS_EXACT_HEAD` | full hosted validator |
+| HiGodot authoring receipt | `PASS_PREVIOUS_EXACT_HEAD_ZERO_PROTECTED_DIFF` | `HiGodot Authoring Receipt Gate` success; protected product diff 0 |
+| legacy→GUT required-contract parity | `PASS_PREVIOUS_EXACT_HEAD` | parity manifest + GUT `GlyphDefinition` suite consumed by hosted run |
+| role-separated static review | `PASS_STATIC_P0_P1_ZERO` | `docs/reviews/PR85_GUT_FORMAL_ADOPTION_ROLE_SEPARATED_REVIEW_2026-08-08.md` |
+| Sheet contract binding | `READBACK_PASS` | `GM-CONTRACT-V4-4-BINDING-01` synchronized to Hub/Decision/History rows |
+
+`PASS_PREVIOUS_EXACT_HEAD`는 현재 HEAD의 최종 기술 검증을 대신하지 않는다. 현재 HEAD의 Required Check가 모두 성공하고 unresolved review thread가 0인 경우에만 PR #85 formal adoption 범위가 병합 가능하다.
+
+## 제한적으로 수용된 GUT vendor 차이
+
+```yaml
+gut_release: v9.7.1
+gut_pinned_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+official_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
+project_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
+full_tree_identity: false
+normalized_critical_runtime_identity: true
+decision: GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01
+scope: CLI_HEADLESS_FORMAL_TEST_AUTHORITY_ONLY
+```
+
+`GUT_VENDOR_TREE_MISMATCH_ACCEPTED_CRITICAL_RUNTIME_EQUIVALENCE_LIMITED`는 full-tree 동일성을 뜻하지 않는다. Editor plugin은 계속 비활성이고, 승인 범위를 넘어선 GUT GUI/editor 사용은 별도 검증이 필요하다.
+
+## broader project blockers — PR #85 formal adoption 자체와 분리
 
 | ID | 현재 상태 | 해소 조건 |
 |---|---|---|
-| `GUT_ADOPTION_SPEC_NOT_MERGED` | BLOCKING | PR #84 명세·Decision·검증 계획 exact-HEAD PASS 후 main 병합·readback |
-| `HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2` | BLOCKING_BEFORE_AUTHORING | 공식 v3.1.2 release ZIP 추출 hash manifest와 `addons/godot_ai` 비교·승인 또는 공식 release 설치물로 교체 |
-| `GUT_VENDOR_TREE_MISMATCH_OFFICIAL_V9_7_1` | BLOCKING_BEFORE_INSTALLATION | 프로젝트 tree `09d04030…`를 공식 v9.7.1 tree `5d689383…`로 교체하거나 file-level audit·승인 |
-| `GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN` | BLOCKING_BEFORE_INSTALLATION | 승인된 GUT tree에서 Godot 4.7.1 CLI discovery·actual product test PASS |
-| `GPT_ROLE_SEPARATED_REVIEW_NOT_COMPLETE` | BLOCKING_FOR_PR84_MERGE | 구현자 설명과 분리된 exact diff·정본·테스트 입력으로 검토, P0/P1 0 |
+| `HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2` | `BLOCKING_BEFORE_PERSISTENT_AUTHORING` | 공식 v3.1.2 release 배포물과 프로젝트 `addons/godot_ai` 정합성 감사 또는 승인된 교체 |
+| `HERA_CLI_ADDON_PAIR_UNVERIFIED` | `BLOCKING_BEFORE_HERA_ACCEPTANCE_QA` | exact CLI/addon pair, localhost/token, live-QA canary 확인 |
+| `WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED` | `BLOCKING_FOR_PRODUCT_PLATFORM_COMPLETION` | 공용 core + Windows/Android export/smoke 증거 |
+| `AUDIO_VAULT_PATH_UNVERIFIED` | `BLOCKED_NO_LOCAL_ACCESS` | `C:/Users/user/Documents/GitHub/shered audio vault` 존재/inventory 확인 |
+| `AUDIO_RIGHTS_UNVERIFIED` | `BLOCKING_FOR_AUDIO_INGESTION` | 선택 파일별 권리·출처·hash 기록 |
+| `VISUAL_AUDIO_COMPLETE_NOT_PROVEN` | `BLOCKING_FOR_VISUAL_AUDIO_COMPLETION` | 필요한 시각·오디오 requirement 승인·promotion 또는 not-required 근거 |
+| `SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN` | `BLOCKING_FOR_VISUAL_COMPLETION` | 3개 실제 Godot Screen 렌더·상호작용 검증 |
+| `DEVICE_PERFORMANCE_SCREEN_READER_HUMAN_NOT_RUN` | `RELEASE_BLOCKING` | 실제 실행/접근성/성능 증거 |
+| `LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS` | `DELIVERY_BLOCKING` | 사용자 로컬 main safe fast-forward + SHA readback |
+| `GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS` | `DELIVERY_BLOCKING` | 동기화 local main에서 import/startup/Project Play smoke PASS |
 
-## 공식 소스 확인 결과
+현재 agent는 사용자 PC의 Local Godot Reference shelf와 shared audio vault에 직접 접근할 수 없으므로 해당 상태를 임의로 PASS로 올리지 않는다.
 
-```yaml
-gut:
-  release: v9.7.1
-  commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
-  official_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
-  project_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
-  license: MIT
-  version_and_source: PASS
-  vendor_integrity: MISMATCH
-higodot:
-  release: v3.1.2
-  commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
-  release_asset_sha256: 60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33
-  official_plugin_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
-  project_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
-  license: MIT
-  version_and_source: PASS
-  vendor_integrity: MISMATCH_OR_DISTRIBUTION_LAYOUT_DIFFERENCE
-```
-
-## 명세 병합 후에도 남는 구현 차단 항목
-
-| ID | 현재 상태 | 해소 조건 |
-|---|---|---|
-| `GUT_ACTUAL_CONSUMPTION_NOT_ENABLED` | BLOCKING | 실제 GRIMOIRE product contract를 검증하는 `GutTest`와 `.gutconfig.json` PASS |
-| `GUT_CI_NOT_ENABLED` | BLOCKING | Godot 4.7.1 headless GUT CLI·JUnit·exit-code CI PASS |
-| `HIGODOT_AUTHORING_RECEIPT_GATE_NOT_IMPLEMENTED` | BLOCKING | protected Godot diff 0 또는 valid `HIGODOT_AUTHORING_MANIFEST` 대응 CI PASS |
-| `GUT_PRODUCT_MUTATION_HASH_GATE_NOT_IMPLEMENTED` | BLOCKING | GUT 실행 전후 protected production hash 무변경 PASS |
-| `LEGACY_TO_GUT_COVERAGE_PARITY_NOT_PROVEN` | BLOCKING | custom runner와 GUT 필수 계약 병행·coverage mapping PASS |
-| `WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED` | BLOCKING | 공통 core + Windows headless/launch + Android export/smoke 증거 |
-
-## 시각·오디오·로컬 차단 항목
-
-| ID | 현재 상태 | 해소 조건 |
-|---|---|---|
-| `AUDIO_VAULT_PATH_UNVERIFIED` | BLOCKED_NO_LOCAL_ACCESS | `C:/Users/user/Documents/GitHub/shered audio vault` 실제 존재·inventory 확인 |
-| `AUDIO_RIGHTS_UNVERIFIED` | BLOCKING_FOR_AUDIO_INGESTION | 선택 파일별 권리·출처·hash 기록 |
-| `VISUAL_AUDIO_COMPLETE_NOT_PROVEN` | BLOCKING_FOR_CODEX_PRODUCT_WORK | 필요한 시각·오디오 자산 승인 또는 `NO_NEW_VISUAL_ASSET_REQUIRED` 근거 승인 |
-| `SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN` | BLOCKING_FOR_VISUAL_COMPLETION | 3개 실제 Godot Screen 렌더·상호작용 검증 |
-| `DEVICE_PERFORMANCE_SCREEN_READER_HUMAN_NOT_RUN` | RELEASE_BLOCKING | 실제 실행 증거 |
-| `LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS` | DELIVERY_BLOCKING | 사용자 로컬 main safe fast-forward와 SHA readback |
-| `GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS` | DELIVERY_BLOCKING | 동기화된 local main Godot import·startup·smoke PASS |
-
-## v4.3 전환으로 해소·교체된 항목
+## Asset Vault readback
 
 ```yaml
-pr83_design_pr: MERGED_MAIN_252063cc
-pr83_main_readback: PASS
-pr83_only_review_exception: HISTORICAL_VALID_FOR_PR83_ONLY
-external_independent_reviewer_requirement: SUPERSEDED_BY_V4_3_SOLO_REVIEW_MODEL
-active_review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
-image_completion_term: VISUAL_AUDIO_COMPATIBILITY_MAPPING_ACTIVE
-sheet_v4_3_binding_write_readback: PASS
-official_gut_source_version_license: PASS
-official_higodot_source_version_license: PASS
-sheet_sync_receipt: docs/planning/sync/GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC.md
+asset_manifest: ASSET_MANIFEST.yml
+current_main_readback: MISSING
+interpretation: ASSET_MANIFEST_CURRENT_MAIN_MISSING_NO_PROMOTED_ASSET_CLAIM
+new_asset_promotion_in_pr85: false
 ```
 
-PR #83의 병합은 당시 사용자 승인과 exact-HEAD 증거로 유효하다. 후속 PR에는 PR83 예외를 재사용하지 않는다. v4.3에 따라 별도 인간 reviewer가 있다고 가장하지 않고, 역할 분리 검토·사용자 결정권·GUT/CI 객관 증거·exact-HEAD Check로 품질 Gate를 구성한다.
-
-## 동결된 선행 구현 브랜치
-
-```yaml
-branch: agent/gut-9-7-1-formal-adoption-tdd
-status: FROZEN_SUPERSEDED_BY_V4_3_SPEC_GATE
-merge_authorized: false
-cherry_pick_authorized: false
-counts_as_adoption_evidence: false
-```
-
-명세 병합 전 생성된 해당 브랜치의 commit은 main에 병합하지 않는다. 구현은 PR #84 병합 후 최신 main에서 새 branch로 다시 시작한다.
+이 상태는 PR #85의 non-asset GUT formal-adoption 작업을 막지 않는다. 승인된 제품 자산을 promote했다고 주장하는 순간에는 manifest와 tracked `res://assets/...` readback이 필수다.
 
 ## READY 판정
 
 ```yaml
-historical_status: GUT_FORMAL_ADOPTION_IMPLEMENTATION_NEXT
-current_status: BLOCKED_BY_GUT_ADOPTION_SPEC
-reason: CONTRACT_V4_3_REQUIRES_SPEC_DRAFT_PR_AND_MERGED_MAIN_BEFORE_INSTALLATION
-allowed_next_action: PR84_SPEC_ONLY_EXACT_HEAD_REVIEW_AND_MERGE
+formal_adoption_scope: READY_IF_CURRENT_HEAD_CHECKS_PASS
+current_next_action: PR85_CURRENT_EXACT_HEAD_REVALIDATION
+merge_authorized_only_after:
+  - CURRENT_EXACT_HEAD_REQUIRED_CHECKS_PASS
+  - GUT_VALIDATION_GATE_PASS
+  - HIGODOT_ZERO_PROTECTED_DIFF_GATE_PASS
+  - ROLE_SEPARATED_REVIEW_P0_P1_ZERO
+  - UNRESOLVED_REVIEW_THREADS_ZERO
+  - REPOSITORY_POLICY_PASS
+spell_workflow_task2_authorized: false
 ```
+
+PR #85가 병합되어 merged-main readback과 Sheet sync가 끝나기 전에는 `GUT_FORMALLY_ADOPTED`를 선언하지 않는다. 또한 GUT formal adoption이 닫혀도 위 broader blocker를 자동 해소한 것으로 간주하지 않는다.
 
 ## 이미지·오디오 판정
 
@@ -120,18 +113,4 @@ audio_vault: BLOCKED_UNVERIFIED
 correct_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 ```
 
-사용자에게 동일한 시각 방향 승인을 다시 요청하지 않는다. 다만 v4.3의 `[이미지·오디오 완료]`는 아직 증명되지 않았다.
-
-## 진입 금지
-
-다음 상태는 PR #84 명세 병합과 후속 구현 증거 전 선언하거나 시작하지 않는다.
-
-```text
-GUT_FORMAL_INSTALLATION
-GUT_FORMALLY_ADOPTED
-SPELL_WORKFLOW_TASK2_START
-PROJECT_MAIN_SCENE_SWITCH_TO_UI_V2
-FINAL_VISUAL_AUDIO_APPROVED
-WINDOWS_ANDROID_VALIDATED
-GODOT_READY_TO_RUN
-```
+동일한 이미지 방향 승인을 다시 요청하지 않는다. 다만 v4.4의 `[이미지·오디오 완료]`는 아직 증명되지 않았다.
