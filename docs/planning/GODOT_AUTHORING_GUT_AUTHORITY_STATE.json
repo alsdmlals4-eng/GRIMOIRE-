@@ -107,7 +107,8 @@
     "ci_enabled": true,
     "junit": "CI_CONFIGURED_EXECUTION_PENDING",
     "product_mutation_hash_gate": "IMPLEMENTED_UNIT_PASS_RUNTIME_NOT_RUN",
-    "legacy_coverage_parity": "NOT_PROVEN",
+    "legacy_coverage_parity": "STATIC_MAPPING_COMPLETE_RUNTIME_CURRENT_HEAD_PENDING",
+    "legacy_coverage_parity_manifest": "docs/validation/GUT_LEGACY_REQUIRED_CONTRACT_PARITY.json",
     "must_not_mutate_product_files": true,
     "implementation_plan": "docs/superpowers/plans/2026-08-07-public-repo-free-github-actions.md"
   },
@@ -190,9 +191,13 @@
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "sync_id": "GR-SYNC-20260808-01-CONTRACT-V4-4-BINDING",
-    "write": "PENDING",
-    "readback": "PENDING",
-    "ranges": [],
+    "write": "PASS",
+    "readback": "PASS",
+    "ranges": [
+      "00_프로젝트_허브!E2:K2",
+      "02_현재_확정결정!A75:M75",
+      "99_변경이력!A109:H109"
+    ],
     "pr84_merged_main_sync": "PASS",
     "pr84_merged_main": "312e491c8e9b333cb585b4e0550f80e3aea5f3f7"
   },
