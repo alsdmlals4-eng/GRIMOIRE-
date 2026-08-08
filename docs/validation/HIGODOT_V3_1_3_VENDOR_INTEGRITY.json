@@ -1,17 +1,26 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
   "audit_id": "GR-AUD-HIGODOT-V3-1-3-TOOL-AUTHORITY-01",
   "release": "v3.1.3",
   "official_repository": "hi-godot/godot-ai",
   "official_tag_commit": "22678e5f9b038d7203d6b43b0aae20a5417c500e",
   "official_repository_tree": "053131dbd726ebd492824cea9488ffeae3f2645b",
-  "official_plugin_subtree": "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35",
+  "official_plugin_wrapper_tree": "8d492ca096a51cdf7f01f22acf2b7f055c592ca5",
+  "official_addons_tree": "b98da7a58dbb5decf67fa759f1ab8a0b32e6d52a",
+  "official_plugin_subtree": "94be4fb34d49243375c592e17a1021c8c6fcbcf2",
+  "official_plugin_cfg_blob": "c71abde05b531cfe6cd163006e03d09de8714258",
+  "official_plugin_cfg_version": "3.1.3",
+  "release_asset_sha256": "10fac40e7f4900e788d79f8ee57228e355e02ee01008d8e7093da2bb1580a4c7",
+  "release_asset_digest_source": "GITHUB_RELEASE_API_REPORTED_DIGEST",
   "project_plugin_path": "addons/godot_ai",
   "project_plugin_subtree": "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35",
-  "project_plugin_cfg_version": "3.1.3",
+  "project_plugin_cfg_blob": "59cec524d4dec8952e9bba614885a146af99a2ca",
+  "project_plugin_cfg_version": "3.1.2",
   "comparison_scope_rule": "COMPARE_PLUGIN_SUBTREE_TO_PLUGIN_SUBTREE",
-  "result": "PASS_EXACT_TREE_IDENTITY",
+  "result": "LIVE_VERSION_CONFIRMED_TRACKED_VENDOR_DIVERGENCE",
+  "tracked_vendor_status": "TRACKED_GITHUB_REMAINS_V3_1_2_EXACT_TREE",
+  "v3_1_3_tree_identity": "NOT_SYNCED_NOT_CLAIMED",
   "base_main_observed": "2a6ced23f6d6de1fb6e0a281c7138beb03f1a13b",
   "base_release_pin": "9.4.3",
   "base_pin_update": "NOT_APPROVED_NOT_PERFORMED",
@@ -26,16 +35,18 @@
     "persistent_mutation_performed_by_readback": false
   },
   "approved_live_plugin_state": {
-    "godot_ai": "USER_CONFIRMED_ENABLED_APPROVED",
+    "godot_ai": "USER_CONFIRMED_ENABLED_APPROVED_V3_1_3",
     "gut_9_7_1": "USER_CONFIRMED_ENABLED_APPROVED",
     "hera_1_0_0": "USER_CONFIRMED_ENABLED_APPROVED"
   },
   "tracked_github_main_readback": {
+    "godot_ai_plugin_cfg_version": "3.1.2",
     "project_godot_editor_plugins": "GODOT_AI_ONLY_AT_GITHUB_MAIN_READBACK",
     "gut_plugin_cfg_version": "9.7.1",
     "hera_plugin_cfg_version": "1.0.0",
+    "tracked_godot_ai_matches_live_version": false,
     "tracked_config_matches_user_live_enablement": false,
-    "interpretation": "LIVE_EDITOR_STATE_AND_TRACKED_PROJECT_CONFIG_ARE_SEPARATE_EVIDENCE_UNTIL_HIGODOT_AUTHORED_PROJECT_GODOT_SYNC_IS_READ_BACK"
+    "interpretation": "LIVE_EDITOR_STATE_AND_TRACKED_GITHUB_VENDOR_CONFIG_ARE_SEPARATE_EVIDENCE_UNTIL_HIGODOT_AUTHORED_LOCAL_CHANGES_ARE_COMMITTED_AND_READ_BACK"
   },
   "authority_boundaries": {
     "higodot": "SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY",
@@ -45,7 +56,10 @@
   },
   "claims": {
     "official_tag_verified": true,
-    "official_and_project_plugin_subtree_identical": true,
+    "official_v3_1_3_plugin_cfg_verified": true,
+    "official_and_project_plugin_subtree_identical": false,
+    "live_mcp_reports_v3_1_3": true,
+    "tracked_github_vendor_is_v3_1_3": false,
     "release_archive_downloaded_and_rehashed_in_this_audit": false,
     "tracked_project_godot_has_gut_and_hera_enabled": false,
     "user_confirmed_live_gut_and_hera_enabled": true,
