@@ -38,7 +38,7 @@ class V44CiSupplyChainCanonReconciliationTests(unittest.TestCase):
             self.assertIn(DECISION, text, str(path))
             self.assertNotIn(STALE_BLOCKER, text, str(path))
 
-    def test_machine_state_closes_only_the_supply_chain_blocker(self) -> None:
+    def test_machine_state_preserves_supply_chain_pass_after_higodot_correction(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
 
@@ -48,12 +48,12 @@ class V44CiSupplyChainCanonReconciliationTests(unittest.TestCase):
         self.assertNotIn(STALE_BLOCKER, canon["broader_blockers"])
 
         self.assertEqual(PASS_TOKEN, authority["validation"]["repo_wide_actions_full_sha"])
-        self.assertEqual("PASS", authority["sheet_sync"]["pr85_merged_main_sync"])
         self.assertNotIn(STALE_BLOCKER, authority["broader_blockers"])
         self.assertFalse(authority["claims"]["spell_workflow_task2_authorized"])
 
+        self.assertEqual("PASS_EXACT_TREE_IDENTITY", canon["tool_authority"]["higodot"]["vendor_integrity"])
+        self.assertEqual("PASS_EXACT_TREE_IDENTITY", authority["higodot"]["vendor_integrity"])
         for blocker in (
-            "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2",
             "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
             "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",

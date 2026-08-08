@@ -15,6 +15,9 @@ product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
+higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
+higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+higodot_vendor_integrity_evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 gut_formal_adoption_pr: 85
 gut_exact_head: fc178bdc7a3e12faf4ae7ae78fd1f92dd2735849
@@ -25,8 +28,6 @@ review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 spell_workflow_task2_authorized: false
-higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
-higodot_vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
 hera_status: HERA_CLI_ADDON_PAIR_UNVERIFIED
 base_release_pin: 9.4.3
 base_current_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
@@ -55,6 +56,21 @@ tuning_status: PLAYTEST_TUNING_REQUIRED
 ```
 
 v4.4/GUT 정본 갱신은 위 제품 runtime 결정과 검증 상태를 대체하지 않는다.
+
+## HiGodot v3.1.2 vendor integrity
+
+```yaml
+release: v3.1.2
+pinned_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+official_plugin_wrapper_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
+official_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+project_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+comparison_scope_rule: COMPARE_PLUGIN_SUBTREE_TO_PLUGIN_SUBTREE
+higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+correction_sync: GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY
+```
+
+과거 mismatch는 official `plugin/` wrapper와 project plugin subtree를 비교한 scope 오류였다. vendor subtree는 exact identity PASS이며 HiGodot은 계속 sole persistent-authoring authority다. authoring receipt Gate는 유지한다.
 
 ## GUT formal adoption readback
 
@@ -87,10 +103,9 @@ enforcement: tests/test_v4_4_ci_supply_chain.py
 
 ## 현재 작업 경계
 
-GUT formal adoption과 repo-wide official Actions full-SHA hardening은 더 이상 PR #82 Task 2의 선행 blocker가 아니다. 그러나 Task 2가 persistent Godot authoring, Hera acceptance, visual/audio, Windows/Android product validation을 소비하므로 다음 broader blocker를 먼저 닫아야 한다.
+GUT formal adoption, repo-wide official Actions full-SHA hardening, HiGodot vendor integrity는 더 이상 PR #82 Task 2의 선행 blocker가 아니다. 그러나 Task 2가 Hera acceptance, visual/audio, Windows/Android product validation을 소비하므로 다음 broader blocker를 먼저 닫아야 한다.
 
 ```text
-HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2
 HERA_CLI_ADDON_PAIR_UNVERIFIED
 WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN

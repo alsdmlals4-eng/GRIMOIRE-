@@ -13,6 +13,7 @@ product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
+higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
@@ -42,15 +43,19 @@ runtime_validation: AUTOMATED_HEADLESS_PASS
 
 ## Gate 15.1 — HiGodot single authoring authority
 
-`HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2`
+`PASS_EXACT_TREE_IDENTITY`
 
 ```yaml
 release: v3.1.2
 pinned_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
 authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
+official_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+project_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
 ```
 
-PR #85 자체는 protected product diff 0으로 `HiGodot Authoring Receipt Gate`를 통과했다. 다음 persistent Godot authoring 전에 vendor audit를 닫는다.
+기존 `e559376d...` 대 `a7d1e2fe...` mismatch는 official `plugin/` wrapper와 plugin subtree를 비교한 scope 오류였다. persistent Godot authoring은 계속 HiGodot 단일 권위를 사용하고, protected diff에는 fail-closed authoring receipt Gate를 적용한다.
 
 ## Gate 15.2–15.3 — GUT 9.7.1
 

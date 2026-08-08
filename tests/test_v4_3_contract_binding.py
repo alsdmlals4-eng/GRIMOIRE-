@@ -26,6 +26,7 @@ class V43ContractBindingTests(unittest.TestCase):
             "GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY",
             "C:/Users/user/Documents/GitHub/shered audio vault",
             "SWITCHY_EXPRESS_GENERIC_PLACEHOLDER_NOT_AUTHORITATIVE",
+            "MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT",
         ):
             self.assertIn(token, text)
 
@@ -56,7 +57,12 @@ class V43ContractBindingTests(unittest.TestCase):
         self.assertEqual("PASS", state["gut"]["source_or_version_verification"])
         self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", state["gut"]["vendor_integrity"])
         self.assertEqual("PASS", state["higodot"]["source_or_version_verification"])
-        self.assertEqual("MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT", state["higodot"]["vendor_integrity"])
+        self.assertEqual("PASS_EXACT_TREE_IDENTITY", state["higodot"]["vendor_integrity"])
+        self.assertEqual(
+            "SUPERSEDED_SCOPE_MISMATCH_WRAPPER_TREE_VS_PLUGIN_SUBTREE",
+            state["higodot"]["prior_vendor_integrity_verdict"],
+        )
+        self.assertTrue(state["claims"]["higodot_vendor_integrity_pass"])
         self.assertTrue(state["claims"]["gut_formally_adopted"])
         self.assertFalse(state["claims"]["tool_vendor_integrity_pass"])
         self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
@@ -68,7 +74,8 @@ class V43ContractBindingTests(unittest.TestCase):
         self.assertIn(MERGED_MAIN, current)
         self.assertIn("GUT_FORMALLY_ADOPTED", current)
         self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", current)
-        self.assertIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", current)
+        self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", current)
+        self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", current)
         self.assertIn("AUDIO_VAULT_PATH_UNVERIFIED", current)
 
     def test_gut_editor_plugin_remains_disabled(self) -> None:
