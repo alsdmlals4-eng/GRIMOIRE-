@@ -44,6 +44,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY", data["review"]["model"])
         self.assertEqual("MERGED_MAIN_READBACK_PASS", data["pr84_merge_gate"]["status"])
         self.assertFalse(data["pr84_merge_gate"]["waives_future_pr_checks"])
+        self.assertFalse(data["pr84_merge_gate"]["pr82_task2_authorized"])
 
         self.assertEqual("SOLE_AUTHORING_AUTHORITY", data["higodot"]["authority"])
         self.assertEqual("3.1.2", data["higodot"]["bundled_version"])
@@ -71,10 +72,12 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("NOT_RUN", data["platform_validation"]["android_export"])
         self.assertEqual(THREE_SCREEN_PENDING, data["image_review"]["three_screen_runtime"])
 
-        self.assertEqual("TASK2_READY_FOR_HIGODOT_AUTHORING_POST_IMPLEMENTATION_ACCEPTANCE_REMAINS", data["entry_gate"]["status"])
+        self.assertEqual("TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL_POST_IMPLEMENTATION_ACCEPTANCE_REMAINS", data["entry_gate"]["status"])
         self.assertEqual("MERGED_MAIN_VERIFIED", data["entry_gate"]["implementation"])
-        self.assertEqual("PAUSED_AFTER_TASK1_GREEN", data["implementation_pr"]["status"])
+        self.assertEqual("TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL", data["implementation_pr"]["status"])
         self.assertEqual("READY_FOR_HIGODOT_AUTHORING", data["implementation_pr"]["task2_readiness"])
+        self.assertTrue(data["implementation_pr"]["task2_authorized"])
+        self.assertTrue(data["implementation_pr"]["merge_authorized"])
         self.assertTrue(data["claims"]["gut_formally_adopted"])
         self.assertTrue(data["claims"]["gut_runtime_ci_pass"])
         self.assertTrue(data["claims"]["higodot_vendor_integrity_pass"])
@@ -87,7 +90,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertFalse(data["claims"]["three_screen_runtime_pass"])
         self.assertFalse(data["claims"]["tool_vendor_integrity_pass"])
         self.assertFalse(data["claims"]["visual_audio_complete"])
-        self.assertFalse(data["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(data["claims"]["spell_workflow_task2_authorized"])
 
     def test_current_authority_surfaces_are_live_v4_4(self):
         for path in CURRENT_SURFACES:
@@ -101,6 +104,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertIn(HERA_PASS, combined)
         self.assertIn(SHARED_CORE_PASS, combined)
         self.assertIn(THREE_SCREEN_PENDING, combined)
+        self.assertIn("AUTHORIZED_AWAITING_HIGODOT_CHANNEL", combined)
 
     def test_legacy_spec_preserves_authority_boundary(self):
         text = LEGACY_SPEC.read_text(encoding="utf-8")
