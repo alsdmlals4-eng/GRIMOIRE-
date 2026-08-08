@@ -1,5 +1,5 @@
 {
-  "schema_version": 21,
+  "schema_version": 22,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -8,7 +8,6 @@
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.4",
     "binding_decision_id": "GM-CONTRACT-V4-4-BINDING-01",
-    "binding_path": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md",
     "status": "ACTIVE_MERGED_MAIN"
   },
   "project_main_authority": "LIVE_GITHUB_DEFAULT_BRANCH_READBACK",
@@ -30,106 +29,61 @@
     "implementation": "STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
     "runtime_validation": "AUTOMATED_HEADLESS_PASS"
   },
-  "validation_main": {
-    "sync_id": "GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY",
-    "gate_id": "GR-TEST-033",
-    "status": "SYNCED_TO_MAIN_AUTOMATED_CONTRACT_PASS",
-    "mobile_device_validation": "DEVICE_NOT_RUN",
-    "performance_validation": "PERFORMANCE_NOT_RUN",
-    "accessibility_validation": "AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN",
-    "human_validation": "HUMAN_NOT_RUN",
-    "full_vertical_slice_representativeness": "FULL_VERTICAL_SLICE_NOT_RUN"
-  },
-  "ui_kit_main": {
-    "sync_id": "GR-SYNC-20260806-08-STAR-UI-KIT-V1-MAIN",
-    "pull_request": 77,
-    "main_merge_commit": "8165ac983a8236bd780ac0ac0af1c121d36efd67",
-    "status": "SYNCED_TO_MAIN_AUTOMATED_RENDER_PASS",
-    "final_art": "NOT_CLAIMED"
-  },
   "spell_workflow_main": {
-    "sync_id": "GR-SYNC-20260806-09-SPELL-WORKFLOW-UI-V2-MAIN",
     "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
-    "design_pull_request": 78,
-    "main_merge_commit": "6c39ab683fe7f4cd15fbcdb50bc4cee153deebec",
-    "status": "SYNCED_TO_MAIN_PLAN_COMPLETE_IMPLEMENTATION_PAUSED",
     "implementation_pull_request": 82,
     "implementation_head": "0919b71dfec3c6f57b88e1290789302267936960",
     "implementation": "TASK1_GREEN_TASK2_NOT_STARTED",
     "spell_workflow_task2_authorized": false,
-    "runtime_validation": "TASK1_AUTOMATED_PASS_FULL_UI_V2_NOT_RUN",
-    "current_gate": "BLOCKED_BY_BROADER_PROJECT_GATES",
-    "human_device_validation": "NOT_RUN",
-    "final_art": "NOT_CLAIMED"
+    "current_gate": "BLOCKED_BY_BROADER_PROJECT_GATES"
   },
   "tool_authority": {
-    "sync_id": "GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY",
     "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
-    "contract_binding_decision_id": "GM-CONTRACT-V4-4-BINDING-01",
-    "design_pull_request": 83,
-    "adoption_spec_pull_request": 84,
-    "implementation_pull_request": 85,
-    "merged_main": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
     "status": "GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED",
-    "review_model": "GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY",
     "current_gate": "BROADER_PROJECT_GATES_REMAIN",
     "higodot": {
       "authority": "SOLE_AUTHORING_AUTHORITY",
       "release": "v3.1.2",
-      "pinned_source_commit": "678b16a6a0a335cf80cbb7d3f85c183cd3e616de",
-      "release_asset_sha256": "60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33",
-      "official_plugin_wrapper_tree": "e559376d95c12f67ae0117a23bcc1dd2519206c2",
+      "vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
       "official_plugin_subtree": "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35",
       "project_plugin_subtree": "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35",
-      "comparison_scope_rule": "COMPARE_PLUGIN_SUBTREE_TO_PLUGIN_SUBTREE",
-      "source_version_license": "PASS",
-      "vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
-      "integrity_evidence": "docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json",
-      "project_plugin_enabled": true,
       "authoring_receipt_gate": "IMPLEMENTED_ZERO_PROTECTED_DIFF_GATE"
     },
     "gut": {
-      "canonical_repository": "bitwes/Gut",
       "release": "v9.7.1",
       "pinned_source_commit": "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605",
-      "official_addons_tree": "5d6893836af4917ee62b1a395125a7530b1f239d",
-      "project_vendor_tree": "09d040309bbed0e07420ad72c4aa69cbd0e58190",
-      "source_version_license": "PASS",
       "vendor_integrity": "MISMATCH_OFFICIAL_V9_7_1",
-      "godot_compatibility": "4.7.1_RUNTIME_CI_PASS",
       "adoption_mode": "CLI_ONLY_WITHOUT_EDITOR_PLUGIN",
-      "project_plugin_enabled": false,
       "current_consumption": "GUT_FORMALLY_ADOPTED",
-      "target_authority": "FORMAL_TEST_AUTHORITY",
-      "formal_installation_authorized": true,
       "ci": "PASS",
       "junit": "PASS",
       "product_mutation_hash_gate": "PASS",
       "legacy_coverage_parity": "PASS"
-    },
-    "sheet_write": "PASS",
-    "sheet_readback": "PASS",
-    "merge_authorized": true
+    }
+  },
+  "hera": {
+    "release": "v1.0.0",
+    "upstream_tag_commit": "10f245ddae9e7a5d569150302acbde0d78f2aa03",
+    "upstream_addon_tree": "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+    "project_addon_tree": "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+    "linux_cli_sha256": "384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a",
+    "status": "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS",
+    "live_canary_run": 31254032278,
+    "acceptance_qa_authorized": true,
+    "persistent_source_mutation_authorized": false,
+    "evidence": "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
   },
   "ci_supply_chain": {
     "decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01",
     "status": "REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS",
-    "scope": ".github/workflows/*.yml|*.yaml",
-    "enforcement_test": "tests/test_v4_4_ci_supply_chain.py",
-    "enforced_by_workflow": ".github/workflows/validate-godot-authoring-gut-authority.yml",
     "official_actions_policy": "FULL_40_HEX_COMMIT_SHA_ONLY"
   },
   "visual_audio_review": {
-    "review_id": "GR-REV-SPELL-WORKFLOW-UI-V2",
     "status": "APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE",
-    "awaiting_user_direction_approval": false,
-    "implementation_visual_review": "PENDING",
-    "audio_vault_path": "C:/Users/user/Documents/GitHub/shered audio vault",
     "audio_vault_status": "BLOCKED_UNVERIFIED",
     "final_art": "NOT_CLAIMED"
   },
   "broader_blockers": [
-    "HERA_CLI_ADDON_PAIR_UNVERIFIED",
     "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
     "AUDIO_VAULT_PATH_UNVERIFIED",
     "AUDIO_RIGHTS_UNVERIFIED",
