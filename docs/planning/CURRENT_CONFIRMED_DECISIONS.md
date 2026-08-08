@@ -18,6 +18,8 @@ repo_wide_actions_full_sha: PASS
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 hera_exact_pair: PASS
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+hera_merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
+hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 gut_status: GUT_FORMALLY_ADOPTED
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
@@ -26,7 +28,7 @@ review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 ```
 
-현재 `main` 자체는 저장된 SHA가 아니라 `project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK`로 판정한다. `gut_formal_adoption_main`은 PR #85의 역사 merge, `post_merge_canon_sync_merge`는 PR #87의 역사 merge다.
+현재 `main` 자체는 저장된 SHA가 아니라 `project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK`로 판정한다. `gut_formal_adoption_main`은 PR #85의 역사 merge, `post_merge_canon_sync_merge`는 PR #87의 역사 merge, `hera_merged_main`은 PR #91 Hera Gate가 처음 merged-main에 들어간 증거다.
 
 ## GM-CONTRACT-V4-4-BINDING-01
 
@@ -85,11 +87,13 @@ hera_linux_cli_sha256: 384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea9
 hera_exact_pair: PASS
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_live_canary_run: 31254032278
+hera_merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
 hera_localhost_only: PASS
 hera_shared_token: PASS
 hera_repository_source_delta_zero: PASS
 hera_acceptance_qa_authorized: true
 hera_persistent_source_mutation_authorized: false
+hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 ```
 
 HiGodot의 과거 mismatch는 official `plugin/` wrapper와 project plugin subtree를 비교한 scope 오류로 교정됐다. GUT의 full vendor-tree mismatch/critical-runtime equivalence는 별도 판정으로 그대로다. Hera canary는 임시 Godot 프로젝트에서 official CLI와 exact addon pair를 검증했고 persistent GRIMOIRE source authoring 권위를 획득하지 않는다.
@@ -109,7 +113,7 @@ normal_pr_gate: Validate Godot Authoring and GUT Authority Gate
 
 ## Google Sheet
 
-`GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정은 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` / `GR-AUD-TOOL-VENDOR-INTEGRITY-01`로 동기화되어 있다. Hera exact-pair 결과는 PR #91 merged-main readback 후 같은 tool-authority Decision ID로 최종 sync한다.
+`GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정과 Hera exact-pair 결과는 동일 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` 아래에서 동기화됐고, Hub row2·Decision row69·Audit row76·History row113의 최종 readback은 `SHEET_WRITE_READBACK_PASS`다. Hera merged-main 증거는 `a35baed94fe064e57529ffee7b8c48e14ac5e1bb`이다.
 
 ## 현재 남은 Gate
 
