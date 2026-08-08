@@ -125,13 +125,14 @@
     "linux_cli_sha256": "384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a",
     "status": "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS",
     "live_canary_run": 31254032278,
+    "merged_main": "a35baed94fe064e57529ffee7b8c48e14ac5e1bb",
     "localhost_only": "PASS",
     "shared_token_required": "PASS",
     "repository_source_delta_zero": "PASS",
     "acceptance_qa_authorized": true,
     "persistent_source_mutation_authorized": false,
     "evidence": "docs/validation/HERA_V1_0_0_EXACT_PAIR.json",
-    "sheet_sync": "PENDING_PR91_MERGE"
+    "sheet_sync": "SHEET_WRITE_READBACK_PASS"
   },
   "ci_supply_chain": {
     "decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01",

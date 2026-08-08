@@ -9,15 +9,18 @@ ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 DEVELOPMENT_GATES = ROOT / "docs/DEVELOPMENT_GATES.md"
+CONFIRMED = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 GRILL = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 CURRENT_DOCS = [
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
-    ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    CONFIRMED,
 ]
 PASS_TOKEN = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
+SHEET_PASS = "SHEET_WRITE_READBACK_PASS"
+MERGED_MAIN = "a35baed94fe064e57529ffee7b8c48e14ac5e1bb"
 STALE_BLOCKER = "HERA_CLI_ADDON_PAIR_UNVERIFIED"
 RUN_ID = 31254032278
 PRE_FINAL_HEAD = "335d3f0b7eaf16e88d73be65c56806d8b58e0b78"
@@ -85,6 +88,25 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         ):
             self.assertIn(blocker, canon["broader_blockers"])
             self.assertIn(blocker, authority["broader_blockers"])
+
+    def test_merged_main_sheet_readback_is_promoted_to_current_canon(self) -> None:
+        canon = json.loads(CANON.read_text(encoding="utf-8"))
+        authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
+        grill = json.loads(GRILL.read_text(encoding="utf-8"))
+        confirmed = CONFIRMED.read_text(encoding="utf-8")
+
+        self.assertEqual(MERGED_MAIN, canon["hera"]["merged_main"])
+        self.assertEqual(SHEET_PASS, canon["hera"]["sheet_sync"])
+        self.assertEqual(MERGED_MAIN, authority["hera"]["merged_main"])
+        self.assertEqual(SHEET_PASS, authority["sheet_sync"]["hera_exact_pair_sync"])
+        self.assertEqual(SHEET_PASS, grill["current_work"]["sheet_write"])
+        self.assertEqual(SHEET_PASS, grill["current_work"]["sheet_readback"])
+        self.assertEqual(SHEET_PASS, grill["validation"]["sheet_write"])
+        self.assertEqual(SHEET_PASS, grill["validation"]["sheet_readback"])
+        self.assertIn(MERGED_MAIN, confirmed)
+        self.assertIn(SHEET_PASS, confirmed)
+        self.assertNotIn("PENDING_PR91_MERGE", confirmed)
+        self.assertNotIn("PASS_PRIOR_CANON", confirmed)
 
 
 if __name__ == "__main__":
