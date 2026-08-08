@@ -1,5 +1,5 @@
 {
-  "schema_version": 23,
+  "schema_version": 24,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -24,6 +24,7 @@
     "current_main_observation_role": "V4_4_BINDING_HISTORICAL_OBSERVATION",
     "latest_main_observed_pr91": "eee98a930219065e30b4d7d14d99d5ac7db44c60",
     "latest_main_observed_visual_platform_gate": "a912cc001ff4d4e3415fb4b4931723c49eb08d9a",
+    "latest_main_observed_premerge": "cf4c7a60c5b31b042043f91b268f381372fec69a",
     "latest_observation_role": "LIVE_BASE_MAIN_READBACK_NOT_ADOPTED",
     "pin_update": "NOT_APPROVED_NOT_PERFORMED"
   },
@@ -142,13 +143,14 @@
     "sync_id": "GR-SYNC-20260808-07-VISUAL-PLATFORM-GATE-SEQUENCING",
     "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
     "status": "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS",
+    "merged_main": "5016bd090ad09892d36a8b751c7a9649868b76d5",
     "evidence": "docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json",
     "scope": "STRUCTURAL_ARCHITECTURE_AND_HOST_CONTRACT_ONLY",
     "windows_export": "NOT_RUN",
     "android_export": "NOT_RUN",
     "android_device": "NOT_RUN",
     "performance": "NOT_RUN",
-    "sheet_sync": "PENDING_PR93_MERGE"
+    "sheet_sync": "SHEET_WRITE_READBACK_PASS"
   },
   "ci_supply_chain": {
     "decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01",
