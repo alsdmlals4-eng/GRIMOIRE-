@@ -45,7 +45,7 @@ project_base_pin: "9.4.3"
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 ```
 
-현재 Base `main`은 v4.4 지시문 작성 시 관찰 SHA와 실제 readback이 일치했다. 이 값은 이번 진입 증거이며 다음 작업에서 다시 조회한다.
+위 값은 최초 v4.4 작업 진입 당시의 관찰 증거다. 현재 `main`은 `LIVE_GITHUB_DEFAULT_BRANCH_READBACK`으로 매 작업 다시 판정한다.
 
 ## 3. GitHub Actions·병합·Codex 계약
 
@@ -75,18 +75,19 @@ higodot:
   canonical_source_repository: "hi-godot/godot-ai"
   pinned_project_version: "3.1.2"
   authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
-  vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
+  vendor_integrity: PASS_EXACT_TREE_IDENTITY
+  integrity_evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
 
 gut:
   canonical_source_repository: "bitwes/Gut"
   pinned_version: "9.7.1"
   pinned_commit: "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605"
-  authority: DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY_WHEN_FORMALLY_ADOPTED
+  authority: DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY
   adoption_spec_pr: 84
   adoption_spec_status: MERGED_MAIN_VERIFIED
   implementation_pr: 85
   editor_plugin: DISABLED
-  formal_adoption: PENDING_REMAINING_GATES
+  formal_adoption: GUT_FORMALLY_ADOPTED
 
 hera:
   role: LIVE_QA_AND_OBSERVABILITY_ONLY
@@ -94,7 +95,9 @@ hera:
   exact_cli_addon_pair: BLOCKED_UNVERIFIED
 ```
 
-PR #85에는 `project.godot`, `*.tscn`, `*.tres`, `*.res` 같은 protected Godot authoring 파일을 현재 변경 목록 기준으로 포함하지 않는다. protected Godot diff가 실제 0이면 v4.4/GUT spec의 규칙에 따라 HiGodot authoring manifest는 필요하지 않지만, 해당 zero-diff 자체를 fail-closed 검증해야 한다.
+HiGodot v3.1.2 재감사에서 official `plugin/addons/godot_ai`와 project `addons/godot_ai`가 동일 Git tree `a7d1e2fe8564cc385d683ec50d15fc66e1a17a35`로 확인됐다. 초기 `MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT` 판정은 `plugin/` wrapper와 plugin subtree를 비교한 scope 오류였으며 `GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY`가 이를 교정한다.
+
+Protected Godot diff에는 계속 HiGodot authoring receipt Gate를 fail-closed로 적용한다.
 
 ## 5. Asset Vault·Reference·오디오 계약
 
@@ -141,7 +144,7 @@ required_tabs:
 entry_state_reconciliation_required: true
 ```
 
-현재 Sheet는 GUT vendor-equivalence 및 public Actions Decision을 GitHub `main`의 오래된 cold-start 문서보다 더 최신 상태로 기록하고 있었다. 이번 작업은 Sheet를 프로젝트 정본보다 상위 권위로 승격시키는 것이 아니라, drift를 `CANON_CONFLICT/STALE_STATUS`로 보고하고 같은 Decision ID로 다시 맞추는 작업이다.
+GitHub 정본과 Sheet drift는 `CANON_CONFLICT/STALE_STATUS`로 보고하고 같은 Decision/Audit ID로 다시 맞춘다.
 
 ## 7. 보호 결정과 현재 작업 경계
 
@@ -164,19 +167,34 @@ visual_audio_completion: NOT_COMPLETE
 
 ## 8. 현재 Entry Gate
 
-세부 readback은 `docs/planning/ENTRY_STATE_RECONCILIATION_V4_4.md`가 담당한다.
+세부 live readback은 `docs/planning/CURRENT_UNRESOLVED_GATES.md`가 담당한다.
 
 ```yaml
 entry_gate: BLOCK
-blocking_scope: GUT_FORMAL_ADOPTION_FINALIZATION
-allowed_next_actions:
-  - BIND_V4_4_TO_GITHUB_AND_SHEET
-  - PROVE_LEGACY_TO_GUT_REQUIRED_CONTRACT_PARITY
-  - PROVE_HIGODOT_ZERO_PROTECTED_DIFF_OR_REQUIRE_RECEIPT
-  - RUN_ROLE_SEPARATED_EXACT_HEAD_REVIEW
-  - SYNC_FINAL_GUT_STATE_TO_SHEET
+blocking_scope: APPLICABLE_BROADER_PROJECT_GATES
+closed_prerequisites:
+  - GUT_FORMAL_ADOPTION
+  - REPO_WIDE_ACTIONS_FULL_SHA_PINNING
+  - HIGODOT_VENDOR_INTEGRITY_EXACT_TREE_IDENTITY
+remaining_priority:
+  - HERA_EXACT_PAIR_VERIFICATION
+  - VISUAL_AUDIO_REQUIREMENT_AND_RUNTIME_REVIEW
+  - WINDOWS_ANDROID_SHARED_CORE_VALIDATION
 forbidden_next_action:
-  - START_PR82_TASK2
+  - START_PR82_TASK2_BEFORE_APPLICABLE_PACKAGE_GATES_PASS
 ```
 
 로컬 Windows checkout을 이 환경에서 읽거나 수정할 수 없으므로 최종 `Fetch/Pull`, merged-local-main, clean Godot Project Play는 실제 수행 전 `BLOCKED_NO_LOCAL_ACCESS`로 유지한다.
+
+## 9. HiGodot 감사 교정 추적
+
+```yaml
+audit_id: GR-AUD-TOOL-VENDOR-INTEGRITY-01
+correction_sync: GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY
+old_comparison: official plugin/ wrapper tree vs project addons/godot_ai subtree
+old_verdict: SUPERSEDED_SCOPE_MISMATCH_WRAPPER_TREE_VS_PLUGIN_SUBTREE
+current_verdict: PASS_EXACT_TREE_IDENTITY
+release_archive_rehashed_in_current_agent: false
+```
+
+역사 v4.3 receipt의 당시 mismatch 기록은 보존하며 현재 판정은 위 evidence/correction sync가 우선한다.

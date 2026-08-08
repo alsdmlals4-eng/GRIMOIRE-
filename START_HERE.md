@@ -12,6 +12,8 @@ post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 gut_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
+higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+higodot_vendor_integrity_evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
 gut_status: GUT_FORMALLY_ADOPTED
 gut_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
 gut_version: 9.7.1
@@ -34,6 +36,8 @@ PR #85의 GUT 9.7.1 CLI/headless deterministic test authority는 정식 채택�
 
 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`에 따라 active workflow의 official `actions/*` ref는 repo-wide full commit SHA Gate로 보호되며 `REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS` 상태다.
 
+HiGodot v3.1.2는 official tag commit `678b16a6...`의 `plugin/addons/godot_ai`와 프로젝트 `addons/godot_ai`가 동일 Git tree `a7d1e2fe...`를 가리켜 `PASS_EXACT_TREE_IDENTITY`다. 과거 mismatch는 `plugin/` wrapper tree와 plugin subtree를 비교한 scope 오류였으며 `GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY`가 교정한다.
+
 ## 제품 보존 정본
 
 - `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`: `FIVE_POINT_STAR`, Typed Glyph Stock, Exactly-once 처리 유지.
@@ -43,7 +47,6 @@ PR #85의 GUT 9.7.1 CLI/headless deterministic test authority는 정식 채택�
 ## 현재 broader blockers
 
 ```text
-HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2
 HERA_CLI_ADDON_PAIR_UNVERIFIED
 WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
 AUDIO_VAULT_PATH_UNVERIFIED
@@ -53,7 +56,7 @@ LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-HiGodot은 persistent Godot authoring의 단일 권위다. PR #85에서는 protected product diff가 0이었고 hosted `HiGodot Authoring Receipt Gate`가 PASS했다. 이후 제품/Scene/Resource/project settings를 수정하기 전에는 HiGodot vendor integrity와 실제 authoring 경로를 별도로 닫아야 한다.
+HiGodot은 persistent Godot authoring의 단일 권위다. vendor subtree identity는 PASS지만 persistent product authoring에서는 기존 fail-closed HiGodot authoring receipt Gate를 계속 적용한다.
 
 ## 시각·오디오
 
@@ -72,7 +75,7 @@ project.godot
 └─ Main Scene: res://src/ui/star_circuit_harness.tscn
 ```
 
-Hosted Godot 4.7.1/GUT 검증은 PR #85에서 PASS했지만 사용자 로컬 `Fetch/Pull` 및 clean merged-main `Run Project`는 이 환경에서 실행하지 못했다.
+Hosted Godot 4.7.1/GUT 검증은 PASS했지만 사용자 로컬 `Fetch/Pull` 및 clean merged-main `Run Project`는 이 환경에서 실행하지 못했다.
 
 ## 읽기 순서
 
@@ -85,6 +88,6 @@ Hosted Godot 4.7.1/GUT 검증은 PR #85에서 PASS했지만 사용자 로컬 `Fe
 7. `docs/planning/CURRENT_UNRESOLVED_GATES.md`
 8. `docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json`
 9. `docs/testing/GUT_9_7_1_ADOPTION_SPEC.md`
-10. `docs/validation/GUT_LEGACY_REQUIRED_CONTRACT_PARITY.json`
+10. `docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json`
 
 다음 제품 구현은 위 broader blocker 중 해당 작업 package가 실제 소비하는 선행 Gate를 먼저 닫은 뒤 진행한다.

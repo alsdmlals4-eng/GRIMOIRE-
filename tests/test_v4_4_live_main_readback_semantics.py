@@ -46,14 +46,14 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
         self.assertEqual(87, work["post_merge_canon_sync_pr"])
         self.assertEqual(POST_MERGE_CANON_SYNC_MAIN, work["post_merge_canon_sync_merge"])
 
-    def test_protected_decisions_and_broader_blockers_remain_unchanged(self) -> None:
+    def test_protected_decisions_and_remaining_broader_blockers_are_preserved(self) -> None:
         combined = "\n".join(path.read_text(encoding="utf-8") for path in CURRENT_DOCS)
         for token in (
             "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
             "FIVE_POINT_STAR",
             "GUT_FORMALLY_ADOPTED",
+            "higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY",
             "spell_workflow_task2_authorized: false",
-            "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2",
             "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
             "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
@@ -61,6 +61,7 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
             "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(token, combined)
+        self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", combined)
 
 
 if __name__ == "__main__":

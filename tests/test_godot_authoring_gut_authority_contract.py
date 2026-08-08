@@ -11,6 +11,7 @@ BINDING_V44 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md"
 PLAN = ROOT / "docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md"
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
+HIGODOT_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json"
 CURRENT_SURFACES = [
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
@@ -21,11 +22,12 @@ CURRENT_SURFACES = [
     ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
 ]
 MERGED_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
+HIGODOT_TREE = "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35"
 
 
 class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
     def test_authority_design_plan_bindings_and_adoption_spec_exist(self):
-        for path in (LEGACY_SPEC, ADOPTION_SPEC, BINDING_V43, BINDING_V44, PLAN, STATE, UNRESOLVED):
+        for path in (LEGACY_SPEC, ADOPTION_SPEC, BINDING_V43, BINDING_V44, PLAN, STATE, UNRESOLVED, HIGODOT_EVIDENCE):
             self.assertTrue(path.is_file(), str(path))
 
     def test_v4_4_state_records_formal_adoption_and_preserves_boundaries(self):
@@ -42,7 +44,9 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("SOLE_AUTHORING_AUTHORITY", data["higodot"]["authority"])
         self.assertEqual("3.1.2", data["higodot"]["bundled_version"])
         self.assertEqual("PASS", data["higodot"]["source_or_version_verification"])
-        self.assertEqual("MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT", data["higodot"]["vendor_integrity"])
+        self.assertEqual("PASS_EXACT_TREE_IDENTITY", data["higodot"]["vendor_integrity"])
+        self.assertEqual(HIGODOT_TREE, data["higodot"]["official_plugin_subtree_sha"])
+        self.assertEqual(HIGODOT_TREE, data["higodot"]["project_vendor_tree_sha"])
         self.assertEqual("IMPLEMENTED_ZERO_PROTECTED_DIFF_GATE", data["higodot"]["authoring_receipt_gate"])
 
         self.assertEqual("FORMAL_TEST_AUTHORITY", data["gut"]["target_authority"])
@@ -60,6 +64,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("PAUSED_AFTER_TASK1_GREEN", data["implementation_pr"]["status"])
         self.assertTrue(data["claims"]["gut_formally_adopted"])
         self.assertTrue(data["claims"]["gut_runtime_ci_pass"])
+        self.assertTrue(data["claims"]["higodot_vendor_integrity_pass"])
         self.assertTrue(data["claims"]["gut_github_actions_pass"])
         self.assertTrue(data["claims"]["repo_wide_actions_full_sha"])
         self.assertFalse(data["claims"]["tool_vendor_integrity_pass"])
@@ -116,14 +121,15 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
     def test_unresolved_preserves_remaining_broader_project_blockers(self):
         text = UNRESOLVED.read_text(encoding="utf-8")
         for blocker in (
-            "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", "HERA_CLI_ADDON_PAIR_UNVERIFIED",
+            "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
             "AUDIO_RIGHTS_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
             "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN",
             "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(blocker, text)
-        self.assertNotIn("CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE", text)
+        self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", text)
+        self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", text)
         self.assertIn("REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS", text)
 
 
