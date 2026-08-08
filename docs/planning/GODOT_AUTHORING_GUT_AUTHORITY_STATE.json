@@ -1,5 +1,5 @@
 {
-  "schema_version": 17,
+  "schema_version": 18,
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.4",
@@ -10,6 +10,8 @@
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
   "status": "GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED",
   "current_tool_sync_status": "LIVE_HIGODOT_V3_1_3_TRACKED_V3_1_2_DIVERGENCE_RECORDED",
+  "current_tool_state_merged_main": "8422b1f506476117c876f909f986f08b94c5a543",
+  "current_tool_sync_sheet_status": "SHEET_WRITE_READBACK_PASS",
   "design_review": "USER_APPROVED_2026-08-06",
   "source_main": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
   "base_policy_observation": {
@@ -24,6 +26,7 @@
     "model": "GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY",
     "external_independent_reviewer": "NOT_PLANNED_SOLO_DEVELOPMENT",
     "result": "PR85_EXACT_HEAD_P0_P1_ZERO_MERGED",
+    "current_tool_sync_result": "PR96_EXACT_HEAD_APPLICABLE_CI_PASS_P0_P1_ZERO_MERGED",
     "current_sync_scope": "LIVE_HIGODOT_V3_1_3_AND_USER_APPROVED_LIVE_GUT_HERA_STATE_WITH_TRACKED_DIVERGENCE"
   },
   "higodot": {
@@ -201,11 +204,14 @@
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "sync_id": "GR-SYNC-20260808-07-VISUAL-PLATFORM-GATE-SEQUENCING",
+    "current_tool_sync_id": "GR-SYNC-20260809-02-HIGODOT-V313-LIVE-PLUGIN-APPROVAL",
     "write": "SHEET_WRITE_READBACK_PASS",
     "readback": "SHEET_WRITE_READBACK_PASS",
     "higodot_integrity_sync": "PASS",
     "higodot_integrity_sync_scope": "TRACKED_V3_1_2",
-    "higodot_v3_1_3_live_sync": "PENDING_PR96_MERGE_AND_SHEET_READBACK",
+    "higodot_v3_1_3_live_sync": "SHEET_WRITE_READBACK_PASS",
+    "gut_hera_live_plugin_sync": "SHEET_WRITE_READBACK_PASS",
+    "current_tool_state_merged_main": "8422b1f506476117c876f909f986f08b94c5a543",
     "hera_exact_pair_sync": "SHEET_WRITE_READBACK_PASS",
     "visual_platform_gate_sync": "SHEET_WRITE_READBACK_PASS"
   },
