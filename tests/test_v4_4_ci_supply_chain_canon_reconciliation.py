@@ -44,9 +44,11 @@ class V44CiSupplyChainCanonReconciliationTests(unittest.TestCase):
 
         self.assertEqual(DECISION, canon["ci_supply_chain"]["decision_id"])
         self.assertEqual(PASS_TOKEN, canon["ci_supply_chain"]["status"])
+        self.assertEqual("PASS", canon["sheet_finalization_readback"])
         self.assertNotIn(STALE_BLOCKER, canon["broader_blockers"])
 
         self.assertEqual(PASS_TOKEN, authority["validation"]["repo_wide_actions_full_sha"])
+        self.assertEqual("PASS", authority["sheet_sync"]["pr85_merged_main_sync"])
         self.assertNotIn(STALE_BLOCKER, authority["broader_blockers"])
         self.assertFalse(authority["claims"]["spell_workflow_task2_authorized"])
 
