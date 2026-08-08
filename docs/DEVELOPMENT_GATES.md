@@ -4,6 +4,9 @@
 active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4
 contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_pr: 87
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -18,6 +21,8 @@ spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 spell_workflow_task2_authorized: false
 implementation_entry: BLOCKED_BY_BROADER_PROJECT_GATES
 ```
+
+`project_main_authority`는 live GitHub default branch다. `gut_formal_adoption_main`과 `post_merge_canon_sync_merge`는 역사 merge 역할 증거다.
 
 ## Gate 0 — v4.4 Application Binding
 
