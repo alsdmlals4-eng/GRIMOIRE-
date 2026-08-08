@@ -153,6 +153,25 @@ HiGodot의 과거 mismatch는 official `plugin/` wrapper와 project plugin subtr
 
 최신 Base `main@cf4c7a60...`에서 재확인한 current toolchain/PC·Android 계약은 Hera exact pair·localhost-only·shared token·persistent write 금지·source-delta `NONE`, 그리고 shared core/platform adapter 분리를 유지한다. GRIMOIRE Base release pin 9.4.3은 갱신되지 않았다.
 
+### Live Editor/MCP tool state — 2026-08-09
+
+```yaml
+sync_id: GR-SYNC-20260809-02-HIGODOT-V313-LIVE-PLUGIN-APPROVAL
+pr96_merged_main: 8422b1f506476117c876f909f986f08b94c5a543
+base_latest_main_observed: 2a6ced23f6d6de1fb6e0a281c7138beb03f1a13b
+sheet_sync: SHEET_WRITE_READBACK_PASS
+tracked_higodot_release: v3.1.2
+tracked_higodot_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+live_higodot_release: v3.1.3
+live_higodot_official_plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
+live_higodot_tracked_vendor_state: NOT_SYNCED_NOT_CLAIMED
+gut_live_editor_plugin_state: USER_CONFIRMED_ENABLED
+hera_live_editor_plugin_state: USER_CONFIRMED_ENABLED
+tracked_project_godot_editor_plugins: GODOT_AI_ONLY_AT_GITHUB_MAIN_READBACK
+```
+
+사용자가 Godot AI v3.1.3 업데이트와 GUT/Hera live plugin 활성화를 명시적으로 승인·확인했다. 이 live 상태는 기존 권위 경계를 바꾸지 않는다: HiGodot은 persistent Godot authoring의 단일 권위, GUT은 deterministic GDScript test 권위, Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`이며 persistent source mutation은 금지된다. 또한 live Editor의 활성화와 GitHub tracked `project.godot`/vendor tree의 동기화를 같은 것으로 간주하지 않는다.
+
 ## GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 
 ```yaml
@@ -171,6 +190,8 @@ normal_pr_gate: Validate Godot Authoring and GUT Authority Gate
 Visual/platform sequencing 결과는 동일 `GM-SPELL-WORKFLOW-UI-V2-01`로 Hub row2·Decision row68·Audit row79·ImageReview row6·History row115에 동기화됐고 두 번의 readback으로 `SHEET_WRITE_READBACK_PASS`를 확인했다. PR #93 merged-main 증거는 `5016bd090ad09892d36a8b751c7a9649868b76d5`다.
 
 Task 2 사용자 승인도 동일 Decision ID `GM-SPELL-WORKFLOW-UI-V2-01`로 GitHub canon에 기록하며, 이 canon-sync PR merge 후 Sheet에 동일 sync id `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 write/readback한다.
+
+Godot AI v3.1.3 live Editor/MCP 상태와 사용자 승인된 GUT/Hera live plugin 활성화는 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` / `GR-SYNC-20260809-02-HIGODOT-V313-LIVE-PLUGIN-APPROVAL`로 Sheet readback `SHEET_WRITE_READBACK_PASS`까지 확인했다. tracked HiGodot v3.1.2 exact-tree 증거와 live v3.1.3 상태는 의도적으로 구분한다.
 
 ## 현재 남은 Gate
 
