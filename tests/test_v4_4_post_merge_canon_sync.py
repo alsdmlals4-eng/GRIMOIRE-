@@ -38,7 +38,7 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertTrue(data["claims"]["hera_live_pair_pass"])
         self.assertTrue(data["claims"]["higodot_receipt_gate_implemented"])
         self.assertTrue(data["claims"]["gut_github_actions_pass"])
-        self.assertFalse(data["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(data["claims"]["spell_workflow_task2_authorized"])
 
     def test_current_cold_start_docs_keep_historical_merge_roles_and_live_main_authority(self) -> None:
         for path in CURRENT_DOCS:
@@ -52,7 +52,8 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
             self.assertIn("higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY", text, str(path))
             self.assertIn("hera_exact_pair: PASS", text, str(path))
             self.assertIn(HERA_PASS, text, str(path))
-            self.assertIn("spell_workflow_task2_authorized: false", text, str(path))
+            self.assertIn("spell_workflow_task2_authorized: true", text, str(path))
+            self.assertNotIn("spell_workflow_task2_authorized: false", text, str(path))
             self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", text, str(path))
 
     def test_machine_current_state_surfaces_use_live_main_authority(self) -> None:
@@ -66,8 +67,9 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", canon["tool_authority"]["higodot"]["vendor_integrity"])
         self.assertEqual(HERA_PASS, canon["hera"]["status"])
         self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
-        self.assertFalse(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
+        self.assertTrue(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
         self.assertEqual("READY_FOR_HIGODOT_AUTHORING", canon["spell_workflow_main"]["task2_readiness"])
+        self.assertEqual("AUTHORIZED_AWAITING_HIGODOT_CHANNEL", canon["spell_workflow_main"]["task2_execution_status"])
         self.assertEqual("4.4", grill["active_contract"]["version"])
         self.assertEqual(0, grill["current_count"])
         self.assertEqual("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", grill["current_work"]["project_main_authority"])
@@ -77,7 +79,7 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", grill["current_work"]["higodot_vendor_integrity"])
         self.assertEqual(HERA_PASS, grill["current_work"]["hera_status"])
         self.assertEqual(SHARED_CORE_PASS, grill["current_work"]["windows_android_shared_core"])
-        self.assertFalse(grill["current_work"]["spell_workflow_task2_authorized"])
+        self.assertTrue(grill["current_work"]["spell_workflow_task2_authorized"])
 
     def test_remaining_broader_blockers_and_acceptance_are_preserved(self) -> None:
         text = (ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md").read_text(encoding="utf-8")
