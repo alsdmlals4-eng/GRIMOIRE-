@@ -16,9 +16,13 @@ tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
-higodot_release: v3.1.3
-higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
-higodot_vendor_integrity_evidence: docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json
+higodot_tracked_release: v3.1.2
+higodot_tracked_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+higodot_tracked_vendor_integrity_evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
+higodot_live_release: v3.1.3
+higodot_live_version_readback: PASS_V3_1_3
+higodot_live_v3_1_3_tracked_vendor_sync: NOT_SYNCED_NOT_CLAIMED
+higodot_live_v3_1_3_evidence: docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json
 higodot_live_mcp_session: grimoire@9cc4
 higodot_live_mcp_readiness: ready
 live_gut_plugin: USER_CONFIRMED_ENABLED
@@ -72,26 +76,33 @@ human_validation: NOT_RUN
 tuning_status: PLAYTEST_TUNING_REQUIRED
 ```
 
-v4.4/GUT/Hera/visual-platform/HiGodot 3.1.3 정본 갱신은 위 제품 runtime 결정과 검증 상태를 대체하지 않는다.
+v4.4/GUT/Hera/visual-platform/HiGodot live-version readback은 위 제품 runtime 결정과 검증 상태를 대체하지 않는다.
 
-## HiGodot v3.1.3 vendor integrity
+## HiGodot tracked v3.1.2 / live v3.1.3 reconciliation
 
 ```yaml
 sync_id: GR-SYNC-20260809-02-HIGODOT-V313-LIVE-PLUGIN-APPROVAL
-release: v3.1.3
-pinned_commit: 22678e5f9b038d7203d6b43b0aae20a5417c500e
-official_repository_tree: 053131dbd726ebd492824cea9488ffeae3f2645b
-official_plugin_wrapper_tree: 8d492ca096a51cdf7f01f22acf2b7f055c592ca5
-official_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
-project_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
-release_asset_sha256_reported_by_github: 10fac40e7f4900e788d79f8ee57228e355e02ee01008d8e7093da2bb1580a4c7
-comparison_scope_rule: COMPARE_PLUGIN_SUBTREE_TO_PLUGIN_SUBTREE
-higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+tracked_release: v3.1.2
+tracked_plugin_cfg_version: 3.1.2
+tracked_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+tracked_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+tracked_integrity_evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
+live_release: v3.1.3
 live_mcp_session: grimoire@9cc4
 live_mcp_readiness: ready
+live_version_readback: PASS_V3_1_3
+official_v3_1_3_tag_commit: 22678e5f9b038d7203d6b43b0aae20a5417c500e
+official_v3_1_3_repository_tree: 053131dbd726ebd492824cea9488ffeae3f2645b
+official_v3_1_3_plugin_wrapper_tree: 8d492ca096a51cdf7f01f22acf2b7f055c592ca5
+official_v3_1_3_addons_tree: b98da7a58dbb5decf67fa759f1ab8a0b32e6d52a
+official_v3_1_3_plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
+official_v3_1_3_plugin_cfg_blob: c71abde05b531cfe6cd163006e03d09de8714258
+release_asset_sha256_reported_by_github: 10fac40e7f4900e788d79f8ee57228e355e02ee01008d8e7093da2bb1580a4c7
+v3_1_3_tracked_tree_identity: NOT_SYNCED_NOT_CLAIMED
+status: LIVE_VERSION_CONFIRMED_TRACKED_VENDOR_DIVERGENCE
 ```
 
-공식 v3.1.3 tag의 `plugin/addons/godot_ai` subtree와 GRIMOIRE `addons/godot_ai`가 동일한 tree SHA다. v3.1.2 검증은 역사 증거로 보존한다. HiGodot은 계속 sole persistent-authoring authority이며 authoring receipt Gate를 유지한다.
+사용자 제공 Codex/Godot AI MCP readback은 Editor의 `grimoire@9cc4` 세션이 ready이고 Godot AI가 3.1.3임을 확인했다. 그러나 GitHub `main`의 `addons/godot_ai/plugin.cfg`는 3.1.2이고 tracked subtree도 v3.1.2 exact tree다. 따라서 **live 3.1.3과 tracked 3.1.2를 별도 증거로 유지**하며 v3.1.3 tracked vendor identity PASS를 주장하지 않는다. HiGodot은 계속 sole persistent-authoring authority이며 authoring receipt Gate를 유지한다.
 
 ## GUT 9.7.1 / Hera 1.0.0 live plugin approval readback
 
@@ -111,7 +122,7 @@ tracked_project_godot_editor_plugins: GODOT_AI_ONLY_AT_GITHUB_MAIN_READBACK
 tracked_config_matches_live_plugin_enablement: false
 ```
 
-현재 GitHub `project.godot` readback에는 `[editor_plugins]`가 `res://addons/godot_ai/plugin.cfg`만 포함한다. 따라서 GUT/Hera의 live enablement를 tracked config sync 완료로 과장하지 않는다. 이후 persistent `project.godot` 변경이 필요하면 HiGodot authoring 경로와 receipt Gate를 사용해야 한다.
+현재 GitHub `project.godot` readback에는 `[editor_plugins]`가 `res://addons/godot_ai/plugin.cfg`만 포함한다. 따라서 GUT/Hera의 live enablement를 tracked config sync 완료로 과장하지 않는다. 이후 persistent `project.godot` 또는 Godot addon source 변경이 필요하면 HiGodot authoring 경로와 receipt Gate를 사용해야 한다.
 
 ## Hera v1.0.0 exact pair
 
@@ -196,7 +207,7 @@ human_review: NOT_RUN
 
 ## 현재 작업 경계
 
-GUT formal adoption, repo-wide official Actions full-SHA hardening, HiGodot v3.1.3 vendor integrity, Hera exact pair, Windows/Android shared-core structural architecture는 PR #82 Task 2의 선행 blocker가 아니다. 3-screen runtime은 구현 이후 acceptance다.
+GUT formal adoption, repo-wide official Actions full-SHA hardening, tracked HiGodot v3.1.2 integrity, live HiGodot v3.1.3 session readiness, Hera exact pair, Windows/Android shared-core structural architecture는 PR #82 Task 2의 선행 blocker가 아니다. 3-screen runtime은 구현 이후 acceptance다.
 
 Task 2는 `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 사용자 승인되어 `spell_workflow_task2_authorized: true`다. 사용자 제공 Codex readback은 Godot AI MCP `grimoire@9cc4` 세션이 ready임을 확인했지만, 이 ChatGPT 세션 자체에는 HiGodot persistent-authoring tool이 노출돼 있지 않다. 따라서 product source mutation을 일반 GitHub text write로 우회하지 않는다.
 
