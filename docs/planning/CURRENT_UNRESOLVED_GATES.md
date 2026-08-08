@@ -19,6 +19,9 @@ status: TASK2_READY_FOR_HIGODOT_AUTHORING_POST_IMPLEMENTATION_ACCEPTANCE_REMAINS
 formal_adoption_scope: MERGED_MAIN_VERIFIED
 gut_implementation_pr: 85
 gut_implementation_status: GUT_FORMALLY_ADOPTED
+gut_exact_head: fc178bdc7a3e12faf4ae7ae78fd1f92dd2735849
+gut_validation_run: 31227323973
+authority_validation_run: 31227323956
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 spell_workflow_task2_authorized: false
@@ -30,7 +33,7 @@ three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEME
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 ```
 
-현재 main은 `project_main_authority`에 따라 GitHub default branch를 live readback한다. 역사 SHA는 현재 main으로 해석하지 않는다.
+현재 main은 `project_main_authority`에 따라 GitHub default branch를 live readback한다. `gut_formal_adoption_main`과 `post_merge_canon_sync_merge`는 PR #85/#87의 역사 merge 증거다.
 
 ## 닫힌 Gate
 
@@ -52,7 +55,13 @@ WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 ```
 
-Shared-core 구조 PASS evidence는 `docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json`이다. `src/core`는 플랫폼 API를 직접 소유하지 않고 단일 `project.godot`과 모바일 layout adapter를 사용한다. 이 결과는 export/device 완료를 뜻하지 않는다.
+HiGodot v3.1.2의 current vendor-integrity는 `docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json`에 고정한다. official `plugin/addons/godot_ai`와 project `addons/godot_ai`가 동일 tree `a7d1e2fe...`다. 과거 mismatch는 wrapper/subtree scope 오류로 `GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY`에서 교정했다.
+
+Hera v1.0.0 exact pair evidence는 `docs/validation/HERA_V1_0_0_EXACT_PAIR.json`에 고정한다. upstream/project addon tree는 `6cb87ac8...`로 동일하고 hosted canary run `31254032278`에서 official CLI digest/version, localhost-only bind, shared-token enforcement, wrong-token rejection, correct-token status, Godot 4.7.1, repository source-delta zero가 PASS했다. Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`이며 persistent source mutation 권위가 아니다.
+
+PR #91 진입 시 Base main은 `eee98a930219065e30b4d7d14d99d5ac7db44c60`, 이번 visual/platform Gate 진입 시 최신 Base main은 `a912cc001ff4d4e3415fb4b4931723c49eb08d9a`였다. Base release pin은 9.4.3으로 유지한다.
+
+Shared-core 구조 PASS evidence는 `docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json`이다. `src/core`는 플랫폼 API를 직접 소유하지 않고 단일 `project.godot`과 모바일 layout adapter를 사용한다. 같은 focused contract가 hosted Windows 2025와 Ubuntu 24.04에서 PASS했다. 이 결과는 export/device 완료를 뜻하지 않는다.
 
 ## 구현 이후 acceptance 대기
 
