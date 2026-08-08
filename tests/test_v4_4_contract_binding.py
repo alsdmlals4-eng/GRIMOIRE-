@@ -37,7 +37,7 @@ class V44ContractBindingTests(unittest.TestCase):
         self.assertTrue(state["claims"]["gut_formally_adopted"])
         self.assertTrue(state["claims"]["gut_runtime_ci_pass"])
         self.assertFalse(state["claims"]["visual_audio_complete"])
-        self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(state["claims"]["spell_workflow_task2_authorized"])
 
     def test_entry_reconciliation_remains_historical_pre_finalization_evidence(self) -> None:
         self.assertTrue(RECONCILIATION.is_file(), str(RECONCILIATION))
