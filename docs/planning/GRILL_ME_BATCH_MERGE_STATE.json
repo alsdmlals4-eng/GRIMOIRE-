@@ -1,5 +1,5 @@
 {
-  "schema_version": 26,
+  "schema_version": 27,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -22,9 +22,11 @@
     "pending_decision_ids": []
   },
   "current_work": {
-    "status": "VISUAL_PLATFORM_GATE_SEQUENCING_STRUCTURAL_PASS_MERGED_SHEET_SYNCED",
-    "gate": "READY_FOR_HIGODOT_AUTHORING_WITH_POST_IMPLEMENTATION_ACCEPTANCE",
+    "status": "TASK2_USER_APPROVED_AWAITING_HIGODOT_CHANNEL",
+    "gate": "TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL_WITH_POST_IMPLEMENTATION_ACCEPTANCE",
     "latest_approved_decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
+    "latest_approval_sync_id": "GR-SYNC-20260809-01-TASK2-USER-APPROVAL",
+    "latest_approval": "USER_APPROVED_2026-08-09T06:19+09:00",
     "default_branch": "main",
     "project_main_authority": "LIVE_GITHUB_DEFAULT_BRANCH_READBACK",
     "gut_formal_adoption_main": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
@@ -36,10 +38,11 @@
     "gut_validation_run": 31227323973,
     "spell_workflow_implementation_pull_request": 82,
     "spell_workflow_implementation_head": "0919b71dfec3c6f57b88e1290789302267936960",
-    "spell_workflow_implementation": "PAUSED_AFTER_TASK1_GREEN",
+    "spell_workflow_implementation": "TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL",
     "spell_workflow_task2": "NOT_STARTED_ON_BRANCH",
-    "spell_workflow_task2_authorized": false,
+    "spell_workflow_task2_authorized": true,
     "spell_workflow_task2_readiness": "READY_FOR_HIGODOT_AUTHORING",
+    "required_persistent_authority": "HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE",
     "higodot_authority": "SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY",
     "higodot_vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
     "higodot_integrity_sync": "GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY",
@@ -60,7 +63,7 @@
     "sheet_readback": "SHEET_WRITE_READBACK_PASS",
     "visual_platform_sheet_sync": "SHEET_WRITE_READBACK_PASS",
     "merge_authorized": true,
-    "next_priority": "HIGODOT_TASK2_AUTHORING_THEN_THREE_SCREEN_ACCEPTANCE"
+    "next_priority": "HIGODOT_TASK2_AUTHORING_WITH_RECEIPT_GATE_THEN_THREE_SCREEN_ACCEPTANCE"
   },
   "base": {
     "project_pin": "9.4.3",

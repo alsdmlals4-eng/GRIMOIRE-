@@ -43,13 +43,14 @@ class HiGodotV312VendorIntegrityTests(unittest.TestCase):
         self.assertEqual(DECISION, data["decision_id"])
         self.assertEqual(AUDIT_ID, data["audit_id"])
 
-    def test_current_canon_closes_only_the_higodot_integrity_blocker(self) -> None:
+    def test_current_canon_keeps_higodot_integrity_pass_and_current_task2_approval(self) -> None:
         for path in CURRENT_DOCS:
             text = path.read_text(encoding="utf-8")
             self.assertNotIn(STALE_BLOCKER, text, str(path))
             self.assertIn("higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY", text, str(path))
             self.assertIn(DECISION, text, str(path))
-            self.assertIn("spell_workflow_task2_authorized: false", text, str(path))
+            self.assertIn("spell_workflow_task2_authorized: true", text, str(path))
+            self.assertNotIn("spell_workflow_task2_authorized: false", text, str(path))
 
     def test_machine_state_records_exact_tree_identity_and_keeps_real_gates(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
@@ -66,7 +67,8 @@ class HiGodotV312VendorIntegrityTests(unittest.TestCase):
         self.assertEqual(HERA_PASS, authority["hera"]["status"])
         self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
         self.assertEqual(SHARED_CORE_PASS, authority["platform_validation"]["status"])
-        self.assertFalse(authority["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(authority["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
         self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", canon["broader_blockers"])
         self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", authority["broader_blockers"])
         for blocker in ("AUDIO_VAULT_PATH_UNVERIFIED", "AUDIO_RIGHTS_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS"):

@@ -24,7 +24,7 @@ ARTIFACT_ID = 9020855476
 ARTIFACT_SHA256 = "6c96beba235c57964a48b1877d931215ebda3a844708d05464de5be0e2bf93d8"
 
 class HeraV1PairCanonReconciliationTests(unittest.TestCase):
-    def test_live_evidence_is_promoted_from_ci_required_to_pass(self) -> None:
+    def test_live_evidence_preserves_historical_canary_scope(self) -> None:
         data = json.loads(EVIDENCE.read_text(encoding="utf-8"))
         self.assertEqual(PASS_TOKEN, data["live_canary"]["status"])
         self.assertEqual(RUN_ID, data["live_canary"]["workflow_run"])
@@ -36,9 +36,10 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertTrue(data["claims"]["live_cli_addon_pair_pass"])
         self.assertTrue(data["claims"]["acceptance_qa_authorized"])
         self.assertFalse(data["claims"]["persistent_project_source_mutation_allowed_to_hera"])
+        # Historical evidence retains the Task2 state that existed when the Hera canary was recorded.
         self.assertFalse(data["claims"]["spell_workflow_task2_authorized"])
 
-    def test_current_docs_close_only_hera_pair_blocker(self) -> None:
+    def test_current_docs_close_hera_pair_blocker_and_show_later_task2_approval(self) -> None:
         unresolved = UNRESOLVED.read_text(encoding="utf-8")
         gates = DEVELOPMENT_GATES.read_text(encoding="utf-8")
         self.assertNotIn(STALE_BLOCKER, unresolved)
@@ -48,7 +49,8 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
             text = path.read_text(encoding="utf-8")
             self.assertIn("hera_exact_pair: PASS", text, str(path))
             self.assertNotIn(STALE_BLOCKER, text, str(path))
-            self.assertIn("spell_workflow_task2_authorized: false", text, str(path))
+            self.assertIn("spell_workflow_task2_authorized: true", text, str(path))
+            self.assertNotIn("spell_workflow_task2_authorized: false", text, str(path))
 
     def test_machine_state_closes_hera_and_structural_platform_gate_but_keeps_real_limits(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
@@ -59,9 +61,10 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertEqual(PASS_TOKEN, grill["current_work"]["hera_status"])
         self.assertNotIn(STALE_BLOCKER, canon["broader_blockers"])
         self.assertNotIn(STALE_BLOCKER, authority["broader_blockers"])
-        self.assertFalse(authority["claims"]["spell_workflow_task2_authorized"])
-        self.assertFalse(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
-        self.assertFalse(grill["current_work"]["spell_workflow_task2_authorized"])
+        self.assertTrue(authority["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
+        self.assertTrue(grill["current_work"]["spell_workflow_task2_authorized"])
+        self.assertEqual("AUTHORIZED_AWAITING_HIGODOT_CHANNEL", canon["spell_workflow_main"]["task2_execution_status"])
         self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
         self.assertEqual(SHARED_CORE_PASS, authority["platform_validation"]["status"])
         self.assertEqual(SHARED_CORE_PASS, grill["current_work"]["windows_android_shared_core"])

@@ -22,9 +22,11 @@ hera_merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
 hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 gut_status: GUT_FORMALLY_ADOPTED
 spell_workflow_pr: 82
-spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
-spell_workflow_task2_authorized: false
+spell_workflow_status: TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+spell_workflow_task2_authorized: true
 spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
+spell_workflow_task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+spell_workflow_task2_approval_sync: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
@@ -62,7 +64,25 @@ v4.3 바인딩은 역사 증거로 보존하지만 현재 권위가 아니다. B
 
 `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`의 `FIVE_POINT_STAR`, Typed Glyph Stock, Exactly-once 처리와 `GM-SPELL-WORKFLOW-UI-V2-01`의 `글자 그리기 → 회로 배치 → 주문 사용`을 유지한다.
 
-PR #82 Task 1 GREEN은 보존한다. Task 2 제품 구현은 아직 `NOT_STARTED_ON_BRANCH`이고 `spell_workflow_task2_authorized: false`다. 승인된 구현 계획의 Task 9–10에서 생성되는 three-screen runtime evidence를 Task 2 선행조건으로 두지 않도록 순서를 교정했으며 현재 readiness는 `READY_FOR_HIGODOT_AUTHORING`이다. Persistent Godot authoring은 HiGodot 단일 권위와 authoring receipt Gate를 반드시 사용한다.
+PR #82 Task 1 GREEN은 보존한다. Task 2는 `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 사용자가 승인하여 `spell_workflow_task2_authorized: true`다. 구현 자체는 아직 `NOT_STARTED_ON_BRANCH`; readiness는 `READY_FOR_HIGODOT_AUTHORING`, 실행 상태는 `AUTHORIZED_AWAITING_HIGODOT_CHANNEL`이다. v4.4 승인 상속 규칙에 따라 같은 Task2 범위의 구현·검증·Green 후 병합 권한도 유효하지만, Persistent Godot authoring은 HiGodot 단일 권위와 authoring receipt Gate를 반드시 사용한다.
+
+승인된 구현 계획의 Task 9–10에서 생성되는 three-screen runtime evidence를 Task 2 선행조건으로 두지 않으며, 현재 three-screen runtime PASS를 주장하지 않는다.
+
+## GM-SPELL-WORKFLOW-UI-V2-01 — Task 2 approval
+
+```yaml
+sync_id: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
+approval: USER_APPROVED_2026-08-09T06:19+09:00
+task2: NOT_STARTED_ON_BRANCH
+spell_workflow_task2_authorized: true
+spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
+task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+required_persistent_authority: HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE
+same_scope_merge_authority: INHERITED_SUBJECT_TO_GREEN_AND_EXACT_HEAD_GATES
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+```
+
+현재 ChatGPT 세션에는 HiGodot persistent-authoring MCP/channel이 없으므로 Task 2 product source mutation을 일반 GitHub text write로 우회하지 않는다. 승인과 구현 완료를 구분한다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — visual/platform gate sequencing
 
@@ -149,6 +169,8 @@ normal_pr_gate: Validate Godot Authoring and GUT Authority Gate
 `GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정과 Hera exact-pair 결과는 동일 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` 아래에서 동기화돼 있다.
 
 Visual/platform sequencing 결과는 동일 `GM-SPELL-WORKFLOW-UI-V2-01`로 Hub row2·Decision row68·Audit row79·ImageReview row6·History row115에 동기화됐고 두 번의 readback으로 `SHEET_WRITE_READBACK_PASS`를 확인했다. PR #93 merged-main 증거는 `5016bd090ad09892d36a8b751c7a9649868b76d5`다.
+
+Task 2 사용자 승인도 동일 Decision ID `GM-SPELL-WORKFLOW-UI-V2-01`로 GitHub canon에 기록하며, 이 canon-sync PR merge 후 Sheet에 동일 sync id `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 write/readback한다.
 
 ## 현재 남은 Gate
 

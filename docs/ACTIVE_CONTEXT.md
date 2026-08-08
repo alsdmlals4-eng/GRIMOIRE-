@@ -29,9 +29,11 @@ authority_validation_run: 31227323956
 godot_toolchain_run: 31227323954
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 spell_workflow_pr: 82
-spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
-spell_workflow_task2_authorized: false
+spell_workflow_status: TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+spell_workflow_task2_authorized: true
 spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
+spell_workflow_task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+spell_workflow_task2_approval_sync: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
@@ -46,7 +48,7 @@ local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base `fa69a77...`는 v4.4 바인딩 시점 관찰, `eee98a930...`는 PR #91 진입 시 관찰, `a912cc001...`는 이번 visual/platform Gate 진입 시 최신 관찰이다. Base release pin `9.4.3`은 갱신 승인되지 않았다.
+`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base `fa69a77...`는 v4.4 바인딩 시점 관찰, `eee98a930...`는 PR #91 진입 시 관찰, `a912cc001...`는 visual/platform Gate 진입 시 관찰이다. Base release pin `9.4.3`은 갱신 승인되지 않았다.
 
 ## 보존된 Star Circuit runtime authority
 
@@ -100,7 +102,7 @@ acceptance_qa_authorized: true
 persistent_source_mutation_authorized: false
 ```
 
-Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. canary는 임시 Godot 프로젝트에서 실행됐고 GRIMOIRE `project.godot`/addon/source를 변경하지 않았다. PR #91 진입 당시 Base `main@eee98a930...`와 이번 최신 Base `main@a912cc001...` 모두 exact pair, localhost-only, shared token, persistent write 금지, acceptance source-delta `NONE` boundary를 유지한다.
+Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. canary는 임시 Godot 프로젝트에서 실행됐고 GRIMOIRE `project.godot`/addon/source를 변경하지 않았다. PR #91 진입 당시 Base `main@eee98a930...`와 visual/platform Gate 진입 당시 Base `main@a912cc001...` 모두 exact pair, localhost-only, shared token, persistent write 금지, acceptance source-delta `NONE` boundary를 유지한다.
 
 ## GUT formal adoption readback
 
@@ -164,7 +166,7 @@ human_review: NOT_RUN
 
 GUT formal adoption, repo-wide official Actions full-SHA hardening, HiGodot vendor integrity, Hera exact pair, Windows/Android shared-core structural architecture는 더 이상 PR #82 Task 2의 선행 blocker가 아니다. 3-screen runtime은 구현 이후 acceptance다.
 
-Task 2 제품 구현은 아직 `NOT_STARTED_ON_BRANCH`, `spell_workflow_task2_authorized: false`이며 `READY_FOR_HIGODOT_AUTHORING` 상태다. persistent Godot product authoring은 HiGodot과 receipt Gate가 필요하다.
+Task 2는 `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 사용자 승인되어 `spell_workflow_task2_authorized: true`다. 제품 구현은 아직 `NOT_STARTED_ON_BRANCH`이고 readiness는 `READY_FOR_HIGODOT_AUTHORING`, 실행 상태는 `AUTHORIZED_AWAITING_HIGODOT_CHANNEL`이다. Persistent Godot product authoring은 HiGodot과 receipt Gate가 필요하며 현재 세션에서는 우회 source write를 하지 않는다.
 
 ```text
 AUDIO_VAULT_PATH_UNVERIFIED

@@ -23,7 +23,7 @@ class Pr83ReviewExceptionContractTests(unittest.TestCase):
         ):
             self.assertIn(token, text)
 
-    def test_state_keeps_pr84_exception_historical_and_records_pr85_adoption(self) -> None:
+    def test_state_keeps_pr84_exception_historical_and_records_current_task2_approval(self) -> None:
         state = json.loads(STATE.read_text(encoding="utf-8"))
         self.assertNotIn("pr83_merge_gate", state)
         gate = state["pr84_merge_gate"]
@@ -32,10 +32,11 @@ class Pr83ReviewExceptionContractTests(unittest.TestCase):
         self.assertEqual("312e491c8e9b333cb585b4e0550f80e3aea5f3f7", gate["merged_main"])
         self.assertTrue(gate["exception_consumed"])
         self.assertFalse(gate["waives_future_pr_checks"])
+        self.assertFalse(gate["pr82_task2_authorized"])
         self.assertTrue(state["claims"]["gut_formally_adopted"])
-        self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(state["claims"]["spell_workflow_task2_authorized"])
 
-    def test_pr83_exception_is_history_while_current_docs_are_v4_4_post_merge(self) -> None:
+    def test_pr83_exception_is_history_while_current_docs_show_later_user_approval(self) -> None:
         receipt = RECEIPT.read_text(encoding="utf-8")
         current = UNRESOLVED.read_text(encoding="utf-8")
         decisions = DECISIONS.read_text(encoding="utf-8")
@@ -43,7 +44,8 @@ class Pr83ReviewExceptionContractTests(unittest.TestCase):
         self.assertIn('contract_version: "4.4"', current)
         self.assertIn("GM-CONTRACT-V4-4-BINDING-01", current)
         self.assertIn("GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY", current)
-        self.assertIn("spell_workflow_task2_authorized: false", current)
+        self.assertIn("spell_workflow_task2_authorized: true", current)
+        self.assertNotIn("spell_workflow_task2_authorized: false", current)
         self.assertIn("GUT_FORMALLY_ADOPTED", current)
         self.assertIn("GUT_FORMALLY_ADOPTED", decisions)
         self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", current)
