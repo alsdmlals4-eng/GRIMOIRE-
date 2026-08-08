@@ -61,6 +61,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertTrue(data["claims"]["gut_formally_adopted"])
         self.assertTrue(data["claims"]["gut_runtime_ci_pass"])
         self.assertTrue(data["claims"]["gut_github_actions_pass"])
+        self.assertTrue(data["claims"]["repo_wide_actions_full_sha"])
         self.assertFalse(data["claims"]["tool_vendor_integrity_pass"])
         self.assertFalse(data["claims"]["visual_audio_complete"])
         self.assertFalse(data["claims"]["spell_workflow_task2_authorized"])
@@ -112,16 +113,18 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         state = json.loads(STATE.read_text(encoding="utf-8"))
         self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", state["gut"]["vendor_integrity"])
 
-    def test_unresolved_preserves_broader_project_blockers(self):
+    def test_unresolved_preserves_remaining_broader_project_blockers(self):
         text = UNRESOLVED.read_text(encoding="utf-8")
         for blocker in (
             "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
             "AUDIO_RIGHTS_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
-            "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN", "CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE",
+            "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN",
             "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(blocker, text)
+        self.assertNotIn("CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE", text)
+        self.assertIn("REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS", text)
 
 
 if __name__ == "__main__":

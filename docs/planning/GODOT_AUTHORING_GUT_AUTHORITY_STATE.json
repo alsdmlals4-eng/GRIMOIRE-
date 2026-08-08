@@ -1,5 +1,5 @@
 {
-  "schema_version": 10,
+  "schema_version": 11,
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.4",
@@ -121,17 +121,19 @@
     "write": "PASS",
     "readback": "PASS",
     "pr85_exact_head_sync": "PASS",
-    "pr85_merged_main_sync": "PENDING_POST_CANON_MERGE"
+    "pr85_merged_main_sync": "PASS"
   },
   "validation": {
     "actions_mode": "PUBLIC_REPO_STANDARD_GITHUB_HOSTED",
-    "github_actions": "PASS_PR85_EXACT_HEAD",
+    "github_actions": "PASS_REPO_WIDE_FULL_SHA",
+    "repo_wide_actions_full_sha": "REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS",
+    "repo_wide_actions_decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01",
     "exact_head": "fc178bdc7a3e12faf4ae7ae78fd1f92dd2735849",
     "test_merge_sha": "63303a928a5ee3cb0b9374d699a2ecbee4b880c8",
     "gut_run": 31227323973,
     "authority_run": 31227323956,
     "godot_toolchain_run": 31227323954,
-    "current_head_workflows": "PASS_7_OF_7",
+    "current_head_workflows": "PASS_7_OF_7_PR85_HISTORICAL",
     "local_sync": "BLOCKED_NO_LOCAL_ACCESS",
     "godot_run": "BLOCKED_NO_LOCAL_ACCESS",
     "windows_export": "NOT_RUN",
@@ -144,7 +146,6 @@
     "AUDIO_VAULT_PATH_UNVERIFIED",
     "AUDIO_RIGHTS_UNVERIFIED",
     "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
-    "CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE",
     "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
     "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS"
   ],
@@ -157,7 +158,8 @@
     "higodot_receipt_gate_implemented": true,
     "visual_audio_complete": false,
     "spell_workflow_task2_authorized": false,
-    "gut_github_actions_pass": true
+    "gut_github_actions_pass": true,
+    "repo_wide_actions_full_sha": true
   },
   "github_actions_validation_decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01"
 }

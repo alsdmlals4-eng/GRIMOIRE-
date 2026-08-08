@@ -14,6 +14,7 @@ product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 gut_vendor_equivalence_decision: GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
 gut_status: GUT_FORMALLY_ADOPTED
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
@@ -67,6 +68,17 @@ product_mutation_hash_gate: PASS
 higodot_zero_protected_diff_gate: PASS
 ```
 
+## GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+
+```yaml
+repo_wide_actions_full_sha: PASS
+status: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
+enforcement_test: tests/test_v4_4_ci_supply_chain.py
+normal_pr_gate: Validate Godot Authoring and GUT Authority Gate
+```
+
+모든 active workflow의 official `actions/*` ref는 full 40-hex commit SHA로 강제되며 known action pin은 검증 목록과 일치해야 한다.
+
 ## Google Sheet
 
 `GM-CONTRACT-V4-4-BINDING-01`은 Sheet write/readback PASS다. 현재 main SHA는 GitHub default branch live readback으로 판정하고 Sheet에는 PR #85/#87/이후 canon semantics merge를 역사 증거로 기록한다.
@@ -80,7 +92,6 @@ WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN
-CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE
 LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```

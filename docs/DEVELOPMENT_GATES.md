@@ -11,6 +11,8 @@ preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
@@ -101,7 +103,13 @@ SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN
 
 ## Gate 18 — CI supply chain
 
-`CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE`
+`REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS`
+
+```yaml
+decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
+enforcement_test: tests/test_v4_4_ci_supply_chain.py
+```
 
 ## Delivery Gate
 

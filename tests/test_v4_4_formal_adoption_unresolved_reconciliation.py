@@ -27,16 +27,17 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
         ):
             self.assertNotIn(stale, text)
 
-    def test_broader_project_blockers_remain_explicit_and_task2_stays_blocked(self) -> None:
+    def test_remaining_broader_project_blockers_are_explicit_and_task2_stays_blocked(self) -> None:
         text = UNRESOLVED.read_text(encoding="utf-8")
         for blocker in (
             "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
             "AUDIO_RIGHTS_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
-            "CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE",
             "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(blocker, text)
+        self.assertNotIn("CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE", text)
+        self.assertIn("REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS", text)
         self.assertIn("spell_workflow_task2_authorized: false", text)
 
 

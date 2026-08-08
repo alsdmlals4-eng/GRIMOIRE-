@@ -10,6 +10,8 @@ gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
 post_merge_canon_sync_pr: 87
 post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 gut_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
 gut_status: GUT_FORMALLY_ADOPTED
 gut_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
 gut_version: 9.7.1
@@ -30,6 +32,8 @@ godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 
 PR #85의 GUT 9.7.1 CLI/headless deterministic test authority는 정식 채택되었다. `GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01`은 critical-runtime equivalence만 승인하며 full vendor-tree identity를 의미하지 않는다. GUT Editor Plugin은 계속 비활성이다.
 
+`GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`에 따라 active workflow의 official `actions/*` ref는 repo-wide full commit SHA Gate로 보호되며 `REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS` 상태다.
+
 ## 제품 보존 정본
 
 - `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`: `FIVE_POINT_STAR`, Typed Glyph Stock, Exactly-once 처리 유지.
@@ -45,7 +49,6 @@ WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN
-CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE
 LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
