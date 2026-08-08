@@ -4,16 +4,9 @@ import json
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json"
-CURRENT_DOCS = [
-    ROOT / "START_HERE.md",
-    ROOT / "docs/ACTIVE_CONTEXT.md",
-    ROOT / "docs/DEVELOPMENT_GATES.md",
-    ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
-    ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
-]
+CURRENT_DOCS = [ROOT / "START_HERE.md", ROOT / "docs/ACTIVE_CONTEXT.md", ROOT / "docs/DEVELOPMENT_GATES.md", ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md", ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"]
 CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 OFFICIAL_COMMIT = "678b16a6a0a335cf80cbb7d3f85c183cd3e616de"
@@ -24,11 +17,11 @@ RELEASE_ASSET_SHA256 = "60915d780e112aa25b142a596548786a0fb558f795278b9337722532
 LICENSE_BLOB = "7806d2217ecf773ab83bb8a1ec0b2a81c3cc8546"
 PASS_TOKEN = "PASS_EXACT_TREE_IDENTITY"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
+SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 STALE_BLOCKER = "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2"
 STALE_HERA_BLOCKER = "HERA_CLI_ADDON_PAIR_UNVERIFIED"
 DECISION = "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01"
 AUDIT_ID = "GR-AUD-TOOL-VENDOR-INTEGRITY-01"
-
 
 class HiGodotV312VendorIntegrityTests(unittest.TestCase):
     def test_durable_evidence_records_exact_comparable_scope(self) -> None:
@@ -58,7 +51,7 @@ class HiGodotV312VendorIntegrityTests(unittest.TestCase):
             self.assertIn(DECISION, text, str(path))
             self.assertIn("spell_workflow_task2_authorized: false", text, str(path))
 
-    def test_machine_state_records_exact_tree_identity_and_keeps_current_gates(self) -> None:
+    def test_machine_state_records_exact_tree_identity_and_keeps_real_gates(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
         self.assertEqual(PASS_TOKEN, canon["tool_authority"]["higodot"]["vendor_integrity"])
@@ -71,18 +64,14 @@ class HiGodotV312VendorIntegrityTests(unittest.TestCase):
         self.assertNotIn(STALE_HERA_BLOCKER, authority["broader_blockers"])
         self.assertEqual(HERA_PASS, canon["hera"]["status"])
         self.assertEqual(HERA_PASS, authority["hera"]["status"])
+        self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
+        self.assertEqual(SHARED_CORE_PASS, authority["platform_validation"]["status"])
         self.assertFalse(authority["claims"]["spell_workflow_task2_authorized"])
-        for blocker in (
-            "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
-            "AUDIO_VAULT_PATH_UNVERIFIED",
-            "AUDIO_RIGHTS_UNVERIFIED",
-            "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
-            "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
-            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
-        ):
+        self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", canon["broader_blockers"])
+        self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", authority["broader_blockers"])
+        for blocker in ("AUDIO_VAULT_PATH_UNVERIFIED", "AUDIO_RIGHTS_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS"):
             self.assertIn(blocker, canon["broader_blockers"])
             self.assertIn(blocker, authority["broader_blockers"])
-
 
 if __name__ == "__main__":
     unittest.main()

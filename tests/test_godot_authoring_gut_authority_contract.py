@@ -25,6 +25,8 @@ CURRENT_SURFACES = [
 MERGED_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
 HIGODOT_TREE = "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
+SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
+THREE_SCREEN_PENDING = "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9"
 
 
 class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
@@ -64,16 +66,25 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual(HERA_PASS, data["hera"]["status"])
         self.assertTrue(data["hera"]["acceptance_qa_authorized"])
         self.assertFalse(data["hera"]["persistent_source_mutation_authorized"])
+        self.assertEqual(SHARED_CORE_PASS, data["platform_validation"]["status"])
+        self.assertEqual("NOT_RUN", data["platform_validation"]["windows_export"])
+        self.assertEqual("NOT_RUN", data["platform_validation"]["android_export"])
+        self.assertEqual(THREE_SCREEN_PENDING, data["image_review"]["three_screen_runtime"])
 
-        self.assertEqual("GUT_FORMAL_ADOPTION_COMPLETE_BROADER_PROJECT_BLOCKERS_REMAIN", data["entry_gate"]["status"])
+        self.assertEqual("TASK2_READY_FOR_HIGODOT_AUTHORING_POST_IMPLEMENTATION_ACCEPTANCE_REMAINS", data["entry_gate"]["status"])
         self.assertEqual("MERGED_MAIN_VERIFIED", data["entry_gate"]["implementation"])
         self.assertEqual("PAUSED_AFTER_TASK1_GREEN", data["implementation_pr"]["status"])
+        self.assertEqual("READY_FOR_HIGODOT_AUTHORING", data["implementation_pr"]["task2_readiness"])
         self.assertTrue(data["claims"]["gut_formally_adopted"])
         self.assertTrue(data["claims"]["gut_runtime_ci_pass"])
         self.assertTrue(data["claims"]["higodot_vendor_integrity_pass"])
         self.assertTrue(data["claims"]["hera_live_pair_pass"])
         self.assertTrue(data["claims"]["gut_github_actions_pass"])
         self.assertTrue(data["claims"]["repo_wide_actions_full_sha"])
+        self.assertTrue(data["claims"]["windows_android_shared_core_structural_pass"])
+        self.assertFalse(data["claims"]["windows_export_pass"])
+        self.assertFalse(data["claims"]["android_export_pass"])
+        self.assertFalse(data["claims"]["three_screen_runtime_pass"])
         self.assertFalse(data["claims"]["tool_vendor_integrity_pass"])
         self.assertFalse(data["claims"]["visual_audio_complete"])
         self.assertFalse(data["claims"]["spell_workflow_task2_authorized"])
@@ -88,6 +99,8 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         combined = "\n".join(path.read_text(encoding="utf-8") for path in CURRENT_SURFACES)
         self.assertIn("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", combined)
         self.assertIn(HERA_PASS, combined)
+        self.assertIn(SHARED_CORE_PASS, combined)
+        self.assertIn(THREE_SCREEN_PENDING, combined)
 
     def test_legacy_spec_preserves_authority_boundary(self):
         text = LEGACY_SPEC.read_text(encoding="utf-8")
@@ -127,15 +140,18 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         state = json.loads(STATE.read_text(encoding="utf-8"))
         self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", state["gut"]["vendor_integrity"])
 
-    def test_unresolved_preserves_remaining_broader_project_blockers(self):
+    def test_unresolved_preserves_real_blockers_and_post_implementation_acceptance(self):
         text = UNRESOLVED.read_text(encoding="utf-8")
         for blocker in (
-            "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
-            "AUDIO_RIGHTS_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
-            "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN",
-            "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
+            "AUDIO_VAULT_PATH_UNVERIFIED", "AUDIO_RIGHTS_UNVERIFIED",
+            "VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
+            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(blocker, text)
+        self.assertIn(SHARED_CORE_PASS, text)
+        self.assertIn(THREE_SCREEN_PENDING, text)
+        self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", text)
+        self.assertNotIn("SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN", text)
         self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", text)
         self.assertIn(HERA_PASS, text)
         self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", text)

@@ -24,6 +24,11 @@ gut_status: GUT_FORMALLY_ADOPTED
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 spell_workflow_task2_authorized: false
+spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
+windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
+visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 ```
@@ -42,6 +47,7 @@ godot_project_path: C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-
 project_google_sheet: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
 base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
 base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
+base_latest_main_observed_visual_platform_gate: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
 base_release_pin: 9.4.3
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 codex_handoff: NOT_REQUESTED
@@ -53,7 +59,29 @@ v4.3 바인딩은 역사 증거로 보존하지만 현재 권위가 아니다. B
 
 `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`의 `FIVE_POINT_STAR`, Typed Glyph Stock, Exactly-once 처리와 `GM-SPELL-WORKFLOW-UI-V2-01`의 `글자 그리기 → 회로 배치 → 주문 사용`을 유지한다.
 
-PR #82 Task 1 GREEN은 보존한다. `spell_workflow_task2_authorized: false`이며 broader QA/visual/platform Gate가 닫히기 전에는 Task 2를 시작하지 않는다.
+PR #82 Task 1 GREEN은 보존한다. Task 2 제품 구현은 아직 `NOT_STARTED_ON_BRANCH`이고 `spell_workflow_task2_authorized: false`다. 승인된 구현 계획의 Task 9–10에서 생성되는 three-screen runtime evidence를 Task 2 선행조건으로 두지 않도록 순서를 교정했으며 현재 readiness는 `READY_FOR_HIGODOT_AUTHORING`이다. Persistent Godot authoring은 HiGodot 단일 권위와 authoring receipt Gate를 반드시 사용한다.
+
+## GM-SPELL-WORKFLOW-UI-V2-01 — visual/platform gate sequencing
+
+```yaml
+sync_id: GR-SYNC-20260808-07-VISUAL-PLATFORM-GATE-SEQUENCING
+shared_core_status: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
+shared_core_evidence: docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json
+visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
+windows_export: NOT_RUN
+android_export: NOT_RUN
+android_device: NOT_RUN
+performance: NOT_RUN
+visual_audio_complete: false
+audio_vault: AUDIO_VAULT_PATH_UNVERIFIED
+audio_rights: AUDIO_RIGHTS_UNVERIFIED
+```
+
+Base의 PC·Android one-core/platform-adapter 계약에 따라 `src/core`는 gameplay/content/data/save/deterministic authority를 유지하고 `src/ui/mobile_safe_root.gd`는 layout adapter로 한정된다. Focused contract는 hosted Windows 2025와 Ubuntu 24.04에서 같은 구조 계약을 통과했다. `export_presets.cfg`가 없으므로 Windows/Android export 또는 Android device PASS를 주장하지 않는다.
+
+승인된 UI v2 구현 계획에서 root/end-to-end 통합은 Task 9, rendered/CI evidence는 Task 10이다. 따라서 `THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`은 구현 이후 acceptance 대기이며 Task 2의 선행 blocker가 아니다. 현재 three-screen runtime PASS 또는 visual/audio completion PASS는 주장하지 않는다.
 
 ## GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 
@@ -98,7 +126,7 @@ hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 
 HiGodot의 과거 mismatch는 official `plugin/` wrapper와 project plugin subtree를 비교한 scope 오류로 교정됐다. GUT의 full vendor-tree mismatch/critical-runtime equivalence는 별도 판정으로 그대로다. Hera canary는 임시 Godot 프로젝트에서 official CLI와 exact addon pair를 검증했고 persistent GRIMOIRE source authoring 권위를 획득하지 않는다.
 
-최신 Base `main@eee98a930...`의 current toolchain contract도 Hera에 exact pair, localhost-only, shared token, persistent write 금지, acceptance source delta `NONE`을 요구한다. 따라서 이번 PASS는 Base 최신 정책과 충돌하지 않는다.
+최신 Base `main@a912cc001...`에서 재확인한 current toolchain/PC·Android 계약은 Hera exact pair·localhost-only·shared token·persistent write 금지·source-delta `NONE`, 그리고 shared core/platform adapter 분리를 유지한다. GRIMOIRE Base release pin 9.4.3은 갱신되지 않았다.
 
 ## GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 
@@ -115,14 +143,15 @@ normal_pr_gate: Validate Godot Authoring and GUT Authority Gate
 
 `GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정과 Hera exact-pair 결과는 동일 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` 아래에서 동기화됐고, Hub row2·Decision row69·Audit row76·History row113의 최종 readback은 `SHEET_WRITE_READBACK_PASS`다. Hera merged-main 증거는 `a35baed94fe064e57529ffee7b8c48e14ac5e1bb`이다.
 
+이번 visual/platform sequencing 결과는 PR #93 merged-main readback 후 동일 제품 Decision ID `GM-SPELL-WORKFLOW-UI-V2-01`로 Sheet에 최종 동기화한다. 그 전에는 이 새 결과의 Sheet 완료를 주장하지 않는다.
+
 ## 현재 남은 Gate
 
 ```text
-WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN
-SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN
+THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9  # post-implementation acceptance, not Task2 prerequisite
 LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```

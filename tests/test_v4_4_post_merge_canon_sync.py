@@ -9,14 +9,9 @@ ROOT = Path(__file__).resolve().parents[1]
 GUT_FORMAL_ADOPTION_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
 POST_MERGE_CANON_SYNC_MAIN = "ce01bb8caa5f1b224279d3fbf418eae29a88af7d"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
+SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
-CURRENT_DOCS = [
-    ROOT / "START_HERE.md",
-    ROOT / "docs/ACTIVE_CONTEXT.md",
-    ROOT / "docs/DEVELOPMENT_GATES.md",
-    ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
-    ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
-]
+CURRENT_DOCS = [ROOT / "START_HERE.md", ROOT / "docs/ACTIVE_CONTEXT.md", ROOT / "docs/DEVELOPMENT_GATES.md", ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md", ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"]
 CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 GRILL = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 
@@ -36,6 +31,7 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", data["higodot"]["vendor_integrity"])
         self.assertEqual("IMPLEMENTED_ZERO_PROTECTED_DIFF_GATE", data["higodot"]["authoring_receipt_gate"])
         self.assertEqual(HERA_PASS, data["hera"]["status"])
+        self.assertEqual(SHARED_CORE_PASS, data["platform_validation"]["status"])
         self.assertTrue(data["claims"]["gut_formally_adopted"])
         self.assertTrue(data["claims"]["gut_runtime_ci_pass"])
         self.assertTrue(data["claims"]["higodot_vendor_integrity_pass"])
@@ -69,7 +65,9 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual("GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED", canon["tool_authority"]["status"])
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", canon["tool_authority"]["higodot"]["vendor_integrity"])
         self.assertEqual(HERA_PASS, canon["hera"]["status"])
+        self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
         self.assertFalse(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
+        self.assertEqual("READY_FOR_HIGODOT_AUTHORING", canon["spell_workflow_main"]["task2_readiness"])
         self.assertEqual("4.4", grill["active_contract"]["version"])
         self.assertEqual(0, grill["current_count"])
         self.assertEqual("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", grill["current_work"]["project_main_authority"])
@@ -78,16 +76,17 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual("GUT_FORMALLY_ADOPTED", grill["current_work"]["gut_formal_adoption"])
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", grill["current_work"]["higodot_vendor_integrity"])
         self.assertEqual(HERA_PASS, grill["current_work"]["hera_status"])
+        self.assertEqual(SHARED_CORE_PASS, grill["current_work"]["windows_android_shared_core"])
         self.assertFalse(grill["current_work"]["spell_workflow_task2_authorized"])
 
-    def test_remaining_broader_blockers_are_preserved_after_hera_closure(self) -> None:
+    def test_remaining_broader_blockers_and_acceptance_are_preserved(self) -> None:
         text = (ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md").read_text(encoding="utf-8")
-        for blocker in (
-            "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
-            "VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
-            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
-        ):
+        for blocker in ("AUDIO_VAULT_PATH_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS"):
             self.assertIn(blocker, text)
+        self.assertIn(SHARED_CORE_PASS, text)
+        self.assertIn("THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9", text)
+        self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", text)
+        self.assertNotIn("SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN", text)
         self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", text)
         self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", text)
         self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", text)

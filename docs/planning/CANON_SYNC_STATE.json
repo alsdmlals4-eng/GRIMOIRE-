@@ -1,5 +1,5 @@
 {
-  "schema_version": 22,
+  "schema_version": 23,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -23,6 +23,7 @@
     "current_main_observed": "fa69a77a14f923a756064f6ae151d34cadb374f7",
     "current_main_observation_role": "V4_4_BINDING_HISTORICAL_OBSERVATION",
     "latest_main_observed_pr91": "eee98a930219065e30b4d7d14d99d5ac7db44c60",
+    "latest_main_observed_visual_platform_gate": "a912cc001ff4d4e3415fb4b4931723c49eb08d9a",
     "latest_observation_role": "LIVE_BASE_MAIN_READBACK_NOT_ADOPTED",
     "pin_update": "NOT_APPROVED_NOT_PERFORMED"
   },
@@ -60,8 +61,11 @@
     "implementation_head": "0919b71dfec3c6f57b88e1290789302267936960",
     "implementation": "TASK1_GREEN_TASK2_NOT_STARTED",
     "spell_workflow_task2_authorized": false,
+    "task2_readiness": "READY_FOR_HIGODOT_AUTHORING",
     "runtime_validation": "TASK1_AUTOMATED_PASS_FULL_UI_V2_NOT_RUN",
-    "current_gate": "BLOCKED_BY_BROADER_PROJECT_GATES",
+    "current_gate": "READY_FOR_HIGODOT_AUTHORING_WITH_POST_IMPLEMENTATION_VISUAL_ACCEPTANCE",
+    "three_screen_runtime": "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9",
+    "three_screen_runtime_gate_role": "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE",
     "human_device_validation": "NOT_RUN",
     "final_art": "NOT_CLAIMED"
   },
@@ -134,6 +138,18 @@
     "evidence": "docs/validation/HERA_V1_0_0_EXACT_PAIR.json",
     "sheet_sync": "SHEET_WRITE_READBACK_PASS"
   },
+  "platform_validation": {
+    "sync_id": "GR-SYNC-20260808-07-VISUAL-PLATFORM-GATE-SEQUENCING",
+    "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
+    "status": "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS",
+    "evidence": "docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json",
+    "scope": "STRUCTURAL_ARCHITECTURE_AND_HOST_CONTRACT_ONLY",
+    "windows_export": "NOT_RUN",
+    "android_export": "NOT_RUN",
+    "android_device": "NOT_RUN",
+    "performance": "NOT_RUN",
+    "sheet_sync": "PENDING_PR93_MERGE"
+  },
   "ci_supply_chain": {
     "decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01",
     "status": "REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS",
@@ -147,19 +163,21 @@
     "status": "APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE",
     "awaiting_user_direction_approval": false,
     "implementation_visual_review": "PENDING",
+    "automated_layout_baseline": "VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS",
+    "three_screen_runtime": "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9",
+    "three_screen_runtime_gate_role": "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE",
     "audio_vault_path": "C:/Users/user/Documents/GitHub/shered audio vault",
     "audio_vault_status": "BLOCKED_UNVERIFIED",
     "final_art": "NOT_CLAIMED"
   },
   "broader_blockers": [
-    "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
     "AUDIO_VAULT_PATH_UNVERIFIED",
     "AUDIO_RIGHTS_UNVERIFIED",
     "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
     "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
     "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS"
   ],
-  "latest_product_gate": "BLOCKED_BY_BROADER_PROJECT_GATES",
+  "latest_product_gate": "READY_FOR_HIGODOT_AUTHORING_WITH_POST_IMPLEMENTATION_VISUAL_ACCEPTANCE",
   "entry_reconciliation": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "unresolved_gate_file": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "merge_authorized": false,

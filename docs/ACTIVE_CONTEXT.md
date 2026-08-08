@@ -31,16 +31,22 @@ review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 spell_workflow_task2_authorized: false
+spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
+windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
+visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
 base_release_pin: 9.4.3
 base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
 base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
+base_latest_main_observed_visual_platform_gate: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base `fa69a77...`는 v4.4 바인딩 시점 관찰이고, PR #91 진입 시 최신 Base `main`은 `eee98a930...`이다. Base release pin `9.4.3`은 갱신 승인되지 않았다.
+`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base `fa69a77...`는 v4.4 바인딩 시점 관찰, `eee98a930...`는 PR #91 진입 시 관찰, `a912cc001...`는 이번 visual/platform Gate 진입 시 최신 관찰이다. Base release pin `9.4.3`은 갱신 승인되지 않았다.
 
 ## 보존된 Star Circuit runtime authority
 
@@ -59,7 +65,7 @@ human_validation: NOT_RUN
 tuning_status: PLAYTEST_TUNING_REQUIRED
 ```
 
-v4.4/GUT/Hera 정본 갱신은 위 제품 runtime 결정과 검증 상태를 대체하지 않는다.
+v4.4/GUT/Hera/visual-platform 정본 갱신은 위 제품 runtime 결정과 검증 상태를 대체하지 않는다.
 
 ## HiGodot v3.1.2 vendor integrity
 
@@ -94,7 +100,7 @@ acceptance_qa_authorized: true
 persistent_source_mutation_authorized: false
 ```
 
-Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. canary는 임시 Godot 프로젝트에서 실행됐고 GRIMOIRE `project.godot`/addon/source를 변경하지 않았다. 최신 Base `main@eee98a930...`의 current toolchain contract test도 exact pair, localhost-only, shared token, persistent write 금지, acceptance source-delta `NONE`을 계속 요구한다.
+Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. canary는 임시 Godot 프로젝트에서 실행됐고 GRIMOIRE `project.godot`/addon/source를 변경하지 않았다. PR #91 진입 당시 Base `main@eee98a930...`와 이번 최신 Base `main@a912cc001...` 모두 exact pair, localhost-only, shared token, persistent write 금지, acceptance source-delta `NONE` boundary를 유지한다.
 
 ## GUT formal adoption readback
 
@@ -125,16 +131,47 @@ status: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
 enforcement: tests/test_v4_4_ci_supply_chain.py
 ```
 
-## 현재 작업 경계
+## Windows·Android shared-core structural gate
 
-GUT formal adoption, repo-wide official Actions full-SHA hardening, HiGodot vendor integrity, Hera exact CLI/addon pair는 더 이상 PR #82 Task 2의 선행 blocker가 아니다. 그러나 Task 2가 visual/audio 및 Windows/Android product validation을 소비하므로 다음 broader blocker는 계속 닫아야 한다.
+Base의 PC·Android guide는 gameplay rules/content/data/save/deterministic state를 하나의 core로 두고 입력/layout/lifecycle/quality/platform service만 adapter로 분리한다. GRIMOIRE는 `src/core` + 단일 `project.godot` + `mobile_safe_root` adapter 구조를 사용한다.
 
-```text
-WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
-VISUAL_AUDIO_COMPLETE_NOT_PROVEN
-SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN
-AUDIO_VAULT_PATH_UNVERIFIED
-AUDIO_RIGHTS_UNVERIFIED
+```yaml
+status: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
+evidence: docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json
+windows_export: NOT_RUN
+android_export: NOT_RUN
+android_device: NOT_RUN
+performance: NOT_RUN
 ```
 
-사용자 로컬 checkout과 shared audio vault는 이 agent에서 직접 읽을 수 없다. 따라서 `LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS`, `GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS`를 유지한다.
+구조 PASS는 export/device PASS가 아니다. `export_presets.cfg`는 아직 없으며 store/platform service도 검증하지 않았다.
+
+## Visual / three-screen sequencing
+
+승인된 `2026-08-06-spell-workflow-ui-v2-implementation-plan.md`는 root/end-to-end 통합을 Task 9, render/CI evidence를 Task 10에 둔다. 따라서 3-screen runtime은 Task2 선행 blocker가 아니라 `SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE`다.
+
+```yaml
+visual_direction: APPROVED
+visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime_pass: false
+physical_touch: NOT_RUN
+screen_reader: NOT_RUN
+human_review: NOT_RUN
+```
+
+## 현재 작업 경계
+
+GUT formal adoption, repo-wide official Actions full-SHA hardening, HiGodot vendor integrity, Hera exact pair, Windows/Android shared-core structural architecture는 더 이상 PR #82 Task 2의 선행 blocker가 아니다. 3-screen runtime은 구현 이후 acceptance다.
+
+Task 2 제품 구현은 아직 `NOT_STARTED_ON_BRANCH`, `spell_workflow_task2_authorized: false`이며 `READY_FOR_HIGODOT_AUTHORING` 상태다. persistent Godot product authoring은 HiGodot과 receipt Gate가 필요하다.
+
+```text
+AUDIO_VAULT_PATH_UNVERIFIED
+AUDIO_RIGHTS_UNVERIFIED
+VISUAL_AUDIO_COMPLETE_NOT_PROVEN
+LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
+GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
+```
+
+사용자 로컬 checkout과 shared audio vault는 이 agent에서 직접 읽을 수 없다. 따라서 audio/local completion claim은 계속 차단한다.
