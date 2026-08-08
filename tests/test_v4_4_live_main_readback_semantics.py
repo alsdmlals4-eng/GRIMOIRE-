@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 GUT_FORMAL_ADOPTION_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
 POST_MERGE_CANON_SYNC_MAIN = "ce01bb8caa5f1b224279d3fbf418eae29a88af7d"
+HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 CURRENT_DOCS = [
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
@@ -53,8 +54,9 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
             "FIVE_POINT_STAR",
             "GUT_FORMALLY_ADOPTED",
             "higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY",
+            "hera_exact_pair: PASS",
+            HERA_PASS,
             "spell_workflow_task2_authorized: false",
-            "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
             "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
             "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
@@ -62,6 +64,7 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
         ):
             self.assertIn(token, combined)
         self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", combined)
+        self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", combined)
 
 
 if __name__ == "__main__":

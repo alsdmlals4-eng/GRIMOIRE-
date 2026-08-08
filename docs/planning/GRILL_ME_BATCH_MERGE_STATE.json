@@ -1,5 +1,5 @@
 {
-  "schema_version": 23,
+  "schema_version": 24,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -22,7 +22,7 @@
     "pending_decision_ids": []
   },
   "current_work": {
-    "status": "HIGODOT_VENDOR_INTEGRITY_PASS_BROADER_PROJECT_GATES_REMAIN",
+    "status": "HERA_EXACT_PAIR_PASS_BROADER_PROJECT_GATES_REMAIN",
     "gate": "BLOCKED_BY_BROADER_PROJECT_GATES",
     "latest_approved_decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
     "default_branch": "main",
@@ -42,18 +42,24 @@
     "higodot_authority": "SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY",
     "higodot_vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
     "higodot_integrity_sync": "GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY",
-    "hera_status": "HERA_CLI_ADDON_PAIR_UNVERIFIED",
+    "hera_status": "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS",
+    "hera_live_canary_run": 31254032278,
+    "hera_acceptance_qa_authorized": true,
+    "hera_persistent_source_mutation_authorized": false,
     "review_model": "GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY",
     "visual_audio_status": "APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE",
     "audio_vault": "BLOCKED_UNVERIFIED",
     "sheet_write": "PASS_PRIOR_CANON",
     "sheet_readback": "PASS_PRIOR_CANON",
     "merge_authorized": false,
-    "next_priority": "HERA_EXACT_PAIR_VERIFICATION"
+    "next_priority": "VISUAL_AUDIO_AND_THREE_SCREEN_RUNTIME_REVIEW"
   },
   "base": {
     "project_pin": "9.4.3",
     "current_main_observed": "fa69a77a14f923a756064f6ae151d34cadb374f7",
+    "current_main_observation_role": "V4_4_BINDING_HISTORICAL_OBSERVATION",
+    "latest_main_observed_pr91": "eee98a930219065e30b4d7d14d99d5ac7db44c60",
+    "latest_observation_role": "LIVE_BASE_MAIN_READBACK_NOT_ADOPTED",
     "pin_update": "NOT_APPROVED_NOT_PERFORMED"
   },
   "workflow_contract": {
@@ -63,6 +69,7 @@
     "entry_gate": "LIVE_DECISION_UNRESOLVED_IMAGE_READBACK_AND_V4_4_RECONCILIATION_REQUIRED",
     "review": "GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY",
     "gut_adoption": "GUT_FORMALLY_ADOPTED",
+    "hera": "LIVE_QA_AND_OBSERVABILITY_ONLY_EXACT_PAIR_PASS",
     "codex_handoff": "ON_DEMAND_NOT_REQUESTED",
     "max_batch_size": 10,
     "early_checkpoint_allowed": true,
@@ -74,6 +81,7 @@
     "official_tool_releases": "PASS",
     "tool_vendor_integrity": "HIGODOT_EXACT_PASS_GUT_EQUIVALENCE_APPROVED",
     "higodot_vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
+    "hera_exact_pair": "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS",
     "gut_formal_adoption": "PASS_MERGED_MAIN",
     "gut_actual_product_consumption": "PASS",
     "gut_ci": "PASS",

@@ -1,0 +1,163 @@
+name: Validate Hera v1.0.0 Exact Pair
+
+on:
+  pull_request:
+    paths:
+      - 'addons/hera_agent_godot/**'
+      - 'docs/validation/HERA_V1_0_0_EXACT_PAIR.json'
+      - 'tests/test_hera_v1_exact_pair_contract.py'
+      - '.github/workflows/validate-hera-v1-pair.yml'
+      - '.github/workflows/validate-godot-authoring-gut-authority.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'addons/hera_agent_godot/**'
+      - 'docs/validation/HERA_V1_0_0_EXACT_PAIR.json'
+      - 'tests/test_hera_v1_exact_pair_contract.py'
+      - '.github/workflows/validate-hera-v1-pair.yml'
+      - '.github/workflows/validate-godot-authoring-gut-authority.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hera-v1-pair-canary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate static Hera pair contract
+        run: python -m unittest tests.test_hera_v1_exact_pair_contract -v
+
+      - name: Install verified Godot 4.7.1
+        run: |
+          python tools/setup_godot_toolchain.py \
+            --install-dir .tooling/godot \
+            --json-report "$RUNNER_TEMP/hera-godot-toolchain.json"
+
+      - name: Verify official Hera CLI and live localhost/token canary
+        shell: bash
+        run: |
+          set -euo pipefail
+          HERA_VERSION="v1.0.0"
+          HERA_CLI_SHA256="384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a"
+          HERA_URL="https://github.com/NotNull92/hera-agent-godot/releases/download/${HERA_VERSION}/hera-linux-amd64.tar.gz"
+          HERA_ARCHIVE="$RUNNER_TEMP/hera-linux-amd64.tar.gz"
+          HERA_BIN_DIR="$RUNNER_TEMP/hera-bin"
+          HERA_BIN="$HERA_BIN_DIR/hera"
+          GODOT="$GITHUB_WORKSPACE/.tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64"
+          CANARY="$RUNNER_TEMP/hera-pair-canary"
+          HERA_HOME="$RUNNER_TEMP/hera-home"
+          TOKEN="grimoire-hera-pair-canary-token-v1"
+
+          test "$(git rev-parse HEAD:addons/hera_agent_godot)" = "6cb87ac8ba768de1d924447f385fba6d80bcde68"
+          test -z "$(git status --porcelain)"
+
+          mkdir -p "$HERA_BIN_DIR" "$CANARY/addons" "$HERA_HOME"
+          curl --fail --location --retry 3 --retry-all-errors --output "$HERA_ARCHIVE" "$HERA_URL"
+          echo "$HERA_CLI_SHA256  $HERA_ARCHIVE" | sha256sum --check --strict -
+          tar -xzf "$HERA_ARCHIVE" -C "$HERA_BIN_DIR"
+          chmod +x "$HERA_BIN"
+          test "$("$HERA_BIN" version)" = "$HERA_VERSION"
+
+          cp -a addons/hera_agent_godot "$CANARY/addons/hera_agent_godot"
+          cat > "$CANARY/project.godot" <<'EOF'
+          ; Ephemeral Hera v1.0.0 pair canary. Never committed to GRIMOIRE.
+          config_version=5
+
+          [application]
+          config/name="Hera Pair Canary"
+          config/features=PackedStringArray("4.7")
+
+          [editor_plugins]
+          enabled=PackedStringArray("res://addons/hera_agent_godot/plugin.cfg")
+
+          [rendering]
+          renderer/rendering_method="gl_compatibility"
+          EOF
+
+          cleanup() {
+            if [ -n "${EDITOR_PID:-}" ]; then
+              kill "$EDITOR_PID" 2>/dev/null || true
+              wait "$EDITOR_PID" 2>/dev/null || true
+            fi
+          }
+          trap cleanup EXIT
+
+          HOME="$HERA_HOME" HERA_AGENT_GODOT_TOKEN="$TOKEN" \
+            "$GODOT" --headless --editor --path "$CANARY" \
+            > "$RUNNER_TEMP/hera-editor.log" 2>&1 &
+          EDITOR_PID=$!
+
+          HEARTBEAT=""
+          for _ in $(seq 1 60); do
+            HEARTBEAT="$(find "$HERA_HOME/.hera-agent-godot/instances" -maxdepth 1 -name '*.json' -print -quit 2>/dev/null || true)"
+            if [ -n "$HEARTBEAT" ]; then
+              break
+            fi
+            if ! kill -0 "$EDITOR_PID" 2>/dev/null; then
+              cat "$RUNNER_TEMP/hera-editor.log"
+              exit 1
+            fi
+            sleep 1
+          done
+          test -n "$HEARTBEAT"
+          cp "$HEARTBEAT" "$RUNNER_TEMP/hera-heartbeat.json"
+
+          PORT="$(python - "$HEARTBEAT" <<'PY'
+          import json, sys
+          from pathlib import Path
+          data = json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+          assert data['godot_version'].startswith('4.7.1'), data
+          assert data['project_path'].rstrip('/').endswith('hera-pair-canary'), data
+          print(data['port'])
+          PY
+          )"
+          ss -ltn > "$RUNNER_TEMP/hera-listeners.txt"
+          grep -F "127.0.0.1:$PORT" "$RUNNER_TEMP/hera-listeners.txt"
+          if grep -F "0.0.0.0:$PORT" "$RUNNER_TEMP/hera-listeners.txt"; then
+            echo "Hera unexpectedly exposed on all IPv4 interfaces"
+            exit 1
+          fi
+
+          set +e
+          HOME="$HERA_HOME" HERA_AGENT_GODOT_TOKEN="wrong-token" \
+            "$HERA_BIN" status > "$RUNNER_TEMP/hera-wrong-token.out" 2> "$RUNNER_TEMP/hera-wrong-token.err"
+          WRONG_TOKEN_EXIT=$?
+          set -e
+          test "$WRONG_TOKEN_EXIT" -eq 1
+          grep -qi "unauthorized" "$RUNNER_TEMP/hera-wrong-token.err"
+
+          HOME="$HERA_HOME" HERA_AGENT_GODOT_TOKEN="$TOKEN" \
+            "$HERA_BIN" status > "$RUNNER_TEMP/hera-status.json"
+          python - "$RUNNER_TEMP/hera-status.json" <<'PY'
+          import json, sys
+          from pathlib import Path
+          data = json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+          assert data['project_name'] == 'Hera Pair Canary', data
+          assert data['godot_version'].startswith('4.7.1'), data
+          assert int(data['pid']) > 0, data
+          PY
+
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+
+      - name: Upload Hera pair canary evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: hera-v1-pair-canary-evidence
+          path: |
+            ${{ runner.temp }}/hera-godot-toolchain.json
+            ${{ runner.temp }}/hera-editor.log
+            ${{ runner.temp }}/hera-heartbeat.json
+            ${{ runner.temp }}/hera-listeners.txt
+            ${{ runner.temp }}/hera-status.json
+            ${{ runner.temp }}/hera-wrong-token.out
+            ${{ runner.temp }}/hera-wrong-token.err
+          if-no-files-found: warn

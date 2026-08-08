@@ -8,6 +8,8 @@ decision_id: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+hera_exact_pair: PASS
+hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
 post_merge_canon_sync_pr: 87
@@ -42,15 +44,19 @@ HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY
 ROLE_SEPARATED_REVIEW_P0_P1_ZERO
 PR85_MERGED_MAIN_VERIFIED
 REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
+HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 ```
 
 HiGodot v3.1.2의 current vendor-integrity는 `docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json`에 고정한다. official `plugin/addons/godot_ai`와 project `addons/godot_ai`가 동일 tree `a7d1e2fe...`다. 과거 mismatch는 wrapper/subtree scope 오류로 `GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY`에서 교정했다.
+
+Hera v1.0.0 exact pair evidence는 `docs/validation/HERA_V1_0_0_EXACT_PAIR.json`에 고정한다. upstream/project addon tree는 `6cb87ac8...`로 동일하고 hosted canary run `31254032278`에서 official CLI digest/version, localhost-only bind, shared-token enforcement, wrong-token rejection, correct-token status, Godot 4.7.1, repository source-delta zero가 PASS했다. Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`이며 persistent source mutation 권위가 아니다.
+
+PR #91 진입 시 Base 최신 main은 `eee98a930219065e30b4d7d14d99d5ac7db44c60`이며 current Base contract도 Hera exact pair/localhost/shared-token/source-delta-zero boundary를 유지한다. Base release pin은 9.4.3으로 유지한다.
 
 ## broader project blockers
 
 | ID | 상태 |
 |---|---|
-| `HERA_CLI_ADDON_PAIR_UNVERIFIED` | `BLOCKING_BEFORE_HERA_ACCEPTANCE_QA` |
 | `WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED` | `BLOCKING_FOR_PRODUCT_PLATFORM_COMPLETION` |
 | `AUDIO_VAULT_PATH_UNVERIFIED` | `BLOCKED_NO_LOCAL_ACCESS` |
 | `AUDIO_RIGHTS_UNVERIFIED` | `BLOCKING_FOR_AUDIO_INGESTION` |
@@ -71,12 +77,14 @@ interpretation: ASSET_MANIFEST_CURRENT_MAIN_MISSING_NO_PROMOTED_ASSET_CLAIM
 
 ```yaml
 allowed_next_actions:
-  - HERA_EXACT_PAIR_VERIFICATION
+  - HERA_ACCEPTANCE_QA_OBSERVABILITY_ONLY
   - VISUAL_AUDIO_REQUIREMENT_AND_LOCAL_ASSET_REVIEW
+  - VISUAL_AUDIO_REQUIREMENT_AND_RUNTIME_REVIEW
   - WINDOWS_ANDROID_SHARED_CORE_PLANNING_AND_VALIDATION
   - HIGODOT_PERSISTENT_AUTHORING_WITH_REQUIRED_RECEIPT_GATE
 forbidden_next_actions:
   - START_PR82_TASK2_BEFORE_ITS_APPLICABLE_PACKAGE_GATES_PASS
+  - LET_HERA_PERSISTENTLY_MUTATE_SOURCE
   - CLAIM_VISUAL_AUDIO_COMPLETE
   - CLAIM_LOCAL_SYNC_OR_PROJECT_PLAY_COMPLETE
 spell_workflow_task2_authorized: false

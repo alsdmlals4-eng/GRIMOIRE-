@@ -17,6 +17,7 @@ CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 STALE_BLOCKER = "CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE"
 PASS_TOKEN = "REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS"
+HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 DECISION = "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01"
 
 
@@ -38,7 +39,7 @@ class V44CiSupplyChainCanonReconciliationTests(unittest.TestCase):
             self.assertIn(DECISION, text, str(path))
             self.assertNotIn(STALE_BLOCKER, text, str(path))
 
-    def test_machine_state_preserves_supply_chain_pass_after_higodot_correction(self) -> None:
+    def test_machine_state_preserves_supply_chain_pass_after_hera_closure(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
 
@@ -53,8 +54,9 @@ class V44CiSupplyChainCanonReconciliationTests(unittest.TestCase):
 
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", canon["tool_authority"]["higodot"]["vendor_integrity"])
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", authority["higodot"]["vendor_integrity"])
+        self.assertEqual(HERA_PASS, canon["hera"]["status"])
+        self.assertEqual(HERA_PASS, authority["hera"]["status"])
         for blocker in (
-            "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
             "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
             "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
@@ -62,6 +64,8 @@ class V44CiSupplyChainCanonReconciliationTests(unittest.TestCase):
         ):
             self.assertIn(blocker, canon["broader_blockers"])
             self.assertIn(blocker, authority["broader_blockers"])
+        self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", canon["broader_blockers"])
+        self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", authority["broader_blockers"])
 
 
 if __name__ == "__main__":

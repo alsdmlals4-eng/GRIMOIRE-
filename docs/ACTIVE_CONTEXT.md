@@ -18,6 +18,9 @@ repo_wide_actions_full_sha: PASS
 higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 higodot_vendor_integrity_evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
+hera_exact_pair: PASS
+hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+hera_live_canary_run: 31254032278
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 gut_formal_adoption_pr: 85
 gut_exact_head: fc178bdc7a3e12faf4ae7ae78fd1f92dd2735849
@@ -28,15 +31,16 @@ review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 spell_workflow_task2_authorized: false
-hera_status: HERA_CLI_ADDON_PAIR_UNVERIFIED
 base_release_pin: 9.4.3
-base_current_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
+base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
+base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
+base_pin_update: NOT_APPROVED_NOT_PERFORMED
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다.
+`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base `fa69a77...`는 v4.4 바인딩 시점 관찰이고, PR #91 진입 시 최신 Base `main`은 `eee98a930...`이다. Base release pin `9.4.3`은 갱신 승인되지 않았다.
 
 ## 보존된 Star Circuit runtime authority
 
@@ -55,7 +59,7 @@ human_validation: NOT_RUN
 tuning_status: PLAYTEST_TUNING_REQUIRED
 ```
 
-v4.4/GUT 정본 갱신은 위 제품 runtime 결정과 검증 상태를 대체하지 않는다.
+v4.4/GUT/Hera 정본 갱신은 위 제품 runtime 결정과 검증 상태를 대체하지 않는다.
 
 ## HiGodot v3.1.2 vendor integrity
 
@@ -71,6 +75,26 @@ correction_sync: GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY
 ```
 
 과거 mismatch는 official `plugin/` wrapper와 project plugin subtree를 비교한 scope 오류였다. vendor subtree는 exact identity PASS이며 HiGodot은 계속 sole persistent-authoring authority다. authoring receipt Gate는 유지한다.
+
+## Hera v1.0.0 exact pair
+
+```yaml
+upstream_tag_commit: 10f245ddae9e7a5d569150302acbde0d78f2aa03
+upstream_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
+project_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
+linux_cli_sha256: 384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a
+hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+live_canary_run: 31254032278
+loopback_bind: PASS_127_0_0_1_ONLY
+wrong_token_rejection: PASS
+correct_token_status: PASS
+godot_4_7_1_status: PASS
+repository_source_delta_zero: PASS
+acceptance_qa_authorized: true
+persistent_source_mutation_authorized: false
+```
+
+Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. canary는 임시 Godot 프로젝트에서 실행됐고 GRIMOIRE `project.godot`/addon/source를 변경하지 않았다. 최신 Base `main@eee98a930...`의 current toolchain contract test도 exact pair, localhost-only, shared token, persistent write 금지, acceptance source-delta `NONE`을 계속 요구한다.
 
 ## GUT formal adoption readback
 
@@ -103,12 +127,12 @@ enforcement: tests/test_v4_4_ci_supply_chain.py
 
 ## 현재 작업 경계
 
-GUT formal adoption, repo-wide official Actions full-SHA hardening, HiGodot vendor integrity는 더 이상 PR #82 Task 2의 선행 blocker가 아니다. 그러나 Task 2가 Hera acceptance, visual/audio, Windows/Android product validation을 소비하므로 다음 broader blocker를 먼저 닫아야 한다.
+GUT formal adoption, repo-wide official Actions full-SHA hardening, HiGodot vendor integrity, Hera exact CLI/addon pair는 더 이상 PR #82 Task 2의 선행 blocker가 아니다. 그러나 Task 2가 visual/audio 및 Windows/Android product validation을 소비하므로 다음 broader blocker는 계속 닫아야 한다.
 
 ```text
-HERA_CLI_ADDON_PAIR_UNVERIFIED
 WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN
+SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
 ```

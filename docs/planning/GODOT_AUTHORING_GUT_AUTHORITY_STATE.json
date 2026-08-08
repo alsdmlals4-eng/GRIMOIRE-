@@ -1,5 +1,5 @@
 {
-  "schema_version": 12,
+  "schema_version": 13,
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.4",
@@ -81,6 +81,26 @@
     "legacy_coverage_parity_manifest": "docs/validation/GUT_LEGACY_REQUIRED_CONTRACT_PARITY.json",
     "must_not_mutate_product_files": true
   },
+  "hera": {
+    "role": "LIVE_QA_AND_OBSERVABILITY_ONLY",
+    "release": "v1.0.0",
+    "upstream_tag_commit": "10f245ddae9e7a5d569150302acbde0d78f2aa03",
+    "upstream_addon_tree": "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+    "project_addon_tree": "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+    "linux_cli_sha256": "384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a",
+    "status": "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS",
+    "live_canary_run": 31254032278,
+    "artifact_id": 9020855476,
+    "artifact_sha256": "6c96beba235c57964a48b1877d931215ebda3a844708d05464de5be0e2bf93d8",
+    "loopback_bind": "PASS_127_0_0_1_ONLY",
+    "wrong_token_rejection": "PASS",
+    "correct_token_status": "PASS",
+    "godot_4_7_1": "PASS",
+    "repository_source_delta_zero": "PASS",
+    "acceptance_qa_authorized": true,
+    "persistent_source_mutation_authorized": false,
+    "evidence": "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
+  },
   "pr84_merge_gate": {
     "actions_exception_decision_id": "GM-PR84-ACTIONS-BUDGET-LOCAL-EVIDENCE-EXCEPTION-01",
     "status": "MERGED_MAIN_READBACK_PASS",
@@ -124,10 +144,11 @@
   },
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "sync_id": "GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY",
+    "sync_id": "GR-SYNC-20260808-05-HERA-V1-EXACT-PAIR",
     "write": "PASS_PRIOR_CANON",
     "readback": "PASS_PRIOR_CANON",
-    "higodot_integrity_sync": "PENDING_PR90_MERGE"
+    "higodot_integrity_sync": "PASS",
+    "hera_exact_pair_sync": "PENDING_PR91_MERGE"
   },
   "validation": {
     "actions_mode": "PUBLIC_REPO_STANDARD_GITHUB_HOSTED",
@@ -136,13 +157,14 @@
     "repo_wide_actions_decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01",
     "higodot_vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
     "higodot_integrity_evidence": "docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json",
+    "hera_exact_pair": "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS",
+    "hera_live_canary_run": 31254032278,
     "local_sync": "BLOCKED_NO_LOCAL_ACCESS",
     "godot_run": "BLOCKED_NO_LOCAL_ACCESS",
     "windows_export": "NOT_RUN",
     "android_export": "NOT_RUN"
   },
   "broader_blockers": [
-    "HERA_CLI_ADDON_PAIR_UNVERIFIED",
     "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
     "AUDIO_VAULT_PATH_UNVERIFIED",
     "AUDIO_RIGHTS_UNVERIFIED",
@@ -154,6 +176,9 @@
     "official_tool_releases_verified": true,
     "tool_vendor_integrity_pass": false,
     "higodot_vendor_integrity_pass": true,
+    "hera_live_pair_pass": true,
+    "hera_acceptance_qa_authorized": true,
+    "hera_persistent_source_mutation_authorized": false,
     "gut_adoption_spec_merged": true,
     "gut_formally_adopted": true,
     "gut_runtime_ci_pass": true,

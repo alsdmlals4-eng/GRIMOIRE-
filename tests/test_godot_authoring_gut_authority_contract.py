@@ -12,6 +12,7 @@ PLAN = ROOT / "docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md"
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 HIGODOT_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json"
+HERA_EVIDENCE = ROOT / "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
 CURRENT_SURFACES = [
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
@@ -23,11 +24,12 @@ CURRENT_SURFACES = [
 ]
 MERGED_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
 HIGODOT_TREE = "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35"
+HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 
 
 class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
     def test_authority_design_plan_bindings_and_adoption_spec_exist(self):
-        for path in (LEGACY_SPEC, ADOPTION_SPEC, BINDING_V43, BINDING_V44, PLAN, STATE, UNRESOLVED, HIGODOT_EVIDENCE):
+        for path in (LEGACY_SPEC, ADOPTION_SPEC, BINDING_V43, BINDING_V44, PLAN, STATE, UNRESOLVED, HIGODOT_EVIDENCE, HERA_EVIDENCE):
             self.assertTrue(path.is_file(), str(path))
 
     def test_v4_4_state_records_formal_adoption_and_preserves_boundaries(self):
@@ -59,26 +61,33 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("PASS", data["gut"]["product_mutation_hash_gate"])
         self.assertEqual("PASS", data["gut"]["legacy_coverage_parity"])
 
+        self.assertEqual(HERA_PASS, data["hera"]["status"])
+        self.assertTrue(data["hera"]["acceptance_qa_authorized"])
+        self.assertFalse(data["hera"]["persistent_source_mutation_authorized"])
+
         self.assertEqual("GUT_FORMAL_ADOPTION_COMPLETE_BROADER_PROJECT_BLOCKERS_REMAIN", data["entry_gate"]["status"])
         self.assertEqual("MERGED_MAIN_VERIFIED", data["entry_gate"]["implementation"])
         self.assertEqual("PAUSED_AFTER_TASK1_GREEN", data["implementation_pr"]["status"])
         self.assertTrue(data["claims"]["gut_formally_adopted"])
         self.assertTrue(data["claims"]["gut_runtime_ci_pass"])
         self.assertTrue(data["claims"]["higodot_vendor_integrity_pass"])
+        self.assertTrue(data["claims"]["hera_live_pair_pass"])
         self.assertTrue(data["claims"]["gut_github_actions_pass"])
         self.assertTrue(data["claims"]["repo_wide_actions_full_sha"])
         self.assertFalse(data["claims"]["tool_vendor_integrity_pass"])
         self.assertFalse(data["claims"]["visual_audio_complete"])
         self.assertFalse(data["claims"]["spell_workflow_task2_authorized"])
 
-    def test_current_authority_surfaces_are_post_merge_v4_4(self):
+    def test_current_authority_surfaces_are_live_v4_4(self):
         for path in CURRENT_SURFACES:
             text = path.read_text(encoding="utf-8")
             self.assertIn("4.4", text, str(path))
             self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text, str(path))
-            self.assertIn(MERGED_MAIN, text, str(path))
             self.assertIn("GUT_FORMALLY_ADOPTED", text, str(path))
             self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", text, str(path))
+        combined = "\n".join(path.read_text(encoding="utf-8") for path in CURRENT_SURFACES)
+        self.assertIn("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", combined)
+        self.assertIn(HERA_PASS, combined)
 
     def test_legacy_spec_preserves_authority_boundary(self):
         text = LEGACY_SPEC.read_text(encoding="utf-8")
@@ -121,14 +130,14 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
     def test_unresolved_preserves_remaining_broader_project_blockers(self):
         text = UNRESOLVED.read_text(encoding="utf-8")
         for blocker in (
-            "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
             "AUDIO_RIGHTS_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
             "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN",
             "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(blocker, text)
-        self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", text)
+        self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", text)
+        self.assertIn(HERA_PASS, text)
         self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", text)
         self.assertIn("REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS", text)
 

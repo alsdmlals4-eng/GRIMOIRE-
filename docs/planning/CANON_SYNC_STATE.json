@@ -1,5 +1,5 @@
 {
-  "schema_version": 21,
+  "schema_version": 22,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -21,6 +21,9 @@
   "base": {
     "project_pin": "9.4.3",
     "current_main_observed": "fa69a77a14f923a756064f6ae151d34cadb374f7",
+    "current_main_observation_role": "V4_4_BINDING_HISTORICAL_OBSERVATION",
+    "latest_main_observed_pr91": "eee98a930219065e30b4d7d14d99d5ac7db44c60",
+    "latest_observation_role": "LIVE_BASE_MAIN_READBACK_NOT_ADOPTED",
     "pin_update": "NOT_APPROVED_NOT_PERFORMED"
   },
   "runtime_main": {
@@ -111,6 +114,25 @@
     "sheet_readback": "PASS",
     "merge_authorized": true
   },
+  "hera": {
+    "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+    "sync_id": "GR-SYNC-20260808-05-HERA-V1-EXACT-PAIR",
+    "role": "LIVE_QA_AND_OBSERVABILITY_ONLY",
+    "release": "v1.0.0",
+    "upstream_tag_commit": "10f245ddae9e7a5d569150302acbde0d78f2aa03",
+    "upstream_addon_tree": "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+    "project_addon_tree": "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+    "linux_cli_sha256": "384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a",
+    "status": "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS",
+    "live_canary_run": 31254032278,
+    "localhost_only": "PASS",
+    "shared_token_required": "PASS",
+    "repository_source_delta_zero": "PASS",
+    "acceptance_qa_authorized": true,
+    "persistent_source_mutation_authorized": false,
+    "evidence": "docs/validation/HERA_V1_0_0_EXACT_PAIR.json",
+    "sheet_sync": "PENDING_PR91_MERGE"
+  },
   "ci_supply_chain": {
     "decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01",
     "status": "REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS",
@@ -129,7 +151,6 @@
     "final_art": "NOT_CLAIMED"
   },
   "broader_blockers": [
-    "HERA_CLI_ADDON_PAIR_UNVERIFIED",
     "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
     "AUDIO_VAULT_PATH_UNVERIFIED",
     "AUDIO_RIGHTS_UNVERIFIED",

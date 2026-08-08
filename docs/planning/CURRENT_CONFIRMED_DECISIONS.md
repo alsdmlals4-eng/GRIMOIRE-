@@ -16,6 +16,8 @@ gut_vendor_equivalence_decision: GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+hera_exact_pair: PASS
+hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 gut_status: GUT_FORMALLY_ADOPTED
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
@@ -36,12 +38,14 @@ project_default_branch: main
 project_local_path: C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-
 godot_project_path: C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-
 project_google_sheet: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
-base_current_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
+base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
+base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
 base_release_pin: 9.4.3
+base_pin_update: NOT_APPROVED_NOT_PERFORMED
 codex_handoff: NOT_REQUESTED
 ```
 
-v4.3 바인딩은 역사 증거로 보존하지만 현재 권위가 아니다.
+v4.3 바인딩은 역사 증거로 보존하지만 현재 권위가 아니다. Base `main`의 최신 관찰이 전진했어도 release pin 9.4.3 갱신은 승인되지 않았다.
 
 ## 보존 제품 결정
 
@@ -73,9 +77,24 @@ hosted_godot_4_7_1_gut: PASS
 junit_discovery_exit: PASS
 product_mutation_hash_gate: PASS
 higodot_zero_protected_diff_gate: PASS
+hera_release: v1.0.0
+hera_upstream_tag_commit: 10f245ddae9e7a5d569150302acbde0d78f2aa03
+hera_upstream_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
+hera_project_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
+hera_linux_cli_sha256: 384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a
+hera_exact_pair: PASS
+hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+hera_live_canary_run: 31254032278
+hera_localhost_only: PASS
+hera_shared_token: PASS
+hera_repository_source_delta_zero: PASS
+hera_acceptance_qa_authorized: true
+hera_persistent_source_mutation_authorized: false
 ```
 
-HiGodot의 과거 mismatch는 official `plugin/` wrapper와 project plugin subtree를 비교한 scope 오류로 교정됐다. GUT의 full vendor-tree mismatch/critical-runtime equivalence는 별도 판정으로 그대로다.
+HiGodot의 과거 mismatch는 official `plugin/` wrapper와 project plugin subtree를 비교한 scope 오류로 교정됐다. GUT의 full vendor-tree mismatch/critical-runtime equivalence는 별도 판정으로 그대로다. Hera canary는 임시 Godot 프로젝트에서 official CLI와 exact addon pair를 검증했고 persistent GRIMOIRE source authoring 권위를 획득하지 않는다.
+
+최신 Base `main@eee98a930...`의 current toolchain contract도 Hera에 exact pair, localhost-only, shared token, persistent write 금지, acceptance source delta `NONE`을 요구한다. 따라서 이번 PASS는 Base 최신 정책과 충돌하지 않는다.
 
 ## GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 
@@ -90,16 +109,16 @@ normal_pr_gate: Validate Godot Authoring and GUT Authority Gate
 
 ## Google Sheet
 
-`GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정은 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` / `GR-AUD-TOOL-VENDOR-INTEGRITY-01`로 동기화한다.
+`GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정은 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` / `GR-AUD-TOOL-VENDOR-INTEGRITY-01`로 동기화되어 있다. Hera exact-pair 결과는 PR #91 merged-main readback 후 같은 tool-authority Decision ID로 최종 sync한다.
 
 ## 현재 남은 Gate
 
 ```text
-HERA_CLI_ADDON_PAIR_UNVERIFIED
 WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN
+SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN
 LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
