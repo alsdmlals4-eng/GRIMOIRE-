@@ -32,7 +32,7 @@ local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다.
+`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. `gut_formal_adoption_main`과 `post_merge_canon_sync_merge`는 현재 main이 아니라 역사 merge 증거다.
 
 ## 보존된 Star Circuit runtime authority
 
@@ -79,7 +79,7 @@ acceptance_qa_authorized: true
 persistent_source_mutation_authorized: false
 ```
 
-Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. canary는 `$RUNNER_TEMP` 임시 Godot 프로젝트에서 실행됐고 GRIMOIRE `project.godot`/addon/source를 변경하지 않았다.
+Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. canary는 임시 Godot 프로젝트에서 실행됐고 GRIMOIRE `project.godot`/addon/source를 변경하지 않았다.
 
 ## GUT formal adoption
 
