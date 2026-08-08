@@ -27,6 +27,9 @@ higodot_live_v3_1_3_tracked_vendor_sync: NOT_SYNCED_NOT_CLAIMED
 higodot_live_v3_1_3_evidence: docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json
 higodot_live_mcp_session: grimoire@9cc4
 higodot_live_mcp_readiness: ready
+higodot_live_state_sync: GR-SYNC-20260809-02-HIGODOT-V313-LIVE-PLUGIN-APPROVAL
+higodot_live_state_merged_main: 8422b1f506476117c876f909f986f08b94c5a543
+higodot_live_state_sheet_sync: SHEET_WRITE_READBACK_PASS
 live_gut_plugin: USER_CONFIRMED_ENABLED
 live_hera_plugin: USER_CONFIRMED_ENABLED
 tracked_project_godot_editor_plugins: GODOT_AI_ONLY_AT_GITHUB_MAIN_READBACK
@@ -86,6 +89,8 @@ v4.4/GUT/Hera/visual-platform/HiGodot live-version readback은 위 제품 runtim
 
 ```yaml
 sync_id: GR-SYNC-20260809-02-HIGODOT-V313-LIVE-PLUGIN-APPROVAL
+pr96_merged_main: 8422b1f506476117c876f909f986f08b94c5a543
+sheet_sync: SHEET_WRITE_READBACK_PASS
 tracked_release: v3.1.2
 tracked_plugin_cfg_version: 3.1.2
 tracked_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
@@ -106,7 +111,7 @@ v3_1_3_tracked_tree_identity: NOT_SYNCED_NOT_CLAIMED
 status: LIVE_VERSION_CONFIRMED_TRACKED_VENDOR_DIVERGENCE
 ```
 
-사용자 제공 Codex/Godot AI MCP readback은 Editor의 `grimoire@9cc4` 세션이 ready이고 Godot AI가 3.1.3임을 확인했다. 그러나 GitHub `main`의 `addons/godot_ai/plugin.cfg`는 3.1.2이고 tracked subtree도 v3.1.2 exact tree다. 따라서 **live 3.1.3과 tracked 3.1.2를 별도 증거로 유지**하며 v3.1.3 tracked vendor identity PASS를 주장하지 않는다. HiGodot은 계속 sole persistent-authoring authority이며 authoring receipt Gate를 유지한다.
+사용자 제공 Codex/Godot AI MCP readback은 Editor의 `grimoire@9cc4` 세션이 ready이고 Godot AI가 3.1.3임을 확인했다. 그러나 GitHub `main`의 `addons/godot_ai/plugin.cfg`는 3.1.2이고 tracked subtree도 v3.1.2 exact tree다. 따라서 **live 3.1.3과 tracked 3.1.2를 별도 증거로 유지**하며 v3.1.3 tracked vendor identity PASS를 주장하지 않는다. PR #96 merged-main `8422b1f506476117c876f909f986f08b94c5a543`과 Sheet four-surface readback은 `SHEET_WRITE_READBACK_PASS`로 확정됐다. HiGodot은 계속 sole persistent-authoring authority이며 authoring receipt Gate를 유지한다.
 
 ## GUT 9.7.1 / Hera 1.0.0 live plugin approval readback
 
@@ -126,6 +131,7 @@ hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 hera_persistent_source_mutation_authorized: false
 tracked_project_godot_editor_plugins: GODOT_AI_ONLY_AT_GITHUB_MAIN_READBACK
 tracked_config_matches_live_plugin_enablement: false
+sheet_sync: SHEET_WRITE_READBACK_PASS
 ```
 
 현재 GitHub `project.godot` readback에는 `[editor_plugins]`가 `res://addons/godot_ai/plugin.cfg`만 포함한다. 따라서 GUT/Hera의 live enablement를 tracked config sync 완료로 과장하지 않는다. 이후 persistent `project.godot` 또는 Godot addon source 변경이 필요하면 HiGodot authoring 경로와 receipt Gate를 사용해야 한다.
