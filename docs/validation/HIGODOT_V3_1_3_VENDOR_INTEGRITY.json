@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+  "audit_id": "GR-AUD-HIGODOT-V3-1-3-TOOL-AUTHORITY-01",
+  "release": "v3.1.3",
+  "official_repository": "hi-godot/godot-ai",
+  "official_tag_commit": "22678e5f9b038d7203d6b43b0aae20a5417c500e",
+  "official_repository_tree": "053131dbd726ebd492824cea9488ffeae3f2645b",
+  "official_plugin_subtree": "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35",
+  "project_plugin_path": "addons/godot_ai",
+  "project_plugin_subtree": "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35",
+  "project_plugin_cfg_version": "3.1.3",
+  "comparison_scope_rule": "COMPARE_PLUGIN_SUBTREE_TO_PLUGIN_SUBTREE",
+  "result": "PASS_EXACT_TREE_IDENTITY",
+  "base_main_observed": "2a6ced23f6d6de1fb6e0a281c7138beb03f1a13b",
+  "base_release_pin": "9.4.3",
+  "base_pin_update": "NOT_APPROVED_NOT_PERFORMED",
+  "live_editor_readback": {
+    "source": "USER_PROVIDED_CODEX_GODOT_AI_MCP_SESSION_READBACK",
+    "session_id": "grimoire@9cc4",
+    "godot_version": "4.7-stable (official)",
+    "project_name": "GRIMOIRE Star Circuit Runtime POC",
+    "current_scene": "res://src/ui/star_circuit_harness.tscn",
+    "godot_ai_plugin_server_version": "3.1.3",
+    "readiness": "ready",
+    "persistent_mutation_performed_by_readback": false
+  },
+  "approved_live_plugin_state": {
+    "godot_ai": "USER_CONFIRMED_ENABLED_APPROVED",
+    "gut_9_7_1": "USER_CONFIRMED_ENABLED_APPROVED",
+    "hera_1_0_0": "USER_CONFIRMED_ENABLED_APPROVED"
+  },
+  "tracked_github_main_readback": {
+    "project_godot_editor_plugins": "GODOT_AI_ONLY_AT_GITHUB_MAIN_READBACK",
+    "gut_plugin_cfg_version": "9.7.1",
+    "hera_plugin_cfg_version": "1.0.0",
+    "tracked_config_matches_user_live_enablement": false,
+    "interpretation": "LIVE_EDITOR_STATE_AND_TRACKED_PROJECT_CONFIG_ARE_SEPARATE_EVIDENCE_UNTIL_HIGODOT_AUTHORED_PROJECT_GODOT_SYNC_IS_READ_BACK"
+  },
+  "authority_boundaries": {
+    "higodot": "SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY",
+    "gut": "DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY",
+    "hera": "LIVE_QA_AND_OBSERVABILITY_ONLY",
+    "hera_persistent_source_mutation": "FORBIDDEN"
+  },
+  "claims": {
+    "official_tag_verified": true,
+    "official_and_project_plugin_subtree_identical": true,
+    "release_archive_downloaded_and_rehashed_in_this_audit": false,
+    "tracked_project_godot_has_gut_and_hera_enabled": false,
+    "user_confirmed_live_gut_and_hera_enabled": true,
+    "godot_product_source_changed_by_this_sync": false
+  }
+}
