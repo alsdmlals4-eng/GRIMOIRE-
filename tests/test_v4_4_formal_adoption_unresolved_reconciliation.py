@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 MERGED_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
+HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 
 
 class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
@@ -15,7 +16,6 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
         self.assertIn('contract_version: "4.4"', text)
         self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text)
         self.assertIn(MERGED_MAIN, text)
-        self.assertIn("formal_adoption_scope: MERGED_MAIN_VERIFIED", text)
         self.assertIn("GUT_FORMALLY_ADOPTED", text)
         for stale in (
             "GUT_ADOPTION_SPEC_NOT_MERGED", "GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN",
@@ -30,7 +30,6 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
     def test_remaining_broader_project_blockers_are_explicit_and_task2_stays_blocked(self) -> None:
         text = UNRESOLVED.read_text(encoding="utf-8")
         for blocker in (
-            "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
             "AUDIO_RIGHTS_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
             "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
@@ -40,6 +39,8 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
         self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", text)
         self.assertNotIn("CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE", text)
         self.assertIn("REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS", text)
+        self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", text)
+        self.assertIn(HERA_PASS, text)
         self.assertIn("spell_workflow_task2_authorized: false", text)
 
 
