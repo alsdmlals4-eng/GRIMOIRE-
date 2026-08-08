@@ -11,6 +11,9 @@ MOBILE_ROOT = ROOT / "src/ui/mobile_safe_root.gd"
 MOBILE_TEST = ROOT / "tests/integration/test_mobile_safe_root.gd"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 CONFIRMED = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
+CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
+AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
+GRILL = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 CURRENT = [
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
@@ -22,6 +25,8 @@ STRUCTURAL_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 THREE_SCREEN_ROLE = "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE"
 THREE_SCREEN_PENDING = "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9"
 LAYOUT_PASS = "VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS"
+SHEET_PASS = "SHEET_WRITE_READBACK_PASS"
+MERGED_MAIN = "5016bd090ad09892d36a8b751c7a9649868b76d5"
 
 
 class VisualPlatformGateSequencingTests(unittest.TestCase):
@@ -103,6 +108,25 @@ class VisualPlatformGateSequencingTests(unittest.TestCase):
         self.assertIn("python -m unittest tests.test_visual_platform_gate_sequencing -v", workflow)
         self.assertIn("actions/checkout@11d5960a326750d5838078e36cf38b85af677262", workflow)
         self.assertIn("actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065", workflow)
+
+    def test_merged_main_and_sheet_readback_are_promoted_to_current_canon(self):
+        evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+        canon = json.loads(CANON.read_text(encoding="utf-8"))
+        authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
+        grill = json.loads(GRILL.read_text(encoding="utf-8"))
+        confirmed = CONFIRMED.read_text(encoding="utf-8")
+
+        self.assertEqual(MERGED_MAIN, evidence["merged_main"])
+        self.assertEqual(SHEET_PASS, evidence["review"]["sheet_sync"])
+        self.assertEqual(MERGED_MAIN, canon["platform_validation"]["merged_main"])
+        self.assertEqual(SHEET_PASS, canon["platform_validation"]["sheet_sync"])
+        self.assertEqual(MERGED_MAIN, authority["platform_validation"]["merged_main"])
+        self.assertEqual(SHEET_PASS, authority["sheet_sync"]["visual_platform_gate_sync"])
+        self.assertEqual(MERGED_MAIN, grill["current_work"]["visual_platform_merged_main"])
+        self.assertEqual(SHEET_PASS, grill["current_work"]["visual_platform_sheet_sync"])
+        self.assertIn(MERGED_MAIN, confirmed)
+        self.assertIn(SHEET_PASS, confirmed)
+        self.assertNotIn("PENDING_PR93_MERGE", confirmed)
 
 
 if __name__ == "__main__":
