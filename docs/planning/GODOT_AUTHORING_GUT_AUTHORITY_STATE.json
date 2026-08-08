@@ -1,5 +1,5 @@
 {
-  "schema_version": 15,
+  "schema_version": 16,
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.4",
@@ -113,7 +113,7 @@
     "pr82_task2_authorized": false
   },
   "entry_gate": {
-    "status": "TASK2_READY_FOR_HIGODOT_AUTHORING_POST_IMPLEMENTATION_ACCEPTANCE_REMAINS",
+    "status": "TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL_POST_IMPLEMENTATION_ACCEPTANCE_REMAINS",
     "implementation": "MERGED_MAIN_VERIFIED",
     "formal_adoption_scope": "MERGED_MAIN_VERIFIED",
     "reconciliation_path": "docs/planning/CURRENT_UNRESOLVED_GATES.md"
@@ -121,11 +121,13 @@
   "implementation_pr": {
     "number": 82,
     "head": "0919b71dfec3c6f57b88e1290789302267936960",
-    "status": "PAUSED_AFTER_TASK1_GREEN",
+    "status": "TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL",
     "task2": "NOT_STARTED_ON_BRANCH",
     "task2_readiness": "READY_FOR_HIGODOT_AUTHORING",
-    "task2_authorized": false,
-    "merge_authorized": false
+    "task2_authorized": true,
+    "task2_approval": "USER_APPROVED_2026-08-09T06:19+09:00",
+    "required_persistent_authority": "HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE",
+    "merge_authorized": true
   },
   "image_review": {
     "review_id": "GR-REV-SPELL-WORKFLOW-UI-V2",
@@ -214,7 +216,7 @@
     "android_device_pass": false,
     "three_screen_runtime_pass": false,
     "visual_audio_complete": false,
-    "spell_workflow_task2_authorized": false,
+    "spell_workflow_task2_authorized": true,
     "gut_github_actions_pass": true,
     "repo_wide_actions_full_sha": true
   },
