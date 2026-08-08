@@ -5,6 +5,7 @@
   "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "baseline_main": "5ca877a392373211c0fc397e815310f26bb80c02",
+  "merged_main": "5016bd090ad09892d36a8b751c7a9649868b76d5",
   "base_release_pin": "9.4.3",
   "base_main_observed_at_entry": "a912cc001ff4d4e3415fb4b4931723c49eb08d9a",
   "base_latest_main_observed_premerge": "cf4c7a60c5b31b042043f91b268f381372fec69a",
@@ -78,6 +79,6 @@
     "p1": 0,
     "review_threads": 0,
     "protected_godot_product_source_delta": "NONE",
-    "sheet_sync": "PENDING_MERGED_MAIN"
+    "sheet_sync": "SHEET_WRITE_READBACK_PASS"
   }
 }
