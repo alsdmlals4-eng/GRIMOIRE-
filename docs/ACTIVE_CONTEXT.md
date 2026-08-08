@@ -13,6 +13,8 @@ preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 gut_formal_adoption_pr: 85
 gut_exact_head: fc178bdc7a3e12faf4ae7ae78fd1f92dd2735849
@@ -74,9 +76,18 @@ product_mutation_hash_gate: PASS
 higodot_zero_protected_diff_gate: PASS
 ```
 
+## GitHub Actions supply chain
+
+```yaml
+decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
+status: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
+enforcement: tests/test_v4_4_ci_supply_chain.py
+```
+
 ## 현재 작업 경계
 
-GUT formal adoption은 더 이상 PR #82 Task 2의 선행 blocker가 아니다. 그러나 Task 2가 persistent Godot authoring, Hera acceptance, visual/audio, Windows/Android product validation을 소비하므로 다음 broader blocker를 먼저 닫아야 한다.
+GUT formal adoption과 repo-wide official Actions full-SHA hardening은 더 이상 PR #82 Task 2의 선행 blocker가 아니다. 그러나 Task 2가 persistent Godot authoring, Hera acceptance, visual/audio, Windows/Android product validation을 소비하므로 다음 broader blocker를 먼저 닫아야 한다.
 
 ```text
 HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2
@@ -85,7 +96,6 @@ WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
-CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE
 ```
 
 사용자 로컬 checkout과 shared audio vault는 이 agent에서 직접 읽을 수 없다. 따라서 `LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS`, `GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS`를 유지한다.

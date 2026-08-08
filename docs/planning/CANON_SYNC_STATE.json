@@ -1,5 +1,5 @@
 {
-  "schema_version": 19,
+  "schema_version": 20,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -106,6 +106,14 @@
     "sheet_readback": "PASS",
     "merge_authorized": true
   },
+  "ci_supply_chain": {
+    "decision_id": "GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01",
+    "status": "REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS",
+    "scope": ".github/workflows/*.yml|*.yaml",
+    "enforcement_test": "tests/test_v4_4_ci_supply_chain.py",
+    "enforced_by_workflow": ".github/workflows/validate-godot-authoring-gut-authority.yml",
+    "official_actions_policy": "FULL_40_HEX_COMMIT_SHA_ONLY"
+  },
   "visual_audio_review": {
     "review_id": "GR-REV-SPELL-WORKFLOW-UI-V2",
     "status": "APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE",
@@ -122,7 +130,6 @@
     "AUDIO_VAULT_PATH_UNVERIFIED",
     "AUDIO_RIGHTS_UNVERIFIED",
     "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
-    "CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE",
     "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
     "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS"
   ],
@@ -130,5 +137,5 @@
   "entry_reconciliation": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "unresolved_gate_file": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "merge_authorized": false,
-  "sheet_finalization_readback": "PENDING_LIVE_MAIN_SEMANTICS_MERGE"
+  "sheet_finalization_readback": "PASS"
 }

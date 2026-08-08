@@ -68,15 +68,17 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual("GUT_FORMALLY_ADOPTED", grill["current_work"]["gut_formal_adoption"])
         self.assertFalse(grill["current_work"]["spell_workflow_task2_authorized"])
 
-    def test_broader_blockers_are_preserved_after_formal_adoption(self) -> None:
+    def test_remaining_broader_blockers_are_preserved_after_supply_chain_closure(self) -> None:
         text = (ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md").read_text(encoding="utf-8")
         for blocker in (
             "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
             "VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
-            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS", "CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE",
+            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(blocker, text)
+        self.assertNotIn("CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE", text)
+        self.assertIn("REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS", text)
 
 
 if __name__ == "__main__":
