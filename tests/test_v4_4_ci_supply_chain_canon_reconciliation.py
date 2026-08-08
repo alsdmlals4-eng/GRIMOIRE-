@@ -43,7 +43,7 @@ class V44CiSupplyChainCanonReconciliationTests(unittest.TestCase):
         self.assertNotIn(STALE_BLOCKER, canon["broader_blockers"])
         self.assertEqual(PASS_TOKEN, authority["validation"]["repo_wide_actions_full_sha"])
         self.assertNotIn(STALE_BLOCKER, authority["broader_blockers"])
-        self.assertFalse(authority["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(authority["claims"]["spell_workflow_task2_authorized"])
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", canon["tool_authority"]["higodot"]["vendor_integrity"])
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", authority["higodot"]["vendor_integrity"])
         self.assertEqual(HERA_PASS, canon["hera"]["status"])
