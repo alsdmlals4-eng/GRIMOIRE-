@@ -12,11 +12,16 @@ hera_exact_pair: PASS
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 gut_status: GUT_FORMALLY_ADOPTED
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_pr: 87
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
 spell_workflow_task2_authorized: false
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 ```
+
+현재 main은 `project_main_authority`에 따라 GitHub default branch를 live readback한다. `gut_formal_adoption_main`과 `post_merge_canon_sync_merge`는 역사적 merge 증거다.
 
 ## 닫힌 Gate
 
