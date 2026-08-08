@@ -34,7 +34,8 @@ three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEME
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 base_release_pin: 9.4.3
 base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
-base_latest_main_observed: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
+base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
+base_latest_main_observed_visual_platform_gate: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
@@ -50,7 +51,7 @@ HiGodot v3.1.2는 official tag commit `678b16a6...`의 `plugin/addons/godot_ai`�
 
 Hera v1.0.0은 upstream/project addon tree `6cb87ac8...` exact identity와 official Linux CLI SHA/version을 고정했다. Hosted Godot 4.7.1 ephemeral canary run `31254032278`에서 `127.0.0.1` bind, wrong-token rejection, correct-token `status`, repository source-delta zero가 PASS했다. Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`이며 persistent GRIMOIRE source mutation 권위가 아니다.
 
-Base `main`은 이번 gate 재검증 진입 시 `a912cc001ff4d4e3415fb4b4931723c49eb08d9a`였다. current Base PC·Android guide는 게임 규칙·콘텐츠·데이터·저장을 하나의 core로 유지하고 입력·layout·lifecycle·quality·platform service를 adapter로 분리하도록 요구한다. GRIMOIRE의 Base release pin `9.4.3`은 갱신 승인되지 않았으므로 그대로 유지한다.
+Base `main`은 PR #91 진입 시 `eee98a930...`였고 이번 visual/platform Gate 진입 시 `a912cc001ff4d4e3415fb4b4931723c49eb08d9a`였다. 최신 Base PC·Android guide는 게임 규칙·콘텐츠·데이터·저장을 하나의 core로 유지하고 입력·layout·lifecycle·quality·platform service를 adapter로 분리하도록 요구한다. GRIMOIRE의 Base release pin `9.4.3`은 갱신 승인되지 않았으므로 그대로 유지한다.
 
 ## 제품 보존 정본
 
