@@ -87,17 +87,19 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("9.7.1", data["gut"]["pinned_version"])
         self.assertEqual("FORMALLY_ADOPTED_ACTIVE", data["gut"]["current_consumption"])
         self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", data["gut"]["vendor_integrity"])
+        self.assertEqual("CLI_ONLY_WITHOUT_EDITOR_PLUGIN", data["gut"]["adoption_mode"])
+        self.assertEqual("DISABLED", data["gut"]["editor_plugin_enablement"])
         self.assertEqual(
             "FORMALLY_ADOPTED_WITH_USER_CONFIRMED_LIVE_EDITOR_PLUGIN",
-            data["gut"]["adoption_mode"],
+            data["gut"]["live_adoption_mode"],
         )
         self.assertEqual(
             "DISABLED_AT_GITHUB_MAIN_READBACK",
             data["gut"]["tracked_editor_plugin_enablement"],
         )
         self.assertEqual(
-            "LIVE_ENABLED_TRACKED_CONFIG_NOT_YET_READ_BACK",
-            data["gut"]["editor_plugin_enablement"],
+            "ENABLED_USER_CONFIRMED_TRACKED_CONFIG_NOT_YET_READ_BACK",
+            data["gut"]["live_editor_plugin_enablement"],
         )
         self.assertTrue(data["gut"]["user_plugin_approval"])
         self.assertEqual("USER_CONFIRMED_ENABLED", data["gut"]["live_editor_plugin_state"])
@@ -120,6 +122,10 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
             data["tracked_project_godot_editor_plugins"],
         )
 
+        self.assertEqual("PASS", data["sheet_sync"]["higodot_integrity_sync"])
+        self.assertEqual("TRACKED_V3_1_2", data["sheet_sync"]["higodot_integrity_sync_scope"])
+        self.assertEqual("PASS_EXACT_TREE_IDENTITY", data["validation"]["higodot_vendor_integrity"])
+        self.assertEqual("TRACKED_V3_1_2", data["validation"]["higodot_vendor_integrity_scope"])
         self.assertEqual(SHARED_CORE_PASS, data["platform_validation"]["status"])
         self.assertEqual("NOT_RUN", data["platform_validation"]["windows_export"])
         self.assertEqual("NOT_RUN", data["platform_validation"]["android_export"])
@@ -205,12 +211,14 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertNotIn('res://addons/hera_agent_godot/plugin.cfg', project)
         state = json.loads(STATE.read_text(encoding="utf-8"))
         self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", state["gut"]["vendor_integrity"])
+        self.assertEqual("CLI_ONLY_WITHOUT_EDITOR_PLUGIN", state["gut"]["adoption_mode"])
+        self.assertEqual("DISABLED", state["gut"]["editor_plugin_enablement"])
+        self.assertTrue(state["gut"]["user_plugin_approval"])
         self.assertFalse(state["higodot"]["tracked_version_matches_live"])
         self.assertEqual(
             "GODOT_AI_ONLY_AT_GITHUB_MAIN_READBACK",
             state["tracked_project_godot_editor_plugins"],
         )
-        self.assertTrue(state["gut"]["user_plugin_approval"])
         self.assertTrue(state["hera"]["user_plugin_approval"])
 
     def test_unresolved_preserves_real_blockers_and_post_implementation_acceptance(self):
