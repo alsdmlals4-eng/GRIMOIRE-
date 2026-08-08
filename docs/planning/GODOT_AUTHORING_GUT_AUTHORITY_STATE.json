@@ -92,6 +92,7 @@
     "live_canary_run": 31254032278,
     "artifact_id": 9020855476,
     "artifact_sha256": "6c96beba235c57964a48b1877d931215ebda3a844708d05464de5be0e2bf93d8",
+    "merged_main": "a35baed94fe064e57529ffee7b8c48e14ac5e1bb",
     "loopback_bind": "PASS_127_0_0_1_ONLY",
     "wrong_token_rejection": "PASS",
     "correct_token_status": "PASS",
@@ -145,10 +146,10 @@
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "sync_id": "GR-SYNC-20260808-05-HERA-V1-EXACT-PAIR",
-    "write": "PASS_PRIOR_CANON",
-    "readback": "PASS_PRIOR_CANON",
+    "write": "SHEET_WRITE_READBACK_PASS",
+    "readback": "SHEET_WRITE_READBACK_PASS",
     "higodot_integrity_sync": "PASS",
-    "hera_exact_pair_sync": "PENDING_PR91_MERGE"
+    "hera_exact_pair_sync": "SHEET_WRITE_READBACK_PASS"
   },
   "validation": {
     "actions_mode": "PUBLIC_REPO_STANDARD_GITHUB_HOSTED",
