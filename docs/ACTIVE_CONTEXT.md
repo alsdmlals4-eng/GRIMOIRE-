@@ -16,6 +16,8 @@ tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
+higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+higodot_vendor_integrity_evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
 higodot_tracked_release: v3.1.2
 higodot_tracked_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 higodot_tracked_vendor_integrity_evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
@@ -57,7 +59,7 @@ local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base release pin `9.4.3`은 갱신 승인되지 않았으며 이번 도구 상태 재검증에서 Base `main@2a6ced23...`를 최신 관찰로 기록했다.
+`higodot_vendor_integrity`는 tracked v3.1.2 exact-tree 상태를 가리키는 기존 cold-start 호환 키다. live v3.1.3 상태는 `higodot_live_*` 키로 분리한다. `project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base release pin `9.4.3`은 갱신 승인되지 않았으며 이번 도구 상태 재검증에서 Base `main@2a6ced23...`를 최신 관찰로 기록했다.
 
 ## 보존된 Star Circuit runtime authority
 
