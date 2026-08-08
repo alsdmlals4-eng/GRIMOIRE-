@@ -23,6 +23,7 @@
     "bundled_version": "3.1.2",
     "source_or_version_verification": "PASS",
     "vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
+    "prior_vendor_integrity_verdict": "SUPERSEDED_SCOPE_MISMATCH_WRAPPER_TREE_VS_PLUGIN_SUBTREE",
     "project_plugin_enabled": true,
     "authority": "SOLE_AUTHORING_AUTHORITY",
     "authoring_receipt_gate": "IMPLEMENTED_ZERO_PROTECTED_DIFF_GATE"
