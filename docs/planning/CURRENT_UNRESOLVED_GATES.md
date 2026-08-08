@@ -10,6 +10,7 @@ repo_wide_actions_full_sha: PASS
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 hera_exact_pair: PASS
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+gut_status: GUT_FORMALLY_ADOPTED
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 spell_workflow_pr: 82
 spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
