@@ -67,8 +67,12 @@
     "evidence": "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
   },
   "pr84_merge_gate": {
+    "actions_exception_decision_id": "GM-PR84-ACTIONS-BUDGET-LOCAL-EVIDENCE-EXCEPTION-01",
     "status": "MERGED_MAIN_READBACK_PASS",
-    "waives_future_pr_checks": false
+    "merged_main": "312e491c8e9b333cb585b4e0550f80e3aea5f3f7",
+    "exception_consumed": true,
+    "waives_future_pr_checks": false,
+    "pr82_task2_authorized": false
   },
   "entry_gate": {
     "status": "GUT_FORMAL_ADOPTION_COMPLETE_BROADER_PROJECT_BLOCKERS_REMAIN",
