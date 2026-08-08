@@ -44,11 +44,13 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
         for token in (
             "GM-STAR-CIRCUIT-MASTERY-BALANCE-01", "FIVE_POINT_STAR", "GUT_FORMALLY_ADOPTED",
             "higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY", "hera_exact_pair: PASS", HERA_PASS,
-            "spell_workflow_task2_authorized: false", "READY_FOR_HIGODOT_AUTHORING",
-            SHARED_CORE_PASS, THREE_SCREEN_PENDING, "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
-            "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
+            "spell_workflow_task2_authorized: true", "READY_FOR_HIGODOT_AUTHORING",
+            "AUTHORIZED_AWAITING_HIGODOT_CHANNEL", SHARED_CORE_PASS, THREE_SCREEN_PENDING,
+            "VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
+            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(token, combined)
+        self.assertNotIn("spell_workflow_task2_authorized: false", combined)
         self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", combined)
         self.assertNotIn("SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN", combined)
         self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", combined)
