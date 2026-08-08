@@ -5,6 +5,9 @@ status: ACTIVE_CANON_V4_4_GUT_FORMALLY_ADOPTED
 active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4
 contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_pr: 87
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -22,7 +25,7 @@ review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 ```
 
-현재 `main`은 `project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK`로 판정한다.
+현재 `main`은 `project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK`로 판정한다. `gut_formal_adoption_main`과 `post_merge_canon_sync_merge`는 역사 merge 역할 증거다.
 
 ## GM-CONTRACT-V4-4-BINDING-01
 
