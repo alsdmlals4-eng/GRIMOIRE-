@@ -8,7 +8,8 @@
     "status": "ACTIVE_MERGED_MAIN"
   },
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
-  "status": "HIGODOT_V3_1_3_EXACT_TREE_LIVE_PLUGIN_APPROVAL_SYNC",
+  "status": "GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED",
+  "current_tool_sync_status": "HIGODOT_V3_1_3_EXACT_TREE_LIVE_PLUGIN_APPROVAL_SYNC",
   "design_review": "USER_APPROVED_2026-08-06",
   "source_main": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
   "base_policy_observation": {
