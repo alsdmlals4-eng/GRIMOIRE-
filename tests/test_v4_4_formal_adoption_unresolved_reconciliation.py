@@ -16,7 +16,11 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
         self.assertIn('contract_version: "4.4"', text)
         self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text)
         self.assertIn(MERGED_MAIN, text)
+        self.assertIn("formal_adoption_scope: MERGED_MAIN_VERIFIED", text)
         self.assertIn("GUT_FORMALLY_ADOPTED", text)
+        self.assertIn("GUT_PUBLIC_STANDARD_GITHUB_ACTIONS_PASS", text)
+        self.assertIn("ROLE_SEPARATED_REVIEW_P0_P1_ZERO", text)
+        self.assertIn("PR85_MERGED_MAIN_VERIFIED", text)
         for stale in (
             "GUT_ADOPTION_SPEC_NOT_MERGED", "GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN",
             "GUT_ACTUAL_CONSUMPTION_NOT_ENABLED", "GUT_CI_NOT_ENABLED",
@@ -32,6 +36,7 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
         for blocker in (
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", "AUDIO_VAULT_PATH_UNVERIFIED",
             "AUDIO_RIGHTS_UNVERIFIED", "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
+            "SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN",
             "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(blocker, text)
