@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "gate_id": "HERA_V1_0_0_EXACT_PAIR",
+  "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+  "repository": "NotNull92/hera-agent-godot",
+  "release": "v1.0.0",
+  "upstream_tag_object": "3346808689ce951f8f6faba04e457264c17b0c87",
+  "upstream_tag_commit": "10f245ddae9e7a5d569150302acbde0d78f2aa03",
+  "upstream_repository_tree": "c4a99a3f4da923a2f316d72aca8ddfca96c314f7",
+  "upstream_addon_tree": "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+  "project_addon_tree": "6cb87ac8ba768de1d924447f385fba6d80bcde68",
+  "project_plugin_version": "1.0.0",
+  "pairing_contract": "CLI_AND_ADDON_SHIP_AND_VERSION_TOGETHER",
+  "transport_contract": {
+    "bind": "127.0.0.1_ONLY",
+    "port_range": "8770-8785",
+    "rpc_surface": "INTERNAL_NOT_PUBLIC_CONTRACT",
+    "token_env": "HERA_AGENT_GODOT_TOKEN",
+    "token_header": "X-Hera-Token"
+  },
+  "release_assets": {
+    "linux_amd64_sha256": "384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a",
+    "windows_amd64_sha256": "9ae181741c2e8a3f57bbb2a2e4c61ac2c9c7c844fad21c88ae3890c55a5cc66b",
+    "addon_zip_sha256": "0a71000f0c4192043e72e9b18f4de3bac720035d9d7c95c9634648a7b5c54d9f"
+  },
+  "live_canary": {
+    "status": "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS",
+    "workflow": ".github/workflows/validate-hera-v1-pair.yml",
+    "workflow_run": 31254032278,
+    "pre_final_head": "335d3f0b7eaf16e88d73be65c56806d8b58e0b78",
+    "artifact_id": 9020855476,
+    "artifact_sha256": "6c96beba235c57964a48b1877d931215ebda3a844708d05464de5be0e2bf93d8",
+    "godot": "4.7.1",
+    "results": {
+      "official_linux_cli_sha256": "PASS",
+      "cli_version_v1_0_0": "PASS",
+      "project_addon_exact_tree": "PASS",
+      "loopback_127_0_0_1_only": "PASS",
+      "wrong_token_rejected_exit_1": "PASS",
+      "correct_token_status": "PASS",
+      "status_godot_4_7_1": "PASS",
+      "repository_source_delta_zero": "PASS"
+    }
+  },
+  "claims": {
+    "addon_vendor_identity_exact": true,
+    "official_cli_release_digest_pinned": true,
+    "live_cli_addon_pair_pass": true,
+    "acceptance_qa_authorized": true,
+    "persistent_project_source_mutation_allowed_to_hera": false,
+    "spell_workflow_task2_authorized": false
+  }
+}

@@ -12,79 +12,74 @@ DECISION = ROOT / "docs/decisions/DEC-GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01-a
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 PROJECT = ROOT / "project.godot"
+MERGED_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
 
 
 class V43ContractBindingTests(unittest.TestCase):
-    def test_project_binding_exists_and_overrides_generic_placeholders(self) -> None:
+    def test_project_binding_remains_historical_evidence(self) -> None:
         self.assertTrue(BINDING.is_file(), str(BINDING))
         text = BINDING.read_text(encoding="utf-8")
         for token in (
-            'contract_version: "4.3"',
-            "GM-CONTRACT-V4-3-BINDING-01",
-            "alsdmlals4-eng/GRIMOIRE-",
-            "C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-",
+            'contract_version: "4.3"', "GM-CONTRACT-V4-3-BINDING-01",
+            "alsdmlals4-eng/GRIMOIRE-", "C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-",
             "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
             "GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY",
             "C:/Users/user/Documents/GitHub/shered audio vault",
             "SWITCHY_EXPRESS_GENERIC_PLACEHOLDER_NOT_AUTHORITATIVE",
-            "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605",
-            "678b16a6a0a335cf80cbb7d3f85c183cd3e616de",
+            "MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT",
         ):
             self.assertIn(token, text)
 
-    def test_gut_adoption_spec_contains_v4_3_required_fields(self) -> None:
+    def test_gut_adoption_spec_keeps_v4_3_design_contract_fields(self) -> None:
         self.assertTrue(SPEC.is_file(), str(SPEC))
         text = SPEC.read_text(encoding="utf-8")
         for token in (
-            'framework: "GUT"',
-            'version: "9.7.1"',
-            'canonical_repository: "bitwes/Gut"',
+            'framework: "GUT"', 'version: "9.7.1"', 'canonical_repository: "bitwes/Gut"',
             'source_branch_or_release: "godot_4_7"',
             'pinned_commit_sha: "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605"',
             'official_addons_gut_tree_sha: "5d6893836af4917ee62b1a395125a7530b1f239d"',
             'project_addons_gut_tree_sha_at_main_252063cc: "09d040309bbed0e07420ad72c4aa69cbd0e58190"',
             'current_vendor_integrity: MISMATCH_OFFICIAL_V9_7_1',
-            'plugin_install_path: "res://addons/gut"',
-            "minimum_discovered_test_count:",
-            "production_mutation_guard:",
-            "android_shared_core_coverage:",
-            "removal_process:",
-            "rollback_conditions:",
-            "SPEC_ONLY_NO_INSTALLATION",
+            'plugin_install_path: "res://addons/gut"', "minimum_discovered_test_count:",
+            "production_mutation_guard:", "android_shared_core_coverage:", "removal_process:",
+            "rollback_conditions:", "SPEC_ONLY_NO_INSTALLATION",
         ):
             self.assertIn(token, text)
 
-    def test_decision_and_state_enter_implementation_after_spec_merge(self) -> None:
+    def test_historical_spec_is_consumed_by_current_v4_4_formal_adoption(self) -> None:
         self.assertTrue(DECISION.is_file(), str(DECISION))
         state = json.loads(STATE.read_text(encoding="utf-8"))
-        self.assertEqual("BLOCKED_PENDING_GUT_FORMAL_ADOPTION", state["entry_gate"]["status"])
-        self.assertEqual("IN_PROGRESS_RED", state["entry_gate"]["implementation"])
-        self.assertEqual("chore/gut-9.7.1-adoption-spec", state["gut"]["adoption_spec_branch"])
+        self.assertEqual("4.4", state["contract"]["version"])
+        self.assertEqual(MERGED_MAIN, state["source_main"])
+        self.assertEqual("GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED", state["status"])
         self.assertEqual("GUT_SPEC_MERGED_MAIN_VERIFIED", state["gut"]["adoption_spec_status"])
-        self.assertEqual("OPEN_DRAFT_CI_GATE_PENDING", state["gut"]["implementation_branch_status"])
+        self.assertEqual("MERGED_MAIN_VERIFIED", state["gut"]["implementation_branch_status"])
         self.assertEqual("PASS", state["gut"]["source_or_version_verification"])
         self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", state["gut"]["vendor_integrity"])
         self.assertEqual("PASS", state["higodot"]["source_or_version_verification"])
-        self.assertEqual("MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT", state["higodot"]["vendor_integrity"])
-        self.assertTrue(state["claims"]["official_tool_releases_verified"])
-        self.assertTrue(state["claims"]["gut_adoption_spec_merged"])
+        self.assertEqual("PASS_EXACT_TREE_IDENTITY", state["higodot"]["vendor_integrity"])
+        self.assertEqual(
+            "SUPERSEDED_SCOPE_MISMATCH_WRAPPER_TREE_VS_PLUGIN_SUBTREE",
+            state["higodot"]["prior_vendor_integrity_verdict"],
+        )
+        self.assertTrue(state["claims"]["higodot_vendor_integrity_pass"])
+        self.assertTrue(state["claims"]["gut_formally_adopted"])
         self.assertFalse(state["claims"]["tool_vendor_integrity_pass"])
-        self.assertFalse(state["claims"]["gut_formally_adopted"])
-        self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(state["claims"]["spell_workflow_task2_authorized"])
 
-    def test_v4_3_binding_remains_history_while_current_unresolved_is_v4_4(self) -> None:
-        historical = BINDING.read_text(encoding="utf-8")
+    def test_current_unresolved_is_v4_4_post_merge_not_v4_3_gate(self) -> None:
         current = UNRESOLVED.read_text(encoding="utf-8")
-        self.assertIn('contract_version: "4.3"', historical)
-        self.assertIn("GM-CONTRACT-V4-3-BINDING-01", historical)
         self.assertIn('contract_version: "4.4"', current)
         self.assertIn("GM-CONTRACT-V4-4-BINDING-01", current)
-        self.assertNotIn("GUT_ADOPTION_SPEC_NOT_MERGED", current)
-        self.assertNotIn("GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN", current)
-        self.assertIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", current)
+        self.assertIn(MERGED_MAIN, current)
+        self.assertIn("GUT_FORMALLY_ADOPTED", current)
+        self.assertIn("spell_workflow_task2_authorized: true", current)
+        self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", current)
+        self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", current)
+        self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", current)
         self.assertIn("AUDIO_VAULT_PATH_UNVERIFIED", current)
 
-    def test_spec_pr_does_not_enable_gut_editor_plugin(self) -> None:
+    def test_gut_editor_plugin_remains_disabled(self) -> None:
         project = PROJECT.read_text(encoding="utf-8")
         self.assertIn('res://addons/godot_ai/plugin.cfg', project)
         self.assertNotIn('res://addons/gut/plugin.cfg', project)

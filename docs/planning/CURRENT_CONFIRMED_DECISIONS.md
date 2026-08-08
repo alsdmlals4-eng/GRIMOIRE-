@@ -1,52 +1,47 @@
 # GRIMOIRE 현재 확정 결정 스냅샷
 
 ```yaml
-status: ACTIVE_CANON_CONTRACT_V4_3_GUT_SPEC_IN_REVIEW
-active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.3
-contract_binding_decision: GM-CONTRACT-V4-3-BINDING-01
+status: ACTIVE_CANON_V4_4_GUT_FORMALLY_ADOPTED
+active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4
+contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
+project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_pr: 87
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+circuit_topology: FIVE_POINT_STAR
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
-runtime_layout: FIVE_POINT_STAR
-current_gate: BLOCKED_BY_GUT_ADOPTION_SPEC
-spell_workflow_implementation_pr: 82
-spell_workflow_implementation_status: PAUSED_AFTER_TASK1_GREEN
-tool_authority_design_pr: 83
-tool_authority_design_status: MERGED_MAIN_252063cc
-gut_adoption_spec_pr: 84
-gut_adoption_spec_status: OPEN_DRAFT_IN_REVIEW
+gut_vendor_equivalence_decision: GM-GUT-VENDOR-CRITICAL-RUNTIME-EQUIVALENCE-01
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
+higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+hera_exact_pair: PASS
+hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+hera_merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
+hera_sheet_sync: SHEET_WRITE_READBACK_PASS
+gut_status: GUT_FORMALLY_ADOPTED
+spell_workflow_pr: 82
+spell_workflow_status: TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+spell_workflow_task2_authorized: true
+spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
+spell_workflow_task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+spell_workflow_task2_approval_sync: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
+windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
+visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
+visual_platform_merged_main: 5016bd090ad09892d36a8b751c7a9649868b76d5
+visual_platform_sheet_sync: SHEET_WRITE_READBACK_PASS
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
-external_independent_reviewer: NOT_PLANNED_SOLO_DEVELOPMENT
-higodot_authority: SOLE_AUTHORING_AUTHORITY
-higodot_release: v3.1.2
-higodot_source_verification: PASS
-higodot_vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
-gut_version: 9.7.1
-gut_source_verification: PASS
-gut_vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
-gut_status: VENDORED_NOT_CONSUMED
-gut_adoption_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
-sheet_v4_3_sync: READBACK_PASS
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
-merge_authorized: false
-mobile_device_validation: DEVICE_NOT_RUN
-performance_validation: PERFORMANCE_NOT_RUN
-accessibility_validation: AUTOMATED_CONTRACT_PASS_DEVICE_NOT_RUN
-human_visual_validation: HUMAN_NOT_RUN
-full_vertical_slice_representativeness: FULL_VERTICAL_SLICE_NOT_RUN
 ```
 
-## GM-CONTRACT-V4-3-BINDING-01
+현재 `main` 자체는 저장된 SHA가 아니라 `project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK`로 판정한다. `gut_formal_adoption_main`은 PR #85의 역사 merge, `post_merge_canon_sync_merge`는 PR #87의 역사 merge, `hera_merged_main`은 PR #91 Hera Gate가 처음 merged-main에 들어간 증거, `visual_platform_merged_main`은 PR #93 visual/platform Gate가 처음 merged-main에 들어간 역사 증거다.
 
-사용자 승인일: 2026-08-06.
+## GM-CONTRACT-V4-4-BINDING-01
 
-업로드된 `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.3.md`를 GRIMOIRE의 활성 통합 계약으로 사용한다.
-
-프로젝트별 바인딩:
-
-```text
-docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md
-```
+사용자가 제공한 v4.4 통합 작업지시문을 GRIMOIRE의 활성 계약으로 바인딩한다.
 
 ```yaml
 project_repository: alsdmlals4-eng/GRIMOIRE-
@@ -54,165 +49,136 @@ project_default_branch: main
 project_local_path: C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-
 godot_project_path: C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-
 project_google_sheet: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
-shared_audio_vault_path: C:/Users/user/Documents/GitHub/shered audio vault
+base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
+base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
+base_main_observed_visual_platform_entry: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
+base_latest_main_observed_premerge: cf4c7a60c5b31b042043f91b268f381372fec69a
+base_release_pin: 9.4.3
+base_pin_update: NOT_APPROVED_NOT_PERFORMED
+codex_handoff: NOT_REQUESTED
 ```
 
-v4.3 원문의 Switchy-Express 경로는 범용 예시이며 GRIMOIRE 권위 값이 아니다. v4.2는 역사·비교 증거로만 남긴다.
+v4.3 바인딩은 역사 증거로 보존하지만 현재 권위가 아니다. Base `main`의 최신 관찰이 전진했어도 release pin 9.4.3 갱신은 승인되지 않았다.
 
-### v4.3 핵심 변경
+## 보존 제품 결정
 
-- Decision Ledger·미확정 목록·이미지 검수 Sheet를 다시 읽고 entry status를 재계산한다.
-- `[이미지 완료]`는 `[이미지·오디오 완료]`와 같은 단계로 해석한다.
-- 공유 오디오 Vault를 새 사운드 생성보다 먼저 확인한다.
-- GUT 정식 설치 전에 adoption-spec 전용 branch와 Draft PR을 먼저 병합한다.
-- 별도 인간 reviewer가 있다고 가장하지 않는다. `GPT 역할 분리 검토 + 사용자 결정권 + GUT/CI 증거 + exact-HEAD Check`를 사용한다.
+`GM-STAR-CIRCUIT-MASTERY-BALANCE-01`의 `FIVE_POINT_STAR`, Typed Glyph Stock, Exactly-once 처리와 `GM-SPELL-WORKFLOW-UI-V2-01`의 `글자 그리기 → 회로 배치 → 주문 사용`을 유지한다.
 
-## 보존되는 제품 정본
+PR #82 Task 1 GREEN은 보존한다. Task 2는 `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 사용자가 승인하여 `spell_workflow_task2_authorized: true`다. 구현 자체는 아직 `NOT_STARTED_ON_BRANCH`; readiness는 `READY_FOR_HIGODOT_AUTHORING`, 실행 상태는 `AUTHORIZED_AWAITING_HIGODOT_CHANNEL`이다. v4.4 승인 상속 규칙에 따라 같은 Task2 범위의 구현·검증·Green 후 병합 권한도 유효하지만, Persistent Godot authoring은 HiGodot 단일 권위와 authoring receipt Gate를 반드시 사용한다.
 
-`GM-STAR-CIRCUIT-MASTERY-BALANCE-01`의 `FIVE_POINT_STAR`, 중앙 Main 1개, Auxiliary 0~5개, 글자별 숙련도, Typed Glyph Stock, 명시 Preview, Exactly-once 자원 처리를 유지한다.
+승인된 구현 계획의 Task 9–10에서 생성되는 three-screen runtime evidence를 Task 2 선행조건으로 두지 않으며, 현재 three-screen runtime PASS를 주장하지 않는다.
 
-`GM-SPELL-WORKFLOW-UI-V2-01`의 주문 흐름도 유지한다.
+## GM-SPELL-WORKFLOW-UI-V2-01 — Task 2 approval
 
-```text
-1. 글자 그리기 → 인식·획득·보관함 저장
-2. 회로 배치 → 보관함/스톡 예약·Preview·글자 소비·완성 주문 생성
-3. 주문 사용 → 대상 선택·상세 예상 결과·마나 소비·실제 판정
+```yaml
+sync_id: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
+approval: USER_APPROVED_2026-08-09T06:19+09:00
+task2: NOT_STARTED_ON_BRANCH
+spell_workflow_task2_authorized: true
+spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
+task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+required_persistent_authority: HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE
+same_scope_merge_authority: INHERITED_SUBJECT_TO_GREEN_AND_EXACT_HEAD_GATES
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 ```
 
-PR #82 Task 1은 10종 Glyph Catalog와 `BURST → AMPLIFY` 호환을 구현해 자동 회귀를 통과했다. Task 2는 시작하지 않는다.
+현재 ChatGPT 세션에는 HiGodot persistent-authoring MCP/channel이 없으므로 Task 2 product source mutation을 일반 GitHub text write로 우회하지 않는다. 승인과 구현 완료를 구분한다.
+
+## GM-SPELL-WORKFLOW-UI-V2-01 — visual/platform gate sequencing
+
+```yaml
+sync_id: GR-SYNC-20260808-07-VISUAL-PLATFORM-GATE-SEQUENCING
+shared_core_status: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
+shared_core_evidence: docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json
+visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
+merged_main: 5016bd090ad09892d36a8b751c7a9649868b76d5
+sheet_sync: SHEET_WRITE_READBACK_PASS
+windows_export: NOT_RUN
+android_export: NOT_RUN
+android_device: NOT_RUN
+performance: NOT_RUN
+visual_audio_complete: false
+audio_vault: AUDIO_VAULT_PATH_UNVERIFIED
+audio_rights: AUDIO_RIGHTS_UNVERIFIED
+```
+
+Base의 PC·Android one-core/platform-adapter 계약에 따라 `src/core`는 gameplay/content/data/save/deterministic authority를 유지하고 `src/ui/mobile_safe_root.gd`는 layout adapter로 한정된다. Focused contract는 hosted Windows 2025와 Ubuntu 24.04에서 같은 구조 계약을 통과했다. `export_presets.cfg`가 없으므로 Windows/Android export 또는 Android device PASS를 주장하지 않는다.
+
+승인된 UI v2 구현 계획에서 root/end-to-end 통합은 Task 9, rendered/CI evidence는 Task 10이다. 따라서 `THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`은 구현 이후 acceptance 대기이며 Task 2의 선행 blocker가 아니다. 현재 three-screen runtime PASS 또는 visual/audio completion PASS는 주장하지 않는다.
 
 ## GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 
-### HiGodot
-
 ```yaml
-canonical_repository: hi-godot/godot-ai
-release: v3.1.2
-pinned_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
-official_repository_tree: 646fb8365cc39de7b0a88e056cc03de7e7eb008a
-official_plugin_source_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
-project_vendor_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
-release_asset_sha256: 60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33
-license: MIT
-source_version_license: PASS
-vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
-godot_compatibility: 4.7.x_REQUIRED_RUNTIME_NOT_RUN
+higodot_release: v3.1.2
+higodot_pinned_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+higodot_official_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+higodot_project_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+higodot_integrity_correction_sync: GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY
+gut_release: v9.7.1
+gut_pinned_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+gut_spec_pr: 84
+gut_implementation_pr: 85
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+gut_formal_adoption: GUT_FORMALLY_ADOPTED
+gut_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
+gut_editor_plugin: DISABLED
+full_vendor_tree_identity: false
+critical_runtime_equivalence: APPROVED
+legacy_required_contract_parity: PASS
+hosted_godot_4_7_1_gut: PASS
+junit_discovery_exit: PASS
+product_mutation_hash_gate: PASS
+higodot_zero_protected_diff_gate: PASS
+hera_release: v1.0.0
+hera_upstream_tag_commit: 10f245ddae9e7a5d569150302acbde0d78f2aa03
+hera_upstream_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
+hera_project_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
+hera_linux_cli_sha256: 384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a
+hera_exact_pair: PASS
+hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+hera_live_canary_run: 31254032278
+hera_merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
+hera_localhost_only: PASS
+hera_shared_token: PASS
+hera_repository_source_delta_zero: PASS
+hera_acceptance_qa_authorized: true
+hera_persistent_source_mutation_authorized: false
+hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 ```
 
-- `project.godot`, Scene·Node·`*.tscn`, `*.tres`, `*.res`, Resource, Theme, Animation, signal, Project Settings의 단일 저작 권위다.
-- protected diff에는 `HIGODOT_AUTHORING_MANIFEST`와 Scene/Resource/Project Settings readback이 필요하다.
-- 테스트 assertion·expected value·fixture·CI 성공 기준을 수정하지 않는다.
-- 공식 release는 확인됐지만 프로젝트 vendor tree가 official plugin source tree와 다르다. release ZIP 추출 manifest와의 정확한 비교 전 integrity PASS를 주장하지 않는다.
+HiGodot의 과거 mismatch는 official `plugin/` wrapper와 project plugin subtree를 비교한 scope 오류로 교정됐다. GUT의 full vendor-tree mismatch/critical-runtime equivalence는 별도 판정으로 그대로다. Hera canary는 임시 Godot 프로젝트에서 official CLI와 exact addon pair를 검증했고 persistent GRIMOIRE source authoring 권위를 획득하지 않는다.
 
-### GUT 9.7.1
+최신 Base `main@cf4c7a60...`에서 재확인한 current toolchain/PC·Android 계약은 Hera exact pair·localhost-only·shared token·persistent write 금지·source-delta `NONE`, 그리고 shared core/platform adapter 분리를 유지한다. GRIMOIRE Base release pin 9.4.3은 갱신되지 않았다.
+
+## GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 
 ```yaml
-canonical_repository: bitwes/Gut
-release: v9.7.1
-source_branch_or_release: godot_4_7
-pinned_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
-pinned_commit_signature: VERIFIED
-official_repository_tree: bb624be66fd3aab7378d053b391d80cc7762d331
-official_addons_gut_tree: 5d6893836af4917ee62b1a395125a7530b1f239d
-project_addons_gut_tree: 09d040309bbed0e07420ad72c4aa69cbd0e58190
-license: MIT
-source_version_license: PASS
-vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
-godot_compatibility: 4.7.x_METADATA_PASS_RUNTIME_NOT_RUN
-repository_state: VENDORED_NOT_CONSUMED
-formal_adoption: NOT_YET_IMPLEMENTED
-adoption_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
-editor_plugin: DISABLED
-adoption_spec_branch: chore/gut-9.7.1-adoption-spec
-adoption_spec_pr: 84
+repo_wide_actions_full_sha: PASS
+status: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
+enforcement_test: tests/test_v4_4_ci_supply_chain.py
+normal_pr_gate: Validate Godot Authoring and GUT Authority Gate
 ```
 
-버전 문자열과 license는 맞지만 project subtree가 official v9.7.1 subtree와 다르다. 구현 PR은 official tree로 교체하거나 file-level audit·사용자 승인을 완료하기 전 runtime 소비를 활성화할 수 없다.
+모든 active workflow의 official `actions/*` ref는 full 40-hex commit SHA로 강제되며 known action pin은 검증 목록과 일치해야 한다.
 
-채택 명세:
+## Google Sheet
+
+`GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정과 Hera exact-pair 결과는 동일 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` 아래에서 동기화돼 있다.
+
+Visual/platform sequencing 결과는 동일 `GM-SPELL-WORKFLOW-UI-V2-01`로 Hub row2·Decision row68·Audit row79·ImageReview row6·History row115에 동기화됐고 두 번의 readback으로 `SHEET_WRITE_READBACK_PASS`를 확인했다. PR #93 merged-main 증거는 `5016bd090ad09892d36a8b751c7a9649868b76d5`다.
+
+Task 2 사용자 승인도 동일 Decision ID `GM-SPELL-WORKFLOW-UI-V2-01`로 GitHub canon에 기록하며, 이 canon-sync PR merge 후 Sheet에 동일 sync id `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 write/readback한다.
+
+## 현재 남은 Gate
 
 ```text
-docs/testing/GUT_9_7_1_ADOPTION_SPEC.md
-docs/decisions/DEC-GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01-adopt-gut-9-7-1.md
+AUDIO_VAULT_PATH_UNVERIFIED
+AUDIO_RIGHTS_UNVERIFIED
+VISUAL_AUDIO_COMPLETE_NOT_PROVEN
+THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9  # post-implementation acceptance, not Task2 prerequisite
+LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
+GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
-
-PR #84는 명세·Decision·검증 계획만 포함한다. `.gutconfig.json`, actual `GutTest`, GUT runtime workflow, `project.godot`, Scene, Resource, asset, addon 교체는 금지한다.
-
-## v4.3 진입 상태 재판정
-
-```yaml
-prior_state: GUT_FORMAL_ADOPTION_IMPLEMENTATION_NEXT
-current_state: BLOCKED_BY_GUT_ADOPTION_SPEC
-reconciliation: docs/planning/ENTRY_STATE_RECONCILIATION_V4_3.json
-reason: GUT adoption spec Draft PR must merge before formal installation
-```
-
-동결 브랜치:
-
-```yaml
-branch: agent/gut-9-7-1-formal-adoption-tdd
-status: FROZEN_SUPERSEDED_BY_V4_3_SPEC_GATE
-merge_authorized: false
-counts_as_adoption_evidence: false
-```
-
-PR #84 병합 후 최신 main에서 구현 브랜치를 새로 만든다. 동결 브랜치 commit은 자동 병합·cherry-pick하지 않는다.
-
-## 리뷰 정책
-
-```yaml
-active_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
-external_independent_reviewer: NOT_PLANNED_SOLO_DEVELOPMENT
-required:
-  - exact diff와 정본·테스트 결과를 구현자 설명에서 분리해 검토
-  - P0/P1 finding 0
-  - GUT/CI 객관 증거
-  - exact-HEAD PR Check
-  - 사용자 결정 권위
-```
-
-PR #83의 사용자 한정 리뷰 예외는 당시 병합의 역사 증거로 유효하지만 후속 PR 검토 모델이 아니다.
-
-## Base 정합성
-
-프로젝트 Base pin은 9.4.3이다. Base 최신 main `4f98f968a377f7b6a11aafa4fc94d11bddbebedc`의 선택적 애드온 소비 정책은 실제 소비·source pin·integrity·제거 계획을 요구하는 v4.3과 정합한다. pin 변경은 승인·수행하지 않았다.
-
-## Google Sheet 정합성
-
-```yaml
-sync_id: GR-SYNC-20260806-13-CONTRACT-V4-3-GUT-SPEC
-00_프로젝트_허브: READBACK_PASS
-01_작업순서: READBACK_PASS
-02_현재_확정결정: READBACK_PASS
-04_누락_충돌_감사: READBACK_PASS
-72_이미지검수_승인로그: READBACK_PASS
-99_변경이력: READBACK_PASS
-```
-
-공식 release와 vendor mismatch addendum은 `GR-SYNC-20260806-14-TOOL-SOURCE-INTEGRITY`로 추가 동기화한다.
-
-## 이미지·오디오 상태
-
-```yaml
-user_direction_approval: COMPLETE
-runtime_validation: NOT_RUN
-implementation_visual_review: PENDING
-final_art: NOT_CLAIMED
-audio_vault_path: BLOCKED_UNVERIFIED
-audio_rights: BLOCKED_UNVERIFIED
-status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
-```
-
-## 현재 금지
-
-- PR #82 Task 2.
-- GUT formal installation 또는 채택 완료 선언.
-- GUT Editor Plugin 활성화.
-- 승인 없는 addon vendor 교체.
-- UI v2 Main Scene 전환.
-- 최종 시각·오디오·Runtime·기기 완료 선언.
-- 로컬 sync·Godot run 완료 주장.
-
-## 다음 Gate
-
-PR #84의 공식 source pin·vendor mismatch를 Sheet에 추가 동기화하고 exact-HEAD CI와 역할 분리 검토를 통과시킨다. 병합·main readback 후에만 새 GUT formal-installation TDD PR을 시작한다.

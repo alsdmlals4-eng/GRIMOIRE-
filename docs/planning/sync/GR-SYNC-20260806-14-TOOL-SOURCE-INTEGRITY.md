@@ -28,7 +28,7 @@ vendor_integrity: MISMATCH_OFFICIAL_V9_7_1
 runtime_compatibility: NOT_RUN
 ```
 
-## HiGodot 공식 소스
+## HiGodot 공식 소스 — 당시 기록
 
 ```yaml
 repository: hi-godot/godot-ai
@@ -46,9 +46,11 @@ vendor_integrity: MISMATCH_REQUIRES_RELEASE_ARCHIVE_AUDIT
 runtime_compatibility: NOT_RUN
 ```
 
-## 판정
+위 `official_plugin_source_tree` 명칭과 HiGodot vendor-integrity 판정은 2026-08-08 재감사에서 scope 오류로 교정되었다. 이 값 `e559376d...`는 실제로 official `plugin/` wrapper tree였으며 project `addons/godot_ai` subtree와 직접 비교할 수 있는 동급 scope가 아니었다.
 
-공식 release·commit·license는 확인됐다. 프로젝트 vendor subtree는 official source subtree와 다르므로 integrity PASS가 아니다.
+## 당시 판정
+
+공식 release·commit·license는 확인됐다. 당시에는 프로젝트 vendor subtree가 official source subtree와 다르다고 판정해 integrity PASS를 보류했다.
 
 ```yaml
 allowed_now:
@@ -61,7 +63,7 @@ forbidden_now:
   - START_PR82_TASK2
 ```
 
-## Google Sheet write/readback
+## Google Sheet write/readback — 당시 기록
 
 ```yaml
 02_현재_확정결정_I69_M70: READBACK_PASS
@@ -69,9 +71,7 @@ forbidden_now:
 99_변경이력_A96_H96: READBACK_PASS
 ```
 
-Sheet는 `OFFICIAL_SOURCE_VERSION_LICENSE_PASS / VENDOR_INTEGRITY_MISMATCH`와 설치 차단을 같은 Decision ID로 기록한다.
-
-## 비완료 주장
+## 비완료 주장 — 당시 기록
 
 ```yaml
 gut_vendor_replaced_or_audited: false
@@ -81,3 +81,23 @@ gut_adoption_spec_merged: false
 gut_formally_adopted: false
 spell_workflow_task2_authorized: false
 ```
+
+## 2026-08-08 HiGodot scope correction
+
+이 역사 receipt를 삭제하거나 당시 판정을 소급 변경하지 않는다. 대신 다음 재감사 결과가 HiGodot vendor-integrity 현재 판정을 supersede한다.
+
+```yaml
+correction_sync: GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY
+audit_id: GR-AUD-TOOL-VENDOR-INTEGRITY-01
+official_plugin_wrapper_path: plugin
+official_plugin_wrapper_tree: e559376d95c12f67ae0117a23bcc1dd2519206c2
+official_plugin_subtree_path: plugin/addons/godot_ai
+official_plugin_subtree_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+project_plugin_subtree_path: addons/godot_ai
+project_plugin_subtree_tree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+comparison_scope_rule: COMPARE_PLUGIN_SUBTREE_TO_PLUGIN_SUBTREE
+current_higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+old_higodot_verdict: SUPERSEDED_SCOPE_MISMATCH_WRAPPER_TREE_VS_PLUGIN_SUBTREE
+```
+
+GUT의 `MISMATCH_OFFICIAL_V9_7_1` 및 별도 승인된 critical-runtime equivalence에는 이 HiGodot 교정이 영향을 주지 않는다.
