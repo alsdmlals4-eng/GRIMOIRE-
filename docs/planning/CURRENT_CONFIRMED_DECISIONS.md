@@ -29,11 +29,13 @@ windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
+visual_platform_merged_main: 5016bd090ad09892d36a8b751c7a9649868b76d5
+visual_platform_sheet_sync: SHEET_WRITE_READBACK_PASS
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 ```
 
-현재 `main` 자체는 저장된 SHA가 아니라 `project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK`로 판정한다. `gut_formal_adoption_main`은 PR #85의 역사 merge, `post_merge_canon_sync_merge`는 PR #87의 역사 merge, `hera_merged_main`은 PR #91 Hera Gate가 처음 merged-main에 들어간 증거다.
+현재 `main` 자체는 저장된 SHA가 아니라 `project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK`로 판정한다. `gut_formal_adoption_main`은 PR #85의 역사 merge, `post_merge_canon_sync_merge`는 PR #87의 역사 merge, `hera_merged_main`은 PR #91 Hera Gate가 처음 merged-main에 들어간 증거, `visual_platform_merged_main`은 PR #93 visual/platform Gate가 처음 merged-main에 들어간 역사 증거다.
 
 ## GM-CONTRACT-V4-4-BINDING-01
 
@@ -47,7 +49,8 @@ godot_project_path: C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-
 project_google_sheet: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
 base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
 base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
-base_latest_main_observed_visual_platform_gate: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
+base_main_observed_visual_platform_entry: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
+base_latest_main_observed_premerge: cf4c7a60c5b31b042043f91b268f381372fec69a
 base_release_pin: 9.4.3
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 codex_handoff: NOT_REQUESTED
@@ -70,6 +73,8 @@ shared_core_evidence: docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.jso
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
+merged_main: 5016bd090ad09892d36a8b751c7a9649868b76d5
+sheet_sync: SHEET_WRITE_READBACK_PASS
 windows_export: NOT_RUN
 android_export: NOT_RUN
 android_device: NOT_RUN
@@ -126,7 +131,7 @@ hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 
 HiGodot의 과거 mismatch는 official `plugin/` wrapper와 project plugin subtree를 비교한 scope 오류로 교정됐다. GUT의 full vendor-tree mismatch/critical-runtime equivalence는 별도 판정으로 그대로다. Hera canary는 임시 Godot 프로젝트에서 official CLI와 exact addon pair를 검증했고 persistent GRIMOIRE source authoring 권위를 획득하지 않는다.
 
-최신 Base `main@a912cc001...`에서 재확인한 current toolchain/PC·Android 계약은 Hera exact pair·localhost-only·shared token·persistent write 금지·source-delta `NONE`, 그리고 shared core/platform adapter 분리를 유지한다. GRIMOIRE Base release pin 9.4.3은 갱신되지 않았다.
+최신 Base `main@cf4c7a60...`에서 재확인한 current toolchain/PC·Android 계약은 Hera exact pair·localhost-only·shared token·persistent write 금지·source-delta `NONE`, 그리고 shared core/platform adapter 분리를 유지한다. GRIMOIRE Base release pin 9.4.3은 갱신되지 않았다.
 
 ## GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 
@@ -141,9 +146,9 @@ normal_pr_gate: Validate Godot Authoring and GUT Authority Gate
 
 ## Google Sheet
 
-`GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정과 Hera exact-pair 결과는 동일 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` 아래에서 동기화됐고, Hub row2·Decision row69·Audit row76·History row113의 최종 readback은 `SHEET_WRITE_READBACK_PASS`다. Hera merged-main 증거는 `a35baed94fe064e57529ffee7b8c48e14ac5e1bb`이다.
+`GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정과 Hera exact-pair 결과는 동일 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` 아래에서 동기화돼 있다.
 
-이번 visual/platform sequencing 결과는 PR #93 merged-main readback 후 동일 제품 Decision ID `GM-SPELL-WORKFLOW-UI-V2-01`로 Sheet에 최종 동기화한다. 그 전에는 이 새 결과의 Sheet 완료를 주장하지 않는다.
+Visual/platform sequencing 결과는 동일 `GM-SPELL-WORKFLOW-UI-V2-01`로 Hub row2·Decision row68·Audit row79·ImageReview row6·History row115에 동기화됐고 두 번의 readback으로 `SHEET_WRITE_READBACK_PASS`를 확인했다. PR #93 merged-main 증거는 `5016bd090ad09892d36a8b751c7a9649868b76d5`다.
 
 ## 현재 남은 Gate
 
