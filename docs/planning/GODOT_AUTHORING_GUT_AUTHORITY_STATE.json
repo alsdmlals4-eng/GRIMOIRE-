@@ -1,5 +1,5 @@
 {
-  "schema_version": 14,
+  "schema_version": 15,
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.4",
@@ -14,6 +14,7 @@
   "base_policy_observation": {
     "current_main": "fa69a77a14f923a756064f6ae151d34cadb374f7",
     "latest_main_observed": "a912cc001ff4d4e3415fb4b4931723c49eb08d9a",
+    "latest_main_observed_premerge": "cf4c7a60c5b31b042043f91b268f381372fec69a",
     "project_pin": "9.4.3",
     "pin_update": "NOT_APPROVED_NOT_PERFORMED"
   },
@@ -143,6 +144,7 @@
     "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
     "sync_id": "GR-SYNC-20260808-07-VISUAL-PLATFORM-GATE-SEQUENCING",
     "status": "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS",
+    "merged_main": "5016bd090ad09892d36a8b751c7a9649868b76d5",
     "evidence": "docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json",
     "windows_export": "NOT_RUN",
     "android_export": "NOT_RUN",
@@ -161,12 +163,12 @@
   },
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "sync_id": "GR-SYNC-20260808-05-HERA-V1-EXACT-PAIR",
+    "sync_id": "GR-SYNC-20260808-07-VISUAL-PLATFORM-GATE-SEQUENCING",
     "write": "SHEET_WRITE_READBACK_PASS",
     "readback": "SHEET_WRITE_READBACK_PASS",
     "higodot_integrity_sync": "PASS",
     "hera_exact_pair_sync": "SHEET_WRITE_READBACK_PASS",
-    "visual_platform_gate_sync": "PENDING_PR93_MERGE"
+    "visual_platform_gate_sync": "SHEET_WRITE_READBACK_PASS"
   },
   "validation": {
     "actions_mode": "PUBLIC_REPO_STANDARD_GITHUB_HOSTED",
