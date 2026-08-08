@@ -34,3 +34,5 @@ jobs:
         run: python -m unittest tests.test_v4_4_live_main_readback_semantics -v
       - name: Validate repo-wide GitHub Actions supply chain
         run: python -m unittest tests.test_v4_4_ci_supply_chain -v
+      - name: Validate supply-chain canon reconciliation
+        run: python -m unittest tests.test_v4_4_ci_supply_chain_canon_reconciliation -v
