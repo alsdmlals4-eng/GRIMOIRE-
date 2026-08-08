@@ -44,7 +44,7 @@
     "source_or_version_verification": "PASS",
     "vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
     "prior_release": "v3.1.2",
-    "prior_vendor_integrity_verdict": "PASS_EXACT_TREE_IDENTITY_HISTORICAL",
+    "prior_vendor_integrity_verdict": "SUPERSEDED_SCOPE_MISMATCH_WRAPPER_TREE_VS_PLUGIN_SUBTREE",
     "integrity_evidence": "docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json",
     "project_plugin_enabled": true,
     "user_plugin_approval": true,
