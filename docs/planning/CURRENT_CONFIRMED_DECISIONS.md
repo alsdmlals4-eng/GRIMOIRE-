@@ -33,9 +33,11 @@ review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 ```
 
-현재 `main` 자체는 저장된 SHA가 아니라 `project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK`로 판정한다. 역사적 merge SHA는 역할 증거로만 보존한다.
+현재 `main` 자체는 저장된 SHA가 아니라 `project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK`로 판정한다. `gut_formal_adoption_main`은 PR #85의 역사 merge, `post_merge_canon_sync_merge`는 PR #87의 역사 merge, `hera_merged_main`은 PR #91 Hera Gate가 처음 merged-main에 들어간 증거다.
 
 ## GM-CONTRACT-V4-4-BINDING-01
+
+사용자가 제공한 v4.4 통합 작업지시문을 GRIMOIRE의 활성 계약으로 바인딩한다.
 
 ```yaml
 project_repository: alsdmlals4-eng/GRIMOIRE-
@@ -44,17 +46,20 @@ project_local_path: C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-
 godot_project_path: C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-
 project_google_sheet: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
 base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
-base_latest_main_observed: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
+base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
+base_latest_main_observed_visual_platform_gate: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
 base_release_pin: 9.4.3
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 codex_handoff: NOT_REQUESTED
 ```
 
+v4.3 바인딩은 역사 증거로 보존하지만 현재 권위가 아니다. Base `main`의 최신 관찰이 전진했어도 release pin 9.4.3 갱신은 승인되지 않았다.
+
 ## 보존 제품 결정
 
 `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`의 `FIVE_POINT_STAR`, Typed Glyph Stock, Exactly-once 처리와 `GM-SPELL-WORKFLOW-UI-V2-01`의 `글자 그리기 → 회로 배치 → 주문 사용`을 유지한다.
 
-PR #82 Task 1 GREEN은 보존한다. Task 2 제품 구현은 아직 `NOT_STARTED_ON_BRANCH`이고 `spell_workflow_task2_authorized: false`다. 다만 잘못된 순환 선행조건을 제거해 `READY_FOR_HIGODOT_AUTHORING`으로 분류한다. Persistent Godot authoring은 HiGodot 단일 권위와 receipt Gate를 반드시 사용한다.
+PR #82 Task 1 GREEN은 보존한다. Task 2 제품 구현은 아직 `NOT_STARTED_ON_BRANCH`이고 `spell_workflow_task2_authorized: false`다. 승인된 구현 계획의 Task 9–10에서 생성되는 three-screen runtime evidence를 Task 2 선행조건으로 두지 않도록 순서를 교정했으며 현재 readiness는 `READY_FOR_HIGODOT_AUTHORING`이다. Persistent Godot authoring은 HiGodot 단일 권위와 authoring receipt Gate를 반드시 사용한다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — visual/platform gate sequencing
 
@@ -68,41 +73,77 @@ three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEME
 windows_export: NOT_RUN
 android_export: NOT_RUN
 android_device: NOT_RUN
+performance: NOT_RUN
 visual_audio_complete: false
 audio_vault: AUDIO_VAULT_PATH_UNVERIFIED
 audio_rights: AUDIO_RIGHTS_UNVERIFIED
 ```
 
-Base PC·Android guide의 one-core/platform-adapter 원칙에 따라 `src/core`가 gameplay/data/deterministic authority를 유지하고 `mobile_safe_root`가 layout adapter 역할을 한다. `export_presets.cfg`가 없으므로 실제 export/device 완료를 주장하지 않는다.
+Base의 PC·Android one-core/platform-adapter 계약에 따라 `src/core`는 gameplay/content/data/save/deterministic authority를 유지하고 `src/ui/mobile_safe_root.gd`는 layout adapter로 한정된다. Focused contract는 hosted Windows 2025와 Ubuntu 24.04에서 같은 구조 계약을 통과했다. `export_presets.cfg`가 없으므로 Windows/Android export 또는 Android device PASS를 주장하지 않는다.
 
-승인된 UI v2 구현 계획에서 root/end-to-end는 Task 9, render/CI evidence는 Task 10이다. 따라서 `THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`은 구현 이후 acceptance 대기이며 Task 2 선행 blocker가 아니다.
+승인된 UI v2 구현 계획에서 root/end-to-end 통합은 Task 9, rendered/CI evidence는 Task 10이다. 따라서 `THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`은 구현 이후 acceptance 대기이며 Task 2의 선행 blocker가 아니다. 현재 three-screen runtime PASS 또는 visual/audio completion PASS는 주장하지 않는다.
 
 ## GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 
 ```yaml
+higodot_release: v3.1.2
+higodot_pinned_commit: 678b16a6a0a335cf80cbb7d3f85c183cd3e616de
+higodot_official_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
+higodot_project_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
-higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
+higodot_integrity_correction_sync: GR-SYNC-20260808-04-HIGODOT-VENDOR-INTEGRITY
+gut_release: v9.7.1
+gut_pinned_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+gut_spec_pr: 84
+gut_implementation_pr: 85
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
+gut_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
 gut_editor_plugin: DISABLED
-gut_full_vendor_tree_identity: false
-gut_critical_runtime_equivalence: APPROVED
+full_vendor_tree_identity: false
+critical_runtime_equivalence: APPROVED
+legacy_required_contract_parity: PASS
+hosted_godot_4_7_1_gut: PASS
+junit_discovery_exit: PASS
+product_mutation_hash_gate: PASS
+higodot_zero_protected_diff_gate: PASS
+hera_release: v1.0.0
+hera_upstream_tag_commit: 10f245ddae9e7a5d569150302acbde0d78f2aa03
+hera_upstream_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
+hera_project_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
+hera_linux_cli_sha256: 384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a
 hera_exact_pair: PASS
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_live_canary_run: 31254032278
+hera_merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
+hera_localhost_only: PASS
+hera_shared_token: PASS
+hera_repository_source_delta_zero: PASS
 hera_acceptance_qa_authorized: true
 hera_persistent_source_mutation_authorized: false
+hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 ```
+
+HiGodot의 과거 mismatch는 official `plugin/` wrapper와 project plugin subtree를 비교한 scope 오류로 교정됐다. GUT의 full vendor-tree mismatch/critical-runtime equivalence는 별도 판정으로 그대로다. Hera canary는 임시 Godot 프로젝트에서 official CLI와 exact addon pair를 검증했고 persistent GRIMOIRE source authoring 권위를 획득하지 않는다.
+
+최신 Base `main@a912cc001...`에서 재확인한 current toolchain/PC·Android 계약은 Hera exact pair·localhost-only·shared token·persistent write 금지·source-delta `NONE`, 그리고 shared core/platform adapter 분리를 유지한다. GRIMOIRE Base release pin 9.4.3은 갱신되지 않았다.
 
 ## GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 
 ```yaml
 repo_wide_actions_full_sha: PASS
 status: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
+enforcement_test: tests/test_v4_4_ci_supply_chain.py
+normal_pr_gate: Validate Godot Authoring and GUT Authority Gate
 ```
+
+모든 active workflow의 official `actions/*` ref는 full 40-hex commit SHA로 강제되며 known action pin은 검증 목록과 일치해야 한다.
 
 ## Google Sheet
 
-이 visual/platform sequencing 결과는 PR #93 merged-main readback 후 동일 `GM-SPELL-WORKFLOW-UI-V2-01`로 Sheet에 최종 동기화한다. 그 전에는 Sheet 완료를 주장하지 않는다.
+`GM-CONTRACT-V4-4-BINDING-01`과 `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 Sheet write/readback PASS다. HiGodot 교정과 Hera exact-pair 결과는 동일 `GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01` 아래에서 동기화됐고, Hub row2·Decision row69·Audit row76·History row113의 최종 readback은 `SHEET_WRITE_READBACK_PASS`다. Hera merged-main 증거는 `a35baed94fe064e57529ffee7b8c48e14ac5e1bb`이다.
+
+이번 visual/platform sequencing 결과는 PR #93 merged-main readback 후 동일 제품 Decision ID `GM-SPELL-WORKFLOW-UI-V2-01`로 Sheet에 최종 동기화한다. 그 전에는 이 새 결과의 Sheet 완료를 주장하지 않는다.
 
 ## 현재 남은 Gate
 
