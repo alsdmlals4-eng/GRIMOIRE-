@@ -15,6 +15,7 @@ UPSTREAM_TAG_COMMIT = "10f245ddae9e7a5d569150302acbde0d78f2aa03"
 LINUX_CLI_SHA256 = "384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a"
 ADDON_ZIP_SHA256 = "0a71000f0c4192043e72e9b18f4de3bac720035d9d7c95c9634648a7b5c54d9f"
 WINDOWS_CLI_SHA256 = "9ae181741c2e8a3f57bbb2a2e4c61ac2c9c7c844fad21c88ae3890c55a5cc66b"
+PASS_TOKEN = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 
 
 class HeraV1ExactPairContractTests(unittest.TestCase):
@@ -39,8 +40,11 @@ class HeraV1ExactPairContractTests(unittest.TestCase):
         self.assertEqual(WINDOWS_CLI_SHA256, data["release_assets"]["windows_amd64_sha256"])
         self.assertEqual(ADDON_ZIP_SHA256, data["release_assets"]["addon_zip_sha256"])
         self.assertEqual("CLI_AND_ADDON_SHIP_AND_VERSION_TOGETHER", data["pairing_contract"])
-        self.assertEqual("CI_REQUIRED", data["live_canary"]["status"])
-        self.assertFalse(data["claims"]["acceptance_qa_authorized"])
+        self.assertEqual(PASS_TOKEN, data["live_canary"]["status"])
+        self.assertTrue(data["claims"]["live_cli_addon_pair_pass"])
+        self.assertTrue(data["claims"]["acceptance_qa_authorized"])
+        self.assertFalse(data["claims"]["persistent_project_source_mutation_allowed_to_hera"])
+        self.assertFalse(data["claims"]["spell_workflow_task2_authorized"])
 
     def test_live_canary_workflow_is_fail_closed_and_read_only_to_repo(self) -> None:
         self.assertTrue(WORKFLOW.is_file(), str(WORKFLOW))
