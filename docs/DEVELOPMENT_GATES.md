@@ -37,7 +37,8 @@ implementation_entry: READY_FOR_HIGODOT_AUTHORING_WITH_POST_IMPLEMENTATION_ACCEP
 
 - 바인딩: `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md`
 - Base v4.4 binding 시점 main 관찰: `fa69a77a14f923a756064f6ae151d34cadb374f7`.
-- 이번 visual/platform gate 진입 시 최신 Base main 관찰: `a912cc001ff4d4e3415fb4b4931723c49eb08d9a`.
+- PR #91 진입 시 Base main 관찰: `eee98a930219065e30b4d7d14d99d5ac7db44c60`.
+- 이번 visual/platform Gate 진입 시 최신 Base main 관찰: `a912cc001ff4d4e3415fb4b4931723c49eb08d9a`.
 - project Base release pin은 9.4.3 그대로이며 pin update는 승인·수행되지 않았다.
 - Decision/미확정/이미지 Sheet 및 GitHub live main을 작업 진입 때마다 다시 읽는다.
 
@@ -64,7 +65,7 @@ higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 evidence: docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json
 ```
 
-Persistent Godot authoring은 계속 HiGodot 단일 권위를 사용하고 protected diff에는 fail-closed authoring receipt Gate를 적용한다.
+기존 `e559376d...` 대 `a7d1e2fe...` mismatch는 official `plugin/` wrapper와 plugin subtree를 비교한 scope 오류였다. Persistent Godot authoring은 계속 HiGodot 단일 권위를 사용하고 protected diff에는 fail-closed authoring receipt Gate를 적용한다.
 
 ## Gate 15.2–15.3 — GUT 9.7.1
 
@@ -93,18 +94,23 @@ legacy_required_contract_parity: PASS
 
 ```yaml
 release: v1.0.0
+upstream_tag_commit: 10f245ddae9e7a5d569150302acbde0d78f2aa03
 upstream_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
 project_addon_tree: 6cb87ac8ba768de1d924447f385fba6d80bcde68
+linux_cli_sha256: 384d93652ade67f0a2c975e152521760d3bf32f8770edd4b9ee382ea98bcab8a
 live_canary_run: 31254032278
 localhost_127_0_0_1_only: PASS
 shared_token_required: PASS
+wrong_token_rejected: PASS
+correct_token_status: PASS
+godot_4_7_1: PASS
 repository_source_delta_zero: PASS
 acceptance_qa_authorized: true
 persistent_source_mutation_authorized: false
 evidence: docs/validation/HERA_V1_0_0_EXACT_PAIR.json
 ```
 
-Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다.
+Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. persisted GRIMOIRE `project.godot`에는 Hera를 enable하지 않는다. PR #91 진입 당시 Base `main@eee98a930...`와 이번 최신 Base `main@a912cc001...` 모두 exact CLI/addon pair, localhost-only, shared token, persistent write 금지, acceptance source delta `NONE` boundary를 유지한다.
 
 ## Gate 15.5 — PR #82 Task 2 entry
 
@@ -129,6 +135,8 @@ shared_gameplay_core: src/core
 platform_layout_adapter: src/ui/mobile_safe_root.gd
 shared_project_configuration: PASS
 core_platform_api_isolation: PASS
+windows_host_contract: PASS
+ubuntu_host_contract: PASS
 windows_export: NOT_RUN
 android_export: NOT_RUN
 android_device: NOT_RUN
