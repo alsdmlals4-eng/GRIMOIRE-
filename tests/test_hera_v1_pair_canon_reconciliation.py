@@ -4,7 +4,6 @@ import json
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
@@ -13,20 +12,16 @@ CONFIRMED = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 GRILL = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
-CURRENT_DOCS = [
-    ROOT / "START_HERE.md",
-    ROOT / "docs/ACTIVE_CONTEXT.md",
-    CONFIRMED,
-]
+CURRENT_DOCS = [ROOT / "START_HERE.md", ROOT / "docs/ACTIVE_CONTEXT.md", CONFIRMED]
 PASS_TOKEN = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 SHEET_PASS = "SHEET_WRITE_READBACK_PASS"
 MERGED_MAIN = "a35baed94fe064e57529ffee7b8c48e14ac5e1bb"
+SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 STALE_BLOCKER = "HERA_CLI_ADDON_PAIR_UNVERIFIED"
 RUN_ID = 31254032278
 PRE_FINAL_HEAD = "335d3f0b7eaf16e88d73be65c56806d8b58e0b78"
 ARTIFACT_ID = 9020855476
 ARTIFACT_SHA256 = "6c96beba235c57964a48b1877d931215ebda3a844708d05464de5be0e2bf93d8"
-
 
 class HeraV1PairCanonReconciliationTests(unittest.TestCase):
     def test_live_evidence_is_promoted_from_ci_required_to_pass(self) -> None:
@@ -36,16 +31,7 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertEqual(PRE_FINAL_HEAD, data["live_canary"]["pre_final_head"])
         self.assertEqual(ARTIFACT_ID, data["live_canary"]["artifact_id"])
         self.assertEqual(ARTIFACT_SHA256, data["live_canary"]["artifact_sha256"])
-        for key in (
-            "official_linux_cli_sha256",
-            "cli_version_v1_0_0",
-            "project_addon_exact_tree",
-            "loopback_127_0_0_1_only",
-            "wrong_token_rejected_exit_1",
-            "correct_token_status",
-            "status_godot_4_7_1",
-            "repository_source_delta_zero",
-        ):
+        for key in ("official_linux_cli_sha256", "cli_version_v1_0_0", "project_addon_exact_tree", "loopback_127_0_0_1_only", "wrong_token_rejected_exit_1", "correct_token_status", "status_godot_4_7_1", "repository_source_delta_zero"):
             self.assertEqual("PASS", data["live_canary"]["results"][key], key)
         self.assertTrue(data["claims"]["live_cli_addon_pair_pass"])
         self.assertTrue(data["claims"]["acceptance_qa_authorized"])
@@ -64,11 +50,10 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
             self.assertNotIn(STALE_BLOCKER, text, str(path))
             self.assertIn("spell_workflow_task2_authorized: false", text, str(path))
 
-    def test_machine_state_closes_hera_but_keeps_visual_platform_and_delivery_gates(self) -> None:
+    def test_machine_state_closes_hera_and_structural_platform_gate_but_keeps_real_limits(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
         grill = json.loads(GRILL.read_text(encoding="utf-8"))
-
         self.assertEqual(PASS_TOKEN, canon["hera"]["status"])
         self.assertEqual(PASS_TOKEN, authority["hera"]["status"])
         self.assertEqual(PASS_TOKEN, grill["current_work"]["hera_status"])
@@ -77,15 +62,12 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertFalse(authority["claims"]["spell_workflow_task2_authorized"])
         self.assertFalse(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
         self.assertFalse(grill["current_work"]["spell_workflow_task2_authorized"])
-
-        for blocker in (
-            "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
-            "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
-            "AUDIO_VAULT_PATH_UNVERIFIED",
-            "AUDIO_RIGHTS_UNVERIFIED",
-            "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
-            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
-        ):
+        self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
+        self.assertEqual(SHARED_CORE_PASS, authority["platform_validation"]["status"])
+        self.assertEqual(SHARED_CORE_PASS, grill["current_work"]["windows_android_shared_core"])
+        self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", canon["broader_blockers"])
+        self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", authority["broader_blockers"])
+        for blocker in ("VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "AUDIO_VAULT_PATH_UNVERIFIED", "AUDIO_RIGHTS_UNVERIFIED", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS"):
             self.assertIn(blocker, canon["broader_blockers"])
             self.assertIn(blocker, authority["broader_blockers"])
 
@@ -94,7 +76,6 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
         grill = json.loads(GRILL.read_text(encoding="utf-8"))
         confirmed = CONFIRMED.read_text(encoding="utf-8")
-
         self.assertEqual(MERGED_MAIN, canon["hera"]["merged_main"])
         self.assertEqual(SHEET_PASS, canon["hera"]["sheet_sync"])
         self.assertEqual(MERGED_MAIN, authority["hera"]["merged_main"])
@@ -107,7 +88,6 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertIn(SHEET_PASS, confirmed)
         self.assertNotIn("PENDING_PR91_MERGE", confirmed)
         self.assertNotIn("PASS_PRIOR_CANON", confirmed)
-
 
 if __name__ == "__main__":
     unittest.main()
