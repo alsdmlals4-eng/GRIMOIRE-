@@ -65,7 +65,7 @@ class V43ContractBindingTests(unittest.TestCase):
         self.assertTrue(state["claims"]["higodot_vendor_integrity_pass"])
         self.assertTrue(state["claims"]["gut_formally_adopted"])
         self.assertFalse(state["claims"]["tool_vendor_integrity_pass"])
-        self.assertFalse(state["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(state["claims"]["spell_workflow_task2_authorized"])
 
     def test_current_unresolved_is_v4_4_post_merge_not_v4_3_gate(self) -> None:
         current = UNRESOLVED.read_text(encoding="utf-8")
@@ -73,6 +73,7 @@ class V43ContractBindingTests(unittest.TestCase):
         self.assertIn("GM-CONTRACT-V4-4-BINDING-01", current)
         self.assertIn(MERGED_MAIN, current)
         self.assertIn("GUT_FORMALLY_ADOPTED", current)
+        self.assertIn("spell_workflow_task2_authorized: true", current)
         self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", current)
         self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", current)
         self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", current)
