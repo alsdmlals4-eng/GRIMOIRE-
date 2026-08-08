@@ -24,9 +24,11 @@ gut_formal_adoption_pr: 85
 gut_formal_adoption_exact_head: fc178bdc7a3e12faf4ae7ae78fd1f92dd2735849
 gut_formal_adoption_run: 31227323973
 spell_workflow_pr: 82
-spell_workflow_status: PAUSED_AFTER_TASK1_GREEN
-spell_workflow_task2_authorized: false
+spell_workflow_status: TASK2_AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+spell_workflow_task2_authorized: true
 spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
+spell_workflow_task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL
+spell_workflow_task2_approval_sync: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
@@ -58,7 +60,7 @@ Base `main`은 PR #91 진입 시 `eee98a930...`였고 이번 visual/platform Gat
 - `GM-STAR-CIRCUIT-MASTERY-BALANCE-01`: `FIVE_POINT_STAR`, Typed Glyph Stock, Exactly-once 처리 유지.
 - `GM-SPELL-WORKFLOW-UI-V2-01`: `글자 그리기 → 회로 배치 → 주문 사용` 유지.
 - PR #82 Task 1 GREEN은 보존한다.
-- Task 2 제품 구현은 아직 시작하지 않았으며 `spell_workflow_task2_authorized: false`를 유지한다. 다만 선행 Gate 순환은 제거되어 `READY_FOR_HIGODOT_AUTHORING` 상태다.
+- Task 2는 `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 사용자 승인되어 `spell_workflow_task2_authorized: true`다. 구현은 여전히 `NOT_STARTED_ON_BRANCH`이며 현재 실행 상태는 `AUTHORIZED_AWAITING_HIGODOT_CHANNEL`이다. Persistent Godot 저작은 HiGodot receipt Gate를 반드시 통과해야 한다.
 
 ## Windows·Android shared core
 
@@ -82,7 +84,7 @@ LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-HiGodot은 persistent Godot authoring의 단일 권위다. vendor subtree identity는 PASS지만 persistent product authoring에서는 기존 fail-closed HiGodot authoring receipt Gate를 계속 적용한다. 이번 gate-sequencing/shared-core package는 Godot product source를 수정하지 않는다.
+HiGodot은 persistent Godot authoring의 단일 권위다. vendor subtree identity는 PASS지만 persistent product authoring에서는 기존 fail-closed HiGodot authoring receipt Gate를 계속 적용한다. Task 2 승인은 이 권위를 우회하지 않는다.
 
 ## 시각·오디오
 
@@ -119,5 +121,6 @@ Hosted Godot 4.7.1/GUT/Hera 검증은 PASS했지만 사용자 로컬 `Fetch/Pull
 10. `docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json`
 11. `docs/validation/HERA_V1_0_0_EXACT_PAIR.json`
 12. `docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json`
+13. `docs/planning/sync/GR-SYNC-20260809-01-TASK2-USER-APPROVAL.md`
 
-다음 persistent product 구현은 HiGodot authoring authority와 receipt Gate를 사용해야 한다. 3-screen runtime evidence는 해당 구현 이후 acceptance에서 생성한다.
+다음 persistent product 구현은 승인된 Task 2 범위에서 HiGodot authoring authority와 receipt Gate를 사용해야 한다. 현재 authoring channel이 없는 환경에서는 우회 source write를 하지 않는다. 3-screen runtime evidence는 Tasks 2–9 구현 이후 acceptance에서 생성한다.
