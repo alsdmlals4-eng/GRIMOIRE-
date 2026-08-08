@@ -52,6 +52,8 @@ three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
 base_release_pin: 9.4.3
 base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
+base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
+base_latest_main_observed_visual_platform_gate: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
 base_latest_main_observed: 2a6ced23f6d6de1fb6e0a281c7138beb03f1a13b
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
@@ -59,7 +61,7 @@ local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-`higodot_vendor_integrity`는 tracked v3.1.2 exact-tree 상태를 가리키는 기존 cold-start 호환 키다. live v3.1.3 상태는 `higodot_live_*` 키로 분리한다. `project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base release pin `9.4.3`은 갱신 승인되지 않았으며 이번 도구 상태 재검증에서 Base `main@2a6ced23...`를 최신 관찰로 기록했다.
+`higodot_vendor_integrity`는 tracked v3.1.2 exact-tree 상태를 가리키는 기존 cold-start 호환 키다. live v3.1.3 상태는 `higodot_live_*` 키로 분리한다. `project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. Base `fa69a77...`는 v4.4 바인딩 시점, `eee98a930...`는 PR #91 진입 시점, `a912cc001...`는 visual/platform Gate 진입 시점의 역사 관찰이며, `2a6ced23...`는 이번 도구 상태 재검증에서의 최신 live 관찰이다. Base release pin `9.4.3`은 갱신 승인되지 않았다.
 
 ## 보존된 Star Circuit runtime authority
 
@@ -112,6 +114,8 @@ status: LIVE_VERSION_CONFIRMED_TRACKED_VENDOR_DIVERGENCE
 
 ```yaml
 gut_release: v9.7.1
+gut_tracked_adoption_mode: CLI_ONLY_WITHOUT_EDITOR_PLUGIN
+gut_tracked_editor_plugin: DISABLED_AT_GITHUB_MAIN_READBACK
 gut_live_editor_plugin: USER_CONFIRMED_ENABLED
 gut_user_plugin_approval: true
 gut_authority: DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY
