@@ -23,7 +23,9 @@ PLUGIN_SUBTREE = "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35"
 RELEASE_ASSET_SHA256 = "60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33"
 LICENSE_BLOB = "7806d2217ecf773ab83bb8a1ec0b2a81c3cc8546"
 PASS_TOKEN = "PASS_EXACT_TREE_IDENTITY"
+HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 STALE_BLOCKER = "HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2"
+STALE_HERA_BLOCKER = "HERA_CLI_ADDON_PAIR_UNVERIFIED"
 DECISION = "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01"
 AUDIT_ID = "GR-AUD-TOOL-VENDOR-INTEGRITY-01"
 
@@ -56,7 +58,7 @@ class HiGodotV312VendorIntegrityTests(unittest.TestCase):
             self.assertIn(DECISION, text, str(path))
             self.assertIn("spell_workflow_task2_authorized: false", text, str(path))
 
-    def test_machine_state_records_exact_tree_identity_and_keeps_other_gates(self) -> None:
+    def test_machine_state_records_exact_tree_identity_and_keeps_current_gates(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
         self.assertEqual(PASS_TOKEN, canon["tool_authority"]["higodot"]["vendor_integrity"])
@@ -65,10 +67,15 @@ class HiGodotV312VendorIntegrityTests(unittest.TestCase):
         self.assertEqual(PLUGIN_SUBTREE, authority["higodot"]["project_vendor_tree_sha"])
         self.assertNotIn(STALE_BLOCKER, canon["broader_blockers"])
         self.assertNotIn(STALE_BLOCKER, authority["broader_blockers"])
+        self.assertNotIn(STALE_HERA_BLOCKER, canon["broader_blockers"])
+        self.assertNotIn(STALE_HERA_BLOCKER, authority["broader_blockers"])
+        self.assertEqual(HERA_PASS, canon["hera"]["status"])
+        self.assertEqual(HERA_PASS, authority["hera"]["status"])
         self.assertFalse(authority["claims"]["spell_workflow_task2_authorized"])
         for blocker in (
-            "HERA_CLI_ADDON_PAIR_UNVERIFIED",
             "WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED",
+            "AUDIO_VAULT_PATH_UNVERIFIED",
+            "AUDIO_RIGHTS_UNVERIFIED",
             "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
             "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
             "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
