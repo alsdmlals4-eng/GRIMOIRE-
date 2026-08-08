@@ -16,8 +16,9 @@
     "mobile_layout_adapter_baseline": "PASS",
     "minimum_touch_target_48dp_contract": "PASS",
     "text_scale_130_percent_contract": "PASS",
-    "same_contract_windows_host": "PENDING_EXACT_HEAD_CI",
-    "same_contract_ubuntu_host": "PENDING_EXACT_HEAD_CI"
+    "same_contract_windows_host": "PASS",
+    "same_contract_ubuntu_host": "PASS",
+    "host_matrix_green_run": 31257461039
   },
   "observed_structure": {
     "shared_core_root": "src/core",
