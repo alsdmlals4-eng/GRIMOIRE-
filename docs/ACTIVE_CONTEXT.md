@@ -38,14 +38,15 @@ three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
 base_release_pin: 9.4.3
 base_binding_main_observed: fa69a77a14f923a756064f6ae151d34cadb374f7
-base_latest_main_observed: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
+base_latest_main_observed_pr91: eee98a930219065e30b4d7d14d99d5ac7db44c60
+base_latest_main_observed_visual_platform_gate: a912cc001ff4d4e3415fb4b4931723c49eb08d9a
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
 local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base `fa69a77...`는 v4.4 바인딩 시점 관찰이고, 이번 Gate 검증 진입 시 최신 Base `main`은 `a912cc001ff4d4e3415fb4b4931723c49eb08d9a`다. Base release pin `9.4.3`은 갱신 승인되지 않았다.
+`project_main_authority`는 매 작업에서 GitHub default branch를 다시 읽는 live 권위다. 역사 SHA는 역할명으로만 보존한다. Base `fa69a77...`는 v4.4 바인딩 시점 관찰, `eee98a930...`는 PR #91 진입 시 관찰, `a912cc001...`는 이번 visual/platform Gate 진입 시 최신 관찰이다. Base release pin `9.4.3`은 갱신 승인되지 않았다.
 
 ## 보존된 Star Circuit runtime authority
 
@@ -99,7 +100,7 @@ acceptance_qa_authorized: true
 persistent_source_mutation_authorized: false
 ```
 
-Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. canary는 임시 Godot 프로젝트에서 실행됐고 GRIMOIRE `project.godot`/addon/source를 변경하지 않았다.
+Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다. canary는 임시 Godot 프로젝트에서 실행됐고 GRIMOIRE `project.godot`/addon/source를 변경하지 않았다. PR #91 진입 당시 Base `main@eee98a930...`와 이번 최신 Base `main@a912cc001...` 모두 exact pair, localhost-only, shared token, persistent write 금지, acceptance source-delta `NONE` boundary를 유지한다.
 
 ## GUT formal adoption readback
 
