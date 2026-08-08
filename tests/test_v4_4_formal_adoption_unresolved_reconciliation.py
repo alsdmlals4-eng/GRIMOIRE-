@@ -52,8 +52,9 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
         self.assertIn("REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS", text)
         self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", text)
         self.assertIn(HERA_PASS, text)
-        self.assertIn("spell_workflow_task2_authorized: false", text)
+        self.assertIn("spell_workflow_task2_authorized: true", text)
         self.assertIn("spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING", text)
+        self.assertIn("AUTHORIZED_AWAITING_HIGODOT_CHANNEL", text)
 
 
 if __name__ == "__main__":
