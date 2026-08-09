@@ -69,7 +69,7 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
         self.assertTrue(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
         self.assertEqual("READY_FOR_HIGODOT_AUTHORING", canon["spell_workflow_main"]["task2_readiness"])
-        self.assertEqual("AUTHORIZED_AWAITING_HIGODOT_CHANNEL", canon["spell_workflow_main"]["task2_execution_status"])
+        self.assertEqual("AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", canon["spell_workflow_main"]["task2_execution_status"])
         self.assertEqual("4.4", grill["active_contract"]["version"])
         self.assertEqual(0, grill["current_count"])
         self.assertEqual("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", grill["current_work"]["project_main_authority"])

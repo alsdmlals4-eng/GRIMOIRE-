@@ -38,8 +38,11 @@ class Task2UserApprovalCanonTests(unittest.TestCase):
         grill = json.loads((ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json").read_text(encoding="utf-8"))
 
         self.assertTrue(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
-        self.assertEqual("AUTHORIZED_AWAITING_HIGODOT_CHANNEL", canon["spell_workflow_main"]["task2_execution_status"])
+        self.assertEqual("AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", canon["spell_workflow_main"]["task2_execution_status"])
+        self.assertEqual("READY_FOR_HIGODOT_AUTHORING", canon["spell_workflow_main"]["task2_readiness"])
         self.assertTrue(authority["claims"]["spell_workflow_task2_authorized"])
+        self.assertEqual("TASK2_AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", authority["implementation_pr"]["status"])
+        self.assertEqual("NOT_STARTED_ON_BRANCH", authority["implementation_pr"]["task2"])
         self.assertTrue(grill["current_work"]["spell_workflow_task2_authorized"])
 
 
