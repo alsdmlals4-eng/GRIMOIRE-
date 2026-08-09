@@ -27,6 +27,8 @@ static func prepare(request, ledger, inventory) -> Dictionary:
 		return {"status": &"INVALID_RESERVATION"}
 	if records != ledger.reservation_records_for_transaction(transaction_id):
 		return {"status": &"INVALID_RESERVATION"}
+	if not _draft_matches_records(draft, records, transaction_id):
+		return {"status": &"INVALID_RESERVATION"}
 
 	var ledger_snapshot: Dictionary = ledger.snapshot_state()
 	var inventory_snapshot: Dictionary = inventory.serialize()
@@ -55,6 +57,56 @@ static func prepare(request, ledger, inventory) -> Dictionary:
 		"spell": Dictionary(added.get("spell", {})).duplicate(true),
 		"consumed_count": int(consumed.get("consumed_count", 0)),
 	}
+
+
+static func _draft_matches_records(draft: Dictionary, records: Array, transaction_id: StringName) -> bool:
+	var expected_by_node: Dictionary = {}
+	var main: Dictionary = Dictionary(draft.get("main", {}))
+	if not _bind_expected_record(expected_by_node, StringName("%s:main" % transaction_id), main):
+		return false
+	for auxiliary_variant in Array(draft.get("auxiliaries", [])):
+		if typeof(auxiliary_variant) != TYPE_DICTIONARY:
+			return false
+		var auxiliary: Dictionary = Dictionary(auxiliary_variant)
+		if typeof(auxiliary.get("slot", null)) != TYPE_INT:
+			return false
+		var slot: int = int(auxiliary.get("slot", -1))
+		if slot < 0 or slot > 4:
+			return false
+		var node_id := StringName("%s:aux-%s" % [transaction_id, slot])
+		if not _bind_expected_record(expected_by_node, node_id, auxiliary):
+			return false
+	if expected_by_node.size() != records.size():
+		return false
+	for record_variant in records:
+		if typeof(record_variant) != TYPE_DICTIONARY:
+			return false
+		var record: Dictionary = Dictionary(record_variant)
+		var node_id := StringName(record.get("node_id", &""))
+		if not expected_by_node.has(node_id):
+			return false
+		var expected: Dictionary = Dictionary(expected_by_node[node_id])
+		if StringName(record.get("transaction_id", &"")) != transaction_id:
+			return false
+		if StringName(record.get("glyph_id", &"")) != StringName(expected.get("glyph_id", &"")):
+			return false
+		if int(record.get("source", -1)) != int(expected.get("source", -1)):
+			return false
+	return true
+
+
+static func _bind_expected_record(expected_by_node: Dictionary, node_id: StringName, glyph: Dictionary) -> bool:
+	if node_id.is_empty() or expected_by_node.has(node_id):
+		return false
+	if StringName(glyph.get("glyph_id", &"")).is_empty():
+		return false
+	if typeof(glyph.get("source", null)) != TYPE_INT:
+		return false
+	expected_by_node[node_id] = {
+		"glyph_id": StringName(glyph.get("glyph_id", &"")),
+		"source": int(glyph.get("source", -1)),
+	}
+	return true
 
 
 static func _prior_result(transaction_id: StringName, inventory) -> Dictionary:

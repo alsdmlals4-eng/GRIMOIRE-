@@ -152,3 +152,21 @@ func run(case) -> void:
 	case.assert_equal(&"RESOURCE_CONSUME_FAILED", consume_failure_result.status, "failed glyph consumption reports the Stage 2 resource failure")
 	case.assert_equal(consume_failure_before_ledger, consume_failure_ledger.snapshot_state(), "consume failure restores every reserved glyph exactly")
 	case.assert_equal(consume_failure_before_inventory, consume_failure_inventory.serialize(), "consume failure leaves prepared inventory unchanged")
+
+	var forged_ledger = _make_ledger()
+	var forged_session = Session.create(&"prepare-forged-binding", forged_ledger)
+	forged_session.place_main(_glyph(&"HEAT", Types.Source.VAULT))
+	var forged_draft = forged_session.draft()
+	forged_draft.main["glyph_id"] = &"PROTECT"
+	var forged_request = Request.create(
+		&"prepare-forged-binding",
+		&"spell-forged-binding",
+		forged_draft,
+		{"success_percent": 50, "final_mana": 9}
+	)
+	var forged_inventory = Inventory.new()
+	var forged_before_ledger = forged_ledger.snapshot_state()
+	var forged_result = Service.prepare(forged_request, forged_ledger, forged_inventory)
+	case.assert_equal(&"INVALID_RESERVATION", forged_result.status, "draft glyph must bind exactly to its reserved main node")
+	case.assert_equal(forged_before_ledger, forged_ledger.snapshot_state(), "forged draft cannot consume a different reserved glyph")
+	case.assert_true(forged_inventory.serialize().spells.is_empty(), "forged draft creates no prepared spell")
