@@ -79,10 +79,17 @@ class V43ContractBindingTests(unittest.TestCase):
         self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", current)
         self.assertIn("AUDIO_VAULT_PATH_UNVERIFIED", current)
 
-    def test_gut_editor_plugin_remains_disabled(self) -> None:
+    def test_v4_3_editor_plugin_deferral_is_historical_while_current_v4_4_is_enabled(self) -> None:
+        spec = SPEC.read_text(encoding="utf-8")
+        self.assertIn("SPEC_ONLY_NO_INSTALLATION", spec)
         project = PROJECT.read_text(encoding="utf-8")
         self.assertIn('res://addons/godot_ai/plugin.cfg', project)
-        self.assertNotIn('res://addons/gut/plugin.cfg', project)
+        self.assertIn('res://addons/gut/plugin.cfg', project)
+        self.assertIn('res://addons/hera_agent_godot/plugin.cfg', project)
+        state = json.loads(STATE.read_text(encoding="utf-8"))
+        self.assertEqual("FORMAL_TEST_AUTHORITY", state["gut"]["target_authority"])
+        self.assertEqual("ENABLED_AT_GITHUB_MAIN_READBACK", state["gut"]["tracked_editor_plugin_enablement"])
+        self.assertFalse(state["hera"]["persistent_source_mutation_authorized"])
 
 
 if __name__ == "__main__":
