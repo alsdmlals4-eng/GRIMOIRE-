@@ -83,6 +83,25 @@ _use_transaction_by_spell_id
 
 All public reads return deep copies. `serialize()` emits deterministically sorted arrays. `restore()` fails closed on malformed/conflicting state. Do not introduce Stage 3 target selection or mana mutation here.
 
+### 3A. State-model hardening — `IMMUTABLE_PAYLOAD_INVENTORY_LIFECYCLE`
+
+This section resolves implementation ambiguities without changing the approved product outcome.
+
+- `PreparedSpell payload remains immutable after creation`: the deep-copied spell payload stored at preparation time is never rewritten in place to represent later use.
+- `READY` versus `USED` is inventory-owned lifecycle state. `_use_transaction_by_spell_id` is the usage authority; it must not be replaced by mutating caller-owned or stored prepared-spell payload data.
+- A public `spell(spell_id)` read derives `USED` when `_use_transaction_by_spell_id` contains that spell ID, otherwise derives `READY`, and returns only a deep copy. The stored immutable payload remains the preparation-time value.
+- The serialized immutable spell payload must retain `status: READY`. `USED` is a derived public lifecycle status and must never be persisted by rewriting the immutable base payload.
+- `add_once()` rejects an empty `preparation_transaction_id` with no mutation. `mark_used_once()` rejects an empty `use_transaction_id` with no mutation. Empty `spell_id` remains invalid at `PreparedSpell.create()` and must not enter inventory state.
+- Retrying the same preparation transaction is idempotent even if the caller supplies a different candidate spell: the same preparation transaction with a different candidate spell returns the original first add result and does not replace or duplicate the stored spell.
+- A different preparation transaction attempting to reuse an existing `spell_id` fails closed and must not alter either transaction index or spell state.
+- Repeating the same `use_transaction_id` for the same spell returns the original first use outcome; a different use transaction after consumption returns `SPELL_ALREADY_USED`.
+- `USE_TRANSACTION_SINGLE_OWNER`: one non-empty use transaction may belong to exactly one spell in an inventory. The same `use_transaction_id` cannot be rebound to a different spell. If a transaction already belongs to another spell, `mark_used_once()` fails closed with `USE_TRANSACTION_CONFLICT` and leaves all inventory state unchanged. With the planned three-dictionary design, checking existing use-transaction values is sufficient; do not add a fourth persistent index solely for this rule.
+- `serialize()` must make all three indexes reconstructable and deterministic. Sort spell records by string form of `spell_id`, preparation mappings by string form of transaction ID, and use mappings by string form of `spell_id`; serialize deep copies only.
+- `restore()` is validate-then-swap: validate the entire candidate state in temporary structures before replacing live dictionaries. Any malformed type, empty identifier, duplicate/conflicting mapping, missing referenced spell, inconsistent usage relationship, or duplicated use transaction assigned to multiple spells returns `false` with the pre-call inventory state unchanged.
+- `restore()` rejects a serialized immutable spell payload whose base `status` is anything other than `READY`. It must preserve the immutable-payload/inventory-lifecycle split after round-trip: restored public reads derive lifecycle status from the restored use index rather than trusting a caller-supplied mutable status override.
+
+The Task 3 GDScript tests must exercise these rules in addition to the eight minimum cases above. In particular, include mutation-after-add/read checks, empty idempotency-key checks, same-preparation/different-candidate replay, cross-spell same-use-transaction collision, malformed restore atomicity, non-READY base-payload restore rejection, and READY→USED derived-status round-trip.
+
 ### 4. Regression verification
 
 Run the full deterministic legacy/headless suite and the adopted GUT suites. Existing Task 1/2, star runtime, typed stock, reservation recovery, and exactly-once tests must stay green. Run the applicable Python contract tests as well.

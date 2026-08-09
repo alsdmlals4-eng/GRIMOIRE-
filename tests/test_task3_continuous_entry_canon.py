@@ -62,6 +62,25 @@ class Task3ContinuousEntryCanonTests(unittest.TestCase):
         self.assertIn("product_mutation_in_this_sync: NONE", sync_text)
         self.assertIn("Task 3 product files are not created by this sync", sync_text)
 
+    def test_executor_packet_pins_immutable_payload_and_atomic_restore_contract(self) -> None:
+        handoff_text = (ROOT / HANDOFF).read_text(encoding="utf-8")
+        for token in (
+            "IMMUTABLE_PAYLOAD_INVENTORY_LIFECYCLE",
+            "PreparedSpell payload remains immutable after creation",
+            "inventory-owned lifecycle state",
+            "empty `preparation_transaction_id`",
+            "empty `use_transaction_id`",
+            "validate-then-swap",
+            "pre-call inventory state unchanged",
+            "same preparation transaction",
+            "different candidate spell",
+            "public `spell(spell_id)` read derives `USED`",
+            "USE_TRANSACTION_SINGLE_OWNER",
+            "same `use_transaction_id` cannot be rebound to a different spell",
+            "serialized immutable spell payload must retain `status: READY`",
+        ):
+            self.assertIn(token, handoff_text)
+
 
 if __name__ == "__main__":
     unittest.main()
