@@ -66,8 +66,8 @@
   "validation": {
     "task3_tdd_red": "RECORDED",
     "headless_legacy_runner": "PASS: 35 suites, 1364 assertions, 0 failures",
-    "gut": "PENDING",
-    "python_contract": "PENDING",
+    "gut": "PASS: GUT 9.7.1, 7 tests, 25 asserts, 0 failures",
+    "python_contract": "PASS: 16 Task 3 / HiGodot authority contract tests",
     "exact_head_ci": "PENDING"
   },
   "limitations": [
