@@ -31,6 +31,9 @@ HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 THREE_SCREEN_PENDING = "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9"
 RECEIPT_LIMIT = "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT"
+TASK2_MERGED = "TASK2_MERGED_MAIN_VERIFIED"
+TASK3_READY = "TASK3_READY_AFTER_POST_MERGE_CANON"
+TASK2_RECEIPT_PASS = "TASK2_HIGODOT_RECEIPT_READBACK_PASS"
 
 
 class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
@@ -86,11 +89,19 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("TRACKED_V3_1_3", data["validation"]["higodot_vendor_integrity_scope"])
         self.assertEqual(SHARED_CORE_PASS, data["platform_validation"]["status"])
         self.assertEqual(THREE_SCREEN_PENDING, data["image_review"]["three_screen_runtime"])
-        self.assertEqual("READY_FOR_HIGODOT_AUTHORING", data["implementation_pr"]["task2_readiness"])
-        self.assertTrue(data["implementation_pr"]["task2_authorized"])
-        self.assertTrue(data["implementation_pr"]["merge_authorized"])
+
+        implementation = data["implementation_pr"]
+        self.assertEqual(TASK2_MERGED, implementation["status"])
+        self.assertEqual("MERGED_MAIN_VERIFIED", implementation["task2"])
+        self.assertEqual(TASK3_READY, implementation["task2_readiness"])
+        self.assertEqual(TASK2_RECEIPT_PASS, implementation["task2_authoring_receipt_status"])
+        self.assertTrue(implementation["task2_authorized"])
+        self.assertFalse(implementation["merge_authorized"])
+
         self.assertTrue(data["claims"]["higodot_tracked_v3_1_3_vendor_sync"])
         self.assertTrue(data["claims"]["tracked_project_godot_live_plugin_state_synced"])
+        self.assertTrue(data["claims"]["spell_workflow_task2_merged_main_verified"])
+        self.assertTrue(data["claims"]["task2_higodot_receipt_readback_pass"])
         self.assertFalse(data["claims"]["higodot_direct_local_upgrade_receipt_verified"])
         self.assertFalse(data["claims"]["windows_export_pass"])
         self.assertFalse(data["claims"]["android_export_pass"])
@@ -110,6 +121,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertIn(SHARED_CORE_PASS, combined)
         self.assertIn(THREE_SCREEN_PENDING, combined)
         self.assertIn("spell_workflow_task2_authorized", combined)
+        self.assertIn(TASK2_MERGED, combined)
 
     def test_legacy_spec_preserves_authority_boundary(self):
         text = LEGACY_SPEC.read_text(encoding="utf-8")
@@ -155,6 +167,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
             self.assertIn(blocker, text)
         self.assertIn(SHARED_CORE_PASS, text)
         self.assertIn(THREE_SCREEN_PENDING, text)
+        self.assertIn(TASK2_MERGED, text)
         self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", text)
         self.assertNotIn("SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN", text)
         self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", text)
