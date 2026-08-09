@@ -27,6 +27,8 @@ THREE_SCREEN_PENDING = "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9"
 LAYOUT_PASS = "VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS"
 SHEET_PASS = "SHEET_WRITE_READBACK_PASS"
 MERGED_MAIN = "5016bd090ad09892d36a8b751c7a9649868b76d5"
+TASK2_MERGED = "TASK2_MERGED_MAIN_VERIFIED"
+TASK3_READY = "TASK3_READY_AFTER_POST_MERGE_CANON"
 
 
 class VisualPlatformGateSequencingTests(unittest.TestCase):
@@ -99,7 +101,9 @@ class VisualPlatformGateSequencingTests(unittest.TestCase):
         self.assertIn("AUDIO_RIGHTS_UNVERIFIED", combined)
         self.assertIn("VISUAL_AUDIO_COMPLETE_NOT_PROVEN", combined)
         self.assertNotIn("SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN", combined)
-        self.assertIn("READY_FOR_HIGODOT_AUTHORING", combined)
+        self.assertIn(TASK2_MERGED, combined)
+        self.assertIn(TASK3_READY, combined)
+        self.assertNotIn("spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING", combined)
 
     def test_workflow_runs_same_contract_on_windows_and_ubuntu_with_full_sha_actions(self):
         workflow = WORKFLOW.read_text(encoding="utf-8")

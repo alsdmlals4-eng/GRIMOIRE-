@@ -10,6 +10,10 @@ GUT_FORMAL_ADOPTION_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
 POST_MERGE_CANON_SYNC_MAIN = "ce01bb8caa5f1b224279d3fbf418eae29a88af7d"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
+TASK2_MERGED = "TASK2_MERGED_MAIN_VERIFIED"
+TASK3_READY = "TASK3_READY_AFTER_POST_MERGE_CANON"
+TASK2_MAIN = "975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0"
+TASK2_RECEIPT_PASS = "TASK2_HIGODOT_RECEIPT_READBACK_PASS"
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 CURRENT_DOCS = [ROOT / "START_HERE.md", ROOT / "docs/ACTIVE_CONTEXT.md", ROOT / "docs/DEVELOPMENT_GATES.md", ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md", ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"]
 CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
@@ -39,6 +43,7 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertTrue(data["claims"]["higodot_receipt_gate_implemented"])
         self.assertTrue(data["claims"]["gut_github_actions_pass"])
         self.assertTrue(data["claims"]["spell_workflow_task2_authorized"])
+        self.assertTrue(data["claims"]["spell_workflow_task2_merged_main_verified"])
 
     def test_current_cold_start_docs_keep_historical_merge_roles_and_live_main_authority(self) -> None:
         for path in CURRENT_DOCS:
@@ -53,6 +58,7 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
             self.assertIn("hera_exact_pair: PASS", text, str(path))
             self.assertIn(HERA_PASS, text, str(path))
             self.assertIn("spell_workflow_task2_authorized: true", text, str(path))
+            self.assertIn(TASK2_MERGED, text, str(path))
             self.assertNotIn("spell_workflow_task2_authorized: false", text, str(path))
             self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", text, str(path))
 
@@ -67,9 +73,15 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", canon["tool_authority"]["higodot"]["vendor_integrity"])
         self.assertEqual(HERA_PASS, canon["hera"]["status"])
         self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
-        self.assertTrue(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
-        self.assertEqual("READY_FOR_HIGODOT_AUTHORING", canon["spell_workflow_main"]["task2_readiness"])
-        self.assertEqual("AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", canon["spell_workflow_main"]["task2_execution_status"])
+
+        workflow = canon["spell_workflow_main"]
+        self.assertTrue(workflow["spell_workflow_task2_authorized"])
+        self.assertEqual(TASK2_MERGED, workflow["status"])
+        self.assertEqual(TASK3_READY, workflow["task2_readiness"])
+        self.assertEqual("MERGED_MAIN_VERIFIED", workflow["task2_execution_status"])
+        self.assertEqual(TASK2_MAIN, workflow["main_merge_commit"])
+        self.assertEqual(TASK2_RECEIPT_PASS, workflow["authoring_receipt_status"])
+
         self.assertEqual("4.4", grill["active_contract"]["version"])
         self.assertEqual(0, grill["current_count"])
         self.assertEqual("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", grill["current_work"]["project_main_authority"])
@@ -80,6 +92,10 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual(HERA_PASS, grill["current_work"]["hera_status"])
         self.assertEqual(SHARED_CORE_PASS, grill["current_work"]["windows_android_shared_core"])
         self.assertTrue(grill["current_work"]["spell_workflow_task2_authorized"])
+        self.assertEqual(TASK2_MERGED, grill["current_work"]["status"])
+        self.assertEqual("MERGED_MAIN_VERIFIED", grill["current_work"]["spell_workflow_task2"])
+        self.assertEqual(TASK2_MAIN, grill["current_work"]["spell_workflow_merged_main"])
+        self.assertEqual(TASK2_RECEIPT_PASS, grill["current_work"]["spell_workflow_task2_authoring_receipt_status"])
 
     def test_remaining_broader_blockers_and_acceptance_are_preserved(self) -> None:
         text = (ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md").read_text(encoding="utf-8")
@@ -87,6 +103,7 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
             self.assertIn(blocker, text)
         self.assertIn(SHARED_CORE_PASS, text)
         self.assertIn("THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9", text)
+        self.assertIn(TASK2_MERGED, text)
         self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", text)
         self.assertNotIn("SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN", text)
         self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", text)

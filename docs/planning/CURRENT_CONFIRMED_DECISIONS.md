@@ -30,11 +30,17 @@ hera_merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
 hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 gut_status: GUT_FORMALLY_ADOPTED
 spell_workflow_pr: 82
-spell_workflow_status: TASK2_AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED
+spell_workflow_status: TASK2_MERGED_MAIN_VERIFIED
 spell_workflow_task2_authorized: true
-spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
-spell_workflow_task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED
+spell_workflow_task2_readiness: TASK3_READY_AFTER_POST_MERGE_CANON
+spell_workflow_task2_execution_status: MERGED_MAIN_VERIFIED
 spell_workflow_task2_approval_sync: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
+spell_workflow_task2_main_sync: GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN
+spell_workflow_task2_post_merge_canon_sync: GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON
+spell_workflow_task2_exact_head: 71f0cfb86217953be004e2a5d6a3480b9d909267
+spell_workflow_task2_merged_main: 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
+spell_workflow_task2_receipt_status: TASK2_HIGODOT_RECEIPT_READBACK_PASS
+spell_workflow_task2_sheet_sync: SHEET_WRITE_READBACK_PASS
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
@@ -65,23 +71,31 @@ tuning_status: PLAYTEST_TUNING_REQUIRED
 
 Typed Glyph Stock와 exactly-once 처리 의미를 유지한다.
 
-## GM-SPELL-WORKFLOW-UI-V2-01 — Task 2
+## GM-SPELL-WORKFLOW-UI-V2-01 — Task 2 merged main
 
-`글자 그리기 → 회로 배치 → 주문 사용`을 유지한다. PR #82 Task 1 GREEN은 보존한다.
+`글자 그리기 → 회로 배치 → 주문 사용`과 Stage 경계를 유지한다. PR #82 Task 1 baseline 및 승인된 Task 2는 merged main에 반영됐다.
 
 ```yaml
-sync_id: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
+approval_sync_id: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
+main_sync_id: GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN
+post_merge_canon_sync_id: GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON
 approval: USER_APPROVED_2026-08-09T06:19+09:00
-task2: NOT_STARTED_ON_BRANCH
+task2: MERGED_MAIN_VERIFIED
 spell_workflow_task2_authorized: true
-spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
-task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED
-required_persistent_authority: HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE
-same_scope_merge_authority: INHERITED_SUBJECT_TO_GREEN_AND_EXACT_HEAD_GATES
+spell_workflow_task2_readiness: TASK3_READY_AFTER_POST_MERGE_CANON
+task2_execution_status: MERGED_MAIN_VERIFIED
+exact_head: 71f0cfb86217953be004e2a5d6a3480b9d909267
+merged_main: 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
+authoring_receipt: artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK2_2026-08-09.json
+authoring_receipt_status: TASK2_HIGODOT_RECEIPT_READBACK_PASS
+sheet_sync: SHEET_WRITE_READBACK_PASS
+required_persistent_authority_for_next_task: HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 ```
 
-HiGodot live channel은 확인됐지만 Task 2 구현 완료를 뜻하지 않는다. Persistent Godot product mutation은 HiGodot + 신선한 authoring receipt/readback으로만 수행한다.
+Task 2는 equal-count(1–5) Vault/Stock `GlyphSourceLoadout`과 transaction-wide reservation recovery를 제공한다. HiGodot v3.1.3 authoring, local deterministic legacy/GUT GREEN, Hera live QA source-delta NONE, exact-head CI, receipt completeness readback을 거쳤다. 초기 receipt의 Godot-generated `.gd.uid` 누락 P1은 evidence-only correction으로 닫혔다.
+
+Task 3+ 구현과 three-screen runtime acceptance는 아직 완료로 주장하지 않는다. 다음 persistent product mutation은 다시 HiGodot + fresh authoring receipt/readback으로 수행한다.
 
 ## GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 
@@ -131,7 +145,7 @@ android_export: NOT_RUN
 android_device: NOT_RUN
 ```
 
-Three-screen runtime은 Task 2 선행조건이 아니라 Tasks 2–9 이후 acceptance다.
+Three-screen runtime은 Task 2 선행조건이 아니며 Task 2 merge로 자동 PASS가 되지 않는다. Tasks 2–9 구현 후 Task 10 render/CI evidence에서 acceptance한다.
 
 ## GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 

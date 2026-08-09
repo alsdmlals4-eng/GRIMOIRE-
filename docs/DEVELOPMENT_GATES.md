@@ -20,8 +20,15 @@ gut_formal_adoption: GUT_FORMALLY_ADOPTED
 hera_exact_pair: PASS
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 spell_workflow_task2_authorized: true
-spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
-spell_workflow_task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED
+spell_workflow_task2_status: TASK2_MERGED_MAIN_VERIFIED
+spell_workflow_task2_readiness: TASK3_READY_AFTER_POST_MERGE_CANON
+spell_workflow_task2_execution_status: MERGED_MAIN_VERIFIED
+spell_workflow_task2_main_sync: GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN
+spell_workflow_task2_post_merge_canon_sync: GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON
+spell_workflow_task2_exact_head: 71f0cfb86217953be004e2a5d6a3480b9d909267
+spell_workflow_task2_merged_main: 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
+spell_workflow_task2_receipt_status: TASK2_HIGODOT_RECEIPT_READBACK_PASS
+spell_workflow_task2_sheet_sync: SHEET_WRITE_READBACK_PASS
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
@@ -53,16 +60,24 @@ GUT `v9.7.1`은 `DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY`이며 tracked editor plu
 
 ```yaml
 pr: 82
-task1: GREEN
-task2: NOT_STARTED_ON_BRANCH
+task1: MERGED_MAIN_VERIFIED
+task2: MERGED_MAIN_VERIFIED
 spell_workflow_task2_authorized: true
-spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
-task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED
+spell_workflow_task2_status: TASK2_MERGED_MAIN_VERIFIED
+spell_workflow_task2_readiness: TASK3_READY_AFTER_POST_MERGE_CANON
+task2_execution_status: MERGED_MAIN_VERIFIED
 approval_sync: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
-required_authority: HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE
+main_sync: GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN
+post_merge_canon_sync: GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON
+exact_head: 71f0cfb86217953be004e2a5d6a3480b9d909267
+merged_main: 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
+authoring_receipt: artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK2_2026-08-09.json
+authoring_receipt_status: TASK2_HIGODOT_RECEIPT_READBACK_PASS
+sheet_sync: SHEET_WRITE_READBACK_PASS
+required_authority_for_next_product_mutation: HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE
 ```
 
-Task 2는 승인됐고 HiGodot 채널도 확인됐다. 구현은 아직 시작되지 않았다.
+Task 2는 HiGodot v3.1.3 authoring, RED→GREEN, GUT/legacy regression, Hera live QA/source-delta NONE, exact-head CI와 receipt completeness readback을 거쳐 merged main에 반영됐다. 초기 receipt에서 Godot-generated `.gd.uid`가 누락된 P1은 fail-closed로 보정 후 재검증했다. 다음 persistent product 단계인 Task 3은 새 HiGodot receipt가 필요하다.
 
 ## Platform / Visual / Physical Gate
 
@@ -81,7 +96,7 @@ android_export: NOT_RUN
 android_device: NOT_RUN
 ```
 
-Three-screen runtime은 Task 2 선행조건이 아니라 구현 이후 acceptance다.
+Three-screen runtime은 Task 2 선행조건이 아니며 Task 2 merge만으로 PASS가 되지 않는다. 승인된 계획의 Task 9 통합과 Task 10 render/CI evidence 이후 acceptance한다.
 
 ## Gate 18 — CI supply chain
 

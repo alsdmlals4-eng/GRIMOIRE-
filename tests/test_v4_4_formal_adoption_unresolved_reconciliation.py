@@ -10,6 +10,9 @@ MERGED_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 THREE_SCREEN_PENDING = "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9"
+TASK2_MERGED = "TASK2_MERGED_MAIN_VERIFIED"
+TASK3_READY = "TASK3_READY_AFTER_POST_MERGE_CANON"
+TASK2_MAIN = "975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0"
 
 
 class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
@@ -53,9 +56,14 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
         self.assertNotIn("HERA_CLI_ADDON_PAIR_UNVERIFIED", text)
         self.assertIn(HERA_PASS, text)
         self.assertIn("spell_workflow_task2_authorized: true", text)
-        self.assertIn("spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING", text)
-        self.assertIn("AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", text)
+        self.assertIn(f"spell_workflow_task2_readiness: {TASK3_READY}", text)
+        self.assertIn(f"spell_workflow_task2_execution_status: MERGED_MAIN_VERIFIED", text)
+        self.assertIn(TASK2_MERGED, text)
+        self.assertIn(TASK2_MAIN, text)
+        self.assertIn("TASK2_HIGODOT_RECEIPT_READBACK_PASS", text)
+        self.assertNotIn("spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING", text)
         self.assertNotIn("spell_workflow_task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL", text)
+        self.assertNotIn("spell_workflow_task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", text)
 
 
 if __name__ == "__main__":

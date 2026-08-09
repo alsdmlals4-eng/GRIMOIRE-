@@ -22,6 +22,10 @@ RUN_ID = 31254032278
 PRE_FINAL_HEAD = "335d3f0b7eaf16e88d73be65c56806d8b58e0b78"
 ARTIFACT_ID = 9020855476
 ARTIFACT_SHA256 = "6c96beba235c57964a48b1877d931215ebda3a844708d05464de5be0e2bf93d8"
+TASK2_MERGED = "TASK2_MERGED_MAIN_VERIFIED"
+TASK3_READY = "TASK3_READY_AFTER_POST_MERGE_CANON"
+TASK2_MAIN = "975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0"
+TASK2_RECEIPT_PASS = "TASK2_HIGODOT_RECEIPT_READBACK_PASS"
 
 class HeraV1PairCanonReconciliationTests(unittest.TestCase):
     def test_live_evidence_preserves_historical_canary_scope(self) -> None:
@@ -50,6 +54,7 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
             self.assertIn("hera_exact_pair: PASS", text, str(path))
             self.assertNotIn(STALE_BLOCKER, text, str(path))
             self.assertIn("spell_workflow_task2_authorized: true", text, str(path))
+            self.assertIn(TASK2_MERGED, text, str(path))
             self.assertNotIn("spell_workflow_task2_authorized: false", text, str(path))
 
     def test_machine_state_closes_hera_and_structural_platform_gate_but_keeps_real_limits(self) -> None:
@@ -64,7 +69,11 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertTrue(authority["claims"]["spell_workflow_task2_authorized"])
         self.assertTrue(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
         self.assertTrue(grill["current_work"]["spell_workflow_task2_authorized"])
-        self.assertEqual("AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", canon["spell_workflow_main"]["task2_execution_status"])
+        self.assertEqual(TASK2_MERGED, canon["spell_workflow_main"]["status"])
+        self.assertEqual(TASK3_READY, canon["spell_workflow_main"]["task2_readiness"])
+        self.assertEqual("MERGED_MAIN_VERIFIED", canon["spell_workflow_main"]["task2_execution_status"])
+        self.assertEqual(TASK2_MAIN, canon["spell_workflow_main"]["main_merge_commit"])
+        self.assertEqual(TASK2_RECEIPT_PASS, canon["spell_workflow_main"]["authoring_receipt_status"])
         self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
         self.assertEqual(SHARED_CORE_PASS, authority["platform_validation"]["status"])
         self.assertEqual(SHARED_CORE_PASS, grill["current_work"]["windows_android_shared_core"])

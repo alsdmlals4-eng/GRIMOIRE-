@@ -28,11 +28,18 @@ gut_status: GUT_FORMALLY_ADOPTED
 gut_version: 9.7.1
 gut_editor_plugin: ENABLED_AT_GITHUB_MAIN_READBACK
 spell_workflow_pr: 82
-spell_workflow_status: TASK2_AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED
+spell_workflow_status: TASK2_MERGED_MAIN_VERIFIED
 spell_workflow_task2_authorized: true
-spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
-spell_workflow_task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED
+spell_workflow_task2_readiness: TASK3_READY_AFTER_POST_MERGE_CANON
+spell_workflow_task2_execution_status: MERGED_MAIN_VERIFIED
 spell_workflow_task2_approval_sync: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
+spell_workflow_task2_main_sync: GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN
+spell_workflow_task2_post_merge_canon_sync: GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON
+spell_workflow_task2_exact_head: 71f0cfb86217953be004e2a5d6a3480b9d909267
+spell_workflow_task2_merged_main: 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
+spell_workflow_task2_receipt: artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK2_2026-08-09.json
+spell_workflow_task2_receipt_status: TASK2_HIGODOT_RECEIPT_READBACK_PASS
+spell_workflow_task2_sheet_sync: SHEET_WRITE_READBACK_PASS
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
@@ -55,7 +62,7 @@ godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 - Hera: `v1.0.0`, `HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS`, tracked editor plugin + `HeraGameInspector` autoload가 존재한다. 역할은 `LIVE_QA_AND_OBSERVABILITY_ONLY`, persistent source mutation은 금지다.
 - historical HiGodot v3.1.2 exact-tree `a7d1e2fe8564cc385d683ec50d15fc66e1a17a35`는 과거 증거로 보존한다.
 
-현재 tracked tool state는 direct/local commit `1337e267d29b00c039039e7197863e2f4f78957d`에서 전진했다. 이 commit에 연결된 정식 HiGodot authoring receipt는 찾지 못했으므로 `HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT`로 남긴다. 현재 상태를 되돌리거나 receipt를 꾸며내지 않으며, 앞으로의 persistent product authoring은 반드시 HiGodot + receipt/readback Gate를 사용한다.
+현재 tracked tool state는 direct/local commit `1337e267d29b00c039039e7197863e2f4f78957d`에서 전진했다. 이 commit에 연결된 정식 HiGodot authoring receipt는 찾지 못했으므로 `HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT`로 남긴다. 이 역사 provenance 한계는 PR #82 Task 2의 별도 fresh receipt PASS를 무효화하지 않는다.
 
 ## 제품 보존 정본
 
@@ -74,15 +81,17 @@ human_validation: NOT_RUN
 tuning_status: PLAYTEST_TUNING_REQUIRED
 ```
 
-`GM-SPELL-WORKFLOW-UI-V2-01`의 `글자 그리기 → 회로 배치 → 주문 사용`과 `FIVE_POINT_STAR`, Typed Glyph Stock, exactly-once 처리 의미를 유지한다. PR #82 Task 1 GREEN도 보존한다.
+`GM-SPELL-WORKFLOW-UI-V2-01`의 `글자 그리기 → 회로 배치 → 주문 사용`과 `FIVE_POINT_STAR`, Typed Glyph Stock, exactly-once 처리 의미를 유지한다. PR #82는 Task 1 baseline과 승인된 Task 2를 merged main `975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0`에 반영했다.
 
-Task 2는 이미 사용자 승인됐다. 구현은 아직 `NOT_STARTED_ON_BRANCH`이고, 채널은 확인됐으므로 현재 실행 상태는 `AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED`다. 이것은 일반 GitHub text write 권한이 아니라 **HiGodot persistent authoring + authoring receipt Gate로 Task 2를 시작할 수 있다는 뜻**이다.
+Task 2는 `TASK2_MERGED_MAIN_VERIFIED`다. HiGodot/Godot AI 3.1.3 session `grimoire@9cc4`로 저작한 product commit `f719b35e...`와 receipt 보정 exact head `71f0cfb8...`가 적용됐으며 `artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK2_2026-08-09.json`의 protected Task 2 delta는 `TASK2_HIGODOT_RECEIPT_READBACK_PASS`다. Sheet sync `GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN`도 `SHEET_WRITE_READBACK_PASS`다. 현재 post-merge canon sync는 `GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON`이다.
+
+다음 제품 단계는 승인된 UI v2 계획의 Task 3이며 새 persistent Godot 저작은 다시 HiGodot + fresh receipt/readback Gate를 거쳐야 한다.
 
 ## Windows·Android / 시각 acceptance
 
 `WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS`와 `VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS`는 유지한다. 실제 Windows export, Android export/device, performance는 `NOT_RUN`이다.
 
-승인된 UI v2 계획은 root/end-to-end를 Task 9, render/CI evidence를 Task 10에 둔다. 따라서 `THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`은 Task 2 선행 blocker가 아니라 `SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE`다.
+승인된 UI v2 계획은 root/end-to-end를 Task 9, render/CI evidence를 Task 10에 둔다. 따라서 `THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`은 현재도 `SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE`이며 Task 2 merge가 three-screen PASS를 의미하지 않는다.
 
 물리 검증 기록은 `GR-TEST-033` / `GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY`이며 `HUMAN_NOT_RUN`, `DEVICE_NOT_RUN`, `PERFORMANCE_NOT_RUN`, `FULL_VERTICAL_SLICE_NOT_RUN` 경계를 유지한다.
 
@@ -107,9 +116,9 @@ GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 6. `docs/planning/CURRENT_UNRESOLVED_GATES.md`
 7. `docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json`
 8. `docs/planning/CANON_SYNC_STATE.json`
-9. `docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json`
-10. `docs/validation/HERA_V1_0_0_EXACT_PAIR.json`
-11. `docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json`
-12. `docs/planning/sync/GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION.md`
+9. `artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK2_2026-08-09.json`
+10. `docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json`
+11. `docs/validation/HERA_V1_0_0_EXACT_PAIR.json`
+12. `docs/validation/WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL.json`
 
-다음 persistent product 구현은 승인된 PR #82 Task 2 범위에서 HiGodot authoring authority와 receipt Gate로 수행한다. 3-screen runtime evidence는 Tasks 2–9 구현 이후 acceptance에서 만든다.
+다음 persistent product 구현은 Task 3 범위에서 HiGodot authoring authority와 새 receipt Gate로 수행한다. 3-screen runtime evidence는 Tasks 2–9 구현 이후 acceptance에서 만든다.
