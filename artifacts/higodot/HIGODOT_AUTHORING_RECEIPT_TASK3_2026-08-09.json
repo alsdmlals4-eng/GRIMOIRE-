@@ -1,0 +1,77 @@
+{
+  "schema": "HIGODOT_AUTHORING_RECEIPT_V1",
+  "receipt_id": "GR-TASK3-HIGODOT-20260809-01",
+  "recorded_at": "2026-08-09T23:25:13.2199798+09:00",
+  "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
+  "base_commit": "935d2484322f5cfb1649f089b10bc9f81bbb4bfd",
+  "result_commit": "66a5da4c527d6e161876ff01a0dde331d6d79d45",
+  "tool": {
+    "name": "Godot AI / HiGodot",
+    "godot_version": "4.7.1-stable (official)",
+    "plugin_version": "3.1.3",
+    "server_version": "3.1.3",
+    "session_id": "task3-prepared-spell-inventory@f879",
+    "project_path": "C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-/.worktrees/task3-prepared-spell-inventory/"
+  },
+  "changed_godot_artifacts": [
+    "res://src/core/spells/prepared_spell.gd",
+    "res://src/core/spells/prepared_spell.gd.uid",
+    "res://src/core/spells/prepared_spell_inventory.gd",
+    "res://src/core/spells/prepared_spell_inventory.gd.uid",
+    "res://tests/unit/test_prepared_spell_inventory.gd",
+    "res://tests/unit/test_prepared_spell_inventory.gd.uid",
+    "res://tests/test_runner.gd"
+  ],
+  "hash_evidence": {
+    "res://src/core/spells/prepared_spell.gd": {"before_sha256": "ABSENT", "after_sha256": "7A11181CDF2AB22D8264BCB000D9F2700D6D9EAE85B60A18616DDD468AD251A9"},
+    "res://src/core/spells/prepared_spell.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "B21BDAB7396F2ECE839F96D8A8EED310F34B18E292DFBD087CAB46B74FFD8A5C"},
+    "res://src/core/spells/prepared_spell_inventory.gd": {"before_sha256": "ABSENT", "after_sha256": "48F692B8F766B5AA4B4EBE80879EB8D2767E6F9104B0581D5B9A54273B735847"},
+    "res://src/core/spells/prepared_spell_inventory.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "5E3312B60A0F0BD37663CDE5D704CED3F7AEDF806779B7819E5BE17A77DF66F1"}
+  },
+  "operations": [
+    "script_create res://tests/unit/test_prepared_spell_inventory.gd before production implementation",
+    "script_patch res://tests/test_runner.gd to register only the Task 3 suite",
+    "TASK3_TDD_RED headless runner: two expected failures, missing PreparedSpell and PreparedSpellInventory",
+    "script_create res://src/core/spells/prepared_spell.gd and script_patch to self-path instantiate after diagnostic readback",
+    "script_create res://src/core/spells/prepared_spell_inventory.gd",
+    "filesystem scan and fresh script readback for both production scripts, the Task 3 suite, and test_runner"
+  ],
+  "readback_evidence": [
+    "PreparedSpell: 73 lines; create, from_serialized, spell_id, and serialize read back from res://.",
+    "PreparedSpellInventory: 180 lines; add_once, spell, mark_used_once, serialize, and validate-then-swap restore read back from res://.",
+    "Task 3 unit suite: 121 lines read back from res://tests/unit/.",
+    "test_runner: 68 lines read back; contains test_prepared_spell_inventory.gd."
+  ],
+  "delta_reconciliation": {
+    "status": "PROTECTED_TASK3_DELTA_COMPLETE",
+    "allowed_delta": [
+      "src/core/spells/prepared_spell.gd",
+      "src/core/spells/prepared_spell.gd.uid",
+      "src/core/spells/prepared_spell_inventory.gd",
+      "src/core/spells/prepared_spell_inventory.gd.uid",
+      "tests/unit/test_prepared_spell_inventory.gd",
+      "tests/unit/test_prepared_spell_inventory.gd.uid",
+      "tests/test_runner.gd"
+    ],
+    "restored_unrelated_editor_delta": [
+      "project.godot",
+      "addons/gut/**/*.import",
+      "addons/hera_agent_godot/assets/fonts/cormorant-italic.woff2.import",
+      "assets/art/ui/common/**/*.import",
+      "artifacts/foundation-poc/",
+      "unrelated generated .gd.uid files"
+    ],
+    "hera_source_delta": "NONE"
+  },
+  "validation": {
+    "task3_tdd_red": "RECORDED",
+    "headless_legacy_runner": "PASS: 35 suites, 1364 assertions, 0 failures",
+    "gut": "PENDING",
+    "python_contract": "PENDING",
+    "exact_head_ci": "PENDING"
+  },
+  "limitations": [
+    "Hera was not used for source mutation; it remains LIVE_QA_AND_OBSERVABILITY_ONLY.",
+    "Device, performance, accessibility, human, and full vertical-slice validation remain NOT_RUN."
+  ]
+}
