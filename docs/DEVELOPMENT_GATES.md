@@ -9,6 +9,7 @@ post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 higodot_release: v3.1.3
 higodot_plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
@@ -82,9 +83,11 @@ android_device: NOT_RUN
 
 Three-screen runtime은 Task 2 선행조건이 아니라 구현 이후 acceptance다.
 
-## CI / Delivery
+## Gate 18 — CI supply chain
 
-`REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS`
+Decision `GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`은 `REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS`다.
+
+## Delivery
 
 ```text
 AUDIO_VAULT_PATH_UNVERIFIED
