@@ -7,6 +7,7 @@ contract_binding_decision_id: GM-CONTRACT-V4-4-BINDING-01
 contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
 decision_id: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 product_decision_id: GM-SPELL-WORKFLOW-UI-V2-01
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
 formal_adoption_scope: MERGED_MAIN_VERIFIED
