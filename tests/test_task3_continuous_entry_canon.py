@@ -57,9 +57,10 @@ class Task3ContinuousEntryCanonTests(unittest.TestCase):
         for token in (SYNC, DECISION, "CONTINUOUS_WORK_ACTIVE", "DEFERRED_EXTERNAL_EXECUTOR"):
             self.assertIn(token, sync_text)
 
-    def test_task3_product_files_are_not_falsely_claimed_complete(self) -> None:
-        self.assertFalse((ROOT / "src/core/spells/prepared_spell.gd").exists())
-        self.assertFalse((ROOT / "src/core/spells/prepared_spell_inventory.gd").exists())
+    def test_entry_sync_records_that_pr101_itself_had_no_product_mutation(self) -> None:
+        sync_text = (ROOT / SYNC_DOC).read_text(encoding="utf-8")
+        self.assertIn("product_mutation_in_this_sync: NONE", sync_text)
+        self.assertIn("Task 3 product files are not created by this sync", sync_text)
 
 
 if __name__ == "__main__":
