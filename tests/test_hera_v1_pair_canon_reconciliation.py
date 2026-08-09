@@ -64,7 +64,7 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertTrue(authority["claims"]["spell_workflow_task2_authorized"])
         self.assertTrue(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
         self.assertTrue(grill["current_work"]["spell_workflow_task2_authorized"])
-        self.assertEqual("AUTHORIZED_AWAITING_HIGODOT_CHANNEL", canon["spell_workflow_main"]["task2_execution_status"])
+        self.assertEqual("AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", canon["spell_workflow_main"]["task2_execution_status"])
         self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
         self.assertEqual(SHARED_CORE_PASS, authority["platform_validation"]["status"])
         self.assertEqual(SHARED_CORE_PASS, grill["current_work"]["windows_android_shared_core"])
