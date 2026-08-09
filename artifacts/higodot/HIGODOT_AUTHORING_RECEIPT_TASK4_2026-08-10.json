@@ -4,7 +4,7 @@
   "recorded_at": "2026-08-10T00:46:00+09:00",
   "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
   "base_commit": "3a79c8d1aab67813ef6d1c6662f1e460a711613c",
-  "result_commit": "e27da06",
+  "result_commit": "85b6203a05ff66293cec025853af215193cb7419",
   "tool": {
     "name": "Godot AI / HiGodot",
     "godot_version": "4.7.1-stable (official)",
@@ -27,15 +27,15 @@
     "res://tests/test_runner.gd"
   ],
   "hash_evidence": {
-    "res://src/core/workflow/circuit_placement_session.gd": {"before_sha256": "ABSENT", "after_sha256": "45384A598A2EF58BA707255D13E9F5481C588DE847BF1F78B4C3FA1DB322FB38"},
+    "res://src/core/workflow/circuit_placement_session.gd": {"before_sha256": "ABSENT", "after_sha256": "501E5EC35D8D664F5753BC02456F030A277C50416AE5907A735EEB72DFB7C9AA"},
     "res://src/core/workflow/circuit_placement_session.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "9CEDEBAB5EC0CB5A9210E26384B34CA82FD93F0F630C3174AFD18B5F3306EF55"},
-    "res://src/core/spells/spell_preparation_request.gd": {"before_sha256": "ABSENT", "after_sha256": "893B627AE3E58A6D05ED0C61E716619570544EC0F5C9BEECFBEEE34948C97D69"},
+    "res://src/core/spells/spell_preparation_request.gd": {"before_sha256": "ABSENT", "after_sha256": "A20DFFFEC1C2CB45C93B71550E442FC84AFBA5D8EDE81216C3AF6F8F1880740A"},
     "res://src/core/spells/spell_preparation_request.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "C6F67C2352C39E67C4EA95C86E2D5CA9CE0419583E048E223990FBEF61C6980F"},
     "res://src/core/spells/atomic_spell_preparation_service.gd": {"before_sha256": "ABSENT", "after_sha256": "66C9DE36EC756E2C4D1768FEE1E964548EB2EA10B56CC04DCFAC5603161F84D9"},
     "res://src/core/spells/atomic_spell_preparation_service.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "8C16575118AE7FA1527C38E38D608CF96621EDED663B82A0E255914121ABB7F8"},
-    "res://tests/unit/test_circuit_placement_session.gd": {"before_sha256": "ABSENT", "after_sha256": "412B737CB6433D95FC4EB88750BF6EF3EFAA46876D7FAD9F993809DC0D4C08C4"},
+    "res://tests/unit/test_circuit_placement_session.gd": {"before_sha256": "ABSENT", "after_sha256": "D38AF55BE56222254B5BA8AD8BF27266D4FB756E0900046E8D7DDDA0AF1D0012"},
     "res://tests/unit/test_circuit_placement_session.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "B8AF26975E41A78306AD42E13D1FF476CC9EF0795F397E6F94148028588BC887"},
-    "res://tests/unit/test_atomic_spell_preparation_service.gd": {"before_sha256": "ABSENT", "after_sha256": "8E519A1BA0B3375A95D978B2AB4F72CB49D28490F41F0FCBDD63E148D5AAF041"},
+    "res://tests/unit/test_atomic_spell_preparation_service.gd": {"before_sha256": "ABSENT", "after_sha256": "AEEEA262CF77871CCD4A857CCC1C9672B3C04387A3DA0390D2EEE9B2B03FC25F"},
     "res://tests/unit/test_atomic_spell_preparation_service.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "86BFBE9D26E6590EA0D689ADE58C9C80940E7DD5887F268C894304A9C5F8CA48"},
     "res://tests/test_runner.gd": {"before_sha256": "5EBDF8CE798BC1BEE2CA1556A52225910F324A7519C946219F00B556FCFFBAA7", "after_sha256": "A0703736208475AFA357175273AAD27F8FBC92DDAE276BDF0D828D444CFB50D2"}
   },
@@ -45,13 +45,15 @@
     "TASK4_TDD_RED editor game_eval: four expected missing-class assertions",
     "script_create CircuitPlacementSession, SpellPreparationRequest, and AtomicSpellPreparationService",
     "adversarial malformed auxiliary-key and implicit-layout tests added through HiGodot; RED recorded, then minimal production patches applied",
+    "adversarial indexed-auxiliary tests added through HiGodot; RED recorded, then draft slot retention and duplicate/range validation patched",
+    "consume-failure ledger double verifies exact ledger and prepared-inventory snapshot rollback",
     "filesystem scan and fresh HiGodot script readback for all Task 4 sources, tests, and runner"
   ],
   "readback_evidence": [
-    "CircuitPlacementSession: 158 lines, immediate reservation, replacement rollback, reset, and deterministic draft read back from res://.",
-    "SpellPreparationRequest: 67 lines, explicit FIVE_POINT_STAR validation and deep-copy getters read back from res://.",
+    "CircuitPlacementSession: 160 lines, immediate reservation, indexed auxiliary slot retention, replacement rollback, reset, and deterministic draft read back from res://.",
+    "SpellPreparationRequest: 75 lines, explicit FIVE_POINT_STAR indexed-slot validation and deep-copy getters read back from res://.",
     "AtomicSpellPreparationService: 87 lines, idempotent preparation, snapshot rollback, and no mana/result dependencies read back from res://.",
-    "Task 4 unit suites: 82 and 112 lines read back from res://tests/unit/.",
+    "Task 4 unit suites: 83 and 155 lines read back from res://tests/unit/.",
     "test_runner: 70 lines read back; both Task 4 suites are registered."
   ],
   "delta_reconciliation": {
@@ -67,7 +69,9 @@
       "tests/unit/test_circuit_placement_session.gd.uid",
       "tests/unit/test_atomic_spell_preparation_service.gd",
       "tests/unit/test_atomic_spell_preparation_service.gd.uid",
-      "tests/test_runner.gd"
+      "tests/test_runner.gd",
+      "docs/planning/handoffs/2026-08-10-task4-higodot-execution-packet.md",
+      "artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK4_2026-08-10.json"
     ],
     "restored_unrelated_editor_delta": [
       "project.godot",
@@ -82,13 +86,13 @@
   },
   "validation": {
     "task4_tdd_red": "RECORDED: 4 expected missing-class assertions",
-    "task4_green": "PASS: 38 assertions, 0 failures",
-    "legacy_runner": "PASS: 37 suites, 1402 assertions, 0 failures",
+    "task4_green": "PASS: 44 assertions, 0 failures",
+    "legacy_runner": "PASS: 37 suites, 1408 assertions, 0 failures",
     "gut": "PASS: GUT 9.7.1, 7 tests, 25 asserts, 0 failures",
     "python_authority_subset": "PASS: 16 tests",
     "python_existing_out_of_scope_contract_drift": "RECORDED: 2 failures in test_spell_workflow_ui_v2_contract requiring Task 5+ coordinator and obsolete state token",
     "headless_shell": "LIMITATION_RECORDED: Godot 4.7.1 --headless project execution reproducibly crashed with signal 11 in this sandbox; equivalent GUI hidden SceneTree runner evidence is recorded",
-    "exact_head_ci": "PENDING"
+    "exact_head_ci": "PENDING: required after pull request creation"
   },
   "limitations": [
     "Hera was not used for source mutation; it remains LIVE_QA_AND_OBSERVABILITY_ONLY.",

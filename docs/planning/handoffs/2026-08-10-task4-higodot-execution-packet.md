@@ -33,6 +33,13 @@ Persistent `.gd` authoring is HiGodot-only. The planned protected delta is limit
 - generated `.gd.uid` companions
 - `tests/test_runner.gd` suite registration only
 
+The delivery evidence is an explicit, allowed non-Godot delta:
+
+- `docs/planning/handoffs/2026-08-10-task4-higodot-execution-packet.md`
+- `artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK4_2026-08-10.json`
+
+These evidence files do not expand runtime scope. The receipt must reconcile the complete base-to-head delivery delta, including this packet and itself.
+
 Do not modify Hera sources, `project.godot`, scenes, UI, ManaPool, `AtomicResultLedger`, Stage 3 spell-use services, target selection, or unrelated runtime code.
 
 ## Preserved rules
