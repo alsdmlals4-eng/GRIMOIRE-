@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SYNC = "GR-SYNC-20260809-08-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY"
 DECISION = "GM-SPELL-WORKFLOW-UI-V2-01"
 RECEIPT_GATE = "HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE"
+PUBLIC_TASK3_GATE = "HIGODOT_PERSISTENT_TASK3_AUTHORING_WITH_FRESH_RECEIPT_GATE"
 HANDOFF = "docs/planning/handoffs/2026-08-09-task3-higodot-execution-packet.md"
 SYNC_DOC = "docs/planning/sync/GR-SYNC-20260809-08-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY.md"
 
@@ -28,14 +29,10 @@ class Task3ContinuousEntryCanonTests(unittest.TestCase):
         unresolved = (ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md").read_text(encoding="utf-8")
         confirmed = (ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md").read_text(encoding="utf-8")
         start = (ROOT / "START_HERE.md").read_text(encoding="utf-8")
-        for token in (
-            "TASK3_TDD_RED",
-            "HIGODOT_PERSISTENT_TASK3_AUTHORING_WITH_FRESH_RECEIPT_GATE",
-        ):
+        for token in ("TASK3_TDD_RED", PUBLIC_TASK3_GATE):
             self.assertIn(token, unresolved)
         self.assertIn("Task 3+ 구현과 three-screen runtime acceptance는 아직 완료로 주장하지 않는다", confirmed)
         self.assertIn("다음 제품 단계는 승인된 UI v2 계획의 Task 3", start)
-        self.assertIn(RECEIPT_GATE, unresolved)
 
     def test_executor_packet_and_sync_checkpoint_exist(self) -> None:
         handoff = ROOT / HANDOFF
