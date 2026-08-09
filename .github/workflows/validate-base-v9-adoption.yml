@@ -12,6 +12,7 @@ jobs:
       - run: python tools/generate_project_operating_views.py --check
       - run: python -m unittest tests.test_base_v9_adoption
       - run: python -m unittest tests.test_task2_user_approval_canon -v
+      - run: python -m unittest tests.test_task3_continuous_entry_canon -v
       - run: python -m unittest tests.test_star_glyph_circuit_canon_contract -v
       - run: python -m unittest tests.test_star_runtime_implementation_contract -v
       - run: python -m unittest tests.test_star_runtime_completion_contract -v
