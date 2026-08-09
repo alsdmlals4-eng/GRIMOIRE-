@@ -1,5 +1,5 @@
 {
-  "schema_version": 19,
+  "schema_version": 20,
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.4",
@@ -10,8 +10,8 @@
   "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
   "status": "GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED",
   "current_tool_sync_status": "TRACKED_HIGODOT_V3_1_3_EXACT_TREE_CONFIG_RECONCILED",
-  "current_tool_state_merged_main": "71ba449b13f8759d8f211ef88bb249bfda683e37",
-  "current_tool_sync_sheet_status": "PENDING_POST_MERGE_READBACK",
+  "current_tool_state_merged_main": "75eaa8d19b8a38a21599c37dc7545818615a04c1",
+  "current_tool_sync_sheet_status": "SHEET_WRITE_READBACK_PASS",
   "design_review": "USER_APPROVED_2026-08-06",
   "source_main": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
   "base_policy_observation": {
@@ -27,7 +27,7 @@
     "external_independent_reviewer": "NOT_PLANNED_SOLO_DEVELOPMENT",
     "result": "PR85_EXACT_HEAD_P0_P1_ZERO_MERGED",
     "prior_live_tool_sync_result": "PR96_EXACT_HEAD_APPLICABLE_CI_PASS_P0_P1_ZERO_MERGED",
-    "current_tool_sync_result": "PR98_TRACKED_V313_RECONCILIATION_IN_PROGRESS",
+    "current_tool_sync_result": "PR98_EXACT_HEAD_PASS_MERGED_MAIN_SHEET_READBACK_PASS",
     "current_sync_scope": "TRACKED_HIGODOT_V3_1_3_EXACT_TREE_AND_TRACKED_GUT_HERA_ENABLEMENT_WITH_RECEIPT_LIMIT_EXPLICIT"
   },
   "higodot": {
@@ -221,6 +221,7 @@
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "sync_id": "GR-SYNC-20260808-07-VISUAL-PLATFORM-GATE-SEQUENCING",
     "current_tool_sync_id": "GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION",
+    "post_merge_sheet_canon_sync_id": "GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON",
     "prior_live_tool_sync_id": "GR-SYNC-20260809-02-HIGODOT-V313-LIVE-PLUGIN-APPROVAL",
     "write": "SHEET_WRITE_READBACK_PASS",
     "readback": "SHEET_WRITE_READBACK_PASS",
@@ -229,8 +230,8 @@
     "higodot_v3_1_3_live_sync": "SHEET_WRITE_READBACK_PASS",
     "gut_hera_live_plugin_sync": "SHEET_WRITE_READBACK_PASS",
     "prior_tool_state_merged_main": "8422b1f506476117c876f909f986f08b94c5a543",
-    "current_tool_state_merged_main": "71ba449b13f8759d8f211ef88bb249bfda683e37",
-    "tracked_v3_1_3_reconciliation_sync": "PENDING_POST_MERGE_SHEET_READBACK",
+    "current_tool_state_merged_main": "75eaa8d19b8a38a21599c37dc7545818615a04c1",
+    "tracked_v3_1_3_reconciliation_sync": "SHEET_WRITE_READBACK_PASS",
     "hera_exact_pair_sync": "SHEET_WRITE_READBACK_PASS",
     "visual_platform_gate_sync": "SHEET_WRITE_READBACK_PASS"
   },
