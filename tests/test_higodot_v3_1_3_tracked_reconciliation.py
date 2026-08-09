@@ -9,6 +9,13 @@ ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json"
 SYNC = ROOT / "docs/planning/sync/GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION.md"
+CURRENT_DOCS = [
+    ROOT / "START_HERE.md",
+    ROOT / "docs/ACTIVE_CONTEXT.md",
+    ROOT / "docs/DEVELOPMENT_GATES.md",
+    ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+    ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
+]
 
 DECISION = "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01"
 SYNC_ID = "GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION"
@@ -16,6 +23,7 @@ CURRENT_MAIN = "71ba449b13f8759d8f211ef88bb249bfda683e37"
 UPSTREAM_COMMIT = "22678e5f9b038d7203d6b43b0aae20a5417c500e"
 V313_TREE = "94be4fb34d49243375c592e17a1021c8c6fcbcf2"
 LOCAL_TOOL_COMMIT = "1337e267d29b00c039039e7197863e2f4f78957d"
+RECEIPT_LIMIT = "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT"
 
 
 class HiGodotV313TrackedReconciliationTests(unittest.TestCase):
@@ -45,7 +53,7 @@ class HiGodotV313TrackedReconciliationTests(unittest.TestCase):
         self.assertEqual("ENABLED_AT_GITHUB_MAIN_READBACK", data["gut"]["tracked_editor_plugin_enablement"])
         self.assertEqual("ENABLED_AT_GITHUB_MAIN_READBACK", data["hera"]["tracked_editor_plugin_enablement"])
         self.assertEqual("GODOT_AI_GUT_HERA_ENABLED_AT_GITHUB_MAIN_READBACK", data["tracked_project_godot_editor_plugins"])
-        self.assertEqual("HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT", data["higodot"]["direct_local_upgrade_receipt_status"])
+        self.assertEqual(RECEIPT_LIMIT, data["higodot"]["direct_local_upgrade_receipt_status"])
         self.assertEqual(LOCAL_TOOL_COMMIT, data["higodot"]["direct_local_upgrade_commit"])
         history = data["higodot"]["historical_v3_1_2"]
         self.assertEqual("v3.1.2", history["release_tag"])
@@ -58,11 +66,25 @@ class HiGodotV313TrackedReconciliationTests(unittest.TestCase):
         self.assertTrue(evidence["tracked_vendor_synced"])
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", evidence["tracked_tree_identity"])
         self.assertEqual(CURRENT_MAIN, evidence["observed_current_main"])
-        self.assertEqual("HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT", evidence["authoring_receipt_status"])
+        self.assertEqual(RECEIPT_LIMIT, evidence["authoring_receipt_status"])
         self.assertTrue(SYNC.is_file(), str(SYNC))
         text = SYNC.read_text(encoding="utf-8")
-        for token in (DECISION, SYNC_ID, CURRENT_MAIN, V313_TREE, LOCAL_TOOL_COMMIT, "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT"):
+        for token in (DECISION, SYNC_ID, CURRENT_MAIN, V313_TREE, LOCAL_TOOL_COMMIT, RECEIPT_LIMIT):
             self.assertIn(token, text)
+
+    def test_current_human_readable_surfaces_match_tracked_v313_state(self) -> None:
+        for path in CURRENT_DOCS:
+            text = path.read_text(encoding="utf-8")
+            for token in (
+                SYNC_ID,
+                "v3.1.3",
+                V313_TREE,
+                "GODOT_AI_GUT_HERA_ENABLED_AT_GITHUB_MAIN_READBACK",
+                "AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED",
+                RECEIPT_LIMIT,
+            ):
+                self.assertIn(token, text, str(path))
+            self.assertNotIn("higodot_live_v3_1_3_tracked_vendor_sync: NOT_SYNCED_NOT_CLAIMED", text, str(path))
 
 
 if __name__ == "__main__":
