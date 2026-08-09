@@ -12,6 +12,33 @@ const VAULT_PATH := "res://src/core/resources/vault_inventory.gd"
 const TYPES_PATH := "res://src/core/resources/glyph_resource_types.gd"
 
 
+class ConsumeFailureLedgerDouble:
+	extends RefCounted
+
+	var _delegate
+
+	static func create(delegate):
+		var double = ConsumeFailureLedgerDouble.new()
+		double._delegate = delegate
+		return double
+
+	func validate_transaction(transaction_id: StringName) -> bool:
+		return _delegate.validate_transaction(transaction_id)
+
+	func reservation_records_for_transaction(transaction_id: StringName) -> Array:
+		return _delegate.reservation_records_for_transaction(transaction_id)
+
+	func snapshot_state() -> Dictionary:
+		return _delegate.snapshot_state()
+
+	func restore_state(snapshot: Dictionary) -> bool:
+		return _delegate.restore_state(snapshot)
+
+	func consume_transaction(transaction_id: StringName) -> Dictionary:
+		_delegate.consume_transaction(transaction_id)
+		return {"status": &"FORCED_CONSUME_FAILURE"}
+
+
 func _make_ledger():
 	var Pool = load(STOCK_PATH)
 	var Vault = load(VAULT_PATH)
@@ -81,6 +108,8 @@ func run(case) -> void:
 	var invalid_ledger = _make_ledger()
 	case.assert_true(Request.create(&"invalid-layout", &"spell-invalid-layout", {"layout": &"THREE_BY_THREE", "main": {"glyph_id": &"HEAT"}, "auxiliaries": [], "reservation_records": []}, {"success_percent": 50, "final_mana": 9}) == null, "non-star draft is rejected")
 	case.assert_true(Request.create(&"missing-layout", &"spell-missing-layout", {"main": {"glyph_id": &"HEAT"}, "auxiliaries": [], "reservation_records": []}, {"success_percent": 50, "final_mana": 9}) == null, "draft must state FIVE_POINT_STAR explicitly")
+	case.assert_true(Request.create(&"missing-aux-slot", &"spell-missing-aux-slot", {"layout": &"FIVE_POINT_STAR", "main": {"glyph_id": &"HEAT"}, "auxiliaries": [{"glyph_id": &"FLOW"}], "reservation_records": []}, {"success_percent": 50, "final_mana": 9}) == null, "auxiliary draft entries require an explicit vertex slot")
+	case.assert_true(Request.create(&"duplicate-aux-slot", &"spell-duplicate-aux-slot", {"layout": &"FIVE_POINT_STAR", "main": {"glyph_id": &"HEAT"}, "auxiliaries": [{"glyph_id": &"FLOW", "slot": 0}, {"glyph_id": &"PROTECT", "slot": 0}], "reservation_records": []}, {"success_percent": 50, "final_mana": 9}) == null, "auxiliary draft slots must be unique")
 	var invalid_request = Request.create(
 		&"missing-reservation",
 		&"spell-invalid",
@@ -109,3 +138,17 @@ func run(case) -> void:
 	case.assert_equal(&"INVENTORY_CONFLICT", conflict_result.status, "existing spell ID rejects a different preparation")
 	case.assert_equal(conflict_before_ledger, conflict_ledger.snapshot_state(), "inventory conflict restores every glyph reservation")
 	case.assert_equal(conflict_before_inventory, conflict_inventory.serialize(), "inventory conflict preserves inventory atomically")
+
+	var consume_failure_ledger = _make_ledger()
+	var consume_failure_request = _valid_request(Session, Request, consume_failure_ledger, Types, &"prepare-consume-failure", &"spell-consume-failure")
+	var consume_failure_before_ledger = consume_failure_ledger.snapshot_state()
+	var consume_failure_inventory = Inventory.new()
+	var consume_failure_before_inventory = consume_failure_inventory.serialize()
+	var consume_failure_result = Service.prepare(
+		consume_failure_request,
+		ConsumeFailureLedgerDouble.create(consume_failure_ledger),
+		consume_failure_inventory
+	)
+	case.assert_equal(&"RESOURCE_CONSUME_FAILED", consume_failure_result.status, "failed glyph consumption reports the Stage 2 resource failure")
+	case.assert_equal(consume_failure_before_ledger, consume_failure_ledger.snapshot_state(), "consume failure restores every reserved glyph exactly")
+	case.assert_equal(consume_failure_before_inventory, consume_failure_inventory.serialize(), "consume failure leaves prepared inventory unchanged")

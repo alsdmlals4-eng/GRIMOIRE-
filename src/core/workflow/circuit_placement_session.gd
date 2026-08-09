@@ -107,6 +107,8 @@ func _place_node(node_key: StringName, glyph: Dictionary) -> Dictionary:
 	payload["glyph_id"] = glyph_id
 	payload["source"] = source
 	payload["is_learned"] = is_learned
+	if node_key != &"main":
+		payload["slot"] = _slot_for_node_key(node_key)
 	_store_node_payload(node_key, payload)
 	return {"status": &"OK", "node_id": node_id, "reservation": reservation.duplicate(true)}
 

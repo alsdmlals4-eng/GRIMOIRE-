@@ -72,6 +72,7 @@ func run(case) -> void:
 	var draft = session.draft()
 	case.assert_equal(&"HEAT", draft.main.glyph_id, "draft retains main glyph")
 	case.assert_equal(1, draft.auxiliaries.size(), "draft sorts one auxiliary")
+	case.assert_equal(0, draft.auxiliaries[0].slot, "draft preserves the auxiliary vertex slot")
 	case.assert_equal(2, draft.reservation_records.size(), "draft exposes only this transaction reservations")
 
 	var reset = session.reset()

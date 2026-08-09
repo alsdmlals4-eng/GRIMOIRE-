@@ -56,11 +56,19 @@ static func _valid_draft(draft: Dictionary) -> bool:
 		return false
 	if Array(draft.get("auxiliaries", [])).size() > 5:
 		return false
+	var seen_slots: Dictionary = {}
 	for auxiliary_variant in Array(draft.get("auxiliaries", [])):
 		if typeof(auxiliary_variant) != TYPE_DICTIONARY:
 			return false
-		if StringName(Dictionary(auxiliary_variant).get("glyph_id", &"")).is_empty():
+		var auxiliary: Dictionary = Dictionary(auxiliary_variant)
+		if StringName(auxiliary.get("glyph_id", &"")).is_empty():
 			return false
+		if typeof(auxiliary.get("slot", null)) != TYPE_INT:
+			return false
+		var slot: int = int(auxiliary.get("slot", -1))
+		if slot < 0 or slot > 4 or seen_slots.has(slot):
+			return false
+		seen_slots[slot] = true
 	if typeof(draft.get("reservation_records", null)) != TYPE_ARRAY:
 		return false
 	return true
