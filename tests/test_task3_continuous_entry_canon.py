@@ -75,6 +75,9 @@ class Task3ContinuousEntryCanonTests(unittest.TestCase):
             "same preparation transaction",
             "different candidate spell",
             "public `spell(spell_id)` read derives `USED`",
+            "USE_TRANSACTION_SINGLE_OWNER",
+            "same `use_transaction_id` cannot be rebound to a different spell",
+            "serialized immutable spell payload must retain `status: READY`",
         ):
             self.assertIn(token, handoff_text)
 
