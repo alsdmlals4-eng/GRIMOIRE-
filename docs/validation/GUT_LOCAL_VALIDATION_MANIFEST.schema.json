@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/alsdmlals4-eng/GRIMOIRE-/docs/validation/GUT_LOCAL_VALIDATION_MANIFEST.schema.json",
+  "title": "GRIMOIRE GUT Local Exact-HEAD Validation Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "decision_id",
+    "repository",
+    "pull_request",
+    "expected_head",
+    "actual_head",
+    "tree_sha",
+    "base_sha",
+    "branch",
+    "started_at",
+    "completed_at",
+    "preflight",
+    "commands",
+    "vendor",
+    "godot",
+    "gut",
+    "production_hash",
+    "result",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "decision_id": {"const": "GM-ACTIONS-BUDGET-LOCAL-VERIFICATION-MODE-01"},
+    "repository": {"const": "alsdmlals4-eng/GRIMOIRE-"},
+    "pull_request": {"type": "integer", "minimum": 1},
+    "expected_head": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "actual_head": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "tree_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "base_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "origin_main": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+    "branch": {"type": "string", "minLength": 1},
+    "started_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "preflight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["head_match", "clean_before", "operation_in_progress", "remote_match"],
+      "properties": {
+        "head_match": {"type": "boolean"},
+        "clean_before": {"type": "boolean"},
+        "operation_in_progress": {"type": "boolean"},
+        "remote_match": {"type": "boolean"}
+      }
+    },
+    "commands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "command", "exit_code", "log_path", "status"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "command": {"type": "string", "minLength": 1},
+          "exit_code": {"type": "integer"},
+          "log_path": {"type": "string", "minLength": 1},
+          "status": {"enum": ["PASS", "FAIL", "NOT_RUN"]}
+        }
+      }
+    },
+    "vendor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expected_commit", "expected_tree", "actual_tree", "status"],
+      "properties": {
+        "expected_commit": {"const": "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605"},
+        "expected_tree": {"const": "5d6893836af4917ee62b1a395125a7530b1f239d"},
+        "actual_tree": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+        "status": {"enum": ["PASS", "FAIL", "NOT_RUN"]}
+      }
+    },
+    "godot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["executable", "version", "expected_version", "status"],
+      "properties": {
+        "executable": {"type": ["string", "null"]},
+        "version": {"type": ["string", "null"]},
+        "expected_version": {"const": "4.7.1"},
+        "status": {"enum": ["PASS", "FAIL", "NOT_RUN"]}
+      }
+    },
+    "gut": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "discovered", "passed", "failed", "junit_path", "status"],
+      "properties": {
+        "version": {"const": "9.7.1"},
+        "discovered": {"type": "integer", "minimum": 0},
+        "passed": {"type": "integer", "minimum": 0},
+        "failed": {"type": "integer", "minimum": 0},
+        "junit_path": {"type": ["string", "null"]},
+        "status": {"enum": ["PASS", "FAIL", "NOT_RUN"]}
+      }
+    },
+    "production_hash": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["before_path", "after_path", "equal", "status"],
+      "properties": {
+        "before_path": {"type": ["string", "null"]},
+        "after_path": {"type": ["string", "null"]},
+        "equal": {"type": ["boolean", "null"]},
+        "status": {"enum": ["PASS", "FAIL", "NOT_RUN"]}
+      }
+    },
+    "result": {"enum": ["PASS", "FAIL", "BLOCKED", "NOT_RUN"]},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

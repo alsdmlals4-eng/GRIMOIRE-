@@ -1,0 +1,165 @@
+name: GUT Formal Adoption Validation
+
+"on":
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gut-formal-adoption-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUTF8: '1'
+  PYTHONIOENCODING: utf-8
+  EXACT_HEAD: ${{ github.event.pull_request.head.sha }}
+  BASE_SHA: ${{ github.event.pull_request.base.sha }}
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+
+jobs:
+  higodot-receipt:
+    if: github.event.pull_request.number == 85
+    name: HiGodot Authoring Receipt Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out exact source head with history
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.EXACT_HEAD }}
+          fetch-depth: 0
+      - name: Require HiGodot receipt or exact zero protected diff
+        shell: bash
+        run: >-
+          python tools/check_higodot_authoring_receipt.py
+          --base-sha "$BASE_SHA"
+          --head-sha "$EXACT_HEAD"
+
+  validate:
+    if: github.event.pull_request.number == 85
+    name: ${{ matrix.lane }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - lane: windows-py311
+            os: windows-latest
+            python: '3.11'
+            mode: contract
+            godot: ''
+          - lane: windows-py312
+            os: windows-latest
+            python: '3.12'
+            mode: full
+            godot: .tooling/godot/4.7.1-stable/windows/Godot_v4.7.1-stable_win64.exe
+          - lane: windows-py313
+            os: windows-latest
+            python: '3.13'
+            mode: contract
+            godot: ''
+          - lane: ubuntu-py312
+            os: ubuntu-latest
+            python: '3.12'
+            mode: full
+            godot: .tooling/godot/4.7.1-stable/linux/Godot_v4.7.1-stable_linux.x86_64
+
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out exact source head
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ env.EXACT_HEAD }}
+          fetch-depth: 0
+
+      - name: Set up CPython
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install pinned Godot 4.7.1
+        if: matrix.mode == 'full'
+        shell: bash
+        run: >-
+          python tools/setup_godot_toolchain.py
+          --install-dir .tooling/godot
+          --json-report "artifacts/gut-validation/${{ matrix.lane }}/godot-toolchain.json"
+
+      - name: Run contract validation
+        if: matrix.mode == 'contract'
+        shell: bash
+        run: >-
+          python -m tools.run_gut_actions_validation
+          --expected-head "$EXACT_HEAD"
+          --base-sha "$BASE_SHA"
+          --pull-request "$PR_NUMBER"
+          --lane-id "${{ matrix.lane }}"
+          --expected-python "${{ matrix.python }}"
+          --mode contract
+          --evidence-dir "artifacts/gut-validation/${{ matrix.lane }}"
+
+      - name: Run Godot and GUT validation
+        if: matrix.mode == 'full'
+        shell: bash
+        run: >-
+          python -m tools.run_gut_actions_validation
+          --expected-head "$EXACT_HEAD"
+          --base-sha "$BASE_SHA"
+          --pull-request "$PR_NUMBER"
+          --lane-id "${{ matrix.lane }}"
+          --expected-python "${{ matrix.python }}"
+          --mode full
+          --godot-executable "${{ matrix.godot }}"
+          --evidence-dir "artifacts/gut-validation/${{ matrix.lane }}"
+
+      - name: Publish lane summary
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          lane = "${{ matrix.lane }}"
+          manifest = Path("artifacts/gut-validation") / lane / "manifest.json"
+          summary = Path(os.environ["GITHUB_STEP_SUMMARY"])
+          with summary.open("a", encoding="utf-8") as output:
+              output.write(f"## {lane}\n\n")
+              if not manifest.is_file():
+                  output.write("Manifest was not generated.\n")
+              else:
+                  data = json.loads(manifest.read_text(encoding="utf-8"))
+                  output.write(f"- Result: `{data['result']}`\n")
+                  output.write(f"- Expected head: `{data['expected_head']}`\n")
+                  output.write(f"- Actual head: `{data['actual_head']}`\n")
+                  output.write(f"- Python: `{data['python']['version']}`\n")
+                  output.write(f"- Vendor: `{data['vendor']['status']}`\n")
+                  output.write(f"- Godot: `{data['godot']['status']}`\n")
+                  output.write(f"- GUT: `{data['gut']['status']}`\n")
+                  output.write(f"- Product hash: `{data['production_hash']['status']}`\n")
+                  if data["limitations"]:
+                      output.write("- Limitations:\n")
+                      for item in data["limitations"]:
+                          output.write(f"  - `{item}`\n")
+          PY
+
+  gate:
+    if: always() && github.event.pull_request.number == 85
+    name: GUT Validation Gate
+    needs: [validate, higodot-receipt]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every standard-runner lane and HiGodot receipt gate
+        env:
+          MATRIX_RESULT: ${{ needs.validate.result }}
+          HIGODOT_RECEIPT_RESULT: ${{ needs.higodot-receipt.result }}
+        run: |
+          echo "Matrix result: $MATRIX_RESULT"
+          echo "HiGodot receipt result: $HIGODOT_RECEIPT_RESULT"
+          test "$MATRIX_RESULT" = "success"
+          test "$HIGODOT_RECEIPT_RESULT" = "success"

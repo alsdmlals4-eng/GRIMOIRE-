@@ -3,3 +3,8 @@
 __pycache__/
 *.py[cod]
 .godot/
+artifacts/local-validation/
+artifacts/gut-validation/
+
+# Local asset vault
+.asset-vault/

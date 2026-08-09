@@ -10,19 +10,29 @@ class BaseV91OperatingContractTests(unittest.TestCase):
     def test_canonical_contract_routes_actual_repository_and_local_skills(self) -> None:
         adapter = json.loads((ROOT / "skills/PROJECT_BASE_ADAPTER.json").read_text(encoding="utf-8"))
         snapshot = json.loads((ROOT / "skills/PROJECT_SKILL_SNAPSHOT.json").read_text(encoding="utf-8"))
-        self.assertEqual(adapter["project"]["repository"], "alsdmlals4-eng/GRIMOIRE-")
-        self.assertEqual(adapter["project"]["legacy_repository_aliases"], ["alsdmlals4-eng/Spell"])
-        self.assertEqual(adapter["gdd_sheet"]["sync_status"], "BLOCKED")
-        self.assertEqual(adapter["gdd_sheet"]["sheet_only_change_policy"], "PROPOSED_SHEET_CHANGE")
-        self.assertEqual(adapter["project"]["engine"], "NOT_APPLICABLE_NO_PROJECT")
+        self.assertEqual("alsdmlals4-eng/GRIMOIRE-", adapter["project"]["repository"])
+        self.assertEqual(
+            ["alsdmlals4-eng/Spell"],
+            adapter["compatibility"]["legacy_repository_aliases"],
+        )
+        self.assertEqual("SYNCED_TO_MAIN", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("PASS", adapter["gdd_sheet"]["sheet_readback"])
+        self.assertEqual(
+            "PROPOSED_SHEET_CHANGE",
+            adapter["gdd_sheet"]["sheet_only_change_policy"],
+        )
+        self.assertEqual("Godot 4.7.1 stable candidate", adapter["project"]["engine"])
+        self.assertEqual("PLANNING_ONLY_PROFILE", adapter["project"]["execution_profile"])
         self.assertEqual(
             [route["skill_id"] for route in adapter["routing"]["project_routes"]],
-            ["art-style-decision-gate", "magic-writing-recovery"],
+            ["magic-writing-recovery", "art-style-decision-gate"],
         )
-        self.assertEqual(
-            set(snapshot["effective_routes"]),
-            {"art-style-decision-gate", "auditing-and-refining-ui-art", "magic-writing-recovery"},
-        )
+        adapter_routes = {
+            route["skill_id"]
+            for group in ("base_routes", "project_routes")
+            for route in adapter["routing"][group]
+        }
+        self.assertEqual(adapter_routes, set(snapshot["effective_routes"]))
 
     def test_router_and_project_skills_are_thin_and_actionable(self) -> None:
         router = (ROOT / ".agents/skills/grimoire-workflow-router/SKILL.md").read_text(encoding="utf-8")
@@ -42,9 +52,9 @@ class BaseV91OperatingContractTests(unittest.TestCase):
             self.assertEqual(view["artifact_role"], "GENERATED_COMPATIBILITY_VIEW")
             self.assertTrue(archived.is_file())
         health = json.loads((ROOT / "docs/PROJECT_OPERATING_HEALTH.json").read_text(encoding="utf-8"))
-        self.assertEqual(health["operating_maturity"], "OM-L0")
-        self.assertEqual(health["product_evidence_maturity"], "PE-0")
-        self.assertEqual(set(health["critical_gates"].values()), {"NOT_RUN"})
+        self.assertEqual("OM-L0", health["operating_maturity"])
+        self.assertEqual("PE-0", health["product_evidence_maturity"])
+        self.assertEqual({"NOT_RUN"}, set(health["critical_gates"].values()))
 
 
 if __name__ == "__main__":
