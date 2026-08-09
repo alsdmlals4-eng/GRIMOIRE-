@@ -19,6 +19,9 @@ higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 higodot_release: v3.1.3
 higodot_plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
 higodot_current_tool_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+higodot_post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
+higodot_tracked_reconciliation_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+higodot_sheet_sync: SHEET_WRITE_READBACK_PASS
 higodot_direct_local_upgrade_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 tracked_project_godot_editor_plugins: GODOT_AI_GUT_HERA_ENABLED_AT_GITHUB_MAIN_READBACK
 hera_exact_pair: PASS
@@ -84,6 +87,9 @@ HiGodot live channel은 확인됐지만 Task 2 구현 완료를 뜻하지 않는
 
 ```yaml
 sync_id: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+post_merge_sheet_canon_sync_id: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
+tracked_reconciliation_merged_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+sheet_sync: SHEET_WRITE_READBACK_PASS
 tracked_higodot_release: v3.1.3
 higodot_pinned_commit: 22678e5f9b038d7203d6b43b0aae20a5417c500e
 higodot_official_plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
@@ -104,10 +110,9 @@ hera_exact_pair: PASS
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_live_canary_run: 31254032278
 hera_persistent_source_mutation_authorized: false
-sheet_sync: PENDING_POST_MERGE_READBACK
 ```
 
-HiGodot v3.1.3 current tracked subtree는 official subtree와 exact identity다. v3.1.2는 역사 evidence다. Direct/local tool-state commit의 formal HiGodot receipt는 발견되지 않아 provenance 한계를 명시한다. GUT은 deterministic GDScript test authority, Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다.
+HiGodot v3.1.3 current tracked subtree는 official subtree와 exact identity다. v3.1.2는 역사 evidence다. PR #98 merged-main `75eaa8d19b8a38a21599c37dc7545818615a04c1`과 Sheet Hub/Decision/Audit/History readback은 `SHEET_WRITE_READBACK_PASS`다. Direct/local tool-state commit의 formal HiGodot receipt는 발견되지 않아 provenance 한계를 명시한다. GUT은 deterministic GDScript test authority, Hera는 `LIVE_QA_AND_OBSERVABILITY_ONLY`다.
 
 ## Windows·Android / 시각·물리 검증
 
