@@ -41,11 +41,18 @@ hera_tracked_editor_plugin: ENABLED_AT_GITHUB_MAIN_READBACK
 hera_autoload: HeraGameInspector
 hera_persistent_source_mutation_authorized: false
 spell_workflow_pr: 82
-spell_workflow_status: TASK2_AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED
+spell_workflow_status: TASK2_MERGED_MAIN_VERIFIED
 spell_workflow_task2_authorized: true
-spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING
-spell_workflow_task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED
+spell_workflow_task2_readiness: TASK3_READY_AFTER_POST_MERGE_CANON
+spell_workflow_task2_execution_status: MERGED_MAIN_VERIFIED
 spell_workflow_task2_approval_sync: GR-SYNC-20260809-01-TASK2-USER-APPROVAL
+spell_workflow_task2_main_sync: GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN
+spell_workflow_task2_post_merge_canon_sync: GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON
+spell_workflow_task2_exact_head: 71f0cfb86217953be004e2a5d6a3480b9d909267
+spell_workflow_task2_merged_main: 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
+spell_workflow_task2_receipt: artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK2_2026-08-09.json
+spell_workflow_task2_receipt_status: TASK2_HIGODOT_RECEIPT_READBACK_PASS
+spell_workflow_task2_sheet_sync: SHEET_WRITE_READBACK_PASS
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
@@ -122,9 +129,11 @@ GUT editor plugin 활성화는 테스트 권위를 넓히지 않는다. Hera plu
 
 ## PR #82 Task 2
 
-Task 2는 `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 승인됐다. 구현은 `NOT_STARTED_ON_BRANCH`, readiness는 `READY_FOR_HIGODOT_AUTHORING`이다. live HiGodot MCP 채널이 확인됐으므로 실행 상태는 `AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED`다. 다음 product mutation은 `HIGODOT_ONLY_WITH_AUTHORING_RECEIPT_GATE`로 수행한다.
+Task 2는 `GR-SYNC-20260809-01-TASK2-USER-APPROVAL`로 승인되었고 PR #82를 통해 `TASK2_MERGED_MAIN_VERIFIED`가 됐다. Task 2 product commit은 `f719b35e878c6ef9dd2168dc3dde00d4e74842b6`, receipt reconciliation exact head는 `71f0cfb86217953be004e2a5d6a3480b9d909267`, merged main은 `975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0`이다.
 
-3-screen runtime은 Task 9–10에서 만들어지는 구현 이후 acceptance이므로 `THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`을 유지한다.
+Fresh receipt `artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK2_2026-08-09.json`은 Godot-generated `.gd.uid`까지 포함한 protected Task 2 delta를 기록하며 `TASK2_HIGODOT_RECEIPT_READBACK_PASS`다. Sheet sync `GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN`도 `SHEET_WRITE_READBACK_PASS`; 현재 GitHub post-merge canon sync는 `GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON`이다.
+
+다음 계획 항목은 Task 3이다. Persistent product mutation은 다시 HiGodot + fresh receipt Gate가 필수다. 3-screen runtime은 Task 9–10 통합 이후 acceptance이므로 `THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`을 유지한다.
 
 ## 구조·물리·시각 검증 경계
 
@@ -153,4 +162,4 @@ LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-위 receipt 항목은 direct/local **도구 상태 upgrade commit의 역사적 provenance 한계**다. 승인된 Task 2의 새 persistent product authoring은 별도의 신선한 HiGodot authoring receipt가 필수다.
+위 receipt 항목은 direct/local **도구 상태 upgrade commit의 역사적 provenance 한계**다. Task 2 fresh authoring receipt는 별도 PASS이며, 다음 Task 3 product authoring은 또 다른 신선한 HiGodot receipt가 필요하다.
