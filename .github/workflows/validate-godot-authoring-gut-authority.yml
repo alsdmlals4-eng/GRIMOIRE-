@@ -20,6 +20,8 @@ jobs:
           python-version: '3.12'
       - name: Validate tracked HiGodot v3.1.3 reconciliation
         run: python -m unittest tests.test_higodot_v3_1_3_tracked_reconciliation -v
+      - name: Validate PR98 post-merge Sheet canon sync
+        run: python -m unittest tests.test_higodot_v3_1_3_post_merge_sheet_canon -v
       - name: Validate tool authority adoption contract
         run: python -m unittest tests.test_godot_authoring_gut_authority_contract -v
       - name: Validate PR83 review-exception contract

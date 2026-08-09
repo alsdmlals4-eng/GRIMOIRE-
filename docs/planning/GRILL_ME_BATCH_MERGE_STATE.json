@@ -1,5 +1,5 @@
 {
-  "schema_version": 28,
+  "schema_version": 29,
   "policy_decision_id": "GM-GRILL-MERGE-CADENCE-01",
   "status": "USER_APPROVED_ACTIVE",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -69,7 +69,9 @@
     "audio_vault": "BLOCKED_UNVERIFIED",
     "sheet_write": "SHEET_WRITE_READBACK_PASS",
     "sheet_readback": "SHEET_WRITE_READBACK_PASS",
-    "tracked_v3_1_3_sheet_sync": "PENDING_POST_MERGE_READBACK",
+    "tool_state_reconciled_main": "75eaa8d19b8a38a21599c37dc7545818615a04c1",
+    "tracked_v3_1_3_sheet_sync": "SHEET_WRITE_READBACK_PASS",
+    "post_merge_sheet_canon_sync_id": "GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON",
     "visual_platform_sheet_sync": "SHEET_WRITE_READBACK_PASS",
     "merge_authorized": true,
     "next_priority": "HIGODOT_TASK2_AUTHORING_WITH_RECEIPT_GATE_THEN_THREE_SCREEN_ACCEPTANCE"
@@ -122,7 +124,7 @@
     "sheet_initial_read": "PASS",
     "sheet_write": "SHEET_WRITE_READBACK_PASS",
     "sheet_readback": "SHEET_WRITE_READBACK_PASS",
-    "tracked_v3_1_3_sheet_sync": "PENDING_POST_MERGE_READBACK",
+    "tracked_v3_1_3_sheet_sync": "SHEET_WRITE_READBACK_PASS",
     "mobile_device": "NOT_RUN",
     "performance": "NOT_RUN",
     "accessibility": "NOT_RUN_FOR_UI_V2",
