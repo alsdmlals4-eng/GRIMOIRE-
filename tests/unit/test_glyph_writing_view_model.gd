@@ -25,6 +25,15 @@ func run(case) -> void:
     case.assert_equal("선택: 열", low.selected_glyph_label, "selected exact glyph remains visible")
     case.assert_equal("획 2/3", low.stroke_count_label, "stroke count is textual")
 
+    var legacy_burst: Dictionary = view_model_script.from_result({
+        "status": &"LOW_CONFIDENCE_REQUIRES_RETRY",
+        "candidates": [],
+        "input_revision": 5,
+    }, &"BURST", 1)
+    case.assert_equal(&"AMPLIFY", legacy_burst.selected_glyph_id, "legacy BURST selection normalizes to AMPLIFY")
+    case.assert_equal("선택: 증폭", legacy_burst.selected_glyph_label, "legacy BURST uses approved AMPLIFY copy")
+    case.assert_equal(&"GLYPH_AMPLIFY", legacy_burst.selected_shape_key, "legacy BURST uses AMPLIFY shape key")
+
     var candidate_script = load(CANDIDATE_PATH)
     var heat = candidate_script.create(&"HEAT", 0.91, 0.1, &"heat-01", 6).value
     var flow = candidate_script.create(&"FLOW", 0.87, 0.2, &"flow-01", 6).value
@@ -68,7 +77,7 @@ func run(case) -> void:
     case.assert_equal("보관함에 열 글자를 저장했습니다", accepted.title, "success names exact stored glyph")
     case.assert_equal(&"CONFIRM", accepted.primary_action, "success requires explicit confirm")
 
-    for model in [low, ambiguous, stale, mismatch, accepted]:
+    for model in [low, legacy_burst, ambiguous, stale, mismatch, accepted]:
         case.assert_true(String(model.title).length() <= 32, "title fits registered copy budget")
         case.assert_true(String(model.primary_action_label).length() <= 16, "primary action fits registered copy budget")
         case.assert_true(String(model.secondary_action_label).length() <= 16, "secondary action fits registered copy budget")

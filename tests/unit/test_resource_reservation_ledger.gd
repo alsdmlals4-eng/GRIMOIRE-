@@ -37,6 +37,7 @@ func run(case) -> void:
         &"available_sources",
         &"reserve_node",
         &"release_node",
+        &"release_transaction",
         &"replace_node_source",
         &"reservation_for_node",
     ]
@@ -107,3 +108,21 @@ func run(case) -> void:
     case.assert_true(ledger.release_node(&"node-c"), "second node cancels")
     case.assert_equal(3, stock.available_count(), "all Stock reservations are released")
     case.assert_false(ledger.release_node(&"node-c"), "duplicate cancel is rejected")
+
+    var tx_a_first = ledger.reserve_node(&"tx-a-first", &"HEAT", Types.Source.UNIVERSAL_STOCK, &"draft-a", true)
+    var tx_a_second = ledger.reserve_node(&"tx-a-second", &"FLOW", Types.Source.UNIVERSAL_STOCK, &"draft-a", true)
+    var tx_b_only = ledger.reserve_node(&"tx-b-only", &"PROTECT", Types.Source.UNIVERSAL_STOCK, &"draft-b", true)
+    case.assert_equal(&"OK", tx_a_first.status, "first draft-a node reserves")
+    case.assert_equal(&"OK", tx_a_second.status, "second draft-a node reserves")
+    case.assert_equal(&"OK", tx_b_only.status, "draft-b node reserves")
+    var released = ledger.release_transaction(&"draft-a")
+    case.assert_equal(&"OK", released.status, "transaction release succeeds")
+    case.assert_equal(2, released.released_count, "transaction release returns its released node count")
+    case.assert_true(ledger.reservation_for_node(&"tx-a-first").is_empty(), "first draft-a reservation is removed")
+    case.assert_true(ledger.reservation_for_node(&"tx-a-second").is_empty(), "second draft-a reservation is removed")
+    case.assert_false(ledger.reservation_for_node(&"tx-b-only").is_empty(), "draft-b reservation remains isolated")
+    case.assert_equal(2, stock.available_count(), "only draft-a resources are restored")
+    var invalid_transaction = ledger.release_transaction(&"")
+    case.assert_equal(&"INVALID_TRANSACTION", invalid_transaction.status, "empty transaction id is rejected")
+    case.assert_equal(0, invalid_transaction.released_count, "invalid transaction releases nothing")
+    case.assert_true(ledger.release_node(&"tx-b-only"), "remaining draft-b reservation can still be released")

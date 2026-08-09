@@ -65,6 +65,19 @@ func release_node(node_id: StringName) -> bool:
     return true
 
 
+func release_transaction(transaction_id: StringName) -> Dictionary:
+    if transaction_id.is_empty():
+        return {"status": &"INVALID_TRANSACTION", "released_count": 0}
+    var records := reservation_records_for_transaction(transaction_id)
+    var released := 0
+    for record_variant in records:
+        var node_id := StringName(Dictionary(record_variant).get("node_id", &""))
+        if not release_node(node_id):
+            return {"status": &"RESOURCE_STATE_CORRUPT", "released_count": released}
+        released += 1
+    return {"status": &"OK", "released_count": released}
+
+
 func replace_node_source(node_id: StringName, new_source: int) -> Dictionary:
     if new_source != GlyphResourceTypes.TYPED_STOCK and new_source != GlyphResourceTypes.Source.VAULT:
         return {"status": &"SOURCE_SELECTION_REQUIRED"}

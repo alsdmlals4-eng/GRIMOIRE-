@@ -1,22 +1,12 @@
 class_name GlyphWritingViewModel
 extends RefCounted
 
-const GLYPH_META := {
-    &"HEAT": {"name": "열", "role": "핵심", "shape_key": &"GLYPH_HEAT"},
-    &"PROTECT": {"name": "보호", "role": "핵심", "shape_key": &"GLYPH_PROTECT"},
-    &"FLOW": {"name": "흐름", "role": "보조", "shape_key": &"GLYPH_FLOW"},
-    &"FOCUS": {"name": "집중", "role": "보조", "shape_key": &"GLYPH_FOCUS"},
-    &"DISPERSE": {"name": "분산", "role": "보조", "shape_key": &"GLYPH_DISPERSE"},
-    &"BURST": {"name": "폭발", "role": "보조", "shape_key": &"GLYPH_BURST"},
-}
+const GlyphCatalog = preload("res://src/core/glyphs/glyph_catalog.gd")
 
 
 static func from_result(result: Dictionary, selected_glyph_id: StringName, stroke_count: int) -> Dictionary:
-    var selected_meta: Dictionary = GLYPH_META.get(selected_glyph_id, {
-        "name": String(selected_glyph_id),
-        "role": "미분류",
-        "shape_key": &"GLYPH_UNKNOWN",
-    })
+    var normalized_selected_id := GlyphCatalog.normalize_id(selected_glyph_id)
+    var selected_meta := _metadata(normalized_selected_id)
     var model := {
         "title": "입력 상태를 확인하세요",
         "detail": "문양 입력을 다시 확인합니다",
@@ -26,7 +16,7 @@ static func from_result(result: Dictionary, selected_glyph_id: StringName, strok
         "secondary_action": &"CANCEL",
         "status_icon_key": &"STATUS_RETRY",
         "selected_glyph_label": "선택: %s" % selected_meta.get("name", ""),
-        "selected_glyph_id": selected_glyph_id,
+        "selected_glyph_id": normalized_selected_id,
         "selected_shape_key": selected_meta.get("shape_key", &"GLYPH_UNKNOWN"),
         "stroke_count_label": "획 %d/3" % clampi(stroke_count, 0, 3),
         "candidate_buttons": [],
@@ -82,17 +72,35 @@ static func _candidate_buttons(candidates: Array) -> Array[Dictionary]:
     for candidate in candidates:
         if candidate == null or not candidate.has_method("glyph_id"):
             continue
-        var glyph_id: StringName = candidate.glyph_id()
-        var meta: Dictionary = GLYPH_META.get(glyph_id, {
-            "name": String(glyph_id),
-            "role": "미분류",
-            "shape_key": &"GLYPH_UNKNOWN",
-        })
+        var glyph_id := GlyphCatalog.normalize_id(candidate.glyph_id())
+        var meta := _metadata(glyph_id)
+        var role := StringName(meta.get("role", &""))
         buttons.append({
             "glyph_id": glyph_id,
-            "label": "%s · %s" % [meta.get("name", ""), meta.get("role", "")],
+            "label": "%s · %s" % [meta.get("name", ""), _role_label(role)],
             "shape_key": meta.get("shape_key", &"GLYPH_UNKNOWN"),
-            "role_icon_key": &"ROLE_MAIN" if meta.get("role", "") == "핵심" else &"ROLE_SUPPORT",
+            "role_icon_key": &"ROLE_MAIN" if role == &"MAIN" else &"ROLE_SUPPORT",
             "input_revision": int(candidate.input_revision()),
         })
     return buttons
+
+
+static func _metadata(glyph_id: StringName) -> Dictionary:
+    var meta := GlyphCatalog.metadata(glyph_id)
+    if not meta.is_empty():
+        return meta
+    return {
+        "name": String(glyph_id),
+        "role": &"UNKNOWN",
+        "shape_key": &"GLYPH_UNKNOWN",
+    }
+
+
+static func _role_label(role: StringName) -> String:
+    match role:
+        &"MAIN":
+            return "핵심"
+        &"AUX":
+            return "보조"
+        _:
+            return "미분류"
