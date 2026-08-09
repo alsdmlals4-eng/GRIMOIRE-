@@ -2,11 +2,12 @@
   "schema": "HIGODOT_AUTHORING_RECEIPT_V1",
   "receipt_id": "GR-PR82-TASK2-HIGODOT-20260809-01",
   "recorded_at": "2026-08-09T20:06:02.8984369+09:00",
+  "receipt_reconciled_at": "2026-08-09T20:39:00+09:00",
   "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
   "pull_request": 82,
   "base_commit": "56ff06af8050ef93c25aabbf8f3597a81612c636",
   "worktree_head_before_commit": "e1c784639bce6ffa2683a6b8d04737a858532c0d",
-  "result_commit": "UNCOMMITTED_TASK2_WORKTREE",
+  "result_commit": "f719b35e878c6ef9dd2168dc3dde00d4e74842b6",
   "tool": {
     "name": "Godot AI / HiGodot",
     "plugin_version": "3.1.3",
@@ -17,13 +18,14 @@
   },
   "changed_godot_artifacts": [
     "res://src/core/workflow/glyph_source_loadout.gd",
+    "res://src/core/workflow/glyph_source_loadout.gd.uid",
     "res://src/core/resources/resource_reservation_ledger.gd"
   ],
   "operations": [
     "script_create res://src/core/workflow/glyph_source_loadout.gd",
     "script_patch res://src/core/workflow/glyph_source_loadout.gd to use SELF_PATH instantiation after diagnostic readback",
     "script_patch res://src/core/resources/resource_reservation_ledger.gd to add release_transaction(transaction_id)",
-    "filesystem scan and script readback for both authored paths",
+    "filesystem scan and script readback for both authored paths; Godot generated res://src/core/workflow/glyph_source_loadout.gd.uid during the HiGodot-controlled editor scan",
     "scene_open(force_reload=true) after restoring the unrelated runtime scene serialization delta"
   ],
   "hash_evidence": {
@@ -34,6 +36,10 @@
     "res://src/core/workflow/glyph_source_loadout.gd": {
       "before_sha256": "ABSENT",
       "after_sha256": "CA8E321AB5169D1273806EF3DCA424D01DBB51ABC392383B25508CD3BE9E1890"
+    },
+    "res://src/core/workflow/glyph_source_loadout.gd.uid": {
+      "before_sha256": "ABSENT",
+      "after_sha256": "A37A5F4E2B821864F0F1FAD40F56F9B10C4C983D56847210C76848B8FE7D4116"
     }
   },
   "scene_open_or_reload_evidence": [
@@ -41,6 +47,12 @@
     "res://src/core/workflow/glyph_source_loadout.gd readback: create and to_dict present",
     "res://src/core/resources/resource_reservation_ledger.gd readback: release_transaction present"
   ],
+  "receipt_reconciliation": {
+    "status": "PROTECTED_TASK2_DELTA_COMPLETE",
+    "task2_delta_base_commit": "e1c784639bce6ffa2683a6b8d04737a858532c0d",
+    "task2_product_commit": "f719b35e878c6ef9dd2168dc3dde00d4e74842b6",
+    "reason": "Post-push protected-delta review found the Godot-generated .gd.uid under src/ was protected by repository policy but omitted from the initial artifact list. The receipt was corrected without changing Godot product source."
+  },
   "limitations": [
     "Historical direct/local tool-upgrade receipt limitation remains separate and is not cleared by this Task 2 receipt.",
     "Device, performance, accessibility, and human validation remain NOT_RUN."
