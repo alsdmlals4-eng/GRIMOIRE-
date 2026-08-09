@@ -10,6 +10,9 @@ POST_MERGE_CANON_SYNC_MAIN = "ce01bb8caa5f1b224279d3fbf418eae29a88af7d"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 THREE_SCREEN_PENDING = "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9"
+TASK2_MERGED = "TASK2_MERGED_MAIN_VERIFIED"
+TASK3_READY = "TASK3_READY_AFTER_POST_MERGE_CANON"
+TASK2_RECEIPT_PASS = "TASK2_HIGODOT_RECEIPT_READBACK_PASS"
 CURRENT_DOCS = [ROOT / "START_HERE.md", ROOT / "docs/ACTIVE_CONTEXT.md", ROOT / "docs/DEVELOPMENT_GATES.md", ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md", ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"]
 CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 GRILL = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
@@ -44,14 +47,16 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
         for token in (
             "GM-STAR-CIRCUIT-MASTERY-BALANCE-01", "FIVE_POINT_STAR", "GUT_FORMALLY_ADOPTED",
             "higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY", "hera_exact_pair: PASS", HERA_PASS,
-            "spell_workflow_task2_authorized: true", "READY_FOR_HIGODOT_AUTHORING",
-            "AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", SHARED_CORE_PASS, THREE_SCREEN_PENDING,
+            "spell_workflow_task2_authorized: true", TASK2_MERGED, TASK3_READY, TASK2_RECEIPT_PASS,
+            SHARED_CORE_PASS, THREE_SCREEN_PENDING,
             "VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
             "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
         ):
             self.assertIn(token, combined)
         self.assertNotIn("spell_workflow_task2_authorized: false", combined)
+        self.assertNotIn("spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING", combined)
         self.assertNotIn("spell_workflow_task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL", combined)
+        self.assertNotIn("spell_workflow_task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", combined)
         self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", combined)
         self.assertNotIn("SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_NOT_RUN", combined)
         self.assertNotIn("HIGODOT_VENDOR_TREE_MISMATCH_OFFICIAL_V3_1_2", combined)
