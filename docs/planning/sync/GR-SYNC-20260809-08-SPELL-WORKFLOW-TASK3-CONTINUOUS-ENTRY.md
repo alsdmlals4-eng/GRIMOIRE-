@@ -16,6 +16,9 @@ current_session_higodot_callable: false
 alternate_plugin_search: NO_GODOT_OR_HIGODOT_PLUGIN_AVAILABLE
 execution_route: DEFERRED_EXTERNAL_EXECUTOR
 product_mutation_in_this_sync: NONE
+sheet_conflict_reconciliation: PASS
+sheet_readback: SHEET_WRITE_READBACK_PASS
+sheet_audit_id: GR-AUD-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY-01
 ```
 
 ## Basis
@@ -24,14 +27,14 @@ The current GitHub canon already makes Task 3 the next ready unit: `CURRENT_UNRE
 
 The current continuous-work instruction therefore continues the already approved `GM-SPELL-WORKFLOW-UI-V2-01` implementation plan. It does not change the product outcome or extend the plan. Base current continuous-work policy requires recover-first handling when the authoritative execution tool is not exposed in the current session.
 
-## Sheet conflict reconciliation target
+## Sheet conflict reconciliation
 
 At entry, the Google Sheet was mostly current for Task 2 but two cells were stale:
 
-- the product Decision row still said Task 3 required a separate scope authorization even though GitHub current canon already lists Task 3 as the next allowed plan unit;
+- the product Decision row said Task 3 required a separate scope authorization even though GitHub current canon already lists Task 3 as the next allowed plan unit;
 - the tool-authority Decision row still described PR #82 Task 2 as `NOT_STARTED_ON_BRANCH` and pointed to Task 2 authoring as the next action.
 
-GitHub project canon is authoritative over stale Sheet wording. The Sheet must be reconciled under the same existing Decision IDs without changing Stage boundaries or claiming Task 3 implementation.
+GitHub project canon is authoritative over stale Sheet wording. These cells were reconciled without changing Stage boundaries or claiming Task 3 implementation. Audit `GR-AUD-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY-01` and History sync08 were written with `PENDING_READBACK`, explicitly read back, then promoted to `SHEET_WRITE_READBACK_PASS` and read back again.
 
 ## Execution-route recovery
 
