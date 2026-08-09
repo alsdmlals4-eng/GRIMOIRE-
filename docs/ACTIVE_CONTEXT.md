@@ -25,6 +25,9 @@ higodot_live_version_readback: PASS_V3_1_3
 higodot_live_mcp_session: grimoire@9cc4
 higodot_live_mcp_readiness: ready
 higodot_current_tool_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+higodot_post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
+higodot_tracked_reconciliation_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+higodot_sheet_sync: SHEET_WRITE_READBACK_PASS
 higodot_direct_local_upgrade_commit: 1337e267d29b00c039039e7197863e2f4f78957d
 higodot_direct_local_upgrade_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 tracked_project_godot_editor_plugins: GODOT_AI_GUT_HERA_ENABLED_AT_GITHUB_MAIN_READBACK
@@ -77,7 +80,7 @@ tuning_status: PLAYTEST_TUNING_REQUIRED
 
 ## HiGodot v3.1.3 tracked reconciliation
 
-`GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION`은 current GitHub tracked state를 복구한다.
+`GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION`은 current GitHub tracked state를 복구했고, PR #98은 merged main `75eaa8d19b8a38a21599c37dc7545818615a04c1`에 들어갔다. Sheet Hub/Decision/Audit/History는 explicit readback 후 `SHEET_WRITE_READBACK_PASS`이며, 후속 canon sync는 `GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON`이다.
 
 ```yaml
 tracked_release: v3.1.3
@@ -93,6 +96,7 @@ live_mcp_readiness: ready
 historical_v3_1_2_plugin_subtree: a7d1e2fe8564cc385d683ec50d15fc66e1a17a35
 direct_local_upgrade_commit: 1337e267d29b00c039039e7197863e2f4f78957d
 authoring_receipt_status: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
+sheet_sync: SHEET_WRITE_READBACK_PASS
 ```
 
 PR #96/#97의 “live 3.1.3 / tracked 3.1.2” 판정은 그 당시 readback에 대한 역사 증거로 보존한다. 이후 direct/local commit `1337e267...`이 tracked Godot AI와 `project.godot`을 전진시켰고, current tree는 official v3.1.3 plugin subtree와 정확히 일치한다. 해당 direct/local commit에 연결된 formal HiGodot authoring receipt는 현재 찾지 못했으므로 PASS를 꾸며내지 않는다.
