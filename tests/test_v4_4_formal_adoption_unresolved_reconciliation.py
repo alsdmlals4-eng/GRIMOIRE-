@@ -54,7 +54,8 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
         self.assertIn(HERA_PASS, text)
         self.assertIn("spell_workflow_task2_authorized: true", text)
         self.assertIn("spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING", text)
-        self.assertIn("AUTHORIZED_AWAITING_HIGODOT_CHANNEL", text)
+        self.assertIn("AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", text)
+        self.assertNotIn("spell_workflow_task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL", text)
 
 
 if __name__ == "__main__":
