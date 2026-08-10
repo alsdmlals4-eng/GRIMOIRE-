@@ -109,6 +109,15 @@ spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
 
 이 필드들은 current Task 8 gate를 정의하지 않고 과거 v4.4 병합·도구 채택 provenance를 회귀 테스트와 함께 보존한다.
 
+## Gate 18 — repository-wide Actions supply-chain closure
+
+```yaml
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_supply_chain: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
+```
+
+현재 활성 official Actions는 full SHA pinning 계약을 유지한다. 이 Gate는 Task 7→8 상태 복구로 약화되지 않는다.
+
 ## Delivery / unresolved limits
 
 ```text
