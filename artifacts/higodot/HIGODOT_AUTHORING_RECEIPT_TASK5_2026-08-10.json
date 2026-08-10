@@ -1,0 +1,107 @@
+{
+  "schema": "HIGODOT_AUTHORING_RECEIPT_V1",
+  "receipt_id": "GR-TASK5-HIGODOT-20260810-01",
+  "recorded_at": "2026-08-10T09:02:54+09:00",
+  "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
+  "base_commit": "97942d0be7404d52316dec0143041e2971c365f1",
+  "result_commit": "02cd034da9a07fcc43f541be758c20f067c11a6d",
+  "tool": {
+    "name": "Godot AI / HiGodot",
+    "godot_version": "4.7.1-stable (official)",
+    "plugin_version": "3.1.3",
+    "server_version": "3.1.3",
+    "session_id": "task5-stage3-atomic-use-coordinator@bab6",
+    "project_path": "C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-/.worktrees/task5-stage3-atomic-use-coordinator/"
+  },
+  "changed_godot_artifacts": [
+    "res://src/core/spells/spell_use_request.gd",
+    "res://src/core/spells/spell_use_request.gd.uid",
+    "res://src/core/spells/atomic_spell_use_service.gd",
+    "res://src/core/spells/atomic_spell_use_service.gd.uid",
+    "res://src/core/workflow/spell_workflow_state.gd",
+    "res://src/core/workflow/spell_workflow_state.gd.uid",
+    "res://src/core/workflow/spell_workflow_coordinator.gd",
+    "res://src/core/workflow/spell_workflow_coordinator.gd.uid",
+    "res://tests/unit/test_atomic_spell_use_service.gd",
+    "res://tests/unit/test_atomic_spell_use_service.gd.uid",
+    "res://tests/unit/test_spell_workflow_state.gd",
+    "res://tests/unit/test_spell_workflow_state.gd.uid",
+    "res://tests/unit/test_spell_workflow_coordinator.gd",
+    "res://tests/unit/test_spell_workflow_coordinator.gd.uid",
+    "res://tests/test_runner.gd"
+  ],
+  "hash_evidence": {
+    "res://src/core/spells/spell_use_request.gd": {"before_sha256": "ABSENT", "after_sha256": "E6E6A728BAD618A84B346ED9CBB1C39DA25ADB7626C5420D9A4964E80F3E3846"},
+    "res://src/core/spells/spell_use_request.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "9C802D8D5B07F417AB2A2A0FDDB2CBF99604B554E18D9051E5931FD47C095DDB"},
+    "res://src/core/spells/atomic_spell_use_service.gd": {"before_sha256": "ABSENT", "after_sha256": "2A2E4954FE55FE55838D67DFFAEEE1D3F64A9E139D50EEDA889F5E77566066E2"},
+    "res://src/core/spells/atomic_spell_use_service.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "AAF83B3A4D4CEFF61BB2978746AAC85C6303CCEE389988C6C5FE7CBB3830183D"},
+    "res://src/core/workflow/spell_workflow_state.gd": {"before_sha256": "ABSENT", "after_sha256": "2EF85713DB0DA1B916DBF1198B0CE2D8CD2390BD602AF8832E960ABCAEA53357"},
+    "res://src/core/workflow/spell_workflow_state.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "441F1BE52E65C1EE0ECF386D0B1EE1915A1C92A922034294FA054784EF9E56F7"},
+    "res://src/core/workflow/spell_workflow_coordinator.gd": {"before_sha256": "ABSENT", "after_sha256": "220C8F60906935D3457B09109C7411B6E9867CDD05CED03EA2671779C9E140EF"},
+    "res://src/core/workflow/spell_workflow_coordinator.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "DBCBD5B78EE662B3A5F965A8D697B1A5E68498730649AFB5B6739700092F487F"},
+    "res://tests/unit/test_atomic_spell_use_service.gd": {"before_sha256": "ABSENT", "after_sha256": "C4869F35DE980F697617EFDB272FC0E8BF707EAD400392156F0CA5E018FEF58B"},
+    "res://tests/unit/test_atomic_spell_use_service.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "95154C9EAA879DD7736F0BA7478DA54616461D4B16A940EDF52D55BC87A81D73"},
+    "res://tests/unit/test_spell_workflow_state.gd": {"before_sha256": "ABSENT", "after_sha256": "FE5051D5705EBE920DC5CBDAFB1D27B6692769F3275CE39FAF896E6070ED62CF"},
+    "res://tests/unit/test_spell_workflow_state.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "AF753B613209522F4B9C5128F87629F0522F7CFC6A7B7E5275DE03131D1A6002"},
+    "res://tests/unit/test_spell_workflow_coordinator.gd": {"before_sha256": "ABSENT", "after_sha256": "40E042133538D7A0D07EF19212A5D6004A5AE504D1E7838F4B18421134F2DC67"},
+    "res://tests/unit/test_spell_workflow_coordinator.gd.uid": {"before_sha256": "ABSENT", "after_sha256": "151BA47FD5CFB746988233F1A1B56CD4A7AAA1D93046503B6003A321B2431BA8"},
+    "res://tests/test_runner.gd": {"before_sha256": "5EBDF8CE798BC1BEE2CA1556A52225910F324A7519C946219F00B556FCFFBAA7", "after_sha256": "DDF215136A338434D0B07A6FB8B03A5A4E67FDAA2FF10344923F3AF01010838D"}
+  },
+  "operations": [
+    "Continuity recovery activated the existing Task 5 HiGodot session before any readback or persistent mutation.",
+    "Fresh script_manage readback covered all four Task 5 production scripts, all three Task 5 unit suites, and test_runner.",
+    "No persistent .gd mutation was performed outside the continuing HiGodot session; this receipt records the fresh readback of the pre-existing Task 5 authoring result."
+  ],
+  "readback_evidence": [
+    "SpellUseRequest: 59 lines read back from res://src/core/spells/.",
+    "AtomicSpellUseService: 102 lines read back; validates before mutation, snapshots all three stores, and rolls back failures.",
+    "SpellWorkflowState: 125 lines read back; target/final-preview/confirmation states and exact overlay return are explicit.",
+    "SpellWorkflowCoordinator: 171 lines read back; Stage 2 previews with {}, Stage 3 previews only with the selected target.",
+    "Task 5 unit suites: 146, 47, and 102 lines read back; test_runner contains exactly the three Task 5 registrations."
+  ],
+  "delta_reconciliation": {
+    "status": "PROTECTED_TASK5_DELTA_COMPLETE",
+    "allowed_delta": [
+      "src/core/spells/spell_use_request.gd",
+      "src/core/spells/spell_use_request.gd.uid",
+      "src/core/spells/atomic_spell_use_service.gd",
+      "src/core/spells/atomic_spell_use_service.gd.uid",
+      "src/core/workflow/spell_workflow_state.gd",
+      "src/core/workflow/spell_workflow_state.gd.uid",
+      "src/core/workflow/spell_workflow_coordinator.gd",
+      "src/core/workflow/spell_workflow_coordinator.gd.uid",
+      "tests/unit/test_atomic_spell_use_service.gd",
+      "tests/unit/test_atomic_spell_use_service.gd.uid",
+      "tests/unit/test_spell_workflow_state.gd",
+      "tests/unit/test_spell_workflow_state.gd.uid",
+      "tests/unit/test_spell_workflow_coordinator.gd",
+      "tests/unit/test_spell_workflow_coordinator.gd.uid",
+      "tests/test_runner.gd",
+      "docs/planning/handoffs/2026-08-10-task5-higodot-execution-packet.md",
+      "artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK5_2026-08-10.json"
+    ],
+    "excluded_unrelated_editor_delta": [
+      "project.godot",
+      "addons/gut/**/*.import",
+      "addons/hera_agent_godot/assets/fonts/cormorant-italic.woff2.import",
+      "assets/art/ui/common/**/*.import",
+      "artifacts/foundation-poc/",
+      "unrelated generated .gd.uid files"
+    ],
+    "hera_source_delta": "NONE"
+  },
+  "validation": {
+    "editor_atomic_spell_use": "PASS: 27 assertions, 0 failures",
+    "editor_spell_workflow_state": "PASS: 25 assertions, 0 failures",
+    "editor_spell_workflow_coordinator": "PASS: 21 assertions, 0 failures",
+    "editor_legacy_star_circuit_commit_coordinator": "PASS: 28 assertions, 0 failures",
+    "higodot_test_runner": "NOT_APPLICABLE: it only discovers test_* methods; project suites use run(case)",
+    "gut": "NOT_RUN: no Task 5 GUT suite exists and headless/GUT CLI is not used as PASS evidence in this session",
+    "headless_shell": "NOT_USED_AS_PASS_EVIDENCE: known Godot signal 11 environment issue remains outside Task 5 scope",
+    "exact_head_ci": "PENDING: required after push and pull request creation"
+  },
+  "limitations": [
+    "Hera was not used for source mutation; HERA_SOURCE_DELTA: NONE.",
+    "Device, performance, accessibility, human, and full vertical-slice validation remain NOT_RUN."
+  ]
+}
