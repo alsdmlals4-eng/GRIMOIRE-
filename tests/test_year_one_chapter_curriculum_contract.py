@@ -3,6 +3,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 APPROVAL = ROOT / "docs/planning/YEAR_ONE_CHAPTER_CURRICULUM_01_APPROVAL_2026-08-11.md"
+CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
+SYNC = ROOT / "docs/planning/sync/GR-SYNC-20260811-05-YEAR-ONE-CHAPTER-CURRICULUM.md"
 
 
 def text() -> str:
@@ -59,3 +61,22 @@ def test_growth_economy_numbers_remain_test_values():
     body = text()
     assert "growth_economy_numbers: TEST_VALUE" in body
     assert "자유일정 창 수, 수강 슬롯 수, 평가 가중치, 재료 수량은 후속 성장·경제 결정 전까지 `TEST_VALUE`" in body
+
+
+def test_current_confirmed_surface_points_to_year_one_decision_and_next_planning_axis():
+    body = CURRENT.read_text(encoding="utf-8")
+    assert "current_planning_decision: GM-YEAR-ONE-CHAPTER-CURRICULUM-01" in body
+    assert "current_planning_sync: GR-SYNC-20260811-05-YEAR-ONE-CHAPTER-CURRICULUM" in body
+    assert "year_one_chapters: 7" in body
+    assert "year_one_term_distribution: 2_2_3" in body
+    assert "next_planning_axis: C_WORLD_CHARACTERS_THREE_YEAR_STORY" in body
+    assert "separate_exam: FORBIDDEN_AS_REQUIRED_CONTENT" in body
+    assert "FIVE_POINT_STAR / GM-SPELL-WORKFLOW-UI-V2-01" in body
+
+
+def test_sync_records_all_current_no_exam_consumer_readbacks():
+    body = SYNC.read_text(encoding="utf-8")
+    assert "11_세계관 C2" in body
+    assert "13_주요인물 G2, G5:G6" in body
+    assert "no_separate_exam_current_consumers: MATCH_30_11_13" in body
+    assert "sheet_status: SHEET_WRITE_READBACK_PASS" in body
