@@ -77,11 +77,11 @@ class V45ContractBindingTests(unittest.TestCase):
         grill = json.loads(GRILL.read_text(encoding="utf-8"))
 
         self.assertEqual("4.5", canon["active_contract"]["version"])
-        self.assertEqual(DECISION, canon["active_contract"]["decision_id"])
+        self.assertEqual(DECISION, canon["active_contract"]["binding_decision_id"])
         self.assertEqual("4.5", authority["contract"]["version"])
-        self.assertEqual(DECISION, authority["contract"]["decision_id"])
+        self.assertEqual(DECISION, authority["contract"]["binding_decision_id"])
         self.assertEqual("4.5", grill["active_contract"]["version"])
-        self.assertEqual(DECISION, grill["active_contract"]["decision_id"])
+        self.assertEqual(DECISION, grill["active_contract"]["binding_decision_id"])
 
         self.assertEqual("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", canon["project_main_authority"])
         self.assertEqual(HERA_PASS, canon["hera"]["status"])
