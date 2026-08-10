@@ -1,0 +1,59 @@
+{
+  "receipt_schema_version": 1,
+  "task": "Task 6: Incident Status, Explanation Overlay, and Glyph Drawing Screen",
+  "issue": 107,
+  "branch": "task6/incident-glyph-drawing",
+  "base_origin_main": "275ba48eb9c07ce24d4b17b2c57de66c98923e1a",
+  "authoring": {
+    "tool": "HiGodot",
+    "session_id": "task6-incident-glyph-drawing@7a9d",
+    "godot_version": "4.7.1",
+    "persistent_gd_authoring": "HiGodot only",
+    "fresh_readback_completed": true
+  },
+  "protected_delta": {
+    "allowed_paths": [
+      "src/ui/spell_workflow/components/incident_status_card.gd",
+      "src/ui/spell_workflow/components/incident_status_card.gd.uid",
+      "src/ui/spell_workflow/components/incident_status_card.tscn",
+      "src/ui/spell_workflow/components/incident_explanation_overlay.gd",
+      "src/ui/spell_workflow/components/incident_explanation_overlay.gd.uid",
+      "src/ui/spell_workflow/components/incident_explanation_overlay.tscn",
+      "src/ui/spell_workflow/glyph_drawing_screen.gd",
+      "src/ui/spell_workflow/glyph_drawing_screen.gd.uid",
+      "src/ui/spell_workflow/glyph_drawing_screen.tscn",
+      "tests/integration/test_glyph_drawing_workflow_screen.gd",
+      "tests/integration/test_glyph_drawing_workflow_screen.gd.uid",
+      "tests/test_runner.gd",
+      "artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK6_2026-08-10.json"
+    ],
+    "hera_source_delta": "NONE"
+  },
+  "fresh_readback": [
+    {"path":"src/ui/spell_workflow/components/incident_status_card.gd","sha256":"b285c805e729507f8c2a0d1959e7cc19709a5aa332f8edf26c0059346bfa26fa","physical_lines":33},
+    {"path":"src/ui/spell_workflow/components/incident_status_card.tscn","sha256":"781d780d25ae71e81da2ec2c10e81214d81b73bdae602fcdebbdce3e1546c816","physical_lines":38},
+    {"path":"src/ui/spell_workflow/components/incident_explanation_overlay.gd","sha256":"a819949a0e2b429fd986f3ac7f2238d2c8e5df65797607249c2acd75b24df4f9","physical_lines":40},
+    {"path":"src/ui/spell_workflow/components/incident_explanation_overlay.tscn","sha256":"81a80e983b10de09ff5b7555bfd45ca24e1275962e250f5524a99a3dd2f975a5","physical_lines":40},
+    {"path":"src/ui/spell_workflow/glyph_drawing_screen.gd","sha256":"c92683872c231f472afc93ac76be581775a7d8c022dbb31e100c06d65ba43e10","physical_lines":166},
+    {"path":"src/ui/spell_workflow/glyph_drawing_screen.tscn","sha256":"d7136e21f4b701494c6925c28faf76889bc4e5ef61961dc2809878529ad55573","physical_lines":91},
+    {"path":"tests/integration/test_glyph_drawing_workflow_screen.gd","sha256":"ecb1114d665446026743057e75e4510c7292749ca424b7fe2841061ec2c4e85d","physical_lines":99},
+    {"path":"tests/test_runner.gd","sha256":"7adb1011bf1d3424e2efcb7ffa6daf1ad14800230078986e4e098027f120688a","physical_lines":73}
+  ],
+  "editor_evidence": {
+    "task6_scene_contract_and_behavior": {"assertions":33,"failures":0},
+    "focus_scribe_recognition_regression": {"assertions":39,"failures":0},
+    "glyph_writing_view_model_regression": {"assertions":53,"failures":0},
+    "atomic_spell_use_regression": {"assertions":27,"failures":0},
+    "custom_scene_ui": {
+      "viewport":"1280x720 layout",
+      "retry_and_save_minimum_size":"1280x48 runtime rect; minimum size 48x48",
+      "incident_overlay":"Incident card and Incident button each opened a visible 1280x720 overlay"
+    }
+  },
+  "not_claimed": {
+    "headless_gut_cli": "NOT_RUN_AS_PASS",
+    "full_runner": "NOT_RUN_AS_PASS; evaluator batch compilation limitation",
+    "device_validation": "NOT_RUN",
+    "human_validation": "NOT_RUN"
+  }
+}
