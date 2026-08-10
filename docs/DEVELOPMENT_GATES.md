@@ -97,6 +97,18 @@ SHEET_WRITE_READBACK_PASS
 
 Those values no longer define the next product task.
 
+### Historical v4.4 provenance contract
+
+```yaml
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
+hera_exact_pair: PASS
+spell_workflow_task2_authorized: true
+spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
+```
+
+이 필드들은 current Task 8 gate를 정의하지 않고 과거 v4.4 병합·도구 채택 provenance를 회귀 테스트와 함께 보존한다.
+
 ## Delivery / unresolved limits
 
 ```text
