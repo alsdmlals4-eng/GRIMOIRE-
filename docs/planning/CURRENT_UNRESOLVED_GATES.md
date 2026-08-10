@@ -17,10 +17,16 @@ higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 higodot_integrity_status: HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY
 gut_implementation_status: GUT_FORMALLY_ADOPTED
 gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+formal_adoption_scope: MERGED_MAIN_VERIFIED
+gut_ci: GUT_PUBLIC_STANDARD_GITHUB_ACTIONS_PASS
+role_separated_review: ROLE_SEPARATED_REVIEW_P0_P1_ZERO
+gut_implementation_pr: PR85_MERGED_MAIN_VERIFIED
+repo_wide_actions_supply_chain: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 ```
 
@@ -33,6 +39,10 @@ task2:
   merge: 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
   status: TASK2_MERGED_MAIN_VERIFIED
   spell_workflow_task2_authorized: true
+  spell_workflow_task2_readiness: TASK3_READY_AFTER_POST_MERGE_CANON
+  spell_workflow_task2_execution_status: MERGED_MAIN_VERIFIED
+  authoring_receipt_status: TASK2_HIGODOT_RECEIPT_READBACK_PASS
+  checkpoint_role: HISTORICAL_TASK2_TO_TASK3_ENTRY_PROVENANCE_NOT_CURRENT_NEXT_TASK
 task3:
   pr: 104
   merge: 3a79c8d1aab67813ef6d1c6662f1e460a711613c
