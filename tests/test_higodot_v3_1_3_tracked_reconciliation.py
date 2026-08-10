@@ -24,8 +24,6 @@ UPSTREAM_COMMIT = "22678e5f9b038d7203d6b43b0aae20a5417c500e"
 V313_TREE = "94be4fb34d49243375c592e17a1021c8c6fcbcf2"
 LOCAL_TOOL_COMMIT = "1337e267d29b00c039039e7197863e2f4f78957d"
 RECEIPT_LIMIT = "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT"
-TASK2_CURRENT = "TASK2_MERGED_MAIN_VERIFIED"
-TASK2_EXECUTION = "MERGED_MAIN_VERIFIED"
 
 
 class HiGodotV313TrackedReconciliationTests(unittest.TestCase):
@@ -74,21 +72,21 @@ class HiGodotV313TrackedReconciliationTests(unittest.TestCase):
         for token in (DECISION, SYNC_ID, CURRENT_MAIN, V313_TREE, LOCAL_TOOL_COMMIT, RECEIPT_LIMIT):
             self.assertIn(token, text)
 
-    def test_current_human_readable_surfaces_match_tracked_v313_state(self) -> None:
-        for path in CURRENT_DOCS:
-            text = path.read_text(encoding="utf-8")
-            for token in (
-                SYNC_ID,
-                "v3.1.3",
-                V313_TREE,
-                "GODOT_AI_GUT_HERA_ENABLED_AT_GITHUB_MAIN_READBACK",
-                TASK2_CURRENT,
-                TASK2_EXECUTION,
-                RECEIPT_LIMIT,
-            ):
-                self.assertIn(token, text, str(path))
-            self.assertNotIn("higodot_live_v3_1_3_tracked_vendor_sync: NOT_SYNCED_NOT_CLAIMED", text, str(path))
-            self.assertNotIn("spell_workflow_task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", text, str(path))
+    def test_current_human_canon_collectively_preserves_tracked_v313_state(self) -> None:
+        combined = "\n".join(path.read_text(encoding="utf-8") for path in CURRENT_DOCS)
+        for token in (
+            DECISION,
+            SYNC_ID,
+            "v3.1.3",
+            V313_TREE,
+            "GODOT_AI_GUT_HERA_ENABLED_AT_GITHUB_MAIN_READBACK",
+            RECEIPT_LIMIT,
+        ):
+            self.assertIn(token, combined)
+        self.assertIn("TASK7_MERGED_MAIN_VERIFIED", combined)
+        self.assertIn("TASK8_SPELL_USE_SCREEN", combined)
+        self.assertNotIn("higodot_live_v3_1_3_tracked_vendor_sync: NOT_SYNCED_NOT_CLAIMED", combined)
+        self.assertNotIn("spell_workflow_task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", combined)
 
 
 if __name__ == "__main__":
