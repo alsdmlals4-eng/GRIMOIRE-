@@ -47,9 +47,12 @@ execution_request_state: USER_EXPLICIT_EXECUTION_REQUEST_PRESENT
 base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
 base_source_snapshot_7ce3fb64_role: HISTORICAL_OBSERVATION_ONLY
 silent_rebinding: NOT_APPLICABLE_USER_EXPLICITLY_APPROVED
+sheet_sync: SHEET_WRITE_READBACK_PASS
+pre_sheet_exact_head_validation: GREEN_AT_EE0C3470
+remaining_binding_work: FINAL_EXACT_HEAD_REVALIDATION_THEN_MERGE_AND_POST_MERGE_READBACK
 ```
 
-v4.5 채택 자체는 더 이상 `USER_DECISION_REQUIRED`가 아니다. 남은 것은 PR exact-head 검증, 동일 Decision/Sync의 Sheet readback, merge/post-merge readback 실행 증거다.
+v4.5 채택과 동일 Decision/Sync의 Sheet readback은 완료됐다. 이 상태 반영으로 PR HEAD가 다시 바뀌므로, 남은 binding 작업은 **새 final exact HEAD의 전체 적용 CI 재검증 → review thread 0/main 불변 확인 → merge → post-merge GitHub·Sheet readback**이다.
 
 ## 닫힌 Spell Workflow implementation gates
 
@@ -149,7 +152,7 @@ live_qa: HERA_OBSERVABILITY_ONLY_SOURCE_DELTA_NONE
 
 ```yaml
 allowed_next_actions:
-  - COMPLETE_V4_5_R2_EXACT_HEAD_AND_SHEET_BINDING_SYNC
+  - FINALIZE_V4_5_R2_FINAL_EXACT_HEAD_AND_MERGE
   - TASK8_TDD_RED
   - HIGODOT_PERSISTENT_TASK8_AUTHORING_WITH_FRESH_RECEIPT_GATE
   - GUT_DETERMINISTIC_TASK8_TESTING
