@@ -67,6 +67,17 @@ task7:
 
 Task 3의 과거 `TASK3_TDD_RED`와 `HIGODOT_PERSISTENT_TASK3_AUTHORING_WITH_FRESH_RECEIPT_GATE`는 진입/검증 provenance로 보존하지만 현재 허용 next action이 아니다.
 
+### Historical v4.4 provenance contract
+
+```yaml
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
+hera_exact_pair: PASS
+spell_workflow_task2_authorized: true
+spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
+```
+
+이 메타데이터는 current unresolved 판단을 Task 2로 되돌리지 않고 v4.4 시기의 병합·도구 채택 추적성만 유지한다.
+
 ## 현재 next implementation gate
 
 ```yaml
