@@ -42,7 +42,7 @@ All items below are already merged under the approved product decision `GM-SPELL
 | Task 6 | #108 | `4a9daf0ed8de7bb39173a71e6ada9324d5a462b7` | incident card, explanation overlay, glyph drawing workflow screen |
 | Task 7 | #110 | `fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f` | glyph cards, Vault/Typed Stock panels, estimated Mana, FIVE_POINT_STAR circuit placement screen |
 
-PR #110 records independent adversarial re-review `P0=0, P1=0`, HiGodot Editor regressions green, and `HERA_SOURCE_DELTA: NONE`. Device, performance, accessibility, human, and full vertical-slice validation remain `NOT_RUN` and must not be upgraded by documentation sync.
+PR #110 reports an adversarial re-review with `P0=0, P1=0`, HiGodot Editor regressions green, and `HERA_SOURCE_DELTA: NONE`. This audit does not relabel that review as an independent human review. Device, performance, accessibility, human, and full vertical-slice validation remain `NOT_RUN` and must not be upgraded by documentation sync.
 
 ## 3. Correct next implementation boundary
 
@@ -60,7 +60,7 @@ Task 8 is UI consumption of already-merged Task 5 Stage 3 transaction logic; it 
 
 ### MUST_FIX — current-state consumer drift
 
-The cold-start/current-state documents and Sheet lag four merged product PRs behind the live branch. This can route a future session back into already-completed Task 3 and can produce false reports of the current `main` SHA. Classify as `STALE_REFERENCE + MISSING_PROPAGATION`, not as a product-design conflict.
+The cold-start/current-state documents and Sheet lag five merged product PRs (Tasks 3–7) behind the live branch. This can route a future session back into already-completed Task 3 and can produce false reports of the current `main` SHA. Classify as `STALE_REFERENCE + MISSING_PROPAGATION`, not as a product-design conflict.
 
 ### MUST_FIX before Task 9 — approved responsive matrix propagation
 
@@ -74,6 +74,8 @@ Current `project.godot` uses a `1280×720` viewport baseline and `canvas_items`,
 
 Repository current canon is still bound to `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4` through `GM-CONTRACT-V4-4-BINDING-01`. The attached 2026-08-11 v4.5 thin-adapter contract is newer input and says current Base authority should be refetched, but it has not been adopted into GRIMOIRE canon. Do not silently replace the v4.4 binding. Treat v4.5 adoption as a distinct planning decision.
 
+This contract decision is independent from the factual Task 7 → Task 8 state correction. Task 8 should not be blocked merely because v4.5 has not yet been adopted; it remains governed by the currently active contract until that decision changes.
+
 ## 5. Benchmark / industry comparison
 
 | Reference | Observed pattern | GRIMOIRE implication |
@@ -83,6 +85,15 @@ Repository current canon is still bound to `PROJECT_TOTAL_PLANNING_IMPLEMENTATIO
 | Potion Craft | physical manipulation and experimentation are central to crafting fantasy | glyph drawing/placement can carry tactile authorship, but interactions must not become repetitive busywork |
 | Opus Magnum | spatial construction supports open-ended problem solving and readable iteration | circuit placement + preview should expose causality and support revision before irreversible use |
 | Google Engineering Practices | one self-contained change with related tests is easier to review, merge, and roll back | keep current-state recovery separate from Task 8 product implementation and separate from v4.5 contract adoption |
+
+Source starting points:
+
+- Godot multiple resolutions: https://docs.godotengine.org/en/stable/tutorials/rendering/multiple_resolutions.html
+- Godot 4.7.1 maintenance release: https://godotengine.org/article/maintenance-release-godot-4-7-1/
+- Noita: https://store.steampowered.com/app/881100/
+- Potion Craft: https://store.steampowered.com/app/1210320/
+- Opus Magnum: https://store.steampowered.com/app/558990/
+- Google Engineering Practices — Small CLs: https://google.github.io/eng-practices/review/developer/small-cls.html
 
 ## 6. External process overlay record
 
@@ -130,8 +141,8 @@ v4.5 contract binding → unchanged until explicit planning approval
 
 ```yaml
 current_state_recovery: READY_FOR_CORRECTIVE_SYNC
-product_task8_build: BLOCKED_UNTIL_CURRENT_STATE_SYNC_AND_CONTRACT_DECISION_RECONCILIATION
-v4_5_binding: USER_DECISION_REQUIRED
+product_task8_build: BLOCKED_UNTIL_CURRENT_STATE_SYNC
+v4_5_binding: USER_DECISION_REQUIRED_INDEPENDENT_OF_TASK8_STATE_RECOVERY
 base_promotion: NOT_APPLICABLE
 new_skill_creation: REJECTED_EXISTING_BASE_OWNERS_SUFFICIENT
 ```
