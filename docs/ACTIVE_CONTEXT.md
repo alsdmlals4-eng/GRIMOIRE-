@@ -113,6 +113,18 @@ TASK2_MERGED_MAIN_VERIFIED
 
 Task 3 handoff와 Task 2 HiGodot receipt는 역사 증거로 유효하지만 Tasks 3–7이 이미 merged된 사실을 되돌리지 않는다.
 
+### Historical v4.4 provenance contract
+
+```yaml
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
+hera_exact_pair: PASS
+spell_workflow_task2_authorized: true
+spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
+```
+
+이 메타데이터는 현행 Task 7→8 권위를 되돌리지 않고 v4.4 시기의 병합·도구 채택 provenance만 보존한다.
+
 ## Preserved validation boundaries
 
 ```text
