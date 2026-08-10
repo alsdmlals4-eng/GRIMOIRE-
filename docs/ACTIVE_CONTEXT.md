@@ -3,9 +3,15 @@
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
-active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4
-contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
+active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5
+contract_binding_decision: GM-CONTRACT-V4-5-BINDING-01
+contract_binding_sync: GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
+base_repository_review_policy: RECURSIVE_INVENTORY_THEN_RELEVANCE_DRIVEN_DEEP_READ
+adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
+external_process_policy: EXTERNAL_PROCESS_OVERLAY
+base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
 current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
@@ -43,9 +49,22 @@ local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
+## v4.5 r2 operating boundary
+
+v4.5 r2는 `THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON`을 적용한다. Base source snapshot `7ce3fb64...`는 `HISTORICAL_OBSERVATION_ONLY`, 이번 바인딩 시 관찰한 Base current main `315c66ee...`는 해당 실행의 live observation일 뿐 영구 권위가 아니다. 매 작업 시작 시 Base `main`과 Registry/관련 owner를 다시 복원한다.
+
+```yaml
+execution_request_state: USER_EXPLICIT_EXECUTION_REQUEST_PRESENT
+continuous_work: CONTINUOUS_WORK_ACTIVE
+merge_authority: APPROVED_ITEM_INHERITS_MERGE_AUTHORITY
+external_process_overlay: EXTERNAL_PROCESS_OVERLAY
+```
+
+Superpowers 등 외부 process framework는 execution-only overlay이며 프로젝트 또는 Base canon을 소유하지 않는다.
+
 ## Current Spell Workflow state
 
-`GM-SPELL-WORKFLOW-UI-V2-01`은 `글자 그리기 → 회로 배치 → 주문 사용`과 Stage 경계를 유지한다. 실제 merged lineage는 다음과 같다.
+`GM-SPELL-WORKFLOW-UI-V2-01`은 `글자 그리기 → 회로 배치 → 주문 사용`과 Stage 경계를 유지한다.
 
 ```yaml
 task3:
@@ -96,27 +115,16 @@ gut:
 hera:
   release: v1.0.0
   authority: LIVE_QA_AND_OBSERVABILITY_ONLY
+  status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
   persistent_source_mutation: FORBIDDEN
 ```
 
-## Historical Task 2 / Task 3 entry evidence
-
-다음 기록은 현재 next-task 지시가 아니라 provenance로 보존한다.
-
-```text
-GR-SYNC-20260809-01-TASK2-USER-APPROVAL
-GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN
-GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON
-GR-SYNC-20260809-08-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY
-TASK2_MERGED_MAIN_VERIFIED
-975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
-```
-
-Task 3 handoff와 Task 2 HiGodot receipt는 역사 증거로 유효하지만 Tasks 3–7이 이미 merged된 사실을 되돌리지 않는다.
-
-### Historical v4.4 provenance contract
+## Historical Task 2 / Task 3 / v4.4 evidence
 
 ```yaml
+historical_contract_binding: GM-CONTRACT-V4-4-BINDING-01
+historical_contract_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md
+historical_contract_disposition: HISTORICAL_SUPERSEDED_CURRENT_BINDING
 gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
 post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 hera_exact_pair: PASS
@@ -124,7 +132,15 @@ spell_workflow_task2_authorized: true
 spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
 ```
 
-이 메타데이터는 현행 Task 7→8 권위를 되돌리지 않고 v4.4 시기의 병합·도구 채택 provenance만 보존한다.
+```text
+GR-SYNC-20260809-01-TASK2-USER-APPROVAL
+GR-SYNC-20260809-06-SPELL-WORKFLOW-TASK2-MAIN
+GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON
+GR-SYNC-20260809-08-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY
+975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
+```
+
+v4.4와 Task2/Task3 진입 자료는 provenance로 유효하지만 current contract/next-task 권위를 소유하지 않는다.
 
 ## Preserved validation boundaries
 
@@ -148,4 +164,4 @@ GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 
 ## Contract boundary
 
-저장소 current canon은 v4.4 / `GM-CONTRACT-V4-4-BINDING-01`이다. 2026-08-11 v4.5 thin-adapter 입력은 별도 승인 전까지 `NEWER_INPUT_NOT_BOUND`로 취급한다. 이 계약 결정은 factual Task 7 → Task 8 상태 복구와 독립이다.
+저장소 current canon은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`은 `HISTORICAL_SUPERSEDED_CURRENT_BINDING`으로 보존한다.

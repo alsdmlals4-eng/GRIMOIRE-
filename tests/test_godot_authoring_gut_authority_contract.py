@@ -8,6 +8,7 @@ LEGACY_SPEC = ROOT / "docs/planning/GODOT_AUTHORING_GUT_TEST_AUTHORITY_ADOPTION_
 ADOPTION_SPEC = ROOT / "docs/testing/GUT_9_7_1_ADOPTION_SPEC.md"
 BINDING_V43 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md"
 BINDING_V44 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md"
+BINDING_V45 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_5_BINDING.md"
 PLAN = ROOT / "docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md"
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
@@ -24,6 +25,8 @@ CURRENT_SURFACES = [
     ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json",
 ]
 GUT_MERGED_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
+CURRENT_CONTRACT = "GM-CONTRACT-V4-5-BINDING-01"
+HISTORICAL_V44_CONTRACT = "GM-CONTRACT-V4-4-BINDING-01"
 HIGODOT_V312_TREE = "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35"
 HIGODOT_V313_TREE = "94be4fb34d49243375c592e17a1021c8c6fcbcf2"
 HIGODOT_V313_COMMIT = "22678e5f9b038d7203d6b43b0aae20a5417c500e"
@@ -34,21 +37,27 @@ RECEIPT_LIMIT = "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STAT
 TASK2_MERGED = "TASK2_MERGED_MAIN_VERIFIED"
 TASK3_READY = "TASK3_READY_AFTER_POST_MERGE_CANON"
 TASK2_RECEIPT_PASS = "TASK2_HIGODOT_RECEIPT_READBACK_PASS"
+TASK7_MERGED = "TASK7_MERGED_MAIN_VERIFIED"
+TASK8_NEXT = "TASK8_SPELL_USE_SCREEN"
 
 
 class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
     def test_authority_design_plan_bindings_and_adoption_spec_exist(self):
         for path in (
-            LEGACY_SPEC, ADOPTION_SPEC, BINDING_V43, BINDING_V44, PLAN, STATE,
+            LEGACY_SPEC, ADOPTION_SPEC, BINDING_V43, BINDING_V44, BINDING_V45, PLAN, STATE,
             UNRESOLVED, HIGODOT_V312_EVIDENCE, HIGODOT_V313_EVIDENCE, HERA_EVIDENCE,
         ):
             self.assertTrue(path.is_file(), str(path))
 
-    def test_v4_4_state_records_current_tools_and_preserves_boundaries(self):
+    def test_v4_5_state_records_current_tools_and_preserves_v4_4_boundaries(self):
         data = json.loads(STATE.read_text(encoding="utf-8"))
-        self.assertEqual("4.4", data["contract"]["version"])
-        self.assertEqual("ACTIVE_MERGED_MAIN", data["contract"]["status"])
-        self.assertEqual("GM-CONTRACT-V4-4-BINDING-01", data["contract"]["binding_decision_id"])
+        self.assertEqual("4.5", data["contract"]["version"])
+        self.assertEqual("ACTIVE_USER_APPROVED_BINDING", data["contract"]["status"])
+        self.assertEqual(CURRENT_CONTRACT, data["contract"]["binding_decision_id"])
+        self.assertEqual(HISTORICAL_V44_CONTRACT, data["contract"]["historical_binding_decision_id"])
+        self.assertEqual("315c66eea9614c284b9c11c4d522141065dfa4b0", data["base_policy_observation"]["current_main"])
+        self.assertEqual("7ce3fb64fa6303c5da6c7fc27c979f7233b761ac", data["base_policy_observation"]["source_snapshot_v4_5_r2"])
+        self.assertEqual("HISTORICAL_OBSERVATION_ONLY", data["base_policy_observation"]["source_snapshot_role"])
         self.assertEqual(GUT_MERGED_MAIN, data["source_main"])
         self.assertEqual("GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED", data["status"])
         self.assertEqual("TRACKED_HIGODOT_V3_1_3_EXACT_TREE_CONFIG_RECONCILED", data["current_tool_sync_status"])
@@ -98,6 +107,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertTrue(implementation["task2_authorized"])
         self.assertFalse(implementation["merge_authorized"])
 
+        self.assertEqual(TASK7_MERGED, data["entry_gate"]["status"].split("_TASK8_NEXT")[0])
         self.assertTrue(data["claims"]["higodot_tracked_v3_1_3_vendor_sync"])
         self.assertTrue(data["claims"]["tracked_project_godot_live_plugin_state_synced"])
         self.assertTrue(data["claims"]["spell_workflow_task2_merged_main_verified"])
@@ -108,20 +118,22 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertFalse(data["claims"]["three_screen_runtime_pass"])
         self.assertFalse(data["claims"]["visual_audio_complete"])
 
-    def test_current_authority_surfaces_are_live_v4_4(self):
+    def test_current_authority_surfaces_are_live_v4_5_with_v4_4_history(self):
+        combined = "\n".join(path.read_text(encoding="utf-8") for path in CURRENT_SURFACES)
         for path in CURRENT_SURFACES:
             text = path.read_text(encoding="utf-8")
-            self.assertIn("4.4", text, str(path))
-            self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text, str(path))
+            self.assertIn(CURRENT_CONTRACT, text, str(path))
             self.assertIn("GUT_FORMALLY_ADOPTED", text, str(path))
             self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", text, str(path))
-        combined = "\n".join(path.read_text(encoding="utf-8") for path in CURRENT_SURFACES)
+        self.assertIn(HISTORICAL_V44_CONTRACT, combined)
         self.assertIn("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", combined)
         self.assertIn(HERA_PASS, combined)
         self.assertIn(SHARED_CORE_PASS, combined)
         self.assertIn(THREE_SCREEN_PENDING, combined)
         self.assertIn("spell_workflow_task2_authorized", combined)
         self.assertIn(TASK2_MERGED, combined)
+        self.assertIn(TASK7_MERGED, combined)
+        self.assertIn(TASK8_NEXT, combined)
 
     def test_legacy_spec_preserves_authority_boundary(self):
         text = LEGACY_SPEC.read_text(encoding="utf-8")

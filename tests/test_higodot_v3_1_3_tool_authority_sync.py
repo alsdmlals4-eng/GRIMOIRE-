@@ -18,7 +18,8 @@ UPSTREAM_TAG_COMMIT = "22678e5f9b038d7203d6b43b0aae20a5417c500e"
 UPSTREAM_ROOT_TREE = "053131dbd726ebd492824cea9488ffeae3f2645b"
 UPSTREAM_PLUGIN_TREE = "94be4fb34d49243375c592e17a1021c8c6fcbcf2"
 HISTORICAL_V312_TREE = "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35"
-BASE_MAIN = "2a6ced23f6d6de1fb6e0a281c7138beb03f1a13b"
+CURRENT_BASE_MAIN = "315c66eea9614c284b9c11c4d522141065dfa4b0"
+V45_SOURCE_BASE_SNAPSHOT = "7ce3fb64fa6303c5da6c7fc27c979f7233b761ac"
 
 
 class HiGodotV313ToolAuthoritySyncTests(unittest.TestCase):
@@ -74,7 +75,15 @@ class HiGodotV313ToolAuthoritySyncTests(unittest.TestCase):
         history = data["higodot"]["historical_v3_1_2"]
         self.assertEqual("v3.1.2", history["release_tag"])
         self.assertEqual(HISTORICAL_V312_TREE, history["project_vendor_tree_sha"])
-        self.assertEqual(BASE_MAIN, data["base_policy_observation"]["latest_main_observed"])
+
+        base = data["base_policy_observation"]
+        self.assertEqual(CURRENT_BASE_MAIN, base["latest_main_observed"])
+        self.assertEqual(CURRENT_BASE_MAIN, base["current_main"])
+        self.assertEqual(V45_SOURCE_BASE_SNAPSHOT, base["source_snapshot_v4_5_r2"])
+        self.assertEqual("HISTORICAL_OBSERVATION_ONLY", base["source_snapshot_role"])
+        self.assertEqual("ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK", base["snapshot_policy"])
+        self.assertEqual("RECURSIVE_INVENTORY_THEN_RELEVANCE_DRIVEN_DEEP_READ", base["repository_review_policy"])
+
         self.assertTrue(data["gut"]["user_plugin_approval"])
         self.assertEqual("ENABLED_AT_GITHUB_MAIN_READBACK", data["gut"]["tracked_editor_plugin_enablement"])
         self.assertTrue(data["hera"]["user_plugin_approval"])

@@ -1,10 +1,15 @@
 # GRIMOIRE 현재 미확정·차단 게이트
 
 ```yaml
-active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.4
-contract_version: "4.4"
-contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
+active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5
+contract_version: "4.5"
+contract_binding_decision: GM-CONTRACT-V4-5-BINDING-01
+contract_binding_sync: GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
+base_repository_review_policy: RECURSIVE_INVENTORY_THEN_RELEVANCE_DRIVEN_DEEP_READ
+adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
+external_process_policy: EXTERNAL_PROCESS_OVERLAY
 current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision_id: GM-SPELL-WORKFLOW-UI-V2-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
@@ -31,9 +36,27 @@ three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEME
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 ```
 
+## v4.5 binding gate
+
+```yaml
+v4_5_binding: USER_APPROVED_CURRENT_BINDING
+binding_decision: GM-CONTRACT-V4-5-BINDING-01
+binding_sync: GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING
+binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_5_BINDING.md
+execution_request_state: USER_EXPLICIT_EXECUTION_REQUEST_PRESENT
+base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
+base_source_snapshot_7ce3fb64_role: HISTORICAL_OBSERVATION_ONLY
+silent_rebinding: NOT_APPLICABLE_USER_EXPLICITLY_APPROVED
+sheet_sync: SHEET_WRITE_READBACK_PASS
+pre_sheet_exact_head_validation: GREEN_AT_EE0C3470
+remaining_binding_work: FINAL_EXACT_HEAD_REVALIDATION_THEN_MERGE_AND_POST_MERGE_READBACK
+```
+
+v4.5 채택과 동일 Decision/Sync의 Sheet readback은 완료됐다. 이 상태 반영으로 PR HEAD가 다시 바뀌므로, 남은 binding 작업은 **새 final exact HEAD의 전체 적용 CI 재검증 → review thread 0/main 불변 확인 → merge → post-merge GitHub·Sheet readback**이다.
+
 ## 닫힌 Spell Workflow implementation gates
 
-Task 2의 `TASK2_MERGED_MAIN_VERIFIED`는 역사적으로 닫힌 gate이며, Tasks 3–7도 더 이상 unresolved가 아니다. 이 표의 Task 2 기록은 provenance이지 current next-task 권위가 아니다.
+Task 2와 Tasks 3–7은 unresolved가 아니다.
 
 ```yaml
 task2:
@@ -66,18 +89,17 @@ task7:
   status: TASK7_MERGED_MAIN_VERIFIED
 ```
 
-Task 3의 과거 `TASK3_TDD_RED`와 `HIGODOT_PERSISTENT_TASK3_AUTHORING_WITH_FRESH_RECEIPT_GATE`는 진입/검증 provenance로 보존하지만 현재 허용 next action이 아니다.
-
-### Historical v4.4 provenance contract
+## Historical v4.4 provenance contract
 
 ```yaml
+historical_contract_binding: GM-CONTRACT-V4-4-BINDING-01
+historical_contract_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md
+historical_contract_disposition: HISTORICAL_SUPERSEDED_CURRENT_BINDING
 post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 hera_exact_pair: PASS
 spell_workflow_task2_authorized: true
 spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
 ```
-
-이 메타데이터는 current unresolved 판단을 Task 2로 되돌리지 않고 v4.4 시기의 병합·도구 채택 추적성만 유지한다.
 
 ## 현재 next implementation gate
 
@@ -100,12 +122,8 @@ live_qa: HERA_OBSERVABILITY_ONLY_SOURCE_DELTA_NONE
 
 ## Task 9 precondition findings
 
-Task 9 responsive/E2E 구현 전에 아래 두 항목을 닫는다.
-
-1. **APPROVED_DEVICE_MATRIX_PROPAGATION** — Sheet에 이미 승인된 `16:9`, `18:9`, `19.5:9`, `20:9`, cutout/safe-area, foldable/tablet 분류를 Task 9 acceptance에 명시한다.
-2. **GODOT_STRETCH_ASPECT_EXPLICIT_VERIFICATION** — 현재 1280×720 + `canvas_items` reference surface와 함께 multiple-aspect 처리 설정을 실제 project setting에서 확인한다. engine default를 검증 증거로 간주하지 않는다.
-
-이 둘은 새 제품 방향을 만드는 Gate가 아니라 기존 승인 요구의 consumer propagation / technical verification이다.
+1. **APPROVED_DEVICE_MATRIX_PROPAGATION** — `16:9`, `18:9`, `19.5:9`, `20:9`, cutout/safe-area, foldable/tablet 분류를 Task 9 acceptance에 명시한다.
+2. **GODOT_STRETCH_ASPECT_EXPLICIT_VERIFICATION** — multiple-aspect 처리 설정을 실제 project setting에서 확인한다.
 
 ## 구현 이후 acceptance 대기
 
@@ -119,8 +137,6 @@ Task 9 responsive/E2E 구현 전에 아래 두 항목을 닫는다.
 | `PERFORMANCE_NOT_RUN` | `NOT_CLAIMED` |
 | `FULL_VERTICAL_SLICE_NOT_RUN` | `NOT_CLAIMED` |
 
-`THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`은 기존 gate ID를 추적성 때문에 유지한다. 현재 사실상 남은 구현은 Tasks 8–9이며, Task 10 evidence 이후 acceptance한다.
-
 ## 현재 provenance / delivery limits
 
 | ID | 상태 |
@@ -132,23 +148,11 @@ Task 9 responsive/E2E 구현 전에 아래 두 항목을 닫는다.
 | `LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS` | `DELIVERY_BLOCKING` |
 | `GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS` | `DELIVERY_BLOCKING` |
 
-## Contract decision required, independent of Task 8
-
-첨부 v4.5 thin-adapter 계약은 현재 v4.4보다 최신 입력이지만 저장소에 바인딩되지 않았다.
-
-```yaml
-v4_5_binding: USER_DECISION_REQUIRED
-current_binding: GM-CONTRACT-V4-4-BINDING-01
-silent_rebinding: FORBIDDEN
-task8_dependency_on_v4_5_approval: false
-```
-
-즉 Task 8 factual next-state는 current v4.4 아래에서도 유효하다. v4.5 채택은 별도 Grill Me Decision으로 닫는다.
-
 ## 현재 허용
 
 ```yaml
 allowed_next_actions:
+  - FINALIZE_V4_5_R2_FINAL_EXACT_HEAD_AND_MERGE
   - TASK8_TDD_RED
   - HIGODOT_PERSISTENT_TASK8_AUTHORING_WITH_FRESH_RECEIPT_GATE
   - GUT_DETERMINISTIC_TASK8_TESTING

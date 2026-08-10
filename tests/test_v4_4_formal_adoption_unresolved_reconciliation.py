@@ -13,19 +13,25 @@ THREE_SCREEN_PENDING = "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9"
 TASK2_MERGED = "TASK2_MERGED_MAIN_VERIFIED"
 TASK3_READY = "TASK3_READY_AFTER_POST_MERGE_CANON"
 TASK2_MAIN = "975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0"
+TASK7_MERGED = "TASK7_MERGED_MAIN_VERIFIED"
+TASK8_NEXT = "TASK8_SPELL_USE_SCREEN"
 
 
 class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
-    def test_current_unresolved_is_v4_4_merged_main_and_closes_resolved_gut_blockers(self) -> None:
+    def test_current_unresolved_is_v4_5_and_preserves_v4_4_formal_adoption_history(self) -> None:
         text = UNRESOLVED.read_text(encoding="utf-8")
-        self.assertIn('contract_version: "4.4"', text)
+        self.assertIn('contract_version: "4.5"', text)
+        self.assertIn("GM-CONTRACT-V4-5-BINDING-01", text)
         self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text)
+        self.assertIn("HISTORICAL_SUPERSEDED_CURRENT_BINDING", text)
         self.assertIn(MERGED_MAIN, text)
         self.assertIn("formal_adoption_scope: MERGED_MAIN_VERIFIED", text)
         self.assertIn("GUT_FORMALLY_ADOPTED", text)
         self.assertIn("GUT_PUBLIC_STANDARD_GITHUB_ACTIONS_PASS", text)
         self.assertIn("ROLE_SEPARATED_REVIEW_P0_P1_ZERO", text)
         self.assertIn("PR85_MERGED_MAIN_VERIFIED", text)
+        self.assertIn(TASK7_MERGED, text)
+        self.assertIn(TASK8_NEXT, text)
         for stale in (
             "GUT_ADOPTION_SPEC_NOT_MERGED", "GUT_GODOT_4_7_1_RUNTIME_COMPATIBILITY_NOT_RUN",
             "GUT_ACTUAL_CONSUMPTION_NOT_ENABLED", "GUT_CI_NOT_ENABLED",
@@ -57,10 +63,12 @@ class V44FormalAdoptionUnresolvedReconciliationTests(unittest.TestCase):
         self.assertIn(HERA_PASS, text)
         self.assertIn("spell_workflow_task2_authorized: true", text)
         self.assertIn(f"spell_workflow_task2_readiness: {TASK3_READY}", text)
-        self.assertIn(f"spell_workflow_task2_execution_status: MERGED_MAIN_VERIFIED", text)
+        self.assertIn("spell_workflow_task2_execution_status: MERGED_MAIN_VERIFIED", text)
         self.assertIn(TASK2_MERGED, text)
         self.assertIn(TASK2_MAIN, text)
         self.assertIn("TASK2_HIGODOT_RECEIPT_READBACK_PASS", text)
+        self.assertIn(TASK7_MERGED, text)
+        self.assertIn(TASK8_NEXT, text)
         self.assertNotIn("spell_workflow_task2_readiness: READY_FOR_HIGODOT_AUTHORING", text)
         self.assertNotIn("spell_workflow_task2_execution_status: AUTHORIZED_AWAITING_HIGODOT_CHANNEL", text)
         self.assertNotIn("spell_workflow_task2_execution_status: AUTHORIZED_HIGODOT_CHANNEL_CONFIRMED", text)
