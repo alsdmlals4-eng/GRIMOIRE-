@@ -30,6 +30,8 @@ jobs:
         run: python -m unittest tests.test_v4_3_contract_binding -v
       - name: Validate v4.4 project binding and cold-start authority
         run: python -m unittest tests.test_v4_4_contract_binding -v
+      - name: Validate v4.5 r2 project binding transition
+        run: python -m unittest tests.test_v4_5_contract_binding -v
       - name: Validate v4.4 unresolved-gate reconciliation
         run: python -m unittest tests.test_v4_4_formal_adoption_unresolved_reconciliation -v
       - name: Validate v4.4 post-merge canon synchronization
