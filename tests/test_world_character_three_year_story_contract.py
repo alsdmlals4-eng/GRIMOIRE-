@@ -23,9 +23,8 @@ def test_decision_and_sync_are_user_approved():
 
 def test_world_model_locks_precedent_context_revision_without_hidden_true_answer():
     body = canon()
-    for token in ["원문", "정식", "문맥", "개정"]:
-        assert f"### 3." in body or token in body
-        assert token in body
+    for section in ["### 3.1 원문", "### 3.2 정식", "### 3.3 문맥", "### 3.4 개정"]:
+        assert section in body
     assert "학교가 가르치는 정식은 절대진리가 아니라 오랜 실패를 거쳐 검증된 안전한 선례다." in body
     assert "고대의 유일한 정답 문서나 숨은 치트키로 사용하지 않는다." in body
     assert "실패 기록을 지우는 리셋 도구가 아니다." in body
