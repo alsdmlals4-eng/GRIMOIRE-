@@ -238,7 +238,7 @@
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "contract_binding_sync_id": "GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING",
-    "contract_binding_sheet_status": "PENDING_EXACT_HEAD_THEN_SHEET_READBACK",
+    "contract_binding_sheet_status": "SHEET_WRITE_READBACK_PASS",
     "sync_id": "GR-SYNC-20260808-07-VISUAL-PLATFORM-GATE-SEQUENCING",
     "current_tool_sync_id": "GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION",
     "post_merge_sheet_canon_sync_id": "GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON",
