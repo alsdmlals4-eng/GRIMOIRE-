@@ -105,6 +105,18 @@ GR-SYNC-20260809-08-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY
 
 Task 2 merged main은 `975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0`이다. 이 값과 과거 Task 3 handoff는 유효한 provenance지만 더 이상 next-task 권위가 아니다.
 
+### Historical v4.4 provenance contract
+
+다음 필드는 현재 next-task 권위가 아니라 과거 병합·도구 채택의 추적 계약으로 유지한다.
+
+```yaml
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
+hera_exact_pair: PASS
+spell_workflow_task2_authorized: true
+spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
+```
+
 ## 현재 완료로 주장하지 않는 항목
 
 ```text
