@@ -66,7 +66,7 @@
     "audio_vault": "BLOCKED_UNVERIFIED",
     "sheet_write": "SHEET_WRITE_READBACK_PASS",
     "sheet_readback": "SHEET_WRITE_READBACK_PASS",
-    "contract_v4_5_sheet_sync": "PENDING_EXACT_HEAD_THEN_SHEET_READBACK",
+    "contract_v4_5_sheet_sync": "SHEET_WRITE_READBACK_PASS",
     "merge_authorized": false,
     "next_priority": "TASK8_TDD_HIGODOT_AUTHORING_WITH_FRESH_RECEIPT_GATE"
   },
@@ -99,7 +99,7 @@
   },
   "validation": {
     "contract_v4_4_binding": "HISTORICAL_MERGED_MAIN",
-    "contract_v4_5_binding": "USER_APPROVED_IN_PROGRESS_EXACT_HEAD_AND_SHEET_PENDING",
+    "contract_v4_5_binding": "USER_APPROVED_EXACT_HEAD_GREEN_SHEET_READBACK_PASS_MERGE_PENDING",
     "entry_state_reconciliation": "PASS_WITH_POST_IMPLEMENTATION_ACCEPTANCE_REMAINING",
     "higodot_vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
     "higodot_authoring_receipt_gate": "TASK2_HIGODOT_RECEIPT_READBACK_PASS",
