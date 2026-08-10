@@ -10,6 +10,8 @@ contract_binding_decision: GM-CONTRACT-V4-4-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_task: TASK8_SPELL_USE_SCREEN
