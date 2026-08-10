@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://djxphuis4ae85"]
+
+[ext_resource type="Script" uid="uid://c18pr0skn5260" path="res://src/ui/spell_workflow/components/glyph_card.gd" id="1_yjc0t"]
+
+[node name="GlyphCard" type="PanelContainer" unique_id=1547806412]
+script = ExtResource("1_yjc0t")
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=1094785897]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Content" unique_id=1762564714]
+layout_mode = 2
+
+[node name="RoleLabel" type="Label" parent="Content" unique_id=1968583419]
+layout_mode = 2
+
+[node name="RoleIconLabel" type="Label" parent="Content" unique_id=1805179321]
+layout_mode = 2
+
+[node name="SourceLabel" type="Label" parent="Content" unique_id=962981565]
+layout_mode = 2
+
+[node name="CountLabel" type="Label" parent="Content" unique_id=600520003]
+layout_mode = 2
+
+[node name="QualityLabel" type="Label" parent="Content" unique_id=917024513]
+layout_mode = 2
+
+[node name="ReservationLabel" type="Label" parent="Content" unique_id=1908506711]
+layout_mode = 2

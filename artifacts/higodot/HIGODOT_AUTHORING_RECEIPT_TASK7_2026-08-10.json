@@ -1,0 +1,81 @@
+{
+  "schema": "HIGODOT_AUTHORING_RECEIPT_V1",
+  "receipt_id": "GR-TASK7-HIGODOT-20260810-01",
+  "recorded_at": "2026-08-10T11:30:00+09:00",
+  "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
+  "issue": 109,
+  "base_commit": "4a9daf0ed8de7bb39173a71e6ada9324d5a462b7",
+  "result_commit": "UNCOMMITTED_AT_RECEIPT_TIME",
+  "tool": {
+    "name": "Godot AI / HiGodot",
+    "godot_version": "4.7.1-stable (official)",
+    "plugin_version": "3.1.3",
+    "server_version": "3.1.3",
+    "session_id": "task7-circuit-placement-screen@63aa",
+    "project_path": "C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-/.worktrees/task7-circuit-placement-screen/"
+  },
+  "changed_godot_artifacts": [
+    "res://src/ui/spell_workflow/components/glyph_card.gd",
+    "res://src/ui/spell_workflow/components/glyph_card.tscn",
+    "res://src/ui/spell_workflow/components/glyph_source_panel.gd",
+    "res://src/ui/spell_workflow/components/glyph_source_panel.tscn",
+    "res://src/ui/spell_workflow/components/spell_preview_panel.gd",
+    "res://src/ui/spell_workflow/components/spell_preview_panel.tscn",
+    "res://src/ui/spell_workflow/circuit_placement_screen.gd",
+    "res://src/ui/spell_workflow/circuit_placement_screen.tscn",
+    "res://tests/integration/test_circuit_placement_workflow_screen.gd",
+    "res://tests/test_runner.gd"
+  ],
+  "hash_evidence": {
+    "res://src/ui/spell_workflow/components/glyph_card.gd": {"before_sha256": "ABSENT", "after_sha256": "4F80E7455D1EC86B7DE1FED7A6A89A28B871E7874F473E836078280FD880FAB4"},
+    "res://src/ui/spell_workflow/components/glyph_source_panel.gd": {"before_sha256": "ABSENT", "after_sha256": "DEFD39E9F43D461AD044185335B14DB13EEE969C0A7420F2133C33F6BFD73D80"},
+    "res://src/ui/spell_workflow/components/spell_preview_panel.gd": {"before_sha256": "ABSENT", "after_sha256": "A6253C5C25835890B1A7FFD31B85CB39582AFE0DFD9F1C2DF0893D44A646D039"},
+    "res://src/ui/spell_workflow/circuit_placement_screen.gd": {"before_sha256": "ABSENT", "after_sha256": "9ED8F35B0763DE79CB87013FE239D8979D5D0EEF58F156F725BAFC5C742CE0EC"},
+    "res://tests/integration/test_circuit_placement_workflow_screen.gd": {"before_sha256": "ABSENT", "after_sha256": "0E4E2464A6FD2265CDE14B89C98E5688ABA59C009E5FEDD7162889CC13C390B5"},
+    "res://tests/test_runner.gd": {"before_sha256": "PREEXISTING", "after_sha256": "C4348976D5F879A94D1A2BFACA2A22B79944E6FA6F96FB7098AFAAD00EDF6C1B"}
+  },
+  "readback_evidence": [
+    "Fresh replacement session list: task7-circuit-placement-screen@63aa, Godot 4.7.1-stable (official), ready, exact worktree path confirmed.",
+    "Task 6 GlyphDrawingScreen and IncidentExplanationOverlay read back before Task 7 authoring.",
+    "CircuitPlacementSession, GlyphSourceLoadout, SpellWorkflowState, SpellWorkflowCoordinator, StarCircuitBoard, and test runner read back before Task 7 authoring.",
+    "Fresh scene hierarchy: MarginContainer/VBoxContainer/HBoxContainer layout contains VaultSourcePanel, StockSourcePanel, MainSlotButton, five AuxSlot buttons, StarCircuitBoard, SpellPreviewPanel, and the five bottom actions; it contains no TargetSelectionPanel."
+  ],
+  "tdd": {
+    "red_1": "Editor game_eval: 5 expected failures for absent Task 7 scripts/scene.",
+    "green_1": "Editor game_eval: Task 7 contract 38 assertions, 0 failures.",
+    "red_2": "Editor game_eval: missing explicit overlay-close boundary, 37 assertions / 1 failure.",
+    "green_2": "Editor game_eval: Task 7 contract 38 assertions, 0 failures after non-resetting boundary.",
+    "red_3": "Editor game_eval: non-reusable dynamically-created cards lacked scene children, 41 assertions / 2 failures.",
+    "green_3": "Editor game_eval: Task 7 contract 41 assertions, 0 failures after reusable card-scene instantiation.",
+    "red_4": "Adversarial review found missing Cancel control; Editor game_eval: 43 assertions / 2 failures.",
+    "green_4": "Editor game_eval: Task 7 contract plus reset/cancel/overlay boundary, 44 assertions, 0 failures.",
+    "red_5": "Independent adversarial review found disconnected card selection, false disabled state, overlapping layout, and missing Main/Aux redundancy (P1x4).",
+    "green_5": "Editor game_eval: 59 assertions, 0 failures after explicit slot routing, read-only reserved cards, container layout, and Main/Aux text plus icon/shape cues."
+  },
+  "validation": {
+    "editor_task7_task6_placement": "PASS: 110 assertions, 0 failures",
+    "editor_task5_and_legacy": "PASS: 101 assertions, 0 failures (atomic use, workflow state, coordinator, legacy StarCircuitCommitCoordinator)",
+    "headless_shell": "NOT_PASS: Godot 4.7.1 direct headless runner crashed with signal 11; not used as PASS evidence.",
+    "gut": "NOT_RUN: no Task 7 GUT suite; direct headless environment is signal-11 limited.",
+    "exact_head_ci": "PENDING: required after push and PR creation"
+  },
+  "adversarial_review": {
+    "initial": "P0=0, P1=4; all four P1 findings were converted to RED tests and corrected.",
+    "final": "P0=0, P1=0; final receipt SHA-256 values were independently read back against the persistent GDScript and integration-test bytes."
+  },
+  "delta_reconciliation": {
+    "status": "TASK7_ALLOWED_DELTA_ONLY",
+    "hera_source_delta": "NONE",
+    "editor_generated_untracked_sidecars_removed": [
+      "src/core/glyphs/glyph_catalog.gd.uid",
+      "tests/gut/unit/test_glyph_source_loadout.gd.uid",
+      "tests/unit/test_glyph_catalog.gd.uid",
+      "tests/unit/test_glyph_source_loadout.gd.uid"
+    ],
+    "excluded": ["project.godot", "addons/gut/**", "addons/hera_agent_godot/**", "assets/art/**"]
+  },
+  "limitations": [
+    "Device, performance, accessibility, human, and full-vertical-slice validation remain NOT_RUN.",
+    "Hera was not used for persistent source mutation."
+  ]
+}
