@@ -13,6 +13,11 @@ external_process_policy: EXTERNAL_PROCESS_OVERLAY
 base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
 current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+current_planning_decision: GM-YEAR-ONE-CHAPTER-CURRICULUM-01
+current_planning_sync: GR-SYNC-20260811-05-YEAR-ONE-CHAPTER-CURRICULUM
+year_one_chapters: 7
+year_one_term_distribution: 2_2_3
+next_planning_axis: C_WORLD_CHARACTERS_THREE_YEAR_STORY
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
@@ -54,6 +59,26 @@ merge_authority: APPROVED_ITEM_INHERITS_MERGE_AUTHORITY
 ```
 
 v4.5 r2는 Base current canon을 복제하지 않는 thin adapter다. Base는 매 작업 `main`과 Registry/관련 owner를 다시 읽는다. Superpowers 같은 process framework는 `EXTERNAL_PROCESS_OVERLAY`이며 프로젝트/Base canon을 소유하지 않는다.
+
+## GM-YEAR-ONE-CHAPTER-CURRICULUM-01 — current planning decision
+
+```yaml
+decision_id: GM-YEAR-ONE-CHAPTER-CURRICULUM-01
+sync_id: GR-SYNC-20260811-05-YEAR-ONE-CHAPTER-CURRICULUM
+approval: USER_APPROVED_ACTIVE
+year_one_chapters: 7
+term_distribution: 2_2_3
+chapter_function_contract: FIXED_FUNCTIONS_VARIABLE_ORDER
+separate_exam: FORBIDDEN_AS_REQUIRED_CONTENT
+year_one_major_incident: 서리꽃 온실의 심장
+year_one_ending: FIRST_INDEPENDENT_PRINCIPLE_AND_SMALL_WORLD_REWRITE
+growth_economy_numbers: TEST_VALUE
+next_planning_axis: C_WORLD_CHARACTERS_THREE_YEAR_STORY
+```
+
+1학년은 `정답 학습 → 복수 원리 비교 → 실패·부분성공 복기 → 실제 현장 책임 → 자기 원리 작성`으로 완결한다. 각 Chapter는 `발견·학습 / 선택·준비 / 통제 응용 / 실전·책임 / 복기·다음 질문`의 다섯 기능을 보존하되 장면 순서·시작 압력·형태·비중을 바꾼다. `서리꽃 온실의 심장`은 Internal Slice의 압축 검증판과 Year-One Chapter 6의 확장판을 구분한다. Chapter 7은 같은 전투 재시도가 아니라 마도서 증거를 바탕으로 첫 작은 세계 재작성을 수행한다.
+
+현재 주문 제품 권위는 `FIVE_POINT_STAR / GM-SPELL-WORKFLOW-UI-V2-01`이며 historical 3×3 회로 언어를 신규 Chapter 권위로 사용하지 않는다. 수강 슬롯·자유일정 횟수·평가 가중치·재료량 등 수치는 후속 성장·경제 단계까지 `TEST_VALUE`다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
