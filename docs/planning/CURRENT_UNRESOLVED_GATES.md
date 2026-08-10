@@ -24,9 +24,12 @@ review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 
 ## 닫힌 Spell Workflow implementation gates
 
-Tasks 3–7은 더 이상 unresolved가 아니다.
+Task 2의 `TASK2_MERGED_MAIN_VERIFIED`는 역사적으로 닫힌 gate이며, Tasks 3–7도 더 이상 unresolved가 아니다. 이 표의 Task 2 기록은 provenance이지 current next-task 권위가 아니다.
 
 ```yaml
+task2:
+  merge: 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
+  status: TASK2_MERGED_MAIN_VERIFIED
 task3:
   pr: 104
   merge: 3a79c8d1aab67813ef6d1c6662f1e460a711613c
