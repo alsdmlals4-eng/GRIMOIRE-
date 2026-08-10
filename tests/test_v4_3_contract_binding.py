@@ -46,10 +46,12 @@ class V43ContractBindingTests(unittest.TestCase):
         ):
             self.assertIn(token, text)
 
-    def test_historical_spec_is_consumed_by_current_v4_4_formal_adoption(self) -> None:
+    def test_historical_v4_3_spec_is_consumed_by_current_v4_5_formal_adoption_state(self) -> None:
         self.assertTrue(DECISION.is_file(), str(DECISION))
         state = json.loads(STATE.read_text(encoding="utf-8"))
-        self.assertEqual("4.4", state["contract"]["version"])
+        self.assertEqual("4.5", state["contract"]["version"])
+        self.assertEqual("GM-CONTRACT-V4-5-BINDING-01", state["contract"]["binding_decision_id"])
+        self.assertEqual("GM-CONTRACT-V4-4-BINDING-01", state["contract"]["historical_binding_decision_id"])
         self.assertEqual(MERGED_MAIN, state["source_main"])
         self.assertEqual("GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED", state["status"])
         self.assertEqual("GUT_SPEC_MERGED_MAIN_VERIFIED", state["gut"]["adoption_spec_status"])
@@ -67,9 +69,10 @@ class V43ContractBindingTests(unittest.TestCase):
         self.assertFalse(state["claims"]["tool_vendor_integrity_pass"])
         self.assertTrue(state["claims"]["spell_workflow_task2_authorized"])
 
-    def test_current_unresolved_is_v4_4_post_merge_not_v4_3_gate(self) -> None:
+    def test_current_unresolved_is_v4_5_not_v4_3_gate(self) -> None:
         current = UNRESOLVED.read_text(encoding="utf-8")
-        self.assertIn('contract_version: "4.4"', current)
+        self.assertIn('contract_version: "4.5"', current)
+        self.assertIn("GM-CONTRACT-V4-5-BINDING-01", current)
         self.assertIn("GM-CONTRACT-V4-4-BINDING-01", current)
         self.assertIn(MERGED_MAIN, current)
         self.assertIn("GUT_FORMALLY_ADOPTED", current)
@@ -79,7 +82,7 @@ class V43ContractBindingTests(unittest.TestCase):
         self.assertIn("HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY", current)
         self.assertIn("AUDIO_VAULT_PATH_UNVERIFIED", current)
 
-    def test_v4_3_editor_plugin_deferral_is_historical_while_current_v4_4_is_enabled(self) -> None:
+    def test_v4_3_editor_plugin_deferral_is_historical_while_current_v4_5_is_enabled(self) -> None:
         spec = SPEC.read_text(encoding="utf-8")
         self.assertIn("SPEC_ONLY_NO_INSTALLATION", spec)
         project = PROJECT.read_text(encoding="utf-8")
