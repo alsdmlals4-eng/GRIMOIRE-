@@ -23,6 +23,10 @@ circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 higodot_release: v3.1.3
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+higodot_tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+higodot_post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
+higodot_tool_state_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+higodot_tool_state_sheet_sync: SHEET_WRITE_READBACK_PASS
 gut_status: GUT_FORMALLY_ADOPTED
 gut_release: v9.7.1
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
@@ -30,6 +34,8 @@ hera_merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
 hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
+visual_platform_merged_main: 5016bd090ad09892d36a8b751c7a9649868b76d5
+visual_platform_sheet_sync: SHEET_WRITE_READBACK_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 review_model: GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY
 ```
@@ -97,6 +103,9 @@ higodot:
   release: v3.1.3
   authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
   tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+  post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
+  reconciled_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+  sheet_sync: SHEET_WRITE_READBACK_PASS
   plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
   vendor_integrity: PASS_EXACT_TREE_IDENTITY
   direct_local_upgrade_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
