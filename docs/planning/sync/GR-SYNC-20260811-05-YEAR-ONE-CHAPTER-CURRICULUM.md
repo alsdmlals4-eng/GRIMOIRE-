@@ -34,6 +34,7 @@ sheet_write_readback: PASS
 docs/planning/YEAR_ONE_CHAPTER_CURRICULUM_01_APPROVAL_2026-08-11.md
 tests/test_year_one_chapter_curriculum_contract.py
 docs/planning/sync/GR-SYNC-20260811-05-YEAR-ONE-CHAPTER-CURRICULUM.md
+docs/planning/CURRENT_CONFIRMED_DECISIONS.md
 ```
 
 Godot product/addon/config source는 수정하지 않는다.
@@ -48,6 +49,8 @@ Godot product/addon/config source는 수정하지 않는다.
 02_현재_확정결정 A77:J77
 04_누락_충돌_감사 A89:J89
 10_제품방향 D14:F14, A19:F19
+11_세계관 C2
+13_주요인물 G2, G5:G6
 30_데모범위_품질기준_제작기반 B2
 50_메인콘텐츠 A14:J20
 52_글쓰기_서사 A10:I16
@@ -61,7 +64,7 @@ decision_id: MATCH
 chapter_rows: 7_OF_7_MATCH
 story_rows: 7_OF_7_MATCH
 term_distribution: 2_2_3_MATCH
-no_separate_exam_current_consumer: MATCH
+no_separate_exam_current_consumers: MATCH_30_11_13
 first_world_rewrite: MATCH
 sheet_status: SHEET_WRITE_READBACK_PASS
 ```
@@ -76,7 +79,13 @@ sheet_status: SHEET_WRITE_READBACK_PASS
 
 ### stale consumer — 별도 시험
 
-`30_데모범위_품질기준_제작기반`의 대표 플레이 행에 남아 있던 오래된 `시험` 표현은 현재 `NO_SEPARATE_EXAM` 권위와 충돌하므로 `교내 일상·제작`으로 수정했다. 과거 결정의 거부 대안·역사 기록에 등장하는 시험 표현은 삭제하지 않는다.
+현행 고권위는 `NO_SEPARATE_EXAM`이다. 다음 current consumer에 남아 있던 오래된 시험 언어를 현재 의미로 교정했다.
+
+- `30_데모범위_품질기준_제작기반`: 대표 플레이의 `시험`을 `교내 일상·제작`으로 교정.
+- `11_세계관`: 마법학교의 `실기시험`을 `교내 응용·학기말 포트폴리오 평가`로 교정.
+- `13_주요인물`: 플레이어/교수/핵심 동급생의 `시험` 중심 장면 표현을 `교내 응용·학기말 포트폴리오/학기평가`로 교정.
+
+과거 결정의 거부 대안·역사 기록에 등장하는 시험 표현은 삭제하지 않는다.
 
 ### historical consumer — 3×3 회로
 
