@@ -3,7 +3,7 @@
 ```yaml
 sync_id: GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING
 decision_id: GM-CONTRACT-V4-5-BINDING-01
-status: USER_APPROVED_BINDING_IN_PROGRESS
+status: USER_APPROVED_EXACT_HEAD_GREEN_SHEET_READBACK_PASS_MERGE_PENDING
 approved_at: 2026-08-11
 approval: USER_APPROVED
 source_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5_r2.md
@@ -13,6 +13,8 @@ previous_binding_disposition: HISTORICAL_SUPERSEDED_CURRENT_BINDING
 product_decision_changed: false
 persistent_godot_authoring: NOT_RUN
 human_device_performance_promotion: NONE
+sheet_sync: SHEET_WRITE_READBACK_PASS
+merge_state: PENDING_FINAL_EXACT_HEAD_REVALIDATION
 ```
 
 ## 승인 근거
@@ -75,14 +77,22 @@ windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 - HUMAN/DEVICE/PERFORMANCE/FULL_VERTICAL_SLICE/EXPORT/AUDIO/LOCAL 상태가 근거 없이 승격되지 않았는가.
 - GitHub와 Sheet가 같은 Decision/Sync를 갖는가.
 
-## Sheet 예정 범위
+## Sheet 동기화 증거
 
-```text
-00_프로젝트_허브
-01_작업순서
-02_현재_확정결정
-04_누락_충돌_감사
-99_변경이력
+```yaml
+sheet_surfaces:
+  - 00_프로젝트_허브
+  - 01_작업순서
+  - 02_현재_확정결정
+  - 04_누락_충돌_감사
+  - 99_변경이력
+sheet_status: SHEET_WRITE_READBACK_PASS
+readback_ranges:
+  - 00_프로젝트_허브!E2:K2
+  - 01_작업순서!A59:N59
+  - 02_현재_확정결정!A76:M76
+  - 04_누락_충돌_감사!A87:I87
+  - 99_변경이력!A127:H127
 ```
 
-GitHub exact-head GREEN/readback 후 같은 Decision/Sync ID로 Sheet를 쓰고 explicit readback 전까지 `SHEET_WRITE_READBACK_PASS`를 주장하지 않는다.
+Sheet readback은 같은 `GM-CONTRACT-V4-5-BINDING-01` / `GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING`으로 확인됐다. 이 문서 갱신으로 PR HEAD가 바뀌므로 최종 병합 전 새 exact HEAD의 적용 CI를 다시 실행하고, Sheet의 PR HEAD 표기도 새 SHA로 다시 맞춘다.
