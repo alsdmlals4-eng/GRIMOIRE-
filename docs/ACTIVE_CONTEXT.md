@@ -18,6 +18,10 @@ github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
 higodot_release: v3.1.3
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+higodot_tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+higodot_post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
+higodot_tool_state_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+higodot_tool_state_sheet_sync: SHEET_WRITE_READBACK_PASS
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 gut_release: v9.7.1
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
@@ -25,6 +29,7 @@ hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime_gate_role: SPELL_WORKFLOW_THREE_SCREEN_RUNTIME_POST_IMPLEMENTATION_ACCEPTANCE
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -76,6 +81,10 @@ Task 9에는 기존 승인된 Mobile landscape device matrix(16:9, 18:9, 19.5:9,
 higodot:
   release: v3.1.3
   authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
+  tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+  post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
+  reconciled_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+  sheet_sync: SHEET_WRITE_READBACK_PASS
   tracked_plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
   vendor_integrity: PASS_EXACT_TREE_IDENTITY
   historical_direct_local_upgrade_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
