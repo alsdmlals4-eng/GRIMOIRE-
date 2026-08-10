@@ -95,7 +95,7 @@ class V45ContractBindingTests(unittest.TestCase):
         self.assertTrue(HISTORICAL_V44.exists(), HISTORICAL_V44)
         historical = HISTORICAL_V44.read_text(encoding="utf-8")
         self.assertIn("GM-CONTRACT-V4-4-BINDING-01", historical)
-        self.assertIn("contract_version: '4.4'", historical)
+        self.assertIn('contract_version: "4.4"', historical)
         self.assertTrue(SYNC.exists(), SYNC)
         sync_text = SYNC.read_text(encoding="utf-8")
         self.assertIn("GM-CONTRACT-V4-4-BINDING-01", sync_text)
