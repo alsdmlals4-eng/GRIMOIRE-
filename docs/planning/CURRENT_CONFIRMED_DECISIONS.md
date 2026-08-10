@@ -152,6 +152,18 @@ TASK2_MERGED_MAIN_VERIFIED
 
 `Task 3+ 구현과 three-screen runtime acceptance는 아직 완료로 주장하지 않는다`는 문구는 **Task 2 시점의 역사적 제한 문구**였으며, 현재는 Tasks 3–7의 병합 사실로 supersede되었다. Three-screen runtime acceptance 자체는 여전히 NOT_RUN이며 Task 8–9 구현과 Task 10 evidence 뒤에 판정한다.
 
+### Historical v4.4 provenance contract
+
+```yaml
+gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
+post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
+hera_exact_pair: PASS
+spell_workflow_task2_authorized: true
+spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
+```
+
+이 필드들은 과거 병합·도구 채택의 추적성을 보존하며 `TASK7_MERGED_MAIN_VERIFIED` / `TASK8_SPELL_USE_SCREEN` 현재 권위와 충돌하지 않는다.
+
 ## 현재 증거 한계
 
 ```text
