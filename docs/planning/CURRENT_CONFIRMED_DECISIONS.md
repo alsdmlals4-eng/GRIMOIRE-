@@ -25,6 +25,8 @@ higodot_tool_state_sheet_sync: SHEET_WRITE_READBACK_PASS
 gut_status: GUT_FORMALLY_ADOPTED
 gut_release: v9.7.1
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+hera_merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
+hera_sheet_sync: SHEET_WRITE_READBACK_PASS
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 visual_platform_merged_main: 5016bd090ad09892d36a8b751c7a9649868b76d5
@@ -120,6 +122,8 @@ hera:
   release: v1.0.0
   authority: LIVE_QA_AND_OBSERVABILITY_ONLY
   status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+  merged_main: a35baed94fe064e57529ffee7b8c48e14ac5e1bb
+  sheet_sync: SHEET_WRITE_READBACK_PASS
   persistent_source_mutation_authorized: false
 ```
 
