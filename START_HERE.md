@@ -13,10 +13,14 @@ product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_task: TASK8_SPELL_USE_SCREEN
+preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
 higodot_release: v3.1.3
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+higodot_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+higodot_plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
+tracked_project_godot_editor_plugins: GODOT_AI_GUT_HERA_ENABLED_AT_GITHUB_MAIN_READBACK
 gut_status: GUT_FORMALLY_ADOPTED
 gut_release: v9.7.1
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
@@ -34,7 +38,7 @@ local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-`latest_product_main`은 제품 구현 계보의 최신 merge이며, 이 문서를 갱신하는 planning/canon-only commit과 구분한다. 실제 저장소 최신 `main`은 매 작업마다 다시 읽는다.
+`latest_product_main`은 제품 구현 계보의 최신 merge이며 planning/canon-only commit과 구분한다. 실제 저장소 최신 `main`은 매 작업마다 다시 읽는다.
 
 ## 현재 제품 경계
 
@@ -64,12 +68,29 @@ Task 9 — Root Coordinator / Responsive Rules / End-to-End Flow
 Task 10 — Render Evidence / CI / Main Scene / Canon + Sheet Sync
 ```
 
+## 보존된 Star Circuit runtime authority
+
+```yaml
+decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+sync_id: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
+main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
+canon_status: SYNCED_TO_MAIN
+product_project: CREATED
+product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
+runtime_validation: AUTOMATED_HEADLESS_PASS
+mobile_device_validation: NOT_RUN
+performance_validation: NOT_RUN
+human_validation: NOT_RUN
+tuning_status: PLAYTEST_TUNING_REQUIRED
+```
+
 ## 도구 권위
 
 - HiGodot/Godot AI `v3.1.3`: persistent `.gd/.tscn/.tres/.res/project.godot` 저작의 단일 권위.
+- tracked v3.1.3 reconciliation: `GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION`; plugin subtree `94be4fb34d49243375c592e17a1021c8c6fcbcf2`.
 - GUT `v9.7.1`: deterministic GDScript test authority.
 - Hera `v1.0.0`: live QA/observability 전용. persistent source mutation 금지.
-- direct/local tool-state commit `1337e267d29b00c039039e7197863e2f4f78957d`의 formal HiGodot receipt는 여전히 `HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT`이다.
+- direct/local tool-state commit `1337e267d29b00c039039e7197863e2f4f78957d`의 formal HiGodot receipt는 `HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT`이다.
 
 ## 역사 증거와 현재 권위 분리
 
