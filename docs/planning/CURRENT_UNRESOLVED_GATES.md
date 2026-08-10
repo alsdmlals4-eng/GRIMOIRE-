@@ -30,6 +30,7 @@ Task 2의 `TASK2_MERGED_MAIN_VERIFIED`는 역사적으로 닫힌 gate이며, Tas
 task2:
   merge: 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
   status: TASK2_MERGED_MAIN_VERIFIED
+  spell_workflow_task2_authorized: true
 task3:
   pr: 104
   merge: 3a79c8d1aab67813ef6d1c6662f1e460a711613c
