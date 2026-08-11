@@ -30,9 +30,8 @@ class YearOneGrowthEconomyTestValuesContract(unittest.TestCase):
 
     def test_course_focus_is_two_of_three_without_early_permanent_lock(self):
         self.assertIn("term_1: COMMON_FOUNDATION_NO_FOCUS_CHOICE", self.body)
-        self.assertEqual(self.body.count("PICK_2_DISTINCT_OF_3"), 2)
-        self.assertIn("TERM_3".lower(), "term_3")
-        self.assertIn("FREE_RESELECT_NO_PENALTY", self.body)
+        self.assertIn("term_2: PICK_2_DISTINCT_OF_3", self.body)
+        self.assertIn("term_3: PICK_2_DISTINCT_OF_3_FREE_RESELECT_NO_PENALTY", self.body)
         for school in ["FLOW", "HEAT", "PROTECT"]:
             self.assertIn(f"  - {school}", self.body)
         self.assertIn("Focus하지 않은 계열도 기본 사용과 메인 진행이 가능하다", self.body)
