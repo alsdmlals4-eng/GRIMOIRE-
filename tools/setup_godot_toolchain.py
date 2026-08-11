@@ -117,8 +117,15 @@ def download_file(
     with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
         with destination.open("wb") as output:
             shutil.copyfileobj(response, output)
-    if destination.stat().st_size == 0:
+    actual_size = destination.stat().st_size
+    if actual_size == 0:
+        destination.unlink(missing_ok=True)
         raise RuntimeError(f"downloaded empty file from {url}")
+    if expected_size is not None and actual_size != expected_size:
+        destination.unlink(missing_ok=True)
+        raise RuntimeError(
+            f"download size mismatch for {url}: expected {expected_size} bytes, got {actual_size}"
+        )
 
 
 def _find_executable(root: Path, executable_name: str) -> Path:
