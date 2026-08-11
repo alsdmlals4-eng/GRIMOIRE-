@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "pack_id": "FROSTBLOOM_INTERNAL_GRAYBOX_PACK_V1",
+  "decision_id": "GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01",
+  "scope": "INTERNAL_DESIGN_VALIDATION_ONLY",
+  "timing": {
+    "target": 46,
+    "rework": 53,
+    "hard_stop": 60
+  },
+  "writing_events": [
+    {
+      "id": "W1",
+      "role": "SAFE_PRECEDENT_FLOW"
+    },
+    {
+      "id": "W2",
+      "role": "SAFE_PRECEDENT_FOCUS"
+    },
+    {
+      "id": "W3",
+      "role": "SAFE_PRECEDENT_DISPERSE"
+    },
+    {
+      "id": "W4",
+      "role": "CRAFT_CONTEXT_MARKING"
+    },
+    {
+      "id": "W5",
+      "role": "NONCOMBAT_FIELD_APPLICATION"
+    },
+    {
+      "id": "W6",
+      "role": "FIRST_MAJOR_CONTEXTUAL_SOLUTION"
+    },
+    {
+      "id": "W7",
+      "role": "REDESIGN_UNDER_NEW_CONTEXT"
+    }
+  ],
+  "recovery_inclusive_writing_cap": 10,
+  "investigation": {
+    "nodes": [
+      "IRRIGATION_PRESSURE",
+      "ROOT_LAYER",
+      "SPIRIT_TRACE",
+      "OLD_REPAIR_RECORD"
+    ],
+    "pairs": [
+      {
+        "id": "INV_PAIR_01",
+        "nodes": [
+          "IRRIGATION_PRESSURE",
+          "ROOT_LAYER"
+        ]
+      },
+      {
+        "id": "INV_PAIR_02",
+        "nodes": [
+          "IRRIGATION_PRESSURE",
+          "SPIRIT_TRACE"
+        ]
+      },
+      {
+        "id": "INV_PAIR_03",
+        "nodes": [
+          "IRRIGATION_PRESSURE",
+          "OLD_REPAIR_RECORD"
+        ]
+      },
+      {
+        "id": "INV_PAIR_04",
+        "nodes": [
+          "ROOT_LAYER",
+          "SPIRIT_TRACE"
+        ]
+      },
+      {
+        "id": "INV_PAIR_05",
+        "nodes": [
+          "ROOT_LAYER",
+          "OLD_REPAIR_RECORD"
+        ]
+      },
+      {
+        "id": "INV_PAIR_06",
+        "nodes": [
+          "SPIRIT_TRACE",
+          "OLD_REPAIR_RECORD"
+        ]
+      }
+    ]
+  },
+  "free_schedule": [
+    {
+      "id": "REST",
+      "affordance": "SPIRIT_DISCOMFORT_CONTEXT"
+    },
+    {
+      "id": "PREPARE",
+      "affordance": "TOOL_CONTEXT_CONDITION"
+    },
+    {
+      "id": "SOCIAL",
+      "affordance": "PEOPLE_FACILITY_PERSPECTIVE"
+    },
+    {
+      "id": "PRACTICUM",
+      "affordance": "FROST_PRESSURE_BEHAVIOR_CLUE"
+    }
+  ],
+  "consequence_cases": [
+    "CASE_W6_A",
+    "CASE_W6_B",
+    "CASE_W6_C"
+  ],
+  "result_dimensions": [
+    "FACILITY",
+    "LIFE",
+    "SPIRIT",
+    "RELATIONSHIP",
+    "DISCOVERY"
+  ],
+  "grimoire_required_fields": [
+    "observations",
+    "meaning_and_circuit",
+    "selected_target",
+    "intent_tags",
+    "actual_result",
+    "side_effects_and_forgone_values",
+    "discoveries",
+    "player_naming"
+  ],
+  "adversarial_case_ids": [
+    "ADV_01_ONE_NODE_W6",
+    "ADV_02_PAIR_EQUIVALENCE",
+    "ADV_03_FREE_CHOICE_DOMINANCE",
+    "ADV_04_HELPER_ANSWER_LEAK",
+    "ADV_05_W6_INVALIDATED",
+    "ADV_06_W7_REPEAT",
+    "ADV_07_WRITING_REDUNDANCY",
+    "ADV_08_RESULT_COLLAPSE",
+    "ADV_09_GRIMOIRE_UNOBSERVED_CAUSE",
+    "ADV_10_EXPOSITION_OVERWEIGHT",
+    "ADV_11_HISTORICAL_3X3_REAPPEARS",
+    "ADV_12_EXAM_FESTIVAL_SCOPE_CREEP",
+    "ADV_13_MOB_WAVE_REPLACEMENT",
+    "ADV_14_ROUTE_LOOKUP_FIXTURE"
+  ],
+  "allowed_verdicts": [
+    "PASS",
+    "RISK",
+    "FAIL",
+    "NOT_TESTABLE_YET"
+  ],
+  "human_validation": "NOT_RUN",
+  "device_validation": "NOT_RUN",
+  "performance_validation": "NOT_RUN",
+  "full_slice_validation": "NOT_RUN"
+}
