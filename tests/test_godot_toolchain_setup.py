@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import inspect
 import tempfile
 import unittest
 import zipfile
@@ -9,6 +10,7 @@ from tools.setup_godot_toolchain import (
     GODOT_VERSION,
     build_engine_url,
     build_templates_url,
+    download_file,
     resolve_platform,
     safe_extract_zip,
     version_matches,
@@ -42,6 +44,12 @@ class GodotToolchainSetupTests(unittest.TestCase):
             "https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz",
             build_templates_url(),
         )
+
+    def test_download_file_accepts_integrity_and_retry_contract(self) -> None:
+        parameters = inspect.signature(download_file).parameters
+        self.assertIn("expected_size", parameters)
+        self.assertIn("expected_sha256", parameters)
+        self.assertIn("max_attempts", parameters)
 
     def test_unsupported_architecture_fails_clearly(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "Unsupported Godot host"):
