@@ -247,6 +247,24 @@ The exact next product step is fresh local PR-prep revalidation, not repetition 
 
 Learning details, Base reuse decisions, and the non-recursive continuation checkpoint are owned by `docs/planning/sync/GR-SYNC-20260812-21-TASK8-HANDOFF-BCP.md`.
 
+## Sync21 final closure state
+
+The pending Base-proposal field above is retained as history. Current closure is:
+
+```yaml
+project_handoff_main: d277a2f5cd4a57947d176e3c49ae7f8f6db97230
+base_proposal_id: BCP-2026-024-execution-sandbox-authority-split-recovery
+base_proposal_pr: https://github.com/alsdmlals4-eng/Base/pull/297
+base_main_after_proposal_merge: 449b83c6f1afdf191327a52a8e71d11b4fba7eb3
+base_proposal_state: BASE_PROPOSAL_STORAGE_MERGED_SUBMITTED
+base_implementation_authority: BASE_IMPLEMENTATION_AUTHORITY_NOT_GRANTED_IN_THIS_STAGE
+learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
+product_status: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
+resume_gate: TASK8_PR_PREP_REVERIFY_PENDING
+```
+
+Base proposal storage is closed but Base active implementation is not authorized. Task8 product remains unmerged and its next executable gate is the fresh PR-prep revalidation above.
+
 ## 현재 허용
 
 ```yaml
