@@ -68,6 +68,23 @@ class GodotToolchainSetupTests(unittest.TestCase):
                     )
             self.assertFalse(destination.exists())
 
+    def test_download_file_rejects_sha256_mismatch_and_removes_bad_file(self) -> None:
+        payload = b"same-size-corruption"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            destination = Path(temp_dir) / "artifact.tpz"
+            with patch(
+                "tools.setup_godot_toolchain.urllib.request.urlopen",
+                return_value=io.BytesIO(payload),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "sha256 mismatch"):
+                    download_file(
+                        "https://example.invalid/artifact.tpz",
+                        destination,
+                        expected_size=len(payload),
+                        expected_sha256="0" * 64,
+                    )
+            self.assertFalse(destination.exists())
+
     def test_unsupported_architecture_fails_clearly(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "Unsupported Godot host"):
             resolve_platform("Windows", "ARM32")
