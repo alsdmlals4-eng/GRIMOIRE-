@@ -12,8 +12,16 @@
   },
   "base": {
     "project_pin": "9.4.3",
-    "current_main_observed": "6d2feba2bc49fda2d8d273248b55087853615d5d",
+    "sync20_source_main": "6d2feba2bc49fda2d8d273248b55087853615d5d",
+    "latest_main_observed_post_merge": "1d6cc79ad9dfa694558524ccc5ebf11ec7df7d8c",
+    "latest_change_disposition": "NO_MATERIAL_FOLLOWUP_UNRELATED_TO_DEDICATED_LOCAL_EXECUTION",
     "pin_update": "NOT_APPROVED_NOT_PERFORMED"
+  },
+  "project_sync": {
+    "source_merge_main": "3eb629e7e162adb59e3c879a50f6361569ddcd22",
+    "source_pr": 132,
+    "merged_main_readback": "PASS",
+    "sheet_write_readback": "PASS"
   },
   "tool_authority": {
     "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
@@ -40,7 +48,7 @@
   },
   "sheet_sync": {
     "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "sync20_status": "PENDING_POST_MERGE",
+    "sync20_status": "SHEET_WRITE_READBACK_PASS",
     "tracked_v3_1_4_sync19": "SHEET_WRITE_READBACK_PASS"
   },
   "preserved_limits": [
