@@ -10,17 +10,22 @@ base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_repository_review_policy: RECURSIVE_INVENTORY_THEN_RELEVANCE_DRIVEN_DEEP_READ
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 external_process_policy: EXTERNAL_PROCESS_OVERLAY
-current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+current_state_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision_id: GM-SPELL-WORKFLOW-UI-V2-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-spell_workflow_status: TASK7_MERGED_MAIN_VERIFIED
+spell_workflow_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
+spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_task: TASK8_SPELL_USE_SCREEN
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
-higodot_release: v3.1.3
+higodot_release: v3.1.4
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
 higodot_integrity_status: HIGODOT_VENDOR_INTEGRITY_PASS_EXACT_TREE_IDENTITY
+higodot_tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+higodot_sheet_sync: SHEET_WRITE_READBACK_PASS
+higodot_live_alignment: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
 gut_implementation_status: GUT_FORMALLY_ADOPTED
 gut_formal_adoption_main: ea46923fa78c4fe7844ab6bf422e6716a3c785ed
 formal_adoption_scope: MERGED_MAIN_VERIFIED
@@ -44,15 +49,14 @@ binding_decision: GM-CONTRACT-V4-5-BINDING-01
 binding_sync: GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING
 binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_5_BINDING.md
 execution_request_state: USER_EXPLICIT_EXECUTION_REQUEST_PRESENT
-base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
+base_current_main_observed: 7a49390bd840f5f5dc80fe661b44ad45e9ebeb7f
 base_source_snapshot_7ce3fb64_role: HISTORICAL_OBSERVATION_ONLY
 silent_rebinding: NOT_APPLICABLE_USER_EXPLICITLY_APPROVED
 sheet_sync: SHEET_WRITE_READBACK_PASS
-pre_sheet_exact_head_validation: GREEN_AT_EE0C3470
-remaining_binding_work: FINAL_EXACT_HEAD_REVALIDATION_THEN_MERGE_AND_POST_MERGE_READBACK
+current_binding_status: ACTIVE_NO_REBIND_REQUIRED
 ```
 
-v4.5 채택과 동일 Decision/Sync의 Sheet readback은 완료됐다. 이 상태 반영으로 PR HEAD가 다시 바뀌므로, 남은 binding 작업은 **새 final exact HEAD의 전체 적용 CI 재검증 → review thread 0/main 불변 확인 → merge → post-merge GitHub·Sheet readback**이다.
+v4.5 r2는 현재 계약이며 Base current SHA는 영구 권위가 아니다. 이번 Sync19 work unit에서 Base `main`은 `7a49390b...`로 다시 읽었다.
 
 ## 닫힌 Spell Workflow implementation gates
 
@@ -89,7 +93,7 @@ task7:
   status: TASK7_MERGED_MAIN_VERIFIED
 ```
 
-## Historical v4.4 provenance contract
+## Historical v4.4 / HiGodot v3.1.3 provenance contract
 
 ```yaml
 historical_contract_binding: GM-CONTRACT-V4-4-BINDING-01
@@ -99,6 +103,8 @@ post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 hera_exact_pair: PASS
 spell_workflow_task2_authorized: true
 spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
+higodot_v3_1_3_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+higodot_v3_1_3_status: HISTORICAL_PASS_EXACT_TREE_IDENTITY_AND_LIVE_READBACK
 ```
 
 ## 현재 next implementation gate
@@ -115,10 +121,18 @@ must_not:
   - auto-select target as final behavior
   - spend Mana before explicit confirmation
   - upgrade human/device/performance evidence without new runs
-persistent_godot_authoring: HIGODOT_ONLY_WITH_FRESH_RECEIPT
+tracked_higodot_v3_1_4: PASS_EXACT_TREE_IDENTITY
+live_higodot_v3_1_4: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
+required_live_readback:
+  - expected_version == 3.1.4
+  - actual_version == 3.1.4
+  - lifecycle == READY
+persistent_godot_authoring: BLOCKED_UNTIL_LIVE_READBACK_THEN_HIGODOT_ONLY_WITH_FRESH_RECEIPT
 formal_test_authority: GUT_9_7_1
 live_qa: HERA_OBSERVABILITY_ONLY_SOURCE_DELTA_NONE
 ```
+
+tracked exact-tree evidence와 live executor readiness는 별개다. Task8 focused GUT RED와 protected product authoring은 authorized HiGodot v3.1.4 live handshake readback 이후에만 시작한다.
 
 ## Task 9 precondition findings
 
@@ -141,6 +155,7 @@ live_qa: HERA_OBSERVABILITY_ONLY_SOURCE_DELTA_NONE
 
 | ID | 상태 |
 |---|---|
+| `LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED` | `BLOCKING_FOR_TASK8_PROTECTED_AUTHORING` |
 | `AUDIO_VAULT_PATH_UNVERIFIED` | `BLOCKED_NO_LOCAL_ACCESS` |
 | `AUDIO_RIGHTS_UNVERIFIED` | `BLOCKING_FOR_AUDIO_INGESTION` |
 | `VISUAL_AUDIO_COMPLETE_NOT_PROVEN` | `BLOCKING_FOR_FINAL_VISUAL_AUDIO_COMPLETION` |
@@ -152,14 +167,16 @@ live_qa: HERA_OBSERVABILITY_ONLY_SOURCE_DELTA_NONE
 
 ```yaml
 allowed_next_actions:
-  - FINALIZE_V4_5_R2_FINAL_EXACT_HEAD_AND_MERGE
-  - TASK8_TDD_RED
-  - HIGODOT_PERSISTENT_TASK8_AUTHORING_WITH_FRESH_RECEIPT_GATE
+  - COMPLETE_SYNC19_EXACT_HEAD_CI_REVIEW_AND_MERGE
+  - AUTHORIZED_HIGODOT_V3_1_4_EXPECTED_ACTUAL_READY_READBACK
+  - AFTER_LIVE_ALIGNMENT_PASS_RUN_TASK8_FOCUSED_GUT_RED
+  - AFTER_RED_HIGODOT_PERSISTENT_TASK8_AUTHORING_WITH_FRESH_RECEIPT_GATE
   - GUT_DETERMINISTIC_TASK8_TESTING
   - HERA_TASK8_ACCEPTANCE_QA_OBSERVABILITY_ONLY
   - PROPAGATE_APPROVED_DEVICE_MATRIX_INTO_TASK9_ACCEPTANCE
   - VERIFY_GODOT_MULTIPLE_ASPECT_POLICY_BEFORE_TASK9
 forbidden_next_actions:
+  - TASK8_GUT_RED_BEFORE_LIVE_V3_1_4_ALIGNMENT_PASS
   - PERSISTENT_GODOT_PRODUCT_AUTHORING_OUTSIDE_HIGODOT
   - LET_HERA_PERSISTENTLY_MUTATE_SOURCE
   - CLAIM_TASK8_IMPLEMENTED_BEFORE_FRESH_AUTHORING_AND_GREEN_VALIDATION
