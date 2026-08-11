@@ -1,5 +1,5 @@
 {
-  "schema_version": 23,
+  "schema_version": 24,
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.5",
@@ -14,7 +14,7 @@
   "status": "GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED",
   "current_tool_sync_status": "TRACKED_HIGODOT_V3_1_4_EXACT_TREE_RECONCILED_LIVE_HANDSHAKE_PENDING",
   "current_tool_state_merged_main": "257a0dba33f8288d24b1cd291bb407f4505224b4",
-  "current_tool_sync_sheet_status": "PENDING_SYNC19_SHEET_READBACK",
+  "current_tool_sync_sheet_status": "SHEET_WRITE_READBACK_PASS",
   "design_review": "USER_APPROVED_2026-08-06",
   "source_main": "ea46923fa78c4fe7844ab6bf422e6716a3c785ed",
   "base_policy_observation": {
@@ -36,7 +36,7 @@
     "external_independent_reviewer": "NOT_PLANNED_SOLO_DEVELOPMENT",
     "result": "PR85_EXACT_HEAD_P0_P1_ZERO_MERGED",
     "prior_live_tool_sync_result": "PR96_EXACT_HEAD_APPLICABLE_CI_PASS_P0_P1_ZERO_MERGED",
-    "current_tool_sync_result": "SYNC19_TRACKED_V3_1_4_RECONCILIATION_IN_PROGRESS",
+    "current_tool_sync_result": "SYNC19_PREMERGE_SHEET_READBACK_PASS_CI_PENDING",
     "task2_result": "PR82_EXACT_HEAD_PASS_RECEIPT_READBACK_PASS_MERGED_MAIN_SHEET_READBACK_PASS",
     "current_sync_scope": "TRACKED_HIGODOT_V3_1_4_EXACT_TREE_WITH_LIVE_HANDSHAKE_AND_DIRECT_RECEIPT_EXPLICITLY_UNVERIFIED"
   },
@@ -283,7 +283,7 @@
     "prior_tool_state_merged_main": "75eaa8d19b8a38a21599c37dc7545818615a04c1",
     "current_tool_state_merged_main": "257a0dba33f8288d24b1cd291bb407f4505224b4",
     "tracked_v3_1_3_reconciliation_sync": "HISTORICAL_SHEET_WRITE_READBACK_PASS",
-    "tracked_v3_1_4_reconciliation_sync": "PENDING_SYNC19_SHEET_READBACK",
+    "tracked_v3_1_4_reconciliation_sync": "SHEET_WRITE_READBACK_PASS",
     "hera_exact_pair_sync": "SHEET_WRITE_READBACK_PASS",
     "visual_platform_gate_sync": "SHEET_WRITE_READBACK_PASS"
   },
