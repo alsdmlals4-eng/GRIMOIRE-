@@ -79,7 +79,11 @@ def build_engine_url(spec: PlatformSpec) -> str:
 
 
 def build_templates_url() -> str:
-    return _download_url("templates", "export_templates.tpz")
+    return (
+        f"https://github.com/godotengine/godot-builds/releases/download/"
+        f"{GODOT_VERSION}-{GODOT_STATUS}/"
+        f"Godot_v{GODOT_VERSION}-{GODOT_STATUS}_export_templates.tpz"
+    )
 
 
 def version_matches(output: str) -> bool:
