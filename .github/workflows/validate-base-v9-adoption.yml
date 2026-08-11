@@ -16,6 +16,7 @@ jobs:
       - run: python -m unittest tests.test_star_glyph_circuit_canon_contract -v
       - run: python -m unittest tests.test_star_runtime_implementation_contract -v
       - run: python -m unittest tests.test_star_runtime_completion_contract -v
+      - run: python -m unittest tests.test_world_character_three_year_story_contract -v
       - name: Validate JSON
         run: |
           python - <<'PY'
