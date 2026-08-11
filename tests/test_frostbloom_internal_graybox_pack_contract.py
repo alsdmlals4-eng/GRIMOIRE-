@@ -77,6 +77,48 @@ class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
             self.assertFalse(choice["later_choice_invalidated"], choice["id"])
             self.assertIn(choice["verdict"], data["allowed_verdicts"])
 
+    def test_w6_cases_preserve_real_improvement_and_w7_changes_judgment(self):
+        data = self.load_fixture()
+        allowed_change = {"meaning_and_circuit", "target", "intent_emphasis", "tradeoff", "contextual_use"}
+        for case in data["consequence_cases"]:
+            self.assertTrue(any(int(v) > 0 for v in case["w6_dimension_delta"].values()), case["id"])
+            self.assertTrue(case["first_solution_preserved"], case["id"])
+            self.assertTrue(set(case["w7_changed_judgment"]).intersection(allowed_change), case["id"])
+            self.assertNotIn("route_id", case)
+            self.assertNotIn("required_spell", case)
+
+    def test_result_cases_keep_five_axes_and_complete_grimoire_causality(self):
+        data = self.load_fixture()
+        expected_axes = data["result_dimensions"]
+        required_fields = set(data["grimoire_required_fields"])
+        self.assertGreaterEqual(len(data["result_cases"]), 3)
+        mixed_found = False
+        for case in data["result_cases"]:
+            self.assertEqual(expected_axes, list(case["dimensions"].keys()), case["id"])
+            values = list(case["dimensions"].values())
+            mixed_found = mixed_found or (max(values) > 0 and min(values) <= 0)
+            self.assertEqual(required_fields, set(case["grimoire"].keys()), case["id"])
+            self.assertNotIn("SUCCESS_GRADE", case)
+        self.assertTrue(mixed_found)
+
+    def test_adversarial_cases_cover_exactly_fourteen_attacks(self):
+        data = self.load_fixture()
+        self.assertEqual(data["adversarial_case_ids"], [x["id"] for x in data["adversarial_cases"]])
+        self.assertEqual(14, len(data["adversarial_cases"]))
+        for case in data["adversarial_cases"]:
+            self.assertIn(case["verdict"], data["allowed_verdicts"])
+
+    def test_pack_never_promotes_internal_review_to_human_evidence(self):
+        readme = (PACK_DIR / "README.md").read_text(encoding="utf-8")
+        for token in (
+            "HUMAN_VALIDATION: NOT_RUN",
+            "DEVICE_VALIDATION: NOT_RUN",
+            "PERFORMANCE_VALIDATION: NOT_RUN",
+            "FULL_SLICE_VALIDATION: NOT_RUN",
+            "46_MINUTE_TARGET_NOT_VALIDATED_BY_INTERNAL_WALKTHROUGH",
+        ):
+            self.assertIn(token, readme)
+
 
 if __name__ == "__main__":
     unittest.main()
