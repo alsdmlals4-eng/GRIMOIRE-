@@ -85,6 +85,27 @@ class GodotToolchainSetupTests(unittest.TestCase):
                     )
             self.assertFalse(destination.exists())
 
+    def test_download_file_retries_after_integrity_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            destination = Path(temp_dir) / "artifact.tpz"
+            with patch(
+                "tools.setup_godot_toolchain.urllib.request.urlopen",
+                side_effect=[io.BytesIO(b"bad"), io.BytesIO(b"good")],
+            ) as opener:
+                try:
+                    download_file(
+                        "https://example.invalid/artifact.tpz",
+                        destination,
+                        expected_size=4,
+                        max_attempts=2,
+                    )
+                except RuntimeError:
+                    pass
+            self.assertTrue(destination.exists())
+            if destination.exists():
+                self.assertEqual(b"good", destination.read_bytes())
+            self.assertEqual(2, opener.call_count)
+
     def test_unsupported_architecture_fails_clearly(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "Unsupported Godot host"):
             resolve_platform("Windows", "ARM32")
