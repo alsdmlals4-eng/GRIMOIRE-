@@ -13,8 +13,10 @@ external_process_policy: EXTERNAL_PROCESS_OVERLAY
 base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
 current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
-current_planning_decision: GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01
-current_planning_sync: GR-SYNC-20260811-09-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES
+current_planning_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+current_planning_sync: GR-SYNC-20260811-12-FROSTBLOOM-POSTMERGE-CURRENT-CONSUMER-CLEANUP
+current_planning_design_sync: GR-SYNC-20260811-10-FROSTBLOOM-INTERNAL-VERTICAL-SLICE
+current_planning_spec_review_sync: GR-SYNC-20260811-11-FROSTBLOOM-SPEC-REVIEW-PLAN-READY
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
@@ -24,7 +26,15 @@ year_one_focus_model: TERM2_3_PICK_2_OF_3
 year_one_portfolio_weights: FOUR_AXES_25_EACH
 year_one_crafting_scope: MATERIAL6_RECIPE8_INPUT3_CAP12
 year_one_practicum_repeat_material_reward: 100_50_25_0
-next_planning_axis: D_VERTICAL_SLICE_DETAIL
+frostbloom_slice_model: SINGLE_INCIDENT_SPIRAL
+frostbloom_slice_time_contract: TARGET46_REWORK53_HARD60
+frostbloom_writing_contract: SUCCESS7_RECOVERY_CAP10
+frostbloom_investigation_contract: PICK_2_OF_4
+frostbloom_result_dimensions: FACILITY_LIFE_SPIRIT_RELATIONSHIP_DISCOVERY
+frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-internal-vertical-slice-implementation-plan.md
+frostbloom_runtime_implementation: BLOCKED_BY_HIGODOT_EXECUTOR_AND_TASK8_DEPENDENCY
+next_planning_axis: D_RUNTIME_IMPLEMENTATION_BLOCKED_BY_TASK8_HIGODOT
+next_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_CANON
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
@@ -129,7 +139,7 @@ growth_economy_successor: GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01
 
 1학년의 세 계열은 `유동학(FLOW) / 변성학(HEAT) / 결계학(PROTECT)`이며 `FOCUS / DISPERSE`는 공통 조율 문법이다. 계열은 정치·윤리 성향과 1:1로 대응하지 않는다. 세력별 별도 메인 캠페인을 만들지 않고 공유 사건을 서로 다른 보호 대상·비용·증거의 관점으로 재해석한다.
 
-## GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01 — current planning decision
+## GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01 — approved planning decision
 
 ```yaml
 decision_id: GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01
@@ -177,14 +187,61 @@ protected_owners:
   - GM-SUMMON-SYSTEM-01
   - GM-STAR-CIRCUIT-MASTERY-BALANCE-01
   - GM-SPELL-WORKFLOW-UI-V2-01
-next_planning_axis: D_VERTICAL_SLICE_DETAIL
+successor: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
 ```
 
 B의 핵심은 `6 / 2-of-3 / 3·2·1 / 4×25 / 6·8·3·12 / 100·50·25·0`이다. 일반 실패·부분성공 자체를 숨은 숫자 감점으로 이중 처벌하지 않고, 감점은 이미 확인한 안전 근거를 의도적으로 무시하거나 기록을 위조하는 등 회피 가능한 책임 위반에만 사용한다. 이는 상위 Failure 결정의 `작은 숨김 감점`을 폐기하지 않고 발동 조건을 좁힌 child refinement다.
 
 필수 제작물의 관련 재료 요구량이 `M`이면 피할 수 없는 메인 경로에서 최소 `ceil(1.5×M)`를 보장한다. 선택형 현장실습 반복은 필수 스토리 파밍이 될 수 없다. 동일 실습의 재료 보상은 첫 고유 완료/새 조건·다른 해법/첫 동일 반복/추가 동일 반복에 대해 `100/50/25/0`을 사용하고, 영구 평가·접근·핵심 성장자원은 동일 반복으로 무한 축적되지 않는다.
 
-위 수치는 인간 플레이테스트 전에는 `BALANCED`, `FINAL`, `FUN_VERIFIED`로 승격하지 않는다. D는 46/53/60분 Vertical Slice 예산 안에서 이 장기 의미 중 무엇을 실제 플레이하고 무엇을 Preview/Mock으로 보여줄지 별도 승인받는다.
+위 수치는 인간 플레이테스트 전에는 `BALANCED`, `FINAL`, `FUN_VERIFIED`로 승격하지 않는다.
+
+## GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01 — current planning decision
+
+```yaml
+decision_id: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+design_sync: GR-SYNC-20260811-10-FROSTBLOOM-INTERNAL-VERTICAL-SLICE
+spec_review_plan_sync: GR-SYNC-20260811-11-FROSTBLOOM-SPEC-REVIEW-PLAN-READY
+current_consumer_sync: GR-SYNC-20260811-12-FROSTBLOOM-POSTMERGE-CURRENT-CONSUMER-CLEANUP
+approval: USER_APPROVED_SPEC_IMPLEMENTATION_PLAN_READY
+canon_document: docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_01_APPROVAL_2026-08-11.md
+spec_review_document: docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_01_USER_SPEC_REVIEW_2026-08-11.md
+benchmark_document: docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_IMPLEMENTATION_BENCHMARK_2026-08-11.md
+implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-internal-vertical-slice-implementation-plan.md
+slice_model: SINGLE_INCIDENT_SPIRAL
+time_contract: TARGET_46_REWORK_53_HARD_60
+writing_contract: SUCCESS_7_RECOVERY_CAP_10
+free_schedule_windows_actual: 1
+investigation: PICK_2_OF_4
+major_five_point_star_commits_min: 2
+first_solution: MUST_IMPROVE_REAL_STATE_AND_REMAIN_PRESERVED
+reveal: OLD_REVISION_ADDS_NEW_CONTEXT_NOT_FAKE_CHOICE
+encounter: SINGLE_STRONG_SPIRIT_OR_PRESSURE_NO_MOB_WAVES
+result_dimensions:
+  - FACILITY
+  - LIFE
+  - SPIRIT
+  - RELATIONSHIP
+  - DISCOVERY
+anchors:
+  - A1
+  - A2
+  - A3
+  - A4
+festival: PREVIEW_ONLY
+separate_exam: FORBIDDEN_AS_REQUIRED_CONTENT
+circuit_authority: FIVE_POINT_STAR
+historical_3x3: PROVENANCE_ONLY
+runtime_implementation: BLOCKED_BY_HIGODOT_EXECUTOR_AND_TASK8_DEPENDENCY
+human_validation: NOT_RUN
+device_validation: NOT_RUN
+performance_validation: NOT_RUN
+full_slice_validation: NOT_RUN
+```
+
+D는 학교·제작·자유일정·조사·주문·결과를 체크리스트로 나열하지 않고 하나의 서리꽃 온실 사건에 인과적으로 묶는다. 첫 주요 해결은 실제로 무언가를 개선하며, 이후 과거 개정 흔적이 드러나도 그 개선을 삭제하거나 “처음부터 틀렸다”로 바꾸지 않는다. `시설복구 / 생명구조 / 정령교섭 / 봉쇄 / 전투제압`은 정답 루트 버튼이 아니라 Target·FIVE_POINT_STAR 회로·문맥·보호가치·결과에서 파생되는 사후 의미다.
+
+구현계획은 기존 `SpellWorkflowCoordinator → AtomicSpellUseService → AtomicResultLedger → SaveRepository` 권위를 재사용한다. Task8 Spell Use Screen은 별도 제품 구현 권위로 유지되며 D가 우회 구현하지 않는다. persistent Godot 실행은 HiGodot executor와 Task8/Task9 의존성이 풀릴 때까지 차단된다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
