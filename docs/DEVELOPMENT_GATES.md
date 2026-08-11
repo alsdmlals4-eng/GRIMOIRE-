@@ -9,16 +9,20 @@ base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_repository_review_policy: RECURSIVE_INVENTORY_THEN_RELEVANCE_DRIVEN_DEEP_READ
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 external_process_policy: EXTERNAL_PROCESS_OVERLAY
-current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+current_state_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-spell_workflow_status: TASK7_MERGED_MAIN_VERIFIED
+spell_workflow_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
+spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_task: TASK8_SPELL_USE_SCREEN
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
-higodot_release: v3.1.3
+higodot_release: v3.1.4
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
+higodot_tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+higodot_live_alignment: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
@@ -33,7 +37,7 @@ sync: GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING
 binding: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_5_BINDING.md
 execution_request_state: USER_EXPLICIT_EXECUTION_REQUEST_PRESENT
 merge_authority: APPROVED_ITEM_INHERITS_MERGE_AUTHORITY
-base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
+base_current_main_observed: 7a49390bd840f5f5dc80fe661b44ad45e9ebeb7f
 base_source_snapshot_7ce3fb64_role: HISTORICAL_OBSERVATION_ONLY
 ```
 
@@ -54,12 +58,14 @@ Tasks 3–7 are merged under `GM-SPELL-WORKFLOW-UI-V2-01`.
 ```yaml
 task: TASK8_SPELL_USE_SCREEN
 authority_reused: TASK5_STAGE3_TARGET_USE_ATOMIC_TRANSACTION
+tracked_higodot: V3_1_4_EXACT_TREE_PASS
+live_higodot_gate: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
 persistent_authoring: HIGODOT_ONLY_WITH_FRESH_RECEIPT
 testing: GUT_9_7_1_DETERMINISTIC
 live_qa: HERA_OBSERVABILITY_ONLY_SOURCE_DELTA_NONE
 ```
 
-Task 8 must expose explicit target selection, expected-result preview, and user confirmation without duplicating the already-merged Stage 3 transaction authority.
+Task 8 must expose explicit target selection, expected-result preview, and user confirmation without duplicating the already-merged Stage 3 transaction authority. tracked plugin tree PASS만으로 authoring을 시작하지 않고 live `expected_version == actual_version == 3.1.4`와 READY readback을 먼저 요구한다.
 
 ## Gate B — Task 9 responsive / E2E prerequisites
 
@@ -72,10 +78,13 @@ Approved classes include `16:9`, `18:9`, `19.5:9`, `20:9`, cutout/safe-area, fol
 
 ## Gate C — tool authority
 
-- HiGodot/Godot AI `v3.1.3`: `SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY`.
+- HiGodot/Godot AI `v3.1.4`: official/project plugin subtree `69010571e11123dfc4e09483f80cb9e6ca93511a` exact identity PASS; `SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY` 유지.
+- Sync19 Sheet readback: `SHEET_WRITE_READBACK_PASS`.
+- live v3.1.4 plugin/server handshake: `LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED`.
+- direct/local tool-state commit `257a0dba...` authoring receipt: `HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT`.
 - GUT `v9.7.1`: `DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY`.
 - Hera `v1.0.0`: `LIVE_QA_AND_OBSERVABILITY_ONLY`; persistent source mutation forbidden.
-- Historical direct/local tool-state receipt remains `HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT`.
+- HiGodot v3.1.3 exact-tree/live evidence remains historical predecessor evidence only.
 
 ## Gate D — preserved runtime / platform evidence
 
@@ -95,9 +104,9 @@ platform:
   full_vertical_slice: NOT_RUN
 ```
 
-No automated evidence upgrades HUMAN/DEVICE/PERFORMANCE/FULL_VERTICAL_SLICE to PASS.
+No automated, tracked-tree, or editor-state evidence upgrades LIVE_READY/HUMAN/DEVICE/PERFORMANCE/FULL_VERTICAL_SLICE to PASS.
 
-## Historical v4.4 / Task 2 provenance
+## Historical v4.4 / Task 2 / HiGodot v3.1.3 provenance
 
 ```yaml
 historical_contract_binding: GM-CONTRACT-V4-4-BINDING-01
@@ -108,6 +117,8 @@ post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 hera_exact_pair: PASS
 spell_workflow_task2_authorized: true
 spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
+higodot_v3_1_3_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+higodot_v3_1_3_status: HISTORICAL_PASS_EXACT_TREE_IDENTITY_AND_LIVE_READBACK
 ```
 
 ```text
@@ -119,7 +130,7 @@ GR-SYNC-20260809-07-SPELL-WORKFLOW-TASK2-POST-MERGE-CANON
 SHEET_WRITE_READBACK_PASS
 ```
 
-These values remain provenance and do not define the current contract or next product task.
+These values remain provenance and do not define the current contract, current HiGodot version, or next product task.
 
 ## Gate 18 — repository-wide Actions supply-chain closure
 
@@ -131,6 +142,7 @@ repo_wide_actions_supply_chain: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
 ## Delivery / unresolved limits
 
 ```text
+LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN
@@ -141,4 +153,4 @@ GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 
 ## Contract Gate
 
-The active repository contract is v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`. v4.4 remains `HISTORICAL_SUPERSEDED_CURRENT_BINDING`.
+The active repository contract is v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`. v4.4 and HiGodot v3.1.3 remain historical provenance.
