@@ -30,7 +30,8 @@ CURRENT_SURFACES = [
 
 CURRENT_CONTRACT = "GM-CONTRACT-V4-5-BINDING-01"
 HISTORICAL_V44_CONTRACT = "GM-CONTRACT-V4-4-BINDING-01"
-CURRENT_BASE_MAIN = "6d2feba2bc49fda2d8d273248b55087853615d5d"
+SYNC20_SOURCE_BASE = "6d2feba2bc49fda2d8d273248b55087853615d5d"
+LATEST_BASE_OBSERVED = "1d6cc79ad9dfa694558524ccc5ebf11ec7df7d8c"
 CURRENT_SYNC = "GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT"
 HIGODOT_V314_TREE = "69010571e11123dfc4e09483f80cb9e6ca93511a"
 HIGODOT_LIVE = "LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED"
@@ -69,11 +70,15 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         state = json.loads(CURRENT_STATE.read_text(encoding="utf-8"))
         self.assertEqual(CURRENT_SYNC, state["sync_id"])
         self.assertEqual("GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01", state["decision_id"])
-        self.assertEqual(CURRENT_BASE_MAIN, state["base"]["current_main_observed"])
+        self.assertEqual(SYNC20_SOURCE_BASE, state["base"]["sync20_source_main"])
+        self.assertEqual(LATEST_BASE_OBSERVED, state["base"]["latest_main_observed_post_merge"])
+        self.assertEqual("NO_MATERIAL_FOLLOWUP_UNRELATED_TO_DEDICATED_LOCAL_EXECUTION", state["base"]["latest_change_disposition"])
         self.assertEqual("9.4.3", state["base"]["project_pin"])
         self.assertEqual("PROJECT_DEDICATED_LOCAL_EXECUTION_ENVIRONMENT_FIRST", state["local_execution"]["policy"])
         self.assertEqual("ASSUME_PREVIOUS_POWERSHELL_CLOSED", state["local_execution"]["fresh_shell"])
         self.assertEqual("CREATE_OR_REPAIR_DEDICATED_LOCAL_ENVIRONMENT_FIRST", state["local_execution"]["missing_environment"])
+        self.assertEqual("SHEET_WRITE_READBACK_PASS", state["local_execution"]["sheet_status"])
+        self.assertEqual("PASS", state["project_sync"]["sheet_write_readback"])
 
         higodot = state["higodot"]
         self.assertEqual("v3.1.4", higodot["release"])
@@ -99,6 +104,14 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertFalse(state["claims"]["direct_local_upgrade_receipt_verified"])
         self.assertFalse(state["claims"]["task8_merged_main_verified"])
         self.assertFalse(state["claims"]["task8_hera_acceptance_pass"])
+
+    def test_sync20_canon_records_sheet_readback(self):
+        canon = json.loads(CURRENT_CANON.read_text(encoding="utf-8"))
+        self.assertEqual(CURRENT_SYNC, canon["sync_id"])
+        self.assertEqual(SYNC20_SOURCE_BASE, canon["base"]["sync20_source_main"])
+        self.assertEqual(LATEST_BASE_OBSERVED, canon["base"]["latest_main_observed_post_merge"])
+        self.assertEqual("SHEET_WRITE_READBACK_PASS", canon["sheet_sync"]["sync20_status"])
+        self.assertEqual("PASS", canon["project_sync"]["sheet_write_readback"])
 
     def test_sync19_machine_snapshot_and_vendor_evidence_remain_historical(self):
         old = json.loads(SYNC19_STATE.read_text(encoding="utf-8"))
