@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import inspect
+import io
 import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from unittest.mock import patch
 
 from tools.setup_godot_toolchain import (
     GODOT_VERSION,
@@ -50,6 +52,21 @@ class GodotToolchainSetupTests(unittest.TestCase):
         self.assertIn("expected_size", parameters)
         self.assertIn("expected_sha256", parameters)
         self.assertIn("max_attempts", parameters)
+
+    def test_download_file_rejects_size_mismatch_and_removes_bad_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            destination = Path(temp_dir) / "artifact.tpz"
+            with patch(
+                "tools.setup_godot_toolchain.urllib.request.urlopen",
+                return_value=io.BytesIO(b"bad"),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "size mismatch"):
+                    download_file(
+                        "https://example.invalid/artifact.tpz",
+                        destination,
+                        expected_size=4,
+                    )
+            self.assertFalse(destination.exists())
 
     def test_unsupported_architecture_fails_clearly(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "Unsupported Godot host"):
