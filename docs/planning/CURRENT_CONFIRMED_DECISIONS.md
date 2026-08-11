@@ -10,6 +10,10 @@ base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_repository_review_policy: RECURSIVE_INVENTORY_THEN_RELEVANCE_DRIVEN_DEEP_READ
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 external_process_policy: EXTERNAL_PROCESS_OVERLAY
+prework_research_decision: GM-PREWORK-BENCHMARK-INDUSTRY-RESEARCH-01
+prework_research_sync: GR-SYNC-20260811-13-PREWORK-BENCHMARK-INDUSTRY-RESEARCH
+prework_research_gate: REQUIRED_BEFORE_NEW_SUBSTANTIVE_WORK_UNIT
+prework_research_same_work_unit_receipt_reuse: ALLOWED_IF_SCOPE_AND_KEY_ASSUMPTIONS_UNCHANGED
 base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
 current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -34,7 +38,7 @@ frostbloom_result_dimensions: FACILITY_LIFE_SPIRIT_RELATIONSHIP_DISCOVERY
 frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-internal-vertical-slice-implementation-plan.md
 frostbloom_runtime_implementation: BLOCKED_BY_HIGODOT_EXECUTOR_AND_TASK8_DEPENDENCY
 next_planning_axis: D_RUNTIME_IMPLEMENTATION_BLOCKED_BY_TASK8_HIGODOT
-next_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_CANON
+current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
@@ -76,6 +80,40 @@ merge_authority: APPROVED_ITEM_INHERITS_MERGE_AUTHORITY
 ```
 
 v4.5 r2는 Base current canon을 복제하지 않는 thin adapter다. Base는 매 작업 `main`과 Registry/관련 owner를 다시 읽는다. Superpowers 같은 process framework는 `EXTERNAL_PROCESS_OVERLAY`이며 프로젝트/Base canon을 소유하지 않는다.
+
+## GM-PREWORK-BENCHMARK-INDUSTRY-RESEARCH-01 — current process gate
+
+```yaml
+decision_id: GM-PREWORK-BENCHMARK-INDUSTRY-RESEARCH-01
+sync_id: GR-SYNC-20260811-13-PREWORK-BENCHMARK-INDUSTRY-RESEARCH
+approval: USER_APPROVED_ACTIVE
+canon_document: docs/planning/PREWORK_BENCHMARK_INDUSTRY_RESEARCH_01_APPROVAL_2026-08-11.md
+scope: PROJECT_PROCESS_ONLY
+trigger: BEFORE_EVERY_NEW_SUBSTANTIVE_WORK_UNIT
+required_steps:
+  - FRESH_BASE_PROJECT_SHEET
+  - DEFINE_WORK_QUESTION
+  - BENCHMARK_AND_INDUSTRY_RESEARCH
+  - SOURCE_ROLE_FRESHNESS_APPLICABILITY
+  - EXISTING_SOLUTION_FIRST
+  - DISPOSITION
+  - ADVERSARIAL_REVIEW
+  - WORK
+  - EXACT_HEAD_AND_READBACK
+required_dispositions:
+  - ADOPT
+  - ADAPT
+  - TEST
+  - AVOID
+  - IGNORE
+  - REFERENCE_ONLY
+same_work_unit_receipt_reuse: ALLOWED_ONLY_IF_SCOPE_PRODUCT_DECISION_KEY_ASSUMPTIONS_UNCHANGED
+competitor_expression_copying: FORBIDDEN
+product_decision_mutation: NONE
+persistent_godot_source_mutation: NONE
+```
+
+이 Gate는 Base current Source Context 흐름을 프로젝트 작업 시작 조건으로 연결하는 thin adapter다. 비교군의 콘텐츠를 복제하지 않고 패턴·제약·실패모드·검증방법만 사용한다. 범위나 핵심 가정이 바뀌면 같은 대화 안에서도 새 work unit으로 보고 fresh research를 다시 수행한다.
 
 ## GM-YEAR-ONE-CHAPTER-CURRICULUM-01 — approved Year-One planning decision
 
