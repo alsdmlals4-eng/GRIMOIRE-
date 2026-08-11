@@ -69,6 +69,17 @@ No Frostbloom-specific replacement mana/circuit/use/result/save authority is aut
 - Frostbloom UI integration additionally requires Spell Workflow Task8/Task9 completion.
 - Domain implementation plan may exist while execution is blocked.
 
+## Sheet sync/readback
+
+Same Decision ID was written to Hub, work order, current decision, audit, and history. Post-spec-review stale lower consumers were demoted without deleting provenance:
+
+- `20_코어경험_데모목표` current separate-exam wording removed.
+- `30_데모범위_품질기준_제작기반` current-looking 3×3 rows marked `HISTORICAL_SUPERSEDED_BY_FIVE_POINT_STAR`.
+- `40_핵심시스템_메인콘텐츠` GR-S-02 advanced to current FIVE_POINT_STAR authority.
+- `80_데모_버티컬슬라이스_플레이테스트` GR-TEST-032 lineage retained as historical 3×3 provenance; current D uses FIVE_POINT_STAR lineage.
+
+Explicit readback: `SHEET_WRITE_READBACK_PASS`.
+
 ## Verification state
 
 ```yaml
@@ -76,10 +87,10 @@ written_spec_review: PASS
 benchmark_before_plan: PASS
 writing_plan: CREATED
 planning_contract: ADDED
+sheet_sync: SHEET_WRITE_READBACK_PASS
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
 full_slice_validation: NOT_RUN
-sheet_sync: PENDING_WRITE_READBACK
 merge_state: PENDING_PR_EXACT_HEAD_VALIDATION
 ```
