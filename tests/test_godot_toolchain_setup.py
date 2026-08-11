@@ -36,10 +36,10 @@ class GodotToolchainSetupTests(unittest.TestCase):
             build_engine_url(spec),
         )
 
-    def test_templates_use_same_exact_version(self) -> None:
+    def test_templates_use_pinned_official_release_asset(self) -> None:
         self.assertEqual("4.7.1", GODOT_VERSION)
         self.assertEqual(
-            "https://downloads.godotengine.org/?flavor=stable&platform=templates&slug=export_templates.tpz&version=4.7.1",
+            "https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz",
             build_templates_url(),
         )
 
