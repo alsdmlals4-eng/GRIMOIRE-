@@ -18,13 +18,17 @@ CURRENT_DOCS = [
 CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 GRILL = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
+CURRENT_CANON = ROOT / "docs/planning/CANON_SYNC_STATE_SYNC20.json"
+CURRENT_AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE_SYNC20.json"
 
 DECISION = "GM-CONTRACT-V4-5-BINDING-01"
 SYNC_ID = "GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING"
 BASE_CURRENT_OBSERVED = "315c66eea9614c284b9c11c4d522141065dfa4b0"
 BASE_SOURCE_SNAPSHOT = "7ce3fb64fa6303c5da6c7fc27c979f7233b761ac"
 TASK7 = "TASK7_MERGED_MAIN_VERIFIED"
-TASK8 = "TASK8_SPELL_USE_SCREEN"
+TASK8_PRODUCT = "TASK8_SPELL_USE_SCREEN"
+TASK8_STATUS = "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING"
+TASK8_GATE = "TASK8_RECEIPT_HERA_REVIEW_PR"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 
@@ -56,7 +60,7 @@ class V45ContractBindingTests(unittest.TestCase):
             self.assertIn(token, text)
         self.assertIn("USER_EXPLICIT_EXECUTION_REQUEST_PRESENT", text)
         self.assertIn(TASK7, text)
-        self.assertIn(TASK8, text)
+        self.assertIn(TASK8_PRODUCT, text)
         self.assertIn(HERA_PASS, text)
         self.assertIn(SHARED_CORE_PASS, text)
 
@@ -67,14 +71,17 @@ class V45ContractBindingTests(unittest.TestCase):
             self.assertIn(DECISION, text, str(path))
             self.assertIn(SYNC_ID, text, str(path))
             self.assertIn(TASK7, text, str(path))
-            self.assertIn(TASK8, text, str(path))
+            self.assertIn(TASK8_STATUS, text, str(path))
+            self.assertIn(TASK8_GATE, text, str(path))
             self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text, str(path))
             self.assertNotIn("v4_5_binding: USER_DECISION_REQUIRED", text, str(path))
 
-    def test_machine_current_state_promotes_v45_without_erasing_existing_authorities(self) -> None:
+    def test_machine_binding_history_and_sync20_current_overlay_coexist(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
         grill = json.loads(GRILL.read_text(encoding="utf-8"))
+        current_canon = json.loads(CURRENT_CANON.read_text(encoding="utf-8"))
+        current_authority = json.loads(CURRENT_AUTHORITY.read_text(encoding="utf-8"))
 
         self.assertEqual("4.5", canon["active_contract"]["version"])
         self.assertEqual(DECISION, canon["active_contract"]["binding_decision_id"])
@@ -83,12 +90,14 @@ class V45ContractBindingTests(unittest.TestCase):
         self.assertEqual("4.5", grill["active_contract"]["version"])
         self.assertEqual(DECISION, grill["active_contract"]["binding_decision_id"])
 
-        self.assertEqual("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", canon["project_main_authority"])
-        self.assertEqual(HERA_PASS, canon["hera"]["status"])
-        self.assertEqual(SHARED_CORE_PASS, canon["platform_validation"]["status"])
-        self.assertEqual("PASS_EXACT_TREE_IDENTITY", authority["higodot"]["vendor_integrity"])
-        self.assertEqual(HERA_PASS, authority["hera"]["status"])
-        self.assertTrue(authority["claims"]["gut_formally_adopted"])
+        self.assertEqual("4.5", current_canon["active_contract"]["version"])
+        self.assertEqual(DECISION, current_canon["active_contract"]["binding_decision_id"])
+        self.assertEqual("GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT", current_authority["sync_id"])
+        self.assertEqual("GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01", current_authority["decision_id"])
+        self.assertEqual(TASK8_STATUS, current_canon["spell_workflow"]["status"])
+        self.assertEqual(TASK8_GATE, current_canon["spell_workflow"]["next_gate"])
+        self.assertEqual("LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED", current_authority["higodot"]["live_status"])
+        self.assertEqual("LIVE_QA_AND_OBSERVABILITY_ONLY", current_authority["hera"]["authority"])
         self.assertEqual(TASK7, grill["current_work"]["status"])
 
     def test_v44_binding_remains_historical_evidence(self) -> None:
