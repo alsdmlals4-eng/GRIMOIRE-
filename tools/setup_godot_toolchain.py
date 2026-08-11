@@ -20,6 +20,9 @@ from typing import Final
 GODOT_VERSION: Final = "4.7.1"
 GODOT_STATUS: Final = "stable"
 OFFICIAL_DOWNLOAD_ENDPOINT: Final = "https://downloads.godotengine.org/"
+GODOT_TEMPLATES_SIZE: Final = 1_280_486_955
+GODOT_TEMPLATES_SHA256: Final = "86409db6200b6f8fd3230989c2d2002851f3dd18acf11d7bdbafddf5a0dd0f72"
+GODOT_TEMPLATES_DOWNLOAD_ATTEMPTS: Final = 3
 VERSION_PATTERN: Final = re.compile(r"^4\.7\.1\.stable(?:\.|$)")
 
 
@@ -202,7 +205,13 @@ def install_templates(install_root: Path) -> Path:
         temp_root = Path(temp_dir)
         archive = temp_root / "export_templates.tpz"
         extract_root = temp_root / "templates-extracted"
-        download_file(build_templates_url(), archive)
+        download_file(
+            build_templates_url(),
+            archive,
+            expected_size=GODOT_TEMPLATES_SIZE,
+            expected_sha256=GODOT_TEMPLATES_SHA256,
+            max_attempts=GODOT_TEMPLATES_DOWNLOAD_ATTEMPTS,
+        )
         safe_extract_zip(archive, extract_root)
         source = extract_root / "templates"
         if not source.is_dir():
