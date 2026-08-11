@@ -121,27 +121,39 @@ def download_file(
     expected_sha256: str | None = None,
     max_attempts: int = 1,
 ) -> None:
+    if max_attempts < 1:
+        raise ValueError("max_attempts must be at least 1")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    request = urllib.request.Request(url, headers={"User-Agent": "GRIMOIRE-Godot-Toolchain/1"})
-    with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
-        with destination.open("wb") as output:
-            shutil.copyfileobj(response, output)
-    actual_size = destination.stat().st_size
-    if actual_size == 0:
+
+    for attempt in range(1, max_attempts + 1):
         destination.unlink(missing_ok=True)
-        raise RuntimeError(f"downloaded empty file from {url}")
-    if expected_size is not None and actual_size != expected_size:
-        destination.unlink(missing_ok=True)
-        raise RuntimeError(
-            f"download size mismatch for {url}: expected {expected_size} bytes, got {actual_size}"
-        )
-    if expected_sha256 is not None:
-        actual_sha256 = _sha256_file(destination)
-        if actual_sha256.lower() != expected_sha256.lower():
-            destination.unlink(missing_ok=True)
-            raise RuntimeError(
-                f"download sha256 mismatch for {url}: expected {expected_sha256}, got {actual_sha256}"
+        try:
+            request = urllib.request.Request(
+                url,
+                headers={"User-Agent": "GRIMOIRE-Godot-Toolchain/1"},
             )
+            with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
+                with destination.open("wb") as output:
+                    shutil.copyfileobj(response, output)
+
+            actual_size = destination.stat().st_size
+            if actual_size == 0:
+                raise RuntimeError(f"downloaded empty file from {url}")
+            if expected_size is not None and actual_size != expected_size:
+                raise RuntimeError(
+                    f"download size mismatch for {url}: expected {expected_size} bytes, got {actual_size}"
+                )
+            if expected_sha256 is not None:
+                actual_sha256 = _sha256_file(destination)
+                if actual_sha256.lower() != expected_sha256.lower():
+                    raise RuntimeError(
+                        f"download sha256 mismatch for {url}: expected {expected_sha256}, got {actual_sha256}"
+                    )
+            return
+        except (OSError, RuntimeError):
+            destination.unlink(missing_ok=True)
+            if attempt >= max_attempts:
+                raise
 
 
 def _find_executable(root: Path, executable_name: str) -> Path:
