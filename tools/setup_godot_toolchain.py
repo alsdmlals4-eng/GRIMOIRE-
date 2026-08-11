@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import platform
@@ -19,6 +20,9 @@ from typing import Final
 GODOT_VERSION: Final = "4.7.1"
 GODOT_STATUS: Final = "stable"
 OFFICIAL_DOWNLOAD_ENDPOINT: Final = "https://downloads.godotengine.org/"
+GODOT_TEMPLATES_SIZE: Final = 1_280_486_955
+GODOT_TEMPLATES_SHA256: Final = "86409db6200b6f8fd3230989c2d2002851f3dd18acf11d7bdbafddf5a0dd0f72"
+GODOT_TEMPLATES_DOWNLOAD_ATTEMPTS: Final = 3
 VERSION_PATTERN: Final = re.compile(r"^4\.7\.1\.stable(?:\.|$)")
 
 
@@ -79,7 +83,11 @@ def build_engine_url(spec: PlatformSpec) -> str:
 
 
 def build_templates_url() -> str:
-    return _download_url("templates", "export_templates.tpz")
+    return (
+        f"https://github.com/godotengine/godot-builds/releases/download/"
+        f"{GODOT_VERSION}-{GODOT_STATUS}/"
+        f"Godot_v{GODOT_VERSION}-{GODOT_STATUS}_export_templates.tpz"
+    )
 
 
 def version_matches(output: str) -> bool:
@@ -99,14 +107,56 @@ def safe_extract_zip(archive: Path, destination: Path) -> None:
         bundle.extractall(destination)
 
 
-def download_file(url: str, destination: Path, timeout_seconds: int = 180) -> None:
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def download_file(
+    url: str,
+    destination: Path,
+    timeout_seconds: int = 180,
+    *,
+    expected_size: int | None = None,
+    expected_sha256: str | None = None,
+    max_attempts: int = 1,
+) -> None:
+    if max_attempts < 1:
+        raise ValueError("max_attempts must be at least 1")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    request = urllib.request.Request(url, headers={"User-Agent": "GRIMOIRE-Godot-Toolchain/1"})
-    with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
-        with destination.open("wb") as output:
-            shutil.copyfileobj(response, output)
-    if destination.stat().st_size == 0:
-        raise RuntimeError(f"downloaded empty file from {url}")
+
+    for attempt in range(1, max_attempts + 1):
+        destination.unlink(missing_ok=True)
+        try:
+            request = urllib.request.Request(
+                url,
+                headers={"User-Agent": "GRIMOIRE-Godot-Toolchain/1"},
+            )
+            with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
+                with destination.open("wb") as output:
+                    shutil.copyfileobj(response, output)
+
+            actual_size = destination.stat().st_size
+            if actual_size == 0:
+                raise RuntimeError(f"downloaded empty file from {url}")
+            if expected_size is not None and actual_size != expected_size:
+                raise RuntimeError(
+                    f"download size mismatch for {url}: expected {expected_size} bytes, got {actual_size}"
+                )
+            if expected_sha256 is not None:
+                actual_sha256 = _sha256_file(destination)
+                if actual_sha256.lower() != expected_sha256.lower():
+                    raise RuntimeError(
+                        f"download sha256 mismatch for {url}: expected {expected_sha256}, got {actual_sha256}"
+                    )
+            return
+        except (OSError, RuntimeError):
+            destination.unlink(missing_ok=True)
+            if attempt >= max_attempts:
+                raise
 
 
 def _find_executable(root: Path, executable_name: str) -> Path:
@@ -155,7 +205,13 @@ def install_templates(install_root: Path) -> Path:
         temp_root = Path(temp_dir)
         archive = temp_root / "export_templates.tpz"
         extract_root = temp_root / "templates-extracted"
-        download_file(build_templates_url(), archive)
+        download_file(
+            build_templates_url(),
+            archive,
+            expected_size=GODOT_TEMPLATES_SIZE,
+            expected_sha256=GODOT_TEMPLATES_SHA256,
+            max_attempts=GODOT_TEMPLATES_DOWNLOAD_ATTEMPTS,
+        )
         safe_extract_zip(archive, extract_root)
         source = extract_root / "templates"
         if not source.is_dir():
