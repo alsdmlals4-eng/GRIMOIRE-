@@ -1,5 +1,5 @@
 {
-  "schema_version": 31,
+  "schema_version": 32,
   "policy_id": "GM-CANON-SYNC-01",
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "repository": "alsdmlals4-eng/GRIMOIRE-",
@@ -114,7 +114,7 @@
     "tracked_tool_state_observed_main": "257a0dba33f8288d24b1cd291bb407f4505224b4",
     "tracked_tool_state_main": "257a0dba33f8288d24b1cd291bb407f4505224b4",
     "direct_local_tool_state_commit": "257a0dba33f8288d24b1cd291bb407f4505224b4",
-    "tracked_tool_state_sheet_sync": "PENDING_SYNC19_SHEET_READBACK",
+    "tracked_tool_state_sheet_sync": "SHEET_WRITE_READBACK_PASS",
     "status": "GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED",
     "current_tool_sync_status": "TRACKED_HIGODOT_V3_1_4_EXACT_TREE_RECONCILED_LIVE_HANDSHAKE_PENDING",
     "review_model": "GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY",
@@ -209,8 +209,8 @@
       "persistent_source_mutation_authorized": false
     },
     "tracked_project_godot_editor_plugins": "GODOT_AI_GUT_HERA_ENABLED_AT_GITHUB_MAIN_READBACK",
-    "sheet_write": "PENDING_SYNC19_SHEET_READBACK",
-    "sheet_readback": "PENDING_SYNC19_SHEET_READBACK",
+    "sheet_write": "SHEET_WRITE_READBACK_PASS",
+    "sheet_readback": "SHEET_WRITE_READBACK_PASS",
     "merge_authorized": false
   },
   "hera": {
@@ -279,5 +279,5 @@
   "entry_reconciliation": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "unresolved_gate_file": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
   "merge_authorized": false,
-  "sheet_finalization_readback": "PENDING_SYNC19_SHEET_READBACK"
+  "sheet_finalization_readback": "PASS"
 }
