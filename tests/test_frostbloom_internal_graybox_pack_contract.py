@@ -45,6 +45,21 @@ class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
             self.load_fixture()["allowed_verdicts"],
         )
 
+    def test_walkthrough_has_eight_beats_and_information_guard(self):
+        text = (PACK_DIR / "01_46_MINUTE_WALKTHROUGH.md").read_text(encoding="utf-8")
+        for i in range(1, 9):
+            self.assertIn(f"BEAT_{i:02d}", text)
+        for token in ("PLAYER_KNOWS", "PLAYER_CHOOSES", "SYSTEM_CHANGES", "MUST_REMAIN_UNKNOWN"):
+            self.assertGreaterEqual(text.count(token), 8)
+        self.assertIn("46 = TARGET_HYPOTHESIS_NOT_HUMAN_VALIDATION", text)
+
+    def test_writing_audit_covers_w1_to_w7_and_cap_10(self):
+        text = (PACK_DIR / "02_W1_W7_WRITING_LOAD_AUDIT.md").read_text(encoding="utf-8")
+        for i in range(1, 8):
+            self.assertIn(f"W{i}", text)
+        self.assertIn("RECOVERY_INCLUSIVE_CAP: 10", text)
+        self.assertIn("DISTINCT", text)
+
 
 if __name__ == "__main__":
     unittest.main()
