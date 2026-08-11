@@ -7,7 +7,11 @@ SYNC_ID = "GR-SYNC-20260812-21-TASK8-HANDOFF-BCP"
 LOCAL_BRANCH = "feat/task8-spell-use-screen-v2"
 LOCAL_HEAD = "8c611f601aa98397ed1558e92ab207e0e8347a9b"
 PROJECT_MAIN_AT_HANDOFF = "d1e4d747ee1f28b8a29adcd25726fd975a81d168"
+PROJECT_HANDOFF_MERGE = "d277a2f5cd4a57947d176e3c49ae7f8f6db97230"
 BASE_MAIN_AT_HANDOFF = "1d6cc79ae95ffb67ba4de618f010a6540fc6e02c"
+BASE_PROPOSAL_MERGE = "449b83c6f1afdf191327a52a8e71d11b4fba7eb3"
+BASE_PROPOSAL_ID = "BCP-2026-024-execution-sandbox-authority-split-recovery"
+BASE_PROPOSAL_PR = "https://github.com/alsdmlals4-eng/Base/pull/297"
 LEGACY_TASK8_STATUS = "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING"
 LEGACY_NEXT_GATE = "TASK8_RECEIPT_HERA_REVIEW_PR"
 
@@ -40,6 +44,7 @@ class Task8HandoffBcpContinuationTests(unittest.TestCase):
             LOCAL_BRANCH,
             LOCAL_HEAD,
             PROJECT_MAIN_AT_HANDOFF,
+            PROJECT_HANDOFF_MERGE,
             BASE_MAIN_AT_HANDOFF,
             "task8-spell-use-screen-v2@b680",
             "15 tests / 90 assertions / 0 failures",
@@ -49,7 +54,6 @@ class Task8HandoffBcpContinuationTests(unittest.TestCase):
             "CODEX_FETCH_HEAD_PERMISSION_DENIED",
             "CODEX_GITHUB_NETWORK_BLOCKED",
             "HIGODOT_CURRENT_SESSION_REVALIDATION_REQUIRED",
-            "BASE_PROPOSAL_STATE_PENDING_CONCURRENT_RACE_CHECK",
             "HUMAN_NOT_RUN",
             "DEVICE_NOT_RUN",
             "PERFORMANCE_NOT_RUN",
@@ -75,6 +79,36 @@ class Task8HandoffBcpContinuationTests(unittest.TestCase):
         ):
             with self.subTest(required=required):
                 self.assertIn(required, text)
+
+    def test_base_proposal_storage_closes_learning_without_base_implementation_authority(self) -> None:
+        for relative_path in (
+            "docs/ACTIVE_CONTEXT.md",
+            "docs/planning/CURRENT_UNRESOLVED_GATES.md",
+            "docs/planning/sync/GR-SYNC-20260812-21-TASK8-HANDOFF-BCP.md",
+        ):
+            with self.subTest(path=relative_path):
+                text = self._read(relative_path)
+                self.assertIn(BASE_PROPOSAL_ID, text)
+                self.assertIn(BASE_PROPOSAL_PR, text)
+                self.assertIn(BASE_PROPOSAL_MERGE, text)
+                self.assertIn("BASE_PROPOSAL_STORAGE_MERGED_SUBMITTED", text)
+                self.assertIn("BASE_IMPLEMENTATION_AUTHORITY_NOT_GRANTED_IN_THIS_STAGE", text)
+                self.assertIn("LEARNING_CLOSURE_OPEN_COUNT = 0", text)
+                self.assertIn("TASK8_PR_PREP_REVERIFY_PENDING", text)
+
+    def test_start_here_and_development_gates_expose_current_codex_reuse_exception(self) -> None:
+        for relative_path in (
+            "START_HERE.md",
+            "docs/DEVELOPMENT_GATES.md",
+        ):
+            with self.subTest(path=relative_path):
+                text = self._read(relative_path)
+                self.assertIn(SYNC_ID, text)
+                self.assertIn("CURRENT_DEDICATED_CODEX_REUSE_ALLOWED_FOR_CODEX_ONLY_CONTINUATION", text)
+                self.assertIn("FRESH_POWERSHELL_REQUIRED_WHEN_SESSION_RECREATION_OR_CAPABILITY_BOUNDARY", text)
+                self.assertIn("TASK8_PR_PREP_REVERIFY_PENDING", text)
+                self.assertIn(LEGACY_TASK8_STATUS, text)
+                self.assertIn(LEGACY_NEXT_GATE, text)
 
     def test_resume_contract_separates_remote_authority_from_local_executor_capability(self) -> None:
         text = self._read(

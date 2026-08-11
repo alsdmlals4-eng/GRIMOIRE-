@@ -197,6 +197,21 @@ ANDROID_DEVICE_NOT_RUN
 13. `docs/planning/sync/GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION.md` — historical predecessor sync
 14. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md` — historical only
 
+## Sync21 현재 재개 예외 — 기존 fresh-session 기본값 보존
+
+`GR-SYNC-20260812-21-TASK8-HANDOFF-BCP`가 현재 Task8 continuation overlay다. 기존 `TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING` 및 `TASK8_RECEIPT_HERA_REVIEW_PR` 문자열은 compatibility consumer를 위해 유지하지만, 실제 다음 실행 gate는 `TASK8_PR_PREP_REVERIFY_PENDING`이다.
+
+```text
+CURRENT_DEDICATED_CODEX_REUSE_ALLOWED_FOR_CODEX_ONLY_CONTINUATION
+FRESH_POWERSHELL_REQUIRED_WHEN_SESSION_RECREATION_OR_CAPABILITY_BOUNDARY
+```
+
+기본값 `ASSUME_PREVIOUS_POWERSHELL_CLOSED`와 project-dedicated bootstrap은 **새 로컬 세션을 시작하거나 환경/세션을 재생성해야 할 때** 그대로 적용한다. 반대로 대화상 현재 exact dedicated Codex가 이미 열려 있고 다음 작업이 그 Codex의 검증된 capability 안에서 끝나는 Codex-only 작업이면 불필요한 bootstrap을 반복하지 않고 현재 Codex를 재사용한다.
+
+현재 Codex가 GitHub network, linked-worktree shared metadata write, 또는 필요한 tool/session capability를 제공하지 못하면 그 한계를 `EXECUTOR_CAPABILITY_BLOCKER`로 보존하고, 필요한 경계에서만 fresh PowerShell 또는 승인된 다른 capability channel로 전환한다. 원격 write/merge 전에는 별도 trusted GitHub authority에서 fresh remote readback을 다시 수행한다.
+
+Sync21의 Learning Closure는 Base proposal-only BCP 저장까지 닫혔지만 Task8 제품은 아직 병합되지 않았다. Base 제안 저장은 제품 merge 또는 Base 구현 승인을 뜻하지 않는다.
+
 ## 계약 바인딩
 
 현재 GitHub 정본 계약은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4는 `HISTORICAL_SUPERSEDED_CURRENT_BINDING`으로 보존한다. Sync20은 운영 실행환경 consumer이며 제품 Decision을 변경하지 않는다.

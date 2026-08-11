@@ -126,6 +126,23 @@ NEW_POWERSHELL_EACH_LOCAL_WORK_SESSION
 - Hera shared token 원문은 저장소·prompt·log·evidence에 기록하지 않는다.
 - HiGodot v3.1.3 exact-tree/live evidence remains historical predecessor evidence only.
 
+## Gate C.1 — Sync21 current Codex continuation exception
+
+`GR-SYNC-20260812-21-TASK8-HANDOFF-BCP`는 Gate C의 fresh-session 기본값을 제거하지 않고, 이미 성립한 exact dedicated Codex를 재사용할 수 있는 좁은 continuation 예외만 추가한다.
+
+```text
+CURRENT_DEDICATED_CODEX_REUSE_ALLOWED_FOR_CODEX_ONLY_CONTINUATION
+FRESH_POWERSHELL_REQUIRED_WHEN_SESSION_RECREATION_OR_CAPABILITY_BOUNDARY
+TASK8_PR_PREP_REVERIFY_PENDING
+```
+
+- 새 로컬 세션 시작, 전용 environment/session 재생성, identity 불명확 상태에서는 기존 Gate C대로 fresh PowerShell bootstrap을 수행한다.
+- 대화상 현재 exact dedicated Codex가 계속 열려 있고 다음 단계가 그 Codex capability 안의 Codex-only 작업이면 현재 Codex를 재사용한다.
+- current Codex가 GitHub network, linked-worktree shared metadata write, 또는 required live tool/session capability를 제공하지 못하면 `EXECUTOR_CAPABILITY_BLOCKER`로 분류하고 그 capability boundary에서만 fresh PowerShell 또는 승인된 다른 authority channel로 전환한다.
+- 외부 trusted connector의 remote readback은 local worktree/HEAD/staged state/HiGodot/GUT receipt를 대체하지 않으며 local mutation 권한으로 확대되지 않는다.
+- remote write/merge 직전에는 fresh GitHub remote-authority readback을 다시 수행한다.
+- Task8은 여전히 `TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING`; compatibility locator `TASK8_RECEIPT_HERA_REVIEW_PR`도 유지한다.
+
 ## Gate D — preserved runtime / platform evidence
 
 ```yaml
