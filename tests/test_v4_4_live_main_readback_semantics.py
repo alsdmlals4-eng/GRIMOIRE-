@@ -37,7 +37,7 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
             self.assertNotIn(f"current_main: {GUT_FORMAL_ADOPTION_MAIN}", text, str(path))
             self.assertNotIn(f"project_main: {GUT_FORMAL_ADOPTION_MAIN}", text, str(path))
 
-    def test_historical_machine_state_names_historical_merge_shas_by_role(self) -> None:
+    def test_historical_machine_state_names_historical_merge_shas_and_task3_readiness_by_role(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         grill = json.loads(GRILL.read_text(encoding="utf-8"))
         self.assertEqual("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", canon["project_main_authority"])
@@ -45,6 +45,7 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
         self.assertEqual(GUT_FORMAL_ADOPTION_MAIN, canon["gut_formal_adoption_main"])
         self.assertEqual(87, canon["post_merge_canon_sync"]["pull_request"])
         self.assertEqual(POST_MERGE_CANON_SYNC_MAIN, canon["post_merge_canon_sync"]["merge_commit"])
+        self.assertEqual(TASK3_READY, canon["spell_workflow_main"]["task2_readiness"])
         work = grill["current_work"]
         self.assertEqual("LIVE_GITHUB_DEFAULT_BRANCH_READBACK", work["project_main_authority"])
         self.assertNotIn("project_main", work)
@@ -63,7 +64,6 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
             HERA_PASS,
             "spell_workflow_task2_authorized: true",
             TASK2_MERGED,
-            TASK3_READY,
             TASK2_RECEIPT_PASS,
             SHARED_CORE_PASS,
             THREE_SCREEN_PENDING,
