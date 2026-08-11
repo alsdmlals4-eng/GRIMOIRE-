@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import platform
@@ -103,6 +104,14 @@ def safe_extract_zip(archive: Path, destination: Path) -> None:
         bundle.extractall(destination)
 
 
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def download_file(
     url: str,
     destination: Path,
@@ -126,6 +135,13 @@ def download_file(
         raise RuntimeError(
             f"download size mismatch for {url}: expected {expected_size} bytes, got {actual_size}"
         )
+    if expected_sha256 is not None:
+        actual_sha256 = _sha256_file(destination)
+        if actual_sha256.lower() != expected_sha256.lower():
+            destination.unlink(missing_ok=True)
+            raise RuntimeError(
+                f"download sha256 mismatch for {url}: expected {expected_sha256}, got {actual_sha256}"
+            )
 
 
 def _find_executable(root: Path, executable_name: str) -> Path:
