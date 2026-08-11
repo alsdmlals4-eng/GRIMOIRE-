@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 APPROVAL = ROOT / "docs/planning/YEAR_ONE_GROWTH_ECONOMY_TEST_VALUES_01_APPROVAL_2026-08-11.md"
 THIN_SPEC = ROOT / "docs/superpowers/specs/2026-08-11-year-one-growth-economy-test-values-design.md"
+CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 
 
 class YearOneGrowthEconomyTestValuesContract(unittest.TestCase):
@@ -12,6 +13,7 @@ class YearOneGrowthEconomyTestValuesContract(unittest.TestCase):
     def setUpClass(cls):
         cls.body = APPROVAL.read_text(encoding="utf-8")
         cls.thin = THIN_SPEC.read_text(encoding="utf-8")
+        cls.current = CURRENT.read_text(encoding="utf-8")
 
     def test_decision_is_user_approved_test_value_not_final_balance(self):
         self.assertIn("decision_id: GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01", self.body)
@@ -19,6 +21,12 @@ class YearOneGrowthEconomyTestValuesContract(unittest.TestCase):
         self.assertIn("sync_id: GR-SYNC-20260811-09-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES", self.body)
         self.assertIn("test_value_not_final_balance: true", self.body)
         self.assertIn("FINAL_BALANCE = NOT_PROVEN", self.body)
+
+    def test_current_snapshot_points_to_b_and_next_d(self):
+        self.assertIn("current_planning_decision: GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01", self.current)
+        self.assertIn("current_planning_sync: GR-SYNC-20260811-09-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES", self.current)
+        self.assertIn("next_planning_axis: D_VERTICAL_SLICE_DETAIL", self.current)
+        self.assertIn("supplemental_sync: GR-SYNC-20260811-08-WORLD-NAME-CONSUMER-CLEANUP", self.current)
 
     def test_year_one_has_six_large_free_schedule_windows(self):
         self.assertIn("year_one_free_schedule_windows: 6", self.body)
