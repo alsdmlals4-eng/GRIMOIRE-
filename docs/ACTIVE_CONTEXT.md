@@ -262,6 +262,24 @@ The later Codex PR-prep attempt produced `CODEX_FETCH_HEAD_PERMISSION_DENIED` an
 
 Learning application lives at `docs/planning/sync/GR-SYNC-20260812-21-TASK8-HANDOFF-BCP.md`. Task8 remains `TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING`; the compatibility locator `TASK8_RECEIPT_HERA_REVIEW_PR` remains searchable until its older consumers are deliberately migrated.
 
+## Sync21 final closure overlay
+
+This final overlay supersedes only the pending Base-proposal fields above. It does not promote Task8 product state.
+
+```yaml
+state_observed_at_project_main: d277a2f5cd4a57947d176e3c49ae7f8f6db97230
+base_main_after_proposal_merge: 449b83c6f1afdf191327a52a8e71d11b4fba7eb3
+base_proposal_id: BCP-2026-024-execution-sandbox-authority-split-recovery
+base_proposal_pr: https://github.com/alsdmlals4-eng/Base/pull/297
+base_proposal_state: BASE_PROPOSAL_STORAGE_MERGED_SUBMITTED
+base_implementation_authority: BASE_IMPLEMENTATION_AUTHORITY_NOT_GRANTED_IN_THIS_STAGE
+learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
+product_status: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
+resume_gate: TASK8_PR_PREP_REVERIFY_PENDING
+```
+
+Project application is merged in GRIMOIRE PR #134 (`d277a2f5cd4a57947d176e3c49ae7f8f6db97230`). Base proposal-only storage is merged in Base PR #297 (`449b83c6f1afdf191327a52a8e71d11b4fba7eb3`) with proposal status `SUBMITTED`; this is not Base implementation approval. Base active implementation remains `NOT_STARTED_IN_THIS_STAGE` / `SEPARATE_FOLLOWUP_STAGE`.
+
 ## Contract boundary
 
 저장소 current canon은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`과 HiGodot v3.1.3은 historical provenance로 보존한다. Sync20은 운영 실행환경 consumer이며 제품 규칙을 변경하지 않는다. Sync21은 Task8 product를 변경하지 않는 continuation/handoff overlay다.
