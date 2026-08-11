@@ -12,6 +12,7 @@ project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync: GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+task8_product_unit: TASK8_SPELL_USE_SCREEN
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
@@ -188,11 +189,13 @@ ANDROID_DEVICE_NOT_RUN
 5. `docs/DEVELOPMENT_GATES.md`
 6. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
 7. `docs/planning/CURRENT_UNRESOLVED_GATES.md`
-8. `docs/planning/CANON_SYNC_STATE.json`
-9. `docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json`
+8. `docs/planning/CANON_SYNC_STATE_SYNC20.json` — current machine overlay
+9. `docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE_SYNC20.json` — current machine overlay
 10. `docs/planning/sync/GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT.md`
-11. `docs/planning/sync/GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION.md` — historical predecessor sync
-12. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md` — historical only
+11. `docs/planning/CANON_SYNC_STATE.json` — pre-Sync20 historical machine snapshot
+12. `docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json` — Sync19 historical machine snapshot
+13. `docs/planning/sync/GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION.md` — historical predecessor sync
+14. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md` — historical only
 
 ## 계약 바인딩
 
