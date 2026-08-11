@@ -1,7 +1,7 @@
 # GRIMOIRE 현재 확정 결정 스냅샷
 
 ```yaml
-status: ACTIVE_CANON_V4_5_R2_TASK7_CURRENT_STATE
+status: ACTIVE_CANON_V4_5_R2_TASK8_RESUME_PREFLIGHT
 active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5
 contract_binding_decision: GM-CONTRACT-V4-5-BINDING-01
 contract_binding_sync: GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING
@@ -15,8 +15,13 @@ prework_research_sync: GR-SYNC-20260811-13-PREWORK-BENCHMARK-INDUSTRY-RESEARCH
 prework_research_gate: REQUIRED_BEFORE_NEW_SUBSTANTIVE_WORK_UNIT
 prework_research_same_work_unit_receipt_reuse: ALLOWED_IF_SCOPE_AND_KEY_ASSUMPTIONS_UNCHANGED
 base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
-current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+current_state_sync: GR-SYNC-20260811-17-TASK8-RESUME-V314-PREFLIGHT
+spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+task8_resume_sync: GR-SYNC-20260811-17-TASK8-RESUME-V314-PREFLIGHT
+task8_research_receipt: docs/planning/research/2026-08-11-task8-resume-v314-research-receipt.md
+task8_implementation_plan: docs/superpowers/plans/2026-08-11-task8-spell-use-screen.md
 current_planning_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
 current_planning_sync: GR-SYNC-20260811-16-FROSTBLOOM-GRAYBOX-PACK-COMPLETE
 current_planning_design_sync: GR-SYNC-20260811-10-FROSTBLOOM-INTERNAL-VERTICAL-SLICE
@@ -42,14 +47,14 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: TASK8_RESUME_NEXT_NEW_WORK_UNIT_THEN_D_RUNTIME
+next_planning_axis: TASK8_V314_ALIGNMENT_THEN_TDD_RED_THEN_D_RUNTIME
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-spell_workflow_status: TASK7_MERGED_MAIN_VERIFIED_TASK8_RESUME_QUEUED_AFTER_GRAYBOX
+spell_workflow_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
 next_product_task: TASK8_SPELL_USE_SCREEN
-task8_execution_path: USER_REPORTED_AVAILABLE_REQUIRES_FRESH_WORK_UNIT_SYNC
+task8_execution_path: V314_ALIGNMENT_REQUIRED_BEFORE_PERSISTENT_AUTHORING
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
@@ -59,6 +64,9 @@ higodot_tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIAT
 higodot_post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
 higodot_tool_state_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
 higodot_tool_state_sheet_sync: SHEET_WRITE_READBACK_PASS
+higodot_live_user_reported: v3.1.4
+higodot_upstream_v3_1_4: VERIFIED_TAG_96CC8B8C3D25CE487E24801D01D5214FEA150349
+higodot_tracked_v3_1_4: NOT_YET_VERIFIED
 gut_status: GUT_FORMALLY_ADOPTED
 gut_release: v9.7.1
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
@@ -284,7 +292,7 @@ separate_exam: FORBIDDEN_AS_REQUIRED_CONTENT
 circuit_authority: FIVE_POINT_STAR
 historical_3x3: PROVENANCE_ONLY
 runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-task8_execution_path: USER_REPORTED_AVAILABLE_REQUIRES_FRESH_WORK_UNIT_SYNC
+task8_execution_path: V314_ALIGNMENT_REQUIRED_BEFORE_PERSISTENT_AUTHORING
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -295,7 +303,7 @@ D는 학교·제작·자유일정·조사·주문·결과를 체크리스트로 
 
 Internal Graybox Pack은 46분 시간순 walkthrough, W1–W7 distinctness, 2-of-4 전 6조합, 자유일정 4선택 anti-dominance, W6 결과 보존, W7 재설계, 5축 Result/Grimoire, 14개 adversarial attack을 완료했다. 내부 구조 hard-invariant `FAIL`은 0이며 실제 elapsed/comprehension은 `NOT_TESTABLE_YET`로 남는다. 따라서 `INTERNAL_PACK_PASS`는 인간 플레이테스트·실제 46분 달성·재미·device/performance 증거가 아니다.
 
-구현계획은 기존 `SpellWorkflowCoordinator → AtomicSpellUseService → AtomicResultLedger → SaveRepository` 권위를 재사용한다. Task8 Spell Use Screen은 별도 제품 구현 권위로 유지되며 D가 우회 구현하지 않는다. 사용자는 Task8 실행 경로가 사용 가능하다고 보고했으므로 executor availability 자체는 다음 차단축으로 유지하지 않는다. 다음 새 product work unit은 fresh Base/project/Sheet + fresh benchmark/industry research를 거쳐 Task8 resume 상태를 동기화한 뒤 진행하며, D runtime은 Task8 의존성이 해소된 후 이어진다.
+구현계획은 기존 `SpellWorkflowCoordinator → AtomicSpellUseService → AtomicResultLedger → SaveRepository` 권위를 재사용한다. Task8 Spell Use Screen은 별도 제품 구현 권위로 유지되며 D가 우회 구현하지 않는다. Task8은 Sync17에서 새 work unit으로 재개됐고 fresh research/Existing Solution First/adversarial preflight를 통과했다. 다음 persistent product action은 authorized HiGodot v3.1.4 live/tracked alignment readback 후 Task8 GUT RED와 최소 UI GREEN이며, D runtime은 Task8 의존성이 해소된 후 이어진다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
@@ -318,10 +326,15 @@ Internal Graybox Pack은 46분 시간순 walkthrough, W1–W7 distinctness, 2-of
 | 7 | #110 | `fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f` | circuit placement screen |
 
 ```yaml
-current_status: TASK7_MERGED_MAIN_VERIFIED_TASK8_RESUME_QUEUED_AFTER_GRAYBOX
+current_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
+predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+predecessor_status: TASK7_MERGED_MAIN_VERIFIED
+resume_sync: GR-SYNC-20260811-17-TASK8-RESUME-V314-PREFLIGHT
+research_receipt: docs/planning/research/2026-08-11-task8-resume-v314-research-receipt.md
+implementation_plan: docs/superpowers/plans/2026-08-11-task8-spell-use-screen.md
 next_task: TASK8_SPELL_USE_SCREEN
 next_task_role: UI_CONSUMER_OF_EXISTING_TASK5_STAGE3_AUTHORITY
-execution_path: USER_REPORTED_AVAILABLE_REQUIRES_FRESH_WORK_UNIT_SYNC
+execution_path: V314_ALIGNMENT_REQUIRED_BEFORE_PERSISTENT_AUTHORING
 new_product_decision_required_for_task8: false
 ```
 
@@ -351,6 +364,9 @@ higodot:
   sheet_sync: SHEET_WRITE_READBACK_PASS
   plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
   vendor_integrity: PASS_EXACT_TREE_IDENTITY
+  live_user_reported: v3.1.4
+  upstream_v3_1_4: VERIFIED_TAG_96CC8B8C3D25CE487E24801D01D5214FEA150349
+  tracked_v3_1_4: NOT_YET_VERIFIED
   direct_local_upgrade_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 gut:
   release: v9.7.1
