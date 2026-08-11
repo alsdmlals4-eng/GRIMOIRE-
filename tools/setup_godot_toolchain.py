@@ -103,7 +103,15 @@ def safe_extract_zip(archive: Path, destination: Path) -> None:
         bundle.extractall(destination)
 
 
-def download_file(url: str, destination: Path, timeout_seconds: int = 180) -> None:
+def download_file(
+    url: str,
+    destination: Path,
+    timeout_seconds: int = 180,
+    *,
+    expected_size: int | None = None,
+    expected_sha256: str | None = None,
+    max_attempts: int = 1,
+) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     request = urllib.request.Request(url, headers={"User-Agent": "GRIMOIRE-Godot-Toolchain/1"})
     with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
