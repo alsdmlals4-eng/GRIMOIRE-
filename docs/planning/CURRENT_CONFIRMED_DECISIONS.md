@@ -18,9 +18,12 @@ base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
 current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 current_planning_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
-current_planning_sync: GR-SYNC-20260811-12-FROSTBLOOM-POSTMERGE-CURRENT-CONSUMER-CLEANUP
+current_planning_sync: GR-SYNC-20260811-16-FROSTBLOOM-GRAYBOX-PACK-COMPLETE
 current_planning_design_sync: GR-SYNC-20260811-10-FROSTBLOOM-INTERNAL-VERTICAL-SLICE
 current_planning_spec_review_sync: GR-SYNC-20260811-11-FROSTBLOOM-SPEC-REVIEW-PLAN-READY
+current_planning_graybox_design_sync: GR-SYNC-20260811-14-FROSTBLOOM-GRAYBOX-TEST-PACK-DESIGN
+current_planning_graybox_spec_plan_sync: GR-SYNC-20260811-15-FROSTBLOOM-GRAYBOX-SPEC-APPROVED-PLAN-READY
+current_planning_graybox_completion_sync: GR-SYNC-20260811-16-FROSTBLOOM-GRAYBOX-PACK-COMPLETE
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
@@ -36,14 +39,17 @@ frostbloom_writing_contract: SUCCESS7_RECOVERY_CAP10
 frostbloom_investigation_contract: PICK_2_OF_4
 frostbloom_result_dimensions: FACILITY_LIFE_SPIRIT_RELATIONSHIP_DISCOVERY
 frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-internal-vertical-slice-implementation-plan.md
-frostbloom_runtime_implementation: BLOCKED_BY_HIGODOT_EXECUTOR_AND_TASK8_DEPENDENCY
-next_planning_axis: D_RUNTIME_IMPLEMENTATION_BLOCKED_BY_TASK8_HIGODOT
+frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
+frostbloom_graybox_status: INTERNAL_PACK_PASS
+frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
+next_planning_axis: TASK8_RESUME_NEXT_NEW_WORK_UNIT_THEN_D_RUNTIME
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-spell_workflow_status: TASK7_MERGED_MAIN_VERIFIED
+spell_workflow_status: TASK7_MERGED_MAIN_VERIFIED_TASK8_RESUME_QUEUED_AFTER_GRAYBOX
 next_product_task: TASK8_SPELL_USE_SCREEN
+task8_execution_path: USER_REPORTED_AVAILABLE_REQUIRES_FRESH_WORK_UNIT_SYNC
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
@@ -240,12 +246,19 @@ B의 핵심은 `6 / 2-of-3 / 3·2·1 / 4×25 / 6·8·3·12 / 100·50·25·0`이�
 decision_id: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
 design_sync: GR-SYNC-20260811-10-FROSTBLOOM-INTERNAL-VERTICAL-SLICE
 spec_review_plan_sync: GR-SYNC-20260811-11-FROSTBLOOM-SPEC-REVIEW-PLAN-READY
-current_consumer_sync: GR-SYNC-20260811-12-FROSTBLOOM-POSTMERGE-CURRENT-CONSUMER-CLEANUP
+graybox_design_sync: GR-SYNC-20260811-14-FROSTBLOOM-GRAYBOX-TEST-PACK-DESIGN
+graybox_spec_plan_sync: GR-SYNC-20260811-15-FROSTBLOOM-GRAYBOX-SPEC-APPROVED-PLAN-READY
+graybox_completion_sync: GR-SYNC-20260811-16-FROSTBLOOM-GRAYBOX-PACK-COMPLETE
+current_consumer_sync: GR-SYNC-20260811-16-FROSTBLOOM-GRAYBOX-PACK-COMPLETE
 approval: USER_APPROVED_SPEC_IMPLEMENTATION_PLAN_READY
 canon_document: docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_01_APPROVAL_2026-08-11.md
 spec_review_document: docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_01_USER_SPEC_REVIEW_2026-08-11.md
 benchmark_document: docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_IMPLEMENTATION_BENCHMARK_2026-08-11.md
 implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-internal-vertical-slice-implementation-plan.md
+graybox_design_document: docs/superpowers/specs/2026-08-11-frostbloom-internal-graybox-test-pack-design.md
+graybox_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-internal-graybox-test-pack-implementation-plan.md
+graybox_pack_document: docs/testing/frostbloom_graybox/README.md
+graybox_pack_status: INTERNAL_PACK_PASS
 slice_model: SINGLE_INCIDENT_SPIRAL
 time_contract: TARGET_46_REWORK_53_HARD_60
 writing_contract: SUCCESS_7_RECOVERY_CAP_10
@@ -270,7 +283,8 @@ festival: PREVIEW_ONLY
 separate_exam: FORBIDDEN_AS_REQUIRED_CONTENT
 circuit_authority: FIVE_POINT_STAR
 historical_3x3: PROVENANCE_ONLY
-runtime_implementation: BLOCKED_BY_HIGODOT_EXECUTOR_AND_TASK8_DEPENDENCY
+runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
+task8_execution_path: USER_REPORTED_AVAILABLE_REQUIRES_FRESH_WORK_UNIT_SYNC
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -279,7 +293,9 @@ full_slice_validation: NOT_RUN
 
 D는 학교·제작·자유일정·조사·주문·결과를 체크리스트로 나열하지 않고 하나의 서리꽃 온실 사건에 인과적으로 묶는다. 첫 주요 해결은 실제로 무언가를 개선하며, 이후 과거 개정 흔적이 드러나도 그 개선을 삭제하거나 “처음부터 틀렸다”로 바꾸지 않는다. `시설복구 / 생명구조 / 정령교섭 / 봉쇄 / 전투제압`은 정답 루트 버튼이 아니라 Target·FIVE_POINT_STAR 회로·문맥·보호가치·결과에서 파생되는 사후 의미다.
 
-구현계획은 기존 `SpellWorkflowCoordinator → AtomicSpellUseService → AtomicResultLedger → SaveRepository` 권위를 재사용한다. Task8 Spell Use Screen은 별도 제품 구현 권위로 유지되며 D가 우회 구현하지 않는다. persistent Godot 실행은 HiGodot executor와 Task8/Task9 의존성이 풀릴 때까지 차단된다.
+Internal Graybox Pack은 46분 시간순 walkthrough, W1–W7 distinctness, 2-of-4 전 6조합, 자유일정 4선택 anti-dominance, W6 결과 보존, W7 재설계, 5축 Result/Grimoire, 14개 adversarial attack을 완료했다. 내부 구조 hard-invariant `FAIL`은 0이며 실제 elapsed/comprehension은 `NOT_TESTABLE_YET`로 남는다. 따라서 `INTERNAL_PACK_PASS`는 인간 플레이테스트·실제 46분 달성·재미·device/performance 증거가 아니다.
+
+구현계획은 기존 `SpellWorkflowCoordinator → AtomicSpellUseService → AtomicResultLedger → SaveRepository` 권위를 재사용한다. Task8 Spell Use Screen은 별도 제품 구현 권위로 유지되며 D가 우회 구현하지 않는다. 사용자는 Task8 실행 경로가 사용 가능하다고 보고했으므로 executor availability 자체는 다음 차단축으로 유지하지 않는다. 다음 새 product work unit은 fresh Base/project/Sheet + fresh benchmark/industry research를 거쳐 Task8 resume 상태를 동기화한 뒤 진행하며, D runtime은 Task8 의존성이 해소된 후 이어진다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
@@ -302,9 +318,10 @@ D는 학교·제작·자유일정·조사·주문·결과를 체크리스트로 
 | 7 | #110 | `fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f` | circuit placement screen |
 
 ```yaml
-current_status: TASK7_MERGED_MAIN_VERIFIED
+current_status: TASK7_MERGED_MAIN_VERIFIED_TASK8_RESUME_QUEUED_AFTER_GRAYBOX
 next_task: TASK8_SPELL_USE_SCREEN
 next_task_role: UI_CONSUMER_OF_EXISTING_TASK5_STAGE3_AUTHORITY
+execution_path: USER_REPORTED_AVAILABLE_REQUIRES_FRESH_WORK_UNIT_SYNC
 new_product_decision_required_for_task8: false
 ```
 
