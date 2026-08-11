@@ -231,6 +231,37 @@ HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 
 자동·Editor·CI·GUT·Hera 증거로 사람/기기/성능/전체 Vertical Slice 증거를 승격하지 않는다.
 
+## Sync21 continuation overlay — current handoff authority
+
+This section is the current continuation overlay for Task8 resume and supersedes older pending-receipt wording in this file **only for resume routing**. Historical Sync20/Task8 markers remain in place for compatibility consumers.
+
+```yaml
+continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
+state_observed_at_project_main: d1e4d747ee1f28b8a29adcd25726fd975a81d168
+base_main_observed_for_handoff: 1d6cc79ae95ffb67ba4de618f010a6540fc6e02c
+product_status: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
+product_branch_local: feat/task8-spell-use-screen-v2
+product_head_local: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+product_remote_branch_at_handoff: NOT_PRESENT
+product_pr: NONE
+resume_gate: TASK8_PR_PREP_REVERIFY_PENDING
+current_higodot_session: HIGODOT_CURRENT_SESSION_REVALIDATION_REQUIRED
+remote_authority_route: REMOTE_AUTHORITY_RECEIPT
+local_executor_route: LOCAL_EXECUTION_RECEIPT
+codex_capability_failure: EXECUTOR_CAPABILITY_BLOCKER
+codex_remote_retry: DO_NOT_RETRY_BLOCKED_REMOTE_CHECK_IN_CODEX
+remote_write_precondition: FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
+codex_session_reuse: CURRENT_DEDICATED_CODEX_REUSE_ALLOWED_FOR_CODEX_ONLY_CONTINUATION
+base_proposal_state: BASE_PROPOSAL_STATE_PENDING_CONCURRENT_RACE_CHECK
+handoff_product_git_write: NO_STAGE_COMMIT_PUSH_DURING_HANDOFF
+```
+
+Observed acceptance checkpoint before the later PR-prep interruption: exact session `task8-spell-use-screen-v2@b680`, focused GUT `15 tests / 90 assertions / 0 failures`, predecessor `42 suites / 1,588 assertions / 0 failures`, and `HERA_SOURCE_DELTA_NONE_OBSERVED`. `HISTORICAL_EDIT_OPERATION_RECEIPT_NOT_RETROACTIVELY_PROVABLE` remains an evidence ceiling rather than being upgraded.
+
+The later Codex PR-prep attempt produced `CODEX_FETCH_HEAD_PERMISSION_DENIED` and `CODEX_GITHUB_NETWORK_BLOCKED`; it did not edit source or stage/commit/push. Resume therefore revalidates local HiGodot/test readiness but does not throw away the accepted prior checkpoint.
+
+Learning application lives at `docs/planning/sync/GR-SYNC-20260812-21-TASK8-HANDOFF-BCP.md`. Task8 remains `TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING`; the compatibility locator `TASK8_RECEIPT_HERA_REVIEW_PR` remains searchable until its older consumers are deliberately migrated.
+
 ## Contract boundary
 
-저장소 current canon은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`과 HiGodot v3.1.3은 historical provenance로 보존한다. Sync20은 운영 실행환경 consumer이며 제품 규칙을 변경하지 않는다.
+저장소 current canon은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`과 HiGodot v3.1.3은 historical provenance로 보존한다. Sync20은 운영 실행환경 consumer이며 제품 규칙을 변경하지 않는다. Sync21은 Task8 product를 변경하지 않는 continuation/handoff overlay다.

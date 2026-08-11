@@ -214,20 +214,54 @@ A Hera-discovered product defect returns to HiGodot persistent authoring, then G
 | `AUDIO_RIGHTS_UNVERIFIED` | `BLOCKING_FOR_AUDIO_INGESTION` |
 | `VISUAL_AUDIO_COMPLETE_NOT_PROVEN` | `BLOCKING_FOR_FINAL_VISUAL_AUDIO_COMPLETION` |
 
+## Sync21 handoff gate — current resume routing
+
+`GR-SYNC-20260812-21-TASK8-HANDOFF-BCP` is the current continuation overlay for Task8 resume. The older `TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING` and `TASK8_RECEIPT_HERA_REVIEW_PR` strings remain as compatibility locators, but the narrower current execution state is:
+
+```yaml
+product_status: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
+product_branch_local: feat/task8-spell-use-screen-v2
+product_head_local: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+product_remote_branch_at_handoff: NOT_PRESENT
+product_pr: NONE
+resume_gate: TASK8_PR_PREP_REVERIFY_PENDING
+higodot_current_session: HIGODOT_CURRENT_SESSION_REVALIDATION_REQUIRED
+accepted_higodot_checkpoint: task8-spell-use-screen-v2@b680
+accepted_focused_gut: 15 tests / 90 assertions / 0 failures
+accepted_predecessor_regression: 42 suites / 1,588 assertions / 0 failures
+accepted_hera_delta: HERA_SOURCE_DELTA_NONE_OBSERVED
+historical_edit_receipt_limit: HISTORICAL_EDIT_OPERATION_RECEIPT_NOT_RETROACTIVELY_PROVABLE
+codex_fetch_head: CODEX_FETCH_HEAD_PERMISSION_DENIED
+codex_network: CODEX_GITHUB_NETWORK_BLOCKED
+capability_classification: EXECUTOR_CAPABILITY_BLOCKER
+remote_authority_route: REMOTE_AUTHORITY_RECEIPT
+local_executor_route: LOCAL_EXECUTION_RECEIPT
+codex_remote_retry: DO_NOT_RETRY_BLOCKED_REMOTE_CHECK_IN_CODEX
+remote_write_precondition: FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
+codex_session_reuse: CURRENT_DEDICATED_CODEX_REUSE_ALLOWED_FOR_CODEX_ONLY_CONTINUATION
+base_proposal_state: BASE_PROPOSAL_STATE_PENDING_CONCURRENT_RACE_CHECK
+handoff_product_git_write: NO_STAGE_COMMIT_PUSH_DURING_HANDOFF
+```
+
+The exact next product step is fresh local PR-prep revalidation, not repetition of the already-completed full acceptance workflow unless current evidence requires it. A currently established dedicated Codex session may continue Codex-only steps; recreate the dedicated environment via fresh PowerShell only when the current executor/session must be rebuilt or when the required operation exceeds the current Codex capability boundary.
+
+Learning details, Base reuse decisions, and the non-recursive continuation checkpoint are owned by `docs/planning/sync/GR-SYNC-20260812-21-TASK8-HANDOFF-BCP.md`.
+
 ## 현재 허용
 
 ```yaml
 allowed_next_actions:
-  - FRESH_DEDICATED_LOCAL_ENVIRONMENT_BOOTSTRAP
-  - FRESH_EXACT_PROJECT_HIGODOT_RECEIPT
-  - TASK8_PROTECTED_DELTA_HIGODOT_RECEIPT_READBACK
+  - TASK8_PR_PREP_REVERIFY_PENDING
+  - FRESH_GITHUB_CONNECTOR_REMOTE_AUTHORITY_READBACK
+  - CURRENT_CODEX_LOCAL_IDENTITY_AND_HIGODOT_REVALIDATION
   - GUT_DETERMINISTIC_TASK8_REGRESSION_AS_REQUIRED
-  - HERA_TASK8_ACCEPTANCE_QA_OBSERVABILITY_ONLY_WITH_SOURCE_DELTA_NONE
-  - INDEPENDENT_ADVERSARIAL_REVIEW
-  - TASK8_EXACT_HEAD_PR_CI_MERGE
+  - EXACT_NINE_PATH_TASK8_ADVERSARIAL_REVIEW
+  - POWER_SHELL_ONLY_FOR_GIT_WRITE_IF_CURRENT_CODEX_CAPABILITY_BLOCKS_REQUIRED_OPERATION
+  - TASK8_EXACT_HEAD_PR_CI_MERGE_AFTER_REVALIDATION
   - PROPAGATE_APPROVED_DEVICE_MATRIX_INTO_TASK9_ACCEPTANCE
   - VERIFY_GODOT_MULTIPLE_ASPECT_POLICY_BEFORE_TASK9
 forbidden_next_actions:
+  - RETRY_ALREADY_CLASSIFIED_CODEX_GITHUB_NETWORK_PROBE_AS_PRODUCT_GATE
   - PERSISTENT_GODOT_PRODUCT_AUTHORING_OUTSIDE_HIGODOT
   - LET_HERA_PERSISTENTLY_MUTATE_SOURCE
   - STORE_HERA_SHARED_TOKEN_PLAINTEXT
