@@ -36,9 +36,10 @@ docs/superpowers/specs/2026-08-11-world-character-three-year-story-design.md
 docs/planning/CURRENT_CONFIRMED_DECISIONS.md
 tests/test_world_character_three_year_story_contract.py
 docs/planning/sync/GR-SYNC-20260811-07-WORLD-CHARACTER-THREE-YEAR-STORY.md
+.github/workflows/validate-base-v9-adoption.yml
 ```
 
-Superpowers spec은 process overlay용 thin spec이며 프로젝트 정본을 복제하거나 덮어쓰지 않는다.
+Superpowers spec은 process overlay용 thin spec이며 프로젝트 정본을 복제하거나 덮어쓰지 않는다. 새 C 계약 테스트는 repository의 기존 explicit `unittest` planning-gate 패턴을 따라 `Validate GRIMOIRE planning and Base v9.4.3` workflow에서 직접 실행한다. workflow의 action pin·권한·runner 의미는 변경하지 않고 C 계약 실행 step만 추가한다.
 
 ## Google Sheet 동기화
 
@@ -98,6 +99,7 @@ sheet_status: SHEET_WRITE_READBACK_PASS
 - **개정 리셋:** 실패, 타인의 선택, 생명, 이미 발생한 역사를 임의 삭제하지 않는다.
 - **3학년 파워 인플레이션:** 파괴력보다 보존 범위와 책임이 확장된다.
 - **B/D 결합:** C 고유명사·세력 세부 변경이 B 수치나 D Slice 시간 검증을 깨지 않도록 소유권을 분리한다.
+- **죽은 계약 테스트:** C 테스트는 문서만 추가하지 않고 planning workflow에서 명시적으로 실행한다.
 
 ## 잔여 NOT_RUN
 
