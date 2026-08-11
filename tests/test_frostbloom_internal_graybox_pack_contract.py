@@ -60,6 +60,16 @@ class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
         self.assertIn("RECOVERY_INCLUSIVE_CAP: 10", text)
         self.assertIn("DISTINCT", text)
 
+    def test_each_investigation_pair_has_context_uncertainty_and_no_answer_lookup(self):
+        data = self.load_fixture()
+        forbidden = {"correct_route_id", "required_spell", "best_intent", "mandatory_hidden_third_clue"}
+        for pair in data["investigation"]["pairs"]:
+            self.assertGreaterEqual(len(pair["useful_context"]), 2, pair["id"])
+            self.assertGreaterEqual(len(pair["remaining_uncertainty"]), 1, pair["id"])
+            self.assertTrue(pair["forward_progress_to_w6"], pair["id"])
+            self.assertTrue(forbidden.isdisjoint(pair.keys()), pair["id"])
+            self.assertIn(pair["verdict"], data["allowed_verdicts"])
+
 
 if __name__ == "__main__":
     unittest.main()
