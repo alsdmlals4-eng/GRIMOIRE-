@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "sync_id": "GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT",
+  "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+  "supersedes_current_view_of": "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json",
+  "superseded_file_role": "SYNC19_HISTORICAL_MACHINE_SNAPSHOT",
+  "base": {
+    "project_pin": "9.4.3",
+    "current_main_observed": "6d2feba2bc49fda2d8d273248b55087853615d5d",
+    "pin_update": "NOT_APPROVED_NOT_PERFORMED"
+  },
+  "local_execution": {
+    "policy": "PROJECT_DEDICATED_LOCAL_EXECUTION_ENVIRONMENT_FIRST",
+    "fresh_shell": "ASSUME_PREVIOUS_POWERSHELL_CLOSED",
+    "missing_environment": "CREATE_OR_REPAIR_DEDICATED_LOCAL_ENVIRONMENT_FIRST",
+    "launcher_order": "NEW_POWERSHELL_THEN_DEDICATED_GODOT_THEN_PROJECT_HIGODOT_THEN_PROJECT_CODEX_HOME_THEN_HERA_IF_REQUIRED_THEN_EXACT_WORKTREE_CODEX",
+    "sheet_status": "PENDING_POST_MERGE"
+  },
+  "higodot": {
+    "release": "v3.1.4",
+    "authority": "SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY",
+    "tracked_plugin_subtree": "69010571e11123dfc4e09483f80cb9e6ca93511a",
+    "tracked_vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
+    "live_status": "LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED",
+    "session_id": "task8-spell-use-screen-v2@3cfa",
+    "project_path": "C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-/.worktrees/task8-spell-use-screen-v2/",
+    "server_version": "3.1.4",
+    "plugin_version": "3.1.4",
+    "readiness": "READY",
+    "expected_version_field": "NOT_SURFACED_DO_NOT_CLAIM",
+    "direct_local_upgrade_receipt": "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT"
+  },
+  "gut": {
+    "release": "v9.7.1",
+    "authority": "DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY",
+    "status": "GUT_FORMALLY_ADOPTED"
+  },
+  "hera": {
+    "release": "v1.0.0",
+    "authority": "LIVE_QA_AND_OBSERVABILITY_ONLY",
+    "persistent_source_mutation": "FORBIDDEN",
+    "task8_acceptance": "PENDING",
+    "required_source_delta": "NONE"
+  },
+  "task8": {
+    "product_unit": "TASK8_SPELL_USE_SCREEN",
+    "status": "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING",
+    "focused_gut": "15_TESTS_90_ASSERTIONS_0_FAILURES",
+    "predecessor_regression": "42_SUITES_1588_ASSERTIONS_0_FAILURES",
+    "next_gate": "TASK8_RECEIPT_HERA_REVIEW_PR",
+    "protected_delta_receipt": "PENDING",
+    "hera_acceptance": "PENDING_HERA_SOURCE_DELTA_NONE",
+    "pr_merge": "PENDING"
+  },
+  "historical": {
+    "tracked_v3_1_4_sync": "GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION",
+    "v3_1_3_sync": "GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION",
+    "sync19_live_status_at_that_time": "LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED"
+  },
+  "claims": {
+    "live_exact_project_v3_1_4_ready_observed": true,
+    "expected_version_field_verified": false,
+    "direct_local_upgrade_receipt_verified": false,
+    "task8_local_refinement_green": true,
+    "task8_merged_main_verified": false,
+    "task8_hera_acceptance_pass": false
+  }
+}
