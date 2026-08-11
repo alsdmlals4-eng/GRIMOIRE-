@@ -15,7 +15,7 @@ product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_status: TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
-next_product_task: TASK8_SPELL_USE_SCREEN_RECEIPT_HERA_PR
+next_product_task: TASK8_RECEIPT_HERA_REVIEW_PR
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
