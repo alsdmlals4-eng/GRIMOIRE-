@@ -25,7 +25,8 @@ CURRENT_SYNC_ID = "GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT"
 UPSTREAM_TAG_COMMIT = "96cc8b8c3d25ce487e24801d01d5214fea150349"
 V314_TREE = "69010571e11123dfc4e09483f80cb9e6ca93511a"
 DIRECT_TOOL_STATE_COMMIT = "257a0dba33f8288d24b1cd291bb407f4505224b4"
-CURRENT_BASE_MAIN = "6d2feba2bc49fda2d8d273248b55087853615d5d"
+SYNC20_SOURCE_BASE = "6d2feba2bc49fda2d8d273248b55087853615d5d"
+LATEST_BASE_OBSERVED = "1d6cc79ad9dfa694558524ccc5ebf11ec7df7d8c"
 RECEIPT_LIMIT = "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT"
 HISTORICAL_LIVE_GATE = "LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED"
 CURRENT_LIVE = "LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED"
@@ -62,12 +63,16 @@ class HiGodotV314TrackedReconciliationTests(unittest.TestCase):
         old_state = json.loads(SYNC19_STATE.read_text(encoding="utf-8"))
         self.assertIn(HISTORICAL_LIVE_GATE, json.dumps(old_state))
 
-    def test_sync20_current_machine_state_records_exact_project_live_ready(self) -> None:
+    def test_sync20_current_machine_state_records_exact_project_live_ready_and_sheet_readback(self) -> None:
         data = json.loads(CURRENT_STATE.read_text(encoding="utf-8"))
         self.assertEqual(CURRENT_SYNC_ID, data["sync_id"])
         self.assertEqual(DECISION, data["decision_id"])
-        self.assertEqual(CURRENT_BASE_MAIN, data["base"]["current_main_observed"])
+        self.assertEqual(SYNC20_SOURCE_BASE, data["base"]["sync20_source_main"])
+        self.assertEqual(LATEST_BASE_OBSERVED, data["base"]["latest_main_observed_post_merge"])
+        self.assertEqual("NO_MATERIAL_FOLLOWUP_UNRELATED_TO_DEDICATED_LOCAL_EXECUTION", data["base"]["latest_change_disposition"])
         self.assertEqual("9.4.3", data["base"]["project_pin"])
+        self.assertEqual("SHEET_WRITE_READBACK_PASS", data["local_execution"]["sheet_status"])
+        self.assertEqual("PASS", data["project_sync"]["sheet_write_readback"])
         higodot = data["higodot"]
         self.assertEqual("v3.1.4", higodot["release"])
         self.assertEqual(V314_TREE, higodot["tracked_plugin_subtree"])

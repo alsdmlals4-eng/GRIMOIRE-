@@ -6,15 +6,23 @@
   "superseded_file_role": "SYNC19_HISTORICAL_MACHINE_SNAPSHOT",
   "base": {
     "project_pin": "9.4.3",
-    "current_main_observed": "6d2feba2bc49fda2d8d273248b55087853615d5d",
+    "sync20_source_main": "6d2feba2bc49fda2d8d273248b55087853615d5d",
+    "latest_main_observed_post_merge": "1d6cc79ad9dfa694558524ccc5ebf11ec7df7d8c",
+    "latest_change_disposition": "NO_MATERIAL_FOLLOWUP_UNRELATED_TO_DEDICATED_LOCAL_EXECUTION",
     "pin_update": "NOT_APPROVED_NOT_PERFORMED"
+  },
+  "project_sync": {
+    "source_merge_main": "3eb629e7e162adb59e3c879a50f6361569ddcd22",
+    "source_pr": 132,
+    "merged_main_readback": "PASS",
+    "sheet_write_readback": "PASS"
   },
   "local_execution": {
     "policy": "PROJECT_DEDICATED_LOCAL_EXECUTION_ENVIRONMENT_FIRST",
     "fresh_shell": "ASSUME_PREVIOUS_POWERSHELL_CLOSED",
     "missing_environment": "CREATE_OR_REPAIR_DEDICATED_LOCAL_ENVIRONMENT_FIRST",
     "launcher_order": "NEW_POWERSHELL_THEN_DEDICATED_GODOT_THEN_PROJECT_HIGODOT_THEN_PROJECT_CODEX_HOME_THEN_HERA_IF_REQUIRED_THEN_EXACT_WORKTREE_CODEX",
-    "sheet_status": "PENDING_POST_MERGE"
+    "sheet_status": "SHEET_WRITE_READBACK_PASS"
   },
   "higodot": {
     "release": "v3.1.4",
