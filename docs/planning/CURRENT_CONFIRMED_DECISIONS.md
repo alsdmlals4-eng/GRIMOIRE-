@@ -13,13 +13,18 @@ external_process_policy: EXTERNAL_PROCESS_OVERLAY
 base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
 current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
-current_planning_decision: GM-WORLD-CHARACTER-THREE-YEAR-STORY-01
-current_planning_sync: GR-SYNC-20260811-07-WORLD-CHARACTER-THREE-YEAR-STORY
+current_planning_decision: GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01
+current_planning_sync: GR-SYNC-20260811-09-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
 year_one_schools: FLOW_HEAT_PROTECT
-next_planning_axis: B_GROWTH_ECONOMY_TEST_VALUES
+year_one_free_schedule_windows: 6
+year_one_focus_model: TERM2_3_PICK_2_OF_3
+year_one_portfolio_weights: FOUR_AXES_25_EACH
+year_one_crafting_scope: MATERIAL6_RECIPE8_INPUT3_CAP12
+year_one_practicum_repeat_material_reward: 100_50_25_0
+next_planning_axis: D_VERTICAL_SLICE_DETAIL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
@@ -75,19 +80,20 @@ chapter_function_contract: FIXED_FUNCTIONS_VARIABLE_ORDER
 separate_exam: FORBIDDEN_AS_REQUIRED_CONTENT
 year_one_major_incident: 서리꽃 온실의 심장
 year_one_ending: FIRST_INDEPENDENT_PRINCIPLE_AND_SMALL_WORLD_REWRITE
-growth_economy_numbers: TEST_VALUE
+growth_economy_numbers: REFINED_BY_GM_YEAR_ONE_GROWTH_ECONOMY_TEST_VALUES_01
 world_detail_successor: GM-WORLD-CHARACTER-THREE-YEAR-STORY-01
 ```
 
 1학년은 `정답 학습 → 복수 원리 비교 → 실패·부분성공 복기 → 실제 현장 책임 → 자기 원리 작성`으로 완결한다. 각 Chapter는 `발견·학습 / 선택·준비 / 통제 응용 / 실전·책임 / 복기·다음 질문`의 다섯 기능을 보존하되 장면 순서·시작 압력·형태·비중을 바꾼다. `서리꽃 온실의 심장`은 Internal Slice의 압축 검증판과 Year-One Chapter 6의 확장판을 구분한다. Chapter 7은 같은 전투 재시도가 아니라 마도서 증거를 바탕으로 첫 작은 세계 재작성을 수행한다.
 
-현재 주문 제품 권위는 `FIVE_POINT_STAR / GM-SPELL-WORKFLOW-UI-V2-01`이며 historical 3×3 회로 언어를 신규 Chapter 권위로 사용하지 않는다. 수강 슬롯·자유일정 횟수·평가 가중치·재료량 등 수치는 후속 성장·경제 단계까지 `TEST_VALUE`다.
+현재 주문 제품 권위는 `FIVE_POINT_STAR / GM-SPELL-WORKFLOW-UI-V2-01`이며 historical 3×3 회로 언어를 신규 Chapter 권위로 사용하지 않는다.
 
-## GM-WORLD-CHARACTER-THREE-YEAR-STORY-01 — current planning decision
+## GM-WORLD-CHARACTER-THREE-YEAR-STORY-01 — approved world/story decision
 
 ```yaml
 decision_id: GM-WORLD-CHARACTER-THREE-YEAR-STORY-01
 sync_id: GR-SYNC-20260811-07-WORLD-CHARACTER-THREE-YEAR-STORY
+supplemental_sync: GR-SYNC-20260811-08-WORLD-NAME-CONSUMER-CLEANUP
 approval: USER_APPROVED_ACTIVE
 canon_document: docs/planning/WORLD_CHARACTER_THREE_YEAR_STORY_01_APPROVAL_2026-08-11.md
 world_layers:
@@ -116,13 +122,69 @@ year_questions:
   year_1: 정답은_왜_맞는가
   year_2: 누가_세계를_바꿀_권리가_있는가
   year_3: 무엇을_바꾸지_않을_책임이_있는가
-growth_economy_numbers: TEST_VALUE
-next_planning_axis: B_GROWTH_ECONOMY_TEST_VALUES
+growth_economy_successor: GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01
 ```
 
 학교의 정식은 절대진리가 아니라 검증된 안전 선례다. 플레이어는 장소·역사·정령·사람이 만든 문맥을 읽고 충분한 근거와 책임 아래 제한된 개정을 수행한다. `원문`은 학생이 직접 편집하는 숨은 소스코드가 아니며 `개정`은 실패 기록이나 타인의 선택을 삭제하는 리셋 도구가 아니다.
 
 1학년의 세 계열은 `유동학(FLOW) / 변성학(HEAT) / 결계학(PROTECT)`이며 `FOCUS / DISPERSE`는 공통 조율 문법이다. 계열은 정치·윤리 성향과 1:1로 대응하지 않는다. 세력별 별도 메인 캠페인을 만들지 않고 공유 사건을 서로 다른 보호 대상·비용·증거의 관점으로 재해석한다.
+
+## GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01 — current planning decision
+
+```yaml
+decision_id: GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01
+sync_id: GR-SYNC-20260811-09-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES
+approval: USER_APPROVED_TEST_VALUES_ACTIVE
+canon_document: docs/planning/YEAR_ONE_GROWTH_ECONOMY_TEST_VALUES_01_APPROVAL_2026-08-11.md
+test_value_not_final_balance: true
+free_schedule:
+  year_one_total_windows: 6
+  distribution: CH1_TO_CH6_ONE_EACH_CH7_NONE
+  one_center_action_per_window: true
+focus:
+  term_1: COMMON_FOUNDATION_NO_CHOICE
+  term_2: PICK_2_DISTINCT_OF_FLOW_HEAT_PROTECT
+  term_3: PICK_2_DISTINCT_OF_FLOW_HEAT_PROTECT_FREE_RESELECT
+specialization_readiness:
+  valid_school_evidence_min: 3
+  distinct_context_categories_min: 2
+  responsibility_or_reflection_min: 1
+  bridge_assignment_if_short: 1
+portfolio:
+  principle_understanding: 25
+  context_application: 25
+  responsibility_recovery: 25
+  reflection_explanation: 25
+  mid_term_numbers: HIDDEN
+hidden_responsibility_deduction:
+  ordinary_failure_alone: NONE
+  per_incident_cap: -2
+  per_semester_cap: -6
+grade_bands_internal_test_value:
+  A: 85_TO_100
+  B: 70_TO_84
+  C: 55_TO_69
+  D: BELOW_55
+crafting:
+  material_groups: 6
+  core_recipes: 8
+  max_inputs: 3
+  inventory_cap_per_group: 12
+  mandatory_story_material_guarantee: CEIL_1_5_X_REQUIRED
+practicum_repeat_material_reward_percent: 100_50_25_0
+protected_owners:
+  - GM-STOCK-SYSTEM-01
+  - GM-SUMMON-SYSTEM-01
+  - GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+  - GM-SPELL-WORKFLOW-UI-V2-01
+next_planning_axis: D_VERTICAL_SLICE_DETAIL
+```
+
+B의 핵심은 `6 / 2-of-3 / 3·2·1 / 4×25 / 6·8·3·12 / 100·50·25·0`이다. 일반 실패·부분성공 자체를 숨은 숫자 감점으로 이중 처벌하지 않고, 감점은 이미 확인한 안전 근거를 의도적으로 무시하거나 기록을 위조하는 등 회피 가능한 책임 위반에만 사용한다. 이는 상위 Failure 결정의 `작은 숨김 감점`을 폐기하지 않고 발동 조건을 좁힌 child refinement다.
+
+필수 제작물의 관련 재료 요구량이 `M`이면 피할 수 없는 메인 경로에서 최소 `ceil(1.5×M)`를 보장한다. 선택형 현장실습 반복은 필수 스토리 파밍이 될 수 없다. 동일 실습의 재료 보상은 첫 고유 완료/새 조건·다른 해법/첫 동일 반복/추가 동일 반복에 대해 `100/50/25/0`을 사용하고, 영구 평가·접근·핵심 성장자원은 동일 반복으로 무한 축적되지 않는다.
+
+위 수치는 인간 플레이테스트 전에는 `BALANCED`, `FINAL`, `FUN_VERIFIED`로 승격하지 않는다. D는 46/53/60분 Vertical Slice 예산 안에서 이 장기 의미 중 무엇을 실제 플레이하고 무엇을 Preview/Mock으로 보여줄지 별도 승인받는다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
