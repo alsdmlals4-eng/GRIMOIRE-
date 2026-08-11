@@ -184,7 +184,7 @@ closure: CLOSED_PROJECT_APPLICATION
 
 This does not weaken the project-dedicated environment requirement. It only prevents unnecessary fresh-shell churn when the already-established exact Codex session remains the current executor and the next operation stays within its proven capabilities.
 
-## Learning Closure table
+## Learning Closure table — pre-Base-storage snapshot
 
 | Learning ID | Classification | Project application | Project verification | Base proposal | Closure |
 |---|---|---|---|---|---|
@@ -192,9 +192,9 @@ This does not weaken the project-dedicated environment requirement. It only prev
 | `LRN-GR-20260812-02` | `NO_PROMOTION` | `APPLIED` | prior runtime recovery evidence + current handoff regression | `REUSE_EXISTING_BCP` / BCP-015 | `CLOSED` |
 | `LRN-GR-20260812-03` | `PROJECT_ONLY` | `APPLIED` | current handoff regression | N/A | `CLOSED` |
 
-Overall Learning Closure remains open until LRN-01 is either stored as a non-duplicate Base proposal or safely converted to `REUSE_EXISTING_BCP / CONCURRENT_SAME_GOAL` after the final Base race check.
+This table is retained as the pre-Base-storage snapshot; the final closure below supersedes its pending values.
 
-## Continuation checkpoint
+## Continuation checkpoint — pre-closure snapshot
 
 ```yaml
 continuation_checkpoint:
@@ -226,7 +226,7 @@ ANDROID_DEVICE_NOT_RUN
 
 No automated, Editor, CI, GUT, Hera, handoff, or Base proposal evidence promotes these states.
 
-## Handoff classification
+## Handoff classification — initial snapshot
 
 ```yaml
 product_change: NONE
@@ -240,3 +240,58 @@ post_change_monitor_initial_classification:
   duplicate_runtime_recovery_bcp: DUPLICATE_WORK_AVOIDED_BY_REUSE_BCP_015
   forced_new_shell_for_live_codex_only_step: COMPLEMENT_GAP_PROJECT_WORKFLOW_REFINED
 ```
+
+## Final project/Base handoff closure
+
+The project application and Base proposal-only storage are now both merged. This section is the current closure authority and supersedes the pending Base-proposal fields above without rewriting their historical evidence.
+
+```yaml
+project_handoff_pr: https://github.com/alsdmlals4-eng/GRIMOIRE-/pull/134
+project_handoff_merge: d277a2f5cd4a57947d176e3c49ae7f8f6db97230
+base_proposal_id: BCP-2026-024-execution-sandbox-authority-split-recovery
+base_proposal_path: "[수정제안서]/BCP-2026-024-execution-sandbox-authority-split-recovery/PROPOSAL.md"
+base_proposal_pr: https://github.com/alsdmlals4-eng/Base/pull/297
+base_proposal_merge: 449b83c6f1afdf191327a52a8e71d11b4fba7eb3
+base_proposal_status: SUBMITTED
+base_proposal_state: BASE_PROPOSAL_STORAGE_MERGED_SUBMITTED
+base_implementation_authority: BASE_IMPLEMENTATION_AUTHORITY_NOT_GRANTED_IN_THIS_STAGE
+base_implementation_status: NOT_STARTED_IN_THIS_STAGE
+implementation_boundary: SEPARATE_FOLLOWUP_STAGE
+learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
+```
+
+The mandatory Base concurrency loop was exercised repeatedly: other project BCP/Registry changes were preserved, stale own proposal PRs were closed unmerged, only the GRIMOIRE proposal identity was reallocated, and the final BCP-024 branch was reconstructed from the then-current Base main before proposal-only exact-head validation and merge. No Base active implementation file was changed by the final proposal-only PR.
+
+Final Learning Closure:
+
+| Learning ID | Classification | Project application | Project verification | Base proposal | Closure |
+|---|---|---|---|---|---|
+| `LRN-GR-20260812-01` | `BASE_CANDIDATE` | `APPLIED` | PR #134 exact-head CI + merged new-main `d277a2f5...` | `BCP-2026-024-execution-sandbox-authority-split-recovery` / PR #297 / Base merge `449b83c6...` | `CLOSED` |
+| `LRN-GR-20260812-02` | `NO_PROMOTION` | `APPLIED` | runtime recovery evidence + Sync21 regression | `REUSE_EXISTING_BCP` / BCP-015 | `CLOSED` |
+| `LRN-GR-20260812-03` | `PROJECT_ONLY` | `APPLIED` | Sync21 active-consumer regression | N/A | `CLOSED` |
+
+`LEARNING_CLOSURE_OPEN_COUNT = 0`
+
+Final non-recursive continuation checkpoint:
+
+```yaml
+continuation_checkpoint:
+  state_observed_at_main: d277a2f5cd4a57947d176e3c49ae7f8f6db97230
+  work_merge_main_sha: d277a2f5cd4a57947d176e3c49ae7f8f6db97230
+  task8_local_branch: feat/task8-spell-use-screen-v2
+  task8_local_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+  task8_product_pr: NONE
+  task8_product_merge: NONE
+  current_status: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
+  next_executable_step: TASK8_PR_PREP_REVERIFY_PENDING
+  base_proposal: BCP-2026-024-execution-sandbox-authority-split-recovery
+  base_proposal_pr: https://github.com/alsdmlals4-eng/Base/pull/297
+  base_proposal_merge: 449b83c6f1afdf191327a52a8e71d11b4fba7eb3
+  base_proposal_state: BASE_PROPOSAL_STORAGE_MERGED_SUBMITTED
+  base_implementation_authority: BASE_IMPLEMENTATION_AUTHORITY_NOT_GRANTED_IN_THIS_STAGE
+  closure_pr: https://github.com/alsdmlals4-eng/GRIMOIRE-/pull/135
+  self_merge_sha_required_in_file: false
+  resume_rule: FETCH_LATEST_MAIN_BEFORE_USE
+```
+
+Task8 remains explicitly unmerged. `TASK8_PR_PREP_REVERIFY_PENDING` is the next executable product gate; this handoff/BCP closure does not authorize a merged-product claim.
