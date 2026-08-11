@@ -19,6 +19,7 @@ jobs:
       - run: python -m unittest tests.test_world_character_three_year_story_contract -v
       - run: python -m unittest tests.test_year_one_growth_economy_test_values_contract -v
       - run: python -m unittest tests.test_frostbloom_internal_vertical_slice_contract -v
+      - run: python -m unittest tests.test_prework_benchmark_industry_research_contract -v
       - name: Validate JSON
         run: |
           python - <<'PY'
