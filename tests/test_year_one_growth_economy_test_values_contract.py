@@ -26,7 +26,8 @@ class YearOneGrowthEconomyTestValuesContract(unittest.TestCase):
         self.assertIn("## GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01 — approved planning decision", self.current)
         self.assertIn("successor: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01", self.current)
         self.assertIn("current_planning_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01", self.current)
-        self.assertIn("current_planning_sync: GR-SYNC-20260811-12-FROSTBLOOM-POSTMERGE-CURRENT-CONSUMER-CLEANUP", self.current)
+        self.assertIn("current_planning_sync: GR-SYNC-20260811-16-FROSTBLOOM-GRAYBOX-PACK-COMPLETE", self.current)
+        self.assertIn("frostbloom_graybox_status: INTERNAL_PACK_PASS", self.current)
         self.assertIn("supplemental_sync: GR-SYNC-20260811-08-WORLD-NAME-CONSUMER-CLEANUP", self.current)
 
     def test_year_one_has_six_large_free_schedule_windows(self):
