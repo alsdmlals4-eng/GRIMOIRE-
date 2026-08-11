@@ -22,10 +22,11 @@ class YearOneGrowthEconomyTestValuesContract(unittest.TestCase):
         self.assertIn("test_value_not_final_balance: true", self.body)
         self.assertIn("FINAL_BALANCE = NOT_PROVEN", self.body)
 
-    def test_current_snapshot_points_to_b_and_next_d(self):
-        self.assertIn("current_planning_decision: GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01", self.current)
-        self.assertIn("current_planning_sync: GR-SYNC-20260811-09-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES", self.current)
-        self.assertIn("next_planning_axis: D_VERTICAL_SLICE_DETAIL", self.current)
+    def test_current_snapshot_preserves_b_as_approved_predecessor_and_points_to_d(self):
+        self.assertIn("## GM-YEAR-ONE-GROWTH-ECONOMY-TEST-VALUES-01 — approved planning decision", self.current)
+        self.assertIn("successor: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01", self.current)
+        self.assertIn("current_planning_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01", self.current)
+        self.assertIn("current_planning_sync: GR-SYNC-20260811-12-FROSTBLOOM-POSTMERGE-CURRENT-CONSUMER-CLEANUP", self.current)
         self.assertIn("supplemental_sync: GR-SYNC-20260811-08-WORLD-NAME-CONSUMER-CLEANUP", self.current)
 
     def test_year_one_has_six_large_free_schedule_windows(self):
