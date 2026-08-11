@@ -19,6 +19,8 @@ CURRENT_DOCS = [
     ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
 ]
+CURRENT_TASK_STATUS = "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING"
+NEXT_GATE = "TASK8_RECEIPT_HERA_REVIEW_PR"
 
 
 class Task2UserApprovalCanonTests(unittest.TestCase):
@@ -33,14 +35,15 @@ class Task2UserApprovalCanonTests(unittest.TestCase):
         self.assertEqual(DECISION_ID, receipt["decision_id"])
         self.assertEqual("PROTECTED_TASK2_DELTA_COMPLETE", receipt["receipt_reconciliation"]["status"])
 
-    def test_current_human_canon_has_superseding_task7_state(self) -> None:
+    def test_current_human_canon_preserves_task7_predecessor_and_advances_task8_gate(self) -> None:
         for path in CURRENT_DOCS:
             with self.subTest(path=str(path)):
                 text = path.read_text(encoding="utf-8")
                 self.assertIn(DECISION_ID, text)
                 self.assertIn(CURRENT_SYNC_ID, text)
                 self.assertIn("TASK7_MERGED_MAIN_VERIFIED", text)
-                self.assertIn("TASK8_SPELL_USE_SCREEN", text)
+                self.assertIn(CURRENT_TASK_STATUS, text)
+                self.assertIn(NEXT_GATE, text)
 
     def test_task2_history_remains_traceable_from_current_sync_receipt(self) -> None:
         text = (ROOT / "docs/planning/sync/GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE.md").read_text(encoding="utf-8")
