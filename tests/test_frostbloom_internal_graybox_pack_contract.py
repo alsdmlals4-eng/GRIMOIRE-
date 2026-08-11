@@ -40,10 +40,7 @@ class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
         self.assertEqual(["FACILITY", "LIFE", "SPIRIT", "RELATIONSHIP", "DISCOVERY"], data["result_dimensions"])
 
     def test_verdict_vocabulary_is_closed(self):
-        self.assertEqual(
-            ["PASS", "RISK", "FAIL", "NOT_TESTABLE_YET"],
-            self.load_fixture()["allowed_verdicts"],
-        )
+        self.assertEqual(["PASS", "RISK", "FAIL", "NOT_TESTABLE_YET"], self.load_fixture()["allowed_verdicts"])
 
     def test_walkthrough_has_eight_beats_and_information_guard(self):
         text = (PACK_DIR / "01_46_MINUTE_WALKTHROUGH.md").read_text(encoding="utf-8")
@@ -69,6 +66,16 @@ class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
             self.assertTrue(pair["forward_progress_to_w6"], pair["id"])
             self.assertTrue(forbidden.isdisjoint(pair.keys()), pair["id"])
             self.assertIn(pair["verdict"], data["allowed_verdicts"])
+
+    def test_free_schedule_choices_are_nonmandatory_and_non_dominant(self):
+        data = self.load_fixture()
+        for choice in data["free_schedule"]:
+            self.assertFalse(choice["blocks_main_progress"], choice["id"])
+            self.assertFalse(choice["owns_required_material"], choice["id"])
+            self.assertFalse(choice["owns_required_answer"], choice["id"])
+            self.assertFalse(choice["permanent_dominant_reward"], choice["id"])
+            self.assertFalse(choice["later_choice_invalidated"], choice["id"])
+            self.assertIn(choice["verdict"], data["allowed_verdicts"])
 
 
 if __name__ == "__main__":
