@@ -16,6 +16,8 @@ prework_research_gate: REQUIRED_BEFORE_NEW_SUBSTANTIVE_WORK_UNIT
 prework_research_same_work_unit_receipt_reuse: ALLOWED_IF_SCOPE_AND_KEY_ASSUMPTIONS_UNCHANGED
 base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
 current_state_sync: GR-SYNC-20260811-17-TASK8-RESUME-V314-PREFLIGHT
+spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 task8_resume_sync: GR-SYNC-20260811-17-TASK8-RESUME-V314-PREFLIGHT
 task8_research_receipt: docs/planning/research/2026-08-11-task8-resume-v314-research-receipt.md
@@ -325,6 +327,8 @@ Internal Graybox Pack은 46분 시간순 walkthrough, W1–W7 distinctness, 2-of
 
 ```yaml
 current_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
+predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 resume_sync: GR-SYNC-20260811-17-TASK8-RESUME-V314-PREFLIGHT
 research_receipt: docs/planning/research/2026-08-11-task8-resume-v314-research-receipt.md
 implementation_plan: docs/superpowers/plans/2026-08-11-task8-spell-use-screen.md
