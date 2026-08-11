@@ -3,87 +3,33 @@
   "pack_id": "FROSTBLOOM_INTERNAL_GRAYBOX_PACK_V1",
   "decision_id": "GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01",
   "scope": "INTERNAL_DESIGN_VALIDATION_ONLY",
-  "timing": {
-    "target": 46,
-    "rework": 53,
-    "hard_stop": 60
-  },
+  "timing": {"target": 46, "rework": 53, "hard_stop": 60},
   "writing_events": [
-    {"id": "W1", "role": "SAFE_PRECEDENT_FLOW"},
-    {"id": "W2", "role": "SAFE_PRECEDENT_FOCUS"},
-    {"id": "W3", "role": "SAFE_PRECEDENT_DISPERSE"},
-    {"id": "W4", "role": "CRAFT_CONTEXT_MARKING"},
-    {"id": "W5", "role": "NONCOMBAT_FIELD_APPLICATION"},
-    {"id": "W6", "role": "FIRST_MAJOR_CONTEXTUAL_SOLUTION"},
-    {"id": "W7", "role": "REDESIGN_UNDER_NEW_CONTEXT"}
+    {"id": "W1", "role": "SAFE_PRECEDENT_FLOW"}, {"id": "W2", "role": "SAFE_PRECEDENT_FOCUS"}, {"id": "W3", "role": "SAFE_PRECEDENT_DISPERSE"}, {"id": "W4", "role": "CRAFT_CONTEXT_MARKING"}, {"id": "W5", "role": "NONCOMBAT_FIELD_APPLICATION"}, {"id": "W6", "role": "FIRST_MAJOR_CONTEXTUAL_SOLUTION"}, {"id": "W7", "role": "REDESIGN_UNDER_NEW_CONTEXT"}
   ],
   "recovery_inclusive_writing_cap": 10,
   "investigation": {
     "nodes": ["IRRIGATION_PRESSURE", "ROOT_LAYER", "SPIRIT_TRACE", "OLD_REPAIR_RECORD"],
     "pairs": [
-      {
-        "id": "INV_PAIR_01",
-        "nodes": ["IRRIGATION_PRESSURE", "ROOT_LAYER"],
-        "useful_context": ["PRESSURE_OSCILLATION", "ROOT_MAT_WATERLOGGING"],
-        "remaining_uncertainty": ["SPIRIT_RESPONSE", "OLD_REPAIR_COUPLING"],
-        "forward_progress_to_w6": true,
-        "verdict": "PASS"
-      },
-      {
-        "id": "INV_PAIR_02",
-        "nodes": ["IRRIGATION_PRESSURE", "SPIRIT_TRACE"],
-        "useful_context": ["PRESSURE_OSCILLATION", "SPIRIT_STATE_SHOCK"],
-        "remaining_uncertainty": ["ROOT_CONDITION", "OLD_REPAIR_COUPLING"],
-        "forward_progress_to_w6": true,
-        "verdict": "PASS"
-      },
-      {
-        "id": "INV_PAIR_03",
-        "nodes": ["IRRIGATION_PRESSURE", "OLD_REPAIR_RECORD"],
-        "useful_context": ["PRESSURE_OSCILLATION", "OLD_REPAIR_COUPLING"],
-        "remaining_uncertainty": ["ROOT_CONDITION", "SPIRIT_RESPONSE"],
-        "forward_progress_to_w6": true,
-        "verdict": "PASS"
-      },
-      {
-        "id": "INV_PAIR_04",
-        "nodes": ["ROOT_LAYER", "SPIRIT_TRACE"],
-        "useful_context": ["ROOT_MAT_WATERLOGGING", "SPIRIT_STATE_SHOCK"],
-        "remaining_uncertainty": ["PRESSURE_SOURCE", "OLD_REPAIR_COUPLING"],
-        "forward_progress_to_w6": true,
-        "verdict": "PASS"
-      },
-      {
-        "id": "INV_PAIR_05",
-        "nodes": ["ROOT_LAYER", "OLD_REPAIR_RECORD"],
-        "useful_context": ["ROOT_MAT_WATERLOGGING", "OLD_REPAIR_COUPLING"],
-        "remaining_uncertainty": ["PRESSURE_SOURCE", "SPIRIT_RESPONSE"],
-        "forward_progress_to_w6": true,
-        "verdict": "PASS"
-      },
-      {
-        "id": "INV_PAIR_06",
-        "nodes": ["SPIRIT_TRACE", "OLD_REPAIR_RECORD"],
-        "useful_context": ["SPIRIT_STATE_SHOCK", "OLD_REPAIR_COUPLING"],
-        "remaining_uncertainty": ["PRESSURE_SOURCE", "ROOT_CONDITION"],
-        "forward_progress_to_w6": true,
-        "verdict": "PASS"
-      }
+      {"id":"INV_PAIR_01","nodes":["IRRIGATION_PRESSURE","ROOT_LAYER"],"useful_context":["PRESSURE_OSCILLATION","ROOT_MAT_WATERLOGGING"],"remaining_uncertainty":["SPIRIT_RESPONSE","OLD_REPAIR_COUPLING"],"forward_progress_to_w6":true,"verdict":"PASS"},
+      {"id":"INV_PAIR_02","nodes":["IRRIGATION_PRESSURE","SPIRIT_TRACE"],"useful_context":["PRESSURE_OSCILLATION","SPIRIT_STATE_SHOCK"],"remaining_uncertainty":["ROOT_CONDITION","OLD_REPAIR_COUPLING"],"forward_progress_to_w6":true,"verdict":"PASS"},
+      {"id":"INV_PAIR_03","nodes":["IRRIGATION_PRESSURE","OLD_REPAIR_RECORD"],"useful_context":["PRESSURE_OSCILLATION","OLD_REPAIR_COUPLING"],"remaining_uncertainty":["ROOT_CONDITION","SPIRIT_RESPONSE"],"forward_progress_to_w6":true,"verdict":"PASS"},
+      {"id":"INV_PAIR_04","nodes":["ROOT_LAYER","SPIRIT_TRACE"],"useful_context":["ROOT_MAT_WATERLOGGING","SPIRIT_STATE_SHOCK"],"remaining_uncertainty":["PRESSURE_SOURCE","OLD_REPAIR_COUPLING"],"forward_progress_to_w6":true,"verdict":"PASS"},
+      {"id":"INV_PAIR_05","nodes":["ROOT_LAYER","OLD_REPAIR_RECORD"],"useful_context":["ROOT_MAT_WATERLOGGING","OLD_REPAIR_COUPLING"],"remaining_uncertainty":["PRESSURE_SOURCE","SPIRIT_RESPONSE"],"forward_progress_to_w6":true,"verdict":"PASS"},
+      {"id":"INV_PAIR_06","nodes":["SPIRIT_TRACE","OLD_REPAIR_RECORD"],"useful_context":["SPIRIT_STATE_SHOCK","OLD_REPAIR_COUPLING"],"remaining_uncertainty":["PRESSURE_SOURCE","ROOT_CONDITION"],"forward_progress_to_w6":true,"verdict":"PASS"}
     ]
   },
   "free_schedule": [
-    {"id": "REST", "affordance": "SPIRIT_DISCOMFORT_CONTEXT"},
-    {"id": "PREPARE", "affordance": "TOOL_CONTEXT_CONDITION"},
-    {"id": "SOCIAL", "affordance": "PEOPLE_FACILITY_PERSPECTIVE"},
-    {"id": "PRACTICUM", "affordance": "FROST_PRESSURE_BEHAVIOR_CLUE"}
+    {"id":"REST","affordance":"SPIRIT_DISCOMFORT_CONTEXT","blocks_main_progress":false,"owns_required_material":false,"owns_required_answer":false,"permanent_dominant_reward":false,"later_choice_invalidated":false,"verdict":"PASS"},
+    {"id":"PREPARE","affordance":"TOOL_CONTEXT_CONDITION","blocks_main_progress":false,"owns_required_material":false,"owns_required_answer":false,"permanent_dominant_reward":false,"later_choice_invalidated":false,"verdict":"PASS"},
+    {"id":"SOCIAL","affordance":"PEOPLE_FACILITY_PERSPECTIVE","blocks_main_progress":false,"owns_required_material":false,"owns_required_answer":false,"permanent_dominant_reward":false,"later_choice_invalidated":false,"verdict":"PASS"},
+    {"id":"PRACTICUM","affordance":"FROST_PRESSURE_BEHAVIOR_CLUE","blocks_main_progress":false,"owns_required_material":false,"owns_required_answer":false,"permanent_dominant_reward":false,"later_choice_invalidated":false,"verdict":"PASS"}
   ],
-  "consequence_cases": ["CASE_W6_A", "CASE_W6_B", "CASE_W6_C"],
-  "result_dimensions": ["FACILITY", "LIFE", "SPIRIT", "RELATIONSHIP", "DISCOVERY"],
-  "grimoire_required_fields": ["observations", "meaning_and_circuit", "selected_target", "intent_tags", "actual_result", "side_effects_and_forgone_values", "discoveries", "player_naming"],
-  "adversarial_case_ids": [
-    "ADV_01_ONE_NODE_W6", "ADV_02_PAIR_EQUIVALENCE", "ADV_03_FREE_CHOICE_DOMINANCE", "ADV_04_HELPER_ANSWER_LEAK", "ADV_05_W6_INVALIDATED", "ADV_06_W7_REPEAT", "ADV_07_WRITING_REDUNDANCY", "ADV_08_RESULT_COLLAPSE", "ADV_09_GRIMOIRE_UNOBSERVED_CAUSE", "ADV_10_EXPOSITION_OVERWEIGHT", "ADV_11_HISTORICAL_3X3_REAPPEARS", "ADV_12_EXAM_FESTIVAL_SCOPE_CREEP", "ADV_13_MOB_WAVE_REPLACEMENT", "ADV_14_ROUTE_LOOKUP_FIXTURE"
-  ],
-  "allowed_verdicts": ["PASS", "RISK", "FAIL", "NOT_TESTABLE_YET"],
+  "consequence_cases": ["CASE_W6_A","CASE_W6_B","CASE_W6_C"],
+  "result_dimensions": ["FACILITY","LIFE","SPIRIT","RELATIONSHIP","DISCOVERY"],
+  "grimoire_required_fields": ["observations","meaning_and_circuit","selected_target","intent_tags","actual_result","side_effects_and_forgone_values","discoveries","player_naming"],
+  "adversarial_case_ids": ["ADV_01_ONE_NODE_W6","ADV_02_PAIR_EQUIVALENCE","ADV_03_FREE_CHOICE_DOMINANCE","ADV_04_HELPER_ANSWER_LEAK","ADV_05_W6_INVALIDATED","ADV_06_W7_REPEAT","ADV_07_WRITING_REDUNDANCY","ADV_08_RESULT_COLLAPSE","ADV_09_GRIMOIRE_UNOBSERVED_CAUSE","ADV_10_EXPOSITION_OVERWEIGHT","ADV_11_HISTORICAL_3X3_REAPPEARS","ADV_12_EXAM_FESTIVAL_SCOPE_CREEP","ADV_13_MOB_WAVE_REPLACEMENT","ADV_14_ROUTE_LOOKUP_FIXTURE"],
+  "allowed_verdicts": ["PASS","RISK","FAIL","NOT_TESTABLE_YET"],
   "human_validation": "NOT_RUN",
   "device_validation": "NOT_RUN",
   "performance_validation": "NOT_RUN",
