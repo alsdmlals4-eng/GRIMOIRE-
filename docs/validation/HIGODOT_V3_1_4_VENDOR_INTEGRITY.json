@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+  "sync_id": "GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION",
+  "release": "v3.1.4",
+  "official_tag_commit": "96cc8b8c3d25ce487e24801d01d5214fea150349",
+  "official_repository_tree": "17c7bf35f0c1e9adff65f3a77936a5ca0a30e370",
+  "official_plugin_wrapper_tree": "4e2b40ed51ce1497c71a834b8b50e8853f0c8655",
+  "official_plugin_subtree": "69010571e11123dfc4e09483f80cb9e6ca93511a",
+  "project_tracked_plugin_subtree": "69010571e11123dfc4e09483f80cb9e6ca93511a",
+  "official_plugin_cfg_version": "3.1.4",
+  "project_plugin_cfg_version": "3.1.4",
+  "release_asset_sha256": "77d5bc7f8e0062f88aef08f3471cc6e4546a0d71d18813752781689ab6ce4848",
+  "comparison_scope_rule": "COMPARE_PLUGIN_SUBTREE_TO_PLUGIN_SUBTREE",
+  "tracked_tree_identity": "PASS_EXACT_TREE_IDENTITY",
+  "tracked_vendor_synced": true,
+  "observed_project_main": "257a0dba33f8288d24b1cd291bb407f4505224b4",
+  "observed_direct_tool_state_commit": "257a0dba33f8288d24b1cd291bb407f4505224b4",
+  "authoring_receipt_status": "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT",
+  "live_alignment_status": "LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED",
+  "claims": {
+    "official_and_project_plugin_subtree_identical": true,
+    "tracked_github_vendor_is_v3_1_4": true,
+    "live_user_reported_v3_1_4": true,
+    "live_handshake_verified": false,
+    "tracked_version_matches_live_verified": false,
+    "direct_tool_state_authoring_receipt_verified": false,
+    "task8_persistent_authoring_unblocked": false
+  },
+  "evidence_limits": [
+    "A tracked Git tree identity PASS does not prove which editor plugin instance is loaded.",
+    "A tracked Git tree identity PASS does not prove the live server handshake expected/actual version pair.",
+    "The direct main commit does not carry a verified HiGodot authoring receipt in repository evidence.",
+    "Task8 protected persistent authoring remains blocked until authorized live alignment readback."
+  ]
+}

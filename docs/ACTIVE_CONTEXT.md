@@ -11,24 +11,28 @@ base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_repository_review_policy: RECURSIVE_INVENTORY_THEN_RELEVANCE_DRIVEN_DEEP_READ
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 external_process_policy: EXTERNAL_PROCESS_OVERLAY
-base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
-current_state_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+base_current_main_observed: 7a49390bd840f5f5dc80fe661b44ad45e9ebeb7f
+current_state_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-spell_workflow_status: TASK7_MERGED_MAIN_VERIFIED
+spell_workflow_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
+spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_task: TASK8_SPELL_USE_SCREEN
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
-higodot_release: v3.1.3
+higodot_release: v3.1.4
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
-higodot_tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
-higodot_post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
-higodot_tool_state_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+higodot_tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+higodot_tool_state_main: 257a0dba33f8288d24b1cd291bb407f4505224b4
 higodot_tool_state_sheet_sync: SHEET_WRITE_READBACK_PASS
+higodot_tracked_plugin_subtree: 69010571e11123dfc4e09483f80cb9e6ca93511a
+higodot_live_alignment: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
+higodot_direct_tool_state_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 gut_release: v9.7.1
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
@@ -51,7 +55,7 @@ godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 
 ## v4.5 r2 operating boundary
 
-v4.5 r2는 `THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON`을 적용한다. Base source snapshot `7ce3fb64...`는 `HISTORICAL_OBSERVATION_ONLY`, 이번 바인딩 시 관찰한 Base current main `315c66ee...`는 해당 실행의 live observation일 뿐 영구 권위가 아니다. 매 작업 시작 시 Base `main`과 Registry/관련 owner를 다시 복원한다.
+v4.5 r2는 `THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON`을 적용한다. Base source snapshot `7ce3fb64...`는 `HISTORICAL_OBSERVATION_ONLY`, 이번 work unit에서 관찰한 Base current main은 `7a49390b...`이며 영구 권위가 아니다. 매 작업 시작 시 Base `main`과 Registry/관련 owner를 다시 복원한다.
 
 ```yaml
 execution_request_state: USER_EXPLICIT_EXECUTION_REQUEST_PRESENT
@@ -87,11 +91,12 @@ task7:
   pr: 110
   merge: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
   scope: CIRCUIT_PLACEMENT_WORKFLOW_SCREEN
-current_status: TASK7_MERGED_MAIN_VERIFIED
+predecessor_status: TASK7_MERGED_MAIN_VERIFIED
+current_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
 next_task: TASK8_SPELL_USE_SCREEN
 ```
 
-Task 8은 Task 5에서 이미 병합된 explicit target/use transaction을 화면에 노출하는 단계다. Mana/result atomicity를 새 authority로 다시 만들지 않는다.
+Task 8은 Task 5에서 이미 병합된 explicit target/use transaction을 화면에 노출하는 단계다. Mana/result atomicity를 새 authority로 다시 만들지 않는다. tracked Godot AI v3.1.4 exact-tree identity는 PASS지만 live plugin/server `expected_version == actual_version == 3.1.4`와 READY 상태는 아직 검증되지 않았으므로 protected authoring은 열리지 않는다.
 
 Task 9에는 기존 승인된 Mobile landscape device matrix(16:9, 18:9, 19.5:9, 20:9, cutout/safe-area, foldable/tablet 분류)를 acceptance에 전파해야 한다. 1280×720은 reference surface이지 유일 검증 비율이 아니다.
 
@@ -99,15 +104,17 @@ Task 9에는 기존 승인된 Mobile landscape device matrix(16:9, 18:9, 19.5:9,
 
 ```yaml
 higodot:
-  release: v3.1.3
+  release: v3.1.4
   authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
-  tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
-  post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
-  reconciled_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+  tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+  observed_tool_state_main: 257a0dba33f8288d24b1cd291bb407f4505224b4
   sheet_sync: SHEET_WRITE_READBACK_PASS
-  tracked_plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
+  tracked_plugin_subtree: 69010571e11123dfc4e09483f80cb9e6ca93511a
   vendor_integrity: PASS_EXACT_TREE_IDENTITY
-  historical_direct_local_upgrade_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
+  live_handshake: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
+  direct_local_upgrade_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
+  historical_v3_1_3_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+  historical_v3_1_3_tree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
 gut:
   release: v9.7.1
   authority: DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY
@@ -130,6 +137,7 @@ post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 hera_exact_pair: PASS
 spell_workflow_task2_authorized: true
 spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
+higodot_v3_1_3_status: HISTORICAL_PASS_EXACT_TREE_IDENTITY_AND_LIVE_READBACK
 ```
 
 ```text
@@ -140,11 +148,12 @@ GR-SYNC-20260809-08-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY
 975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0
 ```
 
-v4.4와 Task2/Task3 진입 자료는 provenance로 유효하지만 current contract/next-task 권위를 소유하지 않는다.
+v4.4, v3.1.3, Task2/Task3 진입 자료는 provenance로 유효하지만 current contract/tool/next-task 권위를 소유하지 않는다.
 
 ## Preserved validation boundaries
 
 ```text
+LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
 HUMAN_NOT_RUN
 DEVICE_NOT_RUN
 PERFORMANCE_NOT_RUN
@@ -160,8 +169,8 @@ LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
 GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-자동·Editor·CI 증거로 사람/기기/성능/전체 Vertical Slice 증거를 승격하지 않는다.
+자동·Editor·CI·tracked tree 증거로 live READY/사람/기기/성능/전체 Vertical Slice 증거를 승격하지 않는다.
 
 ## Contract boundary
 
-저장소 current canon은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`은 `HISTORICAL_SUPERSEDED_CURRENT_BINDING`으로 보존한다.
+저장소 current canon은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`과 HiGodot v3.1.3은 historical provenance로 보존한다.

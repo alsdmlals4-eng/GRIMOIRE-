@@ -13,6 +13,8 @@ STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 PROJECT = ROOT / "project.godot"
 MERGED_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
+V313_TREE = "94be4fb34d49243375c592e17a1021c8c6fcbcf2"
+V314_TREE = "69010571e11123dfc4e09483f80cb9e6ca93511a"
 
 
 class V43ContractBindingTests(unittest.TestCase):
@@ -60,11 +62,13 @@ class V43ContractBindingTests(unittest.TestCase):
         self.assertEqual("MISMATCH_OFFICIAL_V9_7_1", state["gut"]["vendor_integrity"])
         self.assertEqual("PASS", state["higodot"]["source_or_version_verification"])
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", state["higodot"]["vendor_integrity"])
-        self.assertEqual(
-            "SUPERSEDED_SCOPE_MISMATCH_WRAPPER_TREE_VS_PLUGIN_SUBTREE",
-            state["higodot"]["prior_vendor_integrity_verdict"],
-        )
+        self.assertEqual("v3.1.4", state["higodot"]["release_tag"])
+        self.assertEqual(V314_TREE, state["higodot"]["project_vendor_tree_sha"])
+        self.assertEqual("v3.1.3", state["higodot"]["historical_v3_1_3"]["release_tag"])
+        self.assertEqual(V313_TREE, state["higodot"]["historical_v3_1_3"]["project_vendor_tree_sha"])
         self.assertTrue(state["claims"]["higodot_vendor_integrity_pass"])
+        self.assertTrue(state["claims"]["higodot_tracked_v3_1_4_vendor_sync"])
+        self.assertTrue(state["claims"]["higodot_tracked_v3_1_3_vendor_sync_is_historical"])
         self.assertTrue(state["claims"]["gut_formally_adopted"])
         self.assertFalse(state["claims"]["tool_vendor_integrity_pass"])
         self.assertTrue(state["claims"]["spell_workflow_task2_authorized"])

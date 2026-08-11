@@ -14,8 +14,8 @@ prework_research_decision: GM-PREWORK-BENCHMARK-INDUSTRY-RESEARCH-01
 prework_research_sync: GR-SYNC-20260811-13-PREWORK-BENCHMARK-INDUSTRY-RESEARCH
 prework_research_gate: REQUIRED_BEFORE_NEW_SUBSTANTIVE_WORK_UNIT
 prework_research_same_work_unit_receipt_reuse: ALLOWED_IF_SCOPE_AND_KEY_ASSUMPTIONS_UNCHANGED
-base_current_main_observed: 315c66eea9614c284b9c11c4d522141065dfa4b0
-current_state_sync: GR-SYNC-20260811-17-TASK8-RESUME-V314-PREFLIGHT
+base_current_main_observed: 7a49390bd840f5f5dc80fe661b44ad45e9ebeb7f
+current_state_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -47,26 +47,28 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: TASK8_V314_ALIGNMENT_THEN_TDD_RED_THEN_D_RUNTIME
+next_planning_axis: TASK8_V314_LIVE_HANDSHAKE_THEN_TDD_RED_THEN_D_RUNTIME
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
 next_product_task: TASK8_SPELL_USE_SCREEN
-task8_execution_path: V314_ALIGNMENT_REQUIRED_BEFORE_PERSISTENT_AUTHORING
+task8_execution_path: TRACKED_V314_EXACT_TREE_PASS_LIVE_HANDSHAKE_REQUIRED_BEFORE_PERSISTENT_AUTHORING
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
-higodot_release: v3.1.3
+higodot_release: v3.1.4
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
-higodot_tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
-higodot_post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
-higodot_tool_state_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+higodot_tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+higodot_tool_state_main: 257a0dba33f8288d24b1cd291bb407f4505224b4
 higodot_tool_state_sheet_sync: SHEET_WRITE_READBACK_PASS
+higodot_tracked_subtree: 69010571e11123dfc4e09483f80cb9e6ca93511a
 higodot_live_user_reported: v3.1.4
 higodot_upstream_v3_1_4: VERIFIED_TAG_96CC8B8C3D25CE487E24801D01D5214FEA150349
-higodot_tracked_v3_1_4: NOT_YET_VERIFIED
+higodot_tracked_v3_1_4: PASS_EXACT_TREE_IDENTITY
+higodot_live_v3_1_4: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
+higodot_direct_tool_state_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 gut_status: GUT_FORMALLY_ADOPTED
 gut_release: v9.7.1
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
@@ -292,7 +294,7 @@ separate_exam: FORBIDDEN_AS_REQUIRED_CONTENT
 circuit_authority: FIVE_POINT_STAR
 historical_3x3: PROVENANCE_ONLY
 runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-task8_execution_path: V314_ALIGNMENT_REQUIRED_BEFORE_PERSISTENT_AUTHORING
+task8_execution_path: TRACKED_V314_EXACT_TREE_PASS_LIVE_HANDSHAKE_REQUIRED_BEFORE_PERSISTENT_AUTHORING
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -303,7 +305,7 @@ D는 학교·제작·자유일정·조사·주문·결과를 체크리스트로 
 
 Internal Graybox Pack은 46분 시간순 walkthrough, W1–W7 distinctness, 2-of-4 전 6조합, 자유일정 4선택 anti-dominance, W6 결과 보존, W7 재설계, 5축 Result/Grimoire, 14개 adversarial attack을 완료했다. 내부 구조 hard-invariant `FAIL`은 0이며 실제 elapsed/comprehension은 `NOT_TESTABLE_YET`로 남는다. 따라서 `INTERNAL_PACK_PASS`는 인간 플레이테스트·실제 46분 달성·재미·device/performance 증거가 아니다.
 
-구현계획은 기존 `SpellWorkflowCoordinator → AtomicSpellUseService → AtomicResultLedger → SaveRepository` 권위를 재사용한다. Task8 Spell Use Screen은 별도 제품 구현 권위로 유지되며 D가 우회 구현하지 않는다. Task8은 Sync17에서 새 work unit으로 재개됐고 fresh research/Existing Solution First/adversarial preflight를 통과했다. 다음 persistent product action은 authorized HiGodot v3.1.4 live/tracked alignment readback 후 Task8 GUT RED와 최소 UI GREEN이며, D runtime은 Task8 의존성이 해소된 후 이어진다.
+구현계획은 기존 `SpellWorkflowCoordinator → AtomicSpellUseService → AtomicResultLedger → SaveRepository` 권위를 재사용한다. Task8 Spell Use Screen은 별도 제품 구현 권위로 유지되며 D가 우회 구현하지 않는다. Task8은 Sync17에서 새 work unit으로 재개됐고 fresh research/Existing Solution First/adversarial preflight를 통과했다. Sync19에서 tracked HiGodot v3.1.4 exact-tree identity와 Sheet current state까지 동기화했다. 다음 persistent product action은 authorized live v3.1.4 `expected_version == actual_version == 3.1.4` / READY readback 후 Task8 GUT RED와 최소 UI GREEN이며, D runtime은 Task8 의존성이 해소된 후 이어진다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
@@ -330,11 +332,12 @@ current_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
 predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 resume_sync: GR-SYNC-20260811-17-TASK8-RESUME-V314-PREFLIGHT
+tool_reconciliation_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
 research_receipt: docs/planning/research/2026-08-11-task8-resume-v314-research-receipt.md
 implementation_plan: docs/superpowers/plans/2026-08-11-task8-spell-use-screen.md
 next_task: TASK8_SPELL_USE_SCREEN
 next_task_role: UI_CONSUMER_OF_EXISTING_TASK5_STAGE3_AUTHORITY
-execution_path: V314_ALIGNMENT_REQUIRED_BEFORE_PERSISTENT_AUTHORING
+execution_path: TRACKED_V314_EXACT_TREE_PASS_LIVE_HANDSHAKE_REQUIRED_BEFORE_PERSISTENT_AUTHORING
 new_product_decision_required_for_task8: false
 ```
 
@@ -356,18 +359,23 @@ tuning_status: PLAYTEST_TUNING_REQUIRED
 
 ```yaml
 higodot:
-  release: v3.1.3
+  release: v3.1.4
   authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
-  tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
-  post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
-  reconciled_main: 75eaa8d19b8a38a21599c37dc7545818615a04c1
+  tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+  observed_tool_state_main: 257a0dba33f8288d24b1cd291bb407f4505224b4
   sheet_sync: SHEET_WRITE_READBACK_PASS
-  plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
+  plugin_subtree: 69010571e11123dfc4e09483f80cb9e6ca93511a
   vendor_integrity: PASS_EXACT_TREE_IDENTITY
+  upstream_tag_commit: 96cc8b8c3d25ce487e24801d01d5214fea150349
   live_user_reported: v3.1.4
-  upstream_v3_1_4: VERIFIED_TAG_96CC8B8C3D25CE487E24801D01D5214FEA150349
-  tracked_v3_1_4: NOT_YET_VERIFIED
+  live_handshake: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
+  tracked_live_match: NOT_VERIFIED
   direct_local_upgrade_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
+  historical_v3_1_3:
+    tracked_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
+    post_merge_sheet_sync: GR-SYNC-20260809-05-HIGODOT-V313-POST-MERGE-SHEET-CANON
+    plugin_subtree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
+    status: HISTORICAL_PASS_EXACT_TREE_IDENTITY_AND_LIVE_READBACK
 gut:
   release: v9.7.1
   authority: DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY
@@ -392,6 +400,7 @@ post_merge_canon_sync_merge: ce01bb8caa5f1b224279d3fbf418eae29a88af7d
 hera_exact_pair: PASS
 spell_workflow_task2_authorized: true
 spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
+higodot_v3_1_3_status: HISTORICAL_PASS_EXACT_TREE_IDENTITY_AND_LIVE_READBACK
 ```
 
 ```text
@@ -416,6 +425,7 @@ three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 ## 현재 증거 한계
 
 ```text
+LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
 HUMAN_NOT_RUN
 DEVICE_NOT_RUN
 PERFORMANCE_NOT_RUN
@@ -433,4 +443,4 @@ GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 
 ## Contract binding
 
-현재 확정 계약은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`은 `HISTORICAL_SUPERSEDED_CURRENT_BINDING`으로 보존한다.
+현재 확정 계약은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`과 HiGodot v3.1.3은 historical provenance로 보존한다.

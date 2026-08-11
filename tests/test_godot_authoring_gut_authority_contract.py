@@ -14,6 +14,7 @@ STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 HIGODOT_V312_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json"
 HIGODOT_V313_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json"
+HIGODOT_V314_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_4_VENDOR_INTEGRITY.json"
 HERA_EVIDENCE = ROOT / "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
 CURRENT_SURFACES = [
     ROOT / "START_HERE.md",
@@ -27,9 +28,14 @@ CURRENT_SURFACES = [
 GUT_MERGED_MAIN = "ea46923fa78c4fe7844ab6bf422e6716a3c785ed"
 CURRENT_CONTRACT = "GM-CONTRACT-V4-5-BINDING-01"
 HISTORICAL_V44_CONTRACT = "GM-CONTRACT-V4-4-BINDING-01"
+CURRENT_BASE_MAIN = "7a49390bd840f5f5dc80fe661b44ad45e9ebeb7f"
 HIGODOT_V312_TREE = "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35"
 HIGODOT_V313_TREE = "94be4fb34d49243375c592e17a1021c8c6fcbcf2"
 HIGODOT_V313_COMMIT = "22678e5f9b038d7203d6b43b0aae20a5417c500e"
+HIGODOT_V314_TREE = "69010571e11123dfc4e09483f80cb9e6ca93511a"
+HIGODOT_V314_COMMIT = "96cc8b8c3d25ce487e24801d01d5214fea150349"
+HIGODOT_V314_SYNC = "GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION"
+LIVE_V314_PENDING = "LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 THREE_SCREEN_PENDING = "THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9"
@@ -45,7 +51,8 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
     def test_authority_design_plan_bindings_and_adoption_spec_exist(self):
         for path in (
             LEGACY_SPEC, ADOPTION_SPEC, BINDING_V43, BINDING_V44, BINDING_V45, PLAN, STATE,
-            UNRESOLVED, HIGODOT_V312_EVIDENCE, HIGODOT_V313_EVIDENCE, HERA_EVIDENCE,
+            UNRESOLVED, HIGODOT_V312_EVIDENCE, HIGODOT_V313_EVIDENCE, HIGODOT_V314_EVIDENCE,
+            HERA_EVIDENCE,
         ):
             self.assertTrue(path.is_file(), str(path))
 
@@ -55,25 +62,34 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("ACTIVE_USER_APPROVED_BINDING", data["contract"]["status"])
         self.assertEqual(CURRENT_CONTRACT, data["contract"]["binding_decision_id"])
         self.assertEqual(HISTORICAL_V44_CONTRACT, data["contract"]["historical_binding_decision_id"])
-        self.assertEqual("315c66eea9614c284b9c11c4d522141065dfa4b0", data["base_policy_observation"]["current_main"])
+        self.assertEqual(CURRENT_BASE_MAIN, data["base_policy_observation"]["current_main"])
+        self.assertEqual(CURRENT_BASE_MAIN, data["base_policy_observation"]["latest_main_observed"])
         self.assertEqual("7ce3fb64fa6303c5da6c7fc27c979f7233b761ac", data["base_policy_observation"]["source_snapshot_v4_5_r2"])
         self.assertEqual("HISTORICAL_OBSERVATION_ONLY", data["base_policy_observation"]["source_snapshot_role"])
         self.assertEqual(GUT_MERGED_MAIN, data["source_main"])
         self.assertEqual("GUT_FORMALLY_ADOPTED_MERGED_MAIN_VERIFIED", data["status"])
-        self.assertEqual("TRACKED_HIGODOT_V3_1_3_EXACT_TREE_CONFIG_RECONCILED", data["current_tool_sync_status"])
+        self.assertEqual(
+            "TRACKED_HIGODOT_V3_1_4_EXACT_TREE_RECONCILED_LIVE_HANDSHAKE_PENDING",
+            data["current_tool_sync_status"],
+        )
         self.assertEqual("GPT_ROLE_SEPARATED_PLUS_USER_DECISION_AUTHORITY", data["review"]["model"])
 
         higodot = data["higodot"]
         self.assertEqual("SOLE_AUTHORING_AUTHORITY", higodot["authority"])
-        self.assertEqual("v3.1.3", higodot["release_tag"])
-        self.assertEqual("3.1.3", higodot["bundled_version"])
-        self.assertEqual(HIGODOT_V313_COMMIT, higodot["pinned_source_commit"])
-        self.assertEqual(HIGODOT_V313_TREE, higodot["official_plugin_subtree_sha"])
-        self.assertEqual(HIGODOT_V313_TREE, higodot["project_vendor_tree_sha"])
+        self.assertEqual("v3.1.4", higodot["release_tag"])
+        self.assertEqual("3.1.4", higodot["bundled_version"])
+        self.assertEqual(HIGODOT_V314_COMMIT, higodot["pinned_source_commit"])
+        self.assertEqual(HIGODOT_V314_TREE, higodot["official_plugin_subtree_sha"])
+        self.assertEqual(HIGODOT_V314_TREE, higodot["project_vendor_tree_sha"])
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", higodot["vendor_integrity"])
-        self.assertTrue(higodot["tracked_version_matches_live"])
+        self.assertFalse(higodot["tracked_version_matches_live"])
+        self.assertEqual(LIVE_V314_PENDING, higodot["live_version_readback"])
         self.assertEqual(RECEIPT_LIMIT, higodot["direct_local_upgrade_receipt_status"])
         self.assertEqual(HIGODOT_V312_TREE, higodot["historical_v3_1_2"]["project_vendor_tree_sha"])
+        historical_v313 = higodot["historical_v3_1_3"]
+        self.assertEqual("v3.1.3", historical_v313["release_tag"])
+        self.assertEqual(HIGODOT_V313_COMMIT, historical_v313["pinned_source_commit"])
+        self.assertEqual(HIGODOT_V313_TREE, historical_v313["project_vendor_tree_sha"])
         self.assertEqual("IMPLEMENTED_ZERO_PROTECTED_DIFF_GATE", higodot["authoring_receipt_gate"])
 
         gut = data["gut"]
@@ -93,9 +109,11 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertEqual("HeraGameInspector", hera["autoload"])
         self.assertEqual("GODOT_AI_GUT_HERA_ENABLED_AT_GITHUB_MAIN_READBACK", data["tracked_project_godot_editor_plugins"])
 
-        self.assertEqual("TRACKED_V3_1_3", data["sheet_sync"]["higodot_integrity_sync_scope"])
+        self.assertEqual(HIGODOT_V314_SYNC, data["sheet_sync"]["current_tool_sync_id"])
+        self.assertEqual("TRACKED_V3_1_4", data["sheet_sync"]["higodot_integrity_sync_scope"])
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", data["validation"]["higodot_vendor_integrity"])
-        self.assertEqual("TRACKED_V3_1_3", data["validation"]["higodot_vendor_integrity_scope"])
+        self.assertEqual("TRACKED_V3_1_4", data["validation"]["higodot_vendor_integrity_scope"])
+        self.assertEqual(LIVE_V314_PENDING, data["validation"]["higodot_live_v3_1_4"])
         self.assertEqual(SHARED_CORE_PASS, data["platform_validation"]["status"])
         self.assertEqual(THREE_SCREEN_PENDING, data["image_review"]["three_screen_runtime"])
 
@@ -108,8 +126,12 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         self.assertFalse(implementation["merge_authorized"])
 
         self.assertEqual(TASK7_MERGED, data["entry_gate"]["status"].split("_TASK8_NEXT")[0])
+        self.assertTrue(data["claims"]["higodot_tracked_v3_1_4_vendor_sync"])
         self.assertTrue(data["claims"]["higodot_tracked_v3_1_3_vendor_sync"])
-        self.assertTrue(data["claims"]["tracked_project_godot_live_plugin_state_synced"])
+        self.assertTrue(data["claims"]["higodot_tracked_v3_1_3_vendor_sync_is_historical"])
+        self.assertFalse(data["claims"]["higodot_live_v3_1_4_handshake_verified"])
+        self.assertFalse(data["claims"]["higodot_tracked_v3_1_4_matches_live_verified"])
+        self.assertFalse(data["claims"]["tracked_project_godot_live_plugin_state_synced"])
         self.assertTrue(data["claims"]["spell_workflow_task2_merged_main_verified"])
         self.assertTrue(data["claims"]["task2_higodot_receipt_readback_pass"])
         self.assertFalse(data["claims"]["higodot_direct_local_upgrade_receipt_verified"])
@@ -162,7 +184,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         higodot_plugin = (ROOT / "addons/godot_ai/plugin.cfg").read_text(encoding="utf-8")
         gut_plugin = (ROOT / "addons/gut/plugin.cfg").read_text(encoding="utf-8")
         project = (ROOT / "project.godot").read_text(encoding="utf-8")
-        self.assertIn('version="3.1.3"', higodot_plugin)
+        self.assertIn('version="3.1.4"', higodot_plugin)
         self.assertIn('version="9.7.1"', gut_plugin)
         self.assertIn('res://addons/godot_ai/plugin.cfg', project)
         self.assertIn('res://addons/gut/plugin.cfg', project)

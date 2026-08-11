@@ -12,7 +12,8 @@ OFFICIAL_COMMIT = "678b16a6a0a335cf80cbb7d3f85c183cd3e616de"
 OFFICIAL_REPOSITORY_TREE = "646fb8365cc39de7b0a88e056cc03de7e7eb008a"
 OFFICIAL_PLUGIN_WRAPPER_TREE = "e559376d95c12f67ae0117a23bcc1dd2519206c2"
 PLUGIN_SUBTREE = "a7d1e2fe8564cc385d683ec50d15fc66e1a17a35"
-CURRENT_V313_TREE = "94be4fb34d49243375c592e17a1021c8c6fcbcf2"
+HISTORICAL_V313_TREE = "94be4fb34d49243375c592e17a1021c8c6fcbcf2"
+CURRENT_V314_TREE = "69010571e11123dfc4e09483f80cb9e6ca93511a"
 RELEASE_ASSET_SHA256 = "60915d780e112aa25b142a596548786a0fb558f795278b9337722532e5dfdb33"
 LICENSE_BLOB = "7806d2217ecf773ab83bb8a1ec0b2a81c3cc8546"
 PASS_TOKEN = "PASS_EXACT_TREE_IDENTITY"
@@ -44,7 +45,7 @@ class HiGodotV312VendorIntegrityTests(unittest.TestCase):
         self.assertEqual(DECISION, data["decision_id"])
         self.assertEqual(AUDIT_ID, data["audit_id"])
 
-    def test_machine_state_keeps_v312_history_while_current_is_v313(self) -> None:
+    def test_machine_state_keeps_v312_and_v313_history_while_current_is_v314(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
         hist_authority = authority["higodot"]["historical_v3_1_2"]
@@ -53,8 +54,10 @@ class HiGodotV312VendorIntegrityTests(unittest.TestCase):
         self.assertEqual(PLUGIN_SUBTREE, hist_canon["project_plugin_subtree"])
         self.assertEqual(PASS_TOKEN, authority["higodot"]["vendor_integrity"])
         self.assertEqual(PASS_TOKEN, canon["tool_authority"]["higodot"]["vendor_integrity"])
-        self.assertEqual(CURRENT_V313_TREE, authority["higodot"]["project_vendor_tree_sha"])
-        self.assertEqual(CURRENT_V313_TREE, canon["tool_authority"]["higodot"]["project_plugin_subtree"])
+        self.assertEqual(CURRENT_V314_TREE, authority["higodot"]["project_vendor_tree_sha"])
+        self.assertEqual(CURRENT_V314_TREE, canon["tool_authority"]["higodot"]["project_plugin_subtree"])
+        self.assertEqual(HISTORICAL_V313_TREE, authority["higodot"]["historical_v3_1_3"]["project_vendor_tree_sha"])
+        self.assertEqual(HISTORICAL_V313_TREE, canon["tool_authority"]["higodot"]["historical_v3_1_3"]["project_plugin_subtree"])
         self.assertNotIn(STALE_BLOCKER, canon["broader_blockers"])
         self.assertNotIn(STALE_BLOCKER, authority["broader_blockers"])
         self.assertNotIn(STALE_HERA_BLOCKER, canon["broader_blockers"])
