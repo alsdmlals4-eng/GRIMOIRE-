@@ -11,19 +11,24 @@ base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_repository_review_policy: RECURSIVE_INVENTORY_THEN_RELEVANCE_DRIVEN_DEEP_READ
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 external_process_policy: EXTERNAL_PROCESS_OVERLAY
-base_current_main_observed: 7a49390bd840f5f5dc80fe661b44ad45e9ebeb7f
-current_state_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+base_current_main_observed: 6d2feba2bc49fda2d8d273248b55087853615d5d
+base_project_pin: v9.4.3
+base_pin_update: NOT_APPROVED_NOT_PERFORMED
+current_state_sync: GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-spell_workflow_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
+spell_workflow_status: TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
-next_product_task: TASK8_SPELL_USE_SCREEN
+next_product_task: TASK8_RECEIPT_HERA_REVIEW_PR
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
+local_execution_policy: PROJECT_DEDICATED_LOCAL_EXECUTION_ENVIRONMENT_FIRST
+fresh_shell_policy: ASSUME_PREVIOUS_POWERSHELL_CLOSED
+missing_local_environment_policy: CREATE_OR_REPAIR_DEDICATED_LOCAL_ENVIRONMENT_FIRST
 higodot_authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
 higodot_release: v3.1.4
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
@@ -31,12 +36,14 @@ higodot_tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIAT
 higodot_tool_state_main: 257a0dba33f8288d24b1cd291bb407f4505224b4
 higodot_tool_state_sheet_sync: SHEET_WRITE_READBACK_PASS
 higodot_tracked_plugin_subtree: 69010571e11123dfc4e09483f80cb9e6ca93511a
-higodot_live_alignment: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
+higodot_live_alignment: LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED
+higodot_expected_actual_fields: NOT_SURFACED_DO_NOT_CLAIM
 higodot_direct_tool_state_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 gut_release: v9.7.1
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
+hera_task8_acceptance: REQUIRED_PENDING_HERA_SOURCE_DELTA_NONE
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 visual_automated_layout_baseline: VISUAL_AUTOMATED_LAYOUT_BASELINE_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
@@ -49,13 +56,13 @@ windows_export: NOT_RUN
 android_export: NOT_RUN
 android_device: NOT_RUN
 visual_audio_status: APPROVED_DIRECTION_RUNTIME_NOT_RUN_VISUAL_AUDIO_INCOMPLETE
-local_sync: LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
-godot_run: GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
+local_execution_route: USER_POWERSHELL_PLUS_PROJECT_CODEX_AVAILABLE
+chatgpt_direct_local_access: NONE
 ```
 
 ## v4.5 r2 operating boundary
 
-v4.5 r2는 `THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON`을 적용한다. Base source snapshot `7ce3fb64...`는 `HISTORICAL_OBSERVATION_ONLY`, 이번 work unit에서 관찰한 Base current main은 `7a49390b...`이며 영구 권위가 아니다. 매 작업 시작 시 Base `main`과 Registry/관련 owner를 다시 복원한다.
+v4.5 r2는 `THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON`을 적용한다. Base source snapshot `7ce3fb64...`는 `HISTORICAL_OBSERVATION_ONLY`; 이 work unit의 latest Base merged-main observation은 `6d2feba2...`이고 영구 project pin이 아니다. Base v9.4.3 project pin은 변경하지 않았다. 매 작업 시작 시 Base `main`과 Registry/관련 owner를 다시 읽는다.
 
 ```yaml
 execution_request_state: USER_EXPLICIT_EXECUTION_REQUEST_PRESENT
@@ -65,6 +72,31 @@ external_process_overlay: EXTERNAL_PROCESS_OVERLAY
 ```
 
 Superpowers 등 외부 process framework는 execution-only overlay이며 프로젝트 또는 Base canon을 소유하지 않는다.
+
+## Dedicated local execution environment
+
+Base main `6d2feba2...`의 shared invariant를 이 프로젝트에 다음과 같이 consume한다.
+
+```text
+new PowerShell for every local work session
+→ verify/create-or-repair dedicated self-contained GRIMOIRE Godot
+→ exact requested GRIMOIRE project/worktree only
+→ project-scoped HiGodot profile/server/ports
+→ project-scoped CODEX_HOME
+→ Hera exact project-approved pair/profile when live QA is required
+→ Codex exact worktree
+→ fresh exact-project HiGodot session/version/readiness receipt inside Codex
+→ persistent authoring only through HiGodot
+→ GUT deterministic verification
+→ Hera LIVE_QA_AND_OBSERVABILITY_ONLY
+→ HERA_SOURCE_DELTA: NONE
+```
+
+`ASSUME_PREVIOUS_POWERSHELL_CLOSED`가 기본이다. 사용자의 이전 shell 환경 변수·현재 디렉터리·process handle을 재사용 전제로 삼지 않는다. dedicated environment가 없거나 identity가 불명확하면 `CREATE_OR_REPAIR_DEDICATED_LOCAL_ENVIRONMENT_FIRST`로 제품 작업보다 먼저 복구한다.
+
+사용자에게 local execution을 요청할 때는 항상 **새 PowerShell → 한 덩어리 bootstrap block → Codex가 열린 뒤 task prompt** 순서다. launcher는 wrong worktree/editor/profile/port/CODEX_HOME/Hera-profile collision을 fail-closed로 검사하되 broad Git diff, repository-wide scan, 이미 분류된 LF/CRLF/stat noise를 startup 전에 쏟지 않는다. `reset`, `restore`, `clean`, stage, rewrite, unrelated process kill은 bootstrap 권한이 아니다.
+
+Hera shared token 원문은 저장소·prompt·log·evidence에 기록하지 않는다. Hera는 persistent source writer가 아니며 결함 수정은 HiGodot authoring으로 돌아간다.
 
 ## Current Spell Workflow state
 
@@ -92,13 +124,17 @@ task7:
   merge: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
   scope: CIRCUIT_PLACEMENT_WORKFLOW_SCREEN
 predecessor_status: TASK7_MERGED_MAIN_VERIFIED
-current_status: TASK8_RESUMED_PREFLIGHT_ACTIVE
-next_task: TASK8_SPELL_USE_SCREEN
+current_status: TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
+next_task: TASK8_RECEIPT_HERA_REVIEW_PR
 ```
 
-Task 8은 Task 5에서 이미 병합된 explicit target/use transaction을 화면에 노출하는 단계다. Mana/result atomicity를 새 authority로 다시 만들지 않는다. tracked Godot AI v3.1.4 exact-tree identity는 PASS지만 live plugin/server `expected_version == actual_version == 3.1.4`와 READY 상태는 아직 검증되지 않았으므로 protected authoring은 열리지 않는다.
+Task8 local V2 evidence from the user-supplied Codex execution proves a live exact-project HiGodot session `task8-spell-use-screen-v2@3cfa`, Godot 4.7.1, server/plugin 3.1.4, readiness `ready`. The tool did not surface a separate `expected_version` field, so no equality claim is invented.
 
-Task 9에는 기존 승인된 Mobile landscape device matrix(16:9, 18:9, 19.5:9, 20:9, cutout/safe-area, foldable/tablet 분류)를 acceptance에 전파해야 한다. 1280×720은 reference surface이지 유일 검증 비율이 아니다.
+The same local execution reported focused Task8 GUT `15 tests / 90 assertions / 0 failures` and authoritative predecessor regression `42 suites / 1,588 assertions / 0 failures`. Actual target control, caller-supplied prepared-spell summary, invalid/stale visual fail-closed behavior, CancelButton event path, deterministic focus hierarchy, and the already-approved two-stage opaque-ID confirmation are locally GREEN.
+
+This evidence is **not merged-main product evidence**. Remaining gates are protected-delta HiGodot receipt/readback, Hera acceptance with source-delta NONE, independent/adversarial review, exact-head PR CI, merge, and merged-main readback. Mana/result atomicity and transaction authority remain Task5/Stage3-owned.
+
+Task9 retains the Mobile landscape responsive/device matrix (16:9, 18:9, 19.5:9, 20:9, cutout/safe-area, foldable/tablet). Task8 does not pull that full matrix forward.
 
 ## Tool authority
 
@@ -108,10 +144,13 @@ higodot:
   authority: SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY
   tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
   observed_tool_state_main: 257a0dba33f8288d24b1cd291bb407f4505224b4
-  sheet_sync: SHEET_WRITE_READBACK_PASS
   tracked_plugin_subtree: 69010571e11123dfc4e09483f80cb9e6ca93511a
   vendor_integrity: PASS_EXACT_TREE_IDENTITY
-  live_handshake: LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
+  live_session: task8-spell-use-screen-v2@3cfa
+  live_project_match: PASS_FOR_OBSERVED_SESSION
+  live_server_plugin: V3_1_4_V3_1_4
+  live_readiness: READY
+  expected_version_field: NOT_SURFACED_DO_NOT_CLAIM
   direct_local_upgrade_receipt: HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
   historical_v3_1_3_sync: GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION
   historical_v3_1_3_tree: 94be4fb34d49243375c592e17a1021c8c6fcbcf2
@@ -124,6 +163,26 @@ hera:
   authority: LIVE_QA_AND_OBSERVABILITY_ONLY
   status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
   persistent_source_mutation: FORBIDDEN
+  task8_acceptance: PENDING
+  task8_required_source_delta: NONE
+```
+
+## Current Task8 merge gate
+
+```text
+fresh dedicated local environment bootstrap
+→ fresh exact-project HiGodot receipt
+→ fresh protected-delta HiGodot authoring receipt/readback
+→ focused/regression recheck if receipt process changes the tree
+→ pre-Hera tracked-source snapshot
+→ Hera live QA/observability only
+→ post-Hera tracked-source snapshot
+→ HERA_SOURCE_DELTA: NONE
+→ independent/adversarial review
+→ exact-head PR CI
+→ merge
+→ merged-main readback
+→ same Decision ID GitHub + Sheet product sync
 ```
 
 ## Historical Task 2 / Task 3 / v4.4 evidence
@@ -153,7 +212,10 @@ v4.4, v3.1.3, Task2/Task3 진입 자료는 provenance로 유효하지만 current
 ## Preserved validation boundaries
 
 ```text
-LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED
+TASK8_PROTECTED_DELTA_HIGODOT_RECEIPT_PENDING
+TASK8_HERA_ACCEPTANCE_PENDING
+TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
+HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 HUMAN_NOT_RUN
 DEVICE_NOT_RUN
 PERFORMANCE_NOT_RUN
@@ -165,12 +227,10 @@ AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN
 HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
-LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS
-GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS
 ```
 
-자동·Editor·CI·tracked tree 증거로 live READY/사람/기기/성능/전체 Vertical Slice 증거를 승격하지 않는다.
+자동·Editor·CI·GUT·Hera 증거로 사람/기기/성능/전체 Vertical Slice 증거를 승격하지 않는다.
 
 ## Contract boundary
 
-저장소 current canon은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`과 HiGodot v3.1.3은 historical provenance로 보존한다.
+저장소 current canon은 v4.5 r2 / `GM-CONTRACT-V4-5-BINDING-01`이다. v4.4 / `GM-CONTRACT-V4-4-BINDING-01`과 HiGodot v3.1.3은 historical provenance로 보존한다. Sync20은 운영 실행환경 consumer이며 제품 규칙을 변경하지 않는다.

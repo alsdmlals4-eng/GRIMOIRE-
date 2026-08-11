@@ -5,15 +5,16 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 SYNC_ID = "GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE"
 LATEST_PRODUCT_MAIN = "fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f"
-CURRENT_STATUS = "TASK7_MERGED_MAIN_VERIFIED"
-NEXT_TASK = "TASK8_SPELL_USE_SCREEN"
+PREDECESSOR_STATUS = "TASK7_MERGED_MAIN_VERIFIED"
+CURRENT_TASK_STATUS = "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING"
+NEXT_GATE = "TASK8_RECEIPT_HERA_REVIEW_PR"
 
 
 class SpellWorkflowCurrentStateSyncContract(unittest.TestCase):
     def _read(self, relative_path: str) -> str:
         return (ROOT / relative_path).read_text(encoding="utf-8")
 
-    def test_current_state_surfaces_share_task7_and_task8_markers(self) -> None:
+    def test_current_state_surfaces_share_task8_merge_gate_markers(self) -> None:
         for relative_path in (
             "START_HERE.md",
             "docs/ACTIVE_CONTEXT.md",
@@ -24,8 +25,9 @@ class SpellWorkflowCurrentStateSyncContract(unittest.TestCase):
                 text = self._read(relative_path)
                 self.assertIn(SYNC_ID, text)
                 self.assertIn(LATEST_PRODUCT_MAIN, text)
-                self.assertIn(CURRENT_STATUS, text)
-                self.assertIn(NEXT_TASK, text)
+                self.assertIn(PREDECESSOR_STATUS, text)
+                self.assertIn(CURRENT_TASK_STATUS, text)
+                self.assertIn(NEXT_GATE, text)
 
     def test_audit_evidence_remains_linked(self) -> None:
         audit = self._read(

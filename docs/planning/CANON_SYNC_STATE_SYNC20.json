@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "policy_id": "GM-CANON-SYNC-01",
+  "sync_id": "GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT",
+  "repository": "alsdmlals4-eng/GRIMOIRE-",
+  "supersedes_current_view_of": "docs/planning/CANON_SYNC_STATE.json",
+  "superseded_file_role": "PRE_SYNC20_HISTORICAL_MACHINE_SNAPSHOT",
+  "active_contract": {
+    "version": "4.5",
+    "binding_decision_id": "GM-CONTRACT-V4-5-BINDING-01",
+    "status": "ACTIVE_USER_APPROVED_BINDING"
+  },
+  "base": {
+    "project_pin": "9.4.3",
+    "current_main_observed": "6d2feba2bc49fda2d8d273248b55087853615d5d",
+    "pin_update": "NOT_APPROVED_NOT_PERFORMED"
+  },
+  "tool_authority": {
+    "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+    "local_execution_policy": "PROJECT_DEDICATED_LOCAL_EXECUTION_ENVIRONMENT_FIRST",
+    "fresh_shell_policy": "ASSUME_PREVIOUS_POWERSHELL_CLOSED",
+    "missing_environment_policy": "CREATE_OR_REPAIR_DEDICATED_LOCAL_ENVIRONMENT_FIRST",
+    "higodot_tracked": "V3_1_4_PASS_EXACT_TREE_IDENTITY",
+    "higodot_live": "LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED",
+    "higodot_expected_version_field": "NOT_SURFACED_DO_NOT_CLAIM",
+    "higodot_direct_receipt": "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT",
+    "gut": "GUT_9_7_1_DETERMINISTIC_GDSCRIPT_TEST_AUTHORITY",
+    "hera": "HERA_V1_0_0_LIVE_QA_AND_OBSERVABILITY_ONLY",
+    "hera_task8_source_delta_required": "NONE"
+  },
+  "spell_workflow": {
+    "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
+    "predecessor_status": "TASK7_MERGED_MAIN_VERIFIED",
+    "product_unit": "TASK8_SPELL_USE_SCREEN",
+    "status": "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING",
+    "next_gate": "TASK8_RECEIPT_HERA_REVIEW_PR",
+    "latest_product_main": "fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f",
+    "focused_gut": "15_TESTS_90_ASSERTIONS_0_FAILURES",
+    "predecessor_regression": "42_SUITES_1588_ASSERTIONS_0_FAILURES"
+  },
+  "sheet_sync": {
+    "spreadsheet_id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "sync20_status": "PENDING_POST_MERGE",
+    "tracked_v3_1_4_sync19": "SHEET_WRITE_READBACK_PASS"
+  },
+  "preserved_limits": [
+    "TASK8_PROTECTED_DELTA_HIGODOT_RECEIPT_PENDING",
+    "TASK8_HERA_ACCEPTANCE_PENDING",
+    "TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING",
+    "HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED",
+    "HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT",
+    "HUMAN_NOT_RUN",
+    "DEVICE_NOT_RUN",
+    "PERFORMANCE_NOT_RUN",
+    "FULL_VERTICAL_SLICE_NOT_RUN"
+  ]
+}

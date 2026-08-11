@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 HISTORICAL_SYNC = "GR-SYNC-20260809-08-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY"
 CURRENT_SYNC = "GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE"
 DECISION = "GM-SPELL-WORKFLOW-UI-V2-01"
+CURRENT_TASK_STATUS = "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING"
+CURRENT_NEXT_GATE = "TASK8_RECEIPT_HERA_REVIEW_PR"
 HANDOFF = ROOT / "docs/planning/handoffs/2026-08-09-task3-higodot-execution-packet.md"
 HISTORICAL_SYNC_DOC = ROOT / "docs/planning/sync/GR-SYNC-20260809-08-SPELL-WORKFLOW-TASK3-CONTINUOUS-ENTRY.md"
 CURRENT_SYNC_DOC = ROOT / "docs/planning/sync/GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE.md"
@@ -31,7 +33,7 @@ class Task3ContinuousEntryCanonTests(unittest.TestCase):
         self.assertIn(DECISION, sync)
         self.assertIn("product_mutation_in_this_sync: NONE", sync)
 
-    def test_current_human_state_supersedes_task3_as_next(self) -> None:
+    def test_current_human_state_supersedes_task3_with_current_task8_merge_subgate(self) -> None:
         for relative_path in (
             "START_HERE.md",
             "docs/ACTIVE_CONTEXT.md",
@@ -42,7 +44,8 @@ class Task3ContinuousEntryCanonTests(unittest.TestCase):
                 text = (ROOT / relative_path).read_text(encoding="utf-8")
                 self.assertIn(CURRENT_SYNC, text)
                 self.assertIn("TASK7_MERGED_MAIN_VERIFIED", text)
-                self.assertIn("TASK8_SPELL_USE_SCREEN", text)
+                self.assertIn(CURRENT_TASK_STATUS, text)
+                self.assertIn(CURRENT_NEXT_GATE, text)
 
     def test_current_sync_receipt_records_merged_lineage(self) -> None:
         text = CURRENT_SYNC_DOC.read_text(encoding="utf-8")
