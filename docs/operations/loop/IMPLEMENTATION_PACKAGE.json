@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "contract_role": "LOOP_IMPLEMENTATION_PACKAGE",
+  "project_id": "GRIMOIRE",
+  "package_id": "GR_LOOP_VISUAL_PILOT_001",
+  "source_main_sha": "6dc4c390d6516b95a70130e1f668b056a5a25b25",
+  "requirement_ids": ["GR_LOOP_VISUAL_LOCK_001"],
+  "allowed_paths": [
+    ".github/workflows/validate-universal-loop-visual-pilot.yml",
+    "docs/operations/loop/PROJECT_EXECUTION_CAPSULE.json",
+    "docs/operations/loop/PLANNING_LOCK.json",
+    "docs/operations/loop/VISUAL_LOCK.json",
+    "docs/operations/loop/RUNTIME_ADAPTER.json",
+    "docs/operations/loop/IMPLEMENTATION_PACKAGE.json",
+    "docs/operations/loop/REQUIREMENT_COVERAGE_LEDGER.json",
+    "docs/operations/loop/ACTIVE_LOOP_RUN.json",
+    "docs/operations/loop/runs/GR_VISUAL_SHADOW_001.json",
+    "tests/test_universal_loop_visual_pilot.py"
+  ],
+  "forbidden_paths": ["src/", "assets/", "data/", "addons/", "project.godot", "docs/planning/"],
+  "visual_impact": "EXISTING_LOCKED",
+  "visual_lock_requirement": "VISUAL_LOCKED",
+  "required_evidence_levels": ["E1_STATIC", "E2_TEST"],
+  "resource_locks": ["VISUAL_UI_CANON_OPERATIONS"],
+  "acceptance_criteria": [
+    "Local Visual Lock contract passes.",
+    "Existing visual-platform structural contract remains green.",
+    "Pinned unmodified Base M2 to M3 SHADOW pipeline returns SHADOW_COMPLETE with visual drift NO_DRIFT.",
+    "All actual pilot outputs are mapped and no product/visual authority path changes."
+  ],
+  "rollback": "Revert the pilot PR; approved visual/UX canon and product runtime remain unchanged.",
+  "execution_gate": "AUTONOMOUS_IMPLEMENTATION_READY"
+}

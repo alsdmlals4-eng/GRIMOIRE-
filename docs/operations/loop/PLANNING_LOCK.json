@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "contract_role": "LOOP_PLANNING_LOCK",
+  "project_id": "GRIMOIRE",
+  "status": "PLANNING_LOCKED",
+  "source_commit": "6dc4c390d6516b95a70130e1f668b056a5a25b25",
+  "user_review": {"status": "APPROVED", "approval_ref": "USER_APPROVAL_UNIVERSAL_LOOP_VISUAL_PILOT_20260814"},
+  "authority_sources": [
+    {"authority_id": "AGENTS", "path": "AGENTS.md", "source_commit": "6dc4c390d6516b95a70130e1f668b056a5a25b25"},
+    {"authority_id": "START_HERE", "path": "START_HERE.md", "source_commit": "6dc4c390d6516b95a70130e1f668b056a5a25b25"},
+    {"authority_id": "DESIGN_DOCUMENT_REGISTRY", "path": "docs/DESIGN_DOCUMENT_REGISTRY.json", "source_commit": "6dc4c390d6516b95a70130e1f668b056a5a25b25"},
+    {"authority_id": "STAR_CIRCUIT_WIREFRAME", "path": "docs/planning/STAR_CIRCUIT_MOBILE_LANDSCAPE_WIREFRAME_01_APPROVAL_2026-08-06.md", "source_commit": "6dc4c390d6516b95a70130e1f668b056a5a25b25"},
+    {"authority_id": "FROSTBLOOM_UX_MAP", "path": "docs/planning/FROSTBLOOM_STAR_CIRCUIT_UX_MAP_01_APPROVAL_2026-08-06.md", "source_commit": "6dc4c390d6516b95a70130e1f668b056a5a25b25"}
+  ],
+  "approved_requirements": [{
+    "requirement_id": "GR_LOOP_VISUAL_LOCK_001",
+    "statement": "Validate the Universal Loop M2 to M3 SHADOW pipeline against the existing approved GRIMOIRE mobile star-circuit visual and UX contracts without changing product UI or visual canon.",
+    "acceptance_criteria": [
+      "Visual Lock references only existing user-authorized visual/UX contracts.",
+      "Existing visual-platform structural contract remains green.",
+      "The unmodified Base SHADOW Kernel completes with EXISTING_LOCKED and NO_DRIFT.",
+      "No product, planning, visual asset, scene, data, or project.godot path is modified."
+    ]
+  }],
+  "protected_meanings": [
+    "FIVE_POINT_STAR remains the active circuit layout and THREE_BY_THREE is historical only.",
+    "TARGET selection remains after circuit preview and outside the circuit.",
+    "AUTO_TARGET and AUTO_COMMIT remain forbidden.",
+    "Explicit commit and multi-solution UX remain required.",
+    "HUMAN_NOT_RUN and DEVICE_NOT_RUN boundaries remain explicit and are not upgraded by this pilot."
+  ],
+  "excluded_scope": [
+    "No TASK8 product implementation or new visual design is selected by this pilot.",
+    "No final art, Figma mutation, image generation, asset replacement, runtime UI edit, or device validation is included.",
+    "No human/device/performance validation claim is created."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "contract_role": "LOOP_VISUAL_LOCK",
+  "project_id": "GRIMOIRE",
+  "status": "VISUAL_LOCKED",
+  "source_commit": "6dc4c390d6516b95a70130e1f668b056a5a25b25",
+  "provider": "GITHUB_ART_BIBLE",
+  "reference_ids": [
+    "docs/planning/STAR_CIRCUIT_MOBILE_LANDSCAPE_WIREFRAME_01_APPROVAL_2026-08-06.md",
+    "docs/planning/FROSTBLOOM_STAR_CIRCUIT_UX_MAP_01_APPROVAL_2026-08-06.md"
+  ],
+  "keep": [
+    "FIVE_POINT_STAR with exactly one center main glyph and zero-to-five equivalent optional vertices",
+    "LEFT situation context + CENTER star circuit + RIGHT breakdown/target/final preview + BOTTOM controls hierarchy",
+    "CIRCUIT_PREVIEW before TARGET_KEYWORD selection and EXPLICIT_COMMIT after final preview",
+    "minimum touch target 48dp, 130 percent text scale without clipping, color not sole signal",
+    "MOBILE_LANDSCAPE_FIXED low-fi runtime contract"
+  ],
+  "avoid": [
+    "AUTO_TARGET or AUTO_COMMIT affordances",
+    "target keyword inside the circuit before preview",
+    "professor circuit or best-route answer-key recommendation",
+    "color-only status signaling",
+    "hidden layout position bonuses"
+  ],
+  "do_not_drift": [
+    "Do not revert to THREE_BY_THREE / 3X3 circuit layout",
+    "Do not move target selection before circuit preview",
+    "Do not remove explicit commit or multi-solution intent flow",
+    "Do not claim final art, human, device, performance, or accessibility-device validation from this low-fi automated pilot"
+  ],
+  "target_platforms": ["MOBILE_LANDSCAPE_FIXED"],
+  "aspect_ratios": ["16:9"]
+}
