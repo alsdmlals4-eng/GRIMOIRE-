@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "contract_role": "LOOP_REQUIREMENT_COVERAGE_LEDGER",
+  "project_id": "GRIMOIRE",
+  "package_id": "GR_LOOP_VISUAL_PILOT_001",
+  "source_main_sha": "6dc4c390d6516b95a70130e1f668b056a5a25b25",
+  "status": "INITIALIZED",
+  "requirements": [{
+    "requirement_id": "GR_LOOP_VISUAL_LOCK_001",
+    "status": "MAPPED",
+    "tasks": ["TASK_VALIDATE_EXISTING_VISUAL_LOCK_SHADOW"],
+    "outputs": [
+      ".github/workflows/validate-universal-loop-visual-pilot.yml",
+      "docs/operations/loop/PROJECT_EXECUTION_CAPSULE.json",
+      "docs/operations/loop/PLANNING_LOCK.json",
+      "docs/operations/loop/VISUAL_LOCK.json",
+      "docs/operations/loop/RUNTIME_ADAPTER.json",
+      "docs/operations/loop/IMPLEMENTATION_PACKAGE.json",
+      "docs/operations/loop/REQUIREMENT_COVERAGE_LEDGER.json",
+      "docs/operations/loop/ACTIVE_LOOP_RUN.json",
+      "docs/operations/loop/runs/GR_VISUAL_SHADOW_001.json",
+      "tests/test_universal_loop_visual_pilot.py"
+    ],
+    "tests": ["tests/test_universal_loop_visual_pilot.py", "tests/test_visual_platform_gate_sequencing.py", ".github/workflows/validate-universal-loop-visual-pilot.yml"],
+    "evidence": ["E1_STATIC", "E2_TEST"]
+  }]
+}
