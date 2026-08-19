@@ -5,11 +5,12 @@ ROOT = Path(__file__).resolve().parents[1]
 CANON = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_01_APPROVAL_2026-08-11.md"
 BENCH = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_IMPLEMENTATION_BENCHMARK_2026-08-11.md"
 PLAN = ROOT / "docs/superpowers/plans/2026-08-11-frostbloom-internal-vertical-slice-implementation-plan.md"
+README = ROOT / "README.md"
 
 
 class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
     def test_required_planning_artifacts_exist(self):
-        for path in (CANON, BENCH, PLAN):
+        for path in (CANON, BENCH, PLAN, README):
             self.assertTrue(path.is_file(), path)
 
     def test_approved_slice_contract_tokens(self):
@@ -40,6 +41,28 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
         self.assertIn("첫 `W6` 주요 해결은 반드시 실제 상태를 개선", text)
         self.assertIn("정답 루트 버튼으로 노출하지 않는다", text)
         self.assertIn("Historical 3×3", text)
+
+    def test_readme_uses_current_single_incident_slice(self):
+        text = README.read_text(encoding="utf-8")
+        for token in (
+            "서리꽃 온실의 심장 / SINGLE_INCIDENT_SPIRAL",
+            "FIVE_POINT_STAR",
+            "Task 3~7 MERGED_MAIN_VERIFIED",
+            "LOCAL_ACCEPTANCE_PASS_UNMERGED / PR_PREP_REVERIFY_PENDING",
+            "Human validation | `NOT_RUN`",
+            "Device validation | `NOT_RUN`",
+            "Performance validation | `NOT_RUN`",
+            "Full Vertical Slice validation | `NOT_RUN`",
+            "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a",
+        ):
+            self.assertIn(token, text)
+        for stale in (
+            "첫 수업·교내 연습\n→ 자유일정 A\n→ 첫 실기시험",
+            "학교축제\n→ 자유일정 C\n→ 첫 현장실습",
+            "저장소에는 아직 실행 가능한 Godot 제품 프로젝트가 없습니다.",
+            "| 구현 | `NOT_STARTED` |",
+        ):
+            self.assertNotIn(stale, text)
 
     def test_benchmark_was_performed_before_plan(self):
         text = BENCH.read_text(encoding="utf-8")
