@@ -170,9 +170,15 @@ Task 8 Spell Use Screen은 기존 Task 5 Stage 3 권위를 소비하는 UI이며
 - Soft Storybook 배경 + 선명한 Anime Cel 캐릭터.
 - Navy/Gold UI + 고대비 Blue Glyph.
 - 고정 3/4 Field, 같은 장소 Half-body Dialogue, 별도 Battle, Result 후 Field 복귀.
-- 동반 정령·수호 소환수 상태 표현.
+- 고정 주인공 1명, 전투 상시 초상 1개.
+- 동반 정령·수호 소환수 상태 배지.
 - 우측 Writing Panel은 축소 Rail에서 작성 시 확장.
+- Grimoire 파생 화면을 Main보다 먼저 설계한다.
 - AI-generated look을 줄이고 스타일 일관성·가독성·세계관/핵심 시스템 적합성을 우선한다.
+
+잠긴 기준 이미지 SHA-256:
+
+`b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a`
 
 기존 승인·잠금 Visual의 원본은 별도 승인 없이 수정·재생성하지 않습니다.
 
