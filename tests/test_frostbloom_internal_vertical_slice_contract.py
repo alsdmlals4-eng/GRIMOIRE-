@@ -45,11 +45,15 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
     def test_readme_uses_current_single_incident_slice(self):
         text = README.read_text(encoding="utf-8")
         for token in (
-            "서리꽃 온실의 심장",
-            "SINGLE_INCIDENT_SPIRAL",
+            "서리꽃 온실의 심장 / SINGLE_INCIDENT_SPIRAL",
             "FIVE_POINT_STAR",
-            "Task 3~7",
-            "Task 8",
+            "Task 3~7 MERGED_MAIN_VERIFIED",
+            "LOCAL_ACCEPTANCE_PASS_UNMERGED / PR_PREP_REVERIFY_PENDING",
+            "Human validation | `NOT_RUN`",
+            "Device validation | `NOT_RUN`",
+            "Performance validation | `NOT_RUN`",
+            "Full Vertical Slice validation | `NOT_RUN`",
+            "b55ce1dec6c2521668602d1ce6547526e7f40b8c7c9b6f5276d9289a67f14f7a",
         ):
             self.assertIn(token, text)
         for stale in (
