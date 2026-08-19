@@ -2,13 +2,17 @@
 
 ```yaml
 sync_id: GR-SYNC-20260820-22-V47-ENTRY-RECONCILIATION
-decision_id: GM-V47-ENTRY-01
+reconciliation_id: GM-V47-ENTRY-01
+existing_product_decision_owner: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 date_kst: 2026-08-20
 work_mode: PLAN
 approval: USER_APPROVED_RECOMMENDED_OPTION
+product_decision_change: NONE
 product_behavior_change: NONE
 canon_reconciliation: REQUIRED
+current_conversation_execution_contract: USER_SUPPLIED_V4_7
+repository_contract_binding_mutation: NONE_IN_THIS_RECONCILIATION
 persistent_godot_mutation: NONE
 src_scene_resource_asset_mutation: NONE
 task8_local_workstream_mutation: NONE
@@ -18,13 +22,15 @@ performance_validation: NOT_RUN
 full_slice_validation: NOT_RUN
 ```
 
-## 1. 결정
+## 1. 승인 재확인
 
 사용자는 2026-08-20 KST에 다음 권장안을 승인했다.
 
 > 완성형 데모/Vertical Slice의 현행 정본은 `GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01`의 `서리꽃 온실의 심장 / SINGLE_INCIDENT_SPIRAL`을 유지한다. 과거 `첫 수업 → 자유일정 → 실기시험 → 축제 → 현장실습` Campus Montage는 현재 46분 Slice의 플레이 구조로 사용하지 않고, 장기 학교생활/1학년 커리큘럼의 참고·Preview 범위로만 남긴다.
 
-이 결정은 새 Slice를 만드는 것이 아니라 이미 승인된 최신 GitHub structured canon을 사용자 재확인으로 잠그고, 오래된 lower consumer를 정리하는 reconciliation이다.
+이 승인은 새 Slice나 새 제품 Decision을 만드는 것이 아니다. 이미 승인된 최신 GitHub structured canon을 사용자가 재확인하고 오래된 lower consumer를 정리하도록 허용한 reconciliation이다. 제품 의미의 owner는 계속 `GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01`이다.
+
+현재 대화 실행에는 사용자가 제공한 `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.7`을 적용한다. 저장소에 남아 있는 v4.5 r2 계약 바인딩 자체를 이 reconciliation에서 별도 migration하지는 않는다.
 
 ## 2. Authority recovery
 
@@ -41,7 +47,7 @@ spell_workflow_merged: TASK3_TO_TASK7
 spell_workflow_task8: LOCAL_ACCEPTANCE_PASS_UNMERGED
 ```
 
-`CURRENT_CONFIRMED_DECISIONS.md`는 이미 Frostbloom `SINGLE_INCIDENT_SPIRAL`, `festival: PREVIEW_ONLY`, `FIVE_POINT_STAR`, Human/Device/Performance/Full Slice `NOT_RUN`을 current planning decision으로 소유하므로 새 제품 Decision으로 대체하지 않는다.
+`CURRENT_CONFIRMED_DECISIONS.md`는 이미 Frostbloom `SINGLE_INCIDENT_SPIRAL`, `festival: PREVIEW_ONLY`, `FIVE_POINT_STAR`, Human/Device/Performance/Full Slice `NOT_RUN`을 current planning decision으로 소유한다. 따라서 이 파일에 중복된 새 제품 Decision을 만들지 않는다.
 
 ## 3. 발견된 stale consumer
 
@@ -155,6 +161,7 @@ GREEN target:
 - Task3~7 merged / Task8 unmerged 경계를 과장 없이 표시
 - Human/Device/Performance/Full Slice `NOT_RUN` 유지
 - stale Campus Montage를 현행 Slice로 다시 노출하지 않음
+- 기존 승인·잠금 Art Bible 핵심과 기준 이미지 SHA를 보존
 
 ## 8. 보호 범위
 
