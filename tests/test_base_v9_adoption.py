@@ -62,5 +62,29 @@ class BaseV943AdoptionTests(unittest.TestCase):
         ):
             self.assertTrue((ROOT / path).is_file(), path)
 
+    def test_base_reuse_adoption_manifest_is_project_bounded(self) -> None:
+        manifest = load("docs/base-reuse-adoption.json")
+        self.assertEqual(1, manifest["schema_version"])
+        self.assertEqual(
+            "8553678f70e22f193a2336b591f677dcfa5a8965",
+            manifest["base_source_commit"],
+        )
+        states = {
+            module_id: config["state"]
+            for module_id, config in manifest["modules"].items()
+        }
+        self.assertEqual(
+            {
+                "RM-TOOL-001": "planned",
+                "RM-SYS-001": "not_applicable",
+                "RM-SYS-003": "planned",
+                "RM-VIS-001": "planned",
+                "RM-VIS-002": "planned",
+            },
+            states,
+        )
+        self.assertEqual("not_applicable", states["RM-SYS-001"])
+        self.assertNotIn("enabled", states.values())
+
 
 if __name__ == "__main__": unittest.main()
