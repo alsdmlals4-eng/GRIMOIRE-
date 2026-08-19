@@ -20,6 +20,7 @@ human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
 full_slice_validation: NOT_RUN
+notion_sync: PASS_READBACK
 ```
 
 ## 1. 승인 재확인
@@ -69,7 +70,7 @@ spell_workflow_task8: LOCAL_ACCEPTANCE_PASS_UNMERGED
 - `GRIMOIRE::LOOP::VERTICAL_SLICE_SCHEDULE` — Campus Montage 45~50분 구조
 - `GRIMOIRE::SYSTEM::CORE_GLYPHS` — `흐름 / 집중 / 분산` 3종만 current처럼 표시
 
-두 항목은 repository current decision과 충돌한다. Notion은 사람용 정본이므로 repository sync/merge 뒤 같은 결정 의미로 정리하고 destination readback한다.
+두 항목은 repository current decision과 충돌했다. Notion은 사람용 정본이므로 같은 승인 의미로 정리하고 destination readback했다.
 
 ## 4. 최소 3개 대안
 
@@ -189,14 +190,38 @@ GREEN target:
 
 그 전에는 Campus Montage를 복구하지 않는다.
 
-## 10. Notion sync target
+## 10. Notion sync / readback
 
-Repository merge/readback 뒤:
+2026-08-20 KST에 repository current canon을 기준으로 사람용 stale consumer를 직접 동기화하고 destination readback했다.
 
-- Project Home — 현재 Slice/부분 구현 상태 표현 확인
-- `GRIMOIRE::LOOP::VERTICAL_SLICE_SCHEDULE` — Frostbloom Single-Incident로 수정
-- `GRIMOIRE::SYSTEM::CORE_GLYPHS` — Main 5 + Auxiliary 5 / FIVE_POINT_STAR grammar로 수정
-- destination readback 필수
+### Project Home
+
+- page: `GRIMOIRE: 세계를 다시 쓰는 법`
+- 기획: `APPROVED · Frostbloom SINGLE_INCIDENT_SPIRAL current`
+- 구현: `PARTIAL FOUNDATION · Spell Workflow Task 3~7 merged / Task 8 unmerged`
+- Runtime: `Star Circuit POC exists · Full Vertical Slice NOT_RUN`
+- Human / Device / Performance: `NOT_RUN`
+- result: `PASS_READBACK`
+
+### Core System — Vertical Slice 일정
+
+- Record Key: `GRIMOIRE::LOOP::VERTICAL_SLICE_SCHEDULE`
+- Revision: `2`
+- Summary: `서리꽃 온실의 심장 하나를 깊게 파는 46분 SINGLE_INCIDENT_SPIRAL Vertical Slice.`
+- FIVE_POINT_STAR / first real improvement / old revision / five-axis result / Grimoire review를 한 사건 흐름으로 반영
+- Festival / long curriculum: `PREVIEW_ONLY`
+- result: `PASS_READBACK`
+
+### Core System — 주문 글자 문법
+
+- Record Key: `GRIMOIRE::SYSTEM::CORE_GLYPHS`
+- Revision: `2`
+- Main: `HEAT / FLOW / PROTECT / COOL / MEND`
+- Auxiliary: `FOCUS / DISPERSE / STABILIZE / SUSTAIN / AMPLIFY`
+- topology: `FIVE_POINT_STAR center Main exactly 1 + Auxiliary 0..5`
+- result: `PASS_READBACK`
+
+Notion은 이 동기화로 새 product behavior authority를 만들지 않는다. Source SHA는 동기화 시점 repository main `ca5d004b42e19f775163188da18020de4d5aa2e7`이며, GitHub PR #138은 그 이미 존재하는 current structured canon을 README/consumer에서 정합화하는 작업이다.
 
 ## 11. Next planning axis
 
@@ -214,3 +239,21 @@ Repository merge/readback 뒤:
 ```
 
 다음 중요한 사용자 결정이 나오기 전까지 세부 수치·표현은 가역적 권장안으로 다룬다.
+
+## 12. Validation state
+
+```yaml
+adversarial_full_loops_completed: 5
+validated_findings:
+  - RESTORE_LOCKED_ART_BIBLE_HASH_AND_PROTECTED_DETAILS
+  - CLARIFY_RECONCILIATION_NOT_NEW_PRODUCT_DECISION
+  - STRENGTHEN_README_REGRESSION_GUARDS
+  - CONFIRM_MAIN_UNCHANGED_DURING_REVIEW
+  - CONFIRM_ONLY_CURRENT_PR_OPEN
+local_clean_checkout_test: NOT_RUN_NETWORK_BLOCKED
+remote_github_actions: PENDING_NO_RUN_SURFACED
+merge: BLOCKED_UNTIL_REMOTE_CI_EVIDENCE
+notion_readback: PASS
+```
+
+Remote CI가 확인되기 전에는 PR #138을 병합 완료로 주장하지 않는다.
