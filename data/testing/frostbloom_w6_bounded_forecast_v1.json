@@ -38,6 +38,7 @@
       ],
       "unknown_fact_contract": "UNKNOWN_FACTS_NOT_INVENTED",
       "unknown_as_silent_known_modifier": false,
+      "unknown_can_change_commit_success": false,
       "best_target_recommendation": false,
       "best_intent_recommendation": false,
       "best_circuit_recommendation": false
@@ -54,6 +55,7 @@
       "REMAINING_UNCERTAINTY"
     ],
     "first_accepted_w6_result_remains_true": true,
+    "unknown_can_add_later_context_or_side_effect": true,
     "route_label_as_input": false,
     "w7_required_after_new_context": true
   },
@@ -89,6 +91,8 @@
     "NO_NAMED_INTENT_ROUTE_BUTTONS",
     "UNKNOWN_FACTS_NOT_INVENTED",
     "NO_HIDDEN_UNKNOWN_AS_KNOWN_NUMERIC_MODIFIER",
+    "UNKNOWN_DOES_NOT_FLIP_W6_COMMIT_SUCCESS",
+    "UNKNOWN_MAY_ADD_LATER_CONTEXT_WITHOUT_ERASING_W6",
     "NO_AUTO_CAST",
     "NO_HIDDEN_EXTRA_MANA",
     "FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE",
