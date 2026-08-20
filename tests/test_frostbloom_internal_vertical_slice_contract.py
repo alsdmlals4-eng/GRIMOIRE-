@@ -7,6 +7,8 @@ CANON = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_01_APPROVAL_202
 FIRST10 = ROOT / "docs/planning/FROSTBLOOM_FIRST_10_MIN_CLASS_PRACTICUM_01_APPROVAL_2026-08-20.md"
 W6_CANON = ROOT / "docs/planning/FROSTBLOOM_W6_BOUNDED_CONSEQUENCE_FORECAST_01_APPROVAL_2026-08-20.md"
 W6_FIXTURE = ROOT / "data/testing/frostbloom_w6_bounded_forecast_v1.json"
+W7_CANON = ROOT / "docs/planning/FROSTBLOOM_W7_PRESERVED_FACT_CONTEXT_DELTA_01_APPROVAL_2026-08-20.md"
+W7_FIXTURE = ROOT / "data/testing/frostbloom_w7_context_delta_v1.json"
 WALK = ROOT / "docs/testing/frostbloom_graybox/01_46_MINUTE_WALKTHROUGH.md"
 CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 BENCH = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_IMPLEMENTATION_BENCHMARK_2026-08-11.md"
@@ -16,7 +18,7 @@ README = ROOT / "README.md"
 
 class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
     def test_required_planning_artifacts_exist(self):
-        for path in (CANON, FIRST10, WALK, CURRENT, BENCH, PLAN, README):
+        for path in (CANON, FIRST10, W6_CANON, W6_FIXTURE, W7_CANON, W7_FIXTURE, WALK, CURRENT, BENCH, PLAN, README):
             self.assertTrue(path.is_file(), path)
 
     def test_approved_slice_contract_tokens(self):
@@ -97,6 +99,48 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
         self.assertFalse(data["stage3"]["named_intent_route_buttons"])
         self.assertTrue(data["post_commit"]["first_accepted_w6_result_remains_true"])
         self.assertTrue(data["post_commit"]["unknown_can_add_later_context_or_side_effect"])
+        self.assertEqual("NOT_RUN", data["human_validation"])
+
+    def test_w7_preserved_fact_context_delta_refinement(self):
+        self.assertTrue(W7_CANON.is_file(), W7_CANON)
+        self.assertTrue(W7_FIXTURE.is_file(), W7_FIXTURE)
+        text = W7_CANON.read_text(encoding="utf-8")
+        for token in (
+            "GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01",
+            "PRESERVED_FACT_CONTEXT_DELTA",
+            "W6_RESULT_ANCHOR",
+            "POST_W6_DEEPER_REVISION_COUPLING",
+            "STILL_TRUE",
+            "NEWLY_LEARNED",
+            "NEW_TENSION",
+            "MEANINGFUL_JUDGMENT_CHANGE_REQUIRED",
+            "NO_NUMBER_ONLY_AMPLIFICATION",
+            "NO_OLD_REPAIR_RECORD_REPLAY",
+            "NO_W6_ROLLBACK",
+            "NO_NAMED_CORRECT_ROUTE",
+        ):
+            self.assertIn(token, text)
+        current = CURRENT.read_text(encoding="utf-8")
+        self.assertIn("GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01", current)
+
+        data = json.loads(W7_FIXTURE.read_text(encoding="utf-8"))
+        self.assertEqual({"start_minute": 30, "end_minute": 39}, data["segment"])
+        self.assertEqual("W6_RESULT_ANCHOR", data["reveal"]["first_phase"])
+        self.assertTrue(data["reveal"]["w6_improvement_remains_true"])
+        self.assertEqual("POST_W6_DEEPER_REVISION_COUPLING", data["reveal"]["new_context_source"])
+        self.assertFalse(data["reveal"]["replays_old_repair_record_node"])
+        self.assertEqual(["STILL_TRUE", "NEWLY_LEARNED", "NEW_TENSION"], data["reveal"]["summary_fields"])
+        self.assertEqual(1, data["reveal"]["new_coupling_count"])
+        self.assertEqual(1, data["reveal"]["strong_pressure_source_count"])
+        self.assertEqual(
+            {"meaning_and_circuit", "target", "tradeoff", "contextual_use"},
+            set(data["redesign"]["allowed_meaningful_change_dimensions"]),
+        )
+        self.assertTrue(data["redesign"]["must_change_at_least_one_dimension"])
+        self.assertFalse(data["redesign"]["number_only_amplification_allowed"])
+        self.assertFalse(data["redesign"]["named_correct_route_allowed"])
+        self.assertTrue(data["redesign"]["explicit_commit_required"])
+        self.assertTrue(data["post_commit"]["w6_preserved_fact_still_true"])
         self.assertEqual("NOT_RUN", data["human_validation"])
 
     def test_walkthrough_transfers_class_learning_to_field_by_minute_10(self):
