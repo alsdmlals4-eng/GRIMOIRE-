@@ -6,6 +6,8 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / "data/testing/frostbloom_internal_graybox_pack_v1.json"
 PACK_DIR = ROOT / "docs/testing/frostbloom_graybox"
+LENS_CANON = ROOT / "docs/planning/FROSTBLOOM_10_23_LENS_INVESTIGATION_01_APPROVAL_2026-08-20.md"
+CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 
 
 class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
@@ -38,6 +40,24 @@ class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
         data = self.load_fixture()
         self.assertEqual(["REST", "PREPARE", "SOCIAL", "PRACTICUM"], [x["id"] for x in data["free_schedule"]])
         self.assertEqual(["FACILITY", "LIFE", "SPIRIT", "RELATIONSHIP", "DISCOVERY"], data["result_dimensions"])
+
+    def test_10_23_lens_refinement_preserves_open_investigation(self):
+        self.assertTrue(LENS_CANON.is_file(), LENS_CANON)
+        text = LENS_CANON.read_text(encoding="utf-8")
+        for token in (
+            "GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01",
+            "FREE_SCHEDULE_LENS_ONLY",
+            "ALL_FOUR_INVESTIGATION_NODES_REMAIN_ACCESSIBLE",
+            "SEQUENTIAL_PICK_2_OF_4",
+            "KNOWN_2_UNKNOWN_2",
+            "W5_FIRST_INVESTIGATION_NONCOMBAT_APPLICATION",
+            "NO_CLUE_UNLOCK_OWNERSHIP",
+            "NO_REQUIRED_RESOURCE_OWNERSHIP",
+            "NO_SPELL_CIRCUIT_TARGET_BEST_INTENT_RECOMMENDATION",
+        ):
+            self.assertIn(token, text)
+        current = CURRENT.read_text(encoding="utf-8")
+        self.assertIn("GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01", current)
 
     def test_verdict_vocabulary_is_closed(self):
         self.assertEqual(["PASS", "RISK", "FAIL", "NOT_TESTABLE_YET"], self.load_fixture()["allowed_verdicts"])
