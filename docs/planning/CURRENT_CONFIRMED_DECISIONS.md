@@ -14,7 +14,7 @@ prework_research_decision: GM-PREWORK-BENCHMARK-INDUSTRY-RESEARCH-01
 prework_research_sync: GR-SYNC-20260811-13-PREWORK-BENCHMARK-INDUSTRY-RESEARCH
 prework_research_gate: REQUIRED_BEFORE_NEW_SUBSTANTIVE_WORK_UNIT
 prework_research_same_work_unit_receipt_reuse: ALLOWED_IF_SCOPE_AND_KEY_ASSUMPTIONS_UNCHANGED
-base_current_main_observed: 6d2feba2bc49fda2d8d273248b55087853615d5d
+base_current_main_observed: 3cdb82f94af402fedcc9c1e80902d1d01b8d3ab3
 base_project_pin: v9.4.3
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 current_state_sync: GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT
@@ -31,10 +31,14 @@ current_planning_spec_review_sync: GR-SYNC-20260811-11-FROSTBLOOM-SPEC-REVIEW-PL
 current_planning_graybox_design_sync: GR-SYNC-20260811-14-FROSTBLOOM-GRAYBOX-TEST-PACK-DESIGN
 current_planning_graybox_spec_plan_sync: GR-SYNC-20260811-15-FROSTBLOOM-GRAYBOX-SPEC-APPROVED-PLAN-READY
 current_planning_graybox_completion_sync: GR-SYNC-20260811-16-FROSTBLOOM-GRAYBOX-PACK-COMPLETE
-current_planning_refinement: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
-current_planning_refinement_sync: GR-SYNC-20260820-23-FIRST-10MIN-CLASS-PRACTICUM
+first_10_minute_refinement: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
+first_10_minute_refinement_sync: GR-SYNC-20260820-23-FIRST-10MIN-CLASS-PRACTICUM
+current_planning_refinement: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
+current_planning_refinement_sync: GR-SYNC-20260820-24-10-23-LENS-INVESTIGATION
 frostbloom_first_10_minute_contract: FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM
 frostbloom_first_10_minute_target_minutes: 10
+frostbloom_10_23_contract: FREE_SCHEDULE_LENS_ONLY_SEQUENTIAL_PICK_2_OF_4
+frostbloom_10_23_w6_entry_summary: KNOWN_2_UNKNOWN_2
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
@@ -53,7 +57,7 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: FROSTBLOOM_FIRST_SESSION_EXPERIENCE_AFTER_10MIN_REFINEMENT
+next_planning_axis: FROSTBLOOM_W6_FIRST_MAJOR_SOLUTION_EXPERIENCE
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -349,6 +353,39 @@ full_slice_validation: NOT_RUN
 기존 독립 `06–11 CAMPUS_MICRO_CRAFTING` Beat는 제거하고 그 목적을 W4가 포함된 지도 실습에 흡수한다. 장기 제작 시스템 자체는 유지한다. `10–14` 자유일정의 `PRACTICUM`은 초기 필수 지도 실습과 다른 선택형 추가 실습이며 메인 진행·필수 정보·필수 재료를 독점하지 않는다.
 
 Human/device evidence 전까지 10분 달성, 필기 피로, 이해도, 선택 이유, 현장 결과 인과는 `NOT_RUN`이다.
+
+## GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01 — active child refinement
+
+```yaml
+decision_id: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
+parent_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+predecessor_refinement: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
+sync_id: GR-SYNC-20260820-24-10-23-LENS-INVESTIGATION
+approval: USER_APPROVED_RECOMMENDED_OPTION_A
+canon_document: docs/planning/FROSTBLOOM_10_23_LENS_INVESTIGATION_01_APPROVAL_2026-08-20.md
+fixture: data/testing/frostbloom_10_23_lens_v1.json
+segment: MINUTE_10_TO_23
+free_schedule_contract: FREE_SCHEDULE_LENS_ONLY
+investigation_access: ALL_FOUR_INVESTIGATION_NODES_REMAIN_ACCESSIBLE
+investigation_selection: SEQUENTIAL_PICK_2_OF_4
+w6_entry_summary: KNOWN_2_UNKNOWN_2
+w5_role: W5_FIRST_INVESTIGATION_NONCOMBAT_APPLICATION
+clue_unlock_ownership: NO_CLUE_UNLOCK_OWNERSHIP
+required_resource_ownership: NO_REQUIRED_RESOURCE_OWNERSHIP
+answer_recommendation: NO_SPELL_CIRCUIT_TARGET_BEST_INTENT_RECOMMENDATION
+base_main_observed_for_refinement: 3cdb82f94af402fedcc9c1e80902d1d01b8d3ab3
+project_main_parent_for_refinement: f00a290682f50b782c762f83ec90445556f0a8ae
+human_validation: NOT_RUN
+device_validation: NOT_RUN
+performance_validation: NOT_RUN
+full_slice_validation: NOT_RUN
+```
+
+`10–14` 자유일정은 clue unlock이나 수치 보너스가 아니라 사건을 읽고 다루는 Lens/affordance 1개를 선택한다. REST / PREPARE / SOCIAL / PRACTICUM 어느 것을 골라도 네 조사 질문은 모두 접근 가능하며 필수 정보·필수 자원·정답을 독점하지 않는다.
+
+`14–23` 조사는 네 질문 범주를 먼저 보여주고 첫 노드 1개를 선택한 뒤 결과를 읽는다. W5는 첫 조사에서 비전투 현장 적용으로 사용한다. 그 결과를 본 뒤 남은 세 질문 중 두 번째 노드를 고른다. 기존 여섯 unordered pair의 유효성은 그대로 보존되며, W6 직전에는 `Known 2 / Unknown 2 / Lens 1`만 간단히 표시한다.
+
+Unknown은 누락 벌점이나 숨은 정답 체크리스트가 아니다. UI·NPC·Lens는 spell/circuit/target/best intent 또는 최적 두 번째 조사 노드를 추천하지 않는다. Human test 전까지 선택 이유·이해도·13분 배분 달성은 `NOT_RUN`이다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
