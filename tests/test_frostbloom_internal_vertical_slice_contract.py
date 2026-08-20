@@ -92,9 +92,11 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
             ["KNOWN_IMPROVEMENT", "UNCERTAIN_CONSEQUENCE", "FINAL_TARGET_SUCCESS_BREAKDOWN", "MANA_COST"],
             data["stage3"]["forecast"]["required_fields"],
         )
+        self.assertFalse(data["stage3"]["forecast"]["unknown_can_change_commit_success"])
         self.assertTrue(data["stage3"]["explicit_commit_required"])
         self.assertFalse(data["stage3"]["named_intent_route_buttons"])
         self.assertTrue(data["post_commit"]["first_accepted_w6_result_remains_true"])
+        self.assertTrue(data["post_commit"]["unknown_can_add_later_context_or_side_effect"])
         self.assertEqual("NOT_RUN", data["human_validation"])
 
     def test_walkthrough_transfers_class_learning_to_field_by_minute_10(self):
