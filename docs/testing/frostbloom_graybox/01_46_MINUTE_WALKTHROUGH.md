@@ -5,6 +5,7 @@ decision_id: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
 first_10_minute_decision_id: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
 minute_10_23_decision_id: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
 w6_decision_id: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
+w7_decision_id: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
 scope: INTERNAL_DESIGN_VALIDATION_ONLY
 timing_target: 46
 timing_rework: 53
@@ -164,28 +165,41 @@ Internal verdict: STRUCTURAL_PASS subject to exhaustive six-pair matrix; actual 
 
 Internal verdict: STRUCTURAL_PASS if forecast cases remain bounded and W6 consequence cases preserve real improvement; actual fairness/readability/timing remain NOT_RUN.
 
-## BEAT_06 — 30–39 OLD_REVISION_AND_REDESIGN
+## BEAT_06 — 30–39 PRESERVED_FACT_CONTEXT_DELTA_AND_W7_REDESIGN
 
 **PLAYER_KNOWS**
-- The W6 improvement remains factually true.
-- The old revision adds a new coupling/context condition.
-- One strong pressure source exposes a tradeoff not visible at W6.
+- 30–31: the accepted W6 consequence receipt is anchored first as `W6_RESULT_ANCHOR`; its actual improvement remains factually true.
+- 31–33: one `POST_W6_DEEPER_REVISION_COUPLING` becomes observable because W6 changed the live state.
+- This new coupling is not a replay of the optional `OLD_REPAIR_RECORD` investigation node and remains new whether that node was visited or omitted.
+- 33–35: context is split into exactly `STILL_TRUE / NEWLY_LEARNED / NEW_TENSION`.
+- One strong pressure source exposes a changed relationship/tradeoff; no mob wave or HP-sponge escalation is added.
 
 **PLAYER_CHOOSES**
-- Reinterpret meaning/circuit, target, intent emphasis, tradeoff, or contextual use.
-- Commit W7 as a redesign under the new context.
+- Confirm what remains true from W6 before redesigning anything.
+- Read the new coupling and resulting tension without receiving a correct route/spell recommendation.
+- 35–38: redesign through the existing FIVE_POINT_STAR + Spell Workflow Stage 2/3.
+- Change at least one of `meaning_and_circuit / target / tradeoff / contextual_use`.
+- 38–39: explicitly commit W7 as the second major contextual solution.
 
 **SYSTEM_CHANGES**
-- The new context changes at least one meaningful judgment dimension.
-- W7 addresses the new tension without erasing W6.
-- Pressure is handled as one source, not mob waves or an HP-sponge sequence.
+- `STILL_TRUE` remains sourced from the actual W6 receipt and cannot be removed by the reveal.
+- `NEWLY_LEARNED` adds one post-W6 coupling; it does not retroactively change the accepted W6 success verdict.
+- `NEW_TENSION` explains what new condition must be considered next but does not encode a best answer.
+- W7 uses existing Stage 2/3 ownership and exactly-once semantics; no reveal transaction, route selector, or priority selector is created.
+- W7 must address the new tension through a meaningful judgment change.
+- W7 may leave a residual tradeoff; it need not fully eliminate every tension.
+- The W6 preserved fact remains true after W7.
 
 **MUST_REMAIN_UNKNOWN**
 - The reveal must not say or mechanically imply that W6 was meaningless/fake/wrong.
-- W7 must not be reduced to repeating W6 for a larger numerical effect.
-- No canonical route label becomes a selectable ending button.
+- It must not replay `OLD_REPAIR_RECORD` as a mandatory Reveal or reward one earlier investigation pair with privileged W7 access.
+- No earlier omitted investigation node becomes a hidden prerequisite or wrong-answer correction.
+- No UI/helper may recommend a best circuit, Target, intent, route, or named priority.
+- W7 must not be reduced to same design + same Target + same tradeoff with a larger output number.
+- `intent_emphasis` may be derived from the redesign/result but must not become a named selector.
+- No second pressure source, mob wave, HP sponge, or new mandatory clue chain is introduced.
 
-Internal verdict: PASS subject to W6→Reveal→W7 cases.
+Internal verdict: STRUCTURAL_PASS if the W6 anchor remains true, the reveal is post-W6/new for both OLD_REPAIR_RECORD visit states, and W7 changes at least one meaningful judgment dimension. Actual emotional acceptance, pacing, comprehension, and mobile readability remain NOT_RUN.
 
 ## BEAT_07 — 39–44 RESULT_AND_GRIMOIRE
 
@@ -238,9 +252,10 @@ Internal verdict: PASS.
 10 = FIRST_CLASS_TO_GUIDED_FIELD_CONSEQUENCE_TARGET_HYPOTHESIS
 23 = W6_ENTRY_AFTER_LENS_AND_SEQUENTIAL_2_OF_4_TARGET_HYPOTHESIS
 30 = W6_BOUNDED_FORECAST_AND_FIRST_MAJOR_CONSEQUENCE_TARGET_HYPOTHESIS
+39 = W7_PRESERVED_FACT_CONTEXT_DELTA_AND_SECOND_MAJOR_COMMIT_TARGET_HYPOTHESIS
 46 = TARGET_HYPOTHESIS_NOT_HUMAN_VALIDATION
 53 = CONTENT_REWORK_THRESHOLD
 60 = HARD_STOP_HYPOTHESIS
 ```
 
-Internal walkthrough can flag obvious sequencing or allocation risk only. Actual elapsed play time, comprehension, fatigue, accessibility, device behavior, fairness, and fun remain NOT_TESTABLE_YET or NOT_RUN as applicable.
+Internal walkthrough can flag obvious sequencing or allocation risk only. Actual elapsed play time, comprehension, fatigue, accessibility, device behavior, fairness, emotional acceptance, and fun remain NOT_TESTABLE_YET or NOT_RUN as applicable.
