@@ -2,21 +2,25 @@
 
 ```yaml
 decision_id: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+first_10_minute_decision_id: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
 scope: INTERNAL_DESIGN_VALIDATION_ONLY
 timing_target: 46
 timing_rework: 53
 timing_hard_stop: 60
+first_10_minute_target: 10
+class_target_test_value: 5
+guided_field_practicum_target_test_value: 5
 human_validation: NOT_RUN
 ```
 
 This walkthrough checks causal order, information boundaries, and obvious pacing risk. It does not prove actual player completion time or fun.
 
-## BEAT_01 — 00–06 SCHOOL_SAFE_PRECEDENT
+## BEAT_01 — 00–05 CLASS_SAFE_PRECEDENT
 
 **PLAYER_KNOWS**
-- Maren demonstrates a safe audited precedent.
+- Maren demonstrates a safe audited precedent without presenting a canonical answer for the later Frostbloom incident.
 - FLOW, FOCUS, and DISPERSE are introduced as meaning-bearing glyph concepts.
-- The situation is controlled and has no hidden incident pressure.
+- The class situation is controlled and lets the player compare how the same energy behaves under different meanings.
 
 **PLAYER_CHOOSES**
 - W1: apply FLOW meaning to the safe precedent.
@@ -25,39 +29,50 @@ This walkthrough checks causal order, information boundaries, and obvious pacing
 
 **SYSTEM_CHANGES**
 - Three successful writing events are recorded as safe precedent evidence.
-- The player learns that glyph meaning and contextual use are distinct from drawing recognition alone.
+- The player sees that glyph meaning and contextual use are distinct from drawing recognition alone.
+- The player receives only the minimum information needed to attempt a guided transfer outside the classroom.
 
 **MUST_REMAIN_UNKNOWN**
-- No Frostbloom solution, target, circuit, intent, or ending route is revealed.
-- Maren must not preview a correct W6 spell/circuit/target combination.
+- No Frostbloom investigation node, W6 target, W6 circuit, old-revision reveal, intent, or ending route is revealed.
+- Maren must not preview a correct Frostbloom spell/circuit/target combination.
+- Long-form world history, full economy, and full inventory optimization are not front-loaded here.
 
-Internal verdict: PASS.
+Internal verdict: PASS as a design target; actual five-minute completion remains NOT_RUN.
 
-## BEAT_02 — 06–11 CAMPUS_MICRO_CRAFTING
+## BEAT_02 — 05–10 GUIDED_FIELD_PRACTICUM
 
 **PLAYER_KNOWS**
-- A small contextual tool can carry one marked magical meaning.
-- Tool use can add context without becoming a required universal resource.
+- The player has just learned FLOW / FOCUS / DISPERSE in class.
+- The practicum is a low-risk independent campus maintenance context, not a miniature Frostbloom answer key.
+- At least two visible facts are present: one flow/pressure abnormality and one nearby protection constraint.
+- A bounded contextual tool can carry one marked magical meaning.
 
 **PLAYER_CHOOSES**
 - Select one bounded tool purpose and mark it with W4.
-- The choice may prepare a context-reading or stabilization aid, not an answer key.
+- Build a small FIVE_POINT_STAR with FLOW as Main and either FOCUS or DISPERSE as one Auxiliary.
+- Read the Stage 2 preview without receiving a best-answer recommendation.
+- Select the training target explicitly, inspect the final preview, and confirm use.
 
 **SYSTEM_CHANGES**
-- W4 is recorded as a craft/context marking event.
-- The chosen tool gains one bounded contextual condition for later interpretation.
+- W4 is recorded as the guided-practicum context/tool marking event.
+- The small FIVE_POINT_STAR uses the existing Spell Workflow Stage 2/3 meaning; no special training transaction authority is created.
+- FOCUS and DISPERSE produce different tradeoff shapes rather than pass/fail answer keys.
+- first observable field consequence occurs by minute 10 as the design target.
+- The practicum Micro-Star is `NON_MAJOR_TRANSFER_PROOF` and does not replace the required W6/W7 major incident commits.
 
 **MUST_REMAIN_UNKNOWN**
-- The tool must not contain `required_spell`, `correct_route_id`, `best_intent`, or a hidden ending lookup.
-- The player still does not know which Frostbloom target or solution will be best.
+- The practicum must not expose Frostbloom's required target, old-repair clue, investigation solution, correct route, best intent, or ending lookup.
+- Neither FOCUS nor DISPERSE is labeled optimal/correct.
+- The player does not need to learn the whole inventory, growth, portfolio, or result-axis system to complete this practicum.
 
-Internal verdict: PASS.
+Internal verdict: PASS as a revised contract; human timing, comprehension, touch burden, and fun remain NOT_RUN.
 
-## BEAT_03 — 11–14 FREE_SCHEDULE
+## BEAT_03 — 10–14 FREE_SCHEDULE
 
 **PLAYER_KNOWS**
 - Exactly one free-schedule window is available.
 - REST, PREPARE, SOCIAL, and PRACTICUM are all optional contextual choices.
+- The PRACTICUM option here means optional additional practice, distinct from the mandatory guided transfer completed in BEAT_02.
 
 **PLAYER_CHOOSES**
 - Commit exactly one of REST / PREPARE / SOCIAL / PRACTICUM.
@@ -115,6 +130,7 @@ Internal verdict: PASS subject to exhaustive six-pair matrix.
 - The old-revision reveal is not exposed before W6.
 - No UI/helper may state a canonical correct spell/circuit/target.
 - Derived labels such as FACILITY_REPAIR are not route buttons.
+- The BEAT_02 Micro-Star must not reduce the requirement for W6 to be a real major incident commitment.
 
 Internal verdict: PASS if W6 consequence cases preserve real improvement.
 
@@ -160,6 +176,7 @@ Internal verdict: PASS subject to W6→Reveal→W7 cases.
 **MUST_REMAIN_UNKNOWN**
 - No single SUCCESS_GRADE may replace the five-axis record.
 - The Grimoire may not invent causes from clues the player never observed.
+- The short BEAT_02 practicum receipt must not replace this full causal reflection.
 
 Internal verdict: PASS subject to result/Grimoire cases.
 
@@ -188,6 +205,7 @@ Internal verdict: PASS.
 ## Timing boundary
 
 ```text
+10 = FIRST_CLASS_TO_GUIDED_FIELD_CONSEQUENCE_TARGET_HYPOTHESIS
 46 = TARGET_HYPOTHESIS_NOT_HUMAN_VALIDATION
 53 = CONTENT_REWORK_THRESHOLD
 60 = HARD_STOP_HYPOTHESIS
