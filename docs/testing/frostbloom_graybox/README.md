@@ -6,6 +6,7 @@ DECISION_ID: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
 ACTIVE_REFINEMENT_1: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
 ACTIVE_REFINEMENT_2: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
 ACTIVE_REFINEMENT_3: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
+ACTIVE_REFINEMENT_4: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
 SCOPE: INTERNAL_DESIGN_VALIDATION_ONLY
 EXECUTION_ORDER: 01 -> 02 -> 03 -> 04 -> 05 -> 06 -> 07
 HUMAN_VALIDATION: NOT_RUN
@@ -19,7 +20,7 @@ TASK8: SEPARATE_PRODUCT_WORKSTREAM_UNCHANGED_BY_PLANNING_OVERLAYS
 
 ## Purpose
 
-This pack attacks the approved Frostbloom Single-Incident Spiral before release-near runtime integration. It checks chronology, information leakage, writing-event distinctness, all six 2-of-4 investigation pairs, four free-schedule choices, W6 bounded forecast/consequence preservation, W7 redesign distinctness, five-axis results, Grimoire causality, and fourteen parent-pack adversarial regressions.
+This pack attacks the approved Frostbloom Single-Incident Spiral before release-near runtime integration. It checks chronology, information leakage, writing-event distinctness, all six 2-of-4 investigation pairs, four free-schedule choices, W6 bounded forecast/consequence preservation, W7 preserved-fact/context-delta redesign distinctness, five-axis results, Grimoire causality, and fourteen parent-pack adversarial regressions.
 
 Active child refinements additionally require:
 
@@ -28,9 +29,11 @@ Active child refinements additionally require:
 - minutes 14–23: all four investigation questions accessible, `SEQUENTIAL_PICK_2_OF_4`;
 - W6 entry: `KNOWN_2_UNKNOWN_2`, with omitted nodes treated as uncertainty rather than failure;
 - minutes 23–30: `BOUNDED_CONSEQUENCE_FORECAST` with `OBSERVED_EVIDENCE_ONLY` → `KNOWN_IMPROVEMENT` / `UNCERTAIN_CONSEQUENCE` / `FINAL_TARGET_SUCCESS_BREAKDOWN` / `MANA_COST` → `EXPLICIT_COMMIT_REQUIRED`;
-- accepted W6 result: `FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE` through later Reveal/W7.
+- accepted W6 result: `FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE` through later Reveal/W7;
+- minutes 30–39: `W6_RESULT_ANCHOR` → one `POST_W6_DEEPER_REVISION_COUPLING` → `STILL_TRUE / NEWLY_LEARNED / NEW_TENSION` → W7 changes at least one meaningful judgment dimension → explicit second major Commit;
+- W7 reveal is not an `OLD_REPAIR_RECORD` replay and may not reduce redesign to number-only amplification.
 
-It does **not** prove fun, human comprehension, real 10/23/30/46-minute completion, forecast fairness, accessibility, device behavior, performance, export quality, or Task8 runtime behavior.
+It does **not** prove fun, human comprehension, real 10/23/30/39/46-minute completion, forecast fairness, W7 emotional acceptance, accessibility, device behavior, performance, export quality, or Task8 runtime behavior.
 
 ## Pack surfaces
 
@@ -45,6 +48,7 @@ It does **not** prove fun, human comprehension, real 10/23/30/46-minute completi
 Machine-readable parent authority: `data/testing/frostbloom_internal_graybox_pack_v1.json`.
 Machine-readable 10–23 child overlay: `data/testing/frostbloom_10_23_lens_v1.json`.
 Machine-readable W6 child overlay: `data/testing/frostbloom_w6_bounded_forecast_v1.json`.
+Machine-readable W7 child overlay: `data/testing/frostbloom_w7_context_delta_v1.json`.
 Automated structure contracts: `tests/test_frostbloom_internal_vertical_slice_contract.py` and `tests/test_frostbloom_internal_graybox_pack_contract.py`.
 
 ## Rollup
@@ -55,7 +59,7 @@ READY_WITH_RISKS = zero FAIL and one-or-more in-scope design RISK
 INTERNAL_PACK_PASS = zero FAIL; NOT_TESTABLE_YET may remain only on out-of-scope human/runtime/device/performance questions
 ```
 
-Current internal rollup is `INTERNAL_PACK_PASS`: parent design-structural hard invariants pass and active child overlays add no structural FAIL. Actual elapsed time, comprehension, Lens desirability, investigation-choice reasoning, W6 forecast fairness/readability, handwriting fatigue, and device behavior remain `NOT_TESTABLE_YET` or `NOT_RUN`.
+Current internal rollup is `INTERNAL_PACK_PASS`: parent design-structural hard invariants pass and active child overlays add no structural FAIL. Actual elapsed time, comprehension, Lens desirability, investigation-choice reasoning, W6 forecast fairness/readability, W7 reveal acceptance/redesign reasoning, handwriting fatigue, and device behavior remain `NOT_TESTABLE_YET` or `NOT_RUN`.
 
 ## Ownership boundary
 
