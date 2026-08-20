@@ -3,6 +3,9 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 CANON = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_01_APPROVAL_2026-08-11.md"
+FIRST10 = ROOT / "docs/planning/FROSTBLOOM_FIRST_10_MIN_CLASS_PRACTICUM_01_APPROVAL_2026-08-20.md"
+WALK = ROOT / "docs/testing/frostbloom_graybox/01_46_MINUTE_WALKTHROUGH.md"
+CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 BENCH = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_IMPLEMENTATION_BENCHMARK_2026-08-11.md"
 PLAN = ROOT / "docs/superpowers/plans/2026-08-11-frostbloom-internal-vertical-slice-implementation-plan.md"
 README = ROOT / "README.md"
@@ -10,7 +13,7 @@ README = ROOT / "README.md"
 
 class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
     def test_required_planning_artifacts_exist(self):
-        for path in (CANON, BENCH, PLAN, README):
+        for path in (CANON, FIRST10, WALK, CURRENT, BENCH, PLAN, README):
             self.assertTrue(path.is_file(), path)
 
     def test_approved_slice_contract_tokens(self):
@@ -36,11 +39,54 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
         ):
             self.assertIn(token, text)
 
+    def test_first_10_minute_class_to_practicum_refinement(self):
+        text = FIRST10.read_text(encoding="utf-8")
+        for token in (
+            "GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01",
+            "first_10_minute_target_minutes: 10",
+            "class_target_minutes_test_value: 5",
+            "guided_field_practicum_target_minutes_test_value: 5",
+            "W1 FLOW",
+            "W2 FOCUS",
+            "W3 DISPERSE",
+            "W4",
+            "micro_five_point_star_application: REQUIRED",
+            "major_commit_count_effect: DOES_NOT_REPLACE_W6_W7",
+            "first_field_consequence_target: BEFORE_OR_AT_MINUTE_10",
+            "human_validation: NOT_RUN",
+        ):
+            self.assertIn(token, text)
+
+    def test_walkthrough_transfers_class_learning_to_field_by_minute_10(self):
+        text = WALK.read_text(encoding="utf-8")
+        for token in (
+            "BEAT_01 — 00–05 CLASS_SAFE_PRECEDENT",
+            "BEAT_02 — 05–10 GUIDED_FIELD_PRACTICUM",
+            "W1: apply FLOW",
+            "W2: apply FOCUS",
+            "W3: apply DISPERSE",
+            "W4",
+            "FIVE_POINT_STAR",
+            "first observable field consequence occurs by minute 10",
+        ):
+            self.assertIn(token, text)
+        self.assertNotIn("BEAT_02 — 06–11 CAMPUS_MICRO_CRAFTING", text)
+
+    def test_current_decisions_points_to_first_10_minute_refinement(self):
+        text = CURRENT.read_text(encoding="utf-8")
+        for token in (
+            "GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01",
+            "FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM",
+            "first_10_minute_target_minutes: 10",
+        ):
+            self.assertIn(token, text)
+
     def test_first_solution_and_route_button_guards(self):
-        text = CANON.read_text(encoding="utf-8")
+        text = CANON.read_text(encoding="utf-8") + "\n" + FIRST10.read_text(encoding="utf-8")
         self.assertIn("첫 `W6` 주요 해결은 반드시 실제 상태를 개선", text)
         self.assertIn("정답 루트 버튼으로 노출하지 않는다", text)
         self.assertIn("Historical 3×3", text)
+        self.assertIn("DOES_NOT_REPLACE_W6_W7", text)
 
     def test_readme_uses_current_single_incident_slice(self):
         text = README.read_text(encoding="utf-8")
@@ -87,7 +133,7 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
             self.assertIn(token, text)
 
     def test_no_runtime_validation_is_promoted_by_planning(self):
-        text = CANON.read_text(encoding="utf-8") + "\n" + PLAN.read_text(encoding="utf-8")
+        text = CANON.read_text(encoding="utf-8") + "\n" + FIRST10.read_text(encoding="utf-8") + "\n" + PLAN.read_text(encoding="utf-8")
         for token in (
             "human_validation: NOT_RUN",
             "device_validation: NOT_RUN",

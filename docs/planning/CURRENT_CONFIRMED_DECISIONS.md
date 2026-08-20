@@ -31,6 +31,10 @@ current_planning_spec_review_sync: GR-SYNC-20260811-11-FROSTBLOOM-SPEC-REVIEW-PL
 current_planning_graybox_design_sync: GR-SYNC-20260811-14-FROSTBLOOM-GRAYBOX-TEST-PACK-DESIGN
 current_planning_graybox_spec_plan_sync: GR-SYNC-20260811-15-FROSTBLOOM-GRAYBOX-SPEC-APPROVED-PLAN-READY
 current_planning_graybox_completion_sync: GR-SYNC-20260811-16-FROSTBLOOM-GRAYBOX-PACK-COMPLETE
+current_planning_refinement: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
+current_planning_refinement_sync: GR-SYNC-20260820-23-FIRST-10MIN-CLASS-PRACTICUM
+frostbloom_first_10_minute_contract: FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM
+frostbloom_first_10_minute_target_minutes: 10
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
@@ -49,7 +53,7 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: TASK8_RECEIPT_HERA_PR_THEN_D_RUNTIME
+next_planning_axis: FROSTBLOOM_FIRST_SESSION_EXPERIENCE_AFTER_10MIN_REFINEMENT
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -312,6 +316,39 @@ D는 학교·제작·자유일정·조사·주문·결과를 체크리스트로 
 Internal Graybox Pack은 46분 시간순 walkthrough, W1–W7 distinctness, 2-of-4 전 6조합, 자유일정 4선택 anti-dominance, W6 결과 보존, W7 재설계, 5축 Result/Grimoire, 14개 adversarial attack을 완료했다. 내부 구조 hard-invariant `FAIL`은 0이며 실제 elapsed/comprehension은 `NOT_TESTABLE_YET`로 남는다. 따라서 `INTERNAL_PACK_PASS`는 인간 플레이테스트·실제 46분 달성·재미·device/performance 증거가 아니다.
 
 구현계획은 기존 `SpellWorkflowCoordinator → AtomicSpellUseService → AtomicResultLedger → SaveRepository` 권위를 재사용한다. Task8 Spell Use Screen은 별도 제품 구현 권위로 유지되며 D가 우회 구현하지 않는다. Task8은 Sync17에서 새 work unit으로 재개됐고 fresh research/Existing Solution First/adversarial preflight를 통과했다. Sync19에서 tracked HiGodot v3.1.4 exact-tree identity와 Sheet current state까지 동기화했다. 현재 Task8 local refinement는 GUT focused 15/90 및 legacy 42 suites/1,588 assertions GREEN이지만 unmerged다. 다음 제품 gate는 dedicated local environment에서 fresh HiGodot protected-delta receipt/readback → Hera `HERA_SOURCE_DELTA: NONE` → review/PR/merge이며, D runtime은 Task8 의존성이 해소된 후 이어진다.
+
+## GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01 — active child refinement
+
+```yaml
+decision_id: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
+parent_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+sync_id: GR-SYNC-20260820-23-FIRST-10MIN-CLASS-PRACTICUM
+approval: USER_APPROVED_CORE_INVARIANT
+canon_document: docs/planning/FROSTBLOOM_FIRST_10_MIN_CLASS_PRACTICUM_01_APPROVAL_2026-08-20.md
+first_10_minute_contract: FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM
+first_10_minute_target_minutes: 10
+class_target_minutes_test_value: 5
+guided_field_practicum_target_minutes_test_value: 5
+first_field_consequence_target: BEFORE_OR_AT_MINUTE_10
+micro_five_point_star_application: REQUIRED
+major_commit_count_effect: DOES_NOT_REPLACE_W6_W7
+base_main_observed_for_refinement: 3cdb82f94af402fedcc9c1e80902d1d01b8d3ab3
+project_main_parent_for_refinement: 293cde60ca19bfa6528b90807f7f4622037f2dd0
+concurrent_project_main_after_parent: 5b51169130c97807234a0c2b457ed90dc3c04f3a
+concurrent_main_classification: NO_PRODUCT_CANON_CONFLICT_BASE_REUSE_MANIFEST_ONLY
+human_validation: NOT_RUN
+device_validation: NOT_RUN
+performance_validation: NOT_RUN
+full_slice_validation: NOT_RUN
+```
+
+사용자 승인 핵심은 `수업 진행 → 현장실습 해보기`까지를 첫 10분 목표로 만드는 것이다. `5분 수업 + 5분 지도 실습`은 첫 Human Slice에서 시험할 가역적 기본값이며, 10분 상위 목표를 유지하는 범위에서 4+6 또는 6+4로 조정할 수 있다.
+
+`00–05`에는 W1 FLOW, W2 FOCUS, W3 DISPERSE를 안전 선례로 배우고, `05–10`에는 독립적인 교내 유지보수 문맥에서 W4 contextual tool mark와 `FLOW + FOCUS|DISPERSE`의 소형 FIVE_POINT_STAR를 실제로 사용한다. 이 Micro-Star는 `NON_MAJOR_TRANSFER_PROOF`이며 W6/W7 주요 사건 Commit 최소 2회를 줄이지 않는다. 별도 training transaction/Mana/result authority를 만들지 않고 기존 Spell Workflow Stage 2/3와 exactly-once 의미를 소비한다.
+
+기존 독립 `06–11 CAMPUS_MICRO_CRAFTING` Beat는 제거하고 그 목적을 W4가 포함된 지도 실습에 흡수한다. 장기 제작 시스템 자체는 유지한다. `10–14` 자유일정의 `PRACTICUM`은 초기 필수 지도 실습과 다른 선택형 추가 실습이며 메인 진행·필수 정보·필수 재료를 독점하지 않는다.
+
+Human/device evidence 전까지 10분 달성, 필기 피로, 이해도, 선택 이유, 현장 결과 인과는 `NOT_RUN`이다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
