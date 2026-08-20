@@ -1,9 +1,12 @@
+import json
 from pathlib import Path
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 CANON = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_01_APPROVAL_2026-08-11.md"
 FIRST10 = ROOT / "docs/planning/FROSTBLOOM_FIRST_10_MIN_CLASS_PRACTICUM_01_APPROVAL_2026-08-20.md"
+W6_CANON = ROOT / "docs/planning/FROSTBLOOM_W6_BOUNDED_CONSEQUENCE_FORECAST_01_APPROVAL_2026-08-20.md"
+W6_FIXTURE = ROOT / "data/testing/frostbloom_w6_bounded_forecast_v1.json"
 WALK = ROOT / "docs/testing/frostbloom_graybox/01_46_MINUTE_WALKTHROUGH.md"
 CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 BENCH = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_IMPLEMENTATION_BENCHMARK_2026-08-11.md"
@@ -56,6 +59,43 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
             "human_validation: NOT_RUN",
         ):
             self.assertIn(token, text)
+
+    def test_w6_bounded_consequence_forecast_refinement(self):
+        self.assertTrue(W6_CANON.is_file(), W6_CANON)
+        self.assertTrue(W6_FIXTURE.is_file(), W6_FIXTURE)
+        text = W6_CANON.read_text(encoding="utf-8")
+        for token in (
+            "GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01",
+            "BOUNDED_CONSEQUENCE_FORECAST",
+            "OBSERVED_EVIDENCE_ONLY",
+            "KNOWN_IMPROVEMENT",
+            "UNCERTAIN_CONSEQUENCE",
+            "FINAL_TARGET_SUCCESS_BREAKDOWN",
+            "MANA_COST",
+            "EXPLICIT_COMMIT_REQUIRED",
+            "NO_NAMED_INTENT_ROUTE_BUTTONS",
+            "UNKNOWN_FACTS_NOT_INVENTED",
+            "FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE",
+        ):
+            self.assertIn(token, text)
+        current = CURRENT.read_text(encoding="utf-8")
+        self.assertIn("GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01", current)
+
+        data = json.loads(W6_FIXTURE.read_text(encoding="utf-8"))
+        self.assertEqual({"start_minute": 23, "end_minute": 30}, data["segment"])
+        self.assertEqual({"known": 2, "unknown": 2, "lens": 1}, data["entry_summary"])
+        self.assertEqual("CIRCUIT_PREPARATION_BASE_PREVIEW_NO_TARGET", data["stage2"]["contract"])
+        self.assertFalse(data["stage2"]["target_selection_allowed"])
+        self.assertTrue(data["stage3"]["explicit_target_required"])
+        self.assertEqual("OBSERVED_EVIDENCE_ONLY", data["stage3"]["forecast"]["source_scope"])
+        self.assertEqual(
+            ["KNOWN_IMPROVEMENT", "UNCERTAIN_CONSEQUENCE", "FINAL_TARGET_SUCCESS_BREAKDOWN", "MANA_COST"],
+            data["stage3"]["forecast"]["required_fields"],
+        )
+        self.assertTrue(data["stage3"]["explicit_commit_required"])
+        self.assertFalse(data["stage3"]["named_intent_route_buttons"])
+        self.assertTrue(data["post_commit"]["first_accepted_w6_result_remains_true"])
+        self.assertEqual("NOT_RUN", data["human_validation"])
 
     def test_walkthrough_transfers_class_learning_to_field_by_minute_10(self):
         text = WALK.read_text(encoding="utf-8")
