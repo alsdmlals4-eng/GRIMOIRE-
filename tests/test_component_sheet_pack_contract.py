@@ -26,6 +26,20 @@ SHEETS = [
     "component_sheet_c_frostbloom_decision.tscn",
     "component_sheet_d_result_grimoire.tscn",
 ]
+SPELL_SCRIPTS = [
+    "five_point_star_composer.gd",
+    "context_header.gd",
+    "context_target_selector.gd",
+    "commit_bar.gd",
+]
+FORBIDDEN_OWNERSHIP = [
+    "consume_mana",
+    "reserve_for_spell",
+    "confirm_commit",
+    "AtomicSpellUseService",
+    "TypedGlyphStockPool",
+    "StarCircuitValidator",
+]
 
 
 class ComponentSheetPackContractTests(unittest.TestCase):
@@ -68,6 +82,22 @@ class ComponentSheetPackContractTests(unittest.TestCase):
         for folder in (ROOT / "src/ui/components", ROOT / "src/ui/component_sheets"):
             for path in folder.glob("*.tscn"):
                 self.assertNotRegex(path.read_text(encoding="utf-8"), re.compile(r"[가-힣]"), path.name)
+
+    def test_spell_semantic_components_do_not_own_gameplay_mutation(self):
+        for name in SPELL_SCRIPTS:
+            path = ROOT / "src/ui/components" / name
+            self.assertTrue(path.is_file(), name)
+            if not path.is_file():
+                continue
+            text = path.read_text(encoding="utf-8")
+            for token in FORBIDDEN_OWNERSHIP:
+                self.assertNotIn(token, text, f"{name} must not own {token}")
+        composer = ROOT / "src/ui/components/five_point_star_composer.tscn"
+        self.assertTrue(composer.is_file())
+        if composer.is_file():
+            text = composer.read_text(encoding="utf-8")
+            self.assertIn("star_circuit_board.tscn", text)
+            self.assertNotIn("StarCircuitValidator", text)
 
 
 if __name__ == "__main__":
