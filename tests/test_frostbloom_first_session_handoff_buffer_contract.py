@@ -49,8 +49,9 @@ class FrostbloomFirstSessionHandoffBufferContractTests(unittest.TestCase):
 
     def test_existing_w6_w7_fixtures_consume_handoff_without_recap(self):
         w6 = json.loads(W6_FIXTURE.read_text(encoding="utf-8"))
-        self.assertTrue(w6["entry_summary"]["persists_from_investigation"])
-        self.assertFalse(w6["entry_summary"]["duplicate_decision_brief_required"])
+        self.assertEqual({"known": 2, "unknown": 2, "lens": 1}, w6["entry_summary"])
+        self.assertTrue(w6["entry_handoff"]["persists_from_investigation"])
+        self.assertFalse(w6["entry_handoff"]["duplicate_decision_brief_required"])
         self.assertEqual("ELASTIC_HANDOFF_WINDOW", w6["timing_test_values"][0]["phase"])
 
         w7 = json.loads(W7_FIXTURE.read_text(encoding="utf-8"))
