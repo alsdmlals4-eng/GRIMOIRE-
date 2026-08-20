@@ -33,12 +33,16 @@ current_planning_graybox_spec_plan_sync: GR-SYNC-20260811-15-FROSTBLOOM-GRAYBOX-
 current_planning_graybox_completion_sync: GR-SYNC-20260811-16-FROSTBLOOM-GRAYBOX-PACK-COMPLETE
 first_10_minute_refinement: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
 first_10_minute_refinement_sync: GR-SYNC-20260820-23-FIRST-10MIN-CLASS-PRACTICUM
-current_planning_refinement: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
-current_planning_refinement_sync: GR-SYNC-20260820-24-10-23-LENS-INVESTIGATION
+minute_10_23_refinement: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
+minute_10_23_refinement_sync: GR-SYNC-20260820-24-10-23-LENS-INVESTIGATION
+current_planning_refinement: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
+current_planning_refinement_sync: GR-SYNC-20260820-25-W6-BOUNDED-CONSEQUENCE-FORECAST
 frostbloom_first_10_minute_contract: FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM
 frostbloom_first_10_minute_target_minutes: 10
 frostbloom_10_23_contract: FREE_SCHEDULE_LENS_ONLY_SEQUENTIAL_PICK_2_OF_4
 frostbloom_10_23_w6_entry_summary: KNOWN_2_UNKNOWN_2
+frostbloom_w6_contract: BOUNDED_CONSEQUENCE_FORECAST_OBSERVED_EVIDENCE_ONLY
+frostbloom_w6_preservation: FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
@@ -57,7 +61,7 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: FROSTBLOOM_W6_FIRST_MAJOR_SOLUTION_EXPERIENCE
+next_planning_axis: FROSTBLOOM_W7_REVEAL_REDESIGN_EXPERIENCE
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -386,6 +390,39 @@ full_slice_validation: NOT_RUN
 `14–23` 조사는 네 질문 범주를 먼저 보여주고 첫 노드 1개를 선택한 뒤 결과를 읽는다. W5는 첫 조사에서 비전투 현장 적용으로 사용한다. 그 결과를 본 뒤 남은 세 질문 중 두 번째 노드를 고른다. 기존 여섯 unordered pair의 유효성은 그대로 보존되며, W6 직전에는 `Known 2 / Unknown 2 / Lens 1`만 간단히 표시한다.
 
 Unknown은 누락 벌점이나 숨은 정답 체크리스트가 아니다. UI·NPC·Lens는 spell/circuit/target/best intent 또는 최적 두 번째 조사 노드를 추천하지 않는다. Human test 전까지 선택 이유·이해도·13분 배분 달성은 `NOT_RUN`이다.
+
+## GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01 — active child refinement
+
+```yaml
+decision_id: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
+parent_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+predecessor_refinement: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
+sync_id: GR-SYNC-20260820-25-W6-BOUNDED-CONSEQUENCE-FORECAST
+approval: USER_APPROVED_RECOMMENDED_OPTION_A
+canon_document: docs/planning/FROSTBLOOM_W6_BOUNDED_CONSEQUENCE_FORECAST_01_APPROVAL_2026-08-20.md
+research_receipt: docs/planning/research/2026-08-20-w6-bounded-consequence-forecast-research-receipt.md
+fixture: data/testing/frostbloom_w6_bounded_forecast_v1.json
+segment: MINUTE_23_TO_30
+forecast_contract: BOUNDED_CONSEQUENCE_FORECAST
+forecast_source_scope: OBSERVED_EVIDENCE_ONLY
+forecast_fields: KNOWN_IMPROVEMENT_UNCERTAIN_CONSEQUENCE_FINAL_TARGET_SUCCESS_BREAKDOWN_MANA_COST
+commit_contract: EXPLICIT_COMMIT_REQUIRED
+intent_route_contract: NO_NAMED_INTENT_ROUTE_BUTTONS
+unknown_fact_contract: UNKNOWN_FACTS_NOT_INVENTED
+preservation_contract: FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE
+base_main_observed_for_refinement: 3cdb82f94af402fedcc9c1e80902d1d01b8d3ab3
+project_main_parent_for_refinement: bdfd7d8c711379a01a65c4e84103c7f452a41b34
+human_validation: NOT_RUN
+device_validation: NOT_RUN
+performance_validation: NOT_RUN
+full_slice_validation: NOT_RUN
+```
+
+W6는 `Known 2 / Unknown 2 / Lens 1`을 받아 기존 Spell Workflow Stage 2/3를 사용한다. Stage 2에서는 FIVE_POINT_STAR와 `BASE_SPELL_SUCCESS`를 설계하되 Target을 고르지 않는다. Stage 3에서 Target을 명시적으로 고른 뒤 `KNOWN_IMPROVEMENT / UNCERTAIN_CONSEQUENCE / FINAL_TARGET_SUCCESS_BREAKDOWN / MANA_COST`를 읽고 명시적으로 Commit한다.
+
+Forecast는 관찰한 사실을 숨기지 않지만 미조사 사실을 발명하지도 않는다. Unknown은 숨은 오답 flag, required clue, silent known modifier, hidden Mana surcharge로 변환하지 않는다. `시설복구 / 생명구조 / 정령안정` 같은 named intent/route 버튼은 입력으로 제공하지 않고 실제 Target·Circuit·결과에서 사후 의미가 파생된다.
+
+성공적으로 수용된 W6는 최소 한 실제 상태를 개선하며 `FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE`를 따른다. 이후 Reveal은 새 문맥을 추가할 뿐 W6의 실제 개선을 거짓으로 만들지 않는다. 실제 7분 달성, Forecast 공정성·가독성, 선택 이유는 Human/Device test 전까지 `NOT_RUN`이다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
