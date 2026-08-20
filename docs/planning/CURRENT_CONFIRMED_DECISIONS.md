@@ -44,7 +44,8 @@ result_grimoire_refinement_sync: GR-SYNC-20260820-27-RESULT-GRIMOIRE-CAUSAL-DEBR
 current_planning_refinement: GM-FROSTBLOOM-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER-01
 current_planning_refinement_sync: GR-SYNC-20260820-29-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER
 planning_pointer_closeout_sync: GR-SYNC-20260820-30-FIRST-SESSION-PLANNING-POINTER-CLOSEOUT
-planning_completion_state: READY_PENDING_USER_EXPLICIT_DECLARATION
+planning_completion_sync: GR-SYNC-20260820-31-FIRST-SESSION-PLANNING-COMPLETION
+planning_completion_state: USER_DECLARED_COMPLETE
 frostbloom_first_10_minute_contract: FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM
 frostbloom_first_10_minute_target_minutes: 10
 frostbloom_10_23_contract: FREE_SCHEDULE_LENS_ONLY_SEQUENTIAL_PICK_2_OF_4
@@ -83,7 +84,7 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: NONE_PENDING_USER_EXPLICIT_PLANNING_COMPLETION_DECLARATION
+next_planning_axis: NONE_PLANNING_COMPLETE
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS

@@ -4,6 +4,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 SYNC = ROOT / "docs/planning/sync/GR-SYNC-20260820-30-FIRST-SESSION-PLANNING-POINTER-CLOSEOUT.md"
+COMPLETION_SYNC = ROOT / "docs/planning/sync/GR-SYNC-20260820-31-FIRST-SESSION-PLANNING-COMPLETION.md"
 
 
 class FrostbloomPlanningPointerCloseoutContractTests(unittest.TestCase):
@@ -21,15 +22,17 @@ class FrostbloomPlanningPointerCloseoutContractTests(unittest.TestCase):
             "planning_pointer_closeout_sync: GR-SYNC-20260820-30-FIRST-SESSION-PLANNING-POINTER-CLOSEOUT",
             text,
         )
-        self.assertIn("planning_completion_state: READY_PENDING_USER_EXPLICIT_DECLARATION", text)
         self.assertIn(
-            "next_planning_axis: NONE_PENDING_USER_EXPLICIT_PLANNING_COMPLETION_DECLARATION",
+            "planning_completion_sync: GR-SYNC-20260820-31-FIRST-SESSION-PLANNING-COMPLETION",
             text,
         )
+        self.assertIn("planning_completion_state: USER_DECLARED_COMPLETE", text)
+        self.assertIn("next_planning_axis: NONE_PLANNING_COMPLETE", text)
         self.assertNotIn(
             "next_planning_axis: FROSTBLOOM_FIRST_SESSION_END_TO_END_REVIEW",
             text,
         )
+        self.assertNotIn("READY_PENDING_USER_EXPLICIT_DECLARATION", text)
         self.assertIn(
             "base_current_main_observed: 369e7173c6a21ec2c7e70cef5e11f799a5d7dbc0",
             text,
@@ -44,6 +47,22 @@ class FrostbloomPlanningPointerCloseoutContractTests(unittest.TestCase):
             "NO_NEW_PRODUCT_DECISION",
             "USER_EXPLICIT_PLANNING_COMPLETION: NOT_DECLARED",
             "TASK2_CLOSE_ALLOWED: false",
+            "Human: NOT_RUN",
+            "Device: NOT_RUN",
+            "Performance: NOT_RUN",
+            "Full Slice: NOT_RUN",
+        ):
+            self.assertIn(token, text)
+
+    def test_user_declared_planning_completion_is_recorded_without_runtime_overclaim(self):
+        self.assertTrue(COMPLETION_SYNC.is_file(), COMPLETION_SYNC)
+        text = COMPLETION_SYNC.read_text(encoding="utf-8")
+        for token in (
+            "GR-SYNC-20260820-31-FIRST-SESSION-PLANNING-COMPLETION",
+            "USER_EXPLICIT_PLANNING_COMPLETION: DECLARED",
+            "TASK2_CLOSE_ALLOWED: true",
+            "NO_NEW_PRODUCT_DECISION",
+            "NO_RUNTIME_IMPLEMENTATION",
             "Human: NOT_RUN",
             "Device: NOT_RUN",
             "Performance: NOT_RUN",
