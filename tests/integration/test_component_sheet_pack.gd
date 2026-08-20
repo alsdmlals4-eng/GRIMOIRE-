@@ -17,3 +17,12 @@ func run(case) -> void:
     for key in COMPONENTS:
         case.assert_true(FileAccess.file_exists(COMPONENTS[key]), "%s component scene exists" % key)
     case.assert_true(FileAccess.file_exists("res://src/ui/components/star_circuit_board.tscn"), "Existing StarCircuitBoard is preserved")
+
+    var theme_factory = load("res://src/ui/theme/grimoire_theme_factory.gd")
+    var theme: Theme = theme_factory.create_theme()
+    for variation in [
+        &"AcademyPanel", &"AcademyPanelEmphasis", &"AcademyPanelPinned", &"AcademyPanelModal",
+        &"AcademyButton", &"AcademyButtonPrimary", &"AcademyButtonCaution", &"AcademyButtonQuiet",
+        &"AcademyBadge", &"AcademyBadgeSelected", &"AcademyBadgeUnknown"
+    ]:
+        case.assert_true(theme.get_type_variation_base(variation) != &"", "%s theme variation exists" % variation)
