@@ -5,6 +5,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / "data/testing/frostbloom_internal_graybox_pack_v1.json"
+LENS_FIXTURE = ROOT / "data/testing/frostbloom_10_23_lens_v1.json"
 PACK_DIR = ROOT / "docs/testing/frostbloom_graybox"
 LENS_CANON = ROOT / "docs/planning/FROSTBLOOM_10_23_LENS_INVESTIGATION_01_APPROVAL_2026-08-20.md"
 CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
@@ -13,6 +14,9 @@ CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
     def load_fixture(self):
         return json.loads(FIXTURE.read_text(encoding="utf-8"))
+
+    def load_lens_fixture(self):
+        return json.loads(LENS_FIXTURE.read_text(encoding="utf-8"))
 
     def test_fixture_exists_and_core_identity_is_locked(self):
         self.assertTrue(FIXTURE.is_file(), FIXTURE)
@@ -43,6 +47,7 @@ class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
 
     def test_10_23_lens_refinement_preserves_open_investigation(self):
         self.assertTrue(LENS_CANON.is_file(), LENS_CANON)
+        self.assertTrue(LENS_FIXTURE.is_file(), LENS_FIXTURE)
         text = LENS_CANON.read_text(encoding="utf-8")
         for token in (
             "GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01",
@@ -59,15 +64,17 @@ class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
         current = CURRENT.read_text(encoding="utf-8")
         self.assertIn("GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01", current)
 
-        data = self.load_fixture()
+        data = self.load_lens_fixture()
         self.assertEqual("SEQUENTIAL_PICK_2_OF_4", data["investigation"]["selection_mode"])
         self.assertEqual("KNOWN_2_UNKNOWN_2", data["investigation"]["w6_entry_summary"])
-        self.assertEqual(set(data["investigation"]["nodes"]), set(data["investigation"]["question_previews"].keys()))
+        self.assertTrue(data["investigation"]["all_nodes_remain_accessible"])
+        self.assertEqual(4, len(data["investigation"]["question_previews"]))
         for question in data["investigation"]["question_previews"].values():
             self.assertTrue(question)
-        for choice in data["free_schedule"]:
+        for choice in data["free_schedule"]["choices"]:
             self.assertTrue(choice["lens_only"], choice["id"])
             self.assertFalse(choice["owns_clue_unlock"], choice["id"])
+            self.assertFalse(choice["owns_required_resource"], choice["id"])
 
     def test_verdict_vocabulary_is_closed(self):
         self.assertEqual(["PASS", "RISK", "FAIL", "NOT_TESTABLE_YET"], self.load_fixture()["allowed_verdicts"])
