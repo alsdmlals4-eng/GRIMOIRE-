@@ -6,6 +6,7 @@ first_10_minute_decision_id: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
 minute_10_23_decision_id: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
 w6_decision_id: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
 w7_decision_id: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
+result_debrief_decision_id: GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01
 scope: INTERNAL_DESIGN_VALIDATION_ONLY
 timing_target: 46
 timing_rework: 53
@@ -201,28 +202,38 @@ Internal verdict: STRUCTURAL_PASS if forecast cases remain bounded and W6 conseq
 
 Internal verdict: STRUCTURAL_PASS if the W6 anchor remains true, the reveal is post-W6/new for both OLD_REPAIR_RECORD visit states, and W7 changes at least one meaningful judgment dimension. Actual emotional acceptance, pacing, comprehension, and mobile readability remain NOT_RUN.
 
-## BEAT_07 — 39–44 RESULT_AND_GRIMOIRE
+## BEAT_07 — 39–44 LAYERED_RESULT_AND_GRIMOIRE_DEBRIEF
 
 **PLAYER_KNOWS**
-- Actual W6/W7 consequences and observed discoveries are available.
-- Result axes are FACILITY, LIFE, SPIRIT, RELATIONSHIP, DISCOVERY.
+- Actual W6/W7 consequences, post-W6 context delta, costs/forgone values, discoveries, and any remaining uncertainty are available as receipts.
+- Result axes are exactly `FACILITY / LIFE / SPIRIT / RELATIONSHIP / DISCOVERY` and remain independent.
+- 39–40: the five-axis snapshot shows what actually changed without a global grade, total score, or star rating.
+- 40–42: the system can organize an ordered causal thread from actual receipts only.
+- 42–43: actual result, cost/forgone value, discovery, and remaining uncertainty remain distinguishable.
+- 43–44: the player will author one short principle name/phrase as their current reflection.
 
 **PLAYER_CHOOSES**
-- Review the five-dimensional result.
-- Record a Grimoire causal chain from observations through meaning/circuit and target to actual result.
-- Name the learned principle in player-facing terms.
+- 39–40: review the five-dimensional result without converting it into one success grade.
+- 40–42: read the causal thread `observations → W6 circuit/Target → W6 actual result → post-W6 context delta → W7 changed judgment → W7 actual result`.
+- 42–43: inspect `Cost / Forgone Value / Discovery / Remaining Uncertainty` as separate consequence layers.
+- 43–44: write/name a short player principle in their own words.
 
 **SYSTEM_CHANGES**
-- A causal record is produced.
-- Mixed outcomes remain legible across independent dimensions.
-- Discoveries and forgone values are preserved.
+- A five-axis `FIVE_AXIS_RESULT_SNAPSHOT` is produced; mixed and all-positive results both remain multi-dimensional.
+- `CAUSAL_THREAD_ACTUAL_RECEIPTS_ONLY` organizes recorded facts but creates no new cause or hidden route explanation.
+- `intent_tags` remain `INTENT_TAGS_DERIVED_NEUTRAL`; they are descriptors, not input selectors or moral/correctness scores.
+- The player's principle wording is stored as `SHORT_PLAYER_PRINCIPLE_NAMING`, not as objective canon truth.
+- `SYSTEM_DOES_NOT_AUTHOR_PRINCIPLE`, `PRINCIPLE_NOT_GRADED`, and `NO_IMMEDIATE_STAT_BONUS_FROM_PRINCIPLE` remain hard guards.
+- The presentation uses progressive disclosure: `RESULT → WHY → COST / FORGONE / DISCOVERY → PRINCIPLE`.
 
 **MUST_REMAIN_UNKNOWN**
-- No single SUCCESS_GRADE may replace the five-axis record.
-- The Grimoire may not invent causes from clues the player never observed.
+- No single `SUCCESS_GRADE`, total score, star rating, or perfect/good/bad badge may replace the five-axis result.
+- The Grimoire may not invent causes from clues the player never observed; such facts may remain uncertainty only.
+- The system may not present prewritten correct-principle cards or auto-write the lesson for the player.
+- Principle wording may not carry a hidden correctness/morality score, immediate stat bonus, route unlock, or correct-wording reward.
 - The short BEAT_02 practicum receipt must not replace this full causal reflection.
 
-Internal verdict: PASS subject to result/Grimoire cases.
+Internal verdict: STRUCTURAL_PASS subject to five-axis/Grimoire cases; actual five-minute completion, causal comprehension, emotional resonance, mobile keyboard burden, and principle quality remain NOT_RUN.
 
 ## BEAT_08 — 44–46 PORTFOLIO_AND_PREVIEW
 
@@ -253,9 +264,10 @@ Internal verdict: PASS.
 23 = W6_ENTRY_AFTER_LENS_AND_SEQUENTIAL_2_OF_4_TARGET_HYPOTHESIS
 30 = W6_BOUNDED_FORECAST_AND_FIRST_MAJOR_CONSEQUENCE_TARGET_HYPOTHESIS
 39 = W7_PRESERVED_FACT_CONTEXT_DELTA_AND_SECOND_MAJOR_COMMIT_TARGET_HYPOTHESIS
+44 = RESULT_GRIMOIRE_LAYERED_CAUSAL_DEBRIEF_TARGET_HYPOTHESIS
 46 = TARGET_HYPOTHESIS_NOT_HUMAN_VALIDATION
 53 = CONTENT_REWORK_THRESHOLD
 60 = HARD_STOP_HYPOTHESIS
 ```
 
-Internal walkthrough can flag obvious sequencing or allocation risk only. Actual elapsed play time, comprehension, fatigue, accessibility, device behavior, fairness, emotional acceptance, and fun remain NOT_TESTABLE_YET or NOT_RUN as applicable.
+Internal walkthrough can flag obvious sequencing or allocation risk only. Actual elapsed play time, comprehension, fatigue, accessibility, device behavior, fairness, emotional acceptance, principle-entry burden, and fun remain NOT_TESTABLE_YET or NOT_RUN as applicable.

@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "fixture_id": "FROSTBLOOM_RESULT_GRIMOIRE_DEBRIEF_V1",
+  "decision_id": "GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01",
+  "parent_decision": "GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01",
+  "predecessor_refinement": "GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01",
+  "segment": {
+    "start_minute": 39,
+    "end_minute": 44
+  },
+  "contract": "LAYERED_CAUSAL_DEBRIEF_PLAYER_PRINCIPLE",
+  "result_snapshot": {
+    "contract": "FIVE_AXIS_RESULT_SNAPSHOT",
+    "dimensions": [
+      "FACILITY",
+      "LIFE",
+      "SPIRIT",
+      "RELATIONSHIP",
+      "DISCOVERY"
+    ],
+    "global_success_grade": false,
+    "global_total_score": false,
+    "star_rating": false,
+    "mixed_result_preserved": true,
+    "all_positive_result_still_not_collapsed": true
+  },
+  "causal_thread": {
+    "contract": "CAUSAL_THREAD_ACTUAL_RECEIPTS_ONLY",
+    "ordered_fields": [
+      "observations",
+      "w6_meaning_and_circuit",
+      "w6_selected_target",
+      "w6_actual_result",
+      "post_w6_context_delta",
+      "w7_changed_judgment",
+      "w7_actual_result"
+    ],
+    "actual_receipts_only": true,
+    "unobserved_cause_forbidden": true,
+    "hidden_route_explanation_forbidden": true,
+    "remaining_uncertainty_preserved": true,
+    "system_can_organize_facts": true,
+    "system_can_invent_explanation": false
+  },
+  "debrief": {
+    "contract": "COST_FORGONE_DISCOVERY_SEPARATE",
+    "actual_result_separate": true,
+    "cost_forgone_separate": true,
+    "discoveries_separate": true,
+    "remaining_uncertainty_separate": true,
+    "intent_tags_contract": "INTENT_TAGS_DERIVED_NEUTRAL",
+    "intent_tags_are_input_selector": false,
+    "intent_tags_are_moral_score": false,
+    "intent_tags_are_correctness_grade": false
+  },
+  "player_principle": {
+    "contract": "SHORT_PLAYER_PRINCIPLE_NAMING",
+    "player_is_author": true,
+    "system_authors_principle": false,
+    "prewritten_correct_principle_cards": false,
+    "graded": false,
+    "hidden_correctness_score": false,
+    "immediate_stat_bonus": false,
+    "immediate_route_unlock": false
+  },
+  "progressive_disclosure": [
+    "RESULT",
+    "WHY",
+    "COST_FORGONE_DISCOVERY",
+    "PRINCIPLE"
+  ],
+  "timing_test_values": [
+    {
+      "phase": "FIVE_AXIS_RESULT_SNAPSHOT",
+      "start": "39:00",
+      "end": "40:00"
+    },
+    {
+      "phase": "CAUSAL_THREAD",
+      "start": "40:00",
+      "end": "42:00"
+    },
+    {
+      "phase": "COST_FORGONE_DISCOVERY",
+      "start": "42:00",
+      "end": "43:00"
+    },
+    {
+      "phase": "PLAYER_PRINCIPLE_NAMING",
+      "start": "43:00",
+      "end": "44:00"
+    }
+  ],
+  "hard_guards": [
+    "NO_GLOBAL_SUCCESS_GRADE",
+    "NO_GLOBAL_TOTAL_SCORE",
+    "NO_STAR_RATING",
+    "CAUSAL_THREAD_ACTUAL_RECEIPTS_ONLY",
+    "UNOBSERVED_CAUSE_FORBIDDEN",
+    "COST_FORGONE_DISCOVERY_SEPARATE",
+    "INTENT_TAGS_DERIVED_NEUTRAL",
+    "SYSTEM_DOES_NOT_AUTHOR_PRINCIPLE",
+    "PRINCIPLE_NOT_GRADED",
+    "NO_IMMEDIATE_STAT_BONUS_FROM_PRINCIPLE",
+    "NO_HIDDEN_MORAL_SCORE",
+    "NO_CORRECT_WORDING_REWARD"
+  ],
+  "human_validation": "NOT_RUN",
+  "device_validation": "NOT_RUN",
+  "performance_validation": "NOT_RUN",
+  "full_slice_validation": "NOT_RUN"
+}

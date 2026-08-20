@@ -37,8 +37,10 @@ minute_10_23_refinement: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
 minute_10_23_refinement_sync: GR-SYNC-20260820-24-10-23-LENS-INVESTIGATION
 w6_refinement: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
 w6_refinement_sync: GR-SYNC-20260820-25-W6-BOUNDED-CONSEQUENCE-FORECAST
-current_planning_refinement: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
-current_planning_refinement_sync: GR-SYNC-20260820-26-W7-PRESERVED-FACT-CONTEXT-DELTA
+w7_refinement: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
+w7_refinement_sync: GR-SYNC-20260820-26-W7-PRESERVED-FACT-CONTEXT-DELTA
+current_planning_refinement: GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01
+current_planning_refinement_sync: GR-SYNC-20260820-27-RESULT-GRIMOIRE-CAUSAL-DEBRIEF
 frostbloom_first_10_minute_contract: FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM
 frostbloom_first_10_minute_target_minutes: 10
 frostbloom_10_23_contract: FREE_SCHEDULE_LENS_ONLY_SEQUENTIAL_PICK_2_OF_4
@@ -48,6 +50,10 @@ frostbloom_w6_preservation: FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE
 frostbloom_w7_contract: PRESERVED_FACT_CONTEXT_DELTA
 frostbloom_w7_summary: STILL_TRUE_NEWLY_LEARNED_NEW_TENSION
 frostbloom_w7_redesign: MEANINGFUL_JUDGMENT_CHANGE_REQUIRED
+frostbloom_result_grimoire_contract: LAYERED_CAUSAL_DEBRIEF_PLAYER_PRINCIPLE
+frostbloom_result_contract: FIVE_AXIS_RESULT_SNAPSHOT_NO_GLOBAL_SUCCESS_GRADE
+frostbloom_grimoire_causality: CAUSAL_THREAD_ACTUAL_RECEIPTS_ONLY
+frostbloom_player_principle: SHORT_PLAYER_PRINCIPLE_NAMING_UNGRADED
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
@@ -66,7 +72,7 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: FROSTBLOOM_RESULT_GRIMOIRE_EXPERIENCE
+next_planning_axis: FROSTBLOOM_PORTFOLIO_PREVIEW_EXPERIENCE
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -465,6 +471,42 @@ Reveal 정보는 `STILL_TRUE / NEWLY_LEARNED / NEW_TENSION` 세 덩어리만 사
 W7은 기존 FIVE_POINT_STAR와 Spell Workflow Stage 2/3를 재사용하며 `meaning_and_circuit / target / tradeoff / contextual_use` 중 최소 하나를 실제로 바꿔야 한다. 같은 설계·같은 Target·같은 tradeoff에 숫자만 키우는 것은 W7 redesign으로 인정하지 않는다. 새 tension은 다뤄야 하지만 완전히 제거할 필요는 없고, W6 preserved fact는 W7 이후에도 true로 남는다.
 
 Human/Device evidence 전까지 9분 달성, Reveal 감정 수용성, Delta 이해도, redesign 선택 이유, mobile 가독성은 `NOT_RUN`이다.
+
+## GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01 — active child refinement
+
+```yaml
+decision_id: GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01
+parent_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+predecessor_refinement: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
+sync_id: GR-SYNC-20260820-27-RESULT-GRIMOIRE-CAUSAL-DEBRIEF
+approval: USER_APPROVED_RECOMMENDED_OPTION_A
+canon_document: docs/planning/FROSTBLOOM_RESULT_GRIMOIRE_CAUSAL_DEBRIEF_01_APPROVAL_2026-08-20.md
+research_receipt: docs/planning/research/2026-08-20-result-grimoire-causal-debrief-research-receipt.md
+fixture: data/testing/frostbloom_result_grimoire_debrief_v1.json
+segment: MINUTE_39_TO_44
+contract: LAYERED_CAUSAL_DEBRIEF_PLAYER_PRINCIPLE
+result_contract: FIVE_AXIS_RESULT_SNAPSHOT_NO_GLOBAL_SUCCESS_GRADE
+causal_thread_contract: CAUSAL_THREAD_ACTUAL_RECEIPTS_ONLY
+unobserved_cause_contract: UNOBSERVED_CAUSE_FORBIDDEN
+debrief_contract: COST_FORGONE_DISCOVERY_SEPARATE
+intent_tags_contract: INTENT_TAGS_DERIVED_NEUTRAL
+player_principle_contract: SHORT_PLAYER_PRINCIPLE_NAMING
+system_principle_contract: SYSTEM_DOES_NOT_AUTHOR_PRINCIPLE
+principle_grade_contract: PRINCIPLE_NOT_GRADED
+principle_reward_contract: NO_IMMEDIATE_STAT_BONUS_FROM_PRINCIPLE
+base_main_observed_for_refinement: 3cdb82f94af402fedcc9c1e80902d1d01b8d3ab3
+project_main_parent_for_refinement: 1f88ef62da84bf5065b4aa6f39160ce7124fb3ed
+human_validation: NOT_RUN
+device_validation: NOT_RUN
+performance_validation: NOT_RUN
+full_slice_validation: NOT_RUN
+```
+
+39~44분 Result/Grimoire는 기존 5축 Result와 기존 causal-record 필드를 새 엔진 없이 재사용한다. `FACILITY / LIFE / SPIRIT / RELATIONSHIP / DISCOVERY`를 독립적으로 먼저 보여주고 global `SUCCESS_GRADE`, 총점, 별점으로 압축하지 않는다. mixed result와 all-positive result 모두 다섯 축의 차이를 보존한다.
+
+Causal Thread는 실제 observation/W6/result/context-delta/W7/result receipt만 순서대로 조직한다. 시스템은 사실을 연결할 수 있지만 미관찰 원인을 발명하거나 “사실 최적해는 이것이었다”라는 사후 정답 해설을 추가할 수 없다. `intent_tags`는 사후 중립 descriptor로만 남는다.
+
+`actual result / cost·forgone value / discoveries / remaining uncertainty`를 분리한 뒤 마지막에 플레이어가 짧은 원리명을 자기 언어로 붙인다. 시스템은 원리문을 대신 작성하거나 정답 카드로 제시하지 않고, wording을 채점하거나 즉시 stat/route 보상에 연결하지 않는다. 실제 5분 달성, mobile 입력 부담, 인과 이해도, 원리명 품질은 Human/Device test 전까지 `NOT_RUN`이다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
