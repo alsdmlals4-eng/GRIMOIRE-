@@ -4,6 +4,7 @@
 decision_id: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
 first_10_minute_decision_id: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
 minute_10_23_decision_id: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
+w6_decision_id: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
 scope: INTERNAL_DESIGN_VALIDATION_ONLY
 timing_target: 46
 timing_rework: 53
@@ -127,31 +128,41 @@ Internal verdict: STRUCTURAL_PASS; player-perceived value of Lens-only preparati
 
 Internal verdict: STRUCTURAL_PASS subject to exhaustive six-pair matrix; actual comprehension and choice quality remain NOT_RUN.
 
-## BEAT_05 — 23–30 FIRST_MAJOR_SOLUTION
+## BEAT_05 — 23–30 FIRST_MAJOR_SOLUTION_BOUNDED_FORECAST
 
 **PLAYER_KNOWS**
-- The player has two investigation contexts, two explicit residual uncertainties, one free-schedule Lens/affordance, and W1–W5 precedent.
+- The player enters with `Known 2 / Unknown 2 / Lens 1` and W1–W5 precedent.
 - FIVE_POINT_STAR is the current circuit authority.
-- Stage 2 prepares meaning/circuit; Stage 3 requires explicit target and use confirmation.
+- Stage 2 owns circuit preparation/base preview and has no Target.
+- Stage 3 owns explicit Target, `BOUNDED_CONSEQUENCE_FORECAST`, final success/mana preview, and explicit use.
+- Forecast can describe only what is supported by observed evidence; unvisited-node facts remain unknown.
 
 **PLAYER_CHOOSES**
-- Build a first major FIVE_POINT_STAR design.
-- Select an incident target explicitly.
-- Commit W6 as the first major contextual solution.
+- 23–24: review `Known 2 / Unknown 2 / Lens 1` and current incident state without receiving a route recommendation.
+- 24–26: build the first major FIVE_POINT_STAR and read Stage 2 `BASE_SPELL_SUCCESS` / base-effect preview with no Target.
+- 26–28:30: select an incident Target explicitly and read, in order, `KNOWN_IMPROVEMENT`, `UNCERTAIN_CONSEQUENCE`, `FINAL_TARGET_SUCCESS_BREAKDOWN`, and `MANA_COST`.
+- 28:30–29: explicitly confirm the W6 use transaction.
+- 29–30: read the immediate consequence receipt: actual improvement, cost/forgone value, and remaining uncertainty.
 
 **SYSTEM_CHANGES**
-- W6 must improve at least one real result dimension.
-- A cost, forgone value, or remaining uncertainty may persist.
-- The first consequence becomes a preserved fact for the later reveal.
+- Stage 2 does not consume Mana and does not select a Target.
+- Stage 3 recalculates the bounded forecast when Target changes.
+- `FINAL_TARGET_SUCCESS_BREAKDOWN` is conditioned on currently observed information; unobserved facts are not disguised as known numeric modifiers.
+- W6 use consumes final Mana exactly once under the existing Stage 3 authority.
+- A successfully accepted W6 result improves at least one real result dimension.
+- `FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE`: the actual improvement becomes a preserved fact for the later Reveal/W7.
+- A cost, forgone value, or uncertainty may remain.
 
 **MUST_REMAIN_UNKNOWN**
 - The old-revision reveal is not exposed before W6.
-- No UI/helper may state a canonical correct spell/circuit/target.
-- Derived labels such as FACILITY_REPAIR are not route buttons.
+- No UI/helper may state a canonical correct spell/circuit/Target.
+- No `시설복구 / 생명구조 / 정령교섭 / 봉쇄`-style named intent/route button may choose the solution for the player.
+- Unknown facts may not be invented inside `KNOWN_IMPROVEMENT` or silently folded into the displayed success breakdown as if observed.
+- No `best target`, `best circuit`, `best intent`, or optimal-route recommendation appears.
 - The BEAT_02 Micro-Star must not reduce the requirement for W6 to be a real major incident commitment.
 - The Known/Unknown summary cannot infer causes from unvisited nodes.
 
-Internal verdict: PASS if W6 consequence cases preserve real improvement.
+Internal verdict: STRUCTURAL_PASS if forecast cases remain bounded and W6 consequence cases preserve real improvement; actual fairness/readability/timing remain NOT_RUN.
 
 ## BEAT_06 — 30–39 OLD_REVISION_AND_REDESIGN
 
@@ -226,9 +237,10 @@ Internal verdict: PASS.
 ```text
 10 = FIRST_CLASS_TO_GUIDED_FIELD_CONSEQUENCE_TARGET_HYPOTHESIS
 23 = W6_ENTRY_AFTER_LENS_AND_SEQUENTIAL_2_OF_4_TARGET_HYPOTHESIS
+30 = W6_BOUNDED_FORECAST_AND_FIRST_MAJOR_CONSEQUENCE_TARGET_HYPOTHESIS
 46 = TARGET_HYPOTHESIS_NOT_HUMAN_VALIDATION
 53 = CONTENT_REWORK_THRESHOLD
 60 = HARD_STOP_HYPOTHESIS
 ```
 
-Internal walkthrough can flag obvious sequencing or allocation risk only. Actual elapsed play time, comprehension, fatigue, accessibility, device behavior, and fun remain NOT_TESTABLE_YET or NOT_RUN as applicable.
+Internal walkthrough can flag obvious sequencing or allocation risk only. Actual elapsed play time, comprehension, fatigue, accessibility, device behavior, fairness, and fun remain NOT_TESTABLE_YET or NOT_RUN as applicable.
