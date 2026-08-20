@@ -39,8 +39,10 @@ w6_refinement: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
 w6_refinement_sync: GR-SYNC-20260820-25-W6-BOUNDED-CONSEQUENCE-FORECAST
 w7_refinement: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
 w7_refinement_sync: GR-SYNC-20260820-26-W7-PRESERVED-FACT-CONTEXT-DELTA
-current_planning_refinement: GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01
-current_planning_refinement_sync: GR-SYNC-20260820-27-RESULT-GRIMOIRE-CAUSAL-DEBRIEF
+result_grimoire_refinement: GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01
+result_grimoire_refinement_sync: GR-SYNC-20260820-27-RESULT-GRIMOIRE-CAUSAL-DEBRIEF
+current_planning_refinement: GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01
+current_planning_refinement_sync: GR-SYNC-20260820-28-PORTFOLIO-PREVIEW-EVIDENCE-ECHO
 frostbloom_first_10_minute_contract: FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM
 frostbloom_first_10_minute_target_minutes: 10
 frostbloom_10_23_contract: FREE_SCHEDULE_LENS_ONLY_SEQUENTIAL_PICK_2_OF_4
@@ -54,6 +56,10 @@ frostbloom_result_grimoire_contract: LAYERED_CAUSAL_DEBRIEF_PLAYER_PRINCIPLE
 frostbloom_result_contract: FIVE_AXIS_RESULT_SNAPSHOT_NO_GLOBAL_SUCCESS_GRADE
 frostbloom_grimoire_causality: CAUSAL_THREAD_ACTUAL_RECEIPTS_ONLY
 frostbloom_player_principle: SHORT_PLAYER_PRINCIPLE_NAMING_UNGRADED
+frostbloom_portfolio_preview_contract: EVIDENCE_ECHO_ONE_OPEN_QUESTION
+frostbloom_mentor_echo: MENTOR_RESPONSE_DESCRIPTIVE_NOT_VERDICT
+frostbloom_open_question: OPEN_QUESTION_NOT_OBJECTIVE
+frostbloom_festival_close: FESTIVAL_PREVIEW_ONLY
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
@@ -72,7 +78,7 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: FROSTBLOOM_PORTFOLIO_PREVIEW_EXPERIENCE
+next_planning_axis: FROSTBLOOM_FIRST_SESSION_END_TO_END_REVIEW
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -507,6 +513,38 @@ full_slice_validation: NOT_RUN
 Causal Thread는 실제 observation/W6/result/context-delta/W7/result receipt만 순서대로 조직한다. 시스템은 사실을 연결할 수 있지만 미관찰 원인을 발명하거나 “사실 최적해는 이것이었다”라는 사후 정답 해설을 추가할 수 없다. `intent_tags`는 사후 중립 descriptor로만 남는다.
 
 `actual result / cost·forgone value / discoveries / remaining uncertainty`를 분리한 뒤 마지막에 플레이어가 짧은 원리명을 자기 언어로 붙인다. 시스템은 원리문을 대신 작성하거나 정답 카드로 제시하지 않고, wording을 채점하거나 즉시 stat/route 보상에 연결하지 않는다. 실제 5분 달성, mobile 입력 부담, 인과 이해도, 원리명 품질은 Human/Device test 전까지 `NOT_RUN`이다.
+
+## GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01 — active child refinement
+
+```yaml
+decision_id: GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01
+parent_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+predecessor_refinement: GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01
+sync_id: GR-SYNC-20260820-28-PORTFOLIO-PREVIEW-EVIDENCE-ECHO
+approval: USER_APPROVED_RECOMMENDED_OPTION_A
+canon_document: docs/planning/FROSTBLOOM_PORTFOLIO_PREVIEW_EVIDENCE_ECHO_01_APPROVAL_2026-08-20.md
+research_receipt: docs/planning/research/2026-08-20-portfolio-preview-evidence-echo-research-receipt.md
+fixture: data/testing/frostbloom_portfolio_preview_v1.json
+segment: MINUTE_44_TO_46
+contract: EVIDENCE_ECHO_ONE_OPEN_QUESTION
+mentor_contract: MENTOR_RESPONSE_DESCRIPTIVE_NOT_VERDICT
+portfolio_contract: PORTFOLIO_RECEIPT
+open_question_contract: OPEN_QUESTION_NOT_OBJECTIVE
+festival_contract: FESTIVAL_PREVIEW_ONLY
+session_end_contract: NO_NEW_GAMEPLAY_DECISION
+base_main_observed_for_refinement: 3cdb82f94af402fedcc9c1e80902d1d01b8d3ab3
+project_main_parent_for_refinement: 7d760559f218dcd6513748a2fc8123f174e699b9
+human_validation: NOT_RUN
+device_validation: NOT_RUN
+performance_validation: NOT_RUN
+full_slice_validation: NOT_RUN
+```
+
+44~46분은 새 평가나 후속 임무를 만들지 않고, 실제 플레이 evidence에 대한 짧은 인정과 저장 확인, curiosity hook으로 첫 세션을 닫는다. Maren은 `PLAYER_PRINCIPLE / ACTUAL_IMPROVEMENT_OR_COST / DISCOVERY_OR_UNRESOLVED_TENSION` 중 최대 3개 실제 receipt만 되받아주며 새로운 사실·hidden best answer·grade·result rescore를 추가하지 않는다.
+
+Portfolio Receipt는 `principle_saved / causal_evidence_linked / unresolved_tension_carried`만 확인하며 5축 Result나 Causal Thread를 다시 펼치거나 새 점수/보상 트랙으로 환산하지 않는다. 마지막 질문은 실제 Discovery 또는 Remaining Uncertainty에서 파생된 1개 질문이며 `OPEN_QUESTION_NOT_OBJECTIVE`를 따른다. quest marker, reward, required tracking, branch 선택이 아니다.
+
+Festival은 `PREVIEW_ONLY`로 한 개의 짧은 visual/audio/dialogue glimpse만 허용한다. playable second incident, 새 tutorial/system intro, lore dump를 시작하지 않는다. 세션 종료 입력은 close confirmation 역할만 가지며 새 gameplay decision을 요구하지 않는다. 실제 2분 달성, mentor tone 수용성, curiosity hook 이해도는 Human/Device test 전까지 `NOT_RUN`이다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 

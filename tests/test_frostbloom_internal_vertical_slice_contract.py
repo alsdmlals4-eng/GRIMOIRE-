@@ -11,6 +11,8 @@ W7_CANON = ROOT / "docs/planning/FROSTBLOOM_W7_PRESERVED_FACT_CONTEXT_DELTA_01_A
 W7_FIXTURE = ROOT / "data/testing/frostbloom_w7_context_delta_v1.json"
 RESULT_CANON = ROOT / "docs/planning/FROSTBLOOM_RESULT_GRIMOIRE_CAUSAL_DEBRIEF_01_APPROVAL_2026-08-20.md"
 RESULT_FIXTURE = ROOT / "data/testing/frostbloom_result_grimoire_debrief_v1.json"
+PORTFOLIO_CANON = ROOT / "docs/planning/FROSTBLOOM_PORTFOLIO_PREVIEW_EVIDENCE_ECHO_01_APPROVAL_2026-08-20.md"
+PORTFOLIO_FIXTURE = ROOT / "data/testing/frostbloom_portfolio_preview_v1.json"
 WALK = ROOT / "docs/testing/frostbloom_graybox/01_46_MINUTE_WALKTHROUGH.md"
 CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 BENCH = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_IMPLEMENTATION_BENCHMARK_2026-08-11.md"
@@ -20,7 +22,23 @@ README = ROOT / "README.md"
 
 class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
     def test_required_planning_artifacts_exist(self):
-        for path in (CANON, FIRST10, W6_CANON, W6_FIXTURE, W7_CANON, W7_FIXTURE, RESULT_CANON, RESULT_FIXTURE, WALK, CURRENT, BENCH, PLAN, README):
+        for path in (
+            CANON,
+            FIRST10,
+            W6_CANON,
+            W6_FIXTURE,
+            W7_CANON,
+            W7_FIXTURE,
+            RESULT_CANON,
+            RESULT_FIXTURE,
+            PORTFOLIO_CANON,
+            PORTFOLIO_FIXTURE,
+            WALK,
+            CURRENT,
+            BENCH,
+            PLAN,
+            README,
+        ):
             self.assertTrue(path.is_file(), path)
 
     def test_approved_slice_contract_tokens(self):
@@ -197,6 +215,50 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
         self.assertFalse(data["player_principle"]["system_authors_principle"])
         self.assertFalse(data["player_principle"]["graded"])
         self.assertFalse(data["player_principle"]["immediate_stat_bonus"])
+        self.assertEqual("NOT_RUN", data["human_validation"])
+
+    def test_portfolio_preview_evidence_echo_refinement(self):
+        self.assertTrue(PORTFOLIO_CANON.is_file(), PORTFOLIO_CANON)
+        self.assertTrue(PORTFOLIO_FIXTURE.is_file(), PORTFOLIO_FIXTURE)
+        text = PORTFOLIO_CANON.read_text(encoding="utf-8")
+        for token in (
+            "GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01",
+            "EVIDENCE_ECHO_ONE_OPEN_QUESTION",
+            "MENTOR_RESPONSE_DESCRIPTIVE_NOT_VERDICT",
+            "PORTFOLIO_RECEIPT",
+            "OPEN_QUESTION_NOT_OBJECTIVE",
+            "FESTIVAL_PREVIEW_ONLY",
+            "NO_MENTOR_GRADE",
+            "NO_RESULT_RESCORING",
+            "next_quest_choice: false",
+            "NO_SECOND_INCIDENT",
+            "NO_LORE_DUMP",
+            "NO_NEW_GAMEPLAY_DECISION",
+        ):
+            self.assertIn(token, text)
+        current = CURRENT.read_text(encoding="utf-8")
+        self.assertIn("GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01", current)
+
+        data = json.loads(PORTFOLIO_FIXTURE.read_text(encoding="utf-8"))
+        self.assertEqual({"start_minute": 44, "end_minute": 46}, data["segment"])
+        self.assertEqual("MENTOR_RESPONSE_DESCRIPTIVE_NOT_VERDICT", data["mentor_echo"]["contract"])
+        self.assertLessEqual(data["mentor_echo"]["max_echo_elements"], 3)
+        self.assertTrue(data["mentor_echo"]["actual_receipts_only"])
+        self.assertFalse(data["mentor_echo"]["can_grade"])
+        self.assertFalse(data["mentor_echo"]["can_rescore_result"])
+        self.assertEqual(
+            ["principle_saved", "causal_evidence_linked", "unresolved_tension_carried"],
+            data["portfolio_receipt"]["fields"],
+        )
+        self.assertEqual("OPEN_QUESTION_NOT_OBJECTIVE", data["open_question"]["contract"])
+        self.assertFalse(data["open_question"]["quest_marker"])
+        self.assertFalse(data["open_question"]["reward"])
+        self.assertFalse(data["open_question"]["required_tracking"])
+        self.assertFalse(data["open_question"]["choice_branch"])
+        self.assertEqual("FESTIVAL_PREVIEW_ONLY", data["festival"]["contract"])
+        self.assertFalse(data["festival"]["playable"])
+        self.assertFalse(data["festival"]["starts_second_incident"])
+        self.assertFalse(data["session_end"]["new_gameplay_decision"])
         self.assertEqual("NOT_RUN", data["human_validation"])
 
     def test_walkthrough_transfers_class_learning_to_field_by_minute_10(self):
