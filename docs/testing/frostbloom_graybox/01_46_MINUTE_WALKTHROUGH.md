@@ -3,6 +3,7 @@
 ```yaml
 decision_id: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
 first_10_minute_decision_id: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
+minute_10_23_decision_id: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
 scope: INTERNAL_DESIGN_VALIDATION_ONLY
 timing_target: 46
 timing_rework: 53
@@ -67,52 +68,69 @@ Internal verdict: PASS as a design target; actual five-minute completion remains
 
 Internal verdict: PASS as a revised contract; human timing, comprehension, touch burden, and fun remain NOT_RUN.
 
-## BEAT_03 — 10–14 FREE_SCHEDULE
+## BEAT_03 — 10–14 FREE_SCHEDULE_LENS
 
 **PLAYER_KNOWS**
-- Exactly one free-schedule window is available.
-- REST, PREPARE, SOCIAL, and PRACTICUM are all optional contextual choices.
+- Exactly one free-schedule window is available before entering Frostbloom.
+- REST, PREPARE, SOCIAL, and PRACTICUM are optional **Lens/affordance** choices, not clue unlocks.
 - The PRACTICUM option here means optional additional practice, distinct from the mandatory guided transfer completed in BEAT_02.
+- Regardless of this choice, all four Frostbloom investigation questions remain accessible.
 
 **PLAYER_CHOOSES**
-- Commit exactly one of REST / PREPARE / SOCIAL / PRACTICUM.
+- Commit exactly one of REST / PREPARE / SOCIAL / PRACTICUM according to what kind of preparation or perspective they want to carry into the incident.
 
 **SYSTEM_CHANGES**
-- The selected choice adds one distinct nonmandatory affordance.
-- Main progress, mandatory materials, and required answers remain available regardless of the choice.
+- REST foregrounds spirit-state reading without creating a new spirit fact.
+- PREPARE changes tool-handling affordance without granting a required material or clue.
+- SOCIAL foregrounds people/facility values without owning mechanical truth.
+- PRACTICUM adds a field-handling comparison lens without granting a frost/pressure clue.
+- Main progress, mandatory materials, required answers, and all investigation-node access remain available regardless of the choice.
 
 **MUST_REMAIN_UNKNOWN**
 - No choice may be labeled as the optimal Frostbloom route.
-- No choice may grant a required resource, required answer, or permanent dominant reward.
+- No choice may grant a required resource, exclusive clue, required answer, or permanent dominant reward.
+- The free-schedule UI must not recommend a later spell, circuit, target, best intent, or best investigation node.
 
-Internal verdict: PASS.
+Internal verdict: STRUCTURAL_PASS; player-perceived value of Lens-only preparation remains NOT_TESTABLE_YET.
 
-## BEAT_04 — 14–23 FROSTBLOOM_INVESTIGATION
+## BEAT_04 — 14–23 FROSTBLOOM_INVESTIGATION_SEQUENTIAL_2_OF_4
 
 **PLAYER_KNOWS**
-- Four investigation nodes exist: IRRIGATION_PRESSURE, ROOT_LAYER, SPIRIT_TRACE, OLD_REPAIR_RECORD.
+- Four investigation questions remain available after every free-schedule choice:
+  - IRRIGATION_PRESSURE — `흐름은 어디서 어긋나고 있는가?`
+  - ROOT_LAYER — `무엇이 피해를 받고 있으며 무엇을 지탱하고 있는가?`
+  - SPIRIT_TRACE — `정령은 무엇에 반응하고 있는가?`
+  - OLD_REPAIR_RECORD — `과거에는 무엇을 바꿨고 지금도 그 전제가 맞는가?`
 - Main progress requires observing exactly two distinct nodes before W6.
 - Omitted nodes remain uncertainty rather than failure.
 
 **PLAYER_CHOOSES**
-- Select any two unique investigation nodes.
-- Use W5 once as a noncombat field application while interpreting one observed condition.
+- 14–16: read the four question categories without seeing their answers or rewards.
+- 16–19: select one node from all four and observe its result.
+- Use W5 once as a noncombat field application while interpreting the first observed condition.
+- 19–22: after seeing the first result, select a second node from the remaining three.
+- 22–23: review exactly `Known 2 / Unknown 2` before entering W6.
 
 **SYSTEM_CHANGES**
 - Two useful context clusters are recorded.
-- At least one uncertainty remains.
+- Two unvisited question categories remain explicit residual uncertainty.
 - W5 adds field-use evidence without selecting a final solution.
+- The first result may change the player's reason for the second choice, but the system never auto-selects or recommends the second node.
+- The active free-schedule Lens may alter salience, handling, or dialogue framing, but it does not add a hidden fact.
 
 **MUST_REMAIN_UNKNOWN**
 - No pair may expose a correct route, required spell, best intent, or mandatory hidden third clue.
-- The incident still supports multiple coherent solution attempts.
+- `Known 2 / Unknown 2` must not become a completion checklist, grade, or penalty warning.
+- No unvisited node may secretly be required for W6 completion.
+- No helper or UI may recommend one second node as the best continuation.
+- The incident must still support multiple coherent solution attempts.
 
-Internal verdict: PASS subject to exhaustive six-pair matrix.
+Internal verdict: STRUCTURAL_PASS subject to exhaustive six-pair matrix; actual comprehension and choice quality remain NOT_RUN.
 
 ## BEAT_05 — 23–30 FIRST_MAJOR_SOLUTION
 
 **PLAYER_KNOWS**
-- The player has two investigation contexts, any free-schedule affordance, and W1–W5 precedent.
+- The player has two investigation contexts, two explicit residual uncertainties, one free-schedule Lens/affordance, and W1–W5 precedent.
 - FIVE_POINT_STAR is the current circuit authority.
 - Stage 2 prepares meaning/circuit; Stage 3 requires explicit target and use confirmation.
 
@@ -131,6 +149,7 @@ Internal verdict: PASS subject to exhaustive six-pair matrix.
 - No UI/helper may state a canonical correct spell/circuit/target.
 - Derived labels such as FACILITY_REPAIR are not route buttons.
 - The BEAT_02 Micro-Star must not reduce the requirement for W6 to be a real major incident commitment.
+- The Known/Unknown summary cannot infer causes from unvisited nodes.
 
 Internal verdict: PASS if W6 consequence cases preserve real improvement.
 
@@ -206,6 +225,7 @@ Internal verdict: PASS.
 
 ```text
 10 = FIRST_CLASS_TO_GUIDED_FIELD_CONSEQUENCE_TARGET_HYPOTHESIS
+23 = W6_ENTRY_AFTER_LENS_AND_SEQUENTIAL_2_OF_4_TARGET_HYPOTHESIS
 46 = TARGET_HYPOTHESIS_NOT_HUMAN_VALIDATION
 53 = CONTENT_REWORK_THRESHOLD
 60 = HARD_STOP_HYPOTHESIS
