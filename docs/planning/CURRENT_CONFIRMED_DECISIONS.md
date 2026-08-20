@@ -14,7 +14,7 @@ prework_research_decision: GM-PREWORK-BENCHMARK-INDUSTRY-RESEARCH-01
 prework_research_sync: GR-SYNC-20260811-13-PREWORK-BENCHMARK-INDUSTRY-RESEARCH
 prework_research_gate: REQUIRED_BEFORE_NEW_SUBSTANTIVE_WORK_UNIT
 prework_research_same_work_unit_receipt_reuse: ALLOWED_IF_SCOPE_AND_KEY_ASSUMPTIONS_UNCHANGED
-base_current_main_observed: 3cdb82f94af402fedcc9c1e80902d1d01b8d3ab3
+base_current_main_observed: 369e7173c6a21ec2c7e70cef5e11f799a5d7dbc0
 base_project_pin: v9.4.3
 base_pin_update: NOT_APPROVED_NOT_PERFORMED
 current_state_sync: GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT
@@ -41,8 +41,10 @@ w7_refinement: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
 w7_refinement_sync: GR-SYNC-20260820-26-W7-PRESERVED-FACT-CONTEXT-DELTA
 result_grimoire_refinement: GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01
 result_grimoire_refinement_sync: GR-SYNC-20260820-27-RESULT-GRIMOIRE-CAUSAL-DEBRIEF
-current_planning_refinement: GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01
-current_planning_refinement_sync: GR-SYNC-20260820-28-PORTFOLIO-PREVIEW-EVIDENCE-ECHO
+current_planning_refinement: GM-FROSTBLOOM-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER-01
+current_planning_refinement_sync: GR-SYNC-20260820-29-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER
+planning_pointer_closeout_sync: GR-SYNC-20260820-30-FIRST-SESSION-PLANNING-POINTER-CLOSEOUT
+planning_completion_state: READY_PENDING_USER_EXPLICIT_DECLARATION
 frostbloom_first_10_minute_contract: FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM
 frostbloom_first_10_minute_target_minutes: 10
 frostbloom_10_23_contract: FREE_SCHEDULE_LENS_ONLY_SEQUENTIAL_PICK_2_OF_4
@@ -60,6 +62,9 @@ frostbloom_portfolio_preview_contract: EVIDENCE_ECHO_ONE_OPEN_QUESTION
 frostbloom_mentor_echo: MENTOR_RESPONSE_DESCRIPTIVE_NOT_VERDICT
 frostbloom_open_question: OPEN_QUESTION_NOT_OBJECTIVE
 frostbloom_festival_close: FESTIVAL_PREVIEW_ONLY
+frostbloom_transition_refinement: PERSISTENT_HANDOFF_ELASTIC_BUFFER
+frostbloom_investigation_to_w6: INVESTIGATION_SUMMARY_PERSISTS_INTO_W6_NO_DUPLICATE_W6_DECISION_BRIEF
+frostbloom_w6_to_w7: W6_RECEIPT_PINS_AS_W7_ANCHOR_NO_DUPLICATE_W7_RESULT_ANCHOR_SCREEN
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
@@ -78,7 +83,7 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: FROSTBLOOM_FIRST_SESSION_END_TO_END_REVIEW
+next_planning_axis: NONE_PENDING_USER_EXPLICIT_PLANNING_COMPLETION_DECLARATION
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -545,6 +550,31 @@ full_slice_validation: NOT_RUN
 Portfolio Receipt는 `principle_saved / causal_evidence_linked / unresolved_tension_carried`만 확인하며 5축 Result나 Causal Thread를 다시 펼치거나 새 점수/보상 트랙으로 환산하지 않는다. 마지막 질문은 실제 Discovery 또는 Remaining Uncertainty에서 파생된 1개 질문이며 `OPEN_QUESTION_NOT_OBJECTIVE`를 따른다. quest marker, reward, required tracking, branch 선택이 아니다.
 
 Festival은 `PREVIEW_ONLY`로 한 개의 짧은 visual/audio/dialogue glimpse만 허용한다. playable second incident, 새 tutorial/system intro, lore dump를 시작하지 않는다. 세션 종료 입력은 close confirmation 역할만 가지며 새 gameplay decision을 요구하지 않는다. 실제 2분 달성, mentor tone 수용성, curiosity hook 이해도는 Human/Device test 전까지 `NOT_RUN`이다.
+
+## GM-FROSTBLOOM-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER-01 — active child refinement
+
+```yaml
+decision_id: GM-FROSTBLOOM-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER-01
+parent_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+predecessor_refinement: GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01
+sync_id: GR-SYNC-20260820-29-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER
+approval: USER_APPROVED_RECOMMENDED_OPTION_A
+canon_document: docs/planning/FROSTBLOOM_FIRST_SESSION_PERSISTENT_HANDOFF_ELASTIC_BUFFER_01_APPROVAL_2026-08-20.md
+fixture: data/testing/frostbloom_first_session_handoff_buffer_v1.json
+contract: PERSISTENT_HANDOFF_ELASTIC_BUFFER
+investigation_to_w6: INVESTIGATION_SUMMARY_PERSISTS_INTO_W6_NO_DUPLICATE_W6_DECISION_BRIEF
+w6_to_w7: W6_RECEIPT_PINS_AS_W7_ANCHOR_NO_DUPLICATE_W7_RESULT_ANCHOR_SCREEN
+buffer_contract: ELASTIC_BUFFER_NOT_CONTENT
+session_target: TARGET_46_UNCHANGED
+human_validation: NOT_RUN
+device_validation: NOT_RUN
+performance_validation: NOT_RUN
+full_slice_validation: NOT_RUN
+```
+
+00~46분 end-to-end 검토에서 발견된 두 연속 recap을 새 콘텐츠 없이 제거한다. `Known 2 / Unknown 2 / Lens 1`은 W6 진입 시 다시 설명하는 별도 Decision Brief가 아니라 기존 summary를 persistent pin으로 이어받는다. W6 actual consequence receipt 역시 별도 W7 Result Anchor 재복기 화면으로 반복하지 않고 그대로 `W6_RESULT_ANCHOR`가 된다.
+
+두 전환의 최대 60초 TEST_VALUE는 강제 pause가 아니라 읽기·입력·전환·접근성 편차를 흡수하는 가변 여유다. 남는 시간을 새 tutorial, lore, reward, gameplay choice로 채우지 않는다. `FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE`, `POST_W6_DEEPER_REVISION_COUPLING`, 46/53/60 시간 계약은 그대로 유지한다. Human/Device evidence 전까지 실제 pacing·가독성·수용성은 `NOT_RUN`이다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
