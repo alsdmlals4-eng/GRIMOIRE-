@@ -12,9 +12,12 @@
   "entry_summary": {
     "known": 2,
     "unknown": 2,
-    "lens": 1,
+    "lens": 1
+  },
+  "entry_handoff": {
     "persists_from_investigation": true,
-    "duplicate_decision_brief_required": false
+    "duplicate_decision_brief_required": false,
+    "contract": "INVESTIGATION_SUMMARY_PERSISTS_INTO_W6"
   },
   "stage2": {
     "contract": "CIRCUIT_PREPARATION_BASE_PREVIEW_NO_TARGET",
