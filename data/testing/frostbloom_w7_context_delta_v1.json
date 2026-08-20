@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "fixture_id": "FROSTBLOOM_W7_CONTEXT_DELTA_V1",
+  "decision_id": "GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01",
+  "parent_decision": "GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01",
+  "predecessor_refinement": "GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01",
+  "segment": {
+    "start_minute": 30,
+    "end_minute": 39
+  },
+  "reveal": {
+    "contract": "PRESERVED_FACT_CONTEXT_DELTA",
+    "first_phase": "W6_RESULT_ANCHOR",
+    "w6_improvement_remains_true": true,
+    "new_context_source": "POST_W6_DEEPER_REVISION_COUPLING",
+    "replays_old_repair_record_node": false,
+    "reveal_is_new_if_old_repair_record_was_visited": true,
+    "reveal_is_new_if_old_repair_record_was_not_visited": true,
+    "summary_fields": [
+      "STILL_TRUE",
+      "NEWLY_LEARNED",
+      "NEW_TENSION"
+    ],
+    "new_coupling_count": 1,
+    "strong_pressure_source_count": 1,
+    "can_change_w6_success_verdict": false,
+    "can_erase_w6_actual_improvement": false,
+    "recommends_best_route_or_spell": false
+  },
+  "redesign": {
+    "contract": "MEANINGFUL_JUDGMENT_CHANGE_REQUIRED",
+    "circuit_authority": "FIVE_POINT_STAR",
+    "spell_workflow_reuse": "EXISTING_STAGE2_STAGE3",
+    "allowed_meaningful_change_dimensions": [
+      "meaning_and_circuit",
+      "target",
+      "tradeoff",
+      "contextual_use"
+    ],
+    "derived_only_dimension": "intent_emphasis",
+    "must_change_at_least_one_dimension": true,
+    "number_only_amplification_allowed": false,
+    "same_design_bigger_output_only_allowed": false,
+    "named_correct_route_allowed": false,
+    "named_priority_selector_allowed": false,
+    "best_target_circuit_intent_recommendation": false,
+    "explicit_commit_required": true,
+    "major_five_point_star_commit": true
+  },
+  "post_commit": {
+    "w6_preserved_fact_still_true": true,
+    "new_tension_must_be_addressed": true,
+    "new_tension_must_be_fully_eliminated": false,
+    "w7_may_leave_tradeoff": true,
+    "w7_does_not_replace_or_reclassify_w6": true
+  },
+  "timing_test_values": [
+    {
+      "phase": "W6_RESULT_ANCHOR",
+      "start": "30:00",
+      "end": "31:00"
+    },
+    {
+      "phase": "DEEPER_REVISION_REVEAL",
+      "start": "31:00",
+      "end": "33:00"
+    },
+    {
+      "phase": "CONTEXT_DELTA_SUMMARY",
+      "start": "33:00",
+      "end": "35:00"
+    },
+    {
+      "phase": "W7_REDESIGN",
+      "start": "35:00",
+      "end": "38:00"
+    },
+    {
+      "phase": "W7_EXPLICIT_COMMIT",
+      "start": "38:00",
+      "end": "39:00"
+    }
+  ],
+  "hard_guards": [
+    "W6_RESULT_ANCHOR",
+    "POST_W6_DEEPER_REVISION_COUPLING",
+    "NO_OLD_REPAIR_RECORD_REPLAY",
+    "NO_W6_ROLLBACK",
+    "NO_HIDDEN_WRONG_ANSWER_CORRECTION",
+    "MEANINGFUL_JUDGMENT_CHANGE_REQUIRED",
+    "NO_NUMBER_ONLY_AMPLIFICATION",
+    "NO_NAMED_CORRECT_ROUTE",
+    "NO_MOB_WAVE_ESCALATION",
+    "NO_HP_SPONGE_ESCALATION"
+  ],
+  "human_validation": "NOT_RUN",
+  "device_validation": "NOT_RUN",
+  "performance_validation": "NOT_RUN",
+  "full_slice_validation": "NOT_RUN"
+}
