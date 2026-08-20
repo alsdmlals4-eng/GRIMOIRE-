@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "fixture_id": "FROSTBLOOM_FIRST_SESSION_HANDOFF_BUFFER_V1",
+  "decision_id": "GM-FROSTBLOOM-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER-01",
+  "parent_decision": "GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01",
+  "predecessor_refinement": "GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01",
+  "contract": "PERSISTENT_HANDOFF_ELASTIC_BUFFER",
+  "session_target_minutes": 46,
+  "investigation_to_w6": {
+    "source_summary": "KNOWN_2_UNKNOWN_2_LENS_1",
+    "summary_persists_into_w6": true,
+    "duplicate_decision_brief_screen": false,
+    "handoff_window": "ELASTIC_HANDOFF_WINDOW",
+    "elastic_buffer_max_seconds_test_value": 60,
+    "fixed_pause_required": false,
+    "stage2_can_begin_early_if_ready": true
+  },
+  "w6_to_w7": {
+    "source_receipt": "W6_ACTUAL_CONSEQUENCE_RECEIPT",
+    "w6_receipt_pins_as_anchor": true,
+    "anchor_semantic": "W6_RESULT_ANCHOR",
+    "duplicate_result_anchor_screen": false,
+    "handoff_window": "ELASTIC_W6_TO_W7_HANDOFF",
+    "elastic_buffer_max_seconds_test_value": 60,
+    "fixed_pause_required": false,
+    "deeper_reveal_can_begin_early_if_ready": true
+  },
+  "elastic_buffer": {
+    "contract": "ELASTIC_BUFFER_NOT_CONTENT",
+    "must_be_filled": false,
+    "new_content_allowed": false,
+    "allowed_absorption": [
+      "TRANSITION_LATENCY",
+      "INPUT_LATENCY",
+      "READING_VARIANCE",
+      "EXISTING_SHORT_ANIMATION_VARIANCE",
+      "ACCESSIBILITY_PACING_VARIANCE"
+    ],
+    "forbidden_fill": [
+      "NEW_TUTORIAL",
+      "NEW_LORE",
+      "NEW_REWARD",
+      "NEW_GAMEPLAY_CHOICE",
+      "SECOND_INCIDENT",
+      "EXTRA_MANDATORY_DIALOGUE"
+    ]
+  },
+  "hard_guards": [
+    "INVESTIGATION_SUMMARY_PERSISTS_INTO_W6",
+    "NO_DUPLICATE_W6_DECISION_BRIEF",
+    "W6_RECEIPT_PINS_AS_W7_ANCHOR",
+    "NO_DUPLICATE_W7_RESULT_ANCHOR_SCREEN",
+    "ELASTIC_BUFFER_NOT_CONTENT",
+    "NO_NEW_CONTENT_FROM_RECOVERED_TIME",
+    "FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE",
+    "TARGET_46_UNCHANGED"
+  ],
+  "human_validation": "NOT_RUN",
+  "device_validation": "NOT_RUN",
+  "performance_validation": "NOT_RUN",
+  "full_slice_validation": "NOT_RUN"
+}

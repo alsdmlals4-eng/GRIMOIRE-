@@ -4,6 +4,7 @@
   "decision_id": "GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01",
   "parent_decision": "GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01",
   "predecessor_refinement": "GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01",
+  "current_transition_refinement": "GM-FROSTBLOOM-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER-01",
   "segment": {
     "start_minute": 23,
     "end_minute": 30
@@ -12,6 +13,11 @@
     "known": 2,
     "unknown": 2,
     "lens": 1
+  },
+  "entry_handoff": {
+    "persists_from_investigation": true,
+    "duplicate_decision_brief_required": false,
+    "contract": "INVESTIGATION_SUMMARY_PERSISTS_INTO_W6"
   },
   "stage2": {
     "contract": "CIRCUIT_PREPARATION_BASE_PREVIEW_NO_TARGET",
@@ -61,14 +67,17 @@
   },
   "timing_test_values": [
     {
-      "phase": "DECISION_BRIEF",
+      "phase": "ELASTIC_HANDOFF_WINDOW",
       "start": "23:00",
-      "end": "24:00"
+      "end": "24:00",
+      "must_be_filled": false,
+      "new_content_allowed": false
     },
     {
       "phase": "STAGE2_CIRCUIT",
       "start": "24:00",
-      "end": "26:00"
+      "end": "26:00",
+      "may_begin_early_if_handoff_buffer_unused": true
     },
     {
       "phase": "STAGE3_TARGET_AND_FORECAST",
@@ -96,7 +105,10 @@
     "NO_AUTO_CAST",
     "NO_HIDDEN_EXTRA_MANA",
     "FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE",
-    "DOES_NOT_REPLACE_W7"
+    "DOES_NOT_REPLACE_W7",
+    "INVESTIGATION_SUMMARY_PERSISTS_INTO_W6",
+    "NO_DUPLICATE_W6_DECISION_BRIEF",
+    "ELASTIC_BUFFER_NOT_CONTENT"
   ],
   "human_validation": "NOT_RUN",
   "device_validation": "NOT_RUN",
