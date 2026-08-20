@@ -107,23 +107,75 @@ UNKNOWN_FACTS_NOT_INVENTED
 NO_NAMED_INTENT_ROUTE_BUTTONS
 NO_BEST_TARGET_CIRCUIT_INTENT_RECOMMENDATION
 NO_HIDDEN_UNKNOWN_AS_KNOWN_NUMERIC_MODIFIER
+UNKNOWN_DOES_NOT_FLIP_W6_COMMIT_SUCCESS
+UNKNOWN_MAY_ADD_LATER_CONTEXT_WITHOUT_ERASING_W6
 NO_HIDDEN_EXTRA_MANA
 EXPLICIT_COMMIT_REQUIRED
 FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE
 DOES_NOT_REPLACE_W7
 ```
 
-## Five-pass adversarial loop
+## Five-pass adversarial loop — completed
 
-The whole W6 state is attacked repeatedly, not as five unrelated checklists.
+The whole W6 state was attacked repeatedly, not as five unrelated checklists.
 
-1. Attack whether forecast text becomes a disguised correct-route recommendation.
-2. Attack whether unknown facts leak through probability modifiers, warning copy, or helper behavior.
-3. Attack whether named priority buttons replace player-authored circuit/Target judgment.
-4. Attack whether later Reveal retroactively erases W6's real improvement.
-5. Attack whether the 7-minute W6 budget becomes a multi-draft optimizer or unreadable mobile information wall.
+### Pass 1 — scope / authority loss
 
-Any hard-invariant failure requires rework before merge.
+Attack: did the planning change replace Stage 2/3, modify Task8, or drop existing current-decision material?
+
+Result: `PASS`.
+
+- PR diff contains planning/docs/test-data/tests only.
+- `CURRENT_CONFIRMED_DECISIONS` patch is additive around W6 and preserves previous sections.
+- Stage 2 remains no-Target/no-Mana-use; Stage 3 remains Target/final preview/atomic use.
+
+### Pass 2 — hidden-unknown fairness
+
+Attack: could `FINAL_TARGET_SUCCESS` look definitive while an unobserved fact later secretly flips W6 success?
+
+Initial result: `RISK` due ambiguity.
+
+Fix applied:
+
+```text
+unknown_can_change_commit_success = false
+unknown_can_add_later_context_or_side_effect = true
+```
+
+Unknown can reveal later coupling, tradeoffs, or side effects, but cannot retroactively convert the accepted W6 use into a hidden wrong-answer failure. Test coverage was strengthened after the fix.
+
+Final result: `PASS`.
+
+### Pass 3 — disguised route recommendation
+
+Attack: do `KNOWN_IMPROVEMENT`, target previews, helper copy, or priority buttons effectively choose `시설복구 / 생명구조 / 정령안정` for the player?
+
+Result: `PASS`.
+
+- named intent/route input buttons are forbidden;
+- no best target/circuit/intent recommendation exists;
+- route-style labels remain post-consequence derived interpretations only.
+
+### Pass 4 — W6 invalidation after Reveal
+
+Attack: can the 30–39 Reveal make the first solution fake, erase the improvement, or rewrite the previous state as though W6 never helped?
+
+Result: `PASS`.
+
+- every accepted W6 must improve at least one real dimension;
+- consequence cases preserve a concrete W6 fact;
+- new context may create a new tension without deleting that fact.
+
+### Pass 5 — first-session optimizer / information wall
+
+Attack: does W6 become a multi-draft comparison screen or force the player to optimize all five result dimensions before casting?
+
+Result: `PASS_AS_INTERNAL_STRUCTURE`.
+
+- one current spell + one selected Target is forecast at a time;
+- four forecast fields only: Known Improvement / Uncertain Consequence / Success Breakdown / Mana;
+- no side-by-side two-draft optimizer;
+- actual 7-minute timing and mobile readability remain `NOT_RUN`, so no human-quality PASS is claimed.
 
 ## Evidence ceiling
 
