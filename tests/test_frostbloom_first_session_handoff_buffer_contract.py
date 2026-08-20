@@ -7,13 +7,13 @@ CANON = ROOT / "docs/planning/FROSTBLOOM_FIRST_SESSION_PERSISTENT_HANDOFF_ELASTI
 FIXTURE = ROOT / "data/testing/frostbloom_first_session_handoff_buffer_v1.json"
 W6_FIXTURE = ROOT / "data/testing/frostbloom_w6_bounded_forecast_v1.json"
 W7_FIXTURE = ROOT / "data/testing/frostbloom_w7_context_delta_v1.json"
-WALK = ROOT / "docs/testing/frostbloom_graybox/01_46_MINUTE_WALKTHROUGH.md"
-CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
+OVERLAY = ROOT / "docs/testing/frostbloom_graybox/08_FIRST_SESSION_HANDOFF_BUFFER_OVERLAY.md"
+README = ROOT / "docs/testing/frostbloom_graybox/README.md"
 
 
 class FrostbloomFirstSessionHandoffBufferContractTests(unittest.TestCase):
     def test_required_artifacts_exist(self):
-        for path in (CANON, FIXTURE, W6_FIXTURE, W7_FIXTURE, WALK, CURRENT):
+        for path in (CANON, FIXTURE, W6_FIXTURE, W7_FIXTURE, OVERLAY, README):
             self.assertTrue(path.is_file(), path)
 
     def test_persistent_handoff_elastic_buffer_contract(self):
@@ -58,16 +58,18 @@ class FrostbloomFirstSessionHandoffBufferContractTests(unittest.TestCase):
         self.assertEqual("PERSISTENT_W6_RECEIPT_PIN_NO_RECAP_SCREEN", w7["reveal"]["anchor_presentation"])
         self.assertEqual("ELASTIC_W6_TO_W7_HANDOFF", w7["timing_test_values"][0]["phase"])
 
-    def test_walkthrough_and_current_snapshot_are_updated(self):
-        walk = WALK.read_text(encoding="utf-8")
-        current = CURRENT.read_text(encoding="utf-8")
+    def test_graybox_overlay_is_current_consumer(self):
+        overlay = OVERLAY.read_text(encoding="utf-8")
+        readme = README.read_text(encoding="utf-8")
         for token in (
             "PERSISTENT_HANDOFF_ELASTIC_BUFFER",
             "NO_DUPLICATE_W6_DECISION_BRIEF",
             "NO_DUPLICATE_W7_RESULT_ANCHOR_SCREEN",
+            "ELASTIC_BUFFER_NOT_CONTENT",
         ):
-            self.assertIn(token, walk)
-            self.assertIn(token, current)
+            self.assertIn(token, overlay)
+        self.assertIn("ACTIVE_REFINEMENT_7: GM-FROSTBLOOM-FIRST-SESSION-PERSISTENT-HANDOFF-ELASTIC-BUFFER-01", readme)
+        self.assertIn("08_FIRST_SESSION_HANDOFF_BUFFER_OVERLAY.md", readme)
 
 
 if __name__ == "__main__":
