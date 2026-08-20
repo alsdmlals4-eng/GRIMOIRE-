@@ -35,14 +35,19 @@ first_10_minute_refinement: GM-FROSTBLOOM-FIRST-10MIN-CLASS-PRACTICUM-01
 first_10_minute_refinement_sync: GR-SYNC-20260820-23-FIRST-10MIN-CLASS-PRACTICUM
 minute_10_23_refinement: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
 minute_10_23_refinement_sync: GR-SYNC-20260820-24-10-23-LENS-INVESTIGATION
-current_planning_refinement: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
-current_planning_refinement_sync: GR-SYNC-20260820-25-W6-BOUNDED-CONSEQUENCE-FORECAST
+w6_refinement: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
+w6_refinement_sync: GR-SYNC-20260820-25-W6-BOUNDED-CONSEQUENCE-FORECAST
+current_planning_refinement: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
+current_planning_refinement_sync: GR-SYNC-20260820-26-W7-PRESERVED-FACT-CONTEXT-DELTA
 frostbloom_first_10_minute_contract: FIRST_10_MIN_CLASS_TO_GUIDED_PRACTICUM
 frostbloom_first_10_minute_target_minutes: 10
 frostbloom_10_23_contract: FREE_SCHEDULE_LENS_ONLY_SEQUENTIAL_PICK_2_OF_4
 frostbloom_10_23_w6_entry_summary: KNOWN_2_UNKNOWN_2
 frostbloom_w6_contract: BOUNDED_CONSEQUENCE_FORECAST_OBSERVED_EVIDENCE_ONLY
 frostbloom_w6_preservation: FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE
+frostbloom_w7_contract: PRESERVED_FACT_CONTEXT_DELTA
+frostbloom_w7_summary: STILL_TRUE_NEWLY_LEARNED_NEW_TENSION
+frostbloom_w7_redesign: MEANINGFUL_JUDGMENT_CHANGE_REQUIRED
 year_one_chapters: 7
 year_one_term_distribution: 2_2_3
 world_model: PRECEDENT_CONTEXT_REVISION
@@ -61,7 +66,7 @@ frostbloom_implementation_plan: docs/superpowers/plans/2026-08-11-frostbloom-int
 frostbloom_graybox_pack: docs/testing/frostbloom_graybox/README.md
 frostbloom_graybox_status: INTERNAL_PACK_PASS
 frostbloom_runtime_implementation: BLOCKED_BY_TASK8_DEPENDENCY
-next_planning_axis: FROSTBLOOM_W7_REVEAL_REDESIGN_EXPERIENCE
+next_planning_axis: FROSTBLOOM_RESULT_GRIMOIRE_EXPERIENCE
 current_process_axis: PREWORK_BENCHMARK_INDUSTRY_RESEARCH_ACTIVE
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -423,6 +428,43 @@ W6는 `Known 2 / Unknown 2 / Lens 1`을 받아 기존 Spell Workflow Stage 2/3�
 Forecast는 관찰한 사실을 숨기지 않지만 미조사 사실을 발명하지도 않는다. Unknown은 숨은 오답 flag, required clue, silent known modifier, hidden Mana surcharge로 변환하지 않는다. `시설복구 / 생명구조 / 정령안정` 같은 named intent/route 버튼은 입력으로 제공하지 않고 실제 Target·Circuit·결과에서 사후 의미가 파생된다.
 
 성공적으로 수용된 W6는 최소 한 실제 상태를 개선하며 `FIRST_ACCEPTED_W6_RESULT_REMAINS_TRUE`를 따른다. 이후 Reveal은 새 문맥을 추가할 뿐 W6의 실제 개선을 거짓으로 만들지 않는다. 실제 7분 달성, Forecast 공정성·가독성, 선택 이유는 Human/Device test 전까지 `NOT_RUN`이다.
+
+## GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01 — active child refinement
+
+```yaml
+decision_id: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
+parent_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
+predecessor_refinement: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
+sync_id: GR-SYNC-20260820-26-W7-PRESERVED-FACT-CONTEXT-DELTA
+approval: USER_APPROVED_RECOMMENDED_OPTION_A
+canon_document: docs/planning/FROSTBLOOM_W7_PRESERVED_FACT_CONTEXT_DELTA_01_APPROVAL_2026-08-20.md
+research_receipt: docs/planning/research/2026-08-20-w7-preserved-fact-context-delta-research-receipt.md
+fixture: data/testing/frostbloom_w7_context_delta_v1.json
+segment: MINUTE_30_TO_39
+reveal_contract: PRESERVED_FACT_CONTEXT_DELTA
+first_phase: W6_RESULT_ANCHOR
+new_context_source: POST_W6_DEEPER_REVISION_COUPLING
+summary_fields: STILL_TRUE_NEWLY_LEARNED_NEW_TENSION
+redesign_contract: MEANINGFUL_JUDGMENT_CHANGE_REQUIRED
+old_repair_contract: NO_OLD_REPAIR_RECORD_REPLAY
+number_only_contract: NO_NUMBER_ONLY_AMPLIFICATION
+rollback_contract: NO_W6_ROLLBACK
+route_contract: NO_NAMED_CORRECT_ROUTE
+base_main_observed_for_refinement: 3cdb82f94af402fedcc9c1e80902d1d01b8d3ab3
+project_main_parent_for_refinement: 1cbba070bae27e6b6e2c0982f198f1cbe712b0ea
+human_validation: NOT_RUN
+device_validation: NOT_RUN
+performance_validation: NOT_RUN
+full_slice_validation: NOT_RUN
+```
+
+W7은 W6의 실제 개선을 `W6_RESULT_ANCHOR / STILL_TRUE`로 먼저 고정하고, W6 이후의 상태 변화로 새로 관찰 가능한 deeper revision coupling 1개를 공개한다. 이 Reveal은 `OLD_REPAIR_RECORD` 조사 노드의 재탕이 아니며 이전 방문 여부와 무관하게 새 정보다.
+
+Reveal 정보는 `STILL_TRUE / NEWLY_LEARNED / NEW_TENSION` 세 덩어리만 사용한다. 새 coupling은 W6 성공 판정·실제 개선을 뒤집지 않고 다음 판단에서 고려해야 할 관계만 추가한다. UI/NPC는 correct circuit, Target, best intent, route, named priority를 추천하지 않는다.
+
+W7은 기존 FIVE_POINT_STAR와 Spell Workflow Stage 2/3를 재사용하며 `meaning_and_circuit / target / tradeoff / contextual_use` 중 최소 하나를 실제로 바꿔야 한다. 같은 설계·같은 Target·같은 tradeoff에 숫자만 키우는 것은 W7 redesign으로 인정하지 않는다. 새 tension은 다뤄야 하지만 완전히 제거할 필요는 없고, W6 preserved fact는 W7 이후에도 true로 남는다.
+
+Human/Device evidence 전까지 9분 달성, Reveal 감정 수용성, Delta 이해도, redesign 선택 이유, mobile 가독성은 `NOT_RUN`이다.
 
 ## GM-SPELL-WORKFLOW-UI-V2-01 — current implementation state
 
