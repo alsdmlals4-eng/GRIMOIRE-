@@ -9,6 +9,8 @@ W6_CANON = ROOT / "docs/planning/FROSTBLOOM_W6_BOUNDED_CONSEQUENCE_FORECAST_01_A
 W6_FIXTURE = ROOT / "data/testing/frostbloom_w6_bounded_forecast_v1.json"
 W7_CANON = ROOT / "docs/planning/FROSTBLOOM_W7_PRESERVED_FACT_CONTEXT_DELTA_01_APPROVAL_2026-08-20.md"
 W7_FIXTURE = ROOT / "data/testing/frostbloom_w7_context_delta_v1.json"
+RESULT_CANON = ROOT / "docs/planning/FROSTBLOOM_RESULT_GRIMOIRE_CAUSAL_DEBRIEF_01_APPROVAL_2026-08-20.md"
+RESULT_FIXTURE = ROOT / "data/testing/frostbloom_result_grimoire_debrief_v1.json"
 WALK = ROOT / "docs/testing/frostbloom_graybox/01_46_MINUTE_WALKTHROUGH.md"
 CURRENT = ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"
 BENCH = ROOT / "docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_IMPLEMENTATION_BENCHMARK_2026-08-11.md"
@@ -18,7 +20,7 @@ README = ROOT / "README.md"
 
 class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
     def test_required_planning_artifacts_exist(self):
-        for path in (CANON, FIRST10, W6_CANON, W6_FIXTURE, W7_CANON, W7_FIXTURE, WALK, CURRENT, BENCH, PLAN, README):
+        for path in (CANON, FIRST10, W6_CANON, W6_FIXTURE, W7_CANON, W7_FIXTURE, RESULT_CANON, RESULT_FIXTURE, WALK, CURRENT, BENCH, PLAN, README):
             self.assertTrue(path.is_file(), path)
 
     def test_approved_slice_contract_tokens(self):
@@ -141,6 +143,60 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
         self.assertFalse(data["redesign"]["named_correct_route_allowed"])
         self.assertTrue(data["redesign"]["explicit_commit_required"])
         self.assertTrue(data["post_commit"]["w6_preserved_fact_still_true"])
+        self.assertEqual("NOT_RUN", data["human_validation"])
+
+    def test_result_grimoire_layered_causal_debrief_refinement(self):
+        self.assertTrue(RESULT_CANON.is_file(), RESULT_CANON)
+        self.assertTrue(RESULT_FIXTURE.is_file(), RESULT_FIXTURE)
+        text = RESULT_CANON.read_text(encoding="utf-8")
+        for token in (
+            "GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01",
+            "LAYERED_CAUSAL_DEBRIEF_PLAYER_PRINCIPLE",
+            "FIVE_AXIS_RESULT_SNAPSHOT",
+            "NO_GLOBAL_SUCCESS_GRADE",
+            "CAUSAL_THREAD_ACTUAL_RECEIPTS_ONLY",
+            "UNOBSERVED_CAUSE_FORBIDDEN",
+            "COST_FORGONE_DISCOVERY_SEPARATE",
+            "INTENT_TAGS_DERIVED_NEUTRAL",
+            "SHORT_PLAYER_PRINCIPLE_NAMING",
+            "SYSTEM_DOES_NOT_AUTHOR_PRINCIPLE",
+            "PRINCIPLE_NOT_GRADED",
+            "NO_IMMEDIATE_STAT_BONUS_FROM_PRINCIPLE",
+        ):
+            self.assertIn(token, text)
+        current = CURRENT.read_text(encoding="utf-8")
+        self.assertIn("GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01", current)
+
+        data = json.loads(RESULT_FIXTURE.read_text(encoding="utf-8"))
+        self.assertEqual({"start_minute": 39, "end_minute": 44}, data["segment"])
+        self.assertEqual(
+            ["FACILITY", "LIFE", "SPIRIT", "RELATIONSHIP", "DISCOVERY"],
+            data["result_snapshot"]["dimensions"],
+        )
+        self.assertFalse(data["result_snapshot"]["global_success_grade"])
+        self.assertFalse(data["result_snapshot"]["global_total_score"])
+        self.assertFalse(data["result_snapshot"]["star_rating"])
+        self.assertEqual("CAUSAL_THREAD_ACTUAL_RECEIPTS_ONLY", data["causal_thread"]["contract"])
+        self.assertTrue(data["causal_thread"]["unobserved_cause_forbidden"])
+        self.assertEqual(
+            [
+                "observations",
+                "w6_meaning_and_circuit",
+                "w6_selected_target",
+                "w6_actual_result",
+                "post_w6_context_delta",
+                "w7_changed_judgment",
+                "w7_actual_result",
+            ],
+            data["causal_thread"]["ordered_fields"],
+        )
+        self.assertTrue(data["debrief"]["cost_forgone_separate"])
+        self.assertTrue(data["debrief"]["discoveries_separate"])
+        self.assertEqual("INTENT_TAGS_DERIVED_NEUTRAL", data["debrief"]["intent_tags_contract"])
+        self.assertEqual("SHORT_PLAYER_PRINCIPLE_NAMING", data["player_principle"]["contract"])
+        self.assertFalse(data["player_principle"]["system_authors_principle"])
+        self.assertFalse(data["player_principle"]["graded"])
+        self.assertFalse(data["player_principle"]["immediate_stat_bonus"])
         self.assertEqual("NOT_RUN", data["human_validation"])
 
     def test_walkthrough_transfers_class_learning_to_field_by_minute_10(self):
