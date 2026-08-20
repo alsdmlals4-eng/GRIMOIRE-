@@ -230,7 +230,7 @@ class FrostbloomInternalVerticalSliceContractTests(unittest.TestCase):
             "FESTIVAL_PREVIEW_ONLY",
             "NO_MENTOR_GRADE",
             "NO_RESULT_RESCORING",
-            "NO_NEXT_QUEST_CHOICE",
+            "next_quest_choice: false",
             "NO_SECOND_INCIDENT",
             "NO_LORE_DUMP",
             "NO_NEW_GAMEPLAY_DECISION",
