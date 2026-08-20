@@ -59,6 +59,16 @@ class FrostbloomInternalGrayboxPackContractTests(unittest.TestCase):
         current = CURRENT.read_text(encoding="utf-8")
         self.assertIn("GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01", current)
 
+        data = self.load_fixture()
+        self.assertEqual("SEQUENTIAL_PICK_2_OF_4", data["investigation"]["selection_mode"])
+        self.assertEqual("KNOWN_2_UNKNOWN_2", data["investigation"]["w6_entry_summary"])
+        self.assertEqual(set(data["investigation"]["nodes"]), set(data["investigation"]["question_previews"].keys()))
+        for question in data["investigation"]["question_previews"].values():
+            self.assertTrue(question)
+        for choice in data["free_schedule"]:
+            self.assertTrue(choice["lens_only"], choice["id"])
+            self.assertFalse(choice["owns_clue_unlock"], choice["id"])
+
     def test_verdict_vocabulary_is_closed(self):
         self.assertEqual(["PASS", "RISK", "FAIL", "NOT_TESTABLE_YET"], self.load_fixture()["allowed_verdicts"])
 
