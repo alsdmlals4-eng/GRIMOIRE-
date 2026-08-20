@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "fixture_id": "FROSTBLOOM_PORTFOLIO_PREVIEW_V1",
+  "decision_id": "GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01",
+  "parent_decision": "GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01",
+  "predecessor_refinement": "GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01",
+  "segment": {
+    "start_minute": 44,
+    "end_minute": 46
+  },
+  "contract": "EVIDENCE_ECHO_ONE_OPEN_QUESTION",
+  "mentor_echo": {
+    "contract": "MENTOR_RESPONSE_DESCRIPTIVE_NOT_VERDICT",
+    "max_echo_elements": 3,
+    "actual_receipts_only": true,
+    "allowed_echo_slots": [
+      "PLAYER_PRINCIPLE",
+      "ACTUAL_IMPROVEMENT_OR_COST",
+      "DISCOVERY_OR_UNRESOLVED_TENSION"
+    ],
+    "can_add_new_fact": false,
+    "can_grade": false,
+    "can_rescore_result": false,
+    "can_recommend_hidden_best_answer": false,
+    "hidden_portfolio_score": false
+  },
+  "portfolio_receipt": {
+    "contract": "PORTFOLIO_RECEIPT",
+    "fields": [
+      "principle_saved",
+      "causal_evidence_linked",
+      "unresolved_tension_carried"
+    ],
+    "replays_five_axis_result": false,
+    "replays_full_causal_thread": false,
+    "adds_grade": false,
+    "adds_reward_track": false
+  },
+  "open_question": {
+    "contract": "OPEN_QUESTION_NOT_OBJECTIVE",
+    "source_scope": "OBSERVED_DISCOVERY_OR_REMAINING_UNCERTAINTY_ONLY",
+    "count": 1,
+    "quest_marker": false,
+    "reward": false,
+    "required_tracking": false,
+    "choice_branch": false,
+    "mandatory_followup": false
+  },
+  "festival": {
+    "contract": "FESTIVAL_PREVIEW_ONLY",
+    "glimpse_count": 1,
+    "allowed_channels": [
+      "VISUAL",
+      "AUDIO",
+      "SHORT_DIALOGUE"
+    ],
+    "playable": false,
+    "starts_second_incident": false,
+    "starts_new_tutorial": false,
+    "introduces_required_system": false,
+    "lore_dump": false
+  },
+  "session_end": {
+    "contract": "NO_NEW_GAMEPLAY_DECISION",
+    "allowed_input_role": "SESSION_CLOSE_CONFIRMATION_ONLY",
+    "new_gameplay_decision": false,
+    "next_quest_choice": false,
+    "new_branch_selection": false
+  },
+  "timing_test_values": [
+    {
+      "phase": "MAREN_EVIDENCE_ECHO",
+      "start": "44:00",
+      "end": "44:40"
+    },
+    {
+      "phase": "PORTFOLIO_RECEIPT",
+      "start": "44:40",
+      "end": "45:10"
+    },
+    {
+      "phase": "OPEN_QUESTION_FESTIVAL_GLIMPSE",
+      "start": "45:10",
+      "end": "46:00"
+    }
+  ],
+  "hard_guards": [
+    "NO_MENTOR_GRADE",
+    "NO_RESULT_RESCORING",
+    "NO_HIDDEN_PORTFOLIO_SCORE",
+    "NO_HIDDEN_BEST_ANSWER",
+    "OPEN_QUESTION_NOT_OBJECTIVE",
+    "NO_NEXT_QUEST_CHOICE",
+    "FESTIVAL_PREVIEW_ONLY",
+    "NO_SECOND_INCIDENT",
+    "NO_NEW_TUTORIAL",
+    "NO_LORE_DUMP",
+    "NO_NEW_GAMEPLAY_DECISION"
+  ],
+  "human_validation": "NOT_RUN",
+  "device_validation": "NOT_RUN",
+  "performance_validation": "NOT_RUN",
+  "full_slice_validation": "NOT_RUN"
+}
