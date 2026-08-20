@@ -8,6 +8,7 @@ ACTIVE_REFINEMENT_2: GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01
 ACTIVE_REFINEMENT_3: GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01
 ACTIVE_REFINEMENT_4: GM-FROSTBLOOM-W7-PRESERVED-FACT-CONTEXT-DELTA-01
 ACTIVE_REFINEMENT_5: GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01
+ACTIVE_REFINEMENT_6: GM-FROSTBLOOM-PORTFOLIO-PREVIEW-EVIDENCE-ECHO-01
 SCOPE: INTERNAL_DESIGN_VALIDATION_ONLY
 EXECUTION_ORDER: 01 -> 02 -> 03 -> 04 -> 05 -> 06 -> 07
 HUMAN_VALIDATION: NOT_RUN
@@ -21,7 +22,7 @@ TASK8: SEPARATE_PRODUCT_WORKSTREAM_UNCHANGED_BY_PLANNING_OVERLAYS
 
 ## Purpose
 
-This pack attacks the approved Frostbloom Single-Incident Spiral before release-near runtime integration. It checks chronology, information leakage, writing-event distinctness, all six 2-of-4 investigation pairs, four free-schedule choices, W6 bounded forecast/consequence preservation, W7 preserved-fact/context-delta redesign distinctness, five-axis results, layered Grimoire causality/player-principle authorship, and fourteen parent-pack adversarial regressions.
+This pack attacks the approved Frostbloom Single-Incident Spiral before release-near runtime integration. It checks chronology, information leakage, writing-event distinctness, all six 2-of-4 investigation pairs, four free-schedule choices, W6 bounded forecast/consequence preservation, W7 preserved-fact/context-delta redesign distinctness, five-axis results, layered Grimoire causality/player-principle authorship, Portfolio/Preview evidence acknowledgement and non-objective curiosity close, and fourteen parent-pack adversarial regressions.
 
 Active child refinements additionally require:
 
@@ -34,9 +35,11 @@ Active child refinements additionally require:
 - minutes 30–39: `W6_RESULT_ANCHOR` → one `POST_W6_DEEPER_REVISION_COUPLING` → `STILL_TRUE / NEWLY_LEARNED / NEW_TENSION` → W7 changes at least one meaningful judgment dimension → explicit second major Commit;
 - W7 reveal is not an `OLD_REPAIR_RECORD` replay and may not reduce redesign to number-only amplification;
 - minutes 39–44: `FIVE_AXIS_RESULT_SNAPSHOT` → `CAUSAL_THREAD_ACTUAL_RECEIPTS_ONLY` → separate Cost/Forgone/Discovery → `SHORT_PLAYER_PRINCIPLE_NAMING`;
-- Result/Grimoire has no global success grade, may not invent an unobserved cause, and may not system-author/grade/reward the principle wording.
+- Result/Grimoire has no global success grade, may not invent an unobserved cause, and may not system-author/grade/reward the principle wording;
+- minutes 44–46: `MENTOR_RESPONSE_DESCRIPTIVE_NOT_VERDICT` → `PORTFOLIO_RECEIPT` → `OPEN_QUESTION_NOT_OBJECTIVE` + `FESTIVAL_PREVIEW_ONLY` → close;
+- Portfolio/Preview may not add mentor grade/result rescore/hidden best answer, next-quest choice, second incident, lore dump, or any new gameplay decision.
 
-It does **not** prove fun, human comprehension, real 10/23/30/39/44/46-minute completion, forecast fairness, W7 emotional acceptance, Result/Grimoire causal comprehension, principle-entry comfort, accessibility, device behavior, performance, export quality, or Task8 runtime behavior.
+It does **not** prove fun, human comprehension, real 10/23/30/39/44/46-minute completion, forecast fairness, W7 emotional acceptance, Result/Grimoire causal comprehension, principle-entry comfort, Portfolio/Preview emotional closure, open-question interpretation, accessibility, device behavior, performance, export quality, or Task8 runtime behavior.
 
 ## Pack surfaces
 
@@ -53,6 +56,7 @@ Machine-readable 10–23 child overlay: `data/testing/frostbloom_10_23_lens_v1.j
 Machine-readable W6 child overlay: `data/testing/frostbloom_w6_bounded_forecast_v1.json`.
 Machine-readable W7 child overlay: `data/testing/frostbloom_w7_context_delta_v1.json`.
 Machine-readable Result/Grimoire child overlay: `data/testing/frostbloom_result_grimoire_debrief_v1.json`.
+Machine-readable Portfolio/Preview child overlay: `data/testing/frostbloom_portfolio_preview_v1.json`.
 Automated structure contracts: `tests/test_frostbloom_internal_vertical_slice_contract.py` and `tests/test_frostbloom_internal_graybox_pack_contract.py`.
 
 ## Rollup
@@ -63,8 +67,8 @@ READY_WITH_RISKS = zero FAIL and one-or-more in-scope design RISK
 INTERNAL_PACK_PASS = zero FAIL; NOT_TESTABLE_YET may remain only on out-of-scope human/runtime/device/performance questions
 ```
 
-Current internal rollup is `INTERNAL_PACK_PASS`: parent design-structural hard invariants pass and active child overlays add no structural FAIL. Actual elapsed time, comprehension, Lens desirability, investigation-choice reasoning, W6 forecast fairness/readability, W7 reveal acceptance/redesign reasoning, Result/Grimoire comprehension, player-principle input burden, handwriting fatigue, and device behavior remain `NOT_TESTABLE_YET` or `NOT_RUN`.
+Current internal rollup is `INTERNAL_PACK_PASS`: parent design-structural hard invariants pass and active child overlays add no structural FAIL. Actual elapsed time, comprehension, Lens desirability, investigation-choice reasoning, W6 forecast fairness/readability, W7 reveal acceptance/redesign reasoning, Result/Grimoire comprehension, player-principle input burden, Portfolio/Preview closure/mentor-tone/open-question interpretation, handwriting fatigue, and device behavior remain `NOT_TESTABLE_YET` or `NOT_RUN`.
 
 ## Ownership boundary
 
-This pack validates approved Frostbloom content assumptions. It does not own glyph recognition, FIVE_POINT_STAR math, mana, prepared-spell inventory, atomic spell use, result-ledger semantics, generic save I/O, Task8 Spell Use Screen UI, grading, morality scoring, or long-term principle-reward systems. Planning refinements may alter chronology, information framing, and content contracts only; product implementation remains a later separate work unit.
+This pack validates approved Frostbloom content assumptions. It does not own glyph recognition, FIVE_POINT_STAR math, mana, prepared-spell inventory, atomic spell use, result-ledger semantics, generic save I/O, Task8 Spell Use Screen UI, grading, morality scoring, quest-generation authority, or long-term principle-reward systems. Planning refinements may alter chronology, information framing, and content contracts only; product implementation remains a later separate work unit.
