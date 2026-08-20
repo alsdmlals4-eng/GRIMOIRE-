@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "fixture_id": "FROSTBLOOM_10_23_LENS_V1",
+  "decision_id": "GM-FROSTBLOOM-10-23-LENS-INVESTIGATION-01",
+  "parent_pack": "FROSTBLOOM_INTERNAL_GRAYBOX_PACK_V1",
+  "segment": {
+    "start_minute": 10,
+    "end_minute": 23
+  },
+  "free_schedule": {
+    "contract": "FREE_SCHEDULE_LENS_ONLY",
+    "choices": [
+      {
+        "id": "REST",
+        "lens_only": true,
+        "owns_clue_unlock": false,
+        "owns_required_resource": false,
+        "affordance": "SPIRIT_STATE_READING_LENS"
+      },
+      {
+        "id": "PREPARE",
+        "lens_only": true,
+        "owns_clue_unlock": false,
+        "owns_required_resource": false,
+        "affordance": "TOOL_HANDLING_LENS"
+      },
+      {
+        "id": "SOCIAL",
+        "lens_only": true,
+        "owns_clue_unlock": false,
+        "owns_required_resource": false,
+        "affordance": "PEOPLE_FACILITY_VALUE_LENS"
+      },
+      {
+        "id": "PRACTICUM",
+        "lens_only": true,
+        "owns_clue_unlock": false,
+        "owns_required_resource": false,
+        "affordance": "FIELD_HANDLING_COMPARISON_LENS"
+      }
+    ]
+  },
+  "investigation": {
+    "selection_mode": "SEQUENTIAL_PICK_2_OF_4",
+    "all_nodes_remain_accessible": true,
+    "question_previews": {
+      "IRRIGATION_PRESSURE": "흐름은 어디서 어긋나고 있는가?",
+      "ROOT_LAYER": "무엇이 피해를 받고 있으며 무엇을 지탱하고 있는가?",
+      "SPIRIT_TRACE": "정령은 무엇에 반응하고 있는가?",
+      "OLD_REPAIR_RECORD": "과거에는 무엇을 바꿨고 지금도 그 전제가 맞는가?"
+    },
+    "first_pick": "PLAYER_SELECTED_FROM_ALL_4",
+    "w5": "W5_FIRST_INVESTIGATION_NONCOMBAT_APPLICATION",
+    "second_pick": "PLAYER_RESELECTS_FROM_REMAINING_3_AFTER_FIRST_RESULT",
+    "w6_entry_summary": "KNOWN_2_UNKNOWN_2"
+  },
+  "hard_guards": [
+    "NO_CLUE_UNLOCK_OWNERSHIP",
+    "NO_REQUIRED_RESOURCE_OWNERSHIP",
+    "NO_SPELL_CIRCUIT_TARGET_BEST_INTENT_RECOMMENDATION",
+    "OMITTED_NODES_ARE_UNCERTAINTY_NOT_FAILURE"
+  ],
+  "human_validation": "NOT_RUN",
+  "device_validation": "NOT_RUN",
+  "performance_validation": "NOT_RUN",
+  "full_slice_validation": "NOT_RUN"
+}
