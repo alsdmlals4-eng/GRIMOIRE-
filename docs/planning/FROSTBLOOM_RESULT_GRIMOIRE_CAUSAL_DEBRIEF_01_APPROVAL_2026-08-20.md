@@ -142,7 +142,8 @@ W7 changed judgment / FIVE_POINT_STAR / Target / actual consequence receipt
 
 ```yaml
 debrief_contract: COST_FORGONE_DISCOVERY_SEPARATE
-actual_result: SEPARATE\ side_effects_and_forgone_values: SEPARATE
+actual_result: SEPARATE
+side_effects_and_forgone_values: SEPARATE
 discoveries: SEPARATE
 remaining_uncertainty: PRESERVE_IF_ANY
 ```
