@@ -61,7 +61,7 @@ class Task8RemoteLocalReverifyTests(unittest.TestCase):
             "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING",
             "TASK8_RECEIPT_HERA_REVIEW_PR",
             "GR-SYNC-20260812-21-TASK8-HANDOFF-BCP",
-            "product_merge_state: UNMERGED_LOCAL_WORK",
+            "merge_state: UNMERGED_LOCAL_WORK",
         ):
             self.assertIn(token, text)
 
