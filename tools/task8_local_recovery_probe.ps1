@@ -25,10 +25,10 @@ function Inspect-Worktree {
         $TopLevel = "$(git rev-parse --show-toplevel)".Trim()
         $Branch = "$(git branch --show-current)".Trim()
         $Head = "$(git rev-parse HEAD)".Trim()
-        $Status = Convert-Lines @(git status --short --branch)
-        $Working = Convert-Lines @(git diff --name-status)
-        $Cached = Convert-Lines @(git diff --cached --name-status)
-        $Untracked = Convert-Lines @(git ls-files --others --exclude-standard)
+        $Status = @(Convert-Lines @(git status --short --branch))
+        $Working = @(Convert-Lines @(git diff --name-status))
+        $Cached = @(Convert-Lines @(git diff --cached --name-status))
+        $Untracked = @(Convert-Lines @(git ls-files --others --exclude-standard))
 
         $BaselineAvailable = $false
         try {
@@ -42,13 +42,13 @@ function Inspect-Worktree {
         $LocalCommitLog = @()
         $BaselineDelta = @()
         if ($BaselineAvailable) {
-            $LocalCommitLog = Convert-Lines @(git log --oneline "$Baseline..HEAD")
-            $BaselineDelta = Convert-Lines @(git diff --name-status $Baseline..HEAD)
+            $LocalCommitLog = @(Convert-Lines @(git log --oneline "$Baseline..HEAD"))
+            $BaselineDelta = @(Convert-Lines @(git diff --name-status $Baseline..HEAD))
         }
 
         $PreferredScriptExists = Test-Path -LiteralPath (Join-Path $TopLevel $PreferredScript)
         $PreferredSceneExists = Test-Path -LiteralPath (Join-Path $TopLevel $PreferredScene)
-        $DeltaPresent = ($Working.Count + $Cached.Count + $Untracked.Count + $BaselineDelta.Count) -gt 0
+        $DeltaPresent = (@($Working).Count + @($Cached).Count + @($Untracked).Count + @($BaselineDelta).Count) -gt 0
 
         return [ordered]@{
             path = $Path
@@ -79,7 +79,7 @@ $ResolvedRepo = (Resolve-Path -LiteralPath $Repo).Path
 Push-Location $ResolvedRepo
 try {
     $Root = "$(git rev-parse --show-toplevel)".Trim()
-    $WorktreePorcelain = Convert-Lines @(git worktree list --porcelain)
+    $WorktreePorcelain = @(Convert-Lines @(git worktree list --porcelain))
 }
 finally {
     Pop-Location
@@ -149,10 +149,10 @@ $Result = [ordered]@{
     historical_git_baseline = $Baseline
     historical_worktree_relative = $HistoricalWorktreeRelative
     registered_worktrees = $WorktreePorcelain
-    inspected_worktrees = $Inspections
-    historical_candidate_count = $HistoricalCandidates.Count
-    historical_candidates = $HistoricalCandidates
-    interpretation = if ($HistoricalCandidates.Count -gt 0) {
+    inspected_worktrees = @($Inspections)
+    historical_candidate_count = @($HistoricalCandidates).Count
+    historical_candidates = @($HistoricalCandidates)
+    interpretation = if (@($HistoricalCandidates).Count -gt 0) {
         'LOCAL_TASK8_EVIDENCE_FOUND_REVIEW_REQUIRED'
     }
     else {
