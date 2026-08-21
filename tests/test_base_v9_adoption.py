@@ -26,11 +26,12 @@ class BaseV943AdoptionTests(unittest.TestCase):
         }
         for key, value in expected.items():
             self.assertEqual(value, release[key], key)
-        self.assertEqual("SYNCED_TO_MAIN", adapter["gdd_sheet"]["sync_status"])
-        self.assertEqual("PASS", adapter["gdd_sheet"]["sheet_readback"])
+        self.assertEqual("MIGRATION_ONLY_UNTIL_REMOVAL", adapter["gdd_sheet"]["role"])
+        self.assertEqual("NO_NEW_CANON_WRITES", adapter["gdd_sheet"]["write_policy"])
         self.assertEqual("Mobile", adapter["project"]["primary_platform"])
-        self.assertEqual("MOBILE-FOUNDATION-01", adapter["current_state"]["next_product_gate"])
-        self.assertEqual("NOT_STARTED", adapter["current_state"]["implementation"])
+        self.assertEqual("TASK8_PR_PREP_REVERIFY_PENDING", adapter["current_state"]["next_product_gate"])
+        self.assertEqual("PARTIAL_FOUNDATION", adapter["current_state"]["implementation"])
+        self.assertEqual("NOT_RUN", adapter["current_state"]["human_validation"])
 
     def test_generated_operating_views_are_current(self) -> None:
         result = subprocess.run([sys.executable, "tools/generate_project_operating_views.py", "--check"], cwd=ROOT, text=True, capture_output=True, check=False)
@@ -43,19 +44,23 @@ class BaseV943AdoptionTests(unittest.TestCase):
         snapshot = load("skills/PROJECT_SKILL_SNAPSHOT.json")
         self.assertEqual("v9.4.3", base_view["base"]["release_line"])
         self.assertEqual(adapter["current_state"]["next_product_gate"], base_view["maturity"]["next_gate"])
+        self.assertEqual("PARTIAL_FOUNDATION", base_view["maturity"]["status"])
         self.assertEqual(adapter["project"]["primary_platform"], skill_view["platforms"]["primary"])
         self.assertEqual("PRIMARY_VALIDATION_REQUIRED", skill_view["platforms"]["touch_input"])
-        self.assertEqual("BLOCKED_BY_EXECUTION_PROFILE", skill_view["asset_and_license"]["mass_asset_generation"])
-        self.assertEqual("NOT_RUN", base_view["validation"]["runtime"])
+        self.assertEqual("BOUNDED_APPROVED_WORKSTREAM_ONLY", skill_view["asset_and_license"]["mass_asset_generation"])
+        self.assertEqual("STAR_CIRCUIT_AUTOMATED_POC_PASS_FULL_SLICE_NOT_RUN", base_view["validation"]["runtime"])
         self.assertEqual("NOT_RUN", base_view["validation"]["human"])
+        self.assertEqual("NOT_RUN", base_view["validation"]["device"])
+        self.assertEqual("NOT_RUN", base_view["validation"]["performance"])
+        self.assertEqual("NOT_RUN", base_view["validation"]["full_vertical_slice"])
         self.assertEqual("CURRENT", snapshot["generation_status"])
 
     def test_current_authorities_exist(self) -> None:
         for path in (
             "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
             "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
-            "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
-            "docs/planning/sync/GR-SYNC-20260802-07-MAIN.md",
+            "docs/planning/CANON_AUTHORITY_REALITY_SYNC_2026-08-21.md",
+            "docs/planning/sync/GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC.md",
             "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
             "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
             "docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md",
