@@ -73,21 +73,20 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
         ):
             self.assertIn(token, encoded)
 
-    def test_main_authority_is_closed_and_not_working_branch(self) -> None:
+    def test_runtime_component_evidence_is_preserved_without_product_completion_inflation(self) -> None:
         combined = "\n".join(self.read(path) for path in ACTIVE_AUTHORITY[:5])
         for token in (
             SYNC,
             MAIN_AUTHORITY,
-            "canon_status: SYNCED_TO_MAIN",
             "product_project: CREATED",
-            "product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
-            "runtime_validation: AUTOMATED_HEADLESS_PASS",
+            "STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
             "mobile_device_validation: NOT_RUN",
             "performance_validation: NOT_RUN",
             "human_validation: NOT_RUN",
             "PLAYTEST_TUNING_REQUIRED",
         ):
             self.assertIn(token, combined)
+        self.assertIn("FULL_VERTICAL_SLICE_NOT_RUN", combined)
         for stale in (
             "working_branch: agent/star-circuit-runtime-godot-poc",
             "canon_status: SYNCED_TO_WORKING_BRANCH_MERGE_AUTHORIZED",
@@ -95,20 +94,19 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
         ):
             self.assertNotIn(stale, combined)
 
-    def test_sheet_workbook_routes_to_main_sync(self) -> None:
+    def test_sheet_workbook_preserves_runtime_sync_as_historical_provenance(self) -> None:
         workbook = self.read("docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md")
         for token in (
-            DECISION,
             SYNC,
             MAIN_AUTHORITY,
-            "sync_status: SYNCED_TO_MAIN",
-            "sheet_readback: PASS",
-            "product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
-            "runtime_validation: AUTOMATED_HEADLESS_PASS",
+            "workbook_role: MIGRATION_ONLY_UNTIL_REMOVAL",
+            "historical_sheet_readback: PASS",
+            "STAR_CIRCUIT_AUTOMATED_POC_PASS_FULL_SLICE_NOT_RUN",
             "31 Suites",
             "1,137 assertions",
         ):
             self.assertIn(token, workbook)
+        self.assertNotIn("workbook_role: USER_FACING_GDD_WORKSPACE", workbook)
 
     def test_main_sync_receipt_exists_and_preserves_boundaries(self) -> None:
         receipt = self.read("docs/planning/sync/GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN.md")

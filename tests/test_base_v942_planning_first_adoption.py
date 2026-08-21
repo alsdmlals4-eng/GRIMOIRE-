@@ -30,20 +30,25 @@ class PlanningFirstCompatibilityTests(unittest.TestCase):
         self.assertEqual(10, policy["max_approved_decisions_per_batch"])
         self.assertEqual("RECOMMENDED_DEFAULT", policy["numeric_default_state"])
         self.assertEqual("GRILL_ME_REQUIRED", policy["planning_conflict_state"])
-        self.assertEqual("APPROVED_PENDING_MERGE", policy["pre_merge_sheet_state"])
-        self.assertEqual("SYNCED_TO_MAIN", policy["post_merge_sheet_state"])
+        self.assertEqual("APPROVED_PENDING_MERGE", policy["pre_merge_human_canon_state"])
+        self.assertEqual("SYNCED_TO_MAIN_AND_NOTION_READBACK", policy["post_merge_human_canon_state"])
+        self.assertNotIn("pre_merge_sheet_state", policy)
+        self.assertNotIn("post_merge_sheet_state", policy)
         self.assertEqual("NOT_RUN", policy["actual_project_batch_execution"])
 
     def test_generated_views_are_current(self) -> None:
         result = subprocess.run(["python", "tools/generate_project_operating_views.py", "--check"], cwd=ROOT, capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
 
-    def test_planning_only_evidence_ceiling_is_preserved(self) -> None:
+    def test_current_evidence_ceiling_is_preserved(self) -> None:
         data = load()
-        self.assertEqual("PLANNING_ONLY_PROFILE", data["project"]["execution_profile"])
-        self.assertEqual("NOT_STARTED", data["current_state"]["implementation"])
-        self.assertEqual("BLOCKED", data["current_state"]["codex"])
+        self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", data["project"]["execution_profile"])
+        self.assertEqual("PARTIAL_FOUNDATION", data["current_state"]["implementation"])
+        self.assertEqual("OPTIONAL_EXECUTOR", data["current_state"]["codex"])
         self.assertEqual("NOT_RUN", data["current_state"]["human_validation"])
+        self.assertEqual("NOT_RUN", data["current_state"]["device_validation"])
+        self.assertEqual("NOT_RUN", data["current_state"]["performance_validation"])
+        self.assertEqual("NOT_RUN", data["current_state"]["full_vertical_slice"])
 
 
 if __name__ == "__main__": unittest.main()

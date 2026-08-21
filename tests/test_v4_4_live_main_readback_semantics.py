@@ -32,10 +32,14 @@ class V44LiveMainReadbackSemanticsTests(unittest.TestCase):
         for path in CURRENT_DOCS:
             text = path.read_text(encoding="utf-8")
             self.assertIn("project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK", text, str(path))
-            self.assertIn(f"gut_formal_adoption_main: {GUT_FORMAL_ADOPTION_MAIN}", text, str(path))
-            self.assertIn(f"post_merge_canon_sync_merge: {POST_MERGE_CANON_SYNC_MAIN}", text, str(path))
             self.assertNotIn(f"current_main: {GUT_FORMAL_ADOPTION_MAIN}", text, str(path))
             self.assertNotIn(f"project_main: {GUT_FORMAL_ADOPTION_MAIN}", text, str(path))
+
+        # Detailed historical merge identities live in machine/history owners,
+        # rather than being copied into every current cold-start surface.
+        canon = json.loads(CANON.read_text(encoding="utf-8"))
+        self.assertEqual(GUT_FORMAL_ADOPTION_MAIN, canon["gut_formal_adoption_main"])
+        self.assertEqual(POST_MERGE_CANON_SYNC_MAIN, canon["post_merge_canon_sync"]["merge_commit"])
 
     def test_historical_machine_state_names_historical_merge_shas_and_task3_readiness_by_role(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))

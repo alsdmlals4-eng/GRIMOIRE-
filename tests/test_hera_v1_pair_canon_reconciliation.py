@@ -31,6 +31,7 @@ HISTORICAL_TASK8_PRODUCT = "TASK8_SPELL_USE_SCREEN"
 CURRENT_TASK8_STATUS = "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING"
 CURRENT_TASK8_GATE = "TASK8_RECEIPT_HERA_REVIEW_PR"
 
+
 class HeraV1PairCanonReconciliationTests(unittest.TestCase):
     def test_live_evidence_preserves_historical_canary_scope(self) -> None:
         data = json.loads(EVIDENCE.read_text(encoding="utf-8"))
@@ -39,7 +40,16 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertEqual(PRE_FINAL_HEAD, data["live_canary"]["pre_final_head"])
         self.assertEqual(ARTIFACT_ID, data["live_canary"]["artifact_id"])
         self.assertEqual(ARTIFACT_SHA256, data["live_canary"]["artifact_sha256"])
-        for key in ("official_linux_cli_sha256", "cli_version_v1_0_0", "project_addon_exact_tree", "loopback_127_0_0_1_only", "wrong_token_rejected_exit_1", "correct_token_status", "status_godot_4_7_1", "repository_source_delta_zero"):
+        for key in (
+            "official_linux_cli_sha256",
+            "cli_version_v1_0_0",
+            "project_addon_exact_tree",
+            "loopback_127_0_0_1_only",
+            "wrong_token_rejected_exit_1",
+            "correct_token_status",
+            "status_godot_4_7_1",
+            "repository_source_delta_zero",
+        ):
             self.assertEqual("PASS", data["live_canary"]["results"][key], key)
         self.assertTrue(data["claims"]["live_cli_addon_pair_pass"])
         self.assertTrue(data["claims"]["acceptance_qa_authorized"])
@@ -52,16 +62,24 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertNotIn(STALE_BLOCKER, unresolved)
         self.assertIn(PASS_TOKEN, unresolved)
         self.assertIn(PASS_TOKEN, gates)
+
         for path in CURRENT_DOCS:
             text = path.read_text(encoding="utf-8")
-            self.assertIn("hera_exact_pair: PASS", text, str(path))
+            self.assertIn(PASS_TOKEN, text, str(path))
             self.assertNotIn(STALE_BLOCKER, text, str(path))
-            self.assertIn("spell_workflow_task2_authorized: true", text, str(path))
-            self.assertIn(TASK2_MERGED, text, str(path))
             self.assertIn(TASK7_MERGED, text, str(path))
             self.assertIn(CURRENT_TASK8_STATUS, text, str(path))
             self.assertIn(CURRENT_TASK8_GATE, text, str(path))
             self.assertNotIn("spell_workflow_task2_authorized: false", text, str(path))
+
+        # Exact-pair and Task2 details are durable machine/history evidence.
+        # They are not required to be duplicated into every cold-start page.
+        canon = json.loads(CANON.read_text(encoding="utf-8"))
+        authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
+        self.assertTrue(canon["spell_workflow_main"]["spell_workflow_task2_authorized"])
+        self.assertTrue(authority["claims"]["spell_workflow_task2_authorized"])
+        self.assertEqual(PASS_TOKEN, canon["hera"]["status"])
+        self.assertEqual(PASS_TOKEN, authority["hera"]["status"])
 
     def test_machine_state_closes_hera_and_structural_platform_gate_but_keeps_real_limits(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
@@ -86,11 +104,17 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertEqual(SHARED_CORE_PASS, grill["current_work"]["windows_android_shared_core"])
         self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", canon["broader_blockers"])
         self.assertNotIn("WINDOWS_ANDROID_SHARED_CORE_NOT_VALIDATED", authority["broader_blockers"])
-        for blocker in ("VISUAL_AUDIO_COMPLETE_NOT_PROVEN", "AUDIO_VAULT_PATH_UNVERIFIED", "AUDIO_RIGHTS_UNVERIFIED", "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS", "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS"):
+        for blocker in (
+            "VISUAL_AUDIO_COMPLETE_NOT_PROVEN",
+            "AUDIO_VAULT_PATH_UNVERIFIED",
+            "AUDIO_RIGHTS_UNVERIFIED",
+            "LOCAL_SYNC_BLOCKED_NO_LOCAL_ACCESS",
+            "GODOT_RUN_BLOCKED_NO_LOCAL_ACCESS",
+        ):
             self.assertIn(blocker, canon["broader_blockers"])
             self.assertIn(blocker, authority["broader_blockers"])
 
-    def test_merged_main_sheet_readback_is_promoted_to_current_canon(self) -> None:
+    def test_merged_main_sheet_readback_is_preserved_as_historical_provenance(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
         grill = json.loads(GRILL.read_text(encoding="utf-8"))
@@ -107,6 +131,7 @@ class HeraV1PairCanonReconciliationTests(unittest.TestCase):
         self.assertIn(SHEET_PASS, confirmed)
         self.assertNotIn("PENDING_PR91_MERGE", confirmed)
         self.assertNotIn("PASS_PRIOR_CANON", confirmed)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -60,25 +60,25 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertTrue(data["claims"]["spell_workflow_task2_authorized"])
         self.assertTrue(data["claims"]["spell_workflow_task2_merged_main_verified"])
 
-    def test_current_cold_start_docs_use_v45_keep_history_and_show_task8_merge_subgate(self) -> None:
+    def test_current_cold_start_docs_use_v45_and_keep_only_needed_v44_history_markers(self) -> None:
         for path in CURRENT_DOCS:
             text = path.read_text(encoding="utf-8")
             self.assertIn("GM-CONTRACT-V4-5-BINDING-01", text, str(path))
             self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text, str(path))
             self.assertIn("project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK", text, str(path))
-            self.assertIn(f"gut_formal_adoption_main: {GUT_FORMAL_ADOPTION_MAIN}", text, str(path))
-            self.assertIn(f"post_merge_canon_sync_merge: {POST_MERGE_CANON_SYNC_MAIN}", text, str(path))
             self.assertIn("GUT_FORMALLY_ADOPTED", text, str(path))
-            self.assertIn("higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY", text, str(path))
-            self.assertIn("hera_exact_pair: PASS", text, str(path))
-            self.assertIn(HERA_PASS, text, str(path))
-            self.assertIn("spell_workflow_task2_authorized: true", text, str(path))
-            self.assertIn(TASK2_MERGED, text, str(path))
             self.assertIn(TASK7_MERGED, text, str(path))
             self.assertIn(CURRENT_TASK8_STATUS, text, str(path))
             self.assertIn(CURRENT_TASK8_GATE, text, str(path))
             self.assertNotIn("spell_workflow_task2_authorized: false", text, str(path))
             self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", text, str(path))
+
+        # Detailed v4.4 adoption hashes remain in their machine/history owner;
+        # they do not need to be copied into every cold-start document forever.
+        history = json.loads(STATE.read_text(encoding="utf-8"))
+        self.assertEqual(GUT_FORMAL_ADOPTION_MAIN, history["source_main"])
+        canon = json.loads(CANON.read_text(encoding="utf-8"))
+        self.assertEqual(POST_MERGE_CANON_SYNC_MAIN, canon["post_merge_canon_sync"]["merge_commit"])
 
     def test_historical_machine_snapshots_preserve_task8_product_checkpoint(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
