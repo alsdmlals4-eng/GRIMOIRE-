@@ -16,6 +16,9 @@ implementation: PARTIAL_FOUNDATION
 workspace_human_canon: NOTION_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
+repo_wide_actions_supply_chain: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
@@ -228,6 +231,10 @@ platform:
 ```
 
 수치·시간·밸런스는 계속 `PLAYTEST_TUNING_REQUIRED`다.
+
+## Repository Actions supply-chain closure
+
+`GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01`의 repository-wide official Action 참조는 `REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS` 상태다. 이 보안/재현성 상태는 현재 제품 구현 단계와 독립적으로 유지한다.
 
 ## Current unresolved delivery limits
 
