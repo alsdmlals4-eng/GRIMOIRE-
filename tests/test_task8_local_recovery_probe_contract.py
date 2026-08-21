@@ -28,6 +28,11 @@ def run_git(cwd: Path, *args: str) -> str:
     return completed.stdout.strip()
 
 
+def git_path(cwd: Path, name: str) -> Path:
+    path = Path(run_git(cwd, "rev-parse", "--git-path", name))
+    return path if path.is_absolute() else cwd / path
+
+
 class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
     def test_probe_exists_and_is_read_only_by_contract(self) -> None:
         self.assertTrue(PROBE.is_file())
@@ -37,6 +42,7 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             BASELINE,
             HISTORICAL_BRANCH,
             HISTORICAL_WORKTREE,
+            "GIT_OPTIONAL_LOCKS",
             "git worktree list --porcelain",
             "git rev-parse --show-toplevel",
             "git branch --show-current",
@@ -47,6 +53,7 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             "git ls-files --others --exclude-standard",
             "git log --oneline",
             "git diff --name-status $Baseline..HEAD",
+            "task8_signal_paths",
             "spell_use_screen.gd",
             "spell_use_screen.tscn",
             "ConvertTo-Json",
@@ -115,6 +122,10 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             refs_before = run_git(repo, "show-ref")
             root_status_before = run_git(repo, "status", "--porcelain=v1", "--untracked-files=all")
             worktree_status_before = run_git(worktree, "status", "--porcelain=v1", "--untracked-files=all")
+            root_index = git_path(repo, "index")
+            worktree_index = git_path(worktree, "index")
+            root_index_before = root_index.read_bytes()
+            worktree_index_before = worktree_index.read_bytes()
 
             completed = subprocess.run(
                 [pwsh, "-NoProfile", "-NonInteractive", "-File", str(PROBE), "-Repo", str(repo)],
@@ -127,15 +138,18 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             result = json.loads(completed.stdout)
 
             self.assertEqual("LOCAL_TASK8_EVIDENCE_FOUND_REVIEW_REQUIRED", result["interpretation"])
+            self.assertEqual("DISABLED_FOR_PROBE_PROCESS", result["git_optional_locks"])
             self.assertGreaterEqual(result["historical_candidate_count"], 1)
             candidate_matches = [
                 item for item in result["historical_candidates"] if item.get("branch") == HISTORICAL_BRANCH
             ]
             self.assertTrue(candidate_matches, json.dumps(result, ensure_ascii=False, indent=2))
             candidate = candidate_matches[0]
+            self.assertIsNone(candidate["inspection_error"])
             self.assertTrue(candidate["preferred_spell_use_script_exists"])
             self.assertTrue(candidate["delta_evidence_present"])
             self.assertIn("src/ui/spell_workflow/spell_use_screen.gd", candidate["untracked_paths"])
+            self.assertTrue(candidate["task8_signal_paths"])
 
             self.assertEqual(refs_before, run_git(repo, "show-ref"))
             self.assertEqual(
@@ -146,6 +160,8 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
                 worktree_status_before,
                 run_git(worktree, "status", "--porcelain=v1", "--untracked-files=all"),
             )
+            self.assertEqual(root_index_before, root_index.read_bytes())
+            self.assertEqual(worktree_index_before, worktree_index.read_bytes())
             self.assertTrue(spell_file.is_file())
 
 
