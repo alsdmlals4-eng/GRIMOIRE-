@@ -128,9 +128,11 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
 
             self.assertEqual("LOCAL_TASK8_EVIDENCE_FOUND_REVIEW_REQUIRED", result["interpretation"])
             self.assertGreaterEqual(result["historical_candidate_count"], 1)
-            candidate = next(
+            candidate_matches = [
                 item for item in result["historical_candidates"] if item.get("branch") == HISTORICAL_BRANCH
-            )
+            ]
+            self.assertTrue(candidate_matches, json.dumps(result, ensure_ascii=False, indent=2))
+            candidate = candidate_matches[0]
             self.assertTrue(candidate["preferred_spell_use_script_exists"])
             self.assertTrue(candidate["delta_evidence_present"])
             self.assertIn("src/ui/spell_workflow/spell_use_screen.gd", candidate["untracked_paths"])
