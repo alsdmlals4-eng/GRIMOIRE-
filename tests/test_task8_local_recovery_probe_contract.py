@@ -5,7 +5,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROBE = ROOT / "tools/task8_local_recovery_probe.ps1"
-PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-21.md"
+PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-22.md"
+HISTORICAL_PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-21.md"
 
 BASELINE = "8c611f601aa98397ed1558e92ab207e0e8347a9b"
 HISTORICAL_BRANCH = "feat/task8-spell-use-screen-v2"
@@ -56,14 +57,20 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
         ):
             self.assertNotIn(forbidden, text)
 
-    def test_packet_routes_to_probe_without_changing_product_authority(self) -> None:
+    def test_current_packet_routes_to_probe_without_rewriting_history(self) -> None:
+        self.assertTrue(PACKET.is_file())
+        self.assertTrue(HISTORICAL_PACKET.is_file())
         text = PACKET.read_text(encoding="utf-8")
-        self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", text)
-        self.assertIn("tools/task8_local_recovery_probe.ps1", text)
-        self.assertIn("HIGODOT_ONLY", text)
-        self.assertIn("PR #151", text)
-        self.assertIn("DO_NOT_TOUCH", text)
-        self.assertIn("Do not reconstruct product files through GitHub", text)
+        for token in (
+            "TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED",
+            "tools/task8_local_recovery_probe.ps1",
+            "TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-21.md",
+            "HIGODOT_ONLY",
+            "PR #151",
+            "DO_NOT_TOUCH",
+            "Do not reconstruct product files through GitHub",
+        ):
+            self.assertIn(token, text)
 
 
 if __name__ == "__main__":
