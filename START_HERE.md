@@ -12,6 +12,7 @@ project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 current_task8_continuation: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
+task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 task8_product_unit: TASK8_SPELL_USE_SCREEN
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
@@ -33,6 +34,11 @@ spell_workflow_status: TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 compatibility_next_locator: TASK8_RECEIPT_HERA_REVIEW_PR
 next_product_task: TASK8_PR_PREP_REVERIFY_PENDING
+task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_product_commit: NONE
+task8_remote_product_branch: NOT_PRESENT
+task8_remote_product_pr: NONE
 parallel_open_pr: PR151_DO_NOT_TOUCH
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
@@ -112,7 +118,20 @@ TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 TASK8_RECEIPT_HERA_REVIEW_PR
 ```
 
-그러나 **현재 resume gate는 `TASK8_PR_PREP_REVERIFY_PENDING`**이다. 역사 local branch/head `feat/task8-spell-use-screen-v2` / `8c611f601aa98397ed1558e92ab207e0e8347a9b`와 이전 `15 tests / 90 assertions / 0 failures`, `42 suites / 1,588 assertions / 0 failures`, `HERA_SOURCE_DELTA_NONE_OBSERVED`는 당시 local acceptance provenance다. 현재 원격 branch/PR 또는 merged-main 증거로 확대하지 않는다.
+현재 parent resume gate는 `TASK8_PR_PREP_REVERIFY_PENDING`이고, fresh remote reverify로 첫 실행 subgate가 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`로 좁혀졌다.
+
+```yaml
+task8_local_branch_historical: feat/task8-spell-use-screen-v2
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_product_commit: NONE
+task8_remote_product_branch: NOT_PRESENT
+task8_remote_product_pr: NONE
+historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
+```
+
+`8c611f...`는 PR #131 HiGodot v3.1.4 authority reconciliation commit이며 Task8 제품 커밋이 아니다. Sync21 당시 Task8 구현은 이 Git HEAD 위의 **커밋되지 않은 local worktree delta**였다. 이전 `15 tests / 90 assertions / 0 failures`, `42 suites / 1,588 assertions / 0 failures`, `HERA_SOURCE_DELTA_NONE_OBSERVED`는 당시 관찰한 그 worktree acceptance provenance이며 현재 로컬 delta 존재나 원격/merged authority를 증명하지 않는다.
+
+Fresh remote scan 및 복구 규칙은 `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`가 소유한다. 로컬 delta가 남아 있으면 reset/restore/clean 없이 보존·재검증하고, 사라졌다면 GitHub text write로 복원하지 말고 승인된 HiGodot 경로에서 TDD부터 재작성한다.
 
 PR #151 `visual/component-sheets-semantic-ui-execution`은 별도 진행 중 작업이다. `DO_NOT_TOUCH`; 이 정본 교정이나 Task8 recovery에서 수정·rebase·merge하지 않는다.
 
@@ -179,6 +198,7 @@ Task9은 승인된 Mobile landscape matrix `16:9 / 18:9 / 19.5:9 / 20:9 / cutout
 
 ```text
 TASK8_PR_PREP_REVERIFY_PENDING
+TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
 HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 AUDIO_VAULT_PATH_UNVERIFIED
@@ -198,13 +218,14 @@ ANDROID_DEVICE_NOT_RUN
 1. `AGENTS.md`
 2. `START_HERE.md`
 3. `docs/ACTIVE_CONTEXT.md`
-4. `docs/planning/CANON_AUTHORITY_REALITY_SYNC_2026-08-21.md`
-5. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-6. `docs/planning/CURRENT_UNRESOLVED_GATES.md`
-7. `docs/DEVELOPMENT_GATES.md`
-8. `skills/PROJECT_BASE_ADAPTER.json`
-9. `skills/SKILL_REGISTRY.json`
-10. 실제 `project.godot`, code/Scene/Resource/Test
-11. 역사 machine snapshots와 sync receipts
+4. `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md` — Task8 재개 시
+5. `docs/planning/CANON_AUTHORITY_REALITY_SYNC_2026-08-21.md`
+6. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
+7. `docs/planning/CURRENT_UNRESOLVED_GATES.md`
+8. `docs/DEVELOPMENT_GATES.md`
+9. `skills/PROJECT_BASE_ADAPTER.json`
+10. `skills/SKILL_REGISTRY.json`
+11. 실제 `project.godot`, code/Scene/Resource/Test
+12. 역사 machine snapshots와 sync receipts
 
 현재 cold-start에서 Sheet를 읽기 선행조건으로 사용하지 않는다.
