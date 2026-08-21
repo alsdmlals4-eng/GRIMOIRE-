@@ -5,6 +5,7 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$env:GIT_OPTIONAL_LOCKS = '0'
 
 $Baseline = '8c611f601aa98397ed1558e92ab207e0e8347a9b'
 $HistoricalBranch = 'feat/task8-spell-use-screen-v2'
@@ -29,6 +30,10 @@ function Inspect-Worktree {
         $Working = @(Convert-Lines @(git diff --name-status))
         $Cached = @(Convert-Lines @(git diff --cached --name-status))
         $Untracked = @(Convert-Lines @(git ls-files --others --exclude-standard))
+        $Task8SignalPaths = @(
+            (@($Working) + @($Cached) + @($Untracked)) |
+                Where-Object { "$_" -match '(?i)(task8|spell[_-]?use)' }
+        )
 
         $BaselineAvailable = $false
         try {
@@ -63,6 +68,7 @@ function Inspect-Worktree {
             working_name_status = $Working
             cached_name_status = $Cached
             untracked_paths = $Untracked
+            task8_signal_paths = $Task8SignalPaths
             baseline_to_head_log = $LocalCommitLog
             baseline_to_head_name_status = $BaselineDelta
             preferred_spell_use_script_exists = $PreferredScriptExists
@@ -122,6 +128,7 @@ foreach ($CandidatePath in $CandidatePaths) {
                 working_name_status = @()
                 cached_name_status = @()
                 untracked_paths = @()
+                task8_signal_paths = @()
                 baseline_to_head_log = @()
                 baseline_to_head_name_status = @()
                 preferred_spell_use_script_exists = $false
@@ -137,13 +144,15 @@ $HistoricalCandidates = @(
         ($_.branch -eq $HistoricalBranch) -or
         ($_.path -like "*$HistoricalWorktreeRelative*") -or
         ($_.preferred_spell_use_script_exists -eq $true) -or
-        ($_.preferred_spell_use_scene_exists -eq $true)
+        ($_.preferred_spell_use_scene_exists -eq $true) -or
+        (@($_.task8_signal_paths).Count -gt 0)
     }
 )
 
 $Result = [ordered]@{
     probe = 'TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED'
     read_only = $true
+    git_optional_locks = 'DISABLED_FOR_PROBE_PROCESS'
     repo = $Root
     historical_branch = $HistoricalBranch
     historical_git_baseline = $Baseline
