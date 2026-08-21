@@ -23,7 +23,7 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
         self.assertEqual("0b7c94f38d959efc0fc9442274c60b2e268a3c97", release["finalization_commit"])
         self.assertEqual("693a0dff3f054ecdd653079909e044211473838e73dd9aff07734d1ce5694c59", release["registry_sha256"])
 
-    def test_external_ai_remains_v941_boundary(self) -> None:
+    def test_external_ai_remains_v941_boundary_without_freezing_project_maturity(self) -> None:
         data = load(); active = {r["skill_id"] for r in data["routing"]["base_routes"] if r.get("status") == "ACTIVE"}
         self.assertIn(SKILL, active); self.assertFalse((ROOT / f"skills/{SKILL}/SKILL.md").exists())
         policy = data["base_v94_contract"]["external_ai_worktree"]
@@ -33,8 +33,12 @@ class BaseSharedExternalAIAdapterTests(unittest.TestCase):
         self.assertEqual("ADOPTED_FROM_BASE_V9_4_1", policy["base_validator_adoption"])
         self.assertEqual("base-v9.4.1.lock.json", policy["base_release_lock"])
         self.assertEqual("NOT_RUN", policy["actual_external_ai_worktree_execution"])
-        self.assertEqual("PLANNING_ONLY_PROFILE", data["project"]["execution_profile"])
-        self.assertEqual("NOT_STARTED", data["current_state"]["implementation"])
+
+        # The external-AI worktree contract is a capability boundary, not a
+        # permanent assertion that the project itself is still planning-only.
+        self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", data["project"]["execution_profile"])
+        self.assertEqual("PARTIAL_FOUNDATION", data["current_state"]["implementation"])
+        self.assertEqual("NOT_RUN", data["current_state"]["human_validation"])
 
     def test_worktree_and_validation_contract(self) -> None:
         self.assertEqual(0, subprocess.run(["git", "check-ignore", "-q", ".worktrees/"], cwd=ROOT, check=False).returncode)
