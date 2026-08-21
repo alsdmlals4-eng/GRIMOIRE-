@@ -11,8 +11,8 @@ CURRENT_DOCS = [
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
     ROOT / "docs/DEVELOPMENT_GATES.md",
-    ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
 ]
+UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 
 MAIN = "026230d3a91687cd4c6df0bb629eabaeb17c767c"
 BASELINE = "8c611f601aa98397ed1558e92ab207e0e8347a9b"
@@ -43,7 +43,7 @@ class Task8RemoteLocalReverifyTests(unittest.TestCase):
         ):
             self.assertIn(token, text)
 
-    def test_current_consumers_distinguish_baseline_head_from_product_delta(self) -> None:
+    def test_current_overlay_consumers_distinguish_baseline_head_from_product_delta(self) -> None:
         for path in CURRENT_DOCS:
             text = path.read_text(encoding="utf-8")
             self.assertIn(PARENT_GATE, text, str(path))
@@ -53,6 +53,17 @@ class Task8RemoteLocalReverifyTests(unittest.TestCase):
             self.assertIn("task8_remote_product_branch: NOT_PRESENT", text, str(path))
             self.assertIn("task8_remote_product_pr: NONE", text, str(path))
             self.assertNotIn("product_head_local_historical:", text, str(path))
+
+    def test_unresolved_owner_preserves_sync21_parent_gate_and_history(self) -> None:
+        text = UNRESOLVED.read_text(encoding="utf-8")
+        for token in (
+            PARENT_GATE,
+            "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING",
+            "TASK8_RECEIPT_HERA_REVIEW_PR",
+            "GR-SYNC-20260812-21-TASK8-HANDOFF-BCP",
+            "product_merge_state: UNMERGED_LOCAL_WORK",
+        ):
+            self.assertIn(token, text)
 
     def test_sync34_is_closed_on_merged_main_and_notion_readback(self) -> None:
         text = SYNC34.read_text(encoding="utf-8")
