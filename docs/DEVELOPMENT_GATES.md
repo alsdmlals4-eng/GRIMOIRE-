@@ -9,6 +9,7 @@ project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
 dedicated_local_environment_predecessor_sync: GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
+task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
@@ -26,6 +27,11 @@ spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 spell_workflow_status: TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 compatibility_next_gate: TASK8_RECEIPT_HERA_REVIEW_PR
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
+task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_product_commit: NONE
+task8_remote_product_branch: NOT_PRESENT
+task8_remote_product_pr: NONE
 parallel_open_pr: PR151_DO_NOT_TOUCH
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
@@ -87,16 +93,49 @@ Tasks 3–7은 병합 완료다.
 | 6 | #108 | `4a9daf0ed8de7bb39173a71e6ada9324d5a462b7` | MERGED_MAIN_VERIFIED |
 | 7 | #110 | `fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f` | TASK7_MERGED_MAIN_VERIFIED |
 
-Task8은 Task5 Stage3의 thin UI consumer다. 역사 local acceptance는 `TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED`; 현재 remote authority를 재검증하지 않았으므로 다음 실행 gate는 `TASK8_PR_PREP_REVERIFY_PENDING`이다.
-
-호환 locator는 유지한다.
+Task8은 Task5 Stage3의 thin UI consumer다. 다음 compatibility locator는 기존 consumer를 위해 유지한다.
 
 ```text
 TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 TASK8_RECEIPT_HERA_REVIEW_PR
 ```
 
-Task8이 merge/complete가 되려면 fresh local/remote identity, protected-delta authoring evidence, GUT, Hera source-delta NONE, exact-head CI/review, merge, merged-main readback이 필요하다. `TASK8_MERGED_MAIN_VERIFIED`는 현재 주장하지 않는다.
+Parent gate는 계속 `TASK8_PR_PREP_REVERIFY_PENDING`이다. 그러나 fresh remote/local reverify 결과 실제 첫 실행 subgate는 다음으로 좁혀졌다.
+
+```yaml
+current_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+task8_local_branch_historical: feat/task8-spell-use-screen-v2
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_product_commit: NONE
+task8_remote_product_branch: NOT_PRESENT
+task8_remote_product_pr: NONE
+historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
+```
+
+`8c611f...`는 PR #131 HiGodot v3.1.4 authority reconciliation commit이다. Task8 제품 변경은 그 commit에 들어 있지 않았고 Sync21 당시 local worktree에만 존재했다. 원격 Task8/handoff 브랜치 scan에서도 `src/ui/spell_workflow/spell_use_screen.gd`는 발견되지 않았다.
+
+따라서 Task8 PR을 준비하기 전에 반드시 로컬 worktree delta 존재 여부를 먼저 확인한다.
+
+```text
+로컬 delta 존재
+→ 절대 reset/restore/clean 하지 않음
+→ exact path / branch / HEAD / status / staged state 기록
+→ fresh HiGodot 3.1.4 exact-project readiness
+→ focused Task8 GUT
+→ predecessor regression
+→ git diff --check
+→ exact-path adversarial review
+→ stage/commit/push/PR
+
+로컬 delta 없음
+→ GitHub text write 복구 금지
+→ 승인된 Task8 plan으로 HiGodot TDD RED부터 재작성
+→ protected-delta receipt/readback
+→ GUT/regression/Hera
+→ stage/commit/push/PR
+```
+
+현재 Task8은 `TASK8_MERGED_MAIN_VERIFIED`가 아니다. 상세 원격 readback은 `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`가 소유한다.
 
 ## Gate 3 — Sync21 local executor continuation
 
@@ -196,7 +235,7 @@ inventory
 
 ## Gate 8 — Parallel PR protection
 
-PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft다. 현재 Sync34, Task8 recovery, Task9 planning은 #151을 수정·rebase·merge·완료 처리하지 않는다: `PR151_DO_NOT_TOUCH`.
+PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft다. Sync34/Task8 recovery/Task9 planning은 #151을 수정·rebase·merge·완료 처리하지 않는다: `PR151_DO_NOT_TOUCH`.
 
 ## Gate 9 — Historical v4.4 / GUT / Task2 provenance
 
@@ -240,6 +279,7 @@ platform:
 
 ```text
 TASK8_PR_PREP_REVERIFY_PENDING
+TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
 HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
