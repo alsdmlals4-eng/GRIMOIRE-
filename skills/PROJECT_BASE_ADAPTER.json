@@ -59,8 +59,8 @@
       "max_approved_decisions_per_batch": 10,
       "numeric_default_state": "RECOMMENDED_DEFAULT",
       "planning_conflict_state": "GRILL_ME_REQUIRED",
-      "post_merge_sheet_state": "SYNCED_TO_MAIN",
-      "pre_merge_sheet_state": "APPROVED_PENDING_MERGE"
+      "post_merge_human_canon_state": "SYNCED_TO_MAIN_AND_NOTION_READBACK",
+      "pre_merge_human_canon_state": "APPROVED_PENDING_MERGE"
     },
     "provider_measurement": "NOT_RUN",
     "runtime_validation": "NOT_RUN"
