@@ -13,6 +13,12 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
+task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_product_commit: NONE
+task8_remote_product_branch: NOT_PRESENT
+task8_remote_product_pr: NONE
+task8_reverify_receipt: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
 base_project_pin: v9.4.3
 base_live_readback: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 workspace_human_canon: NOTION_HUMAN_FACING_CANON
@@ -34,6 +40,7 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 5. Google Sheets는 역사 migration source다. 신규 canon write를 하지 않고, 고유 자료 흡수 확인 전 삭제도 하지 않는다.
 6. 진행 중 PR은 별도 작업으로 보호한다. 특히 **PR #151은 `DO_NOT_TOUCH`**이며 이 교정이나 Task8 작업과 합치지 않는다.
 7. 실제 실행하지 않은 Human/Device/Performance/Full Slice 증거를 PASS로 승격하지 않는다.
+8. Task8 재개 시 `8c611f...`를 제품 커밋으로 취급하지 않는다. 먼저 로컬의 커밋되지 않은 Task8 worktree delta가 실제로 남아 있는지 확인한다.
 
 ## 프로젝트 코어
 
@@ -77,8 +84,27 @@ runtime_component_validation: AUTOMATED_HEADLESS_PASS
 - 호환 locator: `TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING`
 - 호환 next locator: `TASK8_RECEIPT_HERA_REVIEW_PR`
 - 현재 continuation owner: `GR-SYNC-20260812-21-TASK8-HANDOFF-BCP`
-- 현재 실제 next gate: `TASK8_PR_PREP_REVERIFY_PENDING`
-- 역사 local head `8c611f601aa98397ed1558e92ab207e0e8347a9b`는 local acceptance provenance이지 merged-main 증거가 아니다.
+- 현재 parent gate: `TASK8_PR_PREP_REVERIFY_PENDING`
+- 현재 first execution subgate: `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`
+- `task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b`
+- `task8_product_commit: NONE`
+- `task8_remote_product_branch: NOT_PRESENT`
+- `task8_remote_product_pr: NONE`
+
+`8c611f...`는 PR #131 HiGodot v3.1.4 authority reconciliation commit이며 Task8 제품 코드가 들어 있는 commit이 아니다. Sync21 당시 Task8 제품 구현은 이 HEAD 위의 **uncommitted local worktree delta**였다.
+
+따라서 Task8 재개는 다음 순서를 따른다.
+
+```text
+local Task8 delta recovery/readback
+→ 있으면 보호한 채 fresh HiGodot/GUT/Hera/diff/adversarial revalidation
+→ 없으면 승인된 Task8 plan을 HiGodot TDD로 재작성
+→ stage/commit/push/PR
+→ exact-head CI/review
+→ merge/readback
+```
+
+GitHub text write로 `spell_use_screen.gd/.tscn`를 재구축하는 것은 persistent Godot authoring 대체 경로가 아니므로 금지한다.
 
 ## 금지
 
@@ -92,4 +118,4 @@ runtime_component_validation: AUTOMATED_HEADLESS_PASS
 
 ## 현재 Authority Sync
 
-`GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC`가 Sheet-first / planning-only / Godot-not-created 라우팅 퇴행을 교정한다. 제품 코드·Scene·Resource·`project.godot`·PR #151은 이 Sync의 변경 대상이 아니다.
+`GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC`는 PR #152 / main `026230d3a91687cd4c6df0bb629eabaeb17c767c`로 병합·Notion readback까지 닫혔다. 후속 `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`가 Task8의 실제 local-recovery subgate를 소유한다.

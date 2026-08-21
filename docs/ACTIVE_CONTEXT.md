@@ -12,6 +12,7 @@ current_state_sync: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
 dedicated_local_environment_predecessor_sync: GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
+task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_repository_review_policy: RECURSIVE_INVENTORY_THEN_RELEVANCE_DRIVEN_DEEP_READ
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
@@ -31,6 +32,11 @@ spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 spell_workflow_status: TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 compatibility_next_gate: TASK8_RECEIPT_HERA_REVIEW_PR
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
+task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_product_commit: NONE
+task8_remote_product_branch: NOT_PRESENT
+task8_remote_product_pr: NONE
 parallel_open_pr: PR151_DO_NOT_TOUCH
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
@@ -115,24 +121,36 @@ task7:
 
 Task8은 기존 Task5 Stage3 authority의 thin UI consumer다. 새 Mana/inventory/result/rollback/transaction authority를 만들지 않는다.
 
-다음 문자열은 기존 소비자와 역사 추적을 위해 유지한다.
+기존 consumer와 역사 추적을 위해 다음 compatibility marker는 유지한다.
 
 ```text
 TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 TASK8_RECEIPT_HERA_REVIEW_PR
 ```
 
-하지만 현재 실제 continuation state는 다음이다.
+Fresh remote/local reverify 결과 현재 continuation state는 다음처럼 해석한다.
 
 ```yaml
-product_status: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
+product_status_historical: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
 product_branch_local_historical: feat/task8-spell-use-screen-v2
-product_head_local_historical: 8c611f601aa98397ed1558e92ab207e0e8347a9b
-remote_product_authority: NOT_CURRENTLY_VERIFIED
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_product_commit: NONE
+task8_remote_product_branch: NOT_PRESENT
+task8_remote_product_pr: NONE
+historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 resume_gate: TASK8_PR_PREP_REVERIFY_PENDING
+current_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 ```
 
-역사 acceptance checkpoint는 `15 tests / 90 assertions / 0 failures`, predecessor `42 suites / 1,588 assertions / 0 failures`, `HERA_SOURCE_DELTA_NONE_OBSERVED`였다. 현재 원격 branch/PR 또는 merged-main 증거로 확대하지 않는다.
+`8c611f...`는 PR #131 `chore: reconcile tracked HiGodot v3.1.4 authority state`의 Git commit이며 커밋 메시지 자체가 protected Task8 product source change 없음이라고 기록한다. 즉 Sync21의 `product_head_local`은 당시 **로컬 branch Git HEAD/baseline**이고, 실제 Task8 제품 구현은 그 위의 커밋되지 않은 worktree delta였다.
+
+현재 원격 `feat/task8-spell-use-screen-v2` 브랜치/PR은 없고, fresh remote scan에서 발견한 Task8/handoff 브랜치들에도 `src/ui/spell_workflow/spell_use_screen.gd`가 없다. 따라서 GitHub history에서 제품 delta를 복구할 수 없다.
+
+역사 acceptance checkpoint는 `15 tests / 90 assertions / 0 failures`, predecessor `42 suites / 1,588 assertions / 0 failures`, `HERA_SOURCE_DELTA_NONE_OBSERVED`였다. 이는 당시 관찰한 worktree 상태의 provenance이며 현재 로컬 delta가 여전히 존재함을 증명하지 않는다.
+
+현재 local executor의 첫 책임은 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`다. delta가 있으면 reset/restore/clean 없이 보존한 뒤 fresh HiGodot/GUT/Hera/`git diff --check`/exact-path adversarial review를 수행한다. delta가 사라졌다면 GitHub text write로 재구축하지 않고 `docs/superpowers/plans/2026-08-11-task8-spell-use-screen.md`를 따라 HiGodot로 TDD 재작성한다.
+
+상세 증거: `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`.
 
 ## Sync21 continuation / executor boundary
 
@@ -182,23 +200,27 @@ spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
 
 ## Parallel work protection
 
-PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft다. 현재 교정과 Task8 recovery가 이 PR의 파일을 수정·재base·merge하거나 완료로 주장하지 않는다: `PR151_DO_NOT_TOUCH`.
+PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft다. Task8 recovery가 이 PR의 파일을 수정·rebase·merge하거나 완료로 주장하지 않는다: `PR151_DO_NOT_TOUCH`.
 
 ## 현재 다음 순서
 
 ```text
-1. Sync34 current-authority correction exact-head GREEN / merge / Notion readback
-2. TASK8_PR_PREP_REVERIFY_PENDING — remote/local authority를 fresh하게 재확인
-3. Task8 exact-head PR/merge 가능 상태 복구
-4. Task9 Root + responsive/E2E integration
-5. 대표 00~10분 Visualized Slice Human QA
-6. 10~23 → 46분으로 증거 확장
+1. Sync34 = SYNCED_TO_MAIN_AND_NOTION_READBACK
+2. TASK8_PR_PREP_REVERIFY_PENDING
+3. TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+4. recovered delta가 있으면 fresh local acceptance + exact-path review → commit/push/PR
+5. recovered delta가 없으면 HiGodot TDD re-authoring
+6. Task8 merged-main readback
+7. Task9 Root + responsive/E2E integration
+8. 대표 00~10분 Visualized Slice Human QA
+9. 10~23 → 46분으로 증거 확장
 ```
 
 ## 완료로 주장하지 않는 항목
 
 ```text
 TASK8_PR_PREP_REVERIFY_PENDING
+TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
 HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
