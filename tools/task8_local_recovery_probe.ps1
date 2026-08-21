@@ -30,9 +30,12 @@ function Inspect-Worktree {
         $Cached = Convert-Lines @(git diff --cached --name-status)
         $Untracked = Convert-Lines @(git ls-files --others --exclude-standard)
 
-        $BaselineAvailable = $true
-        & git cat-file -e "$Baseline`^{commit}" 2>$null
-        if ($LASTEXITCODE -ne 0) {
+        $BaselineAvailable = $false
+        try {
+            & git cat-file -e "$Baseline`^{commit}" 2>$null
+            $BaselineAvailable = ($LASTEXITCODE -eq 0)
+        }
+        catch {
             $BaselineAvailable = $false
         }
 
@@ -52,6 +55,7 @@ function Inspect-Worktree {
             top_level = $TopLevel
             branch = $Branch
             head = $Head
+            inspection_error = $null
             historical_branch_match = ($Branch -eq $HistoricalBranch)
             historical_baseline_match = ($Head -eq $Baseline)
             baseline_object_available = $BaselineAvailable
@@ -107,7 +111,22 @@ foreach ($CandidatePath in $CandidatePaths) {
         catch {
             $Inspections += [ordered]@{
                 path = $CandidatePath
+                top_level = $null
+                branch = $null
+                head = $null
                 inspection_error = $_.Exception.Message
+                historical_branch_match = $false
+                historical_baseline_match = $false
+                baseline_object_available = $false
+                status = @()
+                working_name_status = @()
+                cached_name_status = @()
+                untracked_paths = @()
+                baseline_to_head_log = @()
+                baseline_to_head_name_status = @()
+                preferred_spell_use_script_exists = $false
+                preferred_spell_use_scene_exists = $false
+                delta_evidence_present = $false
             }
         }
     }
