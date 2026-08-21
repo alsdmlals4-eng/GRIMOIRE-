@@ -28,22 +28,6 @@
       "work_package_source": "templates/ai/DEEPSEEK_WORK_PACKAGE.md",
       "worktree_parent": ".worktrees/"
     },
-    "human_validation": "HUMAN_NOT_RUN",
-    "model_recommendation": "USER_CHANGES_SETTING_AT_CHECKPOINT",
-    "planning_first_grill_me": {
-      "actual_project_batch_execution": "NOT_RUN",
-      "base_contract_source": "docs/PLANNING_FIRST_GRILL_ME_BATCH_POLICY.md",
-      "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
-      "base_release_lock": "base-v9.4.3.lock.json",
-      "checkpoint_template": "templates/project-operations/GRILL_ME_BATCH_CHECKPOINT.md",
-      "max_approved_decisions_per_batch": 10,
-      "numeric_default_state": "RECOMMENDED_DEFAULT",
-      "planning_conflict_state": "GRILL_ME_REQUIRED",
-      "post_merge_sheet_state": "SYNCED_TO_MAIN",
-      "pre_merge_sheet_state": "APPROVED_PENDING_MERGE"
-    },
-    "provider_measurement": "NOT_RUN",
-    "runtime_validation": "NOT_RUN",
     "first_prompt_governance": {
       "actual_project_instruction_execution": "NOT_RUN",
       "approval_reuse": "REUSE_EXACT_APPROVAL_REFERENCE",
@@ -63,7 +47,23 @@
         "IDENTICAL_VALIDATION_RERUN"
       ],
       "unconfirmed_state": "AWAITING_USER_CONFIRMATION"
-    }
+    },
+    "human_validation": "HUMAN_NOT_RUN",
+    "model_recommendation": "USER_CHANGES_SETTING_AT_CHECKPOINT",
+    "planning_first_grill_me": {
+      "actual_project_batch_execution": "NOT_RUN",
+      "base_contract_source": "docs/PLANNING_FIRST_GRILL_ME_BATCH_POLICY.md",
+      "base_release_finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
+      "base_release_lock": "base-v9.4.3.lock.json",
+      "checkpoint_template": "templates/project-operations/GRILL_ME_BATCH_CHECKPOINT.md",
+      "max_approved_decisions_per_batch": 10,
+      "numeric_default_state": "RECOMMENDED_DEFAULT",
+      "planning_conflict_state": "GRILL_ME_REQUIRED",
+      "post_merge_sheet_state": "SYNCED_TO_MAIN",
+      "pre_merge_sheet_state": "APPROVED_PENDING_MERGE"
+    },
+    "provider_measurement": "NOT_RUN",
+    "runtime_validation": "NOT_RUN"
   },
   "compatibility": {
     "legacy_repository_aliases": [
@@ -77,25 +77,28 @@
     "art_style_01": "APPROVED_A_MODIFIED_LOCKED",
     "asset_spec_01": "APPROVED_SPEC",
     "battle_rules_01": "APPROVED_SITUATION_RESOLUTION_RULES",
-    "codex": "BLOCKED",
+    "codex": "OPTIONAL_EXECUTOR",
+    "device_validation": "NOT_RUN",
+    "full_vertical_slice": "NOT_RUN",
     "human_validation": "NOT_RUN",
-    "implementation": "NOT_STARTED",
+    "implementation": "PARTIAL_FOUNDATION",
     "mobile_device_validation": "NOT_RUN",
-    "next_product_gate": "MOBILE-FOUNDATION-01",
-    "planning": "APPROVED",
-    "runtime_validation": "NOT_RUN"
+    "next_product_gate": "TASK8_PR_PREP_REVERIFY_PENDING",
+    "performance_validation": "NOT_RUN",
+    "planning": "COMPLETE_FROSTBLOOM_FIRST_SESSION",
+    "runtime_validation": "STAR_CIRCUIT_AUTOMATED_POC_PASS_FULL_SLICE_NOT_RUN"
   },
   "entrypoints": {
     "active_context": "docs/ACTIVE_CONTEXT.md",
     "agents": "AGENTS.md",
     "current_confirmed_decisions": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "current_platform_decision": "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
-    "current_project_audit": "docs/planning/PROJECT_ADVERSARIAL_AUDIT_2026-08-02.md",
-    "current_sync_receipt": "docs/planning/sync/GR-SYNC-20260802-07-MAIN.md",
+    "current_project_audit": "docs/planning/CANON_AUTHORITY_REALITY_SYNC_2026-08-21.md",
+    "current_sync_receipt": "docs/planning/sync/GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC.md",
+    "current_unresolved_gates": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
     "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
-    "google_sheet_contract": "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md",
     "latest_decision_addendum": "docs/planning/DECISION_LOG_ADDENDUM_2026-08-01F.md",
     "start_here": "START_HERE.md"
   },
@@ -104,7 +107,7 @@
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
     "last_full_audit": "2026-08-02",
     "main_commit": "fe88236946a87362a43aafe598348b84c42a2243",
-    "main_sync": "SYNCED_TO_MAIN",
+    "main_sync": "HISTORICAL_PROVENANCE_ONLY",
     "merged_pr": 27,
     "readback_tabs": [
       "00_프로젝트_허브",
@@ -122,12 +125,14 @@
       "90_본제작_출시_사업",
       "99_변경이력"
     ],
-    "role": "USER_FACING_GDD_WORKSPACE",
-    "sheet_only_change_policy": "PROPOSED_SHEET_CHANGE",
-    "sheet_readback": "PASS",
+    "retirement_gate": "UNIQUE_MATERIAL_AUDIT_REQUIRED",
+    "retirement_state": "BLOCKED_UNVERIFIED_UNIQUE_MATERIAL",
+    "role": "MIGRATION_ONLY_UNTIL_REMOVAL",
+    "sheet_only_change_policy": "HISTORICAL_PROVENANCE_ONLY",
+    "sheet_readback": "HISTORICAL_PASS_CURRENT_NOT_AUTHORITY",
     "sync_bundle": "GR-SYNC-20260802-07",
-    "sync_status": "SYNCED_TO_MAIN",
-    "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC"
+    "sync_status": "UNIQUE_MATERIAL_AUDIT_REQUIRED",
+    "write_policy": "NO_NEW_CANON_WRITES"
   },
   "generated_outputs": {
     "compatibility_views": [
@@ -152,26 +157,30 @@
   },
   "project": {
     "engine": "Godot 4.7.1 stable candidate",
-    "execution_profile": "PLANNING_ONLY_PROFILE",
+    "execution_profile": "DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION",
     "follow_up_platform": "PC",
-    "godot_project_status": "NOT_CREATED",
+    "godot_project_status": "CREATED",
+    "main_scene": "res://src/ui/star_circuit_harness.tscn",
+    "main_scene_role": "DEVELOPMENT_RUNTIME_POC_ENTRY",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
+    "orientation": "LANDSCAPE_FIXED",
     "platform_decision": "GM-PLATFORM-02",
     "primary_platform": "Mobile",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
+    "renderer": "GL_COMPATIBILITY",
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "root": ".",
-    "work_mode": "PLAN"
+    "work_mode": "IMPLEMENT_AND_VALIDATE"
   },
   "project_registry": {
     "hash_definition": "RAW_FILE_BYTES_SHA256",
     "path": "skills/SKILL_REGISTRY.json",
-    "sha256": "d246fa142be0639e4b83d0a86ef1ca160e1f45e09116baa3e1b92142d8db6445"
+    "sha256": "4533f735876e70bada2e8c60bab3d52a1068230689fee1335c0d746e4acb9b6a"
   },
   "protected_baseline": {
     "authority_ref": "refs/remotes/origin/main",
-    "commit": "fe88236946a87362a43aafe598348b84c42a2243",
-    "main_sync": "SYNCED_TO_MAIN"
+    "commit": "LIVE_GITHUB_DEFAULT_BRANCH_READBACK",
+    "main_sync": "LIVE_READBACK_REQUIRED"
   },
   "protected_decisions": [
     "GM-PLANNING-APPROVAL-01",
@@ -305,16 +314,26 @@
     "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
     "base_shared_external_ai_adapter": "REQUIRED_ON_PULL_REQUEST",
     "base_v942_planning_first_adoption": "REQUIRED_ON_PULL_REQUEST",
+    "base_v943_first_prompt_adoption": "REQUIRED_ON_PULL_REQUEST",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
+    "device": "NOT_RUN",
+    "full_vertical_slice": "NOT_RUN",
     "generated_views": "CURRENT",
     "generator_check": "REQUIRED",
-    "godot_runtime": "NOT_RUN",
-    "godot_static": "NOT_AVAILABLE_NO_PROJECT",
+    "godot_runtime": "STAR_CIRCUIT_AUTOMATED_POC_PASS_FULL_SLICE_NOT_RUN",
+    "godot_static": "AVAILABLE_PROJECT_CREATED",
     "human": "NOT_RUN",
     "json_parse": "REQUIRED",
     "mobile": "NOT_RUN",
     "pc_input": "NOT_RUN",
-    "registry_hash": "REQUIRED",
-    "base_v943_first_prompt_adoption": "REQUIRED_ON_PULL_REQUEST"
+    "performance": "NOT_RUN",
+    "registry_hash": "REQUIRED"
+  },
+  "workspace_authority": {
+    "default_cost_boundary": "ZERO_INCREMENTAL_COST",
+    "google_sheets": "MIGRATION_ONLY_UNTIL_REMOVAL",
+    "human_facing_canon": "NOTION_HUMAN_FACING_CANON",
+    "project_home": "GRIMOIRE",
+    "repository_canon": "REPOSITORY_STRUCTURED_AND_RUNTIME_CANON"
   }
 }
