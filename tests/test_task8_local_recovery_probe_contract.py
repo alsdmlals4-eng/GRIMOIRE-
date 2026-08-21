@@ -15,6 +15,11 @@ HISTORICAL_PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2
 BASELINE = "8c611f601aa98397ed1558e92ab207e0e8347a9b"
 HISTORICAL_BRANCH = "feat/task8-spell-use-screen-v2"
 HISTORICAL_WORKTREE = ".worktrees/task8-spell-use-screen-v2"
+BOOTSTRAP_COMMIT = "15139d80ab7112ea93e5090eece9cc145ae80f6b"
+RAW_PROBE_URL = (
+    "https://raw.githubusercontent.com/alsdmlals4-eng/GRIMOIRE-/"
+    f"{BOOTSTRAP_COMMIT}/tools/task8_local_recovery_probe.ps1"
+)
 
 
 def run_git(cwd: Path, *args: str) -> str:
@@ -91,6 +96,18 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             "PR #151",
             "DO_NOT_TOUCH",
             "Do not reconstruct product files through GitHub",
+        ):
+            self.assertIn(token, text)
+
+    def test_current_packet_supports_temp_bootstrap_without_repo_git_mutation(self) -> None:
+        text = PACKET.read_text(encoding="utf-8")
+        for token in (
+            "TEMP_BOOTSTRAP_PREFERRED_WHEN_LOCAL_MAIN_NOT_SYNCED",
+            BOOTSTRAP_COMMIT,
+            RAW_PROBE_URL,
+            "$env:TEMP",
+            "Invoke-WebRequest",
+            "Do not fetch, pull, checkout, switch, reset, restore, clean, or stash before this probe",
         ):
             self.assertIn(token, text)
 
