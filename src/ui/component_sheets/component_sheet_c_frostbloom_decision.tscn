@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource path="res://src/ui/component_sheets/component_sheet_c_frostbloom_decision.gd" type="Script" id="1"]
+[ext_resource path="res://src/ui/components/evidence_pin.tscn" type="PackedScene" id="2"]
+[ext_resource path="res://src/ui/components/forecast_card.tscn" type="PackedScene" id="3"]
+[ext_resource path="res://src/ui/components/context_delta_card.tscn" type="PackedScene" id="4"]
+
+[node name="ComponentSheetCFrostbloomDecision" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Frame" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"AcademyPanel"
+
+[node name="Margin" type="MarginContainer" parent="Frame"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="Content" type="VBoxContainer" parent="Frame/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Frame/Margin/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "COMPONENT SHEET C / FROSTBLOOM DECISION"
+
+[node name="Subtitle" type="Label" parent="Frame/Margin/Content"]
+layout_mode = 2
+text = "Persistent evidence flows from W6 forecast into W7 context delta without a duplicate decision brief."
+autowrap_mode = 2
+
+[node name="EvidencePin" parent="Frame/Margin/Content" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="FlowHint" type="Label" parent="Frame/Margin/Content"]
+layout_mode = 2
+text = "SAME PIN IDENTITY  →  W6 FORECAST  →  ACCEPTED W6 RESULT  →  W7 CONTEXT DELTA"
+
+[node name="DecisionRow" type="HBoxContainer" parent="Frame/Margin/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="ForecastCard" parent="Frame/Margin/Content/DecisionRow" instance=ExtResource("3")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContextDeltaCard" parent="Frame/Margin/Content/DecisionRow" instance=ExtResource("4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="W6ResultAnchor" type="PanelContainer" parent="Frame/Margin/Content"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_type_variation = &"AcademyPanelPinned"
+
+[node name="Label" type="Label" parent="Frame/Margin/Content/W6ResultAnchor"]
+layout_mode = 2
+text = "W6 RESULT ANCHOR / ACCEPTED RESULT PERSISTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Footer" type="Label" parent="Frame/Margin/Content"]
+layout_mode = 2
+text = "NO SECOND DECISION BRIEF / NO SECOND RESULT RECAP / UNKNOWN REMAINS VISIBLE"
+horizontal_alignment = 1

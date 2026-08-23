@@ -70,6 +70,20 @@ static func _configure_panels(theme: Theme) -> void:
         _style_box(SURFACE_PANEL_EMPHASIS, LINE_GOLD_ACTIVE, 2, PANEL_RADIUS, 16.0)
     )
 
+    theme.set_type_variation(&"AcademyPanelPinned", &"PanelContainer")
+    theme.set_stylebox(
+        &"panel",
+        &"AcademyPanelPinned",
+        _style_box(SURFACE_INSET, PLAYER_CYAN, 2, PANEL_RADIUS, 12.0)
+    )
+
+    theme.set_type_variation(&"AcademyPanelModal", &"PanelContainer")
+    theme.set_stylebox(
+        &"panel",
+        &"AcademyPanelModal",
+        _style_box(SURFACE_PANEL_EMPHASIS, LINE_GOLD_ACTIVE, 2, PANEL_RADIUS, 20.0)
+    )
+
 
 static func _configure_buttons(theme: Theme) -> void:
     theme.set_type_variation(&"AcademyButton", &"Button")
@@ -98,6 +112,34 @@ static func _configure_buttons(theme: Theme) -> void:
     theme.set_color(&"font_pressed_color", &"AcademyButtonPrimary", SURFACE_CANVAS)
     theme.set_font_size(&"font_size", &"AcademyButtonPrimary", 19)
 
+    theme.set_type_variation(&"AcademyButtonCaution", &"Button")
+    _set_button_set(
+        theme,
+        &"AcademyButtonCaution",
+        SURFACE_PANEL,
+        SURFACE_PANEL_EMPHASIS,
+        WARNING_AMBER,
+        TEXT_PRIMARY,
+        BUTTON_RADIUS,
+        2
+    )
+    theme.set_stylebox(
+        &"hover",
+        &"AcademyButtonCaution",
+        _style_box(SURFACE_PANEL_EMPHASIS, WARNING_AMBER, 2, BUTTON_RADIUS, 12.0)
+    )
+
+    theme.set_type_variation(&"AcademyButtonQuiet", &"Button")
+    _set_button_set(
+        theme,
+        &"AcademyButtonQuiet",
+        SURFACE_INSET,
+        SURFACE_PANEL,
+        LINE_BRASS,
+        TEXT_SECONDARY,
+        BUTTON_RADIUS
+    )
+
 
 static func _configure_badges(theme: Theme) -> void:
     theme.set_type_variation(&"AcademyBadge", &"PanelContainer")
@@ -105,6 +147,20 @@ static func _configure_badges(theme: Theme) -> void:
         &"panel",
         &"AcademyBadge",
         _style_box(SURFACE_INSET, LINE_BRASS, 1, 12, 10.0)
+    )
+
+    theme.set_type_variation(&"AcademyBadgeSelected", &"PanelContainer")
+    theme.set_stylebox(
+        &"panel",
+        &"AcademyBadgeSelected",
+        _style_box(SURFACE_INSET, PLAYER_CYAN, 2, 12, 10.0)
+    )
+
+    theme.set_type_variation(&"AcademyBadgeUnknown", &"PanelContainer")
+    theme.set_stylebox(
+        &"panel",
+        &"AcademyBadgeUnknown",
+        _style_box(SURFACE_INSET, WARNING_AMBER, 1, 12, 10.0)
     )
 
 

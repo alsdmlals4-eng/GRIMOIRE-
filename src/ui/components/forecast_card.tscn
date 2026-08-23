@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource path="res://src/ui/components/forecast_card.gd" type="Script" id="1"]
+
+[node name="ForecastCard" type="PanelContainer"]
+custom_minimum_size = Vector2(520, 250)
+theme_type_variation = &"AcademyPanelEmphasis"
+script = ExtResource("1")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="Rows" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Margin/Rows"]
+layout_mode = 2
+text = "W6 FORECAST"
+
+[node name="Known" type="VBoxContainer" parent="Margin/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="Margin/Rows/Known"]
+layout_mode = 2
+text = "KNOWN IMPROVEMENT"
+
+[node name="Value" type="Label" parent="Margin/Rows/Known"]
+layout_mode = 2
+text = "Known improvement"
+autowrap_mode = 2
+
+[node name="Uncertain" type="VBoxContainer" parent="Margin/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="Margin/Rows/Uncertain"]
+layout_mode = 2
+text = "UNCERTAIN CONSEQUENCE"
+
+[node name="Value" type="Label" parent="Margin/Rows/Uncertain"]
+layout_mode = 2
+text = "Uncertain consequence"
+autowrap_mode = 2
+
+[node name="Success" type="VBoxContainer" parent="Margin/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Header" type="HBoxContainer" parent="Margin/Rows/Success"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Rows/Success/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SUCCESS BREAKDOWN"
+
+[node name="Percent" type="Label" parent="Margin/Rows/Success/Header"]
+layout_mode = 2
+text = "0%"
+horizontal_alignment = 2
+
+[node name="Breakdown" type="VBoxContainer" parent="Margin/Rows/Success"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Mana" type="HBoxContainer" parent="Margin/Rows"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Rows/Mana"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MANA COST"
+
+[node name="Value" type="Label" parent="Margin/Rows/Mana"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
