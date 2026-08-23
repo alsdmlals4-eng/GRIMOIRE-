@@ -87,6 +87,16 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
         "generation_status": "CURRENT",
     }
 
+    current = adapter["current_state"]
+    project = adapter["project"]
+    legacy_sheet = {
+        "id": adapter["gdd_sheet"]["id"],
+        "role": adapter["gdd_sheet"]["role"],
+        "sync_status": adapter["gdd_sheet"]["sync_status"],
+        "write_policy": adapter["gdd_sheet"]["write_policy"],
+        "retirement_gate": adapter["gdd_sheet"]["retirement_gate"],
+    }
+
     base_view = {
         "schema_version": 2,
         "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
@@ -103,32 +113,32 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
             "registry_sha256": adapter["base_release"]["registry_sha256"],
             "copy_common_skill_bodies": False,
         },
-        "project": adapter["project"],
+        "project": project,
         "maturity": {
-            "level": 2,
-            "status": "PLANNING_AND_ART_BIBLE_APPROVED_IMPLEMENTATION_NOT_STARTED",
-            "next_gate": adapter["current_state"]["next_product_gate"],
+            "level": 3,
+            "status": current["implementation"],
+            "planning": current["planning"],
+            "next_gate": current["next_product_gate"],
         },
-        "sheet": {
-            "id": adapter["gdd_sheet"]["id"],
-            "role": adapter["gdd_sheet"]["role"],
-            "sync_status": adapter["gdd_sheet"]["sync_status"],
-            "main_sync": adapter["gdd_sheet"]["main_sync"],
-            "write_policy": adapter["gdd_sheet"]["write_policy"],
-        },
+        "workspace_authority": adapter["workspace_authority"],
+        "legacy_sheet": legacy_sheet,
         "validation": {
-            "art_style_01": adapter["current_state"]["art_style_01"],
-            "art_bible_01": adapter["current_state"]["art_bible_01"],
-            "battle_rules_01": adapter["current_state"]["battle_rules_01"],
-            "runtime": adapter["current_state"]["runtime_validation"],
-            "human": adapter["current_state"]["human_validation"],
+            "art_style_01": current["art_style_01"],
+            "art_bible_01": current["art_bible_01"],
+            "battle_rules_01": current["battle_rules_01"],
+            "runtime": current["runtime_validation"],
+            "human": current["human_validation"],
+            "device": current["device_validation"],
+            "performance": current["performance_validation"],
+            "full_vertical_slice": current["full_vertical_slice"],
             "ci_gate": adapter["validation"]["ci_gate"],
             "adversarial_gate": adapter["validation"]["adversarial_gate"],
         },
     }
 
-    primary_platform = adapter["project"]["primary_platform"]
-    asset_spec_approved = adapter["current_state"]["asset_spec_01"] == "APPROVED_SPEC"
+    primary_platform = project["primary_platform"]
+    asset_spec_approved = current["asset_spec_01"] == "APPROVED_SPEC"
+    project_created = project["godot_project_status"] == "CREATED"
     skill_view = {
         "schema_version": 2,
         "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
@@ -137,10 +147,10 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
         "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
         "canonical_source_sha256": adapter_hash,
         "base_release": adapter["base_release"],
-        "project": adapter["project"],
+        "project": project,
         "platforms": {
             "primary": primary_platform,
-            "follow_up": adapter["project"]["follow_up_platform"],
+            "follow_up": project["follow_up_platform"],
             "touch_input": (
                 "PRIMARY_VALIDATION_REQUIRED"
                 if primary_platform == "Mobile"
@@ -150,39 +160,43 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
         },
         "engine": {
             "name": "Godot",
-            "version_candidate": "4.7.1 stable",
-            "project_file": "NOT_CREATED",
-            "renderer": "UNVERIFIED",
-            "autoloads": "NOT_CREATED",
-            "input_map": "NOT_CREATED",
-            "main_scene": "NOT_CREATED",
+            "version_candidate": project["engine"],
+            "project_file": "project.godot" if project_created else "NOT_CREATED",
+            "renderer": project.get("renderer", "UNVERIFIED"),
+            "autoloads": "TRACKED_PROJECT_GODOT" if project_created else "NOT_CREATED",
+            "input_map": "TRACKED_PROJECT_GODOT" if project_created else "NOT_CREATED",
+            "main_scene": project.get("main_scene", "NOT_CREATED"),
+            "main_scene_role": project.get("main_scene_role", "UNSPECIFIED"),
         },
         "execution_contracts": {
-            "current_execution_profile": "PLANNING_ONLY_PROFILE",
-            "current_product_stage": "DEMO_FIRST_VERTICAL_SLICE",
-            "current_work_mode": "PLAN",
+            "current_execution_profile": project["execution_profile"],
+            "current_product_stage": project["product_stage"],
+            "current_work_mode": project["work_mode"],
             "integrated_v9": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
         },
         "current_truth_sources": list(adapter["entrypoints"].values())
         + list(adapter["planning_authority"].values()),
+        "workspace_authority": adapter["workspace_authority"],
+        "legacy_sheet": legacy_sheet,
         "routing": {
             "precedence": adapter["routing"]["precedence"],
             "base_routes": base_routes,
             "project_routes": project_routes,
         },
         "implementation_permissions": {
-            "planning_documents": "ALLOWED_ON_APPROVED_PLANNING_BRANCH",
+            "planning_documents": "ALLOWED_ON_APPROVED_SCOPE",
             "operating_tooling": "ALLOWED",
-            "codex_build": "FORBIDDEN_IN_CURRENT_PROFILE",
-            "godot_code_scene_resource_data": "FORBIDDEN_IN_CURRENT_PROFILE",
+            "codex_build": "OPTIONAL_WITH_APPROVED_SCOPE_AND_EXECUTOR",
+            "godot_code_scene_resource_data": "PROJECT_TOOL_AUTHORITY_AND_APPROVED_SCOPE_REQUIRED",
             "main_branch_direct_write": "FORBIDDEN",
-            "pr_merge": "USER_BATCH_APPROVAL_GRANTED_SUBJECT_TO_VERIFICATION",
+            "pr_merge": "USER_APPROVED_SCOPE_SUBJECT_TO_VERIFICATION",
+            "product_state": current["implementation"],
         },
         "asset_and_license": {
             "approved_visual_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
             "locked_reference_edit": "PROHIBITED",
             "mass_asset_generation": (
-                "BLOCKED_BY_EXECUTION_PROFILE"
+                "BOUNDED_APPROVED_WORKSTREAM_ONLY"
                 if asset_spec_approved
                 else "BLOCKED_BY_ASSET_SPEC"
             ),

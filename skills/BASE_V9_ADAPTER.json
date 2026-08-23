@@ -10,42 +10,57 @@
     "repository": "alsdmlals4-eng/Base"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "3105a43df53358844230dee49489b58bb72e1d45b022b29c7981720d46863b2d",
+  "canonical_source_sha256": "ae0c66b76b8fdd2ba00efc8e1ec194b54528ad5abd5974eba223a0c35feedaa8",
   "generated": true,
+  "legacy_sheet": {
+    "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
+    "retirement_gate": "UNIQUE_MATERIAL_AUDIT_REQUIRED",
+    "role": "MIGRATION_ONLY_UNTIL_REMOVAL",
+    "sync_status": "UNIQUE_MATERIAL_AUDIT_REQUIRED",
+    "write_policy": "NO_NEW_CANON_WRITES"
+  },
   "maturity": {
-    "level": 2,
-    "next_gate": "MOBILE-FOUNDATION-01",
-    "status": "PLANNING_AND_ART_BIBLE_APPROVED_IMPLEMENTATION_NOT_STARTED"
+    "level": 3,
+    "next_gate": "TASK8_PR_PREP_REVERIFY_PENDING",
+    "planning": "COMPLETE_FROSTBLOOM_FIRST_SESSION",
+    "status": "PARTIAL_FOUNDATION"
   },
   "project": {
     "engine": "Godot 4.7.1 stable candidate",
-    "execution_profile": "PLANNING_ONLY_PROFILE",
+    "execution_profile": "DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION",
     "follow_up_platform": "PC",
-    "godot_project_status": "NOT_CREATED",
+    "godot_project_status": "CREATED",
+    "main_scene": "res://src/ui/star_circuit_harness.tscn",
+    "main_scene_role": "DEVELOPMENT_RUNTIME_POC_ENTRY",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
+    "orientation": "LANDSCAPE_FIXED",
     "platform_decision": "GM-PLATFORM-02",
     "primary_platform": "Mobile",
     "product_stage": "DEMO_FIRST_VERTICAL_SLICE",
+    "renderer": "GL_COMPATIBILITY",
     "repository": "alsdmlals4-eng/GRIMOIRE-",
     "root": ".",
-    "work_mode": "PLAN"
+    "work_mode": "IMPLEMENT_AND_VALIDATE"
   },
   "schema_version": 2,
-  "sheet": {
-    "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
-    "main_sync": "SYNCED_TO_MAIN",
-    "role": "USER_FACING_GDD_WORKSPACE",
-    "sync_status": "SYNCED_TO_MAIN",
-    "write_policy": "IMMEDIATE_APPROVED_CANON_SYNC"
-  },
   "validation": {
     "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
     "art_bible_01": "APPROVED_DUAL_STANDARD_ART_BIBLE",
     "art_style_01": "APPROVED_A_MODIFIED_LOCKED",
     "battle_rules_01": "APPROVED_SITUATION_RESOLUTION_RULES",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
+    "device": "NOT_RUN",
+    "full_vertical_slice": "NOT_RUN",
     "human": "NOT_RUN",
-    "runtime": "NOT_RUN"
+    "performance": "NOT_RUN",
+    "runtime": "STAR_CIRCUIT_AUTOMATED_POC_PASS_FULL_SLICE_NOT_RUN"
   },
-  "view_name": "BASE_V9_ADAPTER.json"
+  "view_name": "BASE_V9_ADAPTER.json",
+  "workspace_authority": {
+    "default_cost_boundary": "ZERO_INCREMENTAL_COST",
+    "google_sheets": "MIGRATION_ONLY_UNTIL_REMOVAL",
+    "human_facing_canon": "NOTION_HUMAN_FACING_CANON",
+    "project_home": "GRIMOIRE",
+    "repository_canon": "REPOSITORY_STRUCTURED_AND_RUNTIME_CANON"
+  }
 }

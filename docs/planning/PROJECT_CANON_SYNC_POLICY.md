@@ -1,4 +1,4 @@
-# GRIMOIRE 기획 정본 즉시 동기화 정책
+# GRIMOIRE 프로젝트 정본 동기화 정책
 
 ## 1. 문서 상태
 
@@ -6,140 +6,130 @@
 status: ACTIVE_PROJECT_WORK_PRINCIPLE
 policy_id: GM-CANON-SYNC-01
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
-effective_date: 2026-07-31
-github_repository: alsdmlals4-eng/GRIMOIRE-
-google_sheet_id: 19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM
+effective_date: 2026-08-21
+sync_update: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
+human_facing_canon: NOTION_HUMAN_FACING_CANON
+repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
+google_sheets: GOOGLE_SHEETS_MIGRATION_ONLY_UNTIL_REMOVAL
 ```
 
-## 2. 원칙
+## 2. 권위 분리
 
-주요 변경사항과 사용자 승인 결정은 대화 안에만 남기지 않는다. 같은 작업 단위에서 GitHub 권위 문서·계획 데이터와 연결된 Google Sheet 위치를 찾아 **같은 Decision ID**로 반영하고, 변경 경로·커밋·Sheet 범위·동기화 상태를 기록한다.
+GRIMOIRE는 한 도구가 모든 정보를 소유하지 않는다.
 
-작업 브랜치에 반영된 상태와 main에 병합된 상태는 구분한다.
+- **Notion** — 사람이 확인·수정하는 Project Home, 전체 방향, Visual/Asset/Flow, 핵심 시스템의 사람용 설명과 작업 상태를 소유한다.
+- **GitHub repository** — Markdown spec, JSON/game data, code, Scene, Resource, test, tracked asset, runtime evidence를 소유한다.
+- **Runtime evidence** — 실제 동작·테스트·기기·성능·Human 검증 주장의 최종 근거다.
+- **Google Sheets** — `MIGRATION_ONLY_UNTIL_REMOVAL`. 신규 기획·승인·상태의 입력면이나 정본으로 사용하지 않는다.
+
+Notion의 설명이 구조화 데이터·코드·Scene·Resource·Test·Runtime 의미를 바꾸면 repository를 먼저 동기화한 후 구현한다. Repository의 구현 사실이 사람용 상태를 바꾸면 병합된 main readback 뒤 Notion에 같은 사실을 반영한다.
+
+## 3. 현재 기본 흐름
 
 ```text
-승인
-→ Decision ID 확정
-→ GitHub 권위 문서·계획 데이터 갱신
-→ authority commit 생성
-→ 연결된 Sheet 탭·행 갱신
-→ 양쪽 재조회
-→ SYNCED_TO_WORKING_BRANCH
-→ PR 병합
-→ main SHA·Sheet 변경이력 재검증
-→ SYNCED_TO_MAIN
+사용자 승인 또는 검증된 상태 변화
+→ Decision/Sync ID 유지 또는 확정
+→ 해당 domain owner 갱신
+→ GitHub 작업 브랜치/PR
+→ exact-head test + adversarial review
+→ merge
+→ merged-main readback
+→ Notion bounded update
+→ Notion destination readback
+→ SYNCED_TO_MAIN_AND_NOTION_READBACK
 ```
 
-## 3. 필수 발동 조건
+진행 중 PR은 main 완료 상태가 아니다. Notion은 진행 중 작업을 표시할 수 있지만 반드시 `DRAFT/UNMERGED/IN_PROGRESS` 경계를 함께 기록한다.
 
-다음 중 하나가 승인되거나 의미 있게 변경되면 즉시 동기화한다.
+## 4. 필수 발동 조건
+
+다음이 승인되거나 의미 있게 바뀌면 관련 owner를 같은 작업 단위에서 동기화한다.
 
 - 프로젝트 코어·플레이어 약속·비타협 원칙
-- 새 시스템·핵심 규칙·자원·성장·실패 구조
-- Vertical Slice·에피소드·세션·전투·자유일정 등 콘텐츠 구조
-- 주요 인물·세계관·서사 진행·복선·결과 구조
-- 주요 화면 전환·입력·오류 복구·정보 위계·접근성 등 UX 흐름
-- 플랫폼·엔진·제작량·시간 예산·출시 범위
-- Gate 승인·차단·프로필 전환·Codex 또는 구현 권한
-- Art Style·Art Bible·Asset Specification·Audio Direction의 승인
+- 핵심 시스템·규칙·자원·성장·실패 구조
+- Vertical Slice·세션·전투·자유일정 등 콘텐츠 구조
+- 주요 인물·세계관·서사·결과 구조
+- 화면 전환·입력·오류 복구·정보 위계·접근성
+- 플랫폼·엔진·제작량·출시 범위
+- Gate·실행 권한·구현 상태
+- Art Style·Art Bible·Asset Specification·Audio Direction
 - 기존 정본을 대체하거나 `SUPERSEDED` 처리하는 결정
 
-## 4. 비발동 조건
+## 5. 비발동 조건
 
-다음은 설계 의미가 바뀌지 않으면 전체 정본 동기화 번들을 요구하지 않는다.
+설계 의미가 바뀌지 않는 오탈자·문장 정리·링크/SHA 단순 정정·동일 검증 재실행은 전체 동기화 번들을 요구하지 않는다. 다만 정본 간 실제 충돌을 발견하면 별도 감사 또는 교정 work unit으로 기록한다.
 
-- 오탈자·문장 다듬기
-- 링크·날짜·SHA의 단순 정정
-- 승인된 구조의 반복 데이터 입력
-- 결정이나 상태를 바꾸지 않는 명백한 버그 수정
-- 아직 승인되지 않은 브레인스토밍·후보·연구 메모
+## 6. GitHub 반영 위치
 
-다만 위 작업도 기존 권위 문서와 Sheet 사이의 불일치를 발견하면 감사 항목으로 기록한다.
+변경 성격에 따라 필요한 현재 owner만 갱신한다.
 
-## 5. Decision ID 규칙
-
-- 하나의 결정은 GitHub와 Sheet에서 동일한 ID를 사용한다.
-- 승인 내용을 여러 하위 계약으로 분리할 필요가 있으면 각 계약 ID를 유지하고, 동기화 작업 묶음은 별도의 Sync ID로 연결한다.
-- Sheet의 `02_현재_확정결정`에는 제품 결정 ID를 기록한다.
-- Sheet의 `99_변경이력`에는 Sync ID와 포함된 Decision ID를 기록한다.
-- 대체 결정은 이전 ID를 삭제하지 않고 `대체 Decision` 또는 `SUPERSEDED_BY`로 연결한다.
-
-## 6. GitHub 필수 반영 위치
-
-결정의 성격에 따라 다음 중 필요한 위치를 같은 작업 단위에서 갱신한다.
-
-1. `docs/planning/DECISION_LOG.md` 또는 최신 Addendum
-2. 해당 분야의 단일 책임 정본
-3. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-4. `docs/ACTIVE_CONTEXT.md`
-5. `AGENTS.md` — 프로젝트 전역 작업 규칙일 때
+1. 해당 분야 단일 책임 정본
+2. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
+3. `docs/ACTIVE_CONTEXT.md`
+4. `START_HERE.md`
+5. `AGENTS.md` — 프로젝트 전역 작업 규칙이 바뀔 때
 6. `docs/DEVELOPMENT_GATES.md` — Gate·권한·순서가 바뀔 때
-7. `docs/DESIGN_DOCUMENT_REGISTRY.json` 또는 연결된 계획 데이터
-8. `docs/DOCUMENTATION_MAP.md` — 새 책임 원본이 생길 때
-9. `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md` — Sheet 계약·매핑이 바뀔 때
+7. `docs/DESIGN_DOCUMENT_REGISTRY.json` 또는 구조화 데이터
+8. `skills/PROJECT_BASE_ADAPTER.json`과 생성 뷰 — 작업 라우팅/실제 상태가 바뀔 때
+9. Sync receipt — 중요한 상태 전환일 때
 
-## 7. Google Sheet 필수 반영 위치
+과거 sync receipt나 superseded 문서는 provenance로 보존하고 현재 문서처럼 재작성하지 않는다.
 
-모든 승인 결정은 최소 다음 위치를 검토한다.
+## 7. Notion 반영 위치
 
-- `02_현재_확정결정`: Decision ID·결정·책임 원본·authority commit
-- 해당 도메인 탭: 실제 계획 데이터
-- `04_누락_충돌_감사`: 충돌·미검증·부분 동기화 여부
-- `99_변경이력`: Sync ID·GitHub 커밋·Sheet 범위·재검증 결과
+사람용 의미가 바뀌면 최소한 다음을 검토한다.
 
-작업 순서나 현재 Gate가 바뀌면 추가로 갱신한다.
+- Project Home — 제품 약속, 현재 단계, Implementation Reality Gate, 다음 blocker
+- Work Master — 진행 작업, 완료 기준, 검증 증거, PR/merged-main 상태
+- Core System Master — 사람에게 중요한 시스템 의미·의존성·상태
+- Visual/Asset/Flow 작업면 — 해당 변경이 실제로 그 domain을 건드릴 때만
 
-- `00_프로젝트_허브`
-- `01_작업순서`
-- `05_GDD_요약`
+모든 write는 목적 레코드만 bounded update하고, 변경 직전 `Revision / Last Edited`를 확인할 수 있는 경우 stale read를 fail-closed 처리한다. 쓰기 뒤 Project/Record Key/Revision/변경 필드를 재조회한다.
 
-## 8. 동기화 상태
+## 8. Google Sheets retirement
+
+`GOOGLE_SHEETS_MIGRATION_ONLY_UNTIL_REMOVAL`
+
+기존 Workbook과 역사 sync receipt는 바로 삭제하지 않는다.
+
+```text
+legacy Sheet inventory
+→ UNIQUE / DUPLICATE / OBSOLETE
+→ UNIQUE human meaning → Notion
+→ UNIQUE structured/runtime meaning → repository
+→ destination readback
+→ active consumer/reference count = 0 확인
+→ active routing/test 제거
+→ archive/trash/delete 별도 결정
+```
+
+현재는 고유 자료 전수 흡수 여부를 재검증하지 않았으므로 `BLOCKED_UNVERIFIED_UNIQUE_MATERIAL`이다. 따라서 **새 Sheet 정본 write는 금지하지만 역사 자료 삭제도 금지**한다.
+
+## 9. 동기화 상태
 
 | 상태 | 의미 |
 |---|---|
-| `SYNC_PENDING` | 승인됐지만 양쪽 반영이 시작되지 않음 |
-| `GITHUB_ONLY` | GitHub 반영 성공, Sheet 실패·차단 |
-| `SHEET_ONLY` | Sheet 반영 성공, GitHub 실패·차단 |
-| `SYNCED_TO_WORKING_BRANCH` | 작업 브랜치 authority commit과 Sheet가 같은 Decision ID·값으로 재조회됨 |
-| `SYNCED_TO_MAIN` | PR 병합 후 main SHA와 Sheet가 다시 일치함 |
-| `SYNC_CONFLICT` | 양쪽 값·상태·책임 경로가 충돌함 |
+| `WORKING_BRANCH_ONLY` | GitHub 작업 브랜치에만 존재 |
+| `PR_IN_PROGRESS` | 원격 PR 진행 중, main 미병합 |
+| `MAIN_READBACK_PENDING` | 병합됐지만 main 재조회 전 |
+| `NOTION_READBACK_PENDING` | main은 확인됐지만 사람용 Notion 반영/재조회 전 |
+| `SYNCED_TO_MAIN_AND_NOTION_READBACK` | 관련 repository main과 Notion을 모두 재조회함 |
+| `CONFLICT` | domain owner끼리 현재 사실이 충돌함 |
 
-`SYNCED_TO_WORKING_BRANCH`는 main 병합을 의미하지 않는다. `SYNCED_TO_MAIN`은 병합된 main과 Sheet를 모두 재조회한 뒤에만 사용한다.
+`PR_IN_PROGRESS`를 완료나 `SYNCED`로 승격하지 않는다.
 
-## 9. 실패 처리
+## 10. 증거 상한
 
-- 한쪽 쓰기가 실패하면 성공한 쪽을 롤백해 숨기지 않는다.
-- `GITHUB_ONLY` 또는 `SHEET_ONLY`로 기록하고 실패 위치·원인·다음 복구 작업을 남긴다.
-- 충돌 상태에서 완료·승인·검증 완료를 주장하지 않는다.
-- Sheet 단독 값은 GitHub 권위 결정을 대체하지 않는다.
-- 작업 브랜치 커밋을 main commit으로 표기하지 않는다.
+문서·정적 테스트·자동 CI·Godot 자동 Runtime·Human/Device/Performance/Full Slice는 서로 다른 증거 계층이다.
 
-## 10. 완료 보고 형식
+자동 CI가 성공해도 실제 실행하지 않은 다음 항목은 계속 `NOT_RUN`이다.
 
-주요 변경 작업의 최종 보고에는 다음을 포함한다.
+- Human validation
+- physical-device validation
+- performance/thermal validation
+- Full Vertical Slice validation
+- store/release submission
 
-```text
-Decision ID
-→ 승인·변경 요약
-→ GitHub 변경 경로
-→ authority commit SHA
-→ sync verification commit SHA(있는 경우)
-→ Google Sheet 탭·범위
-→ 동기화 상태
-→ 미검증·후행 항목
-```
+## 11. 역사적 Sheet 동기화
 
-## 11. 현재 초기 동기화 번들
-
-Sync ID: `GR-SYNC-20260731-04`
-
-포함 Decision ID:
-
-- `GM-PLANNING-APPROVAL-01`
-- `GM-BENCHMARK-FIRST-01`
-- `GM-WRITING-FREQUENCY-01`
-- `GM-GRIMOIRE-RECORD-01`
-- `GM-PLANNING-GATES-01`
-- `GM-CANON-SYNC-01`
-
-이 번들은 직전 승인 기획을 Sheet에 소급 반영하고, 이후 승인부터 본 정책을 기본 절차로 적용한다.
+2026-07~08의 `GR-SYNC-*` 문서와 `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`에 기록된 Sheet write/readback은 당시의 provenance로 유효하다. 다만 2026-08-21 이후 active project workflow의 authority는 본 정책의 Notion + repository domain split을 따른다.
