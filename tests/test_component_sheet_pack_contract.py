@@ -9,6 +9,8 @@ SPEC = ROOT / "docs/superpowers/specs/2026-08-20-component-sheet-image-productio
 FIXTURE = ROOT / "data/testing/component_sheet_samples_v1.json"
 CAPTURE_SCRIPT = ROOT / "tools/capture_component_sheets.gd"
 WORKFLOW = ROOT / ".github/workflows/validate-component-sheet-pack.yml"
+REVIEW_EVIDENCE = ROOT / "docs/planning/COMPONENT_SHEET_PACK_01_ADVERSARIAL_REVIEW_2026-08-20.md"
+SYNC_EVIDENCE = ROOT / "docs/planning/sync/GR-SYNC-20260820-33-COMPONENT-SHEET-PACK-IMPLEMENTATION.md"
 
 COMPONENTS = [
     "academy_panel.tscn",
@@ -133,6 +135,18 @@ class ComponentSheetPackContractTests(unittest.TestCase):
             "actions/upload-artifact@",
         ):
             self.assertIn(token, workflow, token)
+
+    def test_task7_closure_records_exist_and_preserve_evidence_ceiling(self):
+        self.assertTrue(REVIEW_EVIDENCE.is_file(), REVIEW_EVIDENCE.name)
+        self.assertTrue(SYNC_EVIDENCE.is_file(), SYNC_EVIDENCE.name)
+        if REVIEW_EVIDENCE.is_file():
+            text = REVIEW_EVIDENCE.read_text(encoding="utf-8")
+            for token in ("5/5 CLEAN", "Human", "Device", "Performance", "Full Slice", "NOT_RUN"):
+                self.assertIn(token, text, token)
+        if SYNC_EVIDENCE.is_file():
+            text = SYNC_EVIDENCE.read_text(encoding="utf-8")
+            for token in ("EXACT_HEAD", "NOT_RUN", "Notion", "POSTMERGE_PENDING"):
+                self.assertIn(token, text, token)
 
 
 if __name__ == "__main__":
