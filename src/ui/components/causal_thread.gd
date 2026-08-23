@@ -41,27 +41,26 @@ func _render_receipts() -> void:
         var row := PanelContainer.new()
         row.theme_type_variation = &"AcademyPanelPinned" if index == _receipts.size() - 1 else &"AcademyPanel"
         var margin := MarginContainer.new()
-        margin.add_theme_constant_override("margin_left", 10)
-        margin.add_theme_constant_override("margin_top", 7)
-        margin.add_theme_constant_override("margin_right", 10)
-        margin.add_theme_constant_override("margin_bottom", 7)
+        margin.add_theme_constant_override("margin_left", 8)
+        margin.add_theme_constant_override("margin_top", 2)
+        margin.add_theme_constant_override("margin_right", 8)
+        margin.add_theme_constant_override("margin_bottom", 2)
         var columns := HBoxContainer.new()
-        columns.add_theme_constant_override("separation", 10)
+        columns.add_theme_constant_override("separation", 8)
+        var connector := Label.new()
+        connector.text = "" if index == 0 else "↓"
+        connector.custom_minimum_size.x = 18.0
+        connector.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
         var kind_label := Label.new()
         kind_label.text = str(receipt.get("kind", ""))
-        kind_label.custom_minimum_size.x = 130.0
+        kind_label.custom_minimum_size.x = 110.0
         var text_label := Label.new()
         text_label.text = str(receipt.get("text", ""))
         text_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+        columns.add_child(connector)
         columns.add_child(kind_label)
         columns.add_child(text_label)
         margin.add_child(columns)
         row.add_child(margin)
         holder.add_child(row)
-
-        if index < _receipts.size() - 1:
-            var connector := Label.new()
-            connector.text = "TO"
-            connector.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-            holder.add_child(connector)
