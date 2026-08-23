@@ -75,7 +75,6 @@ func _capture_one(sheet_id: String, packed: PackedScene, size: Vector2i) -> Dict
     var sheet = packed.instantiate()
     viewport.add_child(sheet)
     if sheet is Control:
-        sheet.size = Vector2(size)
         sheet.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     if sheet.has_method("initialize_demo"):
         sheet.call("initialize_demo")
