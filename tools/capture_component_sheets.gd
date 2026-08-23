@@ -85,7 +85,7 @@ func _capture_one(sheet_id: String, packed: PackedScene, size: Vector2i) -> Dict
         await process_frame
         RenderingServer.force_draw(false, 0.0)
 
-    if not _content_fits_viewport(sheet, size):
+    if not _content_fits_viewport(sheet_id, sheet, size):
         viewport.queue_free()
         return {}
 
@@ -129,7 +129,7 @@ func _capture_one(sheet_id: String, packed: PackedScene, size: Vector2i) -> Dict
     }
 
 
-func _content_fits_viewport(sheet: Node, size: Vector2i) -> bool:
+func _content_fits_viewport(sheet_id: String, sheet: Node, size: Vector2i) -> bool:
     var content := sheet.get_node_or_null(CONTENT_PATH) as Control
     if content == null:
         push_error("Component sheet is missing required content root: %s" % CONTENT_PATH)
@@ -143,5 +143,14 @@ func _content_fits_viewport(sheet: Node, size: Vector2i) -> bool:
         and rect.end.y <= viewport_rect.end.y + CLIP_EPSILON
     )
     if not fits:
-        push_error("CONTENT_BOUNDS clip: viewport=%sx%s content=%s" % [size.x, size.y, rect])
+        push_error("CONTENT_BOUNDS clip: sheet=%s viewport=%sx%s content=%s" % [sheet_id, size.x, size.y, rect])
+        for child in content.get_children():
+            if child is Control:
+                print("CONTENT_CHILD sheet=%s name=%s rect=%s combined_min=%s custom_min=%s" % [
+                    sheet_id,
+                    child.name,
+                    child.get_global_rect(),
+                    child.get_combined_minimum_size(),
+                    child.custom_minimum_size,
+                ])
     return fits
