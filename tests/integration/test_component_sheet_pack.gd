@@ -18,7 +18,7 @@ const SHEET_C_SCENE := "res://src/ui/component_sheets/component_sheet_c_frostblo
 const SHEET_D_SCENE := "res://src/ui/component_sheets/component_sheet_d_result_grimoire.tscn"
 const SHEET_SCENES := [SHEET_A_SCENE, SHEET_B_SCENE, SHEET_C_SCENE, SHEET_D_SCENE]
 const REQUIRED_VISIBLE := {
-    SHEET_B_SCENE: [&"ContextHeader", &"FivePointStarComposer", &"ContextTargetSelector", &"CommitBar"],
+    SHEET_B_SCENE: [&"Header", &"Composer", &"TargetSelector", &"CommitBar"],
     SHEET_C_SCENE: [&"EvidencePin", &"ForecastCard", &"ContextDeltaCard"],
     SHEET_D_SCENE: [&"Facility", &"Life", &"Spirit", &"Relationship", &"Discovery", &"CausalThread"],
 }
@@ -244,7 +244,10 @@ func _check_result_components(case) -> void:
             case.assert_equal(&"VALID", snap.get("status", &""), "Supported causal sequence remains VALID")
             case.assert_false(snap.has("score"), "CausalThread does not invent aggregate score")
             case.assert_false(snap.has("grade"), "CausalThread does not invent aggregate grade")
-            causal.configure([{"kind": "GLOBAL_GRADE", "text": "Forbidden"}])
+            var invalid_receipts: Array[Dictionary] = [
+                {"kind": "GLOBAL_GRADE", "text": "Forbidden"},
+            ]
+            causal.configure(invalid_receipts)
             snap = causal.visual_snapshot()
             case.assert_equal(&"INVALID_RECEIPT_KIND", snap.get("status", &""), "Unsupported receipt kind fails closed")
             case.assert_equal("GLOBAL_GRADE", snap.get("receipts", [])[0].get("kind", ""), "Invalid receipt kind remains visible instead of remapped")
@@ -276,7 +279,6 @@ func _check_responsive_layout(case) -> void:
             var sheet = packed.instantiate()
             viewport.add_child(sheet)
             if sheet is Control:
-                sheet.size = Vector2(size)
                 sheet.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
             if sheet.has_method("initialize_demo"):
                 sheet.initialize_demo()
