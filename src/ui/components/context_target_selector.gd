@@ -32,7 +32,7 @@ func _rebuild_buttons() -> void:
     for target in _targets:
         var button := Button.new()
         var target_id := StringName(str(target["id"]))
-        button.custom_minimum_size = Vector2(0, 64)
+        button.custom_minimum_size = Vector2(48, 64)
         button.theme_type_variation = &"AcademyButtonPrimary" if target_id == _selected_id else &"AcademyButton"
         button.text = "%s\n%s" % [str(target["label"]), str(target["hint"])]
         button.set_meta("target_id", target_id)
