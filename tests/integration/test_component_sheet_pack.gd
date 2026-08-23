@@ -14,6 +14,7 @@ const COMPONENTS := {
 const ACADEMY_PANEL_SCENE := "res://src/ui/components/academy_panel.tscn"
 const SHEET_A_SCENE := "res://src/ui/component_sheets/component_sheet_a_foundations.tscn"
 const SHEET_B_SCENE := "res://src/ui/component_sheets/component_sheet_b_spell_workflow.tscn"
+const SHEET_C_SCENE := "res://src/ui/component_sheets/component_sheet_c_frostbloom_decision.tscn"
 
 
 func run(case) -> void:
@@ -32,6 +33,7 @@ func run(case) -> void:
 
     _check_foundations(case)
     _check_spell_workflow_components(case)
+    _check_frostbloom_components(case)
 
 
 func _check_foundations(case) -> void:
@@ -127,6 +129,67 @@ func _check_spell_workflow_components(case) -> void:
             if sheet.has_method("initialize_demo"):
                 sheet.initialize_demo()
             case.assert_true(sheet.theme != null, "Component Sheet B applies shared Theme")
+            sheet.free()
+
+
+func _check_frostbloom_components(case) -> void:
+    var evidence = _instantiate_if_available(COMPONENTS.evidence, case, "EvidencePin")
+    if evidence != null:
+        case.assert_true(evidence.has_method("configure"), "EvidencePin exposes configure")
+        case.assert_true(evidence.has_method("visual_snapshot"), "EvidencePin exposes visual_snapshot")
+        if evidence.has_method("configure") and evidence.has_method("visual_snapshot"):
+            evidence.configure(2, 2, "FIELD_HANDLING", false)
+            var snap: Dictionary = evidence.visual_snapshot()
+            case.assert_equal(3, snap.size(), "EvidencePin snapshot exposes exactly known/unknown/lens")
+            case.assert_equal(2, snap.get("known", -1), "EvidencePin preserves known count")
+            case.assert_equal(2, snap.get("unknown", -1), "EvidencePin preserves unknown count")
+            case.assert_equal("FIELD_HANDLING", snap.get("lens", ""), "EvidencePin preserves lens")
+        evidence.free()
+
+    var forecast = _instantiate_if_available(COMPONENTS.forecast, case, "ForecastCard")
+    if forecast != null:
+        case.assert_true(forecast.has_method("configure"), "ForecastCard exposes configure")
+        case.assert_true(forecast.has_method("visual_snapshot"), "ForecastCard exposes visual_snapshot")
+        if forecast.has_method("configure") and forecast.has_method("visual_snapshot"):
+            var rows: Array[Dictionary] = [
+                {"label": "Circuit", "value": "+18"},
+                {"label": "Observed context", "value": "+9"},
+            ]
+            forecast.configure("Pressure can be reduced.", "Spirit response remains unresolved.", 72, rows, 18)
+            var snap: Dictionary = forecast.visual_snapshot()
+            case.assert_equal(4, snap.size(), "ForecastCard snapshot exposes exactly four semantic fields")
+            case.assert_true(snap.has("KNOWN_IMPROVEMENT"), "ForecastCard keeps KNOWN_IMPROVEMENT")
+            case.assert_true(snap.has("UNCERTAIN_CONSEQUENCE"), "ForecastCard keeps UNCERTAIN_CONSEQUENCE")
+            case.assert_true(snap.has("FINAL_TARGET_SUCCESS_BREAKDOWN"), "ForecastCard keeps success breakdown")
+            case.assert_true(snap.has("MANA_COST"), "ForecastCard keeps Mana cost")
+            case.assert_equal(72, snap.get("FINAL_TARGET_SUCCESS_BREAKDOWN", {}).get("percent", -1), "ForecastCard preserves supplied success percent")
+            case.assert_equal(18, snap.get("MANA_COST", -1), "ForecastCard preserves supplied Mana cost")
+        forecast.free()
+
+    var delta = _instantiate_if_available(COMPONENTS.delta, case, "ContextDeltaCard")
+    if delta != null:
+        case.assert_true(delta.has_method("configure"), "ContextDeltaCard exposes configure")
+        case.assert_true(delta.has_method("visual_snapshot"), "ContextDeltaCard exposes visual_snapshot")
+        if delta.has_method("configure") and delta.has_method("visual_snapshot"):
+            delta.configure("W6 gain remains real.", "A deeper coupling appeared.", "Spirit load is shared.")
+            var snap: Dictionary = delta.visual_snapshot()
+            case.assert_equal(3, snap.size(), "ContextDeltaCard exposes exactly three semantic fields")
+            case.assert_equal("W6 gain remains real.", snap.get("STILL_TRUE", ""), "ContextDeltaCard preserves STILL_TRUE")
+            case.assert_equal("A deeper coupling appeared.", snap.get("NEWLY_LEARNED", ""), "ContextDeltaCard preserves NEWLY_LEARNED")
+            case.assert_equal("Spirit load is shared.", snap.get("NEW_TENSION", ""), "ContextDeltaCard preserves NEW_TENSION")
+        delta.free()
+
+    case.assert_true(FileAccess.file_exists(SHEET_C_SCENE), "Component Sheet C scene exists")
+    if FileAccess.file_exists(SHEET_C_SCENE):
+        var sheet_packed = load(SHEET_C_SCENE)
+        case.assert_true(sheet_packed != null and sheet_packed.can_instantiate(), "Component Sheet C loads")
+        if sheet_packed != null and sheet_packed.can_instantiate():
+            var sheet = sheet_packed.instantiate()
+            case.assert_true(sheet.has_method("initialize_demo"), "Component Sheet C exposes deterministic initialize_demo")
+            if sheet.has_method("initialize_demo"):
+                sheet.initialize_demo()
+            case.assert_true(sheet.theme != null, "Component Sheet C applies shared Theme")
+            case.assert_true(sheet.get_node_or_null("Frame/Margin/Content/EvidencePin") != null, "Sheet C keeps one persistent EvidencePin")
             sheet.free()
 
 
