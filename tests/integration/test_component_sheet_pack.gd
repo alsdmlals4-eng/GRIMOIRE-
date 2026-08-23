@@ -15,6 +15,7 @@ const ACADEMY_PANEL_SCENE := "res://src/ui/components/academy_panel.tscn"
 const SHEET_A_SCENE := "res://src/ui/component_sheets/component_sheet_a_foundations.tscn"
 const SHEET_B_SCENE := "res://src/ui/component_sheets/component_sheet_b_spell_workflow.tscn"
 const SHEET_C_SCENE := "res://src/ui/component_sheets/component_sheet_c_frostbloom_decision.tscn"
+const SHEET_D_SCENE := "res://src/ui/component_sheets/component_sheet_d_result_grimoire.tscn"
 
 
 func run(case) -> void:
@@ -34,6 +35,7 @@ func run(case) -> void:
     _check_foundations(case)
     _check_spell_workflow_components(case)
     _check_frostbloom_components(case)
+    _check_result_components(case)
 
 
 func _check_foundations(case) -> void:
@@ -190,6 +192,67 @@ func _check_frostbloom_components(case) -> void:
                 sheet.initialize_demo()
             case.assert_true(sheet.theme != null, "Component Sheet C applies shared Theme")
             case.assert_true(sheet.get_node_or_null("Frame/Margin/Content/EvidencePin") != null, "Sheet C keeps one persistent EvidencePin")
+            sheet.free()
+
+
+func _check_result_components(case) -> void:
+    var result = _instantiate_if_available(COMPONENTS.result, case, "ResultAxisCard")
+    if result != null:
+        case.assert_true(result.has_method("configure"), "ResultAxisCard exposes configure")
+        case.assert_true(result.has_method("visual_snapshot"), "ResultAxisCard exposes visual_snapshot")
+        if result.has_method("configure") and result.has_method("visual_snapshot"):
+            result.configure(&"FACILITY", "Greenhouse pressure stabilized.", "No aggregate score is attached.")
+            var snap: Dictionary = result.visual_snapshot()
+            case.assert_equal(&"FACILITY", snap.get("axis_id", &""), "ResultAxisCard preserves approved axis")
+            case.assert_equal(&"VALID", snap.get("status", &""), "Approved axis stays VALID")
+            case.assert_false(snap.has("score"), "ResultAxisCard does not invent score")
+            case.assert_false(snap.has("grade"), "ResultAxisCard does not invent grade")
+            case.assert_false(snap.has("stars"), "ResultAxisCard does not invent star rating")
+            result.configure(&"OVERALL", "Forbidden aggregate", "")
+            snap = result.visual_snapshot()
+            case.assert_equal(&"INVALID_AXIS", snap.get("status", &""), "Unsupported axis becomes explicit INVALID_AXIS")
+            case.assert_equal(&"OVERALL", snap.get("axis_id", &""), "Invalid axis identity remains visible instead of remapped")
+        result.free()
+
+    var causal = _instantiate_if_available(COMPONENTS.causal, case, "CausalThread")
+    if causal != null:
+        case.assert_true(causal.has_method("configure"), "CausalThread exposes configure")
+        case.assert_true(causal.has_method("visual_snapshot"), "CausalThread exposes visual_snapshot")
+        if causal.has_method("configure") and causal.has_method("visual_snapshot"):
+            var receipts: Array[Dictionary] = [
+                {"kind": "OBSERVATION", "text": "Pressure is visible."},
+                {"kind": "W6_CIRCUIT", "text": "Circuit accepted."},
+                {"kind": "W6_TARGET", "text": "Root layer selected."},
+                {"kind": "W6_RESULT", "text": "Pressure decreased."},
+                {"kind": "CONTEXT_DELTA", "text": "Spirit coupling surfaced."},
+                {"kind": "W7_JUDGMENT", "text": "Proceed with caution."},
+                {"kind": "W7_RESULT", "text": "Context remains unresolved."},
+            ]
+            causal.configure(receipts)
+            var snap: Dictionary = causal.visual_snapshot()
+            var kinds: Array = []
+            for receipt in snap.get("receipts", []):
+                kinds.append(receipt.get("kind", ""))
+            case.assert_equal(["OBSERVATION", "W6_CIRCUIT", "W6_TARGET", "W6_RESULT", "CONTEXT_DELTA", "W7_JUDGMENT", "W7_RESULT"], kinds, "CausalThread preserves all seven receipt kinds in supplied order")
+            case.assert_equal(&"VALID", snap.get("status", &""), "Supported causal sequence remains VALID")
+            case.assert_false(snap.has("score"), "CausalThread does not invent aggregate score")
+            case.assert_false(snap.has("grade"), "CausalThread does not invent aggregate grade")
+            causal.configure([{"kind": "GLOBAL_GRADE", "text": "Forbidden"}])
+            snap = causal.visual_snapshot()
+            case.assert_equal(&"INVALID_RECEIPT_KIND", snap.get("status", &""), "Unsupported receipt kind fails closed")
+            case.assert_equal("GLOBAL_GRADE", snap.get("receipts", [])[0].get("kind", ""), "Invalid receipt kind remains visible instead of remapped")
+        causal.free()
+
+    case.assert_true(FileAccess.file_exists(SHEET_D_SCENE), "Component Sheet D scene exists")
+    if FileAccess.file_exists(SHEET_D_SCENE):
+        var sheet_packed = load(SHEET_D_SCENE)
+        case.assert_true(sheet_packed != null and sheet_packed.can_instantiate(), "Component Sheet D loads")
+        if sheet_packed != null and sheet_packed.can_instantiate():
+            var sheet = sheet_packed.instantiate()
+            case.assert_true(sheet.has_method("initialize_demo"), "Component Sheet D exposes deterministic initialize_demo")
+            if sheet.has_method("initialize_demo"):
+                sheet.initialize_demo()
+            case.assert_true(sheet.theme != null, "Component Sheet D applies shared Theme")
             sheet.free()
 
 
