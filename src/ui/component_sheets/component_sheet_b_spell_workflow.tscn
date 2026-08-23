@@ -20,28 +20,28 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = -24.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"AcademyPanel"
 
 [node name="Margin" type="MarginContainer" parent="Frame"]
 layout_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
 
 [node name="Content" type="VBoxContainer" parent="Frame/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="Frame/Margin/Content"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 24
 text = "COMPONENT SHEET B / SPELL WORKFLOW"
 
 [node name="StateSequence" type="HBoxContainer" parent="Frame/Margin/Content"]
@@ -83,7 +83,7 @@ size_flags_horizontal = 3
 [node name="Body" type="HBoxContainer" parent="Frame/Margin/Content"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 20
+theme_override_constants/separation = 16
 
 [node name="Composer" parent="Frame/Margin/Content/Body" instance=ExtResource("3")]
 layout_mode = 2
@@ -91,7 +91,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TargetSelector" parent="Frame/Margin/Content/Body" instance=ExtResource("4")]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
