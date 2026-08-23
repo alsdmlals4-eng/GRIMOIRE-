@@ -18,6 +18,8 @@ const EXPECTED_OUTPUTS := [
     "component-sheet-d-1280x720.png",
 ]
 const MIN_BYTES := 10000
+const CONTENT_PATH := NodePath("Frame/Margin/Content")
+const CLIP_EPSILON := 0.5
 
 
 func _initialize() -> void:
@@ -83,6 +85,10 @@ func _capture_one(sheet_id: String, packed: PackedScene, size: Vector2i) -> Dict
         await process_frame
         RenderingServer.force_draw(false, 0.0)
 
+    if not _content_fits_viewport(sheet, size):
+        viewport.queue_free()
+        return {}
+
     var texture := viewport.get_texture()
     if texture == null:
         push_error("Component sheet viewport has no texture: %s" % sheet_id)
@@ -121,3 +127,21 @@ func _capture_one(sheet_id: String, packed: PackedScene, size: Vector2i) -> Dict
         "height": size.y,
         "bytes": byte_count,
     }
+
+
+func _content_fits_viewport(sheet: Node, size: Vector2i) -> bool:
+    var content := sheet.get_node_or_null(CONTENT_PATH) as Control
+    if content == null:
+        push_error("Component sheet is missing required content root: %s" % CONTENT_PATH)
+        return false
+    var rect := content.get_global_rect()
+    var viewport_rect := Rect2(Vector2.ZERO, Vector2(size))
+    var fits := (
+        rect.position.x >= -CLIP_EPSILON
+        and rect.position.y >= -CLIP_EPSILON
+        and rect.end.x <= viewport_rect.end.x + CLIP_EPSILON
+        and rect.end.y <= viewport_rect.end.y + CLIP_EPSILON
+    )
+    if not fits:
+        push_error("CONTENT_BOUNDS clip: viewport=%sx%s content=%s" % [size.x, size.y, rect])
+    return fits
