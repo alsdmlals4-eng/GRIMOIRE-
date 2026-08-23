@@ -46,7 +46,7 @@ func _render_breakdown() -> void:
         child.free()
     for row in _breakdown_rows:
         var line := HBoxContainer.new()
-        line.theme_override_constants.separation = 8
+        line.add_theme_constant_override("separation", 8)
         var label := Label.new()
         label.text = str(row.get("label", ""))
         label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
