@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource path="res://src/ui/component_sheets/component_sheet_d_result_grimoire.gd" type="Script" id="1"]
+[ext_resource path="res://src/ui/components/result_axis_card.tscn" type="PackedScene" id="2"]
+[ext_resource path="res://src/ui/components/causal_thread.tscn" type="PackedScene" id="3"]
+
+[node name="ComponentSheetDResultGrimoire" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Frame" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"AcademyPanel"
+
+[node name="Margin" type="MarginContainer" parent="Frame"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="Content" type="VBoxContainer" parent="Frame/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Frame/Margin/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "COMPONENT SHEET D / RESULT GRIMOIRE"
+
+[node name="Subtitle" type="Label" parent="Frame/Margin/Content"]
+layout_mode = 2
+text = "Five independent result axes and a seven-receipt causal thread. No aggregate grade."
+autowrap_mode = 2
+
+[node name="ResultGrid" type="GridContainer" parent="Frame/Margin/Content"]
+layout_mode = 2
+columns = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+
+[node name="Facility" parent="Frame/Margin/Content/ResultGrid" instance=ExtResource("2")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Life" parent="Frame/Margin/Content/ResultGrid" instance=ExtResource("2")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spirit" parent="Frame/Margin/Content/ResultGrid" instance=ExtResource("2")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Relationship" parent="Frame/Margin/Content/ResultGrid" instance=ExtResource("2")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Discovery" parent="Frame/Margin/Content/ResultGrid" instance=ExtResource("2")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CausalThread" parent="Frame/Margin/Content" instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="PortfolioReceipt" type="PanelContainer" parent="Frame/Margin/Content"]
+layout_mode = 2
+theme_type_variation = &"AcademyPanelPinned"
+
+[node name="Margin" type="MarginContainer" parent="Frame/Margin/Content/PortfolioReceipt"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="Rows" type="HBoxContainer" parent="Frame/Margin/Content/PortfolioReceipt/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Frame/Margin/Content/PortfolioReceipt/Margin/Rows"]
+layout_mode = 2
+text = "PORTFOLIO RECEIPT"
+
+[node name="Value" type="Label" parent="Frame/Margin/Content/PortfolioReceipt/Margin/Rows"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Result receipt"
+autowrap_mode = 2
