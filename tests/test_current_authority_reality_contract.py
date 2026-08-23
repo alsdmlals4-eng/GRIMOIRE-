@@ -93,6 +93,15 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("MIGRATION_ONLY_UNTIL_REMOVAL", workbook)
         self.assertIn("BLOCKED_UNVERIFIED_UNIQUE_MATERIAL", workbook)
 
+    def test_active_context_does_not_treat_merged_pr151_as_open_work(self) -> None:
+        active = (ROOT / "docs/ACTIVE_CONTEXT.md").read_text(encoding="utf-8")
+        self.assertIn("parallel_open_pr: NONE", active)
+        self.assertIn("component_sheet_pr151: MERGED_MAIN_VERIFIED", active)
+        self.assertNotIn("PR151_DO_NOT_TOUCH", active)
+        self.assertNotIn("PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft", active)
+        self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", active)
+        self.assertIn("FULL_VERTICAL_SLICE_NOT_RUN", active)
+
 
 if __name__ == "__main__":
     unittest.main()
