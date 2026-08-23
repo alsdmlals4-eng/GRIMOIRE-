@@ -16,6 +16,12 @@ const SHEET_A_SCENE := "res://src/ui/component_sheets/component_sheet_a_foundati
 const SHEET_B_SCENE := "res://src/ui/component_sheets/component_sheet_b_spell_workflow.tscn"
 const SHEET_C_SCENE := "res://src/ui/component_sheets/component_sheet_c_frostbloom_decision.tscn"
 const SHEET_D_SCENE := "res://src/ui/component_sheets/component_sheet_d_result_grimoire.tscn"
+const SHEET_SCENES := [SHEET_A_SCENE, SHEET_B_SCENE, SHEET_C_SCENE, SHEET_D_SCENE]
+const REQUIRED_VISIBLE := {
+    SHEET_B_SCENE: [&"ContextHeader", &"FivePointStarComposer", &"ContextTargetSelector", &"CommitBar"],
+    SHEET_C_SCENE: [&"EvidencePin", &"ForecastCard", &"ContextDeltaCard"],
+    SHEET_D_SCENE: [&"Facility", &"Life", &"Spirit", &"Relationship", &"Discovery", &"CausalThread"],
+}
 
 
 func run(case) -> void:
@@ -36,6 +42,7 @@ func run(case) -> void:
     _check_spell_workflow_components(case)
     _check_frostbloom_components(case)
     _check_result_components(case)
+    _check_responsive_layout(case)
 
 
 func _check_foundations(case) -> void:
@@ -254,6 +261,37 @@ func _check_result_components(case) -> void:
                 sheet.initialize_demo()
             case.assert_true(sheet.theme != null, "Component Sheet D applies shared Theme")
             sheet.free()
+
+
+func _check_responsive_layout(case) -> void:
+    for size in [Vector2i(1920, 1080), Vector2i(1280, 720)]:
+        for scene_path in SHEET_SCENES:
+            var packed := load(scene_path) as PackedScene
+            case.assert_true(packed != null and packed.can_instantiate(), "%s loads for %sx%s" % [scene_path, size.x, size.y])
+            if packed == null or not packed.can_instantiate():
+                continue
+            var viewport := SubViewport.new()
+            viewport.size = size
+            viewport.disable_3d = true
+            var sheet = packed.instantiate()
+            viewport.add_child(sheet)
+            if sheet is Control:
+                sheet.size = Vector2(size)
+                sheet.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+            if sheet.has_method("initialize_demo"):
+                sheet.initialize_demo()
+            if sheet is Control:
+                case.assert_true(sheet.size.x <= float(size.x) and sheet.size.y <= float(size.y), "%s root stays inside %sx%s" % [scene_path, size.x, size.y])
+            for button in sheet.find_children("*", "BaseButton", true, false):
+                if button.visible and not button.disabled:
+                    case.assert_true(button.custom_minimum_size.x >= 48.0, "%s interactive %s width >= 48 at %sx%s" % [scene_path, button.name, size.x, size.y])
+                    case.assert_true(button.custom_minimum_size.y >= 48.0, "%s interactive %s height >= 48 at %sx%s" % [scene_path, button.name, size.x, size.y])
+            for required_name in REQUIRED_VISIBLE.get(scene_path, []):
+                var required = sheet.find_child(str(required_name), true, false)
+                case.assert_true(required != null, "%s keeps required %s at %sx%s" % [scene_path, required_name, size.x, size.y])
+                if required is CanvasItem:
+                    case.assert_true(required.visible, "%s required %s remains visible at %sx%s" % [scene_path, required_name, size.x, size.y])
+            viewport.free()
 
 
 func _instantiate_if_available(path: String, case, label: String):
