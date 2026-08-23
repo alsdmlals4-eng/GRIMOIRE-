@@ -19,7 +19,7 @@ func configure(known_improvement: String, uncertain_consequence: String, success
 
     get_node("Margin/Rows/Known/Value").text = _known_improvement
     get_node("Margin/Rows/Uncertain/Value").text = _uncertain_consequence
-    get_node("Margin/Rows/Success/Percent").text = "%d%%" % _success_percent
+    get_node("Margin/Rows/Success/Header/Percent").text = "%d%%" % _success_percent
     get_node("Margin/Rows/Mana/Value").text = str(_mana_cost)
     _render_breakdown()
 
