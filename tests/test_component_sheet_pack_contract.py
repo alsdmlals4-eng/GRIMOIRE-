@@ -7,6 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 THEME = ROOT / "src/ui/theme/grimoire_theme_factory.gd"
 SPEC = ROOT / "docs/superpowers/specs/2026-08-20-component-sheet-image-production-contract-design.md"
 FIXTURE = ROOT / "data/testing/component_sheet_samples_v1.json"
+CAPTURE_SCRIPT = ROOT / "tools/capture_component_sheets.gd"
+WORKFLOW = ROOT / ".github/workflows/validate-component-sheet-pack.yml"
 
 COMPONENTS = [
     "academy_panel.tscn",
@@ -25,6 +27,11 @@ SHEETS = [
     "component_sheet_b_spell_workflow.tscn",
     "component_sheet_c_frostbloom_decision.tscn",
     "component_sheet_d_result_grimoire.tscn",
+]
+CAPTURES = [
+    f"component-sheet-{sheet}-{size}.png"
+    for sheet in "abcd"
+    for size in ("1920x1080", "1280x720")
 ]
 SPELL_SCRIPTS = [
     "five_point_star_composer.gd",
@@ -98,6 +105,34 @@ class ComponentSheetPackContractTests(unittest.TestCase):
             text = composer.read_text(encoding="utf-8")
             self.assertIn("star_circuit_board.tscn", text)
             self.assertNotIn("StarCircuitValidator", text)
+
+    def test_capture_pipeline_is_deterministic_and_complete(self):
+        self.assertTrue(CAPTURE_SCRIPT.is_file(), "capture_component_sheets.gd")
+        script = CAPTURE_SCRIPT.read_text(encoding="utf-8") if CAPTURE_SCRIPT.is_file() else ""
+        workflow = WORKFLOW.read_text(encoding="utf-8")
+        for name in CAPTURES:
+            self.assertIn(name, script, name)
+        for token in (
+            "SubViewport",
+            "RenderingServer.force_draw",
+            "save_png",
+            "10000",
+            "1920",
+            "1080",
+            "1280",
+            "720",
+        ):
+            self.assertIn(token, script, token)
+        for token in (
+            "python -m unittest tests.test_component_sheet_pack_contract -v",
+            "tools/setup_godot_toolchain.py",
+            "--headless --import",
+            "tests/test_runner.gd",
+            "capture_component_sheets.gd",
+            "component-sheet-*.png",
+            "actions/upload-artifact@",
+        ):
+            self.assertIn(token, workflow, token)
 
 
 if __name__ == "__main__":
