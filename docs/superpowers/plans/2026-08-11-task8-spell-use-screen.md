@@ -6,40 +6,39 @@
 **Historical resume sync:** `GR-SYNC-20260811-17-TASK8-RESUME-V314-PREFLIGHT`  
 **Current execution contract:** `PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8`  
 **Current recovery owner:** `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`  
-**Local execution state authority:** `FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED`
+**Local execution authority:** `FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED`
 
-The historical preflight project/Base SHAs in older Task 8 receipts remain provenance only. Every resumed work unit must fresh-read current completed Base `main`, current project `main`, live open PRs, and the local executor/worktree before mutation.
+Historical Task 8 project/Base SHAs and old local test results are provenance only. Every resumed work unit must fresh-read current completed Base `main`, current project `main`, live open PRs, the current test runner, and the exact local worktree before persistent product mutation.
 
-**Goal:** Complete `TASK8_SPELL_USE_SCREEN` as the third screen of the approved spell workflow while consuming the existing Stage 3 preview/confirmation/atomic-use authority exactly as-is.
+## 1. Goal and immutable gameplay authority
 
-**Architecture:**
+Complete `TASK8_SPELL_USE_SCREEN` as the third screen of the approved spell workflow while consuming the existing Stage 3 authority exactly as-is.
 
 ```text
 prepared spell UI
 → explicit target choice
 → SpellWorkflowCoordinator.prepare_target_preview(...)
-→ mutation-free expected result + final Mana display
+→ supplied final preview / Mana display
 → SpellWorkflowCoordinator.request_use_confirmation()
-→ explicit confirm
-→ SpellWorkflowCoordinator.confirm_use(transaction_id)
+→ second explicit player confirmation
+→ SpellWorkflowCoordinator.confirm_use(caller_supplied_spell_use_id)
 → existing AtomicSpellUseService
 ```
 
-Task 8 owns presentation and user intent only. It does not own spell-use business rules, Mana spend, inventory consumption, result mutation, rollback, save semantics, or responsive root coordination.
+Task 8 owns presentation and player intent only. It does not own target validation, success calculation, Mana spend, prepared-spell consumption, result mutation, rollback, save semantics, or the full responsive Product Root.
 
-## 0. Current recovery gate and tool alignment
+The current `SpellWorkflowCoordinator` entry points remain:
 
-Repository authority currently tracks HiGodot/Godot AI `v3.1.4`, but historical live-readiness receipts do **not** prove that a current local session is attached. Before any protected persistent Task 8 mutation:
+- `select_prepared_spell(spell_id: StringName) -> bool`
+- `prepare_target_preview(target_keyword: StringName, target: Dictionary, payload: Dictionary) -> Dictionary`
+- `request_use_confirmation() -> bool`
+- `confirm_use(use_transaction_id: StringName) -> Dictionary`
 
-1. fresh-read the exact local repository/worktree path, branch, HEAD, staged/cached state, untracked files, and `git status --short`;
-2. run the existing read-only Task 8 recovery probe without `reset`, `restore`, `clean`, destructive branch operations, or unrelated process kills;
-3. decide from local evidence whether the historical uncommitted Task 8 delta still exists;
-4. obtain fresh exact-project HiGodot v3.1.4 readiness before reading or mutating protected `.gd/.tscn` product files;
-5. preserve GUT 9.7.1 as deterministic GDScript test authority;
-6. preserve Hera 1.0.0 as live QA/observability only with persistent source mutation forbidden;
-7. create a fresh Task 8 HiGodot authoring receipt for the exact protected product delta actually used in the current session.
+`request_use_confirmation()` only advances the existing workflow state. `confirm_use(...)` consumes a caller-supplied game spell-use request id and delegates to the existing use service. Task 8 must not create a second use-service or a second spell-use state machine.
 
-Current gate:
+## 2. Current recovery gate
+
+The first persistent step is **not** automatic re-authoring. It is local-delta recovery.
 
 ```yaml
 current_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -53,52 +52,34 @@ historical_predecessor_regression: 42_suites_1588_assertions_0_failures
 historical_hera: HERA_SOURCE_DELTA_NONE_OBSERVED
 ```
 
-Those historical passes prove only the old observed dirty worktree. They are not current completion evidence.
+Those old passes prove only the historical dirty worktree that was observed then. They are not current PASS evidence.
 
-### Recovery fork
+### Fresh local sequence
 
-**If the local dirty delta still exists:**
+1. Read exact repository/worktree path, branch, HEAD, staged/cached state, untracked files, and `git status --short`.
+2. Run the existing read-only Task 8 recovery probe.
+3. Do not use `reset`, `restore`, `clean`, destructive branch operations, or unrelated process kills during discovery.
+4. Decide from local evidence whether the old Task 8 dirty delta still exists.
+5. Attach a fresh exact-project HiGodot v3.1.4 session before reading or mutating protected `.gd/.tscn` product files.
+6. Produce a fresh HiGodot authoring receipt for the exact protected files used by the current session.
 
-- preserve it exactly first;
-- fresh-read every Task 8 protected artifact through the current HiGodot session before mutation;
-- reconcile it against current `main` rather than replacing it from historical transcript text;
-- run fresh current acceptance and only then stage/commit/push.
+### If the dirty delta exists
 
-**If the local dirty delta is gone:**
+- preserve it before mutation;
+- fresh-read all Task 8 product artifacts through HiGodot;
+- reconcile them against current `main` rather than replacing them from a transcript or old patch;
+- run fresh current tests;
+- stage/commit/push only after fresh acceptance.
 
-- do not reconstruct `.gd/.tscn` from GitHub comments, ChatGPT Library transcripts, or general text writes;
-- use the approved Task 8 plan and historical transcript only as recovery reference;
+### If the dirty delta is gone
+
+- do not rebuild `.gd/.tscn` from GitHub comments, ChatGPT Library transcript text, or general text writes;
+- use the historical transcript only as recovery reference;
 - re-author through fresh HiGodot TDD RED → minimum GREEN → receipt/readback → regressions/Hera/CI/adversarial review.
 
-## 1. Exact interfaces and current-main compatibility
+## 3. Current-main compatibility receipt
 
-### `SpellWorkflowCoordinator`
-
-Use these exact existing Stage 3 entry points:
-
-- `select_prepared_spell(spell_id: StringName) -> bool`
-- `prepare_target_preview(target_keyword: StringName, target: Dictionary, payload: Dictionary) -> Dictionary`
-- `request_use_confirmation() -> bool`
-- `confirm_use(use_transaction_id: StringName) -> Dictionary`
-
-`prepare_target_preview()` owns target validation + preview-plan construction but performs no use commit. `confirm_use()` creates the existing use request and delegates to the existing use service.
-
-### `AtomicSpellUseService`
-
-Existing authority owns:
-
-- validation of prepared spell / target / final Mana;
-- Mana spend;
-- `mark_used_once`;
-- result `commit_once`;
-- snapshots and rollback on partial failure;
-- prior-result/idempotency handling.
-
-Task 8 MUST NOT duplicate any of these behaviors locally.
-
-### Current-main compatibility receipt
-
-Fresh remote comparison after the v4.8 authority merge found that the core Task 8 Stage 3 owners did not drift from the Task 7 baseline:
+Fresh remote comparison after the v4.8 authority merge found that the core Stage 3 owners used by Task 8 did not drift from the Task 7 baseline:
 
 ```yaml
 spell_workflow_coordinator_blob: 4774ff7751d48cabe58619afcb0d82512c05d9d0
@@ -107,238 +88,211 @@ test_spell_workflow_state_blob: 7a76707a9839338c54e8e5b58e67373b2937ac3e
 verdict: UNCHANGED_FROM_TASK7_BASELINE
 ```
 
-`tests/test_runner.gd` did advance because PR #151 added the Component Sheet regression suite. Therefore the historical Task 8 runner copy must **not** replace the current runner.
+The test runner **did** advance after the historical Task 8 work because PR #151 added the Component Sheet suite.
 
 ```yaml
 historical_task7_runner_blob: 9fe4006d05983934107f390e4bca476f624580c5
 current_runner_blob_at_recovery_preflight: 0c9c4d03a3970700a12d6219708859e1c98a4d33
-current_main_headless_baseline: 43_suites_1840_assertions_0_failures
-runner_recovery_rule: PRESERVE_CURRENT_COMPONENT_SHEET_SUITE_AND_ADD_TASK8_SUITE
-post_task8_suite_count_floor: 44
+current_observed_full_runner: 43_suites_1840_assertions_0_failures
+runner_recovery_rule: PRESERVE_ALL_FRESH_CURRENT_SUITES_AND_ADD_TASK8_SUITE
+post_task8_suite_rule: CURRENT_RUNNER_SUITE_COUNT_PLUS_ONE
+current_observed_post_task8_floor: 44
 ```
 
-Do not require an old exact assertion count after recovery; require fresh failures `0` and preserve all current suites.
+`43 → 44` is only the current observed floor. At actual Task 8 execution time, fresh-read the current runner and require **fresh current suite count + Task 8**, with every pre-existing suite still registered and failures `0`. Never replace `tests/test_runner.gd` with the historical dirty copy.
 
-### Task 6/7 UI conventions
+## 4. Current semantic UI reuse after PR #151
 
-Follow the existing `src/ui/spell_workflow/` family:
+PR #151 added reusable presentation components after the historical Task 8 delta was written. They should reduce duplicated UI code, but they do not own gameplay rules.
 
-- `Control` root;
-- explicit intent signals / Button semantics;
-- reusable component/panel binding;
-- supplied state rendered without domain recomputation;
-- focus/context restoration where overlays are involved;
-- existing test layout under `tests/integration/`.
+### ADOPT — `ContextTargetSelector`
 
-Task 7 explicitly has no target-selection UI, so target selection remains a Task 8 interaction responsibility.
+Use `ContextTargetSelector` as the preferred current target-choice primitive when fresh recovered tests allow it.
 
-## 2. Current semantic UI reuse after PR #151
+It accepts supplied `{id, label, hint}` rows, emits `target_selected(target_id)`, preserves explicit selection, and does not recommend or auto-pick a target.
 
-PR #151 added reusable semantic components after the historical Task 8 dirty delta was written. They are presentation primitives, not gameplay authorities.
+Task 8 must keep the authoritative supplied target record keyed by the component id. A target keyword may be adapted into that id, but label/hint text must never be parsed back into gameplay data. When the selector emits an id, Task 8 resolves the original supplied record and passes its exact keyword/data/payload to `prepare_target_preview(...)`.
 
-### ADOPT — current shared primitives
+### ADOPT — `CommitBar` as player-intent UI only
 
-Prefer these current components when recovering/re-authoring the Task 8 screen, provided fresh local readback confirms no behavior regression:
+`CommitBar` exposes edit/commit intent and reports `owns_transaction: false`. For Task 8, the game-specific rule is:
 
-- `ContextTargetSelector`
-  - receives supplied target dictionaries;
-  - exposes `target_selected(target_id)`;
-  - records explicit selected target;
-  - does not recommend or auto-pick a target.
-- `ForecastCard`
-  - receives supplied known improvement, uncertain consequence, success breakdown, and Mana cost;
-  - displays the values without calculating Stage 3 outcomes.
-- `CommitBar`
-  - receives supplied target label, Mana cost, commit eligibility, and confirmation state;
-  - emits edit/commit intent only;
-  - explicitly reports `owns_transaction: false`.
-
-Component Sheet B already demonstrates the current composition pattern:
-
-```text
-ContextTargetSelector
-+ spell/circuit presentation
-+ CommitBar
+```yaml
+spell_use_id_policy: SPELL_USE_ID_CALLER_SUPPLIED_ONLY
+commit_bar_gameplay_ownership: NONE
+spell_use_screen_id_generation: FORBIDDEN
 ```
 
-Task 8 may additionally use `ForecastCard` for the supplied expected-result/Mana preview. The screen remains responsible only for adapting Coordinator output into these presentation contracts.
+The historical Task 8 implementation already used the compatible two-step behavior: the spell-use request id was supplied by its caller, the first Use action opened confirmation only, and the second explicit action emitted that same opaque game id once while duplicate input was locked.
 
-### ADAPT — historical Task 8 custom panels
+Current adaptation rule:
 
-If the recovered dirty delta contains historical `TargetSelectionPanel` / `ExpectedResultPanel` scenes/scripts:
+1. First commit intent with a valid final preview calls the existing `request_use_confirmation()` authority and does not use the spell.
+2. Only when that authority accepts may the UI show the explicit confirmation state.
+3. Second explicit commit intent may pass the already caller-supplied spell-use request id to the existing `confirm_use(...)` path exactly once.
+4. Task 8 and `CommitBar` do not create, derive, recycle, or infer a spell-use request id.
+5. In-flight locking stays active until success/failure rendering restores the appropriate UI state.
 
-1. do **not** delete or rewrite them before fresh HiGodot readback and focused tests;
-2. identify whether they contain Task 8-specific focus restoration, error/failure display, accessibility, or stale-preview behavior not provided by the shared primitives;
-3. migrate only presentation behavior that has parity coverage;
-4. prefer direct shared components or thin Task 8 wrappers after parity is proven;
-5. avoid keeping two independent visual-state authorities for the same target/forecast/commit semantics.
+### ADAPT — `ForecastCard` only with authoritative semantic fields
 
-### REJECT — shared UI as gameplay authority
+`ForecastCard` is not a mandatory direct replacement for the historical `ExpectedResultPanel`.
 
-Do not let `ContextTargetSelector`, `ForecastCard`, `CommitBar`, or any Task 8 wrapper:
+Current `StarCircuitCalculator.preview()` guarantees values such as `success_percent`, `success_label`, `final_mana`, and `target_keyword`. It does **not** guarantee `ForecastCard`'s semantic text fields such as known improvement or uncertain consequence.
 
-- validate target domain rules;
+```yaml
+forecast_reuse_policy: FORECAST_SEMANTICS_SOURCE_REQUIRED
+forecast_semantic_invention: FORBIDDEN
+```
+
+Use `ForecastCard` only if an authoritative current target/context/payload/preview owner explicitly supplies the semantic text and any breakdown rows needed by that component. Do not invent those meanings from success percentage, target hints, labels, or UI guesses.
+
+If the recovered `ExpectedResultPanel` only renders authoritative raw preview/effect/risk/Mana fields and there is no authoritative source for ForecastCard semantics, keep it as a thin Task 8 presentation panel or adapt it to shared theme primitives rather than forcing ForecastCard.
+
+### Historical custom-panel migration
+
+If the recovered dirty delta contains `TargetSelectionPanel` / `ExpectedResultPanel`:
+
+1. fresh-read them through HiGodot before change;
+2. preserve any Task 8-specific focus restoration, failure display, stale-preview invalidation, accessibility, or duplicate-fire handling until parity tests exist;
+3. migrate presentation behavior only after parity coverage;
+4. prefer shared primitives or thin Task 8 wrappers after parity is proven;
+5. do not keep two independent visual-state owners for the same target/forecast/commit semantics.
+
+### Shared component rejection rules
+
+`ContextTargetSelector`, `ForecastCard`, `CommitBar`, and Task 8 wrappers must never:
+
+- validate gameplay target rules;
 - recalculate final Mana/success/result;
+- invent forecast meaning not supplied by an authority;
 - spend Mana or consume inventory;
-- create/own use transactions;
+- create/own spell-use requests;
 - implement rollback;
-- auto-select the first/nearest/best target.
+- auto-select first/nearest/best target.
 
-The existing Coordinator/AtomicUse chain remains the sole business authority.
+## 5. Fresh acceptance behavior
 
-## 3. Fresh acceptance: recovered delta vs re-authoring RED
+Use the existing Task 6/7 integration-test family.
 
-Use the current Task 6/7 integration-test conventions. Do not create a replacement framework.
+### Recovered dirty delta path
 
-### If recovering an existing dirty delta
+Do not manufacture a “screen missing” RED when the implementation already exists locally. Preserve it, run focused current tests, and use any current compatibility/semantic-reuse failure as the RED for the required reconciliation.
 
-Do not manufacture a new “missing screen” RED simply to satisfy ceremony. The old implementation already existed. Instead:
+### Re-author path when the delta is gone
 
-- preserve the recovered state;
-- run focused tests against current main and current shared components;
-- if a compatibility or semantic-reuse test fails, treat that focused failure as the RED for the required reconciliation;
-- use the historical `15 tests / 90 assertions / 0 failures` only as a comparison ceiling, never as current PASS.
+Start through HiGodot with focused RED coverage for:
 
-### If re-authoring because the delta is gone
+- opening screen causes zero Mana/inventory/result/world mutation;
+- no valid selected target => confirm unavailable/fail-closed;
+- explicit target selection calls existing preview authority;
+- target change invalidates stale preview;
+- shown Mana/success/result values come from supplied authority output, not local recalculation;
+- forecast/effect/risk text appears only when an authority supplied it;
+- first commit intent requests confirmation and does not use the spell;
+- second explicit confirmation passes the caller-supplied spell-use request id exactly once;
+- repeated activation cannot spend/use/apply twice;
+- stale/invalid target fails closed without partial local mutation;
+- failure rendering clears stale success visuals and restores allowed input;
+- cancel/back creates no competing rollback policy;
+- touch/mouse/keyboard/gamepad share one semantic activation path;
+- focus/selection/disabled state is not color-only;
+- long Korean labels and minimum structural layout remain unambiguous in automated baseline.
 
-Start through HiGodot with focused RED behaviors:
+## 6. Minimum screen boundary
 
-- [ ] opening the Spell Use screen causes zero Mana/inventory/result/world mutation;
-- [ ] no selected valid target => confirm unavailable/fail-closed and zero mutation;
-- [ ] selecting a valid target calls existing preview authority and updates expected result with zero mutation;
-- [ ] changing target deterministically refreshes preview and does not consume the prepared spell;
-- [ ] final Mana/cost shown to the player is the supplied Stage 3 final preview value, not locally recalculated;
-- [ ] explicit confirmation routes to existing `confirm_use()` exactly once;
-- [ ] repeated/double activation cannot spend Mana, consume the spell, or apply a result twice;
-- [ ] stale/invalid target at commit fails closed with no partial local transaction;
-- [ ] cancel/back before commit preserves current PreparedSpell/workflow semantics and defines no new restore policy;
-- [ ] keyboard/gamepad focus activation and touch activation resolve to the same semantic confirm action;
-- [ ] visible selected/focused/disabled states do not rely on color alone;
-- [ ] long Korean labels and minimum supported layout do not make confirm/cancel/target state ambiguous in the automated structural baseline.
-
-Run the smallest focused GUT command and verify a failure for the intended missing behavior before GREEN implementation.
-
-## 4. Minimum Spell Use Screen through HiGodot
-
-Preferred screen path remains:
+Preferred screen paths remain:
 
 ```text
 src/ui/spell_workflow/spell_use_screen.gd
 src/ui/spell_workflow/spell_use_screen.tscn
 ```
 
-Remote current `main` has no file at those paths, so a recovered local copy is not a partially merged GitHub implementation. Fresh local readback still outranks this remote observation.
+Remote current `main` has no files at those paths, so a recovered local copy is not a partially merged remote implementation. Fresh local readback still outranks this remote observation.
 
-Required information hierarchy:
+Information hierarchy:
 
 ```text
 prepared spell summary
 → explicit target choices
-→ clearly selected target
-→ final Mana / cost
-→ expected result / consequence preview
-→ explicit confirm
+→ selected target
+→ final Mana / success
+→ expected result/consequence only when authoritatively supplied
+→ explicit confirmation boundary
 → cancel / back
 ```
 
-Required boundaries:
+No Task 9 full Product Root or full responsive matrix is pulled into Task 8.
 
-- no hidden final auto-targeting;
-- no mutation on open, hover, focus, target browsing, or preview;
-- confirm remains unavailable until the existing coordinator reports a confirmable selection;
-- target UI passes target keyword/data/payload to the coordinator rather than computing spell outcome itself;
-- final confirm delegates to `confirm_use()`; no duplicate use service or UI transaction state machine;
-- after successful commit, repeated UI activation is disabled/rejected while navigation/result handling proceeds;
-- failure displays the existing status/reason without a local rollback implementation;
-- no Task 9 root coordinator or full responsive system is pulled into Task 8.
+## 7. Input, focus, accessibility, and layout
 
-## 5. Input, focus, accessibility, and layout contract
+- Use `Control` / `Container` ownership rather than fixed-position layout where practical.
+- Keep important controls inside safe layout regions.
+- Mouse/touch/keyboard/gamepad must resolve to the same semantic actions.
+- Focus must be visible and deterministic.
+- Disabled confirm should expose a player-relevant reason where appropriate.
+- Selection/focus/disabled states need text/shape/state support, not color-only meaning.
+- Cancel/back remains reachable for declared input families.
+- Overlay/popup closure restores meaningful prior focus where applicable.
+- Task 9 remains owner of full aspect/cutout/foldable/tablet and real-device validation.
 
-- **ADOPT — Godot Control/Button/InputMap:** use one semantic action path shared by mouse/touch/keyboard/gamepad instead of a touch-only branch.
-- **ADOPT — visible focus:** keyboard/gamepad focus must remain clearly visible and deterministic.
-- **ADAPT — Microsoft XAG 107/112/113/114:** predictable navigation/back path, input equivalence, clear focus, and enough context to understand an activation before committing.
-- **ADAPT — Android 48dp touch-target principle:** meet physical touch usability through verified project scaling. Do not treat `48dp == 48px` as a universal implementation constant.
-- **TEST — responsive/device evidence:** Task 8 must avoid blocking responsive adaptation, but Task 9 remains owner of the full aspect/cutout/foldable/tablet matrix and real device validation.
+## 8. Fresh evidence gate before Task 8 merge
 
-Implementation rules:
+Required current evidence:
 
-- use `Control` / `Container` ownership rather than fixed-position layout where practical;
-- important interactive controls remain inside safe layout regions;
-- disabled confirm visibly communicates why it is disabled when that reason is player-relevant;
-- selection/focus/disabled state has textual/shape/state support, not color-only meaning;
-- cancel/back remains reachable using each declared input family;
-- popup/overlay closure restores a meaningful prior focus when applicable.
+- fresh exact-project HiGodot v3.1.4 readiness;
+- fresh HiGodot authoring receipt/readback for every protected file actually changed;
+- focused Task 8 GUT GREEN;
+- Task 5 atomic-use + workflow coordinator regressions GREEN;
+- Task 6/7 screen regressions GREEN;
+- all fresh pre-existing full-runner suites preserved;
+- Task 8 suite added without overwriting later runner additions;
+- full runner satisfies `CURRENT_RUNNER_SUITE_COUNT_PLUS_ONE` and failures `0`;
+- exact-head applicable repository CI GREEN;
+- Hera `HERA_SOURCE_DELTA: NONE`;
+- unresolved review threads `0`;
+- adversarial review `P0=0`, `P1=0`;
+- Human/Device/Performance/Full Slice/export remain `NOT_RUN` unless new real evidence is produced.
 
-## 6. HiGodot receipt + deterministic GREEN
+Do not substitute historical `15/90/0`, `42/1588/0`, `43/1840/0`, or any old exact assertion total for fresh current evidence.
 
-- [ ] produce a fresh HiGodot authoring receipt for every protected persistent file changed by the Task 8 current session, including generated `.gd.uid` files only if the current Godot/HiGodot session actually generates and retains them;
-- [ ] keep vendor/tool-state delta separate from Task 8 product delta unless an explicitly scoped reconciliation proves both;
-- [ ] read back the exact protected delta against the receipt;
-- [ ] focused Task 8 GUT tests GREEN with fresh current evidence;
-- [ ] existing Task 5 atomic-use + workflow coordinator regressions GREEN;
-- [ ] existing Task 6/7 screen regressions GREEN;
-- [ ] current Component Sheet regression suite remains present and GREEN;
-- [ ] full headless runner is at least `44` suites after Task 8 registration and has `0` failures;
-- [ ] applicable repository CI GREEN at exact PR head;
-- [ ] Hera acceptance reports `HERA_SOURCE_DELTA: NONE`;
-- [ ] human/device/performance/full-slice/export remain `NOT_RUN` unless real new evidence is produced.
-
-Do not use the old `15/90/0`, `42/1588/0`, or any old exact assertion total as a substitute for fresh current tests.
-
-## 7. Adversarial merge review
+## 9. Adversarial merge review
 
 Attack at minimum:
 
 ```text
-second target/use authority appeared in UI
+second target/use gameplay authority appeared in UI
 preview mutates Mana/inventory/result/world
-shared semantic component became a gameplay authority
+shared semantic component became gameplay authority
 first/nearest/best target is silently selected or confirmed
-UI recalculates final Mana/result instead of displaying coordinator output
+UI recalculates final Mana/result
+ForecastCard invents semantic text not supplied by current authority
+CommitBar or Task8 invents a spell-use request id
+first commit skips request_use_confirmation
 historical custom panels and shared primitives both own the same visual state
-confirm can double-fire
-stale target creates a partial transaction
-cancel/back invents competing restore semantics
+confirm can fire twice
+stale target creates partial use
+failure leaves stale preview/result visible
+cancel/back invents rollback semantics
 input paths diverge by device
 focus is absent/ambiguous
-layout is hardcoded to one aspect and blocks Task9
-historical HiGodot readiness was promoted to current readiness
-historical dirty runner overwrote the current Component Sheet suite
+historical HiGodot readiness is treated as current readiness
+historical runner overwrites current suites
 receipt omits protected/generated files
 Hera/test tooling mutates persistent source
-human/device/performance claims are promoted without evidence
+unsupported Human/Device/Performance claims are promoted
 ```
 
-Merge evidence:
+## 10. Post-merge synchronization under v4.8
 
-```yaml
-exact_head_unchanged: true
-all_applicable_ci_success: true
-focused_task8_gut_green: true
-spell_workflow_regression_green: true
-component_sheet_regression_preserved: true
-full_headless_suite_count_floor: 44
-full_headless_failures: 0
-higodot_v314_current_readiness: PASS
-higodot_task8_fresh_receipt_readback: PASS
-hera_source_delta: NONE
-unresolved_review_threads: 0
-P0: 0
-P1: 0
-product_decision_changed: false
-```
-
-## 8. Post-merge synchronization under v4.8
-
-After product implementation is actually merged:
+After Task 8 product implementation is actually merged:
 
 - re-read merged `main`;
 - promote Task 8 to merged only from merged-main evidence;
 - set Task 9 next only after that readback;
-- synchronize repository current canon and bounded `NOTION_HUMAN_FACING_CANON` / system work-state surfaces with the same Task 8 implementation sync/checkpoint ID;
-- keep Google Sheets `MIGRATION_ONLY_UNTIL_REMOVAL` and perform **no new canonical Sheet write**;
-- preserve historical Task 8 hold/acceptance/tool evidence rather than rewriting history;
-- keep unsupported human/device/performance/export/full-slice statuses unchanged;
+- synchronize repository current canon and bounded `NOTION_HUMAN_FACING_CANON` / system work-state surfaces with the same Task 8 implementation checkpoint id;
+- keep Google Sheets `MIGRATION_ONLY_UNTIL_REMOVAL` and perform no new canonical Sheet write;
+- preserve historical Task 8/tool evidence instead of rewriting history;
+- keep Human/Device/Performance/Full Slice/export limits unchanged unless independently verified;
 - run stale-consumer and adversarial readback.
 
 ```yaml
@@ -348,18 +302,17 @@ google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 google_sheet_new_canon_write: FORBIDDEN
 ```
 
-## 9. Current execution router
-
-This plan does not pin one ChatGPT/Codex/PowerShell session as permanent authority. Every resumed execution must fresh-read capability first.
+## 11. Current execution router
 
 ```text
 FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
+→ fresh current runner count + local worktree identity
 → read-only Task8 recovery probe
 → local dirty delta exists?
-   ├─ yes: preserve → fresh HiGodot readback → reconcile current main/semantic UI/runner → fresh tests
+   ├─ yes: preserve → fresh HiGodot readback → reconcile current main/shared UI/runner → fresh tests
    └─ no: fresh HiGodot TDD RED → re-author minimum screen → fresh tests
 → exact protected-delta HiGodot receipt/readback
-→ focused GUT + current full runner (>=44 suites, 0 failures)
+→ focused GUT + full runner (fresh current suite count + Task8, failures 0)
 → Hera source-delta NONE
 → exact-head CI + review threads 0 + adversarial P0/P1 0
 → normal Task8 PR merge
@@ -368,4 +321,4 @@ FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
 → Task9 continuation
 ```
 
-If the required HiGodot/local authority is not exposed to the current executor, do not bypass it. Produce or refresh an executor-ready recovery checkpoint and defer only the blocked persistent product step.
+If the required local HiGodot authority is not exposed to the current executor, do not bypass it. Refresh the executor-ready recovery checkpoint and defer only the blocked persistent product step.
