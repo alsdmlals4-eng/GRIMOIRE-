@@ -15,4 +15,5 @@ jobs:
           tests.test_task8_handoff_bcp_continuation
           tests.test_task8_remote_local_reverify
           tests.test_task8_local_recovery_probe_contract
+          tests.test_task8_local_candidate_preservation_contract
           -v
