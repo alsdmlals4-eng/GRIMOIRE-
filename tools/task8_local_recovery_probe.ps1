@@ -8,6 +8,7 @@ $ErrorActionPreference = 'Stop'
 $env:GIT_OPTIONAL_LOCKS = '0'
 
 $Baseline = '8c611f601aa98397ed1558e92ab207e0e8347a9b'
+$BaselineRange = "${Baseline}..HEAD"
 $HistoricalBranch = 'feat/task8-spell-use-screen-v2'
 $HistoricalWorktreeRelative = '.worktrees/task8-spell-use-screen-v2'
 $PreferredScript = 'src/ui/spell_workflow/spell_use_screen.gd'
@@ -16,6 +17,44 @@ $PreferredScene = 'src/ui/spell_workflow/spell_use_screen.tscn'
 function Convert-Lines {
     param([object[]]$Value)
     return @($Value | ForEach-Object { "$_" })
+}
+
+function Normalize-CandidatePathKey {
+    param([string]$Path)
+
+    if (-not $Path) {
+        return ''
+    }
+
+    try {
+        $Resolved = (Resolve-Path -LiteralPath $Path -ErrorAction Stop).Path
+    }
+    catch {
+        $Resolved = [System.IO.Path]::GetFullPath($Path)
+    }
+
+    $Normalized = ($Resolved -replace '\\', '/').TrimEnd('/')
+    if ($env:OS -eq 'Windows_NT') {
+        return $Normalized.ToLowerInvariant()
+    }
+    return $Normalized
+}
+
+function Add-CandidatePath {
+    param(
+        $Paths,
+        $Keys,
+        [string]$Path
+    )
+
+    if (-not $Path) {
+        return
+    }
+
+    $Key = Normalize-CandidatePathKey -Path $Path
+    if ($Key -and $Keys.Add($Key)) {
+        $Paths.Add($Path)
+    }
 }
 
 function Inspect-Worktree {
@@ -27,8 +66,8 @@ function Inspect-Worktree {
         $Branch = "$(git branch --show-current)".Trim()
         $Head = "$(git rev-parse HEAD)".Trim()
         $Status = @(Convert-Lines @(git status --short --branch))
-        $Working = @(Convert-Lines @(git diff --name-status))
-        $Cached = @(Convert-Lines @(git diff --cached --name-status))
+        $Working = @(Convert-Lines @(& git -c core.autocrlf=false -c core.safecrlf=false diff --name-status))
+        $Cached = @(Convert-Lines @(& git -c core.autocrlf=false -c core.safecrlf=false diff --cached --name-status))
         $Untracked = @(Convert-Lines @(git ls-files --others --exclude-standard))
         $Task8SignalPaths = @(
             (@($Working) + @($Cached) + @($Untracked)) |
@@ -47,8 +86,8 @@ function Inspect-Worktree {
         $LocalCommitLog = @()
         $BaselineDelta = @()
         if ($BaselineAvailable) {
-            $LocalCommitLog = @(Convert-Lines @(git log --oneline "$Baseline..HEAD"))
-            $BaselineDelta = @(Convert-Lines @(git diff --name-status $Baseline..HEAD))
+            $LocalCommitLog = @(Convert-Lines @(git log --oneline $BaselineRange))
+            $BaselineDelta = @(Convert-Lines @(& git -c core.autocrlf=false -c core.safecrlf=false diff --name-status $BaselineRange))
         }
 
         $PreferredScriptExists = Test-Path -LiteralPath (Join-Path $TopLevel $PreferredScript)
@@ -92,20 +131,19 @@ finally {
 }
 
 $CandidatePaths = [System.Collections.Generic.List[string]]::new()
-$CandidatePaths.Add($Root)
+$CandidatePathKeys = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
+Add-CandidatePath -Paths $CandidatePaths -Keys $CandidatePathKeys -Path $Root
 
 foreach ($Line in $WorktreePorcelain) {
     if ($Line.StartsWith('worktree ')) {
         $Candidate = $Line.Substring(9).Trim()
-        if ($Candidate -and -not $CandidatePaths.Contains($Candidate)) {
-            $CandidatePaths.Add($Candidate)
-        }
+        Add-CandidatePath -Paths $CandidatePaths -Keys $CandidatePathKeys -Path $Candidate
     }
 }
 
 $HistoricalWorktree = Join-Path $Root $HistoricalWorktreeRelative
-if ((Test-Path -LiteralPath $HistoricalWorktree) -and -not $CandidatePaths.Contains($HistoricalWorktree)) {
-    $CandidatePaths.Add($HistoricalWorktree)
+if (Test-Path -LiteralPath $HistoricalWorktree) {
+    Add-CandidatePath -Paths $CandidatePaths -Keys $CandidatePathKeys -Path $HistoricalWorktree
 }
 
 $Inspections = @()
