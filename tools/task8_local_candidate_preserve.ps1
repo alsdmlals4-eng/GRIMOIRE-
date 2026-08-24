@@ -254,7 +254,7 @@ $SecondaryPath = Join-Path $ResolvedRepo $SecondaryRelative
 $Primary = Assert-CandidateIdentity -Path $PrimaryPath -ExpectedBranch $PrimaryBranch -ExpectedHead $ExpectedPrimaryHead
 $Secondary = Assert-CandidateIdentity -Path $SecondaryPath -ExpectedBranch $SecondaryBranch -ExpectedHead $ExpectedSecondaryHead
 
-if (Test-PathInside -Candidate $DestinationFull -Parent $Primary.path -or Test-PathInside -Candidate $DestinationFull -Parent $Secondary.path) {
+if ((Test-PathInside -Candidate $DestinationFull -Parent $Primary.path) -or (Test-PathInside -Candidate $DestinationFull -Parent $Secondary.path)) {
     Stop-WithCode -Code 'DESTINATION_INSIDE_SOURCE'
 }
 
