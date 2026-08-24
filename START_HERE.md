@@ -10,9 +10,12 @@ contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+current_state_sync_predecessor: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
+current_authority_sync: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
 authority_sync_pr: 158
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 current_task8_continuation: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
+task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
 task8_preservation_observation: docs/planning/TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVATION_2026-08-24.md
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 task8_product_unit: TASK8_SPELL_USE_SCREEN
@@ -47,8 +50,11 @@ circuit_topology: FIVE_POINT_STAR
 gut_status: GUT_FORMALLY_ADOPTED
 higodot_historical_live_alignment: LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED
 higodot_current_reconciliation_readback: NOT_RUN
+higodot_expected_actual_fields: NOT_SURFACED_DO_NOT_CLAIM
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
+windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
 authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
 authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
@@ -62,6 +68,8 @@ android_device: NOT_RUN
 ```
 
 `v4.8 r2 / GM-CONTRACT-V4-8-BINDING-01`이 현재 프로젝트 실행 계약이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
+
+`authority_sync_pr: 158`은 v4.8 전환의 provenance 번호다. draft/ready/merged 같은 PR lifecycle 상태와 현재 open PR 집합은 이 문서에 고정하지 않고 live GitHub에서 읽는다.
 
 `authority_sync_local_observation` / `authority_sync_godot_observation`은 Sync35 당시의 역사 관찰값이다. 현재 로컬 Task8 delta와 preservation은 별도 fresh evidence로 이미 승격됐으며 이 두 marker가 현재 로컬 상태를 의미하지 않는다.
 
