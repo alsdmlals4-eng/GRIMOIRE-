@@ -35,9 +35,7 @@ function Stop-WithCode {
 $OverrideRequested = ($ExpectedPrimaryHead -ne $DefaultPrimaryHead) -or ($ExpectedSecondaryHead -ne $DefaultSecondaryHead)
 if ($OverrideRequested) {
     $FixtureGate = $FixtureIdentityOverride.IsPresent -and ($env:CI -eq 'true') -and ($env:TASK8_RECONCILIATION_FIXTURE -eq '1')
-    if (-not $FixtureGate) {
-        Stop-WithCode -Code 'IDENTITY_OVERRIDE_FORBIDDEN'
-    }
+    if (-not $FixtureGate) { Stop-WithCode -Code 'IDENTITY_OVERRIDE_FORBIDDEN' }
 }
 
 function Normalize-PathKey {
@@ -74,18 +72,11 @@ function Get-GitOne {
 }
 
 function Assert-SnapshotManifest {
-    param(
-        [string]$Root,
-        [string]$Role,
-        [string]$ExpectedBranch,
-        [string]$ExpectedHead
-    )
+    param([string]$Root, [string]$Role, [string]$ExpectedBranch, [string]$ExpectedHead)
 
     $RoleRoot = Join-Path $Root $Role
     $ManifestPath = Join-Path $RoleRoot 'manifest.json'
-    if (-not (Test-Path -LiteralPath $ManifestPath -PathType Leaf)) {
-        Stop-WithCode -Code 'PRESERVATION_MANIFEST_MISSING'
-    }
+    if (-not (Test-Path -LiteralPath $ManifestPath -PathType Leaf)) { Stop-WithCode -Code 'PRESERVATION_MANIFEST_MISSING' }
 
     $Manifest = Get-Content -LiteralPath $ManifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
     if ("$($Manifest.branch)" -ne $ExpectedBranch -or "$($Manifest.head)" -ne $ExpectedHead) {
@@ -100,70 +91,46 @@ function Assert-SnapshotManifest {
             Stop-WithCode -Code 'PRESERVATION_MANIFEST_INVALID'
         }
         $CopyPath = Join-Path (Join-Path $RoleRoot 'files') $Relative
-        if (-not (Test-Path -LiteralPath $CopyPath -PathType Leaf)) {
-            Stop-WithCode -Code 'PRESERVED_FILE_MISSING'
-        }
+        if (-not (Test-Path -LiteralPath $CopyPath -PathType Leaf)) { Stop-WithCode -Code 'PRESERVED_FILE_MISSING' }
         $ActualHash = (Get-FileHash -LiteralPath $CopyPath -Algorithm SHA256).Hash.ToLowerInvariant()
-        if ($ActualHash -ne $ExpectedHash) {
-            Stop-WithCode -Code 'PRESERVED_FILE_HASH_MISMATCH'
-        }
+        if ($ActualHash -ne $ExpectedHash) { Stop-WithCode -Code 'PRESERVED_FILE_HASH_MISMATCH' }
     }
 
-    return [ordered]@{
-        role = $Role
-        branch = $ExpectedBranch
-        head = $ExpectedHead
-        manifest = $ManifestPath
-    }
+    return [ordered]@{ role = $Role; branch = $ExpectedBranch; head = $ExpectedHead; manifest = $ManifestPath }
 }
 
 $ResolvedRepo = (Resolve-Path -LiteralPath $Repo -ErrorAction Stop).Path
-if (-not (Test-Path -LiteralPath (Join-Path $ResolvedRepo '.git'))) {
-    Stop-WithCode -Code 'EXPECTED_REPOSITORY_MARKER_MISSING'
-}
-if (-not (Test-Path -LiteralPath (Join-Path $ResolvedRepo 'project.godot') -PathType Leaf)) {
-    Stop-WithCode -Code 'EXPECTED_PROJECT_MARKER_MISSING'
-}
+if (-not (Test-Path -LiteralPath (Join-Path $ResolvedRepo '.git'))) { Stop-WithCode -Code 'EXPECTED_REPOSITORY_MARKER_MISSING' }
+if (-not (Test-Path -LiteralPath (Join-Path $ResolvedRepo 'project.godot') -PathType Leaf)) { Stop-WithCode -Code 'EXPECTED_PROJECT_MARKER_MISSING' }
 
 $ResolvedSnapshot = (Resolve-Path -LiteralPath $SnapshotRoot -ErrorAction Stop).Path
-if (Test-PathInside -Candidate $ResolvedSnapshot -Parent $ResolvedRepo) {
-    Stop-WithCode -Code 'SNAPSHOT_INSIDE_REPOSITORY_FORBIDDEN'
-}
+if (Test-PathInside -Candidate $ResolvedSnapshot -Parent $ResolvedRepo) { Stop-WithCode -Code 'SNAPSHOT_INSIDE_REPOSITORY_FORBIDDEN' }
 
 $ReconciliationFull = [System.IO.Path]::GetFullPath($ReconciliationPath)
-if (Test-PathInside -Candidate $ReconciliationFull -Parent $ResolvedRepo) {
-    Stop-WithCode -Code 'RECONCILIATION_PATH_INSIDE_REPOSITORY_FORBIDDEN'
-}
-if (Test-Path -LiteralPath $ReconciliationFull) {
-    Stop-WithCode -Code 'RECONCILIATION_PATH_ALREADY_EXISTS'
-}
+if (Test-PathInside -Candidate $ReconciliationFull -Parent $ResolvedRepo) { Stop-WithCode -Code 'RECONCILIATION_PATH_INSIDE_REPOSITORY_FORBIDDEN' }
+if (Test-Path -LiteralPath $ReconciliationFull) { Stop-WithCode -Code 'RECONCILIATION_PATH_ALREADY_EXISTS' }
 
 $PrimaryReceipt = Assert-SnapshotManifest -Root $ResolvedSnapshot -Role 'primary_v2' -ExpectedBranch $PrimaryBranch -ExpectedHead $ExpectedPrimaryHead
 $SecondaryReceipt = Assert-SnapshotManifest -Root $ResolvedSnapshot -Role 'secondary_original' -ExpectedBranch $SecondaryBranch -ExpectedHead $ExpectedSecondaryHead
 
 $PrimaryRef = Get-GitOne -WorkingDirectory $ResolvedRepo -Arguments @('rev-parse', "refs/heads/$PrimaryBranch")
 $SecondaryRef = Get-GitOne -WorkingDirectory $ResolvedRepo -Arguments @('rev-parse', "refs/heads/$SecondaryBranch")
-if ($PrimaryRef -ne $ExpectedPrimaryHead -or $SecondaryRef -ne $ExpectedSecondaryHead) {
-    Stop-WithCode -Code 'HISTORICAL_BRANCH_IDENTITY_CHANGED'
-}
+if ($PrimaryRef -ne $ExpectedPrimaryHead -or $SecondaryRef -ne $ExpectedSecondaryHead) { Stop-WithCode -Code 'HISTORICAL_BRANCH_IDENTITY_CHANGED' }
 
 $Origin = Get-GitOne -WorkingDirectory $ResolvedRepo -Arguments @('remote', 'get-url', 'origin')
-if (-not $FixtureIdentityOverride.IsPresent -and $Origin.TrimEnd('/') -ne $ExpectedOrigin.TrimEnd('/')) {
-    Stop-WithCode -Code 'ORIGIN_IDENTITY_MISMATCH'
-}
+if (-not $FixtureIdentityOverride.IsPresent -and $Origin.TrimEnd('/') -ne $ExpectedOrigin.TrimEnd('/')) { Stop-WithCode -Code 'ORIGIN_IDENTITY_MISMATCH' }
 
 Push-Location $ResolvedRepo
 try {
     # git fetch is the only source-repository synchronization action in this tool.
-    & git fetch --prune origin
-    if ($LASTEXITCODE -ne 0) { Stop-WithCode -Code 'ORIGIN_FETCH_FAILED' }
+    $FetchOutput = @(& git fetch --prune origin 2>&1)
+    $FetchExit = $LASTEXITCODE
+    if ($FetchExit -ne 0) { Stop-WithCode -Code 'ORIGIN_FETCH_FAILED' }
 }
 finally { Pop-Location }
 
 $OriginMain = Get-GitOne -WorkingDirectory $ResolvedRepo -Arguments @('rev-parse', 'refs/remotes/origin/main')
-if ($OriginMain -ne $ExpectedMain) {
-    Stop-WithCode -Code 'ORIGIN_MAIN_SHA_MISMATCH'
-}
+if ($OriginMain -ne $ExpectedMain) { Stop-WithCode -Code 'ORIGIN_MAIN_SHA_MISMATCH' }
 
 Push-Location $ResolvedRepo
 try {
@@ -175,29 +142,22 @@ if ($BranchExit -eq 0) { Stop-WithCode -Code 'RECONCILIATION_BRANCH_ALREADY_EXIS
 if ($BranchExit -ne 1) { Stop-WithCode -Code 'RECONCILIATION_BRANCH_CHECK_FAILED' }
 
 $Parent = Split-Path -Parent $ReconciliationFull
-if (-not (Test-Path -LiteralPath $Parent -PathType Container)) {
-    New-Item -ItemType Directory -Path $Parent | Out-Null
-}
+if (-not (Test-Path -LiteralPath $Parent -PathType Container)) { New-Item -ItemType Directory -Path $Parent | Out-Null }
 
 Push-Location $ResolvedRepo
 try {
-    & git worktree add -b $ReconciliationBranch $ReconciliationFull 'origin/main'
-    if ($LASTEXITCODE -ne 0) { Stop-WithCode -Code 'RECONCILIATION_WORKTREE_CREATE_FAILED' }
+    $WorktreeOutput = @(& git worktree add -b $ReconciliationBranch $ReconciliationFull 'origin/main' 2>&1)
+    $WorktreeExit = $LASTEXITCODE
+    if ($WorktreeExit -ne 0) { Stop-WithCode -Code 'RECONCILIATION_WORKTREE_CREATE_FAILED' }
 }
 finally { Pop-Location }
 
 $NewHead = Get-GitOne -WorkingDirectory $ReconciliationFull -Arguments @('rev-parse', 'HEAD')
 $NewBranch = Get-GitOne -WorkingDirectory $ReconciliationFull -Arguments @('branch', '--show-current')
 $NewStatus = @(Invoke-GitText -WorkingDirectory $ReconciliationFull -Arguments @('status', '--porcelain=v1', '--untracked-files=all'))
-if ($NewHead -ne $ExpectedMain -or $NewBranch -ne $ReconciliationBranch) {
-    Stop-WithCode -Code 'RECONCILIATION_IDENTITY_MISMATCH'
-}
-if (($NewStatus -join "`n").Trim().Length -ne 0) {
-    Stop-WithCode -Code 'RECONCILIATION_WORKTREE_NOT_CLEAN'
-}
-if (-not (Test-Path -LiteralPath (Join-Path $ReconciliationFull 'project.godot') -PathType Leaf)) {
-    Stop-WithCode -Code 'RECONCILIATION_PROJECT_MARKER_MISSING'
-}
+if ($NewHead -ne $ExpectedMain -or $NewBranch -ne $ReconciliationBranch) { Stop-WithCode -Code 'RECONCILIATION_IDENTITY_MISMATCH' }
+if (($NewStatus -join "`n").Trim().Length -ne 0) { Stop-WithCode -Code 'RECONCILIATION_WORKTREE_NOT_CLEAN' }
+if (-not (Test-Path -LiteralPath (Join-Path $ReconciliationFull 'project.godot') -PathType Leaf)) { Stop-WithCode -Code 'RECONCILIATION_PROJECT_MARKER_MISSING' }
 
 $Receipt = [ordered]@{
     schema_version = 1
