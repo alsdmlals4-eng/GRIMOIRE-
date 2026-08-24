@@ -147,22 +147,23 @@ VISUAL_AUDIO_COMPLETE: CLAIM_UNVERIFIED
 
 자동 테스트·렌더·component capture를 위 evidence로 승격하지 않는다.
 
-## 7. 현재 승인 실행 패키지
+## 7. v4.8 전환 delivery provenance
 
-```text
-Task8 local recovery evidence 확인 가능 여부
-→ v4.8 authority binding + stale PR151/current-contract consumer correction
-→ RED/GREEN + exact-head CI
-→ adversarial full loop minimum 5 and continue until clean
-→ current-task PR ready/merge with expected head
-→ merged-main readback
-→ bounded Notion Registry / Task13 sync + readback
-→ Task8 local recovery가 가능해지는 즉시 product path 재개
-→ Task9 Product Root / responsive E2E
-→ 대표 00~10분 Human Slice
+```yaml
+authority_sync_pr: 158
+authority_sync_id: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+delivery_sequence:
+  - TASK8_LOCAL_ACCESS_CLASSIFICATION
+  - V4_8_AUTHORITY_BINDING_AND_STALE_CONSUMER_CORRECTION
+  - TDD_RED_GREEN
+  - EXACT_HEAD_CI_AND_ADVERSARIAL_REVIEW
+  - NORMAL_PR_MERGE_AND_MERGED_MAIN_READBACK
+  - BOUNDED_NOTION_REGISTRY_AND_TASK13_SYNC
+pr_lifecycle_state: LIVE_GITHUB_READBACK_NOT_PINNED_HERE
+current_product_next_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 ```
 
-Task8 local access blocker 하나가 독립적인 remote authority correction을 중단시키지는 않는다.
+위 sequence는 v4.8 authority 전환을 어떻게 전달했는지 추적하는 provenance다. 병합 이후 새 work unit에서 반복 실행할 현재 작업 목록이 아니다. 현재 제품 작업은 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`부터 시작하며, local access blocker 하나가 독립적인 remote/document 작업을 중단시키지는 않는다.
 
 ## 8. 역사 바인딩
 
