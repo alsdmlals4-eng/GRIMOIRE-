@@ -23,6 +23,7 @@ workspace_human_canon: NOTION_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -36,9 +37,13 @@ component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 higodot_release: v3.1.4
+higodot_historical_live_alignment: LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED
+higodot_expected_actual_fields: NOT_SURFACED_DO_NOT_CLAIM
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
+windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 local_sync: BLOCKED_NO_LOCAL_ACCESS
 godot_run: BLOCKED_NO_LOCAL_ACCESS
 task8_local_delta_existence: BLOCKED_UNVERIFIED
@@ -90,6 +95,7 @@ task6:
   scope: GLYPH_DRAWING_WORKFLOW_SCREEN
 task7:
   pr: 110
+  merge: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
   status: TASK7_MERGED_MAIN_VERIFIED
 ```
 
@@ -98,6 +104,8 @@ Task8은 기존 Task5 Stage3 authority의 thin UI consumer다. 새 Mana/inventor
 역사 compatibility locator:
 
 ```text
+GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+TASK7_MERGED_MAIN_VERIFIED
 TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 TASK8_RECEIPT_HERA_REVIEW_PR
 ```
@@ -129,6 +137,34 @@ TASK8_LOCAL_DELTA_EXISTENCE: BLOCKED_UNVERIFIED
 ```
 
 따라서 Task8 local delta가 남아 있다고도 소실됐다고도 주장하지 않는다. local executor가 사용 가능해지면 `tools/task8_local_recovery_probe.ps1`로 read-only 검사한다. delta가 있으면 `reset/restore/clean` 없이 보존 후 fresh HiGodot/GUT/Hera/diff/adversarial revalidation을 수행한다. 없으면 승인된 Task8 plan을 HiGodot TDD로 재작성한다.
+
+## Sync21 continuation / executor boundary
+
+```text
+GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
+CURRENT_DEDICATED_CODEX_REUSE_ALLOWED_FOR_CODEX_ONLY_CONTINUATION
+FRESH_POWERSHELL_REQUIRED_WHEN_SESSION_RECREATION_OR_CAPABILITY_BOUNDARY
+REMOTE_AUTHORITY_RECEIPT
+LOCAL_EXECUTION_RECEIPT
+EXECUTOR_CAPABILITY_BLOCKER
+DO_NOT_RETRY_BLOCKED_REMOTE_CHECK_IN_CODEX
+FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
+```
+
+Remote authority readback은 local worktree/HEAD/HiGodot evidence를 대체하지 않는다. 이미 검증된 exact dedicated Codex가 살아 있고 필요한 작업이 그 capability 안이면 Codex-only continuation에 재사용할 수 있다. 세션 재생성·identity 불명확·capability boundary를 넘으면 fresh PowerShell bootstrap을 사용한다.
+
+## Base proposal / learning closure provenance
+
+```yaml
+base_proposal_id: BCP-2026-024-execution-sandbox-authority-split-recovery
+base_proposal_pr: https://github.com/alsdmlals4-eng/Base/pull/297
+base_proposal_merge: 449b83c6f1afdf191327a52a8e71d11b4fba7eb3
+base_proposal_state: BASE_PROPOSAL_STORAGE_MERGED_SUBMITTED
+base_implementation_authority: BASE_IMPLEMENTATION_AUTHORITY_NOT_GRANTED_IN_THIS_STAGE
+learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
+```
+
+이 값들은 Sync21 handoff가 닫은 역사 provenance이며 v4.8 전환이 새로운 Base implementation authority를 부여하지 않는다.
 
 ## Tool authority
 
