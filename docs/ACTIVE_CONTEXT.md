@@ -22,6 +22,8 @@ implementation: PARTIAL_FOUNDATION
 workspace_human_canon: NOTION_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
