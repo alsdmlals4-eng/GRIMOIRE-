@@ -102,6 +102,39 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", active)
         self.assertIn("FULL_VERTICAL_SLICE_NOT_RUN", active)
 
+    def test_active_entry_docs_bind_v48_and_treat_pr151_as_merged_history(self) -> None:
+        expected_contract = "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8"
+        binding_path = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md"
+        self.assertTrue(binding_path.is_file())
+        binding = binding_path.read_text(encoding="utf-8")
+        self.assertIn("contract_version: '4.8'", binding)
+        self.assertIn("revision: '2026-08-24-r2'", binding)
+        self.assertIn("THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON", binding)
+        self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", binding)
+        self.assertIn("LOCAL_SYNC: BLOCKED_NO_LOCAL_ACCESS", binding)
+
+        required_docs = [
+            "AGENTS.md",
+            "START_HERE.md",
+            "docs/ACTIVE_CONTEXT.md",
+            "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
+            "docs/planning/CURRENT_UNRESOLVED_GATES.md",
+        ]
+        for relative_path in required_docs:
+            text = (ROOT / relative_path).read_text(encoding="utf-8")
+            self.assertIn(expected_contract, text, relative_path)
+            self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", text, relative_path)
+            self.assertNotIn("active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, relative_path)
+
+        agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        start = (ROOT / "START_HERE.md").read_text(encoding="utf-8")
+        self.assertNotIn("PR #151은 `DO_NOT_TOUCH`", agents)
+        self.assertNotIn("parallel_open_pr: PR151_DO_NOT_TOUCH", start)
+        self.assertIn("PR #151", agents)
+        self.assertIn("MERGED", agents)
+        self.assertIn("parallel_open_pr: NONE", start)
+        self.assertIn("MERGED", start)
+
 
 if __name__ == "__main__":
     unittest.main()
