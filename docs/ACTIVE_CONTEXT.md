@@ -15,6 +15,7 @@ authority_sync_pr: 158
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
 task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
+task8_preservation_observation: docs/planning/TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVATION_2026-08-24.md
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
@@ -29,8 +30,16 @@ product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
-task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
+task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
+task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_local_delta_existence: OBSERVED_PRESENT
+task8_candidate_preservation: OBSERVED_PASS
+task8_primary_recovery_branch: feat/task8-spell-use-screen-v2
+task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_secondary_recovery_branch: task8/spell-use-screen
+task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: NONE
 task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
@@ -40,6 +49,7 @@ preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 higodot_release: v3.1.4
 higodot_historical_live_alignment: LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED
+higodot_current_reconciliation_readback: NOT_RUN
 higodot_expected_actual_fields: NOT_SURFACED_DO_NOT_CLAIM
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
@@ -49,7 +59,6 @@ three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
 authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
 authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
-task8_local_delta_existence: BLOCKED_UNVERIFIED
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -58,6 +67,8 @@ windows_export: NOT_RUN
 android_export: NOT_RUN
 android_device: NOT_RUN
 ```
+
+`authority_sync_local_observation` / `authority_sync_godot_observation`은 Sync35 시점의 역사 관찰값이며 현재 executor 사실을 덮어쓰지 않는다. 현재 로컬 Task8 존재·보존 상태는 별도 `task8_recovery_state`가 소유한다.
 
 ## 현재 제품 현실
 
@@ -81,7 +92,7 @@ Google Sheets
 → NO_NEW_CANON_WRITES
 ```
 
-신규 승인/상태는 Sheet에 쓰지 않는다. 과거 Sheet write/readback은 provenance로 남긴다.
+신규 승인/상태는 Sheet에 쓰지 않는다. 2026-08-24 fresh Sheet readback은 v4.5-era main/Task8 상태를 current처럼 표시해 GitHub/Notion current authority와 drift가 확인됐다. 이 drift는 감사 evidence이며 Sheet를 다시 current canon writer로 승격하지 않는다.
 
 ## Spell Workflow
 
@@ -113,6 +124,7 @@ GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 TASK7_MERGED_MAIN_VERIFIED
 TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 TASK8_RECEIPT_HERA_REVIEW_PR
+TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 ```
 
 현재 continuation state:
@@ -121,23 +133,25 @@ TASK8_RECEIPT_HERA_REVIEW_PR
 product_status_historical: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
 product_branch_local_historical: feat/task8-spell-use-screen-v2
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: NONE
 task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
 historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 resume_gate: TASK8_PR_PREP_REVERIFY_PENDING
-current_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+historical_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
+current_execution_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 ```
 
 `8c611f...`는 당시 local Git baseline이지 Task8 product commit이 아니다. 과거 `15 tests / 90 assertions / 0 failures`, predecessor `42 suites / 1,588 assertions / 0 failures`, `HERA_SOURCE_DELTA_NONE_OBSERVED`는 그때 관찰한 uncommitted worktree의 역사 evidence다.
 
-현재 원격에는 Task8 product branch/PR/commit이 없고 GitHub history만으로 제품 delta를 복구할 수 없다.
+2026-08-24 사용자 PC read-only recovery probe로 두 로컬 Task8 후보가 실제 존재함을 확인했고, 이어 병합된 preservation tool을 실행해 외부 snapshot으로 보존했다. 직접 반환된 receipt는 `TASK8_CANDIDATES_PRESERVED`, `source_unchanged=true`, `source_content_unchanged=true`이며 primary 11 files, secondary 33 files가 snapshot에 기록됐다.
 
-`docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`는 2026-08-21 당시의 remote/local snapshot이다. 그 문서 안의 PR/branch 상태는 현재 상태로 재사용하지 않고 live GitHub readback을 우선한다.
+따라서 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`와 candidate-preservation gate는 닫혔다. compatibility consumer 검색을 위해 locator 문자열은 보존하지만 current gate로 재해석하지 않는다. 보존 성공을 current-main 호환성이나 fresh HiGodot/GUT/Hera PASS로 승격하지 않는다.
 
-Sync35 authority 작업의 local/Godot 관찰은 `BLOCKED_NO_LOCAL_ACCESS`, Task8 local delta existence는 `BLOCKED_UNVERIFIED`였다. 이것은 영구 executor 상태가 아니다. 다음 Task8 실행은 `local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED`에 따라 fresh local capability부터 다시 확인한다.
-
-local executor가 사용 가능해지면 `tools/task8_local_recovery_probe.ps1`로 read-only 검사한다. delta가 있으면 `reset/restore/clean` 없이 보존 후 fresh HiGodot/GUT/Hera/diff/adversarial revalidation을 수행한다. 없으면 승인된 Task8 plan을 HiGodot TDD로 재작성한다.
+다음 작업은 역사 worktree에 pull/rebase/clean을 하지 않고 fresh `origin/main`에서 별도 clean reconciliation worktree를 만드는 것이다. 이후 exact-project HiGodot readback을 거쳐 primary v2를 우선 복구하고 secondary는 parity evidence로만 비교한다.
 
 ## Sync21 continuation / executor boundary
 
@@ -152,7 +166,7 @@ DO_NOT_RETRY_BLOCKED_REMOTE_CHECK_IN_CODEX
 FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
 ```
 
-Remote authority readback은 local worktree/HEAD/HiGodot evidence를 대체하지 않는다. 이미 검증된 exact dedicated Codex가 살아 있고 필요한 작업이 그 capability 안이면 Codex-only continuation에 재사용할 수 있다. 세션 재생성·identity 불명확·capability boundary를 넘으면 fresh PowerShell bootstrap을 사용한다.
+Remote authority readback은 local worktree/HEAD/HiGodot evidence를 대체하지 않는다. 세션 재생성·identity 불명확·capability boundary를 넘으면 fresh PowerShell bootstrap을 사용한다.
 
 ## Base proposal / learning closure provenance
 
@@ -198,21 +212,25 @@ AGENTS.md
 ## 현재 다음 제품 순서
 
 ```text
-1. TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
-2. delta 존재 → fresh Task8 acceptance / exact-path review / PR / merge
-3. delta 부재 → approved HiGodot TDD re-authoring / acceptance / PR / merge
-4. Task9 Product Root + responsive/E2E integration
-5. 대표 00~10분 Human Slice
-6. 10~23 → 46분 증거 확장
+1. TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
+2. fresh exact-project HiGodot readback + primary v2 recovery / secondary parity comparison
+3. fresh Task8 GUT + predecessor/full runner + Hera source-delta + exact-path adversarial review
+4. Task8 product PR / exact-head CI / merge / merged-main readback
+5. Task9 Product Root + responsive/E2E integration
+6. 대표 00~10분 Human Slice
+7. 10~23 → 46분 증거 확장
 ```
 
 ## 완료로 주장하지 않는 항목
 
 ```text
 TASK8_PR_PREP_REVERIFY_PENDING
-TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
-TASK8_LOCAL_DELTA_EXISTENCE_BLOCKED_UNVERIFIED
+HIGODOT_CURRENT_RECONCILIATION_READBACK_NOT_RUN
+FRESH_TASK8_TESTS_NOT_RUN
+FRESH_FULL_RUNNER_NOT_RUN
+HERA_SOURCE_DELTA_NOT_RUN
 HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED

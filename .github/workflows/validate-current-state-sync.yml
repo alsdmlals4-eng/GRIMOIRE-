@@ -17,4 +17,5 @@ jobs:
           tests.test_task8_local_recovery_probe_contract
           tests.test_task8_local_candidate_preservation_contract
           tests.test_task8_local_candidate_preservation_content_guard
+          tests.test_task8_preservation_observed_reconciliation_prep
           -v
