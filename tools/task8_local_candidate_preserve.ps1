@@ -3,8 +3,11 @@ param(
     [string]$Repo = 'C:\Users\user\Documents\GitHub\Ninza\GRIMOIRE-',
     [Parameter(Mandatory = $true)]
     [string]$DestinationRoot,
+    [ValidatePattern('^[0-9a-f]{40}$')]
     [string]$ExpectedPrimaryHead = '8c611f601aa98397ed1558e92ab207e0e8347a9b',
-    [string]$ExpectedSecondaryHead = 'fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f'
+    [ValidatePattern('^[0-9a-f]{40}$')]
+    [string]$ExpectedSecondaryHead = 'fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f',
+    [switch]$FixtureIdentityOverride
 )
 
 Set-StrictMode -Version Latest
@@ -15,12 +18,22 @@ $PrimaryBranch = 'feat/task8-spell-use-screen-v2'
 $SecondaryBranch = 'task8/spell-use-screen'
 $PrimaryRelative = '.worktrees/task8-spell-use-screen-v2'
 $SecondaryRelative = '.worktrees/task8-spell-use-screen'
+$DefaultPrimaryHead = '8c611f601aa98397ed1558e92ab207e0e8347a9b'
+$DefaultSecondaryHead = 'fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f'
 $Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 
 function Stop-WithCode {
     param([string]$Code)
     [Console]::Error.WriteLine($Code)
     exit 2
+}
+
+$OverrideRequested = ($ExpectedPrimaryHead -ne $DefaultPrimaryHead) -or ($ExpectedSecondaryHead -ne $DefaultSecondaryHead)
+if ($OverrideRequested) {
+    $FixtureGate = $FixtureIdentityOverride.IsPresent -and ($env:CI -eq 'true') -and ($env:TASK8_PRESERVATION_FIXTURE -eq '1')
+    if (-not $FixtureGate) {
+        Stop-WithCode -Code 'IDENTITY_OVERRIDE_FORBIDDEN'
+    }
 }
 
 function Normalize-PathKey {
@@ -32,6 +45,30 @@ function Normalize-PathKey {
         return $Normalized.ToLowerInvariant()
     }
     return $Normalized
+}
+
+function Resolve-DestinationPathWithoutCreating {
+    param([string]$Path)
+
+    $Full = [System.IO.Path]::GetFullPath($Path)
+    $Cursor = $Full
+    $Missing = New-Object 'System.Collections.Generic.List[string]'
+
+    while (-not (Test-Path -LiteralPath $Cursor)) {
+        $Leaf = Split-Path -Leaf $Cursor
+        $Parent = Split-Path -Parent $Cursor
+        if ([string]::IsNullOrEmpty($Leaf) -or [string]::IsNullOrEmpty($Parent) -or $Parent -eq $Cursor) {
+            Stop-WithCode -Code 'DESTINATION_PATH_UNRESOLVABLE'
+        }
+        $Missing.Insert(0, $Leaf)
+        $Cursor = $Parent
+    }
+
+    $Resolved = (Resolve-Path -LiteralPath $Cursor).Path
+    foreach ($Part in $Missing) {
+        $Resolved = Join-Path $Resolved $Part
+    }
+    return [System.IO.Path]::GetFullPath($Resolved)
 }
 
 function Test-PathInside {
@@ -244,7 +281,7 @@ function Preserve-Candidate {
 }
 
 $ResolvedRepo = (Resolve-Path -LiteralPath $Repo).Path
-$DestinationFull = [System.IO.Path]::GetFullPath($DestinationRoot)
+$DestinationFull = Resolve-DestinationPathWithoutCreating -Path $DestinationRoot
 if (Test-PathInside -Candidate $DestinationFull -Parent $ResolvedRepo) {
     Stop-WithCode -Code 'DESTINATION_INSIDE_SOURCE'
 }
