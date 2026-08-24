@@ -156,6 +156,21 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
             self.assertIn("CURRENT_CONFIRMED_DECISIONS.md", text)
             self.assertIn("CURRENT_UNRESOLVED_GATES.md", text)
 
+    def test_task8_plan_uses_v48_recovery_and_current_semantic_ui_routing(self) -> None:
+        plan = (ROOT / "docs/superpowers/plans/2026-08-11-task8-spell-use-screen.md").read_text(encoding="utf-8")
+        self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", plan)
+        self.assertIn("FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED", plan)
+        self.assertIn("ContextTargetSelector", plan)
+        self.assertIn("ForecastCard", plan)
+        self.assertIn("CommitBar", plan)
+        self.assertIn("FORECAST_SEMANTICS_SOURCE_REQUIRED", plan)
+        self.assertIn("SPELL_USE_ID_CALLER_SUPPLIED_ONLY", plan)
+        self.assertIn("CURRENT_RUNNER_SUITE_COUNT_PLUS_ONE", plan)
+        self.assertIn("NOTION_HUMAN_FACING_CANON", plan)
+        self.assertIn("MIGRATION_ONLY_UNTIL_REMOVAL", plan)
+        self.assertNotIn("synchronize GitHub canon + Google Sheet", plan)
+        self.assertNotIn("HiGodot v3.1.4 live/tracked alignment readback\n→ Task 8 focused GUT RED", plan)
+
 
 if __name__ == "__main__":
     unittest.main()
