@@ -135,7 +135,8 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("current_task_pr: PR158_V4_8_AUTHORITY_SYNC_DRAFT", active)
 
         for text in (agents, start, active):
-            self.assertIn("historical compatibility", text.lower())
+            normalized = text.lower().replace("_", " ")
+            self.assertIn("historical compatibility", normalized)
             self.assertIn("CURRENT_CONFIRMED_DECISIONS.md", text)
             self.assertIn("CURRENT_UNRESOLVED_GATES.md", text)
 
