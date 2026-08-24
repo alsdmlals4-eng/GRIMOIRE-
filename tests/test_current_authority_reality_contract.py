@@ -102,6 +102,15 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", active)
         self.assertIn("FULL_VERTICAL_SLICE_NOT_RUN", active)
 
+    def test_task8_reverify_quarantines_historical_pr151_marker(self) -> None:
+        reverify = (ROOT / "docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md").read_text(encoding="utf-8")
+        self.assertIn("snapshot_role: HISTORICAL_REMOTE_LOCAL_REVERIFY_PROVENANCE", reverify)
+        self.assertIn("current_pr_state_authority: LIVE_GITHUB_READBACK", reverify)
+        self.assertIn("parallel_pr_151_at_2026_08_21: DO_NOT_TOUCH", reverify)
+        self.assertIn("PR #151", reverify)
+        self.assertIn("현재 상태로 재사용하지 않는다", reverify)
+        self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", reverify)
+
     def test_active_entry_docs_bind_v48_and_treat_pr151_as_merged_history(self) -> None:
         expected_contract = "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8"
         binding_path = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md"
