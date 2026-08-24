@@ -22,6 +22,8 @@ $env:GIT_OPTIONAL_LOCKS = '0'
 
 $PrimaryBranch = 'feat/task8-spell-use-screen-v2'
 $SecondaryBranch = 'task8/spell-use-screen'
+$PrimaryRelative = '.worktrees/task8-spell-use-screen-v2'
+$SecondaryRelative = '.worktrees/task8-spell-use-screen'
 $DefaultPrimaryHead = '8c611f601aa98397ed1558e92ab207e0e8347a9b'
 $DefaultSecondaryHead = 'fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f'
 $ExpectedOrigin = 'https://github.com/alsdmlals4-eng/GRIMOIRE-'
@@ -105,6 +107,80 @@ function Get-GitOne {
     return $Value[0].Trim()
 }
 
+function Get-IndexHash {
+    param([string]$WorkingDirectory)
+
+    $IndexPath = Get-GitOne -WorkingDirectory $WorkingDirectory -Arguments @('rev-parse', '--git-path', 'index')
+    if (-not [System.IO.Path]::IsPathRooted($IndexPath)) {
+        $IndexPath = Join-Path $WorkingDirectory $IndexPath
+    }
+    if (-not (Test-Path -LiteralPath $IndexPath -PathType Leaf)) {
+        Stop-WithCode -Code 'INDEX_PATH_UNAVAILABLE'
+    }
+    return (Get-FileHash -LiteralPath $IndexPath -Algorithm SHA256).Hash.ToLowerInvariant()
+}
+
+function Get-HistoricalDirtyContentDigest {
+    param([string]$WorkingDirectory)
+
+    $DiffPrefix = @('-c', 'core.autocrlf=false', '-c', 'core.safecrlf=false', 'diff')
+    $Working = @(Invoke-GitText -WorkingDirectory $WorkingDirectory -Arguments ($DiffPrefix + @('--name-only')))
+    $Cached = @(Invoke-GitText -WorkingDirectory $WorkingDirectory -Arguments ($DiffPrefix + @('--cached', '--name-only')))
+    $Untracked = @(Invoke-GitText -WorkingDirectory $WorkingDirectory -Arguments @('ls-files', '--others', '--exclude-standard'))
+    $Paths = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
+    foreach ($Relative in (@($Working) + @($Cached) + @($Untracked))) {
+        if (-not [string]::IsNullOrWhiteSpace($Relative)) { [void]$Paths.Add($Relative) }
+    }
+
+    $Entries = @()
+    foreach ($Relative in ($Paths | Sort-Object)) {
+        $File = Join-Path $WorkingDirectory $Relative
+        if (Test-Path -LiteralPath $File -PathType Leaf) {
+            $Hash = (Get-FileHash -LiteralPath $File -Algorithm SHA256).Hash.ToLowerInvariant()
+            $Entries += "${Relative}:$Hash"
+        }
+        else {
+            $Entries += "${Relative}:<missing>"
+        }
+    }
+    return ($Entries -join "`n")
+}
+
+function Get-HistoricalWorktreeFingerprint {
+    param([string]$Path, [string]$ExpectedBranch, [string]$ExpectedHead)
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Container)) {
+        Stop-WithCode -Code 'HISTORICAL_WORKTREE_MISSING'
+    }
+    $Resolved = (Resolve-Path -LiteralPath $Path).Path
+    $Branch = Get-GitOne -WorkingDirectory $Resolved -Arguments @('branch', '--show-current')
+    $Head = Get-GitOne -WorkingDirectory $Resolved -Arguments @('rev-parse', 'HEAD')
+    if ($Branch -ne $ExpectedBranch -or $Head -ne $ExpectedHead) {
+        Stop-WithCode -Code 'HISTORICAL_WORKTREE_IDENTITY_CHANGED'
+    }
+    $Status = @(Invoke-GitText -WorkingDirectory $Resolved -Arguments @('status', '--porcelain=v1', '--untracked-files=all'))
+    return [ordered]@{
+        path = $Resolved
+        branch = $Branch
+        head = $Head
+        status = ($Status -join "`n")
+        index_sha256 = Get-IndexHash -WorkingDirectory $Resolved
+        dirty_content_digest = Get-HistoricalDirtyContentDigest -WorkingDirectory $Resolved
+    }
+}
+
+function Test-FingerprintEqual {
+    param($Before, $After)
+    return (
+        ($Before.path -eq $After.path) -and
+        ($Before.branch -eq $After.branch) -and
+        ($Before.head -eq $After.head) -and
+        ($Before.status -eq $After.status) -and
+        ($Before.index_sha256 -eq $After.index_sha256) -and
+        ($Before.dirty_content_digest -eq $After.dirty_content_digest)
+    )
+}
+
 function Assert-SnapshotManifest {
     param([string]$Root, [string]$Role, [string]$ExpectedBranch, [string]$ExpectedHead)
 
@@ -153,6 +229,11 @@ $PrimaryRef = Get-GitOne -WorkingDirectory $ResolvedRepo -Arguments @('rev-parse
 $SecondaryRef = Get-GitOne -WorkingDirectory $ResolvedRepo -Arguments @('rev-parse', "refs/heads/$SecondaryBranch")
 if ($PrimaryRef -ne $ExpectedPrimaryHead -or $SecondaryRef -ne $ExpectedSecondaryHead) { Stop-WithCode -Code 'HISTORICAL_BRANCH_IDENTITY_CHANGED' }
 
+$PrimaryHistoricalPath = Join-Path $ResolvedRepo $PrimaryRelative
+$SecondaryHistoricalPath = Join-Path $ResolvedRepo $SecondaryRelative
+$PrimaryBefore = Get-HistoricalWorktreeFingerprint -Path $PrimaryHistoricalPath -ExpectedBranch $PrimaryBranch -ExpectedHead $ExpectedPrimaryHead
+$SecondaryBefore = Get-HistoricalWorktreeFingerprint -Path $SecondaryHistoricalPath -ExpectedBranch $SecondaryBranch -ExpectedHead $ExpectedSecondaryHead
+
 $Origin = Get-GitOne -WorkingDirectory $ResolvedRepo -Arguments @('remote', 'get-url', 'origin')
 if (-not $FixtureIdentityOverride.IsPresent -and $Origin.TrimEnd('/') -ne $ExpectedOrigin.TrimEnd('/')) { Stop-WithCode -Code 'ORIGIN_IDENTITY_MISMATCH' }
 
@@ -195,6 +276,12 @@ if ($NewHead -ne $ExpectedMain -or $NewBranch -ne $ReconciliationBranch) { Stop-
 if (($NewStatus -join "`n").Trim().Length -ne 0) { Stop-WithCode -Code 'RECONCILIATION_WORKTREE_NOT_CLEAN' }
 if (-not (Test-Path -LiteralPath (Join-Path $ReconciliationFull 'project.godot') -PathType Leaf)) { Stop-WithCode -Code 'RECONCILIATION_PROJECT_MARKER_MISSING' }
 
+$PrimaryAfter = Get-HistoricalWorktreeFingerprint -Path $PrimaryHistoricalPath -ExpectedBranch $PrimaryBranch -ExpectedHead $ExpectedPrimaryHead
+$SecondaryAfter = Get-HistoricalWorktreeFingerprint -Path $SecondaryHistoricalPath -ExpectedBranch $SecondaryBranch -ExpectedHead $ExpectedSecondaryHead
+if (-not (Test-FingerprintEqual -Before $PrimaryBefore -After $PrimaryAfter) -or -not (Test-FingerprintEqual -Before $SecondaryBefore -After $SecondaryAfter)) {
+    Stop-WithCode -Code 'HISTORICAL_WORKTREE_STATE_CHANGED'
+}
+
 $Receipt = [ordered]@{
     schema_version = 1
     status = 'TASK8_CLEAN_RECONCILIATION_WORKTREE_READY'
@@ -208,7 +295,7 @@ $Receipt = [ordered]@{
     clean = $true
     project_godot_present = $true
     preserved_candidates = @($PrimaryReceipt, $SecondaryReceipt)
-    historical_worktrees_mutated = $false
+    historical_worktrees_verified_unchanged = $true
 }
 
 $Receipt | ConvertTo-Json -Depth 8
