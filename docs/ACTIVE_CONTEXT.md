@@ -10,7 +10,8 @@ contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
 historical_contract_binding: GM-CONTRACT-V4-5-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync_predecessor: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
-current_authority_sync_candidate: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+current_authority_sync: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+authority_sync_pr: 158
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
 task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
@@ -34,7 +35,6 @@ task8_product_commit: NONE
 task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
 parallel_open_pr: NONE
-current_task_pr: PR158_V4_8_AUTHORITY_SYNC_DRAFT
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
@@ -63,6 +63,8 @@ android_device: NOT_RUN
 Frostbloom 00~46분 첫 세션 기획은 완료됐지만 제품 구현은 `PARTIAL_FOUNDATION`이다. 현재 `project.godot` 기본 실행점은 `res://src/ui/star_circuit_harness.tscn`이며 역할은 `DEVELOPMENT_RUNTIME_POC_ENTRY`다. 완성형 첫 세션 Product Root로 승격하지 않는다.
 
 Star Circuit Runtime과 Component Sheets A–D에는 자동화/렌더 evidence가 있다. 이 component evidence와 전체 제품 상태를 혼동하지 않는다. `FULL_VERTICAL_SLICE_NOT_RUN`, `HUMAN_NOT_RUN`, `DEVICE_NOT_RUN`, `PERFORMANCE_NOT_RUN`은 유지한다.
+
+`authority_sync_pr: 158`은 v4.8 authority transition provenance다. PR의 draft/ready/merged lifecycle 상태는 이 active context에 고정하지 않고 live GitHub에서 읽는다.
 
 ## Workspace authority
 
@@ -130,6 +132,8 @@ current_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 
 현재 원격에는 Task8 product branch/PR/commit이 없고 GitHub history만으로 제품 delta를 복구할 수 없다.
 
+`docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`는 2026-08-21 당시의 remote/local snapshot이다. 그 문서 안의 PR/branch 상태는 현재 상태로 재사용하지 않고 live GitHub readback을 우선한다.
+
 현재 ChatGPT 세션에는 사용자 Windows checkout/Godot local executor가 없다.
 
 ```text
@@ -175,11 +179,11 @@ learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
 - Hera `v1.0.0`: live QA/observability only; persistent source mutation 금지.
 - historical live receipts는 현재 local readiness를 자동 증명하지 않는다.
 
-## PR #151 / 현재 PR 경계
+## PR #151 / authority sync provenance
 
 PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 current-main 역사다. 더 이상 `DO_NOT_TOUCH` open-work가 아니다. Component Sheet A–D와 semantic UI pack은 병합된 사실로 읽되, 이것이 Task8 또는 Human/Device/Performance/Full Slice PASS를 의미하지 않는다.
 
-현재-task PR #158은 사용자가 승인한 v4.8 authority correction이다. `parallel_open_pr: NONE`은 #158 이외의 unrelated parallel open PR이 없다는 뜻이다. merge 전에는 #158 내용을 merged authority로 주장하지 않는다.
+v4.8 authority 전환은 PR #158이 추적한다. 해당 PR의 lifecycle 상태는 live GitHub가 소유하며 이 문서에는 번호와 sync provenance만 보존한다. `parallel_open_pr: NONE`은 authority sync 병합 뒤 stable cold-start 값이며 work unit 도중에는 live query가 우선한다.
 
 ## v4.8 migration / legacy snapshot boundary
 
@@ -196,19 +200,15 @@ AGENTS.md
 → actual code/data/Scene/Resource/Test/runtime evidence
 ```
 
-## 현재 다음 순서
+## 현재 다음 제품 순서
 
 ```text
-1. PR #158 v4.8 authority correction RED→GREEN
-2. exact-head CI + 5회 이상 whole-state adversarial review
-3. review/ruleset/thread gate
-4. expected-head merge + merged-main readback
-5. bounded Notion Registry / Task13 sync + readback
-6. local executor가 가능해지는 즉시 TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
-7. recovered delta가 있으면 fresh acceptance → Task8 PR/merge
-8. 없으면 approved HiGodot TDD re-authoring
-9. Task9 Product Root + responsive/E2E integration
-10. 대표 00~10분 Human Slice
+1. TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+2. delta 존재 → fresh Task8 acceptance / exact-path review / PR / merge
+3. delta 부재 → approved HiGodot TDD re-authoring / acceptance / PR / merge
+4. Task9 Product Root + responsive/E2E integration
+5. 대표 00~10분 Human Slice
+6. 10~23 → 46분 증거 확장
 ```
 
 ## 완료로 주장하지 않는 항목
