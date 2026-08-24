@@ -18,6 +18,7 @@ PRIMARY_BRANCH = "feat/task8-spell-use-screen-v2"
 PRIMARY_HEAD = "8c611f601aa98397ed1558e92ab207e0e8347a9b"
 SECONDARY_BRANCH = "task8/spell-use-screen"
 SECONDARY_HEAD = "fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f"
+CANONICAL_ORIGIN_IDENTITY = "github.com/alsdmlals4-eng/grimoire-"
 
 
 def run_git(cwd: Path, *args: str) -> str:
@@ -71,6 +72,11 @@ class Task8PreservationObservedReconciliationPrepTests(unittest.TestCase):
             "Get-HistoricalWorktreeFingerprint",
             "HISTORICAL_WORKTREE_STATE_CHANGED",
             "historical_worktrees_verified_unchanged",
+            "Convert-GitHubRemoteIdentity",
+            "git config --get remote.origin.url",
+            "origin_configured",
+            "origin_identity",
+            "ORIGIN_IDENTITY_MISMATCH",
         ):
             self.assertIn(token, text)
         for forbidden in (
@@ -151,6 +157,97 @@ class Task8PreservationObservedReconciliationPrepTests(unittest.TestCase):
             self.assertNotEqual(0, completed.returncode)
             self.assertFalse((repo / "reconcile").exists())
             self.assertIn("RECONCILIATION_LINKED_ANCESTOR_FORBIDDEN", completed.stdout + completed.stderr)
+
+    def _run_origin_variant_fixture(self, root: Path, origin_url: str) -> tuple[subprocess.CompletedProcess[str], Path]:
+        pwsh = shutil.which("pwsh")
+        if pwsh is None:
+            self.skipTest("pwsh unavailable")
+
+        remote = root / "remote.git"
+        repo = root / "GRIMOIRE-"
+        reconcile = root / "reconcile"
+        snapshot = root / "snapshot"
+        run_git(root, "init", "--bare", str(remote))
+        run_git(root, "clone", str(remote), str(repo))
+        run_git(repo, "config", "user.email", "task8@example.invalid")
+        run_git(repo, "config", "user.name", "Task8 Fixture")
+        (repo / "project.godot").write_text("[application]\n", encoding="utf-8")
+        run_git(repo, "add", "project.godot")
+        run_git(repo, "commit", "-m", "fixture main")
+        run_git(repo, "branch", "-M", "main")
+        run_git(repo, "push", "-u", "origin", "main")
+        expected_main = run_git(repo, "rev-parse", "HEAD")
+
+        primary = repo / ".worktrees" / "task8-spell-use-screen-v2"
+        secondary = repo / ".worktrees" / "task8-spell-use-screen"
+        primary.parent.mkdir(parents=True, exist_ok=True)
+        run_git(repo, "branch", PRIMARY_BRANCH)
+        run_git(repo, "branch", SECONDARY_BRANCH)
+        run_git(repo, "worktree", "add", str(primary), PRIMARY_BRANCH)
+        run_git(repo, "worktree", "add", str(secondary), SECONDARY_BRANCH)
+        primary_head = run_git(primary, "rev-parse", "HEAD")
+        secondary_head = run_git(secondary, "rev-parse", "HEAD")
+
+        for role, branch, head in (
+            ("primary_v2", PRIMARY_BRANCH, primary_head),
+            ("secondary_original", SECONDARY_BRANCH, secondary_head),
+        ):
+            role_root = snapshot / role
+            role_root.mkdir(parents=True)
+            (role_root / "manifest.json").write_text(
+                json.dumps({"role": role, "branch": branch, "head": head, "copied_files": []}),
+                encoding="utf-8",
+            )
+
+        run_git(repo, "remote", "set-url", "origin", origin_url)
+        run_git(repo, "config", f"url.{remote}.insteadOf", origin_url)
+
+        env = os.environ.copy()
+        env["CI"] = "true"
+        env["TASK8_RECONCILIATION_FIXTURE"] = "1"
+        completed = subprocess.run(
+            [
+                pwsh, "-NoProfile", "-NonInteractive", "-File", str(TOOL),
+                "-Repo", str(repo),
+                "-SnapshotRoot", str(snapshot),
+                "-ExpectedMain", expected_main,
+                "-ReconciliationPath", str(reconcile),
+                "-FixtureIdentityOverride",
+                "-ExpectedPrimaryHead", primary_head,
+                "-ExpectedSecondaryHead", secondary_head,
+            ],
+            cwd=ROOT,
+            env=env,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        return completed, reconcile
+
+    def test_equivalent_github_origin_forms_are_accepted_as_one_repository_identity(self) -> None:
+        variants = (
+            "https://github.com/alsdmlals4-eng/GRIMOIRE-.git",
+            "git@github.com:alsdmlals4-eng/GRIMOIRE-.git",
+            "ssh://git@github.com/alsdmlals4-eng/GRIMOIRE-.git",
+        )
+        for origin_url in variants:
+            with self.subTest(origin_url=origin_url), tempfile.TemporaryDirectory() as temporary:
+                completed, reconcile = self._run_origin_variant_fixture(Path(temporary), origin_url)
+                self.assertEqual(0, completed.returncode, completed.stderr)
+                receipt = json.loads(completed.stdout)
+                self.assertEqual(origin_url, receipt["origin_configured"])
+                self.assertEqual(CANONICAL_ORIGIN_IDENTITY, receipt["origin_identity"])
+                self.assertTrue(reconcile.is_dir())
+
+    def test_different_github_repository_is_rejected_even_in_fixture_mode(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            completed, reconcile = self._run_origin_variant_fixture(
+                Path(temporary),
+                "https://github.com/alsdmlals4-eng/NOT-GRIMOIRE.git",
+            )
+            self.assertNotEqual(0, completed.returncode)
+            self.assertFalse(reconcile.exists())
+            self.assertIn("ORIGIN_IDENTITY_MISMATCH", completed.stdout + completed.stderr)
 
     def test_fixture_creates_clean_reconciliation_worktree_without_touching_historical_worktrees(self) -> None:
         pwsh = shutil.which("pwsh")
