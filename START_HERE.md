@@ -17,6 +17,7 @@ current_task8_continuation: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
 task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 task8_product_unit: TASK8_SPELL_USE_SCREEN
+latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
@@ -36,6 +37,11 @@ current_task_pr: PR158_V4_8_AUTHORITY_SYNC_DRAFT
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
+gut_status: GUT_FORMALLY_ADOPTED
+higodot_historical_live_alignment: LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED
+higodot_expected_actual_fields: NOT_SURFACED_DO_NOT_CLAIM
+windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
+three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 local_sync: BLOCKED_NO_LOCAL_ACCESS
 godot_run: BLOCKED_NO_LOCAL_ACCESS
 human_validation: NOT_RUN
@@ -80,7 +86,7 @@ Google Sheets
 - Task 4 / PR #105 — Stage 2 placement + atomic glyph preparation
 - Task 5 / PR #106 — Stage 3 explicit target/use atomic transaction
 - Task 6 / PR #108 — glyph drawing workflow screen
-- Task 7 / PR #110 — circuit placement workflow screen
+- Task 7 / PR #110 — circuit placement workflow screen (`fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f` lineage)
 - PR #151 — Component Sheets A–D + reusable semantic UI pack, `MERGED_MAIN_VERIFIED`
 
 PR #151은 더 이상 별도 진행 중 `DO_NOT_TOUCH` 작업이 아니다. 현재 live open PR은 작업 시작마다 다시 조회한다. 이 문서에서 `parallel_open_pr: NONE`은 **현재-task PR #158을 제외한 병렬/unrelated open PR이 없음**을 뜻한다.
@@ -92,6 +98,8 @@ Task8은 Task5 Stage3 authority의 thin UI consumer이며 새 target/use/Mana/in
 호환 추적용 역사 marker:
 
 ```text
+GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+TASK7_MERGED_MAIN_VERIFIED
 TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 TASK8_RECEIPT_HERA_REVIEW_PR
 ```
@@ -120,6 +128,23 @@ TASK8_LOCAL_DELTA_EXISTENCE: BLOCKED_UNVERIFIED
 ```
 
 이다. 로컬 delta가 있다고도 없다고도 추정하지 않는다. `tools/task8_local_recovery_probe.ps1`는 local executor가 사용 가능할 때 read-only로 실행한다. delta가 남아 있으면 reset/restore/clean 없이 보호 후 재검증하고, 없으면 승인된 HiGodot TDD plan으로 재작성한다.
+
+## Sync21 continuation / executor boundary
+
+아래 marker는 과거 Task8 handoff에서 검증된 **executor capability 경계**이며 v4.8 전환으로 지우지 않는다.
+
+```text
+GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
+CURRENT_DEDICATED_CODEX_REUSE_ALLOWED_FOR_CODEX_ONLY_CONTINUATION
+FRESH_POWERSHELL_REQUIRED_WHEN_SESSION_RECREATION_OR_CAPABILITY_BOUNDARY
+REMOTE_AUTHORITY_RECEIPT
+LOCAL_EXECUTION_RECEIPT
+EXECUTOR_CAPABILITY_BLOCKER
+DO_NOT_RETRY_BLOCKED_REMOTE_CHECK_IN_CODEX
+FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
+```
+
+이미 exact dedicated Codex가 살아 있고 필요한 단계가 그 검증된 capability 안이면 Codex-only continuation에 재사용할 수 있다. 세션 재생성·identity 불명확·capability boundary를 넘으면 fresh PowerShell bootstrap을 사용한다. Remote authority readback은 local worktree/HEAD/HiGodot evidence를 대체하지 않는다.
 
 ## Godot 진입점과 Runtime Reality
 
