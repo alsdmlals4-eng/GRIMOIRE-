@@ -11,7 +11,8 @@ contract_binding_sync: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync_predecessor: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
-current_authority_sync_candidate: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+current_authority_sync: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+authority_sync_pr: 158
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 current_task8_continuation: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
 task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
@@ -35,7 +36,6 @@ task8_product_commit: NONE
 task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
 parallel_open_pr: NONE
-current_task_pr: PR158_V4_8_AUTHORITY_SYNC_DRAFT
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
@@ -58,6 +58,8 @@ android_device: NOT_RUN
 ```
 
 `v4.8 r2 / GM-CONTRACT-V4-8-BINDING-01`이 현재 프로젝트 실행 계약이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
+
+`authority_sync_pr: 158`은 v4.8 전환의 provenance 번호다. draft/ready/merged 같은 PR lifecycle 상태는 이 문서에 고정하지 않고 live GitHub에서 읽는다.
 
 ## Workspace authority
 
@@ -93,7 +95,7 @@ Google Sheets
 - Task 7 / PR #110 — circuit placement workflow screen (`fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f` lineage)
 - PR #151 — Component Sheets A–D + reusable semantic UI pack, `MERGED_MAIN_VERIFIED`
 
-PR #151은 더 이상 별도 진행 중 `DO_NOT_TOUCH` 작업이 아니다. 현재 live open PR은 작업 시작마다 다시 조회한다. 이 문서에서 `parallel_open_pr: NONE`은 **현재-task PR #158을 제외한 병렬/unrelated open PR이 없음**을 뜻한다.
+PR #151은 더 이상 별도 진행 중 `DO_NOT_TOUCH` 작업이 아니다. 실제 live open PR inventory는 새 작업 시작마다 다시 조회한다. `parallel_open_pr: NONE`은 이 authority sync가 병합된 뒤의 stable cold-start 값이며, work unit 도중에는 live GitHub readback이 항상 우선한다.
 
 Task8은 Task5 Stage3 authority의 thin UI consumer이며 새 target/use/Mana/inventory/result/rollback authority를 만들지 않는다.
 
@@ -122,6 +124,8 @@ historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 ```
 
 `8c611f...`는 Task8 제품 commit이 아니라 당시 local branch Git baseline이다. 과거 `15 tests / 90 assertions / 0 failures`, `42 suites / 1,588 assertions / 0 failures`, `HERA_SOURCE_DELTA_NONE_OBSERVED`는 당시 관찰한 uncommitted worktree 상태의 역사 acceptance다. 현재 로컬 delta 존재를 증명하지 않는다.
+
+`docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`는 2026-08-21 provenance이며 그 안의 PR/branch 상태를 현재값으로 재사용하지 않는다. 현재 PR 상태는 live GitHub readback을 우선한다.
 
 현재 ChatGPT 세션에는 사용자 Windows checkout/Godot local executor가 없어:
 
@@ -176,18 +180,15 @@ AGENTS.md
 
 이다. 위 두 `CURRENT_*` 파일은 **HISTORICAL_COMPATIBILITY_SNAPSHOT**으로만 읽고 새 current decision/gate를 쓰지 않는다. 필요한 살아 있는 프로젝트 결정은 `ACTIVE_CONTEXT`와 분야별 owner가 소유한다.
 
-## 현재 다음 순서
+## 현재 다음 제품 순서
 
 ```text
-1. PR #158 v4.8 authority correction RED→GREEN
-2. exact-head CI / 5+ adversarial loops / review-thread gate
-3. PR #158 expected-head merge + merged-main readback
-4. bounded Notion Registry / Task13 sync + readback
-5. local executor가 가능해지는 즉시 TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
-6. Task8 fresh acceptance / merge 또는 approved HiGodot TDD re-authoring
-7. Task9 Product Root + responsive/E2E integration
-8. 대표 00~10분 Human Slice
-9. 10~23 → 46분 증거 확장
+1. TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+2. delta 존재 → fresh Task8 acceptance / exact-path review / PR / merge
+3. delta 부재 → approved HiGodot TDD re-authoring / acceptance / PR / merge
+4. Task9 Product Root + responsive/E2E integration
+5. 대표 00~10분 Human Slice
+6. 10~23 → 46분 증거 확장
 ```
 
 ## 현재 완료로 주장하지 않는 항목
@@ -216,7 +217,7 @@ ANDROID_DEVICE_NOT_RUN
 2. `START_HERE.md`
 3. `docs/ACTIVE_CONTEXT.md`
 4. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md`
-5. `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md` — Task8 재개 시
+5. `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md` — Task8 재개 시, 역사 provenance로만 사용
 6. 현재 목표에 해당하는 분야별 planning/runtime owner
 7. `skills/PROJECT_BASE_ADAPTER.json` / `skills/SKILL_REGISTRY.json` — routing 확인이 필요할 때
 8. 실제 `project.godot`, code/Scene/Resource/Test
