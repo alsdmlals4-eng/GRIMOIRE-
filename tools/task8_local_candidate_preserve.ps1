@@ -136,6 +136,55 @@ function Invoke-GitText {
     }
 }
 
+function Get-StringSha256 {
+    param([string]$Value)
+
+    $Bytes = [System.Text.Encoding]::UTF8.GetBytes($Value)
+    $Hasher = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        $HashBytes = $Hasher.ComputeHash($Bytes)
+        return (($HashBytes | ForEach-Object { $_.ToString('x2') }) -join '')
+    }
+    finally {
+        $Hasher.Dispose()
+    }
+}
+
+function Get-DirtyContentDigest {
+    param([string]$SourceRoot)
+
+    $DiffPrefix = @('-c', 'core.autocrlf=false', '-c', 'core.safecrlf=false', 'diff')
+    $WorkingNames = @(Invoke-GitText -WorkingDirectory $SourceRoot -Arguments ($DiffPrefix + @('--name-only')))
+    $CachedNames = @(Invoke-GitText -WorkingDirectory $SourceRoot -Arguments ($DiffPrefix + @('--cached', '--name-only')))
+    $Untracked = @(Invoke-GitText -WorkingDirectory $SourceRoot -Arguments @('ls-files', '--others', '--exclude-standard'))
+
+    $PathSet = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
+    foreach ($Path in (@($WorkingNames) + @($CachedNames) + @($Untracked))) {
+        if ($Path) {
+            [void]$PathSet.Add($Path)
+        }
+    }
+
+    $Entries = @()
+    foreach ($RelativePath in ($PathSet | Sort-Object)) {
+        $NormalizedRelative = ($RelativePath -replace '\\', '/')
+        $SourcePath = Join-Path $SourceRoot $RelativePath
+        if (Test-Path -LiteralPath $SourcePath -PathType Leaf) {
+            $ResolvedSource = (Resolve-Path -LiteralPath $SourcePath).Path
+            if (-not (Test-PathInside -Candidate $ResolvedSource -Parent $SourceRoot)) {
+                Stop-WithCode -Code 'SOURCE_PATH_ESCAPED_WORKTREE'
+            }
+            $Hash = (Get-FileHash -LiteralPath $ResolvedSource -Algorithm SHA256).Hash.ToLowerInvariant()
+            $Entries += "$NormalizedRelative`t$Hash"
+        }
+        else {
+            $Entries += "$NormalizedRelative`t<MISSING>"
+        }
+    }
+
+    return Get-StringSha256 -Value ($Entries -join "`n")
+}
+
 function Get-IndexHash {
     param([string]$WorkingDirectory)
 
@@ -168,6 +217,7 @@ function Get-CandidateFingerprint {
         head = $Head[0]
         status = @($Status)
         index_sha256 = Get-IndexHash -WorkingDirectory $Path
+        content_digest = Get-DirtyContentDigest -SourceRoot $Path
     }
 }
 
@@ -290,6 +340,7 @@ function Preserve-Candidate {
         head = $ExpectedHead
         status_before = @($BeforeFingerprint.status)
         index_sha256_before = $BeforeFingerprint.index_sha256
+        content_digest_before = $BeforeFingerprint.content_digest
         working_name_status = @($WorkingStatus)
         cached_name_status = @($CachedStatus)
         untracked_paths = @($Untracked)
@@ -350,6 +401,11 @@ $PrimaryAfter = Get-CandidateFingerprint -Path $Primary.path
 $SecondaryAfter = Get-CandidateFingerprint -Path $Secondary.path
 $RefsAfter = @(Invoke-GitText -WorkingDirectory $ResolvedRepo -Arguments @('show-ref'))
 
+$SourceContentUnchanged = (
+    ($PrimaryBefore.content_digest -eq $PrimaryAfter.content_digest) -and
+    ($SecondaryBefore.content_digest -eq $SecondaryAfter.content_digest)
+)
+
 $SourceUnchanged = (
     (($RefsBefore -join "`n") -eq ($RefsAfter -join "`n")) -and
     ($PrimaryBefore.branch -eq $PrimaryAfter.branch) -and
@@ -359,7 +415,8 @@ $SourceUnchanged = (
     ($SecondaryBefore.branch -eq $SecondaryAfter.branch) -and
     ($SecondaryBefore.head -eq $SecondaryAfter.head) -and
     (($SecondaryBefore.status -join "`n") -eq ($SecondaryAfter.status -join "`n")) -and
-    ($SecondaryBefore.index_sha256 -eq $SecondaryAfter.index_sha256)
+    ($SecondaryBefore.index_sha256 -eq $SecondaryAfter.index_sha256) -and
+    $SourceContentUnchanged
 )
 
 if (-not $SourceUnchanged) {
@@ -371,6 +428,7 @@ $Receipt = [ordered]@{
     contract_role = 'TASK8_LOCAL_CANDIDATE_PRESERVATION_RECEIPT'
     status = 'TASK8_CANDIDATES_PRESERVED'
     source_unchanged = $true
+    source_content_unchanged = $true
     snapshot_root = $SnapshotRoot
     candidates = @($CandidateReceipts)
 }
