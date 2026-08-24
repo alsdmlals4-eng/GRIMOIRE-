@@ -68,6 +68,9 @@ class Task8PreservationObservedReconciliationPrepTests(unittest.TestCase):
             "project.godot",
             "RECONCILIATION_PATH_INSIDE_SNAPSHOT_FORBIDDEN",
             "RECONCILIATION_LINKED_ANCESTOR_FORBIDDEN",
+            "Get-HistoricalWorktreeFingerprint",
+            "HISTORICAL_WORKTREE_STATE_CHANGED",
+            "historical_worktrees_verified_unchanged",
         ):
             self.assertIn(token, text)
         for forbidden in (
@@ -181,6 +184,11 @@ class Task8PreservationObservedReconciliationPrepTests(unittest.TestCase):
             primary_head = run_git(primary, "rev-parse", "HEAD")
             secondary_head = run_git(secondary, "rev-parse", "HEAD")
 
+            (primary / "project.godot").write_text("[application]\n# primary dirty\n", encoding="utf-8")
+            (primary / "task8-primary.tmp").write_bytes(b"primary-preserved-state\x00\n")
+            (secondary / "project.godot").write_text("[application]\n# secondary dirty\n", encoding="utf-8")
+            (secondary / "task8-secondary.tmp").write_bytes(b"secondary-preserved-state\x00\n")
+
             for role, branch, head in (
                 ("primary_v2", PRIMARY_BRANCH, primary_head),
                 ("secondary_original", SECONDARY_BRANCH, secondary_head),
@@ -194,6 +202,8 @@ class Task8PreservationObservedReconciliationPrepTests(unittest.TestCase):
 
             before_primary = run_git(primary, "status", "--porcelain=v1", "--untracked-files=all")
             before_secondary = run_git(secondary, "status", "--porcelain=v1", "--untracked-files=all")
+            before_primary_bytes = (primary / "task8-primary.tmp").read_bytes()
+            before_secondary_bytes = (secondary / "task8-secondary.tmp").read_bytes()
 
             env = os.environ.copy()
             env["CI"] = "true"
@@ -219,11 +229,14 @@ class Task8PreservationObservedReconciliationPrepTests(unittest.TestCase):
             receipt = json.loads(completed.stdout)
             self.assertEqual("TASK8_CLEAN_RECONCILIATION_WORKTREE_READY", receipt["status"])
             self.assertEqual(expected_main, receipt["head"])
+            self.assertTrue(receipt["historical_worktrees_verified_unchanged"])
             self.assertEqual("", run_git(reconcile, "status", "--porcelain=v1", "--untracked-files=all"))
             self.assertEqual(before_primary, run_git(primary, "status", "--porcelain=v1", "--untracked-files=all"))
             self.assertEqual(before_secondary, run_git(secondary, "status", "--porcelain=v1", "--untracked-files=all"))
             self.assertEqual(primary_head, run_git(primary, "rev-parse", "HEAD"))
             self.assertEqual(secondary_head, run_git(secondary, "rev-parse", "HEAD"))
+            self.assertEqual(before_primary_bytes, (primary / "task8-primary.tmp").read_bytes())
+            self.assertEqual(before_secondary_bytes, (secondary / "task8-secondary.tmp").read_bytes())
 
 
 if __name__ == "__main__":
