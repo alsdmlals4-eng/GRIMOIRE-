@@ -17,12 +17,14 @@ product_stage: DEMO_FIRST_VERTICAL_SLICE
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
-task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
-task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
+task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
+task8_preservation_receipt: docs/planning/TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVATION_2026-08-24.md
+task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
+task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: NONE
 task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
-task8_reverify_receipt: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 authority_sync_pr: 158
 base_project_pin: v9.4.3
@@ -31,7 +33,6 @@ workspace_human_canon: NOTION_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
-authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
 authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
 human_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
@@ -47,10 +48,10 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 3. Notion은 사람이 읽는 Project Home·Work·Core System·Visual/Asset/Flow의 기본 작업면이다.
 4. Repository는 Markdown/JSON/game data/code/Scene/Resource/Test/runtime evidence 정본이다.
 5. Google Sheets는 역사 migration source다. 신규 canon write를 하지 않고, 고유 자료 흡수 확인 전 삭제도 하지 않는다.
-6. 모든 live open/draft/ready PR은 기본 READ_ONLY다. **PR #151은 이미 `MERGED_MAIN_VERIFIED`인 역사/current-main 구성요소**이며 더 이상 `DO_NOT_TOUCH` open-work가 아니다. `authority_sync_pr: 158`은 이번 v4.8 전환의 provenance 번호만 보존하며 실제 PR lifecycle과 현재 open PR 집합은 항상 live GitHub에서 읽는다.
+6. 모든 live open/draft/ready PR은 기본 READ_ONLY다. **PR #151은 이미 `MERGED_MAIN_VERIFIED`인 역사/current-main 구성요소**이며 더 이상 `DO_NOT_TOUCH` open-work가 아니다. 실제 PR lifecycle과 현재 open PR 집합은 항상 live GitHub에서 읽는다.
 7. 실제 실행하지 않은 Human/Device/Performance/Full Slice 증거를 PASS로 승격하지 않는다.
-8. Task8 재개 시 `8c611f...`를 제품 커밋으로 취급하지 않는다. 먼저 로컬의 커밋되지 않은 Task8 worktree delta가 실제로 남아 있는지 확인한다.
-9. Sync35 authority 작업에서 관찰한 local/Godot 접근 한계는 `BLOCKED_NO_LOCAL_ACCESS`였다. 이것은 영구 executor 사실이 아니다. Task8 재개 시 fresh local executor readback으로 다시 판정하며, 이번 관찰의 상세 provenance는 Sync35 receipt에 남긴다.
+8. Task8의 로컬 dirty delta는 사용자 PC read-only probe로 존재가 확인됐고, 두 후보는 외부 snapshot으로 보존됐다. 역사 worktree를 직접 sync/rebase/clean하지 않고 별도 clean reconciliation worktree에서 current main과 조정한다.
+9. 보존 성공은 제품 호환성·HiGodot readiness·fresh tests를 증명하지 않는다. 다음 gate는 `TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED`다.
 10. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration 이후 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 binding이다.
 
 ## 프로젝트 코어
@@ -96,20 +97,24 @@ runtime_component_validation: AUTOMATED_HEADLESS_PASS
 - 호환 next locator: `TASK8_RECEIPT_HERA_REVIEW_PR`
 - 현재 continuation owner: `GR-SYNC-20260812-21-TASK8-HANDOFF-BCP`
 - 현재 parent gate: `TASK8_PR_PREP_REVERIFY_PENDING`
-- 현재 first execution subgate: `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`
-- `task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b`
+- 현재 recovery state: `TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS`
+- 현재 execution subgate: `TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED`
+- primary: `feat/task8-spell-use-screen-v2@8c611f601aa98397ed1558e92ab207e0e8347a9b`
+- secondary/reference: `task8/spell-use-screen@fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f`
 - `task8_product_commit: NONE`
 - `task8_remote_product_branch: NOT_PRESENT`
 - `task8_remote_product_pr: NONE`
 
-`8c611f...`는 PR #131 HiGodot v3.1.4 authority reconciliation commit이며 Task8 제품 코드가 들어 있는 commit이 아니다. Sync21 당시 Task8 제품 구현은 이 HEAD 위의 **uncommitted local worktree delta**였다.
+`8c611f...`는 PR #131 HiGodot v3.1.4 authority reconciliation commit이며 Task8 제품 코드가 들어 있는 commit이 아니다. Task8 제품 구현은 이 HEAD 위의 uncommitted local delta로 보존됐다.
 
 따라서 Task8 재개는 다음 순서를 따른다.
 
 ```text
-local Task8 delta recovery/readback
-→ 있으면 보호한 채 fresh HiGodot/GUT/Hera/diff/adversarial revalidation
-→ 없으면 승인된 Task8 plan을 HiGodot TDD로 재작성
+preserved historical candidates
+→ separate clean reconciliation worktree from exact fresh origin/main
+→ fresh exact-project HiGodot readback
+→ primary v2 recovery + secondary parity comparison
+→ fresh GUT/Hera/diff/adversarial revalidation
 → stage/commit/push/PR
 → exact-head CI/review
 → merge/readback
