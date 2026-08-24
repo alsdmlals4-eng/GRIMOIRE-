@@ -37,7 +37,8 @@ task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_product_commit: NONE
 task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
-parallel_open_pr: PR151_DO_NOT_TOUCH
+parallel_open_pr: NONE
+component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
@@ -198,9 +199,11 @@ spell_workflow_task2_authorized: true
 spell_workflow_task2_historical_status: TASK2_MERGED_MAIN_VERIFIED
 ```
 
-## Parallel work protection
+## Parallel work status
 
-PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft다. Task8 recovery가 이 PR의 파일을 수정·rebase·merge하거나 완료로 주장하지 않는다: `PR151_DO_NOT_TOUCH`.
+PR #151 `visual/component-sheets-semantic-ui-execution`은 **2026-08-23에 병합 완료된 역사/현재 main 구성요소**다. 더 이상 `DO_NOT_TOUCH` open-work 경계가 아니다. Component Sheet A–D와 semantic UI pack은 병합된 current main 사실로 읽되, 이것이 Task8 제품 구현이나 Human/Device/Performance/Full Slice PASS를 의미하지는 않는다.
+
+현재 이 snapshot에서 GRIMOIRE open PR은 없다. 다음 작업 시작 시에는 이 문장을 영구 사실로 사용하지 말고 GitHub live query를 다시 수행한다. Task8 recovery는 병합된 Component Sheet owner를 보존하면서 별도의 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED` 경계를 따른다.
 
 ## 현재 다음 순서
 
