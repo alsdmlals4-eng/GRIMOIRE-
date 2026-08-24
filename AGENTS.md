@@ -19,7 +19,9 @@ implementation: PARTIAL_FOUNDATION
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
+task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_preservation_receipt: docs/planning/TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVATION_2026-08-24.md
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: NONE
@@ -33,6 +35,7 @@ workspace_human_canon: NOTION_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
+authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
 authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
 human_validation: NOT_RUN
 mobile_device_validation: NOT_RUN
@@ -40,6 +43,8 @@ performance_validation: NOT_RUN
 full_vertical_slice_status: FULL_VERTICAL_SLICE_NOT_RUN
 numeric_status: PLAYTEST_TUNING_REQUIRED
 ```
+
+`authority_sync_local_observation` / `authority_sync_godot_observation`은 Sync35 시점의 역사 관찰값이며 현재 executor 사실을 덮어쓰지 않는다. 현재 로컬 Task8 존재·보존 상태는 별도 `task8_recovery_state`가 소유한다.
 
 ## 현재 작업 원칙
 
@@ -52,7 +57,8 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 7. 실제 실행하지 않은 Human/Device/Performance/Full Slice 증거를 PASS로 승격하지 않는다.
 8. Task8의 로컬 dirty delta는 사용자 PC read-only probe로 존재가 확인됐고, 두 후보는 외부 snapshot으로 보존됐다. 역사 worktree를 직접 sync/rebase/clean하지 않고 별도 clean reconciliation worktree에서 current main과 조정한다.
 9. 보존 성공은 제품 호환성·HiGodot readiness·fresh tests를 증명하지 않는다. 다음 gate는 `TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED`다.
-10. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration 이후 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 binding이다.
+10. `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`는 이미 닫힌 **historical compatibility locator**로 보존한다. consumer 검색 가능성 때문에 지우지 않지만 current execution gate로 해석하지 않는다.
+11. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration 이후 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 binding이다.
 
 ## 프로젝트 코어
 
@@ -97,6 +103,7 @@ runtime_component_validation: AUTOMATED_HEADLESS_PASS
 - 호환 next locator: `TASK8_RECEIPT_HERA_REVIEW_PR`
 - 현재 continuation owner: `GR-SYNC-20260812-21-TASK8-HANDOFF-BCP`
 - 현재 parent gate: `TASK8_PR_PREP_REVERIFY_PENDING`
+- 닫힌 predecessor gate: `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`
 - 현재 recovery state: `TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS`
 - 현재 execution subgate: `TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED`
 - primary: `feat/task8-spell-use-screen-v2@8c611f601aa98397ed1558e92ab207e0e8347a9b`
