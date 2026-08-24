@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import tempfile
@@ -53,6 +54,13 @@ def source_fingerprint(repo: Path, candidates: list[Path]) -> dict[str, object]:
     return result
 
 
+def fixture_env() -> dict[str, str]:
+    env = os.environ.copy()
+    env["CI"] = "true"
+    env["TASK8_PRESERVATION_FIXTURE"] = "1"
+    return env
+
+
 class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
     def test_tool_contract_is_fail_closed_and_source_read_only(self) -> None:
         self.assertTrue(TOOL.is_file())
@@ -74,6 +82,9 @@ class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
             "GIT_OPTIONAL_LOCKS",
             "core.autocrlf=false",
             "core.safecrlf=false",
+            "IDENTITY_OVERRIDE_FORBIDDEN",
+            "TASK8_PRESERVATION_FIXTURE",
+            "Resolve-DestinationPathWithoutCreating",
         ):
             self.assertIn(token, text)
 
@@ -148,6 +159,7 @@ class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
                     str(repo),
                     "-DestinationRoot",
                     str(backup_root),
+                    "-FixtureIdentityOverride",
                     "-ExpectedPrimaryHead",
                     primary_head,
                     "-ExpectedSecondaryHead",
@@ -157,6 +169,7 @@ class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
                 text=True,
                 capture_output=True,
                 check=False,
+                env=fixture_env(),
             )
             self.assertEqual(0, completed.returncode, completed.stderr)
             receipt = json.loads(completed.stdout)
@@ -204,6 +217,68 @@ class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
             self.assertFalse((repo / "backup").exists())
             self.assertIn("DESTINATION_INSIDE_SOURCE", completed.stdout + completed.stderr)
 
+    def test_destination_via_symlink_into_repo_is_rejected_before_snapshot_creation(self) -> None:
+        pwsh = shutil.which("pwsh")
+        if pwsh is None:
+            self.skipTest("pwsh is unavailable on this executor")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "GRIMOIRE-"
+            repo.mkdir()
+            run_git(repo, "init", "-b", "main")
+            alias = root / "repo-alias"
+            try:
+                alias.symlink_to(repo, target_is_directory=True)
+            except OSError as exc:
+                self.skipTest(f"symlink unavailable: {exc}")
+
+            completed = subprocess.run(
+                [pwsh, "-NoProfile", "-NonInteractive", "-File", str(TOOL), "-Repo", str(repo), "-DestinationRoot", str(alias / "backup")],
+                cwd=ROOT,
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertNotEqual(0, completed.returncode)
+            self.assertFalse((repo / "backup").exists())
+            self.assertIn("DESTINATION_INSIDE_SOURCE", completed.stdout + completed.stderr)
+
+    def test_identity_override_requires_explicit_ci_fixture_gate(self) -> None:
+        pwsh = shutil.which("pwsh")
+        if pwsh is None:
+            self.skipTest("pwsh is unavailable on this executor")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "GRIMOIRE-"
+            backup_root = root / "backup"
+            repo.mkdir()
+            backup_root.mkdir()
+            run_git(repo, "init", "-b", "main")
+            completed = subprocess.run(
+                [
+                    pwsh,
+                    "-NoProfile",
+                    "-NonInteractive",
+                    "-File",
+                    str(TOOL),
+                    "-Repo",
+                    str(repo),
+                    "-DestinationRoot",
+                    str(backup_root),
+                    "-ExpectedPrimaryHead",
+                    "0" * 40,
+                ],
+                cwd=ROOT,
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertNotEqual(0, completed.returncode)
+            self.assertIn("IDENTITY_OVERRIDE_FORBIDDEN", completed.stdout + completed.stderr)
+            self.assertEqual([], list(backup_root.iterdir()))
+
     def test_wrong_candidate_identity_fails_closed(self) -> None:
         pwsh = shutil.which("pwsh")
         if pwsh is None:
@@ -241,6 +316,7 @@ class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
                     str(repo),
                     "-DestinationRoot",
                     str(backup_root),
+                    "-FixtureIdentityOverride",
                     "-ExpectedPrimaryHead",
                     "0" * 40,
                     "-ExpectedSecondaryHead",
@@ -250,6 +326,7 @@ class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
                 text=True,
                 capture_output=True,
                 check=False,
+                env=fixture_env(),
             )
             self.assertNotEqual(0, completed.returncode)
             self.assertIn("CANDIDATE_IDENTITY_MISMATCH", completed.stdout + completed.stderr)
