@@ -91,6 +91,17 @@ class Task8PreservationObservedReconciliationPrepTests(unittest.TestCase):
         ):
             self.assertNotIn(forbidden, text)
 
+    def test_native_git_progress_stderr_is_not_merged_into_powershell_error_stream(self) -> None:
+        text = TOOL.read_text(encoding="utf-8")
+        self.assertIn("& git fetch --prune origin", text)
+        self.assertIn("$FetchExit = $LASTEXITCODE", text)
+        self.assertIn("& git worktree add -b $ReconciliationBranch $ReconciliationFull 'origin/main'", text)
+        self.assertIn("$WorktreeExit = $LASTEXITCODE", text)
+        self.assertNotIn("git fetch --prune origin 2>&1", text)
+        self.assertNotIn("git worktree add -b $ReconciliationBranch $ReconciliationFull 'origin/main' 2>&1", text)
+        self.assertNotIn("$FetchOutput", text)
+        self.assertNotIn("$WorktreeOutput", text)
+
     def test_reconciliation_path_inside_snapshot_is_rejected_before_manifest_read(self) -> None:
         pwsh = shutil.which("pwsh")
         if pwsh is None:

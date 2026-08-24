@@ -276,8 +276,8 @@ elseif ($OriginIdentity -ne $ExpectedOriginIdentity) {
 
 Push-Location $ResolvedRepo
 try {
-    # git fetch is the only source-repository synchronization action in this tool.
-    $FetchOutput = @(& git fetch --prune origin 2>&1)
+    # Keep native Git stderr separate from the PowerShell error stream. Windows PowerShell 5.1 can promote normal progress stderr into NativeCommandError when merged with 2>&1 under ErrorActionPreference=Stop. Suppress stdout only so the final stdout remains JSON-only.
+    & git fetch --prune origin >$null
     $FetchExit = $LASTEXITCODE
     if ($FetchExit -ne 0) { Stop-WithCode -Code 'ORIGIN_FETCH_FAILED' }
 }
@@ -300,7 +300,7 @@ if (-not (Test-Path -LiteralPath $Parent -PathType Container)) { New-Item -ItemT
 
 Push-Location $ResolvedRepo
 try {
-    $WorktreeOutput = @(& git worktree add -b $ReconciliationBranch $ReconciliationFull 'origin/main' 2>&1)
+    & git worktree add -b $ReconciliationBranch $ReconciliationFull 'origin/main' >$null
     $WorktreeExit = $LASTEXITCODE
     if ($WorktreeExit -ne 0) { Stop-WithCode -Code 'RECONCILIATION_WORKTREE_CREATE_FAILED' }
 }
