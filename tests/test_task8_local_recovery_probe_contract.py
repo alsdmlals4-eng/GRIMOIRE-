@@ -59,7 +59,11 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             "git diff --cached --name-status",
             "git ls-files --others --exclude-standard",
             "git log --oneline",
-            "git diff --name-status $Baseline..HEAD",
+            '$BaselineRange = "${Baseline}..HEAD"',
+            "git diff --name-status $BaselineRange",
+            "Normalize-CandidatePathKey",
+            "core.autocrlf=false",
+            "core.safecrlf=false",
             "task8_signal_paths",
             "spell_use_screen.gd",
             "spell_use_screen.tscn",
@@ -68,6 +72,7 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             self.assertIn(required, text)
 
         for forbidden in (
+            "git diff --name-status $Baseline..HEAD",
             "git reset",
             "git restore",
             "git clean",
@@ -203,6 +208,15 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             self.assertTrue(candidate["delta_evidence_present"])
             self.assertIn("src/ui/spell_workflow/spell_use_screen.gd", candidate["untracked_paths"])
             self.assertTrue(candidate["task8_signal_paths"])
+
+            normalized_candidates = [
+                str(item.get("top_level") or item.get("path") or "")
+                .replace("\\", "/")
+                .rstrip("/")
+                .casefold()
+                for item in result["inspected_worktrees"]
+            ]
+            self.assertEqual(len(normalized_candidates), len(set(normalized_candidates)))
 
             self.assertEqual(refs_before, run_git(repo, "show-ref"))
             self.assertEqual(
