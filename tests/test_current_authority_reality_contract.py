@@ -133,6 +133,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
             self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", text, relative_path)
             self.assertNotIn("active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, relative_path)
             self.assertNotIn("current_task_pr:", text, relative_path)
+            self.assertNotIn("PR #158 v4.8 authority correction RED→GREEN", text, relative_path)
 
         agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         start = (ROOT / "START_HERE.md").read_text(encoding="utf-8")
