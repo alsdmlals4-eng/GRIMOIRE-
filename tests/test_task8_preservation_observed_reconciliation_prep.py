@@ -66,6 +66,8 @@ class Task8PreservationObservedReconciliationPrepTests(unittest.TestCase):
             "worktree",
             "origin/main",
             "project.godot",
+            "RECONCILIATION_PATH_INSIDE_SNAPSHOT_FORBIDDEN",
+            "RECONCILIATION_LINKED_ANCESTOR_FORBIDDEN",
         ):
             self.assertIn(token, text)
         for forbidden in (
@@ -79,6 +81,73 @@ class Task8PreservationObservedReconciliationPrepTests(unittest.TestCase):
             "Remove-Item",
         ):
             self.assertNotIn(forbidden, text)
+
+    def test_reconciliation_path_inside_snapshot_is_rejected_before_manifest_read(self) -> None:
+        pwsh = shutil.which("pwsh")
+        if pwsh is None:
+            self.skipTest("pwsh unavailable")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "GRIMOIRE-"
+            snapshot = root / "snapshot"
+            repo.mkdir()
+            snapshot.mkdir()
+            run_git(repo, "init", "-b", "main")
+            (repo / "project.godot").write_text("[application]\n", encoding="utf-8")
+
+            completed = subprocess.run(
+                [
+                    pwsh, "-NoProfile", "-NonInteractive", "-File", str(TOOL),
+                    "-Repo", str(repo),
+                    "-SnapshotRoot", str(snapshot),
+                    "-ExpectedMain", "0" * 40,
+                    "-ReconciliationPath", str(snapshot / "reconcile"),
+                ],
+                cwd=ROOT,
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertNotEqual(0, completed.returncode)
+            self.assertFalse((snapshot / "reconcile").exists())
+            self.assertIn("RECONCILIATION_PATH_INSIDE_SNAPSHOT_FORBIDDEN", completed.stdout + completed.stderr)
+
+    def test_reconciliation_path_with_linked_ancestor_is_rejected_before_manifest_read(self) -> None:
+        pwsh = shutil.which("pwsh")
+        if pwsh is None:
+            self.skipTest("pwsh unavailable")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "GRIMOIRE-"
+            snapshot = root / "snapshot"
+            repo.mkdir()
+            snapshot.mkdir()
+            run_git(repo, "init", "-b", "main")
+            (repo / "project.godot").write_text("[application]\n", encoding="utf-8")
+            alias = root / "repo-alias"
+            try:
+                alias.symlink_to(repo, target_is_directory=True)
+            except OSError as exc:
+                self.skipTest(f"symlink unavailable: {exc}")
+
+            completed = subprocess.run(
+                [
+                    pwsh, "-NoProfile", "-NonInteractive", "-File", str(TOOL),
+                    "-Repo", str(repo),
+                    "-SnapshotRoot", str(snapshot),
+                    "-ExpectedMain", "0" * 40,
+                    "-ReconciliationPath", str(alias / "reconcile"),
+                ],
+                cwd=ROOT,
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertNotEqual(0, completed.returncode)
+            self.assertFalse((repo / "reconcile").exists())
+            self.assertIn("RECONCILIATION_LINKED_ANCESTOR_FORBIDDEN", completed.stdout + completed.stderr)
 
     def test_fixture_creates_clean_reconciliation_worktree_without_touching_historical_worktrees(self) -> None:
         pwsh = shutil.which("pwsh")
