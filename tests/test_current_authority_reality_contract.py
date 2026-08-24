@@ -113,14 +113,12 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", binding)
         self.assertIn("LOCAL_SYNC: BLOCKED_NO_LOCAL_ACCESS", binding)
 
-        required_docs = [
+        required_active_docs = [
             "AGENTS.md",
             "START_HERE.md",
             "docs/ACTIVE_CONTEXT.md",
-            "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
-            "docs/planning/CURRENT_UNRESOLVED_GATES.md",
         ]
-        for relative_path in required_docs:
+        for relative_path in required_active_docs:
             text = (ROOT / relative_path).read_text(encoding="utf-8")
             self.assertIn(expected_contract, text, relative_path)
             self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", text, relative_path)
@@ -128,12 +126,18 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
 
         agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         start = (ROOT / "START_HERE.md").read_text(encoding="utf-8")
+        active = (ROOT / "docs/ACTIVE_CONTEXT.md").read_text(encoding="utf-8")
         self.assertNotIn("PR #151은 `DO_NOT_TOUCH`", agents)
         self.assertNotIn("parallel_open_pr: PR151_DO_NOT_TOUCH", start)
-        self.assertIn("PR #151", agents)
-        self.assertIn("MERGED", agents)
+        self.assertIn("component_sheet_pr151: MERGED_MAIN_VERIFIED", start)
         self.assertIn("parallel_open_pr: NONE", start)
-        self.assertIn("MERGED", start)
+        self.assertIn("current_task_pr: PR158_V4_8_AUTHORITY_SYNC_DRAFT", start)
+        self.assertIn("current_task_pr: PR158_V4_8_AUTHORITY_SYNC_DRAFT", active)
+
+        for text in (agents, start, active):
+            self.assertIn("HISTORICAL_COMPATIBILITY_SNAPSHOT", text)
+            self.assertIn("CURRENT_CONFIRMED_DECISIONS.md", text)
+            self.assertIn("CURRENT_UNRESOLVED_GATES.md", text)
 
 
 if __name__ == "__main__":
