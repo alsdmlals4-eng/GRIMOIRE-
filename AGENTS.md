@@ -24,7 +24,7 @@ task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
 task8_reverify_receipt: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
 parallel_open_pr: NONE
-current_task_pr: PR158_V4_8_AUTHORITY_SYNC_DRAFT
+authority_sync_pr: 158
 base_project_pin: v9.4.3
 base_live_readback: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 workspace_human_canon: NOTION_HUMAN_FACING_CANON
@@ -46,11 +46,11 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 3. Notion은 사람이 읽는 Project Home·Work·Core System·Visual/Asset/Flow의 기본 작업면이다.
 4. Repository는 Markdown/JSON/game data/code/Scene/Resource/Test/runtime evidence 정본이다.
 5. Google Sheets는 역사 migration source다. 신규 canon write를 하지 않고, 고유 자료 흡수 확인 전 삭제도 하지 않는다.
-6. 모든 live open/draft/ready PR은 기본 READ_ONLY다. **PR #151은 이미 `MERGED_MAIN_VERIFIED`인 역사/current-main 구성요소**이며 더 이상 `DO_NOT_TOUCH` open-work가 아니다. 이 승인 계약에서 만든 current-task PR #158만 v4.8 gate를 통과한 뒤 ready/merge할 수 있다.
+6. 모든 live open/draft/ready PR은 기본 READ_ONLY다. **PR #151은 이미 `MERGED_MAIN_VERIFIED`인 역사/current-main 구성요소**이며 더 이상 `DO_NOT_TOUCH` open-work가 아니다. `authority_sync_pr: 158`은 이번 v4.8 전환의 provenance 번호만 보존하며 draft/ready/merged 같은 lifecycle 상태는 항상 live GitHub에서 읽는다.
 7. 실제 실행하지 않은 Human/Device/Performance/Full Slice 증거를 PASS로 승격하지 않는다.
 8. Task8 재개 시 `8c611f...`를 제품 커밋으로 취급하지 않는다. 먼저 로컬의 커밋되지 않은 Task8 worktree delta가 실제로 남아 있는지 확인한다.
 9. 현재 ChatGPT 세션은 사용자 Windows checkout/Godot을 직접 읽지 못하므로 Task8 local delta 존재 여부를 추정하지 않는다. `LOCAL_SYNC/GODOT_RUN=BLOCKED_NO_LOCAL_ACCESS`를 유지하고 독립적인 remote authority work만 진행한다.
-10. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration이 끝날 때까지 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 binding이다.
+10. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration 이후 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 binding이다.
 
 ## 프로젝트 코어
 
@@ -126,8 +126,8 @@ GitHub text write로 `spell_use_screen.gd/.tscn`를 재구축하는 것은 persi
 - `docs/ASSET_RIGHTS_AND_PROVENANCE_RECORD.md`
 - `docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`
 
-## 현재 Authority Sync
+## Authority Sync provenance
 
-`GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC`는 과거 current-authority 교정의 병합·Notion readback provenance다. 현재 승인된 후속은 `GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC` / current-task PR #158이며, 병합 전에는 candidate 상태로만 취급한다.
+`GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC`는 이전 current-authority 교정의 병합·Notion readback provenance다. v4.8 전환은 `GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC` / PR #158이 추적한다. PR의 lifecycle 상태는 이 정본에 고정하지 않고 live GitHub에서 읽는다.
 
 현재 v4.8 바인딩은 `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md`가 소유한다. v4.5 이하 바인딩은 `HISTORICAL_SUPERSEDED_CURRENT_BINDING`으로 보존한다.
