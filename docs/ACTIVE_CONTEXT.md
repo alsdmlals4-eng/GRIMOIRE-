@@ -34,7 +34,7 @@ task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_product_commit: NONE
 task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
-parallel_open_pr: NONE
+open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
@@ -46,8 +46,9 @@ hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
-local_sync: BLOCKED_NO_LOCAL_ACCESS
-godot_run: BLOCKED_NO_LOCAL_ACCESS
+local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
+authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
+authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
 task8_local_delta_existence: BLOCKED_UNVERIFIED
 human_validation: NOT_RUN
 device_validation: NOT_RUN
@@ -64,7 +65,7 @@ Frostbloom 00~46분 첫 세션 기획은 완료됐지만 제품 구현은 `PARTI
 
 Star Circuit Runtime과 Component Sheets A–D에는 자동화/렌더 evidence가 있다. 이 component evidence와 전체 제품 상태를 혼동하지 않는다. `FULL_VERTICAL_SLICE_NOT_RUN`, `HUMAN_NOT_RUN`, `DEVICE_NOT_RUN`, `PERFORMANCE_NOT_RUN`은 유지한다.
 
-`authority_sync_pr: 158`은 v4.8 authority transition provenance다. PR의 draft/ready/merged lifecycle 상태는 이 active context에 고정하지 않고 live GitHub에서 읽는다.
+`authority_sync_pr: 158`은 v4.8 authority transition provenance다. PR의 draft/ready/merged lifecycle과 현재 open PR 집합은 이 active context에 고정하지 않고 live GitHub에서 읽는다.
 
 ## Workspace authority
 
@@ -134,15 +135,9 @@ current_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 
 `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`는 2026-08-21 당시의 remote/local snapshot이다. 그 문서 안의 PR/branch 상태는 현재 상태로 재사용하지 않고 live GitHub readback을 우선한다.
 
-현재 ChatGPT 세션에는 사용자 Windows checkout/Godot local executor가 없다.
+Sync35 authority 작업의 local/Godot 관찰은 `BLOCKED_NO_LOCAL_ACCESS`, Task8 local delta existence는 `BLOCKED_UNVERIFIED`였다. 이것은 영구 executor 상태가 아니다. 다음 Task8 실행은 `local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED`에 따라 fresh local capability부터 다시 확인한다.
 
-```text
-LOCAL_SYNC: BLOCKED_NO_LOCAL_ACCESS
-GODOT_RUN: BLOCKED_NO_LOCAL_ACCESS
-TASK8_LOCAL_DELTA_EXISTENCE: BLOCKED_UNVERIFIED
-```
-
-따라서 Task8 local delta가 남아 있다고도 소실됐다고도 주장하지 않는다. local executor가 사용 가능해지면 `tools/task8_local_recovery_probe.ps1`로 read-only 검사한다. delta가 있으면 `reset/restore/clean` 없이 보존 후 fresh HiGodot/GUT/Hera/diff/adversarial revalidation을 수행한다. 없으면 승인된 Task8 plan을 HiGodot TDD로 재작성한다.
+local executor가 사용 가능해지면 `tools/task8_local_recovery_probe.ps1`로 read-only 검사한다. delta가 있으면 `reset/restore/clean` 없이 보존 후 fresh HiGodot/GUT/Hera/diff/adversarial revalidation을 수행한다. 없으면 승인된 Task8 plan을 HiGodot TDD로 재작성한다.
 
 ## Sync21 continuation / executor boundary
 
@@ -183,7 +178,7 @@ learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
 
 PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 current-main 역사다. 더 이상 `DO_NOT_TOUCH` open-work가 아니다. Component Sheet A–D와 semantic UI pack은 병합된 사실로 읽되, 이것이 Task8 또는 Human/Device/Performance/Full Slice PASS를 의미하지 않는다.
 
-v4.8 authority 전환은 PR #158이 추적한다. 해당 PR의 lifecycle 상태는 live GitHub가 소유하며 이 문서에는 번호와 sync provenance만 보존한다. `parallel_open_pr: NONE`은 authority sync 병합 뒤 stable cold-start 값이며 work unit 도중에는 live query가 우선한다.
+v4.8 authority 전환은 PR #158이 추적한다. 해당 PR의 lifecycle과 현재 open PR 집합은 live GitHub가 소유하며 이 문서에는 번호와 sync provenance만 보존한다.
 
 ## v4.8 migration / legacy snapshot boundary
 
