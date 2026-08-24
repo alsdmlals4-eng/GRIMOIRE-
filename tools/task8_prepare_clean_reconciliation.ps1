@@ -26,7 +26,7 @@ $PrimaryRelative = '.worktrees/task8-spell-use-screen-v2'
 $SecondaryRelative = '.worktrees/task8-spell-use-screen'
 $DefaultPrimaryHead = '8c611f601aa98397ed1558e92ab207e0e8347a9b'
 $DefaultSecondaryHead = 'fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f'
-$ExpectedOrigin = 'https://github.com/alsdmlals4-eng/GRIMOIRE-'
+$ExpectedOriginIdentity = 'github.com/alsdmlals4-eng/grimoire-'
 
 function Stop-WithCode {
     param([string]$Code)
@@ -34,10 +34,10 @@ function Stop-WithCode {
     exit 2
 }
 
+$FixtureGate = $FixtureIdentityOverride.IsPresent -and ($env:CI -eq 'true') -and ($env:TASK8_RECONCILIATION_FIXTURE -eq '1')
 $OverrideRequested = ($ExpectedPrimaryHead -ne $DefaultPrimaryHead) -or ($ExpectedSecondaryHead -ne $DefaultSecondaryHead)
-if ($OverrideRequested) {
-    $FixtureGate = $FixtureIdentityOverride.IsPresent -and ($env:CI -eq 'true') -and ($env:TASK8_RECONCILIATION_FIXTURE -eq '1')
-    if (-not $FixtureGate) { Stop-WithCode -Code 'IDENTITY_OVERRIDE_FORBIDDEN' }
+if ($OverrideRequested -and -not $FixtureGate) {
+    Stop-WithCode -Code 'IDENTITY_OVERRIDE_FORBIDDEN'
 }
 
 function Normalize-PathKey {
@@ -105,6 +105,36 @@ function Get-GitOne {
     $Value = @(Invoke-GitText -WorkingDirectory $WorkingDirectory -Arguments $Arguments)
     if ($Value.Count -ne 1) { Stop-WithCode -Code 'GIT_IDENTITY_UNAVAILABLE' }
     return $Value[0].Trim()
+}
+
+function Convert-GitHubRemoteIdentity {
+    param([string]$Remote)
+
+    if ([string]::IsNullOrWhiteSpace($Remote)) { return $null }
+    $Value = $Remote.Trim()
+    $RepositoryPath = $null
+
+    if ($Value -match '^git@github\.com:(?<path>[^?#]+)$') {
+        $RepositoryPath = $Matches['path']
+    }
+    else {
+        $Uri = $null
+        if (-not [System.Uri]::TryCreate($Value, [System.UriKind]::Absolute, [ref]$Uri)) { return $null }
+        if ($Uri.Host.ToLowerInvariant() -ne 'github.com') { return $null }
+        if ($Uri.Scheme.ToLowerInvariant() -notin @('https', 'ssh')) { return $null }
+        if (-not [string]::IsNullOrEmpty($Uri.Query) -or -not [string]::IsNullOrEmpty($Uri.Fragment)) { return $null }
+        if ($Uri.Scheme.ToLowerInvariant() -eq 'ssh' -and -not [string]::IsNullOrEmpty($Uri.UserInfo) -and $Uri.UserInfo -ne 'git') { return $null }
+        if ($Uri.Scheme.ToLowerInvariant() -eq 'https' -and -not [string]::IsNullOrEmpty($Uri.UserInfo)) { return $null }
+        $RepositoryPath = $Uri.AbsolutePath.Trim('/')
+    }
+
+    $RepositoryPath = ($RepositoryPath -replace '\\', '/').Trim('/')
+    if ($RepositoryPath.EndsWith('.git', [System.StringComparison]::OrdinalIgnoreCase)) {
+        $RepositoryPath = $RepositoryPath.Substring(0, $RepositoryPath.Length - 4)
+    }
+    $Segments = @($RepositoryPath.Split('/') | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+    if ($Segments.Count -ne 2) { return $null }
+    return ('github.com/{0}/{1}' -f $Segments[0], $Segments[1]).ToLowerInvariant()
 }
 
 function Get-IndexHash {
@@ -234,8 +264,15 @@ $SecondaryHistoricalPath = Join-Path $ResolvedRepo $SecondaryRelative
 $PrimaryBefore = Get-HistoricalWorktreeFingerprint -Path $PrimaryHistoricalPath -ExpectedBranch $PrimaryBranch -ExpectedHead $ExpectedPrimaryHead
 $SecondaryBefore = Get-HistoricalWorktreeFingerprint -Path $SecondaryHistoricalPath -ExpectedBranch $SecondaryBranch -ExpectedHead $ExpectedSecondaryHead
 
-$Origin = Get-GitOne -WorkingDirectory $ResolvedRepo -Arguments @('remote', 'get-url', 'origin')
-if (-not $FixtureIdentityOverride.IsPresent -and $Origin.TrimEnd('/') -ne $ExpectedOrigin.TrimEnd('/')) { Stop-WithCode -Code 'ORIGIN_IDENTITY_MISMATCH' }
+# Read the configured value equivalent to: git config --get remote.origin.url
+$OriginConfigured = Get-GitOne -WorkingDirectory $ResolvedRepo -Arguments @('config', '--get', 'remote.origin.url')
+$OriginIdentity = Convert-GitHubRemoteIdentity -Remote $OriginConfigured
+if ($null -eq $OriginIdentity) {
+    if (-not $FixtureGate) { Stop-WithCode -Code 'ORIGIN_IDENTITY_MISMATCH' }
+}
+elseif ($OriginIdentity -ne $ExpectedOriginIdentity) {
+    Stop-WithCode -Code 'ORIGIN_IDENTITY_MISMATCH'
+}
 
 Push-Location $ResolvedRepo
 try {
@@ -288,6 +325,8 @@ $Receipt = [ordered]@{
     repository = $ResolvedRepo
     snapshot_root = $ResolvedSnapshot
     expected_main = $ExpectedMain
+    origin_configured = $OriginConfigured
+    origin_identity = $OriginIdentity
     origin_main = $OriginMain
     reconciliation_path = $ReconciliationFull
     branch = $NewBranch
