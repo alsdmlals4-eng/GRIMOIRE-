@@ -8,7 +8,8 @@ previous_packet: TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-22.md
 historical_packet: TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-21.md
 observation_receipt: TASK8_LOCAL_RECOVERY_OBSERVATION_2026-08-24.md
 probe: tools/task8_local_recovery_probe.ps1
-probe_verified_merge: 15139d80ab7112ea93e5090eece9cc145ae80f6b
+probe_historical_verified_merge: 15139d80ab7112ea93e5090eece9cc145ae80f6b
+probe_current_commit: 6d432f4626388d537f9281a15d407910c657ac1a
 bootstrap_policy: TEMP_BOOTSTRAP_PREFERRED_WHEN_LOCAL_MAIN_NOT_SYNCED
 historical_branch: feat/task8-spell-use-screen-v2
 historical_git_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
@@ -91,18 +92,20 @@ Do not fetch, pull, checkout, switch, reset, restore, clean, or stash before thi
 
 **Do not fetch, pull, checkout, switch, reset, restore, clean, or stash before a recovery probe or before candidate preservation.**
 
-If the local checkout is not already known to contain the exact verified probe, use the commit-pinned TEMP bootstrap. It writes the probe only under the operating-system TEMP directory and does not change repository refs or files:
+The 2026-08-21/22 packet keeps the historical `15139d80...` probe pin as provenance. Current reruns use the repaired read-only probe commit `6d432f4626388d537f9281a15d407910c657ac1a`, which fixes Windows baseline-range parsing and path-alias deduplication without broadening write authority.
+
+If the local checkout is not already known to contain the repaired probe, use the commit-pinned TEMP bootstrap. It writes the probe only under the operating-system TEMP directory and does not change repository refs or files:
 
 ```powershell
-$Probe = Join-Path $env:TEMP 'grimoire-task8-local-recovery-probe-15139d80.ps1'
-$Uri = 'https://raw.githubusercontent.com/alsdmlals4-eng/GRIMOIRE-/15139d80ab7112ea93e5090eece9cc145ae80f6b/tools/task8_local_recovery_probe.ps1'
+$Probe = Join-Path $env:TEMP 'grimoire-task8-local-recovery-probe-6d432f46.ps1'
+$Uri = 'https://raw.githubusercontent.com/alsdmlals4-eng/GRIMOIRE-/6d432f4626388d537f9281a15d407910c657ac1a/tools/task8_local_recovery_probe.ps1'
 Invoke-WebRequest -Uri $Uri -OutFile $Probe -ErrorAction Stop
 & $Probe -Repo 'C:\Users\user\Documents\GitHub\Ninza\GRIMOIRE-'
 ```
 
 If `Invoke-WebRequest` fails, stop at that boundary. Do not fetch or pull the repository just to obtain the probe.
 
-For a checkout already confirmed to contain the probe-bearing merge, the equivalent direct invocation is:
+For a checkout already confirmed to contain the repaired probe, the equivalent direct invocation is:
 
 ```powershell
 & 'C:\Users\user\Documents\GitHub\Ninza\GRIMOIRE-\tools\task8_local_recovery_probe.ps1'
