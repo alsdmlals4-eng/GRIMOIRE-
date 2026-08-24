@@ -10,13 +10,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROBE = ROOT / "tools/task8_local_recovery_probe.ps1"
 PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-24.md"
+OBSERVATION = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_OBSERVATION_2026-08-24.md"
 PREVIOUS_PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-22.md"
 HISTORICAL_PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-21.md"
 
 BASELINE = "8c611f601aa98397ed1558e92ab207e0e8347a9b"
 HISTORICAL_BRANCH = "feat/task8-spell-use-screen-v2"
 HISTORICAL_WORKTREE = ".worktrees/task8-spell-use-screen-v2"
-BOOTSTRAP_COMMIT = "15139d80ab7112ea93e5090eece9cc145ae80f6b"
+BOOTSTRAP_COMMIT = "6d432f4626388d537f9281a15d407910c657ac1a"
 RAW_PROBE_URL = (
     "https://raw.githubusercontent.com/alsdmlals4-eng/GRIMOIRE-/"
     f"{BOOTSTRAP_COMMIT}/tools/task8_local_recovery_probe.ps1"
@@ -54,11 +55,15 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             "git branch --show-current",
             "git rev-parse HEAD",
             "git status --short --branch",
-            "git diff --name-status",
-            "git diff --cached --name-status",
+            "diff --name-status",
+            "diff --cached --name-status",
             "git ls-files --others --exclude-standard",
             "git log --oneline",
-            "git diff --name-status $Baseline..HEAD",
+            '$BaselineRange = "${Baseline}..HEAD"',
+            "diff --name-status $BaselineRange",
+            "Normalize-CandidatePathKey",
+            "core.autocrlf=false",
+            "core.safecrlf=false",
             "task8_signal_paths",
             "spell_use_screen.gd",
             "spell_use_screen.tscn",
@@ -67,6 +72,7 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             self.assertIn(required, text)
 
         for forbidden in (
+            "git diff --name-status $Baseline..HEAD",
             "git reset",
             "git restore",
             "git clean",
@@ -108,6 +114,31 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             "PR #151 remains a separate Draft visual/component workstream",
         ):
             self.assertNotIn(stale, text)
+
+    def test_current_packet_records_observed_local_task8_evidence(self) -> None:
+        self.assertTrue(OBSERVATION.is_file())
+        packet = PACKET.read_text(encoding="utf-8")
+        observation = OBSERVATION.read_text(encoding="utf-8")
+
+        for token in (
+            "local_probe_execution: OBSERVED_EVIDENCE_FOUND_REVIEW_REQUIRED",
+            "local_dirty_delta_existence: OBSERVED_PRESENT",
+            "next_gate: TASK8_LOCAL_CANDIDATE_PRESERVATION_REQUIRED",
+            "TASK8_LOCAL_RECOVERY_OBSERVATION_2026-08-24.md",
+        ):
+            self.assertIn(token, packet)
+
+        for token in (
+            "LOCAL_TASK8_EVIDENCE_FOUND_REVIEW_REQUIRED",
+            "primary_candidate_branch: feat/task8-spell-use-screen-v2",
+            f"primary_candidate_head: {BASELINE}",
+            "secondary_candidate_branch: task8/spell-use-screen",
+            "candidate_path_alias_duplication_observed: true",
+            "git_diff_usage_noise_observed: true",
+            "PRESERVE_BOTH_TASK8_CANDIDATES_BEFORE_SYNC",
+            "HIGODOT_ONLY",
+        ):
+            self.assertIn(token, observation)
 
     def test_current_packet_supports_temp_bootstrap_without_repo_git_mutation(self) -> None:
         text = PACKET.read_text(encoding="utf-8")
@@ -177,6 +208,15 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             self.assertTrue(candidate["delta_evidence_present"])
             self.assertIn("src/ui/spell_workflow/spell_use_screen.gd", candidate["untracked_paths"])
             self.assertTrue(candidate["task8_signal_paths"])
+
+            normalized_candidates = [
+                str(item.get("top_level") or item.get("path") or "")
+                .replace("\\", "/")
+                .rstrip("/")
+                .casefold()
+                for item in result["inspected_worktrees"]
+            ]
+            self.assertEqual(len(normalized_candidates), len(set(normalized_candidates)))
 
             self.assertEqual(refs_before, run_git(repo, "show-ref"))
             self.assertEqual(
