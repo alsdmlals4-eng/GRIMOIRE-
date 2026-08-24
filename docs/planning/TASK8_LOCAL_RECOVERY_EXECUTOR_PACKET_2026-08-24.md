@@ -87,6 +87,8 @@ Do not create an unrelated A2 diagnostic run merely to test daemon liveness, and
 
 The first probe was already observed. The following bootstrap remains a recovery/rerun route only; it is not the current next gate.
 
+Do not fetch, pull, checkout, switch, reset, restore, clean, or stash before this probe. The same prohibition remains in effect until candidate preservation is verified.
+
 **Do not fetch, pull, checkout, switch, reset, restore, clean, or stash before a recovery probe or before candidate preservation.**
 
 If the local checkout is not already known to contain the exact verified probe, use the commit-pinned TEMP bootstrap. It writes the probe only under the operating-system TEMP directory and does not change repository refs or files:
@@ -132,7 +134,7 @@ This branch is now the observed path.
 
 This branch is no longer the current observed result. It remains documented only for future bounded reruns.
 
-Do not manufacture a historical dirty delta from transcripts, GitHub comments, or guessed file lists. Persistent `.gd/.tscn/.tres/.res/project.godot` authoring remains `HIGODOT_ONLY`.
+Do not reconstruct product files through GitHub. Do not manufacture a historical dirty delta from transcripts, GitHub comments, or guessed file lists. Persistent `.gd/.tscn/.tres/.res/project.godot` authoring remains `HIGODOT_ONLY`.
 
 ## Current execution router
 
