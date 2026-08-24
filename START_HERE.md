@@ -26,6 +26,8 @@ implementation: PARTIAL_FOUNDATION
 workspace_human_canon: NOTION_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
+github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
+repo_wide_actions_full_sha: PASS
 next_product_task: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
