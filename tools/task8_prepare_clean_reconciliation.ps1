@@ -53,6 +53,40 @@ function Test-PathInside {
     return ($CandidateKey -eq $ParentKey) -or $CandidateKey.StartsWith($ParentKey + '/')
 }
 
+function Test-LinkOrReparsePoint {
+    param($Item)
+
+    $LinkType = $null
+    if ($Item.PSObject.Properties.Name -contains 'LinkType') {
+        $LinkType = "$($Item.LinkType)"
+    }
+    $IsReparsePoint = (($Item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0)
+    return (-not [string]::IsNullOrEmpty($LinkType)) -or $IsReparsePoint
+}
+
+function Assert-NoReconciliationLinkAncestors {
+    param([string]$Path)
+
+    $Cursor = [System.IO.Path]::GetFullPath($Path)
+    while (-not (Test-Path -LiteralPath $Cursor)) {
+        $Parent = Split-Path -Parent $Cursor
+        if ([string]::IsNullOrEmpty($Parent) -or $Parent -eq $Cursor) {
+            Stop-WithCode -Code 'RECONCILIATION_PATH_UNRESOLVABLE'
+        }
+        $Cursor = $Parent
+    }
+
+    while ($true) {
+        $Item = Get-Item -LiteralPath $Cursor -Force
+        if (Test-LinkOrReparsePoint -Item $Item) {
+            Stop-WithCode -Code 'RECONCILIATION_LINKED_ANCESTOR_FORBIDDEN'
+        }
+        $Parent = Split-Path -Parent $Cursor
+        if ([string]::IsNullOrEmpty($Parent) -or $Parent -eq $Cursor) { break }
+        $Cursor = $Parent
+    }
+}
+
 function Invoke-GitText {
     param([string]$WorkingDirectory, [string[]]$Arguments)
     Push-Location $WorkingDirectory
@@ -107,6 +141,8 @@ $ResolvedSnapshot = (Resolve-Path -LiteralPath $SnapshotRoot -ErrorAction Stop).
 if (Test-PathInside -Candidate $ResolvedSnapshot -Parent $ResolvedRepo) { Stop-WithCode -Code 'SNAPSHOT_INSIDE_REPOSITORY_FORBIDDEN' }
 
 $ReconciliationFull = [System.IO.Path]::GetFullPath($ReconciliationPath)
+Assert-NoReconciliationLinkAncestors -Path $ReconciliationFull
+if (Test-PathInside -Candidate $ReconciliationFull -Parent $ResolvedSnapshot) { Stop-WithCode -Code 'RECONCILIATION_PATH_INSIDE_SNAPSHOT_FORBIDDEN' }
 if (Test-PathInside -Candidate $ReconciliationFull -Parent $ResolvedRepo) { Stop-WithCode -Code 'RECONCILIATION_PATH_INSIDE_REPOSITORY_FORBIDDEN' }
 if (Test-Path -LiteralPath $ReconciliationFull) { Stop-WithCode -Code 'RECONCILIATION_PATH_ALREADY_EXISTS' }
 
