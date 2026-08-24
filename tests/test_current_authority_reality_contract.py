@@ -164,7 +164,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("ForecastCard", plan)
         self.assertIn("CommitBar", plan)
         self.assertIn("FORECAST_SEMANTICS_SOURCE_REQUIRED", plan)
-        self.assertIn("TRANSACTION_ID_EXTERNAL_INPUT_ONLY", plan)
+        self.assertIn("SPELL_USE_ID_CALLER_SUPPLIED_ONLY", plan)
         self.assertIn("CURRENT_RUNNER_SUITE_COUNT_PLUS_ONE", plan)
         self.assertIn("NOTION_HUMAN_FACING_CANON", plan)
         self.assertIn("MIGRATION_ONLY_UNTIL_REMOVAL", plan)
