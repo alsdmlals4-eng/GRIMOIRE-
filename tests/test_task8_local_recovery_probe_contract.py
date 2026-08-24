@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROBE = ROOT / "tools/task8_local_recovery_probe.ps1"
 PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-24.md"
+OBSERVATION = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_OBSERVATION_2026-08-24.md"
 PREVIOUS_PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-22.md"
 HISTORICAL_PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-21.md"
 
@@ -108,6 +109,31 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
             "PR #151 remains a separate Draft visual/component workstream",
         ):
             self.assertNotIn(stale, text)
+
+    def test_current_packet_records_observed_local_task8_evidence(self) -> None:
+        self.assertTrue(OBSERVATION.is_file())
+        packet = PACKET.read_text(encoding="utf-8")
+        observation = OBSERVATION.read_text(encoding="utf-8")
+
+        for token in (
+            "local_probe_execution: OBSERVED_EVIDENCE_FOUND_REVIEW_REQUIRED",
+            "local_dirty_delta_existence: OBSERVED_PRESENT",
+            "next_gate: TASK8_LOCAL_CANDIDATE_PRESERVATION_REQUIRED",
+            "TASK8_LOCAL_RECOVERY_OBSERVATION_2026-08-24.md",
+        ):
+            self.assertIn(token, packet)
+
+        for token in (
+            "LOCAL_TASK8_EVIDENCE_FOUND_REVIEW_REQUIRED",
+            "primary_candidate_branch: feat/task8-spell-use-screen-v2",
+            f"primary_candidate_head: {BASELINE}",
+            "secondary_candidate_branch: task8/spell-use-screen",
+            "candidate_path_alias_duplication_observed: true",
+            "git_diff_usage_noise_observed: true",
+            "PRESERVE_BOTH_TASK8_CANDIDATES_BEFORE_SYNC",
+            "HIGODOT_ONLY",
+        ):
+            self.assertIn(token, observation)
 
     def test_current_packet_supports_temp_bootstrap_without_repo_git_mutation(self) -> None:
         text = PACKET.read_text(encoding="utf-8")
