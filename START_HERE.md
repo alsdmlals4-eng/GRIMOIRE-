@@ -35,7 +35,8 @@ task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_product_commit: NONE
 task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
-parallel_open_pr: NONE
+open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
+authority_sync_pr: 158
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
@@ -46,8 +47,9 @@ hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
-local_sync: BLOCKED_NO_LOCAL_ACCESS
-godot_run: BLOCKED_NO_LOCAL_ACCESS
+local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
+authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
+authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -59,7 +61,7 @@ android_device: NOT_RUN
 
 `v4.8 r2 / GM-CONTRACT-V4-8-BINDING-01`이 현재 프로젝트 실행 계약이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
 
-`authority_sync_pr: 158`은 v4.8 전환의 provenance 번호다. draft/ready/merged 같은 PR lifecycle 상태는 이 문서에 고정하지 않고 live GitHub에서 읽는다.
+`authority_sync_pr: 158`은 v4.8 전환의 provenance 번호다. draft/ready/merged 같은 PR lifecycle 상태와 현재 open PR 집합은 이 문서에 고정하지 않고 live GitHub에서 읽는다.
 
 ## Workspace authority
 
@@ -95,7 +97,7 @@ Google Sheets
 - Task 7 / PR #110 — circuit placement workflow screen (`fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f` lineage)
 - PR #151 — Component Sheets A–D + reusable semantic UI pack, `MERGED_MAIN_VERIFIED`
 
-PR #151은 더 이상 별도 진행 중 `DO_NOT_TOUCH` 작업이 아니다. 실제 live open PR inventory는 새 작업 시작마다 다시 조회한다. `parallel_open_pr: NONE`은 이 authority sync가 병합된 뒤의 stable cold-start 값이며, work unit 도중에는 live GitHub readback이 항상 우선한다.
+PR #151은 더 이상 별도 진행 중 `DO_NOT_TOUCH` 작업이 아니다. 실제 live open PR inventory는 새 작업 시작마다 다시 조회한다. `open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED`가 current 상태를 소유하고 이 파일은 특정 시점의 open PR 수를 고정하지 않는다.
 
 Task8은 Task5 Stage3 authority의 thin UI consumer이며 새 target/use/Mana/inventory/result/rollback authority를 만들지 않는다.
 
@@ -127,7 +129,7 @@ historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 
 `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`는 2026-08-21 provenance이며 그 안의 PR/branch 상태를 현재값으로 재사용하지 않는다. 현재 PR 상태는 live GitHub readback을 우선한다.
 
-현재 ChatGPT 세션에는 사용자 Windows checkout/Godot local executor가 없어:
+Sync35 authority 작업에서 관찰한 local/Godot 접근 상태는 다음과 같았다.
 
 ```text
 LOCAL_SYNC: BLOCKED_NO_LOCAL_ACCESS
@@ -135,7 +137,7 @@ GODOT_RUN: BLOCKED_NO_LOCAL_ACCESS
 TASK8_LOCAL_DELTA_EXISTENCE: BLOCKED_UNVERIFIED
 ```
 
-이다. 로컬 delta가 있다고도 없다고도 추정하지 않는다. `tools/task8_local_recovery_probe.ps1`는 local executor가 사용 가능할 때 read-only로 실행한다. delta가 남아 있으면 reset/restore/clean 없이 보호 후 재검증하고, 없으면 승인된 HiGodot TDD plan으로 재작성한다.
+이 값들은 이번 authority sync의 관찰 provenance이지 영구 executor 상태가 아니다. Task8 재개 시 `local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED`에 따라 다시 판정한다. local executor가 사용 가능해지면 `tools/task8_local_recovery_probe.ps1`를 read-only로 실행하고, delta가 남아 있으면 reset/restore/clean 없이 보호 후 재검증하며 없으면 승인된 HiGodot TDD plan으로 재작성한다.
 
 ## Sync21 continuation / executor boundary
 
