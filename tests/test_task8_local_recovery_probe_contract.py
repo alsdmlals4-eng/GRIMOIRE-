@@ -9,7 +9,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROBE = ROOT / "tools/task8_local_recovery_probe.ps1"
-PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-22.md"
+PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-24.md"
+PREVIOUS_PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-22.md"
 HISTORICAL_PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-21.md"
 
 BASELINE = "8c611f601aa98397ed1558e92ab207e0e8347a9b"
@@ -86,18 +87,27 @@ class Task8LocalRecoveryProbeContractTests(unittest.TestCase):
 
     def test_current_packet_routes_to_probe_without_rewriting_history(self) -> None:
         self.assertTrue(PACKET.is_file())
+        self.assertTrue(PREVIOUS_PACKET.is_file())
         self.assertTrue(HISTORICAL_PACKET.is_file())
         text = PACKET.read_text(encoding="utf-8")
         for token in (
             "TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED",
             "tools/task8_local_recovery_probe.ps1",
-            "TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-21.md",
+            "TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2026-08-22.md",
             "HIGODOT_ONLY",
             "PR #151",
-            "DO_NOT_TOUCH",
+            "MERGED_MAIN_VERIFIED",
+            "LOOP_A2_MANAGED_WORKTREE_NOT_LOCAL_DIRTY_RECOVERY",
+            "DIRECT_USER_MACHINE_PROBE_REQUIRED",
             "Do not reconstruct product files through GitHub",
         ):
             self.assertIn(token, text)
+
+        for stale in (
+            "parallel_pr_151: DO_NOT_TOUCH",
+            "PR #151 remains a separate Draft visual/component workstream",
+        ):
+            self.assertNotIn(stale, text)
 
     def test_current_packet_supports_temp_bootstrap_without_repo_git_mutation(self) -> None:
         text = PACKET.read_text(encoding="utf-8")
