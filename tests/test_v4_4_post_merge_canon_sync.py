@@ -21,9 +21,11 @@ CURRENT_TASK8_GATE = "TASK8_RECEIPT_HERA_REVIEW_PR"
 CURRENT_SYNC = "GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT"
 LIVE_READY = "LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED"
 STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
-CURRENT_DOCS = [
+ACTIVE_DOCS = [
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
+]
+LEGACY_COMPAT_DOCS = [
     ROOT / "docs/DEVELOPMENT_GATES.md",
     ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
@@ -60,21 +62,25 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertTrue(data["claims"]["spell_workflow_task2_authorized"])
         self.assertTrue(data["claims"]["spell_workflow_task2_merged_main_verified"])
 
-    def test_current_cold_start_docs_use_v45_and_keep_only_needed_v44_history_markers(self) -> None:
-        for path in CURRENT_DOCS:
+    def test_active_cold_start_docs_use_v48_while_v45_v44_remain_historical(self) -> None:
+        for path in ACTIVE_DOCS:
             text = path.read_text(encoding="utf-8")
-            self.assertIn("GM-CONTRACT-V4-5-BINDING-01", text, str(path))
-            self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text, str(path))
+            self.assertIn("GM-CONTRACT-V4-8-BINDING-01", text, str(path))
             self.assertIn("project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK", text, str(path))
             self.assertIn("GUT_FORMALLY_ADOPTED", text, str(path))
             self.assertIn(TASK7_MERGED, text, str(path))
             self.assertIn(CURRENT_TASK8_STATUS, text, str(path))
             self.assertIn(CURRENT_TASK8_GATE, text, str(path))
+            self.assertNotIn("active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, str(path))
             self.assertNotIn("spell_workflow_task2_authorized: false", text, str(path))
             self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", text, str(path))
 
-        # Detailed v4.4 adoption hashes remain in their machine/history owner;
-        # they do not need to be copied into every cold-start document forever.
+        legacy = "\n".join(path.read_text(encoding="utf-8") for path in LEGACY_COMPAT_DOCS)
+        self.assertIn("GM-CONTRACT-V4-5-BINDING-01", legacy)
+        self.assertIn("GM-CONTRACT-V4-4-BINDING-01", legacy)
+
+        # Detailed v4.4/v4.5 adoption hashes remain in machine/history owners;
+        # they do not need to be copied into active cold-start documents forever.
         history = json.loads(STATE.read_text(encoding="utf-8"))
         self.assertEqual(GUT_FORMAL_ADOPTION_MAIN, history["source_main"])
         canon = json.loads(CANON.read_text(encoding="utf-8"))
@@ -108,7 +114,7 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual(TASK7_MERGED, grill["current_work"]["status"])
         self.assertEqual(HISTORICAL_TASK8_PRODUCT, grill["current_work"]["spell_workflow_next_task"])
 
-    def test_sync20_machine_overlays_hold_current_task8_and_live_tool_state(self) -> None:
+    def test_sync20_machine_overlays_hold_historical_task8_and_live_tool_state(self) -> None:
         current_canon = json.loads(CURRENT_CANON.read_text(encoding="utf-8"))
         current_authority = json.loads(CURRENT_AUTHORITY.read_text(encoding="utf-8"))
         self.assertEqual(CURRENT_SYNC, current_canon["sync_id"])
@@ -119,7 +125,7 @@ class V44PostMergeCanonSyncTests(unittest.TestCase):
         self.assertEqual("LIVE_QA_AND_OBSERVABILITY_ONLY", current_authority["hera"]["authority"])
         self.assertEqual("NONE", current_authority["hera"]["required_source_delta"])
 
-    def test_remaining_blockers_reflect_local_access_and_task8_merge_gates(self) -> None:
+    def test_remaining_blockers_remain_available_in_legacy_compatibility_snapshot(self) -> None:
         text = (ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md").read_text(encoding="utf-8")
         for blocker in (
             "AUDIO_VAULT_PATH_UNVERIFIED",

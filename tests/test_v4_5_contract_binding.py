@@ -6,11 +6,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BINDING = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_5_BINDING.md"
+BINDING_V48 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md"
 HISTORICAL_V44 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md"
 SYNC = ROOT / "docs/planning/sync/GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING.md"
-CURRENT_DOCS = [
+ACTIVE_DOCS = [
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
+]
+LEGACY_COMPAT_DOCS = [
     ROOT / "docs/DEVELOPMENT_GATES.md",
     ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
@@ -23,6 +26,8 @@ CURRENT_AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE_SY
 
 DECISION = "GM-CONTRACT-V4-5-BINDING-01"
 SYNC_ID = "GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING"
+V48_DECISION = "GM-CONTRACT-V4-8-BINDING-01"
+V48_SYNC_ID = "GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC"
 BASE_CURRENT_OBSERVED = "315c66eea9614c284b9c11c4d522141065dfa4b0"
 BASE_SOURCE_SNAPSHOT = "7ce3fb64fa6303c5da6c7fc27c979f7233b761ac"
 TASK7 = "TASK7_MERGED_MAIN_VERIFIED"
@@ -34,7 +39,7 @@ SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 
 
 class V45ContractBindingTests(unittest.TestCase):
-    def test_binding_adapts_v45_r2_to_grimoire_without_freezing_base(self) -> None:
+    def test_v45_binding_remains_valid_historical_project_provenance(self) -> None:
         self.assertTrue(BINDING.exists(), BINDING)
         text = BINDING.read_text(encoding="utf-8")
         for token in (
@@ -64,19 +69,32 @@ class V45ContractBindingTests(unittest.TestCase):
         self.assertIn(HERA_PASS, text)
         self.assertIn(SHARED_CORE_PASS, text)
 
-    def test_current_human_surfaces_promote_v45_and_preserve_v44_history(self) -> None:
-        for path in CURRENT_DOCS:
+    def test_active_human_surfaces_promote_v48_and_quarantine_v45_snapshots(self) -> None:
+        self.assertTrue(BINDING_V48.exists(), BINDING_V48)
+        v48 = BINDING_V48.read_text(encoding="utf-8")
+        self.assertIn("contract_version: '4.8'", v48)
+        self.assertIn(V48_DECISION, v48)
+        self.assertIn(V48_SYNC_ID, v48)
+        self.assertNotIn("## 7. 현재 승인 실행 패키지", v48)
+        self.assertIn("## 7. v4.8 전환 delivery provenance", v48)
+        self.assertIn("current_product_next_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", v48)
+
+        for path in ACTIVE_DOCS:
             text = path.read_text(encoding="utf-8")
-            self.assertIn("PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, str(path))
-            self.assertIn(DECISION, text, str(path))
-            self.assertIn(SYNC_ID, text, str(path))
+            self.assertIn("PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8", text, str(path))
+            self.assertIn(V48_DECISION, text, str(path))
+            self.assertIn(V48_SYNC_ID, text, str(path))
             self.assertIn(TASK7, text, str(path))
             self.assertIn(TASK8_STATUS, text, str(path))
             self.assertIn(TASK8_GATE, text, str(path))
-            self.assertIn("GM-CONTRACT-V4-4-BINDING-01", text, str(path))
-            self.assertNotIn("v4_5_binding: USER_DECISION_REQUIRED", text, str(path))
+            self.assertNotIn("active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, str(path))
 
-    def test_machine_binding_history_and_sync20_current_overlay_coexist(self) -> None:
+        combined_legacy = "\n".join(path.read_text(encoding="utf-8") for path in LEGACY_COMPAT_DOCS)
+        self.assertIn(DECISION, combined_legacy)
+        self.assertIn(SYNC_ID, combined_legacy)
+        self.assertTrue(SYNC.exists(), SYNC)
+
+    def test_machine_binding_history_and_sync20_current_overlay_remain_historical_evidence(self) -> None:
         canon = json.loads(CANON.read_text(encoding="utf-8"))
         authority = json.loads(AUTHORITY.read_text(encoding="utf-8"))
         grill = json.loads(GRILL.read_text(encoding="utf-8"))

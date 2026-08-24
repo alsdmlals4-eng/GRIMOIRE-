@@ -93,14 +93,68 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("MIGRATION_ONLY_UNTIL_REMOVAL", workbook)
         self.assertIn("BLOCKED_UNVERIFIED_UNIQUE_MATERIAL", workbook)
 
-    def test_active_context_does_not_treat_merged_pr151_as_open_work(self) -> None:
+    def test_active_context_does_not_treat_merged_pr151_or_transient_pr_state_as_canon(self) -> None:
         active = (ROOT / "docs/ACTIVE_CONTEXT.md").read_text(encoding="utf-8")
-        self.assertIn("parallel_open_pr: NONE", active)
+        self.assertIn("open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED", active)
         self.assertIn("component_sheet_pr151: MERGED_MAIN_VERIFIED", active)
+        self.assertNotIn("parallel_open_pr: NONE", active)
         self.assertNotIn("PR151_DO_NOT_TOUCH", active)
         self.assertNotIn("PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft", active)
         self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", active)
         self.assertIn("FULL_VERTICAL_SLICE_NOT_RUN", active)
+
+    def test_task8_reverify_quarantines_historical_pr151_marker(self) -> None:
+        reverify = (ROOT / "docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md").read_text(encoding="utf-8")
+        self.assertIn("snapshot_role: HISTORICAL_REMOTE_LOCAL_REVERIFY_PROVENANCE", reverify)
+        self.assertIn("current_pr_state_authority: LIVE_GITHUB_READBACK", reverify)
+        self.assertIn("parallel_pr_151_at_2026_08_21: DO_NOT_TOUCH", reverify)
+        self.assertIn("PR #151", reverify)
+        self.assertIn("현재 상태로 재사용하지 않는다", reverify)
+        self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", reverify)
+
+    def test_active_entry_docs_bind_v48_without_pinning_transient_state(self) -> None:
+        expected_contract = "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8"
+        binding_path = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md"
+        self.assertTrue(binding_path.is_file())
+        binding = binding_path.read_text(encoding="utf-8")
+        self.assertIn("contract_version: '4.8'", binding)
+        self.assertIn("revision: '2026-08-24-r2'", binding)
+        self.assertIn("THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON", binding)
+        self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", binding)
+        self.assertIn("LOCAL_SYNC: BLOCKED_NO_LOCAL_ACCESS", binding)
+
+        required_active_docs = [
+            "AGENTS.md",
+            "START_HERE.md",
+            "docs/ACTIVE_CONTEXT.md",
+        ]
+        for relative_path in required_active_docs:
+            text = (ROOT / relative_path).read_text(encoding="utf-8")
+            self.assertIn(expected_contract, text, relative_path)
+            self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", text, relative_path)
+            self.assertIn("open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED", text, relative_path)
+            self.assertIn("local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED", text, relative_path)
+            self.assertIn("authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS", text, relative_path)
+            self.assertIn("authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS", text, relative_path)
+            self.assertNotIn("active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, relative_path)
+            self.assertNotIn("current_task_pr:", text, relative_path)
+            self.assertNotIn("parallel_open_pr: NONE", text, relative_path)
+            self.assertNotIn("\nlocal_sync: BLOCKED_NO_LOCAL_ACCESS", text, relative_path)
+            self.assertNotIn("\ngodot_run: BLOCKED_NO_LOCAL_ACCESS", text, relative_path)
+            self.assertNotIn("PR #158 v4.8 authority correction RED→GREEN", text, relative_path)
+
+        agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        start = (ROOT / "START_HERE.md").read_text(encoding="utf-8")
+        active = (ROOT / "docs/ACTIVE_CONTEXT.md").read_text(encoding="utf-8")
+        self.assertNotIn("PR #151은 `DO_NOT_TOUCH`", agents)
+        self.assertNotIn("parallel_open_pr: PR151_DO_NOT_TOUCH", start)
+        self.assertIn("component_sheet_pr151: MERGED_MAIN_VERIFIED", start)
+        for text in (agents, start, active):
+            self.assertIn("authority_sync_pr: 158", text)
+            normalized = text.lower().replace("_", " ")
+            self.assertIn("historical compatibility", normalized)
+            self.assertIn("CURRENT_CONFIRMED_DECISIONS.md", text)
+            self.assertIn("CURRENT_UNRESOLVED_GATES.md", text)
 
 
 if __name__ == "__main__":

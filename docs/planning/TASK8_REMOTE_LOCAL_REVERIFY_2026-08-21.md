@@ -1,5 +1,20 @@
 # GRIMOIRE Task8 Remote / Local Reverify — 2026-08-21
 
+## 현재 해석 오버레이 — 2026-08-24
+
+이 문서는 **2026-08-21 당시의 remote/local Task8 reverify provenance**를 보존한다. 아래 원문에 기록된 PR/브랜치 상태는 그 시점의 관찰값이며, 새 작업에서 현재 상태로 재사용하지 않는다.
+
+```yaml
+snapshot_role: HISTORICAL_REMOTE_LOCAL_REVERIFY_PROVENANCE
+snapshot_observed_at: 2026-08-21
+current_pr_state_authority: LIVE_GITHUB_READBACK
+parallel_pr_151_at_2026_08_21: DO_NOT_TOUCH
+parallel_pr_151_current_interpretation: HISTORICAL_VALUE_ONLY_PR151_LATER_MERGED
+current_task8_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+```
+
+특히 아래 원문의 `parallel_pr_151: DO_NOT_TOUCH`는 2026-08-21 당시의 병렬 작업 보호 marker다. PR #151의 현재 상태는 이 역사 문구가 아니라 최신 `AGENTS.md` / `START_HERE.md` / `docs/ACTIVE_CONTEXT.md`와 live GitHub readback으로 판단한다. 이 오버레이는 당시 Task8 acceptance, local baseline, remote scan 결과를 수정하거나 소급 재해석하지 않는다.
+
 ```yaml
 status: CURRENT_REMOTE_READBACK_COMPLETE_LOCAL_DELTA_RECOVERY_REQUIRED
 project_main: 026230d3a91687cd4c6df0bb629eabaeb17c767c

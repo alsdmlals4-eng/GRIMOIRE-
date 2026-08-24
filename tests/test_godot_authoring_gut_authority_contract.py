@@ -9,6 +9,7 @@ ADOPTION_SPEC = ROOT / "docs/testing/GUT_9_7_1_ADOPTION_SPEC.md"
 BINDING_V43 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_3_BINDING.md"
 BINDING_V44 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md"
 BINDING_V45 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_5_BINDING.md"
+BINDING_V48 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md"
 PLAN = ROOT / "docs/superpowers/plans/2026-08-06-gut-9-7-1-formal-adoption.md"
 SYNC19_STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 CURRENT_STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE_SYNC20.json"
@@ -18,9 +19,11 @@ HIGODOT_V312_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.
 HIGODOT_V313_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json"
 HIGODOT_V314_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_4_VENDOR_INTEGRITY.json"
 HERA_EVIDENCE = ROOT / "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
-CURRENT_SURFACES = [
+ACTIVE_SURFACES = [
     ROOT / "START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
+]
+PROVENANCE_SURFACES = [
     ROOT / "docs/DEVELOPMENT_GATES.md",
     ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",
@@ -28,7 +31,8 @@ CURRENT_SURFACES = [
     CURRENT_CANON,
 ]
 
-CURRENT_CONTRACT = "GM-CONTRACT-V4-5-BINDING-01"
+ACTIVE_CONTRACT = "GM-CONTRACT-V4-8-BINDING-01"
+HISTORICAL_V45_CONTRACT = "GM-CONTRACT-V4-5-BINDING-01"
 HISTORICAL_V44_CONTRACT = "GM-CONTRACT-V4-4-BINDING-01"
 SYNC20_SOURCE_BASE = "6d2feba2bc49fda2d8d273248b55087853615d5d"
 LATEST_BASE_OBSERVED = "1d6cc79ad9dfa694558524ccc5ebf11ec7df7d8c"
@@ -54,6 +58,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
             BINDING_V43,
             BINDING_V44,
             BINDING_V45,
+            BINDING_V48,
             PLAN,
             SYNC19_STATE,
             CURRENT_STATE,
@@ -116,21 +121,31 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
     def test_sync19_machine_snapshot_and_vendor_evidence_remain_historical(self):
         old = json.loads(SYNC19_STATE.read_text(encoding="utf-8"))
         self.assertEqual("4.5", old["contract"]["version"])
-        self.assertEqual(CURRENT_CONTRACT, old["contract"]["binding_decision_id"])
+        self.assertEqual(HISTORICAL_V45_CONTRACT, old["contract"]["binding_decision_id"])
         self.assertEqual(HISTORICAL_V44_CONTRACT, old["contract"]["historical_binding_decision_id"])
         self.assertIn("LIVE_V3_1_4_HANDSHAKE_NOT_VERIFIED", json.dumps(old))
         evidence = json.loads(HIGODOT_V314_EVIDENCE.read_text(encoding="utf-8"))
         self.assertEqual("PASS_EXACT_TREE_IDENTITY", evidence["tracked_tree_identity"])
         self.assertEqual(HIGODOT_V314_TREE, evidence["project_tracked_plugin_subtree"])
 
-    def test_current_authority_surfaces_are_v4_5_and_sync20(self):
-        combined = "\n".join(path.read_text(encoding="utf-8") for path in CURRENT_SURFACES)
-        for path in CURRENT_SURFACES[:-2]:
+    def test_current_authority_is_v4_8_while_sync20_and_v45_remain_provenance(self):
+        for path in ACTIVE_SURFACES:
             text = path.read_text(encoding="utf-8")
-            self.assertIn(CURRENT_CONTRACT, text, str(path))
+            self.assertIn(ACTIVE_CONTRACT, text, str(path))
             self.assertIn("GUT_FORMALLY_ADOPTED", text, str(path))
-            self.assertNotIn("BLOCKED_BY_GUT_ADOPTION_SPEC", text, str(path))
+            self.assertNotIn("active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, str(path))
+
+        binding = BINDING_V48.read_text(encoding="utf-8")
+        self.assertIn(ACTIVE_CONTRACT, binding)
+        self.assertIn("contract_version: '4.8'", binding)
+        self.assertIn("THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON", binding)
+
+        combined = "\n".join(
+            path.read_text(encoding="utf-8")
+            for path in [*ACTIVE_SURFACES, *PROVENANCE_SURFACES, BINDING_V48]
+        )
         for token in (
+            HISTORICAL_V45_CONTRACT,
             HISTORICAL_V44_CONTRACT,
             CURRENT_SYNC,
             HIGODOT_LIVE,
