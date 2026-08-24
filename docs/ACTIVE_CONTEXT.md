@@ -32,6 +32,8 @@ spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
+task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_local_delta_existence: OBSERVED_PRESENT
 task8_candidate_preservation: OBSERVED_PASS
 task8_primary_recovery_branch: feat/task8-spell-use-screen-v2
@@ -55,6 +57,7 @@ hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
 three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
+authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
 authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
 human_validation: NOT_RUN
 device_validation: NOT_RUN
@@ -64,6 +67,8 @@ windows_export: NOT_RUN
 android_export: NOT_RUN
 android_device: NOT_RUN
 ```
+
+`authority_sync_local_observation` / `authority_sync_godot_observation`은 Sync35 시점의 역사 관찰값이며 현재 executor 사실을 덮어쓰지 않는다. 현재 로컬 Task8 존재·보존 상태는 별도 `task8_recovery_state`가 소유한다.
 
 ## 현재 제품 현실
 
@@ -119,6 +124,7 @@ GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 TASK7_MERGED_MAIN_VERIFIED
 TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 TASK8_RECEIPT_HERA_REVIEW_PR
+TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 ```
 
 현재 continuation state:
@@ -126,6 +132,7 @@ TASK8_RECEIPT_HERA_REVIEW_PR
 ```yaml
 product_status_historical: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
 product_branch_local_historical: feat/task8-spell-use-screen-v2
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: NONE
@@ -133,6 +140,7 @@ task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
 historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 resume_gate: TASK8_PR_PREP_REVERIFY_PENDING
+historical_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 current_execution_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 ```
@@ -141,7 +149,7 @@ current_execution_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 
 2026-08-24 사용자 PC read-only recovery probe로 두 로컬 Task8 후보가 실제 존재함을 확인했고, 이어 병합된 preservation tool을 실행해 외부 snapshot으로 보존했다. 직접 반환된 receipt는 `TASK8_CANDIDATES_PRESERVED`, `source_unchanged=true`, `source_content_unchanged=true`이며 primary 11 files, secondary 33 files가 snapshot에 기록됐다.
 
-따라서 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`와 candidate-preservation gate는 닫혔다. 보존 성공을 current-main 호환성이나 fresh HiGodot/GUT/Hera PASS로 승격하지 않는다.
+따라서 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`와 candidate-preservation gate는 닫혔다. compatibility consumer 검색을 위해 locator 문자열은 보존하지만 current gate로 재해석하지 않는다. 보존 성공을 current-main 호환성이나 fresh HiGodot/GUT/Hera PASS로 승격하지 않는다.
 
 다음 작업은 역사 worktree에 pull/rebase/clean을 하지 않고 fresh `origin/main`에서 별도 clean reconciliation worktree를 만드는 것이다. 이후 exact-project HiGodot readback을 거쳐 primary v2를 우선 복구하고 secondary는 parity evidence로만 비교한다.
 
