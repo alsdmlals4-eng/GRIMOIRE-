@@ -75,6 +75,9 @@ class V45ContractBindingTests(unittest.TestCase):
         self.assertIn("contract_version: '4.8'", v48)
         self.assertIn(V48_DECISION, v48)
         self.assertIn(V48_SYNC_ID, v48)
+        self.assertNotIn("## 7. 현재 승인 실행 패키지", v48)
+        self.assertIn("## 7. v4.8 전환 delivery provenance", v48)
+        self.assertIn("current_product_next_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", v48)
 
         for path in ACTIVE_DOCS:
             text = path.read_text(encoding="utf-8")
