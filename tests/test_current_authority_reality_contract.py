@@ -111,7 +111,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("현재 상태로 재사용하지 않는다", reverify)
         self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", reverify)
 
-    def test_active_entry_docs_bind_v48_and_treat_pr151_as_merged_history(self) -> None:
+    def test_active_entry_docs_bind_v48_without_transient_pr_state(self) -> None:
         expected_contract = "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8"
         binding_path = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md"
         self.assertTrue(binding_path.is_file())
@@ -132,6 +132,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
             self.assertIn(expected_contract, text, relative_path)
             self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", text, relative_path)
             self.assertNotIn("active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, relative_path)
+            self.assertNotIn("current_task_pr:", text, relative_path)
 
         agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
         start = (ROOT / "START_HERE.md").read_text(encoding="utf-8")
@@ -140,10 +141,8 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertNotIn("parallel_open_pr: PR151_DO_NOT_TOUCH", start)
         self.assertIn("component_sheet_pr151: MERGED_MAIN_VERIFIED", start)
         self.assertIn("parallel_open_pr: NONE", start)
-        self.assertIn("current_task_pr: PR158_V4_8_AUTHORITY_SYNC_DRAFT", start)
-        self.assertIn("current_task_pr: PR158_V4_8_AUTHORITY_SYNC_DRAFT", active)
-
         for text in (agents, start, active):
+            self.assertIn("authority_sync_pr: 158", text)
             normalized = text.lower().replace("_", " ")
             self.assertIn("historical compatibility", normalized)
             self.assertIn("CURRENT_CONFIRMED_DECISIONS.md", text)
