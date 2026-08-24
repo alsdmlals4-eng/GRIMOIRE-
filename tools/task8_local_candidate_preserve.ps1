@@ -47,6 +47,35 @@ function Normalize-PathKey {
     return $Normalized
 }
 
+function Test-LinkOrReparsePoint {
+    param($Item)
+
+    $LinkType = $null
+    if ($Item.PSObject.Properties.Name -contains 'LinkType') {
+        $LinkType = "$($Item.LinkType)"
+    }
+    $IsReparsePoint = (($Item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) -ne 0)
+    return (-not [string]::IsNullOrEmpty($LinkType)) -or $IsReparsePoint
+}
+
+function Assert-NoDestinationLinkAncestors {
+    param([string]$ExistingPath)
+
+    $Cursor = [System.IO.Path]::GetFullPath($ExistingPath)
+    while ($true) {
+        $Item = Get-Item -LiteralPath $Cursor -Force
+        if (Test-LinkOrReparsePoint -Item $Item) {
+            Stop-WithCode -Code 'DESTINATION_INSIDE_SOURCE'
+        }
+
+        $Parent = Split-Path -Parent $Cursor
+        if ([string]::IsNullOrEmpty($Parent) -or $Parent -eq $Cursor) {
+            break
+        }
+        $Cursor = $Parent
+    }
+}
+
 function Resolve-DestinationPathWithoutCreating {
     param([string]$Path)
 
@@ -64,6 +93,7 @@ function Resolve-DestinationPathWithoutCreating {
         $Cursor = $Parent
     }
 
+    Assert-NoDestinationLinkAncestors -ExistingPath $Cursor
     $Resolved = (Resolve-Path -LiteralPath $Cursor).Path
     foreach ($Part in $Missing) {
         $Resolved = Join-Path $Resolved $Part
