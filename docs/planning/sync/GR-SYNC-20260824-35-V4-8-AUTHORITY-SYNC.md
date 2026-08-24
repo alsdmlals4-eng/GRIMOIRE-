@@ -14,9 +14,9 @@ project_main_baseline: 91459b6ce42d44c557c6bcd9cf539b023bfdf55c
 semantic_candidate_before_receipt: dca853a83fbc4fc9693d7a00eddfa32f368c500d
 product_behavior_change: NONE
 product_paths_changed: NONE
-local_sync: BLOCKED_NO_LOCAL_ACCESS
-godot_run: BLOCKED_NO_LOCAL_ACCESS
-task8_local_delta_existence: BLOCKED_UNVERIFIED
+local_sync_observed_during_authority_sync: BLOCKED_NO_LOCAL_ACCESS
+godot_run_observed_during_authority_sync: BLOCKED_NO_LOCAL_ACCESS
+task8_local_delta_existence_observed: BLOCKED_UNVERIFIED
 human_device_performance_full_slice: NOT_RUN
 ```
 
@@ -26,7 +26,7 @@ human_device_performance_full_slice: NOT_RUN
 
 Task8 제품 구현을 이 sync에서 재작성하지 않는다. Task8은 원격 product commit/branch/PR이 없고 역사 acceptance가 uncommitted local worktree에만 적용됐으므로 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`를 그대로 보존한다.
 
-이 파일은 **pre-merge verification receipt**다. PR의 draft/ready/merged lifecycle 상태를 영구 current fact로 저장하지 않는다. 최종 merge 여부와 merged-main SHA는 live GitHub/readback에서 확인한다.
+이 파일은 **pre-merge verification receipt**다. PR의 draft/ready/merged lifecycle, 현재 open PR 집합, 이후 local executor 접근 가능 여부를 영구 current fact로 저장하지 않는다. 최종 merge 여부와 merged-main SHA는 live GitHub/readback에서 확인하고, Task8 재개 시 local capability를 fresh executor에서 다시 확인한다.
 
 ## TDD receipts
 
@@ -75,6 +75,23 @@ fix:
   - binding delivery section is provenance, current product gate is Task8 local recovery
 ```
 
+### RED 4 — open PR count / local-access observation stale 재발 위험
+
+```yaml
+red_head: 3e50eb7fcedab85d749d40589d1807371e9ed2bf
+workflow: Validate GRIMOIRE planning and Base v9.4.3
+run: 32690732595
+result: EXPECTED_RED
+preexisting_operating_view_check: PASS
+failure_reason: active cold-start docs still pinned parallel_open_pr NONE and local_sync/godot_run BLOCKED values as current facts
+fix:
+  - open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
+  - local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
+  - authority-sync BLOCKED observations retained only as explicitly named provenance
+```
+
+open PR 집합과 local executor capability는 시간이 지나면 바뀌는 실행 관찰이다. 따라서 cold-start canon은 값 자체가 아니라 **누가 fresh readback을 소유하는지**를 고정한다.
+
 ## Current-authority architecture
 
 v4.8의 thin-adapter 원칙에 따라 current authority를 다음으로 줄인다.
@@ -112,15 +129,15 @@ PR #151의 Component Sheets A–D evidence를 Task8나 Human/Device/Performance/
 
 ## Task8 evidence ceiling
 
-현재 ChatGPT 세션에서는 사용자 Windows repository/worktree/Godot에 직접 접근할 수 없고 usable local Godot/PowerShell connector도 확인되지 않았다.
+Sync35 authority 작업에서는 사용자 Windows repository/worktree/Godot에 직접 접근할 수 없고 usable local Godot/PowerShell connector도 확인되지 않았다.
 
 ```text
-LOCAL_SYNC: BLOCKED_NO_LOCAL_ACCESS
-GODOT_RUN: BLOCKED_NO_LOCAL_ACCESS
-TASK8_LOCAL_DELTA_EXISTENCE: BLOCKED_UNVERIFIED
+LOCAL_SYNC_OBSERVED_DURING_SYNC35: BLOCKED_NO_LOCAL_ACCESS
+GODOT_RUN_OBSERVED_DURING_SYNC35: BLOCKED_NO_LOCAL_ACCESS
+TASK8_LOCAL_DELTA_EXISTENCE_OBSERVED: BLOCKED_UNVERIFIED
 ```
 
-따라서 local delta의 존재/소실을 어느 쪽으로도 추정하지 않는다. local access가 생기면 `tools/task8_local_recovery_probe.ps1`를 read-only로 실행하고 reset/restore/clean을 금지한다.
+이 값들은 Sync35의 provenance이며 다음 executor의 영구 상태가 아니다. local access가 생기면 fresh local capability readback 후 `tools/task8_local_recovery_probe.ps1`를 read-only로 실행하고 reset/restore/clean을 금지한다.
 
 ## Scope / Implementation Reality Gate
 
