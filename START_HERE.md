@@ -10,10 +10,14 @@ contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+authority_sync_pr: 158
+spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 current_task8_continuation: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
 task8_preservation_observation: docs/planning/TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVATION_2026-08-24.md
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 task8_product_unit: TASK8_SPELL_USE_SCREEN
+latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
+spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
@@ -25,8 +29,10 @@ google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 next_product_task: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
+task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_local_delta_existence: OBSERVED_PRESENT
 task8_candidate_preservation: OBSERVED_PASS
+task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: NONE
@@ -40,6 +46,9 @@ gut_status: GUT_FORMALLY_ADOPTED
 higodot_historical_live_alignment: LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED
 higodot_current_reconciliation_readback: NOT_RUN
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
+local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
+authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
+authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -50,6 +59,8 @@ android_device: NOT_RUN
 ```
 
 `v4.8 r2 / GM-CONTRACT-V4-8-BINDING-01`이 현재 프로젝트 실행 계약이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
+
+`authority_sync_local_observation` / `authority_sync_godot_observation`은 Sync35 당시의 역사 관찰값이다. 현재 로컬 Task8 delta와 preservation은 별도 fresh evidence로 이미 승격됐으며 이 두 marker가 현재 로컬 상태를 의미하지 않는다.
 
 ## Workspace authority
 
@@ -84,7 +95,7 @@ Google Sheets
 - Task 4 / PR #105 — Stage 2 placement + atomic glyph preparation
 - Task 5 / PR #106 — Stage 3 explicit target/use atomic transaction
 - Task 6 / PR #108 — glyph drawing workflow screen
-- Task 7 / PR #110 — circuit placement workflow screen
+- Task 7 / PR #110 — circuit placement workflow screen (`TASK7_MERGED_MAIN_VERIFIED`)
 - PR #151 — Component Sheets A–D + reusable semantic UI pack, `MERGED_MAIN_VERIFIED`
 
 Task8은 Task5 Stage3 authority의 thin UI consumer이며 새 target/use/Mana/inventory/result/rollback authority를 만들지 않는다.
@@ -108,6 +119,26 @@ current_execution_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 따라서 로컬 delta existence와 preservation은 더 이상 `BLOCKED_UNVERIFIED`가 아니다. 다만 이것은 current-main compatibility, fresh HiGodot, GUT/Hera, runtime 또는 제품 병합 증거가 아니다.
 
 역사 Task8 worktree에는 `pull`, `rebase`, `reset`, `restore`, `clean`, `stash`를 하지 않는다. 다음 단계는 external snapshot을 검증한 뒤 exact fresh `origin/main`에서 별도 clean reconciliation worktree를 만드는 것이다. ordinary root checkout은 이 단계에서 pull할 필요가 없다.
+
+## Historical compatibility anchors — current gate 아님
+
+아래 문자열은 기존 machine consumer와 과거 handoff 탐색을 위한 compatibility anchor다. 현재 실행 gate로 재승격하지 않는다.
+
+```text
+GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+TASK7_MERGED_MAIN_VERIFIED
+TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
+TASK8_RECEIPT_HERA_REVIEW_PR
+TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
+CURRENT_DEDICATED_CODEX_REUSE_ALLOWED_FOR_CODEX_ONLY_CONTINUATION
+FRESH_POWERSHELL_REQUIRED_WHEN_SESSION_RECREATION_OR_CAPABILITY_BOUNDARY
+REMOTE_AUTHORITY_RECEIPT
+LOCAL_EXECUTION_RECEIPT
+EXECUTOR_CAPABILITY_BLOCKER
+DO_NOT_RETRY_BLOCKED_REMOTE_CHECK_IN_CODEX
+FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
+```
 
 ## Godot 진입점과 Runtime Reality
 
