@@ -17,7 +17,7 @@ HISTORICAL_PACKET = ROOT / "docs/planning/TASK8_LOCAL_RECOVERY_EXECUTOR_PACKET_2
 BASELINE = "8c611f601aa98397ed1558e92ab207e0e8347a9b"
 HISTORICAL_BRANCH = "feat/task8-spell-use-screen-v2"
 HISTORICAL_WORKTREE = ".worktrees/task8-spell-use-screen-v2"
-BOOTSTRAP_COMMIT = "15139d80ab7112ea93e5090eece9cc145ae80f6b"
+BOOTSTRAP_COMMIT = "6d432f4626388d537f9281a15d407910c657ac1a"
 RAW_PROBE_URL = (
     "https://raw.githubusercontent.com/alsdmlals4-eng/GRIMOIRE-/"
     f"{BOOTSTRAP_COMMIT}/tools/task8_local_recovery_probe.ps1"
