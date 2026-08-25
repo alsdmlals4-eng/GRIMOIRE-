@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "decision_id": "GM-VISUAL-DIRECTION-20260825-01",
+  "status": "USER_APPROVED_VISUAL_REFERENCE",
+  "approved_at": "2026-08-25",
+  "decision_scope": "VISUAL_STYLE_AND_LOGO_DIRECTION_ONLY",
+  "source": {
+    "type": "CHATGPT_GENERATED_USER_APPROVED_REFERENCE",
+    "filename": "GRIMOIRE_visual_direction_approved_2026-08-25.png",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "7937ad53cebe48359d713b06b868d46f1bc08aa4cd89f1164293c73d12be1bbe",
+    "notion_visual_page": "https://app.notion.com/p/3c71b237eb1c81feb5d0cfb4ac13cd76",
+    "notion_home": "https://app.notion.com/p/3c41b237eb1c816c80d0dfcfe28ec973",
+    "notion_asset_record": "https://app.notion.com/p/3c71b237eb1c812ba18fdeb02d8f4993"
+  },
+  "adopt": {
+    "logo_direction": "LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION",
+    "art_style": [
+      "SOFT_STORYBOOK_ENVIRONMENT",
+      "CLEAN_ANIME_CEL_CHARACTER_OVER_STORYBOOK_BACKGROUND",
+      "NAVY_GOLD_MAGIC_ACADEMY_FRAME",
+      "MAGIC_FANTASY_AND_ANIME_CHARACTER_EMPHASIS"
+    ],
+    "color_and_light": [
+      "NAVY_GOLD_STRUCTURE",
+      "BLUE_TO_BLUE_PURPLE_MAGIC_GLOW",
+      "BOOK_AND_PARCHMENT_TEXTURE"
+    ],
+    "experience_impression": [
+      "MAGIC_ACADEMY_INTELLECTUAL_DISCOVERY",
+      "DIRECT_SPELL_DESIGN",
+      "MYSTERY_AND_GROWTH_FANTASY"
+    ]
+  },
+  "preserve_existing_canon": [
+    "GR-A-STYLE-01",
+    "GR-A-BIBLE-01",
+    "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
+    "FIVE_POINT_STAR",
+    "CIRCUIT_PREVIEW_BEFORE_TARGET_KEYWORD",
+    "EXPLICIT_COMMIT_AFTER_FINAL_PREVIEW"
+  ],
+  "noncanonical_generated_content": [
+    "RECORDER_PROTAGONIST_LABEL",
+    "TIME_TRAVEL_OR_TIME_MANIPULATION_SETTING",
+    "RUINED_CITY_OR_WORLD_DESTRUCTION_SETTING",
+    "ARBITRARY_EVENT_NAMES",
+    "ARBITRARY_MENU_NAMES",
+    "ARBITRARY_NUMBERS",
+    "ARBITRARY_ENGLISH_UI_COPY",
+    "UNAPPROVED_CHARACTER_OR_COSTUME_CANON"
+  ],
+  "consumer_rule": "Future concept, UI, environment, and character visual briefs use this decision as a style overlay only after reading the current domain canon for content and behavior.",
+  "live_ui_boundary": "Functional text, numeric values, button labels, success rates, Mana, state truth, and interaction truth remain live UI unless a separately approved asset contract says otherwise.",
+  "runtime_asset_status": "NOT_A_RUNTIME_ASSET",
+  "runtime_validation": "NOT_RUN",
+  "human_device_performance_full_slice": "NOT_RUN",
+  "locked_reference_replacement": false,
+  "google_sheets_write": "NOT_PERFORMED_MIGRATION_ONLY",
+  "revisit_conditions": [
+    "LOGO_VECTOR_PRODUCTION_OR_STORE_MARKETING_STARTS",
+    "MOBILE_READABILITY_OR_ACCESSIBILITY_CONFLICT_IS_OBSERVED",
+    "CURRENT_ART_BIBLE_IS_FORMALLY_REPLACED",
+    "PLAYER_TEST_SHOWS_STYLE_HARMS_SPELL_READABILITY_OR_PROJECT_IDENTITY"
+  ]
+}
