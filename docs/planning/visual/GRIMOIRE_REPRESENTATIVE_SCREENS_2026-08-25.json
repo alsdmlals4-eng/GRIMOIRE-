@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "decision_id": "GM-REPRESENTATIVE-SCREENS-20260825-01",
+  "status": "USER_APPROVED_SCREEN_REFERENCE_AND_REWORK_BOUNDARY",
+  "approved_at": "2026-08-25",
+  "notion_page": "https://app.notion.com/p/3c71b237eb1c8169bdbee77bb943edea",
+  "parent_visual_direction": "GM-VISUAL-DIRECTION-20260825-01",
+  "approved_references": [
+    {
+      "role": "REPRESENTATIVE_BATTLE_AND_SPELL_VISUAL_REFERENCE",
+      "filename": "마법_온실의_정령_전투_ui.png",
+      "generation_id": "e566181c-fe4c-4af0-af8e-79b6874695f0",
+      "sha256": "f6c6491190fb3373e457bda43ecda88039be7dde53cae284c2b5141717b4e9e1",
+      "approval_scope": [
+        "GREENHOUSE_MAGIC_BATTLE_MOOD",
+        "ENEMY_AND_ENVIRONMENT_CENTERED_COMPOSITION",
+        "NAVY_GOLD_UI_LANGUAGE",
+        "BLUE_MAGIC_GLOW",
+        "ANIME_CHARACTER_OVER_STORYBOOK_ENVIRONMENT"
+      ],
+      "system_ui_status": "REWORK_REQUIRED_AGAINST_CURRENT_CANON"
+    },
+    {
+      "role": "DIALOGUE_SCREEN_VISUAL_REFERENCE",
+      "filename": "마법_온실의_식물학_강의실.png",
+      "generation_id": "c41aa553-a406-4ab5-b56a-3e863a60de54",
+      "sha256": "e402b5e5680a280aedf43026448ae766cba7307ce9696091ea0538b380fbb152",
+      "approval_scope": [
+        "HALF_BODY_ANIME_DIALOGUE_COMPOSITION",
+        "MAGIC_ACADEMY_STORYBOOK_BACKGROUND",
+        "NAVY_GOLD_DIALOGUE_FRAME",
+        "BOTTOM_CHOICE_LAYOUT"
+      ],
+      "noncanonical": [
+        "GENERATED_CHARACTER_NAMES",
+        "GENERATED_DIALOGUE_COPY",
+        "UNAPPROVED_CHARACTER_IDENTITY",
+        "UNAPPROVED_COSTUME_AND_RELATIONSHIP_CANON"
+      ]
+    }
+  ],
+  "spell_ui_rework_boundary": {
+    "reason": "The generated spell-writing screen simplified Stock, circuit, and use semantics too aggressively.",
+    "must_read_before_next_brief": [
+      "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
+      "GM-SPELL-WORKFLOW-UI-V2-01",
+      "src/core/workflow/spell_workflow_coordinator.gd",
+      "src/core/spells/atomic_spell_preparation_service.gd",
+      "docs/planning/STOCK_SYSTEM.md"
+    ],
+    "current_semantics": [
+      "TYPED_GLYPH_STOCK_IS_ONE_TYPED_GLYPH_PLACEMENT_NOT_COMPLETED_SPELL",
+      "FIVE_POINT_STAR_CENTER_MAIN_PLUS_ZERO_TO_FIVE_EQUIVALENT_AUXILIARIES",
+      "STAGE2_CONSUMES_RESERVED_GLYPH_RESOURCES_TO_CREATE_PREPARED_SPELL",
+      "STAGE3_SELECTS_TARGET_SHOWS_FINAL_PREVIEW_SPENDS_MANA_AND_USES_SPELL",
+      "NO_AUTO_TARGET",
+      "NO_AUTO_COMMIT",
+      "NO_BEST_ROUTE_ANSWER"
+    ]
+  },
+  "movement_screen_direction": {
+    "status": "USER_REJECTED_PREVIOUS_3D_LIKE_EXPLORATION_PRESENTATION",
+    "future_direction": "SIMPLER_2D_MOVEMENT_OR_SCENE_TRANSITION_PRESENTATION",
+    "previous_generated_corridor_image": "NOT_APPROVED_REPRESENTATIVE_SCREEN",
+    "next_step": "DISCUSS_BRIEF_BEFORE_GENERATION"
+  },
+  "future_image_workflow": "DISCUSSION_TO_BRIEF_APPROVAL_TO_GENERATION",
+  "runtime_asset_status": "NOT_RUNTIME_ASSET",
+  "implementation_evidence": "NOT_CLAIMED",
+  "human_device_validation": "NOT_RUN",
+  "google_sheets_write": "NOT_PERFORMED_MIGRATION_ONLY"
+}
