@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "revision_id": "GR-VISUAL-ASSET-COVERAGE-PLAYER-FLOW-20260826-01",
+  "status": "USER_APPROVED_PLAYER_FLOW_REVISION_ACTIVE",
+  "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
+  "decision_revision": "2026-08-26-PLAYER-FACING-SIMPLIFICATION",
+  "sync_id": "GR-SYNC-20260826-37-SPELL-FLOW-PLAYER-FACING",
+  "baseline_coverage": "docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json",
+  "baseline_disposition": "PRESERVE_FULL_PREFLIGHT_INVENTORY_AND_DELETE_TEST_RESULTS",
+  "supersession_scope": [
+    "PLAYER_FACING_SPELL_WORKFLOW_TERMS",
+    "STAGE2_RESULT_LABEL",
+    "TARGET_SELECTION_PRESENTATION",
+    "GLYPH_VISUAL_METAPHOR",
+    "PREVIOUS_NEXT_SINGLE_VISUAL_GENERATION_STATUS"
+  ],
+  "player_facing_flow": [
+    "글자",
+    "주문",
+    "대상",
+    "시전"
+  ],
+  "ux_groups": {
+    "주문 만들기": [
+      "글자 선택·작성",
+      "FIVE_POINT_STAR 회로 조합",
+      "완성 주문 이름 확인"
+    ],
+    "주문 쓰기": [
+      "게임 장면에서 대상 직접 지정",
+      "필요한 최종 Preview",
+      "명시 시전"
+    ]
+  },
+  "player_term_mapping": {
+    "Stock_or_Vault_source": "글자 / 보관 글자",
+    "Stage2_placement": "주문 회로",
+    "PreparedSpell": "완성 주문 / 완성 주문 이름",
+    "Stage3_target_selection": "대상",
+    "Stage3_explicit_commit_use": "시전"
+  },
+  "visual_revision": {
+    "glyph_metaphor": "DIRECT_WRITTEN_MAGICAL_LETTER",
+    "rejected_metaphor": [
+      "TALISMAN",
+      "HANGING_TAG",
+      "CHARM_PLAQUE",
+      "COLLECTIBLE_SPELL_CARD"
+    ],
+    "glyph_readability": [
+      "VISIBLE_STROKES",
+      "HANDWRITING_OR_BRUSH_FEEL",
+      "LUMINOUS_INK_OR_MAGIC_TRACE",
+      "LETTER_FIRST_NOT_PICTOGRAM_FIRST"
+    ],
+    "circuit_placement": "LETTERS_ARE_WRITTEN_OR_PLACED_DIRECTLY_ON_FIVE_POINT_STAR",
+    "stage2_primary_result_label": "완성 주문 이름",
+    "target_presentation": "PREFER_IN_WORLD_DIRECT_TARGET_SELECTION_OVER_SEPARATE_COMPLEX_TARGET_ONLY_SCREEN"
+  },
+  "previous_stage2_brief": {
+    "brief_id": "GR-VISUAL-BRIEF-STAGE2-STOCK-CIRCUIT-20260826-01",
+    "status": "GENERATED_REVIEWED_AND_SUPERSEDED_FOR_PLAYER_LABELS",
+    "finding": "FIRST_GENERATION_READ_AS_TALISMAN_OR_TAG; FOLLOWUP_DIRECT_WRITTEN_GLYPH_DIRECTION_ACCEPTED",
+    "preserved_value": "FIVE_POINT_STAR_AND_SOURCE_TO_CIRCUIT_COMPOSITION_REFERENCE"
+  },
+  "image_generation_state": "NO_NEW_IMAGE_REQUEST_AFTER_PLAYER_FLOW_APPROVAL",
+  "naming_rule_boundary": {
+    "approved": "COMPLETED_SPELL_NAME_IS_PRIMARY_PLAYER_READOUT_OF_CIRCUIT_RESULT",
+    "not_yet_defined": [
+      "SPELL_NAME_GRAMMAR",
+      "KOREAN_PARTICLE_OR_INFLECTION_RULES",
+      "LOCALIZATION_RULES",
+      "DUPLICATE_NAME_HANDLING",
+      "EXACT_NAME_TO_EFFECT_NUMERIC_MAPPING"
+    ]
+  },
+  "internal_authority_preserved": [
+    "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
+    "FIVE_POINT_STAR",
+    "CENTER_MAIN_1_PLUS_OUTER_AUXILIARY_0_TO_5",
+    "TYPED_GLYPH_RESERVATION_AND_ATOMIC_CONSUME",
+    "TASK4_STAGE2_PREPARATION_AUTHORITY",
+    "IMMUTABLE_PREPARED_SPELL",
+    "TASK5_STAGE3_TARGET_USE_ATOMIC_TRANSACTION",
+    "EXPLICIT_TARGET",
+    "EXPLICIT_EXACTLY_ONCE_USE",
+    "ROLLBACK_AND_NO_CONSUME_ON_INVALID_CANCEL_ERROR"
+  ],
+  "forbidden": [
+    "AUTO_TARGET",
+    "AUTO_CAST",
+    "AUTO_OPTIMAL_CIRCUIT",
+    "STOCK_AS_COMPLETED_SPELL_STORAGE",
+    "DUPLICATE_TRANSACTION_AUTHORITY",
+    "BAKED_FUNCTIONAL_NUMERIC_TRUTH"
+  ],
+  "evidence_ceiling": {
+    "product_implementation_mutated": false,
+    "task8_implementation_authorized": false,
+    "human_usability": "NOT_RUN",
+    "device": "NOT_RUN",
+    "performance": "NOT_RUN",
+    "full_vertical_slice": "NOT_RUN"
+  },
+  "google_sheets": {
+    "role": "MIGRATION_ONLY_UNTIL_REMOVAL",
+    "legacy_wording_conflict_observed": true,
+    "new_canon_write_authorized": false
+  }
+}
