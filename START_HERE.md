@@ -23,16 +23,20 @@ workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
-current_user_work_scope: VISUAL_ASSET_COVERAGE_AND_NEXT_SINGLE_VISUAL_BRIEF
+current_user_work_scope: SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_AND_VISUAL_ALIGNMENT
 product_implementation_authorized_by_current_user_work_scope: false
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL
+visual_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
 representative_screens_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
 art_style_lock: ART-STYLE-01
 logo_direction: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
+product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
+player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
+player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 task8_product_unit: TASK8_SPELL_USE_SCREEN
@@ -73,7 +77,7 @@ android_device: NOT_RUN
 
 `v4.8 r5.4 / GM-CONTRACT-V4-8-BINDING-01`이 현재 프로젝트 실행 계약이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
 
-이번 `작업재개 → 진행해`는 **Visual/Image/Asset planning continuation**이다. Task8/Godot 제품 구현은 사용자가 구현 작업을 명시적으로 재개하기 전까지 시작하지 않는다. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator일 뿐 현재 구현 권한을 뜻하지 않는다.
+2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름 간략화**를 승인했다. 현재 작업은 기획/Visual 정본 교정이며 Task8/Godot 제품 구현은 사용자가 구현 작업을 명시적으로 재개하기 전까지 시작하지 않는다. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator일 뿐 현재 구현 권한을 뜻하지 않는다.
 
 ## Workspace authority
 
@@ -90,17 +94,34 @@ Google Sheets
 → 고유 자료 흡수 확인 전 삭제 금지
 ```
 
-Google Sheet는 current state writer가 아니다. 이번 r5.4 Visual preflight에서는 기존 Asset/이미지 inventory의 **고유한 역사 범위만 migration input으로 흡수**하고, current coverage는 GitHub + Notion Visual Bible이 소유한다.
+Google Sheet는 current state writer가 아니다. 현재 Sheet의 과거 `GM-SPELL-WORKFLOW-UI-V2-01` 문구가 새 플레이어 용어보다 오래되어도 신규 canon write로 교정하지 않는다. 새 정본은 GitHub + Notion이며 Sheet는 migration compatibility 자료로만 읽는다.
 
 ## 현재 제품 경계
 
-`GM-SPELL-WORKFLOW-UI-V2-01`의 제품 흐름은 다음이다.
+`GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름**은 다음이다.
 
 ```text
-글자 그리기
-→ 회로 배치
-→ 주문 사용
+글자
+→ 주문
+→ 대상
+→ 시전
 ```
+
+화면 경험은 두 덩어리로 묶는다.
+
+```text
+주문 만들기
+= 글자 선택·작성
++ FIVE_POINT_STAR 회로 조합
++ 완성 주문 이름 확인
+
+주문 쓰기
+= 게임 장면에서 대상 지정
++ 필요한 최종 Preview
++ 명시 시전
+```
+
+`Stock / PreparedSpell / Stage2 / Stage3 / Main / Auxiliary`는 구현·데이터·테스트 내부 용어로 계속 유지하지만 기본 플레이어 UI의 주 용어로 먼저 가르치지 않는다. `PreparedSpell`의 기본 플레이어 표현은 **완성 주문 / 완성 주문 이름**, Stage3의 기본 플레이어 표현은 **대상 / 시전**이다.
 
 현재까지 병합된 제품 계층:
 
@@ -111,7 +132,11 @@ Google Sheet는 current state writer가 아니다. 이번 r5.4 Visual preflight�
 - Task 7 / PR #110 — circuit placement workflow screen (`TASK7_MERGED_MAIN_VERIFIED`)
 - PR #151 — Component Sheets A–D + reusable semantic UI pack (`MERGED_MAIN_VERIFIED`)
 
-Task8은 Task5 Stage3 authority의 thin UI consumer이며 새 target/use/Mana/inventory/result/rollback authority를 만들지 않는다.
+내부 authority는 바꾸지 않는다. Task8은 계속 Task5 Stage3 authority의 thin UI consumer이며 새 target/use/Mana/inventory/result/rollback authority를 만들지 않는다. 자동 Target·자동 시전·회로 자동 최적화도 금지한다.
+
+현재 revision owner:
+
+`docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`
 
 ## 현재 Visual 정본
 
@@ -142,28 +167,23 @@ movement:
 
 - **REUSE**: Logo 01, 승인 스타일, Component Sheets A–D, semantic UI pack, Star UI Kit 계열.
 - **ADAPT**: Dialogue layout, Glyph Drawing, Result/Grimoire, simple 2D transition, core feedback VFX.
-- **CREATE**: Frostbloom environment runtime candidates, first-session character/companion/threat assets, 그리고 현재 가장 큰 시스템-시각 gap인 Stage2 representative visual.
+- **CREATE**: Frostbloom environment runtime candidates, first-session character/companion/threat assets.
 - **DEFER**: Task8 final use screen visual, store key art/platform assets.
 - **CUT**: 새 3D exploration asset family, baked functional text/numbers, Slice용 다중 enemy-wave production.
 
-## 다음 정확히 한 장의 Visual 브리프
+## 현재 Spell UX 시각 방향
 
-현재 가장 가치가 높은 1장은:
+최근 Stage2 시안은 `보관 글자 → 주문 회로 → 준비 주문` 구조와 FIVE_POINT_STAR의 가독성을 검토하는 데 사용됐다. 사용자 피드백으로 세로 패찰/부적 느낌은 폐기하고, **직접 쓰인 마법 글자**를 중심으로 단순화한 표현이 승인됐다.
 
-```text
-Typed Glyph Vault/Stock
-→ FIVE_POINT_STAR Circuit
-→ Prepared Spell
-```
+현재 시각 규칙:
 
-선정 이유:
+1. 글자는 부적·패찰·수집 카드보다 **획이 보이는 직접 쓰인 문자**로 읽혀야 한다.
+2. 회로에는 글자를 패찰째 꽂기보다 **글자를 직접 놓거나 써 넣는 느낌**을 우선한다.
+3. 회로 조합의 가장 중요한 결과 라벨은 `준비 주문`보다 **완성 주문 이름**이다.
+4. 완성 주문 선택 뒤에는 별도 복잡한 대상 화면을 기본 가정하지 않고, 가능하면 게임 장면에서 직접 대상 지정 → 필요한 Preview → **시전**으로 이어간다.
+5. 주문 이름의 실제 생성 문법/로컬라이징 알고리즘은 아직 별도 설계 대상이며 임의로 확정하지 않는다.
 
-1. 승인된 전투/주문 시안의 가장 큰 rework finding이 `Stock / circuit / spell` 의미 축약이었다.
-2. Task6 Glyph Drawing은 이미 구현/참고가 있어 상대적으로 coverage가 높다.
-3. Task8 Stage3 사용 화면은 current main에 없으므로 지금 final visual을 먼저 만들면 재작업 위험이 높다.
-4. Stage2 화면은 현재 정본의 `typed glyph source → center main + 0~5 auxiliary → prepared spell`을 직접 보여주면서 Task8 behavior를 발명하지 않는다.
-
-브리프 상태는 `TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL`이다. r5.4 규칙에 따라 **이 텍스트 브리프 뒤 자동으로 이미지를 생성하지 않는다.**
+현재 사용자 메시지는 새 이미지 생성 요청이 아니다. 다음 이미지 작업은 fresh text brief와 명시적 생성 요청이 있을 때만 진행한다.
 
 ## Task8 실제 복구 상태
 
@@ -176,7 +196,7 @@ secondary: task8/spell-use-screen@fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 current_execution_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 ```
 
-이것은 current-main compatibility, fresh HiGodot, GUT/Hera, runtime 또는 제품 병합 증거가 아니다. 이번 Visual work unit에서 Task8 제품 코드는 변경하지 않는다.
+이것은 current-main compatibility, fresh HiGodot, GUT/Hera, runtime 또는 제품 병합 증거가 아니다. 이번 기획/Visual work unit에서 Task8 제품 코드는 변경하지 않는다.
 
 ## Historical compatibility anchors — current gate 아님
 
@@ -213,7 +233,7 @@ Godot/Godot AI의 설치·exact pin·port 정책은 r5.4와 current Base owner�
 
 ## Open PR 경계
 
-새 작업 시작 시 live GitHub를 다시 읽는다. 2026-08-26 r5.4 reconciliation 시작 시점의 open PR은:
+새 작업 시작 시 live GitHub를 다시 읽는다. 2026-08-26 이번 work unit 시작 시점의 open PR은:
 
 - PR #166 `docs: route README to current GRIMOIRE canon` — Draft, `README.md` only, **READ_ONLY other workstream**.
 
@@ -227,6 +247,7 @@ Godot/Godot AI의 설치·exact pin·port 정책은 r5.4와 current Base owner�
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
+→ docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
 → docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 → current Visual / domain owner
 → actual code/data/Scene/Resource/Test/runtime evidence
@@ -236,16 +257,17 @@ Godot/Godot AI의 설치·exact pin·port 정책은 r5.4와 current Base owner�
 
 ## 제품 구현을 다시 시작할 때의 순서
 
-현재 Visual work와 별개로, 사용자가 구현을 명시적으로 재개하면 제품 순서는 다음을 유지한다.
+현재 기획/Visual work와 별개로, 사용자가 구현을 명시적으로 재개하면 제품 순서는 다음을 유지한다.
 
 ```text
 1. TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 2. fresh exact-project HiGodot readback + primary v2 recovery / secondary parity comparison
-3. fresh Task8 GUT + predecessor/full runner + Hera source-delta + exact-path adversarial review
-4. Task8 product PR / exact-head CI / merge / merged-main readback
-5. Task9 Product Root + responsive/E2E integration
-6. 대표 00~10분 Human Slice
-7. 10~23 → 46분 증거 확장
+3. 새 플레이어 용어 overlay를 Task8 UI에 매핑하고 기존 Stage3 authority와 충돌 없는지 확인
+4. fresh Task8 GUT + predecessor/full runner + Hera source-delta + exact-path adversarial review
+5. Task8 product PR / exact-head CI / merge / merged-main readback
+6. Task9 Product Root + responsive/E2E integration
+7. 대표 00~10분 Human Slice
+8. 10~23 → 46분 증거 확장
 ```
 
 ## 현재 완료로 주장하지 않는 항목
@@ -271,8 +293,9 @@ RUNTIME_VISUAL_COMPLETE_NOT_PROVEN
 2. `START_HERE.md`
 3. `docs/ACTIVE_CONTEXT.md`
 4. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md`
-5. `docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json`
-6. `docs/planning/visual/GRIMOIRE_VISUAL_DIRECTION_APPROVAL_2026-08-25.json`
-7. `docs/planning/visual/GRIMOIRE_REPRESENTATIVE_SCREENS_2026-08-25.json`
-8. 현재 목표의 분야별 owner / actual code·Scene·Resource·Test
-9. `CURRENT_*` machine snapshot — historical compatibility lookup only
+5. `docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`
+6. `docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json`
+7. `docs/planning/visual/GRIMOIRE_VISUAL_DIRECTION_APPROVAL_2026-08-25.json`
+8. `docs/planning/visual/GRIMOIRE_REPRESENTATIVE_SCREENS_2026-08-25.json`
+9. 현재 목표의 분야별 owner / actual code·Scene·Resource·Test
+10. `CURRENT_*` machine snapshot — historical compatibility lookup only
