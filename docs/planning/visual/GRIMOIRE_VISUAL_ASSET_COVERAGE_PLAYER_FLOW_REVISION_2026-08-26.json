@@ -8,6 +8,13 @@
   "sync_id": "GR-SYNC-20260826-37-SPELL-FLOW-PLAYER-FACING",
   "baseline_coverage": "docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json",
   "baseline_disposition": "PRESERVE_FULL_PREFLIGHT_INVENTORY_AND_DELETE_TEST_RESULTS",
+  "production_checklist": {
+    "decision_id": "GM-VISUAL-PRODUCTION-CHECKLIST-20260826-01",
+    "path": "docs/planning/visual/GRIMOIRE_VISUAL_PRODUCTION_CHECKLIST_2026-08-26.json",
+    "role": "CURRENT_APPROVED_IMAGE_PRODUCTION_ORDER_AND_STATUS",
+    "next_item": "GR-VP-05-MAGIC-GLYPH-DESIGN-SHEET",
+    "image_generation_authorized": false
+  },
   "supersession_scope": [
     "PLAYER_FACING_SPELL_WORKFLOW_TERMS",
     "STAGE2_RESULT_LABEL",
