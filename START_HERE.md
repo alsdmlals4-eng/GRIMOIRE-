@@ -50,9 +50,9 @@ task8_candidate_preservation: OBSERVED_PASS
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 gut_status: GUT_FORMALLY_ADOPTED

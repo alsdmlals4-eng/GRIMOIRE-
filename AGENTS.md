@@ -37,9 +37,9 @@ task8_preservation_receipt: docs/planning/TASK8_LOCAL_CANDIDATE_PRESERVATION_OBS
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 base_project_pin: v9.4.3
 base_live_readback: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
@@ -142,9 +142,9 @@ r5.4에서는 project-specific `CODEX_HOME`, 별도 전용 Godot binary, 8001/95
 - 현재 execution subgate: `TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED`
 - primary: `feat/task8-spell-use-screen-v2@8c611f601aa98397ed1558e92ab207e0e8347a9b`
 - secondary/reference: `task8/spell-use-screen@fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f`
-- `task8_product_commit: NONE`
-- `task8_remote_product_branch: NOT_PRESENT`
-- `task8_remote_product_pr: NONE`
+- `task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733`
+- `task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827`
+- `task8_remote_product_pr: 190`
 
 Task mapping:
 
