@@ -15,14 +15,17 @@ class BaseV91OperatingContractTests(unittest.TestCase):
             ["alsdmlals4-eng/Spell"],
             adapter["compatibility"]["legacy_repository_aliases"],
         )
-        self.assertEqual("SYNCED_TO_MAIN", adapter["gdd_sheet"]["sync_status"])
-        self.assertEqual("PASS", adapter["gdd_sheet"]["sheet_readback"])
+        self.assertEqual("UNIQUE_MATERIAL_AUDIT_REQUIRED", adapter["gdd_sheet"]["sync_status"])
+        self.assertEqual("HISTORICAL_PASS_CURRENT_NOT_AUTHORITY", adapter["gdd_sheet"]["sheet_readback"])
         self.assertEqual(
-            "PROPOSED_SHEET_CHANGE",
+            "HISTORICAL_PROVENANCE_ONLY",
             adapter["gdd_sheet"]["sheet_only_change_policy"],
         )
         self.assertEqual("Godot 4.7.1 stable candidate", adapter["project"]["engine"])
-        self.assertEqual("PLANNING_ONLY_PROFILE", adapter["project"]["execution_profile"])
+        self.assertEqual(
+            "DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION",
+            adapter["project"]["execution_profile"],
+        )
         self.assertEqual(
             [route["skill_id"] for route in adapter["routing"]["project_routes"]],
             ["magic-writing-recovery", "art-style-decision-gate"],
