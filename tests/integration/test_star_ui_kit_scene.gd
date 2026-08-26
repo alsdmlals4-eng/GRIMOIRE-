@@ -65,6 +65,24 @@ func run(case) -> void:
     harness.initialize_demo()
     case.assert_true(harness.theme != null, "Harness applies one shared Theme during deterministic initialization")
 
+    var glyph_board = harness.get_node_or_null("SafeArea/StarBoard")
+    case.assert_true(glyph_board != null, "Harness has a board for glyph previews")
+    case.assert_true(glyph_board != null and glyph_board.has_method("glyph_visual_snapshot"), "Harness board exposes glyph visual snapshot")
+    if glyph_board != null and glyph_board.has_method("glyph_visual_snapshot"):
+        var harness_glyph_visuals: Dictionary = glyph_board.glyph_visual_snapshot()
+        var center_texture := glyph_board.get_node_or_null("GlyphVisuals/CenterGlyphTexture") as TextureRect
+        var aux_zero_texture := glyph_board.get_node_or_null("GlyphVisuals/AuxGlyphTexture0") as TextureRect
+        var aux_one_texture := glyph_board.get_node_or_null("GlyphVisuals/AuxGlyphTexture1") as TextureRect
+        var center_name := glyph_board.get_node_or_null("GlyphVisuals/CenterGlyphNameLabel") as Label
+        var aux_zero_name := glyph_board.get_node_or_null("GlyphVisuals/AuxGlyphNameLabel0") as Label
+        case.assert_equal(&"HEAT", harness_glyph_visuals.get("main_glyph_id", &""), "Harness binds the default HEAT Main glyph to the board")
+        case.assert_equal(&"FLOW", Dictionary(harness_glyph_visuals.get("auxiliary_by_slot", {})).get(0, &""), "Harness binds the default FLOW Aux glyph to the board")
+        case.assert_true(center_texture != null and center_texture.texture != null, "Harness renders the HEAT glyph texture")
+        case.assert_true(aux_zero_texture != null and aux_zero_texture.texture != null, "Harness renders the FLOW glyph texture")
+        case.assert_true(aux_one_texture != null and aux_one_texture.texture == null, "Harness leaves the empty A1 glyph slot unbound")
+        case.assert_equal("열기", center_name.text if center_name != null else "", "Harness renders the Korean Main glyph label")
+        case.assert_equal("흐름", aux_zero_name.text if aux_zero_name != null else "", "Harness renders the Korean Aux glyph label")
+
     var main_slot := harness.get_node_or_null("SafeArea/CenterGlyph") as Button
     case.assert_true(main_slot != null, "Main glyph slot remains available")
     if main_slot != null:
