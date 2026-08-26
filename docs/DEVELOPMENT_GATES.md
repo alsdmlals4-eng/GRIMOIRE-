@@ -29,9 +29,9 @@ compatibility_next_gate: TASK8_RECEIPT_HERA_REVIEW_PR
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
 parallel_open_pr: PR151_DO_NOT_TOUCH
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
@@ -108,9 +108,9 @@ Parent gate는 계속 `TASK8_PR_PREP_REVERIFY_PENDING`이다. 그러나 fresh re
 current_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_local_branch_historical: feat/task8-spell-use-screen-v2
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
 historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 ```
 
@@ -176,7 +176,7 @@ exact requested GRIMOIRE project/worktree
 
 ## Gate 5 — Product Root / Task9
 
-현재 `project.godot` Main Scene은 `res://src/ui/star_circuit_harness.tscn`, 역할은 `DEVELOPMENT_RUNTIME_POC_ENTRY`다. Star Harness를 삭제하지 않지만 완성 제품 Root로도 승격하지 않는다.
+현재 `project.godot` Main Scene은 `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`, 역할은 `DEVELOPMENT_PRODUCT_ROOT_ENTRY`다. Star Harness는 삭제하지 않고 별도 POC 장면으로 보존한다. 이는 완성 제품 전체 승격을 뜻하지 않는다.
 
 Task9은 다음 matrix와 3-stage E2E를 소유한다.
 

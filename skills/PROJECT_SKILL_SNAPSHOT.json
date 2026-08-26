@@ -97,7 +97,7 @@
     }
   ],
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "ae0c66b76b8fdd2ba00efc8e1ec194b54528ad5abd5974eba223a0c35feedaa8",
+  "canonical_source_sha256": "b22923dbc9b5634246933e6994d6eeb30c0889a8dacaa5987fefa3fa3c814fb0",
   "effective_routes": {
     "analyzing-and-refining-game-concepts": {
       "route_id": "analyzing-and-refining-game-concepts",
@@ -238,7 +238,7 @@
   "project_registry": {
     "hash_definition": "RAW_FILE_BYTES_SHA256",
     "path": "skills/SKILL_REGISTRY.json",
-    "sha256": "4533f735876e70bada2e8c60bab3d52a1068230689fee1335c0d746e4acb9b6a"
+    "sha256": "e705e7bb71e8836f057c662ddfdb87dd89fe92cf95fc143337781304aa90f3c1"
   },
   "project_routes": [
     {

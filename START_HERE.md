@@ -50,9 +50,9 @@ task8_candidate_preservation: OBSERVED_PASS
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 gut_status: GUT_FORMALLY_ADOPTED
@@ -223,8 +223,8 @@ FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
 ## Godot 진입점과 Runtime Reality
 
 - 프로젝트 파일: `project.godot`
-- 현재 Main Scene: `res://src/ui/star_circuit_harness.tscn`
-- 역할: `DEVELOPMENT_RUNTIME_POC_ENTRY`
+- 현재 Main Scene: `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`
+- 역할: `DEVELOPMENT_PRODUCT_ROOT_ENTRY`
 - Renderer: GL Compatibility
 
 Star Circuit Runtime component와 Component Sheets에는 자동화 evidence가 있다. 그러나 현재 전체 제품 구현 판정은 `PARTIAL_FOUNDATION`; Human/Device/Performance/Full Vertical Slice는 계속 `NOT_RUN`이다.

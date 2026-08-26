@@ -1,0 +1,66 @@
+# Product Root의 명시적 주문 흐름을 실제 authority로 검증한다.
+extends RefCounted
+
+const ROOT_PATH := "res://src/ui/spell_workflow/spell_workflow_product_root.gd"
+const ROOT_SCENE_PATH := "res://src/ui/spell_workflow/spell_workflow_product_root.tscn"
+
+
+func run(case) -> void:
+    case.assert_true(FileAccess.file_exists(ROOT_PATH), "Task9 Product Root must exist")
+    if not FileAccess.file_exists(ROOT_PATH):
+        return
+
+    var Root = load(ROOT_PATH)
+    case.assert_true(Root != null and Root.can_instantiate(), "Task9 Product Root must compile")
+    if Root == null or not Root.can_instantiate():
+        return
+    case.assert_true(FileAccess.file_exists(ROOT_SCENE_PATH), "Product Root scene must exist")
+    var configured_main_scene = load(str(ProjectSettings.get_setting("application/run/main_scene", "")))
+    case.assert_true(configured_main_scene != null, "Project main scene must load")
+    if configured_main_scene != null:
+        case.assert_equal(ROOT_SCENE_PATH, configured_main_scene.resource_path, "Product Root is the project main scene")
+    var packed_scene = load(ROOT_SCENE_PATH)
+    case.assert_true(packed_scene != null and packed_scene.can_instantiate(), "Product Root scene must instantiate")
+    if packed_scene != null and packed_scene.can_instantiate():
+        var scene_root = packed_scene.instantiate()
+        for required_node in ["GlyphScreen", "CircuitScreen", "SpellUseScreen", "ResultPanel"]:
+            case.assert_true(scene_root.has_node(NodePath(required_node)), "Product Root exposes player surface: %s" % required_node)
+        scene_root.queue_free()
+
+    var root = Root.new()
+    var started: Dictionary = root.start_slice()
+    case.assert_equal(&"SLICE_READY", started.get("status", &""), "root starts a bounded explicit spell slice")
+    case.assert_equal(&"GLYPH", root.visible_step(), "player begins at glyph writing")
+
+    var drawing_context: Dictionary = root.glyph_drawing_context()
+    var repository = drawing_context.get("template_repository")
+    var service = drawing_context.get("recognition_service")
+    var scribe = drawing_context.get("scribe_coordinator")
+    var templates: Array = repository.templates(&"HEAT")
+    var recognition: Dictionary = service.recognize(Array(templates[0].get("strokes", [])), 0)
+    var candidate = Array(recognition.get("candidates", []))[0]
+    var saved: Dictionary = scribe.accept_candidate(candidate, 0)
+    case.assert_equal(&"VAULT_GLYPH_CREATED", saved.get("status", &""), "glyph storage is created only by accepted recognition and active reservation")
+    var accepted: Dictionary = root.accept_saved_glyph(&"HEAT")
+    case.assert_equal(&"VAULT_GLYPH_CREATED", accepted.get("status", &""), "root advances only after glyph screen reports explicit save")
+    case.assert_equal(&"CIRCUIT", root.visible_step(), "successful glyph save opens circuit step")
+
+    var placed: Dictionary = root.place_saved_glyph_as_main()
+    case.assert_equal(&"PLACED", placed.get("status", &""), "saved glyph can be explicitly placed at Main")
+    var preview: Dictionary = root.preview_spell()
+    case.assert_equal(&"CIRCUIT_PREVIEW_READY", preview.get("status", &""), "circuit preview stays target-free")
+    var prepared: Dictionary = root.confirm_preparation()
+    case.assert_equal(&"PREPARED", prepared.get("status", &""), "spell preparation needs explicit confirmation")
+    case.assert_equal(&"TARGET", root.visible_step(), "only prepared spell opens target step")
+    var targets: Array = root.target_choices()
+    case.assert_equal(2, targets.size(), "target step exposes exactly two valid alternatives")
+    case.assert_equal(&"WARD", StringName(Dictionary(targets[0]).get("id", &"")), "first alternative is identified without automatic selection")
+    case.assert_equal(&"FLOWER", StringName(Dictionary(targets[1]).get("id", &"")), "second alternative is identified without automatic selection")
+
+    var final_preview: Dictionary = root.choose_target(&"WARD")
+    case.assert_equal(&"FINAL_PREVIEW_READY", final_preview.get("status", &""), "player-selected ward creates final preview")
+    case.assert_true(root.request_cast_confirmation(), "cast requires a separate explicit confirmation")
+    var used: Dictionary = root.confirm_cast()
+    case.assert_equal(&"USED", used.get("status", &""), "one confirmed cast resolves atomically")
+    case.assert_equal(&"RESULT", root.visible_step(), "used result opens receipt")
+    case.assert_equal(&"USE_CONFIRMATION_REQUIRED", root.confirm_cast().get("status", &""), "replayed cast fails closed")

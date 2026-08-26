@@ -60,7 +60,9 @@ class StarRuntimeImplementationContractTests(unittest.TestCase):
     def test_scene_and_project_are_ready_for_visual_godot_testing(self) -> None:
         project = self.read("project.godot")
         scene = self.read("src/ui/star_circuit_harness.tscn")
-        self.assertIn('run/main_scene="res://src/ui/star_circuit_harness.tscn"', project)
+        product_root = self.read("src/ui/spell_workflow/spell_workflow_product_root.tscn")
+        product_root_uid = product_root.splitlines()[0].split('uid="')[1].split('"')[0]
+        self.assertIn(f'run/main_scene="{product_root_uid}"', project)
         self.assertIn('config/features=PackedStringArray("4.7"', project)
         for token in (
             "CenterGlyph", "Vertex0", "Vertex1", "Vertex2", "Vertex3", "Vertex4",

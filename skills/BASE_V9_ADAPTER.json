@@ -10,7 +10,7 @@
     "repository": "alsdmlals4-eng/Base"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "ae0c66b76b8fdd2ba00efc8e1ec194b54528ad5abd5974eba223a0c35feedaa8",
+  "canonical_source_sha256": "b22923dbc9b5634246933e6994d6eeb30c0889a8dacaa5987fefa3fa3c814fb0",
   "generated": true,
   "legacy_sheet": {
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
@@ -30,8 +30,8 @@
     "execution_profile": "DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION",
     "follow_up_platform": "PC",
     "godot_project_status": "CREATED",
-    "main_scene": "res://src/ui/star_circuit_harness.tscn",
-    "main_scene_role": "DEVELOPMENT_RUNTIME_POC_ENTRY",
+    "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
+    "main_scene_role": "DEVELOPMENT_PRODUCT_ROOT_ENTRY",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
     "orientation": "LANDSCAPE_FIXED",
     "platform_decision": "GM-PLATFORM-02",

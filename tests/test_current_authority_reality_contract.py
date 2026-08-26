@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -23,15 +24,18 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         project_file = ROOT / "project.godot"
         self.assertTrue(project_file.is_file())
         project_text = project_file.read_text(encoding="utf-8")
-        self.assertIn('run/main_scene="res://src/ui/star_circuit_harness.tscn"', project_text)
+        root_scene_text = (ROOT / "src/ui/spell_workflow/spell_workflow_product_root.tscn").read_text(encoding="utf-8")
+        root_uid = re.search(r'uid="(uid://[^"]+)"', root_scene_text)
+        self.assertIsNotNone(root_uid)
+        self.assertIn(f'run/main_scene="{root_uid.group(1)}"', project_text)
 
         project = self.adapter["project"]
         current = self.adapter["current_state"]
         self.assertEqual("CREATED", project["godot_project_status"])
         self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", project["execution_profile"])
         self.assertEqual("IMPLEMENT_AND_VALIDATE", project["work_mode"])
-        self.assertEqual("res://src/ui/star_circuit_harness.tscn", project["main_scene"])
-        self.assertEqual("DEVELOPMENT_RUNTIME_POC_ENTRY", project["main_scene_role"])
+        self.assertEqual("res://src/ui/spell_workflow/spell_workflow_product_root.tscn", project["main_scene"])
+        self.assertEqual("DEVELOPMENT_PRODUCT_ROOT_ENTRY", project["main_scene_role"])
         self.assertEqual("PARTIAL_FOUNDATION", current["implementation"])
         self.assertEqual("TASK8_PR_PREP_REVERIFY_PENDING", current["next_product_gate"])
         self.assertEqual("NOT_RUN", current["human_validation"])

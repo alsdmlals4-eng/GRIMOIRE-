@@ -160,8 +160,8 @@
     "execution_profile": "DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION",
     "follow_up_platform": "PC",
     "godot_project_status": "CREATED",
-    "main_scene": "res://src/ui/star_circuit_harness.tscn",
-    "main_scene_role": "DEVELOPMENT_RUNTIME_POC_ENTRY",
+    "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
+    "main_scene_role": "DEVELOPMENT_PRODUCT_ROOT_ENTRY",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
     "orientation": "LANDSCAPE_FIXED",
     "platform_decision": "GM-PLATFORM-02",
@@ -175,7 +175,7 @@
   "project_registry": {
     "hash_definition": "RAW_FILE_BYTES_SHA256",
     "path": "skills/SKILL_REGISTRY.json",
-    "sha256": "4533f735876e70bada2e8c60bab3d52a1068230689fee1335c0d746e4acb9b6a"
+    "sha256": "e705e7bb71e8836f057c662ddfdb87dd89fe92cf95fc143337781304aa90f3c1"
   },
   "protected_baseline": {
     "authority_ref": "refs/remotes/origin/main",
