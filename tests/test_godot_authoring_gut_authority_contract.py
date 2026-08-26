@@ -18,6 +18,7 @@ UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 HIGODOT_V312_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json"
 HIGODOT_V313_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json"
 HIGODOT_V314_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_4_VENDOR_INTEGRITY.json"
+HIGODOT_V320_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json"
 HERA_EVIDENCE = ROOT / "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
 ACTIVE_SURFACES = [
     ROOT / "START_HERE.md",
@@ -38,6 +39,7 @@ SYNC20_SOURCE_BASE = "6d2feba2bc49fda2d8d273248b55087853615d5d"
 LATEST_BASE_OBSERVED = "1d6cc79ad9dfa694558524ccc5ebf11ec7df7d8c"
 CURRENT_SYNC = "GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT"
 HIGODOT_V314_TREE = "69010571e11123dfc4e09483f80cb9e6ca93511a"
+HIGODOT_V320_TREE = "66a9df59a92f0029efcd35c22fea355c93e8fe49"
 HIGODOT_LIVE = "LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED"
 EXPECTED_FIELD_LIMIT = "NOT_SURFACED_DO_NOT_CLAIM"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
@@ -51,6 +53,13 @@ TASK8_GATE = "TASK8_RECEIPT_HERA_REVIEW_PR"
 
 
 class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
+    def test_active_context_identifies_v320_tracked_vendor_and_preserves_v314_history(self):
+        active_context = (ROOT / "docs/ACTIVE_CONTEXT.md").read_text(encoding="utf-8")
+        self.assertIn("higodot_tracked_vendor_release: v3.2.0", active_context)
+        self.assertIn(HIGODOT_V320_TREE, active_context)
+        self.assertIn("LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED", active_context)
+        self.assertTrue(HIGODOT_V320_EVIDENCE.is_file(), str(HIGODOT_V320_EVIDENCE))
+
     def test_authority_design_plan_bindings_and_evidence_exist(self):
         for path in (
             LEGACY_SPEC,
@@ -67,6 +76,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
             HIGODOT_V312_EVIDENCE,
             HIGODOT_V313_EVIDENCE,
             HIGODOT_V314_EVIDENCE,
+            HIGODOT_V320_EVIDENCE,
             HERA_EVIDENCE,
         ):
             self.assertTrue(path.is_file(), str(path))
@@ -164,7 +174,7 @@ class GodotAuthoringGutAuthorityContractTests(unittest.TestCase):
         higodot_plugin = (ROOT / "addons/godot_ai/plugin.cfg").read_text(encoding="utf-8")
         gut_plugin = (ROOT / "addons/gut/plugin.cfg").read_text(encoding="utf-8")
         project = (ROOT / "project.godot").read_text(encoding="utf-8")
-        self.assertIn('version="3.1.4"', higodot_plugin)
+        self.assertIn('version="3.2.0"', higodot_plugin)
         self.assertIn('version="9.7.1"', gut_plugin)
         self.assertIn('res://addons/godot_ai/plugin.cfg', project)
         self.assertIn('res://addons/gut/plugin.cfg', project)

@@ -17,13 +17,14 @@ spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURREN
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
 task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
 task8_preservation_observation: docs/planning/TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVATION_2026-08-24.md
+task8_current_reconciliation_receipt: docs/planning/TASK8_CURRENT_MAIN_RECONCILIATION_2026-08-27.md
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-current_user_work_scope: SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_AND_VISUAL_ALIGNMENT
-product_implementation_authorized_by_current_user_work_scope: false
+current_user_work_scope: SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_VISUAL_ALIGNMENT_AND_TASK8_RECONCILIATION
+product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
 visual_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
@@ -43,9 +44,9 @@ player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_task: TASK8_SPELL_USE_SCREEN
-next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
+next_product_gate: TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
-task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
+task8_recovery_subgate: TASK8_CURRENT_MAIN_LOCAL_VALIDATION_PASS
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_local_delta_existence: OBSERVED_PRESENT
@@ -54,16 +55,19 @@ task8_primary_recovery_branch: feat/task8-spell-use-screen-v2
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_branch: task8/spell-use-screen
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
-higodot_release: v3.1.4
+higodot_release: v3.2.0
+higodot_tracked_vendor_release: v3.2.0
+higodot_tracked_vendor_subtree: 66a9df59a92f0029efcd35c22fea355c93e8fe49
+higodot_tracked_vendor_evidence: docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json
 higodot_historical_live_alignment: LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED
-higodot_current_reconciliation_readback: NOT_RUN
+higodot_current_reconciliation_readback: LIVE_V3_2_0_EXACT_PROJECT_SESSION_READY_OBSERVED
 higodot_expected_actual_fields: NOT_SURFACED_DO_NOT_CLAIM
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
@@ -82,7 +86,7 @@ android_export: NOT_RUN
 android_device: NOT_RUN
 ```
 
-`authority_sync_local_observation` / `authority_sync_godot_observation`은 이전 authority sync 당시의 역사 관찰값이다. 현재 로컬 Task8 존재·보존 상태는 별도 `task8_recovery_state`가 소유하며, 이번 기획/Visual work unit은 로컬 Godot/Task8 실행을 수행하지 않았다.
+`authority_sync_local_observation` / `authority_sync_godot_observation`은 이전 authority sync 당시의 역사 관찰값이다. 현재 Task8 reconciliation의 local/Godot 실행 증거와 보존 상태는 별도 Task8 receipt가 소유한다.
 
 ## 현재 사용자 작업 범위
 
@@ -105,10 +109,10 @@ android_device: NOT_RUN
 = 게임 장면의 대상 지정 + 필요한 최종 Preview + 명시 시전
 ```
 
-따라서 현재 범위는 `SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_AND_VISUAL_ALIGNMENT`다.
+이후 사용자는 Task8 제품 구현을 명시적으로 승인했다. 따라서 현재 범위는 `SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_VISUAL_ALIGNMENT_AND_TASK8_RECONCILIATION`다.
 
-- Task8/Godot 제품 구현: **NOT_AUTHORIZED_BY_CURRENT_WORK_SCOPE**
-- `TASK8_SPELL_USE_SCREEN`: 다음 제품 task locator일 뿐 현재 구현 권한이 아님
+- Task8/Godot 제품 구현: **AUTHORIZED_FOR_CURRENT-MAIN_RECONCILIATION**
+- `TASK8_SPELL_USE_SCREEN`: current main에서 thin UI consumer로 복구·검증·PR 준비 중
 - 이미지 생성: **NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL**
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
 - unrelated open PR: **READ_ONLY**
@@ -289,21 +293,21 @@ product_branch_local_historical: feat/task8-spell-use-screen-v2
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
 historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
-resume_gate: TASK8_PR_PREP_REVERIFY_PENDING
+resume_gate: TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
 historical_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
-current_execution_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
+current_execution_subgate: TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
 ```
 
 `8c611f...`는 당시 local Git baseline이지 Task8 product commit이 아니다. 과거 `15 tests / 90 assertions / 0 failures`, predecessor `42 suites / 1,588 assertions / 0 failures`, `HERA_SOURCE_DELTA_NONE_OBSERVED`는 그때 관찰한 uncommitted worktree의 역사 evidence다.
 
 2026-08-24 사용자 PC read-only recovery probe로 두 로컬 Task8 후보가 실제 존재함을 확인했고, 이어 병합된 preservation tool을 실행해 외부 snapshot으로 보존했다. 직접 반환된 receipt는 `TASK8_CANDIDATES_PRESERVED`, `source_unchanged=true`, `source_content_unchanged=true`이며 primary 11 files, secondary 33 files가 snapshot에 기록됐다.
 
-따라서 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`와 candidate-preservation gate는 닫혔다. compatibility consumer 검색을 위해 locator 문자열은 보존하지만 current gate로 재해석하지 않는다. 보존 성공을 current-main 호환성이나 fresh HiGodot/GUT/Hera PASS로 승격하지 않는다.
+따라서 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`와 candidate-preservation gate는 닫혔다. compatibility consumer 검색을 위해 locator 문자열은 보존하지만 current gate로 재해석하지 않는다. 2026-08-27 current-main reconciliation은 새 clean worktree와 live Godot AI v3.2.0 세션에서 `6821106`으로 재작성·검증됐으며, exact-head CI·review·merge는 아직 남아 있다. 상세 증거는 `docs/planning/TASK8_CURRENT_MAIN_RECONCILIATION_2026-08-27.md`가 소유한다.
 
 제품 구현이 다시 명시적으로 승인되면 역사 worktree에 pull/rebase/clean을 하지 않고 fresh `origin/main`에서 별도 clean reconciliation worktree를 만든다. 이후 exact-project HiGodot readback을 거쳐 primary v2를 우선 복구하고 secondary는 parity evidence로만 비교한다.
 
@@ -339,7 +343,8 @@ learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
 
 ## Tool authority
 
-- Historical project tool provenance: HiGodot/Godot AI `v3.1.4`, GUT `v9.7.1`, Hera `v1.0.0`.
+- Current tracked project vendor: HiGodot/Godot AI `v3.2.0`, exact plugin subtree `66a9df59a92f0029efcd35c22fea355c93e8fe49`; see `docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json`.
+- Historical project tool provenance: HiGodot/Godot AI `v3.1.2`–`v3.1.4`, GUT `v9.7.1`, Hera `v1.0.0`. Historical live receipts do not prove a current v3.2.0 session.
 - r5.4는 project-specific local Codex home/binary/port를 current invariant로 사용하지 않는다.
 - 실제 shared Godot/Godot AI runtime/session readiness는 fresh local executor/session readback 없이 주장하지 않는다.
 - historical live receipts는 현재 local readiness를 자동 증명하지 않는다.
@@ -387,10 +392,7 @@ PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 
 TASK8_PR_PREP_REVERIFY_PENDING
 TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
-HIGODOT_CURRENT_RECONCILIATION_READBACK_NOT_RUN
-FRESH_TASK8_TESTS_NOT_RUN
-FRESH_FULL_RUNNER_NOT_RUN
-HERA_SOURCE_DELTA_NOT_RUN
+TASK8_CURRENT_MAIN_LOCAL_VALIDATION_PASS_PR_PENDING
 HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
