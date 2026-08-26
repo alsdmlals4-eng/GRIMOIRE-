@@ -1,0 +1,35 @@
+{
+  "asset_id": "glyph_protect",
+  "role": "Direct-written magical glyph for PROTECT in the Slice Magic Glyph Runtime Set.",
+  "decision_ids": ["GM-SPELL-WORKFLOW-UI-V2-01", "ART-STYLE-01", "GM-VISUAL-DIRECTION-20260825-01"],
+  "source": {
+    "tool": "ChatGPT Work image generation",
+    "generated_at": "2026-08-26",
+    "master_sha256": "b7357cf90e30982f3b450c8353f5609d8b3a5ccb74ea5463f9fe0cd0b94bf1ce",
+    "owner": "User-approved GPT Work visual production"
+  },
+  "export": {
+    "path": "assets/art/ui/glyphs/glyph_protect.png",
+    "sha256": "8b76004e8325d5c4c2b38ee460c71b24e35e9e48cbb7a85eb6c5e8896abd0b17",
+    "format": "PNG",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "color_space": "sRGB"
+  },
+  "license": "Project-owned generated asset; use only within GRIMOIRE.",
+  "status": "APPROVED_IMPLEMENTATION_READY",
+  "used_in_screens": [
+    "src/ui/spell_workflow/glyph_drawing_screen.tscn",
+    "src/ui/spell_workflow/components/glyph_card.tscn",
+    "src/ui/spell_workflow/circuit_placement_screen.tscn",
+    "src/ui/components/star_circuit_board.tscn",
+    "future Task8 Spell Use thin UI"
+  ],
+  "runtime_validation": {
+    "asset_file_verified": true,
+    "godot_import_verified": false,
+    "runtime_consumer_verified": false,
+    "human_approval": "2026-08-26"
+  }
+}
