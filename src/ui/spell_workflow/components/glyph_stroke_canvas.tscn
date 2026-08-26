@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://crdbvbbt0yxdj"]
+
+[ext_resource type="Script" uid="uid://dfcb0641j52kb" path="res://src/ui/spell_workflow/components/glyph_stroke_canvas.gd" id="1_flttg"]
+
+[node name="GlyphStrokeCanvas" type="Control" unique_id=1329187244]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_flttg")

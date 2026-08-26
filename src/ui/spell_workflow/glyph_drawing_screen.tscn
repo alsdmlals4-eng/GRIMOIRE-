@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b77gqykljc14r" path="res://src/ui/spell_workflow/glyph_drawing_screen.gd" id="1_pprrx"]
 [ext_resource type="PackedScene" uid="uid://b1t3m5t3gruyy" path="res://src/ui/spell_workflow/components/incident_status_card.tscn" id="2_h8dqw"]
 [ext_resource type="PackedScene" uid="uid://ulvi3h08qf45" path="res://src/ui/spell_workflow/components/incident_explanation_overlay.tscn" id="3_pq1il"]
+[ext_resource type="PackedScene" uid="uid://crdbvbbt0yxdj" path="res://src/ui/spell_workflow/components/glyph_stroke_canvas.tscn" id="4_h8dqw"]
 
 [node name="GlyphDrawingScreen" type="VBoxContainer" unique_id=2079873807]
 anchors_preset = 15
@@ -42,11 +43,29 @@ custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 theme_type_variation = &"AcademyPanel"
 
-[node name="CanvasHint" type="Label" parent="WritingCanvas" unique_id=992261367]
+[node name="WritingContent" type="VBoxContainer" parent="WritingCanvas" unique_id=225657127]
+layout_mode = 2
+
+[node name="CanvasHint" type="Label" parent="WritingCanvas/WritingContent" unique_id=992261367]
 layout_mode = 2
 text = "여기에 문양을 그립니다."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StrokeCanvas" parent="WritingCanvas/WritingContent" unique_id=1329187244 instance=ExtResource("4_h8dqw")]
+layout_mode = 2
+
+[node name="WritingActions" type="HBoxContainer" parent="WritingCanvas/WritingContent" unique_id=195199975]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RecognizeButton" type="Button" parent="WritingCanvas/WritingContent/WritingActions" unique_id=1469655175]
+layout_mode = 2
+text = "글자 인식"
+
+[node name="ClearCanvasButton" type="Button" parent="WritingCanvas/WritingContent/WritingActions" unique_id=1735944758]
+layout_mode = 2
+text = "획 지우기"
 
 [node name="GlyphInfoPanel" type="PanelContainer" parent="." unique_id=1377955341]
 layout_mode = 2
@@ -61,7 +80,7 @@ autowrap_mode = 2
 layout_mode = 2
 theme_type_variation = &"AcademyPanel"
 
-[node name="Content" type="VBoxContainer" parent="RecognitionPanel"]
+[node name="Content" type="VBoxContainer" parent="RecognitionPanel" unique_id=528371105]
 layout_mode = 2
 
 [node name="Message" type="Label" parent="RecognitionPanel/Content" unique_id=1928711037]
@@ -69,15 +88,20 @@ layout_mode = 2
 text = "획을 그린 뒤 인식 결과를 확인합니다."
 autowrap_mode = 2
 
-[node name="GlyphPreview" type="TextureRect" parent="RecognitionPanel/Content"]
+[node name="GlyphPreview" type="TextureRect" parent="RecognitionPanel/Content" unique_id=570908014]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GlyphNameLabel" type="Label" parent="RecognitionPanel/Content"]
+[node name="GlyphNameLabel" type="Label" parent="RecognitionPanel/Content" unique_id=179537413]
 layout_mode = 2
 horizontal_alignment = 2
+
+[node name="SelectCandidateButton" type="Button" parent="RecognitionPanel/Content" unique_id=756010771]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+text = "후보 선택"
 
 [node name="RetryButton" type="Button" parent="." unique_id=1905593916]
 custom_minimum_size = Vector2(48, 48)

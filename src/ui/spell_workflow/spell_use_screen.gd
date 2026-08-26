@@ -3,6 +3,7 @@ class_name SpellUseScreen
 extends Control
 
 signal cancel_requested
+signal cast_resolved(result: Dictionary)
 
 var _coordinator = null
 var _use_transaction_id: StringName = &""
@@ -92,6 +93,7 @@ func confirm(transaction_id: StringName) -> Dictionary:
     var result: Dictionary = _coordinator.confirm_use(transaction_id)
     if StringName(result.get("status", &"")) == &"USED":
         _committed = true
+        cast_resolved.emit(result.duplicate(true))
     return result.duplicate(true)
 
 func cancel() -> void:

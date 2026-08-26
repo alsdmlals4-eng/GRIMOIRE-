@@ -73,3 +73,12 @@ WORK_PRODUCTION_INPUT_PACKET:
 | 4 | Full Frostbloom session or new art/audio | Defer | No current-slice consumer or approval need; would exceed the smallest vertical slice. |
 
 No additional image, sound, or VFX input blocks this slice. Existing approved assets have a concrete Product Root consumer; no asset is represented as runtime-bound until that consumer is implemented and verified.
+
+## Current branch implementation ledger
+
+- GitHub Issue: #191
+- Implemented: `SpellWorkflowProductRoot`, real mouse/touch stroke collection, explicit recognised-candidate selection, existing Task6/7/8 surface orchestration, two non-ranked target choices, result receipt hand-off, and root-flow deterministic coverage.
+- Exact automated evidence on this branch: custom runner `47 suites / 1,966 assertions / 0 failures`; GUT `8 passing tests`.
+- Runtime evidence: Godot AI v3.2 ran `spell_workflow_product_root.tscn`; the authority path produced `VAULT_GLYPH_CREATED → CIRCUIT_PREVIEW_READY → PREPARED → FINAL_PREVIEW_READY → USED → RESULT` with no task-related launch error.
+- Entry-point status: the Product Root runs as an explicit Godot scene. The live editor rejected programmatic mutation of `application/run/main_scene`; the existing development harness remains the project default. This safety refusal is not bypassed and is not represented as a completed entry-point change.
+- Evidence ceiling remains machine-only. Human usability, player experience, device, performance, and shipping-export validation are not run.
