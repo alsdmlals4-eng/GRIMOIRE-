@@ -36,9 +36,11 @@ parallel_open_pr: PR151_DO_NOT_TOUCH
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
-higodot_release: v3.1.4
+higodot_release: v3.2.0
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
-higodot_tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
+higodot_tracked_vendor_subtree: 66a9df59a92f0029efcd35c22fea355c93e8fe49
+higodot_tracked_vendor_evidence: docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json
+higodot_historical_tracked_sync: GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
 higodot_historical_live_alignment: LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED
 higodot_expected_actual_fields: NOT_SURFACED_DO_NOT_CLAIM
 gut_formal_adoption: GUT_FORMALLY_ADOPTED
@@ -120,7 +122,7 @@ historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 로컬 delta 존재
 → 절대 reset/restore/clean 하지 않음
 → exact path / branch / HEAD / status / staged state 기록
-→ fresh HiGodot 3.1.4 exact-project readiness
+→ fresh exact-project HiGodot version/readiness readback
 → focused Task8 GUT
 → predecessor regression
 → git diff --check
@@ -164,9 +166,9 @@ exact requested GRIMOIRE project/worktree
 → HERA_SOURCE_DELTA: NONE
 ```
 
-- HiGodot/Godot AI `v3.1.4`: `SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY`.
-- tracked plugin subtree: `69010571e11123dfc4e09483f80cb9e6ca93511a`, `PASS_EXACT_TREE_IDENTITY`.
-- historical Sync20 live session: `task8-spell-use-screen-v2@3cfa`, `LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED`.
+- HiGodot/Godot AI `v3.2.0` tracked vendor: `SOLE_PERSISTENT_GODOT_AUTHORING_AUTHORITY`.
+- tracked plugin subtree: `66a9df59a92f0029efcd35c22fea355c93e8fe49`, `PASS_EXACT_TREE_IDENTITY`; evidence: `docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json`.
+- historical Sync20 live session: `task8-spell-use-screen-v2@3cfa`, `LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED`. It is history, not proof of a v3.2.0 session.
 - `expected_version` field는 surfaced되지 않았으므로 `NOT_SURFACED_DO_NOT_CLAIM`.
 - direct tool-state evidence limit: `HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT`.
 - GUT `v9.7.1`: deterministic GDScript test authority.

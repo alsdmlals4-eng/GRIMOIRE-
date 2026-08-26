@@ -61,7 +61,10 @@ open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
-higodot_release: v3.1.4
+higodot_release: v3.2.0
+higodot_tracked_vendor_release: v3.2.0
+higodot_tracked_vendor_subtree: 66a9df59a92f0029efcd35c22fea355c93e8fe49
+higodot_tracked_vendor_evidence: docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json
 higodot_historical_live_alignment: LIVE_V3_1_4_EXACT_PROJECT_SESSION_READY_OBSERVED
 higodot_current_reconciliation_readback: NOT_RUN
 higodot_expected_actual_fields: NOT_SURFACED_DO_NOT_CLAIM
@@ -339,7 +342,8 @@ learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
 
 ## Tool authority
 
-- Historical project tool provenance: HiGodot/Godot AI `v3.1.4`, GUT `v9.7.1`, Hera `v1.0.0`.
+- Current tracked project vendor: HiGodot/Godot AI `v3.2.0`, exact plugin subtree `66a9df59a92f0029efcd35c22fea355c93e8fe49`; see `docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json`.
+- Historical project tool provenance: HiGodot/Godot AI `v3.1.2`–`v3.1.4`, GUT `v9.7.1`, Hera `v1.0.0`. Historical live receipts do not prove a current v3.2.0 session.
 - r5.4는 project-specific local Codex home/binary/port를 current invariant로 사용하지 않는다.
 - 실제 shared Godot/Godot AI runtime/session readiness는 fresh local executor/session readback 없이 주장하지 않는다.
 - historical live receipts는 현재 local readiness를 자동 증명하지 않는다.
