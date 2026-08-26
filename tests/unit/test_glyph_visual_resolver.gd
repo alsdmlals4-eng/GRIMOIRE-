@@ -21,7 +21,7 @@ func run(case) -> void:
         var expected_path := "res://assets/art/ui/glyphs/glyph_%s.png" % String(glyph_id).to_lower()
         case.assert_equal(glyph_id, resolver.asset_id_for(glyph_id), "%s keeps its approved visual ID" % glyph_id)
         case.assert_equal(expected_path, resolver.texture_path_for(glyph_id), "%s resolves its approved PNG" % glyph_id)
-        case.assert_ne("", resolver.korean_name_for(glyph_id), "%s has a live Korean name" % glyph_id)
+        case.assert_true(not resolver.korean_name_for(glyph_id).is_empty(), "%s has a live Korean name" % glyph_id)
         case.assert_true(resolver.texture_for(glyph_id) != null, "%s loads its approved texture" % glyph_id)
 
     case.assert_equal(&"BURST", resolver.asset_id_for(&"AMPLIFY"), "AMPLIFY uses BURST art only as visual compatibility")

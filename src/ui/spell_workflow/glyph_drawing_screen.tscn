@@ -61,10 +61,23 @@ autowrap_mode = 2
 layout_mode = 2
 theme_type_variation = &"AcademyPanel"
 
-[node name="Message" type="Label" parent="RecognitionPanel" unique_id=1928711037]
+[node name="Content" type="VBoxContainer" parent="RecognitionPanel"]
+layout_mode = 2
+
+[node name="Message" type="Label" parent="RecognitionPanel/Content" unique_id=1928711037]
 layout_mode = 2
 text = "획을 그린 뒤 인식 결과를 확인합니다."
 autowrap_mode = 2
+
+[node name="GlyphPreview" type="TextureRect" parent="RecognitionPanel/Content"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GlyphNameLabel" type="Label" parent="RecognitionPanel/Content"]
+layout_mode = 2
+horizontal_alignment = 2
 
 [node name="RetryButton" type="Button" parent="." unique_id=1905593916]
 custom_minimum_size = Vector2(48, 48)

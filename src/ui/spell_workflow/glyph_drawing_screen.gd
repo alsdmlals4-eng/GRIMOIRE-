@@ -2,6 +2,8 @@
 class_name GlyphDrawingScreen
 extends Control
 
+const GlyphVisualResolver = preload("res://src/ui/spell_workflow/glyph_visual_resolver.gd")
+
 signal glyph_saved(glyph_id: StringName)
 signal open_incident_requested
 signal continue_requested
@@ -145,6 +147,7 @@ func _show_recognition(result: Dictionary, stroke_count: int) -> Dictionary:
     if _view_model != null and _view_model.has_method("from_result"):
         view = _view_model.from_result(result, _selected_glyph_id(), stroke_count)
     _set_recognition_text(String(view.get("primary_text", result.get("status", "NO_VALID_INPUT"))))
+    _bind_recognition_glyph(_selected_glyph_id())
     return result.duplicate(true)
 
 
@@ -155,9 +158,19 @@ func _selected_glyph_id() -> StringName:
 
 
 func _set_recognition_text(message: String) -> void:
-    var label = get_node_or_null(NodePath("RecognitionPanel/Message"))
+    var label = get_node_or_null(NodePath("RecognitionPanel/Content/Message"))
     if label != null:
         label.text = message
+
+
+func _bind_recognition_glyph(glyph_id: StringName) -> void:
+    var preview = get_node_or_null(NodePath("RecognitionPanel/Content/GlyphPreview")) as TextureRect
+    var name_label = get_node_or_null(NodePath("RecognitionPanel/Content/GlyphNameLabel")) as Label
+    if preview != null:
+        preview.texture = GlyphVisualResolver.texture_for(glyph_id)
+    if name_label != null:
+        name_label.text = GlyphVisualResolver.korean_name_for(glyph_id)
+        name_label.visible = not name_label.text.is_empty()
 
 
 func _connect_button(path: String, callback: Callable) -> void:

@@ -36,6 +36,8 @@ const REQUIRED_NODES := [
     "WritingCanvas",
     "GlyphInfoPanel",
     "RecognitionPanel",
+    "RecognitionPanel/Content/GlyphPreview",
+    "RecognitionPanel/Content/GlyphNameLabel",
     "RetryButton",
     "SaveButton",
 ]
@@ -69,9 +71,20 @@ func run(case) -> void:
     case.assert_true(screen.has_node(NodePath("IncidentStatusCard/Content/Urgency")), "status card exposes urgency")
     case.assert_true(screen.has_node(NodePath("IncidentStatusCard/Content/TouchHint")), "status card explains its touch affordance")
     case.assert_true(FileAccess.file_exists("res://src/ui/spell_workflow/components/incident_explanation_overlay.tscn"), "incident overlay scene exists")
+    _assert_recognition_glyph_visual(case, screen)
     _assert_explicit_save_replays_once(case, screen)
     _assert_incident_overlay_preserves_context(case)
     screen.queue_free()
+
+
+func _assert_recognition_glyph_visual(case, screen) -> void:
+    var coordinator = FakeScribeCoordinator.new()
+    screen.configure({}, null, coordinator, null, {"selected_glyph_id": &"HEAT"}, 0)
+    screen.submit_strokes([])
+    var preview = screen.get_node_or_null(NodePath("RecognitionPanel/Content/GlyphPreview")) as TextureRect
+    var name_label = screen.get_node_or_null(NodePath("RecognitionPanel/Content/GlyphNameLabel")) as Label
+    case.assert_true(preview != null and preview.texture != null, "recognition result previews the selected approved glyph")
+    case.assert_equal("열기", name_label.text if name_label != null else "", "recognition result uses the live Korean glyph name")
 
 
 func _assert_explicit_save_replays_once(case, screen) -> void:
