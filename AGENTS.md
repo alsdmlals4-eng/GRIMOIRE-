@@ -11,6 +11,8 @@ contract_revision: 2026-08-26-r5.4-superset-final
 contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
+current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+authority_sync_pr_predecessor: 158
 primary_platform: Mobile
 follow_up_platform: PC
 orientation: LANDSCAPE_FIXED
@@ -21,6 +23,7 @@ current_user_work_scope: VISUAL_ASSET_COVERAGE_AND_NEXT_SINGLE_VISUAL_BRIEF
 product_implementation_authorized_by_current_user_work_scope: false
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_generation_state: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL
+next_product_task: TASK8_SPELL_USE_SCREEN
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
@@ -33,7 +36,6 @@ task8_product_commit: NONE
 task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
-authority_sync_pr: CURRENT_TASK_PR_PENDING
 base_project_pin: v9.4.3
 base_live_readback: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 workspace_human_canon: NOTION_HUMAN_FACING_CANON
@@ -65,7 +67,8 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 10. `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`는 이미 닫힌 **historical compatibility locator**로 보존한다. consumer 검색 가능성 때문에 지우지 않지만 current execution gate로 해석하지 않는다.
 11. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration 이후 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 r5.4 binding이다.
 12. 2026-08-26 `작업재개 → 진행해`의 현재 범위는 **Visual/Image/Asset planning**이다. r5.4 Visual Coverage와 다음 정확히 1장 Text Brief까지 진행하며, Task8/Godot 제품 구현과 실제 이미지 생성은 각각 별도 명시 승인이 필요하다.
-13. Visual serial production은 `docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json`의 `REUSE / ADAPT / CREATE / DEFER / CUT` 판정을 먼저 읽고, `TEXT_BRIEF → 사용자 명시 승인 → EXACTLY_ONE_RESULT → STOP`을 따른다.
+13. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator이며 현재 Visual-only 범위의 구현 허가가 아니다.
+14. Visual serial production은 `docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json`의 `REUSE / ADAPT / CREATE / DEFER / CUT` 판정을 먼저 읽고, `TEXT_BRIEF → 사용자 명시 승인 → EXACTLY_ONE_RESULT → STOP`을 따른다.
 
 ## 프로젝트 코어
 
@@ -112,6 +115,7 @@ r5.4에서는 project-specific `CODEX_HOME`, 별도 전용 Godot binary, 8001/95
 - 호환 next locator: `TASK8_RECEIPT_HERA_REVIEW_PR`
 - 현재 continuation owner: `GR-SYNC-20260812-21-TASK8-HANDOFF-BCP`
 - 현재 parent gate: `TASK8_PR_PREP_REVERIFY_PENDING`
+- 다음 제품 task locator: `TASK8_SPELL_USE_SCREEN`
 - 닫힌 predecessor gate: `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`
 - 현재 recovery state: `TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS`
 - 현재 execution subgate: `TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED`
@@ -167,7 +171,7 @@ image_generation_state: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPRO
 
 ## Authority Sync provenance
 
-`GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC`와 `GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC`는 이전 current-authority 교정의 병합 provenance다.
+`GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC`와 `GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC`는 이전 current-authority 교정의 병합 provenance다. 안정된 predecessor PR은 #158이며 current open PR 상태 자체는 live GitHub가 소유한다.
 
 현재 r5.4 전환 및 Visual Coverage는 `GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE`가 추적한다. 해당 current-task PR의 lifecycle은 live GitHub가 소유하며, unrelated PR #166은 read-only다.
 
