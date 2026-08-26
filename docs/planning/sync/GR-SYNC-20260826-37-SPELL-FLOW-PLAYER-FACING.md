@@ -4,11 +4,14 @@
 sync_id: GR-SYNC-20260826-37-SPELL-FLOW-PLAYER-FACING
 decision_id: GM-SPELL-WORKFLOW-UI-V2-01
 decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
-status: CURRENT_TASK_PR_PENDING
+status: SYNCED_TO_MAIN_AND_NOTION_READBACK
 approved_at: 2026-08-26
 approval_source: 사용자 명시 승인 "좋아 그렇게하자"
 baseline_project_main: 1a37460f4953a322e228daac0215b0b9dd82b22e
 baseline_base_main: edb3b3376603c9f6b00d64af3126304f8c9946bf
+implementation_pr: 171
+implementation_pr_head: 4047c02fee7d687ce63f4982d4c98da325dfea10
+merged_main: a32a57507da156948cd1ee65582301109aa31ea3
 branch: docs/spell-flow-player-facing-20260826
 open_other_workstream: PR_166_READ_ONLY_README_ONLY
 product_code_mutation: NONE
@@ -90,23 +93,46 @@ resolution: GITHUB_AND_NOTION_CURRENT_REVISION_SUPERSEDES_PLAYER_FACING_LABELS
 
 이 충돌은 Sheet를 current writer로 복귀시키지 않고 기록만 한다.
 
+## GitHub verification and merge
+
+PR #171 `docs: simplify player-facing spell flow`는 exact head `4047c02fee7d687ce63f4982d4c98da325dfea10`에서 검증 후 병합됐다.
+
+```yaml
+pr_exact_head_workflows:
+  success: 9
+  conditional_skip: 1
+  failure: 0
+branch_behind_main_before_merge: 0
+review_or_comment_threads: 0
+merge: PASS
+merged_main: a32a57507da156948cd1ee65582301109aa31ea3
+merged_main_push_workflows:
+  success: 6
+  in_progress: 0
+  failure: 0
+```
+
+PR #166은 README-only 다른 workstream으로 건드리지 않았다.
+
 ## Notion synchronization
 
-현재 human-facing surfaces:
+Post-merge readback 결과:
 
-- `글자 학습 → 주문 설계 루프` — 새 `글자→주문→대상→시전` 규칙과 Player Meaning 반영, `REPO_UPDATE_REQUIRED` until merge.
-- `Visual Asset Coverage · 2026-08-26 · r5.4` — 새 player-facing flow, direct-written glyph direction, previous Stage2 brief generated/reviewed 상태 반영.
-
-Post-merge에는 Core Loop `Source SHA / Sync State`와 Project System Record `Repo Main SHA / Sync State`를 merged main으로 readback한다.
+- Project System Record — `Repo Main SHA = a32a57507da156948cd1ee65582301109aa31ea3`, `Sync State = SYNCED`.
+- `글자 학습 → 주문 설계 루프` — `Revision 2`, 새 `글자→주문→대상→시전` 규칙, `Source SHA = a32a57507da156948cd1ee65582301109aa31ea3`, `Sync State = SYNCED`.
+- `GRIMOIRE · Home` — North Star와 핵심 루프를 새 player-facing flow로 교정.
+- `Visual Asset Coverage · 2026-08-26 · r5.4` — direct-written glyph 방향, `완성 주문 이름`, 이전 Stage2 시안 generated/reviewed 상태, PR #171 repository readback 반영.
+- TASK-13 `Component Sheet & Image Production Contract` — `Revision 11`, `Sync State = SYNCED`, 추가 이미지 미요청 및 Task8 비승인 경계 반영.
 
 ## Evidence ceiling
 
 ```text
 PLAYER_FACING_FLOW_DECISION: USER_APPROVED
-GITHUB_BRANCH_DOCS: WRITTEN_PENDING_PR
-NOTION_HUMAN_CANON: UPDATED_PENDING_REPO_MERGE
+GITHUB_DECISION_DOCS: MERGED_MAIN_READBACK_PASS
+NOTION_HUMAN_CANON: SYNCED_READBACK_PASS
 GOOGLE_SHEET: MIGRATION_ONLY_STALE_WORDING_OBSERVED_NO_WRITE
 TASK8_PRODUCT_IMPLEMENTATION: NOT_AUTHORIZED
+ADDITIONAL_IMAGE_GENERATION: NOT_REQUESTED
 HUMAN_USABILITY: NOT_RUN
 DEVICE: NOT_RUN
 PERFORMANCE: NOT_RUN
