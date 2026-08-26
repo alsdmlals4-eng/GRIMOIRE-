@@ -12,7 +12,7 @@ historical_contract_binding: GM-CONTRACT-V4-5-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
 authority_sync_pr_predecessor: 158
-current_authority_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
+current_authority_sync: GR-SYNC-20260826-37-SPELL-FLOW-PLAYER-FACING
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
 task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
@@ -22,11 +22,11 @@ adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-current_user_work_scope: VISUAL_ASSET_COVERAGE_AND_NEXT_SINGLE_VISUAL_BRIEF
+current_user_work_scope: SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_AND_VISUAL_ALIGNMENT
 product_implementation_authorized_by_current_user_work_scope: false
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL
+visual_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
 representative_screen_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
 art_style_lock: ART-STYLE-01
@@ -36,6 +36,10 @@ google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
+product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
+player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
+player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_task: TASK8_SPELL_USE_SCREEN
@@ -78,25 +82,40 @@ android_export: NOT_RUN
 android_device: NOT_RUN
 ```
 
-`authority_sync_local_observation` / `authority_sync_godot_observation`은 이전 authority sync 당시의 역사 관찰값이다. 현재 로컬 Task8 존재·보존 상태는 별도 `task8_recovery_state`가 소유하며, 이번 Visual work unit은 로컬 Godot/Task8 실행을 수행하지 않았다.
+`authority_sync_local_observation` / `authority_sync_godot_observation`은 이전 authority sync 당시의 역사 관찰값이다. 현재 로컬 Task8 존재·보존 상태는 별도 `task8_recovery_state`가 소유하며, 이번 기획/Visual work unit은 로컬 Godot/Task8 실행을 수행하지 않았다.
 
 ## 현재 사용자 작업 범위
 
-2026-08-26 사용자가 `작업재개`를 명시했고, 이어 이전 감사에서 권장한 A안에 `진행해`라고 continuation을 승인했다.
+2026-08-26 사용자는 Visual 시안 검토 뒤 `GM-SPELL-WORKFLOW-UI-V2-01`의 플레이어 노출 흐름을 다음처럼 단순화하는 방향을 명시적으로 승인했다.
 
 ```text
-r5.4 authority reconciliation
-→ Visual Asset Coverage preflight
-→ 다음 정확히 1장 Text Brief
+글자
+→ 주문
+→ 대상
+→ 시전
 ```
 
-따라서 현재 범위는 `VISUAL_ASSET_COVERAGE_AND_NEXT_SINGLE_VISUAL_BRIEF`다.
+화면 경험은 다음 두 덩어리다.
+
+```text
+주문 만들기
+= 글자 선택·작성 + FIVE_POINT_STAR 회로 조합 + 완성 주문 이름 확인
+
+주문 쓰기
+= 게임 장면의 대상 지정 + 필요한 최종 Preview + 명시 시전
+```
+
+따라서 현재 범위는 `SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_AND_VISUAL_ALIGNMENT`다.
 
 - Task8/Godot 제품 구현: **NOT_AUTHORIZED_BY_CURRENT_WORK_SCOPE**
 - `TASK8_SPELL_USE_SCREEN`: 다음 제품 task locator일 뿐 현재 구현 권한이 아님
-- 이미지 생성: **TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL**
+- 이미지 생성: **NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL**
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
 - unrelated open PR: **READ_ONLY**
+
+현재 revision owner:
+
+`docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`
 
 ## 현재 제품 현실
 
@@ -118,7 +137,45 @@ Google Sheets
 → NO_NEW_CANON_WRITES
 ```
 
-Google Sheet의 기존 visual/image inventory와 asset cap은 이번 r5.4 Coverage에서 고유한 역사 범위를 복구하는 **migration compatibility input**으로만 읽었다. 현재 Visual Coverage owner는 GitHub `docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json` + Notion Visual Bible이다.
+Google Sheet에는 과거 `GM-SPELL-WORKFLOW-UI-V2-01`의 `글자 그리기→회로 배치→주문 사용`, `Prepared Spell→Target...` 표현이 남아 있다. 이는 이번 fresh-read에서 확인한 migration compatibility 자료이며 새 사용자 승인으로 current authority가 되지 않는다. 신규 정본은 GitHub + Notion에 같은 Decision ID로 기록한다.
+
+## 현재 Player-facing Spell Workflow
+
+```yaml
+player_flow:
+  - 글자
+  - 주문
+  - 대상
+  - 시전
+ux_group_1:
+  name: 주문 만들기
+  includes:
+    - 글자 선택·작성
+    - FIVE_POINT_STAR 회로 조합
+    - 완성 주문 이름 확인
+ux_group_2:
+  name: 주문 쓰기
+  includes:
+    - 게임 장면에서 대상 지정
+    - 필요한 최종 Preview
+    - 명시 시전
+```
+
+플레이어 UI 기본 용어에서는 `Stock / PreparedSpell / Stage2 / Stage3 / Main / Auxiliary`를 먼저 가르치지 않는다. 내부 구현·데이터·테스트 정본에서는 이 용어와 authority를 그대로 유지한다.
+
+플레이어 용어 매핑:
+
+```text
+Stock / Vault source → 글자 / 보관 글자
+Stage2 placement → 주문 회로
+PreparedSpell → 완성 주문 / 완성 주문 이름
+Stage3 target selection → 대상
+Stage3 explicit commit/use → 시전
+```
+
+회로 조합 결과는 숫자 목록보다 **완성 주문 이름**을 먼저 읽게 한다. 단, 실제 이름 생성 문법·조사·로컬라이징·중복 처리·효과 수치와의 대응 규칙은 이번 결정에서 새로 발명하지 않으며 별도 설계 대상이다.
+
+완성 주문 선택 뒤 별도의 복잡한 대상 선택 전용 화면을 필수 가정하지 않는다. 권장 UX는 **게임 장면 유지/복귀 → 대상 직접 선택 → 필요한 Preview → 시전**이다.
 
 ## 현재 Visual authority
 
@@ -152,6 +209,7 @@ ADAPT
 - dialogue
 - glyph drawing
 - typed glyph Vault/Stock presentation
+- spell name/result presentation
 - feedback/VFX
 - Result/Grimoire
 - simple 2D movement/scene transition
@@ -159,13 +217,12 @@ ADAPT
 - font/icon support
 
 CREATE
-- FIVE_POINT_STAR → Prepared Spell Stage2 representative visual
 - Frostbloom environment candidates
 - first-session character half-body set
 - Frostbloom focal threat/entity
 
 DEFER
-- Task8 Stage3 final use representative visual
+- Task8 implementation-bound final use visual until product implementation is authorized/reconciled
 - store/key art
 - long-term companion growth forms
 
@@ -175,46 +232,19 @@ CUT
 - baked functional text/numbers/state truth
 ```
 
-## 다음 정확히 한 장의 Visual Text Brief
+## 최근 Spell Visual 검토 결과
 
-3개 유효 대안을 비교했다.
+Stage2 시안은 FIVE_POINT_STAR 흐름을 읽는 데는 유효했지만, 처음 생성본의 글자가 세로 패찰/부적처럼 보이는 문제가 있었다. 후속 수정에서 사용자는 이전 글자 작성 시안의 **간략한 직접 필기형 마법 문자**를 재사용하는 방향을 승인했다.
 
-A. Glyph Drawing + Vault — direct-writing fantasy는 강하지만 Task6/current reference로 coverage가 상대적으로 높음.
+현재 시각 규칙:
 
-B. **Typed Glyph Vault/Stock → FIVE_POINT_STAR → Prepared Spell** — 승인 battle/spell 시안에서 확인된 Stock/circuit semantic rework gap을 가장 직접적으로 닫음.
+- 글자는 부적·패찰·카드보다 획/필기감이 있는 직접 쓰인 문자로 보인다.
+- 회로 슬롯에는 패찰을 꽂기보다 글자를 직접 놓거나 쓰는 느낌을 우선한다.
+- `준비 주문`보다 **완성 주문 / 완성 주문 이름**을 플레이어 결과 라벨로 우선한다.
+- `대상 / 시전`은 게임 장면과 연결된 두 번째 UX 덩어리로 취급한다.
+- 사용자 메시지는 새 이미지 생성 요청이 아니므로 이 work unit에서 추가 이미지를 만들지 않는다.
 
-C. Prepared Spell → Target → Final Preview → Use — 중요한 P0이지만 Task8 product screen이 current main에 없어 지금 고정하면 재작업 위험이 더 큼.
-
-**Selected: B**
-
-```yaml
-brief_id: GR-VISUAL-BRIEF-STAGE2-STOCK-CIRCUIT-20260826-01
-status: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL
-aspect: 16:9 LANDSCAPE
-result_count: 1
-```
-
-Composition:
-
-1. left Source Rail — exact Vault와 typed Glyph Stock을 서로 다른 출처로 구분
-2. center — FIVE_POINT_STAR, 중앙 Main 1 + 외곽 보조 0~5 동일 위상
-3. right — circuit Preview + Prepared Spell 상태까지만 표시
-4. 온실/사건 scene context는 UI 뒤에서도 유지
-
-Required semantics:
-
-- Stock is typed glyph source, not completed spell
-- no hidden position bonus
-- no auto target
-- no auto commit
-- Stage2 prepares spell before Stage3 target/use
-- reserved/consumed/unavailable states use icon/shape/text redundancy, not color only
-
-Functional success rate, Mana, target, arbitrary names/dialogue/costs/button copy는 이미지에 굽지 않는다. 필요한 최소 concept label만 `보관 글자 / 주문 회로 / 준비 주문`을 사용할 수 있다.
-
-r5.4 conversation gate에 따라 이 Text Brief 뒤에는 **STOP**한다. 사용자 명시 생성 승인 뒤 정확히 1장 생성한다.
-
-## Spell Workflow
+## Spell Workflow 내부 authority
 
 ```yaml
 task3:
@@ -229,14 +259,17 @@ task5:
 task6:
   pr: 108
   scope: GLYPH_DRAWING_WORKFLOW_SCREEN
+  player_group: 주문 만들기
 task7:
   pr: 110
   merge: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
   status: TASK7_MERGED_MAIN_VERIFIED
+  player_group: 주문 만들기
 next_product_task: TASK8_SPELL_USE_SCREEN
+next_product_player_group: 주문 쓰기
 ```
 
-Task8은 기존 Task5 Stage3 authority의 thin UI consumer다. 새 Mana/inventory/result/rollback/transaction authority를 만들지 않는다.
+이번 간략화는 내부 transaction authority를 변경하지 않는다. Task8은 기존 Task5 Stage3 authority의 thin UI consumer다. 새 Mana/inventory/result/rollback/transaction authority를 만들지 않는다. 자동 target·자동 commit·회로 자동 최적화도 금지한다.
 
 역사 compatibility locator:
 
@@ -315,7 +348,7 @@ learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
 
 PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 current-main 역사다. Component Sheet A–D와 semantic UI pack은 병합된 사실로 읽되, 이것이 Task8 또는 Human/Device/Performance/Full Slice PASS를 의미하지 않는다.
 
-2026-08-26 r5.4 work 시작 시 live open PR은 PR #166 하나이며 `README.md`만 변경하는 Draft other-workstream이다. `OPEN_PR_READ_ONLY_BY_DEFAULT`로 유지하고 이번 current-task branch에 흡수하지 않는다.
+2026-08-26 이번 work unit 시작 시 live open PR은 PR #166 하나이며 `README.md`만 변경하는 Draft other-workstream이다. `OPEN_PR_READ_ONLY_BY_DEFAULT`로 유지하고 이번 current-task branch에 흡수하지 않는다.
 
 ## v4.8 migration / legacy snapshot boundary
 
@@ -329,6 +362,7 @@ PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
+→ docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
 → docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 → task/domain-specific current owner
 → actual code/data/Scene/Resource/Test/runtime evidence
@@ -339,11 +373,12 @@ PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 
 ```text
 1. TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 2. fresh exact-project HiGodot readback + primary v2 recovery / secondary parity comparison
-3. fresh Task8 GUT + predecessor/full runner + Hera source-delta + exact-path adversarial review
-4. Task8 product PR / exact-head CI / merge / merged-main readback
-5. Task9 Product Root + responsive/E2E integration
-6. 대표 00~10분 Human Slice
-7. 10~23 → 46분 증거 확장
+3. 새 player-facing overlay를 Task8 UI 용어·동선에 매핑하고 기존 Stage3 authority와 충돌 없는지 확인
+4. fresh Task8 GUT + predecessor/full runner + Hera source-delta + exact-path adversarial review
+5. Task8 product PR / exact-head CI / merge / merged-main readback
+6. Task9 Product Root + responsive/E2E integration
+7. 대표 00~10분 Human Slice
+8. 10~23 → 46분 증거 확장
 ```
 
 ## 완료로 주장하지 않는 항목

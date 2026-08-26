@@ -19,10 +19,15 @@ orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-current_user_work_scope: VISUAL_ASSET_COVERAGE_AND_NEXT_SINGLE_VISUAL_BRIEF
+current_user_work_scope: SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_AND_VISUAL_ALIGNMENT
 product_implementation_authorized_by_current_user_work_scope: false
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
-visual_generation_state: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL
+visual_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
+product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
+product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
+player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
+player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
 next_product_task: TASK8_SPELL_USE_SCREEN
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
@@ -66,9 +71,10 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 9. 보존 성공은 제품 호환성·HiGodot readiness·fresh tests를 증명하지 않는다. 다음 gate는 `TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED`다.
 10. `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`는 이미 닫힌 **historical compatibility locator**로 보존한다. consumer 검색 가능성 때문에 지우지 않지만 current execution gate로 해석하지 않는다.
 11. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration 이후 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 r5.4 binding이다.
-12. 2026-08-26 `작업재개 → 진행해`의 현재 범위는 **Visual/Image/Asset planning**이다. r5.4 Visual Coverage와 다음 정확히 1장 Text Brief까지 진행하며, Task8/Godot 제품 구현과 실제 이미지 생성은 각각 별도 명시 승인이 필요하다.
-13. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator이며 현재 Visual-only 범위의 구현 허가가 아니다.
-14. Visual serial production은 `docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json`의 `REUSE / ADAPT / CREATE / DEFER / CUT` 판정을 먼저 읽고, `TEXT_BRIEF → 사용자 명시 승인 → EXACTLY_ONE_RESULT → STOP`을 따른다.
+12. 2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 플레이어 노출을 **글자 → 주문 → 대상 → 시전**으로 단순화하는 방향을 승인했다. 같은 Decision ID의 revision owner는 `docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`다.
+13. 이번 승인 범위는 기획/Visual 정본 교정이다. Task8/Godot 제품 구현과 추가 이미지 생성은 별도 명시 요청이 필요하다.
+14. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator이며 현재 범위의 구현 허가가 아니다.
+15. Visual serial production은 coverage를 먼저 읽고, 새 이미지가 필요할 때만 `TEXT_BRIEF → 사용자 명시 승인 → EXACTLY_ONE_RESULT → STOP`을 따른다.
 
 ## 프로젝트 코어
 
@@ -83,6 +89,20 @@ target_selection: AFTER_CIRCUIT_PREVIEW_BY_KEYWORD
 stock_scope: TYPED_GLYPH_ONLY
 commit: EXPLICIT_EXACTLY_ONCE
 ```
+
+이 내부 코어는 유지한다. 플레이어가 화면에서 먼저 이해하는 표현만 다음처럼 단순화한다.
+
+```text
+글자 → 주문 → 대상 → 시전
+
+주문 만들기
+= 글자 선택·작성 + FIVE_POINT_STAR 회로 조합 + 완성 주문 이름 확인
+
+주문 쓰기
+= 게임 장면에서 대상 지정 + 필요한 최종 Preview + 명시 시전
+```
+
+`Stock / PreparedSpell / Stage2 / Stage3 / Main / Auxiliary`는 내부 구현·데이터·테스트 용어로 유지하되 기본 플레이어 UI의 주 용어로 먼저 가르치지 않는다.
 
 ## Godot 현실
 
@@ -109,6 +129,7 @@ r5.4에서는 project-specific `CODEX_HOME`, 별도 전용 Godot binary, 8001/95
 
 ## Spell Workflow 현재 경계
 
+- current player-facing revision: `docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`
 - `GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE`
 - `TASK7_MERGED_MAIN_VERIFIED`
 - 호환 locator: `TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING`
@@ -125,6 +146,14 @@ r5.4에서는 project-specific `CODEX_HOME`, 별도 전용 Godot binary, 8001/95
 - `task8_remote_product_branch: NOT_PRESENT`
 - `task8_remote_product_pr: NONE`
 
+Task mapping:
+
+```text
+Task6 Glyph Drawing → 주문 만들기 / 글자
+Task7 Circuit Placement → 주문 만들기 / 주문 회로 + 완성 주문 이름
+Task8 Spell Use → 주문 쓰기 / 대상 + 시전
+```
+
 `8c611f...`는 PR #131 HiGodot v3.1.4 authority reconciliation commit이며 Task8 제품 코드가 들어 있는 commit이 아니다. Task8 제품 구현은 이 HEAD 위의 uncommitted local delta로 보존됐다.
 
 따라서 제품 구현을 명시적으로 재개할 때 Task8은 다음 순서를 따른다.
@@ -134,6 +163,7 @@ preserved historical candidates
 → separate clean reconciliation worktree from exact fresh origin/main
 → fresh exact-project HiGodot readback
 → primary v2 recovery + secondary parity comparison
+→ player-facing overlay를 기존 Stage3 authority에 thin mapping
 → fresh GUT/Hera/diff/adversarial revalidation
 → stage/commit/push/PR
 → exact-head CI/review
@@ -151,11 +181,20 @@ visual_overlay: GM-VISUAL-DIRECTION-20260825-01
 logo: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 representative_screens: GM-REPRESENTATIVE-SCREENS-20260825-01
 coverage_owner: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
-next_single_visual: TYPED_GLYPH_VAULT_STOCK_TO_FIVE_POINT_STAR_TO_PREPARED_SPELL
-image_generation_state: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL
+spell_visual_player_terms: GLYPH_COMPLETE_SPELL_NAME_TARGET_CAST
+image_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
 ```
 
-승인된 Dialogue 구성은 유지한다. Battle/Spell 시안의 분위기·구도는 참고하되 Stock/Circuit/Spell system UI는 current canon에 맞게 재작업한다. 이전 3D-like movement 방향은 거부 상태이며, 이동은 단순 2D 장면 전환/배경/지도 카드 재사용 방향을 따른다.
+승인된 Dialogue 구성은 유지한다. Battle/Spell 시안의 분위기·구도는 참고하되 시스템 UI는 current canon에 맞게 재작업한다. 이전 3D-like movement 방향은 거부 상태이며, 이동은 단순 2D 장면 전환/배경/지도 카드 재사용 방향을 따른다.
+
+Spell Visual은 다음을 추가로 따른다.
+
+- 글자는 세로 패찰·부적·수집 카드보다 **직접 쓰인 문자**로 보여야 한다.
+- 획과 필기감, 빛나는 잉크/마력 흔적을 우선한다.
+- FIVE_POINT_STAR에는 패찰을 꽂기보다 글자를 직접 놓거나 쓰는 느낌을 우선한다.
+- `PreparedSpell`의 기본 플레이어 결과 라벨은 `준비 주문`보다 **완성 주문 / 완성 주문 이름**을 우선한다.
+- 완성 주문 선택 뒤 대상 지정은 가능하면 게임 장면에서 직접 수행하고 필요한 Preview 뒤 `시전`한다.
+- 실제 주문 이름 생성 문법/로컬라이징 알고리즘은 아직 별도 설계 대상이다.
 
 ## 금지
 
@@ -173,6 +212,6 @@ image_generation_state: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPRO
 
 `GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC`와 `GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC`는 이전 current-authority 교정의 병합 provenance다. 안정된 predecessor PR은 #158이며 current open PR 상태 자체는 live GitHub가 소유한다.
 
-현재 r5.4 전환 및 Visual Coverage는 `GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE`가 추적한다. 해당 current-task PR의 lifecycle은 live GitHub가 소유하며, unrelated PR #166은 read-only다.
+r5.4 Visual Coverage는 `GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE`가 추적한다. 이번 플레이어 노출 간략화는 `GR-SYNC-20260826-37-SPELL-FLOW-PLAYER-FACING`가 추적한다. unrelated PR #166은 read-only다.
 
 현재 v4.8 바인딩은 `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md`가 소유한다. v4.5 이하 바인딩은 `HISTORICAL_SUPERSEDED_CURRENT_BINDING`으로 보존한다.
