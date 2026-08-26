@@ -126,8 +126,8 @@ BURST
 
 | 순서 | Goal | Priority | Consumer | 상태 |
 |---:|---|---|---|---|
-| 1 | IMG-01 · Slice Magic Glyph Runtime Set | P0 | Task6 / Task7 / future Task8 | NEXT |
-| 2 | IMG-02 · First-Session Environment Base Pack | P1 | Class / Field / Greenhouse Battle | Scene slot pending |
+| 1 | IMG-01 · Slice Magic Glyph Runtime Set | P0 | Task6 / Task7 / future Task8 | Runtime integration merged; remaining visual/device proof is separate |
+| 2 | IMG-02 · First-Session Environment Base Pack | P1 | Class / Field / Greenhouse Battle | Consumer contract defined; `bg_school_common` Brief approval pending |
 | 3 | IMG-03 · Frostbloom Environment State Pack | P1 | Greenhouse state/result | IMG-02 + effect reuse test pending |
 | 4 | IMG-04 · Maren Dialogue Portrait Pack | P1 | Dialogue UI | character identity brief pending |
 | 5 | IMG-05 · Protagonist Portrait Pack | P1 | Dialogue / future battle portrait | protagonist identity pending |
@@ -137,7 +137,7 @@ BURST
 | 9 | IMG-09 · Main/Title Runtime Pack | P2 | Main/Title | Product Root pending |
 | 10 | IMG-10 · Store Key Art | P3 | Product distribution | Playable proof + platform recheck pending |
 
-## 8. NEXT · IMG-01
+## 8. Historical · IMG-01 original handoff
 
 ### Product Goal
 
@@ -289,11 +289,11 @@ Current values remain `NOT_PROVEN / NOT_RUN`.
 
 Use this as the first instruction in the GRIMOIRE Work workspace if a concise restart is useful:
 
-> GRIMOIRE 이미지 작업을 이어간다. 먼저 current Notion Home, AGENTS.md, ACTIVE_CONTEXT, `GRIMOIRE_GPT_WORK_IMAGE_GOAL_HANDOFF_2026-08-26.md`, `GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json`, live GitHub main/open PR, latest Base main을 fresh-read해. 과거 메모리는 정본보다 낮게 둔다. 현재 NEXT는 IMG-01 Slice Magic Glyph Runtime Set 6종(HEAT/PROTECT/FLOW/FOCUS/DISPERSE/BURST)이다. 이미지부터 생성하지 말고 Task6/Task7 actual consumer slot/path/manifest 계약과 정확한 6종 텍스트 브리프를 먼저 제시한 뒤 STOP해서 내 승인을 기다려. 설명용 시트는 만들지 않는다.
+> GRIMOIRE 이미지 작업을 이어간다. 먼저 current Notion Home, AGENTS.md, ACTIVE_CONTEXT, `GRIMOIRE_GPT_WORK_IMAGE_GOAL_HANDOFF_2026-08-26.md`, `GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json`, live GitHub main/open PR, latest Base main을 fresh-read해. 과거 메모리는 정본보다 낮게 둔다. 현재 NEXT는 IMG-02 First-Session Environment Base Pack이다. `FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md`를 읽고, 이미지부터 생성하지 말고 `bg_school_common`의 정확한 텍스트 Brief만 제시한 뒤 STOP해서 내 명시 생성 승인을 기다려. 설명용 시트는 만들지 않는다.
 
 ## 14. Stop Condition
 
-이 handoff 이후 첫 Work action은 **IMG-01 설계/브리프 검토**다. 이미지 생성, Godot 구현, Task8 복구는 자동으로 시작하지 않는다.
+이 handoff 이후 다음 Work action은 **IMG-02 · `bg_school_common` 텍스트 Brief 제시**다. 이미지 생성, Godot 구현, Task8 복구는 자동으로 시작하지 않는다.
 
 ## 15. 2026-08-26 IMG-01 Codex Runtime Integration Receipt
 
