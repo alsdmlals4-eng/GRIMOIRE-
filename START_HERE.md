@@ -155,6 +155,28 @@ current_execution_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 
 이것은 current-main compatibility, fresh HiGodot, GUT/Hera, runtime 또는 제품 병합 증거가 아니다. 이번 Visual work unit에서 Task8 제품 코드는 변경하지 않는다.
 
+## Historical compatibility anchors — current gate 아님
+
+아래 문자열은 기존 machine consumer와 과거 handoff 탐색을 위해 보존한다. r5.4의 current local-Codex 운영 지시로 해석하지 않는다.
+
+```text
+GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
+TASK7_MERGED_MAIN_VERIFIED
+TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
+TASK8_RECEIPT_HERA_REVIEW_PR
+TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
+CURRENT_DEDICATED_CODEX_REUSE_ALLOWED_FOR_CODEX_ONLY_CONTINUATION
+FRESH_POWERSHELL_REQUIRED_WHEN_SESSION_RECREATION_OR_CAPABILITY_BOUNDARY
+REMOTE_AUTHORITY_RECEIPT
+LOCAL_EXECUTION_RECEIPT
+EXECUTOR_CAPABILITY_BLOCKER
+DO_NOT_RETRY_BLOCKED_REMOTE_CHECK_IN_CODEX
+FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
+```
+
+현재 r5.4에서 project-specific local Codex orchestration은 retired다. 위 문자열은 **HISTORICAL_COMPATIBILITY_LOCATOR**이며 현재 실행 경계는 active r5.4 binding과 fresh executor/session readback이 소유한다.
+
 ## Godot 진입점과 Runtime Reality
 
 - 프로젝트 파일: `project.godot`
@@ -182,6 +204,7 @@ Godot/Godot AI의 설치·exact pin·port 정책은 r5.4와 current Base owner�
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
+→ docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 → current Visual / domain owner
 → actual code/data/Scene/Resource/Test/runtime evidence
 ```
