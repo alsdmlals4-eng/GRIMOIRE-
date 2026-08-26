@@ -8,6 +8,7 @@ status: USER_APPROVED_ACTIVE
 approval_date: 2026-08-26
 approval_source: 사용자 명시 승인 "좋아 그렇게하자"
 change_type: PLAYER_FACING_UX_SIMPLIFICATION_ONLY
+visual_revision_owner: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_PLAYER_FLOW_REVISION_2026-08-26.json
 product_implementation_mutation: NONE
 runtime_authority_change: NONE
 ```
@@ -144,6 +145,10 @@ Task8은 여전히 Task5 Stage3 authority의 thin UI consumer다. 이번 결정�
 - FIVE_POINT_STAR 슬롯에는 패찰을 꽂는 것보다 **글자를 회로에 직접 놓거나 쓰는 느낌**을 우선한다.
 - 기존 3단 패널 `보관 글자 / 주문 회로 / 준비 주문`은 탐색용 시안으로 보존하지만, 앞으로 플레이어 용어는 **글자 / 완성 주문 이름 / 대상 / 시전** 중심으로 정리한다.
 - `준비 주문`은 개발 의미의 PreparedSpell 설명에는 쓸 수 있지만, 기본 결과 라벨은 **완성 주문** 또는 **완성 주문 이름**을 우선한다.
+
+시각 coverage revision:
+
+`docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_PLAYER_FLOW_REVISION_2026-08-26.json`
 
 ## 8. Evidence ceiling
 
