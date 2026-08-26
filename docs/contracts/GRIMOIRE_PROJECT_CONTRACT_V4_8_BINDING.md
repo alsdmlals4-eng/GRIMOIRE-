@@ -7,6 +7,7 @@ revision: '2026-08-26-r5.4-superset-final'
 contract_status: ACTIVE_BASE_CURRENT_MAIN_THIN_ADAPTER_PROJECT_EXECUTION_CONTRACT
 binding_decision_id: GM-CONTRACT-V4-8-BINDING-01
 binding_sync_id: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
+current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
 approved_at: 2026-08-26
 approval_source: 사용자 명시 continuation "진행해" after r5.4 fresh-read audit
 execution_request_state: USER_EXPLICIT_CONTINUATION_PRESENT
@@ -54,7 +55,7 @@ project_main_observation_role: EXACT_BASELINE_FOR_THIS_RECONCILIATION_ONLY
 same_decision_revision_rule: GM-CONTRACT-V4-8-BINDING-01_PRESERVED
 ```
 
-v4.5, v4.4, v4.3 binding 문서는 삭제하지 않는다. 모두 역사 provenance로 보존하고 current contract authority만 v4.8 r5.4로 전진한다. 기존 v4.8 r2 내용은 이 파일의 Git history가 보존한다.
+v4.5, v4.4, v4.3 binding 문서는 삭제하지 않는다. 모두 역사 provenance로 보존하고 current contract authority만 v4.8 r5.4로 전진한다. 기존 v4.8 r2 내용과 `GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC`는 predecessor provenance로 보존한다.
 
 ## 2. 프로젝트 현재 불변식
 
