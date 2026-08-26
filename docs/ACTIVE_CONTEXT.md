@@ -57,7 +57,7 @@ task8_secondary_recovery_branch: task8/spell-use-screen
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
 task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
-task8_remote_product_pr: PENDING
+task8_remote_product_pr: 190
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -295,7 +295,7 @@ task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
 task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
-task8_remote_product_pr: PENDING
+task8_remote_product_pr: 190
 historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 resume_gate: TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
 historical_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED

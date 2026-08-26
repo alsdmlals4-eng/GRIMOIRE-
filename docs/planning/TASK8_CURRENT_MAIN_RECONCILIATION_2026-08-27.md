@@ -7,6 +7,7 @@
 - Commit: `68211069eb3b778fb43e68f3fbd049c8a0ac2733`
 - Branch: `codex/task8-spell-use-reconcile-v320-20260827`
 - Base: `origin/main@1e8662217e13dbfce6a41749f850db66b000d64b`
+- Pull request: #190
 
 The user explicitly authorized product implementation after the preserved historical Task8 candidates had been verified. The historical worktrees remain untouched. This reconciliation was authored in a separate clean worktree through a live Godot AI v3.2.0 editor session.
 
