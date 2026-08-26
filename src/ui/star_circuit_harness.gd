@@ -549,6 +549,13 @@ func _active_auxiliary_slots() -> Array[int]:
 func _update_visual_state(state: StringName, cause_vertex: int = -1) -> void:
     var active_slots := _active_auxiliary_slots()
     var board := get_node_or_null("SafeArea/StarBoard")
+    var auxiliary_glyphs: Dictionary = {}
+    for slot in range(_auxiliary_indices.size()):
+        var glyph_index := _auxiliary_indices[slot]
+        if glyph_index >= 0:
+            auxiliary_glyphs[slot] = GLYPH_IDS[glyph_index]
+    if board != null and board.has_method("set_glyph_visuals"):
+        board.call("set_glyph_visuals", GLYPH_IDS[_main_index], auxiliary_glyphs)
     if board != null and board.has_method("set_visual_state"):
         board.call("set_visual_state", state, active_slots.size(), cause_vertex, active_slots)
     _set_label("SafeArea/PhaseBadge/Content/Label", _phase_label(state))
