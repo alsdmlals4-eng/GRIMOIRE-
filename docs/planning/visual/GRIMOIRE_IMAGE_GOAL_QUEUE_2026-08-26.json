@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "handoff_id": "GR-WORK-HANDOFF-20260826-01",
+  "queue_id": "GR-IMAGE-GOAL-QUEUE-20260826-01",
+  "status": "GPT_WORK_HANDOFF_READY",
+  "created_for": "CHATGPT_WORK",
+  "source_project_main": "27749d2b3a552193283182143fe772e18f0ef45f",
+  "source_base_main": "06669fe9c6a3ccd6f3b0d19c5757540bfdcc0623",
+  "authority": {
+    "project_agents": "AGENTS.md",
+    "active_context": "docs/ACTIVE_CONTEXT.md",
+    "visual_coverage": "docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json",
+    "runtime_consumer_checklist": "docs/planning/visual/GRIMOIRE_VISUAL_PRODUCTION_CHECKLIST_2026-08-26.json",
+    "player_flow": "docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md",
+    "asset_manifest_schema": "docs/planning/ASSET_MANIFEST_SCHEMA.json",
+    "glyph_vocabulary": "data/glyphs/v1/glyph_vocabulary_v1.json"
+  },
+  "work_mode": {
+    "target_surface": "CHATGPT_WORK",
+    "memory_policy": "PERSISTENT_ASSISTIVE_CONTEXT_ONLY_CANON_REMAINS_HIGHER_AUTHORITY",
+    "fresh_read_required_each_material_work_unit": true,
+    "first_read_order": [
+      "GRIMOIRE Notion Home",
+      "GRIMOIRE AGENTS.md",
+      "GRIMOIRE docs/ACTIVE_CONTEXT.md",
+      "this Image Goal Queue",
+      "Runtime Image Consumer Checklist",
+      "live GitHub main/open PR/runtime consumers",
+      "latest Base completed main and relevant visual/Work rules",
+      "Google Sheet migration-only unique drift when needed"
+    ]
+  },
+  "approved_player_flow": {
+    "decision_id": "GM-SPELL-WORKFLOW-UI-V2-01",
+    "flow": ["글자", "주문", "대상", "시전"],
+    "spell_build": "글자 선택·작성 + FIVE_POINT_STAR 회로 조합 + 완성 주문 이름 확인",
+    "spell_cast": "게임 장면에서 대상 지정 + 필요한 최종 Preview + 명시 시전",
+    "internal_terms_remain_runtime_authority": ["Stock", "PreparedSpell", "Stage2", "Stage3", "Main", "Auxiliary"]
+  },
+  "known_drift_corrections": [
+    {
+      "decision_id": "GM-VISUAL-PRODUCTION-CHECKLIST-20260826-01",
+      "field": "GR-RA-01-GLYPH-BASE count/base_names",
+      "previous_record": {"count": 3, "base_names": ["flow", "focus", "disperse"]},
+      "current_handoff_value": {"count": 6, "base_names": ["heat", "protect", "flow", "focus", "disperse", "burst"]},
+      "basis": [
+        "data/glyphs/v1/glyph_vocabulary_v1.json slice = HEAT/PROTECT/FLOW/FOCUS/DISPERSE/BURST",
+        "Task6 recognition tests consume all six Slice glyphs",
+        "Task7 loadout/circuit consumers already use Main and Support Slice glyph IDs",
+        "user explicitly approved proceeding with the six-glyph runtime basis on 2026-08-26"
+      ],
+      "rule": "The older 3-glyph row remains historical Asset-Spec provenance; Work must use six Slice runtime glyphs for IMG-01 unless a newer explicit user decision supersedes it."
+    }
+  ],
+  "existing_runtime_reuse": [
+    "assets/art/ui/common/academy_corner_ornament.svg",
+    "assets/art/ui/common/icon_mana.svg",
+    "assets/art/ui/common/icon_phase_diamond.svg",
+    "assets/art/ui/common/icon_typed_stock.svg",
+    "assets/art/ui/common/icon_warning_diamond.svg",
+    "src/ui/components/star_circuit_board.gd procedural FIVE_POINT_STAR",
+    "Component Sheets A-D / semantic live UI family"
+  ],
+  "goal_queue": [
+    {
+      "order": 1,
+      "goal_id": "IMG-01",
+      "name": "Slice Magic Glyph Runtime Set",
+      "priority": "P0",
+      "consumer_kind": "GAME_RUNTIME",
+      "consumers": [
+        "src/ui/spell_workflow/glyph_drawing_screen.tscn",
+        "src/ui/spell_workflow/components/glyph_card.tscn",
+        "src/ui/spell_workflow/circuit_placement_screen.tscn",
+        "src/ui/components/star_circuit_board.tscn",
+        "Task8 Spell Use future thin UI consumer"
+      ],
+      "required_assets": ["glyph_heat", "glyph_protect", "glyph_flow", "glyph_focus", "glyph_disperse", "glyph_burst"],
+      "planned_export": "512x512 PNG RGBA or equivalent approved vector source with deterministic runtime export",
+      "planned_folder": "assets/art/ui/glyphs/",
+      "state_policy": "recognized/selected/invalid/insufficient/committed states use Material/Outline/Modulate/Semantic Mark before texture duplication",
+      "must_preserve": ["canonical stroke identity", "direct-written magical letter feeling", "Magic/Anime + Blue/Blue-Purple magic language", "small-size silhouette distinction"],
+      "must_not_introduce": ["talisman", "hanging tag", "collectible card framing", "pictogram-first redesign", "baked functional text", "new glyph IDs"],
+      "status": "TEXT_BRIEF_AND_RUNTIME_SLOT_CONTRACT_PENDING",
+      "next_gate": "Define one shared glyph_id-to-asset resolver plus exact Task6/Task7 visual slots and manifest paths before any image generation."
+    },
+    {
+      "order": 2,
+      "goal_id": "IMG-02",
+      "name": "First-Session Environment Base Pack",
+      "priority": "P1",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumers": ["Class/Safe Precedent", "Guided Field Practicum", "Greenhouse Investigation/Return", "Greenhouse Battle"],
+      "required_assets": ["bg_school_common", "bg_greenhouse_field_base", "bg_greenhouse_battle_arena"],
+      "planned_export": "2560x1440 WebP Lossless",
+      "status": "CONSUMER_SCENE_SLOT_PENDING"
+    },
+    {
+      "order": 3,
+      "goal_id": "IMG-03",
+      "name": "Frostbloom Environment State Pack",
+      "priority": "P1",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumers": ["Greenhouse incident state", "Battle consequence state", "Post-result return"],
+      "required_assets_cap": 3,
+      "candidate_assets": ["greenhouse_pressure_warning", "greenhouse_damage", "greenhouse_resolved"],
+      "rule": "If Godot Light/Material/Particles produce the state clearly, creating a new overlay is unnecessary and counts as a successful reuse decision.",
+      "status": "BLOCKED_BY_IMG_02_AND_RUNTIME_EFFECT_REUSE_TEST"
+    },
+    {
+      "order": 4,
+      "goal_id": "IMG-04",
+      "name": "Maren Dialogue Portrait Pack",
+      "priority": "P1",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumer": "First-session Dialogue UI",
+      "required_assets": ["neutral", "instructive", "stern", "approving"],
+      "planned_export": "1024x1536 PNG RGBA",
+      "status": "BLOCKED_BY_CURRENT_CHARACTER_IDENTITY_BRIEF"
+    },
+    {
+      "order": 5,
+      "goal_id": "IMG-05",
+      "name": "Protagonist Portrait Pack",
+      "priority": "P1",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumers": ["Dialogue UI", "Battle portrait slot when implemented"],
+      "required_assets_cap": 4,
+      "candidate_states": ["neutral", "focused", "concerned", "relieved"],
+      "planned_export": "1024x1536 PNG RGBA",
+      "status": "BLOCKED_BY_PROTAGONIST_VISUAL_IDENTITY_OWNER"
+    },
+    {
+      "order": 6,
+      "goal_id": "IMG-06",
+      "name": "Greenhouse Spirit Combat Pack",
+      "priority": "P1",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumer": "Frostbloom Greenhouse Battle",
+      "required_packets": ["idle_unstable", "pressure_telegraph_attack", "surge_environment_telegraph_attack", "instability_reaction_calm_resolve"],
+      "frame_cap": 50,
+      "planned_export": "512x512 PNG RGBA frames",
+      "status": "BLOCKED_BY_BATTLE_CONSUMER_SCENE"
+    },
+    {
+      "order": 7,
+      "goal_id": "IMG-07",
+      "name": "Main Companion Initial Runtime Pack",
+      "priority": "P1",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumers": ["Field", "Dialogue reaction", "Battle status/reaction", "Result"],
+      "required_packets": ["idle", "move", "reaction_neutral_curious_alarmed_pleased"],
+      "frame_cap": 20,
+      "reaction_icon_cap": 4,
+      "planned_export": "256x256 PNG RGBA",
+      "status": "BLOCKED_BY_CURRENT_COMPANION_CANON_RECHECK"
+    },
+    {
+      "order": 8,
+      "goal_id": "IMG-08",
+      "name": "Field SD Character Pack",
+      "priority": "P1",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumer": "Simple 2D Field movement/interaction",
+      "actor_cap": 3,
+      "rule": "Do not pre-produce directions or high-frame animation until the actual Field Scene and clip requirements exist.",
+      "status": "BLOCKED_BY_FIELD_SCENE_AND_CLIP_CONTRACT"
+    },
+    {
+      "order": 9,
+      "goal_id": "IMG-09",
+      "name": "Main/Title Runtime Pack",
+      "priority": "P2",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumer": "Main/Title Screen",
+      "required_assets_cap": 2,
+      "candidate_assets": ["Logo 01 runtime export", "supporting composite only if BG reuse is insufficient"],
+      "status": "DEFER_UNTIL_PRODUCT_ROOT_EXISTS"
+    },
+    {
+      "order": 10,
+      "goal_id": "IMG-10",
+      "name": "Store Key Art",
+      "priority": "P3",
+      "consumer_kind": "PRODUCT_DISTRIBUTION",
+      "consumer": "Store/Marketing surface",
+      "required_assets_cap": 1,
+      "status": "DEFER_UNTIL_PLAYABLE_PROOF_AND_PLATFORM_SPEC_RECHECK"
+    }
+  ],
+  "codex_integration_queue": [
+    "CODEX-IMG-01 Slice Glyph Integration",
+    "CODEX-IMG-02 Environment Base Integration",
+    "CODEX-IMG-03 Frostbloom State Integration",
+    "CODEX-IMG-04 Maren Dialogue Integration",
+    "CODEX-IMG-05 Protagonist Portrait Integration",
+    "CODEX-IMG-06 Greenhouse Spirit Animation Integration",
+    "CODEX-IMG-07 Companion Integration",
+    "CODEX-IMG-08 Field SD Integration",
+    "CODEX-IMG-09 Main/Title Integration"
+  ],
+  "image_generation_gate": {
+    "handoff_itself_authorizes_generation": false,
+    "required_sequence": ["fresh canon/consumer read", "goal text brief", "STOP", "explicit user generation approval", "exactly one result", "STOP", "user approve or revise"],
+    "batch_generation_from_queue": false
+  },
+  "implementation_gate": {
+    "handoff_itself_authorizes_godot_implementation": false,
+    "required_before_codex_integration": ["generated image reviewed", "user approved", "Notion registered", "implementation-ready file/export/provenance prepared", "CODEX-IMG goal issued"]
+  },
+  "evidence_ceiling": {
+    "product_stage": "PARTIAL_FOUNDATION",
+    "runtime_visual_complete": "NOT_PROVEN",
+    "human": "NOT_RUN",
+    "device": "NOT_RUN",
+    "performance": "NOT_RUN",
+    "full_vertical_slice": "NOT_RUN",
+    "windows_export": "NOT_RUN",
+    "android_export_device": "NOT_RUN"
+  },
+  "resume_instruction": "In ChatGPT Work, start with IMG-01 only. First reconcile the six-glyph runtime consumer contract and exact asset slots/paths. Do not generate an image until the IMG-01 text brief is shown to and explicitly approved by the user."
+}
