@@ -107,7 +107,9 @@
       "consumers": ["Class/Safe Precedent", "Guided Field Practicum", "Greenhouse Investigation/Return", "Greenhouse Battle"],
       "required_assets": ["bg_school_common", "bg_greenhouse_field_base", "bg_greenhouse_battle_arena"],
       "planned_export": "2560x1440 WebP Lossless",
-      "status": "CONSUMER_SCENE_SLOT_PENDING"
+      "consumer_contract": "docs/planning/visual/FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md",
+      "status": "CONSUMER_SCENE_CONTRACT_DEFINED",
+      "next_gate": "PRESENT_BG_SCHOOL_COMMON_TEXT_BRIEF_THEN_STOP_FOR_EXPLICIT_GENERATION_APPROVAL"
     },
     {
       "order": 3,

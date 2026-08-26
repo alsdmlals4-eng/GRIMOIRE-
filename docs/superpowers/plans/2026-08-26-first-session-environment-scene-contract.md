@@ -117,4 +117,3 @@ Expected: only the environment contract and the IMG-02 queue fields change.
 - [ ] **Step 4: Present the `bg_school_common` text brief and stop**
 
 State that the contract is defined but no image is generated. Wait for a new explicit user instruction to generate exactly one candidate.
-

@@ -98,4 +98,3 @@ consumer contract defined
 - 각 상태는 이미지가 아닌 live UI/VFX가 담당할 영역을 명시한다.
 - Frostbloom Target·회로·결말이 첫 10분 실습에서 노출되지 않는다.
 - 이미지 생성, Godot 구현, runtime/human/device/performance 검증은 모두 아직 시작하지 않은 상태로 기록된다.
-
