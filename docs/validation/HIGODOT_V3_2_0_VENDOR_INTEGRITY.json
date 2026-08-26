@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "decision_id": "GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01",
+  "reconciliation_issue": 188,
+  "release": "v3.2.0",
+  "official_repository": "hi-godot/godot-ai",
+  "official_tag_commit": "42c44e4d02ca1836a0e1866361509d3a14d83b0c",
+  "official_plugin_subtree": "66a9df59a92f0029efcd35c22fea355c93e8fe49",
+  "project_plugin_path": "addons/godot_ai",
+  "project_tracked_plugin_subtree": "66a9df59a92f0029efcd35c22fea355c93e8fe49",
+  "official_plugin_cfg_version": "3.2.0",
+  "project_plugin_cfg_version": "3.2.0",
+  "comparison_scope_rule": "COMPARE_PLUGIN_SUBTREE_TO_PLUGIN_SUBTREE",
+  "tracked_vendor_integrity": "PASS_EXACT_TREE_IDENTITY",
+  "tracked_vendor_synced": true,
+  "observed_project_main": "c0b4d45f52204b59844eda9fcd0b2b2bdda9a127",
+  "vendor_introduction_commit": "ef70dd20db71d853ffa1eb4b68e674037952b71a",
+  "historical_predecessors": [
+    "docs/validation/HIGODOT_V3_1_2_VENDOR_INTEGRITY.json",
+    "docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json",
+    "docs/validation/HIGODOT_V3_1_4_VENDOR_INTEGRITY.json"
+  ],
+  "claims": {
+    "official_and_project_plugin_subtree_identical": true,
+    "tracked_github_vendor_is_v3_2_0": true,
+    "live_v3_2_0_session_verified": false,
+    "v3_2_0_authoring_receipt_verified": false,
+    "historical_v3_1_x_evidence_rewritten": false
+  },
+  "evidence_limits": [
+    "This record proves the current tracked vendor tree identity only.",
+    "Historical v3.1.2 through v3.1.4 live-session and authoring-receipt records remain historical provenance.",
+    "This record does not prove a live v3.2.0 server/plugin handshake or a v3.2.0 authoring receipt.",
+    "Human, device, performance, and full vertical-slice validation remain NOT_RUN."
+  ]
+}

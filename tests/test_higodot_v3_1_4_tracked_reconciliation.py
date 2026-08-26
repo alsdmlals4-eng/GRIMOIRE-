@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CURRENT_STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE_SYNC20.json"
 SYNC19_STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_4_VENDOR_INTEGRITY.json"
+V320_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json"
 SYNC = ROOT / "docs/planning/sync/GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION.md"
 CURRENT_DOCS = [
     ROOT / "START_HERE.md",
@@ -24,6 +25,8 @@ TRACKED_SYNC_ID = "GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION
 CURRENT_SYNC_ID = "GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT"
 UPSTREAM_TAG_COMMIT = "96cc8b8c3d25ce487e24801d01d5214fea150349"
 V314_TREE = "69010571e11123dfc4e09483f80cb9e6ca93511a"
+V320_TAG_COMMIT = "42c44e4d02ca1836a0e1866361509d3a14d83b0c"
+V320_TREE = "66a9df59a92f0029efcd35c22fea355c93e8fe49"
 DIRECT_TOOL_STATE_COMMIT = "257a0dba33f8288d24b1cd291bb407f4505224b4"
 SYNC20_SOURCE_BASE = "6d2feba2bc49fda2d8d273248b55087853615d5d"
 LATEST_BASE_OBSERVED = "1d6cc79ad9dfa694558524ccc5ebf11ec7df7d8c"
@@ -35,9 +38,9 @@ SESSION_ID = "task8-spell-use-screen-v2@3cfa"
 
 
 class HiGodotV314TrackedReconciliationTests(unittest.TestCase):
-    def test_tracked_plugin_is_exact_official_v314_tree(self) -> None:
+    def test_tracked_plugin_is_exact_official_v320_tree(self) -> None:
         plugin = (ROOT / "addons/godot_ai/plugin.cfg").read_text(encoding="utf-8")
-        self.assertIn('version="3.1.4"', plugin)
+        self.assertIn('version="3.2.0"', plugin)
         tree = subprocess.run(
             ["git", "rev-parse", "HEAD:addons/godot_ai"],
             cwd=ROOT,
@@ -45,7 +48,29 @@ class HiGodotV314TrackedReconciliationTests(unittest.TestCase):
             capture_output=True,
             text=True,
         ).stdout.strip()
-        self.assertEqual(V314_TREE, tree)
+        self.assertEqual(V320_TREE, tree)
+        self.assertTrue(V320_EVIDENCE.is_file(), str(V320_EVIDENCE))
+        evidence = json.loads(V320_EVIDENCE.read_text(encoding="utf-8"))
+        self.assertEqual("v3.2.0", evidence["release"])
+        self.assertEqual(V320_TAG_COMMIT, evidence["official_tag_commit"])
+        self.assertEqual(V320_TREE, evidence["official_plugin_subtree"])
+        self.assertEqual(V320_TREE, evidence["project_tracked_plugin_subtree"])
+        self.assertEqual("PASS_EXACT_TREE_IDENTITY", evidence["tracked_vendor_integrity"])
+
+    def test_v314_vendor_evidence_remains_historical(self) -> None:
+        plugin = (ROOT / "addons/godot_ai/plugin.cfg").read_text(encoding="utf-8")
+        self.assertNotIn('version="3.1.4"', plugin)
+        tree = subprocess.run(
+            ["git", "rev-parse", "HEAD:addons/godot_ai"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+        self.assertNotEqual(V314_TREE, tree)
+        evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+        self.assertEqual("v3.1.4", evidence["release"])
+        self.assertEqual(V314_TREE, evidence["project_tracked_plugin_subtree"])
 
     def test_sync19_evidence_remains_historical(self) -> None:
         data = json.loads(EVIDENCE.read_text(encoding="utf-8"))
