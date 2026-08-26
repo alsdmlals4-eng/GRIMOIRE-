@@ -9,7 +9,8 @@ approval: USER_APPROVED_RECOMMENDED_OPTION_A
 approved_at_kst: 2026-08-26
 scope: IMG_02_CONSUMER_CONTRACT_ONLY
 implementation: NOT_STARTED
-image_generation: NOT_STARTED
+image_generation: THREE_SOURCE_CANDIDATES_PERSISTED
+runtime_export: NATIVE_RESOLUTION_WEBP_CANDIDATES_READY_NOT_BOUND
 runtime_validation: NOT_RUN
 human_validation: NOT_RUN
 device_validation: NOT_RUN
@@ -27,9 +28,9 @@ full_slice_validation: NOT_RUN
 
 | Asset ID | Planned runtime path | Format | Role |
 |---|---|---|---|
-| `bg_school_common` | `assets/art/backgrounds/school/bg_school_common.webp` | 2560×1440 WebP Lossless, opaque | 수업과 안전 선례의 공통 교실/실습실 |
-| `bg_greenhouse_field_base` | `assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp` | 2560×1440 WebP Lossless, opaque | 지도 현장실습과 온실 조사·복귀의 재사용 가능한 기본 현장 |
-| `bg_greenhouse_battle_arena` | `assets/art/backgrounds/greenhouse/bg_greenhouse_battle_arena.webp` | 2560×1440 WebP Lossless, opaque | 온실 핵심 대치의 집중된 시전·전투 구도 |
+| `bg_school_common` | `assets/art/backgrounds/school/bg_school_common.webp` | 1672×941 WebP Lossless, opaque export candidate; planned 2560×1440 delivery target remains pending | 수업과 안전 선례의 공통 교실/실습실 |
+| `bg_greenhouse_field_base` | `assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp` | 1672×941 WebP Lossless, opaque export candidate; planned 2560×1440 delivery target remains pending | 지도 현장실습과 온실 조사·복귀의 재사용 가능한 기본 현장 |
+| `bg_greenhouse_battle_arena` | `assets/art/backgrounds/greenhouse/bg_greenhouse_battle_arena.webp` | 1672×941 WebP Lossless, opaque export candidate; planned 2560×1440 delivery target remains pending | 온실 핵심 대치의 집중된 시전·전투 구도 |
 
 모든 기능 텍스트, 버튼, 수치, 주문 결과, 선택 상태, 정답/추천 표식은 live UI다. 배경에는 넣지 않는다.
 
@@ -78,17 +79,15 @@ FrostbloomBattleScene / EnvironmentBackground → bg_greenhouse_battle_arena
 
 ```text
 consumer contract defined
-→ bg_school_common text brief presented
-→ explicit user generation approval
-→ exactly one candidate generated
-→ user approve/revise
+→ user-preauthorized one-candidate-at-a-time generation
 → local source + Notion asset record
-→ deterministic runtime export + manifest/provenance
+→ native-resolution lossless WebP export candidate + manifest/provenance
+→ Godot import readback
 → CODEX-IMG-02 integration goal
 → Godot import/runtime proof
 ```
 
-첫 생성 후보는 `bg_school_common` 한 장이다. 이 문서는 생성 승인이 아니며, candidate·export·manifest·Notion record가 존재한다고 주장하지 않는다.
+사용자 자동 생성 정책으로 세 source candidate와 native-resolution export candidate가 준비됐다. 이는 Scene binding, runtime/human/device/performance 검증, 또는 final 2560×1440 delivery approval을 뜻하지 않는다.
 
 ## 8. Acceptance Criteria
 
@@ -97,4 +96,4 @@ consumer contract defined
 - 별도 base 배경은 `GREENHOUSE_BATTLE`에만 허용된다.
 - 각 상태는 이미지가 아닌 live UI/VFX가 담당할 영역을 명시한다.
 - Frostbloom Target·회로·결말이 첫 10분 실습에서 노출되지 않는다.
-- 이미지 생성, Godot 구현, runtime/human/device/performance 검증은 모두 아직 시작하지 않은 상태로 기록된다.
+- source candidate와 native-resolution export candidate는 존재하지만, Godot 제품 Scene binding과 runtime/human/device/performance 검증은 아직 시작하지 않은 상태로 기록된다.

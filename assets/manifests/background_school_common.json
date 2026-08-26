@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "asset_id": "bg_school_common",
+  "role": "First-session class and safe-precedent environment background.",
+  "decision_ids": [
+    "GM-FROSTBLOOM-FIRST-SESSION-ENVIRONMENT-CONSUMERS-01",
+    "ART-STYLE-01",
+    "GM-VISUAL-DIRECTION-20260825-01"
+  ],
+  "source": {
+    "storage": "GENERATED_CANDIDATE",
+    "file_id_or_path": "assets/art/source_candidates/first_session_01/backgrounds/school/bg_school_common_candidate_01.png",
+    "sha256": "b65b65653d3fcb50b3587cda5e53c8a040f814193555218ab1bddb1dab1311ba",
+    "tool": "Codex built-in image generation",
+    "owner": "User-preauthorized GPT Work visual production",
+    "prompt_or_brief_path": "docs/planning/visual/generated_sources/FIRST_SESSION_BG_SCHOOL_COMMON_CANDIDATE_01_2026-08-26.json"
+  },
+  "export": {
+    "file_path": "assets/art/backgrounds/school/bg_school_common.webp",
+    "sha256": "5a28cd5fbcabb82ab240f43029f216b52148f5a82b9012ed99cd2123bdd9ab51",
+    "format": "WEBP",
+    "width": 1672,
+    "height": 941,
+    "alpha": false,
+    "import_profile": "Godot default Texture2D import; runtime import readback pending"
+  },
+  "license": {
+    "status": "REVIEW_REQUIRED",
+    "evidence": "Generated source candidate; release-rights promotion remains unverified.",
+    "credit_required": false,
+    "modification_allowed": true,
+    "redistribution_allowed": false
+  },
+  "status": "EXPORTED_CANDIDATE",
+  "approved_by": "User preauthorized automatic image candidates on 2026-08-26",
+  "approved_at": "2026-08-26",
+  "used_in_screens": [
+    "FirstSessionClassScene / EnvironmentBackground (planned)"
+  ],
+  "runtime_validation": "NOT_RUN"
+}

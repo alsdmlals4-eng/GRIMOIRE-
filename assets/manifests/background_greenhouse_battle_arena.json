@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "asset_id": "bg_greenhouse_battle_arena",
+  "role": "First-session greenhouse battle environment background.",
+  "decision_ids": [
+    "GM-FROSTBLOOM-FIRST-SESSION-ENVIRONMENT-CONSUMERS-01",
+    "ART-STYLE-01",
+    "GM-VISUAL-DIRECTION-20260825-01"
+  ],
+  "source": {
+    "storage": "GENERATED_CANDIDATE",
+    "file_id_or_path": "assets/art/source_candidates/first_session_01/backgrounds/greenhouse/bg_greenhouse_battle_arena_candidate_01.png",
+    "sha256": "982e3f07a432cf7fc80dbbe48dac95571a09d4563843dd09f39e1f43dcaed9c5",
+    "tool": "Codex built-in image generation edit",
+    "owner": "User-preauthorized GPT Work visual production",
+    "prompt_or_brief_path": "docs/planning/visual/generated_sources/FIRST_SESSION_BG_GREENHOUSE_BATTLE_ARENA_CANDIDATE_01_2026-08-26.json"
+  },
+  "export": {
+    "file_path": "assets/art/backgrounds/greenhouse/bg_greenhouse_battle_arena.webp",
+    "sha256": "d08d55a7dbaf34a4674a80756befbe89879517b81e7a09ce6812abd295d6ab23",
+    "format": "WEBP",
+    "width": 1672,
+    "height": 941,
+    "alpha": false,
+    "import_profile": "Godot default Texture2D import; runtime import readback pending"
+  },
+  "license": {
+    "status": "REVIEW_REQUIRED",
+    "evidence": "Generated source candidate; release-rights promotion remains unverified.",
+    "credit_required": false,
+    "modification_allowed": true,
+    "redistribution_allowed": false
+  },
+  "status": "EXPORTED_CANDIDATE",
+  "approved_by": "User preauthorized automatic image candidates on 2026-08-26",
+  "approved_at": "2026-08-26",
+  "used_in_screens": [
+    "FrostbloomBattleScene / EnvironmentBackground (planned)"
+  ],
+  "runtime_validation": "NOT_RUN"
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "asset_id": "bg_greenhouse_field_base",
+  "role": "First-session guided practicum and greenhouse investigation/return environment background.",
+  "decision_ids": [
+    "GM-FROSTBLOOM-FIRST-SESSION-ENVIRONMENT-CONSUMERS-01",
+    "ART-STYLE-01",
+    "GM-VISUAL-DIRECTION-20260825-01"
+  ],
+  "source": {
+    "storage": "GENERATED_CANDIDATE",
+    "file_id_or_path": "assets/art/source_candidates/first_session_01/backgrounds/greenhouse/bg_greenhouse_field_base_candidate_01.png",
+    "sha256": "154bdef3182f2eccf8f90ac2b0b42f844aa7ae52ac47363f468077483af4e67f",
+    "tool": "Codex built-in image generation",
+    "owner": "User-preauthorized GPT Work visual production",
+    "prompt_or_brief_path": "docs/planning/visual/generated_sources/FIRST_SESSION_BG_GREENHOUSE_FIELD_BASE_CANDIDATE_01_2026-08-26.json"
+  },
+  "export": {
+    "file_path": "assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp",
+    "sha256": "f7e52d06c80785eef08d4cce16c45292ad66293d0f6670d7c729f8ae50c977b4",
+    "format": "WEBP",
+    "width": 1672,
+    "height": 941,
+    "alpha": false,
+    "import_profile": "Godot default Texture2D import; runtime import readback pending"
+  },
+  "license": {
+    "status": "REVIEW_REQUIRED",
+    "evidence": "Generated source candidate; release-rights promotion remains unverified.",
+    "credit_required": false,
+    "modification_allowed": true,
+    "redistribution_allowed": false
+  },
+  "status": "EXPORTED_CANDIDATE",
+  "approved_by": "User preauthorized automatic image candidates on 2026-08-26",
+  "approved_at": "2026-08-26",
+  "used_in_screens": [
+    "FirstSessionPracticumScene / EnvironmentBackground (planned)",
+    "FrostbloomInvestigationScene / EnvironmentBackground (planned)"
+  ],
+  "runtime_validation": "NOT_RUN"
+}
