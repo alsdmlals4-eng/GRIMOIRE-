@@ -295,9 +295,9 @@ Use this as the first instruction in the GRIMOIRE Work workspace if a concise re
 
 이 handoff 이후 다음 Work action은 **IMG-02 · `bg_school_common` 텍스트 Brief 제시**다. 이미지 생성, Godot 구현, Task8 복구는 자동으로 시작하지 않는다.
 
-## 15. 2026-08-26 IMG-01 Codex Runtime Integration Receipt
+## 15. 2026-08-26 IMG-01 Codex Runtime Integration · Current Main Receipt
 
-사용자는 IMG-01 6종의 구현을 명시 승인했고, GitHub Issue [#179](https://github.com/alsdmlals4-eng/GRIMOIRE-/issues/179)로 범위를 고정했다. 구현 후보는 `codex/img-01-glyph-integration` 격리 브랜치에 있다.
+사용자는 IMG-01 6종의 구현을 명시 승인했고, GitHub Issue [#179](https://github.com/alsdmlals4-eng/GRIMOIRE-/issues/179)로 범위를 고정했다. 구현과 후속 표시 보정은 PR [#180](https://github.com/alsdmlals4-eng/GRIMOIRE-/pull/180), [#182](https://github.com/alsdmlals4-eng/GRIMOIRE-/pull/182), [#184](https://github.com/alsdmlals4-eng/GRIMOIRE-/pull/184)를 통해 main에 병합됐다.
 
 구현됨:
 
@@ -309,12 +309,13 @@ Use this as the first instruction in the GRIMOIRE Work workspace if a concise re
 
 자동 검증됨:
 
-- Godot 4.7.2 headless SceneTree: 44 suites, 1,890 assertions, 0 failures.
+- Godot 4.7.2 headless SceneTree: 44 suites, 1,906 assertions, 0 failures.
 - resolver direct ID, `AMPLIFY → BURST` 시각 호환, Task6 preview, Task7 card, Main/희소 Aux board binding 및 display-only 계약을 테스트했다.
-- 4개 신규 manifest export SHA-256과 512×512 PNG RGBA 기록은 별도 provenance manifest에 보존된다.
+- 6개 manifest export SHA-256과 512×512 PNG RGBA 기록은 별도 provenance manifest에 보존된다.
+- main Runtime에서 1280×720 glyph overlay capture를 확보했다. 이는 48/64/96px 가독성 또는 기기·성능 검증을 대체하지 않는다.
 
 아직 검증하지 않음:
 
-- 편집기에서의 실제 runtime screenshot, 48/64/96px 가독성, 1280×720/1920×1080 capture, 기기, 성능, export, 전체 세로 슬라이스.
+- 48/64/96px 가독성, 1920×1080 capture, 기기, 성능, export, 전체 세로 슬라이스.
 
-다음 gate는 구현 PR 검토다. 위 미검증 항목을 PASS로 승격하지 않는다.
+현재 이미지 생산의 다음 gate는 IMG-02의 `bg_school_common` 텍스트 Brief 제시와 명시 생성 승인이다. 위 IMG-01 미검증 항목을 PASS로 승격하지 않는다.
