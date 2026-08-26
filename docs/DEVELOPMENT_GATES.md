@@ -176,7 +176,7 @@ exact requested GRIMOIRE project/worktree
 
 ## Gate 5 — Product Root / Task9
 
-현재 `project.godot` Main Scene은 `res://src/ui/star_circuit_harness.tscn`, 역할은 `DEVELOPMENT_RUNTIME_POC_ENTRY`다. Star Harness를 삭제하지 않지만 완성 제품 Root로도 승격하지 않는다.
+현재 `project.godot` Main Scene은 `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`, 역할은 `DEVELOPMENT_PRODUCT_ROOT_ENTRY`다. Star Harness는 삭제하지 않고 별도 POC 장면으로 보존한다. 이는 완성 제품 전체 승격을 뜻하지 않는다.
 
 Task9은 다음 matrix와 3-stage E2E를 소유한다.
 

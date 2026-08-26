@@ -78,7 +78,7 @@ No additional image, sound, or VFX input blocks this slice. Existing approved as
 
 - GitHub Issue: #191
 - Implemented: `SpellWorkflowProductRoot`, real mouse/touch stroke collection, explicit recognised-candidate selection, existing Task6/7/8 surface orchestration, two non-ranked target choices, result receipt hand-off, and root-flow deterministic coverage.
-- Exact automated evidence on this branch: custom runner `47 suites / 1,966 assertions / 0 failures`; GUT `8 passing tests`.
+- Exact automated evidence on this branch: custom runner `47 suites / 1,968 assertions / 0 failures`; GUT `8 passing tests`.
 - Runtime evidence: Godot AI v3.2 ran `spell_workflow_product_root.tscn`; the authority path produced `VAULT_GLYPH_CREATED → CIRCUIT_PREVIEW_READY → PREPARED → FINAL_PREVIEW_READY → USED → RESULT` with no task-related launch error.
-- Entry-point status: the Product Root runs as an explicit Godot scene. The live editor rejected programmatic mutation of `application/run/main_scene`; the existing development harness remains the project default. This safety refusal is not bypassed and is not represented as a completed entry-point change.
+- Entry-point status: `application/run/main_scene` was set through the live Godot editor UI to `res://src/ui/spell_workflow/spell_workflow_product_root.tscn` (stored as `uid://dj14w6clxafqv`). A `project_run(mode="main")` readback loaded `SpellWorkflowProductRoot` with a live helper and no task-related launch error. The existing Star Harness remains a separate POC scene.
 - Evidence ceiling remains machine-only. Human usability, player experience, device, performance, and shipping-export validation are not run.

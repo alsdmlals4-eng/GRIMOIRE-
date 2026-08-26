@@ -107,8 +107,8 @@ commit: EXPLICIT_EXACTLY_ONCE
 ## Godot 현실
 
 - 프로젝트 파일: `project.godot`
-- 현재 Main Scene: `res://src/ui/star_circuit_harness.tscn`
-- Main Scene 역할: `DEVELOPMENT_RUNTIME_POC_ENTRY`
+- 현재 Main Scene: `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`
+- Main Scene 역할: `DEVELOPMENT_PRODUCT_ROOT_ENTRY`
 - 권장 엔진 계열: Godot `4.7.1`
 - Renderer: GL Compatibility
 

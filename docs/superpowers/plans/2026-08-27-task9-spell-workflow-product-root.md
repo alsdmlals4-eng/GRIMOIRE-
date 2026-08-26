@@ -130,9 +130,9 @@ func test_root_does_not_advance_for_missing_target_or_invalid_circuit() -> void:
 - Consumes the root scene and existing safe-root checks.
 - Produces `res://src/ui/spell_workflow/spell_workflow_product_root.tscn` as development entry and evidence-correct Task8/Task9 status.
 
-- [ ] Write and run a failing assertion that `project.godot` names the product-root scene rather than `star_circuit_harness.tscn`.
-- [ ] Set the main scene through Godot editor; update only current status/provenance documentation, preserving historical records and `NOT_RUN` evidence layers.
-- [ ] Run the full deterministic suite and GUT; record exact counts.
+- [x] Add and run an assertion that `project.godot` names the product-root scene rather than `star_circuit_harness.tscn`.
+- [x] Set the main scene through Godot editor; update only current status/provenance documentation, preserving historical records and `NOT_RUN` evidence layers.
+- [x] Run the full deterministic suite and GUT; record exact counts.
 - [ ] Commit only these intentional files with `docs: record Task9 workflow entry`.
 
 ### Task 5: Exact-head QA, review, merge, and Notion readback

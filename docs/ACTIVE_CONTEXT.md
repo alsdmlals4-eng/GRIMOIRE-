@@ -123,7 +123,7 @@ android_device: NOT_RUN
 
 ## 현재 제품 현실
 
-Frostbloom 00~46분 첫 세션 기획은 완료됐지만 제품 구현은 `PARTIAL_FOUNDATION`이다. 현재 `project.godot` 기본 실행점은 `res://src/ui/star_circuit_harness.tscn`이며 역할은 `DEVELOPMENT_RUNTIME_POC_ENTRY`다. 완성형 첫 세션 Product Root로 승격하지 않는다.
+Frostbloom 00~46분 첫 세션 기획은 완료됐지만 제품 구현은 `PARTIAL_FOUNDATION`이다. 현재 `project.godot` 기본 실행점은 `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`이며 역할은 `DEVELOPMENT_PRODUCT_ROOT_ENTRY`다. 기존 Star Harness는 삭제하지 않고 별도 POC 장면으로 보존한다. 이는 완성형 첫 세션 전체 승격을 뜻하지 않는다.
 
 Star Circuit Runtime과 Component Sheets A–D에는 자동화/렌더 evidence가 있다. 이 component evidence와 전체 제품 상태를 혼동하지 않는다. `FULL_VERTICAL_SLICE_NOT_RUN`, `HUMAN_NOT_RUN`, `DEVICE_NOT_RUN`, `PERFORMANCE_NOT_RUN`은 유지한다.
 
