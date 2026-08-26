@@ -459,14 +459,14 @@ func _auxiliary_special(glyph_id: StringName) -> StringName:
 
 
 func _refresh_selection_ui() -> void:
-    _set_button_text("SafeArea/CenterGlyph", "MAIN\n%s" % String(GLYPH_IDS[_main_index]))
+    _set_button_text("SafeArea/CenterGlyph", "")
     var masteries: Dictionary = {GLYPH_IDS[_main_index]: 70}
     for slot in range(_auxiliary_indices.size()):
         var glyph_index := _auxiliary_indices[slot]
         var text := "A%s\nEMPTY" % slot
         if glyph_index >= 0:
             var glyph_id := GLYPH_IDS[glyph_index]
-            text = "A%s\n%s" % [slot, String(glyph_id)]
+            text = ""
             masteries[glyph_id] = 70
         _set_button_text("SafeArea/StarVertices/Vertex%s" % slot, text)
     var lines: Array[String] = ["Mastery"]

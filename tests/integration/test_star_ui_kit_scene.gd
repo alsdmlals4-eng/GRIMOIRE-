@@ -75,6 +75,7 @@ func run(case) -> void:
         var aux_one_texture := glyph_board.get_node_or_null("GlyphVisuals/AuxGlyphTexture1") as TextureRect
         var center_name := glyph_board.get_node_or_null("GlyphVisuals/CenterGlyphNameLabel") as Label
         var aux_zero_name := glyph_board.get_node_or_null("GlyphVisuals/AuxGlyphNameLabel0") as Label
+        var glyph_visuals := glyph_board.get_node_or_null("GlyphVisuals") as Control
         case.assert_equal(&"HEAT", harness_glyph_visuals.get("main_glyph_id", &""), "Harness binds the default HEAT Main glyph to the board")
         case.assert_equal(&"FLOW", Dictionary(harness_glyph_visuals.get("auxiliary_by_slot", {})).get(0, &""), "Harness binds the default FLOW Aux glyph to the board")
         case.assert_true(center_texture != null and center_texture.texture != null, "Harness renders the HEAT glyph texture")
@@ -82,6 +83,10 @@ func run(case) -> void:
         case.assert_true(aux_one_texture != null and aux_one_texture.texture == null, "Harness leaves the empty A1 glyph slot unbound")
         case.assert_equal("열기", center_name.text if center_name != null else "", "Harness renders the Korean Main glyph label")
         case.assert_equal("흐름", aux_zero_name.text if aux_zero_name != null else "", "Harness renders the Korean Aux glyph label")
+        case.assert_true(glyph_visuals != null and glyph_visuals.z_index > 0, "Harness glyph visuals render above filled slot frames")
+        case.assert_equal(Control.MOUSE_FILTER_IGNORE, glyph_visuals.mouse_filter if glyph_visuals != null else -1, "Harness glyph visuals do not intercept slot input")
+        case.assert_false(center_texture.get_rect().intersects(center_name.get_rect()), "Harness Main glyph name does not overlap its stroke")
+        case.assert_false(aux_zero_texture.get_rect().intersects(aux_zero_name.get_rect()), "Harness Aux glyph name does not overlap its stroke")
 
     var main_slot := harness.get_node_or_null("SafeArea/CenterGlyph") as Button
     case.assert_true(main_slot != null, "Main glyph slot remains available")
@@ -89,6 +94,7 @@ func run(case) -> void:
         case.assert_equal(&"GlyphSlotMain", main_slot.theme_type_variation, "Main glyph uses shared main slot variation")
         case.assert_true(main_slot.custom_minimum_size.x >= 48.0, "Main glyph touch width remains at least 48")
         case.assert_true(main_slot.custom_minimum_size.y >= 48.0, "Main glyph touch height remains at least 48")
+        case.assert_equal("", main_slot.text, "Occupied Main slot leaves glyph naming to the live overlay")
 
     for index in range(5):
         var slot := harness.get_node_or_null("SafeArea/StarVertices/Vertex%s" % index) as Button
@@ -97,6 +103,10 @@ func run(case) -> void:
             case.assert_equal(&"GlyphSlot", slot.theme_type_variation, "Auxiliary slot %s uses shared variation" % index)
             case.assert_true(slot.custom_minimum_size.x >= 48.0, "Auxiliary slot %s touch width remains at least 48" % index)
             case.assert_true(slot.custom_minimum_size.y >= 48.0, "Auxiliary slot %s touch height remains at least 48" % index)
+            if index == 0:
+                case.assert_equal("", slot.text, "Occupied A0 slot leaves glyph naming to the live overlay")
+            if index == 1:
+                case.assert_equal("A1\nEMPTY", slot.text, "Empty A1 slot keeps its existing affordance")
 
     var board = harness.get_node_or_null("SafeArea/StarBoard")
     if board != null and board.has_method("visual_snapshot"):
