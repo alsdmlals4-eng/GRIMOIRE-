@@ -27,13 +27,17 @@ CURRENT_AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE_SY
 DECISION = "GM-CONTRACT-V4-5-BINDING-01"
 SYNC_ID = "GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING"
 V48_DECISION = "GM-CONTRACT-V4-8-BINDING-01"
-V48_SYNC_ID = "GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC"
+V48_PREDECESSOR_SYNC_ID = "GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC"
+V48_CURRENT_SYNC_ID = "GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE"
+V48_CURRENT_REVISION = "2026-08-26-r5.4-superset-final"
 BASE_CURRENT_OBSERVED = "315c66eea9614c284b9c11c4d522141065dfa4b0"
 BASE_SOURCE_SNAPSHOT = "7ce3fb64fa6303c5da6c7fc27c979f7233b761ac"
 TASK7 = "TASK7_MERGED_MAIN_VERIFIED"
 TASK8_PRODUCT = "TASK8_SPELL_USE_SCREEN"
 TASK8_STATUS = "TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING"
 TASK8_GATE = "TASK8_RECEIPT_HERA_REVIEW_PR"
+TASK8_RECOVERY_PREDECESSOR = "TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED"
+TASK8_CURRENT_SUBGATE = "TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED"
 HERA_PASS = "HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS"
 SHARED_CORE_PASS = "WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS"
 
@@ -69,24 +73,32 @@ class V45ContractBindingTests(unittest.TestCase):
         self.assertIn(HERA_PASS, text)
         self.assertIn(SHARED_CORE_PASS, text)
 
-    def test_active_human_surfaces_promote_v48_and_quarantine_v45_snapshots(self) -> None:
+    def test_active_human_surfaces_promote_r54_and_quarantine_v45_snapshots(self) -> None:
         self.assertTrue(BINDING_V48.exists(), BINDING_V48)
         v48 = BINDING_V48.read_text(encoding="utf-8")
         self.assertIn("contract_version: '4.8'", v48)
+        self.assertIn(f"revision: '{V48_CURRENT_REVISION}'", v48)
         self.assertIn(V48_DECISION, v48)
-        self.assertIn(V48_SYNC_ID, v48)
+        self.assertIn(V48_CURRENT_SYNC_ID, v48)
+        self.assertIn(V48_PREDECESSOR_SYNC_ID, v48)
+        self.assertIn(f"task8_recovery_predecessor_gate: {TASK8_RECOVERY_PREDECESSOR}", v48)
+        self.assertIn(f"task8_recovery_subgate: {TASK8_CURRENT_SUBGATE}", v48)
+        self.assertNotIn("current_product_next_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", v48)
         self.assertNotIn("## 7. 현재 승인 실행 패키지", v48)
-        self.assertIn("## 7. v4.8 전환 delivery provenance", v48)
-        self.assertIn("current_product_next_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", v48)
+        self.assertIn("## 8. r5.4 reconciliation delivery provenance", v48)
 
         for path in ACTIVE_DOCS:
             text = path.read_text(encoding="utf-8")
             self.assertIn("PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8", text, str(path))
+            self.assertIn(f"contract_revision: {V48_CURRENT_REVISION}", text, str(path))
             self.assertIn(V48_DECISION, text, str(path))
-            self.assertIn(V48_SYNC_ID, text, str(path))
+            self.assertIn(V48_CURRENT_SYNC_ID, text, str(path))
+            self.assertIn(V48_PREDECESSOR_SYNC_ID, text, str(path))
             self.assertIn(TASK7, text, str(path))
             self.assertIn(TASK8_STATUS, text, str(path))
             self.assertIn(TASK8_GATE, text, str(path))
+            self.assertIn(TASK8_RECOVERY_PREDECESSOR, text, str(path))
+            self.assertIn(TASK8_CURRENT_SUBGATE, text, str(path))
             self.assertNotIn("active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, str(path))
 
         combined_legacy = "\n".join(path.read_text(encoding="utf-8") for path in LEGACY_COMPAT_DOCS)

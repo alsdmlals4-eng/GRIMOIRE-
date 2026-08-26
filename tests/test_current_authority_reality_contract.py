@@ -100,6 +100,8 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertNotIn("parallel_open_pr: NONE", active)
         self.assertNotIn("PR151_DO_NOT_TOUCH", active)
         self.assertNotIn("PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft", active)
+        self.assertNotIn("authority_sync_pr: CURRENT_TASK_PR_PENDING", active)
+        self.assertIn("authority_sync_pr_predecessor: 158", active)
         self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", active)
         self.assertIn("FULL_VERTICAL_SLICE_NOT_RUN", active)
 
@@ -114,14 +116,15 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
 
     def test_active_entry_docs_bind_v48_without_pinning_transient_state(self) -> None:
         expected_contract = "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8"
+        expected_revision = "2026-08-26-r5.4-superset-final"
         binding_path = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md"
         self.assertTrue(binding_path.is_file())
         binding = binding_path.read_text(encoding="utf-8")
         self.assertIn("contract_version: '4.8'", binding)
-        self.assertIn("revision: '2026-08-24-r2'", binding)
+        self.assertIn(f"revision: '{expected_revision}'", binding)
         self.assertIn("THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON", binding)
         self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", binding)
-        self.assertIn("LOCAL_SYNC: BLOCKED_NO_LOCAL_ACCESS", binding)
+        self.assertIn("LOCAL_SYNC: NOT_RUN / BLOCKED_NO_LOCAL_ACCESS", binding)
 
         required_active_docs = [
             "AGENTS.md",
@@ -131,11 +134,14 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         for relative_path in required_active_docs:
             text = (ROOT / relative_path).read_text(encoding="utf-8")
             self.assertIn(expected_contract, text, relative_path)
+            self.assertIn(f"contract_revision: {expected_revision}", text, relative_path)
             self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", text, relative_path)
             self.assertIn("open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED", text, relative_path)
             self.assertIn("local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED", text, relative_path)
             self.assertIn("authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS", text, relative_path)
             self.assertIn("authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS", text, relative_path)
+            self.assertIn("authority_sync_pr_predecessor: 158", text, relative_path)
+            self.assertNotIn("authority_sync_pr: CURRENT_TASK_PR_PENDING", text, relative_path)
             self.assertNotIn("active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5", text, relative_path)
             self.assertNotIn("current_task_pr:", text, relative_path)
             self.assertNotIn("parallel_open_pr: NONE", text, relative_path)
@@ -150,7 +156,6 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertNotIn("parallel_open_pr: PR151_DO_NOT_TOUCH", start)
         self.assertIn("component_sheet_pr151: MERGED_MAIN_VERIFIED", start)
         for text in (agents, start, active):
-            self.assertIn("authority_sync_pr: 158", text)
             normalized = text.lower().replace("_", " ")
             self.assertIn("historical compatibility", normalized)
             self.assertIn("CURRENT_CONFIRMED_DECISIONS.md", text)

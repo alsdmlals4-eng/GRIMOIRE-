@@ -4,14 +4,15 @@
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
 active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8
+contract_revision: 2026-08-26-r5.4-superset-final
 contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
-contract_binding_sync: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
 historical_contract_binding: GM-CONTRACT-V4-5-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
-current_state_sync_predecessor: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
-current_authority_sync: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
-authority_sync_pr: 158
+current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+authority_sync_pr_predecessor: 158
+current_authority_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
 task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
@@ -21,6 +22,14 @@ adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
+current_user_work_scope: VISUAL_ASSET_COVERAGE_AND_NEXT_SINGLE_VISUAL_BRIEF
+product_implementation_authorized_by_current_user_work_scope: false
+visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
+visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
+visual_generation_state: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL
+visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
+representative_screen_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
+art_style_lock: ART-STYLE-01
 workspace_human_canon: NOTION_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
@@ -29,6 +38,7 @@ repo_wide_actions_full_sha: PASS
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
+next_product_task: TASK8_SPELL_USE_SCREEN
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
@@ -68,15 +78,31 @@ android_export: NOT_RUN
 android_device: NOT_RUN
 ```
 
-`authority_sync_local_observation` / `authority_sync_godot_observation`은 Sync35 시점의 역사 관찰값이며 현재 executor 사실을 덮어쓰지 않는다. 현재 로컬 Task8 존재·보존 상태는 별도 `task8_recovery_state`가 소유한다.
+`authority_sync_local_observation` / `authority_sync_godot_observation`은 이전 authority sync 당시의 역사 관찰값이다. 현재 로컬 Task8 존재·보존 상태는 별도 `task8_recovery_state`가 소유하며, 이번 Visual work unit은 로컬 Godot/Task8 실행을 수행하지 않았다.
+
+## 현재 사용자 작업 범위
+
+2026-08-26 사용자가 `작업재개`를 명시했고, 이어 이전 감사에서 권장한 A안에 `진행해`라고 continuation을 승인했다.
+
+```text
+r5.4 authority reconciliation
+→ Visual Asset Coverage preflight
+→ 다음 정확히 1장 Text Brief
+```
+
+따라서 현재 범위는 `VISUAL_ASSET_COVERAGE_AND_NEXT_SINGLE_VISUAL_BRIEF`다.
+
+- Task8/Godot 제품 구현: **NOT_AUTHORIZED_BY_CURRENT_WORK_SCOPE**
+- `TASK8_SPELL_USE_SCREEN`: 다음 제품 task locator일 뿐 현재 구현 권한이 아님
+- 이미지 생성: **TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL**
+- Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
+- unrelated open PR: **READ_ONLY**
 
 ## 현재 제품 현실
 
 Frostbloom 00~46분 첫 세션 기획은 완료됐지만 제품 구현은 `PARTIAL_FOUNDATION`이다. 현재 `project.godot` 기본 실행점은 `res://src/ui/star_circuit_harness.tscn`이며 역할은 `DEVELOPMENT_RUNTIME_POC_ENTRY`다. 완성형 첫 세션 Product Root로 승격하지 않는다.
 
 Star Circuit Runtime과 Component Sheets A–D에는 자동화/렌더 evidence가 있다. 이 component evidence와 전체 제품 상태를 혼동하지 않는다. `FULL_VERTICAL_SLICE_NOT_RUN`, `HUMAN_NOT_RUN`, `DEVICE_NOT_RUN`, `PERFORMANCE_NOT_RUN`은 유지한다.
-
-`authority_sync_pr: 158`은 v4.8 authority transition provenance다. PR의 draft/ready/merged lifecycle과 현재 open PR 집합은 이 active context에 고정하지 않고 live GitHub에서 읽는다.
 
 ## Workspace authority
 
@@ -92,7 +118,101 @@ Google Sheets
 → NO_NEW_CANON_WRITES
 ```
 
-신규 승인/상태는 Sheet에 쓰지 않는다. 2026-08-24 fresh Sheet readback은 v4.5-era main/Task8 상태를 current처럼 표시해 GitHub/Notion current authority와 drift가 확인됐다. 이 drift는 감사 evidence이며 Sheet를 다시 current canon writer로 승격하지 않는다.
+Google Sheet의 기존 visual/image inventory와 asset cap은 이번 r5.4 Coverage에서 고유한 역사 범위를 복구하는 **migration compatibility input**으로만 읽었다. 현재 Visual Coverage owner는 GitHub `docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json` + Notion Visual Bible이다.
+
+## 현재 Visual authority
+
+```yaml
+base_style_lock:
+  decision: ART-STYLE-01
+  name: Soft Storybook Cel 2D Hybrid
+  source_edit_regenerate_recompose: PROHIBITED_WITHOUT_EXPLICIT_USER_OVERRIDE
+current_overlay:
+  decision: GM-VISUAL-DIRECTION-20260825-01
+  logo: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
+  style: MAGIC_ANIME_EMPHASIS_OVER_STORYBOOK_ENVIRONMENT
+representative_screen_boundary:
+  decision: GM-REPRESENTATIVE-SCREENS-20260825-01
+  dialogue: APPROVED_REFERENCE
+  battle_spell_mood_and_composition: APPROVED_REFERENCE
+  battle_spell_system_ui: REWORK_REQUIRED_AGAINST_CURRENT_CANON
+movement:
+  previous_3d_like_presentation: USER_REJECTED
+  current_direction: SIMPLE_2D_MOVEMENT_OR_SCENE_TRANSITION
+```
+
+Current coverage summary:
+
+```text
+REUSE
+- Logo 01 / approved style
+- Component Sheets A–D / semantic UI family
+
+ADAPT
+- dialogue
+- glyph drawing
+- typed glyph Vault/Stock presentation
+- feedback/VFX
+- Result/Grimoire
+- simple 2D movement/scene transition
+- initial companion
+- font/icon support
+
+CREATE
+- FIVE_POINT_STAR → Prepared Spell Stage2 representative visual
+- Frostbloom environment candidates
+- first-session character half-body set
+- Frostbloom focal threat/entity
+
+DEFER
+- Task8 Stage3 final use representative visual
+- store/key art
+- long-term companion growth forms
+
+CUT
+- new 3D exploration asset family
+- current Slice multi-enemy wave asset family
+- baked functional text/numbers/state truth
+```
+
+## 다음 정확히 한 장의 Visual Text Brief
+
+3개 유효 대안을 비교했다.
+
+A. Glyph Drawing + Vault — direct-writing fantasy는 강하지만 Task6/current reference로 coverage가 상대적으로 높음.
+
+B. **Typed Glyph Vault/Stock → FIVE_POINT_STAR → Prepared Spell** — 승인 battle/spell 시안에서 확인된 Stock/circuit semantic rework gap을 가장 직접적으로 닫음.
+
+C. Prepared Spell → Target → Final Preview → Use — 중요한 P0이지만 Task8 product screen이 current main에 없어 지금 고정하면 재작업 위험이 더 큼.
+
+**Selected: B**
+
+```yaml
+brief_id: GR-VISUAL-BRIEF-STAGE2-STOCK-CIRCUIT-20260826-01
+status: TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL
+aspect: 16:9 LANDSCAPE
+result_count: 1
+```
+
+Composition:
+
+1. left Source Rail — exact Vault와 typed Glyph Stock을 서로 다른 출처로 구분
+2. center — FIVE_POINT_STAR, 중앙 Main 1 + 외곽 보조 0~5 동일 위상
+3. right — circuit Preview + Prepared Spell 상태까지만 표시
+4. 온실/사건 scene context는 UI 뒤에서도 유지
+
+Required semantics:
+
+- Stock is typed glyph source, not completed spell
+- no hidden position bonus
+- no auto target
+- no auto commit
+- Stage2 prepares spell before Stage3 target/use
+- reserved/consumed/unavailable states use icon/shape/text redundancy, not color only
+
+Functional success rate, Mana, target, arbitrary names/dialogue/costs/button copy는 이미지에 굽지 않는다. 필요한 최소 concept label만 `보관 글자 / 주문 회로 / 준비 주문`을 사용할 수 있다.
+
+r5.4 conversation gate에 따라 이 Text Brief 뒤에는 **STOP**한다. 사용자 명시 생성 승인 뒤 정확히 1장 생성한다.
 
 ## Spell Workflow
 
@@ -113,6 +233,7 @@ task7:
   pr: 110
   merge: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
   status: TASK7_MERGED_MAIN_VERIFIED
+next_product_task: TASK8_SPELL_USE_SCREEN
 ```
 
 Task8은 기존 Task5 Stage3 authority의 thin UI consumer다. 새 Mana/inventory/result/rollback/transaction authority를 만들지 않는다.
@@ -151,9 +272,11 @@ current_execution_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 
 따라서 `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`와 candidate-preservation gate는 닫혔다. compatibility consumer 검색을 위해 locator 문자열은 보존하지만 current gate로 재해석하지 않는다. 보존 성공을 current-main 호환성이나 fresh HiGodot/GUT/Hera PASS로 승격하지 않는다.
 
-다음 작업은 역사 worktree에 pull/rebase/clean을 하지 않고 fresh `origin/main`에서 별도 clean reconciliation worktree를 만드는 것이다. 이후 exact-project HiGodot readback을 거쳐 primary v2를 우선 복구하고 secondary는 parity evidence로만 비교한다.
+제품 구현이 다시 명시적으로 승인되면 역사 worktree에 pull/rebase/clean을 하지 않고 fresh `origin/main`에서 별도 clean reconciliation worktree를 만든다. 이후 exact-project HiGodot readback을 거쳐 primary v2를 우선 복구하고 secondary는 parity evidence로만 비교한다.
 
-## Sync21 continuation / executor boundary
+## Sync21 continuation / executor boundary — historical compatibility anchors
+
+아래 문자열은 과거 handoff 탐색과 machine consumer compatibility를 위해 보존한다. r5.4의 current GPT→local Codex 운영 방식으로 재승격하지 않는다.
 
 ```text
 GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
@@ -166,7 +289,7 @@ DO_NOT_RETRY_BLOCKED_REMOTE_CHECK_IN_CODEX
 FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
 ```
 
-Remote authority readback은 local worktree/HEAD/HiGodot evidence를 대체하지 않는다. 세션 재생성·identity 불명확·capability boundary를 넘으면 fresh PowerShell bootstrap을 사용한다.
+Remote authority readback은 local worktree/HEAD/HiGodot evidence를 대체하지 않는다. 현재 r5.4의 local Codex policy는 retired이며, 위 문자열은 current orchestration instruction이 아니라 historical locator다.
 
 ## Base proposal / learning closure provenance
 
@@ -179,20 +302,20 @@ base_implementation_authority: BASE_IMPLEMENTATION_AUTHORITY_NOT_GRANTED_IN_THIS
 learning_closure: LEARNING_CLOSURE_OPEN_COUNT = 0
 ```
 
-이 값들은 Sync21 handoff가 닫은 역사 provenance이며 v4.8 전환이 새로운 Base implementation authority를 부여하지 않는다.
+이 값들은 Sync21 handoff가 닫은 역사 provenance이며 r5.4 전환이 새로운 Base implementation authority를 부여하지 않는다.
 
 ## Tool authority
 
-- HiGodot/Godot AI `v3.1.4`: project-authorized persistent Godot authoring authority.
-- GUT `v9.7.1`: deterministic GDScript test authority.
-- Hera `v1.0.0`: live QA/observability only; persistent source mutation 금지.
+- Historical project tool provenance: HiGodot/Godot AI `v3.1.4`, GUT `v9.7.1`, Hera `v1.0.0`.
+- r5.4는 project-specific local Codex home/binary/port를 current invariant로 사용하지 않는다.
+- 실제 shared Godot/Godot AI runtime/session readiness는 fresh local executor/session readback 없이 주장하지 않는다.
 - historical live receipts는 현재 local readiness를 자동 증명하지 않는다.
 
-## PR #151 / authority sync provenance
+## PR #151 / current open PR boundary
 
-PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 current-main 역사다. 더 이상 `DO_NOT_TOUCH` open-work가 아니다. Component Sheet A–D와 semantic UI pack은 병합된 사실로 읽되, 이것이 Task8 또는 Human/Device/Performance/Full Slice PASS를 의미하지 않는다.
+PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 current-main 역사다. Component Sheet A–D와 semantic UI pack은 병합된 사실로 읽되, 이것이 Task8 또는 Human/Device/Performance/Full Slice PASS를 의미하지 않는다.
 
-v4.8 authority 전환은 PR #158이 추적한다. 해당 PR의 lifecycle과 현재 open PR 집합은 live GitHub가 소유하며 이 문서에는 번호와 sync provenance만 보존한다.
+2026-08-26 r5.4 work 시작 시 live open PR은 PR #166 하나이며 `README.md`만 변경하는 Draft other-workstream이다. `OPEN_PR_READ_ONLY_BY_DEFAULT`로 유지하고 이번 current-task branch에 흡수하지 않는다.
 
 ## v4.8 migration / legacy snapshot boundary
 
@@ -201,15 +324,17 @@ v4.8 authority 전환은 PR #158이 추적한다. 해당 PR의 lifecycle과 현�
 현재 authority chain:
 
 ```text
-AGENTS.md
+사용자 최신 지시
+→ AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
 → docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
+→ docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 → task/domain-specific current owner
 → actual code/data/Scene/Resource/Test/runtime evidence
 ```
 
-## 현재 다음 제품 순서
+## 제품 구현을 다시 시작할 때의 순서
 
 ```text
 1. TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
@@ -235,6 +360,7 @@ HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 AUDIO_VAULT_PATH_UNVERIFIED
 AUDIO_RIGHTS_UNVERIFIED
 VISUAL_AUDIO_COMPLETE_NOT_PROVEN
+RUNTIME_VISUAL_COMPLETE_NOT_PROVEN
 HUMAN_NOT_RUN
 DEVICE_NOT_RUN
 PERFORMANCE_NOT_RUN
