@@ -11,6 +11,8 @@ contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
+current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+authority_sync_pr_predecessor: 158
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
@@ -31,6 +33,7 @@ logo_direction: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
+next_product_task: TASK8_SPELL_USE_SCREEN
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
@@ -39,6 +42,10 @@ task8_remote_product_branch: NOT_PRESENT
 task8_remote_product_pr: NONE
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
+gut_status: GUT_FORMALLY_ADOPTED
+local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
+authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
+authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -50,7 +57,7 @@ android_device: NOT_RUN
 
 `v4.8 r5.4 / GM-CONTRACT-V4-8-BINDING-01`이 현재 프로젝트 실행 계약이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
 
-이번 `작업재개 → 진행해`는 **Visual/Image/Asset planning continuation**이다. Task8/Godot 제품 구현은 사용자가 구현 작업을 명시적으로 재개하기 전까지 시작하지 않는다.
+이번 `작업재개 → 진행해`는 **Visual/Image/Asset planning continuation**이다. Task8/Godot 제품 구현은 사용자가 구현 작업을 명시적으로 재개하기 전까지 시작하지 않는다. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator일 뿐 현재 구현 권한을 뜻하지 않는다.
 
 ## Workspace authority
 
