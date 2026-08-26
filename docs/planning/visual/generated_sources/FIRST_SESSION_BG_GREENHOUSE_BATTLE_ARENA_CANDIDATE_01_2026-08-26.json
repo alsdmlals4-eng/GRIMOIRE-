@@ -1,0 +1,35 @@
+{
+  "record_type": "GENERATED_SOURCE_CANDIDATE",
+  "goal_id": "IMG-02",
+  "asset_id": "bg_greenhouse_battle_arena",
+  "variant": "GREENHOUSE_BATTLE_BASE · candidate_01",
+  "user_approval_mode": "PREAUTHORIZED_AUTOMATIC_CANDIDATE_GENERATION",
+  "generated_on": "2026-08-26",
+  "local_candidate_path": "assets/art/source_candidates/first_session_01/backgrounds/greenhouse/bg_greenhouse_battle_arena_candidate_01.png",
+  "file_format": "PNG",
+  "actual_dimensions_px": {
+    "width": 1672,
+    "height": 941
+  },
+  "alpha": "OPAQUE",
+  "sha256": "982e3f07a432cf7fc80dbbe48dac95571a09d4563843dd09f39e1f43dcaed9c5",
+  "notion_asset_record": "https://app.notion.com/p/3c81b237eb1c81f88bf4f9f3436b26b5?pvs=204",
+  "consumer_contract": "docs/planning/visual/FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md",
+  "planned_runtime_target": "2560x1440 WebP Lossless",
+  "current_state": "LOCAL_AND_NOTION_PERSISTED_SOURCE_CANDIDATE",
+  "selection_note": "The first generated output was intentionally discarded because concentric floor geometry read as a spell circle. This selected candidate removes that geometry and keeps only irregular stone masonry.",
+  "not_claimed": [
+    "runtime export",
+    "runtime provenance manifest",
+    "Godot import or binding",
+    "human, device, or performance validation",
+    "release-rights promotion"
+  ],
+  "brief_constraints_verified_by_generation_review": [
+    "environment-only composition",
+    "no people or characters",
+    "no functional UI or readable text",
+    "no pre-drawn glyph, spell diagram, target mark, or magic-circle floor marking",
+    "intact greenhouse base that permits later runtime VFX overlays"
+  ]
+}
