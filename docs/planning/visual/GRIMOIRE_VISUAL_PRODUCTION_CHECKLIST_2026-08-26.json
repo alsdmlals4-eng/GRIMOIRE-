@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "decision_id": "GM-VISUAL-PRODUCTION-CHECKLIST-20260826-01",
+  "status": "USER_APPROVED_ACTIVE",
+  "approved_at": "2026-08-26",
+  "approval_source": "사용자 승인: 좋아 진행해",
+  "purpose": "앞으로 실제로 만들거나 재작업할 이미지와 대표 시안을 생산 순서대로 추적한다. 기존 Visual Asset Coverage의 전체 요구 범위/삭제 테스트를 대체하지 않는다.",
+  "contract_revision": "2026-08-26-r5.4-superset-final",
+  "baseline_project_main": "7839c88f54550bf07e12876fda084bfcc6c5fe5c",
+  "baseline_base_main": "edb3b3376603c9f6b00d64af3126304f8c9946bf",
+  "authority": {
+    "coverage_owner": "docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json",
+    "player_flow_revision": "docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_PLAYER_FLOW_REVISION_2026-08-26.json",
+    "spell_player_flow_owner": "docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md",
+    "art_style_lock": "ART-STYLE-01",
+    "visual_direction": "GM-VISUAL-DIRECTION-20260825-01",
+    "representative_screens": "GM-REPRESENTATIVE-SCREENS-20260825-01",
+    "asset_spec": "ASSET-SPEC-01"
+  },
+  "workspace_policy": {
+    "notion": "HUMAN_FACING_CHECKLIST_CANON",
+    "github": "STRUCTURED_CHECKLIST_AND_PRODUCTION_FACTS_CANON",
+    "google_sheets": "MIGRATION_ONLY_LEGACY_IMAGE_PLAN_INPUT_NO_NEW_CANON_WRITE"
+  },
+  "style_and_flow_lock": {
+    "player_flow": ["글자", "주문", "대상", "시전"],
+    "spell_build": "글자 선택·작성 → FIVE_POINT_STAR 회로 조합 → 완성 주문 이름 확인",
+    "spell_cast": "게임 장면에서 대상 직접 지정 → 필요한 최종 Preview → 명시 시전",
+    "glyph_metaphor": "DIRECT_WRITTEN_MAGICAL_LETTER",
+    "glyph_rejected_metaphors": ["TALISMAN", "HANGING_TAG", "CHARM_PLAQUE", "COLLECTIBLE_SPELL_CARD"],
+    "movement": "SIMPLE_2D_MOVEMENT_OR_SCENE_TRANSITION",
+    "art_style": "Soft Storybook Cel 2D Hybrid + Logo 01 + Magic/Anime overlay"
+  },
+  "production_sequence": [
+    {"order": 1, "type": "IMAGE", "item_id": "GR-VP-05-MAGIC-GLYPH-DESIGN-SHEET"},
+    {"order": 2, "type": "NON_IMAGE_GATE", "gate": "SPELL_NAME_GENERATION_RULES"},
+    {"order": 3, "type": "IMAGE", "item_id": "GR-VP-06-SPELL-BUILD-FINAL-SCREEN"},
+    {"order": 4, "type": "IMAGE", "item_id": "GR-VP-07-SEMANTIC-STATE-VFX-SHEET"},
+    {"order": 5, "type": "IMAGE", "item_id": "GR-VP-08-SPELL-CAST-BATTLE-FINAL-SCREEN"},
+    {"order": 6, "type": "IMAGE", "item_id": "GR-VP-09-RESULT-GRIMOIRE-SCREEN"},
+    {"order": 7, "type": "IMAGE", "item_id": "GR-VP-10-FROSTBLOOM-ENVIRONMENT-MASTER"},
+    {"order": 8, "type": "IMAGE", "item_id": "GR-VP-11-FIRST-SESSION-CHARACTER-SHEET"},
+    {"order": 9, "type": "IMAGE", "item_id": "GR-VP-12-MAIN-COMPANION-INITIAL-SHEET"},
+    {"order": 10, "type": "IMAGE", "item_id": "GR-VP-13-FROSTBLOOM-THREAT-SHEET"},
+    {"order": 11, "type": "IMAGE", "item_id": "GR-VP-14-SIMPLE-2D-MOVEMENT-SCREEN"},
+    {"order": 12, "type": "IMAGE", "item_id": "GR-VP-15-TITLE-MAIN-SCREEN"},
+    {"order": 13, "type": "NON_IMAGE_GATE", "gate": "PLAYABLE_PROOF"},
+    {"order": 14, "type": "IMAGE", "item_id": "GR-VP-16-STORE-KEY-ART"}
+  ],
+  "items": [
+    {
+      "item_id": "GR-VP-00-SEMANTIC-UI-COMPONENTS",
+      "name": "Component Sheets A–D / Star Circuit UI Kit",
+      "category": "REUSABLE_UI_SUPPORT",
+      "priority": "P0",
+      "status": "COMPLETE_REUSE_DO_NOT_RECREATE",
+      "action": "REUSE",
+      "note": "기존 semantic UI와 vector family를 화면별로 재사용한다. 전체 제품 화면 또는 Human/Device PASS로 승격하지 않는다."
+    },
+    {
+      "item_id": "GR-VP-01-LOGO-VISUAL-DIRECTION",
+      "name": "Logo 01 / Visual Direction",
+      "category": "REFERENCE",
+      "priority": "P1",
+      "status": "REFERENCE_COMPLETE_REUSE",
+      "action": "REUSE",
+      "note": "Logo 01과 Magic/Anime overlay를 기본 방향으로 유지한다."
+    },
+    {
+      "item_id": "GR-VP-02-ART-STYLE-LOCKED-REFERENCE",
+      "name": "ART-STYLE-01 기준판",
+      "category": "REFERENCE",
+      "priority": "P0",
+      "status": "LOCKED_REFERENCE_COMPLETE",
+      "action": "REUSE",
+      "note": "잠긴 원본을 편집·재생성·재선정하지 않는다."
+    },
+    {
+      "item_id": "GR-VP-03-DIALOGUE-REPRESENTATIVE-SCREEN",
+      "name": "대화 화면 대표 시안",
+      "category": "REPRESENTATIVE_SCREEN",
+      "priority": "P1",
+      "status": "REFERENCE_COMPLETE_ADAPT",
+      "action": "ADAPT",
+      "note": "반신 Anime 대화 구도, Storybook 배경, Navy/Gold frame, 하단 선택지 구도는 유지한다. 생성된 이름·대사·정체성은 비정본이다."
+    },
+    {
+      "item_id": "GR-VP-04-BATTLE-INCIDENT-MOOD-REFERENCE",
+      "name": "전투/사건 분위기 대표 시안",
+      "category": "REPRESENTATIVE_SCREEN",
+      "priority": "P1",
+      "status": "PARTIAL_REFERENCE_REUSE_SYSTEM_UI_REWORK",
+      "action": "ADAPT",
+      "note": "온실 분위기, 적/환경 중심 구도, Navy/Gold + blue magic glow는 재사용한다. Stock/Circuit/Spell UI 세부는 current canon 기준으로 재작업한다."
+    },
+    {
+      "item_id": "GR-VP-05-MAGIC-GLYPH-DESIGN-SHEET",
+      "name": "마법 글자 디자인 시트",
+      "category": "CORE_VISUAL_LANGUAGE",
+      "priority": "P0",
+      "status": "NEXT_TO_DESIGN",
+      "action": "CREATE",
+      "consumer": "GLYPH_DRAWING_AND_SPELL_BUILD",
+      "scope": [
+        "대표 글자 3종으로 스타일 잠금",
+        "획 시작/끝과 손글씨·붓 느낌",
+        "빛나는 잉크/마력 흔적",
+        "기본/선택/비활성 또는 사용불가 상태",
+        "회로에 직접 놓이거나 쓰였을 때의 형태"
+      ],
+      "must_not": ["부적", "세로 패찰", "수집 카드", "픽토그램 우선 문자"],
+      "generation_state": "TEXT_BRIEF_NOT_YET_APPROVED_NO_IMAGE_GENERATION"
+    },
+    {
+      "item_id": "GR-VP-06-SPELL-BUILD-FINAL-SCREEN",
+      "name": "주문 만들기 최종 대표 화면",
+      "category": "CORE_LOOP_SCREEN",
+      "priority": "P0",
+      "status": "REWORK_AFTER_GLYPH_SHEET_AND_NAMING_RULES",
+      "action": "ADAPT",
+      "flow": "글자 → 주문 회로 → 완성 주문 이름",
+      "note": "기존 Stage2 시안의 FIVE_POINT_STAR 가독성은 재사용하되 player-facing 결과를 완성 주문 이름 중심으로 재구성한다."
+    },
+    {
+      "item_id": "GR-VP-07-SEMANTIC-STATE-VFX-SHEET",
+      "name": "상태 / VFX 표현 시트",
+      "category": "UI_STATE_AND_VFX_SHEET",
+      "priority": "P0",
+      "status": "TO_CREATE_AFTER_SPELL_BUILD_DIRECTION",
+      "action": "ADAPT",
+      "scope": [
+        "글자: 기본/선택/예약/사용불가",
+        "회로: 빈 슬롯/배치/유효/오류/완성",
+        "주문: 완성/대상 지정/시전 가능/시전 불가",
+        "결과: 성공/부분성공 또는 대가/부작용/실패"
+      ],
+      "accessibility_rule": "중요 상태는 색만 사용하지 않고 형태/아이콘/텍스트 또는 모션 신호를 중복 사용"
+    },
+    {
+      "item_id": "GR-VP-08-SPELL-CAST-BATTLE-FINAL-SCREEN",
+      "name": "주문 쓰기 / 전투 최종 대표 화면",
+      "category": "CORE_LOOP_SCREEN",
+      "priority": "P0",
+      "status": "DEFERRED_UNTIL_TASK8_VISUAL_CONSUMER_RECONCILED",
+      "action": "CREATE_LATER",
+      "flow": "완성 주문 선택 → 게임 장면 대상 직접 선택 → 필요한 최종 Preview → 시전",
+      "note": "별도 복잡한 Target-only 화면을 기본 전제로 하지 않는다. Task8 제품 화면을 앞질러 최종 Visual을 고정하지 않는다."
+    },
+    {
+      "item_id": "GR-VP-09-RESULT-GRIMOIRE-SCREEN",
+      "name": "결과 → 마도서 기록 화면",
+      "category": "CORE_LOOP_SCREEN",
+      "priority": "P0",
+      "status": "TO_ADAPT",
+      "action": "ADAPT",
+      "scope": ["무슨 일이 일어났는가", "무엇을 사용했는가", "어떤 대가/부작용이 있었는가", "무엇을 새로 알게 되었는가", "마도서 기록으로 연결"]
+    },
+    {
+      "item_id": "GR-VP-10-FROSTBLOOM-ENVIRONMENT-MASTER",
+      "name": "Frostbloom 온실 환경 Master + 상태 Overlay",
+      "category": "ENVIRONMENT",
+      "priority": "P1",
+      "status": "TO_CREATE_MINIMAL_SET",
+      "action": "CREATE",
+      "scope_cap": "우선 온실 Master 1개. 필요 상태는 재사용 Overlay로 확장. ASSET-SPEC 전체 background master cap 3을 넘기지 않음.",
+      "candidate_states": ["정상", "불안정", "사건 진행", "해결 후"]
+    },
+    {
+      "item_id": "GR-VP-11-FIRST-SESSION-CHARACTER-SHEET",
+      "name": "첫 세션 캐릭터 Visual Sheet",
+      "category": "CHARACTER",
+      "priority": "P1",
+      "status": "TO_CREATE_CANON_ONLY",
+      "action": "CREATE",
+      "scope_cap": "첫 세션 정본 등장인물만. ASSET-SPEC half-body 전체 cap 12를 상한으로 사용.",
+      "must_not": ["기존 생성 시안의 임의 캐릭터 이름을 정본화", "임의 관계/의상 설정 확정"]
+    },
+    {
+      "item_id": "GR-VP-12-MAIN-COMPANION-INITIAL-SHEET",
+      "name": "메인 동반자 초기형 Sheet",
+      "category": "COMPANION",
+      "priority": "P1",
+      "status": "TO_CREATE_AFTER_CURRENT_CANON_RECHECK",
+      "action": "ADAPT",
+      "legacy_migration_hint": "작은 늑대형 원소 정령수 / 흰색·옅은 청색 / 둥근 얼굴 / 큰 귀·꼬리",
+      "note": "Google Sheet의 legacy 방향은 current canon과 대조 후에만 사용한다. Slice는 초기형만 제작하고 성장 2~4단계는 보류한다."
+    },
+    {
+      "item_id": "GR-VP-13-FROSTBLOOM-THREAT-SHEET",
+      "name": "Frostbloom 위협체 / 적 Sheet",
+      "category": "THREAT_ENTITY",
+      "priority": "P1",
+      "status": "TO_CREATE_SINGLE_FOCAL_SET",
+      "action": "CREATE",
+      "scope_cap": "강한 단일 위협체 1세트. ASSET-SPEC enemy_body_sets=1, normal enemy phase variants=0을 유지."
+    },
+    {
+      "item_id": "GR-VP-14-SIMPLE-2D-MOVEMENT-SCREEN",
+      "name": "단순 2D 이동 / 장면 전환 화면",
+      "category": "NAVIGATION_PRESENTATION",
+      "priority": "P1",
+      "status": "TO_ADAPT_LATER",
+      "action": "ADAPT",
+      "note": "3D 탐색 자산군을 만들지 않고 장면 배경, 지도 카드, 전환 UI 재사용으로 해결한다."
+    },
+    {
+      "item_id": "GR-VP-15-TITLE-MAIN-SCREEN",
+      "name": "타이틀 / 메인 화면",
+      "category": "PRODUCT_ROOT_SCREEN",
+      "priority": "P2",
+      "status": "DEFERRED_UNTIL_PRODUCT_ROOT_DIRECTION",
+      "action": "CREATE_LATER",
+      "note": "Logo 01과 핵심 화면 언어가 안정된 뒤 Product Root 단계에서 제작한다."
+    },
+    {
+      "item_id": "GR-VP-16-STORE-KEY-ART",
+      "name": "Store Key Art",
+      "category": "MARKETING",
+      "priority": "P3",
+      "status": "DEFERRED_UNTIL_PLAYABLE_PROOF",
+      "action": "CREATE_LATER",
+      "note": "실제 플레이 강점과 플랫폼 요구를 검증한 뒤 제작한다."
+    }
+  ],
+  "explicitly_not_to_create_now": [
+    "NEW_3D_EXPLORATION_ASSET_FAMILY",
+    "MULTI_ENEMY_WAVE_ASSET_FAMILY_FOR_CURRENT_SLICE",
+    "GENERAL_NPC_HALF_BODY_LIBRARY_WITHOUT_FIRST_SESSION_NEED",
+    "COMPANION_GROWTH_FORMS_2_TO_4",
+    "BAKED_SUCCESS_RATE_MANA_DIALOGUE_STATE_VALUES",
+    "BAKED_FUNCTIONAL_BUTTON_TEXT_AS_IMAGES",
+    "STORE_CAPSULE_OR_AD_KEY_ART_BEFORE_PLAYABLE_PROOF",
+    "COMPLETED_SPELL_CARD_OR_TALISMAN_LIBRARY"
+  ],
+  "next_action": {
+    "item_id": "GR-VP-05-MAGIC-GLYPH-DESIGN-SHEET",
+    "action": "DISCUSS_AND_APPROVE_TEXT_BRIEF",
+    "image_generation_authorized": false,
+    "reason": "글자 visual language를 먼저 잠가야 주문 만들기 화면과 상태/VFX가 같은 문자 체계를 공유해 재작업을 줄일 수 있다."
+  },
+  "evidence_ceiling": {
+    "runtime_visual_complete": "NOT_PROVEN",
+    "human_usability": "NOT_RUN",
+    "device_validation": "NOT_RUN",
+    "performance_validation": "NOT_RUN",
+    "full_vertical_slice": "NOT_RUN",
+    "product_implementation_changed": false,
+    "image_generation_in_this_decision": false
+  }
+}
