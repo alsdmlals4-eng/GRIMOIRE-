@@ -1,0 +1,39 @@
+{
+  "asset_id": "glyph_heat",
+  "role": "Direct-written magical glyph for HEAT in the Slice Magic Glyph Runtime Set.",
+  "decision_ids": [
+    "GM-SPELL-WORKFLOW-UI-V2-01",
+    "ART-STYLE-01",
+    "GM-VISUAL-DIRECTION-20260825-01"
+  ],
+  "source": {
+    "tool": "ChatGPT Work image generation",
+    "generated_at": "2026-08-26",
+    "master_sha256": "36276c20f7f5bd91f130e88a0f4a3c46f070d70110ad96ba462fef80bb54f040",
+    "owner": "User-approved GPT Work visual production"
+  },
+  "export": {
+    "path": "assets/art/ui/glyphs/glyph_heat.png",
+    "sha256": "7ed2602356a27bf09cb3113765bb335496db8cabfb6d0df304b5d8cd157c49c3",
+    "format": "PNG",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "color_space": "sRGB"
+  },
+  "license": "Project-owned generated asset; use only within GRIMOIRE.",
+  "status": "APPROVED_IMPLEMENTATION_READY",
+  "used_in_screens": [
+    "src/ui/spell_workflow/glyph_drawing_screen.tscn",
+    "src/ui/spell_workflow/components/glyph_card.tscn",
+    "src/ui/spell_workflow/circuit_placement_screen.tscn",
+    "src/ui/components/star_circuit_board.tscn",
+    "future Task8 Spell Use thin UI"
+  ],
+  "runtime_validation": {
+    "asset_file_verified": true,
+    "godot_import_verified": false,
+    "runtime_consumer_verified": false,
+    "human_approval": "2026-08-26"
+  }
+}
