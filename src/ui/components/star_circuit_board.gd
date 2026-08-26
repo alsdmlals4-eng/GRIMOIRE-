@@ -209,7 +209,7 @@ func _position_glyph_visual(slot_prefix: String, point: Vector2, glyph_size: flo
         texture_rect.position = point - Vector2.ONE * glyph_size * 0.5
         texture_rect.size = Vector2.ONE * glyph_size
     if name_label != null:
-        name_label.position = point + Vector2(-glyph_size * 0.5, glyph_size * 0.4)
+        name_label.position = point + Vector2(-glyph_size * 0.5, glyph_size * 0.6)
         name_label.size = Vector2(glyph_size, 18.0)
 
 
