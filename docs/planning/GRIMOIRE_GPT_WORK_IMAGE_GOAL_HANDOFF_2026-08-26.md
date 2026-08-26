@@ -294,3 +294,27 @@ Use this as the first instruction in the GRIMOIRE Work workspace if a concise re
 ## 14. Stop Condition
 
 이 handoff 이후 첫 Work action은 **IMG-01 설계/브리프 검토**다. 이미지 생성, Godot 구현, Task8 복구는 자동으로 시작하지 않는다.
+
+## 15. 2026-08-26 IMG-01 Codex Runtime Integration Receipt
+
+사용자는 IMG-01 6종의 구현을 명시 승인했고, GitHub Issue [#179](https://github.com/alsdmlals4-eng/GRIMOIRE-/issues/179)로 범위를 고정했다. 구현 후보는 `codex/img-01-glyph-integration` 격리 브랜치에 있다.
+
+구현됨:
+
+- `GlyphVisualResolver`가 `HEAT/PROTECT/FLOW/FOCUS/DISPERSE/BURST`의 공용 PNG 경로와 한국어 표시명을 해석한다.
+- 기존 `AMPLIFY`는 게임 ID/거래 규칙을 바꾸지 않고 **시각적으로만** `BURST` 자산을 사용한다.
+- Task6 인식 패널, Task7 `GlyphCard`, `FIVE_POINT_STAR`의 중심 Main·희소 Aux 슬롯이 같은 resolver를 소비한다.
+- 한국어 이름은 PNG에 굽지 않고 런타임 UI의 우측 하단 텍스트로 표시한다.
+- `GlyphCatalog.normalize_id`, 예약, 명시 확정, Mana, 대상, 시전은 변경하지 않았다.
+
+자동 검증됨:
+
+- Godot 4.7.2 headless SceneTree: 44 suites, 1,890 assertions, 0 failures.
+- resolver direct ID, `AMPLIFY → BURST` 시각 호환, Task6 preview, Task7 card, Main/희소 Aux board binding 및 display-only 계약을 테스트했다.
+- 4개 신규 manifest export SHA-256과 512×512 PNG RGBA 기록은 별도 provenance manifest에 보존된다.
+
+아직 검증하지 않음:
+
+- 편집기에서의 실제 runtime screenshot, 48/64/96px 가독성, 1280×720/1920×1080 capture, 기기, 성능, export, 전체 세로 슬라이스.
+
+다음 gate는 구현 PR 검토다. 위 미검증 항목을 PASS로 승격하지 않는다.
