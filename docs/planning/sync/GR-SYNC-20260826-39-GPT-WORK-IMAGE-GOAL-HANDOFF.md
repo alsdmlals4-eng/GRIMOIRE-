@@ -75,8 +75,24 @@ fresh consumer read
 
 No image is generated and no Godot/Task8 product code is modified by this sync.
 
-## Sync state
+## Creation-time sync state
 
-`PR_PENDING_AT_DOCUMENT_CREATION`.
+`PR_PENDING_AT_DOCUMENT_CREATION` was the historical state when this receipt was first written. It is not the current state.
 
-After merge, read back exact `main`, update the Notion handoff/Home pointer, and do not upgrade any runtime/Human/device evidence beyond what was actually observed.
+## Closeout Readback
+
+```yaml
+handoff_pr: 175
+handoff_pr_title: "docs: hand off image goals to ChatGPT Work"
+handoff_pr_exact_head: fb53bd4e76688ec968fac28577d7cab4d51b030d
+handoff_merge_sha: 56fc578db4ee41ec45bf164ee78a8f0656a17247
+pr_exact_head_workflows: "7 SUCCESS + 1 conditional SKIPPED"
+merged_main_push_workflows: "4/4 SUCCESS"
+notion_runtime_consumer_checklist: "six-glyph Slice set read back"
+image_generation: NOT_AUTHORIZED_BY_HANDOFF
+godot_implementation: NOT_AUTHORIZED_BY_HANDOFF
+current_work_resume_goal: IMG-01
+sync_state: SYNCED_TO_HANDOFF_MERGE_AWAITING_RECEIPT_CLOSEOUT_MERGE
+```
+
+This receipt-only closeout does not change the Image Goal queue, gameplay design, product implementation, or evidence ceiling. After this closeout itself merges, the exact repository `main` may advance beyond `handoff_merge_sha`; Notion/System records should use that final exact main SHA while preserving `56fc578...` as the decision/handoff merge provenance.
