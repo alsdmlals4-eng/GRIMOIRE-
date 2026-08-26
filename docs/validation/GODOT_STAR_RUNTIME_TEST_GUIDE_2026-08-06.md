@@ -6,7 +6,8 @@
 decision_id: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 sync_id: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION
 project: project.godot
-main_scene: res://src/ui/star_circuit_harness.tscn
+star_harness_scene: res://src/ui/star_circuit_harness.tscn
+current_product_main_scene: res://src/ui/spell_workflow/spell_workflow_product_root.tscn
 godot: 4.7.1.stable.official.a13da4feb
 runtime_validation: AUTOMATED_HEADLESS_PASS
 suite_count: 31
@@ -46,7 +47,7 @@ py -3 tools/run_star_runtime.py --skip-setup
 py -3 tools/run_star_runtime.py --editor --skip-setup
 ```
 
-Editor에서 F6 또는 F5를 누르면 `star_circuit_harness.tscn`이 실행된다.
+Star Harness를 직접 점검할 때는 Editor에서 `star_circuit_harness.tscn`을 열어 F6으로 실행한다. F5는 현재 제품 루트 `spell_workflow_product_root.tscn`을 연다.
 
 ## Main Scene 직접 실행
 
@@ -54,7 +55,7 @@ Editor에서 F6 또는 F5를 누르면 `star_circuit_harness.tscn`이 실행된�
 py -3 tools/run_star_runtime.py --run --skip-setup
 ```
 
-현재 Main Scene은 최종 게임 화면이 아니라 모바일 가로형 Low-fi 검증 Harness다.
+현재 Main Scene은 제품 루트다. 별형 회로만 독립 점검할 때는 `star_circuit_harness.tscn`을 직접 실행한다.
 
 ## 자동 검증 범위
 

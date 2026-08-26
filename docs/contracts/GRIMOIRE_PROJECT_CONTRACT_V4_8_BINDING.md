@@ -66,8 +66,8 @@ implementation: PARTIAL_FOUNDATION
 primary_platform: Mobile
 follow_up_platform: PC
 orientation: LANDSCAPE_FIXED
-current_main_scene: res://src/ui/star_circuit_harness.tscn
-main_scene_role: DEVELOPMENT_RUNTIME_POC_ENTRY
+current_main_scene: res://src/ui/spell_workflow/spell_workflow_product_root.tscn
+main_scene_role: DEVELOPMENT_PRODUCT_ROOT_ENTRY
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 circuit_topology: FIVE_POINT_STAR
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
