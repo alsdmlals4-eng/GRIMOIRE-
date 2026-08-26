@@ -23,7 +23,7 @@ adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-current_user_work_scope: SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_VISUAL_ALIGNMENT_AND_TASK8_RECONCILIATION
+current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
@@ -43,8 +43,8 @@ player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
 player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
-next_product_task: TASK8_SPELL_USE_SCREEN
-next_product_gate: TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
+next_product_task: TASK9_USER_VERTICAL_SLICE_VALIDATION
+next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CURRENT_MAIN_LOCAL_VALIDATION_PASS
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -58,6 +58,9 @@ task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
 task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
 task8_remote_product_pr: 190
+task9_product_commit: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
+task9_product_pr: 192
+task9_status: MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -109,17 +112,17 @@ android_device: NOT_RUN
 = 게임 장면의 대상 지정 + 필요한 최종 Preview + 명시 시전
 ```
 
-이후 사용자는 Task8 제품 구현을 명시적으로 승인했다. 따라서 현재 범위는 `SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_VISUAL_ALIGNMENT_AND_TASK8_RECONCILIATION`다.
+이후 사용자는 Task8과 Task9 제품 구현을 명시적으로 승인했다. Task9 Product Root는 PR #192로 `db038a4` main에 병합됐고, 현재 범위는 `SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE`다.
 
-- Task8/Godot 제품 구현: **AUTHORIZED_FOR_CURRENT-MAIN_RECONCILIATION**
-- `TASK8_SPELL_USE_SCREEN`: current main에서 thin UI consumer로 복구·검증·PR 준비 중
+- Task9/Godot 제품 구현: **MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY**
+- 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 생성: **NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL**
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
 - unrelated open PR: **READ_ONLY**
 
-현재 revision owner:
+현재 revision/implementation owner:
 
-`docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`
+`docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md` + `docs/planning/TASK9_SPELL_WORKFLOW_PRODUCT_ROOT_2026-08-27.md`
 
 ## 현재 제품 현실
 

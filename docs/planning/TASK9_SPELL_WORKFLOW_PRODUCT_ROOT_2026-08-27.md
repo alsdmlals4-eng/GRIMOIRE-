@@ -74,11 +74,23 @@ WORK_PRODUCTION_INPUT_PACKET:
 
 No additional image, sound, or VFX input blocks this slice. Existing approved assets have a concrete Product Root consumer; no asset is represented as runtime-bound until that consumer is implemented and verified.
 
-## Current branch implementation ledger
+## Merged-main implementation ledger
 
 - GitHub Issue: #191
+- Merged main: `db038a4fd964ca037bfe97f6aee5d0cc7d0daf93` via PR #192 (squash merge, 2026-08-27 KST)
 - Implemented: `SpellWorkflowProductRoot`, real mouse/touch stroke collection, explicit recognised-candidate selection, existing Task6/7/8 surface orchestration, two non-ranked target choices, result receipt hand-off, and root-flow deterministic coverage.
 - Exact automated evidence on this branch: custom runner `47 suites / 1,968 assertions / 0 failures`; GUT `8 passing tests`.
 - Runtime evidence: Godot AI v3.2 ran `spell_workflow_product_root.tscn`; the authority path produced `VAULT_GLYPH_CREATED → CIRCUIT_PREVIEW_READY → PREPARED → FINAL_PREVIEW_READY → USED → RESULT` with no task-related launch error.
 - Entry-point status: `application/run/main_scene` was set through the live Godot editor UI to `res://src/ui/spell_workflow/spell_workflow_product_root.tscn` (stored as `uid://dj14w6clxafqv`). A `project_run(mode="main")` readback loaded `SpellWorkflowProductRoot` with a live helper and no task-related launch error. The existing Star Harness remains a separate POC scene.
 - Evidence ceiling remains machine-only. Human usability, player experience, device, performance, and shipping-export validation are not run.
+
+## Completion readback
+
+```yaml
+status: MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
+next_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
+remote_ci: 13_REQUIRED_AND_APPLICABLE_CHECKS_SUCCESS_ON_EXACT_PR_HEAD
+human_usability: NOT_RUN
+player_experience: NOT_RUN
+device_performance_export: NOT_RUN_OR_NOT_CONFIGURED
+```
