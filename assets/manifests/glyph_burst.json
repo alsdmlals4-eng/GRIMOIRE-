@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "asset_id": "glyph_burst",
+  "role": "Direct-written magical glyph for BURST in the Slice Magic Glyph Runtime Set.",
+  "decision_ids": ["GM-SPELL-WORKFLOW-UI-V2-01", "GM-GLYPH-VOCABULARY-V1-01", "ART-STYLE-01", "GM-VISUAL-DIRECTION-20260825-01"],
+  "source": {"storage": "GENERATED_CANDIDATE", "file_id_or_path": "C:/Users/user/.codex/generated_images/01a03ddc-b904-72d1-826e-749d698c97a5/exec-037df0bc-0004-4b1b-a0e1-1a24edf2e9d6.png", "sha256": "128d73adfff6c3f96f6561c58b48485d2b8ec511a195c568bce031964d422a0b", "tool": "OpenAI Image Generation built-in", "owner": "User-approved GPT Work visual production", "prompt_or_brief_path": "docs/planning/GRIMOIRE_GPT_WORK_IMAGE_GOAL_HANDOFF_2026-08-26.md"},
+  "export": {"file_path": "assets/art/ui/glyphs/glyph_burst.png", "sha256": "c78dae39a0b85a312c44d94db387523ceed3ea0041daa55abd9179e5972b4981", "format": "PNG", "width": 512, "height": 512, "alpha": true, "import_profile": "Godot Texture2D PNG; import not yet verified"},
+  "license": {"status": "PROJECT_ORIGINAL", "evidence": "User approved this generated image for GRIMOIRE on 2026-08-26.", "credit_required": false, "modification_allowed": true, "redistribution_allowed": false},
+  "status": "PROJECT_ASSET_APPROVED", "approved_by": "User", "approved_at": "2026-08-26",
+  "used_in_screens": ["src/ui/spell_workflow/glyph_drawing_screen.tscn", "src/ui/spell_workflow/components/glyph_card.tscn", "src/ui/spell_workflow/circuit_placement_screen.tscn", "src/ui/components/star_circuit_board.tscn", "future Task8 Spell Use thin UI"],
+  "replacement_or_supersession": "Temporary approved visual canon; re-evaluate at 48/64/96px runtime legibility review. The current three-stroke silhouette intentionally remains temporary.", "runtime_validation": "NOT_RUN"
+}
