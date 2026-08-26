@@ -2,12 +2,15 @@
 class_name GlyphCard
 extends PanelContainer
 
+const GlyphVisualResolver = preload("res://src/ui/spell_workflow/glyph_visual_resolver.gd")
+
 var _data: Dictionary = {}
 var _selectable := true
 
 
 func bind(data: Dictionary) -> void:
     _data = data.duplicate(true)
+    _bind_visual(StringName(_data.get("glyph_id", &"")))
     _set_label("NameLabel", String(_data.get("glyph_name", _data.get("glyph_id", "알 수 없는 문양"))))
     _set_label("RoleLabel", String(_data.get("role", "보조")))
     _set_label("RoleIconLabel", String(_data.get("role_icon", "○")))
@@ -37,3 +40,13 @@ func _set_label(path: String, value: String) -> void:
     var label = find_child(path, true, false)
     if label != null:
         label.text = value
+
+
+func _bind_visual(glyph_id: StringName) -> void:
+    var glyph_texture = find_child("GlyphTexture", true, false) as TextureRect
+    var glyph_name = find_child("GlyphNameLabel", true, false) as Label
+    if glyph_texture != null:
+        glyph_texture.texture = GlyphVisualResolver.texture_for(glyph_id)
+    if glyph_name != null:
+        glyph_name.text = GlyphVisualResolver.korean_name_for(glyph_id)
+        glyph_name.visible = not glyph_name.text.is_empty()

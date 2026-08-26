@@ -82,8 +82,21 @@
       "state_policy": "recognized/selected/invalid/insufficient/committed states use Material/Outline/Modulate/Semantic Mark before texture duplication",
       "must_preserve": ["canonical stroke identity", "direct-written magical letter feeling", "Magic/Anime + Blue/Blue-Purple magic language", "small-size silhouette distinction"],
       "must_not_introduce": ["talisman", "hanging tag", "collectible card framing", "pictogram-first redesign", "baked functional text", "new glyph IDs"],
-      "status": "TEXT_BRIEF_AND_RUNTIME_SLOT_CONTRACT_PENDING",
-      "next_gate": "Define one shared glyph_id-to-asset resolver plus exact Task6/Task7 visual slots and manifest paths before any image generation."
+      "status": "CODEX_RUNTIME_INTEGRATION_IMPLEMENTED_PENDING_PR_REVIEW",
+      "next_gate": "Review the IMG-01 implementation branch and create a PR. Keep editor screenshot, 48/64/96px readability, device, and performance evidence unclaimed until freshly captured.",
+      "implementation_evidence": {
+        "github_issue": 179,
+        "branch": "codex/img-01-glyph-integration",
+        "resolver": "src/ui/spell_workflow/glyph_visual_resolver.gd",
+        "task6_preview": "RecognitionPanel/Content/GlyphPreview + GlyphNameLabel",
+        "task7_card": "Content/GlyphPresentation/GlyphTexture + GlyphNameLabel",
+        "star_circuit": "display-only center Main + sparse Aux 0..5 visual slots",
+        "automated_scene_tree": "Godot 4.7.2 headless: 44 suites, 1890 assertions, 0 failures",
+        "runtime_screenshot": "NOT_RUN",
+        "legibility_48_64_96": "NOT_RUN",
+        "device": "NOT_RUN",
+        "performance": "NOT_RUN"
+      }
     },
     {
       "order": 2,

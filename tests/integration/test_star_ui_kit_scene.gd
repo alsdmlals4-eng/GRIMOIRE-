@@ -13,6 +13,8 @@ func run(case) -> void:
             var board = board_packed.instantiate()
             case.assert_true(board.has_method("set_visual_state"), "StarCircuitBoard exposes read-only visual state setter")
             case.assert_true(board.has_method("visual_snapshot"), "StarCircuitBoard exposes visual snapshot")
+            case.assert_true(board.has_method("set_glyph_visuals"), "StarCircuitBoard exposes display-only glyph visual binding")
+            case.assert_true(board.has_method("glyph_visual_snapshot"), "StarCircuitBoard exposes a glyph visual snapshot")
             if board.has_method("set_visual_state") and board.has_method("visual_snapshot"):
                 board.set_visual_state(&"VALID", 3)
                 var valid: Dictionary = board.visual_snapshot()
@@ -22,6 +24,18 @@ func run(case) -> void:
                 var invalid: Dictionary = board.visual_snapshot()
                 case.assert_equal(&"INVALID", invalid.state, "Board records invalid state")
                 case.assert_equal(2, invalid.cause_vertex, "Board records the cause vertex")
+            if board.has_method("set_glyph_visuals") and board.has_method("glyph_visual_snapshot"):
+                board.set_glyph_visuals(&"HEAT", {2: &"PROTECT"})
+                var glyph_visuals: Dictionary = board.glyph_visual_snapshot()
+                var center = board.get_node_or_null("GlyphVisuals/CenterGlyphTexture") as TextureRect
+                var aux_two = board.get_node_or_null("GlyphVisuals/AuxGlyphTexture2") as TextureRect
+                var aux_one = board.get_node_or_null("GlyphVisuals/AuxGlyphTexture1") as TextureRect
+                case.assert_equal(&"HEAT", glyph_visuals.get("main_glyph_id", &""), "board records the visual Main glyph")
+                case.assert_equal(&"PROTECT", Dictionary(glyph_visuals.get("auxiliary_by_slot", {})).get(2, &""), "board records sparse Aux glyph slots")
+                case.assert_false(bool(glyph_visuals.get("owns_gameplay_state", true)), "glyph board binding remains display-only")
+                case.assert_true(center != null and center.texture != null, "board renders the Main glyph texture")
+                case.assert_true(aux_two != null and aux_two.texture != null, "board renders the bound sparse Aux texture")
+                case.assert_true(aux_one != null and aux_one.texture == null, "board leaves unbound Aux slots empty")
             board.free()
 
     var harness_packed = load(HARNESS_SCENE)

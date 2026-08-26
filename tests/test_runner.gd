@@ -31,6 +31,7 @@ const SUITES: Array[String] = [
     "res://tests/unit/test_focus_scribe_recognition.gd",
     "res://tests/integration/test_slice_glyph_recognition.gd",
     "res://tests/unit/test_glyph_writing_view_model.gd",
+    "res://tests/unit/test_glyph_visual_resolver.gd",
     "res://tests/integration/test_mobile_safe_root.gd",
     "res://tests/unit/test_star_circuit_validator.gd",
     "res://tests/unit/test_star_circuit_calculator.gd",

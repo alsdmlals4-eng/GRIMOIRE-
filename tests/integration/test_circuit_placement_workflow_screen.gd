@@ -75,6 +75,13 @@ func run(case) -> void:
 		"reservation_records": [],
 	}
 	screen.render(loadout, snapshot, {"estimated_mana": 7})
+	var board = screen.find_child("StarCircuitBoard", true, false)
+	case.assert_true(board != null and board.has_method("glyph_visual_snapshot"), "placement screen exposes board visual bindings")
+	if board != null and board.has_method("glyph_visual_snapshot"):
+		var board_visuals: Dictionary = board.glyph_visual_snapshot()
+		case.assert_equal(&"HEAT", board_visuals.get("main_glyph_id", &""), "placement snapshot binds its Main glyph visual")
+		case.assert_equal(&"PROTECT", Dictionary(board_visuals.get("auxiliary_by_slot", {})).get(2, &""), "placement snapshot binds sparse Aux glyph visual")
+		case.assert_false(bool(board_visuals.get("owns_gameplay_state", true)), "placement board remains display-only")
 
 	var vault_panel = screen.find_child("VaultSourcePanel", true, false)
 	var stock_panel = screen.find_child("StockSourcePanel", true, false)
@@ -87,6 +94,10 @@ func run(case) -> void:
 	case.assert_equal(2, vault_cards.get_child_count(), "Vault panel renders one reusable card per supplied glyph")
 	var first_card = vault_cards.get_child(0)
 	case.assert_true(first_card.find_child("NameLabel", true, false) != null, "source panel instantiates the reusable glyph card scene")
+	var glyph_texture = first_card.find_child("GlyphTexture", true, false) as TextureRect
+	var glyph_name = first_card.find_child("GlyphNameLabel", true, false) as Label
+	case.assert_true(glyph_texture != null and glyph_texture.texture != null, "glyph card renders the approved texture")
+	case.assert_equal("열기", glyph_name.text if glyph_name != null else "", "glyph card shows the live Korean glyph name")
 	case.assert_true(first_card.find_child("RoleLabel", true, false) != null, "glyph card exposes a textual role cue")
 	case.assert_true(first_card.find_child("RoleIconLabel", true, false) != null, "glyph card exposes an icon/shape role cue")
 	case.assert_true(first_card.has_method("is_selectable"), "glyph card exposes an explicit non-button disabled state")

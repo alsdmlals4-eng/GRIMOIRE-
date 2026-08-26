@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "asset_id": "glyph_focus",
+  "role": "Direct-written magical glyph for FOCUS in the Slice Magic Glyph Runtime Set.",
+  "decision_ids": ["GM-SPELL-WORKFLOW-UI-V2-01", "GM-GLYPH-VOCABULARY-V1-01", "ART-STYLE-01", "GM-VISUAL-DIRECTION-20260825-01"],
+  "source": {"storage": "GENERATED_CANDIDATE", "file_id_or_path": "C:/Users/user/.codex/generated_images/01a03ddc-b904-72d1-826e-749d698c97a5/exec-71f5ad0e-7cda-4986-b466-6d0c83db7b5b.png", "sha256": "25b8df029d2fe9d7bb2cef40e9595e760a4e863bc38980efa813b5413df1f7e4", "tool": "OpenAI Image Generation built-in", "owner": "User-approved GPT Work visual production", "prompt_or_brief_path": "docs/planning/GRIMOIRE_GPT_WORK_IMAGE_GOAL_HANDOFF_2026-08-26.md"},
+  "export": {"file_path": "assets/art/ui/glyphs/glyph_focus.png", "sha256": "07f92b115bf4d520d0e0feb53f816ffd4eeb05093d209b72fddf367589d93658", "format": "PNG", "width": 512, "height": 512, "alpha": true, "import_profile": "Godot Texture2D PNG; import not yet verified"},
+  "license": {"status": "PROJECT_ORIGINAL", "evidence": "User approved this generated image for GRIMOIRE on 2026-08-26.", "credit_required": false, "modification_allowed": true, "redistribution_allowed": false},
+  "status": "PROJECT_ASSET_APPROVED", "approved_by": "User", "approved_at": "2026-08-26",
+  "used_in_screens": ["src/ui/spell_workflow/glyph_drawing_screen.tscn", "src/ui/spell_workflow/components/glyph_card.tscn", "src/ui/spell_workflow/circuit_placement_screen.tscn", "src/ui/components/star_circuit_board.tscn", "future Task8 Spell Use thin UI"],
+  "replacement_or_supersession": "Temporary approved visual canon; re-evaluate at 48/64/96px runtime legibility review.", "runtime_validation": "NOT_RUN"
+}

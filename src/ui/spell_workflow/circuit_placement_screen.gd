@@ -183,12 +183,20 @@ func _reserved_ids_for_source(source: int) -> Array:
 
 func _render_board(visual_state: StringName) -> void:
     var board = _named("StarCircuitBoard")
-    if board == null or not board.has_method("set_visual_state"):
+    if board == null:
         return
     var slots: Array[int] = []
+    var auxiliary_by_slot: Dictionary = {}
     for auxiliary in Array(_placement_snapshot.get("auxiliaries", [])):
-        slots.append(int(Dictionary(auxiliary).get("slot", -1)))
-    board.set_visual_state(visual_state, slots.size(), -1, slots)
+        var auxiliary_data: Dictionary = Dictionary(auxiliary)
+        var slot := int(auxiliary_data.get("slot", -1))
+        slots.append(slot)
+        auxiliary_by_slot[slot] = StringName(auxiliary_data.get("glyph_id", &""))
+    var main: Dictionary = Dictionary(_placement_snapshot.get("main", {}))
+    if board.has_method("set_glyph_visuals"):
+        board.set_glyph_visuals(StringName(main.get("glyph_id", &"")), auxiliary_by_slot)
+    if board.has_method("set_visual_state"):
+        board.set_visual_state(visual_state, slots.size(), -1, slots)
 
 
 func _bind_source_panel(name: String, data: Dictionary) -> void:
