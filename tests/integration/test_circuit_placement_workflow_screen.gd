@@ -75,6 +75,13 @@ func run(case) -> void:
 		"reservation_records": [],
 	}
 	screen.render(loadout, snapshot, {"estimated_mana": 7})
+	var board = screen.find_child("StarCircuitBoard", true, false)
+	case.assert_true(board != null and board.has_method("glyph_visual_snapshot"), "placement screen exposes board visual bindings")
+	if board != null and board.has_method("glyph_visual_snapshot"):
+		var board_visuals: Dictionary = board.glyph_visual_snapshot()
+		case.assert_equal(&"HEAT", board_visuals.get("main_glyph_id", &""), "placement snapshot binds its Main glyph visual")
+		case.assert_equal(&"PROTECT", Dictionary(board_visuals.get("auxiliary_by_slot", {})).get(2, &""), "placement snapshot binds sparse Aux glyph visual")
+		case.assert_false(bool(board_visuals.get("owns_gameplay_state", true)), "placement board remains display-only")
 
 	var vault_panel = screen.find_child("VaultSourcePanel", true, false)
 	var stock_panel = screen.find_child("StockSourcePanel", true, false)

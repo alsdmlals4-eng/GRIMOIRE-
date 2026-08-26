@@ -2,6 +2,7 @@ class_name StarCircuitBoard
 extends Control
 
 const GrimoireThemeFactory = preload("res://src/ui/theme/grimoire_theme_factory.gd")
+const GlyphVisualResolver = preload("res://src/ui/spell_workflow/glyph_visual_resolver.gd")
 
 const EDIT := &"EDIT"
 const VALID := &"VALID"
@@ -25,11 +26,14 @@ var _visual_state: StringName = EDIT
 var _active_vertices := 0
 var _active_slots: Array[int] = []
 var _cause_vertex := -1
+var _main_glyph_id: StringName = &""
+var _auxiliary_by_slot: Dictionary = {}
 
 
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_IGNORE
-    resized.connect(Callable(self, "queue_redraw"))
+    resized.connect(_on_resized)
+    _layout_glyph_visuals()
     queue_redraw()
 
 
@@ -58,6 +62,25 @@ func visual_snapshot() -> Dictionary:
         "cause_vertex": _cause_vertex,
         "vertex_layout": &"MATCHES_HARNESS_SLOT_ANCHORS",
         "reduced_motion_ms": 0,
+        "owns_gameplay_state": false,
+    }
+
+
+func set_glyph_visuals(main_glyph_id: StringName, auxiliary_by_slot: Dictionary) -> void:
+    _main_glyph_id = main_glyph_id
+    _auxiliary_by_slot = {}
+    for raw_slot in auxiliary_by_slot:
+        var slot := int(raw_slot)
+        var glyph_id := StringName(auxiliary_by_slot.get(raw_slot, &""))
+        if slot >= 0 and slot <= 4 and not glyph_id.is_empty():
+            _auxiliary_by_slot[slot] = glyph_id
+    _apply_glyph_visuals()
+
+
+func glyph_visual_snapshot() -> Dictionary:
+    return {
+        "main_glyph_id": _main_glyph_id,
+        "auxiliary_by_slot": _auxiliary_by_slot.duplicate(true),
         "owns_gameplay_state": false,
     }
 
@@ -144,6 +167,56 @@ func _vertex_points(center: Vector2) -> PackedVector2Array:
         center + Vector2(-half.x * 0.5, half.y * 0.765),
         center + Vector2(-half.x * 0.731, -half.y * 0.206),
     ])
+
+
+func _on_resized() -> void:
+    _layout_glyph_visuals()
+    queue_redraw()
+
+
+func _apply_glyph_visuals() -> void:
+    _bind_glyph_visual("Center", _main_glyph_id)
+    for slot in range(5):
+        _bind_glyph_visual("Aux%s" % slot, StringName(_auxiliary_by_slot.get(slot, &"")))
+    _layout_glyph_visuals()
+
+
+func _bind_glyph_visual(slot_prefix: String, glyph_id: StringName) -> void:
+    var texture_rect = get_node_or_null(NodePath("GlyphVisuals/%s" % _visual_node_name(slot_prefix, "Texture"))) as TextureRect
+    var name_label = get_node_or_null(NodePath("GlyphVisuals/%s" % _visual_node_name(slot_prefix, "NameLabel"))) as Label
+    var texture = GlyphVisualResolver.texture_for(glyph_id)
+    var glyph_name := GlyphVisualResolver.korean_name_for(glyph_id)
+    if texture_rect != null:
+        texture_rect.texture = texture
+        texture_rect.visible = texture != null
+    if name_label != null:
+        name_label.text = glyph_name
+        name_label.visible = not glyph_name.is_empty()
+
+
+func _layout_glyph_visuals() -> void:
+    var center := size * 0.5
+    _position_glyph_visual("Center", center, 64.0)
+    var vertices := _vertex_points(center)
+    for slot in range(vertices.size()):
+        _position_glyph_visual("Aux%s" % slot, vertices[slot], 40.0)
+
+
+func _position_glyph_visual(slot_prefix: String, point: Vector2, glyph_size: float) -> void:
+    var texture_rect = get_node_or_null(NodePath("GlyphVisuals/%s" % _visual_node_name(slot_prefix, "Texture"))) as TextureRect
+    var name_label = get_node_or_null(NodePath("GlyphVisuals/%s" % _visual_node_name(slot_prefix, "NameLabel"))) as Label
+    if texture_rect != null:
+        texture_rect.position = point - Vector2.ONE * glyph_size * 0.5
+        texture_rect.size = Vector2.ONE * glyph_size
+    if name_label != null:
+        name_label.position = point + Vector2(-glyph_size * 0.5, glyph_size * 0.4)
+        name_label.size = Vector2(glyph_size, 18.0)
+
+
+func _visual_node_name(slot_prefix: String, suffix: String) -> String:
+    if slot_prefix == "Center":
+        return "CenterGlyph%s" % suffix
+    return "AuxGlyph%s%s" % [suffix, slot_prefix.trim_prefix("Aux")]
 
 
 func _state_color() -> Color:
