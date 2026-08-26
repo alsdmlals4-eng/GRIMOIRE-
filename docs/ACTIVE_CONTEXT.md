@@ -11,8 +11,8 @@ contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
 historical_contract_binding: GM-CONTRACT-V4-5-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
+authority_sync_pr_predecessor: 158
 current_authority_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
-authority_sync_pr: CURRENT_TASK_PR_PENDING
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
 task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
@@ -38,6 +38,7 @@ repo_wide_actions_full_sha: PASS
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
+next_product_task: TASK8_SPELL_USE_SCREEN
 next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
@@ -92,6 +93,7 @@ r5.4 authority reconciliation
 따라서 현재 범위는 `VISUAL_ASSET_COVERAGE_AND_NEXT_SINGLE_VISUAL_BRIEF`다.
 
 - Task8/Godot 제품 구현: **NOT_AUTHORIZED_BY_CURRENT_WORK_SCOPE**
+- `TASK8_SPELL_USE_SCREEN`: 다음 제품 task locator일 뿐 현재 구현 권한이 아님
 - 이미지 생성: **TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL**
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
 - unrelated open PR: **READ_ONLY**
@@ -231,6 +233,7 @@ task7:
   pr: 110
   merge: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
   status: TASK7_MERGED_MAIN_VERIFIED
+next_product_task: TASK8_SPELL_USE_SCREEN
 ```
 
 Task8은 기존 Task5 Stage3 authority의 thin UI consumer다. 새 Mana/inventory/result/rollback/transaction authority를 만들지 않는다.
