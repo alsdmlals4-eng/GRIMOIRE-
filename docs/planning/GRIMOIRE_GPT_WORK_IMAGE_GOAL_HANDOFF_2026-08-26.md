@@ -172,6 +172,8 @@ Planned runtime export target: `512×512 PNG RGBA` per glyph, unless Work review
 
 Runtime states such as recognized/selected/invalid/insufficient/committed should use Material/Outline/Modulate/Semantic Mark before creating duplicate textures.
 
+글자 표현은 glyph PNG와 별도로 우측 하단에 라이브·현지화 가능 이름 라벨을 둔다. 예: `glyph_flow`는 `흐름`으로 표시한다. 이 라벨은 런타임 UI가 소유하며 PNG에 기능 텍스트를 구워 넣지 않는다.
+
 ### Must Preserve
 
 - `data/glyphs/v1/glyph_vocabulary_v1.json` canonical shape/stroke identity
@@ -191,6 +193,16 @@ Runtime states such as recognized/selected/invalid/insufficient/committed should
 ### Before Image Generation
 
 Work must first present and get approval for the exact **runtime consumer slot contract + six-glyph text brief**. This handoff does not authorize generation.
+
+### 2026-08-26 · IMG-01 temporary visual approval receipt
+
+The user approved all six glyph visual directions for temporary runtime use. That approval was subsequently integrated into current `main`; the original `PROTECT` image-side record is PR #178, and the later runtime integration/readability work is recorded in the current-main receipt below. The current `BURST` silhouette is explicitly approved as temporary even though it reads star-like, and must be re-evaluated at the runtime legibility gate.
+
+All glyph PNGs remain glyph-only. The Korean name (`열기`, `보호`, `흐름`, `집중`, `분산`, `폭발`) is a live, localizable lower-right UI label, not baked image text.
+
+This approval began as image-side provenance. Godot import, the shared resolver, and Task6/Task7 consumer binding are now recorded in the current-main receipt; 48/64/96px legibility, 1920×1080 capture, device, and performance validation remain unrun.
+
+Implementation reconciled the vocabulary difference in the shared visual resolver: existing `AMPLIFY` uses the `BURST` texture visually without changing the glyph catalog, reservation, commit, Mana, target, or cast semantics. The alias remains a compatibility-preserving visual mapping, not a new gameplay glyph ID.
 
 ## 9. IMG-01 Integration contract to prepare after image approval
 

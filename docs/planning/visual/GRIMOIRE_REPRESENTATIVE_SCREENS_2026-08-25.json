@@ -12,6 +12,7 @@
       "filename": "마법_온실의_정령_전투_ui.png",
       "generation_id": "e566181c-fe4c-4af0-af8e-79b6874695f0",
       "sha256": "f6c6491190fb3373e457bda43ecda88039be7dde53cae284c2b5141717b4e9e1",
+      "local_project_reference_path": "assets/reference/visual/GRIMOIRE_representative_battle_spell_screen_2026-08-25.png",
       "approval_scope": [
         "GREENHOUSE_MAGIC_BATTLE_MOOD",
         "ENEMY_AND_ENVIRONMENT_CENTERED_COMPOSITION",
@@ -26,6 +27,7 @@
       "filename": "마법_온실의_식물학_강의실.png",
       "generation_id": "c41aa553-a406-4ab5-b56a-3e863a60de54",
       "sha256": "e402b5e5680a280aedf43026448ae766cba7307ce9696091ea0538b380fbb152",
+      "local_project_reference_path": "assets/reference/visual/GRIMOIRE_dialogue_screen_approved_2026-08-25.png",
       "approval_scope": [
         "HALF_BODY_ANIME_DIALOGUE_COMPOSITION",
         "MAGIC_ACADEMY_STORYBOOK_BACKGROUND",

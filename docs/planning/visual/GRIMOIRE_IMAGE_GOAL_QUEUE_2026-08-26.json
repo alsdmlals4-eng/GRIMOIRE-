@@ -80,13 +80,15 @@
       "planned_export": "512x512 PNG RGBA or equivalent approved vector source with deterministic runtime export",
       "planned_folder": "assets/art/ui/glyphs/",
       "state_policy": "recognized/selected/invalid/insufficient/committed states use Material/Outline/Modulate/Semantic Mark before texture duplication",
+      "glyph_name_label_policy": "Each glyph presentation shows a live, localizable Korean name label at the lower right of the glyph visual; for example, glyph_flow displays 흐름. The runtime PNG remains glyph-only.",
       "must_preserve": ["canonical stroke identity", "direct-written magical letter feeling", "Magic/Anime + Blue/Blue-Purple magic language", "small-size silhouette distinction"],
       "must_not_introduce": ["talisman", "hanging tag", "collectible card framing", "pictogram-first redesign", "baked functional text", "new glyph IDs"],
-      "status": "RUNTIME_INTEGRATION_MERGED_MAIN",
-      "next_gate": "IMG-02 consumer contract and bg_school_common Brief may proceed. Keep 48/64/96px readability, 1920x1080 capture, device, and performance evidence unclaimed until freshly captured.",
+      "status": "RUNTIME_INTEGRATION_MERGED_MAIN_PENDING_RUNTIME_EVIDENCE",
+      "next_gate": "IMG-02 consumer contract and bg_school_common Brief may proceed. Keep 48/64/96px readability, 1920x1080 capture, device, and performance evidence unclaimed until freshly captured. The BURST-to-AMPLIFY compatibility alias remains visual-only; no spell-transaction semantics change without explicit acceptance criteria.",
       "implementation_evidence": {
         "github_issue": 179,
         "merged_prs": [180, 182, 184],
+        "initial_merged_main": "0fb2b56b7c2b0f7cb18a57505e39839377bed105",
         "resolver": "src/ui/spell_workflow/glyph_visual_resolver.gd",
         "task6_preview": "RecognitionPanel/Content/GlyphPreview + GlyphNameLabel",
         "task7_card": "Content/GlyphPresentation/GlyphTexture + GlyphNameLabel",
@@ -108,8 +110,8 @@
       "required_assets": ["bg_school_common", "bg_greenhouse_field_base", "bg_greenhouse_battle_arena"],
       "planned_export": "2560x1440 WebP Lossless",
       "consumer_contract": "docs/planning/visual/FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md",
-      "status": "CONSUMER_SCENE_CONTRACT_DEFINED",
-      "next_gate": "PRESENT_BG_SCHOOL_COMMON_TEXT_BRIEF_THEN_STOP_FOR_EXPLICIT_GENERATION_APPROVAL"
+      "status": "ALL_REQUIRED_SOURCE_CANDIDATES_PERSISTED_PENDING_RUNTIME_EXPORT_FIT",
+      "next_gate": "REVIEW_THE_THREE_SOURCE_CANDIDATES_FOR_RUNTIME_EXPORT_FIT; DO_NOT_CREATE_INCIDENT_OR_BATTLE_STATE_OVERLAYS_UNTIL_RUNTIME_EFFECT_REUSE_IS_EVALUATED"
     },
     {
       "order": 3,
@@ -217,7 +219,13 @@
   ],
   "image_generation_gate": {
     "handoff_itself_authorizes_generation": false,
-    "required_sequence": ["fresh canon/consumer read", "goal text brief", "STOP", "explicit user generation approval", "exactly one result", "STOP", "user approve or revise"],
+    "default_required_sequence": ["fresh canon/consumer read", "goal text brief", "STOP", "explicit user generation approval", "exactly one result", "STOP", "user approve or revise"],
+    "active_user_override": {
+      "source": "USER_DIRECTIVE_2026-08-26_AUTO_IMAGE_GENERATION_AND_PERSISTENCE",
+      "generation_approval": "PREAUTHORIZED_FOR_AN_ASSET_JUDGED_NECESSARY_TO_THE_CURRENT_APPROVED_VISUAL_QUEUE_GOAL",
+      "persistence_required": ["project local source-candidate path", "Notion ASSET LIBRARY record"],
+      "guardrails": ["generate exactly one candidate for each distinct asset at a time", "do not imply runtime export, manifest completion, Godot binding, or play validation from candidate persistence", "keep user-provided and unrelated project files untouched"]
+    },
     "batch_generation_from_queue": false
   },
   "implementation_gate": {
@@ -234,5 +242,5 @@
     "windows_export": "NOT_RUN",
     "android_export_device": "NOT_RUN"
   },
-  "resume_instruction": "In ChatGPT Work, start with IMG-01 only. First reconcile the six-glyph runtime consumer contract and exact asset slots/paths. Do not generate an image until the IMG-01 text brief is shown to and explicitly approved by the user."
+  "resume_instruction": "Continue the current IMG-02 First-Session Environment Base Pack. The user has preauthorized one source candidate at a time when Codex judges it necessary, with required persistence to project-local source storage and the Notion ASSET LIBRARY. Do not infer runtime export, Godot binding, or play validation from that approval."
 }

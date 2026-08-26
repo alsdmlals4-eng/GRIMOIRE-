@@ -1,0 +1,34 @@
+{
+  "record_type": "GENERATED_SOURCE_CANDIDATE",
+  "goal_id": "IMG-02",
+  "asset_id": "bg_school_common",
+  "variant": "CLASS_SAFE_PRECEDENT · candidate_01",
+  "user_approval_mode": "PREAUTHORIZED_AUTOMATIC_CANDIDATE_GENERATION",
+  "generated_on": "2026-08-26",
+  "local_candidate_path": "assets/art/source_candidates/first_session_01/backgrounds/school/bg_school_common_candidate_01.png",
+  "file_format": "PNG",
+  "actual_dimensions_px": {
+    "width": 1672,
+    "height": 941
+  },
+  "alpha": "OPAQUE",
+  "sha256": "b65b65653d3fcb50b3587cda5e53c8a040f814193555218ab1bddb1dab1311ba",
+  "notion_asset_record": "https://app.notion.com/p/3c81b237eb1c816cb09cf34f0f7f00ce?pvs=204",
+  "consumer_contract": "docs/planning/visual/FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md",
+  "planned_runtime_target": "2560x1440 WebP Lossless",
+  "current_state": "LOCAL_AND_NOTION_PERSISTED_SOURCE_CANDIDATE",
+  "not_claimed": [
+    "runtime export",
+    "runtime provenance manifest",
+    "Godot import or binding",
+    "human, device, or performance validation",
+    "release-rights promotion"
+  ],
+  "brief_constraints_verified_by_generation_review": [
+    "environment-only composition",
+    "no people or characters",
+    "no functional UI or readable text",
+    "safe academy classroom/practicum mood",
+    "lower-third dialogue reserve"
+  ]
+}
