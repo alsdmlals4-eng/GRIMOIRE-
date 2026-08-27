@@ -37,10 +37,12 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("res://src/ui/spell_workflow/spell_workflow_product_root.tscn", project["main_scene"])
         self.assertEqual("DEVELOPMENT_PRODUCT_ROOT_ENTRY", project["main_scene_role"])
         self.assertEqual("PARTIAL_FOUNDATION", current["implementation"])
-        self.assertEqual("TASK8_PR_PREP_REVERIFY_PENDING", current["next_product_gate"])
+        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", current["next_product_gate"])
+        self.assertEqual("MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY", current["task9_status"])
+        self.assertEqual("TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING", current["runtime_validation"])
         self.assertEqual("NOT_RUN", current["human_validation"])
         self.assertEqual("NOT_RUN", current["mobile_device_validation"])
-        self.assertIn("FULL_SLICE_NOT_RUN", current["runtime_validation"])
+        self.assertEqual("NOT_RUN", current["full_vertical_slice"])
 
     def test_domain_split_authority_and_sheet_retirement_are_explicit(self) -> None:
         authority = self.adapter["workspace_authority"]
@@ -64,11 +66,32 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("Mobile", project["primary_platform"])
         self.assertEqual("PC", project["follow_up_platform"])
         self.assertEqual("PARTIAL_FOUNDATION", project["implementation_status"])
-        self.assertEqual("TASK8_PR_PREP_REVERIFY_PENDING", project["next_product_gate"])
+        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", project["next_product_gate"])
         self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", project["execution_profile"])
-        self.assertEqual("CREATED_STAR_RUNTIME_POC", coverage["godot"])
+        self.assertEqual("TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING", coverage["godot"])
+        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", coverage["spell_workflow"])
         self.assertEqual("COMPLETE_FROSTBLOOM_FIRST_SESSION", coverage["planning"])
         self.assertEqual("APPROVED_SPEC", coverage["asset_spec_01"])
+
+    def test_visual_runtime_inventory_distinguishes_merged_glyphs_from_unbound_img02_sources(self) -> None:
+        coverage = load_json("docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json")
+        checklist = load_json("docs/planning/visual/GRIMOIRE_VISUAL_PRODUCTION_CHECKLIST_2026-08-26.json")
+        queue = load_json("docs/planning/visual/GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json")
+
+        current = coverage["current_runtime_readback"]
+        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", current["next_product_gate"])
+        self.assertEqual("res://src/ui/spell_workflow/spell_workflow_product_root.tscn", current["main_scene"])
+        self.assertEqual(6, current["glyph_runtime_asset_count"])
+        self.assertEqual("CURRENT_RUNTIME", current["glyph_consumer_state"])
+        self.assertEqual("SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING", current["img02_state"])
+
+        glyph_family = next(item for item in checklist["runtime_asset_families"] if item["asset_group_id"] == "GR-RA-01-GLYPH-BASE")
+        self.assertEqual("CURRENT_RUNTIME", glyph_family["consumer_state"])
+        self.assertEqual(6, glyph_family["asset_spec"]["count_cap"])
+        self.assertEqual(["heat", "protect", "flow", "focus", "disperse", "burst"], glyph_family["asset_spec"]["base_names"])
+
+        img02 = next(item for item in queue["goal_queue"] if item["goal_id"] == "IMG-02")
+        self.assertEqual("SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING", img02["status"])
 
     def test_generated_views_derive_current_reality_from_adapter(self) -> None:
         project = self.adapter["project"]

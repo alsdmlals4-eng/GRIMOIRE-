@@ -7,7 +7,17 @@
   "correction_source": "우린 '설명용 시트'가 아니라 실제 게임 소비처가 있는 이미지 기준으로 만드는거야.",
   "supersedes": "2026-08-26 initial checklist that mixed representative/explanatory images with runtime assets",
   "contract_revision": "2026-08-26-r5.4-superset-final",
-  "baseline_project_main": "61d9a34b04534bc987851ef1b12382b1229e999b",
+  "baseline_project_main": "ce1bd46bc82dd3edf4ed3c485935108282117793",
+  "current_runtime_readback": {
+    "readback_date": "2026-08-27",
+    "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
+    "task9_status": "MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY",
+    "next_product_gate": "TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING",
+    "glyph_runtime_asset_count": 6,
+    "glyph_consumer_state": "CURRENT_RUNTIME",
+    "img02_state": "SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING",
+    "evidence_boundary": "HUMAN_DEVICE_PERFORMANCE_EXPORT_AND_FULL_VERTICAL_SLICE_NOT_RUN"
+  },
   "baseline_base_main": "edb3b3376603c9f6b00d64af3126304f8c9946bf",
   "purpose": "게임의 Godot Scene/UI/System이 실제로 소비하는 Runtime Image/Texture/VFX 자산만 생산 목록으로 관리한다. 설명용 시트, 대표 화면 시안, 기획 보드는 생산 자산으로 계산하지 않는다.",
   "authority": {
@@ -37,19 +47,19 @@
   "runtime_asset_families": [
     {
       "asset_group_id": "GR-RA-01-GLYPH-BASE",
-      "name": "기본 마법 글자 Runtime Asset 3종",
-      "consumer_state": "APPROVED_PRODUCT_CONSUMER",
-      "consumers": ["src/ui/spell_workflow/glyph_drawing_screen.tscn", "src/ui/spell_workflow/circuit_placement_screen.tscn", "Task8 Spell Use future thin UI consumer"],
+      "name": "기본 마법 글자 Runtime Asset 6종",
+      "consumer_state": "CURRENT_RUNTIME",
+      "consumers": ["src/ui/spell_workflow/glyph_drawing_screen.tscn", "src/ui/spell_workflow/circuit_placement_screen.tscn", "src/ui/spell_workflow/spell_use_screen.tscn", "src/ui/spell_workflow/spell_workflow_product_root.tscn"],
       "runtime_role": "글자 인식 결과/보관 글자/회로 배치/완성 주문 Preview에서 직접 쓰인 마법 문자 표현",
-      "asset_spec": {"count_cap": 3, "base_names": ["flow", "focus", "disperse"], "canvas": "512x512 vector_or_rgba", "states": ["raw_stroke", "recognized", "selected", "invalid_grammar", "insufficient_condition", "committed"], "state_policy": "상태별 별도 PNG 복제보다 material/outline/color/icon mark 우선"},
+      "asset_spec": {"count_cap": 6, "base_names": ["heat", "protect", "flow", "focus", "disperse", "burst"], "canvas": "512x512 PNG RGBA", "states": ["raw_stroke", "recognized", "selected", "invalid_grammar", "insufficient_condition", "committed"], "state_policy": "상태별 별도 PNG 복제보다 material/outline/color/icon mark 우선"},
       "visual_rule": "DIRECT_WRITTEN_MAGICAL_LETTER; 부적/패찰/수집카드 금지",
-      "production_readiness": "CONSUMER_SCENES_EXIST_TEXTURE_BINDING_AND_EXACT_RUNTIME_PATH_PENDING",
-      "next_action": "Task6/Task7의 실제 asset slot 및 manifest path를 먼저 고정한 뒤 Runtime Asset 3종을 제작"
+      "production_readiness": "MERGED_MAIN_PRODUCT_ROOT_RUNTIME_CONSUMED",
+      "next_action": "새 glyph 이미지는 만들지 않는다. Task9 사용성 검증에서 48/64/96px 판독 증거를 별도로 확보한다."
     },
     {
       "asset_group_id": "GR-RA-02-BASE-ICONS",
       "name": "공용 Runtime Icon Set",
-      "consumer_state": "APPROVED_PRODUCT_CONSUMER",
+      "consumer_state": "SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING",
       "consumers": ["Field UI", "Dialogue UI", "Writing UI", "Battle UI", "Result UI", "Grimoire UI", "Main UI"],
       "runtime_role": "HP/Mana/불안정도/환경/경고/글자 의미/동반자/가디언/조작/마도서/결과 상태 표시",
       "asset_spec": {"count_cap": 24, "candidate_icons": ["HP", "Mana", "Instability", "Environment", "Attack Timer", "Slow", "Pause", "Warning", "Flow", "Focus", "Disperse", "Calm", "Prepared", "Connected", "Companion", "Guardian", "Undo", "Clear", "Cancel", "Confirm", "Grimoire", "Result", "Save", "Settings"], "variant_policy": "색 Variant를 별도 Texture로 복제하지 않음"},
@@ -70,7 +80,7 @@
         {"id": "BG-03", "name": "Greenhouse Battle Arena", "consumer": "동일 사건 별도 전투장"}
       ],
       "count_cap": 3,
-      "production_readiness": "SCENE_CONSUMERS_APPROVED_PRODUCT_ROOT_NOT_YET_ON_MAIN"
+      "production_readiness": "THREE_SOURCE_CANDIDATES_PERSISTED_UNBOUND_ON_CURRENT_MAIN"
     },
     {
       "asset_group_id": "GR-RA-04-BACKGROUND-STATE-OVERLAYS",
@@ -183,10 +193,10 @@
   ],
   "production_order_rule": "화면 순서가 아니라 consumer readiness 순서로 만든다: CURRENT_RUNTIME gap → consumer Scene 존재 + asset slot 확정 → approved product consumer + implementation 임박 → 그 외 defer.",
   "next_action": {
-    "action": "RUNTIME_CONSUMER_MAP_REVIEW",
+    "action": "TASK9_USER_VERTICAL_SLICE_VALIDATION",
     "image_generation_authorized": false,
-    "first_candidate_group": "GR-RA-01-GLYPH-BASE",
-    "condition": "Task6/Task7에서 실제 glyph Texture/Vector slot과 runtime path/manifest가 확정된 뒤에만 첫 Runtime Asset 생성"
+    "first_candidate_group": "NONE",
+    "condition": "현재 main 소비처가 없는 이미지는 생성·내보내기·정본 등록하지 않는다. IMG-02는 새 Godot consumer와 Texture binding 계약이 추가된 뒤에만 재검토한다."
   },
   "evidence_ceiling": {
     "current_product_stage": "PARTIAL_FOUNDATION",

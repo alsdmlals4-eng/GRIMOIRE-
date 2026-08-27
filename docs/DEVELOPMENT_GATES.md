@@ -1,15 +1,15 @@
 # GRIMOIRE 개발·기획 게이트
 
 ```yaml
-active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.5
-contract_binding_decision: GM-CONTRACT-V4-5-BINDING-01
-contract_binding_sync: GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING
-historical_contract_binding: GM-CONTRACT-V4-4-BINDING-01
+active_contract: PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION_v4.8
+contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
+contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
+historical_contract_binding: GM-CONTRACT-V4-5-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
-current_state_sync: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
+current_state_sync: TASK9_MERGED_MAIN_DOCUMENTATION_READBACK
 dedicated_local_environment_predecessor_sync: GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT
-task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP
-task8_current_reverify: docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md
+task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP_HISTORICAL
+task8_current_reverify: docs/planning/TASK8_CURRENT_MAIN_RECONCILIATION_2026-08-27.md
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
@@ -22,17 +22,19 @@ repo_wide_actions_full_sha: PASS
 repo_wide_actions_supply_chain: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
-latest_product_main: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
-spell_workflow_status: TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
-compatibility_next_gate: TASK8_RECEIPT_HERA_REVIEW_PR
-next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
-task8_recovery_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+latest_product_main: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
+spell_workflow_predecessor_status: TASK8_MERGED_MAIN_VERIFIED
+spell_workflow_status: TASK9_MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
+compatibility_next_gate: TASK8_HISTORICAL_RECOVERY_CLOSED
+next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
+task8_recovery_subgate: TASK8_CURRENT_MAIN_LOCAL_VALIDATION_PASS
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
 task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
-task8_remote_product_pr: 190
-parallel_open_pr: PR151_DO_NOT_TOUCH
+task8_remote_product_pr: 190_MERGED_MAIN_VERIFIED
+task9_product_commit: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
+task9_product_pr: 192_MERGED_MAIN_VERIFIED
+parallel_open_pr: LIVE_GITHUB_READBACK_REQUIRED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
@@ -47,7 +49,7 @@ gut_formal_adoption: GUT_FORMALLY_ADOPTED
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
-three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime: TASK9_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE_READY
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -85,7 +87,7 @@ stock_scope: TYPED_GLYPH_ONLY
 
 ## Gate 2 — Current Spell Workflow implementation boundary
 
-Tasks 3–7은 병합 완료다.
+Tasks 3–9는 병합 완료다. Task8 recovery text below is historical provenance; current execution starts at the Task9 human vertical-slice gate.
 
 | Task | PR | Merge | Result |
 |---|---:|---|---|
@@ -94,15 +96,24 @@ Tasks 3–7은 병합 완료다.
 | 5 | #106 | `275ba48eb9c07ce24d4b17b2c57de66c98923e1a` | MERGED_MAIN_VERIFIED |
 | 6 | #108 | `4a9daf0ed8de7bb39173a71e6ada9324d5a462b7` | MERGED_MAIN_VERIFIED |
 | 7 | #110 | `fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f` | TASK7_MERGED_MAIN_VERIFIED |
+| 8 | #190 | `e954b7fb863d31387d3383b654c60b52ea7b9d89` | TASK8_MERGED_MAIN_VERIFIED |
+| 9 | #192 | `db038a4fd964ca037bfe97f6aee5d0cc7d0daf93` | TASK9_MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY |
 
-Task8은 Task5 Stage3의 thin UI consumer다. 다음 compatibility locator는 기존 consumer를 위해 유지한다.
+```yaml
+current_runtime_entry: res://src/ui/spell_workflow/spell_workflow_product_root.tscn
+current_runtime_role: DEVELOPMENT_PRODUCT_ROOT_ENTRY
+current_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
+automated_evidence: AVAILABLE_DO_NOT_PROMOTE_TO_HUMAN_DEVICE_PERFORMANCE_OR_EXPORT_PASS
+```
+
+Task8은 Task5 Stage3의 thin UI consumer였으며, 다음 compatibility locator는 기존 consumer 검색을 위해 역사적으로 유지한다.
 
 ```text
 TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING
 TASK8_RECEIPT_HERA_REVIEW_PR
 ```
 
-Parent gate는 계속 `TASK8_PR_PREP_REVERIFY_PENDING`이다. 그러나 fresh remote/local reverify 결과 실제 첫 실행 subgate는 다음으로 좁혀졌다.
+이전 Parent gate와 local recovery state는 Task8 병합 전의 역사 관찰값이다.
 
 ```yaml
 current_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -116,7 +127,7 @@ historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 
 `8c611f...`는 PR #131 HiGodot v3.1.4 authority reconciliation commit이다. Task8 제품 변경은 그 commit에 들어 있지 않았고 Sync21 당시 local worktree에만 존재했다. 원격 Task8/handoff 브랜치 scan에서도 `src/ui/spell_workflow/spell_use_screen.gd`는 발견되지 않았다.
 
-따라서 Task8 PR을 준비하기 전에 반드시 로컬 worktree delta 존재 여부를 먼저 확인한다.
+아래 절차는 Task8 PR 준비 당시의 보존 절차이며, 현재 Task9 gate의 실행 지시가 아니다.
 
 ```text
 로컬 delta 존재
@@ -137,7 +148,7 @@ historical_product_state: UNMERGED_LOCAL_WORKTREE_DELTA
 → stage/commit/push/PR
 ```
 
-현재 Task8은 `TASK8_MERGED_MAIN_VERIFIED`가 아니다. 상세 원격 readback은 `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`가 소유한다.
+현재 Task8은 `TASK8_MERGED_MAIN_VERIFIED`이며, 상세 역사 원격 readback은 `docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md`가 소유한다.
 
 ## Gate 3 — Sync21 local executor continuation
 
