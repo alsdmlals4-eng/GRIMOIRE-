@@ -10,6 +10,11 @@ func run(case) -> void:
     if not FileAccess.file_exists(ROOT_PATH):
         return
 
+    var root_source := FileAccess.get_file_as_string(ROOT_PATH)
+    var product_scene_source := FileAccess.get_file_as_string(ROOT_SCENE_PATH)
+    case.assert_true(product_scene_source.contains("bg_greenhouse_field_base.webp"), "Product Root consumes the persisted greenhouse background asset")
+    case.assert_true(root_source.contains("theme = GrimoireThemeFactory.create_theme()"), "Product Root applies the shared Academy live theme")
+
     var Root = load(ROOT_PATH)
     case.assert_true(Root != null and Root.can_instantiate(), "Task9 Product Root must compile")
     if Root == null or not Root.can_instantiate():
@@ -22,11 +27,30 @@ func run(case) -> void:
     var packed_scene = load(ROOT_SCENE_PATH)
     case.assert_true(packed_scene != null and packed_scene.can_instantiate(), "Product Root scene must instantiate")
     if packed_scene != null and packed_scene.can_instantiate():
-        var scene_root = packed_scene.instantiate()
+        var scene_root := packed_scene.instantiate() as Control
+        var tree := Engine.get_main_loop() as SceneTree
+        case.assert_true(tree != null, "Product Root visual contract has an active SceneTree")
+        if tree != null:
+            tree.root.add_child(scene_root)
+
+        case.assert_true(scene_root.theme != null, "Product Root applies the shared Academy Theme at runtime")
+        if scene_root.theme != null:
+            case.assert_true(scene_root.theme.get_stylebox(&"normal", &"Button") != null, "Academy Theme styles generic primary actions")
+            case.assert_true(scene_root.theme.get_stylebox(&"panel", &"PanelContainer") != null, "Academy Theme styles generic content panels")
+
+        var environment_background := scene_root.get_node_or_null("EnvironmentBackground") as TextureRect
+        var readability_veil := scene_root.get_node_or_null("EnvironmentReadabilityVeil") as ColorRect
+        case.assert_true(environment_background != null, "Product Root owns the persisted greenhouse backdrop node")
+        case.assert_true(readability_veil != null, "Product Root owns the readability veil above the backdrop")
+        if environment_background != null:
+            case.assert_true(environment_background.texture != null, "Product Root loads the persisted greenhouse texture at runtime")
+            case.assert_equal(Control.MOUSE_FILTER_IGNORE, environment_background.mouse_filter, "Greenhouse backdrop does not intercept player input")
+        if readability_veil != null:
+            case.assert_equal(Control.MOUSE_FILTER_IGNORE, readability_veil.mouse_filter, "Readability veil does not intercept player input")
+
         for required_node in ["GlyphScreen", "CircuitScreen", "SpellUseScreen", "ResultPanel"]:
             case.assert_true(scene_root.has_node(NodePath(required_node)), "Product Root exposes player surface: %s" % required_node)
 
-        var product_scene_source := FileAccess.get_file_as_string(ROOT_SCENE_PATH)
         case.assert_false(product_scene_source.contains('parent="GlyphScreen/GlyphContent"'), "product root does not duplicate glyph-scene descendants")
         case.assert_false(product_scene_source.contains('parent="CircuitScreen/CircuitContent"'), "product root does not duplicate circuit-scene descendants")
         case.assert_false(product_scene_source.contains('parent="SpellUseScreen/SpellUseContent"'), "product root does not duplicate spell-use descendants")
@@ -41,7 +65,7 @@ func run(case) -> void:
         var stock_source: Control = scene_root.get_node(NodePath("CircuitScreen/CircuitContent/Content/Layout/MainRow/StockSourcePanel"))
         case.assert_true(vault_source.custom_minimum_size.x >= 180.0, "vault source panel has a readable minimum width")
         case.assert_true(stock_source.custom_minimum_size.x >= 180.0, "stock source panel has a readable minimum width")
-        scene_root.free()
+        scene_root.queue_free()
 
     var root = Root.new()
     var started: Dictionary = root.start_slice()

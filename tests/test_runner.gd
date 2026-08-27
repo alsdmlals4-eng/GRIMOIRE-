@@ -54,6 +54,10 @@ const SUITES: Array[String] = [
 
 
 func _init() -> void:
+    call_deferred("_run")
+
+
+func _run() -> void:
     var case = TestCase.new()
     for suite_path in SUITES:
         var suite_script = load(suite_path)

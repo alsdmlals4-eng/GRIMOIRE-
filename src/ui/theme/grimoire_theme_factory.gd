@@ -56,6 +56,12 @@ static func _configure_base(theme: Theme) -> void:
 
 
 static func _configure_panels(theme: Theme) -> void:
+    theme.set_stylebox(
+        &"panel",
+        &"PanelContainer",
+        _style_box(Color(SURFACE_PANEL, 0.9), LINE_BRASS.darkened(0.15), 1, PANEL_RADIUS, 14.0)
+    )
+
     theme.set_type_variation(&"AcademyPanel", &"PanelContainer")
     theme.set_stylebox(
         &"panel",
@@ -86,6 +92,16 @@ static func _configure_panels(theme: Theme) -> void:
 
 
 static func _configure_buttons(theme: Theme) -> void:
+    _set_button_set(
+        theme,
+        &"Button",
+        SURFACE_PANEL,
+        SURFACE_PANEL_EMPHASIS,
+        LINE_BRASS,
+        TEXT_PRIMARY,
+        BUTTON_RADIUS
+    )
+
     theme.set_type_variation(&"AcademyButton", &"Button")
     _set_button_set(
         theme,
