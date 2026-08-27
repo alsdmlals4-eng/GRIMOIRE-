@@ -28,6 +28,12 @@ product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
 visual_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
+frostbloom_w6_preservation_priority_decision: GM-FROSTBLOOM-W6-PRESERVATION-PRIORITY-01
+frostbloom_w6_preservation_priority_status: USER_APPROVED_ACTIVE_PLANNING_ONLY
+frostbloom_w6_preservation_priority_issue: 221
+frostbloom_w6_preservation_priority_owner: docs/planning/FROSTBLOOM_W6_PRESERVATION_PRIORITY_01_APPROVAL_2026-08-28.md
+frostbloom_w6_visual_brief: docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md
+frostbloom_w6_visual_brief_state: TEXT_BRIEF_READY__USER_IMAGE_APPROVAL_REQUIRED
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
 representative_screen_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
 art_style_lock: ART-STYLE-01
@@ -136,6 +142,8 @@ android_device: NOT_RUN
 - Task12/direct glyph input: **MERGED_MAIN** — 직접 쓴 글자 입력의 player-facing 설명만 보완했다.
 - Task13/result receipt: **MERGED_MAIN** — 실제 result payload의 대상·사용 마력·결과 문장을 Result Panel에 표시한다. 새 경제·전투·보상 authority는 추가하지 않았다.
 - PR #217 greenhouse spirit idle seed: **PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING** — 투명 PNG와 provenance는 존재하지만 battle Scene binding·Godot import·runtime evidence는 아직 없다.
+- Frostbloom W6 preservation priority: **USER_APPROVED_ACTIVE_PLANNING_ONLY** — `희귀 묘목 우선`과 `온실 구조 우선`은 같은 위협을 서로 다른 방식으로 보존하는 두 유효한 대상 우선순위다. 기존 Target/Preview/Explicit Cast/Result authority를 재사용하며, 현재 Product Root의 `WARD`/`FLOWER`는 후속 Frostbloom 구현 전의 thin prototype role label로 남긴다.
+- Frostbloom W6 visual brief: **TEXT_BRIEF_READY__USER_IMAGE_APPROVAL_REQUIRED** — 사용자 제공 비교 이미지는 reference-only이며, 새 보드·asset·runtime approval이 아니다.
 - 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 생성: **NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL**
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**

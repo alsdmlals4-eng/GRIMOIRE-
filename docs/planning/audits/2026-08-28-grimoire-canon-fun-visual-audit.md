@@ -116,7 +116,7 @@ Adversarial result: the board matches the lighting/material/style anchor, but it
 ## Required order
 
 1. User vertical-slice validation of the current Product Root: comprehension, target-choice rationale, confirmation burden, result understanding, and desire to continue.
-2. Resolve the player-facing **target trade-off** contract before any Battle/first-session production asset batch.
+2. **Resolved 2026-08-28:** `GM-FROSTBLOOM-W6-PRESERVATION-PRIORITY-01` makes the first target trade-off rare seedlings versus greenhouse structure. Validate its readability before any Battle/first-session production asset batch.
 3. Update the full Frostbloom situation implementation contract from proven Product Root seams; preserve one-threat/one-situation production cap.
 4. Only then bind approved greenhouse-spirit asset and create missing runtime assets with consumer contracts.
 
