@@ -83,7 +83,15 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("res://src/ui/spell_workflow/spell_workflow_product_root.tscn", current["main_scene"])
         self.assertEqual(6, current["glyph_runtime_asset_count"])
         self.assertEqual("CURRENT_RUNTIME", current["glyph_consumer_state"])
-        self.assertEqual("SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING", current["img02_state"])
+        self.assertEqual(
+            "SOURCE_CANDIDATES_READY_NO_CURRENT_MAIN_BINDING; "
+            "NATIVE_RESOLUTION_WEBP_EXPORT_CANDIDATES_READY_NOT_RUNTIME_BOUND",
+            current["img02_state"],
+        )
+        self.assertEqual(
+            current["img02_state"],
+            checklist["current_runtime_readback"]["img02_state"],
+        )
 
         glyph_family = next(item for item in checklist["runtime_asset_families"] if item["asset_group_id"] == "GR-RA-01-GLYPH-BASE")
         self.assertEqual("CURRENT_RUNTIME", glyph_family["consumer_state"])
@@ -91,7 +99,11 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual(["heat", "protect", "flow", "focus", "disperse", "burst"], glyph_family["asset_spec"]["base_names"])
 
         img02 = next(item for item in queue["goal_queue"] if item["goal_id"] == "IMG-02")
-        self.assertEqual("SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING", img02["status"])
+        self.assertEqual(
+            "SOURCE_CANDIDATES_READY_NO_CURRENT_MAIN_BINDING; "
+            "NATIVE_RESOLUTION_WEBP_EXPORT_CANDIDATES_READY_NOT_RUNTIME_BOUND",
+            img02["status"],
+        )
 
     def test_generated_views_derive_current_reality_from_adapter(self) -> None:
         project = self.adapter["project"]

@@ -23,7 +23,7 @@
     "glyph_consumer_state": "CURRENT_RUNTIME",
     "glyph_assets": ["glyph_heat.png", "glyph_protect.png", "glyph_flow.png", "glyph_focus.png", "glyph_disperse.png", "glyph_burst.png"],
     "glyph_runtime_consumer": "src/ui/spell_workflow/spell_workflow_product_root.tscn via glyph_visual_resolver.gd",
-    "img02_state": "SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING",
+    "img02_state": "SOURCE_CANDIDATES_READY_NO_CURRENT_MAIN_BINDING; NATIVE_RESOLUTION_WEBP_EXPORT_CANDIDATES_READY_NOT_RUNTIME_BOUND",
     "img02_source_candidates": "PERSISTED_UNBOUND_ON_CURRENT_MAIN",
     "unrun_evidence": ["HUMAN_NOT_RUN", "DEVICE_NOT_RUN", "PERFORMANCE_NOT_RUN", "WINDOWS_EXPORT_NOT_RUN", "ANDROID_EXPORT_NOT_RUN", "FULL_VERTICAL_SLICE_NOT_RUN"]
   },
