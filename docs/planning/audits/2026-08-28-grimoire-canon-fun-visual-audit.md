@@ -10,6 +10,8 @@ base_main_subject: "docs: close BCP-2026-046 as implemented (#767)"
 read_at: 2026-08-28
 scope: DOCUMENTATION_AND_HUMAN_CANON_RECONCILIATION_ONLY
 runtime_or_product_mutation: false
+audit_pr: 219
+audit_merge_commit: 6ab3dd11a9bff9e5f3c3c9aebd87f63e613c5444
 ```
 
 ## 권위와 fresh-read 범위
