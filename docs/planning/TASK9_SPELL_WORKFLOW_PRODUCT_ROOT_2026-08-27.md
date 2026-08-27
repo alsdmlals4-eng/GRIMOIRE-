@@ -103,7 +103,11 @@ scope: TASK9_MACHINE_EVIDENCE_RECHECK_ONLY
 custom_runner: 47_suites_1976_assertions_0_failures_NO_EXIT_LEAK_WARNING
 gut: 8_tests_29_asserts_0_failures
 python_contracts: 46_tests_0_failures
-hera_live_observation: NOT_RUN_NO_LIVE_EDITOR
+hera_live_observation: LIVE_1280x720_GLYPH_STEP_UI_TREE_AND_SCREENSHOT_NO_CLIPPING_NO_ERRORS
+hera_runtime_scene: res://src/ui/spell_workflow/spell_workflow_product_root.tscn
+hera_screenshot_analysis: 1280x720_possible_clipping_false
+hera_diagnostics: 0_errors_0_warnings
+hera_evidence_limit: MACHINE_UI_OBSERVATION_ONLY_NOT_HUMAN_USABILITY_OR_PLAYER_EXPERIENCE
 human_device_performance_export: NOT_RUN
 ```
 
