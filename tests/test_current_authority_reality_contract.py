@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -23,20 +24,25 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         project_file = ROOT / "project.godot"
         self.assertTrue(project_file.is_file())
         project_text = project_file.read_text(encoding="utf-8")
-        self.assertIn('run/main_scene="res://src/ui/star_circuit_harness.tscn"', project_text)
+        root_scene_text = (ROOT / "src/ui/spell_workflow/spell_workflow_product_root.tscn").read_text(encoding="utf-8")
+        root_uid = re.search(r'uid="(uid://[^"]+)"', root_scene_text)
+        self.assertIsNotNone(root_uid)
+        self.assertIn(f'run/main_scene="{root_uid.group(1)}"', project_text)
 
         project = self.adapter["project"]
         current = self.adapter["current_state"]
         self.assertEqual("CREATED", project["godot_project_status"])
         self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", project["execution_profile"])
         self.assertEqual("IMPLEMENT_AND_VALIDATE", project["work_mode"])
-        self.assertEqual("res://src/ui/star_circuit_harness.tscn", project["main_scene"])
-        self.assertEqual("DEVELOPMENT_RUNTIME_POC_ENTRY", project["main_scene_role"])
+        self.assertEqual("res://src/ui/spell_workflow/spell_workflow_product_root.tscn", project["main_scene"])
+        self.assertEqual("DEVELOPMENT_PRODUCT_ROOT_ENTRY", project["main_scene_role"])
         self.assertEqual("PARTIAL_FOUNDATION", current["implementation"])
-        self.assertEqual("TASK8_PR_PREP_REVERIFY_PENDING", current["next_product_gate"])
+        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", current["next_product_gate"])
+        self.assertEqual("MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY", current["task9_status"])
+        self.assertEqual("TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING", current["runtime_validation"])
         self.assertEqual("NOT_RUN", current["human_validation"])
         self.assertEqual("NOT_RUN", current["mobile_device_validation"])
-        self.assertIn("FULL_SLICE_NOT_RUN", current["runtime_validation"])
+        self.assertEqual("NOT_RUN", current["full_vertical_slice"])
 
     def test_domain_split_authority_and_sheet_retirement_are_explicit(self) -> None:
         authority = self.adapter["workspace_authority"]
@@ -60,11 +66,32 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("Mobile", project["primary_platform"])
         self.assertEqual("PC", project["follow_up_platform"])
         self.assertEqual("PARTIAL_FOUNDATION", project["implementation_status"])
-        self.assertEqual("TASK8_PR_PREP_REVERIFY_PENDING", project["next_product_gate"])
+        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", project["next_product_gate"])
         self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", project["execution_profile"])
-        self.assertEqual("CREATED_STAR_RUNTIME_POC", coverage["godot"])
+        self.assertEqual("TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING", coverage["godot"])
+        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", coverage["spell_workflow"])
         self.assertEqual("COMPLETE_FROSTBLOOM_FIRST_SESSION", coverage["planning"])
         self.assertEqual("APPROVED_SPEC", coverage["asset_spec_01"])
+
+    def test_visual_runtime_inventory_distinguishes_merged_glyphs_from_unbound_img02_sources(self) -> None:
+        coverage = load_json("docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json")
+        checklist = load_json("docs/planning/visual/GRIMOIRE_VISUAL_PRODUCTION_CHECKLIST_2026-08-26.json")
+        queue = load_json("docs/planning/visual/GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json")
+
+        current = coverage["current_runtime_readback"]
+        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", current["next_product_gate"])
+        self.assertEqual("res://src/ui/spell_workflow/spell_workflow_product_root.tscn", current["main_scene"])
+        self.assertEqual(6, current["glyph_runtime_asset_count"])
+        self.assertEqual("CURRENT_RUNTIME", current["glyph_consumer_state"])
+        self.assertEqual("SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING", current["img02_state"])
+
+        glyph_family = next(item for item in checklist["runtime_asset_families"] if item["asset_group_id"] == "GR-RA-01-GLYPH-BASE")
+        self.assertEqual("CURRENT_RUNTIME", glyph_family["consumer_state"])
+        self.assertEqual(6, glyph_family["asset_spec"]["count_cap"])
+        self.assertEqual(["heat", "protect", "flow", "focus", "disperse", "burst"], glyph_family["asset_spec"]["base_names"])
+
+        img02 = next(item for item in queue["goal_queue"] if item["goal_id"] == "IMG-02")
+        self.assertEqual("SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING", img02["status"])
 
     def test_generated_views_derive_current_reality_from_adapter(self) -> None:
         project = self.adapter["project"]
@@ -104,6 +131,16 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("authority_sync_pr_predecessor: 158", active)
         self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", active)
         self.assertIn("FULL_VERTICAL_SLICE_NOT_RUN", active)
+
+    def test_active_entrypoints_promote_task9_and_quarantine_pre_task9_markers(self) -> None:
+        for relative_path in ("START_HERE.md", "docs/ACTIVE_CONTEXT.md"):
+            text = (ROOT / relative_path).read_text(encoding="utf-8")
+            self.assertIn("three_screen_runtime: TASK9_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE_READY", text)
+            self.assertIn("three_screen_runtime_historical: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9", text)
+
+        gates = (ROOT / "docs/DEVELOPMENT_GATES.md").read_text(encoding="utf-8")
+        self.assertIn("PR #151 is merged history/current-main input; live open PRs remain read-only.", gates)
+        self.assertNotIn("PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft다.", gates)
 
     def test_task8_reverify_quarantines_historical_pr151_marker(self) -> None:
         reverify = (ROOT / "docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md").read_text(encoding="utf-8")

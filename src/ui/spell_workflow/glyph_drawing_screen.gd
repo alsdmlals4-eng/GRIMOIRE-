@@ -16,6 +16,7 @@ var _workflow_context: Dictionary = {}
 var _workflow_state = null
 var _input_revision := 0
 var _accepted_candidate = null
+var _latest_candidates: Array = []
 var _terminal_save_result: Dictionary = {}
 
 
@@ -24,6 +25,12 @@ func _ready() -> void:
     _connect_button("SaveButton", save_accepted_candidate)
     _connect_button("IncidentButton", open_incident)
     _connect_button("ContinueButton", continue_workflow)
+    _connect_button("WritingCanvas/WritingContent/WritingActions/RecognizeButton", _submit_canvas_strokes)
+    _connect_button("WritingCanvas/WritingContent/WritingActions/ClearCanvasButton", _clear_canvas_strokes)
+    _connect_button("RecognitionPanel/Content/SelectCandidateButton", _select_primary_candidate)
+    var canvas = get_node_or_null(NodePath("WritingCanvas/WritingContent/StrokeCanvas"))
+    if canvas != null and canvas.has_signal("strokes_submitted") and not canvas.strokes_submitted.is_connected(submit_strokes):
+        canvas.strokes_submitted.connect(submit_strokes)
     var incident_status_card = get_node_or_null(NodePath("IncidentStatusCard"))
     if incident_status_card != null and not incident_status_card.gui_input.is_connected(_on_incident_status_input):
         incident_status_card.gui_input.connect(_on_incident_status_input)
@@ -92,7 +99,28 @@ func save_accepted_candidate() -> Dictionary:
 
 func retry_recognition() -> void:
     _accepted_candidate = null
+    _clear_canvas_strokes()
     _set_recognition_text("다시 그려 주세요. 아직 보관함에는 저장되지 않았습니다.")
+
+
+func _submit_canvas_strokes() -> void:
+    var canvas = get_node_or_null(NodePath("WritingCanvas/WritingContent/StrokeCanvas"))
+    if canvas != null and canvas.has_method("submit_collected_strokes"):
+        canvas.submit_collected_strokes()
+
+
+func _clear_canvas_strokes() -> void:
+    var canvas = get_node_or_null(NodePath("WritingCanvas/WritingContent/StrokeCanvas"))
+    if canvas != null and canvas.has_method("clear_strokes"):
+        canvas.clear_strokes()
+
+
+func _select_primary_candidate() -> void:
+    if _latest_candidates.is_empty():
+        _set_recognition_text("선택할 인식 후보가 없습니다. 다시 그려 주세요.")
+        return
+    select_candidate(_latest_candidates[0])
+    _set_recognition_text("후보를 선택했습니다. 저장을 눌러 글자를 보관하세요.")
 
 
 func cancel_scribing() -> Dictionary:
@@ -143,6 +171,10 @@ func _restore_overlay_context(return_context: Dictionary) -> void:
 
 
 func _show_recognition(result: Dictionary, stroke_count: int) -> Dictionary:
+    _latest_candidates = Array(result.get("candidates", [])).duplicate()
+    var select_button = get_node_or_null(NodePath("RecognitionPanel/Content/SelectCandidateButton")) as Button
+    if select_button != null:
+        select_button.visible = not _latest_candidates.is_empty()
     var view = result.duplicate(true)
     if _view_model != null and _view_model.has_method("from_result"):
         view = _view_model.from_result(result, _selected_glyph_id(), stroke_count)

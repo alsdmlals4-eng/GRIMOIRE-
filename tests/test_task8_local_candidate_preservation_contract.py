@@ -121,7 +121,7 @@ class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
             run_git(repo, "init", "-b", "main")
             run_git(repo, "config", "user.email", "preserve@example.invalid")
             run_git(repo, "config", "user.name", "Task8 Preserve Fixture")
-            (repo / "tracked.txt").write_text("base\n", encoding="utf-8")
+            (repo / "tracked.txt").write_bytes(b"base\n")
             run_git(repo, "add", "tracked.txt")
             run_git(repo, "commit", "-m", "fixture baseline")
             run_git(repo, "branch", PRIMARY_BRANCH)
@@ -136,12 +136,12 @@ class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
             primary_head = run_git(primary, "rev-parse", "HEAD")
             secondary_head = run_git(secondary, "rev-parse", "HEAD")
 
-            (primary / "tracked.txt").write_text("primary dirty\n", encoding="utf-8")
+            (primary / "tracked.txt").write_bytes(b"primary dirty\n")
             primary_untracked = primary / "src" / "ui" / "spell_workflow" / "spell_use_screen.gd"
             primary_untracked.parent.mkdir(parents=True, exist_ok=True)
             primary_untracked.write_bytes(b"extends Control\n\x00task8-primary\n")
 
-            (secondary / "tracked.txt").write_text("secondary dirty\n", encoding="utf-8")
+            (secondary / "tracked.txt").write_bytes(b"secondary dirty\n")
             secondary_untracked = secondary / "src" / "ui" / "spell_workflow" / "components" / "target_selection_panel.gd"
             secondary_untracked.parent.mkdir(parents=True, exist_ok=True)
             secondary_untracked.write_bytes(b"extends Control\n\x00task8-secondary\n")
@@ -293,7 +293,7 @@ class Task8LocalCandidatePreservationContractTests(unittest.TestCase):
             run_git(repo, "init", "-b", "main")
             run_git(repo, "config", "user.email", "preserve@example.invalid")
             run_git(repo, "config", "user.name", "Task8 Preserve Fixture")
-            (repo / "tracked.txt").write_text("base\n", encoding="utf-8")
+            (repo / "tracked.txt").write_bytes(b"base\n")
             run_git(repo, "add", "tracked.txt")
             run_git(repo, "commit", "-m", "fixture baseline")
             run_git(repo, "branch", PRIMARY_BRANCH)

@@ -3,9 +3,9 @@
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "handoff_id": "GR-WORK-HANDOFF-20260826-01",
   "queue_id": "GR-IMAGE-GOAL-QUEUE-20260826-01",
-  "status": "GPT_WORK_HANDOFF_READY",
+  "status": "TASK9_CURRENT_READBACK_HUMAN_VALIDATION_PENDING",
   "created_for": "CHATGPT_WORK",
-  "source_project_main": "27749d2b3a552193283182143fe772e18f0ef45f",
+  "source_project_main": "ce1bd46bc82dd3edf4ed3c485935108282117793",
   "source_base_main": "06669fe9c6a3ccd6f3b0d19c5757540bfdcc0623",
   "authority": {
     "project_agents": "AGENTS.md",
@@ -83,7 +83,7 @@
       "glyph_name_label_policy": "Each glyph presentation shows a live, localizable Korean name label at the lower right of the glyph visual; for example, glyph_flow displays 흐름. The runtime PNG remains glyph-only.",
       "must_preserve": ["canonical stroke identity", "direct-written magical letter feeling", "Magic/Anime + Blue/Blue-Purple magic language", "small-size silhouette distinction"],
       "must_not_introduce": ["talisman", "hanging tag", "collectible card framing", "pictogram-first redesign", "baked functional text", "new glyph IDs"],
-      "status": "RUNTIME_INTEGRATION_MERGED_MAIN_PENDING_RUNTIME_EVIDENCE",
+      "status": "RUNTIME_INTEGRATION_MERGED_MAIN_AUTOMATED_PRODUCT_ROOT_READY_HUMAN_EVIDENCE_PENDING",
       "next_gate": "IMG-02 consumer contract and bg_school_common Brief may proceed. Keep 48/64/96px readability, 1920x1080 capture, device, and performance evidence unclaimed until freshly captured. The BURST-to-AMPLIFY compatibility alias remains visual-only; no spell-transaction semantics change without explicit acceptance criteria.",
       "implementation_evidence": {
         "github_issue": 179,
@@ -110,8 +110,8 @@
       "required_assets": ["bg_school_common", "bg_greenhouse_field_base", "bg_greenhouse_battle_arena"],
       "planned_export": "2560x1440 WebP Lossless",
       "consumer_contract": "docs/planning/visual/FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md",
-      "status": "NATIVE_RESOLUTION_WEBP_EXPORT_CANDIDATES_READY_NOT_RUNTIME_BOUND",
-      "next_gate": "WHEN_PRODUCT_IMPLEMENTATION_IS_AUTHORIZED, USE_THE_MANIFESTED_WEBP_CANDIDATES_FOR_SCENE_BINDING; REGENERATE_RATHER_THAN_BLINDLY_UPSCALE_IF_2560x1440_DELIVERY_BECOMES_MANDATORY; DO_NOT_CREATE_INCIDENT_OR_BATTLE_STATE_OVERLAYS_UNTIL_RUNTIME_EFFECT_REUSE_IS_EVALUATED"
+      "status": "SOURCE_CANDIDATES_READY_NO_CURRENT_MAIN_BINDING; NATIVE_RESOLUTION_WEBP_EXPORT_CANDIDATES_READY_NOT_RUNTIME_BOUND",
+      "next_gate": "DEFINE_AND_MERGE_AN_ACTUAL_GODOT_CONSUMER_AND_TEXTURE_BINDING_BEFORE_RUNTIME_EXPORT_FIT_REVIEW; WHEN_PRODUCT_IMPLEMENTATION_IS_AUTHORIZED, USE_THE_MANIFESTED_WEBP_CANDIDATES_FOR_SCENE_BINDING; REGENERATE_RATHER_THAN_BLINDLY_UPSCALE_IF_2560x1440_DELIVERY_BECOMES_MANDATORY; DO_NOT_CREATE_INCIDENT_OR_BATTLE_STATE_OVERLAYS_UNTIL_RUNTIME_EFFECT_REUSE_IS_EVALUATED"
     },
     {
       "order": 3,

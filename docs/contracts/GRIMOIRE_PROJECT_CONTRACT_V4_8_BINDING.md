@@ -66,26 +66,29 @@ implementation: PARTIAL_FOUNDATION
 primary_platform: Mobile
 follow_up_platform: PC
 orientation: LANDSCAPE_FIXED
-current_main_scene: res://src/ui/star_circuit_harness.tscn
-main_scene_role: DEVELOPMENT_RUNTIME_POC_ENTRY
+current_main_scene: res://src/ui/spell_workflow/spell_workflow_product_root.tscn
+main_scene_role: DEVELOPMENT_PRODUCT_ROOT_ENTRY
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 circuit_topology: FIVE_POINT_STAR
-next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
+next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
+task9_product_commit: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
+task9_product_pr: 192
+task9_status: MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 parallel_open_pr_at_binding_start: PR_166_DRAFT_READ_ONLY_README_ONLY
-current_user_work_scope: VISUAL_ASSET_COVERAGE_AND_NEXT_SINGLE_VISUAL_BRIEF
-product_implementation_authorized_by_current_user_work_scope: false
+current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
+product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
 ```
 
-현재 POC/Component PASS를 완성형 첫 세션 또는 전체 제품 PASS로 승격하지 않는다. 이번 `작업재개 → 진행해` continuation은 Visual/Image/Asset planning을 재개하며 Task8/Godot 제품 구현 권한으로 확대하지 않는다.
+현재 POC/Component PASS를 완성형 첫 세션 또는 전체 제품 PASS로 승격하지 않는다. Task9 Product Root는 자동화 가능한 범위에서 main 병합까지 완료됐으며, 사람·기기·성능·출시 검증은 다음 사용자 검증 게이트로 남는다.
 
 ## 3. Task8 복구 경계
 
@@ -164,7 +167,7 @@ Visual Requirement Delete Test
 
 현재 다음 1장 후보는 `Typed Glyph Vault/Stock → FIVE_POINT_STAR → Prepared Spell` Stage2 대표 화면이다. 이유는 승인된 전투/주문 시안의 가장 큰 rework finding이 Stock/circuit semantics였고, Task6보다 visual gap이 크며 Task8 Stage3를 미리 발명하지 않기 때문이다.
 
-`Prepared Spell → Target → Final Preview → Use`는 P0이지만 Task8 제품 화면이 current main에 없으므로 현재 serial visual production에서는 후순위로 둔다.
+`Prepared Spell → Target → Final Preview → Use`는 Task8 PR #190과 Task9 Product Root PR #192에서 구현·병합됐으며, 이후 검증은 사용자 수동 실행 게이트에서 다룬다.
 
 ## 6. Open PR / workstream 경계
 

@@ -23,8 +23,8 @@ workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
-current_user_work_scope: SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_AND_VISUAL_ALIGNMENT
-product_implementation_authorized_by_current_user_work_scope: false
+current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
+product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
 visual_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
@@ -40,8 +40,8 @@ player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
 circuit_topology: FIVE_POINT_STAR
 task8_product_unit: TASK8_SPELL_USE_SCREEN
-next_product_task: TASK8_SPELL_USE_SCREEN
-next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
+next_product_task: TASK9_USER_VERTICAL_SLICE_VALIDATION
+next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -50,9 +50,12 @@ task8_candidate_preservation: OBSERVED_PASS
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
+task9_product_commit: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
+task9_product_pr: 192
+task9_status: MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 gut_status: GUT_FORMALLY_ADOPTED
@@ -62,7 +65,8 @@ higodot_expected_actual_fields: NOT_SURFACED_DO_NOT_CLAIM
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
-three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime: TASK9_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE_READY
+three_screen_runtime_historical: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
 authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
 authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
@@ -77,7 +81,7 @@ android_device: NOT_RUN
 
 `v4.8 r5.4 / GM-CONTRACT-V4-8-BINDING-01`이 현재 프로젝트 실행 계약이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
 
-2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름 간략화**를 승인했다. 현재 작업은 기획/Visual 정본 교정이며 Task8/Godot 제품 구현은 사용자가 구현 작업을 명시적으로 재개하기 전까지 시작하지 않는다. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator일 뿐 현재 구현 권한을 뜻하지 않는다.
+2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름 간략화**와 후속 Task8·Task9 Godot 제품 구현을 승인했다. Task9 Product Root는 PR #192로 `db038a4` main에 병합됐으며, 현재 자동화 완료 상태는 `MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY`다. 다음 게이트는 사람·플레이어·기기·성능·출시 검증을 과장하지 않는 `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`이다.
 
 ## Workspace authority
 
@@ -223,8 +227,8 @@ FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
 ## Godot 진입점과 Runtime Reality
 
 - 프로젝트 파일: `project.godot`
-- 현재 Main Scene: `res://src/ui/star_circuit_harness.tscn`
-- 역할: `DEVELOPMENT_RUNTIME_POC_ENTRY`
+- 현재 Main Scene: `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`
+- 역할: `DEVELOPMENT_PRODUCT_ROOT_ENTRY`
 - Renderer: GL Compatibility
 
 Star Circuit Runtime component와 Component Sheets에는 자동화 evidence가 있다. 그러나 현재 전체 제품 구현 판정은 `PARTIAL_FOUNDATION`; Human/Device/Performance/Full Vertical Slice는 계속 `NOT_RUN`이다.

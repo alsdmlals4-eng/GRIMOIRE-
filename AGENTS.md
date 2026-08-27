@@ -19,8 +19,8 @@ orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-current_user_work_scope: SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_AND_VISUAL_ALIGNMENT
-product_implementation_authorized_by_current_user_work_scope: false
+current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
+product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -28,8 +28,8 @@ product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICAT
 product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
 player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
 player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
-next_product_task: TASK8_SPELL_USE_SCREEN
-next_product_gate: TASK8_PR_PREP_REVERIFY_PENDING
+next_product_task: TASK9_USER_VERTICAL_SLICE_VALIDATION
+next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -37,9 +37,12 @@ task8_preservation_receipt: docs/planning/TASK8_LOCAL_CANDIDATE_PRESERVATION_OBS
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_primary_recovery_head: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
-task8_product_commit: NONE
-task8_remote_product_branch: NOT_PRESENT
-task8_remote_product_pr: NONE
+task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
+task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
+task8_remote_product_pr: 190
+task9_product_commit: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
+task9_product_pr: 192
+task9_status: MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 base_project_pin: v9.4.3
 base_live_readback: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
@@ -107,8 +110,8 @@ commit: EXPLICIT_EXACTLY_ONCE
 ## Godot 현실
 
 - 프로젝트 파일: `project.godot`
-- 현재 Main Scene: `res://src/ui/star_circuit_harness.tscn`
-- Main Scene 역할: `DEVELOPMENT_RUNTIME_POC_ENTRY`
+- 현재 Main Scene: `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`
+- Main Scene 역할: `DEVELOPMENT_PRODUCT_ROOT_ENTRY`
 - 권장 엔진 계열: Godot `4.7.1`
 - Renderer: GL Compatibility
 
@@ -129,22 +132,24 @@ r5.4에서는 project-specific `CODEX_HOME`, 별도 전용 Godot binary, 8001/95
 
 ## Spell Workflow 현재 경계
 
+- Task9 Product Root: `db038a4fd964ca037bfe97f6aee5d0cc7d0daf93` / PR #192 / `MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY`
+- 현재 다음 게이트: `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`
 - current player-facing revision: `docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`
 - `GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE`
 - `TASK7_MERGED_MAIN_VERIFIED`
 - 호환 locator: `TASK8_LOCAL_REFINEMENT_GREEN_UNMERGED_MERGE_GATES_PENDING`
 - 호환 next locator: `TASK8_RECEIPT_HERA_REVIEW_PR`
-- 현재 continuation owner: `GR-SYNC-20260812-21-TASK8-HANDOFF-BCP`
-- 현재 parent gate: `TASK8_PR_PREP_REVERIFY_PENDING`
-- 다음 제품 task locator: `TASK8_SPELL_USE_SCREEN`
+- historical continuation owner: `GR-SYNC-20260812-21-TASK8-HANDOFF-BCP`
+- historical parent gate: `TASK8_PR_PREP_REVERIFY_PENDING`
+- historical product task locator: `TASK8_SPELL_USE_SCREEN`
 - 닫힌 predecessor gate: `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`
-- 현재 recovery state: `TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS`
-- 현재 execution subgate: `TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED`
+- historical recovery state: `TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS`
+- historical execution subgate: `TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED`
 - primary: `feat/task8-spell-use-screen-v2@8c611f601aa98397ed1558e92ab207e0e8347a9b`
 - secondary/reference: `task8/spell-use-screen@fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f`
-- `task8_product_commit: NONE`
-- `task8_remote_product_branch: NOT_PRESENT`
-- `task8_remote_product_pr: NONE`
+- `task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733`
+- `task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827`
+- `task8_remote_product_pr: 190`
 
 Task mapping:
 
@@ -156,7 +161,7 @@ Task8 Spell Use → 주문 쓰기 / 대상 + 시전
 
 `8c611f...`는 PR #131 HiGodot v3.1.4 authority reconciliation commit이며 Task8 제품 코드가 들어 있는 commit이 아니다. Task8 제품 구현은 이 HEAD 위의 uncommitted local delta로 보존됐다.
 
-따라서 제품 구현을 명시적으로 재개할 때 Task8은 다음 순서를 따른다.
+따라서 아래 Task8 순서는 PR #190 병합 전 보존·조정 절차의 historical provenance다.
 
 ```text
 preserved historical candidates

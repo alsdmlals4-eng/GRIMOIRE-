@@ -23,7 +23,7 @@ adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-current_user_work_scope: SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_VISUAL_ALIGNMENT_AND_TASK8_RECONCILIATION
+current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
@@ -43,8 +43,8 @@ player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
 player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
-next_product_task: TASK8_SPELL_USE_SCREEN
-next_product_gate: TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
+next_product_task: TASK9_USER_VERTICAL_SLICE_VALIDATION
+next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CURRENT_MAIN_LOCAL_VALIDATION_PASS
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -58,6 +58,13 @@ task8_secondary_recovery_head: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
 task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
 task8_remote_product_pr: 190
+task9_product_commit: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
+task9_product_pr: 192
+task9_status: MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
+task10_ui_hierarchy_issue: 196
+task10_ui_hierarchy_pr: 197
+task10_ui_hierarchy_merge_commit: 9eca31c52f06ce59afeacea9959075987ffb16ab
+task10_ui_hierarchy_status: MERGED_MAIN_RUNTIME_UI_HIERARCHY_REPAIRED
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -73,7 +80,8 @@ gut_formal_adoption: GUT_FORMALLY_ADOPTED
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
-three_screen_runtime: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
+three_screen_runtime: TASK9_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE_READY
+three_screen_runtime_historical: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9
 local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
 authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
 authority_sync_godot_observation: BLOCKED_NO_LOCAL_ACCESS
@@ -109,21 +117,22 @@ android_device: NOT_RUN
 = 게임 장면의 대상 지정 + 필요한 최종 Preview + 명시 시전
 ```
 
-이후 사용자는 Task8 제품 구현을 명시적으로 승인했다. 따라서 현재 범위는 `SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_VISUAL_ALIGNMENT_AND_TASK8_RECONCILIATION`다.
+이후 사용자는 Task8과 Task9 제품 구현을 명시적으로 승인했다. Task9 Product Root는 PR #192로 `db038a4` main에 병합됐고, 현재 범위는 `SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE`다.
 
-- Task8/Godot 제품 구현: **AUTHORIZED_FOR_CURRENT-MAIN_RECONCILIATION**
-- `TASK8_SPELL_USE_SCREEN`: current main에서 thin UI consumer로 복구·검증·PR 준비 중
+- Task9/Godot 제품 구현: **MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY**
+- Task10/UI hierarchy repair: **MERGED_MAIN_RUNTIME_UI_HIERARCHY_REPAIRED** — product root duplicate descendants were removed; glyph actions and circuit source-panel sizing were repaired. The English-safe shared spell-use copy baseline remains in force until the Korean font gate.
+- 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 생성: **NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL**
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
 - unrelated open PR: **READ_ONLY**
 
-현재 revision owner:
+현재 revision/implementation owner:
 
-`docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`
+`docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md` + `docs/planning/TASK9_SPELL_WORKFLOW_PRODUCT_ROOT_2026-08-27.md`
 
 ## 현재 제품 현실
 
-Frostbloom 00~46분 첫 세션 기획은 완료됐지만 제품 구현은 `PARTIAL_FOUNDATION`이다. 현재 `project.godot` 기본 실행점은 `res://src/ui/star_circuit_harness.tscn`이며 역할은 `DEVELOPMENT_RUNTIME_POC_ENTRY`다. 완성형 첫 세션 Product Root로 승격하지 않는다.
+Frostbloom 00~46분 첫 세션 기획은 완료됐지만 제품 구현은 `PARTIAL_FOUNDATION`이다. 현재 `project.godot` 기본 실행점은 `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`이며 역할은 `DEVELOPMENT_PRODUCT_ROOT_ENTRY`다. 기존 Star Harness는 삭제하지 않고 별도 POC 장면으로 보존한다. 이는 완성형 첫 세션 전체 승격을 뜻하지 않는다.
 
 Star Circuit Runtime과 Component Sheets A–D에는 자동화/렌더 evidence가 있다. 이 component evidence와 전체 제품 상태를 혼동하지 않는다. `FULL_VERTICAL_SLICE_NOT_RUN`, `HUMAN_NOT_RUN`, `DEVICE_NOT_RUN`, `PERFORMANCE_NOT_RUN`은 유지한다.
 

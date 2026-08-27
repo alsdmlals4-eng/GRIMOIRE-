@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://qfvh1n7f5veh"]
 
 [ext_resource type="Script" uid="uid://cp5n0p7lxl57x" path="res://src/ui/spell_workflow/spell_use_screen.gd" id="1_j56eg"]
-[ext_resource type="PackedScene" path="res://src/ui/components/context_target_selector.tscn" id="2_tst33"]
-[ext_resource type="PackedScene" path="res://src/ui/components/commit_bar.tscn" id="3_2e13p"]
+[ext_resource type="PackedScene" uid="uid://dw6mndccnna15" path="res://src/ui/components/context_target_selector.tscn" id="2_tst33"]
+[ext_resource type="PackedScene" uid="uid://b6uatwb4tdfqc" path="res://src/ui/components/commit_bar.tscn" id="3_2e13p"]
 
 [node name="SpellUseScreen" type="Control" unique_id=781477627]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_j56eg")
 
 [node name="Content" type="VBoxContainer" parent="." unique_id=1843004507]

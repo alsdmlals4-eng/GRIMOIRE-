@@ -18,6 +18,9 @@ MAIN = "026230d3a91687cd4c6df0bb629eabaeb17c767c"
 BASELINE = "8c611f601aa98397ed1558e92ab207e0e8347a9b"
 PARENT_GATE = "TASK8_PR_PREP_REVERIFY_PENDING"
 LOCAL_GATE = "TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED"
+PRODUCT_COMMIT = "68211069eb3b778fb43e68f3fbd049c8a0ac2733"
+PRODUCT_BRANCH = "codex/task8-spell-use-reconcile-v320-20260827"
+PRODUCT_PR = "190"
 
 
 class Task8RemoteLocalReverifyTests(unittest.TestCase):
@@ -49,9 +52,9 @@ class Task8RemoteLocalReverifyTests(unittest.TestCase):
             self.assertIn(PARENT_GATE, text, str(path))
             self.assertIn(LOCAL_GATE, text, str(path))
             self.assertIn(f"task8_local_git_head_baseline: {BASELINE}", text, str(path))
-            self.assertIn("task8_product_commit: NONE", text, str(path))
-            self.assertIn("task8_remote_product_branch: NOT_PRESENT", text, str(path))
-            self.assertIn("task8_remote_product_pr: NONE", text, str(path))
+            self.assertIn(f"task8_product_commit: {PRODUCT_COMMIT}", text, str(path))
+            self.assertIn(f"task8_remote_product_branch: {PRODUCT_BRANCH}", text, str(path))
+            self.assertIn(f"task8_remote_product_pr: {PRODUCT_PR}", text, str(path))
             self.assertNotIn("product_head_local_historical:", text, str(path))
 
     def test_unresolved_owner_preserves_sync21_parent_gate_and_history(self) -> None:

@@ -71,9 +71,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="VaultSourcePanel" parent="Content/Layout/MainRow" unique_id=391763231 instance=ExtResource("2_7sccf")]
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
 [node name="StockSourcePanel" parent="Content/Layout/MainRow" unique_id=2103087709 instance=ExtResource("2_7sccf")]
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
 [node name="ActionRow" type="HBoxContainer" parent="Content/Layout" unique_id=1662783107]

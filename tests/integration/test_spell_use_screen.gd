@@ -33,6 +33,8 @@ func run(case) -> void:
         case.assert_true(screen.find_child(node_name, true, false) != null, "screen exposes player flow node: %s" % node_name)
     var coordinator = FakeCoordinator.new()
     screen.configure(coordinator, &"use-opaque-1")
+    var resolved_results: Array = []
+    screen.cast_resolved.connect(func(result: Dictionary) -> void: resolved_results.append(result.duplicate(true)))
     screen._ready()
     var preview: Dictionary = screen.select_target(&"incident.root", {"target_valid": true}, {"known_improvement": "stabilize"})
     case.assert_equal(&"FINAL_PREVIEW_READY", preview.get("status", &""), "a valid explicit target receives the Coordinator preview")
@@ -52,6 +54,8 @@ func run(case) -> void:
     case.assert_equal(&"USE_CONFIRMATION_REQUIRED", screen.confirm(&"wrong-id").get("status", &""), "mismatched caller ID fails closed")
     case.assert_equal(0, coordinator.confirmed_ids.size(), "mismatched ID never reaches authority")
     case.assert_equal(&"USED", screen.confirm(&"use-opaque-1").get("status", &""), "second explicit action invokes existing use authority")
+    case.assert_equal(1, resolved_results.size(), "used authority result is emitted to the Product Root once")
+    case.assert_equal(&"USED", Dictionary(resolved_results[0]).get("status", &""), "emitted result keeps the authoritative status")
     case.assert_equal([&"use-opaque-1"], coordinator.confirmed_ids, "opaque caller ID reaches authority once")
     case.assert_equal(&"USE_CONFIRMATION_REQUIRED", screen.confirm(&"use-opaque-1").get("status", &""), "duplicate confirmation fails closed")
     screen.queue_free()

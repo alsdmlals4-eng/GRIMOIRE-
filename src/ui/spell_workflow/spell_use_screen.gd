@@ -3,6 +3,7 @@ class_name SpellUseScreen
 extends Control
 
 signal cancel_requested
+signal cast_resolved(result: Dictionary)
 
 var _coordinator = null
 var _use_transaction_id: StringName = &""
@@ -73,6 +74,7 @@ func _render_preview_status(status: StringName, preview_result: Dictionary, can_
     if commit_bar != null and commit_bar.has_method("configure"):
         commit_bar.configure(str(preview.get("target_keyword", "—")), maxi(0, int(preview.get("estimated_mana", 0))), can_commit, _confirmation_requested)
 
+
 func current_preview() -> Dictionary:
     return _current_preview.duplicate(true)
 
@@ -92,6 +94,7 @@ func confirm(transaction_id: StringName) -> Dictionary:
     var result: Dictionary = _coordinator.confirm_use(transaction_id)
     if StringName(result.get("status", &"")) == &"USED":
         _committed = true
+        cast_resolved.emit(result.duplicate(true))
     return result.duplicate(true)
 
 func cancel() -> void:

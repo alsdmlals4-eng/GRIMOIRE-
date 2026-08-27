@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://dj14w6clxafqv"]
+
+[ext_resource type="Script" uid="uid://clxa52822f5t" path="res://src/ui/spell_workflow/spell_workflow_product_root.gd" id="1_hpptg"]
+[ext_resource type="PackedScene" uid="uid://dhkd7pos74iaa" path="res://src/ui/spell_workflow/glyph_drawing_screen.tscn" id="2_kmny2"]
+[ext_resource type="PackedScene" uid="uid://bolap7p5hkar8" path="res://src/ui/spell_workflow/circuit_placement_screen.tscn" id="3_ag2ki"]
+[ext_resource type="PackedScene" uid="uid://qfvh1n7f5veh" path="res://src/ui/spell_workflow/spell_use_screen.tscn" id="4_3otfq"]
+
+[node name="SpellWorkflowProductRoot" type="Control" unique_id=1353567651]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hpptg")
+
+[node name="ResultPanel" type="VBoxContainer" parent="." unique_id=883718107]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="ResultPanel" unique_id=886042344]
+layout_mode = 2
+text = "시전 결과"
+horizontal_alignment = 1
+
+[node name="Receipt" type="Label" parent="ResultPanel" unique_id=293581405]
+layout_mode = 2
+text = "아직 시전하지 않았습니다."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RestartButton" type="Button" parent="ResultPanel" unique_id=1430921371]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+text = "처음부터 다시"
+
+[node name="CircuitScreen" type="MarginContainer" parent="." unique_id=196681189]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+
+[node name="CircuitContent" parent="CircuitScreen" unique_id=1769912068 instance=ExtResource("3_ag2ki")]
+layout_mode = 2
+
+[node name="SpellUseScreen" type="MarginContainer" parent="." unique_id=1342886184]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+
+[node name="SpellUseContent" parent="SpellUseScreen" unique_id=781477627 instance=ExtResource("4_3otfq")]
+layout_mode = 2
+
+[node name="GlyphScreen" type="ScrollContainer" parent="." unique_id=1034216206]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+
+[node name="GlyphContent" parent="GlyphScreen" unique_id=2079873807 instance=ExtResource("2_kmny2")]
+layout_mode = 2
+size_flags_horizontal = 3
