@@ -43,13 +43,6 @@ func run(case) -> void:
         case.assert_true(stock_source.custom_minimum_size.x >= 180.0, "stock source panel has a readable minimum width")
         scene_root.queue_free()
 
-    var spell_use_scene_source := FileAccess.get_file_as_string("res://src/ui/spell_workflow/spell_use_screen.tscn")
-    var target_selector_scene_source := FileAccess.get_file_as_string("res://src/ui/components/context_target_selector.tscn")
-    var commit_bar_scene_source := FileAccess.get_file_as_string("res://src/ui/components/commit_bar.tscn")
-    case.assert_true(spell_use_scene_source.contains("완성 주문"), "spell-use screen uses the player-facing completed-spell term")
-    case.assert_true(target_selector_scene_source.contains("대상 지정"), "target selector uses a Korean player-facing heading")
-    case.assert_true(commit_bar_scene_source.contains("시전"), "commit bar exposes casting with the player-facing verb")
-
     var root = Root.new()
     var started: Dictionary = root.start_slice()
     case.assert_equal(&"SLICE_READY", started.get("status", &""), "root starts a bounded explicit spell slice")

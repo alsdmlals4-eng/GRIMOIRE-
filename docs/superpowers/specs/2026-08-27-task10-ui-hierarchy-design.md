@@ -20,7 +20,7 @@ The same duplicate-instancing pattern existed for the circuit and spell-use desc
   - glyph writing area: 300px minimum height;
   - glyph recognise/clear actions: 48px and shared horizontal width;
   - circuit Vault and Typed Stock panels: 180px minimum width.
-- Use current Korean player-facing terms on the spell-use screen: `완성 주문`, `대상 지정`, `대상`, `마나`, `주문 수정`, `시전`, `취소`.
+- Keep the English-safe runtime baseline until the licensed Korean-font gate is approved. The intended Korean player terms remain design vocabulary only; this task must not enable unsupported runtime Korean copy.
 
 ## Scope
 
@@ -33,7 +33,7 @@ Out of scope: spell rules, reservations/transactions, glyph artwork, new imagery
 1. Product root contains one authoritative descendant tree for each of glyph drawing, circuit placement, and spell use.
 2. At 1280×720, glyph drawing has no overlap or dominant blank region; its writing action buttons are readable touch-sized controls.
 3. Circuit source panels keep usable widths and the star board remains visible.
-4. Spell-use labels use the approved Korean player terms.
+4. Spell-use retains the English-safe baseline without missing-glyph risk; Korean localization remains explicitly deferred to the font gate.
 5. Existing 47-suite Godot test runner remains green, and the live Hera runs have no runtime errors.
 
 ## Evidence boundary
