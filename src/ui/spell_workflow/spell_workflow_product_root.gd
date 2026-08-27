@@ -54,6 +54,7 @@ var _last_result: Dictionary = {}
 
 
 func _ready() -> void:
+    theme = GrimoireThemeFactory.create_theme()
     start_slice()
     _connect_player_surfaces()
     _configure_player_surfaces()

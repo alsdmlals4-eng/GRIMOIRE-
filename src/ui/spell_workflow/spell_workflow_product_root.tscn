@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dhkd7pos74iaa" path="res://src/ui/spell_workflow/glyph_drawing_screen.tscn" id="2_kmny2"]
 [ext_resource type="PackedScene" uid="uid://bolap7p5hkar8" path="res://src/ui/spell_workflow/circuit_placement_screen.tscn" id="3_ag2ki"]
 [ext_resource type="PackedScene" uid="uid://qfvh1n7f5veh" path="res://src/ui/spell_workflow/spell_use_screen.tscn" id="4_3otfq"]
+[ext_resource type="Texture2D" path="res://assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp" id="5_2w8ln"]
 
 [node name="SpellWorkflowProductRoot" type="Control" unique_id=1353567651]
 layout_mode = 3
@@ -13,6 +14,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hpptg")
+
+[node name="EnvironmentBackground" type="TextureRect" parent="." unique_id=1296288871]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_2w8ln")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="EnvironmentReadabilityVeil" type="ColorRect" parent="." unique_id=678603010]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.027451, 0.082353, 0.141176, 0.5)
 
 [node name="ResultPanel" type="VBoxContainer" parent="." unique_id=883718107]
 layout_mode = 0
