@@ -327,8 +327,20 @@ func _on_cast_resolved(result: Dictionary) -> void:
     _step = &"RESULT"
     var receipt = get_node_or_null(NodePath("ResultPanel/Receipt")) as Label
     if receipt != null:
-        receipt.text = String(Dictionary(result.get("payload", {})).get("receipt", "주문 결과를 기록했습니다."))
+        var resolved: Dictionary = Dictionary(result.get("result", {}))
+        var outcome := String(resolved.get("receipt", "주문 결과를 기록했습니다."))
+        var target_name := _target_display_name(StringName(resolved.get("target_keyword", &"")))
+        var mana_spent := int(result.get("mana_spent", 0))
+        receipt.text = "%s\n대상: %s · 사용 마력: %d" % [outcome, target_name, mana_spent]
     _show_step()
+
+
+func _target_display_name(target_keyword: StringName) -> String:
+    for target_choice_variant in target_choices():
+        var target_choice: Dictionary = Dictionary(target_choice_variant)
+        if StringName(target_choice.get("target_keyword", &"")) == target_keyword:
+            return String(target_choice.get("label", target_keyword))
+    return String(target_keyword)
 
 
 func _restart_slice() -> void:
