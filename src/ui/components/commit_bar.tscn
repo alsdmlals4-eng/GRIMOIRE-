@@ -1,44 +1,44 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://b6uatwb4tdfqc"]
 
-[ext_resource path="res://src/ui/components/commit_bar.gd" type="Script" id="1"]
+[ext_resource type="Script" uid="uid://bdahd52eoj65f" path="res://src/ui/components/commit_bar.gd" id="1"]
 
-[node name="CommitBar" type="PanelContainer"]
+[node name="CommitBar" type="PanelContainer" unique_id=1544055784]
 custom_minimum_size = Vector2(640, 96)
 theme_type_variation = &"AcademyPanelEmphasis"
 script = ExtResource("1")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=1597077706]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 12
 
-[node name="Row" type="HBoxContainer" parent="Margin"]
+[node name="Row" type="HBoxContainer" parent="Margin" unique_id=221488192]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Target" type="Label" parent="Margin/Row"]
+[node name="Target" type="Label" parent="Margin/Row" unique_id=595908040]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "TARGET  NONE"
+text = "대상 없음"
 vertical_alignment = 1
 
-[node name="Mana" type="Label" parent="Margin/Row"]
+[node name="Mana" type="Label" parent="Margin/Row" unique_id=952295447]
 custom_minimum_size = Vector2(120, 56)
 layout_mode = 2
-text = "MANA  0"
+text = "마나 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EditButton" type="Button" parent="Margin/Row"]
+[node name="EditButton" type="Button" parent="Margin/Row" unique_id=597010743]
 custom_minimum_size = Vector2(132, 56)
 layout_mode = 2
 theme_type_variation = &"AcademyButtonQuiet"
-text = "EDIT"
+text = "주문 수정"
 
-[node name="CommitButton" type="Button" parent="Margin/Row"]
+[node name="CommitButton" type="Button" parent="Margin/Row" unique_id=1262993858]
 custom_minimum_size = Vector2(196, 56)
 layout_mode = 2
 theme_type_variation = &"AcademyButtonPrimary"
-text = "COMMIT"
+text = "시전"

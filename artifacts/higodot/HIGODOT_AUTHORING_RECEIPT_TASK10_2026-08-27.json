@@ -1,0 +1,61 @@
+{
+  "schema": "HIGODOT_AUTHORING_RECEIPT_V1",
+  "receipt_id": "GR-ISSUE196-TASK10-HIGODOT-20260827-01",
+  "recorded_at": "2026-08-27T10:27:33.0597110+09:00",
+  "issue": 196,
+  "base_commit": "0d397a6a244ff506645499a3fed59eb942e951ea",
+  "result_commit": "PENDING_COMMIT",
+  "tool": {
+    "name": "Godot AI / HiGodot with Hera runtime inspection",
+    "plugin_version": "3.2.0",
+    "session_id": "task9-product-root-20260827@ada9",
+    "project_path": "C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-/.worktrees/task9-product-root-20260827/",
+    "godot_editor_version": "4.7.2-stable (official)",
+    "headless_validation_version": "4.7.1-stable"
+  },
+  "changed_godot_artifacts": [
+    "res://src/ui/components/commit_bar.gd",
+    "res://src/ui/components/commit_bar.tscn",
+    "res://src/ui/components/context_target_selector.tscn",
+    "res://src/ui/spell_workflow/circuit_placement_screen.tscn",
+    "res://src/ui/spell_workflow/glyph_drawing_screen.tscn",
+    "res://src/ui/spell_workflow/spell_use_screen.gd",
+    "res://src/ui/spell_workflow/spell_use_screen.tscn",
+    "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
+    "res://tests/integration/test_spell_workflow_product_root.gd"
+  ],
+  "operations": [
+    "runtime reproduction and Control-tree inspection at 1280x720 through Hera",
+    "Godot editor deletion of duplicate product-root descendants for glyph, circuit, and spell-use packed scenes",
+    "Godot editor sizing updates in the owning glyph and circuit scenes",
+    "Godot editor copy updates in spell-use and shared component scenes",
+    "Godot AI script patches for dynamic Korean spell-use copy and regression assertions",
+    "Hera runtime inspection of glyph, circuit, and spell-use states"
+  ],
+  "after_sha256": {
+    "res://src/ui/components/commit_bar.gd": "DB6D2BD8445814EB38A4D186DB040A2E09F8CE76316683D0592E29F2BE17E4EB",
+    "res://src/ui/components/commit_bar.tscn": "00EC3F462DEDCE1ADDFCBE0124A8B11B1D6F64CE243AF10336806E81CD89D2F3",
+    "res://src/ui/components/context_target_selector.tscn": "549AF4B99B3BEBA637636F260CD979CDA94A15DC9CEE80AC6D22B468BD9BA5A2",
+    "res://src/ui/spell_workflow/circuit_placement_screen.tscn": "7D22787D70C561389DD392540F6B0EE9B1741737AE173066A32F5681D8047E55",
+    "res://src/ui/spell_workflow/glyph_drawing_screen.tscn": "29D2CC325D33DDFD4DB146C4A33C81607150F1C338F116890576B24B31E52F4D",
+    "res://src/ui/spell_workflow/spell_use_screen.gd": "B6F052D095EA43CB57E6D0FF2E5904E9B5BB7B1791739709FF029B990991B15B",
+    "res://src/ui/spell_workflow/spell_use_screen.tscn": "BE6CCFCF904FE397A390DD080C5A210482F6B794FC099E5D57B5541860B1A59B",
+    "res://src/ui/spell_workflow/spell_workflow_product_root.tscn": "A47CF9C73065B5FA9D107C5A49CD82DC454D569E65589F44F3A3CF8E0C99D1C3",
+    "res://tests/integration/test_spell_workflow_product_root.gd": "29C975711572DF9A0B444E33D07C9974AF399742E9D5A8F13327D43A9BB56831"
+  },
+  "validation": {
+    "godot_test_runner": "47 suites / 1979 assertions / 0 failures",
+    "hera_glyph": "1280x720, no clipping, no runtime errors",
+    "hera_circuit": "1280x720, readable source panels and star board, no clipping, no runtime errors",
+    "hera_spell_use": "1280x720, Korean player-facing labels, no clipping, no runtime errors"
+  },
+  "generated_exclusions": [
+    "Godot import-cache .import deltas",
+    "artifacts/foundation-poc/",
+    "existing source-candidate image import-cache deltas"
+  ],
+  "limitations": [
+    "This receipt documents the local Godot authoring session; it is not a human, device, performance, accessibility, or export validation result.",
+    "No new image was generated or promoted by this task."
+  ]
+}

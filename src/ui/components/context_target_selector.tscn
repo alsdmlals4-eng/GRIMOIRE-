@@ -1,32 +1,32 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://dw6mndccnna15"]
 
-[ext_resource path="res://src/ui/components/context_target_selector.gd" type="Script" id="1"]
+[ext_resource type="Script" uid="uid://6wj3dpycr0or" path="res://src/ui/components/context_target_selector.gd" id="1"]
 
-[node name="ContextTargetSelector" type="PanelContainer"]
+[node name="ContextTargetSelector" type="PanelContainer" unique_id=1858709716]
 custom_minimum_size = Vector2(360, 300)
 theme_type_variation = &"AcademyPanel"
 script = ExtResource("1")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=1456948446]
 layout_mode = 2
 theme_override_constants/margin_left = 14
 theme_override_constants/margin_top = 14
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 14
 
-[node name="Rows" type="VBoxContainer" parent="Margin"]
+[node name="Rows" type="VBoxContainer" parent="Margin" unique_id=1590777878]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="Margin/Rows"]
+[node name="Title" type="Label" parent="Margin/Rows" unique_id=1194358372]
 layout_mode = 2
-text = "CONTEXT TARGET"
+text = "대상 지정"
 
-[node name="Hint" type="Label" parent="Margin/Rows"]
+[node name="Hint" type="Label" parent="Margin/Rows" unique_id=1535293866]
 layout_mode = 2
-text = "Choose a concrete world target. No route recommendation."
+text = "게임 장면의 대상을 선택하세요. 추천 경로는 제공하지 않습니다."
 autowrap_mode = 2
 
-[node name="Targets" type="VBoxContainer" parent="Margin/Rows"]
+[node name="Targets" type="VBoxContainer" parent="Margin/Rows" unique_id=2016994411]
 layout_mode = 2
 theme_override_constants/separation = 8

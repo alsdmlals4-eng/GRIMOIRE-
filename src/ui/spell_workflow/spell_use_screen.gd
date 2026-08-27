@@ -68,11 +68,21 @@ func _on_target_selected(choice_id: StringName) -> void:
 func _render_preview_status(status: StringName, preview_result: Dictionary, can_commit: bool) -> void:
     var status_label = get_node_or_null("Content/FinalPreview/Status") as Label
     if status_label != null:
-        status_label.text = str(status)
+        status_label.text = _player_preview_status(status)
     var preview: Dictionary = Dictionary(preview_result.get("preview", {}))
     var commit_bar = get_node_or_null("Content/CommitBar")
     if commit_bar != null and commit_bar.has_method("configure"):
         commit_bar.configure(str(preview.get("target_keyword", "—")), maxi(0, int(preview.get("estimated_mana", 0))), can_commit, _confirmation_requested)
+
+func _player_preview_status(status: StringName) -> String:
+    match status:
+        &"FINAL_PREVIEW_READY":
+            return "대상과 시전 결과를 확인하세요."
+        &"INVALID_TARGET":
+            return "유효한 대상을 다시 선택하세요."
+        _:
+            return "대상을 선택하세요."
+
 
 func current_preview() -> Dictionary:
     return _current_preview.duplicate(true)

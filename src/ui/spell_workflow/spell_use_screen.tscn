@@ -9,6 +9,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_j56eg")
 
 [node name="Content" type="VBoxContainer" parent="." unique_id=1843004507]
@@ -22,7 +24,7 @@ offset_bottom = -32.0
 
 [node name="PreparedSpellSummary" type="Label" parent="Content" unique_id=804969587]
 layout_mode = 2
-text = "COMPLETED SPELL"
+text = "완성 주문"
 
 [node name="TargetSelector" parent="Content" unique_id=59880927 instance=ExtResource("2_tst33")]
 layout_mode = 2
@@ -32,11 +34,11 @@ layout_mode = 2
 
 [node name="Status" type="Label" parent="Content/FinalPreview" unique_id=31193571]
 layout_mode = 2
-text = "SELECT A TARGET"
+text = "대상을 선택하세요."
 
 [node name="CommitBar" parent="Content" unique_id=655457358 instance=ExtResource("3_2e13p")]
 layout_mode = 2
 
 [node name="CancelButton" type="Button" parent="Content" unique_id=284549868]
 layout_mode = 2
-text = "CANCEL"
+text = "취소"

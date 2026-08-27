@@ -24,11 +24,11 @@ func configure(target_label: String, mana_cost: int, can_commit: bool, confirmat
     _mana_cost = maxi(0, mana_cost)
     _can_commit = can_commit
     _confirmation_required = confirmation_required
-    get_node("Margin/Row/Target").text = "TARGET  %s" % target_label
-    get_node("Margin/Row/Mana").text = "MANA  %s" % _mana_cost
+    get_node("Margin/Row/Target").text = "대상 %s" % target_label
+    get_node("Margin/Row/Mana").text = "마나 %s" % _mana_cost
     var commit_button := get_node("Margin/Row/CommitButton") as Button
     commit_button.disabled = not _can_commit
-    commit_button.text = "CONFIRM COMMIT" if _confirmation_required else "COMMIT"
+    commit_button.text = "시전 확인" if _confirmation_required else "시전"
 
 
 func visual_snapshot() -> Dictionary:
