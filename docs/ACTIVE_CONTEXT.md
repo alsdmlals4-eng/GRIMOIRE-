@@ -61,6 +61,10 @@ task8_remote_product_pr: 190
 task9_product_commit: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
 task9_product_pr: 192
 task9_status: MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
+task10_ui_hierarchy_issue: 196
+task10_ui_hierarchy_pr: 197
+task10_ui_hierarchy_merge_commit: 9eca31c52f06ce59afeacea9959075987ffb16ab
+task10_ui_hierarchy_status: MERGED_MAIN_RUNTIME_UI_HIERARCHY_REPAIRED
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -115,6 +119,7 @@ android_device: NOT_RUN
 이후 사용자는 Task8과 Task9 제품 구현을 명시적으로 승인했다. Task9 Product Root는 PR #192로 `db038a4` main에 병합됐고, 현재 범위는 `SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE`다.
 
 - Task9/Godot 제품 구현: **MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY**
+- Task10/UI hierarchy repair: **MERGED_MAIN_RUNTIME_UI_HIERARCHY_REPAIRED** — product root duplicate descendants were removed; glyph actions and circuit source-panel sizing were repaired. The English-safe shared spell-use copy baseline remains in force until the Korean font gate.
 - 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 생성: **NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL**
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
