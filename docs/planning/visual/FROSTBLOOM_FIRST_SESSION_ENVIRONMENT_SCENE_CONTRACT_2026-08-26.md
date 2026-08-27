@@ -8,10 +8,10 @@ parent_decision: GM-FROSTBLOOM-INTERNAL-VERTICAL-SLICE-01
 approval: USER_APPROVED_RECOMMENDED_OPTION_A
 approved_at_kst: 2026-08-26
 scope: IMG_02_CONSUMER_CONTRACT_ONLY
-implementation: NOT_STARTED
+implementation: PARTIAL_PRODUCT_ROOT_BACKDROP_MERGED
 image_generation: THREE_SOURCE_CANDIDATES_PERSISTED
-runtime_export: NATIVE_RESOLUTION_WEBP_CANDIDATES_READY_NOT_BOUND
-runtime_validation: NOT_RUN
+runtime_export: FIELD_BASE_CURRENT_PRODUCT_ROOT_BOUND__SCHOOL_AND_BATTLE_CANDIDATES_UNBOUND
+runtime_validation: HERA_1280X720_PRODUCT_ROOT_RENDER_NO_CLIPPING_DIAGNOSTICS_CLEAN
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -64,13 +64,14 @@ full_slice_validation: NOT_RUN
 
 ## 6. Planned Consumer Slots
 
-현재 main은 Development Runtime POC이며 이 세 장을 소비하는 Product Root Scene은 아직 없다. 따라서 아래는 실제 Node 경로나 구현 API가 아니라 후속 CODEX-IMG-02가 채울 **planned consumer slots**다.
+현재 main의 Development Product Root는 `bg_greenhouse_field_base`를 공용 `EnvironmentBackground`로 소비한다. 이는 첫 세션 Field/Dialogue/Battle Scene을 구현했다는 뜻이 아니며, 아래의 첫 세션 consumer slot은 여전히 후속 구현 범위다. `bg_school_common`과 `bg_greenhouse_battle_arena`는 current main에 아직 binding이 없다.
 
 ```text
 FirstSessionClassScene / EnvironmentBackground → bg_school_common
 FirstSessionPracticumScene / EnvironmentBackground → bg_greenhouse_field_base
 FrostbloomInvestigationScene / EnvironmentBackground → bg_greenhouse_field_base
 FrostbloomBattleScene / EnvironmentBackground → bg_greenhouse_battle_arena
+SpellWorkflowProductRoot / EnvironmentBackground → bg_greenhouse_field_base (current runtime backdrop only)
 ```
 
 후속 구현은 같은 asset ID를 단일 resolver 또는 Resource 참조를 통해 소비해야 하며, 상태별 PNG 복제보다 Light/Material/Particles/live UI 재사용을 먼저 검토한다.
@@ -87,7 +88,7 @@ consumer contract defined
 → Godot import/runtime proof
 ```
 
-사용자 자동 생성 정책으로 세 source candidate와 native-resolution export candidate가 준비됐다. 이는 Scene binding, runtime/human/device/performance 검증, 또는 final 2560×1440 delivery approval을 뜻하지 않는다.
+사용자 자동 생성 정책으로 세 source candidate와 native-resolution export candidate가 준비됐다. Task11은 `bg_greenhouse_field_base`만 Product Root backdrop으로 binding하고 1280×720 HERA render/diagnostic readback을 남겼다. 이는 첫 세션 Scene binding, human/device/performance 검증, 또는 final 2560×1440 delivery approval을 뜻하지 않는다.
 
 ## 8. Acceptance Criteria
 
@@ -96,4 +97,5 @@ consumer contract defined
 - 별도 base 배경은 `GREENHOUSE_BATTLE`에만 허용된다.
 - 각 상태는 이미지가 아닌 live UI/VFX가 담당할 영역을 명시한다.
 - Frostbloom Target·회로·결말이 첫 10분 실습에서 노출되지 않는다.
-- source candidate와 native-resolution export candidate는 존재하지만, Godot 제품 Scene binding과 runtime/human/device/performance 검증은 아직 시작하지 않은 상태로 기록된다.
+- `bg_greenhouse_field_base`는 Product Root backdrop으로만 runtime binding되어 있고, school/battle candidate와 첫 세션 Scene consumer는 아직 unbound로 기록된다.
+- human/device/performance 및 final delivery 검증은 아직 시작하지 않은 상태로 기록된다.

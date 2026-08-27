@@ -7,7 +7,7 @@
   "correction_source": "우린 '설명용 시트'가 아니라 실제 게임 소비처가 있는 이미지 기준으로 만드는거야.",
   "supersedes": "2026-08-26 initial checklist that mixed representative/explanatory images with runtime assets",
   "contract_revision": "2026-08-26-r5.4-superset-final",
-  "baseline_project_main": "ce1bd46bc82dd3edf4ed3c485935108282117793",
+  "baseline_project_main": "5139bc53ef4ad80131d6b2c76d235d05550cddfa",
   "current_runtime_readback": {
     "readback_date": "2026-08-27",
     "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
@@ -15,7 +15,7 @@
     "next_product_gate": "TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING",
     "glyph_runtime_asset_count": 6,
     "glyph_consumer_state": "CURRENT_RUNTIME",
-    "img02_state": "SOURCE_CANDIDATES_READY_NO_CURRENT_MAIN_BINDING; NATIVE_RESOLUTION_WEBP_EXPORT_CANDIDATES_READY_NOT_RUNTIME_BOUND",
+    "img02_state": "FIELD_BASE_CURRENT_PRODUCT_ROOT_BOUND; SCHOOL_AND_BATTLE_CANDIDATES_REMAIN_UNBOUND; NATIVE_RESOLUTION_WEBP_CANDIDATES_READY",
     "evidence_boundary": "HUMAN_DEVICE_PERFORMANCE_EXPORT_AND_FULL_VERTICAL_SLICE_NOT_RUN"
   },
   "baseline_base_main": "edb3b3376603c9f6b00d64af3126304f8c9946bf",
@@ -69,18 +69,18 @@
     {
       "asset_group_id": "GR-RA-03-BACKGROUND-MASTERS",
       "name": "Vertical Slice Runtime Background Master 3종",
-      "consumer_state": "APPROVED_PRODUCT_CONSUMER",
+      "consumer_state": "PARTIAL_CURRENT_RUNTIME",
       "consumers": ["수업/시험/축제 Field·Dialogue", "Greenhouse 현장 관찰·복귀", "Greenhouse Battle"],
       "runtime_role": "실제 Scene/Dialogue/Battle의 배경 Texture",
       "runtime_folder": "assets/art/backgrounds/",
-      "runtime_format": "planned delivery: 2560x1440 WebP Lossless; current unbound candidate export: 1672x941 WebP Lossless",
+      "runtime_format": "planned delivery: 2560x1440 WebP Lossless; current candidate export: 1672x941 WebP Lossless",
       "assets": [
         {"id": "BG-01", "name": "School Common Base", "consumer": "수업·시험·축제 공용"},
         {"id": "BG-02", "name": "Greenhouse Field Base", "consumer": "현장 관찰·대화·복귀"},
         {"id": "BG-03", "name": "Greenhouse Battle Arena", "consumer": "동일 사건 별도 전투장"}
       ],
       "count_cap": 3,
-      "production_readiness": "THREE_NATIVE_RESOLUTION_WEBP_CANDIDATES_PERSISTED_UNBOUND_ON_CURRENT_MAIN; REGENERATE_RATHER_THAN_BLINDLY_UPSCALE_IF_2560x1440_BECOMES_MANDATORY"
+      "production_readiness": "BG-02_FIELD_BASE_CURRENT_PRODUCT_ROOT_RUNTIME_CONSUMED; BG-01_SCHOOL_AND_BG-03_BATTLE_REMAIN_UNBOUND; REGENERATE_RATHER_THAN_BLINDLY_UPSCALE_IF_2560x1440_BECOMES_MANDATORY"
     },
     {
       "asset_group_id": "GR-RA-04-BACKGROUND-STATE-OVERLAYS",
@@ -196,7 +196,7 @@
     "action": "TASK9_USER_VERTICAL_SLICE_VALIDATION",
     "image_generation_authorized": false,
     "first_candidate_group": "NONE",
-    "condition": "현재 main 소비처가 없는 이미지는 생성·내보내기·정본 등록하지 않는다. IMG-02는 새 Godot consumer와 Texture binding 계약이 추가된 뒤에만 재검토한다."
+    "condition": "IMG-02는 bg_greenhouse_field_base만 Product Root backdrop으로 current main에서 소비한다. 나머지 배경이나 overlay는 별도 Godot consumer와 Texture binding 계약이 추가된 뒤에만 재검토한다."
   },
   "evidence_ceiling": {
     "current_product_stage": "PARTIAL_FOUNDATION",

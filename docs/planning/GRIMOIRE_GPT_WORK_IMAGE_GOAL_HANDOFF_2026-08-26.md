@@ -127,7 +127,7 @@ BURST
 | 순서 | Goal | Priority | Consumer | 상태 |
 |---:|---|---|---|---|
 | 1 | IMG-01 · Slice Magic Glyph Runtime Set | P0 | Task6 / Task7 / future Task8 | Runtime integration merged; remaining visual/device proof is separate |
-| 2 | IMG-02 · First-Session Environment Base Pack | P1 | Class / Field / Greenhouse Battle | Three local source + native-resolution WebP candidates, manifests, and Notion records ready; runtime Scene binding remains unstarted |
+| 2 | IMG-02 · First-Session Environment Base Pack | P1 | Class / Field / Greenhouse Battle | Three local source + native-resolution WebP candidates, manifests, and Notion records ready; `bg_greenhouse_field_base` is bound as the current Product Root backdrop, while school/battle and first-session Scene bindings remain unstarted |
 | 3 | IMG-03 · Frostbloom Environment State Pack | P1 | Greenhouse state/result | IMG-02 + effect reuse test pending |
 | 4 | IMG-04 · Maren Dialogue Portrait Pack | P1 | Dialogue UI | character identity brief pending |
 | 5 | IMG-05 · Protagonist Portrait Pack | P1 | Dialogue / future battle portrait | protagonist identity pending |
@@ -301,11 +301,11 @@ Current values remain `NOT_PROVEN / NOT_RUN`.
 
 Use this as the first instruction in the GRIMOIRE Work workspace if a concise restart is useful:
 
-> GRIMOIRE 이미지 작업을 이어간다. 먼저 current Notion Home, AGENTS.md, ACTIVE_CONTEXT, `GRIMOIRE_GPT_WORK_IMAGE_GOAL_HANDOFF_2026-08-26.md`, `GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json`, live GitHub main/open PR, latest Base main을 fresh-read해. 과거 메모리는 정본보다 낮게 둔다. IMG-02의 세 배경은 로컬 source PNG·native-resolution WebP·provenance manifest·Notion ASSET record까지 기록됐지만 Scene binding은 시작하지 않았다. `FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md`와 각 manifest를 읽고, 제품 구현이 명시 승인된 경우에만 동일 파일을 Scene에 연결한다. IMG-03 overlay는 runtime effect reuse 평가 전 생성하지 않는다. 설명용 시트는 만들지 않는다.
+> GRIMOIRE 이미지 작업을 이어간다. 먼저 current Notion Home, AGENTS.md, ACTIVE_CONTEXT, `GRIMOIRE_GPT_WORK_IMAGE_GOAL_HANDOFF_2026-08-26.md`, `GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json`, live GitHub main/open PR, latest Base main을 fresh-read해. 과거 메모리는 정본보다 낮게 둔다. IMG-02의 세 배경은 로컬 source PNG·native-resolution WebP·provenance manifest·Notion ASSET record까지 기록됐고, `bg_greenhouse_field_base`만 current Product Root backdrop으로 binding됐다. school/battle candidate와 first-session Scene binding은 아직 시작하지 않았다. `FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md`와 각 manifest를 읽고, 제품 구현이 명시 승인된 경우에만 동일 파일을 Scene에 연결한다. IMG-03 overlay는 runtime effect reuse 평가 전 생성하지 않는다. 설명용 시트는 만들지 않는다.
 
 ## 14. Stop Condition
 
-이 handoff 이후 이미지 범위의 다음 gate는 **IMG-02 내보내기 후보의 제품 구현 승인** 또는 **IMG-03 effect-reuse 평가**다. 추가 이미지 생성, Godot 구현, Task8 복구는 자동으로 시작하지 않는다.
+이 handoff 이후 이미지 범위의 다음 gate는 **first-session Scene별 IMG-02 consumer contract** 또는 **IMG-03 effect-reuse 평가**다. `bg_greenhouse_field_base`의 Product Root backdrop binding은 병합됐지만, 추가 이미지 생성과 school/battle binding은 자동으로 시작하지 않는다.
 
 ## 15. 2026-08-26 IMG-01 Codex Runtime Integration · Current Main Receipt
 
