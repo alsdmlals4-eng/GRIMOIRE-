@@ -132,6 +132,16 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED", active)
         self.assertIn("FULL_VERTICAL_SLICE_NOT_RUN", active)
 
+    def test_active_entrypoints_promote_task9_and_quarantine_pre_task9_markers(self) -> None:
+        for relative_path in ("START_HERE.md", "docs/ACTIVE_CONTEXT.md"):
+            text = (ROOT / relative_path).read_text(encoding="utf-8")
+            self.assertIn("three_screen_runtime: TASK9_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE_READY", text)
+            self.assertIn("three_screen_runtime_historical: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9", text)
+
+        gates = (ROOT / "docs/DEVELOPMENT_GATES.md").read_text(encoding="utf-8")
+        self.assertIn("PR #151 is merged history/current-main input; live open PRs remain read-only.", gates)
+        self.assertNotIn("PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft다.", gates)
+
     def test_task8_reverify_quarantines_historical_pr151_marker(self) -> None:
         reverify = (ROOT / "docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md").read_text(encoding="utf-8")
         self.assertIn("snapshot_role: HISTORICAL_REMOTE_LOCAL_REVERIFY_PROVENANCE", reverify)
