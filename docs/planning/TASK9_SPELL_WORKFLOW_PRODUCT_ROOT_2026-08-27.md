@@ -94,3 +94,22 @@ human_usability: NOT_RUN
 player_experience: NOT_RUN
 device_performance_export: NOT_RUN_OR_NOT_CONFIGURED
 ```
+
+## Fresh automated recheck — 2026-08-27
+
+```yaml
+exact_main: 6f2719e52c6f9dfd95769e73fbd0ae6f8e493ea4
+scope: TASK9_MACHINE_EVIDENCE_RECHECK_ONLY
+custom_runner: 47_suites_1976_assertions_0_failures_NO_EXIT_LEAK_WARNING
+gut: 8_tests_29_asserts_0_failures
+python_contracts: 46_tests_0_failures
+hera_live_observation: NOT_RUN_NO_LIVE_EDITOR
+human_device_performance_export: NOT_RUN
+```
+
+### Incident → solution → lesson
+
+1. `IMG-02` 후보·WebP 내보내기 병합 뒤 Image Goal Queue만 새 상태를 기록했고, coverage/checklist와 current-authority 검증은 이전 상태 문자열을 유지했다. 세 human/runtime 정본과 계약 테스트를 같은 **runtime 미연결** 상태로 동기화했다. 이 변경은 후보가 runtime Scene에 바인딩됐다는 뜻이 아니다.
+2. Task9 integration tests가 scene-tree 밖의 `Control` 노드를 지연 해제로 남겨 custom runner 종료 시 leak warning을 만들었다. 테스트가 만든 노드는 즉시 `free()`하도록 바꾸고 runner clean exit를 확인했다.
+
+재사용 판정은 `PROJECT_ONLY`: 두 원인은 이 프로젝트의 IMG-02 상태 owner와 Godot test fixture에 한정된 단일 발생이다. Base 승격은 독립 재발·negative case·기존 owner promotion evidence가 없어 `REJECT_OVERGENERALIZATION`으로 닫는다.

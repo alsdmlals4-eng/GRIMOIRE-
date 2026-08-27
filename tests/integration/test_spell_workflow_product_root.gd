@@ -41,7 +41,7 @@ func run(case) -> void:
         var stock_source: Control = scene_root.get_node(NodePath("CircuitScreen/CircuitContent/Content/Layout/MainRow/StockSourcePanel"))
         case.assert_true(vault_source.custom_minimum_size.x >= 180.0, "vault source panel has a readable minimum width")
         case.assert_true(stock_source.custom_minimum_size.x >= 180.0, "stock source panel has a readable minimum width")
-        scene_root.queue_free()
+        scene_root.free()
 
     var root = Root.new()
     var started: Dictionary = root.start_slice()
@@ -80,3 +80,4 @@ func run(case) -> void:
     case.assert_equal(&"USED", used.get("status", &""), "one confirmed cast resolves atomically")
     case.assert_equal(&"RESULT", root.visible_step(), "used result opens receipt")
     case.assert_equal(&"USE_CONFIRMATION_REQUIRED", root.confirm_cast().get("status", &""), "replayed cast fails closed")
+    root.free()
