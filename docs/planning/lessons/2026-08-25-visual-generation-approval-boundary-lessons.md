@@ -8,6 +8,8 @@ implementation_authority: NONE
 
 ## Problems
 
+> **Current-project override (2026-08-28):** GRIMOIRE's user now preauthorizes bounded candidate generation after canon/consumer/rights preflight and asks for confirmation only at final lock, runtime-use, or production-batch promotion. The older per-image explicit-approval wording below is historical context, not the current GRIMOIRE execution rule. `AGENTS.md` and `GRIMOIRE_VISUAL_CONTINUITY_GUARD_2026-08-26.md` own the current rule.
+
 1. A visually strong generated screen can silently drift from mechanic canon.
 2. `좋다/맘에 든다` for an image does not automatically approve embedded mechanics, copy, character identity, numbers, or fiction.
 3. Historical wording can revive superseded mechanics if a brief follows the first keyword match instead of Decision supersession.
@@ -23,7 +25,7 @@ For mechanic-bearing generated visuals:
 ```text
 fresh domain canon read
 → text brief with KEEP / MUST_SHOW / MUST_NOT_SHOW
-→ explicit user brief approval
+→ current user-authorized candidate policy or explicit brief approval
 → bounded image generation
 → semantic drift review
 → scoped approval
