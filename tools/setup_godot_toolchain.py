@@ -23,6 +23,7 @@ OFFICIAL_DOWNLOAD_ENDPOINT: Final = "https://downloads.godotengine.org/"
 GODOT_TEMPLATES_SIZE: Final = 1_280_486_955
 GODOT_TEMPLATES_SHA256: Final = "86409db6200b6f8fd3230989c2d2002851f3dd18acf11d7bdbafddf5a0dd0f72"
 GODOT_TEMPLATES_DOWNLOAD_ATTEMPTS: Final = 3
+GODOT_ENGINE_DOWNLOAD_ATTEMPTS: Final = 3
 VERSION_PATTERN: Final = re.compile(r"^4\.7\.1\.stable(?:\.|$)")
 
 
@@ -179,12 +180,28 @@ def install_engine(install_root: Path, spec: PlatformSpec) -> Path:
 
     engine_root.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="grimoire-godot-download-") as temp_dir:
-        archive = Path(temp_dir) / spec.slug
-        extract_root = Path(temp_dir) / "engine"
-        download_file(build_engine_url(spec), archive)
-        safe_extract_zip(archive, extract_root)
-        extracted_binary = _find_executable(extract_root, spec.executable_name)
-        shutil.copy2(extracted_binary, binary)
+        temp_root = Path(temp_dir)
+        last_error: Exception | None = None
+        for attempt in range(1, GODOT_ENGINE_DOWNLOAD_ATTEMPTS + 1):
+            archive = temp_root / f"attempt-{attempt}-{spec.slug}"
+            extract_root = temp_root / f"attempt-{attempt}-engine"
+            try:
+                download_file(build_engine_url(spec), archive)
+                safe_extract_zip(archive, extract_root)
+                extracted_binary = _find_executable(extract_root, spec.executable_name)
+                shutil.copy2(extracted_binary, binary)
+                break
+            except (OSError, RuntimeError, zipfile.BadZipFile) as exc:
+                last_error = exc
+                archive.unlink(missing_ok=True)
+                shutil.rmtree(extract_root, ignore_errors=True)
+                if attempt == GODOT_ENGINE_DOWNLOAD_ATTEMPTS:
+                    raise RuntimeError(
+                        f"Godot engine archive remained invalid after {GODOT_ENGINE_DOWNLOAD_ATTEMPTS} attempts"
+                    ) from exc
+
+        if last_error is not None and not binary.is_file():
+            raise RuntimeError("Godot engine installation did not produce an executable") from last_error
 
     if os.name != "nt":
         binary.chmod(binary.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
