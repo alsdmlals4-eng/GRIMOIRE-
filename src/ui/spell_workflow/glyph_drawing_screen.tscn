@@ -39,7 +39,7 @@ layout_mode = 2
 text = "문양 1개를 안전하게 기록하세요."
 
 [node name="WritingCanvas" type="PanelContainer" parent="." unique_id=780384574]
-custom_minimum_size = Vector2(0, 220)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_type_variation = &"AcademyPanel"
 
@@ -60,11 +60,15 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="RecognizeButton" type="Button" parent="WritingCanvas/WritingContent/WritingActions" unique_id=1469655175]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "글자 인식"
 
 [node name="ClearCanvasButton" type="Button" parent="WritingCanvas/WritingContent/WritingActions" unique_id=1735944758]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "획 지우기"
 
 [node name="GlyphInfoPanel" type="PanelContainer" parent="." unique_id=1377955341]

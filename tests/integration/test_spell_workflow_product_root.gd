@@ -25,6 +25,22 @@ func run(case) -> void:
         var scene_root = packed_scene.instantiate()
         for required_node in ["GlyphScreen", "CircuitScreen", "SpellUseScreen", "ResultPanel"]:
             case.assert_true(scene_root.has_node(NodePath(required_node)), "Product Root exposes player surface: %s" % required_node)
+
+        var product_scene_source := FileAccess.get_file_as_string(ROOT_SCENE_PATH)
+        case.assert_false(product_scene_source.contains('parent="GlyphScreen/GlyphContent"'), "product root does not duplicate glyph-scene descendants")
+        case.assert_false(product_scene_source.contains('parent="CircuitScreen/CircuitContent"'), "product root does not duplicate circuit-scene descendants")
+        case.assert_false(product_scene_source.contains('parent="SpellUseScreen/SpellUseContent"'), "product root does not duplicate spell-use descendants")
+
+        var writing_canvas: Control = scene_root.get_node(NodePath("GlyphScreen/GlyphContent/WritingCanvas"))
+        case.assert_true(writing_canvas.custom_minimum_size.y >= 300.0, "glyph writing area reserves a meaningful first-screen height")
+        var recognize_button: Button = scene_root.get_node(NodePath("GlyphScreen/GlyphContent/WritingCanvas/WritingContent/WritingActions/RecognizeButton"))
+        case.assert_true(recognize_button.custom_minimum_size.y >= 48.0, "glyph recognition remains a touch-sized primary action")
+        case.assert_equal(3, recognize_button.size_flags_horizontal, "glyph recognition shares the writing action row as an expanding action")
+
+        var vault_source: Control = scene_root.get_node(NodePath("CircuitScreen/CircuitContent/Content/Layout/MainRow/VaultSourcePanel"))
+        var stock_source: Control = scene_root.get_node(NodePath("CircuitScreen/CircuitContent/Content/Layout/MainRow/StockSourcePanel"))
+        case.assert_true(vault_source.custom_minimum_size.x >= 180.0, "vault source panel has a readable minimum width")
+        case.assert_true(stock_source.custom_minimum_size.x >= 180.0, "stock source panel has a readable minimum width")
         scene_root.queue_free()
 
     var root = Root.new()

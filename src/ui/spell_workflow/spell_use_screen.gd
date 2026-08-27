@@ -74,6 +74,7 @@ func _render_preview_status(status: StringName, preview_result: Dictionary, can_
     if commit_bar != null and commit_bar.has_method("configure"):
         commit_bar.configure(str(preview.get("target_keyword", "—")), maxi(0, int(preview.get("estimated_mana", 0))), can_commit, _confirmation_requested)
 
+
 func current_preview() -> Dictionary:
     return _current_preview.duplicate(true)
 
