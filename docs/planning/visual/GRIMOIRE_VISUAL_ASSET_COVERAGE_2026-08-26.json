@@ -228,14 +228,14 @@
       "type": "ENEMY_OR_CRISIS_ENTITY_SET",
       "purpose": "Give the incident a readable single focal threat/state source",
       "implementation_consumer": "FROSTBLOOM_CRISIS_AND_BATTLE_PRESENTATION",
-      "existing_asset_or_reference": "Single-enemy-focus and greenhouse battle reference",
+      "existing_asset_or_reference": "Single-enemy-focus and greenhouse battle reference; project-local idle/unstable runtime export candidate",
       "delete_test": "A placeholder can test logic, but a Vertical Slice cannot communicate threat, instability, and resolution quality without a readable focal entity.",
       "consequence_if_missing": "Combat/crisis becomes abstract and environmental change is harder to read.",
       "priority": "P1",
       "action": "CREATE",
-      "coverage_status": "GAP_NONBLOCKING",
+      "coverage_status": "PARTIAL_RUNTIME",
       "state_family_status": "NOT_REVIEWED",
-      "note": "One strong reusable set; do not expand to waves or multiple enemy families for the Slice."
+      "note": "One strong reusable set; do not expand to waves or multiple enemy families for the Slice. The idle/unstable source candidate and 512x512 RGBA export are project-owned, but FrostbloomBattleScene binding, Godot import, runtime evidence, and other state clips remain unstarted."
     },
     {
       "visual_id": "GR-VIS-012-CORE-FEEDBACK-VFX-STATES",
