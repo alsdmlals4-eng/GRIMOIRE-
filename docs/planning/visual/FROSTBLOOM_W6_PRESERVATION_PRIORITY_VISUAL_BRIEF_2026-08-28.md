@@ -3,7 +3,7 @@
 ```yaml
 artifact_id: PROJECT_CORE_SCENE_VISUAL_BOARD_FROSTBLOOM_W6_01
 mode: planning_visualization
-status: TEXT_BRIEF_READY__USER_IMAGE_APPROVAL_REQUIRED
+status: GENERATED_EXPLORATION__FINAL_LOCK_PENDING
 project_relation: GRIMOIRE
 decision_id: GM-FROSTBLOOM-W6-PRESERVATION-PRIORITY-01
 consumer_kind: PLANNED_GAME_SURFACE
@@ -11,7 +11,14 @@ consumer_surface: Frostbloom W6 target-preview and result-flow visual interpreta
 primary_use: player-experience and visual-direction review
 runtime_compare_required: true
 project_asset_status: NOT_A_RUNTIME_ASSET
-generation_authority: PENDING_NEXT_USER_EXPLICIT_APPROVAL
+generation_authority: USER_PREAUTHORIZED_CANDIDATE_GENERATION__FINAL_LOCK_ONLY
+candidate_output_locator: C:/Users/user/.codex/generated_images/01a04559-1357-7de1-9482-9c64fb3b3b53/exec-a3e2ff4f-479d-461d-8a20-fd8a94e2609d.png
+candidate_service: built_in_image_generation
+candidate_generated_at: 2026-08-28
+candidate_status: GENERATED_EXPLORATION__IN_REVIEW
+candidate_dimensions: 1672x941
+candidate_bytes: 2319018
+candidate_sha256: 7D7B87C188CA4C6B4CB9B442EC3166D9D3230A4E787EE4EBF5219F4469318F7A
 ```
 
 ## 1. Purpose and required reading
@@ -96,6 +103,21 @@ Constraints: no readable words, no pseudo-text, no numbers, no buttons, no targe
 | Visual continuity | Navy/gold/glasshouse/lantern/magic grammar follows the approved direction without copying reference expression. |
 | Scope boundary | Generated output remains `GENERATED_EXPLORATION`, not a project asset or runtime evidence. |
 
-## 7. Next approval boundary
+## 7. Generation receipt and review
 
-This exact text brief is ready. A next user message that explicitly approves generation authorises **exactly one** generated board. After that one result, generation stops for review; any resulting planning finding is written back to the original decision owner before future assets or Godot implementation begin.
+The board at `candidate_output_locator` was generated once on 2026-08-28 after the required canon, planned-consumer, continuity, and reference-boundary preflight. It is a local Codex generated preview only: it is not copied into this repository, not a Notion Asset Library item, not a `PROJECT_ASSET_APPROVED` result, and not a Godot/UI implementation.
+
+| Review check | Result | Evidence-bound interpretation |
+| --- | --- | --- |
+| Flow fidelity | PASS | Five coherent moments read as incident → direct writing → circuit → target tension → mixed result/reflection. |
+| Choice fairness | PASS | Seedlings and the cracked glass/metal structure share the central choice panel without a crown, checkmark, stronger target glow, or best-route signal. |
+| Continuity | PASS | Tall arched glasshouse, navy/aged-gold material, warm lantern pools, small blue-violet magic, and editable UI reserve follow the continuity card. |
+| Text / functional-state boundary | PASS | No readable or pseudo text, numbers, buttons, score, or baked target instruction is used as system truth. |
+| Mobile-scale choice explanation | PARTIAL | The stakes are visible, but the target-specific cost/benefit wording must remain editable live UI and still needs runtime/human observation. |
+| Rights / reference similarity | NOT_RELEASE_REVIEWED | User-provided images constrained composition and mood only; no input binary was embedded in the generation request. Planning review does not establish release rights. |
+
+The candidate may be shown for planning review but remains `GENERATED_EXPLORATION`. Its next valid dispositions are `USER_FINAL_LOCK`, `USER_REQUESTED_BOUNDED_REFINEMENT`, or `REJECT`; none automatically creates a runtime asset or authorises implementation.
+
+## 8. Current approval boundary
+
+Under the 2026-08-28 user preauthorization, future bounded candidates may generate without a separate image-approval prompt after their actual/planned consumer, canon, and rights boundary are checked. Ask the user only to make a final lock/promotion decision. A final lock still cannot promote the board itself into a shipping asset, Godot scene, or human/player-experience PASS.

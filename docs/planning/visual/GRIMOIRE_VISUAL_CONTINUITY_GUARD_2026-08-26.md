@@ -30,6 +30,6 @@ It is a continuity overlay for `ART-STYLE-01` and `GM-VISUAL-DIRECTION-20260825-
 
 ## Automatic candidate rule
 
-For a distinct asset that is necessary to the current approved visual queue, Codex may generate **one candidate at a time** without requesting another approval. Each retained candidate must be copied to the project-local source-candidate path and recorded in the Notion ASSET LIBRARY with its source, dimensions, hash, consumer, and unverified runtime boundary.
+After coverage, current-canon, actual/planned-consumer, and rights-boundary preflight, the 2026-08-28 user preauthorization lets Codex generate **one candidate at a time** without per-image approval. Record the source/prompt provenance, dimensions when available, consumer, review finding, and unverified runtime boundary in the appropriate project visual record. A planning-only candidate may remain in the generated-preview location; do not copy it into a project asset path unless the user has approved its project-asset destination.
 
-Candidate persistence does not mean runtime export, Godot binding, human/device/performance validation, or release-rights promotion.
+Candidate generation or persistence does not mean `PROJECT_ASSET_APPROVED`, final `VISUAL_DIRECTION_LOCK`, runtime export, Godot binding, human/device/performance validation, or release-rights promotion. Those promotions, plus any production-batch expansion, require explicit user confirmation. If a candidate needs correction, generate only one bounded refinement and record why; do not silently create an image batch.

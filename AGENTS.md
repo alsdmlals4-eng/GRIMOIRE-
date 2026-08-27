@@ -22,7 +22,8 @@ implementation: PARTIAL_FOUNDATION
 current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
-visual_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
+visual_generation_state: FROSTBLOOM_W6_BOARD_GENERATED_EXPLORATION__IN_REVIEW
+visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
 product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
@@ -75,9 +76,9 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 10. `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`는 이미 닫힌 **historical compatibility locator**로 보존한다. consumer 검색 가능성 때문에 지우지 않지만 current execution gate로 해석하지 않는다.
 11. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration 이후 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 r5.4 binding이다.
 12. 2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 플레이어 노출을 **글자 → 주문 → 대상 → 시전**으로 단순화하는 방향을 승인했다. 같은 Decision ID의 revision owner는 `docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`다.
-13. 이번 승인 범위는 기획/Visual 정본 교정이다. Task8/Godot 제품 구현과 추가 이미지 생성은 별도 명시 요청이 필요하다.
+13. 이번 승인 범위는 기획/Visual 정본 교정이다. Task8/Godot 제품 구현은 별도 명시 요청이 필요하다. Visual 후보는 2026-08-28 사용자 사전 승인에 따라 아래 후보 생성 규칙 안에서 생성할 수 있으나, final lock·runtime 사용·production batch 확장은 사용자 확정이 필요하다.
 14. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator이며 현재 범위의 구현 허가가 아니다.
-15. Visual serial production은 coverage를 먼저 읽고, 새 이미지가 필요할 때만 `TEXT_BRIEF → 사용자 명시 승인 → EXACTLY_ONE_RESULT → STOP`을 따른다.
+15. Visual candidate production은 coverage·current canon·actual/planned consumer·rights boundary를 먼저 읽는다. 2026-08-28 사용자 사전 승인에 따라 후보는 이미지별 재승인 없이 `TEXT_BRIEF → GENERATE_CANDIDATE → QA_AND_RECORD`로 진행한다. 한 번에 하나의 후보 또는 그 후보의 명시적 보정만 생성한다. `PROJECT_ASSET_APPROVED`, `VISUAL_DIRECTION_LOCK`, runtime 사용, production batch 확장은 사용자 확정 전 자동 승격하지 않는다.
 
 ## 프로젝트 코어
 
@@ -187,7 +188,8 @@ logo: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 representative_screens: GM-REPRESENTATIVE-SCREENS-20260825-01
 coverage_owner: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 spell_visual_player_terms: GLYPH_COMPLETE_SPELL_NAME_TARGET_CAST
-image_generation_state: NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL
+image_generation_state: FROSTBLOOM_W6_BOARD_GENERATED_EXPLORATION__IN_REVIEW
+visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 ```
 
 승인된 Dialogue 구성은 유지한다. Battle/Spell 시안의 분위기·구도는 참고하되 시스템 UI는 current canon에 맞게 재작업한다. 이전 3D-like movement 방향은 거부 상태이며, 이동은 단순 2D 장면 전환/배경/지도 카드 재사용 방향을 따른다.

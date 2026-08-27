@@ -113,6 +113,10 @@ The current Product Root proves only the skeleton of this trace. The full promis
 
 Adversarial result: the board matches the lighting/material/style anchor, but it fails as a final design reference because it contains pseudo-text, an unapproved generic protagonist appearance, and does not make the two-target trade-off legible. Do not use it as a production prompt without a revised, user-approved brief.
 
+### Frostbloom W6 direct candidate — 2026-08-28
+
+The prior generic project-understanding board remains historical `GENERATED_EXPLORATION` and is not a current visual lock. The current W6-specific candidate is owned by `docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md`. It follows the approved W6 stakes: rare frost-damaged seedlings versus greenhouse structure, with a mixed result for either choice. It passed continuity, flow, and no-baked-system-text review, while mobile-scale wording/choice comprehension and release-rights review remain unverified. It remains planning-only and `FINAL_LOCK_PENDING`.
+
 ## Required order
 
 1. User vertical-slice validation of the current Product Root: comprehension, target-choice rationale, confirmation burden, result understanding, and desire to continue.
