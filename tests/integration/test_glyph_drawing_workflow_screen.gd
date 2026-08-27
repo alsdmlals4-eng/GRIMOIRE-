@@ -70,6 +70,8 @@ func run(case) -> void:
             case.assert_true(action.custom_minimum_size.y >= 48.0, "%s height is touch safe" % action_name)
     case.assert_true(screen.has_node(NodePath("IncidentStatusCard/Content/Urgency")), "status card exposes urgency")
     case.assert_true(screen.has_node(NodePath("IncidentStatusCard/Content/TouchHint")), "status card explains its touch affordance")
+    var canvas_hint = screen.get_node_or_null(NodePath("WritingCanvas/WritingContent/CanvasHint")) as Label
+    case.assert_true(canvas_hint != null and canvas_hint.text.contains("드래그") and canvas_hint.text.contains("터치"), "writing canvas tells players to use mouse drag or touch")
     case.assert_true(FileAccess.file_exists("res://src/ui/spell_workflow/components/incident_explanation_overlay.tscn"), "incident overlay scene exists")
     _assert_recognition_glyph_visual(case, screen)
     _assert_explicit_save_replays_once(case, screen)

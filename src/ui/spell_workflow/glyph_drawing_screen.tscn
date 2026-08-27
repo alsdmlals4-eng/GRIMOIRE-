@@ -48,7 +48,7 @@ layout_mode = 2
 
 [node name="CanvasHint" type="Label" parent="WritingCanvas/WritingContent" unique_id=992261367]
 layout_mode = 2
-text = "여기에 문양을 그립니다."
+text = "마우스 드래그 또는 터치로 문양을 그립니다."
 horizontal_alignment = 1
 vertical_alignment = 1
 

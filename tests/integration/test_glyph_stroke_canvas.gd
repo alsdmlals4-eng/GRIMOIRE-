@@ -24,6 +24,11 @@ func run(case) -> void:
     case.assert_equal(1, submitted.size(), "explicit submit returns the collected stroke payload")
     canvas.clear_strokes()
     case.assert_equal(0, canvas.stroke_count(), "clear removes retry strokes")
+
+    canvas._gui_input(_screen_touch(Vector2(8, 8), true))
+    canvas._gui_input(_screen_drag(Vector2(40, 40)))
+    canvas._gui_input(_screen_touch(Vector2(64, 64), false))
+    case.assert_equal(1, canvas.stroke_count(), "touch drag stores one valid separate stroke")
     canvas.free()
 
 
@@ -37,5 +42,20 @@ func _mouse_button(position: Vector2, pressed: bool) -> InputEventMouseButton:
 
 func _mouse_motion(position: Vector2) -> InputEventMouseMotion:
     var event := InputEventMouseMotion.new()
+    event.position = position
+    return event
+
+
+func _screen_touch(position: Vector2, pressed: bool) -> InputEventScreenTouch:
+    var event := InputEventScreenTouch.new()
+    event.index = 0
+    event.position = position
+    event.pressed = pressed
+    return event
+
+
+func _screen_drag(position: Vector2) -> InputEventScreenDrag:
+    var event := InputEventScreenDrag.new()
+    event.index = 0
     event.position = position
     return event
