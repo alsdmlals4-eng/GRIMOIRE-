@@ -65,6 +65,15 @@ task10_ui_hierarchy_issue: 196
 task10_ui_hierarchy_pr: 197
 task10_ui_hierarchy_merge_commit: 9eca31c52f06ce59afeacea9959075987ffb16ab
 task10_ui_hierarchy_status: MERGED_MAIN_RUNTIME_UI_HIERARCHY_REPAIRED
+current_main_readback: 6377cbcf31958fc2b3215d7a9603dfa5f0199c04
+task11_visual_surface_pr: 205
+task11_visual_surface_status: MERGED_MAIN_BACKGROUND_AND_ACADEMY_THEME_BOUND
+task12_direct_glyph_input_pr: 208
+task12_direct_glyph_input_status: MERGED_MAIN_CLARIFICATION
+task13_result_receipt_pr: 210
+task13_result_receipt_status: MERGED_MAIN_RECEIPT_PAYLOAD_RENDERED
+greenhouse_spirit_idle_seed_pr: 217
+greenhouse_spirit_idle_seed_status: PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -121,6 +130,10 @@ android_device: NOT_RUN
 
 - Task9/Godot 제품 구현: **MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY**
 - Task10/UI hierarchy repair: **MERGED_MAIN_RUNTIME_UI_HIERARCHY_REPAIRED** — product root duplicate descendants were removed; glyph actions and circuit source-panel sizing were repaired. The English-safe shared spell-use copy baseline remains in force until the Korean font gate.
+- Task11/Product Root visual surface: **MERGED_MAIN** — `bg_greenhouse_field_base.webp`와 Academy theme가 Product Root에 실제 연결됐다. 이는 첫 세션 Field/Dialogue/Battle Scene binding이나 Human visual validation이 아니다.
+- Task12/direct glyph input: **MERGED_MAIN** — 직접 쓴 글자 입력의 player-facing 설명만 보완했다.
+- Task13/result receipt: **MERGED_MAIN** — 실제 result payload의 대상·사용 마력·결과 문장을 Result Panel에 표시한다. 새 경제·전투·보상 authority는 추가하지 않았다.
+- PR #217 greenhouse spirit idle seed: **PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING** — 투명 PNG와 provenance는 존재하지만 battle Scene binding·Godot import·runtime evidence는 아직 없다.
 - 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 생성: **NOT_REQUESTED_AFTER_PLAYER_FLOW_APPROVAL**
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**

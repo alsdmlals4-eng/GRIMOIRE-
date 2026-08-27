@@ -56,6 +56,13 @@ task8_remote_product_pr: 190
 task9_product_commit: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
 task9_product_pr: 192
 task9_status: MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
+post_task9_main_readback: 6377cbcf31958fc2b3215d7a9603dfa5f0199c04
+post_task9_corrections:
+  task10_ui_hierarchy: PR_197_MERGED_MAIN
+  task11_visual_surface: PR_205_MERGED_MAIN
+  task12_direct_glyph_input: PR_208_MERGED_MAIN
+  task13_result_receipt: PR_210_MERGED_MAIN
+greenhouse_spirit_idle_seed: PR_217_PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
 gut_status: GUT_FORMALLY_ADOPTED
@@ -81,7 +88,7 @@ android_device: NOT_RUN
 
 `v4.8 r5.4 / GM-CONTRACT-V4-8-BINDING-01`이 현재 프로젝트 실행 계약이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
 
-2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름 간략화**와 후속 Task8·Task9 Godot 제품 구현을 승인했다. Task9 Product Root는 PR #192로 `db038a4` main에 병합됐으며, 현재 자동화 완료 상태는 `MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY`다. 다음 게이트는 사람·플레이어·기기·성능·출시 검증을 과장하지 않는 `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`이다.
+2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름 간략화**와 후속 Task8·Task9 Godot 제품 구현을 승인했다. Task9 Product Root는 PR #192로 `db038a4` main에 병합됐고, 후속 PR #197/#205/#208/#210은 UI hierarchy, Academy visual surface, 직접 글자 입력 안내, 결과 영수증 표시만 교정했다. 2026-08-28 live `main`은 `6377cbcf31958fc2b3215d7a9603dfa5f0199c04`이며 다음 게이트는 사람·플레이어·기기·성능·출시 검증을 과장하지 않는 `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`이다.
 
 ## Workspace authority
 

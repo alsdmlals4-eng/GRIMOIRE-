@@ -13,7 +13,9 @@ runtime_validation: AUTOMATED_HEADLESS_PASS
 
 ## 시작 경로
 
-`AGENTS → START_HERE → ACTIVE_CONTEXT → DEVELOPMENT_GATES → CURRENT_CONFIRMED_DECISIONS → Runtime Main Sync03 → GR-TEST-033 Main Sync05 → Runtime·Tests`.
+`AGENTS → START_HERE → ACTIVE_CONTEXT → active v4.8 binding → player-facing spell-flow revision → current Product Root/validation evidence → Runtime·Tests`.
+
+`CURRENT_CONFIRMED_DECISIONS.md`, `CURRENT_UNRESOLVED_GATES.md`, and `CANON_SYNC_STATE.json` are v4.5-era historical compatibility snapshots; they are discovery inputs, not current state writers. The current canon/fun/visual audit is `docs/planning/audits/2026-08-28-grimoire-canon-fun-visual-audit.md`.
 
 ## Godot
 
