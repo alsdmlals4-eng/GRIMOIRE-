@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "asset_id": "enemy_greenhouse_spirit_idle_unstable",
+  "role": "Initial idle/unstable frame for the single Frostbloom greenhouse spirit threat entity.",
+  "decision_ids": [
+    "ART-STYLE-01",
+    "GM-VISUAL-DIRECTION-20260825-01"
+  ],
+  "requirement": {
+    "coverage_item_id": "GR-VIS-011-FROSTBLOOM-THREAT-ENTITY",
+    "consumer_kind": "PLANNED_GAME_SURFACE",
+    "consumer_surface": "FROSTBLOOM_CRISIS_AND_BATTLE_PRESENTATION",
+    "runtime_slot": "FrostbloomBattleScene / GreenhouseSpirit / Sprite2D",
+    "state": "idle_unstable"
+  },
+  "source": {
+    "storage": "PROJECT_LOCAL_GENERATED_CANDIDATE",
+    "file_path": "assets/art/source_candidates/first_session_01/enemies/greenhouse_spirit/enemy_greenhouse_spirit_idle_unstable_candidate_01.png",
+    "sha256": "95999bd960fac56064443e458e71667bf8161201e7f85017f3c971bdc4485fa1",
+    "tool": "Codex built-in image generation and background-extraction edit",
+    "generated_at": "2026-08-28",
+    "approval": "User delegated approval for required image production on 2026-08-28",
+    "prompt_or_brief_path": "docs/planning/visual/generated_sources/FIRST_SESSION_GREENHOUSE_SPIRIT_IDLE_UNSTABLE_CANDIDATE_01_2026-08-28.json"
+  },
+  "export": {
+    "file_path": "assets/art/enemies/greenhouse_spirit/enemy_greenhouse_spirit_idle_unstable.png",
+    "sha256": "f59a2bee65bcff3a65256b6c89f224e7a8e26a6ec3cb8df4ec7c141908b44e4d",
+    "format": "PNG",
+    "width": 512,
+    "height": 512,
+    "alpha": true,
+    "color_space": "sRGB",
+    "import_profile": "Godot default Texture2D import; import and runtime readback pending"
+  },
+  "license": {
+    "status": "RELEASE_RIGHTS_REVIEW_PENDING",
+    "evidence": "Project-owned generated asset. Release-rights promotion remains a separate review gate.",
+    "credit_required": false,
+    "modification_allowed": true,
+    "redistribution_allowed": false
+  },
+  "status": "PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING",
+  "used_in_screens": [
+    "FrostbloomBattleScene / GreenhouseSpirit / Sprite2D (planned)"
+  ],
+  "runtime_validation": {
+    "asset_file_verified": true,
+    "godot_import_verified": false,
+    "runtime_consumer_verified": false,
+    "human_usability": "NOT_RUN",
+    "player_experience": "NOT_RUN"
+  }
+}

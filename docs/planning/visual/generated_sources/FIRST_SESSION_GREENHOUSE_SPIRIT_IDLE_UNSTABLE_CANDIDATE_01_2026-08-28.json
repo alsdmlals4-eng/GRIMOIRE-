@@ -1,0 +1,55 @@
+{
+  "record_id": "FIRST_SESSION_GREENHOUSE_SPIRIT_IDLE_UNSTABLE_CANDIDATE_01_2026-08-28",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "coverage_item_id": "GR-VIS-011-FROSTBLOOM-THREAT-ENTITY",
+  "asset_id": "enemy_greenhouse_spirit_idle_unstable",
+  "mode": "final-visual-candidate",
+  "consumer": {
+    "kind": "PLANNED_GAME_SURFACE",
+    "surface": "FROSTBLOOM_CRISIS_AND_BATTLE_PRESENTATION",
+    "runtime_slot": "FrostbloomBattleScene / GreenhouseSpirit / Sprite2D",
+    "validation": "Godot import, planned battle-scene placement, 1280x720 and 1920x1080 render review before runtime promotion"
+  },
+  "brief": {
+    "primary_request": "One original readable Frostbloom greenhouse pressure anomaly: a single plant spirit formed from teal curling stems around an icy-blue flower-heart.",
+    "style": "Soft Storybook Cel 2D Hybrid with the approved Magic/Anime overlay; clean anime-cel edge control, painterly botanical texture, navy-and-gold greenhouse compatibility, restrained blue-to-purple glow.",
+    "composition": "Centered standalone entity with generous transparent margin and one clear silhouette.",
+    "technical_contract": "Source candidate with real alpha; deterministic 512x512 PNG RGBA runtime export; no baked functional text.",
+    "must_not": [
+      "background scenery or floor",
+      "UI, card frame, magic-circle border, text, numbers, or damage indicators",
+      "multiple enemies or wave family",
+      "human character, weapons, generic demon anatomy, or 3D render"
+    ]
+  },
+  "continuity": {
+    "approved_visual_reference_ids": [
+      "ART-STYLE-01",
+      "GM-VISUAL-DIRECTION-20260825-01",
+      "bg_greenhouse_battle_arena_candidate_01 (lighting reference only)"
+    ],
+    "keep": [
+      "blue-to-blue-purple magic language",
+      "storybook greenhouse readability",
+      "single-enemy focus"
+    ],
+    "avoid": [
+      "new enemy families",
+      "3D-like exploration presentation",
+      "baked gameplay truth"
+    ]
+  },
+  "candidate_review": {
+    "first_generation": "REVISION_REQUIRED: RGB checkerboard was baked instead of a real alpha channel.",
+    "background_extraction_revision": "PASS_FOR_PROJECT_ASSET: PNG is 1275x1233, Format32bppArgb; sampled alpha includes 0 and 255.",
+    "runtime_export": "PASS_FOR_FILE_CONTRACT: 512x512, Format32bppArgb, transparent corner alpha 0.",
+    "runtime_promotion": "NOT_RUN"
+  },
+  "project_paths": {
+    "source_candidate": "assets/art/source_candidates/first_session_01/enemies/greenhouse_spirit/enemy_greenhouse_spirit_idle_unstable_candidate_01.png",
+    "runtime_export": "assets/art/enemies/greenhouse_spirit/enemy_greenhouse_spirit_idle_unstable.png",
+    "manifest": "assets/manifests/enemy_greenhouse_spirit_idle_unstable.json"
+  },
+  "notion_binary_upload": "NOT_APPLICABLE_PROJECT_LOCAL_PROFILE",
+  "status": "PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING"
+}
