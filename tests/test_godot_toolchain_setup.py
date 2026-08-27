@@ -13,6 +13,7 @@ from tools.setup_godot_toolchain import (
     build_engine_url,
     build_templates_url,
     download_file,
+    install_engine,
     install_templates,
     resolve_platform,
     safe_extract_zip,
@@ -138,6 +139,45 @@ class GodotToolchainSetupTests(unittest.TestCase):
             )
             self.assertEqual(3, captured.get("max_attempts"))
             self.assertEqual("ok", (template_root / "dummy.txt").read_text(encoding="utf-8"))
+
+    def test_install_engine_retries_invalid_archive_then_installs(self) -> None:
+        spec = resolve_platform("Linux", "x86_64")
+        calls = 0
+
+        def fake_download(_url: str, destination: Path, **_kwargs: object) -> None:
+            nonlocal calls
+            calls += 1
+            if calls == 1:
+                destination.write_bytes(b"not a zip archive")
+                return
+            with zipfile.ZipFile(destination, "w") as bundle:
+                bundle.writestr(spec.executable_name, "valid executable")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with patch("tools.setup_godot_toolchain.download_file", side_effect=fake_download):
+                binary = install_engine(Path(temp_dir) / "godot", spec)
+
+            self.assertEqual(2, calls)
+            self.assertTrue(binary.is_file())
+            self.assertEqual("valid executable", binary.read_text(encoding="utf-8"))
+
+    def test_install_engine_fails_after_bounded_invalid_archives(self) -> None:
+        spec = resolve_platform("Linux", "x86_64")
+        calls = 0
+
+        def fake_download(_url: str, destination: Path, **_kwargs: object) -> None:
+            nonlocal calls
+            calls += 1
+            destination.write_bytes(b"not a zip archive")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            install_root = Path(temp_dir) / "godot"
+            with patch("tools.setup_godot_toolchain.download_file", side_effect=fake_download):
+                with self.assertRaisesRegex(RuntimeError, "remained invalid after 3 attempts"):
+                    install_engine(install_root, spec)
+
+            self.assertEqual(3, calls)
+            self.assertFalse((install_root / "4.7.1-stable" / "linux" / spec.executable_name).exists())
 
     def test_unsupported_architecture_fails_clearly(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "Unsupported Godot host"):
