@@ -36,7 +36,8 @@
   "approved_at": "2026-08-26",
   "used_in_screens": [
     "FirstSessionPracticumScene / EnvironmentBackground (planned)",
-    "FrostbloomInvestigationScene / EnvironmentBackground (planned)"
+    "FrostbloomInvestigationScene / EnvironmentBackground (planned)",
+    "SpellWorkflowProductRoot / EnvironmentBackground (current runtime; Task11)"
   ],
-  "runtime_validation": "NOT_RUN"
+  "runtime_validation": "HERA_1280X720_PRODUCT_ROOT_RENDER_NO_CLIPPING_DIAGNOSTICS_CLEAN; HUMAN_DEVICE_PERFORMANCE_EXPORT_NOT_RUN"
 }

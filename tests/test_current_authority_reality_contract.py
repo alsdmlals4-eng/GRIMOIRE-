@@ -73,7 +73,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("COMPLETE_FROSTBLOOM_FIRST_SESSION", coverage["planning"])
         self.assertEqual("APPROVED_SPEC", coverage["asset_spec_01"])
 
-    def test_visual_runtime_inventory_distinguishes_merged_glyphs_from_unbound_img02_sources(self) -> None:
+    def test_visual_runtime_inventory_distinguishes_merged_glyphs_from_partially_bound_img02_sources(self) -> None:
         coverage = load_json("docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json")
         checklist = load_json("docs/planning/visual/GRIMOIRE_VISUAL_PRODUCTION_CHECKLIST_2026-08-26.json")
         queue = load_json("docs/planning/visual/GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json")
@@ -84,8 +84,9 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual(6, current["glyph_runtime_asset_count"])
         self.assertEqual("CURRENT_RUNTIME", current["glyph_consumer_state"])
         self.assertEqual(
-            "SOURCE_CANDIDATES_READY_NO_CURRENT_MAIN_BINDING; "
-            "NATIVE_RESOLUTION_WEBP_EXPORT_CANDIDATES_READY_NOT_RUNTIME_BOUND",
+            "FIELD_BASE_CURRENT_PRODUCT_ROOT_BOUND; "
+            "SCHOOL_AND_BATTLE_CANDIDATES_REMAIN_UNBOUND; "
+            "NATIVE_RESOLUTION_WEBP_CANDIDATES_READY",
             current["img02_state"],
         )
         self.assertEqual(
@@ -100,8 +101,9 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
 
         img02 = next(item for item in queue["goal_queue"] if item["goal_id"] == "IMG-02")
         self.assertEqual(
-            "SOURCE_CANDIDATES_READY_NO_CURRENT_MAIN_BINDING; "
-            "NATIVE_RESOLUTION_WEBP_EXPORT_CANDIDATES_READY_NOT_RUNTIME_BOUND",
+            "FIELD_BASE_CURRENT_PRODUCT_ROOT_BOUND; "
+            "SCHOOL_AND_BATTLE_CANDIDATES_REMAIN_UNBOUND; "
+            "NATIVE_RESOLUTION_WEBP_CANDIDATES_READY",
             img02["status"],
         )
 

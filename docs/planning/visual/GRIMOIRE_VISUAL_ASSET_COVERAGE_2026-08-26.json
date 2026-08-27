@@ -14,7 +14,7 @@
   "product_implementation_authorized_by_current_work_scope": true,
   "current_runtime_readback": {
     "readback_date": "2026-08-27",
-    "project_main": "ce1bd46bc82dd3edf4ed3c485935108282117793",
+    "project_main": "5139bc53ef4ad80131d6b2c76d235d05550cddfa",
     "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
     "main_scene_role": "DEVELOPMENT_PRODUCT_ROOT_ENTRY",
     "task9_status": "MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY",
@@ -23,8 +23,8 @@
     "glyph_consumer_state": "CURRENT_RUNTIME",
     "glyph_assets": ["glyph_heat.png", "glyph_protect.png", "glyph_flow.png", "glyph_focus.png", "glyph_disperse.png", "glyph_burst.png"],
     "glyph_runtime_consumer": "src/ui/spell_workflow/spell_workflow_product_root.tscn via glyph_visual_resolver.gd",
-    "img02_state": "SOURCE_CANDIDATES_READY_NO_CURRENT_MAIN_BINDING; NATIVE_RESOLUTION_WEBP_EXPORT_CANDIDATES_READY_NOT_RUNTIME_BOUND",
-    "img02_source_candidates": "PERSISTED_UNBOUND_ON_CURRENT_MAIN",
+    "img02_state": "FIELD_BASE_CURRENT_PRODUCT_ROOT_BOUND; SCHOOL_AND_BATTLE_CANDIDATES_REMAIN_UNBOUND; NATIVE_RESOLUTION_WEBP_CANDIDATES_READY",
+    "img02_source_candidates": "FIELD_BASE_CURRENT_RUNTIME_BOUND; SCHOOL_AND_BATTLE_CANDIDATES_UNBOUND",
     "unrun_evidence": ["HUMAN_NOT_RUN", "DEVICE_NOT_RUN", "PERFORMANCE_NOT_RUN", "WINDOWS_EXPORT_NOT_RUN", "ANDROID_EXPORT_NOT_RUN", "FULL_VERTICAL_SLICE_NOT_RUN"]
   },
   "evidence_ceiling": {
@@ -186,14 +186,14 @@
       "type": "ENVIRONMENT_MASTER_AND_STATE_OVERLAYS",
       "purpose": "Anchor Frostbloom greenhouse location, readable hazards, and before/after world state",
       "implementation_consumer": "FROSTBLOOM_FIRST_SESSION_SCENES",
-      "existing_asset_or_reference": "Approved references plus three persisted IMG-02 source candidates; none is bound by a current-main Godot scene",
+      "existing_asset_or_reference": "Approved references plus three persisted IMG-02 source candidates; bg_greenhouse_field_base is bound by the current-main Product Root while school and battle candidates remain unbound",
       "delete_test": "Generic backgrounds would preserve mechanics but erase place identity and weaken cause/effect readability.",
       "consequence_if_missing": "Weak world memory and unclear environmental consequences.",
       "priority": "P1",
       "action": "CREATE",
-      "coverage_status": "GAP_NONBLOCKING",
+      "coverage_status": "PARTIAL_RUNTIME",
       "state_family_status": "PARTIAL",
-      "note": "Source candidates are not runtime exports or scene consumers. Keep them unbound until a concrete Godot scene and Texture binding are merged."
+      "note": "Task11 binds bg_greenhouse_field_base to SpellWorkflowProductRoot / EnvironmentBackground. It is not a first-session Field, Dialogue, or Battle Scene; bg_school_common and bg_greenhouse_battle_arena remain unbound."
     },
     {
       "visual_id": "GR-VIS-009-FIRST-SESSION-CHARACTERS",
