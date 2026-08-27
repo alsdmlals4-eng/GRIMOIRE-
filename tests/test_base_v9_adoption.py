@@ -29,7 +29,8 @@ class BaseV943AdoptionTests(unittest.TestCase):
         self.assertEqual("MIGRATION_ONLY_UNTIL_REMOVAL", adapter["gdd_sheet"]["role"])
         self.assertEqual("NO_NEW_CANON_WRITES", adapter["gdd_sheet"]["write_policy"])
         self.assertEqual("Mobile", adapter["project"]["primary_platform"])
-        self.assertEqual("TASK8_PR_PREP_REVERIFY_PENDING", adapter["current_state"]["next_product_gate"])
+        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", adapter["current_state"]["next_product_gate"])
+        self.assertEqual("MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY", adapter["current_state"]["task9_status"])
         self.assertEqual("PARTIAL_FOUNDATION", adapter["current_state"]["implementation"])
         self.assertEqual("NOT_RUN", adapter["current_state"]["human_validation"])
 
@@ -48,7 +49,7 @@ class BaseV943AdoptionTests(unittest.TestCase):
         self.assertEqual(adapter["project"]["primary_platform"], skill_view["platforms"]["primary"])
         self.assertEqual("PRIMARY_VALIDATION_REQUIRED", skill_view["platforms"]["touch_input"])
         self.assertEqual("BOUNDED_APPROVED_WORKSTREAM_ONLY", skill_view["asset_and_license"]["mass_asset_generation"])
-        self.assertEqual("STAR_CIRCUIT_AUTOMATED_POC_PASS_FULL_SLICE_NOT_RUN", base_view["validation"]["runtime"])
+        self.assertEqual("TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING", base_view["validation"]["runtime"])
         self.assertEqual("NOT_RUN", base_view["validation"]["human"])
         self.assertEqual("NOT_RUN", base_view["validation"]["device"])
         self.assertEqual("NOT_RUN", base_view["validation"]["performance"])
