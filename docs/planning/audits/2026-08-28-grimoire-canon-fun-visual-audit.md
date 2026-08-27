@@ -115,7 +115,7 @@ Adversarial result: the board matches the lighting/material/style anchor, but it
 
 ### Frostbloom W6 direct candidate — 2026-08-28
 
-The prior generic project-understanding board remains historical `GENERATED_EXPLORATION` and is not a current visual lock. The current W6-specific candidate is owned by `docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md`. It follows the approved W6 stakes: rare frost-damaged seedlings versus greenhouse structure, with a mixed result for either choice. It passed continuity, flow, and no-baked-system-text review, while mobile-scale wording/choice comprehension and release-rights review remain unverified. It remains planning-only and `FINAL_LOCK_PENDING`.
+The prior generic project-understanding board remains historical `GENERATED_EXPLORATION` and is not a current visual lock. The W6-specific generated candidate in `docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md` is also historical: the user rejected its opaque/villain-coded tone on 2026-08-28. `GM-VISUAL-TONE-20260828-01` is now current: learner-centred, warm academy practicum with a bounded solvable problem. The W6 trade-off remains rare frost-damaged seedlings versus greenhouse structure; mobile-scale wording/choice comprehension and release-rights review remain unverified.
 
 ## Required order
 

@@ -4,6 +4,8 @@
   "decision_id": "GM-VISUAL-DIRECTION-20260825-01",
   "status": "USER_APPROVED_VISUAL_REFERENCE",
   "approved_at": "2026-08-25",
+  "current_tone_refinement_decision": "GM-VISUAL-TONE-20260828-01",
+  "current_tone_refinement_owner": "docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md",
   "decision_scope": "VISUAL_STYLE_AND_LOGO_DIRECTION_ONLY",
   "source": {
     "type": "CHATGPT_GENERATED_USER_APPROVED_REFERENCE",

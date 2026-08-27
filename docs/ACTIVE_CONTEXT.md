@@ -27,14 +27,16 @@ current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: FROSTBLOOM_W6_BOARD_GENERATED_EXPLORATION__IN_REVIEW
+visual_generation_state: FROSTBLOOM_W6_BOARD_GENERATED_EXPLORATION__SUPERSEDED_BY_USER_TONE_LOCK
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
+visual_tone_overlay: GM-VISUAL-TONE-20260828-01
+visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
 frostbloom_w6_preservation_priority_decision: GM-FROSTBLOOM-W6-PRESERVATION-PRIORITY-01
 frostbloom_w6_preservation_priority_status: USER_APPROVED_ACTIVE_PLANNING_ONLY
 frostbloom_w6_preservation_priority_issue: 221
 frostbloom_w6_preservation_priority_owner: docs/planning/FROSTBLOOM_W6_PRESERVATION_PRIORITY_01_APPROVAL_2026-08-28.md
 frostbloom_w6_visual_brief: docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md
-frostbloom_w6_visual_brief_state: GENERATED_EXPLORATION__FINAL_LOCK_PENDING
+frostbloom_w6_visual_brief_state: SUPERSEDED_BY_USER_APPROVED_WARM_ACADEMY_TONE_LOCK
 frostbloom_w6_visual_candidate_issue: 223
 frostbloom_w6_visual_candidate_owner: docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
@@ -146,7 +148,7 @@ android_device: NOT_RUN
 - Task13/result receipt: **MERGED_MAIN** — 실제 result payload의 대상·사용 마력·결과 문장을 Result Panel에 표시한다. 새 경제·전투·보상 authority는 추가하지 않았다.
 - PR #217 greenhouse spirit idle seed: **PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING** — 투명 PNG와 provenance는 존재하지만 battle Scene binding·Godot import·runtime evidence는 아직 없다.
 - Frostbloom W6 preservation priority: **USER_APPROVED_ACTIVE_PLANNING_ONLY** — `희귀 묘목 우선`과 `온실 구조 우선`은 같은 위협을 서로 다른 방식으로 보존하는 두 유효한 대상 우선순위다. 기존 Target/Preview/Explicit Cast/Result authority를 재사용하며, 현재 Product Root의 `WARD`/`FLOWER`는 후속 Frostbloom 구현 전의 thin prototype role label로 남긴다.
-- Frostbloom W6 visual board: **GENERATED_EXPLORATION__FINAL_LOCK_PENDING** — 사용자 제공 비교 이미지는 reference-only이며, 생성 후보는 planning-only이다. final lock 전에는 새 보드가 project asset·runtime approval이 되지 않는다.
+- Frostbloom W6 visual board: **SUPERSEDED_BY_USER_APPROVED_WARM_ACADEMY_TONE_LOCK** — 이전 생성 후보는 user-rejected historical exploration이다. 현재 시각 톤은 `GM-VISUAL-TONE-20260828-01`: 학습자 주도·따뜻한 마법학교 실습이며, 사용자 제공 이미지는 reference-only이고 runtime asset이 아니다.
 - 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 후보 생성: **USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY** — canon·consumer·rights preflight 후 후보는 재승인 없이 생성하며, final lock·runtime use·production batch만 사용자 확정이 필요하다.
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**

@@ -6,6 +6,7 @@
   "approved_at": "2026-08-25",
   "notion_page": "https://app.notion.com/p/3c71b237eb1c8169bdbee77bb943edea",
   "parent_visual_direction": "GM-VISUAL-DIRECTION-20260825-01",
+  "current_tone_refinement": "GM-VISUAL-TONE-20260828-01",
   "approved_references": [
     {
       "role": "REPRESENTATIVE_BATTLE_AND_SPELL_VISUAL_REFERENCE",
@@ -65,9 +66,9 @@
     "status": "USER_REJECTED_PREVIOUS_3D_LIKE_EXPLORATION_PRESENTATION",
     "future_direction": "SIMPLER_2D_MOVEMENT_OR_SCENE_TRANSITION_PRESENTATION",
     "previous_generated_corridor_image": "NOT_APPROVED_REPRESENTATIVE_SCREEN",
-    "next_step": "DISCUSS_BRIEF_BEFORE_GENERATION"
+    "next_step": "READ_CURRENT_CANON_AND_GENERATE_BOUNDED_CANDIDATE_AFTER_PREFLIGHT"
   },
-  "future_image_workflow": "DISCUSSION_TO_BRIEF_APPROVAL_TO_GENERATION",
+  "future_image_workflow": "CANON_CONSUMER_RIGHTS_PREFLIGHT_TO_GENERATE_CANDIDATE_TO_QA__FINAL_LOCK_ONLY",
   "runtime_asset_status": "NOT_RUNTIME_ASSET",
   "implementation_evidence": "NOT_CLAIMED",
   "human_device_validation": "NOT_RUN",

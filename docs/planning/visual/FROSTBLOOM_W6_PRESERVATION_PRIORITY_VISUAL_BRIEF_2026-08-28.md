@@ -3,7 +3,7 @@
 ```yaml
 artifact_id: PROJECT_CORE_SCENE_VISUAL_BOARD_FROSTBLOOM_W6_01
 mode: planning_visualization
-status: GENERATED_EXPLORATION__FINAL_LOCK_PENDING
+status: SUPERSEDED__USER_REJECTED_PREVIOUS_GENERATED_BOARD
 project_relation: GRIMOIRE
 decision_id: GM-FROSTBLOOM-W6-PRESERVATION-PRIORITY-01
 consumer_kind: PLANNED_GAME_SURFACE
@@ -15,7 +15,7 @@ generation_authority: USER_PREAUTHORIZED_CANDIDATE_GENERATION__FINAL_LOCK_ONLY
 candidate_output_locator: C:/Users/user/.codex/generated_images/01a04559-1357-7de1-9482-9c64fb3b3b53/exec-a3e2ff4f-479d-461d-8a20-fd8a94e2609d.png
 candidate_service: built_in_image_generation
 candidate_generated_at: 2026-08-28
-candidate_status: GENERATED_EXPLORATION__IN_REVIEW
+candidate_status: SUPERSEDED_BY_GM-VISUAL-TONE-20260828-01
 candidate_dimensions: 1672x941
 candidate_bytes: 2319018
 candidate_sha256: 7D7B87C188CA4C6B4CB9B442EC3166D9D3230A4E787EE4EBF5219F4469318F7A
@@ -116,8 +116,8 @@ The board at `candidate_output_locator` was generated once on 2026-08-28 after t
 | Mobile-scale choice explanation | PARTIAL | The stakes are visible, but the target-specific cost/benefit wording must remain editable live UI and still needs runtime/human observation. |
 | Rights / reference similarity | NOT_RELEASE_REVIEWED | User-provided images constrained composition and mood only; no input binary was embedded in the generation request. Planning review does not establish release rights. |
 
-The candidate may be shown for planning review but remains `GENERATED_EXPLORATION`. Its next valid dispositions are `USER_FINAL_LOCK`, `USER_REQUESTED_BOUNDED_REFINEMENT`, or `REJECT`; none automatically creates a runtime asset or authorises implementation.
+The user rejected this candidate's villain-coded/opaque presentation on 2026-08-28. It is now `SUPERSEDED_BY_GM-VISUAL-TONE-20260828-01`, remains historical `GENERATED_EXPLORATION`, and is not a future prompt anchor. Its recorded flow/choice checks are historical only; none creates a runtime asset or authorises implementation.
 
 ## 8. Current approval boundary
 
-Under the 2026-08-28 user preauthorization, future bounded candidates may generate without a separate image-approval prompt after their actual/planned consumer, canon, and rights boundary are checked. Ask the user only to make a final lock/promotion decision. A final lock still cannot promote the board itself into a shipping asset, Godot scene, or human/player-experience PASS.
+Under the 2026-08-28 user preauthorization, future bounded candidates may generate without a separate image-approval prompt after their actual/planned consumer, canon, and rights boundary are checked. The next W6 candidate must use `GM-VISUAL-TONE-20260828-01` before this historical brief. A final lock still cannot promote any board itself into a shipping asset, Godot scene, or human/player-experience PASS.

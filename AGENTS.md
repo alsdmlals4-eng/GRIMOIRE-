@@ -22,8 +22,10 @@ implementation: PARTIAL_FOUNDATION
 current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
-visual_generation_state: FROSTBLOOM_W6_BOARD_GENERATED_EXPLORATION__IN_REVIEW
+visual_generation_state: FROSTBLOOM_W6_BOARD_GENERATED_EXPLORATION__SUPERSEDED_BY_USER_TONE_LOCK
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
+visual_tone_overlay: GM-VISUAL-TONE-20260828-01
+visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
 product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
@@ -184,11 +186,12 @@ GitHub text write로 `spell_use_screen.gd/.tscn`를 재구축하는 것은 persi
 art_style_lock: ART-STYLE-01
 art_style_name: Soft Storybook Cel 2D Hybrid
 visual_overlay: GM-VISUAL-DIRECTION-20260825-01
+visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 logo: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 representative_screens: GM-REPRESENTATIVE-SCREENS-20260825-01
 coverage_owner: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 spell_visual_player_terms: GLYPH_COMPLETE_SPELL_NAME_TARGET_CAST
-image_generation_state: FROSTBLOOM_W6_BOARD_GENERATED_EXPLORATION__IN_REVIEW
+image_generation_state: FROSTBLOOM_W6_BOARD_GENERATED_EXPLORATION__SUPERSEDED_BY_USER_TONE_LOCK
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 ```
 

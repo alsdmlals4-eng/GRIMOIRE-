@@ -17,7 +17,7 @@ runtime_validation: AUTOMATED_HEADLESS_PASS
 
 `CURRENT_CONFIRMED_DECISIONS.md`, `CURRENT_UNRESOLVED_GATES.md`, and `CANON_SYNC_STATE.json` are v4.5-era historical compatibility snapshots; they are discovery inputs, not current state writers. The current canon/fun/visual audit is `docs/planning/audits/2026-08-28-grimoire-canon-fun-visual-audit.md`.
 
-Current Frostbloom W6 choice owner: `docs/planning/FROSTBLOOM_W6_PRESERVATION_PRIORITY_01_APPROVAL_2026-08-28.md`. Its planning-only visual brief and generated-candidate receipt are in `docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md`. Candidate generation is preauthorized after canon/consumer/rights preflight; only the final visual lock, runtime use, or production-batch expansion needs user confirmation.
+Current Frostbloom W6 choice owner: `docs/planning/FROSTBLOOM_W6_PRESERVATION_PRIORITY_01_APPROVAL_2026-08-28.md`. Its previous generated planning board is historical/superseded in `docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md`. The current user-approved direction is `docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md`: learner-centred warm academy practice, not sinister hidden-mastermind staging. Candidate generation is preauthorized after canon/consumer/rights preflight; runtime use or production-batch expansion still needs confirmation.
 
 ## Godot
 
