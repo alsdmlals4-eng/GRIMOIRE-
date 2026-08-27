@@ -202,7 +202,7 @@ Godot multiple-aspect setting verification
 Glyph → Circuit → Stage3 → Preview → Target → Confirm → Commit → Result
 ```
 
-`THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`가 해소되기 전 제품 Root 완료를 주장하지 않는다.
+Task9 Product Root는 병합·자동화 검증까지 완료됐으며, 현재 다음 게이트는 `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`다. `THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9`는 pre-Task9 호환/역사 식별자로만 보존한다.
 
 ## Gate 6 — Human Reality Gate
 
@@ -248,7 +248,7 @@ inventory
 
 ## Gate 8 — Parallel PR protection
 
-PR #151 `visual/component-sheets-semantic-ui-execution`은 진행 중 Draft다. Sync34/Task8 recovery/Task9 planning은 #151을 수정·rebase·merge·완료 처리하지 않는다: `PR151_DO_NOT_TOUCH`.
+PR #151 is merged history/current-main input; live open PRs remain read-only. 현재 열린 PR 목록과 상태는 static 문장이 아니라 live GitHub readback이 소유한다.
 
 ## Gate 9 — Historical v4.4 / GUT / Task2 provenance
 
