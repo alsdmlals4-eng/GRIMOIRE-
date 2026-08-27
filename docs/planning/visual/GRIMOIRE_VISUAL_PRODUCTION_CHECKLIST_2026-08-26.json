@@ -143,7 +143,14 @@
       "runtime_format": "512x512 PNG RGBA frames",
       "count_cap": 50,
       "clips": ["idle_unstable", "telegraph_pressure", "attack_pressure", "telegraph_surge", "attack_surge", "telegraph_environment", "attack_environment", "instability_reaction", "calm_resolve"],
-      "production_policy": "불안정도 변화는 전체 Body Variant 증식보다 Overlay/Material/VFX 우선"
+      "existing_asset_seed": {
+        "asset_id": "enemy_greenhouse_spirit_idle_unstable",
+        "path": "assets/art/enemies/greenhouse_spirit/enemy_greenhouse_spirit_idle_unstable.png",
+        "manifest": "assets/manifests/enemy_greenhouse_spirit_idle_unstable.json",
+        "status": "PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING"
+      },
+      "production_policy": "불안정도 변화는 전체 Body Variant 증식보다 Overlay/Material/VFX 우선",
+      "production_readiness": "IDLE_UNSTABLE_ASSET_SEED_READY; battle Scene, remaining clips, Godot import, and runtime evidence remain pending"
     },
     {
       "asset_group_id": "GR-RA-10-REUSABLE-VFX",
