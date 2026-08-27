@@ -158,7 +158,13 @@
       "required_packets": ["idle_unstable", "pressure_telegraph_attack", "surge_environment_telegraph_attack", "instability_reaction_calm_resolve"],
       "frame_cap": 50,
       "planned_export": "512x512 PNG RGBA frames",
-      "status": "BLOCKED_BY_BATTLE_CONSUMER_SCENE"
+      "existing_asset_seed": {
+        "asset_id": "enemy_greenhouse_spirit_idle_unstable",
+        "path": "assets/art/enemies/greenhouse_spirit/enemy_greenhouse_spirit_idle_unstable.png",
+        "manifest": "assets/manifests/enemy_greenhouse_spirit_idle_unstable.json",
+        "status": "PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING"
+      },
+      "status": "PARTIAL_ASSET_SEED_READY_BATTLE_CONSUMER_SCENE_PENDING"
     },
     {
       "order": 7,
