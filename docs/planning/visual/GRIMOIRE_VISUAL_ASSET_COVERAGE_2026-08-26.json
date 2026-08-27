@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "requirement_set_id": "GR-VISUAL-ASSET-COVERAGE-20260826-01",
-  "status": "CURRENT_PREFLIGHT_COMPLETE_AWAITING_NEXT_SINGLE_VISUAL_GENERATION_APPROVAL",
+  "status": "TASK9_CURRENT_RUNTIME_READBACK_HUMAN_VALIDATION_PENDING",
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.8",
@@ -10,8 +10,23 @@
     "policy": "VISUAL_REQUIREMENT_DELETE_TEST_THEN_VISUAL_ASSET_COVERAGE_AND_ART_STYLE_LOCK"
   },
   "project_stage": "DEMO_FIRST_VERTICAL_SLICE__PARTIAL_FOUNDATION",
-  "active_work_scope": "VISUAL_IMAGE_ASSET_PLANNING_ONLY",
-  "product_implementation_authorized_by_current_work_scope": false,
+  "active_work_scope": "TASK9_AUTOMATED_VERTICAL_SLICE_AUTHORITY_AND_VISUAL_CONSUMER_RECONCILIATION",
+  "product_implementation_authorized_by_current_work_scope": true,
+  "current_runtime_readback": {
+    "readback_date": "2026-08-27",
+    "project_main": "ce1bd46bc82dd3edf4ed3c485935108282117793",
+    "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
+    "main_scene_role": "DEVELOPMENT_PRODUCT_ROOT_ENTRY",
+    "task9_status": "MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY",
+    "next_product_gate": "TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING",
+    "glyph_runtime_asset_count": 6,
+    "glyph_consumer_state": "CURRENT_RUNTIME",
+    "glyph_assets": ["glyph_heat.png", "glyph_protect.png", "glyph_flow.png", "glyph_focus.png", "glyph_disperse.png", "glyph_burst.png"],
+    "glyph_runtime_consumer": "src/ui/spell_workflow/spell_workflow_product_root.tscn via glyph_visual_resolver.gd",
+    "img02_state": "SOURCE_CANDIDATES_ONLY_NO_CURRENT_MAIN_BINDING",
+    "img02_source_candidates": "PERSISTED_UNBOUND_ON_CURRENT_MAIN",
+    "unrun_evidence": ["HUMAN_NOT_RUN", "DEVICE_NOT_RUN", "PERFORMANCE_NOT_RUN", "WINDOWS_EXPORT_NOT_RUN", "ANDROID_EXPORT_NOT_RUN", "FULL_VERTICAL_SLICE_NOT_RUN"]
+  },
   "evidence_ceiling": {
     "runtime_visual_complete": "NOT_PROVEN",
     "human_usability": "NOT_RUN",
@@ -21,7 +36,7 @@
   },
   "fresh_sources": {
     "base_main": "edb3b3376603c9f6b00d64af3126304f8c9946bf",
-    "project_main": "829094fd87433e14fe42b23f9b7bec6321f5048d",
+    "project_main": "ce1bd46bc82dd3edf4ed3c485935108282117793",
     "visual_direction": "docs/planning/visual/GRIMOIRE_VISUAL_DIRECTION_APPROVAL_2026-08-25.json",
     "representative_screens": "docs/planning/visual/GRIMOIRE_REPRESENTATIVE_SCREENS_2026-08-25.json",
     "locked_reference": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
@@ -115,14 +130,14 @@
       "type": "CORE_LOOP_UI_SCREEN",
       "purpose": "Make direct glyph input, recognition/retry, and source ownership understandable",
       "implementation_consumer": "TASK6_GLYPH_DRAWING_WORKFLOW_SCREEN",
-      "existing_asset_or_reference": "Task6 merged implementation + Spell Workflow UI direction + semantic UI pack",
+      "existing_asset_or_reference": "Task6 + Task9 merged implementation, six approved runtime glyph PNGs, and semantic UI pack",
       "delete_test": "Without a clear drawing state the game's direct-writing promise is not understandable.",
       "consequence_if_missing": "Core fantasy and input recovery become opaque.",
       "priority": "P0",
       "action": "ADAPT",
       "coverage_status": "COVERED_EXISTING",
       "state_family_status": "PARTIAL",
-      "note": "Do not spend the next image slot here; current implementation/reference already gives stronger coverage than the Stage2 Stock/Circuit gap."
+      "note": "Task9 Product Root consumes the six-glyph resolver path. New glyph generation is not a current gap; human small-size readability remains unverified."
     },
     {
       "visual_id": "GR-VIS-005-TYPED-GLYPH-VAULT-STOCK",
@@ -134,9 +149,9 @@
       "consequence_if_missing": "Core resource semantics and player planning are misread.",
       "priority": "P0",
       "action": "ADAPT",
-      "coverage_status": "GAP_BLOCKING",
+      "coverage_status": "COVERED_EXISTING",
       "state_family_status": "PARTIAL",
-      "note": "Must visually distinguish exact Vault source, typed Stock source, reserved source, consumed source, and unavailable source without relying on color alone."
+      "note": "Task9 carries the source-selection flow. Preserve semantic redundancy; human comprehension validation remains pending."
     },
     {
       "visual_id": "GR-VIS-006-FIVE-POINT-STAR-PREPARED-SPELL",
@@ -147,38 +162,38 @@
       "delete_test": "Without a representative Stage2 composition, the central spell-design differentiator remains visually ambiguous.",
       "consequence_if_missing": "The product can look like a generic spell menu rather than direct semantic circuit design.",
       "priority": "P0",
-      "action": "CREATE",
-      "coverage_status": "GAP_BLOCKING",
+      "action": "REUSE",
+      "coverage_status": "COVERED_EXISTING",
       "state_family_status": "PARTIAL",
-      "note": "Chosen as the next exactly-one visual brief because it closes the largest approved-reference gap without inventing Task8 behavior."
+      "note": "Task9 Product Root now presents the merged circuit path. A representative sheet is not a runtime asset and is not a current production requirement."
     },
     {
       "visual_id": "GR-VIS-007-SPELL-USE-TARGET-FINAL-PREVIEW",
       "type": "CORE_LOOP_UI_SCREEN",
       "purpose": "Show explicit target keyword, final expected result/risk preview, Mana spend, and explicit use",
-      "implementation_consumer": "TASK8_SPELL_USE_SCREEN_THIN_UI_CONSUMER_OF_TASK5",
-      "existing_asset_or_reference": "Task5 Stage3 authority exists; Task8 remote product screen does not exist on current main",
+      "implementation_consumer": "TASK9_PRODUCT_ROOT / src/ui/spell_workflow/spell_use_screen.tscn",
+      "existing_asset_or_reference": "Task8 recovery implementation is merged through Task9 Product Root on current main",
       "delete_test": "Final use must remain explicit and understandable, but a final visual should not outrun the missing current Task8 product screen.",
       "consequence_if_missing": "Commit risk/cost can become opaque; generating too early can create rework against the eventual consumer.",
       "priority": "P0",
-      "action": "DEFER",
-      "coverage_status": "DEFERRED_BY_DECISION",
+      "action": "REUSE",
+      "coverage_status": "COVERED_EXISTING",
       "state_family_status": "NOT_REVIEWED",
-      "note": "Prepare after the Stage2 representative visual or when Task8 implementation is explicitly authorized/reconciled."
+      "note": "The explicit target and two-step cast flow exists in Task9. It still requires human, device, and performance evidence."
     },
     {
       "visual_id": "GR-VIS-008-FROSTBLOOM-ENVIRONMENT",
       "type": "ENVIRONMENT_MASTER_AND_STATE_OVERLAYS",
       "purpose": "Anchor Frostbloom greenhouse location, readable hazards, and before/after world state",
       "implementation_consumer": "FROSTBLOOM_FIRST_SESSION_SCENES",
-      "existing_asset_or_reference": "Approved greenhouse battle/dialogue visual references and legacy Asset Spec background caps",
+      "existing_asset_or_reference": "Approved references plus three persisted IMG-02 source candidates; none is bound by a current-main Godot scene",
       "delete_test": "Generic backgrounds would preserve mechanics but erase place identity and weaken cause/effect readability.",
       "consequence_if_missing": "Weak world memory and unclear environmental consequences.",
       "priority": "P1",
       "action": "CREATE",
       "coverage_status": "GAP_NONBLOCKING",
       "state_family_status": "PARTIAL",
-      "note": "Prefer one reusable greenhouse master plus state overlays instead of many unique full backgrounds."
+      "note": "Source candidates are not runtime exports or scene consumers. Keep them unbound until a concrete Godot scene and Texture binding are merged."
     },
     {
       "visual_id": "GR-VIS-009-FIRST-SESSION-CHARACTERS",
@@ -336,13 +351,13 @@
         "tradeoff": "Task8 product screen is not on current main, so a final visual now has higher rework risk."
       }
     ],
-    "selected": "B",
-    "selection_reason": "Highest current comprehension gap, directly corrects an approved rework finding, reuses merged Task7/Stage2 semantics, and does not require product implementation authorization.",
-    "generation_authority": "NOT_GRANTED_YET_TEXT_BRIEF_STOP_REQUIRED"
+    "selected": "NONE",
+    "selection_reason": "Task9 now covers the glyph, circuit, target, and cast runtime flow. No new image has a current-main consumer gap.",
+    "generation_authority": "NO_NEW_IMAGE_UNTIL_CONCRETE_RUNTIME_CONSUMER_GAP"
   },
   "next_single_visual_text_brief": {
     "brief_id": "GR-VISUAL-BRIEF-STAGE2-STOCK-CIRCUIT-20260826-01",
-    "status": "TEXT_BRIEF_READY_AWAITING_EXPLICIT_USER_GENERATION_APPROVAL",
+    "status": "HISTORICAL_BRIEF_SUPERSEDED_BY_TASK9_CURRENT_RUNTIME_READBACK",
     "goal": "한 화면에서 '보관된 글자/Stock을 재료로 선택하고, FIVE_POINT_STAR 회로에 배치해 Prepared Spell을 만드는 과정'을 즉시 이해시키는 대표 시안.",
     "player_question": "내가 가진 글자를 어디서 가져와 어떻게 회로에 배치하고, 언제 주문이 준비 상태가 되는가?",
     "composition": [

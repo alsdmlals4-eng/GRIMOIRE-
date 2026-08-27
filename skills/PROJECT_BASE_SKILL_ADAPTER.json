@@ -17,7 +17,7 @@
     "version": "9.4.3"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "b22923dbc9b5634246933e6994d6eeb30c0889a8dacaa5987fefa3fa3c814fb0",
+  "canonical_source_sha256": "c3328c3a0d77cafc33e72b93553b806dde644668165d418ca019964c8385867e",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "AGENTS.md",
@@ -209,7 +209,7 @@
     "full_vertical_slice": "NOT_RUN",
     "generated_views": "CURRENT",
     "generator_check": "REQUIRED",
-    "godot_runtime": "STAR_CIRCUIT_AUTOMATED_POC_PASS_FULL_SLICE_NOT_RUN",
+    "godot_runtime": "TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING",
     "godot_static": "AVAILABLE_PROJECT_CREATED",
     "human": "NOT_RUN",
     "json_parse": "REQUIRED",
