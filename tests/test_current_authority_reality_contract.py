@@ -147,6 +147,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("REPOSITORY_HUMAN_FACING_CANON", dashboard)
         self.assertIn("docs/PROJECT_HOME.md", dashboard)
         self.assertIn(self.adapter["current_state"]["next_product_gate"], dashboard)
+        self.assertIn("REQUIRED_ON_MATERIAL_WORK", dashboard)
 
     def test_active_sync_policy_is_repository_only_not_sheet(self) -> None:
         policy = (ROOT / "docs/planning/PROJECT_CANON_SYNC_POLICY.md").read_text(encoding="utf-8")
@@ -159,6 +160,28 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertNotIn("USER_FACING_GDD_WORKSPACE", policy)
         self.assertIn("MIGRATION_ONLY_UNTIL_REMOVAL", workbook)
         self.assertIn("BLOCKED_UNVERIFIED_UNIQUE_MATERIAL", workbook)
+
+    def test_material_work_requires_research_feasibility_and_adversarial_review(self) -> None:
+        policy_path = "docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md"
+        policy = (ROOT / policy_path).read_text(encoding="utf-8")
+        validation = self.adapter["validation"]
+        routing_policy = self.registry["routing_policy"]
+
+        self.assertIn("GM-ADVERSARIAL-RESEARCH-FEASIBILITY-GATE-20260828-01", policy)
+        self.assertIn("FRESH_EXTERNAL_RESEARCH_CHECK_REQUIRED", policy)
+        self.assertIn("IMPLEMENTATION_FEASIBILITY_RECHECK_REQUIRED", policy)
+        self.assertIn("MINIMUM_FIVE_FULL_SCOPE_LOOPS_FOR_L1_PR_OR_IMPLEMENTATION", policy)
+        self.assertIn("REPOSITORY_HUMAN_FACING_CANON", policy)
+        self.assertIn("RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE", policy)
+
+        self.assertEqual("REQUIRED_ON_MATERIAL_WORK", validation["adversarial_research_feasibility_gate"])
+        self.assertEqual("FRESH_RELEVANT_CHECK_REQUIRED", validation["external_research"])
+        self.assertEqual("ACTUAL_PROJECT_EVIDENCE_REQUIRED", validation["implementation_feasibility"])
+        self.assertTrue(routing_policy["material_work_requires_adversarial_research_feasibility_gate"])
+
+        for relative_path in ("AGENTS.md", "START_HERE.md", "docs/ACTIVE_CONTEXT.md", "docs/DEVELOPMENT_GATES.md"):
+            text = (ROOT / relative_path).read_text(encoding="utf-8")
+            self.assertIn(policy_path, text, relative_path)
 
     def test_active_context_does_not_treat_merged_pr151_or_transient_pr_state_as_canon(self) -> None:
         active = (ROOT / "docs/ACTIVE_CONTEXT.md").read_text(encoding="utf-8")

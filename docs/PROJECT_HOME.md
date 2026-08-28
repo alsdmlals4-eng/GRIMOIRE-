@@ -67,6 +67,7 @@ The visual candidate policy is user-preauthorized for a single candidate/refinem
 | Runtime visuals | common UI SVGs, six glyph PNGs, and greenhouse field base have consumers | visual completeness/readability is not proven |
 | Automated evidence | automated/component evidence exists; fresh exact checks must be run per change | not Human/player/device/performance proof |
 | Human usability / Player Experience | `NOT_RUN` | user validation remains required |
+| Work quality gate | `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md` | every material change requires fresh research, actual feasibility review, and adversarial review |
 
 ## 5. Repository domain map
 
@@ -86,7 +87,8 @@ The detailed source/page ledger, classifications, and migration completion rules
 
 1. User review of the W6 L2 feature spec.
 2. Only after that review, write one bundled implementation plan with exact data/UI/test contracts.
-3. Keep `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING` separate; do not treat documentation or automated evidence as Human/Player validation.
+3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is technically `PARTIAL`, not runtime-verified.
+4. Keep `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING` separate; do not treat documentation or automated evidence as Human/Player validation.
 
 ## 7. Reading and update rules
 

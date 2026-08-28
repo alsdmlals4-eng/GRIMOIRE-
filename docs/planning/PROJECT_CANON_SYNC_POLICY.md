@@ -34,7 +34,7 @@ GRIMOIRE의 현재 정본은 repository 안에서 사람이 읽는 문서와 구
 → Decision/Sync ID 유지 또는 확정
 → 해당 repository domain owner 갱신
 → GitHub 작업 브랜치/PR
-→ exact-head test + adversarial review
+→ fresh external research check + actual implementation-feasibility recheck + adversarial review
 → merge
 → merged-main readback
 → repository Project Home / domain destination readback
@@ -42,6 +42,10 @@ GRIMOIRE의 현재 정본은 repository 안에서 사람이 읽는 문서와 구
 ```
 
 진행 중 PR은 main 완료 상태가 아니다. repository 문서가 진행 중 작업을 표시할 때는 반드시 `DRAFT/UNMERGED/IN_PROGRESS` 경계를 함께 기록한다.
+
+## 3.1. 적대적 검토·외부 조사·구현 가능성 게이트
+
+`docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`가 모든 material work의 현재 owner다. 새 권장·write 전에 최신 외부 조사 check, actual repository feasibility recheck, attack/validate/refine loop를 수행한다. L1 기획·implementation·PR·정본 교정에는 최소 다섯 번의 full-scope loop와 post-merge main/destination readback이 필요하다. Base의 공용 메서드는 재사용하되, Notion default는 user-approved repository-only authority에 의해 적용하지 않는다.
 
 ## 4. 필수 발동 조건
 
