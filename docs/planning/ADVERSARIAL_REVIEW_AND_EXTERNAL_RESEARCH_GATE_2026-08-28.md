@@ -56,7 +56,7 @@ fresh repository/Base/main + current domain owner read
 
 ```yaml
 status: PARTIAL_TECHNICAL_SEAMS_EXIST__W6_RUNTIME_NOT_IMPLEMENTED
-checked_on: 2026-08-28
+checked_on: 2026-08-29
 actual_project_evidence:
   - project.godot: Godot 4.7 / GL Compatibility / Product Root main scene
   - coordinator: target preview → explicit confirmation → confirm use seam exists
@@ -70,8 +70,7 @@ external_research:
   - Godot Control and container UI supports the planned mobile-landscape target/forecast/receipt layout and focus/input behavior
   - GUT documents a Godot 4.7-specific branch; the project already pins that adoption lineage
 remaining_before_W6_code:
-  - user review of the L2 W6 feature spec
-  - one L3 data/schema/traceability implementation contract
+  - user authorization to execute the approved L3 W6 implementation contract (Issue #242)
   - fresh exact-project Godot/GUT execution for the changed W6 head
   - target-resolution Godot inspection and Human usability evidence
 ```
@@ -88,12 +87,25 @@ Disposition: `ADAPT` existing coordinator, atomic use service, result ledger, ta
 | 4 | a five-loop policy could be bypassed by document-only or PR wording | material work/PR threshold was not an explicit project invariant | `MUST_FIX`: five-loop minimum, finding classes, post-merge loop, regression test | corrected |
 | 5 | the gate could create fake external certainty or scope creep | no research source can substitute for current player evidence or authorize production assets | `SHOULD_FIX`: `NOT_MATERIAL` outcome, evidence ceilings, and W6 scope boundary | corrected |
 
-No user-facing product rule changed in this work unit. The unresolved W6 L2 user review remains `USER_DECISION_REQUIRED`; Human/Device/Performance/Full Slice evidence remains `NOT_RUN`.
+No user-facing product rule changed in this work unit. The W6 L2 review and L3 plan are user-approved documentation; execution still requires the distinct `W6_L3_IMPLEMENTATION_AUTHORIZATION_REQUIRED` gate. Human/Device/Performance/Full Slice evidence remains `NOT_RUN`.
 
 ## 6. Current external sources
 
 | source | checked | project use | limit |
 | --- | --- | --- | --- |
-| https://docs.godotengine.org/en/stable/tutorials/ui/index.html | 2026-08-28 | `Control`/Container-based layout is a supported fit for W6 information panels | does not prove this scene is readable at target resolution |
+| https://docs.godotengine.org/en/stable/tutorials/ui/index.html | 2026-08-29 | `Control`/Container-based layout is a supported fit for W6 information panels | does not prove this scene is readable at target resolution |
 | https://docs.godotengine.org/en/stable/classes/class_control.html | 2026-08-28 | anchors, containers, focus, and GUI input are available for target/forecast controls | does not prove touch ergonomics or accessibility PASS |
 | https://github.com/bitwes/Gut | 2026-08-28 | Godot 4.7 branch guidance matches the project's pinned GUT 9.7.1 lineage | does not replace fresh changed-head GUT execution |
+| https://docs.godotengine.org/en/stable/classes/class_json.html | 2026-08-28 | JSON parsing yields untyped values requiring explicit validation | supports rejecting direct JSON as this W6 slice's runtime owner; does not prohibit JSON elsewhere |
+| https://docs.godotengine.org/en/stable/classes/class_fileaccess.html | 2026-08-29 | direct source-file access requires export-inclusion consideration | supports rejecting a hidden W6 export dependency; does not prove Resource UI readability |
+| https://docs.godotengine.org/en/stable/tutorials/scripting/resources.html | 2026-08-29 | Resources are serializable project data referenced from scenes | supports the W6 typed Resource owner; does not replace changed-head tests |
+
+## 7. 2026-08-29 W6 L3 documentation adversarial record
+
+| loop | full-scope attack | finding | disposition / correction | result |
+| --- | --- | --- | --- | --- |
+| 1 | new W6 content ownership might duplicate or bypass the current transaction boundary | creating a W6 service would weaken exactly-once/rollback ownership | `MUST_FIX`: content-only Resource; existing Coordinator, atomic use service, and ledger retain transaction authority | corrected |
+| 2 | an export-unsafe data path could surface only after build | direct JSON/FileAccess would need explicit export inclusion and schema validation | `MUST_FIX`: one typed scene-referenced Resource selected; official sources and limits recorded | corrected |
+| 3 | the L3 plan could retain generic prototype semantics behind new copy | `WARD`/`FLOWER` and 4/3 versus 2/2 are duplicated source-main prototype data | `MUST_FIX`: no-fallback assertion, exact IDs, and parity test map required before UI acceptance | corrected |
+| 4 | a planning visual could be treated as a runtime-ready UI claim | no changed Godot Scene or target-resolution capture exists | `MUST_FIX`: board remains unbound; runtime/device/Human checks stay separately `NOT_RUN` | corrected |
+| 5 | documentation completion could be misreported as implementation completion | none of the W6 Resource, scene changes, test changes, or changed-head evidence exist | `MUST_FIX`: L3 status remains documentation-only `GAP`, with distinct execution authorization | corrected |

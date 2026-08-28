@@ -21,10 +21,10 @@ orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
-product_implementation_authorized_by_current_user_work_scope: true
+current_user_work_scope: FROSTBLOOM_W6_L3_IMPLEMENTATION_CONTRACT_DOCUMENTATION_ONLY
+product_implementation_authorized_by_current_user_work_scope: false
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__DECISION_LOOP_SPEC_REVIEW_PENDING
+visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__L3_CONTRACT_READY__IMPLEMENTATION_AUTHORIZATION_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -35,8 +35,12 @@ frostbloom_w6_key_decision_visual_issue: 231
 w6_bundled_contract_preflight: docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md
 w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md
 w6_decision_loop_feature_spec_issue: 236
-w6_decision_loop_feature_spec_status: DRAFT_FOR_USER_SPEC_REVIEW__SCOPE_A_USER_APPROVED
-post_visual_lock_next_gate: W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN
+w6_decision_loop_feature_spec_status: USER_APPROVED_L2__L3_IMPLEMENTATION_CONTRACT_READY
+w6_decision_loop_traceability_packet: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md
+w6_decision_loop_implementation_plan: docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md
+w6_decision_loop_l3_issue: 242
+w6_decision_loop_implementation_authority: NONE__USER_EXPLICIT_AUTHORIZATION_REQUIRED
+post_visual_lock_next_gate: W6_L3_IMPLEMENTATION_AUTHORIZATION__THEN_EXACT_HEAD_GODOT_CONTRACT
 adversarial_research_feasibility_gate: docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md
 adversarial_research_feasibility_gate_status: USER_APPROVED_ACTIVE__REQUIRED_ON_MATERIAL_WORK
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
@@ -95,7 +99,7 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 10. `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`는 이미 닫힌 **historical compatibility locator**로 보존한다. consumer 검색 가능성 때문에 지우지 않지만 current execution gate로 해석하지 않는다.
 11. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration 이후 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 r5.4 binding이다.
 12. 2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 플레이어 노출을 **글자 → 주문 → 대상 → 시전**으로 단순화하는 방향을 승인했다. 같은 Decision ID의 revision owner는 `docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`다.
-13. 이번 승인 범위는 W6 decision-loop L2 기획서와 Visual 정본 교정이다. 이 L2 spec의 user review 뒤에만 bundled implementation plan을 작성한다. Task8/Godot 제품 구현은 별도 명시 요청이 필요하다. Visual 후보는 2026-08-28 사용자 사전 승인에 따라 아래 후보 생성 규칙 안에서 생성할 수 있으나, final lock·runtime 사용·production batch 확장은 사용자 확정이 필요하다.
+13. 이번 승인 범위는 W6 decision-loop L3 implementation contract 문서까지다. L2 Spec은 사용자가 승인했고, traceability packet과 bundled plan은 준비됐지만 Task8/W6 Godot 제품 구현은 별도 명시 요청이 필요하다. Visual 후보는 2026-08-28 사용자 사전 승인에 따라 아래 후보 생성 규칙 안에서 생성할 수 있으나, final lock·runtime 사용·production batch 확장은 사용자 확정이 필요하다.
 14. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator이며 현재 범위의 구현 허가가 아니다.
 15. Visual candidate production은 coverage·current canon·actual/planned consumer·rights boundary를 먼저 읽는다. 2026-08-28 사용자 사전 승인에 따라 후보는 이미지별 재승인 없이 `TEXT_BRIEF → GENERATE_CANDIDATE → QA_AND_RECORD`로 진행한다. 한 번에 하나의 후보 또는 그 후보의 명시적 보정만 생성한다. `PROJECT_ASSET_APPROVED`, `VISUAL_DIRECTION_LOCK`, runtime 사용, production batch 확장은 사용자 확정 전 자동 승격하지 않는다.
 16. 모든 실질 작업은 `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`를 따른다. fresh external research check와 actual implementation-feasibility recheck, 적대적 공격/검증을 권장·write 전에 수행한다. L1 기획·implementation·PR·정본 교정에는 최소 5회의 full-scope loop와 post-merge readback을 적용한다.
@@ -209,7 +213,7 @@ logo: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 representative_screens: GM-REPRESENTATIVE-SCREENS-20260825-01
 coverage_owner: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 spell_visual_player_terms: GLYPH_COMPLETE_SPELL_NAME_TARGET_CAST
-image_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__DECISION_LOOP_SPEC_REVIEW_PENDING
+image_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__L3_CONTRACT_READY__IMPLEMENTATION_AUTHORIZATION_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 ```
 

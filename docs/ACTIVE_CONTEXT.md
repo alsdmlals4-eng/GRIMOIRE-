@@ -25,11 +25,11 @@ adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
-product_implementation_authorized_by_current_user_work_scope: true
+current_user_work_scope: FROSTBLOOM_W6_L3_IMPLEMENTATION_CONTRACT_DOCUMENTATION_ONLY
+product_implementation_authorized_by_current_user_work_scope: false
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__DECISION_LOOP_SPEC_REVIEW_PENDING
+visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__L3_CONTRACT_READY__IMPLEMENTATION_AUTHORIZATION_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -48,8 +48,12 @@ frostbloom_w6_key_decision_visual_age_read: YOUNG_ADULT_ACADEMY_RESEARCHER__USER
 w6_bundled_contract_preflight: docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md
 w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md
 w6_decision_loop_feature_spec_issue: 236
-w6_decision_loop_feature_spec_status: DRAFT_FOR_USER_SPEC_REVIEW__SCOPE_A_USER_APPROVED
-post_visual_lock_next_gate: W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN
+w6_decision_loop_feature_spec_status: USER_APPROVED_L2__L3_IMPLEMENTATION_CONTRACT_READY
+w6_decision_loop_traceability_packet: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md
+w6_decision_loop_implementation_plan: docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md
+w6_decision_loop_l3_issue: 242
+w6_decision_loop_implementation_authority: NONE__USER_EXPLICIT_AUTHORIZATION_REQUIRED
+post_visual_lock_next_gate: W6_L3_IMPLEMENTATION_AUTHORIZATION__THEN_EXACT_HEAD_GODOT_CONTRACT
 adversarial_research_feasibility_gate: docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md
 adversarial_research_feasibility_gate_status: USER_APPROVED_ACTIVE__REQUIRED_ON_MATERIAL_WORK
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
@@ -167,8 +171,8 @@ android_device: NOT_RUN
 - Frostbloom W6 preservation priority: **USER_APPROVED_ACTIVE_PLANNING_ONLY** — `희귀 묘목 우선`과 `온실 구조 우선`은 같은 위협을 서로 다른 방식으로 보존하는 두 유효한 대상 우선순위다. 기존 Target/Preview/Explicit Cast/Result authority를 재사용하며, 현재 Product Root의 `WARD`/`FLOWER`는 후속 Frostbloom 구현 전의 thin prototype role label로 남긴다.
 - Frostbloom W6 visual board: **SUPERSEDED_BY_USER_APPROVED_WARM_ACADEMY_TONE_LOCK** — 이전 생성 후보는 user-rejected historical exploration이다. 현재 시각 톤은 `GM-VISUAL-TONE-20260828-01`: 학습자 주도·따뜻한 마법학교 실습이며, 사용자 제공 이미지는 reference-only이고 runtime asset이 아니다.
 - Frostbloom W6 key-decision scene: **USER_APPROVED_PLANNING_REFERENCE_ONLY** — 사용자는 이 한 장만 W6 계획용 시각 기준으로 확정했다. 묘목(좌)과 균열 구조물/등불(우)의 동등한 보존 가치와 얼굴을 숨긴 성인 초년 마법학교 연구생의 직접 필기를 보존한다. 다른 이미지·runtime asset·Godot 구현·character canon·Human/Device validation은 확정하지 않았다. full five-panel board는 생성 구조 QA에서 `PARTIAL`로 남고, 정확한 흐름/결과 계약은 구조화된 brief가 소유한다.
-- W6 단일 구현계약 사전검토: **SCOPE_A_USER_APPROVED** — `WARD`/`FLOWER`와 difficulty/Mana 차이는 Frostbloom 사실이 아닌 generic Product Root prototype이다. 사용자는 권장 A안인 짧은 W6 decision-loop slice를 승인했다. 새 L2 Spec은 동등 보존 target, Known/Unknown Forecast, Actual/Forgone/Unknown receipt, Korean live UI, target fairness test를 하나의 구현계약으로 넘길 요구를 소유한다. owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`.
-- 다음 기획 gate: **W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN** — scope A는 승인됐지만 L2 상세 규칙은 사용자 검토 뒤에만 implementation plan으로 전환한다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
+- W6 단일 구현계약: **USER_APPROVED_L2__L3_IMPLEMENTATION_CONTRACT_READY** — `WARD`/`FLOWER`와 difficulty/Mana 차이는 Frostbloom 사실이 아닌 generic Product Root prototype이다. 사용자는 L2 review gate에서 `진행해`로 승인했고, L3는 typed Godot Resource 한 개로 target 의미/forecast/receipt를 소유하게 한다. owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`; traceability: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md`; plan: `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md`; Issue #242.
+- 다음 기획 gate: **W6_L3_IMPLEMENTATION_AUTHORIZATION_REQUIRED** — L3 plan은 완성됐지만 Godot code/Scene/Resource/runtime asset 작업에는 별도 명시 승인이 필요하다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
 - Notion: **RETIRED_AS_CURRENT_CANON_AND_WORK_SURFACE__MIGRATION_COMPLETE** — GitHub repository가 사람용·구조화된 정본을 모두 소유한다. `GR-NOTION-MIGRATION-20260828-01`은 PR #238 merged main `1a30b9e0715b1d19e56e24f256f695b869369ca2` readback으로 완료됐다. Notion은 historical discovery-only이며 routine read/write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`.
 - 적대적·조사·구현가능성 게이트: **USER_APPROVED_ACTIVE** — 모든 material work는 fresh external research check, actual implementation-feasibility recheck, adversarial attack/validate를 거친다. L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop와 post-merge readback을 요구한다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. W6의 현재 판정은 `PARTIAL_TECHNICAL_SEAMS_EXIST__W6_RUNTIME_NOT_IMPLEMENTED`이며 사용자 L2 review, changed-head execution, Human evidence는 여전히 남아 있다.
 - 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
