@@ -27,7 +27,7 @@ current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__CROSS_DISCIPLINE_REVIEW_PENDING
+visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__SCOPE_DECISION_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -40,7 +40,8 @@ frostbloom_w6_key_decision_visual_owner: docs/planning/visual/FROSTBLOOM_W6_WARM
 frostbloom_w6_key_decision_visual_state: USER_APPROVED_PLANNING_REFERENCE_ONLY
 frostbloom_w6_key_decision_visual_age_read: YOUNG_ADULT_ACADEMY_RESEARCHER__USER_DIRECTED_REFINEMENT
 frostbloom_w6_key_decision_visual_issue: 231
-post_visual_lock_next_gate: CROSS_DISCIPLINE_PLANNING_REVIEW__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING
+w6_bundled_contract_preflight: docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md
+post_visual_lock_next_gate: W6_SCOPE_DECISION__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
 representative_screens_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
 art_style_lock: ART-STYLE-01
@@ -106,6 +107,8 @@ android_device: NOT_RUN
 2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름 간략화**와 후속 Task8·Task9 Godot 제품 구현을 승인했다. Task9 Product Root는 PR #192로 `db038a4` main에 병합됐고, 후속 PR #197/#205/#208/#210은 UI hierarchy, Academy visual surface, 직접 글자 입력 안내, 결과 영수증 표시만 교정했다. `6377cbcf31958fc2b3215d7a9603dfa5f0199c04`은 canon audit의 pre-merge baseline이며, 실제 live `main`은 항상 GitHub에서 fresh-read한다. 다음 게이트는 사람·플레이어·기기·성능·출시 검증을 과장하지 않는 `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`이다.
 
 2026-08-28 사용자는 첫 Frostbloom 주요 해결의 우선순위를 **희귀 묘목 우선 vs 온실 구조 우선**으로 명시 승인했다. 이는 W6의 기존 `Target → Bounded Consequence Forecast → Explicit Commit → Result/Grimoire`를 바꾸지 않는 child refinement이며, 자동 Target/Commit·Best Route·숨은 정답을 추가하지 않는다. Godot/production asset 구현과 사람·기기 검증은 아직 승인·실행되지 않았다.
+
+2026-08-28 W6 단일 구현계약 사전검토는 current Product Root의 `WARD`/`FLOWER` target과 수치가 Frostbloom 사실이 아닌 generic prototype임을 기록했다. 선택된 W6 이미지 1장은 계속 planning reference only이며, 현재 다음 결정은 짧은 W6 decision-loop slice / 46분 전체 세션 / reskin only 중 하나를 고른 뒤 한 번의 구현계약으로 한정하는 것이다. 정본 owner: `docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md`.
 
 ## Workspace authority
 
