@@ -3,8 +3,8 @@
 ```yaml
 artifact_id: PROJECT_CORE_SCENE_VISUAL_BOARD_FROSTBLOOM_W6_02
 mode: planning_visualization
-status: GENERATED_EXPLORATION__KEY_DECISION_FINAL_LOCK_PENDING
-issue: 227
+status: GENERATED_EXPLORATION__AGE_REFINEMENT_FINAL_LOCK_PENDING
+issue: 229
 project_relation: GRIMOIRE
 decision_ids:
   - GM-FROSTBLOOM-W6-PRESERVATION-PRIORITY-01
@@ -16,12 +16,12 @@ consumer_surface: Frostbloom W6 target-preview and result-flow visual interpreta
 primary_use: player-experience and visual-direction review
 project_asset_status: NOT_A_RUNTIME_ASSET
 generation_authority: USER_PREAUTHORIZED_CANDIDATE_GENERATION__FINAL_LOCK_ONLY
-predecessor: PROJECT_CORE_SCENE_VISUAL_BOARD_FROSTBLOOM_W6_01__SUPERSEDED
-selected_candidate_id: PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_01
-selected_candidate_output_locator: C:/Users/user/.codex/generated_images/01a04559-1357-7de1-9482-9c64fb3b3b53/exec-08de02ed-5862-4b56-8505-0a1fff625703.png
+predecessor: PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_01__SUPERSEDED_BY_USER_DIRECTED_AGE_REFINEMENT
+selected_candidate_id: PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02
+selected_candidate_output_locator: C:/Users/user/.codex/generated_images/01a04559-1357-7de1-9482-9c64fb3b3b53/exec-af851a72-045d-4bea-a644-6209ded74221.png
 selected_candidate_dimensions: 1672x941
-selected_candidate_bytes: 2608023
-selected_candidate_sha256: 996A08C919B82C6E03FDE7D111D65BD588A4AA1D278D9D065617C5BA9111C355
+selected_candidate_bytes: 2418076
+selected_candidate_sha256: 35B746E7BBA163B8BD309CFFA44876F0E202AC7E0D98A6C4D858D7ABCFF3DDFA
 selected_candidate_status: GENERATED_EXPLORATION__IN_REVIEW
 ```
 
@@ -37,7 +37,7 @@ The board is not a runtime asset, UI implementation, character approval, rights 
 
 - `GM-VISUAL-TONE-20260828-01` is mandatory: a warm, learner-centred academy practicum; curiosity, care, and growing competence come before mystery.
 - Preserve Soft Storybook Cel 2D Hybrid, navy/aged-gold material, arched glasshouse, books, direct-written blue-to-violet magic, and warm lantern pools.
-- Use a small non-identifiable learner viewpoint (hand, shoulder, or back) only. No copied face, costume, mentor identity, hooded watcher, or character canon.
+- Use a small non-identifiable young-adult learner viewpoint (hand, shoulder, or back) only. It must read as an early-twenties academy researcher through adult proportion and posture, not as a child or teen. No copied face, costume, mentor identity, hooded watcher, or character canon.
 - The greenhouse stays breathable: clear blue night/dusk and warm local light, rather than a black void or a threatening purple fog.
 
 ## Five-panel composition
@@ -93,20 +93,33 @@ The valid candidate is a single integrated key-decision scene rather than a fals
 | --- | --- | --- |
 | Warm academy tone | PASS | Open glasshouse depth, plants, lantern warmth, and learner agency read before tension. No watcher, cult, monster, or hidden-mastermind signal. |
 | Choice visibility | PASS | Frosted seedlings and cracked support/lantern are both large, bright, and visibly worth preserving; neither has a correct-route marker. |
-| Player action | PASS | A small back-view learner holds a blank book and writes restrained direct blue-violet magic. |
+| Player action | PASS | A small back-view young-adult learner holds a blank book and writes restrained direct blue-violet magic. |
+| Character age read | PASS | The user-directed candidate retains a non-identifiable back view while reading as an early-twenties academy researcher through adult neck, shoulder, hand, hair, and posture proportions. This is a scene-level age-read requirement, not a named-character canon. |
 | Visual continuity | PASS | The scene follows `GM-VISUAL-TONE-20260828-01` without adopting reference character, city, dialogue, or UI identity. |
 | Text/state boundary | PASS | The refinement removed all book writing and pseudo-text. No functional state is baked in. |
 | Full five-step board | PARTIAL | The structured five-panel plan remains authoritative above; generated boards failed structural QA, so this output is accurately classified as a key-decision scene rather than a full board. |
 | Runtime / rights / player evidence | NOT_RUN | The local preview is not copied to the repository, not a runtime asset, and has no release-rights or Human/Device/Player Experience promotion. |
 
-The only next approval question is whether to make `PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_01` the planning visual reference for the W6 decision surface. A yes does not promote it to a runtime asset or implementation.
+## Age-refinement receipt
+
+The user found the first valid W6 key-decision candidate's learner too young. The accepted scope was explicitly limited to raising that figure's age read; greenhouse, the equal seedling-versus-structure choice, action, lighting, framing, and visual grammar were to remain unchanged.
+
+| Candidate | Status | Evidence-bound interpretation |
+| --- | --- | --- |
+| `PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_01` / `exec-08de02ed-5862-4b56-8505-0a1fff625703.png` | `SUPERSEDED__USER_DIRECTED_AGE_REFINEMENT` | Prior valid key-decision candidate; it remains traceable but is no longer the current visual candidate because its learner read too young. |
+| `exec-221a0cf2-7a48-4c4a-b0ac-af323333ad7e.png` | `REJECTED_QA` | The first age edit increased the figure's scale and changed the composition, violating the user's “only the age” boundary. |
+| `PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02` / `exec-af851a72-045d-4bea-a644-6209ded74221.png` | `GENERATED_EXPLORATION__IN_REVIEW` | Exact-source minimal refinement. The learner remains back-view and non-identifiable but reads as a young adult, with all scene semantics and 16:9 composition retained. |
+
+The supplied visual references were used only to calibrate adult academic age and body-proportion read. They were not copied as character identity, face, costume, watcher, layout, or project asset.
+
+The only next approval question is whether to make `PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02` the planning visual reference for the W6 decision surface. A yes does not promote it to a runtime asset or implementation.
 
 ## Project Incident / Solution / Lesson
 
 ```yaml
-incident: "Image-generated fixed-panel storyboards repeatedly fragmented the requested five-stage W6 flow, weakening semantic comparison and mobile readability."
-solution: "Reject the malformed grids; retain the structured five-stage text contract and use one honest integrated key-decision scene only for visual tone and equal-stake review."
-lesson: "When a generated layout cannot preserve a mechanic-bearing panel structure, do not relabel it as a successful board. Keep exact flow and state semantics in structured text and validate the strongest visual moment separately."
+incident: "Image-generated fixed-panel storyboards repeatedly fragmented the requested five-stage W6 flow, weakening semantic comparison and mobile readability. The first valid key-decision scene also made its learner read younger than the user intended."
+solution: "Reject the malformed grids; retain the structured five-stage text contract and use one honest integrated key-decision scene only for visual tone and equal-stake review. Apply a bounded source-image refinement for young-adult body proportion only; reject any edit that changes composition."
+lesson: "When a generated layout cannot preserve a mechanic-bearing panel structure, do not relabel it as a successful board. Keep exact flow and state semantics in structured text and validate the strongest visual moment separately. Treat requested character age-read as an explicit QA criterion rather than inferring it from a generic anime silhouette."
 base_promotion: NO_BASE_PROMOTION
 base_promotion_reason: "The five-stage Frostbloom consumer and its particular comparison are project-specific; Base already requires structured truth and evidence-bounded visual claims."
 ```
