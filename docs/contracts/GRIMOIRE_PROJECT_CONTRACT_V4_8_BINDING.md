@@ -7,6 +7,8 @@ revision: '2026-08-26-r5.4-superset-final'
 contract_status: ACTIVE_BASE_CURRENT_MAIN_THIN_ADAPTER_PROJECT_EXECUTION_CONTRACT
 binding_decision_id: GM-CONTRACT-V4-8-BINDING-01
 binding_sync_id: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
+current_governance_overlay: GM-REPOSITORY-ONLY-HUMAN-CANON-20260828-01
+current_governance_overlay_owner: docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md
 current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
 approved_at: 2026-08-26
 approval_source: 사용자 명시 continuation "진행해" after r5.4 fresh-read audit
@@ -20,13 +22,14 @@ base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 base_loading_policy: BASE_OWNER_PROGRESSIVE_LOAD
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 project_fact_policy: PROJECT_CANON_AND_ACTUAL_IMPLEMENTATION_FIRST
-fresh_read_bootstrap_policy: PROJECT_GITHUB_NOTION_ONLY_RECONSTRUCTION_REQUIRED
+fresh_read_bootstrap_policy: PROJECT_GITHUB_REPOSITORY_ONLY_RECONSTRUCTION_REQUIRED
 entry_state_reconciliation_policy: REQUIRED_BEFORE_MATERIAL_MUTATION
-workspace_human_canon: NOTION_HUMAN_FACING_CANON
+workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
+notion_policy: RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE
 google_sheets: COMPATIBILITY_ONLY_MIGRATION_SOURCE_UNTIL_REMOVAL
 visual_asset_inventory_and_style_lock_policy: REQUIRED_BEFORE_SERIAL_VISUAL_PRODUCTION
-visual_generation_policy: TEXT_BRIEF_THEN_EXPLICIT_USER_APPROVAL_THEN_EXACTLY_ONE_RESULT
+visual_generation_policy: USER_PREAUTHORIZED_CANDIDATE_GENERATION_AFTER_PREFLIGHT__FINAL_LOCK_ONLY
 open_pr_policy: OPEN_PR_READ_ONLY_BY_DEFAULT
 current_task_pr_policy: CURRENT_TASK_CONTINUATION_AUTHORIZES_READY_MERGE
 force_and_ruleset_bypass_policy: FORBIDDEN
@@ -123,20 +126,22 @@ FRESH_TASK8_COMPATIBILITY: NOT_RUN
 ## 4. Workspace authority
 
 ```text
-Notion
-→ 사람이 읽고 비교·수정하는 Project Home / Flow / Visual / Core System / 핵심 데이터
-
 GitHub repository
-→ Markdown / JSON / code / data / Scene / Resource / Test / tracked asset / CI / runtime truth
+→ 사람이 읽는 Markdown Project Home / Flow / Visual / Core System / Asset / Work
+→ JSON / code / data / Scene / Resource / Test / tracked asset / CI / runtime truth
+
+Notion
+→ HISTORICAL_DISCOVERY_ONLY
+→ routine read/write, current-canon ownership, destination readback 금지
 
 Google Sheets
 → 고유 미이관 자료가 남은 경우에만 migration compatibility source
 → 신규 canon write 금지
 ```
 
-Notion readback은 runtime PASS가 아니고 GitHub 구현 PASS는 Human Home 동기화를 자동 보장하지 않는다.
+Repository documentation readback은 runtime PASS가 아니며, GitHub 구현 PASS도 Human/Player validation을 자동 보장하지 않는다.
 
-Google Sheet의 기존 visual inventory/cap은 이번 r5.4 preflight에서 **UNIQUE migration input**으로만 읽고, 현재 coverage owner는 GitHub `GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json` + Notion Visual Bible이다.
+Google Sheet와 historical Notion의 기존 자료는 **UNIQUE migration/discovery input**으로만 읽는다. 현재 coverage owner는 GitHub `GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json`과 repository visual owners다.
 
 ## 5. Visual production 경계
 
@@ -240,4 +245,4 @@ disposition: HISTORICAL_SUPERSEDED_CURRENT_BINDING
 deletion: FORBIDDEN
 ```
 
-이 바인딩은 제품 방향 변경이 아니라 current execution/governance contract, current Visual production gate, 그리고 이미 확인된 repository/Notion reality를 정렬하는 교정이다.
+이 바인딩은 제품 방향 변경이 아니라 current execution/governance contract, current Visual production gate, 그리고 repository-only current canon을 정렬하는 교정이다. 과거 delivery provenance 안의 Notion readback 문자열은 historical record로 보존한다.

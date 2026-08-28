@@ -10,6 +10,8 @@ contract_revision: 2026-08-26-r5.4-superset-final
 contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
+current_governance_overlay: GM-REPOSITORY-ONLY-HUMAN-CANON-20260828-01
+current_governance_overlay_owner: docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
 authority_sync_pr_predecessor: 158
@@ -18,8 +20,9 @@ adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-workspace_human_canon: NOTION_HUMAN_FACING_CANON
+workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
+notion_policy: RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -27,7 +30,7 @@ current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__SCOPE_DECISION_PENDING
+visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__DECISION_LOOP_SPEC_REVIEW_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -41,7 +44,10 @@ frostbloom_w6_key_decision_visual_state: USER_APPROVED_PLANNING_REFERENCE_ONLY
 frostbloom_w6_key_decision_visual_age_read: YOUNG_ADULT_ACADEMY_RESEARCHER__USER_DIRECTED_REFINEMENT
 frostbloom_w6_key_decision_visual_issue: 231
 w6_bundled_contract_preflight: docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md
-post_visual_lock_next_gate: W6_SCOPE_DECISION__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING
+w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md
+w6_decision_loop_feature_spec_issue: 236
+w6_decision_loop_feature_spec_status: DRAFT_FOR_USER_SPEC_REVIEW__SCOPE_A_USER_APPROVED
+post_visual_lock_next_gate: W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
 representative_screens_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
 art_style_lock: ART-STYLE-01
@@ -108,16 +114,20 @@ android_device: NOT_RUN
 
 2026-08-28 사용자는 첫 Frostbloom 주요 해결의 우선순위를 **희귀 묘목 우선 vs 온실 구조 우선**으로 명시 승인했다. 이는 W6의 기존 `Target → Bounded Consequence Forecast → Explicit Commit → Result/Grimoire`를 바꾸지 않는 child refinement이며, 자동 Target/Commit·Best Route·숨은 정답을 추가하지 않는다. Godot/production asset 구현과 사람·기기 검증은 아직 승인·실행되지 않았다.
 
-2026-08-28 W6 단일 구현계약 사전검토는 current Product Root의 `WARD`/`FLOWER` target과 수치가 Frostbloom 사실이 아닌 generic prototype임을 기록했다. 선택된 W6 이미지 1장은 계속 planning reference only이며, 현재 다음 결정은 짧은 W6 decision-loop slice / 46분 전체 세션 / reskin only 중 하나를 고른 뒤 한 번의 구현계약으로 한정하는 것이다. 정본 owner: `docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md`.
+2026-08-28 사용자는 W6 단일 구현계약 사전검토의 권장 A안, **짧은 W6 decision-loop slice**, 를 승인했다. `WARD`/`FLOWER` target과 수치는 Frostbloom 사실이 아닌 generic prototype으로 남기며, 새 L2 owner는 `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`다. 이 Spec은 user review 뒤 한 번의 bundled implementation plan으로만 전환할 수 있다. 선택된 W6 이미지는 계속 planning reference only다.
+
+2026-08-28 사용자는 Notion 사용 중단을 명시했다. 현행 사람이 읽는 정본도 repository Markdown이 소유하며, Notion은 routine read/write와 destination readback이 없는 historical discovery-only다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`.
 
 ## Workspace authority
 
 ```text
-Notion
-→ 사람용 Project Home / Work / Core System / Visual / Asset / Flow
-
 GitHub repository
-→ Markdown / JSON / game data / code / Scene / Resource / Test / runtime evidence
+→ 사람이 읽는 Markdown 기획 / 결정 / Visual / Asset / Flow / Work
+→ JSON / game data / code / Scene / Resource / Test / runtime evidence
+
+Notion
+→ HISTORICAL_DISCOVERY_ONLY
+→ routine read/write 및 destination readback 금지
 
 Google Sheets
 → MIGRATION_ONLY_UNTIL_REMOVAL
@@ -125,7 +135,7 @@ Google Sheets
 → 고유 자료 흡수 확인 전 삭제 금지
 ```
 
-Google Sheet는 current state writer가 아니다. 현재 Sheet의 과거 `GM-SPELL-WORKFLOW-UI-V2-01` 문구가 새 플레이어 용어보다 오래되어도 신규 canon write로 교정하지 않는다. 새 정본은 GitHub + Notion이며 Sheet는 migration compatibility 자료로만 읽는다.
+Google Sheet와 Notion은 current state writer가 아니다. 과거 자료는 current owner에 없는 고유 사실을 사용자가 명시적으로 다시 요청한 경우에만 discovery input으로 읽는다. 새 정본은 GitHub repository이며 신규 external canon write는 하지 않는다.
 
 ## 현재 제품 경계
 
@@ -214,7 +224,7 @@ movement:
 4. 완성 주문 선택 뒤에는 별도 복잡한 대상 화면을 기본 가정하지 않고, 가능하면 게임 장면에서 직접 대상 지정 → 필요한 Preview → **시전**으로 이어간다.
 5. 주문 이름의 실제 생성 문법/로컬라이징 알고리즘은 아직 별도 설계 대상이며 임의로 확정하지 않는다.
 
-현재 사용자 메시지는 새 이미지 생성 요청이 아니다. 다음 이미지 작업은 fresh text brief와 명시적 생성 요청이 있을 때만 진행한다.
+현재 메시지가 새 이미지를 직접 요청하지 않아도, 후속 기획에서 visual candidate가 필요하고 canon·consumer·rights preflight를 통과하면 후보는 사전 승인 요청 없이 하나씩 생성한다. 사용자 확인은 final lock, runtime use, production batch expansion에만 필요하다.
 
 ## Task8 실제 복구 상태
 
