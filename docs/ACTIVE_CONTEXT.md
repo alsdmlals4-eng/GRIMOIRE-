@@ -8,6 +8,8 @@ contract_revision: 2026-08-26-r5.4-superset-final
 contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
+current_governance_overlay: GM-REPOSITORY-ONLY-HUMAN-CANON-20260828-01
+current_governance_overlay_owner: docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md
 historical_contract_binding: GM-CONTRACT-V4-5-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
 current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
@@ -27,7 +29,7 @@ current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__SCOPE_DECISION_PENDING
+visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__DECISION_LOOP_SPEC_REVIEW_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -44,12 +46,18 @@ frostbloom_w6_key_decision_visual_owner: docs/planning/visual/FROSTBLOOM_W6_WARM
 frostbloom_w6_key_decision_visual_state: USER_APPROVED_PLANNING_REFERENCE_ONLY
 frostbloom_w6_key_decision_visual_age_read: YOUNG_ADULT_ACADEMY_RESEARCHER__USER_DIRECTED_REFINEMENT
 w6_bundled_contract_preflight: docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md
-post_visual_lock_next_gate: W6_SCOPE_DECISION__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING
+w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md
+w6_decision_loop_feature_spec_issue: 236
+w6_decision_loop_feature_spec_status: DRAFT_FOR_USER_SPEC_REVIEW__SCOPE_A_USER_APPROVED
+post_visual_lock_next_gate: W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
 representative_screen_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
 art_style_lock: ART-STYLE-01
-workspace_human_canon: NOTION_HUMAN_FACING_CANON
+workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
+notion_policy: READ_ONLY_MIGRATION_SOURCE_UNTIL_GR_NOTION_MIGRATION_20260828_01_COMPLETE
+notion_retirement_owner: docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md
+notion_migration_audit: docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -156,8 +164,9 @@ android_device: NOT_RUN
 - Frostbloom W6 preservation priority: **USER_APPROVED_ACTIVE_PLANNING_ONLY** — `희귀 묘목 우선`과 `온실 구조 우선`은 같은 위협을 서로 다른 방식으로 보존하는 두 유효한 대상 우선순위다. 기존 Target/Preview/Explicit Cast/Result authority를 재사용하며, 현재 Product Root의 `WARD`/`FLOWER`는 후속 Frostbloom 구현 전의 thin prototype role label로 남긴다.
 - Frostbloom W6 visual board: **SUPERSEDED_BY_USER_APPROVED_WARM_ACADEMY_TONE_LOCK** — 이전 생성 후보는 user-rejected historical exploration이다. 현재 시각 톤은 `GM-VISUAL-TONE-20260828-01`: 학습자 주도·따뜻한 마법학교 실습이며, 사용자 제공 이미지는 reference-only이고 runtime asset이 아니다.
 - Frostbloom W6 key-decision scene: **USER_APPROVED_PLANNING_REFERENCE_ONLY** — 사용자는 이 한 장만 W6 계획용 시각 기준으로 확정했다. 묘목(좌)과 균열 구조물/등불(우)의 동등한 보존 가치와 얼굴을 숨긴 성인 초년 마법학교 연구생의 직접 필기를 보존한다. 다른 이미지·runtime asset·Godot 구현·character canon·Human/Device validation은 확정하지 않았다. full five-panel board는 생성 구조 QA에서 `PARTIAL`로 남고, 정확한 흐름/결과 계약은 구조화된 brief가 소유한다.
-- W6 단일 구현계약 사전검토: **CURRENT_REVIEW_RECORDED__SCOPE_DECISION_PENDING** — `WARD`/`FLOWER`와 difficulty/Mana 차이는 Frostbloom 사실이 아닌 generic Product Root prototype이다. W6 binding 전에는 두 보존 대상의 동등한 가치, Known/Unknown Forecast, Actual/Forgone/Unknown receipt, Korean live UI, target fairness test가 별도 contract로 필요하다. owner: `docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md`.
-- 다음 기획 gate: **W6_SCOPE_DECISION__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING** — 짧은 W6 decision-loop slice / 46분 전체 세션 / reskin only 중 하나를 확정한 뒤 하나의 구현 계약으로 묶는다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
+- W6 단일 구현계약 사전검토: **SCOPE_A_USER_APPROVED** — `WARD`/`FLOWER`와 difficulty/Mana 차이는 Frostbloom 사실이 아닌 generic Product Root prototype이다. 사용자는 권장 A안인 짧은 W6 decision-loop slice를 승인했다. 새 L2 Spec은 동등 보존 target, Known/Unknown Forecast, Actual/Forgone/Unknown receipt, Korean live UI, target fairness test를 하나의 구현계약으로 넘길 요구를 소유한다. owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`.
+- 다음 기획 gate: **W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN** — scope A는 승인됐지만 L2 상세 규칙은 사용자 검토 뒤에만 implementation plan으로 전환한다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
+- Notion: **RETIRED_AS_CURRENT_CANON_AND_WORK_SURFACE__READ_ONLY_MIGRATION_SOURCE** — GitHub repository가 사람용·구조화된 정본을 모두 소유한다. 사용자가 기존 구조·현재 작업물 누락 방지 migration을 명시 승인했으므로 `GR-NOTION-MIGRATION-20260828-01` audit의 named source만 temporary read-only로 읽는다. Notion write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`.
 - 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 후보 생성: **USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY** — canon·consumer·rights preflight 후 후보는 재승인 없이 생성하며, final lock·runtime use·production batch만 사용자 확정이 필요하다.
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
@@ -176,18 +185,21 @@ Star Circuit Runtime과 Component Sheets A–D에는 자동화/렌더 evidence�
 ## Workspace authority
 
 ```text
-Notion
-→ 사람용 Project Home / Work / Core System / Visual / Asset / Flow
-
 Repository
-→ Markdown / JSON / game data / code / Scene / Resource / Test / runtime evidence
+→ 사람이 읽는 Markdown 기획 / 결정 / Visual / Asset / Flow / Work
+→ JSON / game data / code / Scene / Resource / Test / runtime evidence
+
+Notion (migration window only)
+→ named nonlegacy record의 READ_ONLY_SOURCE
+→ write / destination readback / delete / archive / export 금지
+→ audit complete 후 HISTORICAL_DISCOVERY_ONLY
 
 Google Sheets
 → MIGRATION_ONLY_UNTIL_REMOVAL
 → NO_NEW_CANON_WRITES
 ```
 
-Google Sheet에는 과거 `GM-SPELL-WORKFLOW-UI-V2-01`의 `글자 그리기→회로 배치→주문 사용`, `Prepared Spell→Target...` 표현이 남아 있다. 이는 이번 fresh-read에서 확인한 migration compatibility 자료이며 새 사용자 승인으로 current authority가 되지 않는다. 신규 정본은 GitHub + Notion에 같은 Decision ID로 기록한다.
+Google Sheet와 Notion의 과거 문구는 current authority가 아니다. `GR-NOTION-MIGRATION-20260828-01` 완료 전에는 audit에 기록된 Notion nonlegacy source만 user-authorized read-only migration input으로 읽는다. 신규 정본은 GitHub repository Markdown/JSON이며 external canon write는 하지 않는다.
 
 ## 현재 Player-facing Spell Workflow
 

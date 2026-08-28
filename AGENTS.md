@@ -11,6 +11,8 @@ contract_revision: 2026-08-26-r5.4-superset-final
 contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
+current_governance_overlay: GM-REPOSITORY-ONLY-HUMAN-CANON-20260828-01
+current_governance_overlay_owner: docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md
 current_state_sync_predecessor: GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC
 authority_sync_pr_predecessor: 158
 primary_platform: Mobile
@@ -22,7 +24,7 @@ implementation: PARTIAL_FOUNDATION
 current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__SCOPE_DECISION_PENDING
+visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__DECISION_LOOP_SPEC_REVIEW_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -31,7 +33,10 @@ frostbloom_w6_key_decision_visual_age_read: YOUNG_ADULT_ACADEMY_RESEARCHER__USER
 frostbloom_w6_key_decision_visual_state: USER_APPROVED_PLANNING_REFERENCE_ONLY
 frostbloom_w6_key_decision_visual_issue: 231
 w6_bundled_contract_preflight: docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md
-post_visual_lock_next_gate: W6_SCOPE_DECISION__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING
+w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md
+w6_decision_loop_feature_spec_issue: 236
+w6_decision_loop_feature_spec_status: DRAFT_FOR_USER_SPEC_REVIEW__SCOPE_A_USER_APPROVED
+post_visual_lock_next_gate: W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
 product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
@@ -55,8 +60,11 @@ task9_status: MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 base_project_pin: v9.4.3
 base_live_readback: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
-workspace_human_canon: NOTION_HUMAN_FACING_CANON
+workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
+notion_policy: READ_ONLY_MIGRATION_SOURCE_UNTIL_GR_NOTION_MIGRATION_20260828_01_COMPLETE
+notion_retirement_owner: docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md
+notion_migration_audit: docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
 authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
@@ -74,8 +82,8 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 
 1. 최신 사용자 지시 → 이 파일/`START_HERE.md` → `docs/ACTIVE_CONTEXT.md` + active v4.8 r5.4 binding → 실제 code/Scene/Resource/Test → 필요한 분야 정본 순으로 읽는다.
 2. Base는 프로젝트 pin만 맹신하지 않고 새 실질 작업 단위마다 latest completed `main`과 관련 owner를 다시 읽는다.
-3. Notion은 사람이 읽는 Project Home·Work·Core System·Visual/Asset/Flow의 기본 작업면이다.
-4. Repository는 Markdown/JSON/game data/code/Scene/Resource/Test/runtime evidence 정본이다.
+3. Repository는 사람이 읽는 Markdown 기획·결정·Visual/Asset/Flow/Work와 JSON/game data/code/Scene/Resource/Test/runtime evidence의 정본이다.
+4. Notion은 현행 정본·작업면이 아니다. `GR-NOTION-MIGRATION-20260828-01` 완료 전에는 audit에 이름이 있는 nonlegacy source만 read-only migration input으로 읽을 수 있으며, write, destination readback, 신규 작업면, delete/archive/export는 금지한다. 완료 뒤에는 historical discovery-only다.
 5. Google Sheets는 역사 migration source다. 신규 canon write를 하지 않고, 고유 자료 흡수 확인 전 삭제도 하지 않는다.
 6. 모든 live open/draft/ready PR은 기본 READ_ONLY다. **PR #151은 이미 `MERGED_MAIN_VERIFIED`인 역사/current-main 구성요소**이며 더 이상 `DO_NOT_TOUCH` open-work가 아니다. 실제 PR lifecycle과 현재 open PR 집합은 항상 live GitHub에서 읽는다.
 7. 실제 실행하지 않은 Human/Device/Performance/Full Slice 증거를 PASS로 승격하지 않는다.
@@ -84,7 +92,7 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 10. `TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED`는 이미 닫힌 **historical compatibility locator**로 보존한다. consumer 검색 가능성 때문에 지우지 않지만 current execution gate로 해석하지 않는다.
 11. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`의 v4.5-era machine snapshot은 v4.8 migration 이후 **historical compatibility locator**로만 취급한다. 현재 authority는 이 파일 + `START_HERE.md` + `docs/ACTIVE_CONTEXT.md` + v4.8 r5.4 binding이다.
 12. 2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 플레이어 노출을 **글자 → 주문 → 대상 → 시전**으로 단순화하는 방향을 승인했다. 같은 Decision ID의 revision owner는 `docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`다.
-13. 이번 승인 범위는 기획/Visual 정본 교정이다. Task8/Godot 제품 구현은 별도 명시 요청이 필요하다. Visual 후보는 2026-08-28 사용자 사전 승인에 따라 아래 후보 생성 규칙 안에서 생성할 수 있으나, final lock·runtime 사용·production batch 확장은 사용자 확정이 필요하다.
+13. 이번 승인 범위는 W6 decision-loop L2 기획서와 Visual 정본 교정이다. 이 L2 spec의 user review 뒤에만 bundled implementation plan을 작성한다. Task8/Godot 제품 구현은 별도 명시 요청이 필요하다. Visual 후보는 2026-08-28 사용자 사전 승인에 따라 아래 후보 생성 규칙 안에서 생성할 수 있으나, final lock·runtime 사용·production batch 확장은 사용자 확정이 필요하다.
 14. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator이며 현재 범위의 구현 허가가 아니다.
 15. Visual candidate production은 coverage·current canon·actual/planned consumer·rights boundary를 먼저 읽는다. 2026-08-28 사용자 사전 승인에 따라 후보는 이미지별 재승인 없이 `TEXT_BRIEF → GENERATE_CANDIDATE → QA_AND_RECORD`로 진행한다. 한 번에 하나의 후보 또는 그 후보의 명시적 보정만 생성한다. `PROJECT_ASSET_APPROVED`, `VISUAL_DIRECTION_LOCK`, runtime 사용, production batch 확장은 사용자 확정 전 자동 승격하지 않는다.
 
@@ -197,7 +205,7 @@ logo: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 representative_screens: GM-REPRESENTATIVE-SCREENS-20260825-01
 coverage_owner: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 spell_visual_player_terms: GLYPH_COMPLETE_SPELL_NAME_TARGET_CAST
-image_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__SCOPE_DECISION_PENDING
+image_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__DECISION_LOOP_SPEC_REVIEW_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 ```
 

@@ -13,15 +13,15 @@ runtime_validation: AUTOMATED_HEADLESS_PASS
 
 ## 시작 경로
 
-`AGENTS → START_HERE → ACTIVE_CONTEXT → active v4.8 binding → player-facing spell-flow revision → current Product Root/validation evidence → Runtime·Tests`.
+`AGENTS → START_HERE → ACTIVE_CONTEXT → active v4.8 binding → repository domain owner → current Product Root/validation evidence → Runtime·Tests`.
 
 `CURRENT_CONFIRMED_DECISIONS.md`, `CURRENT_UNRESOLVED_GATES.md`, and `CANON_SYNC_STATE.json` are v4.5-era historical compatibility snapshots; they are discovery inputs, not current state writers. The current canon/fun/visual audit is `docs/planning/audits/2026-08-28-grimoire-canon-fun-visual-audit.md`.
 
-Current Frostbloom W6 choice owner: `docs/planning/FROSTBLOOM_W6_PRESERVATION_PRIORITY_01_APPROVAL_2026-08-28.md`. Its previous generated planning board is historical/superseded in `docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md`. The current user-approved direction is `docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md`: learner-centred warm academy practice, not sinister hidden-mastermind staging. Candidate generation is preauthorized after canon/consumer/rights preflight; runtime use or production-batch expansion still needs confirmation.
+Repository-native human entry: `docs/PROJECT_HOME.md`. Repository-only human canon owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`. Until the one-time audit is merged, named Notion records are a user-authorized **read-only migration source**; they have no write, current-canon, or destination-readback role. The migration ledger is `docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md`; after it is complete, Notion is historical discovery-only. Current Frostbloom W6 choice owner: `docs/planning/FROSTBLOOM_W6_PRESERVATION_PRIORITY_01_APPROVAL_2026-08-28.md`. Its previous generated planning board is historical/superseded in `docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md`. The current user-approved direction is `docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md`: learner-centred warm academy practice, not sinister hidden-mastermind staging. Candidate generation is preauthorized after canon/consumer/rights preflight; runtime use or production-batch expansion still needs confirmation.
 
 Current W6 decision-scene reference: `docs/planning/visual/FROSTBLOOM_W6_WARM_ACADEMY_CORE_SCENE_BOARD_BRIEF_2026-08-28.md`. `PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02` is `USER_APPROVED_PLANNING_REFERENCE_ONLY`; it is neither a runtime asset nor an implementation/character/rights/Human-Player evidence claim. All other visual candidates remain unconfirmed. The full five-step board remains a structured-text plan because image-generated grids failed QA.
 
-Current W6 single-contract preflight: `docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md`. It records the generic Product Root target mismatch, required W6 data/UI/result/test seams, Base reuse disposition, and the pending implementation-scope decision. It does not authorize Godot, runtime asset, or production image work.
+Current W6 L2 feature spec: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`. The user approved scope A, the short W6 decision-loop slice. The Spec owns the generic Product Root target correction, W6 data/UI/result/test seams, and user review gate before a bundled implementation plan. Its predecessor preflight remains `docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md`. Neither document authorizes Godot, runtime asset, or production image work.
 
 ## Godot
 
