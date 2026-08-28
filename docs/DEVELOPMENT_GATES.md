@@ -14,8 +14,10 @@ base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
-workspace_human_canon: NOTION_HUMAN_FACING_CANON
+workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
+notion_policy: RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE
+repository_project_home: docs/PROJECT_HOME.md
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -62,14 +64,14 @@ full_vertical_slice: FULL_VERTICAL_SLICE_NOT_RUN
 
 ```text
 latest user instruction
-→ AGENTS / START_HERE / ACTIVE_CONTEXT
-→ CURRENT_CONFIRMED_DECISIONS / CURRENT_UNRESOLVED_GATES
-→ PROJECT_BASE_ADAPTER / Registry
+→ AGENTS / START_HERE / ACTIVE_CONTEXT / active contract
+→ repository current domain owner / PROJECT_BASE_ADAPTER / Registry
+→ historical locator only when needed for discovery
 → actual project.godot / code / Scene / Resource / Test
 → fresh Base main + relevant owner
 ```
 
-Sheet는 cold-start 선행조건이 아니다. 신규 상태는 GitHub branch/PR → exact-head verification → merge → merged-main readback → Notion bounded write/readback으로 닫는다.
+Sheet와 Notion은 cold-start 선행조건이 아니다. 신규 상태는 GitHub branch/PR → exact-head verification → merge → merged-main readback → repository destination readback으로 닫는다.
 
 ## Gate 1 — Product core preservation
 
@@ -116,7 +118,7 @@ TASK8_RECEIPT_HERA_REVIEW_PR
 이전 Parent gate와 local recovery state는 Task8 병합 전의 역사 관찰값이다.
 
 ```yaml
-current_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+historical_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_local_branch_historical: feat/task8-spell-use-screen-v2
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
@@ -229,16 +231,18 @@ ANDROID_EXPORT_NOT_RUN
 ANDROID_DEVICE_NOT_RUN
 ```
 
-## Gate 7 — Workspace synchronization
+## Gate 7 — Repository-only workspace synchronization
 
-Notion은 human-facing canon, repository는 structured/runtime canon이다. Google Sheets는 `MIGRATION_ONLY_UNTIL_REMOVAL`; 신규 canon write 금지.
+Repository는 human-facing Markdown와 structured/runtime canon을 함께 소유한다. Notion은 `HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE`; Google Sheets는 `MIGRATION_ONLY_UNTIL_REMOVAL`이며 둘 다 신규 canon write가 금지된다.
+
+현재 repository migration readback은 `docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md`와 `docs/PROJECT_HOME.md`가 소유한다. Notion의 이전 sync receipt는 history로 보존하지만 current write/readback gate가 아니다.
 
 Sheet 삭제 전:
 
 ```text
 inventory
 → UNIQUE / DUPLICATE / OBSOLETE
-→ unique material absorb to Notion or repository
+→ unique material absorb to repository Markdown or structured/runtime owner
 → destination readback
 → active consumer/reference = 0
 → separate archive/trash/delete decision
@@ -291,9 +295,7 @@ platform:
 ## Current unresolved delivery limits
 
 ```text
-TASK8_PR_PREP_REVERIFY_PENDING
-TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
-TASK8_PR_EXACT_HEAD_CI_REVIEW_MERGE_PENDING
+TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
 HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 AUDIO_VAULT_PATH_UNVERIFIED

@@ -22,8 +22,9 @@ planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
 workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
-notion_policy: READ_ONLY_MIGRATION_SOURCE_UNTIL_GR_NOTION_MIGRATION_20260828_01_COMPLETE
+notion_policy: RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE
 notion_migration_audit: docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md
+notion_migration_state: MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -117,7 +118,7 @@ android_device: NOT_RUN
 
 2026-08-28 사용자는 W6 단일 구현계약 사전검토의 권장 A안, **짧은 W6 decision-loop slice**, 를 승인했다. `WARD`/`FLOWER` target과 수치는 Frostbloom 사실이 아닌 generic prototype으로 남기며, 새 L2 owner는 `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`다. 이 Spec은 user review 뒤 한 번의 bundled implementation plan으로만 전환할 수 있다. 선택된 W6 이미지는 계속 planning reference only다.
 
-2026-08-28 사용자는 Notion 사용 중단을 명시했고, 이어 기존 Notion의 구조와 현재 작업물을 누락 없이 repository로 옮기도록 승인했다. 현행 사람이 읽는 정본은 repository Markdown이 소유한다. migration audit의 named nonlegacy source만 temporary read-only로 읽으며, Notion write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`, audit: `docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md`.
+2026-08-28 사용자는 Notion 사용 중단을 명시했고, 이어 기존 Notion의 구조와 현재 작업물을 누락 없이 repository로 옮기도록 승인했다. audit는 PR #238의 merged main `1a30b9e0715b1d19e56e24f256f695b869369ca2`에서 readback까지 완료됐다. 현행 사람이 읽는 정본은 repository Markdown이 소유한다. Notion은 이제 historical discovery-only이며 write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`, audit: `docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md`.
 
 ## Workspace authority
 
@@ -126,10 +127,9 @@ GitHub repository
 → 사람이 읽는 Markdown 기획 / 결정 / Visual / Asset / Flow / Work
 → JSON / game data / code / Scene / Resource / Test / runtime evidence
 
-Notion (migration window only)
-→ named nonlegacy record의 READ_ONLY_SOURCE
-→ write / destination readback / delete / archive / export 금지
-→ audit complete 후 HISTORICAL_DISCOVERY_ONLY
+Notion
+→ HISTORICAL_DISCOVERY_ONLY
+→ routine read/write / destination readback / delete / archive / export 금지
 
 Google Sheets
 → MIGRATION_ONLY_UNTIL_REMOVAL
@@ -137,7 +137,7 @@ Google Sheets
 → 고유 자료 흡수 확인 전 삭제 금지
 ```
 
-Google Sheet와 Notion은 current state writer가 아니다. `GR-NOTION-MIGRATION-20260828-01` 완료 전에는 audit에 기록된 Notion nonlegacy source만 user-authorized read-only migration input으로 읽는다. 새 정본은 GitHub repository이며 신규 external canon write는 하지 않는다.
+Google Sheet와 Notion은 current state writer가 아니다. `GR-NOTION-MIGRATION-20260828-01`은 merged-main readback까지 완료됐으며, Notion은 사용자가 명시적으로 허용한 historical discovery에만 읽을 수 있다. 새 정본은 GitHub repository이며 신규 external canon write는 하지 않는다.
 
 ## 현재 제품 경계
 

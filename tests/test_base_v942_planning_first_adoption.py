@@ -31,7 +31,7 @@ class PlanningFirstCompatibilityTests(unittest.TestCase):
         self.assertEqual("RECOMMENDED_DEFAULT", policy["numeric_default_state"])
         self.assertEqual("GRILL_ME_REQUIRED", policy["planning_conflict_state"])
         self.assertEqual("APPROVED_PENDING_MERGE", policy["pre_merge_human_canon_state"])
-        self.assertEqual("SYNCED_TO_MAIN_AND_NOTION_READBACK", policy["post_merge_human_canon_state"])
+        self.assertEqual("SYNCED_TO_MAIN_AND_REPOSITORY_PROJECT_HOME_READBACK", policy["post_merge_human_canon_state"])
         self.assertNotIn("pre_merge_sheet_state", policy)
         self.assertNotIn("post_merge_sheet_state", policy)
         self.assertEqual("NOT_RUN", policy["actual_project_batch_execution"])

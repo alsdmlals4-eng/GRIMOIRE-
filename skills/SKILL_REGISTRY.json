@@ -226,9 +226,9 @@
     "google_sheet_new_canon_writes_forbidden": true,
     "latest_user_override_precedes_base_default": true,
     "locked_visual_reference_must_not_be_edited": true,
-    "major_approved_change_requires_github_and_notion_sync": true,
+    "major_approved_change_requires_github_repository_sync": true,
     "minimum_sufficient_skill_per_subtask": true,
-    "notion_human_canon_readback_required": true,
+    "notion_routine_read_write_forbidden": true,
     "repository_runtime_truth_required": true,
     "runtime_and_human_validation_require_execution_evidence": true,
     "skill_file_read_is_not_execution": true,
@@ -238,7 +238,11 @@
   "workspace_authority": {
     "default_cost_boundary": "ZERO_INCREMENTAL_COST",
     "google_sheets": "MIGRATION_ONLY_UNTIL_REMOVAL",
-    "human_facing_canon": "NOTION_HUMAN_FACING_CANON",
+    "human_facing_canon": "REPOSITORY_HUMAN_FACING_CANON",
+    "notion_migration_audit": "docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md",
+    "notion_migration_state": "MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01",
+    "notion_policy": "RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE",
+    "project_home": "docs/PROJECT_HOME.md",
     "repository_canon": "REPOSITORY_STRUCTURED_AND_RUNTIME_CANON"
   }
 }

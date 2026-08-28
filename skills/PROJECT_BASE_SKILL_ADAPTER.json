@@ -17,7 +17,7 @@
     "version": "9.4.3"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "c3328c3a0d77cafc33e72b93553b806dde644668165d418ca019964c8385867e",
+  "canonical_source_sha256": "2e0bbe913499f4d06a0af149abb8a54f18c864b1d0226da364de18b67924187d",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "AGENTS.md",
@@ -222,8 +222,11 @@
   "workspace_authority": {
     "default_cost_boundary": "ZERO_INCREMENTAL_COST",
     "google_sheets": "MIGRATION_ONLY_UNTIL_REMOVAL",
-    "human_facing_canon": "NOTION_HUMAN_FACING_CANON",
-    "project_home": "GRIMOIRE",
+    "human_facing_canon": "REPOSITORY_HUMAN_FACING_CANON",
+    "notion_migration_audit": "docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md",
+    "notion_migration_state": "MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01",
+    "notion_policy": "RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE",
+    "project_home": "docs/PROJECT_HOME.md",
     "repository_canon": "REPOSITORY_STRUCTURED_AND_RUNTIME_CANON"
   }
 }

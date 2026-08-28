@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -44,11 +45,14 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("NOT_RUN", current["mobile_device_validation"])
         self.assertEqual("NOT_RUN", current["full_vertical_slice"])
 
-    def test_domain_split_authority_and_sheet_retirement_are_explicit(self) -> None:
+    def test_repository_only_human_canon_and_sheet_retirement_are_explicit(self) -> None:
         authority = self.adapter["workspace_authority"]
-        self.assertEqual("NOTION_HUMAN_FACING_CANON", authority["human_facing_canon"])
+        self.assertEqual("REPOSITORY_HUMAN_FACING_CANON", authority["human_facing_canon"])
         self.assertEqual("REPOSITORY_STRUCTURED_AND_RUNTIME_CANON", authority["repository_canon"])
         self.assertEqual("MIGRATION_ONLY_UNTIL_REMOVAL", authority["google_sheets"])
+        self.assertEqual("docs/PROJECT_HOME.md", authority["project_home"])
+        self.assertEqual("RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE", authority["notion_policy"])
+        self.assertEqual("MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01", authority["notion_migration_state"])
 
         sheet = self.adapter["gdd_sheet"]
         self.assertEqual("MIGRATION_ONLY_UNTIL_REMOVAL", sheet["role"])
@@ -58,7 +62,10 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertNotIn("project_sheet", self.registry["execution_contracts"])
         self.assertEqual("MIGRATION_ONLY_UNTIL_REMOVAL", self.registry["google_sheet"]["role"])
         self.assertFalse(self.registry["routing_policy"].get("major_approved_change_requires_immediate_github_and_sheet_sync", False))
-        self.assertTrue(self.registry["routing_policy"]["major_approved_change_requires_github_and_notion_sync"])
+        self.assertTrue(self.registry["routing_policy"]["major_approved_change_requires_github_repository_sync"])
+        self.assertTrue(self.registry["routing_policy"]["notion_routine_read_write_forbidden"])
+        self.assertNotIn("major_approved_change_requires_github_and_notion_sync", self.registry["routing_policy"])
+        self.assertEqual(authority, self.registry["workspace_authority"])
 
     def test_registry_matches_current_platform_and_implementation(self) -> None:
         project = self.registry["project"]
@@ -123,13 +130,32 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual(project["work_mode"], execution["current_work_mode"])
         self.assertEqual("PARTIAL_FOUNDATION", self.skill_view["implementation_permissions"]["product_state"])
         self.assertEqual("MIGRATION_ONLY_UNTIL_REMOVAL", self.skill_view["legacy_sheet"]["role"])
+        self.assertEqual(self.adapter["workspace_authority"], self.base_view["workspace_authority"])
+        self.assertEqual(self.adapter["workspace_authority"], self.skill_view["workspace_authority"])
 
-    def test_active_sync_policy_is_notion_repository_not_sheet(self) -> None:
+    def test_operating_dashboard_is_generated_from_current_adapter(self) -> None:
+        result = subprocess.run(
+            ["python", "tools/generate_project_operating_views.py"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        dashboard = (ROOT / "docs/PROJECT_OPERATING_DASHBOARD.html").read_text(encoding="utf-8")
+        self.assertIn("9.4.3", dashboard)
+        self.assertIn("REPOSITORY_HUMAN_FACING_CANON", dashboard)
+        self.assertIn("docs/PROJECT_HOME.md", dashboard)
+        self.assertIn(self.adapter["current_state"]["next_product_gate"], dashboard)
+
+    def test_active_sync_policy_is_repository_only_not_sheet(self) -> None:
         policy = (ROOT / "docs/planning/PROJECT_CANON_SYNC_POLICY.md").read_text(encoding="utf-8")
         workbook = (ROOT / "docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md").read_text(encoding="utf-8")
-        self.assertIn("NOTION_HUMAN_FACING_CANON", policy)
+        self.assertIn("REPOSITORY_HUMAN_FACING_CANON", policy)
         self.assertIn("REPOSITORY_STRUCTURED_AND_RUNTIME_CANON", policy)
         self.assertIn("GOOGLE_SHEETS_MIGRATION_ONLY_UNTIL_REMOVAL", policy)
+        self.assertIn("RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE", policy)
+        self.assertNotIn("NOTION_HUMAN_FACING_CANON", policy)
         self.assertNotIn("USER_FACING_GDD_WORKSPACE", policy)
         self.assertIn("MIGRATION_ONLY_UNTIL_REMOVAL", workbook)
         self.assertIn("BLOCKED_UNVERIFIED_UNIQUE_MATERIAL", workbook)
@@ -222,7 +248,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("FORECAST_SEMANTICS_SOURCE_REQUIRED", plan)
         self.assertIn("SPELL_USE_ID_CALLER_SUPPLIED_ONLY", plan)
         self.assertIn("CURRENT_RUNNER_SUITE_COUNT_PLUS_ONE", plan)
-        self.assertIn("NOTION_HUMAN_FACING_CANON", plan)
+        self.assertIn("Historical Task 8 project/Base SHAs", plan)
         self.assertIn("MIGRATION_ONLY_UNTIL_REMOVAL", plan)
         self.assertNotIn("synchronize GitHub canon + Google Sheet", plan)
         self.assertNotIn("HiGodot v3.1.4 live/tracked alignment readback\n→ Task 8 focused GUT RED", plan)
