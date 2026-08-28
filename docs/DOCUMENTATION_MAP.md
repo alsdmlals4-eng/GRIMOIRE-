@@ -19,7 +19,7 @@ runtime_validation: AUTOMATED_HEADLESS_PASS
 
 Current Frostbloom W6 choice owner: `docs/planning/FROSTBLOOM_W6_PRESERVATION_PRIORITY_01_APPROVAL_2026-08-28.md`. Its previous generated planning board is historical/superseded in `docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md`. The current user-approved direction is `docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md`: learner-centred warm academy practice, not sinister hidden-mastermind staging. Candidate generation is preauthorized after canon/consumer/rights preflight; runtime use or production-batch expansion still needs confirmation.
 
-Current W6 decision-scene candidate: `docs/planning/visual/FROSTBLOOM_W6_WARM_ACADEMY_CORE_SCENE_BOARD_BRIEF_2026-08-28.md`. It is a `GENERATED_EXPLORATION` key-decision reference and still needs final lock; the full five-step board remains a structured-text plan because image-generated grids failed QA.
+Current W6 decision-scene reference: `docs/planning/visual/FROSTBLOOM_W6_WARM_ACADEMY_CORE_SCENE_BOARD_BRIEF_2026-08-28.md`. `PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02` is `USER_APPROVED_PLANNING_REFERENCE_ONLY`; it is neither a runtime asset nor an implementation/character/rights/Human-Player evidence claim. All other visual candidates remain unconfirmed. The full five-step board remains a structured-text plan because image-generated grids failed QA.
 
 ## Godot
 
