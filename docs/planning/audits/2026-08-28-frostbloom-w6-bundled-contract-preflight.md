@@ -3,8 +3,11 @@
 ```yaml
 status: HISTORICAL_PREFLIGHT__IMPLEMENTATION_RECHECK_RECORDED_2026-08-29
 work_mode: PLAN_AND_REVIEW__THEN_IMPLEMENTATION_RECHECK
-implementation_authority: USER_APPROVED_2026-08-29__ISSUE_242_IMPLEMENTED_PR_PENDING
+implementation_authority: USER_APPROVED_2026-08-29__ISSUE_242_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
 github_issue: 242
+implementation_pr: 245
+implementation_pr_exact_head: b0f34b538680b5046705f36196eae71ed1b9b0a8
+implementation_merge_commit: 713bfbfc4c16b9ea469f2aa2c313a72bc50e1b67
 project_main: 34e5d496139e774608993730fa7c9f4e80b8bd02
 base_main: 7cfc75d607d1ed4d0f8323d4389e64da93df00c8
 open_prs_read_only:
@@ -28,7 +31,7 @@ The preflight findings were implemented only for Issue #242's W6 decision loop. 
 | A local run cannot resolve a tracked texture. | The source `.webp` was still tracked on `HEAD` and `origin/main`; only Godot's local generated import cache was absent. Reimport restored the runtime prerequisite without changing the source asset. | `RECOVERED__SOURCE_PROVENANCE_PRESERVED` |
 | Two arbitrary target IDs could satisfy the first typed-Resource validator. | The validator now requires the exact W6 pair and a malformed-ID regression exercises the rejection path. | `CORRECTED_AUTOMATED_PASS` |
 
-The next current gate is PR exact-head checks, safe merge, and post-merge main readback. Human/device/performance/accessibility/export/full-slice remain independent gates.
+PR #245 exact head passed all applicable required checks and was safely squash-merged as `713bfbf`; the post-merge main readback passed. Human/device/performance/accessibility/export/full-slice remain independent gates. The formal PR GUT lane was skipped by workflow condition, while direct local GUT remains separately recorded.
 
 ## 목적과 경계
 

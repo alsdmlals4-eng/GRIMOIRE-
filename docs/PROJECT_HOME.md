@@ -38,11 +38,11 @@ Known 2 / Unknown 2 / Lens 1
 ```
 
 - 현재 W6 범위는 사용자가 고른 A안, **짧은 decision-loop vertical slice**다.
-- 현재 Product Root의 `WARD`/`FLOWER`와 수치 차이는 Frostbloom 사실이 아닌 generic technical prototype이다.
+- 역사 `WARD`/`FLOWER`와 수치 차이는 Frostbloom 사실이 아닌 generic technical prototype이었다. 현재 Product Root는 W6 typed Resource의 `FROST_SEEDLINGS` / `GREENHOUSE_STRUCTURE`와 동등한 시작 비용·난도를 사용한다.
 - L2 owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md` (`USER_APPROVED_L2`).
 - L3 traceability/implementation plan: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md`, `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md` (Issue #242).
 - W6 전체 23–30분 계약과 W7/결과 연결: `docs/planning/FROSTBLOOM_W6_BOUNDED_CONSEQUENCE_FORECAST_01_APPROVAL_2026-08-20.md`, `docs/planning/FROSTBLOOM_FIRST_SESSION_PERSISTENT_HANDOFF_ELASTIC_BUFFER_01_APPROVAL_2026-08-20.md`, `docs/planning/FROSTBLOOM_RESULT_GRIMOIRE_CAUSAL_DEBRIEF_01_APPROVAL_2026-08-20.md`.
-- 사용자가 2026-08-29에 W6 Godot 구현을 승인했다. 현재 Resource·Scene·코드·자동 검증·1280×720 런타임 스모크는 구현됐지만, runtime asset 사용/production batch는 시작하지 않았고 Human/Device/Performance/Export/Full Slice는 여전히 `NOT_RUN`이다. 증거는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
+- 사용자가 2026-08-29에 W6 Godot 구현을 승인했고, PR #245 exact head `b0f34b5`의 적용 가능한 checks 통과 뒤 squash merge `713bfbf`로 main에 반영됐다. Resource·Scene·코드·자동 검증·1280×720 런타임 스모크는 존재하지만 runtime asset 사용/production batch는 시작하지 않았고 Human/Device/Performance/Accessibility/Export/Full Slice는 여전히 `NOT_RUN`이다. 증거는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
 
 ## 3. 시각 방향과 Asset 경계
 
@@ -63,7 +63,7 @@ The visual candidate policy is user-preauthorized for a single candidate/refinem
 
 | Layer | confirmed state | boundary |
 | --- | --- | --- |
-| Product Root | `res://src/ui/spell_workflow/spell_workflow_product_root.tscn` is the main development entry | foundation flow only; generic WARD/FLOWER is not W6 canon |
+| Product Root | `res://src/ui/spell_workflow/spell_workflow_product_root.tscn` is the main development entry and binds the W6 typed context Resource | development foundation; the W6 loop is merged-main automated/runtime-smoke evidence, not Human/device proof |
 | Core systems | direct glyph input, FIVE_POINT_STAR circuit, explicit target/cast, atomic result receipt, W6 typed context Resource | W6 automated and runtime-smoke evidence exists; it does not prove Human/player/device/performance quality |
 | Runtime visuals | common UI SVGs, six glyph PNGs, and greenhouse field base have consumers | visual completeness/readability is not proven |
 | Automated evidence | automated/component evidence exists; fresh exact checks must be run per change | not Human/player/device/performance proof |
@@ -86,8 +86,8 @@ The detailed source/page ledger, classifications, and migration completion rules
 
 ## 6. Current gates
 
-1. W6 L2 Spec과 L3 implementation은 사용자 승인 범위에서 구현됐고, Issue는 #242다. 현재 정확한 변경점 evidence는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
-2. 다음 구현 게이트는 PR exact-head checks와 safe merge다. W7, production asset batch, Task8 recovery는 범위 밖이다.
+1. W6 L2 Spec과 L3 implementation은 사용자 승인 범위에서 구현됐고, Issue #242는 PR #245 merge `713bfbf`로 닫혔다. 현재 정확한 변경점 evidence는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
+2. 다음 W6 evidence gate는 Human/Player, device, performance, accessibility, export, full-slice 검증이다. W7, production asset batch, Task8 recovery는 범위 밖이다.
 3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is automated/runtime-smoke verified but Human/player/device/performance is not verified.
 4. Keep `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING` separate; do not treat documentation or automated evidence as Human/Player validation.
 

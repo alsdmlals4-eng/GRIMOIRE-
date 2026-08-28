@@ -8,7 +8,7 @@
 feature_id: FTR-FROSTBLOOM-W6-DECISION-LOOP-01
 feature_name: Frostbloom W6 보존 의사결정 루프
 work_level: L2
-status: USER_APPROVED_L2__L3_IMPLEMENTATION_CONTRACT_READY
+status: USER_APPROVED_L2__L3_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
 scope_decision: USER_APPROVED_OPTION_A
 scope_decision_source: 2026-08-28 user message "권장안대로 진행"
 issue: 236
@@ -26,8 +26,11 @@ related_decision_ids:
   - GM-FROSTBLOOM-W6-KEY-DECISION-VISUAL-01
 related_visual_reference: PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02
 adversarial_review: FIVE_PASS_STRUCTURAL_PASS__L3_PLAN_REVIEWED
-implementation_authority: USER_APPROVED_2026-08-29__IMPLEMENTED_AUTOMATED_RUNTIME_SMOKE_PASS__PR_PENDING
+implementation_authority: USER_APPROVED_2026-08-29__MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
 implementation_receipt: docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md
+implementation_pr: 245
+implementation_pr_exact_head: b0f34b538680b5046705f36196eae71ed1b9b0a8
+implementation_merge_commit: 713bfbfc4c16b9ea469f2aa2c313a72bc50e1b67
 ```
 
 | 이 Spec의 책임 | 다른 정본의 책임 |
