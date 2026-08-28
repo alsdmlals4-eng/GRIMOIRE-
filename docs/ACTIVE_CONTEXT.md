@@ -55,8 +55,9 @@ representative_screen_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
 art_style_lock: ART-STYLE-01
 workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
-notion_policy: RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE
+notion_policy: READ_ONLY_MIGRATION_SOURCE_UNTIL_GR_NOTION_MIGRATION_20260828_01_COMPLETE
 notion_retirement_owner: docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md
+notion_migration_audit: docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
@@ -165,7 +166,7 @@ android_device: NOT_RUN
 - Frostbloom W6 key-decision scene: **USER_APPROVED_PLANNING_REFERENCE_ONLY** — 사용자는 이 한 장만 W6 계획용 시각 기준으로 확정했다. 묘목(좌)과 균열 구조물/등불(우)의 동등한 보존 가치와 얼굴을 숨긴 성인 초년 마법학교 연구생의 직접 필기를 보존한다. 다른 이미지·runtime asset·Godot 구현·character canon·Human/Device validation은 확정하지 않았다. full five-panel board는 생성 구조 QA에서 `PARTIAL`로 남고, 정확한 흐름/결과 계약은 구조화된 brief가 소유한다.
 - W6 단일 구현계약 사전검토: **SCOPE_A_USER_APPROVED** — `WARD`/`FLOWER`와 difficulty/Mana 차이는 Frostbloom 사실이 아닌 generic Product Root prototype이다. 사용자는 권장 A안인 짧은 W6 decision-loop slice를 승인했다. 새 L2 Spec은 동등 보존 target, Known/Unknown Forecast, Actual/Forgone/Unknown receipt, Korean live UI, target fairness test를 하나의 구현계약으로 넘길 요구를 소유한다. owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`.
 - 다음 기획 gate: **W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN** — scope A는 승인됐지만 L2 상세 규칙은 사용자 검토 뒤에만 implementation plan으로 전환한다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
-- Notion: **RETIRED_AS_CURRENT_CANON_AND_WORK_SURFACE** — GitHub repository가 사람용·구조화된 정본을 모두 소유한다. Notion은 routine read/write/destination readback이 없는 historical discovery-only다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`.
+- Notion: **RETIRED_AS_CURRENT_CANON_AND_WORK_SURFACE__READ_ONLY_MIGRATION_SOURCE** — GitHub repository가 사람용·구조화된 정본을 모두 소유한다. 사용자가 기존 구조·현재 작업물 누락 방지 migration을 명시 승인했으므로 `GR-NOTION-MIGRATION-20260828-01` audit의 named source만 temporary read-only로 읽는다. Notion write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`.
 - 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 후보 생성: **USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY** — canon·consumer·rights preflight 후 후보는 재승인 없이 생성하며, final lock·runtime use·production batch만 사용자 확정이 필요하다.
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
@@ -188,16 +189,17 @@ Repository
 → 사람이 읽는 Markdown 기획 / 결정 / Visual / Asset / Flow / Work
 → JSON / game data / code / Scene / Resource / Test / runtime evidence
 
-Notion
-→ HISTORICAL_DISCOVERY_ONLY
-→ routine read/write 및 destination readback 금지
+Notion (migration window only)
+→ named nonlegacy record의 READ_ONLY_SOURCE
+→ write / destination readback / delete / archive / export 금지
+→ audit complete 후 HISTORICAL_DISCOVERY_ONLY
 
 Google Sheets
 → MIGRATION_ONLY_UNTIL_REMOVAL
 → NO_NEW_CANON_WRITES
 ```
 
-Google Sheet와 Notion의 과거 문구는 current authority가 아니다. current owner에 없는 고유 사실이 필요할 때만 사용자가 명시적으로 허용한 discovery input으로 읽는다. 신규 정본은 GitHub repository Markdown/JSON이며 external canon write는 하지 않는다.
+Google Sheet와 Notion의 과거 문구는 current authority가 아니다. `GR-NOTION-MIGRATION-20260828-01` 완료 전에는 audit에 기록된 Notion nonlegacy source만 user-authorized read-only migration input으로 읽는다. 신규 정본은 GitHub repository Markdown/JSON이며 external canon write는 하지 않는다.
 
 ## 현재 Player-facing Spell Workflow
 

@@ -62,8 +62,9 @@ base_project_pin: v9.4.3
 base_live_readback: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
-notion_policy: RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE
+notion_policy: READ_ONLY_MIGRATION_SOURCE_UNTIL_GR_NOTION_MIGRATION_20260828_01_COMPLETE
 notion_retirement_owner: docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md
+notion_migration_audit: docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 local_execution_state_authority: FRESH_LOCAL_EXECUTOR_READBACK_REQUIRED
 authority_sync_local_observation: BLOCKED_NO_LOCAL_ACCESS
@@ -82,7 +83,7 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 1. 최신 사용자 지시 → 이 파일/`START_HERE.md` → `docs/ACTIVE_CONTEXT.md` + active v4.8 r5.4 binding → 실제 code/Scene/Resource/Test → 필요한 분야 정본 순으로 읽는다.
 2. Base는 프로젝트 pin만 맹신하지 않고 새 실질 작업 단위마다 latest completed `main`과 관련 owner를 다시 읽는다.
 3. Repository는 사람이 읽는 Markdown 기획·결정·Visual/Asset/Flow/Work와 JSON/game data/code/Scene/Resource/Test/runtime evidence의 정본이다.
-4. Notion은 historical discovery-only이며, 사용자가 명시적으로 다시 허용하기 전에는 routine read/write, destination readback, 신규 작업면으로 사용하지 않는다.
+4. Notion은 현행 정본·작업면이 아니다. `GR-NOTION-MIGRATION-20260828-01` 완료 전에는 audit에 이름이 있는 nonlegacy source만 read-only migration input으로 읽을 수 있으며, write, destination readback, 신규 작업면, delete/archive/export는 금지한다. 완료 뒤에는 historical discovery-only다.
 5. Google Sheets는 역사 migration source다. 신규 canon write를 하지 않고, 고유 자료 흡수 확인 전 삭제도 하지 않는다.
 6. 모든 live open/draft/ready PR은 기본 READ_ONLY다. **PR #151은 이미 `MERGED_MAIN_VERIFIED`인 역사/current-main 구성요소**이며 더 이상 `DO_NOT_TOUCH` open-work가 아니다. 실제 PR lifecycle과 현재 open PR 집합은 항상 live GitHub에서 읽는다.
 7. 실제 실행하지 않은 Human/Device/Performance/Full Slice 증거를 PASS로 승격하지 않는다.
