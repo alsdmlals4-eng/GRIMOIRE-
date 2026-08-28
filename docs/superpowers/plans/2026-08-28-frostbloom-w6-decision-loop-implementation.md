@@ -10,9 +10,13 @@
 
 **Spec:** `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`; traceability: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md`.
 
+## Execution update — 2026-08-29
+
+The user explicitly authorized Issue #242 implementation on 2026-08-29. The W6-only changed worktree is now implemented and has passed the custom Godot runner, GUT, editor readback, and a 1280×720 runtime smoke. The current evidence owner is `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`; PR exact-head, Human, device, performance, accessibility, export, and full-slice evidence remain pending. The task boxes below preserve the pre-execution route and must not override the current receipt.
+
 ## Global Constraints
 
-- Implement only GitHub Issue #242 after a separate explicit user authorization for Godot implementation; this document itself is not that authorization.
+- Implement only GitHub Issue #242. The required explicit Godot implementation authorization was received on 2026-08-29; this document itself was never the authorization.
 - Keep `글자 → 주문 → 대상 → 시전`, `FIVE_POINT_STAR`, typed glyph stock, and `EXPLICIT_EXACTLY_ONCE`; do not create another target/use/Mana/result engine.
 - Author every persistent `.tscn` and `.tres` mutation through the approved Godot/HiGodot route. Do not reconstruct `spell_use_screen.gd/.tscn` through GitHub text recovery.
 - W6 content is exactly `Known 2 / Unknown 2 / Lens 1` and exactly two targets: `FROST_SEEDLINGS` and `GREENHOUSE_STRUCTURE`.
@@ -42,30 +46,26 @@ lens_label: "식물학 관찰"
 targets:
   FROST_SEEDLINGS:
     player_label: "희귀 서리 묘목"
-    protected_value: "다음 계절에도 이어질 생명"
-    known_improvement: "잎맥의 동결을 늦춰 묘목이 버틸 시간을 만듭니다."
-    remaining_risk: "온실 동쪽 지지대의 균열은 계속 넓어질 수 있습니다."
-    unknown: "서리가 다시 번질 원인은 아직 모릅니다."
+    hint: "잎맥의 냉기를 가라앉혀 묘목을 우선 보존합니다."
+    protected_value: "희귀 서리 묘목의 생장과 수집 기록"
     target_keyword: FROST_SEEDLINGS
-    effect: FROSTBLOOM_STABILIZE_SEEDLINGS
+    effect: STABILIZE_FROST_SEEDLINGS
     difficulty: 3
     mana_cost: 3
-    receipt_actual: "희귀 서리 묘목의 잎맥 동결이 잦아들었습니다."
-    receipt_remaining: "온실 동쪽 지지대의 균열은 남아 있습니다."
+    receipt_actual: "희귀 서리 묘목의 잎맥 균열이 가라앉아, 지금은 보존할 수 있습니다."
+    receipt_remaining: "온실 동쪽 지지대의 균열은 남아 있어, 다음 관찰에서 상태를 다시 확인해야 합니다."
     receipt_unknown: "서리를 퍼뜨린 원인은 아직 확인되지 않았습니다."
   GREENHOUSE_STRUCTURE:
     player_label: "온실 동쪽 지지대"
-    protected_value: "관찰과 돌봄이 이어질 공간"
-    known_improvement: "균열을 눌러 온실이 버틸 시간을 만듭니다."
-    remaining_risk: "희귀 서리 묘목의 잎맥 동결은 계속 남아 있습니다."
-    unknown: "서리가 다시 번질 원인은 아직 모릅니다."
+    hint: "균열 확산을 멈춰 온실 통로를 우선 지킵니다."
+    protected_value: "온실 동쪽 통로와 관찰 환경"
     target_keyword: GREENHOUSE_STRUCTURE
-    effect: FROSTBLOOM_STABILIZE_STRUCTURE
+    effect: STABILIZE_GREENHOUSE_STRUCTURE
     difficulty: 3
     mana_cost: 3
-    receipt_actual: "온실 동쪽 지지대의 균열이 더 넓어지는 것을 막았습니다."
-    receipt_remaining: "희귀 서리 묘목의 잎맥 동결은 남아 있습니다."
-    receipt_unknown: "서리를 퍼뜨린 원인은 아직 확인되지 않았습니다."
+    receipt_actual: "온실 동쪽 지지대의 균열 확산을 멈춰, 온실의 통로를 지킬 수 있습니다."
+    receipt_remaining: "희귀 서리 묘목의 잎맥 냉기는 남아 있어, 다음 시도에서 보존 방법을 찾아야 합니다."
+    receipt_unknown: "한쪽을 먼저 지킬 때 다른 쪽이 얼마나 버틸지는 아직 모릅니다."
 ```
 
 ### Task W6-T01: Create and validate the sole W6 content owner
@@ -81,8 +81,8 @@ targets:
 - Produces `class_name FrostbloomW6TargetDefinition extends Resource` with `func validate() -> Dictionary` and `func to_choice() -> Dictionary`.
 - Produces `class_name FrostbloomW6DecisionContext extends Resource` with `func validate() -> Dictionary`, `func target_choice(target_id: StringName) -> Dictionary`, `func target_choices() -> Array[Dictionary]`, and `func summary() -> Dictionary`.
 - `validate()` returns `{ "status": &"OK" }` only for the exact W6 shape; any failure returns `{ "status": &"INVALID_W6_CONTEXT", "reason": <StringName> }` and never returns a generic target.
-- `to_choice()` returns `id`, `label`, `protected_value`, `known_improvement`, `remaining_risk`, `unknown`, `target_keyword`, `target`, and `payload`. `target` is `{ "difficulty": int, "mana_cost": int, "target_valid": true }`; `payload.receipt` contains `actual`, `forgone_or_remaining`, and `unknown`.
-- `FrostbloomW6TargetDefinition.validate()` verifies every exported string and ID used by `to_choice()`, plus non-negative `difficulty` and `mana_cost`; `to_choice()` returns `{}` when this validation fails. `FrostbloomW6DecisionContext` exports `known_observations`, `unknown_categories`, `lens_label`, and `target_definitions: Array[FrostbloomW6TargetDefinition]`, validates all child definitions, then deep-duplicates every consumer result.
+- `to_choice()` returns `id`, `label`, `hint`, `protected_value`, `known_improvement`, `forgone_or_remaining`, `unknown`, `target_keyword`, `target`, and `payload`. `known_improvement` derives from the same `actual` field used by `payload.receipt`; `payload.receipt` contains `actual`, `forgone_or_remaining`, and `unknown`.
+- `FrostbloomW6TargetDefinition.validate()` verifies every exported string and ID used by `to_choice()`, plus positive `difficulty` and `mana_cost`. `FrostbloomW6DecisionContext` exports `known_observations`, `unknown_categories`, `lens`, and `targets: Array[FrostbloomW6TargetDefinition]`, validates all child definitions, then deep-duplicates consumer results.
 
 - [ ] **Step 1: Write the failing Resource-contract tests**
 
@@ -116,28 +116,27 @@ extends Resource
 @export var target_id: StringName
 @export var player_label := ""
 @export var protected_value := ""
-@export var known_improvement := ""
-@export var remaining_risk := ""
+@export var hint := ""
 @export var unknown := ""
 @export var target_keyword: StringName
 @export var effect: StringName
 @export var difficulty := 3
 @export var mana_cost := 3
-@export var receipt_actual := ""
-@export var receipt_remaining := ""
-@export var receipt_unknown := ""
+@export var actual := ""
+@export var forgone_or_remaining := ""
 
 func to_choice() -> Dictionary:
     return {
         "id": target_id,
         "label": player_label,
         "protected_value": protected_value,
-        "known_improvement": known_improvement,
-        "remaining_risk": remaining_risk,
+        "hint": hint,
+        "known_improvement": actual,
+        "forgone_or_remaining": forgone_or_remaining,
         "unknown": unknown,
         "target_keyword": target_keyword,
         "target": {"difficulty": difficulty, "mana_cost": mana_cost, "target_valid": true},
-        "payload": {"effect": effect, "receipt": {"actual": receipt_actual, "forgone_or_remaining": receipt_remaining, "unknown": receipt_unknown}},
+        "payload": {"effect": effect, "receipt": {"actual": actual, "forgone_or_remaining": forgone_or_remaining, "unknown": unknown}},
     }
 ```
 
@@ -239,7 +238,7 @@ git commit -m "feat: bind W6 context to product root"
 
 **Interfaces:**
 - Consumes one W6 choice dictionary returned by W6-T01/W6-T02.
-- `ContextTargetSelector.configure_targets(targets: Array[Dictionary], selected_id: StringName = &"")` requires `id`, `label`, `protected_value`, and `remaining_risk`; it emits only `target_selected(id)` and never recommends a choice.
+- `ContextTargetSelector.configure_targets(targets: Array[Dictionary], selected_id: StringName = &"")` retains its generic `id`/`label`/`hint` contract and additionally renders W6 semantic fields when supplied; it emits only `target_selected(id)` and never recommends a choice. The W6 consumer validates the stricter semantic payload before use.
 - `SpellUseScreen.set_target_choices()` retains each full W6 choice. On selection it passes only `target_keyword`, `target`, and `payload` to the existing Coordinator, then renders semantic fields from that stored choice alongside the authoritative preview. If an invalid selection is attempted after a valid preview, its Korean error guidance appears without clearing the existing preview or enabling a new cast; with no valid preview, it remains empty.
 - `CommitBar.configure(target_label: String, mana_cost: int, can_commit: bool, confirmation_required: bool)` remains display-only and owns no transaction.
 
@@ -282,7 +281,7 @@ Set static scene copy to `완성 주문 이름`, `대상을 고르세요.`, `취
 
 - [ ] **Step 4: Run custom and GUT UI suites**
 
-Run: `& $GodotExecutable --headless --path . --script res://tests/test_runner.gd`; then `& $GodotExecutable --headless --path . --script addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json -gexit`
+Run: `& $GodotExecutable --headless --path . --script res://tests/test_runner.gd`; then `& $GodotExecutable --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json -gexit`
 
 Expected: PASS. The selector keeps two equal semantic cards; the commit bar still delegates confirmation/use exactly once; UI tests find Korean player copy and forecast headings.
 
@@ -377,7 +376,7 @@ git commit -m "feat: add Frostbloom causal receipt"
 **Interfaces:**
 - Consumes implemented paths and test outputs from W6-T01 through W6-T04.
 - Produces an evidence record that separates static, custom runner, GUT, runtime visual, Human, device, performance, export, and full-slice results.
-- The traceability packet moves to `CONVERGED` only when every W6 requirement maps to an executed verification record. It stays `GAP` or `BLOCKED_UNVERIFIED` when any required evidence layer is absent.
+- The traceability packet moves to `CONVERGED` only when every W6 requirement maps to its required evidence. It stays `PARTIAL_EVIDENCED` when any required evidence layer is absent.
 
 - [ ] **Step 1: Write failing evidence-contract checks**
 
@@ -439,4 +438,4 @@ Create a PR linked to #242, wait for exact-head required checks, merge only afte
 
 ## Execution boundary
 
-This plan is ready for a single future implementation contract, but no Godot code, Scene, Resource, or production asset has been created by writing it. The next action is an explicit user authorization to execute Issue #242; until then the status remains `USER_APPROVED_L3_PLAN__GODOT_IMPLEMENTATION_NOT_AUTHORIZED`.
+Issue #242 implementation was authorized and completed in the changed worktree on 2026-08-29. This plan remains a historical execution route; the implementation receipt is the current status owner. No production asset batch was created. The next action is PR exact-head validation, then separate Human/device/performance/accessibility/export/full-slice gates.

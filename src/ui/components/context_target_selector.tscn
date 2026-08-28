@@ -20,11 +20,11 @@ theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="Margin/Rows" unique_id=1194358372]
 layout_mode = 2
-text = "CONTEXT TARGET"
+text = "대상 선택"
 
 [node name="Hint" type="Label" parent="Margin/Rows" unique_id=1535293866]
 layout_mode = 2
-text = "Choose a concrete world target. No route recommendation."
+text = "무엇을 지키고 어떤 위험이 남는지 확인한 뒤, 직접 대상을 선택하세요."
 autowrap_mode = 2
 
 [node name="Targets" type="VBoxContainer" parent="Margin/Rows" unique_id=2016994411]

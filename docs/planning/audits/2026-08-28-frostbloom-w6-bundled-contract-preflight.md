@@ -1,10 +1,10 @@
 # Frostbloom W6 단일 구현계약 사전검토 — 2026-08-28
 
 ```yaml
-status: CROSS_DISCIPLINE_REVIEW_IN_PROGRESS
-work_mode: PLAN_AND_REVIEW
-implementation_authority: NONE_UNTIL_USER_SCOPE_DECISION_AND_BUNDLED_CONTRACT_APPROVAL
-github_issue: 233
+status: HISTORICAL_PREFLIGHT__IMPLEMENTATION_RECHECK_RECORDED_2026-08-29
+work_mode: PLAN_AND_REVIEW__THEN_IMPLEMENTATION_RECHECK
+implementation_authority: USER_APPROVED_2026-08-29__ISSUE_242_IMPLEMENTED_PR_PENDING
+github_issue: 242
 project_main: 34e5d496139e774608993730fa7c9f4e80b8bd02
 base_main: 7cfc75d607d1ed4d0f8323d4389e64da93df00c8
 open_prs_read_only:
@@ -13,6 +13,22 @@ open_prs_read_only:
 selected_visual_reference: PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02
 selected_visual_status: USER_APPROVED_PLANNING_REFERENCE_ONLY
 ```
+
+## 2026-08-29 implementation recheck
+
+The preflight findings were implemented only for Issue #242's W6 decision loop. The current evidence owner is `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`: custom Godot runner `48 suites / 2,051 assertions / 0 failures`, GUT `8 tests / 29 assertions / 0 failures`, editor readback, and a 1280×720 runtime smoke. This does not convert the planning image into an asset and does not prove Human comprehension, device touch/readability, performance, accessibility, export, or full-slice quality.
+
+| Recheck attack | Observed implementation fact | Disposition |
+| --- | --- | --- |
+| Scenario data drifts from the live target/receipt copy. | One editor-owned W6 `Resource` holds both targets; `known_improvement` is derived from the same `actual` field used by the receipt. | `CORRECTED` |
+| W6 semantics are dropped while adapting the target UI. | The first pass stripped semantic fields and kept English fallback copy; the chosen W6 target now retains protected value, actual/known improvement, remaining risk, and unknown through the consumer boundary. | `CORRECTED_AUTOMATED_PASS` |
+| A scenario-specific validation breaks the reusable generic selector. | The initial strict selector guard regressed the existing generic component contract. The selector remains generic; W6 strictness is enforced in the W6 consumer. | `CORRECTED_AUTOMATED_PASS` |
+| A launch is mistaken for usability evidence. | Runtime smoke had no task-related errors at 1280×720, but no target-resolution visual assessment, device capture, or Human observation was run. | `EVIDENCE_CEILING_PRESERVED` |
+| Tool syntax is assumed instead of verified. | The old GUT invocation failed; the supported `-s addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json -gexit` form passed. | `CORRECTED` |
+| A local run cannot resolve a tracked texture. | The source `.webp` was still tracked on `HEAD` and `origin/main`; only Godot's local generated import cache was absent. Reimport restored the runtime prerequisite without changing the source asset. | `RECOVERED__SOURCE_PROVENANCE_PRESERVED` |
+| Two arbitrary target IDs could satisfy the first typed-Resource validator. | The validator now requires the exact W6 pair and a malformed-ID regression exercises the rejection path. | `CORRECTED_AUTOMATED_PASS` |
+
+The next current gate is PR exact-head checks, safe merge, and post-merge main readback. Human/device/performance/accessibility/export/full-slice remain independent gates.
 
 ## 목적과 경계
 

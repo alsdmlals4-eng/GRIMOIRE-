@@ -32,9 +32,14 @@ func _rebuild_buttons() -> void:
     for target in _targets:
         var button := Button.new()
         var target_id := StringName(str(target["id"]))
-        button.custom_minimum_size = Vector2(48, 64)
+        button.custom_minimum_size = Vector2(48, 112)
         button.theme_type_variation = &"AcademyButtonPrimary" if target_id == _selected_id else &"AcademyButton"
-        button.text = "%s\n%s" % [str(target["label"]), str(target["hint"])]
+        var button_text := "%s\n%s" % [str(target["label"]), str(target["hint"])]
+        if target.has("protected_value"):
+            button_text += "\n지킬 것: %s" % str(target["protected_value"])
+        if target.has("forgone_or_remaining"):
+            button_text += "\n남는 위험: %s" % str(target["forgone_or_remaining"])
+        button.text = button_text
         button.set_meta("target_id", target_id)
         button.pressed.connect(Callable(self, "_on_target_pressed").bind(target_id))
         container.add_child(button)
