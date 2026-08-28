@@ -22,6 +22,9 @@ const GlyphTemplateRepository = preload("res://src/input/glyph_template_reposito
 const GlyphRecognitionService = preload("res://src/input/glyph_recognition_service.gd")
 const FocusScribeRecognitionCoordinator = preload("res://src/input/focus_scribe_recognition_coordinator.gd")
 const GlyphWritingViewModel = preload("res://src/ui/glyph_writing_view_model.gd")
+const W6_CONTEXT_PATH := "res://data/frostbloom/w6/w6_decision_context_01.tres"
+
+@export var w6_context: Resource
 
 const PREPARATION_TRANSACTION_ID: StringName = &"task9-preparation"
 const SPELL_ID: StringName = &"task9-guided-spell"
@@ -51,6 +54,7 @@ var _last_result: Dictionary = {}
 @onready var _circuit_screen = get_node_or_null(NodePath("CircuitScreen/CircuitContent"))
 @onready var _spell_use_screen = get_node_or_null(NodePath("SpellUseScreen/SpellUseContent"))
 @onready var _result_panel = get_node_or_null(NodePath("ResultPanel"))
+@onready var _w6_observation_summary = get_node_or_null(NodePath("W6ObservationSummary"))
 
 
 func _ready() -> void:
@@ -62,6 +66,11 @@ func _ready() -> void:
 
 
 func start_slice() -> Dictionary:
+    if w6_context == null or not w6_context.has_method("validate"):
+        return {"status": &"W6_CONTEXT_REQUIRED"}
+    var w6_validation: Dictionary = Dictionary(w6_context.call("validate"))
+    if StringName(w6_validation.get("status", &"")) != &"OK":
+        return {"status": &"W6_CONTEXT_INVALID", "reason": w6_validation.get("reason", &"UNKNOWN")}
     _stock = StockPool.create(3)
     _stock.add_one(&"FLOW")
     _vault = Vault.create(1)
@@ -183,25 +192,9 @@ func choose_target(target_id: StringName) -> Dictionary:
 
 
 func target_choices() -> Array:
-    return [
-        {
-            "id": &"WARD",
-            "label": "흔들리는 보호막",
-            "hint": "안정화를 우선합니다.",
-            "target_keyword": &"WARD",
-            "target": {"difficulty": 4, "mana_cost": 3, "target_valid": true},
-            "payload": {"effect": &"PROTECT_WARD", "receipt": "보호막의 흔들림이 가라앉았습니다."},
-        },
-        {
-            "id": &"FLOWER",
-            "label": "시든 온실 꽃",
-            "hint": "회복을 우선합니다.",
-            "target_keyword": &"FLOWER",
-            "target": {"difficulty": 2, "mana_cost": 2, "target_valid": true},
-            "payload": {"effect": &"REVIVE_FLOWER", "receipt": "꽃의 빛이 되돌아왔습니다."},
-        },
-    ]
-
+    if w6_context == null or not w6_context.has_method("target_choices"):
+        return []
+    return Array(w6_context.call("target_choices"))
 
 func request_cast_confirmation() -> bool:
     if _step != &"TARGET" or _cast_committed or _coordinator == null:
@@ -230,21 +223,9 @@ func _main_glyph(glyph_id: StringName) -> Dictionary:
 
 
 func _target_choice(target_id: StringName) -> Dictionary:
-    match target_id:
-        &"WARD":
-            return {
-                "target_keyword": &"WARD",
-                "target": {"difficulty": 4, "mana_cost": 3, "target_valid": true},
-                "payload": {"effect": &"PROTECT_WARD", "receipt": "보호막의 흔들림이 가라앉았습니다."},
-            }
-        &"FLOWER":
-            return {
-                "target_keyword": &"FLOWER",
-                "target": {"difficulty": 2, "mana_cost": 2, "target_valid": true},
-                "payload": {"effect": &"REVIVE_FLOWER", "receipt": "꽃의 빛이 되돌아왔습니다."},
-            }
-    return {}
-
+    if w6_context == null or not w6_context.has_method("target_choice"):
+        return {}
+    return Dictionary(w6_context.call("target_choice", target_id))
 
 func _connect_player_surfaces() -> void:
     if _glyph_screen != null and _glyph_screen.has_signal("glyph_saved") and not _glyph_screen.glyph_saved.is_connected(_on_glyph_saved):
@@ -277,7 +258,31 @@ func _configure_player_surfaces() -> void:
     if _spell_use_screen != null and _spell_use_screen.has_method("configure"):
         _spell_use_screen.configure(_coordinator, USE_TRANSACTION_ID)
         _spell_use_screen.set_target_choices(target_choices())
+    _render_w6_observation_summary()
 
+
+func _render_w6_observation_summary() -> void:
+    if w6_context == null or not w6_context.has_method("summary"):
+        return
+    var summary: Dictionary = Dictionary(w6_context.call("summary"))
+    var counts_label = get_node_or_null(NodePath("W6ObservationSummary/Margin/Rows/Counts")) as Label
+    if counts_label != null:
+        counts_label.text = "관찰한 사실 %d · 아직 미확인 %d" % [Array(summary.get("known_observations", [])).size(), Array(summary.get("unknown_categories", [])).size()]
+    var known_label = get_node_or_null(NodePath("W6ObservationSummary/Margin/Rows/Known")) as Label
+    if known_label != null:
+        var known_text := ""
+        for observation in Array(summary.get("known_observations", [])):
+            known_text += "• %s\n" % String(observation)
+        known_label.text = "확인한 사실\n%s" % known_text.strip_edges()
+    var unknown_label = get_node_or_null(NodePath("W6ObservationSummary/Margin/Rows/Unknown")) as Label
+    if unknown_label != null:
+        var unknown_text := ""
+        for category in Array(summary.get("unknown_categories", [])):
+            unknown_text += "• %s\n" % String(category)
+        unknown_label.text = "아직 미확인\n%s" % unknown_text.strip_edges()
+    var lens_label = get_node_or_null(NodePath("W6ObservationSummary/Margin/Rows/Lens")) as Label
+    if lens_label != null:
+        lens_label.text = "관찰 렌즈: %s" % String(summary.get("lens_label", "식물학 관찰"))
 
 func _connect_intent(surface, signal_name: StringName, callback: Callable) -> void:
     if surface.has_signal(signal_name) and not surface.is_connected(signal_name, callback):
@@ -328,10 +333,13 @@ func _on_cast_resolved(result: Dictionary) -> void:
     var receipt = get_node_or_null(NodePath("ResultPanel/Receipt")) as Label
     if receipt != null:
         var resolved: Dictionary = Dictionary(result.get("result", {}))
-        var outcome := String(resolved.get("receipt", "주문 결과를 기록했습니다."))
+        var receipt_details: Dictionary = Dictionary(resolved.get("receipt", {}))
+        var actual := String(receipt_details.get("actual", "주문 결과를 기록했습니다."))
+        var forgone_or_remaining := String(receipt_details.get("forgone_or_remaining", "다른 선택의 상태는 다음 관찰에서 확인해야 합니다."))
+        var unknown := String(receipt_details.get("unknown", "원인은 아직 확인되지 않았습니다."))
         var target_name := _target_display_name(StringName(resolved.get("target_keyword", &"")))
         var mana_spent := int(result.get("mana_spent", 0))
-        receipt.text = "%s\n대상: %s · 사용 마력: %d" % [outcome, target_name, mana_spent]
+        receipt.text = "실제로 개선된 것\n%s\n\n선택으로 남은 것\n%s\n\n아직 미확인\n%s\n\n대상: %s · 사용 마력: %d" % [actual, forgone_or_remaining, unknown, target_name, mana_spent]
     _show_step()
 
 
@@ -368,3 +376,5 @@ func _show_step() -> void:
         _spell_use_host.visible = _step == &"TARGET"
     if _result_panel != null:
         _result_panel.visible = _step == &"RESULT"
+    if _w6_observation_summary != null:
+        _w6_observation_summary.visible = _step == &"GLYPH"

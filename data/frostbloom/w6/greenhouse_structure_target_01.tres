@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FrostbloomW6TargetDefinition" format=3 uid="uid://dykjy77yvp0gx"]
+
+[ext_resource type="Script" uid="uid://d2d6ytlhp6852" path="res://src/core/content/frostbloom_w6_target_definition.gd" id="1_support"]
+
+[resource]
+script = ExtResource("1_support")
+id = &"GREENHOUSE_STRUCTURE"
+label = "온실 동쪽 지지대"
+hint = "균열 확산을 멈춰 온실 통로를 우선 지킵니다."
+protected_value = "온실 동쪽 통로와 관찰 환경"
+target_keyword = &"GREENHOUSE_STRUCTURE"
+difficulty = 3
+mana_cost = 3
+effect = &"STABILIZE_GREENHOUSE_STRUCTURE"
+actual = "온실 동쪽 지지대의 균열 확산을 멈춰, 온실의 통로를 지킬 수 있습니다."
+forgone_or_remaining = "희귀 서리 묘목의 잎맥 냉기는 남아 있어, 다음 시도에서 보존 방법을 찾아야 합니다."
+unknown = "한쪽을 먼저 지킬 때 다른 쪽이 얼마나 버틸지는 아직 모릅니다."

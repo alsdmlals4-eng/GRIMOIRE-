@@ -20,6 +20,7 @@ const SUITES: Array[String] = [
     "res://tests/unit/test_atomic_spell_use_service.gd",
     "res://tests/unit/test_spell_workflow_state.gd",
     "res://tests/unit/test_spell_workflow_coordinator.gd",
+    "res://tests/unit/test_frostbloom_w6_decision_context.gd",
     "res://tests/unit/test_glyph_resource_snapshot.gd",
     "res://tests/integration/test_glyph_resource_lifecycle.gd",
     "res://tests/unit/test_glyph_resource_view_model.gd",

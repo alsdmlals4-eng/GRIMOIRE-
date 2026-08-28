@@ -1,6 +1,6 @@
 # Frostbloom W6 Decision Loop Vertical Slice — Feature Design Spec
 
-> 사용자에게 승인된 W6 범위를 플레이어 경험 계약으로 정리한 L2 설계 정본이다. L3 추적 Packet과 구현계획은 작성되었지만, 이 문서는 Godot 구현·런타임 이미지 사용·production asset batch를 승인하지 않는다.
+> 사용자에게 승인된 W6 범위를 플레이어 경험 계약으로 정리한 L2 설계 정본이다. 사용자는 2026-08-29에 Issue #242의 Godot 구현을 명시 승인했다. 이 문서는 runtime image 사용·production asset batch를 승인하지 않으며, Human/Device/Performance/Export/Full Slice PASS도 주장하지 않는다.
 
 ## 0. Identity & authority
 
@@ -26,7 +26,8 @@ related_decision_ids:
   - GM-FROSTBLOOM-W6-KEY-DECISION-VISUAL-01
 related_visual_reference: PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02
 adversarial_review: FIVE_PASS_STRUCTURAL_PASS__L3_PLAN_REVIEWED
-implementation_authority: NONE__USER_EXPLICIT_AUTHORIZATION_REQUIRED
+implementation_authority: USER_APPROVED_2026-08-29__IMPLEMENTED_AUTOMATED_RUNTIME_SMOKE_PASS__PR_PENDING
+implementation_receipt: docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md
 ```
 
 | 이 Spec의 책임 | 다른 정본의 책임 |
@@ -383,7 +384,7 @@ Rollback returns to the current Product Root generic technical vertical slice wi
 | W6-OD05: exact Mana/difficulty values | APPROVED_RECOMMENDED_DEFAULT | matched `difficulty: 3`, `mana_cost: 3` until human tuning | no |
 | W6-OD06: runtime art/audio/VFX consumer | NOT_APPLICABLE_TO_L3_CONTRACT | none in this slice contract | no |
 
-The L3 packet and plan are now `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md` and `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md`. They remain one W6 contract and do not absorb Task8 recovery, the 46-minute session, or a production asset batch. Actual Godot implementation still requires a separate explicit user authorization.
+The L3 packet and plan are now `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md` and `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md`. They remain one W6 contract and do not absorb Task8 recovery, the 46-minute session, or a production asset batch. The user granted implementation authorization on 2026-08-29; current changed-worktree evidence is recorded in `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md` and still awaits PR exact-head checks.
 
 ## Final adversarial checklist
 
@@ -396,7 +397,7 @@ The L3 packet and plan are now `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRA
 - [x] Planning visual stays planning-only; no asset/right/evidence promotion is implied.
 - [x] Human/device/performance/full-slice claims remain `NOT_RUN`.
 - [x] User review approved the L2 Spec before the L3 plan was written.
-- [ ] User authorization is required before executing the L3 Godot implementation contract.
+- [x] User authorized the L3 Godot implementation contract on 2026-08-29; PR exact-head, Human, device, performance, export, and full-slice gates remain separate.
 
 ## Five-pass adversarial review
 

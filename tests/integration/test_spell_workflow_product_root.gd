@@ -48,9 +48,15 @@ func run(case) -> void:
         if readability_veil != null:
             case.assert_equal(Control.MOUSE_FILTER_IGNORE, readability_veil.mouse_filter, "Readability veil does not intercept player input")
 
-        for required_node in ["GlyphScreen", "CircuitScreen", "SpellUseScreen", "ResultPanel"]:
+        for required_node in ["GlyphScreen", "CircuitScreen", "SpellUseScreen", "ResultPanel", "W6ObservationSummary"]:
             case.assert_true(scene_root.has_node(NodePath(required_node)), "Product Root exposes player surface: %s" % required_node)
 
+        var w6_observation_panel = scene_root.get_node_or_null("W6ObservationSummary") as Control
+        case.assert_true(w6_observation_panel != null and w6_observation_panel.visible, "W6 observation summary is visible during the glyph step")
+        if w6_observation_panel != null:
+            case.assert_equal(Control.MOUSE_FILTER_IGNORE, w6_observation_panel.mouse_filter, "W6 observation summary never blocks glyph input")
+        var w6_counts = scene_root.get_node_or_null("W6ObservationSummary/Margin/Rows/Counts") as Label
+        case.assert_true(w6_counts != null and w6_counts.text.contains("관찰한 사실 2"), "W6 summary renders the bounded evidence count")
         case.assert_false(product_scene_source.contains('parent="GlyphScreen/GlyphContent"'), "product root does not duplicate glyph-scene descendants")
         case.assert_false(product_scene_source.contains('parent="CircuitScreen/CircuitContent"'), "product root does not duplicate circuit-scene descendants")
         case.assert_false(product_scene_source.contains('parent="SpellUseScreen/SpellUseContent"'), "product root does not duplicate spell-use descendants")
@@ -76,16 +82,21 @@ func run(case) -> void:
         case.assert_equal(&"PLACED", scene_root.place_saved_glyph_as_main().get("status", &""), "scene flow explicitly places its glyph")
         case.assert_equal(&"CIRCUIT_PREVIEW_READY", scene_root.preview_spell().get("status", &""), "scene flow previews before preparation")
         case.assert_equal(&"PREPARED", scene_root.confirm_preparation().get("status", &""), "scene flow explicitly prepares the spell")
-        case.assert_equal(&"FINAL_PREVIEW_READY", scene_root.choose_target(&"WARD").get("status", &""), "scene flow explicitly selects the ward")
+        case.assert_equal(&"FINAL_PREVIEW_READY", scene_root.choose_target(&"FROST_SEEDLINGS").get("status", &""), "scene flow explicitly selects the ward")
         case.assert_true(scene_root.request_cast_confirmation(), "scene flow requests a separate cast confirmation")
         case.assert_equal(&"USED", scene_root.confirm_cast().get("status", &""), "scene flow resolves one confirmed cast")
         var scene_receipt: Label = scene_root.get_node(NodePath("ResultPanel/Receipt"))
-        case.assert_true(scene_receipt.text.contains("보호막의 흔들림이 가라앉았습니다."), "result receipt renders the resolved outcome copy")
-        case.assert_true(scene_receipt.text.contains("흔들리는 보호막"), "result receipt renders the player-facing target name")
+        case.assert_true(scene_receipt.text.contains("희귀 서리 묘목의 잎맥 균열이 가라앉아, 지금은 보존할 수 있습니다."), "result receipt renders the resolved outcome copy")
+        case.assert_true(scene_receipt.text.contains("희귀 서리 묘목"), "result receipt renders the player-facing target name")
         case.assert_true(scene_receipt.text.contains("사용 마력: 11"), "result receipt renders the actual spent mana")
         scene_root.queue_free()
 
+    var missing_context_root = Root.new()
+    case.assert_equal(&"W6_CONTEXT_REQUIRED", missing_context_root.start_slice().get("status", &""), "bare root fails closed without the W6 context Resource")
+    missing_context_root.free()
+
     var root = Root.new()
+    root.w6_context = load("res://data/frostbloom/w6/w6_decision_context_01.tres")
     var started: Dictionary = root.start_slice()
     case.assert_equal(&"SLICE_READY", started.get("status", &""), "root starts a bounded explicit spell slice")
     case.assert_equal(&"GLYPH", root.visible_step(), "player begins at glyph writing")
@@ -112,10 +123,18 @@ func run(case) -> void:
     case.assert_equal(&"TARGET", root.visible_step(), "only prepared spell opens target step")
     var targets: Array = root.target_choices()
     case.assert_equal(2, targets.size(), "target step exposes exactly two valid alternatives")
-    case.assert_equal(&"WARD", StringName(Dictionary(targets[0]).get("id", &"")), "first alternative is identified without automatic selection")
-    case.assert_equal(&"FLOWER", StringName(Dictionary(targets[1]).get("id", &"")), "second alternative is identified without automatic selection")
+    case.assert_equal(&"FROST_SEEDLINGS", StringName(Dictionary(targets[0]).get("id", &"")), "first alternative is identified without automatic selection")
+    case.assert_equal(&"GREENHOUSE_STRUCTURE", StringName(Dictionary(targets[1]).get("id", &"")), "second alternative is identified without automatic selection")
+    var seedlings_choice: Dictionary = Dictionary(targets[0])
+    var structure_choice: Dictionary = Dictionary(targets[1])
+    case.assert_equal("희귀 서리 묘목의 생장과 수집 기록", seedlings_choice.get("protected_value", ""), "seedlings choice states what the player protects")
+    case.assert_equal("온실 동쪽 통로와 관찰 환경", structure_choice.get("protected_value", ""), "structure choice states what the player protects")
+    case.assert_false(str(seedlings_choice.get("forgone_or_remaining", "")).is_empty(), "seedlings choice states the remaining risk")
+    case.assert_false(str(structure_choice.get("forgone_or_remaining", "")).is_empty(), "structure choice states the remaining risk")
+    case.assert_false(str(seedlings_choice.get("unknown", "")).is_empty(), "seedlings choice preserves uncertainty")
+    case.assert_false(str(structure_choice.get("unknown", "")).is_empty(), "structure choice preserves uncertainty")
 
-    var final_preview: Dictionary = root.choose_target(&"WARD")
+    var final_preview: Dictionary = root.choose_target(&"FROST_SEEDLINGS")
     case.assert_equal(&"FINAL_PREVIEW_READY", final_preview.get("status", &""), "player-selected ward creates final preview")
     case.assert_true(root.request_cast_confirmation(), "cast requires a separate explicit confirmation")
     var used: Dictionary = root.confirm_cast()
