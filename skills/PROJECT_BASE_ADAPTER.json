@@ -91,6 +91,7 @@
   },
   "entrypoints": {
     "active_context": "docs/ACTIVE_CONTEXT.md",
+    "adversarial_research_feasibility_gate": "docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md",
     "agents": "AGENTS.md",
     "current_confirmed_decisions": "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     "current_platform_decision": "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md",
@@ -149,6 +150,7 @@
   "planning_authority": {
     "art_bible": "docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md",
     "art_style": "docs/planning/ART_STYLE_01_APPROVAL_2026-07-31.md",
+    "adversarial_research_feasibility_gate": "docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md",
     "asset_spec": "docs/planning/ASSET_SPEC_01_APPROVAL_2026-08-01.md",
     "battle_rules": "docs/planning/BATTLE_RULES_01_APPROVAL_2026-08-01.md",
     "canon_sync_policy": "docs/planning/PROJECT_CANON_SYNC_POLICY.md",
@@ -176,7 +178,7 @@
   "project_registry": {
     "hash_definition": "UTF8_TEXT_SHA256_AFTER_PLATFORM_NEWLINE_NORMALIZATION",
     "path": "skills/SKILL_REGISTRY.json",
-    "sha256": "d8fdaf60db20ccc4534cb0b8d315d94d0e399d44051837c0f7a6f556ed10bc22"
+    "sha256": "af08f9923a2b537d1ae032eb66f42a93ad227847253bb6b31459b3c310f66c68"
   },
   "protected_baseline": {
     "authority_ref": "refs/remotes/origin/main",
@@ -313,17 +315,20 @@
   "schema_version": 2,
   "validation": {
     "adversarial_gate": "REQUIRED_ON_PULL_REQUEST",
+    "adversarial_research_feasibility_gate": "REQUIRED_ON_MATERIAL_WORK",
     "base_shared_external_ai_adapter": "REQUIRED_ON_PULL_REQUEST",
     "base_v942_planning_first_adoption": "REQUIRED_ON_PULL_REQUEST",
     "base_v943_first_prompt_adoption": "REQUIRED_ON_PULL_REQUEST",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
     "device": "NOT_RUN",
+    "external_research": "FRESH_RELEVANT_CHECK_REQUIRED",
     "full_vertical_slice": "NOT_RUN",
     "generated_views": "CURRENT",
     "generator_check": "REQUIRED",
     "godot_runtime": "TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING",
     "godot_static": "AVAILABLE_PROJECT_CREATED",
     "human": "NOT_RUN",
+    "implementation_feasibility": "ACTUAL_PROJECT_EVIDENCE_REQUIRED",
     "json_parse": "REQUIRED",
     "mobile": "NOT_RUN",
     "pc_input": "NOT_RUN",

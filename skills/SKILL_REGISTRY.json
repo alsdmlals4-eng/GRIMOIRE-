@@ -227,6 +227,7 @@
     "latest_user_override_precedes_base_default": true,
     "locked_visual_reference_must_not_be_edited": true,
     "major_approved_change_requires_github_repository_sync": true,
+    "material_work_requires_adversarial_research_feasibility_gate": true,
     "minimum_sufficient_skill_per_subtask": true,
     "notion_routine_read_write_forbidden": true,
     "repository_runtime_truth_required": true,

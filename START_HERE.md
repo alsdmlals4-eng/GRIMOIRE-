@@ -50,6 +50,8 @@ w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICA
 w6_decision_loop_feature_spec_issue: 236
 w6_decision_loop_feature_spec_status: DRAFT_FOR_USER_SPEC_REVIEW__SCOPE_A_USER_APPROVED
 post_visual_lock_next_gate: W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN
+adversarial_research_feasibility_gate: docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md
+adversarial_research_feasibility_gate_status: USER_APPROVED_ACTIVE__REQUIRED_ON_MATERIAL_WORK
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
 representative_screens_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
 art_style_lock: ART-STYLE-01
@@ -119,6 +121,8 @@ android_device: NOT_RUN
 2026-08-28 사용자는 W6 단일 구현계약 사전검토의 권장 A안, **짧은 W6 decision-loop slice**, 를 승인했다. `WARD`/`FLOWER` target과 수치는 Frostbloom 사실이 아닌 generic prototype으로 남기며, 새 L2 owner는 `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`다. 이 Spec은 user review 뒤 한 번의 bundled implementation plan으로만 전환할 수 있다. 선택된 W6 이미지는 계속 planning reference only다.
 
 2026-08-28 사용자는 Notion 사용 중단을 명시했고, 이어 기존 Notion의 구조와 현재 작업물을 누락 없이 repository로 옮기도록 승인했다. audit는 PR #238의 merged main `1a30b9e0715b1d19e56e24f256f695b869369ca2`에서 readback까지 완료됐다. 현행 사람이 읽는 정본은 repository Markdown이 소유한다. Notion은 이제 historical discovery-only이며 write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`, audit: `docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md`.
+
+2026-08-28 사용자는 모든 실질 작업에 적대적 검토 루프, 최신 외부 조사, 실제 구현 가능성 재확인을 기본 게이트로 승인했다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. 이는 material work의 권장·write 전에 적용하며, L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop와 병합 후 readback을 요구한다.
 
 ## Workspace authority
 

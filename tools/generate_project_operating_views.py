@@ -36,11 +36,15 @@ def dashboard_text(adapter: dict, adapter_hash: str) -> str:
     current = adapter["current_state"]
     authority = adapter["workspace_authority"]
     release = adapter["base_release"]
+    validation = adapter["validation"]
     rows = [
         ("Base", f"v{release['version']} / {release['repository']}"),
         ("Current work", current["planning"]),
         ("Implementation", current["implementation"]),
         ("Next product gate", current["next_product_gate"]),
+        ("Material-work review gate", validation["adversarial_research_feasibility_gate"]),
+        ("External research", validation["external_research"]),
+        ("Implementation feasibility", validation["implementation_feasibility"]),
         ("Human / device / performance", f"{current['human_validation']} / {current['device_validation']} / {current['performance_validation']}"),
         ("Human-facing canon", authority["human_facing_canon"]),
         ("Project Home", authority["project_home"]),

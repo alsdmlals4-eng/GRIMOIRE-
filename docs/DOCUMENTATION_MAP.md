@@ -23,6 +23,8 @@ Current W6 decision-scene reference: `docs/planning/visual/FROSTBLOOM_W6_WARM_AC
 
 Current W6 L2 feature spec: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`. The user approved scope A, the short W6 decision-loop slice. The Spec owns the generic Product Root target correction, W6 data/UI/result/test seams, and user review gate before a bundled implementation plan. Its predecessor preflight remains `docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md`. Neither document authorizes Godot, runtime asset, or production image work.
 
+Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. Every material work unit runs fresh external research, actual project feasibility recheck, and adversarial review before a recommendation or write. L1 planning, implementation, PR, and canon correction require five full-scope loops and post-merge readback.
+
 ## Godot
 
 - `project.godot`

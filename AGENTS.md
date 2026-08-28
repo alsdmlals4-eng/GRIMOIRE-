@@ -37,6 +37,8 @@ w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICA
 w6_decision_loop_feature_spec_issue: 236
 w6_decision_loop_feature_spec_status: DRAFT_FOR_USER_SPEC_REVIEW__SCOPE_A_USER_APPROVED
 post_visual_lock_next_gate: W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN
+adversarial_research_feasibility_gate: docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md
+adversarial_research_feasibility_gate_status: USER_APPROVED_ACTIVE__REQUIRED_ON_MATERIAL_WORK
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
 product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
@@ -96,6 +98,7 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 13. 이번 승인 범위는 W6 decision-loop L2 기획서와 Visual 정본 교정이다. 이 L2 spec의 user review 뒤에만 bundled implementation plan을 작성한다. Task8/Godot 제품 구현은 별도 명시 요청이 필요하다. Visual 후보는 2026-08-28 사용자 사전 승인에 따라 아래 후보 생성 규칙 안에서 생성할 수 있으나, final lock·runtime 사용·production batch 확장은 사용자 확정이 필요하다.
 14. `TASK8_SPELL_USE_SCREEN`은 다음 제품 task locator이며 현재 범위의 구현 허가가 아니다.
 15. Visual candidate production은 coverage·current canon·actual/planned consumer·rights boundary를 먼저 읽는다. 2026-08-28 사용자 사전 승인에 따라 후보는 이미지별 재승인 없이 `TEXT_BRIEF → GENERATE_CANDIDATE → QA_AND_RECORD`로 진행한다. 한 번에 하나의 후보 또는 그 후보의 명시적 보정만 생성한다. `PROJECT_ASSET_APPROVED`, `VISUAL_DIRECTION_LOCK`, runtime 사용, production batch 확장은 사용자 확정 전 자동 승격하지 않는다.
+16. 모든 실질 작업은 `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`를 따른다. fresh external research check와 actual implementation-feasibility recheck, 적대적 공격/검증을 권장·write 전에 수행한다. L1 기획·implementation·PR·정본 교정에는 최소 5회의 full-scope loop와 post-merge readback을 적용한다.
 
 ## 프로젝트 코어
 

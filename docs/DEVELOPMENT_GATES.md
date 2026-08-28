@@ -19,6 +19,8 @@ workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 notion_policy: RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE
 repository_project_home: docs/PROJECT_HOME.md
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
+adversarial_research_feasibility_gate: docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md
+adversarial_research_feasibility_gate_status: USER_APPROVED_ACTIVE__REQUIRED_ON_MATERIAL_WORK
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 repo_wide_actions_supply_chain: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
@@ -72,6 +74,10 @@ latest user instruction
 ```
 
 Sheet와 Notion은 cold-start 선행조건이 아니다. 신규 상태는 GitHub branch/PR → exact-head verification → merge → merged-main readback → repository destination readback으로 닫는다.
+
+## Gate 0.5 — Adversarial / external research / feasibility
+
+모든 material work는 fresh external research check와 actual project feasibility recheck를 수행한 뒤 적대적 검토로 권장안·변경을 공격한다. L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop, findings 분류, 관련 회귀, merged-main destination readback까지 요구한다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`.
 
 ## Gate 1 — Product core preservation
 
