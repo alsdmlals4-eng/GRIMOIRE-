@@ -112,7 +112,7 @@ excluded_scope:
 | W6-VFY05 | R05 | GUT regression | Godot 4.7.1, `-s addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json -gexit`. | Local direct GUT 9.7.1: 4 scripts, 8 tests, 29 assertions, 0 failures. PR #245's formal GUT lane was skipped by its workflow condition, so no exact-head GUT-manifest claim is made. | PARTIAL__LOCAL_GUT_9_7_1_8_TESTS_29_ASSERTIONS_PASS__PR_FORMAL_LANE_SKIPPED |
 | W6-VFY06 | R08, R09 | Scene static/readback inspection | Godot editor / official Godot AI readback, 1280×720 GL Compatibility scene. | Korean text nodes, no W6 board binary binding, headings and controls are present. Target-resolution readability remains unobserved. | EDITOR_STATIC_READBACK_PASS__TARGET_RESOLUTION_READABILITY_NOT_RUN |
 | W6-VFY07 | R02, R08, R09 | Runtime visual inspection | Exact changed project, 1280×720 GL Compatibility runtime smoke. | Main scene launched with no task-related runtime errors. No device capture or human visual/readability observation exists. | RUNTIME_SMOKE_PASS_1280X720__VISUAL_READABILITY_DEVICE_NOT_RUN |
-| W6-VFY08 | R07 | Human usability observation | Approved W6 human script, not automation. | Player restates chosen value, remaining risk, unknown, and result causality. | NOT_RUN |
+| W6-VFY08 | R07 | Human usability observation | `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_HUMAN_OBSERVATION_SCRIPT_2026-08-29.md`, not automation. | Player restates chosen value, remaining risk, unknown, and result causality. | PREPARED_NOT_RUN |
 
 ## 6. Coverage gaps and evidence ceiling
 

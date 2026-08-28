@@ -70,5 +70,6 @@ base_promotion: NO_BASE_PROMOTION
 base_promotion_reason: >-
   The router repair is project-local recovery evidence and the Godot/GUT findings
   have one GRIMOIRE consumer. Base was read and validated but not changed.
+human_observation_script: docs/validation/W6_FROSTBLOOM_DECISION_LOOP_HUMAN_OBSERVATION_SCRIPT_2026-08-29.md
 next_required_gate: HUMAN_PLAYER_DEVICE_PERFORMANCE_ACCESSIBILITY_EXPORT_FULL_SLICE
 ```

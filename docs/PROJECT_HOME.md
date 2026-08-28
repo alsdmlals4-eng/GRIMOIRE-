@@ -87,7 +87,7 @@ The detailed source/page ledger, classifications, and migration completion rules
 ## 6. Current gates
 
 1. W6 L2 Spec과 L3 implementation은 사용자 승인 범위에서 구현됐고, Issue #242는 PR #245 merge `713bfbf`로 닫혔다. 현재 정확한 변경점 evidence는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
-2. 다음 W6 evidence gate는 Human/Player, device, performance, accessibility, export, full-slice 검증이다. W7, production asset batch, Task8 recovery는 범위 밖이다.
+2. 다음 W6 evidence gate는 Human/Player, device, performance, accessibility, export, full-slice 검증이다. 사람 관찰은 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_HUMAN_OBSERVATION_SCRIPT_2026-08-29.md`로 준비됐지만 아직 실행되지 않았다. W7, production asset batch, Task8 recovery는 범위 밖이다.
 3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is automated/runtime-smoke verified but Human/player/device/performance is not verified.
 4. Keep `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING` separate; do not treat documentation or automated evidence as Human/Player validation.
 
