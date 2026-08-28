@@ -27,7 +27,7 @@ current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: FROSTBLOOM_W6_KEY_DECISION_AGE_REFINEMENT_GENERATED_EXPLORATION__FINAL_LOCK_PENDING
+visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__CROSS_DISCIPLINE_REVIEW_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -39,10 +39,11 @@ frostbloom_w6_visual_brief: docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIO
 frostbloom_w6_visual_brief_state: SUPERSEDED_BY_USER_APPROVED_WARM_ACADEMY_TONE_LOCK
 frostbloom_w6_visual_candidate_issue: 223
 frostbloom_w6_visual_candidate_owner: docs/planning/visual/FROSTBLOOM_W6_PRESERVATION_PRIORITY_VISUAL_BRIEF_2026-08-28.md
-frostbloom_w6_key_decision_visual_issue: 229
+frostbloom_w6_key_decision_visual_issue: 231
 frostbloom_w6_key_decision_visual_owner: docs/planning/visual/FROSTBLOOM_W6_WARM_ACADEMY_CORE_SCENE_BOARD_BRIEF_2026-08-28.md
-frostbloom_w6_key_decision_visual_state: GENERATED_EXPLORATION__AGE_REFINEMENT_FINAL_LOCK_PENDING
+frostbloom_w6_key_decision_visual_state: USER_APPROVED_PLANNING_REFERENCE_ONLY
 frostbloom_w6_key_decision_visual_age_read: YOUNG_ADULT_ACADEMY_RESEARCHER__USER_DIRECTED_REFINEMENT
+post_visual_lock_next_gate: CROSS_DISCIPLINE_PLANNING_REVIEW__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
 representative_screen_decision: GM-REPRESENTATIVE-SCREENS-20260825-01
 art_style_lock: ART-STYLE-01
@@ -153,7 +154,8 @@ android_device: NOT_RUN
 - PR #217 greenhouse spirit idle seed: **PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING** — 투명 PNG와 provenance는 존재하지만 battle Scene binding·Godot import·runtime evidence는 아직 없다.
 - Frostbloom W6 preservation priority: **USER_APPROVED_ACTIVE_PLANNING_ONLY** — `희귀 묘목 우선`과 `온실 구조 우선`은 같은 위협을 서로 다른 방식으로 보존하는 두 유효한 대상 우선순위다. 기존 Target/Preview/Explicit Cast/Result authority를 재사용하며, 현재 Product Root의 `WARD`/`FLOWER`는 후속 Frostbloom 구현 전의 thin prototype role label로 남긴다.
 - Frostbloom W6 visual board: **SUPERSEDED_BY_USER_APPROVED_WARM_ACADEMY_TONE_LOCK** — 이전 생성 후보는 user-rejected historical exploration이다. 현재 시각 톤은 `GM-VISUAL-TONE-20260828-01`: 학습자 주도·따뜻한 마법학교 실습이며, 사용자 제공 이미지는 reference-only이고 runtime asset이 아니다.
-- Frostbloom W6 key-decision scene: **GENERATED_EXPLORATION__AGE_REFINEMENT_FINAL_LOCK_PENDING** — 묘목(좌)과 균열 구조물/등불(우)의 동등한 보존 가치를 보여주는 통합 planning scene이다. 사용자가 요청한 대로 얼굴을 숨긴 학습자만 성인 초년 마법학교 연구생으로 보정했으며, 다른 구도·상태·환경은 바꾸지 않았다. full five-panel board는 생성 구조 QA에서 `PARTIAL`로 남고, 정확한 흐름/결과 계약은 구조화된 brief가 소유한다.
+- Frostbloom W6 key-decision scene: **USER_APPROVED_PLANNING_REFERENCE_ONLY** — 사용자는 이 한 장만 W6 계획용 시각 기준으로 확정했다. 묘목(좌)과 균열 구조물/등불(우)의 동등한 보존 가치와 얼굴을 숨긴 성인 초년 마법학교 연구생의 직접 필기를 보존한다. 다른 이미지·runtime asset·Godot 구현·character canon·Human/Device validation은 확정하지 않았다. full five-panel board는 생성 구조 QA에서 `PARTIAL`로 남고, 정확한 흐름/결과 계약은 구조화된 brief가 소유한다.
+- 다음 기획 gate: **CROSS_DISCIPLINE_PLANNING_REVIEW__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING** — 잔여 기획·검토를 먼저 끝내고 하나의 구현 계약으로 묶는다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
 - 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 후보 생성: **USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY** — canon·consumer·rights preflight 후 후보는 재승인 없이 생성하며, final lock·runtime use·production batch만 사용자 확정이 필요하다.
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**

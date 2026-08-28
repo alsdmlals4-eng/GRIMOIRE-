@@ -3,14 +3,15 @@
 ```yaml
 artifact_id: PROJECT_CORE_SCENE_VISUAL_BOARD_FROSTBLOOM_W6_02
 mode: planning_visualization
-status: GENERATED_EXPLORATION__AGE_REFINEMENT_FINAL_LOCK_PENDING
-issue: 229
+status: USER_APPROVED_PLANNING_REFERENCE_ONLY
+issue: 231
 project_relation: GRIMOIRE
 decision_ids:
   - GM-FROSTBLOOM-W6-PRESERVATION-PRIORITY-01
   - GM-VISUAL-TONE-20260828-01
   - GM-VISUAL-DIRECTION-20260825-01
   - ART-STYLE-01
+  - GM-FROSTBLOOM-W6-KEY-DECISION-VISUAL-01
 consumer_kind: PLANNED_GAME_SURFACE
 consumer_surface: Frostbloom W6 target-preview and result-flow visual interpretation
 primary_use: player-experience and visual-direction review
@@ -22,7 +23,8 @@ selected_candidate_output_locator: C:/Users/user/.codex/generated_images/01a0455
 selected_candidate_dimensions: 1672x941
 selected_candidate_bytes: 2418076
 selected_candidate_sha256: 35B746E7BBA163B8BD309CFFA44876F0E202AC7E0D98A6C4D858D7ABCFF3DDFA
-selected_candidate_status: GENERATED_EXPLORATION__IN_REVIEW
+selected_candidate_status: USER_APPROVED_PLANNING_REFERENCE_ONLY
+next_gate: CROSS_DISCIPLINE_PLANNING_REVIEW__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING
 ```
 
 ## Purpose
@@ -60,7 +62,7 @@ Asset type: one planning-only five-panel project core scene visual board for a m
 Primary request: Create one original 16:9 five-panel storyboard of a warm magical-academy greenhouse practicum. A learner observes a local preservation problem, writes a luminous glyph directly into an open book, composes a five-point spell circuit as handwriting/light, chooses fairly between rare frost-damaged seedlings and a strained glass-and-metal greenhouse support, then sees two gentle mixed consequences and records what was learned. The first impression is curiosity, care, and growing competence—not a hidden mastermind, secret society, or villain scene.
 Input images: user-provided references are selection evidence for learner-led pacing, hopeful discovery, and friendly academy atmosphere only. Do not copy their people, faces, costumes, logos, text, UI skins, frames, exact panel layout, city premise, hooded figure, or composition.
 Scene/backdrop: arched old-academy glasshouse; living plants and books; rare pale frost-touched seedlings; one visibly stressed but not catastrophic support; clear breathable blue dusk/night through glass; warm lantern pools.
-Subject: a small non-identifiable learner viewpoint—hand, shoulder, or back only—performing direct magical writing. No character portrait or named mentor.
+Subject: a small non-identifiable young-adult learner viewpoint—hand, shoulder, or back only—performing direct magical writing. No character portrait or named mentor.
 Style/medium: original Soft Storybook Cel 2D Hybrid, clean anime-cel character edge language over storybook greenhouse painting; deep navy and muted aged gold, parchment/book texture, precise blue-to-blue-violet magic accents.
 Composition/framing: five coherent panels in reading order: observe, direct writing, five-point circuit, equal preservation choice, paired mixed reflection. At mobile scale use clear silhouettes and quiet lower/side zones for editable live UI, but draw no UI.
 Lighting/mood: safe academy warmth against open blue depth, a solvable local problem, responsible magical learning, gentle wonder.
@@ -112,7 +114,35 @@ The user found the first valid W6 key-decision candidate's learner too young. Th
 
 The supplied visual references were used only to calibrate adult academic age and body-proportion read. They were not copied as character identity, face, costume, watcher, layout, or project asset.
 
-The only next approval question is whether to make `PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02` the planning visual reference for the W6 decision surface. A yes does not promote it to a runtime asset or implementation.
+## Final planning-reference lock
+
+```yaml
+decision_id: GM-FROSTBLOOM-W6-KEY-DECISION-VISUAL-01
+status: USER_APPROVED_PLANNING_REFERENCE_ONLY
+approved_at: 2026-08-28
+selected_candidate: PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02
+approved_scope: W6_KEY_DECISION_SCENE_VISUAL_GUIDANCE_ONLY
+excluded_scope:
+  - all_other_visual_candidates
+  - global_visual_direction_replacement
+  - runtime_asset_approval
+  - Godot_scene_or_UI_implementation
+  - production_asset_batch
+  - named_character_canon
+  - rights_clearance
+  - human_device_player_validation
+next_gate: CROSS_DISCIPLINE_PLANNING_REVIEW__BUNDLED_IMPLEMENTATION_CONTRACT_PENDING
+```
+
+| Decision lens | Recorded result |
+| --- | --- |
+| Adopt | Warm learner-led academy practicum; blue-night / aged-gold greenhouse grammar; direct writing; equal visual value for frost seedlings and strained structure; calm young-adult researcher silhouette. |
+| Adapt | The W6 reference shows one key-decision moment only. Exact player state, writing, target preview, result copy, numeric costs, and controls stay in structured text and later live UI. |
+| Reject | Hooded watcher, secret-villain framing, hostile entity, black/red threat dominance, copied people/costumes/UI, and the earlier too-young silhouette. |
+| Differentiation | The selling image is not combat spectacle: it makes a solvable care decision legible before casting, then reserves the mixed outcome for the actual flow. |
+| Remaining uncertainty | Five-step board readability at mobile gameplay scale, live-UI composition, runtime implementation, asset provenance for release, and Human/Device/Player evidence remain unverified. |
+
+This lock establishes a planning reference only. It does not authorize image batches or implementation. The next action is to complete the remaining cross-discipline planning and adversarial review, then prepare one bundled implementation contract.
 
 ## Project Incident / Solution / Lesson
 
