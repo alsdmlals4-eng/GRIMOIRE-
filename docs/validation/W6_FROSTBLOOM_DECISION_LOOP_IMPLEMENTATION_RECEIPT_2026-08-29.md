@@ -58,6 +58,7 @@ full_vertical_slice: NOT_RUN
 | A direct headless run could not load the tracked greenhouse backdrop after local generated import sidecars were absent. | `RECOVERED_LOCAL_RUNTIME_PREREQUISITE` | Read Git ownership: the `.webp` source was present on `HEAD` and `origin/main`; regenerate only the local Godot import cache, without adding an asset or changing the source binary. | Reimport exit 0; custom runner green. |
 | The original W6 context checked two targets but not the exact required target ID pair. | `MUST_FIX` | Require `FROST_SEEDLINGS` and `GREENHOUSE_STRUCTURE`; add a malformed-ID regression. | Custom runner green with 2,051 assertions. |
 | The component-sheet CI still treated every reusable component as English-only, which conflicted with the approved Korean live W6 surface. | `MUST_FIX` | Restrict the English-safe guard to CI capture sheets; preserve the separate Korean font rights/readability gate as `NOT_RUN`. | Exact-head CI rerun required. |
+| W6 card height was applied to generic Component Sheet B fixture cards, causing its 1280×720 capture bounds to clip. | `MUST_FIX` | Keep the original compact height for generic `id/label/hint` cards; reserve the taller card only for W6 semantic payloads. | Custom runner green; CI capture rerun required. |
 
 ```yaml
 base_promotion: NO_BASE_PROMOTION

@@ -141,6 +141,7 @@ implementation_incidents:
   - The historical GUT command used an unsupported `--script`/plain config form. The documented `-s` plus `res://.gutconfig.json` form passed.
   - Local generated Godot import sidecars were absent while the tracked greenhouse `.webp` source remained intact. Reimport restored the local runtime prerequisite without changing or adding a source asset.
   - Initial context validation accepted any two unique IDs. The exact W6 target pair is now required and covered by a malformed-ID regression.
+  - W6 card height was initially applied to generic Component Sheet B fixture cards, which clipped the 1280×720 CI capture. Generic fixture cards now retain their compact height; only W6 semantic cards use the larger layout.
 base_promotion: NO_BASE_PROMOTION
 base_promotion_reason: Godot's export guidance already documents this general Resource/FileAccess distinction, and this work has only one project-specific consumer with no cross-project validation.
 ```

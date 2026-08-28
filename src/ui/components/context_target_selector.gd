@@ -32,7 +32,8 @@ func _rebuild_buttons() -> void:
     for target in _targets:
         var button := Button.new()
         var target_id := StringName(str(target["id"]))
-        button.custom_minimum_size = Vector2(48, 112)
+        var has_w6_semantics := target.has("protected_value") or target.has("forgone_or_remaining")
+        button.custom_minimum_size = Vector2(48, 112 if has_w6_semantics else 64)
         button.theme_type_variation = &"AcademyButtonPrimary" if target_id == _selected_id else &"AcademyButton"
         var button_text := "%s\n%s" % [str(target["label"]), str(target["hint"])]
         if target.has("protected_value"):
