@@ -28,11 +28,11 @@ notion_migration_state: MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
-current_user_work_scope: SPELL_WORKFLOW_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE
-product_implementation_authorized_by_current_user_work_scope: true
+current_user_work_scope: FROSTBLOOM_W6_L3_IMPLEMENTATION_CONTRACT_DOCUMENTATION_ONLY
+product_implementation_authorized_by_current_user_work_scope: false
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__DECISION_LOOP_SPEC_REVIEW_PENDING
+visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__L3_CONTRACT_READY__IMPLEMENTATION_AUTHORIZATION_PENDING
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -48,8 +48,12 @@ frostbloom_w6_key_decision_visual_issue: 231
 w6_bundled_contract_preflight: docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md
 w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md
 w6_decision_loop_feature_spec_issue: 236
-w6_decision_loop_feature_spec_status: DRAFT_FOR_USER_SPEC_REVIEW__SCOPE_A_USER_APPROVED
-post_visual_lock_next_gate: W6_DECISION_LOOP_FEATURE_SPEC_USER_REVIEW__THEN_BUNDLED_IMPLEMENTATION_PLAN
+w6_decision_loop_feature_spec_status: USER_APPROVED_L2__L3_IMPLEMENTATION_CONTRACT_READY
+w6_decision_loop_traceability_packet: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md
+w6_decision_loop_implementation_plan: docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md
+w6_decision_loop_l3_issue: 242
+w6_decision_loop_implementation_authority: NONE__USER_EXPLICIT_AUTHORIZATION_REQUIRED
+post_visual_lock_next_gate: W6_L3_IMPLEMENTATION_AUTHORIZATION__THEN_EXACT_HEAD_GODOT_CONTRACT
 adversarial_research_feasibility_gate: docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md
 adversarial_research_feasibility_gate_status: USER_APPROVED_ACTIVE__REQUIRED_ON_MATERIAL_WORK
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
@@ -118,7 +122,7 @@ android_device: NOT_RUN
 
 2026-08-28 사용자는 첫 Frostbloom 주요 해결의 우선순위를 **희귀 묘목 우선 vs 온실 구조 우선**으로 명시 승인했다. 이는 W6의 기존 `Target → Bounded Consequence Forecast → Explicit Commit → Result/Grimoire`를 바꾸지 않는 child refinement이며, 자동 Target/Commit·Best Route·숨은 정답을 추가하지 않는다. Godot/production asset 구현과 사람·기기 검증은 아직 승인·실행되지 않았다.
 
-2026-08-28 사용자는 W6 단일 구현계약 사전검토의 권장 A안, **짧은 W6 decision-loop slice**, 를 승인했다. `WARD`/`FLOWER` target과 수치는 Frostbloom 사실이 아닌 generic prototype으로 남기며, 새 L2 owner는 `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`다. 이 Spec은 user review 뒤 한 번의 bundled implementation plan으로만 전환할 수 있다. 선택된 W6 이미지는 계속 planning reference only다.
+2026-08-28 사용자는 W6 L2 Spec 검토 게이트에서 `진행해`로 승인을 남겼다. 범위는 여전히 **짧은 W6 decision-loop slice**이며, `WARD`/`FLOWER`와 수치 차이는 Frostbloom 정본이 아닌 generic prototype이다. L2 owner는 `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`, L3 추적/계획은 `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md`와 `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md`, 후속 Issue는 #242다. Godot 구현은 여전히 별도 명시 승인 전에는 시작하지 않는다. 선택된 W6 이미지는 계속 planning reference only다.
 
 2026-08-28 사용자는 Notion 사용 중단을 명시했고, 이어 기존 Notion의 구조와 현재 작업물을 누락 없이 repository로 옮기도록 승인했다. audit는 PR #238의 merged main `1a30b9e0715b1d19e56e24f256f695b869369ca2`에서 readback까지 완료됐다. 현행 사람이 읽는 정본은 repository Markdown이 소유한다. Notion은 이제 historical discovery-only이며 write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`, audit: `docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md`.
 

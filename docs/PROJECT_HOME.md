@@ -39,9 +39,10 @@ Known 2 / Unknown 2 / Lens 1
 
 - 현재 W6 범위는 사용자가 고른 A안, **짧은 decision-loop vertical slice**다.
 - 현재 Product Root의 `WARD`/`FLOWER`와 수치 차이는 Frostbloom 사실이 아닌 generic technical prototype이다.
-- L2 owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`.
+- L2 owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md` (`USER_APPROVED_L2`).
+- L3 traceability/implementation plan: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md`, `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md` (Issue #242).
 - W6 전체 23–30분 계약과 W7/결과 연결: `docs/planning/FROSTBLOOM_W6_BOUNDED_CONSEQUENCE_FORECAST_01_APPROVAL_2026-08-20.md`, `docs/planning/FROSTBLOOM_FIRST_SESSION_PERSISTENT_HANDOFF_ELASTIC_BUFFER_01_APPROVAL_2026-08-20.md`, `docs/planning/FROSTBLOOM_RESULT_GRIMOIRE_CAUSAL_DEBRIEF_01_APPROVAL_2026-08-20.md`.
-- 지금은 L2 사용자 검토 전이므로 Godot 구현, runtime asset 사용, production batch는 시작하지 않는다.
+- L2 검토와 L3 계획은 완료됐지만, Godot 구현, runtime asset 사용, production batch는 별도 명시 승인 전 시작하지 않는다.
 
 ## 3. 시각 방향과 Asset 경계
 
@@ -75,7 +76,7 @@ This preserves the former Notion Home's useful navigation shape without making a
 
 | Former human domain | repository owner(s) |
 | --- | --- |
-| Direction · Planning | `docs/ACTIVE_CONTEXT.md`, `docs/planning/`, `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md` |
+| Direction · Planning | `docs/ACTIVE_CONTEXT.md`, `docs/planning/`, W6 L2 Spec, W6 L3 Packet, W6 implementation plan |
 | Magic Systems · Learning | `docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`, `docs/planning/AI_INDIE_PATTERN_ADOPTION_2026-08-24.md`, `src/core/`, `data/`, `tests/` |
 | Visual · UX · Components | `docs/planning/visual/`, `docs/planning/ART_BIBLE_01_APPROVAL_2026-08-01.md`, `assets/manifests/`, `assets/reference/visual/` |
 | Production · Validation | `docs/ACTIVE_CONTEXT.md`, `docs/validation/`, `docs/testing/`, `tests/`, `tools/` |
@@ -85,8 +86,8 @@ The detailed source/page ledger, classifications, and migration completion rules
 
 ## 6. Current gates
 
-1. User review of the W6 L2 feature spec.
-2. Only after that review, write one bundled implementation plan with exact data/UI/test contracts.
+1. W6 L2 Spec과 L3 traceability/implementation plan은 사용자 승인된 문서 범위까지 완료됐다; 후속 Issue는 #242다.
+2. Godot implementation authorization is required before the Resource, Scene, code, or test plan is executed.
 3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is technically `PARTIAL`, not runtime-verified.
 4. Keep `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING` separate; do not treat documentation or automated evidence as Human/Player validation.
 

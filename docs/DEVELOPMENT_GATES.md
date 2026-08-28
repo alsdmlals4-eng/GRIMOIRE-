@@ -21,6 +21,12 @@ repository_project_home: docs/PROJECT_HOME.md
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 adversarial_research_feasibility_gate: docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md
 adversarial_research_feasibility_gate_status: USER_APPROVED_ACTIVE__REQUIRED_ON_MATERIAL_WORK
+w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md
+w6_decision_loop_feature_spec_status: USER_APPROVED_L2__L3_IMPLEMENTATION_CONTRACT_READY
+w6_decision_loop_traceability_packet: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md
+w6_decision_loop_implementation_plan: docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md
+w6_decision_loop_l3_issue: 242
+w6_decision_loop_implementation_authority: NONE__USER_EXPLICIT_AUTHORIZATION_REQUIRED
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 repo_wide_actions_supply_chain: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
@@ -113,6 +119,8 @@ current_runtime_role: DEVELOPMENT_PRODUCT_ROOT_ENTRY
 current_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
 automated_evidence: AVAILABLE_DO_NOT_PROMOTE_TO_HUMAN_DEVICE_PERFORMANCE_OR_EXPORT_PASS
 ```
+
+W6 L2 user review and the L3 implementation-plan document are complete. Executing the one W6 contract is a distinct gate: `W6_L3_IMPLEMENTATION_AUTHORIZATION_REQUIRED`. It may reuse the Task9 Product Root foundation but must not treat Task9 automation as W6 or Human evidence.
 
 Task8은 Task5 Stage3의 thin UI consumer였으며, 다음 compatibility locator는 기존 consumer 검색을 위해 역사적으로 유지한다.
 

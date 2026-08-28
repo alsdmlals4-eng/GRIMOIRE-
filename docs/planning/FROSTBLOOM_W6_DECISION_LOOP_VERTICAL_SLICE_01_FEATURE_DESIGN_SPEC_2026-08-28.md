@@ -1,6 +1,6 @@
 # Frostbloom W6 Decision Loop Vertical Slice — Feature Design Spec
 
-> 사용자에게 승인된 W6 범위를 플레이어 경험 계약으로 정리한 L2 설계 초안이다. 상세 규칙은 `DRAFT_FOR_USER_SPEC_REVIEW`이며, Godot 구현·런타임 이미지 사용·production asset batch를 승인하지 않는다.
+> 사용자에게 승인된 W6 범위를 플레이어 경험 계약으로 정리한 L2 설계 정본이다. L3 추적 Packet과 구현계획은 작성되었지만, 이 문서는 Godot 구현·런타임 이미지 사용·production asset batch를 승인하지 않는다.
 
 ## 0. Identity & authority
 
@@ -8,12 +8,14 @@
 feature_id: FTR-FROSTBLOOM-W6-DECISION-LOOP-01
 feature_name: Frostbloom W6 보존 의사결정 루프
 work_level: L2
-status: DRAFT_FOR_USER_SPEC_REVIEW
+status: USER_APPROVED_L2__L3_IMPLEMENTATION_CONTRACT_READY
 scope_decision: USER_APPROVED_OPTION_A
 scope_decision_source: 2026-08-28 user message "권장안대로 진행"
 issue: 236
+successor_l3_issue: 242
+user_spec_approval_source: 2026-08-28 user message "진행해" after the explicit L2 review gate
 owner: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md
-source_main_commit: b2740ed63adce56c6de202c9871222f546c96840
+source_main_commit: 7019174adeece3d1f8bcd7e8e249856389b1aa5d
 created_at_kst: 2026-08-28
 related_decision_ids:
   - GM-SPELL-WORKFLOW-UI-V2-01
@@ -23,7 +25,8 @@ related_decision_ids:
   - GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01
   - GM-FROSTBLOOM-W6-KEY-DECISION-VISUAL-01
 related_visual_reference: PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02
-adversarial_review: FIVE_PASS_STRUCTURAL_PASS__USER_REVIEW_PENDING
+adversarial_review: FIVE_PASS_STRUCTURAL_PASS__L3_PLAN_REVIEWED
+implementation_authority: NONE__USER_EXPLICIT_AUTHORIZATION_REQUIRED
 ```
 
 | 이 Spec의 책임 | 다른 정본의 책임 |
@@ -215,7 +218,22 @@ W6TargetDefinition:
     unknown: Korean live UI string
 ```
 
-Exact resource/JSON path and serialization owner are `TBD_IN_BUNDLED_IMPLEMENTATION_CONTRACT`. The implementation must move generic hard-coded target dictionaries behind **one project-owned W6 data owner**, not duplicate them across root, selector, and receipt.
+### L3 data owner default
+
+```yaml
+content_resource: res://data/frostbloom/w6/w6_decision_context_01.tres
+content_scripts:
+  - res://src/core/content/frostbloom_w6_decision_context.gd
+  - res://src/core/content/frostbloom_w6_target_definition.gd
+runtime_binding: SpellWorkflowProductRoot.w6_context
+authoring: GODOT_HIGODOT_ONLY_FOR_PERSISTENT_RESOURCE_AND_SCENE_CHANGES
+owner_rule: Resource → Product Root adapter → existing selector/forecast/receipt; no duplicated target dictionaries
+initial_target_difficulty: 3
+initial_target_mana_cost: 3
+numeric_status: PLAYTEST_TUNING_REQUIRED
+```
+
+The L3 contract selects a typed Godot `Resource`, not direct `FileAccess` JSON loading: Godot’s export documentation requires explicit inclusion handling for non-resource file reads, while the W6 context needs one scene-bound data owner. This does not create a new transaction engine or approve actual authoring before a separate user authorization.
 
 ## 7. Feedback, outcomes & edge cases
 
@@ -251,7 +269,7 @@ Exact resource/JSON path and serialization owner are `TBD_IN_BUNDLED_IMPLEMENTAT
 
 ```yaml
 runtime_authority: Existing SpellWorkflowCoordinator + AtomicSpellUseService + AtomicResultLedger
-w6_content_authority: one project-owned structured W6 target definition, path TBD
+w6_content_authority: one typed Godot Resource assigned to Product Root at res://data/frostbloom/w6/w6_decision_context_01.tres
 persistent_authority: NOT_IMPLEMENTED_BY_THIS_SPEC
 authoring_source: repository structured data/text, never baked image text
 numeric_status: PLAYTEST_TUNING_REQUIRED
@@ -359,13 +377,13 @@ Rollback returns to the current Product Root generic technical vertical slice wi
 | decision | status | recommended default | blocking |
 | --- | --- | --- | --- |
 | W6-OD01: scope A | CONFIRMED | user selected W6 decision-loop slice | no |
-| W6-OD02: detailed spec approval | USER_SPEC_REVIEW_REQUIRED | review this document before L3 plan | yes |
-| W6-OD03: exact first composition scenario | RECOMMENDED_DEFAULT | existing minimal glyph/circuit foundation; no new repertoire/naming grammar | yes for code |
-| W6-OD04: exact W6 data path/schema validation | RECOMMENDED_DEFAULT | one structured project-owned W6 owner; no duplication | yes for code |
-| W6-OD05: exact Mana/difficulty values | RECOMMENDED_DEFAULT | matched visible values until human tuning | yes for code |
-| W6-OD06: runtime art/audio/VFX consumer | USER_DECISION_REQUIRED | none in this slice contract | no for logic/UI |
+| W6-OD02: detailed spec approval | USER_APPROVED | 2026-08-28 user message `진행해` after review gate | no |
+| W6-OD03: exact first composition scenario | APPROVED_DEFAULT_FOR_L3 | existing minimal glyph/circuit foundation; no new repertoire/naming grammar | no |
+| W6-OD04: exact W6 data path/schema validation | APPROVED_DEFAULT_FOR_L3 | one typed Godot Resource at `res://data/frostbloom/w6/w6_decision_context_01.tres`; no duplication | no |
+| W6-OD05: exact Mana/difficulty values | APPROVED_RECOMMENDED_DEFAULT | matched `difficulty: 3`, `mana_cost: 3` until human tuning | no |
+| W6-OD06: runtime art/audio/VFX consumer | NOT_APPLICABLE_TO_L3_CONTRACT | none in this slice contract | no |
 
-After `W6-OD02` is approved, create one L3 traceability packet and one implementation plan linking this Spec, `W6-R01`–`W6-R09`, `W6-AC01`–`W6-AC08`, existing transaction regressions, target-resolution Godot inspection, and human usability evidence. That implementation plan must remain one W6 contract; it must not absorb Task8 recovery, the 46-minute session, or a production asset batch.
+The L3 packet and plan are now `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md` and `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md`. They remain one W6 contract and do not absorb Task8 recovery, the 46-minute session, or a production asset batch. Actual Godot implementation still requires a separate explicit user authorization.
 
 ## Final adversarial checklist
 
@@ -377,7 +395,8 @@ After `W6-OD02` is approved, create one L3 traceability packet and one implement
 - [x] Existing coordinator, atomic use, and ledger remain the only transaction authority.
 - [x] Planning visual stays planning-only; no asset/right/evidence promotion is implied.
 - [x] Human/device/performance/full-slice claims remain `NOT_RUN`.
-- [ ] User review is required before an implementation plan.
+- [x] User review approved the L2 Spec before the L3 plan was written.
+- [ ] User authorization is required before executing the L3 Godot implementation contract.
 
 ## Five-pass adversarial review
 
@@ -387,6 +406,16 @@ After `W6-OD02` is approved, create one L3 traceability packet and one implement
 | 2 | 두 카드가 실제로 하나의 hidden answer를 만들거나 target 변경이 비용을 소비하는가 | target hierarchy와 transaction boundary가 서로 다른 layer에 있어 drift 가능 | equal information/value rule, target-switch no-mutation rule, explicit exactly-once regression requirement | PASS |
 | 3 | `Unknown`이 숨은 Mana/success penalty 또는 receipt의 사후 훈계가 되는가 | forecast의 수치와 narrative boundary가 혼동될 위험 | `W6-R03`, preview/result parity test, global grade/moral score ban | PASS |
 | 4 | planning visual을 runtime art·character canon·rights/runtime evidence로 오해하는가 | target-resolution acceptance wording이 binary 사용으로 읽힐 여지 | `W6-AC08`을 visual **grammar**로 한정하고 planning-board binary non-use를 명시 | PASS |
-| 5 | scope가 full 46-minute session/Task8 recovery/asset batch로 퍼지거나 Notion workflow가 재유입하는가 | 과거 문서와 attached master-GDD instruction이 범위를 넓힐 수 있음 | one-scenario cut line, L3-before-code gate, repository-only retirement owner, attachment reference-only classification | PASS |
+| 5 | scope가 full 46-minute session/Task8 recovery/asset batch로 퍼지거나 Notion workflow가 재유입하는가 | 과거 문서와 attached master-GDD instruction이 범위를 넓힐 수 있음 | one-scenario cut line, L3 plan before code, repository-only retirement owner, attachment reference-only classification | PASS |
 
-이 5회 검토는 설계 구조의 `PASS`다. 사람의 이해·재미·기기 가독성·성능 evidence는 계속 `NOT_RUN`이며, user spec review를 대체하지 않는다.
+## L3 incident / solution / lesson
+
+```yaml
+incident: Product Root duplicates generic target dictionaries, and a direct JSON/FileAccess proposal would require export inclusion handling that the W6 slice does not otherwise need.
+solution: Bind one typed W6 Resource to Product Root and derive target cards, forecast copy, and receipt payload from it while preserving the existing transaction authorities.
+lesson: Runtime scenario meaning should have one export-safe structured owner; scene-local duplicate dictionaries make player-facing content drift likely.
+base_promotion: NO_BASE_PROMOTION
+base_promotion_reason: The general Godot Resource/FileAccess trade-off is already covered by official engine guidance and has only one GRIMOIRE consumer here.
+```
+
+이 5회 검토는 설계 구조의 `PASS`다. 사람의 이해·재미·기기 가독성·성능 evidence는 계속 `NOT_RUN`이며, L3 문서는 code/runtime pass를 대체하지 않는다.
