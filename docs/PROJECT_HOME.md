@@ -42,7 +42,7 @@ Known 2 / Unknown 2 / Lens 1
 - L2 owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md` (`USER_APPROVED_L2`).
 - L3 traceability/implementation plan: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md`, `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md` (Issue #242).
 - W6 전체 23–30분 계약과 W7/결과 연결: `docs/planning/FROSTBLOOM_W6_BOUNDED_CONSEQUENCE_FORECAST_01_APPROVAL_2026-08-20.md`, `docs/planning/FROSTBLOOM_FIRST_SESSION_PERSISTENT_HANDOFF_ELASTIC_BUFFER_01_APPROVAL_2026-08-20.md`, `docs/planning/FROSTBLOOM_RESULT_GRIMOIRE_CAUSAL_DEBRIEF_01_APPROVAL_2026-08-20.md`.
-- L2 검토와 L3 계획은 완료됐지만, Godot 구현, runtime asset 사용, production batch는 별도 명시 승인 전 시작하지 않는다.
+- 사용자가 2026-08-29에 W6 Godot 구현을 승인했다. 현재 Resource·Scene·코드·자동 검증·1280×720 런타임 스모크는 구현됐지만, runtime asset 사용/production batch는 시작하지 않았고 Human/Device/Performance/Export/Full Slice는 여전히 `NOT_RUN`이다. 증거는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
 
 ## 3. 시각 방향과 Asset 경계
 
@@ -64,7 +64,7 @@ The visual candidate policy is user-preauthorized for a single candidate/refinem
 | Layer | confirmed state | boundary |
 | --- | --- | --- |
 | Product Root | `res://src/ui/spell_workflow/spell_workflow_product_root.tscn` is the main development entry | foundation flow only; generic WARD/FLOWER is not W6 canon |
-| Core systems | direct glyph input, FIVE_POINT_STAR circuit, explicit target/cast, atomic result receipt | existing runtime/automated evidence does not prove the W6 feature contract |
+| Core systems | direct glyph input, FIVE_POINT_STAR circuit, explicit target/cast, atomic result receipt, W6 typed context Resource | W6 automated and runtime-smoke evidence exists; it does not prove Human/player/device/performance quality |
 | Runtime visuals | common UI SVGs, six glyph PNGs, and greenhouse field base have consumers | visual completeness/readability is not proven |
 | Automated evidence | automated/component evidence exists; fresh exact checks must be run per change | not Human/player/device/performance proof |
 | Human usability / Player Experience | `NOT_RUN` | user validation remains required |
@@ -86,9 +86,9 @@ The detailed source/page ledger, classifications, and migration completion rules
 
 ## 6. Current gates
 
-1. W6 L2 Spec과 L3 traceability/implementation plan은 사용자 승인된 문서 범위까지 완료됐다; 후속 Issue는 #242다.
-2. Godot implementation authorization is required before the Resource, Scene, code, or test plan is executed.
-3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is technically `PARTIAL`, not runtime-verified.
+1. W6 L2 Spec과 L3 implementation은 사용자 승인 범위에서 구현됐고, Issue는 #242다. 현재 정확한 변경점 evidence는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
+2. 다음 구현 게이트는 PR exact-head checks와 safe merge다. W7, production asset batch, Task8 recovery는 범위 밖이다.
+3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is automated/runtime-smoke verified but Human/player/device/performance is not verified.
 4. Keep `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING` separate; do not treat documentation or automated evidence as Human/Player validation.
 
 ## 7. Reading and update rules

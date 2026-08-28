@@ -24,12 +24,21 @@ class FakeCoordinator:
         return {"status": &"USED", "use_transaction_id": use_transaction_id}
 
 func run(case) -> void:
+    var screen_source := FileAccess.get_file_as_string(SCREEN_SCENE_PATH)
+    var selector_source := FileAccess.get_file_as_string("res://src/ui/components/context_target_selector.tscn")
+    var commit_bar_source := FileAccess.get_file_as_string("res://src/ui/components/commit_bar.tscn")
+    case.assert_false(screen_source.contains("COMPLETED SPELL"), "W6 spell-use screen has no stale English completed-spell label")
+    case.assert_false(selector_source.contains("CONTEXT TARGET"), "W6 selector has no stale English target title")
+    case.assert_false(selector_source.contains("Choose a concrete world target. No route recommendation."), "W6 selector has no stale English target hint")
+    case.assert_false(screen_source.contains("SELECT A TARGET"), "W6 spell-use screen has no stale English preview prompt")
+    case.assert_false(screen_source.contains("CANCEL"), "W6 spell-use screen has no stale English cancel label")
+    case.assert_false(commit_bar_source.contains("COMMIT"), "W6 commit bar has no stale English cast label")
     var packed_scene = load(SCREEN_SCENE_PATH)
     case.assert_true(packed_scene != null and packed_scene.can_instantiate(), "Task8 Spell Use scene must instantiate")
     if packed_scene == null or not packed_scene.can_instantiate():
         return
     var screen = packed_scene.instantiate()
-    for node_name in ["PreparedSpellSummary", "TargetSelector", "FinalPreview", "CommitBar", "CancelButton"]:
+    for node_name in ["PreparedSpellSummary", "TargetSelector", "FinalPreview", "KnownImprovement", "RemainingRisk", "Unknown", "Forecast", "CommitBar", "CancelButton"]:
         case.assert_true(screen.find_child(node_name, true, false) != null, "screen exposes player flow node: %s" % node_name)
     var coordinator = FakeCoordinator.new()
     screen.configure(coordinator, &"use-opaque-1")
@@ -43,7 +52,7 @@ func run(case) -> void:
     case.assert_true(bool(commit_bar.visual_snapshot().get("can_commit", false)), "valid preview enables intent-level commit only")
     var invalid_preview: Dictionary = screen.select_target(&"incident.invalid", {"target_valid": false}, {})
     case.assert_equal(&"INVALID_TARGET", invalid_preview.get("status", &""), "invalid selection reports authority status")
-    case.assert_true(screen.current_preview().is_empty(), "invalid target clears stale preview truth")
+    case.assert_false(screen.current_preview().is_empty(), "invalid target preserves the last valid preview while disabling cast")
     screen.select_target(&"incident.root", {"target_valid": true}, {})
     case.assert_true(screen.request_confirmation(), "first explicit use action requests confirmation")
     case.assert_equal(1, coordinator.confirmation_requests, "screen delegates confirmation request once")
@@ -69,12 +78,21 @@ func run(case) -> void:
         "id": &"root-choice",
         "label": "Root",
         "hint": "Stabilize the incident",
+        "protected_value": "Root value",
+        "known_improvement": "The incident can be stabilized now.",
+        "forgone_or_remaining": "The remaining route still needs attention.",
+        "unknown": "The root cause is still unknown.",
         "target_keyword": &"incident.root",
         "target": {"target_valid": true},
         "payload": {"known_improvement": "stabilize"},
     }])
     var selector = selection_screen.find_child("TargetSelector", true, false)
-    case.assert_equal(1, selector.visual_snapshot().get("targets", []).size(), "shared selector displays caller-supplied choices")
+    var selector_snapshot: Dictionary = selector.visual_snapshot()
+    case.assert_equal(1, selector_snapshot.get("targets", []).size(), "shared selector displays caller-supplied choices")
+    case.assert_false(bool(selector_snapshot.get("recommendation_present", true)), "shared selector never presents a route recommendation")
+    var rendered_choice: Dictionary = Dictionary(Array(selector_snapshot.get("targets", []))[0])
+    case.assert_equal("Root value", rendered_choice.get("protected_value", ""), "selector preserves the protected player value")
+    case.assert_equal("The remaining route still needs attention.", rendered_choice.get("forgone_or_remaining", ""), "selector preserves the remaining risk")
     selector.target_selected.emit(&"root-choice")
     case.assert_equal(&"FINAL_PREVIEW_READY", selection_screen.current_preview().get("status", &""), "selector emits only explicit caller choice to Coordinator preview")
     case.assert_equal(1, selection_coordinator.preview_calls.size(), "selector does not infer or auto-select a target")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://src/core/content/frostbloom_w6_decision_context.gd" id="1_context"]
+[ext_resource type="Resource" path="res://data/frostbloom/w6/frost_seedlings_target_01.tres" id="2_seed"]
+[ext_resource type="Resource" path="res://data/frostbloom/w6/greenhouse_structure_target_01.tres" id="3_support"]
+
+[resource]
+script = ExtResource("1_context")
+lens = "식물학 관찰"
+known_observations = PackedStringArray("희귀 서리 묘목의 잎맥이 얼음으로 갈라지고 있습니다.", "온실 동쪽 지지대의 균열이 넓어지고 있습니다.")
+unknown_categories = PackedStringArray("서리를 퍼뜨린 원인은 아직 확인되지 않았습니다.", "한쪽을 먼저 지킬 때 다른 쪽이 얼마나 버틸지는 아직 모릅니다.")
+targets = Array[Resource]([ExtResource("2_seed"), ExtResource("3_support")])

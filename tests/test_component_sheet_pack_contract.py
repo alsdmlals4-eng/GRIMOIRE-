@@ -87,10 +87,12 @@ class ComponentSheetPackContractTests(unittest.TestCase):
         for forbidden in ("recommended", "best route", "correct route", "perfect", "s-rank", "a-rank"):
             self.assertNotIn(forbidden, text)
 
-    def test_runtime_sample_copy_stays_english_safe_until_font_gate(self):
-        for folder in (ROOT / "src/ui/components", ROOT / "src/ui/component_sheets"):
-            for path in folder.glob("*.tscn"):
-                self.assertNotRegex(path.read_text(encoding="utf-8"), re.compile(r"[가-힣]"), path.name)
+    def test_component_sheet_capture_samples_stay_english_safe_until_font_gate(self):
+        # Component sheets are CI capture samples. Product-facing components may
+        # use the approved Korean live labels, but these samples must stay
+        # English-safe until the separate Korean font evidence gate is complete.
+        for path in (ROOT / "src/ui/component_sheets").glob("*.tscn"):
+            self.assertNotRegex(path.read_text(encoding="utf-8"), re.compile(r"[가-힣]"), path.name)
 
     def test_spell_semantic_components_do_not_own_gameplay_mutation(self):
         for name in SPELL_SCRIPTS:
