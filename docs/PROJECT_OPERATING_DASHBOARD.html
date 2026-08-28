@@ -3,28 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>alsdmlals4-eng/GRIMOIRE- operating health</title>
+  <title>alsdmlals4-eng/GRIMOIRE- 운영 현황</title>
   <style>
     :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
     body { margin: 0 auto; max-width: 72rem; padding: 1.5rem; line-height: 1.55; }
-    .axes { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
-    section { border: 1px solid currentColor; border-radius: .5rem; padding: 1rem; }
-    strong { overflow-wrap: anywhere; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid currentColor; padding: .6rem; text-align: left; overflow-wrap: anywhere; }
+    th { width: 15rem; }
   </style>
 </head>
 <body>
-  <header><h1>alsdmlals4-eng/GRIMOIRE-</h1><p>Deterministic generated operating view. Layout review targets: 1280x720 and 1920x1080.</p></header>
+  <header>
+    <h1>GRIMOIRE: 세계를 다시 쓰는 법</h1>
+    <p>Repository-generated current operating view. Runtime and Human evidence are not implied by this document.</p>
+  </header>
   <main>
-    <div class="axes" aria-label="Independent maturity axes">
-      <section aria-labelledby="om"><h2 id="om">Operating maturity</h2><strong>OM-L0</strong></section>
-      <section aria-labelledby="pe"><h2 id="pe">Product evidence maturity</h2><strong>PE-0</strong></section>
-    </div>
-    <section aria-labelledby="release"><h2 id="release">Base release identity</h2><ul><li><strong>Repository</strong>: alsdmlals4-eng/Base</li><li><strong>Version</strong>: 9.1.0</li><li><strong>State</strong>: RELEASE_CANDIDATE</li><li><strong>Release pin</strong>: 3c158f52cfdad889970aef4d6ce6650a6fea0645</li><li><strong>Evidence pin</strong>: dd20ad3852e264d7e337e34d2cb963f71053a6cb</li></ul></section>
-    <section aria-labelledby="routes"><h2 id="routes">Route counts</h2><ul><li>BASE_SHARED: 1</li><li>PROJECT_LOCAL: 2</li><li>INACTIVE: 0</li><li>EFFECTIVE: 3</li></ul></section>
-    <section aria-labelledby="provenance"><h2 id="provenance">Hashes and provenance</h2><ul><li><strong>Base Registry</strong>: skills/SKILL_REGISTRY.json @ e06003cb986e979aa46c06839de178c3fb9ff10bdf440e750712d90d6c5ae7bb</li><li><strong>Project Registry</strong>: skills/SKILL_REGISTRY.json @ b5db44ceb940bd2da2c4d054aab07248f75f3a24a789fffbce6e58ecd24a38d7</li><li><strong>Adapter</strong>: skills/PROJECT_BASE_ADAPTER.json @ d172058670e05e92368fb1b1fb8512d2e7d7c50a619a6f51b5ce8c4f5f59287c</li></ul></section>
-    <section id="critical-gates" aria-labelledby="gates"><h2 id="gates">Critical gates</h2><ul><li><strong>accessibility</strong>: NOT_RUN</li><li><strong>device</strong>: NOT_RUN</li><li><strong>human</strong>: NOT_RUN</li><li><strong>runtime</strong>: NOT_RUN</li><li><strong>static</strong>: NOT_RUN</li></ul></section>
-    <section aria-labelledby="verdict"><h2 id="verdict">Integrity verdict</h2><strong>PASS_WITH_NOT_RUN_GATES</strong></section>
+    <table>
+      <caption>Current authority and evidence ceiling</caption>
+      <tbody>
+      <tr><th scope="row">Base</th><td>v9.4.3 / alsdmlals4-eng/Base</td></tr>
+      <tr><th scope="row">Current work</th><td>COMPLETE_FROSTBLOOM_FIRST_SESSION</td></tr>
+      <tr><th scope="row">Implementation</th><td>PARTIAL_FOUNDATION</td></tr>
+      <tr><th scope="row">Next product gate</th><td>TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING</td></tr>
+      <tr><th scope="row">Human / device / performance</th><td>NOT_RUN / NOT_RUN / NOT_RUN</td></tr>
+      <tr><th scope="row">Human-facing canon</th><td>REPOSITORY_HUMAN_FACING_CANON</td></tr>
+      <tr><th scope="row">Project Home</th><td>docs/PROJECT_HOME.md</td></tr>
+      <tr><th scope="row">Notion</th><td>RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE</td></tr>
+      <tr><th scope="row">Repository canon</th><td>REPOSITORY_STRUCTURED_AND_RUNTIME_CANON</td></tr>
+      <tr><th scope="row">Google Sheets</th><td>MIGRATION_ONLY_UNTIL_REMOVAL</td></tr>
+      </tbody>
+    </table>
   </main>
-  <footer><small>adapter RAW_FILE_BYTES_SHA256: d172058670e05e92368fb1b1fb8512d2e7d7c50a619a6f51b5ce8c4f5f59287c</small></footer>
+  <footer><small>Source: skills/PROJECT_BASE_ADAPTER.json @ 2e0bbe913499f4d06a0af149abb8a54f18c864b1d0226da364de18b67924187d</small></footer>
 </body>
 </html>

@@ -59,7 +59,7 @@
       "max_approved_decisions_per_batch": 10,
       "numeric_default_state": "RECOMMENDED_DEFAULT",
       "planning_conflict_state": "GRILL_ME_REQUIRED",
-      "post_merge_human_canon_state": "SYNCED_TO_MAIN_AND_NOTION_READBACK",
+      "post_merge_human_canon_state": "SYNCED_TO_MAIN_AND_REPOSITORY_PROJECT_HOME_READBACK",
       "pre_merge_human_canon_state": "APPROVED_PENDING_MERGE"
     },
     "provider_measurement": "NOT_RUN",
@@ -174,9 +174,9 @@
     "work_mode": "IMPLEMENT_AND_VALIDATE"
   },
   "project_registry": {
-    "hash_definition": "RAW_FILE_BYTES_SHA256",
+    "hash_definition": "UTF8_TEXT_SHA256_AFTER_PLATFORM_NEWLINE_NORMALIZATION",
     "path": "skills/SKILL_REGISTRY.json",
-    "sha256": "eec9dbf667358ed4d2e541f6ee5e75d0a44e8b1ce89ade790a15c0c29b67f7bb"
+    "sha256": "d8fdaf60db20ccc4534cb0b8d315d94d0e399d44051837c0f7a6f556ed10bc22"
   },
   "protected_baseline": {
     "authority_ref": "refs/remotes/origin/main",
@@ -333,8 +333,11 @@
   "workspace_authority": {
     "default_cost_boundary": "ZERO_INCREMENTAL_COST",
     "google_sheets": "MIGRATION_ONLY_UNTIL_REMOVAL",
-    "human_facing_canon": "NOTION_HUMAN_FACING_CANON",
-    "project_home": "GRIMOIRE",
+    "human_facing_canon": "REPOSITORY_HUMAN_FACING_CANON",
+    "notion_migration_audit": "docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md",
+    "notion_migration_state": "MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01",
+    "notion_policy": "RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE",
+    "project_home": "docs/PROJECT_HOME.md",
     "repository_canon": "REPOSITORY_STRUCTURED_AND_RUNTIME_CANON"
   }
 }

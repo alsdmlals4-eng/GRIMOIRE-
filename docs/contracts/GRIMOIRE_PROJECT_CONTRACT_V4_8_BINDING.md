@@ -26,8 +26,9 @@ fresh_read_bootstrap_policy: PROJECT_GITHUB_REPOSITORY_ONLY_RECONSTRUCTION_REQUI
 entry_state_reconciliation_policy: REQUIRED_BEFORE_MATERIAL_MUTATION
 workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
 workspace_repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
-notion_policy: READ_ONLY_MIGRATION_SOURCE_UNTIL_GR_NOTION_MIGRATION_20260828_01_COMPLETE
+notion_policy: RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE
 notion_migration_audit: docs/planning/NOTION_TO_REPOSITORY_MIGRATION_AUDIT_2026-08-28.md
+notion_migration_state: MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01
 google_sheets: COMPATIBILITY_ONLY_MIGRATION_SOURCE_UNTIL_REMOVAL
 visual_asset_inventory_and_style_lock_policy: REQUIRED_BEFORE_SERIAL_VISUAL_PRODUCTION
 visual_generation_policy: USER_PREAUTHORIZED_CANDIDATE_GENERATION_AFTER_PREFLIGHT__FINAL_LOCK_ONLY
@@ -131,10 +132,9 @@ GitHub repository
 → 사람이 읽는 Markdown Project Home / Flow / Visual / Core System / Asset / Work
 → JSON / code / data / Scene / Resource / Test / tracked asset / CI / runtime truth
 
-Notion (one-time migration only)
-→ READ_ONLY_SOURCE_FOR_NAMED_NONLEGACY_RECORDS
-→ write, current-canon ownership, destination readback, delete/archive/export 금지
-→ audit complete 후 HISTORICAL_DISCOVERY_ONLY
+Notion
+→ HISTORICAL_DISCOVERY_ONLY
+→ routine read/write, current-canon ownership, destination readback, delete/archive/export 금지
 
 Google Sheets
 → 고유 미이관 자료가 남은 경우에만 migration compatibility source

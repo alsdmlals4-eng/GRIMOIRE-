@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+from html import escape
 import json
 from pathlib import Path
 import sys
@@ -14,6 +15,7 @@ OUTPUTS = {
     "snapshot": ROOT / "skills" / "PROJECT_SKILL_SNAPSHOT.json",
     "base_view": ROOT / "skills" / "BASE_V9_ADAPTER.json",
     "skill_view": ROOT / "skills" / "PROJECT_BASE_SKILL_ADAPTER.json",
+    "dashboard": ROOT / "docs" / "PROJECT_OPERATING_DASHBOARD.html",
 }
 
 
@@ -27,6 +29,60 @@ def canonical_text(value: dict) -> str:
 
 def sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def dashboard_text(adapter: dict, adapter_hash: str) -> str:
+    project = adapter["project"]
+    current = adapter["current_state"]
+    authority = adapter["workspace_authority"]
+    release = adapter["base_release"]
+    rows = [
+        ("Base", f"v{release['version']} / {release['repository']}"),
+        ("Current work", current["planning"]),
+        ("Implementation", current["implementation"]),
+        ("Next product gate", current["next_product_gate"]),
+        ("Human / device / performance", f"{current['human_validation']} / {current['device_validation']} / {current['performance_validation']}"),
+        ("Human-facing canon", authority["human_facing_canon"]),
+        ("Project Home", authority["project_home"]),
+        ("Notion", authority["notion_policy"]),
+        ("Repository canon", authority["repository_canon"]),
+        ("Google Sheets", authority["google_sheets"]),
+    ]
+    row_html = "\n".join(
+        f"      <tr><th scope=\"row\">{escape(label)}</th><td>{escape(value)}</td></tr>"
+        for label, value in rows
+    )
+    return f"""<!doctype html>
+<html lang=\"ko\" data-generated=\"true\">
+<head>
+  <meta charset=\"utf-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+  <title>{escape(project['repository'])} 운영 현황</title>
+  <style>
+    :root {{ color-scheme: light dark; font-family: system-ui, sans-serif; }}
+    body {{ margin: 0 auto; max-width: 72rem; padding: 1.5rem; line-height: 1.55; }}
+    table {{ border-collapse: collapse; width: 100%; }}
+    th, td {{ border: 1px solid currentColor; padding: .6rem; text-align: left; overflow-wrap: anywhere; }}
+    th {{ width: 15rem; }}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{escape(project['name'])}</h1>
+    <p>Repository-generated current operating view. Runtime and Human evidence are not implied by this document.</p>
+  </header>
+  <main>
+    <table>
+      <caption>Current authority and evidence ceiling</caption>
+      <tbody>
+{row_html}
+      </tbody>
+    </table>
+  </main>
+  <footer><small>Source: skills/PROJECT_BASE_ADAPTER.json @ {escape(adapter_hash)}</small></footer>
+</body>
+</html>
+"""
 
 
 def validate_source(adapter: dict, registry_text: str) -> None:
@@ -47,7 +103,7 @@ def validate_source(adapter: dict, registry_text: str) -> None:
             raise ValueError(f"Base {key} mismatch: expected={value} actual={base[key]}")
 
 
-def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
+def generate(adapter: dict, adapter_hash: str) -> dict[str, dict | str]:
     base_routes = adapter["routing"]["base_routes"]
     project_routes = adapter["routing"]["project_routes"]
     effective: dict[str, dict] = {}
@@ -204,7 +260,12 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict]:
         },
         "validation": adapter["validation"],
     }
-    return {"snapshot": snapshot, "base_view": base_view, "skill_view": skill_view}
+    return {
+        "snapshot": snapshot,
+        "base_view": base_view,
+        "skill_view": skill_view,
+        "dashboard": dashboard_text(adapter, adapter_hash),
+    }
 
 
 def main() -> int:
@@ -223,7 +284,7 @@ def main() -> int:
         expected = generated[key]
         if args.check:
             try:
-                actual = read_json(target)
+                actual = read_json(target) if target.suffix == ".json" else target.read_text(encoding="utf-8")
             except (FileNotFoundError, json.JSONDecodeError) as exc:
                 print(f"invalid generated view {target.relative_to(ROOT)}: {exc}", file=sys.stderr)
                 failed = True
@@ -232,7 +293,8 @@ def main() -> int:
                 print(f"generated view drift: {target.relative_to(ROOT)}", file=sys.stderr)
                 failed = True
         else:
-            target.write_text(canonical_text(expected), encoding="utf-8")
+            output_text = canonical_text(expected) if isinstance(expected, dict) else expected
+            target.write_text(output_text, encoding="utf-8")
             print(f"wrote {target.relative_to(ROOT)}")
 
     return 1 if failed else 0

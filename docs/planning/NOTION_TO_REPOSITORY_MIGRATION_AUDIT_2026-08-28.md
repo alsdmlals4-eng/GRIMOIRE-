@@ -4,13 +4,16 @@
 
 ```yaml
 audit_id: GR-NOTION-MIGRATION-20260828-01
-status: REPOSITORY_DESTINATIONS_READ_BACK__PENDING_PR_EXACT_HEAD_AND_MERGE
+status: COMPLETE__MERGED_MAIN_READ_BACK
 user_authorization: "노션의 기존 노션의 구조나 작업물들이 누락되지않게 옮겨줘(구형 데이터는 안 옮겨도 괜찮아)"
 source_access: READ_ONLY
 notion_write_delete_archive_export: FORBIDDEN
 destination: GITHUB_REPOSITORY_ONLY
 legacy_exclusion: ALLOWED_BY_USER
 repository_readback_at_kst: 2026-08-28
+completion_pr: 238
+completion_merge_commit: 1a30b9e0715b1d19e56e24f256f695b869369ca2
+completion_checks: PR_EXACT_HEAD_ALL_REQUIRED_CHECKS_PASS
 ```
 
 ## 1. Classification rules
@@ -86,8 +89,8 @@ The former Notion arrangement was `00 Project Hub → GRIMOIRE Home → 5 domain
 | Obsolete current-main/SHA, retired pages, and old image policy are prevented from becoming current canon | `PASS` — section 5 |
 | Notion was modified, deleted, archived, or used as a destination | `NOT_PERFORMED` — read-only source only |
 | Repository destinations are present before completion is declared | `PASS` — this audit, `docs/PROJECT_HOME.md`, and referenced owners are tracked in the same documentation change |
-| Exact PR-head validation and merge readback | `PENDING` |
+| Exact PR-head validation and merge readback | `PASS` — PR #238 merged as `1a30b9e0715b1d19e56e24f256f695b869369ca2` after all required PR checks passed |
 
 ## 7. Post-migration policy
 
-On merge/readback of this audit, Notion returns to `HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE`. A future Notion read requires a new explicit user request, and any newly found unique fact must be classified before it changes the repository owner.
+Notion has returned to `HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE`. A future Notion read requires a new explicit user request, and any newly found unique fact must be classified before it changes the repository owner.

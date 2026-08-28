@@ -6,40 +6,42 @@
 status: ACTIVE_PROJECT_WORK_PRINCIPLE
 policy_id: GM-CANON-SYNC-01
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
-effective_date: 2026-08-21
-sync_update: GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC
-human_facing_canon: NOTION_HUMAN_FACING_CANON
+effective_date: 2026-08-28
+sync_update: GR-NOTION-MIGRATION-20260828-01__MERGED_MAIN_READ_BACK
+human_facing_canon: REPOSITORY_HUMAN_FACING_CANON
 repository_canon: REPOSITORY_STRUCTURED_AND_RUNTIME_CANON
 google_sheets: GOOGLE_SHEETS_MIGRATION_ONLY_UNTIL_REMOVAL
+notion_policy: RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE
+repository_project_home: docs/PROJECT_HOME.md
 ```
 
 ## 2. 권위 분리
 
-GRIMOIRE는 한 도구가 모든 정보를 소유하지 않는다.
+GRIMOIRE의 현재 정본은 repository 안에서 사람이 읽는 문서와 구조화된 구현 근거로 나뉜다.
 
-- **Notion** — 사람이 확인·수정하는 Project Home, 전체 방향, Visual/Asset/Flow, 핵심 시스템의 사람용 설명과 작업 상태를 소유한다.
-- **GitHub repository** — Markdown spec, JSON/game data, code, Scene, Resource, test, tracked asset, runtime evidence를 소유한다.
+- **GitHub repository Markdown** — 사람이 확인·수정하는 Project Home, 전체 방향, Visual/Asset/Flow, 핵심 시스템, 작업 상태를 소유한다.
+- **GitHub repository structured/runtime owners** — JSON/game data, code, Scene, Resource, test, tracked asset, runtime evidence를 소유한다.
 - **Runtime evidence** — 실제 동작·테스트·기기·성능·Human 검증 주장의 최종 근거다.
 - **Google Sheets** — `MIGRATION_ONLY_UNTIL_REMOVAL`. 신규 기획·승인·상태의 입력면이나 정본으로 사용하지 않는다.
+- **Notion** — `HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE`. 현재 정본·기본 작업면·완료 readback 대상이 아니며, 새 read는 사용자의 명시적 요청이 있어야 한다.
 
-Notion의 설명이 구조화 데이터·코드·Scene·Resource·Test·Runtime 의미를 바꾸면 repository를 먼저 동기화한 후 구현한다. Repository의 구현 사실이 사람용 상태를 바꾸면 병합된 main readback 뒤 Notion에 같은 사실을 반영한다.
+사람용 Markdown의 설명이 구조화 데이터·코드·Scene·Resource·Test·Runtime 의미를 바꾸면 해당 repository owner를 먼저 동기화한 후 구현한다. Repository의 구현 사실이 사람용 상태를 바꾸면 병합된 main readback 뒤 repository Project Home 또는 해당 domain owner에 같은 사실을 반영한다.
 
 ## 3. 현재 기본 흐름
 
 ```text
 사용자 승인 또는 검증된 상태 변화
 → Decision/Sync ID 유지 또는 확정
-→ 해당 domain owner 갱신
+→ 해당 repository domain owner 갱신
 → GitHub 작업 브랜치/PR
 → exact-head test + adversarial review
 → merge
 → merged-main readback
-→ Notion bounded update
-→ Notion destination readback
-→ SYNCED_TO_MAIN_AND_NOTION_READBACK
+→ repository Project Home / domain destination readback
+→ SYNCED_TO_MAIN_AND_REPOSITORY_READBACK
 ```
 
-진행 중 PR은 main 완료 상태가 아니다. Notion은 진행 중 작업을 표시할 수 있지만 반드시 `DRAFT/UNMERGED/IN_PROGRESS` 경계를 함께 기록한다.
+진행 중 PR은 main 완료 상태가 아니다. repository 문서가 진행 중 작업을 표시할 때는 반드시 `DRAFT/UNMERGED/IN_PROGRESS` 경계를 함께 기록한다.
 
 ## 4. 필수 발동 조건
 
@@ -75,16 +77,16 @@ Notion의 설명이 구조화 데이터·코드·Scene·Resource·Test·Runtime 
 
 과거 sync receipt나 superseded 문서는 provenance로 보존하고 현재 문서처럼 재작성하지 않는다.
 
-## 7. Notion 반영 위치
+## 7. Repository 사람용 정본 반영 위치
 
-사람용 의미가 바뀌면 최소한 다음을 검토한다.
+사람용 의미가 바뀌면 최소한 다음 repository owner를 검토한다.
 
-- Project Home — 제품 약속, 현재 단계, Implementation Reality Gate, 다음 blocker
-- Work Master — 진행 작업, 완료 기준, 검증 증거, PR/merged-main 상태
-- Core System Master — 사람에게 중요한 시스템 의미·의존성·상태
-- Visual/Asset/Flow 작업면 — 해당 변경이 실제로 그 domain을 건드릴 때만
+- `docs/PROJECT_HOME.md` — 제품 약속, 현재 단계, Implementation Reality Gate, 다음 blocker
+- `docs/ACTIVE_CONTEXT.md` — 진행 작업, 완료 기준, 검증 증거, PR/merged-main 상태
+- 해당 Core System / Visual / Asset / Flow owner — 변경한 domain의 의미·의존성·상태
+- `docs/DOCUMENTATION_MAP.md` — owner 경로나 작업면이 바뀐 경우만
 
-모든 write는 목적 레코드만 bounded update하고, 변경 직전 `Revision / Last Edited`를 확인할 수 있는 경우 stale read를 fail-closed 처리한다. 쓰기 뒤 Project/Record Key/Revision/변경 필드를 재조회한다.
+모든 write는 목적 repository owner만 갱신하고, Git commit/PR/exact-head validation/merged-main readback을 남긴다. Notion에는 current-state 동기화 write나 destination readback을 하지 않는다.
 
 ## 8. Google Sheets retirement
 
@@ -95,7 +97,7 @@ Notion의 설명이 구조화 데이터·코드·Scene·Resource·Test·Runtime 
 ```text
 legacy Sheet inventory
 → UNIQUE / DUPLICATE / OBSOLETE
-→ UNIQUE human meaning → Notion
+→ UNIQUE human meaning → repository Markdown
 → UNIQUE structured/runtime meaning → repository
 → destination readback
 → active consumer/reference count = 0 확인
@@ -112,8 +114,8 @@ legacy Sheet inventory
 | `WORKING_BRANCH_ONLY` | GitHub 작업 브랜치에만 존재 |
 | `PR_IN_PROGRESS` | 원격 PR 진행 중, main 미병합 |
 | `MAIN_READBACK_PENDING` | 병합됐지만 main 재조회 전 |
-| `NOTION_READBACK_PENDING` | main은 확인됐지만 사람용 Notion 반영/재조회 전 |
-| `SYNCED_TO_MAIN_AND_NOTION_READBACK` | 관련 repository main과 Notion을 모두 재조회함 |
+| `REPOSITORY_READBACK_PENDING` | main은 확인됐지만 사람용 repository owner 재조회 전 |
+| `SYNCED_TO_MAIN_AND_REPOSITORY_READBACK` | 관련 repository main과 사람용 repository owner를 모두 재조회함 |
 | `CONFLICT` | domain owner끼리 현재 사실이 충돌함 |
 
 `PR_IN_PROGRESS`를 완료나 `SYNCED`로 승격하지 않는다.
@@ -132,4 +134,4 @@ legacy Sheet inventory
 
 ## 11. 역사적 Sheet 동기화
 
-2026-07~08의 `GR-SYNC-*` 문서와 `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`에 기록된 Sheet write/readback은 당시의 provenance로 유효하다. 다만 2026-08-21 이후 active project workflow의 authority는 본 정책의 Notion + repository domain split을 따른다.
+2026-07~08의 `GR-SYNC-*` 문서와 `docs/PROJECT_GOOGLE_SHEET_WORKBOOK.md`에 기록된 Sheet/Notion write/readback은 당시의 provenance로 유효하다. 다만 2026-08-28 이후 active project workflow의 authority는 본 정책의 repository-only current canon을 따른다.
