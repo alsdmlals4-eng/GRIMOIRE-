@@ -12,7 +12,7 @@
 
 ## Execution update — 2026-08-29
 
-The user explicitly authorized Issue #242 implementation on 2026-08-29. The W6-only changed worktree is now implemented and has passed the custom Godot runner, GUT, editor readback, and a 1280×720 runtime smoke. The current evidence owner is `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`; PR exact-head, Human, device, performance, accessibility, export, and full-slice evidence remain pending. The task boxes below preserve the pre-execution route and must not override the current receipt.
+The user explicitly authorized Issue #242 implementation on 2026-08-29. The W6-only work passed the custom Godot runner, local direct GUT, editor readback, and a 1280×720 runtime smoke. PR #245 exact head `b0f34b5` passed all applicable required checks and was squash-merged as `713bfbf`; the formal PR GUT lane was skipped by its workflow condition. The current evidence owner is `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`; Human, device, performance, accessibility, export, and full-slice evidence remain pending. The task boxes below preserve the pre-execution route and must not override the current receipt.
 
 ## Global Constraints
 
@@ -438,4 +438,4 @@ Create a PR linked to #242, wait for exact-head required checks, merge only afte
 
 ## Execution boundary
 
-Issue #242 implementation was authorized and completed in the changed worktree on 2026-08-29. This plan remains a historical execution route; the implementation receipt is the current status owner. No production asset batch was created. The next action is PR exact-head validation, then separate Human/device/performance/accessibility/export/full-slice gates.
+Issue #242 implementation was authorized and merged to main on 2026-08-29. This plan remains a historical execution route; the implementation receipt is the current status owner. No production asset batch was created. The next action is the separate Human/Player, device, performance, accessibility, export, and full-slice gates.

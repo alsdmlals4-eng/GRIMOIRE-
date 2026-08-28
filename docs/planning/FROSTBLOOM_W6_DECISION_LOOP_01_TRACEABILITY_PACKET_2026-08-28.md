@@ -14,12 +14,16 @@ source_commit: 7019174adeece3d1f8bcd7e8e249856389b1aa5d
 github_successor_issue: 242
 created_at_kst: 2026-08-28
 updated_at_kst: 2026-08-29
-contract_status: USER_APPROVED_L3__IMPLEMENTED_AUTOMATED_RUNTIME_SMOKE_PASS__PR_PENDING
+contract_status: USER_APPROVED_L3__MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
 coverage_status: PARTIAL_EVIDENCED
 implementation_receipt: docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md
+implementation_pr: 245
+implementation_pr_exact_head: b0f34b538680b5046705f36196eae71ed1b9b0a8
+implementation_merge_commit: 713bfbfc4c16b9ea469f2aa2c313a72bc50e1b67
+postmerge_main_readback: PASS
 ```
 
-`PARTIAL_EVIDENCED`는 계획된 Resource·Scene·코드·테스트와 changed-worktree 자동화·런타임 스모크 evidence가 존재한다는 뜻이다. PR exact-head, Human, device, performance, accessibility, export, and full-slice evidence가 없으므로 `CONVERGED`는 아니다.
+`PARTIAL_EVIDENCED`는 계획된 Resource·Scene·코드·테스트, PR #245 exact-head의 적용 가능한 CI, 그리고 post-merge main readback이 존재한다는 뜻이다. Human, device, performance, accessibility, export, and full-slice evidence가 없으므로 `CONVERGED`는 아니다. PR의 formal GUT lane은 workflow 조건상 skipped였으므로 local direct GUT evidence와 혼동하지 않는다.
 
 ## 2. Canonical authority and protected scope
 
@@ -91,7 +95,7 @@ excluded_scope:
 | GM-FROSTBLOOM-W6-PRESERVATION-PRIORITY-01 | W6-R02 | Both targets begin with matched visible Mana/difficulty and equivalent card hierarchy. | W6-AC02, W6-AC03 | W6-T01, W6-T03 | W6 Resource; `src/ui/components/context_target_selector.gd/.tscn`; `src/ui/spell_workflow/spell_use_screen.gd/.tscn` | W6-VFY01, W6-VFY03, W6-VFY07 | IMPLEMENTED_AUTOMATED_PASS__HUMAN_DEVICE_NOT_RUN |
 | GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01 | W6-R03 | Unknown is category-level text, not a hidden Mana/success modifier. | W6-AC03 | W6-T01, W6-T03 | W6 Resource; `src/ui/spell_workflow/spell_use_screen.gd`; `src/ui/components/commit_bar.gd` | W6-VFY01, W6-VFY03 | IMPLEMENTED_AUTOMATED_PASS |
 | GM-STAR-CIRCUIT-MASTERY-BALANCE-01 | W6-R04 | Target switching changes preview only. | W6-AC03, W6-AC04 | W6-T02, W6-T03 | `src/ui/spell_workflow/spell_workflow_product_root.gd`; `src/ui/spell_workflow/spell_use_screen.gd`; `src/core/workflow/spell_workflow_coordinator.gd` | W6-VFY02, W6-VFY04 | IMPLEMENTED_AUTOMATED_PASS |
-| GM-STAR-CIRCUIT-MASTERY-BALANCE-01 | W6-R05 | Confirmation has one accepted Mana/spell/result transaction. | W6-AC04, W6-AC06 | W6-T04 | `src/core/workflow/spell_workflow_coordinator.gd`; `src/core/spells/atomic_spell_use_service.gd`; `src/core/atomic_result_ledger.gd`; `src/ui/spell_workflow/spell_workflow_product_root.gd`; `tests/unit/test_atomic_spell_use_service.gd` | W6-VFY04, W6-VFY05 | IMPLEMENTED_AUTOMATED_PASS__PR_GUARD_PENDING |
+| GM-STAR-CIRCUIT-MASTERY-BALANCE-01 | W6-R05 | Confirmation has one accepted Mana/spell/result transaction. | W6-AC04, W6-AC06 | W6-T04 | `src/core/workflow/spell_workflow_coordinator.gd`; `src/core/spells/atomic_spell_use_service.gd`; `src/core/atomic_result_ledger.gd`; `src/ui/spell_workflow/spell_workflow_product_root.gd`; `tests/unit/test_atomic_spell_use_service.gd` | W6-VFY04, W6-VFY05 | MERGED_MAIN_AUTOMATED_PASS__FORMAL_GUT_LANE_SKIPPED |
 | GM-FROSTBLOOM-RESULT-GRIMOIRE-CAUSAL-DEBRIEF-01 | W6-R06 | Receipt separates actual, forgone/remaining, and unknown without grade. | W6-AC05 | W6-T04 | W6 Resource; `src/ui/spell_workflow/spell_workflow_product_root.gd/.tscn`; `tests/integration/test_spell_workflow_product_root.gd` | W6-VFY02, W6-VFY04 | IMPLEMENTED_AUTOMATED_PASS |
 | GM-FROSTBLOOM-W6-BOUNDED-CONSEQUENCE-FORECAST-01 | W6-R07 | First accepted W6 actual remains true; no W7 rewrite. | W6-AC05 | W6-T04 | W6 Resource receipt fields; `src/core/atomic_result_ledger.gd` | W6-VFY04, W6-VFY08 | IMPLEMENTED_AUTOMATED_PASS__HUMAN_NOT_RUN |
 | GM-SPELL-WORKFLOW-UI-V2-01 | W6-R08 | Live player-facing copy is Korean `글자 → 주문 → 대상 → 시전`. | W6-AC07 | W6-T03, W6-T04 | `src/ui/spell_workflow/spell_use_screen.tscn`; `src/ui/components/context_target_selector.tscn`; `src/ui/components/commit_bar.gd/.tscn`; `src/ui/spell_workflow/spell_workflow_product_root.tscn` | W6-VFY03, W6-VFY06 | IMPLEMENTED_AUTOMATED_PASS |
@@ -105,7 +109,7 @@ excluded_scope:
 | W6-VFY02 | R01, R04, R06 | Product Root integration | Same custom headless runner on exact changed worktree. | Product Root suite proves W6 flow, repeated switching, receipt layers, and no generic target within the 48-suite pass. | CHANGED_WORKTREE_AUTOMATED_PASS__48_SUITES_2051_ASSERTIONS |
 | W6-VFY03 | R02, R03, R08 | Spell Use UI integration | Same custom headless runner on exact changed worktree. | Spell Use suite proves equal semantic cards, forecast sections, Korean live copy, and error retention within the 48-suite pass. | CHANGED_WORKTREE_AUTOMATED_PASS__48_SUITES_2051_ASSERTIONS |
 | W6-VFY04 | R04–R07 | Transaction regression | Same runner with current Coordinator, atomic use, and ledger suites. | Existing transaction suites plus W6 product integration remain green within the 48-suite pass. | CHANGED_WORKTREE_AUTOMATED_PASS__48_SUITES_2051_ASSERTIONS |
-| W6-VFY05 | R05 | GUT exact-head regression | Godot 4.7.1, `-s addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json -gexit`. | GUT 9.7.1: 4 scripts, 8 tests, 29 assertions, 0 failures. PR exact-head manifest/hash guard remains pending. | PARTIAL__GUT_9_7_1_8_TESTS_29_ASSERTIONS_PASS__PR_EXACT_HEAD_GUARD_PENDING |
+| W6-VFY05 | R05 | GUT regression | Godot 4.7.1, `-s addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json -gexit`. | Local direct GUT 9.7.1: 4 scripts, 8 tests, 29 assertions, 0 failures. PR #245's formal GUT lane was skipped by its workflow condition, so no exact-head GUT-manifest claim is made. | PARTIAL__LOCAL_GUT_9_7_1_8_TESTS_29_ASSERTIONS_PASS__PR_FORMAL_LANE_SKIPPED |
 | W6-VFY06 | R08, R09 | Scene static/readback inspection | Godot editor / official Godot AI readback, 1280×720 GL Compatibility scene. | Korean text nodes, no W6 board binary binding, headings and controls are present. Target-resolution readability remains unobserved. | EDITOR_STATIC_READBACK_PASS__TARGET_RESOLUTION_READABILITY_NOT_RUN |
 | W6-VFY07 | R02, R08, R09 | Runtime visual inspection | Exact changed project, 1280×720 GL Compatibility runtime smoke. | Main scene launched with no task-related runtime errors. No device capture or human visual/readability observation exists. | RUNTIME_SMOKE_PASS_1280X720__VISUAL_READABILITY_DEVICE_NOT_RUN |
 | W6-VFY08 | R07 | Human usability observation | Approved W6 human script, not automation. | Player restates chosen value, remaining risk, unknown, and result causality. | NOT_RUN |
@@ -116,7 +120,7 @@ excluded_scope:
 unmapped_items: []
 implementation_gaps: []
 evidence_gaps:
-  - PR exact-head required-check and protected-product-hash evidence.
+  - Formal PR GUT-manifest/hash evidence; the workflow lane was skipped.
   - Target-resolution manual readability and touch observation.
   - Human usability/Player Experience evidence.
   - Device, performance, accessibility, export, and full-slice evidence.
@@ -125,7 +129,7 @@ unknowns:
   - Seven-minute target duration.
   - Numeric tuning after player observation.
   - Accessibility and performance on real device.
-next_action: Commit the validated changed worktree, push a W6-only PR, then collect exact-head checks before the separate Human/device/performance/export/full-slice gates.
+next_action: Run the separate Human/Player, device, performance, accessibility, export, and full-slice gates; keep W7, Task8 recovery, and production asset batch out of scope.
 ```
 
 ## 7. Incident / solution / lesson
@@ -154,7 +158,7 @@ base_promotion_reason: Godot's export guidance already documents this general Re
 | 2 | A Resource plan could turn a content slice into speculative framework work. | General scenario frameworks, save migration, and W7 persistence are not required for one W6 loop. | `MUST_FIX`: exactly two typed Resource classes and one assigned `.tres`; no generalized loader or persistence layer. | scope constrained in implementation |
 | 3 | A direct adaptation could strip the value/remaining-risk/unknown semantics or regress existing generic selector callers. | The first W6 selector pass did both: it omitted semantic payload fields and rejected legacy generic card input. | `MUST_FIX`: semantic fields pass through W6; generic selector compatibility is retained; W6 Consumer validates the stricter scenario contract. | corrected; automated regression pass |
 | 4 | A visually plausible board could be mistaken for a usable runtime screen. | The approved W6 board remains planning-only; the changed scene has only editor readback and runtime smoke, not target-resolution Human/device inspection. | `MUST_FIX`: no board binary binding; static scene, runtime smoke, device, and Human checks remain distinct evidence. | ceiling preserved |
-| 5 | Research or an automated run could be used to claim exported/mobile readiness prematurely. | Official Resource and Control documentation validates the mechanism; 1280×720 smoke validates launch only. Neither proves touch readability, export, or player comprehension. | `MUST_FIX`: PR exact-head, device, Human, performance, accessibility, export, and full-slice gates remain separate. | evidence boundaries preserved |
+| 5 | Research or an automated run could be used to claim exported/mobile readiness prematurely. | Official Resource and Control documentation validates the mechanism; 1280×720 smoke validates launch only. PR #245 applicable CI and merge validate integration, not touch readability, export, or player comprehension. | `MUST_FIX`: device, Human, performance, accessibility, export, and full-slice gates remain separate. | evidence boundaries preserved |
 
 ## 9. Convergence rule
 

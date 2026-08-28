@@ -24,8 +24,8 @@ base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
-implementation: PARTIAL_FOUNDATION
-current_user_work_scope: FROSTBLOOM_W6_L3_IMPLEMENTATION_AND_DELIVERY
+implementation: PARTIAL_FOUNDATION__W6_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
+current_user_work_scope: FROSTBLOOM_W6_POSTMERGE_EVIDENCE_AND_HUMAN_VALIDATION
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
@@ -48,13 +48,16 @@ frostbloom_w6_key_decision_visual_age_read: YOUNG_ADULT_ACADEMY_RESEARCHER__USER
 w6_bundled_contract_preflight: docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md
 w6_decision_loop_feature_spec: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md
 w6_decision_loop_feature_spec_issue: 236
-w6_decision_loop_feature_spec_status: USER_APPROVED_L2__L3_IMPLEMENTED_AUTOMATED_RUNTIME_SMOKE_PASS__PR_PENDING
+w6_decision_loop_feature_spec_status: USER_APPROVED_L2__L3_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
 w6_decision_loop_traceability_packet: docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md
 w6_decision_loop_implementation_plan: docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md
 w6_decision_loop_l3_issue: 242
-w6_decision_loop_implementation_authority: USER_APPROVED_2026-08-29__IMPLEMENTED_AUTOMATED_RUNTIME_SMOKE_PASS__PR_PENDING
+w6_decision_loop_implementation_authority: USER_APPROVED_2026-08-29__MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
 w6_decision_loop_implementation_receipt: docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md
-post_visual_lock_next_gate: W6_PR_EXACT_HEAD_CHECKS__THEN_HUMAN_DEVICE_PERFORMANCE_EXPORT_FULL_SLICE
+w6_decision_loop_pr: 245
+w6_decision_loop_exact_head: b0f34b538680b5046705f36196eae71ed1b9b0a8
+w6_decision_loop_merge_commit: 713bfbfc4c16b9ea469f2aa2c313a72bc50e1b67
+post_visual_lock_next_gate: W6_HUMAN_PLAYER_DEVICE_PERFORMANCE_ACCESSIBILITY_EXPORT_FULL_SLICE
 adversarial_research_feasibility_gate: docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md
 adversarial_research_feasibility_gate_status: USER_APPROVED_ACTIVE__REQUIRED_ON_MATERIAL_WORK
 visual_direction_decision: GM-VISUAL-DIRECTION-20260825-01
@@ -169,13 +172,13 @@ android_device: NOT_RUN
 - Task12/direct glyph input: **MERGED_MAIN** — 직접 쓴 글자 입력의 player-facing 설명만 보완했다.
 - Task13/result receipt: **MERGED_MAIN** — 실제 result payload의 대상·사용 마력·결과 문장을 Result Panel에 표시한다. 새 경제·전투·보상 authority는 추가하지 않았다.
 - PR #217 greenhouse spirit idle seed: **PROJECT_ASSET_APPROVED_IMPLEMENTATION_PENDING** — 투명 PNG와 provenance는 존재하지만 battle Scene binding·Godot import·runtime evidence는 아직 없다.
-- Frostbloom W6 preservation priority: **USER_APPROVED_ACTIVE_PLANNING_ONLY** — `희귀 묘목 우선`과 `온실 구조 우선`은 같은 위협을 서로 다른 방식으로 보존하는 두 유효한 대상 우선순위다. 기존 Target/Preview/Explicit Cast/Result authority를 재사용하며, 현재 Product Root의 `WARD`/`FLOWER`는 후속 Frostbloom 구현 전의 thin prototype role label로 남긴다.
+- Frostbloom W6 preservation priority: **MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS** — `희귀 묘목 우선`과 `온실 구조 우선`은 같은 위협을 서로 다른 방식으로 보존하는 두 유효한 대상 우선순위다. Product Root는 W6 typed Resource의 `FROST_SEEDLINGS` / `GREENHOUSE_STRUCTURE`를 사용하고, 기존 Target/Preview/Explicit Cast/Result authority를 재사용한다. 역사 `WARD`/`FLOWER` prototype은 W6 Product Root 정본에서 superseded이며 generic selector 호환 입력으로만 남는다.
 - Frostbloom W6 visual board: **SUPERSEDED_BY_USER_APPROVED_WARM_ACADEMY_TONE_LOCK** — 이전 생성 후보는 user-rejected historical exploration이다. 현재 시각 톤은 `GM-VISUAL-TONE-20260828-01`: 학습자 주도·따뜻한 마법학교 실습이며, 사용자 제공 이미지는 reference-only이고 runtime asset이 아니다.
 - Frostbloom W6 key-decision scene: **USER_APPROVED_PLANNING_REFERENCE_ONLY** — 사용자는 이 한 장만 W6 계획용 시각 기준으로 확정했다. 묘목(좌)과 균열 구조물/등불(우)의 동등한 보존 가치와 얼굴을 숨긴 성인 초년 마법학교 연구생의 직접 필기를 보존한다. 다른 이미지·runtime asset·Godot 구현·character canon·Human/Device validation은 확정하지 않았다. full five-panel board는 생성 구조 QA에서 `PARTIAL`로 남고, 정확한 흐름/결과 계약은 구조화된 brief가 소유한다.
-- W6 단일 구현계약: **USER_APPROVED_L2__L3_IMPLEMENTATION_CONTRACT_READY** — `WARD`/`FLOWER`와 difficulty/Mana 차이는 Frostbloom 사실이 아닌 generic Product Root prototype이다. 사용자는 L2 review gate에서 `진행해`로 승인했고, L3는 typed Godot Resource 한 개로 target 의미/forecast/receipt를 소유하게 한다. owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`; traceability: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md`; plan: `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md`; Issue #242.
-- 다음 기획 gate: **W6_L3_IMPLEMENTATION_AUTHORIZATION_REQUIRED** — L3 plan은 완성됐지만 Godot code/Scene/Resource/runtime asset 작업에는 별도 명시 승인이 필요하다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
+- W6 단일 구현계약: **USER_APPROVED_L2__L3_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS** — 역사 `WARD`/`FLOWER`와 difficulty/Mana 차이 prototype은 Frostbloom 정본이 아니며 Product Root의 W6 typed Resource로 대체됐다. 사용자는 L2 review gate에서 `진행해`로 승인했고, L3는 typed Godot Resource 한 개로 target 의미/forecast/receipt를 소유한다. PR #245 exact head `b0f34b5`의 적용 가능한 checks 통과 뒤 squash merge `713bfbf`가 main에 반영됐다. owner: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`; traceability: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md`; receipt: `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`; Issue #242 is closed.
+- 다음 W6 evidence gate: **W6_HUMAN_PLAYER_DEVICE_PERFORMANCE_ACCESSIBILITY_EXPORT_FULL_SLICE** — 자동화와 1280×720 런타임 스모크는 main에 병합됐지만, 사람/플레이어·기기·성능·접근성·export·full slice 검증은 아직 `NOT_RUN`이다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
 - Notion: **RETIRED_AS_CURRENT_CANON_AND_WORK_SURFACE__MIGRATION_COMPLETE** — GitHub repository가 사람용·구조화된 정본을 모두 소유한다. `GR-NOTION-MIGRATION-20260828-01`은 PR #238 merged main `1a30b9e0715b1d19e56e24f256f695b869369ca2` readback으로 완료됐다. Notion은 historical discovery-only이며 routine read/write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`.
-- 적대적·조사·구현가능성 게이트: **USER_APPROVED_ACTIVE** — 모든 material work는 fresh external research check, actual implementation-feasibility recheck, adversarial attack/validate를 거친다. L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop와 post-merge readback을 요구한다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. W6의 현재 판정은 `PARTIAL_TECHNICAL_SEAMS_EXIST__W6_RUNTIME_NOT_IMPLEMENTED`이며 사용자 L2 review, changed-head execution, Human evidence는 여전히 남아 있다.
+- 적대적·조사·구현가능성 게이트: **USER_APPROVED_ACTIVE** — 모든 material work는 fresh external research check, actual implementation-feasibility recheck, adversarial attack/validate를 거친다. L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop와 post-merge readback을 요구한다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. W6의 현재 판정은 `PARTIAL_EVIDENCED__MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS`; 사용자 L2 review, changed-head execution과 main readback은 완료됐고 Human/Player evidence는 남아 있다.
 - 다음 게이트: **TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING**
 - 이미지 후보 생성: **USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY** — canon·consumer·rights preflight 후 후보는 재승인 없이 생성하며, final lock·runtime use·production batch만 사용자 확정이 필요하다.
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
