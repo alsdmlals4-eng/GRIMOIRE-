@@ -21,6 +21,8 @@ Current Frostbloom W6 choice owner: `docs/planning/FROSTBLOOM_W6_PRESERVATION_PR
 
 Current W6 decision-scene reference: `docs/planning/visual/FROSTBLOOM_W6_WARM_ACADEMY_CORE_SCENE_BOARD_BRIEF_2026-08-28.md`. `PROJECT_CORE_SCENE_KEY_DECISION_FROSTBLOOM_W6_02` is `USER_APPROVED_PLANNING_REFERENCE_ONLY`; it is neither a runtime asset nor an implementation/character/rights/Human-Player evidence claim. All other visual candidates remain unconfirmed. The full five-step board remains a structured-text plan because image-generated grids failed QA.
 
+Current W6 single-contract preflight: `docs/planning/audits/2026-08-28-frostbloom-w6-bundled-contract-preflight.md`. It records the generic Product Root target mismatch, required W6 data/UI/result/test seams, Base reuse disposition, and the pending implementation-scope decision. It does not authorize Godot, runtime asset, or production image work.
+
 ## Godot
 
 - `project.godot`
