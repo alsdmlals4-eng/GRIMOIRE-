@@ -118,6 +118,7 @@ TASK8_RECEIPT_HERA_REVIEW_PR
 이전 Parent gate와 local recovery state는 Task8 병합 전의 역사 관찰값이다.
 
 ```yaml
+historical_parent_gate: TASK8_PR_PREP_REVERIFY_PENDING
 historical_execution_subgate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_local_branch_historical: feat/task8-spell-use-screen-v2
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
