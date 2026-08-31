@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b77gqykljc14r" path="res://src/ui/spell_workflow/glyph_drawing_screen.gd" id="1_pprrx"]
 [ext_resource type="PackedScene" uid="uid://b1t3m5t3gruyy" path="res://src/ui/spell_workflow/components/incident_status_card.tscn" id="2_h8dqw"]
 [ext_resource type="PackedScene" uid="uid://ulvi3h08qf45" path="res://src/ui/spell_workflow/components/incident_explanation_overlay.tscn" id="3_pq1il"]
-[ext_resource type="PackedScene" uid="uid://crdbvbbt0yxdj" path="res://src/ui/spell_workflow/components/glyph_stroke_canvas.tscn" id="4_h8dqw"]
+[ext_resource type="PackedScene" path="res://src/ui/glyph_writing/glyph_stroke_canvas.tscn" id="4_h8dqw"]
 
 [node name="GlyphDrawingScreen" type="VBoxContainer" unique_id=2079873807]
 anchors_preset = 15

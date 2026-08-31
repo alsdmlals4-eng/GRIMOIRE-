@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d13opkr86fb78"]
 
-[ext_resource type="Script" uid="uid://xdiv8lv0fg4h" path="res://src/ui/front_door/story_front_door.gd" id="1_front_door"]
+[ext_resource type="Script" path="res://src/ui/front_door/story_front_door.gd" id="1_front_door"]
 [ext_resource type="Texture2D" uid="uid://86esf0ohsnlb" path="res://assets/art/backgrounds/school/bg_school_admission_approach.png" id="2_admission_background"]
 
 [node name="StoryFrontDoor" type="Control" unique_id=1020495915]

@@ -1,5 +1,4 @@
 # 글자 입력 획을 수집해 사용자의 명시 제출 때만 인식 화면으로 보낸다.
-class_name GlyphStrokeCanvas
 extends Control
 
 signal strokes_submitted(strokes: Array)
@@ -10,7 +9,7 @@ var _active_stroke: Array = []
 
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_STOP
-    custom_minimum_size = Vector2(360, 220)
+    custom_minimum_size = Vector2(300, 132)
     queue_redraw()
 
 

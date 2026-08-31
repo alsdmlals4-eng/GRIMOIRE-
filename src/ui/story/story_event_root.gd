@@ -164,7 +164,7 @@ func last_result_receipt() -> Dictionary:
 
 
 func result_receipt_text() -> String:
-    var receipt_label := get_node_or_null(NodePath("Content/ResultReceipt")) as Label
+    var receipt_label := get_node_or_null(NodePath("Content/Body/ActionPanel/ResultReceipt")) as Label
     return "" if receipt_label == null else receipt_label.text
 
 
@@ -180,7 +180,7 @@ func _ensure_runtime() -> void:
 
 
 func _render_clock_state(resolution: Dictionary = {}) -> void:
-    var clock_view := get_node_or_null(NodePath("Content/EventClockView"))
+    var clock_view := get_node_or_null(NodePath("Content/Body/ActionPanel/EventClockView"))
     if clock_view == null:
         return
     if resolution.is_empty():
@@ -190,7 +190,7 @@ func _render_clock_state(resolution: Dictionary = {}) -> void:
 
 
 func _render_receipt(resolution: Dictionary) -> void:
-    var receipt_label := get_node_or_null(NodePath("Content/ResultReceipt")) as Label
+    var receipt_label := get_node_or_null(NodePath("Content/Body/ActionPanel/ResultReceipt")) as Label
     if receipt_label == null:
         return
     var status := StringName(resolution.get("status", &""))
@@ -264,12 +264,15 @@ func _has_first_event_progress() -> bool:
 
 
 func _connect_controls() -> void:
-    _connect_button(&"Content/GlyphSelection/GlyphButtons/HeatGlyphButton", func(): select_glyph(&"HEAT"))
-    _connect_button(&"Content/GlyphSelection/GlyphButtons/StabilizeGlyphButton", func(): select_glyph(&"STABILIZE"))
-    _connect_button(&"Content/GlyphSelection/GlyphButtons/FlowGlyphButton", func(): select_glyph(&"FLOW"))
-    _connect_button(&"Content/PreviewButton", request_circle_preview)
-    _connect_button(&"Content/TargetButton", func(): select_target(&"FROST_SEEDLINGS"))
-    _connect_button(&"Content/CommitButton", request_commit)
+    var writing_panel = get_node_or_null(NodePath("Content/Body/GlyphWritingPanel"))
+    if writing_panel != null:
+        if writing_panel.has_method("configure_allowed_glyphs"):
+            writing_panel.configure_allowed_glyphs([&"HEAT", &"PROTECT"])
+        if writing_panel.has_signal("glyph_accepted") and not writing_panel.glyph_accepted.is_connected(_on_glyph_accepted):
+            writing_panel.glyph_accepted.connect(_on_glyph_accepted)
+    _connect_button(&"Content/Body/ActionPanel/PreviewButton", request_circle_preview)
+    _connect_button(&"Content/Body/ActionPanel/TargetButton", func(): select_target(&"FROST_SEEDLINGS"))
+    _connect_button(&"Content/Body/ActionPanel/CommitButton", request_commit)
 
 
 func _connect_button(node_path: StringName, callback: Callable) -> void:
@@ -278,13 +281,18 @@ func _connect_button(node_path: StringName, callback: Callable) -> void:
         button.pressed.connect(callback)
 
 
+func _on_glyph_accepted(glyph_id: StringName) -> void:
+    select_glyph(glyph_id)
+
+
 func _render_flow_state() -> void:
     var preview_ready := StringName(_circle_preview.get("status", &"")) == &"PREVIEW_READY"
     var progress_ready := _has_first_event_progress()
-    var preview_button := get_node_or_null(NodePath("Content/PreviewButton")) as Button
-    var target_button := get_node_or_null(NodePath("Content/TargetButton")) as Button
-    var commit_button := get_node_or_null(NodePath("Content/CommitButton")) as Button
-    var preview_status := get_node_or_null(NodePath("Content/PreviewStatus")) as Label
+    var preview_button := get_node_or_null(NodePath("Content/Body/ActionPanel/PreviewButton")) as Button
+    var target_button := get_node_or_null(NodePath("Content/Body/ActionPanel/TargetButton")) as Button
+    var commit_button := get_node_or_null(NodePath("Content/Body/ActionPanel/CommitButton")) as Button
+    var preview_status := get_node_or_null(NodePath("Content/Body/ActionPanel/PreviewStatus")) as Label
+    var composition_status := get_node_or_null(NodePath("Content/Body/ActionPanel/GlyphCompositionStatus")) as Label
     if preview_button != null:
         preview_button.disabled = not progress_ready or _selected_glyph_ids.is_empty()
     if target_button != null:
@@ -295,6 +303,11 @@ func _render_flow_state() -> void:
         preview_status.visible = preview_ready
         if preview_ready:
             preview_status.text = "회로 Preview: %s" % String(_circle_preview.get("composition_signature", ""))
+    if composition_status != null:
+        var glyph_names: Array[String] = []
+        for glyph_id in _selected_glyph_ids:
+            glyph_names.append(String(GlyphCatalog.metadata(glyph_id).get("name", glyph_id)))
+        composition_status.text = "서클 글자: %s" % (" · ".join(glyph_names) if not glyph_names.is_empty() else "아직 없음")
 
 
 func _is_first_event_progress(progress) -> bool:

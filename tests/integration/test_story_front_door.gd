@@ -14,6 +14,8 @@ func run(case) -> void:
     case.assert_true(ResourceLoader.exists(PROLOGUE_SCENE_PATH), "Admission prologue scene exists")
     case.assert_true(ResourceLoader.exists(BACKGROUND_PATH), "Locked admission background is promoted into the runtime art directory")
     case.assert_false(FileAccess.file_exists(LEGACY_CANDIDATE_PATH), "Locked background is moved out of the legacy source-candidate path rather than duplicated")
+    var scene_text := FileAccess.get_file_as_string(SCENE_PATH)
+    case.assert_false(scene_text.contains("uid=\"uid://xdiv8lv0fg4h\" path=\"res://src/ui/front_door/story_front_door.gd\""), "Front door script reference has no stale UID that produces a Godot runtime warning")
     if FileAccess.file_exists(BACKGROUND_PATH):
         case.assert_equal(LOCKED_BACKGROUND_SHA256, FileAccess.get_sha256(BACKGROUND_PATH).to_upper(), "Canonical background preserves the approved byte identity")
     if not FileAccess.file_exists(PATH) or not ResourceLoader.exists(SCENE_PATH) or not ResourceLoader.exists(PROLOGUE_SCENE_PATH) or not ResourceLoader.exists(BACKGROUND_PATH):

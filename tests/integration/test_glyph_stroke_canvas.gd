@@ -1,7 +1,7 @@
 # 실제 포인터 입력이 명시 제출 전에는 인식으로 넘어가지 않음을 검증한다.
 extends RefCounted
 
-const CANVAS_PATH := "res://src/ui/spell_workflow/components/glyph_stroke_canvas.gd"
+const CANVAS_PATH := "res://src/ui/glyph_writing/glyph_stroke_canvas.gd"
 
 
 func run(case) -> void:
