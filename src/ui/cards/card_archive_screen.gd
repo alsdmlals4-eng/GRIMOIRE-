@@ -2,12 +2,13 @@ class_name CardArchiveScreen
 extends Control
 
 const CardDefinition = preload("res://src/core/cards/card_definition.gd")
-const CardRuleset = preload("res://src/core/cards/card_ruleset.gd")
+const StoryProgress = preload("res://src/core/story/story_progress.gd")
 const ThemeFactory = preload("res://src/ui/theme/grimoire_theme_factory.gd")
 
 const RULESET_RESOURCE_PATH := "res://data/cards/card_ruleset_01.tres"
 
 var _ruleset = null
+var _story_progress = null
 var _story_unlocked_cards: Array = []
 
 
@@ -17,8 +18,11 @@ func _ready() -> void:
     _render()
 
 
-func configure(story_unlocked_cards: Array) -> void:
-    _story_unlocked_cards = _validated_story_cards(story_unlocked_cards)
+func configure_story_cards(progress, candidate_cards: Array) -> void:
+    _story_progress = null
+    if progress is StoryProgress and progress.is_valid():
+        _story_progress = progress
+    _story_unlocked_cards = _validated_story_cards(candidate_cards)
     _ensure_ruleset()
     _render()
 
@@ -49,10 +53,21 @@ func _ensure_ruleset() -> void:
 
 func _validated_story_cards(cards: Array) -> Array:
     var validated: Array = []
+    var authorized_unlocks := _authoritative_card_unlocks()
     for card in cards:
-        if card is CardDefinition and card.validate() == &"OK":
-            validated.append(card)
+        if not card is CardDefinition or card.validate() != &"OK":
+            continue
+        var authorized_story_unlock := StringName(authorized_unlocks.get(card.card_id, &""))
+        if authorized_story_unlock.is_empty() or card.story_unlock != authorized_story_unlock:
+            continue
+        validated.append(card)
     return validated
+
+
+func _authoritative_card_unlocks() -> Dictionary:
+    if _story_progress == null:
+        return {}
+    return _story_progress.card_unlocks()
 
 
 func _render() -> void:
@@ -71,5 +86,8 @@ func _render() -> void:
     for card in _story_unlocked_cards:
         var card_label := Label.new()
         card_label.name = String(card.card_id)
-        card_label.text = "%s · %s" % [String(card.card_id), String(card.type)]
+        var composition_text := "글자 조합 없음"
+        if not card.composition_signature().is_empty():
+            composition_text = "글자 조합: %s" % String(card.composition_signature())
+        card_label.text = "%s · %s · %s" % [String(card.card_id), String(card.type), composition_text]
         cards_container.add_child(card_label)

@@ -45,7 +45,7 @@ autowrap_mode = 2
 
 [node name="NarrativeGate" type="Label" parent="Content"]
 layout_mode = 2
-text = "이야기에서 해금한 카드만 이곳에 기록됩니다."
+text = "이야기에서 해금한 카드만 이곳에 기록합니다. 상세 결투 규칙이 아직 준비되지 않아 여기서 결투를 시작할 수 없습니다."
 autowrap_mode = 2
 
 [node name="UnlockedCards" type="VBoxContainer" parent="Content"]

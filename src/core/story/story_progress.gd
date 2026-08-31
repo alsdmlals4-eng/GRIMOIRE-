@@ -6,6 +6,9 @@ const FIRST_EVENT := &"FIRST_EVENT"
 const ADMISSION_PROLOGUE_SCENE := "res://src/ui/story/admission_prologue.tscn"
 const FIRST_EVENT_SCENE := "res://src/ui/story/story_event_root.tscn"
 const FIRST_EVENT_HANDOFF_META := &"_grimoire_first_event_progress"
+const FIRST_EVENT_CARD_UNLOCKS := {
+    &"ARCHIVE_FROSTBLOOM_WIZARD": FIRST_EVENT,
+}
 
 var _current_beat: StringName = ADMISSION_PROLOGUE
 
@@ -30,6 +33,12 @@ func next_scene_path() -> String:
 
 func available_front_door_actions() -> Array[StringName]:
 	return [&"NEW_RECORD", &"RESUME_RECORD", &"SETTINGS"]
+
+
+func card_unlocks() -> Dictionary:
+	if _current_beat != FIRST_EVENT:
+		return {}
+	return FIRST_EVENT_CARD_UNLOCKS.duplicate(true)
 
 
 func advance_from_admission() -> Dictionary:
