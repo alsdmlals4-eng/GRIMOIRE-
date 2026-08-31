@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "requirement_set_id": "GR-VISUAL-ASSET-COVERAGE-20260826-01",
-  "status": "TASK9_CURRENT_RUNTIME_READBACK_HUMAN_VALIDATION_PENDING",
+  "status": "FRONT_DOOR_CANDIDATE_GENERATED__CIRCLE_CLOCK_CARD_CORE_RUNTIME_PENDING",
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.8",
@@ -10,7 +10,7 @@
     "policy": "VISUAL_REQUIREMENT_DELETE_TEST_THEN_VISUAL_ASSET_COVERAGE_AND_ART_STYLE_LOCK"
   },
   "project_stage": "DEMO_FIRST_VERTICAL_SLICE__PARTIAL_FOUNDATION",
-  "active_work_scope": "TASK9_AUTOMATED_VERTICAL_SLICE_AUTHORITY_AND_VISUAL_CONSUMER_RECONCILIATION",
+  "active_work_scope": "GM-CIRCLE-CLOCK-CARD-CORE-01_VISUAL_CANDIDATE_PREPARATION",
   "product_implementation_authorized_by_current_work_scope": true,
   "current_runtime_readback": {
     "readback_date": "2026-08-27",
@@ -50,8 +50,8 @@
     "DIALOGUE_AND_INVESTIGATION",
     "GLYPH_DRAWING",
     "TYPED_GLYPH_VAULT_AND_STOCK_SOURCE_SELECTION",
-    "FIVE_POINT_STAR_CIRCUIT_PLACEMENT",
-    "PREPARED_SPELL_REVIEW",
+    "ROLE_FREE_LAYERED_CIRCLE_COMPOSITION",
+    "COMPOSITION_PREVIEW",
     "TARGET_SELECTION_AND_FINAL_PREVIEW",
     "EXPLICIT_EXACTLY_ONCE_USE",
     "RESULT_AND_GRIMOIRE_RECORD",
@@ -393,6 +393,48 @@
       "coverage_status": "REQUIREMENT_LINKED",
       "state_family_status": "NOT_APPLICABLE",
       "note": "User batch-approved planning reference only. It does not establish character canon, exact festival outcome, live UI, runtime scene binding, device proof, or release approval. Live UI owns all functional content."
+    },
+    {
+      "visual_id": "GR-VIS-023-STORY-FRONT-DOOR-BACKGROUND",
+      "type": "STORY_ENTRY_ENVIRONMENT",
+      "purpose": "Provide a warm academy first impression for beginning or resuming the narrative without turning the front door into an activity-selection hub.",
+      "implementation_consumer": "src/ui/front_door/story_front_door.tscn",
+      "existing_asset_or_reference": "GR-VISUAL-BRIEF-CIRCLE-CLOCK-CARD-CORE-20260831-01 / GR-CAND-FRONT-DOOR-BG-01",
+      "delete_test": "A functional front door can use a plain colour, but it would weaken the admission-story promise and reconnect the game to empty technical UI.",
+      "consequence_if_missing": "Weaker story entry, academy identity, and first-screen warmth.",
+      "priority": "P1",
+      "action": "CREATE",
+      "coverage_status": "GENERATED_CANDIDATE__USER_LOCK_PENDING",
+      "state_family_status": "NORMAL_REQUIRED__OTHER_STATES_NOT_APPLICABLE",
+      "note": "Generated candidate: assets/art/source_candidates/circle_clock_card_core/front_door/front_door_admission_academy_candidate_01.png (SHA-256 D002D5E8FE545631F48AC07F2AA4C2F4AB292B587E9476CE39F96276133A5FE0). Background only; logo, buttons, save state, and all localized text remain live UI. User runtime lock is still pending."
+    },
+    {
+      "visual_id": "GR-VIS-024-EVENT-CLOCK-LIVE-PRESENTATION",
+      "type": "CORE_EVENT_UI_COMPONENT",
+      "purpose": "Make a story event's goal and threat accumulation, pressure, and relief readable through live controls and bounded VFX.",
+      "implementation_consumer": "src/ui/components/event_clock_view.tscn",
+      "existing_asset_or_reference": "Semantic UI pack + GM-VISUAL-TONE-20260828-01 + GR-VISUAL-BRIEF-CIRCLE-CLOCK-CARD-CORE-20260831-01",
+      "delete_test": "Text-only result feedback could run the logic but would obscure the player's changing risks and possible intervention.",
+      "consequence_if_missing": "Reduced causality, pressure, and relief in story events.",
+      "priority": "P0",
+      "action": "ADAPT",
+      "coverage_status": "REQUIREMENT_LINKED",
+      "state_family_status": "NORMAL_CHANGE_COMPLETE_REQUIRED",
+      "note": "Clock segments, labels, values, and accessibility text are live UI. A separate baked clock image is not required."
+    },
+    {
+      "visual_id": "GR-VIS-025-NARRATIVE-CARD-UI-FAMILY",
+      "type": "CARD_FRAME_SYMBOL_AND_STUDENT_HALF_BODY_FAMILY",
+      "purpose": "Support story-unlocked card archive readability for wizard, attack spell, defense spell, and summon cards without copying external card game skins.",
+      "implementation_consumer": "src/ui/cards/card_archive_screen.tscn",
+      "existing_asset_or_reference": "GR-VISUAL-BRIEF-CIRCLE-CLOCK-CARD-CORE-20260831-01 / GR-CAND-CARD-FRAME-FAMILY-01 / GR-CAND-CARD-SYMBOL-FAMILY-01 / GR-CAND-WIZARD-STUDENT-HALF-BODY-01",
+      "delete_test": "The ruleset shell can function with generic controls, but card identity and the academy collection fantasy would be substantially weakened.",
+      "consequence_if_missing": "Cards read as generic lists instead of story-earned magical objects.",
+      "priority": "P1",
+      "action": "CREATE",
+      "coverage_status": "BRIEF_READY",
+      "state_family_status": "FRAME_NORMAL_LOCKED_SELECTED_DISABLED_REQUIRED__WIZARD_ART_DEFERRED",
+      "note": "Functional card name, cost, rules, rarity, and status remain live UI. Candidates need user lock before runtime use."
     }
   ],
   "intentionally_not_needed": [
