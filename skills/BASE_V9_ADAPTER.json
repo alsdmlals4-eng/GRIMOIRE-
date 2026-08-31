@@ -10,7 +10,7 @@
     "repository": "alsdmlals4-eng/Base"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "586a5b72ce0206a70eb06e54b020127e6e94820fd0cfa6d16352dd9f5b879ff7",
+  "canonical_source_sha256": "4490ba8ece08b59874b5f9c903a63b483fe257a7180f1069d75a115afb9506b8",
   "generated": true,
   "legacy_sheet": {
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
@@ -21,7 +21,7 @@
   },
   "maturity": {
     "level": 3,
-    "next_gate": "CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING",
+    "next_gate": "CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK",
     "planning": "COMPLETE_FROSTBLOOM_FIRST_SESSION",
     "status": "PARTIAL_FOUNDATION"
   },

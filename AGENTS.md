@@ -21,7 +21,7 @@ orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION__W6_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
-current_user_work_scope: CIRCLE_CLOCK_CARD_CORE_REPLACEMENT__L2_APPROVED__TASKS_1_TO_7_IMPLEMENTED__TASK8_SAVE_DISPOSITION_PENDING
+current_user_work_scope: CIRCLE_CLOCK_CARD_CORE_REPLACEMENT__L2_APPROVED__TASKS_1_TO_7_IMPLEMENTED__LEGACY_SAVE_PRESERVED__MENU_UTILITIES_IMPLEMENTED
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_generation_state: FRONT_DOOR_BACKGROUND_LOCKED__CANON_REGISTERED__RUNTIME_IMPLEMENTED__CARD_BATCH_DEFERRED
@@ -52,8 +52,8 @@ product_decision_overlay: docs/superpowers/specs/2026-08-31-circle-clock-card-co
 product_decision_revision: 2026-08-31-USER_APPROVED_CORE_REPLACEMENT
 player_facing_spell_flow: WRITE_OR_SELECT_GLYPHS_TO_LAYERED_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT
 player_facing_ux_groups: STORY_EVENT_AND_CARD_DUEL_CONTEXT
-next_product_task: TASK8_STAR_RUNTIME_REMOVAL_AFTER_SAVE_DISPOSITION
-next_product_gate: CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING
+next_product_task: TASK8_STAR_RUNTIME_REMOVAL_WITH_LEGACY_SAVE_PRESERVED
+next_product_gate: CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -110,22 +110,22 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 
 ## 현재 제품 코어 — Circle / Clock / Card
 
-최신 사용자 승인 `GM-CIRCLE-CLOCK-CARD-CORE-01`은 아래를 현재 제품의 플레이어 노출 코어로 둔다. 구현 상태는 `PARTIAL_REPLACEMENT`; 기존 Star Runtime의 실제 사용자 저장 처분은 아직 승인되지 않아 제거 작업은 시작하지 않는다.
+최신 사용자 승인 `GM-CIRCLE-CLOCK-CARD-CORE-01`은 아래를 현재 제품의 플레이어 노출 코어로 둔다. 구현 상태는 `PARTIAL_REPLACEMENT`; 실제 legacy Star 저장은 그대로 보존하고 자동 변환·삭제·이동하지 않는다. 새 서클/시계/카드 경험은 `새 기록`에서 별도로 시작한다.
 
 ```yaml
 story_entry: STORY_FRONT_DOOR_ENTRY
-front_door: NEW_RECORD__RESUME__SETTINGS_ONLY
+front_door: NEW_RECORD__VALID_RESUME__READ_ONLY_ARCHIVE__SETTINGS__CONFIRMED_QUIT
 glyph_topology: ROLE_FREE_LAYERED_CIRCLES_1_TO_3
 spell_flow: WRITE_OR_SELECT_GLYPHS_TO_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT
 event_clock: DECLARED_STORY_ACTIONS_ONLY__NEVER_MENU_DIALOGUE_OR_WALL_TIME
 card_shell: STORY_GATED__WIZARD_ATTACK_SPELL_DEFENSE_SPELL_SUMMON
 card_ruleset: DETAIL_PENDING__NO_FIXED_7_7_6_OR_20_DEFAULT
-star_runtime: HISTORICAL_COMPATIBILITY__SAVE_DISPOSITION_PENDING
+star_runtime: HISTORICAL_COMPATIBILITY__LEGACY_SAVE_PRESERVED__NO_AUTOCONVERSION
 ```
 
 ## Historical Star Runtime core — preservation boundary
 
-아래 Star Circuit 내용은 보존된 구현·테스트·저장 호환성의 역사적 경계다. 현재 Main Scene이나 신규 플레이어 코어가 아니며, 실제 저장 처분에 대한 사용자 결정 전에는 삭제·마이그레이션·자동 변환하지 않는다.
+아래 Star Circuit 내용은 보존된 구현·테스트·저장 호환성의 역사적 경계다. 현재 Main Scene이나 신규 플레이어 코어가 아니며, 실제 legacy Star 저장은 사용자 승인에 따라 보존한다. 삭제·이동·자동 변환하지 않으며, 새 경험은 별도 새 기록에서 시작한다.
 
 > 조사 → 의도 → `FIVE_POINT_STAR` 회로 → 회로 Preview → 대상 키워드 → 최종 성공률·Mana·위험 Preview → 명시 Commit → 결과·대가 → 복기.
 

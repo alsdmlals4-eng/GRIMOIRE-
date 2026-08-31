@@ -36,7 +36,7 @@ latest_product_main: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
 spell_workflow_predecessor_status: TASK8_MERGED_MAIN_VERIFIED
 spell_workflow_status: TASK9_MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
 compatibility_next_gate: TASK8_HISTORICAL_RECOVERY_CLOSED
-next_product_gate: CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING
+next_product_gate: CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK
 task8_recovery_subgate: TASK8_CURRENT_MAIN_LOCAL_VALIDATION_PASS
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
@@ -88,7 +88,7 @@ Sheet와 Notion은 cold-start 선행조건이 아니다. 신규 상태는 GitHub
 
 ## Gate 1 — Historical Star Runtime preservation
 
-아래 Gate는 기존 Star Runtime의 테스트·저장·복구 가능성을 보존하는 경계다. 현재 제품 코어는 `GM-CIRCLE-CLOCK-CARD-CORE-01`이며, Star 제거는 `CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING`을 먼저 닫아야 한다.
+아래 Gate는 기존 Star Runtime의 테스트·저장·복구 가능성을 보존하는 경계다. 현재 제품 코어는 `GM-CIRCLE-CLOCK-CARD-CORE-01`이며, legacy Star 저장은 보존하고 자동 변환·삭제·이동하지 않는다. Star 제거는 `CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK`에서 이 경계를 먼저 검증해야 한다.
 
 ```yaml
 decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -104,7 +104,7 @@ stock_scope: TYPED_GLYPH_ONLY
 
 ## Gate 2 — Current Circle / Clock / Card implementation boundary
 
-현재 실제 main entry는 `res://src/ui/front_door/story_front_door.tscn`이다. Story Front Door는 새 기록·이어하기·설정만 보이고, 입학식 → 수업 → 첫 실습 → 이후 이야기 게이트로 진행한다. 서클·시계·카드는 현재 부분 구현이며 상세 카드 마력 규칙은 `RULESET_PENDING`이다.
+현재 실제 main entry는 `res://src/ui/front_door/story_front_door.tscn`이다. Story Front Door는 새 기록·유효 기록 이어하기·읽기 전용 도감·설정·종료 확인만 보이고, 입학식 → 수업 → 첫 실습 → 이후 이야기 게이트로 진행한다. 서클·시계·카드는 현재 부분 구현이며 상세 카드 마력 규칙은 `RULESET_PENDING`이다.
 
 Tasks 3–9는 병합 완료다. Task8 recovery text below is historical provenance; current execution starts at the Task9 human vertical-slice gate.
 
@@ -121,7 +121,7 @@ Tasks 3–9는 병합 완료다. Task8 recovery text below is historical provena
 ```yaml
 current_runtime_entry: res://src/ui/front_door/story_front_door.tscn
 current_runtime_role: STORY_FRONT_DOOR_ENTRY
-current_gate: CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING
+current_gate: CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK
 automated_evidence: AVAILABLE_DO_NOT_PROMOTE_TO_HUMAN_DEVICE_PERFORMANCE_OR_EXPORT_PASS
 ```
 
@@ -209,7 +209,7 @@ exact requested GRIMOIRE project/worktree
 
 ## Gate 5 — Product Root / Task9
 
-현재 `project.godot` Main Scene은 `res://src/ui/front_door/story_front_door.tscn`, 역할은 `STORY_FRONT_DOOR_ENTRY`다. Star Harness는 실제 저장 처분 결정을 받을 때까지 별도 historical POC 장면으로 보존한다. 이는 완성 제품 전체 승격을 뜻하지 않는다.
+현재 `project.godot` Main Scene은 `res://src/ui/front_door/story_front_door.tscn`, 역할은 `STORY_FRONT_DOOR_ENTRY`다. Star Harness는 실제 legacy 저장을 보존하는 제거 precheck가 완료될 때까지 별도 historical POC 장면으로 보존한다. 이는 완성 제품 전체 승격을 뜻하지 않는다.
 
 Task9은 다음 matrix와 3-stage E2E를 소유한다.
 
@@ -315,7 +315,7 @@ platform:
 ## Current unresolved delivery limits
 
 ```text
-CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING
+CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK
 HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 AUDIO_VAULT_PATH_UNVERIFIED

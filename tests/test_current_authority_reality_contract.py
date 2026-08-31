@@ -40,7 +40,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("res://src/ui/front_door/story_front_door.tscn", project["main_scene"])
         self.assertEqual("STORY_FRONT_DOOR_ENTRY", project["main_scene_role"])
         self.assertEqual("PARTIAL_FOUNDATION", current["implementation"])
-        self.assertEqual("CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING", current["next_product_gate"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK", current["next_product_gate"])
         self.assertEqual("MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY", current["task9_status"])
         self.assertEqual("CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN", current["runtime_validation"])
         self.assertEqual("NOT_RUN", current["human_validation"])
@@ -75,10 +75,10 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("Mobile", project["primary_platform"])
         self.assertEqual("PC", project["follow_up_platform"])
         self.assertEqual("PARTIAL_FOUNDATION", project["implementation_status"])
-        self.assertEqual("CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING", project["next_product_gate"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK", project["next_product_gate"])
         self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", project["execution_profile"])
         self.assertEqual("CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN", coverage["godot"])
-        self.assertEqual("CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING", coverage["spell_workflow"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK", coverage["spell_workflow"])
         self.assertEqual("COMPLETE_FROSTBLOOM_FIRST_SESSION", coverage["planning"])
         self.assertEqual("APPROVED_SPEC", coverage["asset_spec_01"])
 
@@ -88,7 +88,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         queue = load_json("docs/planning/visual/GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json")
 
         current = coverage["current_runtime_readback"]
-        self.assertEqual("CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING", current["next_product_gate"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK", current["next_product_gate"])
         self.assertEqual("res://src/ui/front_door/story_front_door.tscn", current["main_scene"])
         self.assertEqual(6, current["glyph_runtime_asset_count"])
         self.assertEqual("LEGACY_RUNTIME_NOT_CURRENT_MAIN", current["glyph_consumer_state"])

@@ -23,7 +23,7 @@ asset_state: USER_APPROVED__CANON_REGISTERED__IMPLEMENTED
 
 이 receipt는 승인된 입학식 전 학교 배경을 Story Front Door의 실제 Godot `TextureRect`로 연결하고, 기본 실행점과 이야기 시작 동작을 직접 관찰한 증거를 보관한다. 카드 배치, 카드 상세 규칙, 서클 전체 사용 흐름, 사건 시계 전 장면, 입학식 이후 수업·실습·결투·축제의 완성은 이 receipt의 범위가 아니다.
 
-배경 자체에는 기능 텍스트·수치·버튼을 넣지 않았다. `GRIMOIRE` 로고, 한국어 부제, `새 기록 시작`/`이야기 이어하기`/`설정`과 저장 상태는 scene의 live `Control` UI가 소유한다.
+배경 자체에는 기능 텍스트·수치·버튼을 넣지 않았다. `GRIMOIRE` 로고, 한국어 부제, `새 기록 시작`/`이야기 이어하기`/`도감`/`설정`/`종료`와 저장 상태는 scene의 live `Control` UI가 소유한다.
 
 ## 직접 Godot 관찰
 
@@ -39,7 +39,7 @@ asset_state: USER_APPROVED__CANON_REGISTERED__IMPLEMENTED
 | 검증 | 결과 | 세부 |
 | --- | --- | --- |
 | Front Door GUT 회귀 | PASS | 정본 배경 resource 존재, legacy candidate 경로 부재, live `TextureRect` binding·입력 차단·aspect-covered stretch, SHA-256 identity를 검증한다. |
-| 전체 Godot runner | PASS | fixture 경계 수정 후 58 suites, 2,414 assertions, 0 failures. |
+| 전체 Godot runner | PASS | 메뉴 extension 후 58 suites, 2,435 assertions, 0 failures. |
 | 현재 fixture 보존 | PASS | 수정 후 runner의 `artifacts/foundation-poc/glyph-fixture-rows.json` 전후 SHA-256은 `8D1EDCD0605AE2BD69655AF074BF85AF45C1EA6321648D172CDE9DA726A4A765`로 동일하다. 해당 파일은 feature commit에 포함하지 않았다. |
 | headless scene smoke | PASS | Godot 4.7.1 console에서 exact worktree를 3초 smoke 실행했고 exit code 0을 받았다. |
 
@@ -54,6 +54,20 @@ asset_state: USER_APPROVED__CANON_REGISTERED__IMPLEMENTED
 - 상세 카드 마력/소비/결투 밸런스
 - Star Runtime의 사용자 저장 이전·삭제·자동 변환
 
+## 2026-09-01 메뉴 유틸리티 extension
+
+`ab0e3b3`은 스토리 선택 허브를 만들지 않고 다음만 추가했다.
+
+| 항목 | 결과 | 근거 경계 |
+| --- | --- | --- |
+| 이어하기 | PASS | 기록이 없을 때도 버튼은 메뉴에 남지만 비활성화되고, 유효한 `StoryProgress`에서만 live action이 된다. |
+| 도감 | PASS | `CardArchiveScreen`을 read-only overlay로 열고, 독립 결투 route·규칙·카드 수치를 만들지 않는다. 빈 dark window 대신 잠금 입학식 전경과 별도 live 텍스트를 재사용한다. |
+| 도감 복귀 | PASS | live `메인 화면으로` 입력 뒤 Story Front Door의 menu controls가 다시 보이는 것을 직접 관찰했다. |
+| 종료 | PASS | live `종료` 입력은 `ConfirmationDialog`를 열고, `계속하기` 입력은 메뉴로 돌아온다. 확인 전에는 app exit나 저장 write를 실행하지 않는다. |
+| 새 기록 회귀 | PASS | live `새 기록 시작`은 여전히 `AdmissionPrologue`로 전환됐다. |
+
+legacy Star 저장은 현재 4,483 bytes / SHA-256 `6E023ABFC03857EAC40E0E9A529EB4FF237036421AE7DB7040C5CF9C0688B944`의 read-only preflight로 존재만 확인했다. 이 extension은 해당 파일을 read/write/move/delete하지 않았다. 새 서클·시계·카드 경험은 `새 기록`에서 시작하고, automatic conversion은 수행하지 않는다.
+
 ## 테스트 쓰기 경계 교정 기록
 
 최초 전체 runner는 `tests/integration/test_slice_glyph_recognition.gd`가 성능 측정의 `elapsed_us`를 `res://artifacts/foundation-poc/glyph-fixture-rows.json`에 직접 쓰는 오래된 동작을 드러냈다. 이 실행은 fixture 보존 PASS로 사용하지 않는다.
@@ -64,4 +78,4 @@ asset_state: USER_APPROVED__CANON_REGISTERED__IMPLEMENTED
 
 ## 다음 안전 게이트
 
-`CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING`: 기존 Star Runtime에 연결된 실제 사용자 저장은 보존한다. 다음 제거 작업은 저장을 **역사 보관하고 새 코어를 새 기록에서 시작할지**, 또는 별도의 migration을 설계할지에 대한 사용자 처분 결정을 받은 뒤에만 시작한다.
+`CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK`: 사용자는 기존 Star Runtime에 연결된 실제 legacy 저장을 보존하고, 새 코어를 새 기록에서 시작하도록 결정했다. 다음 제거 작업은 자동 변환·삭제·이동 없이 runtime consumer 제거 영향, legacy rollback, 테스트·문서 경계를 먼저 검증한 뒤에만 시작한다.

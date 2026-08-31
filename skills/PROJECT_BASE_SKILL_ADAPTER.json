@@ -17,7 +17,7 @@
     "version": "9.4.3"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "586a5b72ce0206a70eb06e54b020127e6e94820fd0cfa6d16352dd9f5b879ff7",
+  "canonical_source_sha256": "4490ba8ece08b59874b5f9c903a63b483fe257a7180f1069d75a115afb9506b8",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md",

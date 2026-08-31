@@ -32,7 +32,7 @@ class SpellWorkflowUiV2ContractTests(unittest.TestCase):
             "GM-CIRCLE-CLOCK-CARD-CORE-01",
             "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
             "ROLE_FREE_LAYERED_CIRCLES_1_TO_3",
-            "CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING",
+            "CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK",
         ):
             self.assertIn(token, combined)
 

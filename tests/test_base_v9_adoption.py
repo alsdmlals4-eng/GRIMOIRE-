@@ -29,7 +29,7 @@ class BaseV943AdoptionTests(unittest.TestCase):
         self.assertEqual("MIGRATION_ONLY_UNTIL_REMOVAL", adapter["gdd_sheet"]["role"])
         self.assertEqual("NO_NEW_CANON_WRITES", adapter["gdd_sheet"]["write_policy"])
         self.assertEqual("Mobile", adapter["project"]["primary_platform"])
-        self.assertEqual("CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING", adapter["current_state"]["next_product_gate"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK", adapter["current_state"]["next_product_gate"])
         self.assertEqual("MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY", adapter["current_state"]["task9_status"])
         self.assertEqual("PARTIAL_FOUNDATION", adapter["current_state"]["implementation"])
         self.assertEqual("NOT_RUN", adapter["current_state"]["human_validation"])

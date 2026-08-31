@@ -41,7 +41,7 @@ Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GA
 
 - `docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md`
 - role-free layered-circle core, event-clock core, narrative-gated card ruleset shell, and story-led front door: `PARTIAL_IMPLEMENTATION`
-- default entry: `res://src/ui/front_door/story_front_door.tscn` (`새 기록 시작` → admission); the original Star Runtime remains historical compatibility code until the separate save disposition and scoped removal gate
+- default entry: `res://src/ui/front_door/story_front_door.tscn` (`새 기록 시작` → admission; `도감` is read-only; `종료` is confirmed); the original Star Runtime remains historical compatibility code while its legacy save is preserved and the scoped removal precheck remains open
 - locked admissions background: `assets/art/backgrounds/school/bg_school_admission_approach.png` is runtime-bound as a live `TextureRect`; remaining card images are not generated
 - Human/device/performance/accessibility/export/full-slice evidence: `NOT_RUN`
 

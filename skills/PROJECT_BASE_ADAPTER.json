@@ -83,7 +83,7 @@
     "human_validation": "NOT_RUN",
     "implementation": "PARTIAL_FOUNDATION",
     "mobile_device_validation": "NOT_RUN",
-    "next_product_gate": "CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING",
+    "next_product_gate": "CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK",
     "performance_validation": "NOT_RUN",
     "planning": "COMPLETE_FROSTBLOOM_FIRST_SESSION",
     "runtime_validation": "CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN",
@@ -178,7 +178,7 @@
   "project_registry": {
     "hash_definition": "UTF8_TEXT_SHA256_AFTER_PLATFORM_NEWLINE_NORMALIZATION",
     "path": "skills/SKILL_REGISTRY.json",
-    "sha256": "e8a4e40781dd4746f22f78811a71dc88b93ae139fcd5f9ca9b57ef9116e60dc4"
+    "sha256": "fc9b075fc17b5a74e28119e59527b7c59f45af702b04d7eea811209746ef5bd5"
   },
   "protected_baseline": {
     "authority_ref": "refs/remotes/origin/main",
