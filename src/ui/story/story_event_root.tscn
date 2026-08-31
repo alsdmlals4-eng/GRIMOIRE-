@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/ui/story/story_event_root.gd" id="1_event_root"]
+[ext_resource type="PackedScene" path="res://src/ui/components/event_clock_view.tscn" id="2_clock_view"]
+
+[node name="StoryEventRoot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_event_root")
+
+[node name="SafeBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.027, 0.082, 0.14, 1)
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 52.0
+offset_right = -64.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+
+[node name="Heading" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "서리꽃 실습"
+
+[node name="Situation" type="Label" parent="Content"]
+layout_mode = 2
+text = "묘목의 서리를 가라앉히는 동안, 온실의 균열도 계속 지켜봐야 합니다."
+autowrap_mode = 2
+
+[node name="EventClockView" parent="Content" instance=ExtResource("2_clock_view")]
+layout_mode = 2
+
+[node name="ResultReceipt" type="Label" parent="Content"]
+layout_mode = 2
+autowrap_mode = 2

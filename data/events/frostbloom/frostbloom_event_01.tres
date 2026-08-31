@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/core/events/event_clock_definition.gd" id="1_event_definition"]
+
+[resource]
+resource_name = "Frostbloom Event 01"
+script = ExtResource("1_event_definition")
+metadata/goal_label = "서리 안정화"
+metadata/threat_label = "온실 균열 확산"
+event_id = &"FROSTBLOOM_EVENT_01"
+goal_clock_id = &"FROST_STABILIZATION"
+threat_clock_id = &"GREENHOUSE_FRACTURES"
+goal_segment_count = 6
+threat_segment_count = 4
+action_resolutions = [{
+"target_id": &"FROST_SEEDLINGS",
+"method_tags": [&"HEAT", &"STABILIZE"],
+"goal_delta": 1,
+"threat_delta": 1,
+"visible_consequence_tags": [&"FROST_STABILIZED", &"FRACTURES_SPREAD"]
+}]
