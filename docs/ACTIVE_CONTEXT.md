@@ -151,6 +151,8 @@ android_device: NOT_RUN
 
 사용자는 `GM-CIRCLE-CLOCK-CARD-CORE-01`과 그 L2 설계를 검토 승인했다. 이 결정은 runtime의 `FIVE_POINT_STAR`, `Main/Auxiliary` 역할, 별형 전용 Product Root를 폐기 대상으로 전환하며, 역할 없는 공용 글자 1~3개 겹서클·사건 시계·마도 카드를 새 제품 코어로 둔다. 메인 화면은 수업/실습/결투/축제를 선택하는 허브가 아니라 새 기록/이야기 이어하기로 입학식 이후의 서사를 진행하는 입구다. 상세 책임 원본은 [공용 서클 · 사건 시계 · 마도 카드 코어 교체 설계](../superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md)이며 상태는 `USER_APPROVED_L2__IMPLEMENTATION_PLAN_READY`다. 구현 계획은 `docs/superpowers/plans/2026-08-31-circle-clock-card-core-replacement.md`다.
 
+카드 마력의 `7·7·6 / 20`은 **마력 20이 남은 한 장면의 설명 예시**다. 고정 밸런스·기본 배분·검증·소비 규칙이 아니며, 실제 마력 분배와 소비는 상세 카드 룰 결정 전까지 `RULESET_PENDING`으로 둔다.
+
 아래에 남은 별형 관련 설명과 W6 구현 증거는 **현재 구현의 역사·실제 상태**를 보존하기 위한 것이며, 새 제품 방향의 authority가 아니다. 새 서클 runtime의 구현과 검증이 끝난 뒤 별형 runtime 코드·씬·전용 테스트·소비처를 제거한다. 사람/기기/성능/출시 검증을 수행하지 않은 상태는 계속 `NOT_RUN`이다.
 
 2026-08-26 사용자는 Visual 시안 검토 뒤 `GM-SPELL-WORKFLOW-UI-V2-01`의 플레이어 노출 흐름을 다음처럼 단순화하는 방향을 명시적으로 승인했다.

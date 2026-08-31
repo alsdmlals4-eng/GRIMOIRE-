@@ -17,7 +17,8 @@
 - Event clocks move only from declared story-action/phase resolutions, never menus, dialogue reading, or wall-clock time.
 - Every event action and round-end action is idempotent by action id.
 - The front door owns only new record, resume record, and settings.
-- Card types are WIZARD, ATTACK_SPELL, DEFENSE_SPELL, and SUMMON. Rounds are 3; budgets are [7, 7, 6]; total is 20; first to 2 rounds wins; unused prepared spells resolve once at round end.
+- Card types are WIZARD, ATTACK_SPELL, DEFENSE_SPELL, and SUMMON. Rounds are 3; first to 2 rounds wins; unused prepared spells resolve once at round end.
+- `[7, 7, 6] / 20` is an illustrative state where 20 mana remains, not a balance rule, default budget, validation constraint, or consumption rule. Mana distribution and consumption remain RULESET_PENDING.
 - Unspecified duel rules remain RULESET_PENDING.
 - Functional text, values, buttons, and clock segments are live Controls, never baked into art.
 - Preserve the approved warm academy visual tone. Character cards use student-feeling upper-body illustrations only.
@@ -36,7 +37,7 @@
 | src/core/events/event_clock_state.gd | Serializable clock values and exactly-once action history. |
 | src/core/events/event_clock_resolver.gd | One explicit goal/threat resolution per story action. |
 | src/core/cards/card_definition.gd | Card type, composition, story unlock, art state. |
-| src/core/cards/card_ruleset.gd | Fixed approved round/mana rules and pending-rule list. |
+| src/core/cards/card_ruleset.gd | Fixed structural round rules, illustrative mana metadata, and pending-rule list. |
 | src/core/cards/card_round_state.gd | Separate duel state and once-only round-end state. |
 | src/core/story/story_progress.gd | Narrative beat, record identity, next scene route. |
 | src/ui/front_door/story_front_door.gd/.tscn | New record/resume/settings front door. |
@@ -45,10 +46,10 @@
 | src/ui/components/event_clock_view.gd/.tscn | Live goal/threat clock presentation. |
 | src/ui/cards/card_archive_screen.gd/.tscn | Story-unlocked card archive and pending duel state. |
 | data/events/frostbloom/frostbloom_event_01.tres | First practicum event definition. |
-| data/cards/card_ruleset_01.tres | Approved fixed card rules. |
+| data/cards/card_ruleset_01.tres | Fixed structural card rules plus non-binding illustrative mana metadata. |
 | tests/unit/test_circle_composition.gd | Circle validation, signature, preview tests. |
 | tests/unit/test_event_clock_resolver.gd | Clock movement and idempotency tests. |
-| tests/unit/test_card_ruleset.gd | Fixed card rule contract tests. |
+| tests/unit/test_card_ruleset.gd | Structural card-rule, pending-mana, and exactly-once contract tests. |
 | tests/unit/test_story_progress.gd | Narrative route tests. |
 | tests/integration/test_story_front_door.gd | No activity-mode hub test. |
 | tests/integration/test_story_event_root.gd | First event and clock UI integration. |
@@ -385,14 +386,17 @@ git commit -m "art: add circle clock card visual candidates"
 - Modify: tests/integration/test_card_archive_screen.gd
 
 **Interfaces:**
-- Consumes: CircleComposition, StoryProgress, and fixed CardRuleset values.
+- Consumes: CircleComposition, StoryProgress, fixed structural CardRuleset values, and explicitly pending mana detail.
 - Produces: CardRuleset.validate(), CardRoundState.resolve_round_end(action_id), and a card archive that states pending rules.
 
-- [ ] **Step 1: Write failing fixed-rule and pending-duel tests.**
+- [ ] **Step 1: Write failing structural-rule, illustrative-mana, and pending-duel tests.**
 
 ~~~gdscript
-case.assert_equal([7, 7, 6], ruleset.round_mana_budget(), "Approved per-round mana budget is fixed")
-case.assert_equal(20, ruleset.total_mana_budget(), "Approved total mana budget is fixed")
+case.assert_equal(&"RULESET_PENDING", ruleset.mana_distribution_status, "Mana distribution remains unapproved")
+case.assert_equal(20, ruleset.mana_example().get("remaining_mana", -1), "The supplied 20-mana scenario is preserved as an example")
+case.assert_equal([7, 7, 6], ruleset.mana_example().get("illustrative_round_split", []), "The supplied split is illustrative only")
+case.assert_false(ruleset.mana_example().get("is_balance_rule", true), "Illustrative mana data never becomes a balance rule")
+case.assert_equal(&"OK", ruleset.validate(), "Different runtime mana values do not invalidate the pending ruleset shell")
 case.assert_equal(&"RULESET_PENDING", archive.request_start_duel().get("status", &""), "Archive cannot start a duel before detailed rules exist")
 case.assert_equal(&"ROUND_END_RESOLVED", state.resolve_round_end(&"round-01").get("status", &""), "Unspent prepared cards resolve once")
 case.assert_equal(&"ALREADY_RESOLVED", state.resolve_round_end(&"round-01").get("status", &""), "Round end cannot resolve twice")
@@ -404,7 +408,7 @@ Expected: FAIL because the card model and archive scene do not exist.
 
 - [ ] **Step 3: Implement cards and archive.**
 
-CardDefinition.type validates exactly one approved type. CardRuleset rejects any budget other than [7, 7, 6], total other than 20, or circle cap other than 3. CardArchiveScreen receives story_unlocked_cards and reports pending rules without offering an independent front-door duel mode.
+CardDefinition.type validates exactly one approved type. CardRuleset rejects a circle cap other than three and structural changes to fixed rules, but has no runtime mana budget, total, allocation, or consumption validator while mana details are pending. It retains the supplied `[7, 7, 6] / 20` scenario only as clearly labeled illustrative metadata. CardArchiveScreen receives story_unlocked_cards and reports pending rules without offering an independent front-door duel mode.
 
 - [ ] **Step 4: Run full tests and scene smoke, then commit.**
 

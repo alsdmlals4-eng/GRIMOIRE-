@@ -176,8 +176,11 @@ CardDefinition:
 CardRuleset:
   max_circle_count: 3
   rounds: 3
-  round_mana_budget: [7, 7, 6]
-  total_mana_budget: 20
+  mana_distribution_status: RULESET_PENDING
+  mana_example:
+    remaining_mana: 20
+    illustrative_round_split: [7, 7, 6]
+    is_balance_rule: false
   match_win_condition: FIRST_TO_2_ROUNDS
   unspent_prepared_spell: RESOLVE_ONCE_AT_ROUND_END
   player_remaining_mana: ROUND_JUDGMENT_INPUT
@@ -189,6 +192,8 @@ CardBattleState:
   round_index: required
   action_ids: exactly_once_set
 ```
+
+`[7, 7, 6]`과 `20`은 **마력이 20 남은 특정 상황을 설명하기 위한 예시**일 뿐이다. 고정 밸런스, 기본 배분, 검증 조건, 마력 소비 규칙으로 취급하지 않는다. 마력의 실제 분배·소비·회복·라운드별 입력 방식은 `RULESET_PENDING`으로 유지한다.
 
 카드 시스템은 이야기와 무관한 메인 메뉴 대전 허브가 아니다. 결투 수업, 친구와의 연습, 사건 해결 과정에서 필요한 카드 대결로 진입한다. 상세 카드 룰이 정해지기 전의 카드 화면은 도감·획득·조합·규칙 상태를 정확히 보여 주며, 실제 승패 계산을 가장하지 않는다.
 
@@ -280,7 +285,7 @@ CardBattleState:
 
 1. 네 종류의 CardDefinition과 CardRuleset을 구현한다.
 2. 이야기에서 얻는 카드 도감과 3서클 조합 표시를 구현한다.
-3. 3라운드·7/7/6·20·2라운드 승리·라운드 종료 1회 해석을 데이터로 검증한다.
+3. 3라운드·2라운드 승리·라운드 종료 1회 해석을 데이터로 검증하고, 마력 분배·소비는 `RULESET_PENDING`으로 유지한다. `[7, 7, 6] / 20`은 예시 메타데이터로만 표시하며 검증·기본값으로 사용하지 않는다.
 4. `RULESET_PENDING` 전투 항목은 실제 대전 시작을 막고, 다음 상세 룰 결정으로 연결한다.
 
 ## 8. 실패·복구·적대적 검토

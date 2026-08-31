@@ -127,7 +127,7 @@
       "story_progression": "NARRATIVE_GATED",
       "event_clock": "GOAL_AND_THREAT_EXPLICIT_ACTION_RESOLUTION",
       "card_types": ["WIZARD", "ATTACK_SPELL", "DEFENSE_SPELL", "SUMMON"],
-      "card_ruleset": "THREE_ROUNDS_7_7_6_TOTAL_20_FIRST_TO_2_WITH_PENDING_DETAIL_RULES",
+      "card_ruleset": "THREE_ROUNDS_FIRST_TO_2_WITH_PENDING_MANA_DISTRIBUTION_AND_DETAIL_RULES",
       "star_runtime": "REMOVE_AFTER_REPLACEMENT_VERIFIED",
       "numeric_status": "PLAYTEST_TUNING_REQUIRED"
     },
