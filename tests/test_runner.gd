@@ -4,6 +4,7 @@ const TestCase = preload("res://tests/test_case.gd")
 
 const SUITES: Array[String] = [
     "res://tests/unit/test_artifact_recovery_scanner_boundary.gd",
+    "res://tests/unit/test_tmp_scanner_boundary.gd",
     "res://tests/unit/test_spell_workflow_background_uid.gd",
     "res://tests/unit/test_glyph_resource_types.gd",
     "res://tests/unit/test_glyph_catalog.gd",
