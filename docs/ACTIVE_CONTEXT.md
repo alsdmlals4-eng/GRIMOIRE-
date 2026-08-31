@@ -25,8 +25,8 @@ adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION__W6_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
-current_user_work_scope: FROSTBLOOM_W6_POSTMERGE_EVIDENCE_AND_HUMAN_VALIDATION
-product_implementation_authorized_by_current_user_work_scope: true
+current_user_work_scope: CIRCLE_CLOCK_CARD_CORE_REPLACEMENT__L2_SPEC_REVIEW_PENDING
+product_implementation_authorized_by_current_user_work_scope: false
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
 visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__L3_IMPLEMENTED__NO_RUNTIME_ASSET_BATCH
@@ -72,11 +72,13 @@ notion_migration_state: MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
-product_decision: GM-SPELL-WORKFLOW-UI-V2-01
-product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
-product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
-player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
-player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
+product_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
+product_decision_overlay: docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md
+product_decision_revision: 2026-08-31-USER_APPROVED_CORE_REPLACEMENT
+player_facing_spell_flow: WRITE_OR_SELECT_GLYPHS_TO_LAYERED_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT
+player_facing_ux_groups: STORY_EVENT_AND_CARD_DUEL_CONTEXT
+runtime_circuit_topology_current: FIVE_POINT_STAR__REMOVAL_AUTHORIZED_NOT_STARTED
+runtime_circuit_topology_target: ROLE_FREE_LAYERED_CIRCLES_1_TO_3
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
 next_product_task: TASK9_USER_VERTICAL_SLICE_VALIDATION
@@ -114,8 +116,8 @@ canon_fun_visual_audit_pr: 219
 canon_fun_visual_audit_merge_commit: 6ab3dd11a9bff9e5f3c3c9aebd87f63e613c5444
 open_pr_state_authority: LIVE_GITHUB_READBACK_REQUIRED
 component_sheet_pr151: MERGED_MAIN_VERIFIED
-preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-circuit_topology: FIVE_POINT_STAR
+preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01__SUPERSEDED_RUNTIME_REMOVAL_AUTHORIZED
+circuit_topology: ROLE_FREE_LAYERED_CIRCLES_1_TO_3__IMPLEMENTATION_PENDING
 higodot_release: v3.2.0
 higodot_tracked_vendor_release: v3.2.0
 higodot_tracked_vendor_subtree: 66a9df59a92f0029efcd35c22fea355c93e8fe49
@@ -144,6 +146,12 @@ android_device: NOT_RUN
 `authority_sync_local_observation` / `authority_sync_godot_observation`은 이전 authority sync 당시의 역사 관찰값이다. 현재 Task8 reconciliation의 local/Godot 실행 증거와 보존 상태는 별도 Task8 receipt가 소유한다.
 
 ## 현재 사용자 작업 범위
+
+### 2026-08-31 최신 사용자 코어 교체 결정
+
+사용자는 `GM-CIRCLE-CLOCK-CARD-CORE-01`을 확정했다. 이 결정은 runtime의 `FIVE_POINT_STAR`, `Main/Auxiliary` 역할, 별형 전용 Product Root를 폐기 대상으로 전환하며, 역할 없는 공용 글자 1~3개 겹서클·사건 시계·마도 카드를 새 제품 코어로 둔다. 메인 화면은 수업/실습/결투/축제를 선택하는 허브가 아니라 새 기록/이야기 이어하기로 입학식 이후의 서사를 진행하는 입구다. 상세 책임 원본은 [공용 서클 · 사건 시계 · 마도 카드 코어 교체 설계](../superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md)이며 상태는 `USER_APPROVED_DIRECTION__SPEC_REVIEW_PENDING`이다.
+
+아래에 남은 별형 관련 설명과 W6 구현 증거는 **현재 구현의 역사·실제 상태**를 보존하기 위한 것이며, 새 제품 방향의 authority가 아니다. 새 서클 runtime의 구현과 검증이 끝난 뒤 별형 runtime 코드·씬·전용 테스트·소비처를 제거한다. 사람/기기/성능/출시 검증을 수행하지 않은 상태는 계속 `NOT_RUN`이다.
 
 2026-08-26 사용자는 Visual 시안 검토 뒤 `GM-SPELL-WORKFLOW-UI-V2-01`의 플레이어 노출 흐름을 다음처럼 단순화하는 방향을 명시적으로 승인했다.
 

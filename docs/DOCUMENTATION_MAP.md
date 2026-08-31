@@ -1,14 +1,12 @@
 # GRIMOIRE Documentation Map — Main
 
 ```yaml
-runtime_main_sync: GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN
-runtime_main_authority_commit: 6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b
-validation_main_sync: GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN
-validation_merge_commit: 292d2b850b38945e404f81dbcf209220067729d2
-latest_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-canon_status: SYNCED_TO_MAIN
-product_implementation: STAR_RUNTIME_COMPLETION_AUTOMATED_PASS
-runtime_validation: AUTOMATED_HEADLESS_PASS
+runtime_main_sync: LIVE_ORIGIN_MAIN_2026-08-31_PRE_CORE_REPLACEMENT
+runtime_main_authority_commit: d384c454768a8aa3b0adb939e0b035ac2afa426e
+latest_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
+canon_status: USER_APPROVED_DIRECTION__SPEC_REVIEW_PENDING
+product_implementation: STAR_RUNTIME_REPLACEMENT_AUTHORIZED_NOT_STARTED
+runtime_validation: NEW_CORE_NOT_RUN
 ```
 
 ## 시작 경로
@@ -23,9 +21,11 @@ Current W6 decision-scene reference: `docs/planning/visual/FROSTBLOOM_W6_WARM_AC
 
 Current W6 L2 feature spec: `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md`. The user approved scope A and the L2 review gate. The exact one-contract paths and evidence mapping are in `docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md` and `docs/superpowers/plans/2026-08-28-frostbloom-w6-decision-loop-implementation.md` (Issue #242). The plan selects one typed Godot Resource to replace generic Product Root target ownership, but no document authorizes Godot, runtime asset, or production image work.
 
+Current core-replacement owner: `docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md`. The user has replaced the future runtime direction of `FIVE_POINT_STAR` with role-free 1–3 layered circles, event clocks, and cards. The front door is story-led: it starts or resumes the narrative rather than selecting classes, practicum, duels, or festivals as standalone modes. The previous star documents and runtime evidence are historical provenance until their replacement is implemented and verified.
+
 Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. Every material work unit runs fresh external research, actual project feasibility recheck, and adversarial review before a recommendation or write. L1 planning, implementation, PR, and canon correction require five full-scope loops and post-merge readback.
 
-## Godot
+## Godot — Current Pre-replacement Runtime
 
 - `project.godot`
 - `src/ui/star_circuit_harness.tscn`
@@ -36,6 +36,12 @@ Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GA
 - `data/testing/frostbloom_star_ux_map.json`
 - `tests/test_runner.gd`
 - `tools/run_star_runtime.py`
+
+## Godot — Planned Core Replacement
+
+- `docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md`
+- role-free layered-circle core, event-clock core, card ruleset shell, and story-led front door: `NOT_STARTED`
+- image candidates for the front door and cards: `NOT_RUN`
 
 ## GR-TEST-033
 
