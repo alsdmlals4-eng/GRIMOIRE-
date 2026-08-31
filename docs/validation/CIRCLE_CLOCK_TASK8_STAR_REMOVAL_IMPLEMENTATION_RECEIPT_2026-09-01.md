@@ -8,7 +8,7 @@ feature_id: FTR-CIRCLE-CLOCK-CARD-CORE-01
 work_unit: TASK8_STAR_RUNTIME_REMOVAL_WITH_LEGACY_SAVE_PRESERVED
 recorded_at: 2026-09-01
 branch: codex/card-clock-system-20260831
-state: MACHINE_VERIFIED__EXACT_EDITOR_RUNTIME_OBSERVED__REMOTE_PR_CI_REQUIRED
+state: MACHINE_VERIFIED__EXACT_EDITOR_RUNTIME_OBSERVED__REMOTE_PR_CI_GATE_CONFIGURED__HUMAN_NOT_RUN
 next_gate: CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK
 ```
 
@@ -49,7 +49,7 @@ state: KEEP_UNRESOLVED__COMPATIBILITY_ONLY
 | exact-worktree editor front door | OBSERVED | Hera PID 39820, `C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-/.worktrees/p/`; 1280×720 live UI tree 및 runtime screenshot에서 새 기록/이어하기/도감/설정/종료를 확인했고 error/warning 0건이었다. |
 | exact-worktree editor first event | OBSERVED | 같은 editor에서 1280×720 `StoryEventRoot`가 직접 글자 새기기, Preview, 대상, 시전, `서리 안정화 0/6`, `온실 균열 확산 0/4`를 함께 표시했다. error/warning 0건이었다. |
 | fixture boundary | PASS | `artifacts/foundation-poc/glyph-fixture-rows.json`는 존재 여부만 확인했고 변경하거나 stage하지 않았다. |
-| CI contract reconciliation | PREPARED | 삭제된 Star/component-sheet test를 호출하던 workflow를 제거하고, Circle/Clock story runtime의 authority + Godot runner workflow로 교체했다. 원격 CI 결과는 별도 확인이 필요하다. |
+| CI contract reconciliation | CONFIGURED | 삭제된 Star/component-sheet test를 호출하던 workflow를 제거하고, Circle/Clock story runtime의 authority + Godot runner workflow로 교체했다. exact PR head의 결과는 GitHub live readback이 소유한다. |
 
 ## 증명하지 않는 항목
 
