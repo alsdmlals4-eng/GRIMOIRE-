@@ -20,10 +20,7 @@ func run(case) -> void:
     if Root == null or not Root.can_instantiate():
         return
     case.assert_true(FileAccess.file_exists(ROOT_SCENE_PATH), "Product Root scene must exist")
-    var configured_main_scene = load(str(ProjectSettings.get_setting("application/run/main_scene", "")))
-    case.assert_true(configured_main_scene != null, "Project main scene must load")
-    if configured_main_scene != null:
-        case.assert_equal(ROOT_SCENE_PATH, configured_main_scene.resource_path, "Product Root is the project main scene")
+    case.assert_true(ResourceLoader.exists(ROOT_SCENE_PATH), "Product Root remains loadable as a story-owned future scene")
     var packed_scene = load(ROOT_SCENE_PATH)
     case.assert_true(packed_scene != null and packed_scene.can_instantiate(), "Product Root scene must instantiate")
     if packed_scene != null and packed_scene.can_instantiate():
