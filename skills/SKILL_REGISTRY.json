@@ -113,11 +113,11 @@
     "codex": "OPTIONAL_EXECUTOR",
     "device_validation": "NOT_RUN",
     "full_vertical_slice": "NOT_RUN",
-    "godot": "CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN",
+    "godot": "CIRCLE_CLOCK_TASK8_STAR_REMOVED__AUTOMATED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN",
     "human_validation": "NOT_RUN",
     "performance_validation": "NOT_RUN",
     "planning": "COMPLETE_FROSTBLOOM_FIRST_SESSION",
-    "spell_workflow": "CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK"
+    "spell_workflow": "CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK"
   },
   "execution_contracts": {
     "active_context": "docs/ACTIVE_CONTEXT.md",
@@ -157,7 +157,7 @@
     "main_scene": "res://src/ui/front_door/story_front_door.tscn",
     "main_scene_role": "STORY_FRONT_DOOR_ENTRY",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
-    "next_product_gate": "CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK",
+    "next_product_gate": "CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK",
     "parallel_design_gate": "COMPONENT_SHEET_PR151_MERGED_MAIN_VERIFIED",
     "planning_status": "COMPLETE_FROSTBLOOM_FIRST_SESSION",
     "primary_platform": "Mobile",

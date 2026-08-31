@@ -9,13 +9,13 @@
   "contract_revision": "2026-08-26-r5.4-superset-final",
   "baseline_project_main": "5139bc53ef4ad80131d6b2c76d235d05550cddfa",
   "current_runtime_readback": {
-    "readback_date": "2026-08-31",
+    "readback_date": "2026-09-01",
     "main_scene": "res://src/ui/front_door/story_front_door.tscn",
     "task9_status": "HISTORICAL_MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY",
-    "next_product_gate": "CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK",
+    "next_product_gate": "CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK",
     "glyph_runtime_asset_count": 6,
-    "glyph_consumer_state": "LEGACY_RUNTIME_NOT_CURRENT_MAIN",
-    "img02_state": "LOCKED_ADMISSION_BACKGROUND_CURRENT_FRONT_DOOR_BOUND; LEGACY_PRODUCT_ROOT_BACKGROUND_BINDINGS_RETAINED_PENDING_STAR_REMOVAL",
+    "glyph_consumer_state": "NO_CURRENT_RUNTIME_CONSUMER__STAR_RUNTIME_REMOVED",
+    "img02_state": "LOCKED_ADMISSION_BACKGROUND_CURRENT_FRONT_DOOR_BOUND__NO_LEGACY_PRODUCT_ROOT_BINDING",
     "evidence_boundary": "HUMAN_DEVICE_PERFORMANCE_EXPORT_AND_FULL_VERTICAL_SLICE_NOT_RUN"
   },
   "baseline_base_main": "edb3b3376603c9f6b00d64af3126304f8c9946bf",
@@ -38,23 +38,19 @@
     "generation_gate": "새 이미지 생성 전 asset_id + consumer + runtime path/folder + format/dimensions + state/clip + approval boundary가 먼저 정의되어야 한다."
   },
   "current_runtime_consumed_assets": [
-    {"asset": "assets/art/ui/common/academy_corner_ornament.svg", "consumer": "src/ui/star_circuit_harness.tscn", "consumer_state": "CURRENT_RUNTIME", "status": "REUSE_EXISTING"},
-    {"asset": "assets/art/ui/common/icon_mana.svg", "consumer": "src/ui/star_circuit_harness.tscn", "consumer_state": "CURRENT_RUNTIME", "status": "REUSE_EXISTING"},
-    {"asset": "assets/art/ui/common/icon_phase_diamond.svg", "consumer": "src/ui/star_circuit_harness.tscn", "consumer_state": "CURRENT_RUNTIME", "status": "REUSE_EXISTING"},
-    {"asset": "assets/art/ui/common/icon_typed_stock.svg", "consumer": "src/ui/star_circuit_harness.tscn", "consumer_state": "CURRENT_RUNTIME", "status": "REUSE_EXISTING"},
-    {"asset": "assets/art/ui/common/icon_warning_diamond.svg", "consumer": "src/ui/star_circuit_harness.tscn", "consumer_state": "CURRENT_RUNTIME", "status": "REUSE_EXISTING"}
+    {"asset": "assets/art/backgrounds/school/bg_school_admission_approach.png", "consumer": "src/ui/front_door/story_front_door.tscn and src/ui/cards/card_archive_screen.tscn", "consumer_state": "CURRENT_RUNTIME", "status": "USER_APPROVED_CANON_IMPLEMENTED"}
   ],
   "runtime_asset_families": [
     {
       "asset_group_id": "GR-RA-01-GLYPH-BASE",
       "name": "기본 마법 글자 Runtime Asset 6종",
-      "consumer_state": "LEGACY_RUNTIME_NOT_CURRENT_MAIN",
-      "consumers": ["src/ui/spell_workflow/glyph_drawing_screen.tscn", "src/ui/spell_workflow/circuit_placement_screen.tscn", "src/ui/spell_workflow/spell_use_screen.tscn", "src/ui/spell_workflow/spell_workflow_product_root.tscn"],
+      "consumer_state": "NO_CURRENT_RUNTIME_CONSUMER__STAR_RUNTIME_REMOVED",
+      "consumers": [],
       "runtime_role": "글자 인식 결과/보관 글자/회로 배치/완성 주문 Preview에서 직접 쓰인 마법 문자 표현",
       "asset_spec": {"count_cap": 6, "base_names": ["heat", "protect", "flow", "focus", "disperse", "burst"], "canvas": "512x512 PNG RGBA", "states": ["raw_stroke", "recognized", "selected", "invalid_grammar", "insufficient_condition", "committed"], "state_policy": "상태별 별도 PNG 복제보다 material/outline/color/icon mark 우선"},
       "visual_rule": "DIRECT_WRITTEN_MAGICAL_LETTER; 부적/패찰/수집카드 금지",
-      "production_readiness": "LEGACY_PRODUCT_ROOT_RUNTIME_CONSUMED__NOT_CURRENT_MAIN",
-      "next_action": "새 glyph 이미지는 만들지 않는다. Task9 사용성 검증에서 48/64/96px 판독 증거를 별도로 확보한다."
+      "production_readiness": "APPROVED_SOURCE_RETAINED__NO_CURRENT_RUNTIME_CONSUMER",
+      "next_action": "새 glyph 이미지는 만들지 않는다. 서클 직접 필기 화면에 실제 texture consumer가 확정되기 전에는 이 자산을 다시 바인딩하지 않는다."
     },
     {
       "asset_group_id": "GR-RA-02-BASE-ICONS",

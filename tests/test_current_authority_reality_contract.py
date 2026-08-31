@@ -40,9 +40,9 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("res://src/ui/front_door/story_front_door.tscn", project["main_scene"])
         self.assertEqual("STORY_FRONT_DOOR_ENTRY", project["main_scene_role"])
         self.assertEqual("PARTIAL_FOUNDATION", current["implementation"])
-        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK", current["next_product_gate"])
+        self.assertEqual("CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK", current["next_product_gate"])
         self.assertEqual("MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY", current["task9_status"])
-        self.assertEqual("CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN", current["runtime_validation"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVED__AUTOMATED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN", current["runtime_validation"])
         self.assertEqual("NOT_RUN", current["human_validation"])
         self.assertEqual("NOT_RUN", current["mobile_device_validation"])
         self.assertEqual("NOT_RUN", current["full_vertical_slice"])
@@ -75,10 +75,10 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("Mobile", project["primary_platform"])
         self.assertEqual("PC", project["follow_up_platform"])
         self.assertEqual("PARTIAL_FOUNDATION", project["implementation_status"])
-        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK", project["next_product_gate"])
+        self.assertEqual("CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK", project["next_product_gate"])
         self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", project["execution_profile"])
-        self.assertEqual("CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN", coverage["godot"])
-        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK", coverage["spell_workflow"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVED__AUTOMATED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN", coverage["godot"])
+        self.assertEqual("CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK", coverage["spell_workflow"])
         self.assertEqual("COMPLETE_FROSTBLOOM_FIRST_SESSION", coverage["planning"])
         self.assertEqual("APPROVED_SPEC", coverage["asset_spec_01"])
 
@@ -88,13 +88,12 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         queue = load_json("docs/planning/visual/GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json")
 
         current = coverage["current_runtime_readback"]
-        self.assertEqual("CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK", current["next_product_gate"])
+        self.assertEqual("CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK", current["next_product_gate"])
         self.assertEqual("res://src/ui/front_door/story_front_door.tscn", current["main_scene"])
         self.assertEqual(6, current["glyph_runtime_asset_count"])
-        self.assertEqual("LEGACY_RUNTIME_NOT_CURRENT_MAIN", current["glyph_consumer_state"])
+        self.assertEqual("NO_CURRENT_RUNTIME_CONSUMER__STAR_RUNTIME_REMOVED", current["glyph_consumer_state"])
         self.assertEqual(
-            "LOCKED_ADMISSION_BACKGROUND_CURRENT_FRONT_DOOR_BOUND; "
-            "LEGACY_PRODUCT_ROOT_BACKGROUND_BINDINGS_RETAINED_PENDING_STAR_REMOVAL",
+            "LOCKED_ADMISSION_BACKGROUND_CURRENT_FRONT_DOOR_BOUND__NO_LEGACY_PRODUCT_ROOT_BINDING",
             current["img02_state"],
         )
         self.assertEqual(
@@ -103,7 +102,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         )
 
         glyph_family = next(item for item in checklist["runtime_asset_families"] if item["asset_group_id"] == "GR-RA-01-GLYPH-BASE")
-        self.assertEqual("LEGACY_RUNTIME_NOT_CURRENT_MAIN", glyph_family["consumer_state"])
+        self.assertEqual("NO_CURRENT_RUNTIME_CONSUMER__STAR_RUNTIME_REMOVED", glyph_family["consumer_state"])
         self.assertEqual(6, glyph_family["asset_spec"]["count_cap"])
         self.assertEqual(["heat", "protect", "flow", "focus", "disperse", "burst"], glyph_family["asset_spec"]["base_names"])
 

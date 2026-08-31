@@ -10,7 +10,7 @@
     "repository": "alsdmlals4-eng/Base"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "4490ba8ece08b59874b5f9c903a63b483fe257a7180f1069d75a115afb9506b8",
+  "canonical_source_sha256": "deda456898fe42b40b7c0b88b535fd272ca33f8a80c0d4fcf9ef5a4ed3f6ee5c",
   "generated": true,
   "legacy_sheet": {
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
@@ -21,7 +21,7 @@
   },
   "maturity": {
     "level": 3,
-    "next_gate": "CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK",
+    "next_gate": "CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK",
     "planning": "COMPLETE_FROSTBLOOM_FIRST_SESSION",
     "status": "PARTIAL_FOUNDATION"
   },
@@ -53,7 +53,7 @@
     "full_vertical_slice": "NOT_RUN",
     "human": "NOT_RUN",
     "performance": "NOT_RUN",
-    "runtime": "CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN"
+    "runtime": "CIRCLE_CLOCK_TASK8_STAR_REMOVED__AUTOMATED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN"
   },
   "view_name": "BASE_V9_ADAPTER.json",
   "workspace_authority": {

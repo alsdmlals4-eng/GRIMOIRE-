@@ -1,12 +1,12 @@
 # GRIMOIRE Documentation Map — Main
 
 ```yaml
-runtime_main_sync: LIVE_ORIGIN_MAIN_2026-08-31_PRE_CORE_REPLACEMENT
-runtime_main_authority_commit: d384c454768a8aa3b0adb939e0b035ac2afa426e
+runtime_main_sync: CIRCLE_CLOCK_TASK8_LOCAL_PRECOMMIT_VERIFIED_2026-09-01
+runtime_main_authority_commit: PENDING_PR_253_EXACT_HEAD
 latest_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
-canon_status: USER_APPROVED_L2__PARTIAL_IMPLEMENTATION__STAR_REMOVAL_PENDING
-product_implementation: CIRCLE_CLOCK_CARD_CORE_PARTIAL_IMPLEMENTATION__STAR_REMOVAL_PENDING
-runtime_validation: PARTIAL_REPLACEMENT_AUTOMATED_GODOT_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN
+canon_status: USER_APPROVED_L2__TASK8_STAR_RUNTIME_REMOVED__MACHINE_VERIFIED__EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN
+product_implementation: CIRCLE_CLOCK_CARD_CORE_PARTIAL_IMPLEMENTATION__TASK8_STAR_RUNTIME_REMOVED
+runtime_validation: CIRCLE_CLOCK_TASK8_STAR_REMOVED__AUTOMATED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN
 ```
 
 ## 시작 경로
@@ -25,7 +25,7 @@ Current core-replacement owner: `docs/superpowers/specs/2026-08-31-circle-clock-
 
 Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. Every material work unit runs fresh external research, actual project feasibility recheck, and adversarial review before a recommendation or write. L1 planning, implementation, PR, and canon correction require five full-scope loops and post-merge readback.
 
-## Godot — Current Pre-replacement Runtime
+## Godot — Historical Star Runtime (removed from current runtime)
 
 - `project.godot`
 - `src/ui/star_circuit_harness.tscn`
@@ -37,11 +37,11 @@ Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GA
 - `tests/test_runner.gd`
 - `tools/run_star_runtime.py`
 
-## Godot — Current Core-Replacement Slice
+## Godot — Current Circle / Clock / Card Slice
 
 - `docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md`
-- role-free layered-circle core, event-clock core, narrative-gated card ruleset shell, and story-led front door: `PARTIAL_IMPLEMENTATION`
-- default entry: `res://src/ui/front_door/story_front_door.tscn` (`새 기록 시작` → admission; `도감` is read-only; `종료` is confirmed); the original Star Runtime remains historical compatibility code while its legacy save is preserved and the scoped removal precheck remains open
+- role-free layered-circle core, event-clock core, narrative-gated card ruleset shell, direct glyph-writing panel, and story-led front door: `PARTIAL_IMPLEMENTATION__TASK8_STAR_RUNTIME_REMOVED`
+- default entry: `res://src/ui/front_door/story_front_door.tscn` (`새 기록 시작` → admission; `도감` is read-only; `종료` is confirmed); original Star Runtime code is removed while its legacy user save remains untouched and unconverted
 - locked admissions background: `assets/art/backgrounds/school/bg_school_admission_approach.png` is runtime-bound as a live `TextureRect`; remaining card images are not generated
 - Human/device/performance/accessibility/export/full-slice evidence: `NOT_RUN`
 

@@ -6,7 +6,7 @@ contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 historical_contract_binding: GM-CONTRACT-V4-5-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
-current_state_sync: CIRCLE_CLOCK_CARD_CORE_PARTIAL_REPLACEMENT_PRECOMMIT_READBACK
+current_state_sync: CIRCLE_CLOCK_TASK8_STAR_RUNTIME_REMOVAL_LOCAL_PRECOMMIT_READBACK
 dedicated_local_environment_predecessor_sync: GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP_HISTORICAL
 task8_current_reverify: docs/planning/TASK8_CURRENT_MAIN_RECONCILIATION_2026-08-27.md
@@ -36,7 +36,7 @@ latest_product_main: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
 spell_workflow_predecessor_status: TASK8_MERGED_MAIN_VERIFIED
 spell_workflow_status: TASK9_MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
 compatibility_next_gate: TASK8_HISTORICAL_RECOVERY_CLOSED
-next_product_gate: CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK
+next_product_gate: CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK
 task8_recovery_subgate: TASK8_CURRENT_MAIN_LOCAL_VALIDATION_PASS
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
@@ -86,9 +86,9 @@ Sheet와 Notion은 cold-start 선행조건이 아니다. 신규 상태는 GitHub
 
 모든 material work는 fresh external research check와 actual project feasibility recheck를 수행한 뒤 적대적 검토로 권장안·변경을 공격한다. L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop, findings 분류, 관련 회귀, merged-main destination readback까지 요구한다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`.
 
-## Gate 1 — Historical Star Runtime preservation
+## Gate 1 — Historical Star save preservation (Task8 completed)
 
-아래 Gate는 기존 Star Runtime의 테스트·저장·복구 가능성을 보존하는 경계다. 현재 제품 코어는 `GM-CIRCLE-CLOCK-CARD-CORE-01`이며, legacy Star 저장은 보존하고 자동 변환·삭제·이동하지 않는다. Star 제거는 `CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK`에서 이 경계를 먼저 검증해야 한다.
+현재 제품 코어는 `GM-CIRCLE-CLOCK-CARD-CORE-01`이며, legacy Star 저장은 보존하고 자동 변환·삭제·이동하지 않는다. Task8은 실제 저장의 읽기 전용 preflight, 새 코어의 자동 검증, scoped Star consumer scan, exact-worktree editor 관찰 뒤 Star Runtime code/scene/test consumer를 제거했다. 삭제된 runtime은 Git history와 historical documentation으로만 남는다.
 
 ```yaml
 decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -121,7 +121,7 @@ Tasks 3–9는 병합 완료다. Task8 recovery text below is historical provena
 ```yaml
 current_runtime_entry: res://src/ui/front_door/story_front_door.tscn
 current_runtime_role: STORY_FRONT_DOOR_ENTRY
-current_gate: CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK
+current_gate: CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK
 automated_evidence: AVAILABLE_DO_NOT_PROMOTE_TO_HUMAN_DEVICE_PERFORMANCE_OR_EXPORT_PASS
 ```
 
@@ -209,9 +209,9 @@ exact requested GRIMOIRE project/worktree
 
 ## Gate 5 — Product Root / Task9
 
-현재 `project.godot` Main Scene은 `res://src/ui/front_door/story_front_door.tscn`, 역할은 `STORY_FRONT_DOOR_ENTRY`다. Star Harness는 실제 legacy 저장을 보존하는 제거 precheck가 완료될 때까지 별도 historical POC 장면으로 보존한다. 이는 완성 제품 전체 승격을 뜻하지 않는다.
+현재 `project.godot` Main Scene은 `res://src/ui/front_door/story_front_door.tscn`, 역할은 `STORY_FRONT_DOOR_ENTRY`다. Star Harness는 Task8에서 제거됐으며, 실제 legacy 저장은 runtime consumer 없이 원위치에 남는다. 이는 완성 제품 전체 승격을 뜻하지 않는다.
 
-Task9은 다음 matrix와 3-stage E2E를 소유한다.
+역사 Task9은 다음 matrix와 3-stage E2E를 소유한다.
 
 ```text
 16:9
@@ -315,7 +315,7 @@ platform:
 ## Current unresolved delivery limits
 
 ```text
-CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK
+CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK
 HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 AUDIO_VAULT_PATH_UNVERIFIED

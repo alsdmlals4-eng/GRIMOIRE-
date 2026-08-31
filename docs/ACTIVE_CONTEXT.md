@@ -25,7 +25,7 @@ adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION__W6_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
-current_user_work_scope: CIRCLE_CLOCK_CARD_CORE_REPLACEMENT__L2_APPROVED__TASKS_1_TO_7_IMPLEMENTED__LEGACY_SAVE_PRESERVED__MENU_UTILITIES_IMPLEMENTED
+current_user_work_scope: CIRCLE_CLOCK_CARD_CORE_REPLACEMENT__L2_APPROVED__TASK8_STAR_RUNTIME_REMOVED__LEGACY_SAVE_PRESERVED__MENU_UTILITIES_IMPLEMENTED
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
@@ -77,12 +77,12 @@ product_decision_overlay: docs/superpowers/specs/2026-08-31-circle-clock-card-co
 product_decision_revision: 2026-08-31-USER_APPROVED_CORE_REPLACEMENT
 player_facing_spell_flow: WRITE_OR_SELECT_GLYPHS_TO_LAYERED_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT
 player_facing_ux_groups: STORY_EVENT_AND_CARD_DUEL_CONTEXT
-runtime_circuit_topology_current: ROLE_FREE_LAYERED_CIRCLES_1_TO_3__REPLACEMENT_PARTIAL__STAR_REMOVAL_PENDING
+runtime_circuit_topology_current: ROLE_FREE_LAYERED_CIRCLES_1_TO_3__TASK8_STAR_RUNTIME_REMOVED
 runtime_circuit_topology_target: ROLE_FREE_LAYERED_CIRCLES_1_TO_3
 latest_product_main_for_task7_lineage: fcb5dbe1cbbb23ef195633b1f6680f45d46c5a3f
 spell_workflow_predecessor_status: TASK7_MERGED_MAIN_VERIFIED
-next_product_task: TASK8_STAR_RUNTIME_REMOVAL_WITH_LEGACY_SAVE_PRESERVED
-next_product_gate: CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK
+next_product_task: CIRCLE_CLOCK_STORY_VERTICAL_SLICE_HUMAN_DEVICE_ACCESSIBILITY_VALIDATION
+next_product_gate: CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CURRENT_MAIN_LOCAL_VALIDATION_PASS
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -149,7 +149,7 @@ android_device: NOT_RUN
 
 ### 2026-08-31 최신 사용자 코어 교체 결정
 
-사용자는 `GM-CIRCLE-CLOCK-CARD-CORE-01`과 그 L2 설계를 검토 승인했다. 이 결정은 runtime의 `FIVE_POINT_STAR`, `Main/Auxiliary` 역할, 별형 전용 Product Root를 폐기 대상으로 전환하며, 역할 없는 공용 글자 1~3개 겹서클·사건 시계·마도 카드를 새 제품 코어로 둔다. 메인 화면은 수업/실습/결투/축제를 선택하는 허브가 아니라 새 기록/유효 기록 이어하기로 입학식 이후의 서사를 진행하는 입구이며, 도감은 읽기 전용 보조 화면이고 종료는 확인을 거친다. 상세 책임 원본은 [공용 서클 · 사건 시계 · 마도 카드 코어 교체 설계](../superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md)이며 현재 상태는 `USER_APPROVED_L2__PARTIAL_IMPLEMENTATION__STAR_REMOVAL_PENDING`이다. 구현 계획은 `docs/superpowers/plans/2026-08-31-circle-clock-card-core-replacement.md`다.
+사용자는 `GM-CIRCLE-CLOCK-CARD-CORE-01`과 그 L2 설계를 검토 승인했다. 이 결정은 runtime의 `FIVE_POINT_STAR`, `Main/Auxiliary` 역할, 별형 전용 Product Root를 폐기 대상으로 전환하며, 역할 없는 공용 글자 1~3개 겹서클·사건 시계·마도 카드를 새 제품 코어로 둔다. 메인 화면은 수업/실습/결투/축제를 선택하는 허브가 아니라 새 기록/유효 기록 이어하기로 입학식 이후의 서사를 진행하는 입구이며, 도감은 읽기 전용 보조 화면이고 종료는 확인을 거친다. 상세 책임 원본은 [공용 서클 · 사건 시계 · 마도 카드 코어 교체 설계](../superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md)이며 현재 상태는 `USER_APPROVED_L2__TASK8_STAR_RUNTIME_REMOVED__MACHINE_VERIFIED__EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN`이다. 구현 계획은 `docs/superpowers/plans/2026-08-31-circle-clock-card-core-replacement.md`다.
 
 2026-08-31 사용자는 스토리 프런트 도어의 입학식 전 학교 배경 후보 01을 메인 화면으로 잠금 승인했다. 자산 `GR-CAND-FRONT-DOOR-BG-01`은 `assets/art/backgrounds/school/bg_school_admission_approach.png`로 정본 등록됐고, `StoryFrontDoor/EnvironmentBackground`가 live `TextureRect`로 표시한다. exact-worktree Godot 4.7.1에서 1280×720 렌더, 새 기록 → 입학식 전환, 오류 로그 0건을 확인했다. receipt: `docs/validation/CIRCLE_CLOCK_FRONT_DOOR_RUNTIME_RECEIPT_2026-08-31.md`. 해당 runner에서 발견한 repository fixture write는 `1a7e30b`에서 제거했으며, 후속 runner는 fixture를 변경하지 않는다. 배경에는 기능 텍스트를 넣지 않았으며, 로고·문구·버튼·저장 상태는 live UI다. 사람 UX·기기·성능·접근성·export·출시 검증은 계속 `NOT_RUN`이다.
 
@@ -157,7 +157,7 @@ android_device: NOT_RUN
 
 카드 마력의 `7·7·6 / 20`은 **마력 20이 남은 한 장면의 설명 예시**다. 고정 밸런스·기본 배분·검증·소비 규칙이 아니며, 실제 마력 분배와 소비는 상세 카드 룰 결정 전까지 `RULESET_PENDING`으로 둔다.
 
-아래에 남은 별형 관련 설명과 W6 구현 증거는 **현재 구현의 역사·실제 상태**를 보존하기 위한 것이며, 새 제품 방향의 authority가 아니다. 사용자는 실제 legacy Star 저장을 보존하고, 삭제·이동·자동 변환 없이 새 경험을 새 기록에서 시작하도록 승인했다. Star runtime 코드·씬·전용 테스트·소비처 제거는 이 저장 경계를 지키는 별도 precheck 뒤에만 진행한다. 사람/기기/성능/출시 검증을 수행하지 않은 상태는 계속 `NOT_RUN`이다.
+아래에 남은 별형 관련 설명과 W6 구현 증거는 **현재 구현의 역사·실제 상태**를 보존하기 위한 것이며, 새 제품 방향의 authority가 아니다. 사용자는 실제 legacy Star 저장을 보존하고, 삭제·이동·자동 변환 없이 새 경험을 새 기록에서 시작하도록 승인했다. 2026-09-01 Task8은 저장을 읽기 전용으로 재확인한 뒤 Star runtime 코드·씬·전용 테스트·소비처를 제거했고, 새 서클/시계 이야기 화면의 자동 및 exact-worktree editor 관찰을 완료했다. receipt: `docs/validation/CIRCLE_CLOCK_TASK8_STAR_REMOVAL_IMPLEMENTATION_RECEIPT_2026-09-01.md`. 사람/기기/성능/출시 검증을 수행하지 않은 상태는 계속 `NOT_RUN`이다.
 
 2026-08-26 사용자는 Visual 시안 검토 뒤 `GM-SPELL-WORKFLOW-UI-V2-01`의 플레이어 노출 흐름을 다음처럼 단순화하는 방향을 명시적으로 승인했다.
 
@@ -193,7 +193,7 @@ android_device: NOT_RUN
 - 다음 W6 evidence gate: **W6_HUMAN_PLAYER_DEVICE_PERFORMANCE_ACCESSIBILITY_EXPORT_FULL_SLICE** — 자동화와 1280×720 런타임 스모크는 main에 병합됐지만, 사람/플레이어·기기·성능·접근성·export·full slice 검증은 아직 `NOT_RUN`이다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
 - Notion: **RETIRED_AS_CURRENT_CANON_AND_WORK_SURFACE__MIGRATION_COMPLETE** — GitHub repository가 사람용·구조화된 정본을 모두 소유한다. `GR-NOTION-MIGRATION-20260828-01`은 PR #238 merged main `1a30b9e0715b1d19e56e24f256f695b869369ca2` readback으로 완료됐다. Notion은 historical discovery-only이며 routine read/write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`.
 - 적대적·조사·구현가능성 게이트: **USER_APPROVED_ACTIVE** — 모든 material work는 fresh external research check, actual implementation-feasibility recheck, adversarial attack/validate를 거친다. L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop와 post-merge readback을 요구한다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. W6의 현재 판정은 `PARTIAL_EVIDENCED__MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS`; 사용자 L2 review, changed-head execution과 main readback은 완료됐고 Human/Player evidence는 남아 있다.
-- 현재 교체 게이트: **CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK** — 사용자는 legacy Star 저장을 보존하고 새 경험을 새 기록으로 시작하도록 승인했다. 따라서 자동 변환·삭제·이동 없이 code/runtime consumer 제거 영향과 rollback을 먼저 검증한다.
+- 현재 교체 후 gate: **CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK** — Star runtime은 제거됐고 legacy Star 저장은 자동 변환·삭제·이동 없이 보존됐다. 다음 검증은 새 이야기 루트의 사람/기기/성능/접근성·export·full-slice를 별도 증거로 수집하는 일이다.
 - 이미지 후보 생성: **USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY** — canon·consumer·rights preflight 후 후보는 재승인 없이 생성하며, final lock·runtime use·production batch만 사용자 확정이 필요하다.
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
 - unrelated open PR: **READ_ONLY**

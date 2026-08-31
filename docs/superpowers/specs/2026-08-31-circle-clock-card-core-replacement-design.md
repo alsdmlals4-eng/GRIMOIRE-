@@ -28,10 +28,10 @@ preserves:
   - no_auto_target
   - no_auto_commit
   - no_hidden_best_route
-implementation: NOT_STARTED
+implementation: TASK8_STAR_RUNTIME_REMOVED__PARTIAL_CORE_REMAINS
 asset_ready: NOT_RUN
-machine_verification: NOT_RUN
-runtime_verification: NOT_RUN
+machine_verification: PASS_CUSTOM_GODOT_RUNNER_31_SUITES_1370_ASSERTIONS
+runtime_verification: EXACT_WORKTREE_GODOT_4_7_1_FRONT_DOOR_AND_EVENT_UI_OBSERVED
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN

@@ -18,7 +18,7 @@ authoritative_bootstrap: AGENTS.md -> START_HERE.md -> docs/ACTIVE_CONTEXT.md ->
 | --- | --- |
 | 핵심 판타지 | 마법 글자의 의미를 배우고 공용 글자 서클을 겹쳐, 이해 가능한 현장 문제의 규칙을 바꾸는 마법학교 성장 경험. |
 | Player Promise | 플레이어가 관찰한 근거를 바탕으로 글자 1~3개를 역할 없는 서클로 조합하고, 무엇을 먼저 지킬지 고른 뒤, 시계로 드러나는 결과·대가·미확인을 기록으로 이해한다. |
-| 플레이어 노출 흐름 | **글자 → 서클 → 대상 → 시전 → 시계 결과**. 이전 Star Runtime은 별도 historical compatibility 범위로만 남긴다. |
+| 플레이어 노출 흐름 | **글자 → 서클 → 대상 → 시전 → 시계 결과**. Star Runtime 코드는 제거됐고 실제 legacy Star 저장은 자동 변환 없이 historical compatibility 자료로 보존한다. |
 | 학습 루프 | 수업/관찰 → 글자·회로 설계 → Preview → 명시 대상/시전 → 실제 변화·대가 → Grimoire 기록 → 다음 질문. |
 | 보호할 강점 | 직접 쓰는 글자, 명시 commit, 관찰 근거와 미확인의 분리, 선택의 실제 결과 보존, global success grade 금지. |
 | 현재 제품 단계 | `PARTIAL_FOUNDATION`; Task9 Product Root는 merged main이지만 Human/Device/Performance/Full Slice는 `NOT_RUN`. |
@@ -89,7 +89,7 @@ The detailed source/page ledger, classifications, and migration completion rules
 1. W6 L2 Spec과 L3 implementation은 사용자 승인 범위에서 구현됐고, Issue #242는 PR #245 merge `713bfbf`로 닫혔다. 현재 정확한 변경점 evidence는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
 2. 다음 W6 evidence gate는 Human/Player, device, performance, accessibility, export, full-slice 검증이다. 사람 관찰은 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_HUMAN_OBSERVATION_SCRIPT_2026-08-29.md`로 준비됐지만 아직 실행되지 않았다. W7, production asset batch, Task8 recovery는 범위 밖이다.
 3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is automated/runtime-smoke verified but Human/player/device/performance is not verified.
-4. Keep `CIRCLE_CLOCK_TASK8_STAR_REMOVAL_PRECHECK` separate; the user has chosen to preserve the actual legacy Star save with no automatic conversion, move, or deletion. Do not treat front-door documentation or automated/editor evidence as Human/Player validation, and do not remove the historical Star Runtime until the scoped removal precheck is complete.
+4. `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`가 현재 다음 gate다. Task8은 실제 legacy Star 저장을 자동 변환·이동·삭제하지 않고 보존한 채 historical Star Runtime code/scene/test consumer를 제거했다. 자동·editor 관찰을 Human/Player/Device validation으로 승격하지 않는다.
 
 ## 6.1 Human Blueprint review pair
 
