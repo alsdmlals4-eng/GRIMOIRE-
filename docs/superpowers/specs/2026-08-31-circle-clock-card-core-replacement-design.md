@@ -5,8 +5,10 @@
 ```yaml
 decision_id: GM-CIRCLE-CLOCK-CARD-CORE-01
 feature_id: FTR-CIRCLE-CLOCK-CARD-CORE-01
-status: USER_APPROVED_DIRECTION__SPEC_REVIEW_PENDING
+status: USER_APPROVED_L2__IMPLEMENTATION_PLAN_READY
 approved_at: 2026-08-31
+spec_review_approved_at: 2026-08-31
+implementation_plan: docs/superpowers/plans/2026-08-31-circle-clock-card-core-replacement.md
 approval_source:
   - "확정하고 진행해"
   - "별형 주문은 없앨거야"
@@ -311,4 +313,4 @@ CardBattleState:
 
 ## 10. 검토 요청
 
-이 문서는 사용자가 확정한 전환 방향을 구조화한 설계 원본이다. 코드·씬·자산 변경은 아직 수행하지 않았다. 문서 검토가 승인되면 다음 단계에서 구현 계획을 작성하고, 그 뒤 이미지 후보와 Godot 구현을 진행한다.
+이 문서는 사용자가 확정·검토 승인한 전환 방향의 구조화 설계 원본이다. 구현 계획은 `docs/superpowers/plans/2026-08-31-circle-clock-card-core-replacement.md`에 연결됐다. 코드·씬·자산 변경은 아직 수행하지 않았으며, 다음 단계에서 이미지 후보와 Godot 구현을 진행한다.
