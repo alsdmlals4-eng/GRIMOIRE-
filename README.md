@@ -27,13 +27,12 @@
 1. `AGENTS.md`
 2. `START_HERE.md`
 3. `docs/ACTIVE_CONTEXT.md`
-4. `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`
-5. `docs/planning/CURRENT_UNRESOLVED_GATES.md`
-6. `docs/planning/FROSTBLOOM_INTERNAL_VERTICAL_SLICE_01_APPROVAL_2026-08-11.md`
-7. `docs/planning/WORLD_CHARACTER_THREE_YEAR_STORY_01_APPROVAL_2026-08-11.md`
-8. `docs/planning/YEAR_ONE_GROWTH_ECONOMY_TEST_VALUES_01_APPROVAL_2026-08-11.md`
-9. `docs/superpowers/specs/2026-08-06-spell-workflow-ui-v2-design.md`
-10. `docs/DEVELOPMENT_GATES.md`
+4. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md`
+5. task/domain-specific current owner + actual code/Scene/Resource/Test evidence
+6. Notion Project Home and its current human-facing work surfaces when the task is human-facing
+7. `docs/DEVELOPMENT_GATES.md`
+
+`docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `docs/planning/CURRENT_UNRESOLVED_GATES.md`는 v4.5-era **HISTORICAL_COMPATIBILITY_SNAPSHOT**이다. 과거 Task8/Spell Workflow provenance가 필요한 경우에만 읽으며, v4.8 current contract나 `docs/ACTIVE_CONTEXT.md`를 덮어쓰지 않는다.
 
 ## 핵심 제품 약속
 
