@@ -57,6 +57,12 @@ func run(case) -> void:
 
     var first_event_progress = story_progress_script.create_new()
     first_event_progress.advance_from_admission()
+    var compound_role_cards: Array = []
+    for compound_id in [&"MAIN_HEAT", &"AUX_PROTECT", &"CENTER_FLOW", &"STAR_SUMMON"]:
+        compound_role_cards.append(_make_compound_role_card(card_definition_script, circle_composition_script, compound_id))
+    archive.configure_story_cards(first_event_progress, compound_role_cards)
+    case.assert_equal([], archive.visible_card_ids(), "Compound Main/Aux/Center/Star glyph IDs cannot reach archive presentation")
+
     archive.configure_story_cards(first_event_progress, [mismatched_unlock, mismatched_card_id, wizard])
     case.assert_equal([&"ARCHIVE_FROSTBLOOM_WIZARD"], archive.visible_card_ids(), "Archive shows only a card ID and story unlock actually authorized by progress")
     var wizard_label := archive.get_node_or_null(NodePath("Content/UnlockedCards/ARCHIVE_FROSTBLOOM_WIZARD")) as Label
@@ -83,3 +89,8 @@ func _make_card(card_definition_script, circle_composition_script, card_id: Stri
     var composition = circle_composition_script.create(glyph_ids, glyph_ids)
     card.set_composition(composition)
     return card
+
+
+func _make_compound_role_card(card_definition_script, circle_composition_script, compound_id: StringName):
+    var glyph_ids: Array[StringName] = [compound_id]
+    return _make_card(card_definition_script, circle_composition_script, &"ARCHIVE_FROSTBLOOM_WIZARD", &"WIZARD", &"FIRST_EVENT", glyph_ids)

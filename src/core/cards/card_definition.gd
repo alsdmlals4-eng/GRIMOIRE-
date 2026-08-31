@@ -3,6 +3,7 @@ class_name CardDefinition
 extends Resource
 
 const CircleComposition = preload("res://src/core/circle/circle_composition.gd")
+const GlyphCatalog = preload("res://src/core/glyphs/glyph_catalog.gd")
 
 const APPROVED_TYPES: Array[StringName] = [
     &"WIZARD",
@@ -22,17 +23,6 @@ const ARTWORK_STATES: Array[StringName] = [
 @export var type: StringName = &""
 @export var story_unlock: StringName = &""
 @export var artwork_state: StringName = &"NEEDED"
-
-const FORBIDDEN_ROLE_SEMANTICS: Array[StringName] = [
-    &"MAIN",
-    &"AUX",
-    &"AUXILIARY",
-    &"CENTER",
-    &"CENTRE",
-    &"VERTEX",
-    &"SLOT",
-    &"STAR",
-]
 
 var _composition = null
 var _composition_status: StringName = &"COMPOSITION_NONE"
@@ -70,7 +60,7 @@ func validate() -> StringName:
         return &"STORY_UNLOCK_REQUIRED"
     if not ARTWORK_STATES.has(artwork_state):
         return &"ARTWORK_STATE_INVALID"
-    if _composition != null and _composition_status != &"COMPOSITION_ASSIGNED":
+    if _has_rejected_composition():
         return _composition_status
     return &"OK"
 
@@ -91,7 +81,7 @@ func _assign_composition(next_composition) -> void:
         _composition = null
         _composition_status = StringName("COMPOSITION_INVALID_%s" % String(validation_status))
         return
-    if _contains_forbidden_role_semantics(next_composition.to_snapshot()):
+    if not _uses_approved_role_free_glyph_ids(next_composition.to_snapshot()):
         _composition = null
         _composition_status = &"COMPOSITION_ROLE_SEMANTICS_FORBIDDEN"
         return
@@ -100,13 +90,16 @@ func _assign_composition(next_composition) -> void:
     _composition_status = &"COMPOSITION_ASSIGNED"
 
 
-func _contains_forbidden_role_semantics(snapshot: Dictionary) -> bool:
-    for forbidden_key in [&"main_glyph", &"auxiliary", &"center", &"centre", &"vertex", &"slot", &"star"]:
-        if snapshot.has(forbidden_key):
-            return true
+func _has_rejected_composition() -> bool:
+    return _composition_status == &"COMPOSITION_TYPE_INVALID" \
+        or _composition_status == &"COMPOSITION_ROLE_SEMANTICS_FORBIDDEN" \
+        or _composition_status.begins_with("COMPOSITION_INVALID_")
+
+
+func _uses_approved_role_free_glyph_ids(snapshot: Dictionary) -> bool:
+    var approved_ids := GlyphCatalog.all_ids()
     for collection_key in [&"glyph_instance_ids", &"visual_layer_order"]:
         for value in Array(snapshot.get(collection_key, [])):
-            var semantic_token := StringName(String(value).to_upper())
-            if FORBIDDEN_ROLE_SEMANTICS.has(semantic_token):
-                return true
-    return false
+            if not approved_ids.has(StringName(value)):
+                return false
+    return true

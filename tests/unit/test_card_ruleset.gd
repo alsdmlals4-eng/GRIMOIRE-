@@ -83,6 +83,11 @@ func _assert_role_free_composition_contract(case, card_definition_script, circle
     case.assert_true(card.composition == null, "Card does not retain role-bearing circle input")
     case.assert_equal(&"COMPOSITION_ROLE_SEMANTICS_FORBIDDEN", card.composition_status(), "Card reports why role-bearing circle input was rejected")
 
+    _assert_compound_role_rejection(case, card, circle_composition_script, &"MAIN_HEAT")
+    _assert_compound_role_rejection(case, card, circle_composition_script, &"AUX_PROTECT")
+    _assert_compound_role_rejection(case, card, circle_composition_script, &"CENTER_FLOW")
+    _assert_compound_role_rejection(case, card, circle_composition_script, &"STAR_SUMMON")
+
     card.composition = null
     case.assert_equal(&"COMPOSITION_REQUIRED", card.composition_status(), "Direct null assignment cannot leave a misleading composition state")
     case.assert_equal(&"OK", card.validate(), "Composition remains optional for non-formula card records")
@@ -102,6 +107,17 @@ func _assert_valid_shared_circle(case, card, circle_composition_script, glyph_id
     case.assert_equal(&"COMPOSITION_ASSIGNED", card.set_composition(composition), "Card accepts a valid shared circle")
     case.assert_equal(composition.logical_signature(), card.composition_signature(), "Card retains the circle's order-independent signature")
     case.assert_equal(&"OK", card.validate(), "Valid shared circle keeps the card definition valid")
+
+
+func _assert_compound_role_rejection(case, card, circle_composition_script, compound_id: StringName) -> void:
+    # Breaks if role semantics can be smuggled into a count-valid circle with a compound glyph ID.
+    var glyph_ids: Array[StringName] = [compound_id]
+    var visual_layers: Array[StringName] = []
+    var compound_circle = circle_composition_script.create(glyph_ids, visual_layers)
+    case.assert_equal(&"OK", compound_circle.validation().get("status", &""), "%s is count-valid before CardDefinition rejects its role semantics" % compound_id)
+    case.assert_equal(&"COMPOSITION_ROLE_SEMANTICS_FORBIDDEN", card.set_composition(compound_circle), "%s cannot bypass role-free card composition validation" % compound_id)
+    case.assert_true(card.composition == null, "%s is cleared instead of being retained" % compound_id)
+    case.assert_equal(&"COMPOSITION_ROLE_SEMANTICS_FORBIDDEN", card.validate(), "%s cannot remain a valid card after rejected role-bearing composition input" % compound_id)
 
 
 func _assert_fixed_structure(case, card_ruleset_script, ruleset) -> void:
