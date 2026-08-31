@@ -3,6 +3,7 @@ extends SceneTree
 const TestCase = preload("res://tests/test_case.gd")
 
 const SUITES: Array[String] = [
+    "res://tests/unit/test_artifact_recovery_scanner_boundary.gd",
     "res://tests/unit/test_glyph_resource_types.gd",
     "res://tests/unit/test_glyph_catalog.gd",
     "res://tests/unit/test_glyph_source_loadout.gd",
