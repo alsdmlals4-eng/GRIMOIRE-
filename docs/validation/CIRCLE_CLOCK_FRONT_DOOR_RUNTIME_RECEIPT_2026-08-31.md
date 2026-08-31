@@ -5,6 +5,7 @@ receipt_id: GR-CIRCLE-CLOCK-FRONT-DOOR-RUNTIME-RECEIPT-20260831-01
 feature_id: FTR-CIRCLE-CLOCK-CARD-CORE-01
 decision_id: GM-CIRCLE-CLOCK-CARD-CORE-01
 implementation_commit: 0353017e2698097b9e26c5689551977f1a2e2338
+test_artifact_boundary_commit: 1a7e30b84d0ea315319bceb424575380b070b54e
 evidence_branch: codex/card-clock-system-20260831
 evidence_date: 2026-08-31
 engine: Godot_4.7.1_stable_a13da4feb
@@ -38,8 +39,8 @@ asset_state: USER_APPROVED__CANON_REGISTERED__IMPLEMENTED
 | 검증 | 결과 | 세부 |
 | --- | --- | --- |
 | Front Door GUT 회귀 | PASS | 정본 배경 resource 존재, legacy candidate 경로 부재, live `TextureRect` binding·입력 차단·aspect-covered stretch, SHA-256 identity를 검증한다. |
-| 전체 Godot runner | PASS | 58 suites, 2,415 assertions, 0 failures. |
-| 사용자 fixture 보존 | PASS | `artifacts/foundation-poc/glyph-fixture-rows.json` 전후 SHA-256이 `2D34B3BA15C352D67BB121263DCA145DAE80608F82BB28E11DD10A3240A60077`로 동일하다. 해당 파일은 이 feature commit에 포함하지 않았다. |
+| 전체 Godot runner | PASS | fixture 경계 수정 후 58 suites, 2,414 assertions, 0 failures. |
+| 현재 fixture 보존 | PASS | 수정 후 runner의 `artifacts/foundation-poc/glyph-fixture-rows.json` 전후 SHA-256은 `8D1EDCD0605AE2BD69655AF074BF85AF45C1EA6321648D172CDE9DA726A4A765`로 동일하다. 해당 파일은 feature commit에 포함하지 않았다. |
 | headless scene smoke | PASS | Godot 4.7.1 console에서 exact worktree를 3초 smoke 실행했고 exit code 0을 받았다. |
 
 ## 증명하지 않는 항목
@@ -52,6 +53,14 @@ asset_state: USER_APPROVED__CANON_REGISTERED__IMPLEMENTED
 - 00~46분 full vertical slice
 - 상세 카드 마력/소비/결투 밸런스
 - Star Runtime의 사용자 저장 이전·삭제·자동 변환
+
+## 테스트 쓰기 경계 교정 기록
+
+최초 전체 runner는 `tests/integration/test_slice_glyph_recognition.gd`가 성능 측정의 `elapsed_us`를 `res://artifacts/foundation-poc/glyph-fixture-rows.json`에 직접 쓰는 오래된 동작을 드러냈다. 이 실행은 fixture 보존 PASS로 사용하지 않는다.
+
+`1a7e30b`는 출력 자체를 제거하고, recognition 행은 메모리에서만 assertion한다. Python guard `tests/test_headless_test_artifact_boundary.py`가 이후 `OUTPUT_PATH`나 `FileAccess.WRITE`의 재도입을 막는다. 수정 후 Godot runner는 위 현재 fixture hash를 보존했다.
+
+실행 전 로컬 working copy는 tracked file과 줄 끝 바이트가 다른 user-owned 상태였으며, preflight SHA-256은 `2D34B3BA15C352D67BB121263DCA145DAE80608F82BB28E11DD10A3240A60077`이었다. 저장소와 기존 recovery snapshot에서는 그 바이트와 일치하는 복구 원본을 찾지 못했다. 사용자 승인 범위의 복구로 semantic row가 같은 exact tracked source를 복원했다. 따라서 이 receipt는 **수정 후 fixture 비변형 PASS**만 주장하며, 이전 untracked raw-byte를 완전히 되살렸다고 주장하지 않는다.
 
 ## 다음 안전 게이트
 

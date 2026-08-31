@@ -151,7 +151,7 @@ android_device: NOT_RUN
 
 사용자는 `GM-CIRCLE-CLOCK-CARD-CORE-01`과 그 L2 설계를 검토 승인했다. 이 결정은 runtime의 `FIVE_POINT_STAR`, `Main/Auxiliary` 역할, 별형 전용 Product Root를 폐기 대상으로 전환하며, 역할 없는 공용 글자 1~3개 겹서클·사건 시계·마도 카드를 새 제품 코어로 둔다. 메인 화면은 수업/실습/결투/축제를 선택하는 허브가 아니라 새 기록/이야기 이어하기로 입학식 이후의 서사를 진행하는 입구다. 상세 책임 원본은 [공용 서클 · 사건 시계 · 마도 카드 코어 교체 설계](../superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md)이며 현재 상태는 `USER_APPROVED_L2__PARTIAL_IMPLEMENTATION__STAR_REMOVAL_PENDING`이다. 구현 계획은 `docs/superpowers/plans/2026-08-31-circle-clock-card-core-replacement.md`다.
 
-2026-08-31 사용자는 스토리 프런트 도어의 입학식 전 학교 배경 후보 01을 메인 화면으로 잠금 승인했다. 자산 `GR-CAND-FRONT-DOOR-BG-01`은 `assets/art/backgrounds/school/bg_school_admission_approach.png`로 정본 등록됐고, `StoryFrontDoor/EnvironmentBackground`가 live `TextureRect`로 표시한다. exact-worktree Godot 4.7.1에서 1280×720 렌더, 새 기록 → 입학식 전환, 오류 로그 0건을 확인했다. receipt: `docs/validation/CIRCLE_CLOCK_FRONT_DOOR_RUNTIME_RECEIPT_2026-08-31.md`. 배경에는 기능 텍스트를 넣지 않았으며, 로고·문구·버튼·저장 상태는 live UI다. 사람 UX·기기·성능·접근성·export·출시 검증은 계속 `NOT_RUN`이다.
+2026-08-31 사용자는 스토리 프런트 도어의 입학식 전 학교 배경 후보 01을 메인 화면으로 잠금 승인했다. 자산 `GR-CAND-FRONT-DOOR-BG-01`은 `assets/art/backgrounds/school/bg_school_admission_approach.png`로 정본 등록됐고, `StoryFrontDoor/EnvironmentBackground`가 live `TextureRect`로 표시한다. exact-worktree Godot 4.7.1에서 1280×720 렌더, 새 기록 → 입학식 전환, 오류 로그 0건을 확인했다. receipt: `docs/validation/CIRCLE_CLOCK_FRONT_DOOR_RUNTIME_RECEIPT_2026-08-31.md`. 해당 runner에서 발견한 repository fixture write는 `1a7e30b`에서 제거했으며, 후속 runner는 fixture를 변경하지 않는다. 배경에는 기능 텍스트를 넣지 않았으며, 로고·문구·버튼·저장 상태는 live UI다. 사람 UX·기기·성능·접근성·export·출시 검증은 계속 `NOT_RUN`이다.
 
 카드 마력의 `7·7·6 / 20`은 **마력 20이 남은 한 장면의 설명 예시**다. 고정 밸런스·기본 배분·검증·소비 규칙이 아니며, 실제 마력 분배와 소비는 상세 카드 룰 결정 전까지 `RULESET_PENDING`으로 둔다.
 
