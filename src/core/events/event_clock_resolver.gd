@@ -24,13 +24,14 @@ func resolve(state, action: Dictionary) -> Dictionary:
     if current == null:
         return _resolution(&"INVALID_STATE", &"", 0, 0, [], null)
 
+    if _is_non_clock_action(action):
+        return _resolution(&"NO_CLOCK_CHANGE", StringName(action.get("action_id", &"")), 0, 0, [&"NO_CLOCK_CHANGE"], current)
+
     var action_id := StringName(action.get("action_id", &""))
     if action_id.is_empty():
         return _resolution(&"ACTION_ID_REQUIRED", action_id, 0, 0, [&"ACTION_ID_REQUIRED"], current)
     if current.has_resolved(action_id):
         return _resolution(&"ALREADY_RESOLVED", action_id, 0, 0, [&"ACTION_ALREADY_RESOLVED"], current)
-    if _is_non_clock_action(action):
-        return _resolution(&"NO_CLOCK_CHANGE", action_id, 0, 0, [&"NO_CLOCK_CHANGE"], current)
     if definition == null:
         return _resolution(&"NO_CLOCK_CHANGE", action_id, 0, 0, [&"NO_DECLARED_CLOCK_CHANGE"], current)
 

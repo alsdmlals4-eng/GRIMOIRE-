@@ -28,10 +28,13 @@ func duplicate_state():
 
 
 func to_snapshot() -> Dictionary:
-    var action_ids: Array[StringName] = []
+    var action_id_strings: Array[String] = []
     for action_id in resolved_action_ids:
+        action_id_strings.append(String(action_id))
+    action_id_strings.sort()
+    var action_ids: Array[StringName] = []
+    for action_id in action_id_strings:
         action_ids.append(StringName(action_id))
-    action_ids.sort()
     return {
         "goal_segments": goal_segments,
         "threat_segments": threat_segments,
