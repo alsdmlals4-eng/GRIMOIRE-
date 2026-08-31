@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dhkd7pos74iaa" path="res://src/ui/spell_workflow/glyph_drawing_screen.tscn" id="2_kmny2"]
 [ext_resource type="PackedScene" uid="uid://bolap7p5hkar8" path="res://src/ui/spell_workflow/circuit_placement_screen.tscn" id="3_ag2ki"]
 [ext_resource type="PackedScene" uid="uid://qfvh1n7f5veh" path="res://src/ui/spell_workflow/spell_use_screen.tscn" id="4_3otfq"]
-[ext_resource type="Texture2D" uid="uid://duso5wqwacnym" path="res://assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp" id="5_2w8ln"]
+[ext_resource type="Texture2D" uid="uid://dt6j1nhjykbx1" path="res://assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp" id="5_2w8ln"]
 
 [node name="SpellWorkflowProductRoot" type="Control" unique_id=1353567651]
 layout_mode = 3
