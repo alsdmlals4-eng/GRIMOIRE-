@@ -7,6 +7,7 @@ const EventClockResolver = preload("res://src/core/events/event_clock_resolver.g
 const EventClockState = preload("res://src/core/events/event_clock_state.gd")
 const StoryProgress = preload("res://src/core/story/story_progress.gd")
 const ThemeFactory = preload("res://src/ui/theme/grimoire_theme_factory.gd")
+const GlyphCatalog = preload("res://src/core/glyphs/glyph_catalog.gd")
 
 const EVENT_RESOURCE_PATH := "res://data/events/frostbloom/frostbloom_event_01.tres"
 
@@ -15,20 +16,101 @@ var _clock_state = null
 var _clock_resolver = null
 var _circle_resolver = null
 var _story_progress = null
+var _selected_glyph_ids: Array[StringName] = []
+var _selected_target_id: StringName = &""
+var _circle_preview: Dictionary = {}
+var _last_result: Dictionary = {}
+var _last_success_tags: Array = []
+var _commit_serial := 0
+
+signal glyph_selection_changed(selected_glyph_ids: Array)
+signal circle_preview_requested(preview: Dictionary)
+signal target_selection_changed(target_id: StringName)
+signal commit_requested(action_id: StringName)
 
 
 func _ready() -> void:
     theme = ThemeFactory.create_theme()
+    if _story_progress == null and is_inside_tree() and get_tree() != null:
+        configure(StoryProgress.consume_first_event_handoff(get_tree().root))
     _ensure_runtime()
     _render_clock_state()
+    _connect_controls()
+    _render_flow_state()
 
 
 func configure(progress) -> void:
     _story_progress = progress if _is_first_event_progress(progress) else null
+    _render_flow_state()
+
+
+func select_glyph(glyph_id: StringName) -> Dictionary:
+    if not _has_first_event_progress():
+        return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+    if GlyphCatalog.metadata(glyph_id).is_empty():
+        return {"status": &"GLYPH_UNAVAILABLE"}
+    if _selected_glyph_ids.has(glyph_id):
+        return {"status": &"GLYPH_ALREADY_SELECTED", "selected_glyph_ids": _selected_glyph_ids.duplicate()}
+    if _selected_glyph_ids.size() >= CircleComposition.MAX_GLYPH_COUNT:
+        return {"status": &"GLYPH_LIMIT_REACHED", "selected_glyph_ids": _selected_glyph_ids.duplicate()}
+    _selected_glyph_ids.append(glyph_id)
+    _clear_preview_and_target()
+    glyph_selection_changed.emit(_selected_glyph_ids.duplicate())
+    _render_flow_state()
+    return {"status": &"GLYPH_SELECTED", "selected_glyph_ids": _selected_glyph_ids.duplicate()}
+
+
+func request_circle_preview() -> Dictionary:
+    if not _has_first_event_progress():
+        return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+    var composition = CircleComposition.create(_selected_glyph_ids, _selected_glyph_ids)
+    if composition == null:
+        return {"status": &"CIRCLE_REQUIRED"}
+    var validation: Dictionary = composition.validation()
+    if StringName(validation.get("status", &"")) != &"OK":
+        return validation
+    _ensure_runtime()
+    _circle_preview = _circle_resolver.preview(composition, {"risk_tags": [_event_definition.threat_clock_id]})
+    _circle_preview["status"] = &"PREVIEW_READY"
+    _selected_target_id = &""
+    circle_preview_requested.emit(_circle_preview.duplicate(true))
+    _render_flow_state()
+    return _circle_preview.duplicate(true)
+
+
+func current_circle_preview() -> Dictionary:
+    return _circle_preview.duplicate(true)
+
+
+func select_target(target_id: StringName) -> Dictionary:
+    if not _has_first_event_progress():
+        return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+    if StringName(_circle_preview.get("status", &"")) != &"PREVIEW_READY":
+        return {"status": &"PREVIEW_REQUIRED"}
+    if target_id != &"FROST_SEEDLINGS":
+        return {"status": &"TARGET_UNAVAILABLE"}
+    _selected_target_id = target_id
+    target_selection_changed.emit(target_id)
+    _render_flow_state()
+    return {"status": &"TARGET_SELECTED", "target_id": target_id}
+
+
+func request_commit() -> Dictionary:
+    if not _has_first_event_progress():
+        return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+    if StringName(_circle_preview.get("status", &"")) != &"PREVIEW_READY":
+        return {"status": &"PREVIEW_REQUIRED"}
+    if _selected_target_id.is_empty():
+        return {"status": &"TARGET_REQUIRED"}
+    var action_id := _next_commit_action_id()
+    commit_requested.emit(action_id)
+    return _resolve_previewed_action(action_id)
 
 
 func resolve_event_action(action_id: StringName, glyph_ids: Array, target_id: StringName) -> Dictionary:
     _ensure_runtime()
+    if not _has_first_event_progress():
+        return _receipt(&"FIRST_EVENT_PROGRESS_REQUIRED", action_id, {})
     if target_id.is_empty():
         return _receipt(&"TARGET_REQUIRED", action_id, {})
     if action_id.is_empty():
@@ -45,17 +127,11 @@ func resolve_event_action(action_id: StringName, glyph_ids: Array, target_id: St
     var preview: Dictionary = _circle_resolver.preview(composition, {"risk_tags": [_event_definition.threat_clock_id]})
     if StringName(composition.validation().get("status", &"")) != &"OK":
         return _receipt(StringName(composition.validation().get("status", &"")), action_id, preview)
-
-    var resolution: Dictionary = _clock_resolver.resolve(_clock_state, {
-        "action_id": action_id,
-        "target_id": target_id,
-        "method_tags": composition.glyph_instance_ids(),
-    })
-    _clock_state = resolution.get("state", _clock_state)
-    _render_clock_state(resolution)
-    resolution["preview"] = preview
-    _render_receipt(resolution)
-    return resolution
+    _circle_preview = preview
+    _circle_preview["status"] = &"PREVIEW_READY"
+    _selected_glyph_ids = circle_glyph_ids.duplicate()
+    _selected_target_id = target_id
+    return _resolve_previewed_action(action_id)
 
 
 func goal_clock_segments() -> int:
@@ -66,6 +142,15 @@ func goal_clock_segments() -> int:
 func threat_clock_segments() -> int:
     _ensure_runtime()
     return int(_clock_state.threat_segments)
+
+
+func last_result_receipt() -> Dictionary:
+    return _last_result.duplicate(true)
+
+
+func result_receipt_text() -> String:
+    var receipt_label := get_node_or_null(NodePath("Content/ResultReceipt")) as Label
+    return "" if receipt_label == null else receipt_label.text
 
 
 func _ensure_runtime() -> void:
@@ -93,8 +178,17 @@ func _render_receipt(resolution: Dictionary) -> void:
     var receipt_label := get_node_or_null(NodePath("Content/ResultReceipt")) as Label
     if receipt_label == null:
         return
+    var status := StringName(resolution.get("status", &""))
     var tags: Array = resolution.get("visible_consequence_tags", [])
+    if status == &"RESOLVED":
+        _last_success_tags = tags.duplicate()
+    elif status == &"ALREADY_RESOLVED":
+        tags = _last_success_tags.duplicate()
+        resolution["visible_consequence_tags"] = tags.duplicate()
+        resolution["repeat_notice"] = &"ALREADY_RESOLVED_NO_CHANGE"
     receipt_label.text = " · ".join(tags.map(func(tag): return String(tag)))
+    if status == &"ALREADY_RESOLVED":
+        receipt_label.text += "\n이미 처리된 시전입니다. 변화는 없습니다."
 
 
 func _receipt(status: StringName, action_id: StringName, preview: Dictionary) -> Dictionary:
@@ -106,6 +200,73 @@ func _receipt(status: StringName, action_id: StringName, preview: Dictionary) ->
         "state_snapshot": _clock_state.to_snapshot(),
         "visible_consequence_tags": [],
     }
+
+
+func _resolve_previewed_action(action_id: StringName) -> Dictionary:
+    if action_id.is_empty():
+        return _receipt(&"ACTION_ID_REQUIRED", action_id, _circle_preview)
+    var preview_method_tags: Array = Array(_circle_preview.get("method_tags", []))
+    var resolution: Dictionary = _clock_resolver.resolve(_clock_state, {
+        "action_id": action_id,
+        "target_id": _selected_target_id,
+        "method_tags": preview_method_tags,
+    })
+    _clock_state = resolution.get("state", _clock_state)
+    resolution["preview"] = _circle_preview.duplicate(true)
+    resolution["resolver_method_tags"] = preview_method_tags.duplicate()
+    _render_clock_state(resolution)
+    _render_receipt(resolution)
+    _last_result = resolution.duplicate(true)
+    _render_flow_state()
+    return resolution
+
+
+func _next_commit_action_id() -> StringName:
+    _commit_serial += 1
+    return StringName("frost-action-%d" % _commit_serial)
+
+
+func _clear_preview_and_target() -> void:
+    _circle_preview = {}
+    _selected_target_id = &""
+
+
+func _has_first_event_progress() -> bool:
+    return _is_first_event_progress(_story_progress)
+
+
+func _connect_controls() -> void:
+    _connect_button(&"Content/GlyphSelection/GlyphButtons/HeatGlyphButton", func(): select_glyph(&"HEAT"))
+    _connect_button(&"Content/GlyphSelection/GlyphButtons/StabilizeGlyphButton", func(): select_glyph(&"STABILIZE"))
+    _connect_button(&"Content/GlyphSelection/GlyphButtons/FlowGlyphButton", func(): select_glyph(&"FLOW"))
+    _connect_button(&"Content/PreviewButton", request_circle_preview)
+    _connect_button(&"Content/TargetButton", func(): select_target(&"FROST_SEEDLINGS"))
+    _connect_button(&"Content/CommitButton", request_commit)
+
+
+func _connect_button(node_path: StringName, callback: Callable) -> void:
+    var button := get_node_or_null(NodePath(node_path)) as Button
+    if button != null and not button.pressed.is_connected(callback):
+        button.pressed.connect(callback)
+
+
+func _render_flow_state() -> void:
+    var preview_ready := StringName(_circle_preview.get("status", &"")) == &"PREVIEW_READY"
+    var progress_ready := _has_first_event_progress()
+    var preview_button := get_node_or_null(NodePath("Content/PreviewButton")) as Button
+    var target_button := get_node_or_null(NodePath("Content/TargetButton")) as Button
+    var commit_button := get_node_or_null(NodePath("Content/CommitButton")) as Button
+    var preview_status := get_node_or_null(NodePath("Content/PreviewStatus")) as Label
+    if preview_button != null:
+        preview_button.disabled = not progress_ready or _selected_glyph_ids.is_empty()
+    if target_button != null:
+        target_button.disabled = not progress_ready or not preview_ready
+    if commit_button != null:
+        commit_button.disabled = not progress_ready or not preview_ready or _selected_target_id.is_empty()
+    if preview_status != null:
+        preview_status.visible = preview_ready
+        if preview_ready:
+            preview_status.text = "회로 Preview: %s" % String(_circle_preview.get("composition_signature", ""))
 
 
 func _is_first_event_progress(progress) -> bool:

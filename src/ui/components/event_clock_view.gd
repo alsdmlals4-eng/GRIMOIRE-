@@ -41,6 +41,14 @@ func threat_filled_segments() -> int:
     return _threat_filled
 
 
+func goal_count_text() -> String:
+    return "%d/%d" % [_goal_filled, goal_segment_count()]
+
+
+func threat_count_text() -> String:
+    return "%d/%d" % [_threat_filled, threat_segment_count()]
+
+
 func _rebuild_live_controls() -> void:
     for child in get_children():
         remove_child(child)
@@ -65,6 +73,12 @@ func _append_clock(parent: VBoxContainer, clock_name: StringName, label_text: St
     label.text = label_text
     label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     row.add_child(label)
+
+    var count := Label.new()
+    count.name = &"GoalCount" if clock_name == &"GoalClock" else &"ThreatCount"
+    count.text = "%d/%d" % [filled_count, segment_count]
+    count.accessibility_name = "%s %s" % [label_text, count.text]
+    row.add_child(count)
 
     var segments := HBoxContainer.new()
     segments.name = &"GoalSegments" if clock_name == &"GoalClock" else &"ThreatSegments"

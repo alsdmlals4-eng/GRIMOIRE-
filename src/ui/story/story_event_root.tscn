@@ -45,6 +45,51 @@ layout_mode = 2
 text = "묘목의 서리를 가라앉히는 동안, 온실의 균열도 계속 지켜봐야 합니다."
 autowrap_mode = 2
 
+[node name="GlyphSelection" type="PanelContainer" parent="Content"]
+layout_mode = 2
+theme_type_variation = &"AcademyPanel"
+
+[node name="GlyphButtons" type="HBoxContainer" parent="Content/GlyphSelection"]
+layout_mode = 2
+
+[node name="HeatGlyphButton" type="Button" parent="Content/GlyphSelection/GlyphButtons"]
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+text = "열 글자 선택"
+
+[node name="StabilizeGlyphButton" type="Button" parent="Content/GlyphSelection/GlyphButtons"]
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+text = "안정 글자 선택"
+
+[node name="FlowGlyphButton" type="Button" parent="Content/GlyphSelection/GlyphButtons"]
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+text = "흐름 글자 선택"
+
+[node name="PreviewButton" type="Button" parent="Content"]
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+text = "회로 Preview 보기"
+disabled = true
+
+[node name="PreviewStatus" type="Label" parent="Content"]
+layout_mode = 2
+autowrap_mode = 2
+visible = false
+
+[node name="TargetButton" type="Button" parent="Content"]
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+text = "서리 묘목 대상 지정"
+disabled = true
+
+[node name="CommitButton" type="Button" parent="Content"]
+layout_mode = 2
+theme_type_variation = &"AcademyButtonPrimary"
+text = "시전"
+disabled = true
+
 [node name="EventClockView" parent="Content" instance=ExtResource("2_clock_view")]
 layout_mode = 2
 

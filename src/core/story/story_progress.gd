@@ -5,6 +5,7 @@ const ADMISSION_PROLOGUE := &"ADMISSION_PROLOGUE"
 const FIRST_EVENT := &"FIRST_EVENT"
 const ADMISSION_PROLOGUE_SCENE := "res://src/ui/story/admission_prologue.tscn"
 const FIRST_EVENT_SCENE := "res://src/ui/story/story_event_root.tscn"
+const FIRST_EVENT_HANDOFF_META := &"_grimoire_first_event_progress"
 
 var _current_beat: StringName = ADMISSION_PROLOGUE
 
@@ -41,4 +42,26 @@ func advance_from_admission() -> Dictionary:
 	return {
 		"status": &"FIRST_EVENT_ROUTE",
 		"route_path": next_scene_path(),
+		"progress": self,
 	}
+
+
+static func stage_first_event_handoff(progress, owner: Node) -> Dictionary:
+	if owner == null or progress == null or not progress.has_method("current_beat") or progress.call("current_beat") != FIRST_EVENT:
+		return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+	owner.set_meta(FIRST_EVENT_HANDOFF_META, progress)
+	return {
+		"status": &"FIRST_EVENT_HANDOFF_READY",
+		"progress": progress,
+		"route_path": FIRST_EVENT_SCENE,
+	}
+
+
+static func consume_first_event_handoff(owner: Node):
+	if owner == null or not owner.has_meta(FIRST_EVENT_HANDOFF_META):
+		return null
+	var progress = owner.get_meta(FIRST_EVENT_HANDOFF_META)
+	owner.remove_meta(FIRST_EVENT_HANDOFF_META)
+	if progress == null or not progress.has_method("current_beat") or progress.call("current_beat") != FIRST_EVENT:
+		return null
+	return progress

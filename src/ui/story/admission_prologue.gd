@@ -28,9 +28,17 @@ func continue_narrative() -> Dictionary:
 	return _progress.advance_from_admission()
 
 
-func _on_continue_narrative_pressed() -> void:
+func handoff_first_event(handoff_owner: Node) -> Dictionary:
 	var continuation := continue_narrative()
 	if StringName(continuation.get("status", &"")) != &"FIRST_EVENT_ROUTE":
+		return continuation
+	return StoryProgress.stage_first_event_handoff(continuation.get("progress", null), handoff_owner)
+
+
+func _on_continue_narrative_pressed() -> void:
+	var handoff_owner: Node = get_tree().root if get_tree() != null else null
+	var continuation := handoff_first_event(handoff_owner)
+	if StringName(continuation.get("status", &"")) != &"FIRST_EVENT_HANDOFF_READY":
 		return
 	var route_path := String(continuation.get("route_path", ""))
 	first_event_route_requested.emit(_progress, route_path)
