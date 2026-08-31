@@ -3,6 +3,13 @@ extends SceneTree
 const TestCase = preload("res://tests/test_case.gd")
 
 const SUITES: Array[String] = [
+    "res://tests/unit/test_circle_composition.gd",
+    "res://tests/unit/test_event_clock_resolver.gd",
+    "res://tests/unit/test_card_ruleset.gd",
+    "res://tests/unit/test_story_progress.gd",
+    "res://tests/integration/test_story_front_door.gd",
+    "res://tests/integration/test_story_event_root.gd",
+    "res://tests/integration/test_card_archive_screen.gd",
     "res://tests/unit/test_artifact_recovery_scanner_boundary.gd",
     "res://tests/unit/test_tmp_scanner_boundary.gd",
     "res://tests/unit/test_spell_workflow_background_uid.gd",
