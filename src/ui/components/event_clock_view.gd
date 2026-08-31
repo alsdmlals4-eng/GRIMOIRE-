@@ -86,10 +86,12 @@ func _append_clock(parent: VBoxContainer, clock_name: StringName, label_text: St
     row.add_child(segments)
     for index in range(maxi(0, segment_count)):
         var segment := PanelContainer.new()
+        var is_filled := index < filled_count
         segment.name = "Segment%d" % (index + 1)
         segment.custom_minimum_size = Vector2(28, 18)
-        segment.theme_type_variation = variation if index < filled_count else &"AcademyPanelPinned"
-        segment.set_meta(&"filled", index < filled_count)
+        segment.theme_type_variation = variation if is_filled else &"AcademyPanelPinned"
+        segment.accessibility_name = "%s %d/%d %s" % [label_text, index + 1, segment_count, "완료" if is_filled else "미완료"]
+        segment.set_meta(&"filled", is_filled)
         segments.add_child(segment)
 
 

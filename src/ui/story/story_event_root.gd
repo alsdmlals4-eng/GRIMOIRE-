@@ -22,6 +22,8 @@ var _circle_preview: Dictionary = {}
 var _last_result: Dictionary = {}
 var _last_success_tags: Array = []
 var _commit_serial := 0
+var _prepared_action_id: StringName = &""
+var _prepared_action_consumed := false
 
 signal glyph_selection_changed(selected_glyph_ids: Array)
 signal circle_preview_requested(preview: Dictionary)
@@ -47,6 +49,8 @@ func configure(progress) -> void:
 func select_glyph(glyph_id: StringName) -> Dictionary:
     if not _has_first_event_progress():
         return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+    if _prepared_action_consumed:
+        return {"status": &"PREPARED_ACTION_ALREADY_RESOLVED"}
     if GlyphCatalog.metadata(glyph_id).is_empty():
         return {"status": &"GLYPH_UNAVAILABLE"}
     if _selected_glyph_ids.has(glyph_id):
@@ -63,6 +67,8 @@ func select_glyph(glyph_id: StringName) -> Dictionary:
 func request_circle_preview() -> Dictionary:
     if not _has_first_event_progress():
         return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+    if _prepared_action_consumed:
+        return {"status": &"PREPARED_ACTION_ALREADY_RESOLVED"}
     var composition = CircleComposition.create(_selected_glyph_ids, _selected_glyph_ids)
     if composition == null:
         return {"status": &"CIRCLE_REQUIRED"}
@@ -73,6 +79,7 @@ func request_circle_preview() -> Dictionary:
     _circle_preview = _circle_resolver.preview(composition, {"risk_tags": [_event_definition.threat_clock_id]})
     _circle_preview["status"] = &"PREVIEW_READY"
     _selected_target_id = &""
+    _prepared_action_id = _next_prepared_action_id()
     circle_preview_requested.emit(_circle_preview.duplicate(true))
     _render_flow_state()
     return _circle_preview.duplicate(true)
@@ -85,6 +92,8 @@ func current_circle_preview() -> Dictionary:
 func select_target(target_id: StringName) -> Dictionary:
     if not _has_first_event_progress():
         return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+    if _prepared_action_consumed:
+        return {"status": &"PREPARED_ACTION_ALREADY_RESOLVED"}
     if StringName(_circle_preview.get("status", &"")) != &"PREVIEW_READY":
         return {"status": &"PREVIEW_REQUIRED"}
     if target_id != &"FROST_SEEDLINGS":
@@ -98,13 +107,16 @@ func select_target(target_id: StringName) -> Dictionary:
 func request_commit() -> Dictionary:
     if not _has_first_event_progress():
         return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+    if _prepared_action_consumed:
+        return _repeat_prepared_action()
     if StringName(_circle_preview.get("status", &"")) != &"PREVIEW_READY":
         return {"status": &"PREVIEW_REQUIRED"}
     if _selected_target_id.is_empty():
         return {"status": &"TARGET_REQUIRED"}
-    var action_id := _next_commit_action_id()
-    commit_requested.emit(action_id)
-    return _resolve_previewed_action(action_id)
+    if _prepared_action_id.is_empty():
+        return _receipt(&"PREPARED_ACTION_REQUIRED", &"", _circle_preview)
+    commit_requested.emit(_prepared_action_id)
+    return _resolve_previewed_action(_prepared_action_id)
 
 
 func resolve_event_action(action_id: StringName, glyph_ids: Array, target_id: StringName) -> Dictionary:
@@ -115,6 +127,8 @@ func resolve_event_action(action_id: StringName, glyph_ids: Array, target_id: St
         return _receipt(&"TARGET_REQUIRED", action_id, {})
     if action_id.is_empty():
         return _receipt(&"ACTION_ID_REQUIRED", action_id, {})
+    if _prepared_action_consumed:
+        return _repeat_prepared_action()
 
     var circle_glyph_ids: Array[StringName] = []
     for glyph_id in glyph_ids:
@@ -131,6 +145,7 @@ func resolve_event_action(action_id: StringName, glyph_ids: Array, target_id: St
     _circle_preview["status"] = &"PREVIEW_READY"
     _selected_glyph_ids = circle_glyph_ids.duplicate()
     _selected_target_id = target_id
+    _prepared_action_id = action_id
     return _resolve_previewed_action(action_id)
 
 
@@ -216,12 +231,14 @@ func _resolve_previewed_action(action_id: StringName) -> Dictionary:
     resolution["resolver_method_tags"] = preview_method_tags.duplicate()
     _render_clock_state(resolution)
     _render_receipt(resolution)
+    if StringName(resolution.get("status", &"")) == &"RESOLVED":
+        _prepared_action_consumed = true
     _last_result = resolution.duplicate(true)
     _render_flow_state()
     return resolution
 
 
-func _next_commit_action_id() -> StringName:
+func _next_prepared_action_id() -> StringName:
     _commit_serial += 1
     return StringName("frost-action-%d" % _commit_serial)
 
@@ -229,6 +246,17 @@ func _next_commit_action_id() -> StringName:
 func _clear_preview_and_target() -> void:
     _circle_preview = {}
     _selected_target_id = &""
+    _prepared_action_id = &""
+
+
+func _repeat_prepared_action() -> Dictionary:
+    var repeated := _receipt(&"ALREADY_RESOLVED", _prepared_action_id, _circle_preview)
+    repeated["visible_consequence_tags"] = _last_success_tags.duplicate()
+    repeated["repeat_notice"] = &"ALREADY_RESOLVED_NO_CHANGE"
+    _render_receipt(repeated)
+    _last_result = repeated.duplicate(true)
+    _render_flow_state()
+    return repeated
 
 
 func _has_first_event_progress() -> bool:
@@ -262,7 +290,7 @@ func _render_flow_state() -> void:
     if target_button != null:
         target_button.disabled = not progress_ready or not preview_ready
     if commit_button != null:
-        commit_button.disabled = not progress_ready or not preview_ready or _selected_target_id.is_empty()
+        commit_button.disabled = not progress_ready or not preview_ready or _selected_target_id.is_empty() or _prepared_action_consumed
     if preview_status != null:
         preview_status.visible = preview_ready
         if preview_ready:

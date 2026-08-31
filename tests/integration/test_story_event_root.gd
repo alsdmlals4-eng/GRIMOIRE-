@@ -74,21 +74,30 @@ func run(case) -> void:
     case.assert_equal([&"INTENSIFY", &"ANCHOR"], result.get("resolver_method_tags", []), "Root passes preview method tags, never raw glyph ids, to the clock resolver")
     case.assert_equal(1, root.goal_clock_segments(), "Matching semantic method advances the goal")
     case.assert_equal(1, root.threat_clock_segments(), "Matching method retains the threat consequence")
+    case.assert_true(commit_button.disabled, "Resolved preparation locks the live Commit button")
 
     var clock_view = root.get_node_or_null(NodePath("Content/EventClockView"))
     case.assert_equal("1/6", clock_view.goal_count_text(), "Goal clock exposes an accessible live count")
     case.assert_equal("1/4", clock_view.threat_count_text(), "Threat clock exposes an accessible live count")
     case.assert_equal("1/6", clock_view.get_node("ClockRows/GoalClock/GoalCount").text, "Live goal count label is built from resolution state")
     case.assert_equal("1/4", clock_view.get_node("ClockRows/ThreatClock/ThreatCount").text, "Live threat count label is built from resolution state")
+    var goal_segments = clock_view.get_node("ClockRows/GoalClock/GoalSegments")
+    var threat_segments = clock_view.get_node("ClockRows/ThreatClock/ThreatSegments")
+    case.assert_equal(6, goal_segments.get_child_count(), "Goal clock builds all six live segment Controls")
+    case.assert_equal(4, threat_segments.get_child_count(), "Threat clock builds all four live segment Controls")
+    case.assert_true(goal_segments.get_child(0).accessibility_name.ends_with("완료"), "Filled goal segment exposes live accessible completion text")
+    case.assert_true(goal_segments.get_child(1).accessibility_name.ends_with("미완료"), "Unfilled goal segment exposes live accessible completion text")
 
-    # Breaks if a duplicate delivery erases the successful receipt or hides its remaining risk.
-    var repeated: Dictionary = root.resolve_event_action(result.get("action_id", &""), [&"HEAT", &"STABILIZE"], &"FROST_SEEDLINGS")
-    case.assert_equal(&"ALREADY_RESOLVED", repeated.get("status", &""), "Repeated action cannot move the clocks twice")
+    # Breaks if a second real CommitButton press mints a new id and moves the clocks again.
+    commit_button.pressed.emit()
+    var repeated: Dictionary = root.last_result_receipt()
+    case.assert_equal(&"ALREADY_RESOLVED", repeated.get("status", &""), "Second CommitButton press cannot move the clocks twice")
     case.assert_true(root.result_receipt_text().contains("FROST_STABILIZED"), "Repeat notice preserves the successful result")
     case.assert_true(root.result_receipt_text().contains("FRACTURES_SPREAD"), "Repeat notice preserves the remaining risk")
     case.assert_true(root.result_receipt_text().contains("이미 처리"), "Repeat shows a separate no-change notice")
     case.assert_equal(1, root.goal_clock_segments(), "Repeated receipt leaves goal unchanged")
     case.assert_equal(1, root.threat_clock_segments(), "Repeated receipt leaves threat unchanged")
+    case.assert_true(commit_button.disabled, "Repeated commit attempt keeps the live Commit button locked")
     root.free()
 
 
