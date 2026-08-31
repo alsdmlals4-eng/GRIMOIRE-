@@ -7,6 +7,8 @@ const ThemeFactory = preload("res://src/ui/theme/grimoire_theme_factory.gd")
 
 const RULESET_RESOURCE_PATH := "res://data/cards/card_ruleset_01.tres"
 
+signal return_requested
+
 var _ruleset = null
 var _story_progress = null
 var _story_unlocked_cards: Array = []
@@ -16,6 +18,7 @@ func _ready() -> void:
     theme = ThemeFactory.create_theme()
     _ensure_ruleset()
     _render()
+    _connect_actions()
 
 
 func configure_story_cards(progress, candidate_cards: Array) -> void:
@@ -44,6 +47,21 @@ func request_start_duel() -> Dictionary:
         "status": &"RULESET_PENDING",
         "reason": &"DETAILED_DUEL_RULES_PENDING",
     }
+
+
+func request_return() -> Dictionary:
+    return_requested.emit()
+    return {"status": &"RETURN_REQUESTED"}
+
+
+func _connect_actions() -> void:
+    var back_button := get_node_or_null(NodePath("Content/BackButton")) as Button
+    if back_button != null and not back_button.pressed.is_connected(_on_back_pressed):
+        back_button.pressed.connect(_on_back_pressed)
+
+
+func _on_back_pressed() -> void:
+    request_return()
 
 
 func _ensure_ruleset() -> void:
@@ -83,6 +101,9 @@ func _render() -> void:
         return
     for child in cards_container.get_children():
         child.queue_free()
+    var empty_state := get_node_or_null(NodePath("Content/EmptyState")) as Label
+    if empty_state != null:
+        empty_state.visible = _story_unlocked_cards.is_empty()
     for card in _story_unlocked_cards:
         var card_label := Label.new()
         card_label.name = String(card.card_id)

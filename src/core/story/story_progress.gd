@@ -32,7 +32,7 @@ func next_scene_path() -> String:
 
 
 func available_front_door_actions() -> Array[StringName]:
-	return [&"NEW_RECORD", &"RESUME_RECORD", &"SETTINGS"]
+	return [&"NEW_RECORD", &"RESUME_RECORD", &"ARCHIVE", &"SETTINGS", &"QUIT"]
 
 
 func card_unlocks() -> Dictionary:

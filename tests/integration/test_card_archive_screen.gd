@@ -5,6 +5,7 @@ const CARD_ARCHIVE_PATH := "res://src/ui/cards/card_archive_screen.gd"
 const CARD_ARCHIVE_SCENE_PATH := "res://src/ui/cards/card_archive_screen.tscn"
 const CIRCLE_COMPOSITION_PATH := "res://src/core/circle/circle_composition.gd"
 const STORY_PROGRESS_PATH := "res://src/core/story/story_progress.gd"
+const BACKGROUND_PATH := "res://assets/art/backgrounds/school/bg_school_admission_approach.png"
 
 
 func run(case) -> void:
@@ -33,6 +34,16 @@ func run(case) -> void:
     case.assert_true(archive.has_method("request_start_duel"), "Card archive scene keeps its pending-duel boundary")
     case.assert_true(archive.has_node("Content/RulesetStatus"), "Card archive presents the ruleset status")
     case.assert_true(archive.has_node("Content/UnlockedCards"), "Card archive presents narrative-unlocked cards")
+    case.assert_true(archive.has_node("Content/BackButton"), "Card archive provides a return action to the main menu")
+    case.assert_true(archive.has_method("request_return"), "Card archive separates return from game progression")
+    var environment_background := archive.get_node_or_null(NodePath("EnvironmentBackground")) as TextureRect
+    case.assert_true(environment_background != null, "Archive reuses the approved academy environment instead of presenting an empty dark window")
+    if environment_background != null:
+        case.assert_equal(BACKGROUND_PATH, environment_background.texture.resource_path if environment_background.texture != null else "", "Archive background reuses the locked front-door asset without new art generation")
+        case.assert_equal(Control.MOUSE_FILTER_IGNORE, environment_background.mouse_filter, "Archive background does not block its return action")
+        case.assert_equal(TextureRect.STRETCH_KEEP_ASPECT_COVERED, environment_background.stretch_mode, "Archive background covers the landscape viewport")
+    var back_button := archive.get_node_or_null(NodePath("Content/BackButton")) as Button
+    case.assert_true(back_button != null and back_button.size_flags_horizontal == Control.SIZE_SHRINK_CENTER, "Archive return action remains a focused control rather than an empty full-width bar")
     case.assert_false(archive.has_node("DuelButton"), "Card archive has no independent duel button")
     if not archive is Control or not archive.has_method("configure_story_cards") or not archive.has_method("request_start_duel"):
         archive.free()
@@ -78,6 +89,9 @@ func run(case) -> void:
     case.assert_equal(&"RULESET_PENDING", duel_request.get("status", &""), "Archive cannot start a duel before detailed rules exist")
     case.assert_equal(&"DETAILED_DUEL_RULES_PENDING", duel_request.get("reason", &""), "Pending duel result names the real missing authority")
     case.assert_false(duel_request.has("route_path"), "Pending duel result supplies no independent route")
+    if archive.has_method("request_return"):
+        var return_request: Dictionary = archive.request_return()
+        case.assert_equal(&"RETURN_REQUESTED", return_request.get("status", &""), "Archive return stays inside the front-door utility flow")
     archive.free()
 
 

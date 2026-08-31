@@ -38,19 +38,41 @@ func run(case) -> void:
         case.assert_equal(BACKGROUND_PATH, environment_background.texture.resource_path, "Admission environment uses the user-locked canonical background")
     case.assert_equal(Control.MOUSE_FILTER_IGNORE, environment_background.mouse_filter, "Admission environment does not intercept front-door input")
     case.assert_equal(TextureRect.STRETCH_KEEP_ASPECT_COVERED, environment_background.stretch_mode, "Admission environment covers the landscape viewport without a blank frame")
-    case.assert_true(front_door.has_node("NewRecordButton"), "New record is a live button")
-    case.assert_true(front_door.has_node("ResumeRecordButton"), "Resume record is a live button")
-    case.assert_true(front_door.has_node("SettingsButton"), "Settings is a live button")
+    case.assert_true(front_door.has_node("Content/MenuActions/NewRecordButton"), "New record is a live button")
+    case.assert_true(front_door.has_node("Content/MenuActions/ResumeRecordButton"), "Resume record is a live button")
+    case.assert_true(front_door.has_node("Content/MenuActions/ArchiveButton"), "Archive is a live read-only menu button")
+    case.assert_true(front_door.has_node("Content/MenuActions/SettingsButton"), "Settings is a live button")
+    case.assert_true(front_door.has_node("Content/MenuActions/QuitButton"), "Quit is a live menu button")
+    case.assert_true(front_door.has_node("QuitConfirmationDialog"), "Quit requires a live confirmation dialog")
     var configured_main_scene_path := str(ProjectSettings.get_setting("application/run/main_scene", ""))
     case.assert_equal(SCENE_PATH, configured_main_scene_path, "Story front door is the configured default main scene")
-    if not front_door.has_node("NewRecordButton") or not front_door.has_node("ResumeRecordButton") or not front_door.has_node("SettingsButton"):
+    if not front_door.has_node("Content/MenuActions/NewRecordButton") or not front_door.has_node("Content/MenuActions/ResumeRecordButton") or not front_door.has_node("Content/MenuActions/ArchiveButton") or not front_door.has_node("Content/MenuActions/SettingsButton") or not front_door.has_node("Content/MenuActions/QuitButton"):
         front_door.free()
         return
 
     # Breaks if an empty record falsely appears resumable.
     front_door.configure(null)
-    case.assert_false(front_door.get_node("ResumeRecordButton").visible, "Resume stays hidden without a valid record")
-    case.assert_equal([&"NEW_RECORD", &"SETTINGS"], front_door.visible_action_ids(), "Empty front door presents no activity hub")
+    var resume_button := front_door.get_node("Content/MenuActions/ResumeRecordButton") as Button
+    case.assert_true(resume_button.visible, "Resume remains present in the main menu without a valid record")
+    case.assert_true(resume_button.disabled, "Resume is disabled without a valid record")
+    case.assert_equal([&"NEW_RECORD", &"ARCHIVE", &"SETTINGS", &"QUIT"], front_door.visible_action_ids(), "Empty front door offers only record-safe and meta actions")
+    case.assert_true(front_door.has_method("open_archive"), "Front door can open a read-only archive")
+    case.assert_true(front_door.has_method("request_quit_confirmation"), "Front door asks before quitting")
+    case.assert_true(front_door.has_method("cancel_quit"), "Front door can cancel quit without changing records")
+    case.assert_true(front_door.has_method("confirm_quit"), "Front door confirms quit separately from its request")
+    if front_door.has_method("open_archive"):
+        var archive_request: Dictionary = front_door.open_archive()
+        case.assert_equal(&"ARCHIVE_READY", archive_request.get("status", &""), "Archive request is explicitly read-only")
+        case.assert_false(archive_request.has("route_path"), "Archive request does not create an activity route")
+    if front_door.has_method("request_quit_confirmation"):
+        var quit_request: Dictionary = front_door.request_quit_confirmation()
+        case.assert_equal(&"QUIT_CONFIRMATION_REQUIRED", quit_request.get("status", &""), "Quit needs confirmation before the application exits")
+    if front_door.has_method("cancel_quit"):
+        var quit_cancel: Dictionary = front_door.cancel_quit()
+        case.assert_equal(&"QUIT_CANCELLED", quit_cancel.get("status", &""), "Cancelling quit leaves the menu active")
+    if front_door.has_method("confirm_quit"):
+        var quit_confirm: Dictionary = front_door.confirm_quit()
+        case.assert_equal(&"QUIT_CONFIRMED", quit_confirm.get("status", &""), "Confirmed quit is a distinct, explicit action")
 
     # Breaks if starting a record skips the admission prologue.
     var new_record: Dictionary = front_door.start_new_record()
@@ -59,8 +81,8 @@ func run(case) -> void:
 
     # Breaks if a valid narrative record cannot resume, or if the front door adds mode buttons.
     front_door.configure(new_record.get("progress", null))
-    case.assert_true(front_door.get_node("ResumeRecordButton").visible, "Valid story progress exposes resume")
-    case.assert_equal([&"NEW_RECORD", &"RESUME_RECORD", &"SETTINGS"], front_door.visible_action_ids(), "Valid front door still exposes only record and settings actions")
+    case.assert_true(resume_button.visible and not resume_button.disabled, "Valid story progress enables resume")
+    case.assert_equal([&"NEW_RECORD", &"RESUME_RECORD", &"ARCHIVE", &"SETTINGS", &"QUIT"], front_door.visible_action_ids(), "Valid front door preserves story entry while exposing archive and quit utilities")
     for forbidden_node in ["LessonButton", "PracticumButton", "DuelButton", "FestivalButton", "CardArchiveButton", "EventArchiveButton", "EventClock"]:
         case.assert_false(front_door.has_node(forbidden_node), "Story front door has no %s" % forbidden_node)
 

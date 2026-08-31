@@ -22,7 +22,7 @@ func run(case) -> void:
 
     # Breaks if a front door regresses into a free activity-mode hub.
     var front_door_actions: Array = progress.available_front_door_actions()
-    case.assert_equal([&"NEW_RECORD", &"RESUME_RECORD", &"SETTINGS"], front_door_actions, "Front door exposes only record and settings actions")
+    case.assert_equal([&"NEW_RECORD", &"RESUME_RECORD", &"ARCHIVE", &"SETTINGS", &"QUIT"], front_door_actions, "Valid story progress exposes record, archive, settings, and quit actions")
     for forbidden_action in [&"LESSON", &"PRACTICUM", &"DUEL", &"FESTIVAL", &"CARD_ARCHIVE", &"EVENT_ARCHIVE"]:
         case.assert_false(front_door_actions.has(forbidden_action), "Front door never offers %s mode selection" % forbidden_action)
 

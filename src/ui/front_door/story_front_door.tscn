@@ -52,12 +52,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -220.0
-offset_top = -176.0
+offset_top = -234.0
 offset_right = 220.0
-offset_bottom = 176.0
+offset_bottom = 234.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 14
+alignment = 1
 
 [node name="Title" type="Label" parent="Content" unique_id=51724868]
 layout_mode = 2
@@ -71,51 +72,58 @@ text = "입학의 기록에서 이야기를 시작하세요."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="NewRecordButton" type="Button" parent="." unique_id=1614850436]
-custom_minimum_size = Vector2(280, 56)
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -32.0
-offset_right = 140.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MenuActions" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="NewRecordButton" type="Button" parent="Content/MenuActions" unique_id=1614850436]
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"AcademyButtonPrimary"
 text = "새 기록 시작"
 
-[node name="ResumeRecordButton" type="Button" parent="." unique_id=2119089680]
-visible = false
-custom_minimum_size = Vector2(280, 56)
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = 36.0
-offset_right = 140.0
-offset_bottom = 92.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ResumeRecordButton" type="Button" parent="Content/MenuActions" unique_id=2119089680]
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
 theme_type_variation = &"AcademyButton"
 text = "이야기 이어하기"
 
-[node name="SettingsButton" type="Button" parent="." unique_id=2050683906]
+[node name="ResumeHint" type="Label" parent="Content/MenuActions"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.780392, 0.839216, 1)
+theme_override_font_sizes/font_size = 14
+text = "저장된 새 기록이 있으면 이어할 수 있습니다."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ArchiveButton" type="Button" parent="Content/MenuActions"]
 custom_minimum_size = Vector2(280, 48)
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = 104.0
-offset_right = 140.0
-offset_bottom = 152.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"AcademyButton"
+text = "도감"
+
+[node name="SettingsButton" type="Button" parent="Content/MenuActions" unique_id=2050683906]
+custom_minimum_size = Vector2(280, 44)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"AcademyButtonQuiet"
 text = "설정"
+
+[node name="QuitButton" type="Button" parent="Content/MenuActions"]
+custom_minimum_size = Vector2(280, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"AcademyButtonQuiet"
+text = "종료"
+
+[node name="QuitConfirmationDialog" type="ConfirmationDialog" parent="."]
+min_size = Vector2i(460, 200)
+title = "게임 종료"
+dialog_text = "GRIMOIRE를 종료할까요?\n현재 화면에서 새 기록은 저장되지 않습니다."
+ok_button_text = "종료"
+cancel_button_text = "계속하기"
