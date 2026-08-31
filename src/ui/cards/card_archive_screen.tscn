@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/ui/cards/card_archive_screen.gd" id="1_card_archive"]
+
+[node name="CardArchiveScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_card_archive")
+
+[node name="SafeBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.027, 0.082, 0.14, 1)
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 52.0
+offset_right = -64.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+
+[node name="Heading" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "마도 카드 기록"
+
+[node name="RulesetStatus" type="Label" parent="Content"]
+layout_mode = 2
+autowrap_mode = 2
+
+[node name="NarrativeGate" type="Label" parent="Content"]
+layout_mode = 2
+text = "이야기에서 해금한 카드만 이곳에 기록됩니다."
+autowrap_mode = 2
+
+[node name="UnlockedCards" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
