@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://qfvh1n7f5veh"]
+
+[ext_resource type="Script" uid="uid://ben8tfcpsp6mt" path="res://src/ui/spell_workflow/spell_use_screen.gd" id="1_j56eg"]
+[ext_resource type="PackedScene" uid="uid://bcqjladjlv8oe" path="res://src/ui/spell_workflow/components/target_selection_panel.tscn" id="2_tst33"]
+[ext_resource type="PackedScene" uid="uid://ma21n52eu3u7" path="res://src/ui/spell_workflow/components/expected_result_panel.tscn" id="3_2e13p"]
+
+[node name="SpellUseScreen" type="Control" unique_id=336013700]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_j56eg")
+
+[node name="Content" type="MarginContainer" parent="." unique_id=1935020872]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Layout" type="VBoxContainer" parent="Content" unique_id=590546448]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="Content/Layout" unique_id=1560345357]
+layout_mode = 2
+text = "Spell Use"
+
+[node name="Body" type="HBoxContainer" parent="Content/Layout" unique_id=501883609]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PreparedArea" type="VBoxContainer" parent="Content/Layout/Body" unique_id=144304815]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="PreparedTitle" type="Label" parent="Content/Layout/Body/PreparedArea" unique_id=139901996]
+layout_mode = 2
+text = "Prepared spells"
+
+[node name="PreparedSpellList" type="VBoxContainer" parent="Content/Layout/Body/PreparedArea" unique_id=1165778045]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TargetSelectionPanel" parent="Content/Layout/Body" unique_id=1497848192 instance=ExtResource("2_tst33")]
+layout_mode = 2
+
+[node name="ExpectedResultPanel" parent="Content/Layout/Body" unique_id=3422477 instance=ExtResource("3_2e13p")]
+layout_mode = 2
+
+[node name="ActionRow" type="HBoxContainer" parent="Content/Layout" unique_id=1008769402]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CurrentManaLabel" type="Label" parent="Content/Layout/ActionRow" unique_id=1956714398]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Current MP: 0"
+
+[node name="UseButton" type="Button" parent="Content/Layout/ActionRow" unique_id=835147140]
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+disabled = true
+text = "주문 사용"
+
+[node name="CancelButton" type="Button" parent="Content/Layout/ActionRow" unique_id=283201004]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+text = "취소"
+
+[node name="PreviewButton" type="Button" parent="Content/Layout/ActionRow" unique_id=1380517181]
+layout_mode = 2
+text = "결과 미리보기"
+
+[node name="ConfirmUseButton" type="Button" parent="Content/Layout/ActionRow" unique_id=1417466000]
+layout_mode = 2
+text = "사용 확정"

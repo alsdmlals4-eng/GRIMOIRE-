@@ -1,0 +1,67 @@
+{
+  "actual_head": "8c611f601aa98397ed1558e92ab207e0e8347a9b",
+  "base_sha": "8c611f601aa98397ed1558e92ab207e0e8347a9b",
+  "branch": "feat/task8-spell-use-screen-v2",
+  "commands": [],
+  "completed_at": "2026-08-11T11:39:26.281653+00:00",
+  "decision_id": "GM-ACTIONS-BUDGET-LOCAL-VERIFICATION-MODE-01",
+  "expected_head": "8c611f601aa98397ed1558e92ab207e0e8347a9b",
+  "godot": {
+    "executable": null,
+    "expected_version": "4.7.1",
+    "status": "NOT_RUN",
+    "version": null
+  },
+  "gut": {
+    "discovered": 0,
+    "errors": 0,
+    "failed": 0,
+    "junit_path": null,
+    "passed": 0,
+    "status": "NOT_RUN",
+    "version": "9.7.1"
+  },
+  "host": {
+    "machine": "AMD64",
+    "release": "11",
+    "system": "Windows",
+    "wsl": false,
+    "wsl_distribution": null
+  },
+  "lane_id": "task8-red",
+  "limitations": [
+    "DIRTY_WORKTREE_BEFORE_VALIDATION"
+  ],
+  "origin_main": "8c611f601aa98397ed1558e92ab207e0e8347a9b",
+  "preflight": {
+    "clean_before": false,
+    "head_match": true,
+    "operation_in_progress": false,
+    "python_match": false,
+    "remote_match": true
+  },
+  "production_hash": {
+    "after_path": null,
+    "before_path": null,
+    "equal": null,
+    "status": "NOT_RUN"
+  },
+  "pull_request": 0,
+  "python": {
+    "executable": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "implementation": "CPython",
+    "major_minor": "3.13",
+    "version": "3.13.14"
+  },
+  "repository": "alsdmlals4-eng/GRIMOIRE-",
+  "result": "FAIL",
+  "schema_version": 2,
+  "started_at": "2026-08-11T11:39:25.909246+00:00",
+  "tree_sha": "b75d94e3eb5e9a0c78f93cb72bb834c6832e715a",
+  "vendor": {
+    "actual_tree": null,
+    "expected_commit": "aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605",
+    "expected_tree": "5d6893836af4917ee62b1a395125a7530b1f239d",
+    "status": "NOT_RUN"
+  }
+}

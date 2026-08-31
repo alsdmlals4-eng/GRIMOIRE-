@@ -41,6 +41,142 @@
         "UNAPPROVED_CHARACTER_IDENTITY",
         "UNAPPROVED_COSTUME_AND_RELATIONSHIP_CANON"
       ]
+    },
+    {
+      "role": "ACADEMY_HUB_MAGIC_WRITING_PLANNING_REFERENCE",
+      "filename": "GRIMOIRE_academy_hub_magic_writing_planning_reference_2026-08-30.png",
+      "generation_locator": "Codex built-in image generation / thread 01a04af4-91c2-78f2-bbbb-9e5110b63de2 / selected edit exec-81b29a6f-d799-419d-a113-30e192db34c2",
+      "sha256": "408183b4bddbd73faa603f76c03b7f086b91cd12366c9a78c6fa780825240e06",
+      "local_project_reference_path": "assets/reference/visual/GRIMOIRE_academy_hub_magic_writing_planning_reference_2026-08-30.png",
+      "dimensions": "1672x941",
+      "approval_scope": [
+        "WARM_LEARNER_LED_ACADEMY_HUB_FIRST_IMPRESSION",
+        "DIRECT_AIRBORNE_GLYPH_WRITING_NOT_BOOK_EMISSION",
+        "CLASS_TO_PRACTICUM_TO_TRAINING_TO_FESTIVAL_FUTURE_CONTEXT",
+        "NO_EMPTY_DECORATIVE_UI_FRAME"
+      ],
+      "approved_by": "USER_APPROVED_2026-08-30",
+      "project_asset_status": "CANON_REGISTERED_PLANNING_REFERENCE_ONLY",
+      "actual_consumer": "PLANNED_ACADEMY_HUB_MAIN_ENTRY_AND_HUMAN_GAME_BLUEPRINT_VISUAL_ANCHOR",
+      "noncanonical": [
+        "CHARACTER_IDENTITY_NAME_AND_COSTUME",
+        "COMPANION_IDENTITY_AND_GAMEPLAY_ROLE",
+        "UI_COPY_AND_FUNCTIONAL_VALUES",
+        "EXACT_WORLD_LAYOUT_OR_STORY_SEQUENCE"
+      ],
+      "runtime_asset_status": "NOT_RUNTIME_ASSET",
+      "implementation_evidence": "NOT_CLAIMED",
+      "runtime_validation": "NOT_RUN",
+      "release_rights_status": "CONDITIONAL_SEPARATE_RELEASE_REVIEW_REQUIRED"
+    },
+    {
+      "role": "FIRST_GUIDED_GREENHOUSE_PRACTICUM_PLANNING_REFERENCE",
+      "filename": "GRIMOIRE_first_guided_greenhouse_practicum_planning_reference_2026-08-30.png",
+      "generation_locator": "Codex built-in image generation / thread 01a04af4-91c2-78f2-bbbb-9e5110b63de2 / selected candidate exec-275e5bbc-f2e2-4208-b82f-b17aa08f57d3",
+      "sha256": "5ff68a74400dac5017b7b7593cbe56c83a8b27389bd4c551b75b575d432c63f1",
+      "local_project_reference_path": "assets/reference/visual/GRIMOIRE_first_guided_greenhouse_practicum_planning_reference_2026-08-30.png",
+      "dimensions": "1672x941",
+      "approval_scope": [
+        "FIRST_GUIDED_PRACTICUM_NOT_MAIN_GAME",
+        "DIRECT_AIRBORNE_GLYPH_WRITING",
+        "EQUAL_SEEDLING_AND_GREENHOUSE_STRUCTURE_PRESERVATION_VALUES",
+        "NO_AUTO_TARGET_OR_CORRECT_ROUTE"
+      ],
+      "approved_by": "USER_APPROVED_2026-08-30_CONTINUE_CURRENT_VISUAL_DIRECTION",
+      "project_asset_status": "CANON_REGISTERED_PLANNING_REFERENCE_ONLY",
+      "actual_consumer": "PLANNED_FIRST_GUIDED_GREENHOUSE_PRACTICUM_AND_HUMAN_GAME_BLUEPRINT_KEY_SCENE",
+      "noncanonical": [
+        "CHARACTER_IDENTITY_NAME_AND_COSTUME",
+        "EXACT_STORY_OUTCOME_OR_PLAYER_CHOICE",
+        "LIVE_UI_COPY_AND_FUNCTIONAL_VALUES",
+        "RUNTIME_SCENE_AND_GAMEPLAY_IMPLEMENTATION"
+      ],
+      "runtime_asset_status": "NOT_RUNTIME_ASSET",
+      "implementation_evidence": "NOT_CLAIMED",
+      "runtime_validation": "NOT_RUN",
+      "release_rights_status": "CONDITIONAL_SEPARATE_RELEASE_REVIEW_REQUIRED"
+    },
+    {
+      "role": "PROTECTIVE_SINGLE_ENTITY_BATTLE_PRACTICUM_PLANNING_REFERENCE",
+      "filename": "GRIMOIRE_protective_battle_practicum_planning_reference_2026-08-30.png",
+      "generation_locator": "Codex built-in image generation / thread 01a04af4-91c2-78f2-bbbb-9e5110b63de2 / selected candidate exec-e67c694b-6aa2-422e-a2e0-e84aef1a61ab",
+      "sha256": "01134fbd7d46a0eccb0a3df056e8c1ff10b485d3fc01e2c023e1430aeec6870d",
+      "local_project_reference_path": "assets/reference/visual/GRIMOIRE_protective_battle_practicum_planning_reference_2026-08-30.png",
+      "dimensions": "1672x941",
+      "approval_scope": [
+        "SINGLE_UNSTABLE_BOTANICAL_PHENOMENON_NOT_KILL_TARGET",
+        "DIRECT_AIRBORNE_GLYPH_WRITING_AND_NONFUNCTIONAL_FIVE_POINT_STORY_MOTIF",
+        "ENVIRONMENTAL_PRESERVATION_AND_MANUAL_GUARDIAN_AID",
+        "NO_WAVES_NO_AUTO_RESOLVE_NO_BATTLE_HUD"
+      ],
+      "approved_by": "USER_APPROVED_2026-08-30",
+      "project_asset_status": "CANON_REGISTERED_PLANNING_REFERENCE_ONLY",
+      "actual_consumer": "PLANNED_PROTECTIVE_BATTLE_PRACTICUM_AND_HUMAN_GAME_BLUEPRINT_KEY_SCENE",
+      "noncanonical": [
+        "CHARACTER_IDENTITY_NAME_AND_COSTUME",
+        "EXACT_ENTITY_TAXONOMY_AND_ENCOUNTER_TACTICS",
+        "LIVE_BATTLE_UI_AND_BALANCE_VALUES",
+        "RUNTIME_SCENE_AND_GAMEPLAY_IMPLEMENTATION"
+      ],
+      "runtime_asset_status": "NOT_RUNTIME_ASSET",
+      "implementation_evidence": "NOT_CLAIMED",
+      "runtime_validation": "NOT_RUN",
+      "release_rights_status": "CONDITIONAL_SEPARATE_RELEASE_REVIEW_REQUIRED"
+    },
+    {
+      "role": "CLASS_DIRECT_GLYPH_LEARNING_PLANNING_REFERENCE",
+      "filename": "GRIMOIRE_class_direct_glyph_learning_planning_reference_2026-08-30.png",
+      "generation_locator": "Codex built-in image generation / thread 01a04af4-91c2-78f2-bbbb-9e5110b63de2 / selected candidate exec-1f149ea2-49ee-48ef-9f00-b3c03ee6618c",
+      "sha256": "3869ee8a7159e241a8fd7051850970be7040a3176c90dafa089a963fee1e01a4",
+      "local_project_reference_path": "assets/reference/visual/GRIMOIRE_class_direct_glyph_learning_planning_reference_2026-08-30.png",
+      "dimensions": "1672x941",
+      "approval_scope": [
+        "SAFE_DIRECT_GLYPH_LEARNING_BEFORE_FIRST_PRACTICUM",
+        "PROFESSOR_GUIDANCE_NOT_ANSWER_GIVING",
+        "DIRECT_AIRBORNE_GLYPH_TO_CONTROLLED_WATER_RESPONSE",
+        "NO_EXAM_OR_EMPTY_UI_FRAME"
+      ],
+      "approved_by": "USER_BATCH_APPROVED_2026-08-30",
+      "project_asset_status": "CANON_REGISTERED_PLANNING_REFERENCE_ONLY",
+      "actual_consumer": "PLANNED_CLASS_DIRECT_GLYPH_LEARNING_AND_HUMAN_GAME_BLUEPRINT_KEY_SCENE",
+      "noncanonical": [
+        "CHARACTER_IDENTITY_NAME_AND_COSTUME",
+        "PROFESSOR_IDENTITY_AND_RELATIONSHIP_CANON",
+        "EXACT_GLYPH_FORM_OR_SPELL_EFFECT",
+        "LIVE_UI_COPY_AND_FUNCTIONAL_VALUES",
+        "RUNTIME_SCENE_AND_GAMEPLAY_IMPLEMENTATION"
+      ],
+      "runtime_asset_status": "NOT_RUNTIME_ASSET",
+      "implementation_evidence": "NOT_CLAIMED",
+      "runtime_validation": "NOT_RUN",
+      "release_rights_status": "CONDITIONAL_SEPARATE_RELEASE_REVIEW_REQUIRED"
+    },
+    {
+      "role": "FESTIVAL_LIGHT_THREAD_CANOPY_PLANNING_REFERENCE",
+      "filename": "GRIMOIRE_festival_light_thread_canopy_planning_reference_2026-08-30.png",
+      "generation_locator": "Codex built-in image generation / thread 01a04af4-91c2-78f2-bbbb-9e5110b63de2 / selected candidate exec-8d8cfc63-250f-42e4-9a2a-8ec39bd2001e",
+      "sha256": "2c7c2b29a94e695ddb429825d2fbfdd947f17c1a279341a6a393b7405e761a1b",
+      "local_project_reference_path": "assets/reference/visual/GRIMOIRE_festival_light_thread_canopy_planning_reference_2026-08-30.png",
+      "dimensions": "1672x941",
+      "approval_scope": [
+        "CHAPTER4_NONCOMBAT_LIGHT_THREAD_CANOPY_RESTORATION",
+        "PRACTICAL_SPECTACULAR_ELEGANT_EQUAL_VALIDITY",
+        "DIRECT_AIRBORNE_GLYPH_WRITING",
+        "NO_COMBAT_OR_WINNER_SIGNAL"
+      ],
+      "approved_by": "USER_BATCH_APPROVED_2026-08-30",
+      "project_asset_status": "CANON_REGISTERED_PLANNING_REFERENCE_ONLY",
+      "actual_consumer": "PLANNED_FESTIVAL_LIGHT_THREAD_CANOPY_AND_HUMAN_GAME_BLUEPRINT_KEY_SCENE",
+      "noncanonical": [
+        "CHARACTER_IDENTITY_NAME_AND_COSTUME",
+        "EXACT_FESTIVAL_PROGRAM_AND_RELATIONSHIP_OUTCOME",
+        "LIVE_UI_COPY_AND_FUNCTIONAL_VALUES",
+        "RUNTIME_SCENE_AND_GAMEPLAY_IMPLEMENTATION"
+      ],
+      "runtime_asset_status": "NOT_RUNTIME_ASSET",
+      "implementation_evidence": "NOT_CLAIMED",
+      "runtime_validation": "NOT_RUN",
+      "release_rights_status": "CONDITIONAL_SEPARATE_RELEASE_REVIEW_REQUIRED"
     }
   ],
   "spell_ui_rework_boundary": {

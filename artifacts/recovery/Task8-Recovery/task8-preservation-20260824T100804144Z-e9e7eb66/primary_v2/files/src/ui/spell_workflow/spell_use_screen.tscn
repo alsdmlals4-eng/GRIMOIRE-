@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://qfvh1n7f5veh"]
+
+[ext_resource type="Script" uid="uid://darqs50pqc3kn" path="res://src/ui/spell_workflow/spell_use_screen.gd" id="1_8nct5"]
+
+[node name="SpellUseScreen" type="Control" unique_id=274731227]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8nct5")
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=691277419]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PreparedSpellSummaryLabel" type="Label" parent="Content" unique_id=1651422869]
+layout_mode = 2
+text = "준비된 주문: -
+맥락: -"
+autowrap_mode = 2
+
+[node name="TargetPrompt" type="Label" parent="Content" unique_id=392151066]
+layout_mode = 2
+text = "대상을 선택하세요"
+
+[node name="TargetChoices" type="VBoxContainer" parent="Content" unique_id=1651118739]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PreviewDetails" type="VBoxContainer" parent="Content" unique_id=191065903]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SelectedTargetLabel" type="Label" parent="Content/PreviewDetails" unique_id=950658316]
+layout_mode = 2
+text = "선택 대상: 없음"
+
+[node name="FinalManaLabel" type="Label" parent="Content/PreviewDetails" unique_id=1142630412]
+layout_mode = 2
+text = "최종 마나: -"
+
+[node name="ExpectedResultLabel" type="Label" parent="Content/PreviewDetails" unique_id=1202547721]
+layout_mode = 2
+text = "예상 결과: -"
+
+[node name="StatusLabel" type="Label" parent="Content/PreviewDetails" unique_id=1295869862]
+layout_mode = 2
+text = "대상을 선택하면 미리보기가 표시됩니다."
+
+[node name="ConfirmButton" type="Button" parent="Content" unique_id=1734425330]
+layout_mode = 2
+tooltip_text = "유효한 대상을 선택해야 확인할 수 있습니다."
+focus_next = NodePath("../CancelButton")
+disabled = true
+text = "대상 확인"
+
+[node name="CancelButton" type="Button" parent="Content" unique_id=267151109]
+layout_mode = 2
+text = "취소 / 뒤로가기"

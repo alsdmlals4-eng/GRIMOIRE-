@@ -1,0 +1,919 @@
+diff --git a/src/core/workflow/spell_workflow_coordinator.gd b/src/core/workflow/spell_workflow_coordinator.gd
+index 4774ff7751d48cabe58619afcb0d82512c05d9d0..105c33cca90ae56cffb65bcf3bb3915ba4b0a9d8 100644
+--- a/src/core/workflow/spell_workflow_coordinator.gd
++++ b/src/core/workflow/spell_workflow_coordinator.gd
+@@ -1,170 +1,171 @@
+-# v2 二쇰Ц ?먮쫫??Stage 2 以鍮꾩? Stage 3 ??겶룹궗?⑹쓣 遺꾨━ 議곗젙?쒕떎.
+-class_name SpellWorkflowCoordinator
+-extends RefCounted
+-
+-const SELF_PATH := "res://src/core/workflow/spell_workflow_coordinator.gd"
+-
+-var _state
+-var _validator
+-var _calculator
+-var _preparation_service
+-var _preparation_request_script
+-var _use_service
+-var _use_request_script
+-var _ledger
+-var _inventory
+-var _mana
+-var _result_ledger
+-var _preparation_transaction_id: StringName = &""
+-var _draft: Dictionary = {}
+-var _base_preview: Dictionary = {}
+-var _selected_spell: Dictionary = {}
+-var _use_plan: Dictionary = {}
+-var _use_results: Dictionary = {}
+-
+-
+-static func create(state, validator, calculator, preparation_service, preparation_request_script, use_service, use_request_script, ledger, inventory, mana, result_ledger):
+-	var required := [
+-		[state, &"begin_glyph_drawing"], [state, &"begin_circuit_edit"], [state, &"show_circuit_preview"],
+-		[state, &"mark_spell_ready"], [state, &"select_prepared_spell"], [state, &"select_target"],
+-		[state, &"show_final_preview"], [state, &"request_use_confirmation"], [state, &"can_confirm_use"],
+-		[state, &"begin_system_resolution"], [validator, &"validate"], [calculator, &"preview"],
+-		[inventory, &"spell"], [mana, &"current"], [result_ledger, &"serialize"],
+-	]
+-	for requirement in required:
+-		if requirement[0] == null or not requirement[0].has_method(requirement[1]):
+-			return null
+-	if preparation_service == null or preparation_request_script == null or use_service == null or use_request_script == null or ledger == null:
+-		return null
+-	var script = load(SELF_PATH)
+-	if script == null or not script.can_instantiate():
+-		return null
+-	var coordinator = script.new()
+-	coordinator._state = state
+-	coordinator._validator = validator
+-	coordinator._calculator = calculator
+-	coordinator._preparation_service = preparation_service
+-	coordinator._preparation_request_script = preparation_request_script
+-	coordinator._use_service = use_service
+-	coordinator._use_request_script = use_request_script
+-	coordinator._ledger = ledger
+-	coordinator._inventory = inventory
+-	coordinator._mana = mana
+-	coordinator._result_ledger = result_ledger
+-	return coordinator
+-
+-
+-func configure_preparation(preparation_transaction_id: StringName, draft: Dictionary) -> bool:
+-	if preparation_transaction_id.is_empty() or draft.is_empty():
+-		return false
+-	if not _state.begin_glyph_drawing() or not _state.begin_circuit_edit():
+-		return false
+-	_preparation_transaction_id = preparation_transaction_id
+-	_draft = draft.duplicate(true)
+-	_base_preview.clear()
+-	_selected_spell.clear()
+-	_use_plan.clear()
+-	return true
+-
+-
+-func prepare_preview() -> Dictionary:
+-	if _preparation_transaction_id.is_empty() or _draft.is_empty():
+-		return {"status": &"PREPARATION_REQUIRED"}
+-	var main: Dictionary = _as_validator_glyph(Dictionary(_draft.get("main", {})))
+-	var auxiliaries: Array = []
+-	for auxiliary_variant in Array(_draft.get("auxiliaries", [])):
+-		auxiliaries.append(_as_validator_glyph(Dictionary(auxiliary_variant)))
+-	var validation: Dictionary = _validator.validate(main, auxiliaries)
+-	if StringName(validation.get("status", &"")) != &"OK":
+-		return validation
+-	var preview: Dictionary = _calculator.preview(main, auxiliaries, {})
+-	if not _state.show_circuit_preview():
+-		return {"status": &"CIRCUIT_PREVIEW_REJECTED"}
+-	_base_preview = preview.duplicate(true)
+-	return {"status": &"CIRCUIT_PREVIEW_READY", "validation": validation.duplicate(true), "preview": preview.duplicate(true)}
+-
+-
+-func confirm_preparation(spell_id: StringName) -> Dictionary:
+-	if spell_id.is_empty() or _base_preview.is_empty():
+-		return {"status": &"PREPARATION_PREVIEW_REQUIRED"}
+-	var request = _preparation_request_script.create(_preparation_transaction_id, spell_id, _draft, _base_preview)
+-	if request == null:
+-		return {"status": &"INVALID_PREPARATION_REQUEST"}
+-	var result: Dictionary = _preparation_service.prepare(request, _ledger, _inventory)
+-	if StringName(result.get("status", &"")) == &"PREPARED" and not _state.mark_spell_ready():
+-		return {"status": &"SPELL_READY_REJECTED"}
+-	return result.duplicate(true)
+-
+-
+-func select_prepared_spell(spell_id: StringName) -> bool:
+-	var spell: Dictionary = _inventory.spell(spell_id)
+-	if StringName(spell.get("status", &"")) != &"READY":
+-		return false
+-	if not _state.select_prepared_spell(spell_id):
+-		return false
+-	_selected_spell = spell.duplicate(true)
+-	_use_plan.clear()
+-	return true
+-
+-
+-func prepare_target_preview(target_keyword: StringName, target: Dictionary, payload: Dictionary) -> Dictionary:
+-	if _selected_spell.is_empty() or target_keyword.is_empty():
+-		return {"status": &"SPELL_SELECTION_REQUIRED"}
+-	if not bool(target.get("target_valid", false)):
+-		return {"status": &"INVALID_TARGET"}
+-	if not _state.select_target(target_keyword):
+-		return {"status": &"INVALID_TARGET"}
+-	var target_data: Dictionary = target.duplicate(true)
+-	target_data["keyword"] = target_keyword
+-	var preview: Dictionary = _calculator.preview(
+-		Dictionary(_selected_spell.get("main", {})),
+-		Array(_selected_spell.get("auxiliaries", [])),
+-		target_data
+-	)
+-	if not _state.show_final_preview(preview):
+-		return {"status": &"FINAL_PREVIEW_REJECTED"}
+-	var result_payload: Dictionary = payload.duplicate(true)
+-	result_payload["target_valid"] = true
+-	result_payload["target_keyword"] = target_keyword
+-	result_payload["success_percent"] = preview.get("success_percent", 0)
+-	_use_plan = {
+-		"target_keyword": target_keyword,
+-		"final_preview": preview.duplicate(true),
+-		"result_payload": result_payload.duplicate(true),
+-	}
+-	return {"status": &"FINAL_PREVIEW_READY", "preview": preview.duplicate(true)}
+-
+-
+-func request_use_confirmation() -> bool:
+-	return not _use_plan.is_empty() and _state.request_use_confirmation()
+-
+-
+-func confirm_use(use_transaction_id: StringName) -> Dictionary:
+-	if _use_results.has(String(use_transaction_id)):
+-		return Dictionary(_use_results[String(use_transaction_id)]).duplicate(true)
+-	if use_transaction_id.is_empty() or _selected_spell.is_empty() or _use_plan.is_empty() or not _state.can_confirm_use():
+-		return {"status": &"USE_CONFIRMATION_REQUIRED"}
+-	var request = _use_request_script.create(
+-		use_transaction_id,
+-		StringName(_selected_spell.get("spell_id", &"")),
+-		StringName(_use_plan.get("target_keyword", &"")),
+-		Dictionary(_use_plan.get("final_preview", {})),
+-		Dictionary(_use_plan.get("result_payload", {}))
+-	)
+-	if request == null:
+-		return {"status": &"INVALID_USE_REQUEST"}
+-	var result: Dictionary = _use_service.use(request, _inventory, _mana, _result_ledger)
+-	if StringName(result.get("status", &"")) != &"USED":
+-		return result
+-	if not _state.begin_system_resolution():
+-		return {"status": &"SYSTEM_RESOLUTION_REJECTED"}
+-	_use_results[String(use_transaction_id)] = result.duplicate(true)
+-	return result.duplicate(true)
+-
+-
+-func _as_validator_glyph(glyph: Dictionary) -> Dictionary:
+-	var validated: Dictionary = glyph.duplicate(true)
+-	var source: Variant = validated.get("source", null)
+-	if typeof(source) == TYPE_INT:
+-		validated["source"] = &"VAULT" if int(source) == 1 else &"STOCK" if int(source) == 0 else &""
+-	return validated
++# v2 二쇰Ц ?먮쫫??Stage 2 以鍮꾩? Stage 3 ??겶룹궗?⑹쓣 遺꾨━ 議곗젙?쒕떎.
++class_name SpellWorkflowCoordinator
++extends RefCounted
++
++const SELF_PATH := "res://src/core/workflow/spell_workflow_coordinator.gd"
++
++var _state
++var _validator
++var _calculator
++var _preparation_service
++var _preparation_request_script
++var _use_service
++var _use_request_script
++var _ledger
++var _inventory
++var _mana
++var _result_ledger
++var _preparation_transaction_id: StringName = &""
++var _draft: Dictionary = {}
++var _base_preview: Dictionary = {}
++var _selected_spell: Dictionary = {}
++var _use_plan: Dictionary = {}
++var _use_results: Dictionary = {}
++
++
++static func create(state, validator, calculator, preparation_service, preparation_request_script, use_service, use_request_script, ledger, inventory, mana, result_ledger):
++	var required := [
++		[state, &"begin_glyph_drawing"], [state, &"begin_circuit_edit"], [state, &"show_circuit_preview"],
++		[state, &"mark_spell_ready"], [state, &"select_prepared_spell"], [state, &"select_target"],
++		[state, &"show_final_preview"], [state, &"request_use_confirmation"], [state, &"can_confirm_use"],
++		[state, &"begin_system_resolution"], [validator, &"validate"], [calculator, &"preview"],
++		[inventory, &"spell"], [mana, &"current"], [result_ledger, &"serialize"],
++	]
++	for requirement in required:
++		if requirement[0] == null or not requirement[0].has_method(requirement[1]):
++			return null
++	if preparation_service == null or preparation_request_script == null or use_service == null or use_request_script == null or ledger == null:
++		return null
++	var script = load(SELF_PATH)
++	if script == null or not script.can_instantiate():
++		return null
++	var coordinator = script.new()
++	coordinator._state = state
++	coordinator._validator = validator
++	coordinator._calculator = calculator
++	coordinator._preparation_service = preparation_service
++	coordinator._preparation_request_script = preparation_request_script
++	coordinator._use_service = use_service
++	coordinator._use_request_script = use_request_script
++	coordinator._ledger = ledger
++	coordinator._inventory = inventory
++	coordinator._mana = mana
++	coordinator._result_ledger = result_ledger
++	return coordinator
++
++
++func configure_preparation(preparation_transaction_id: StringName, draft: Dictionary) -> bool:
++	if preparation_transaction_id.is_empty() or draft.is_empty():
++		return false
++	if not _state.begin_glyph_drawing() or not _state.begin_circuit_edit():
++		return false
++	_preparation_transaction_id = preparation_transaction_id
++	_draft = draft.duplicate(true)
++	_base_preview.clear()
++	_selected_spell.clear()
++	_use_plan.clear()
++	return true
++
++
++func prepare_preview() -> Dictionary:
++	if _preparation_transaction_id.is_empty() or _draft.is_empty():
++		return {"status": &"PREPARATION_REQUIRED"}
++	var main: Dictionary = _as_validator_glyph(Dictionary(_draft.get("main", {})))
++	var auxiliaries: Array = []
++	for auxiliary_variant in Array(_draft.get("auxiliaries", [])):
++		auxiliaries.append(_as_validator_glyph(Dictionary(auxiliary_variant)))
++	var validation: Dictionary = _validator.validate(main, auxiliaries)
++	if StringName(validation.get("status", &"")) != &"OK":
++		return validation
++	var preview: Dictionary = _calculator.preview(main, auxiliaries, {})
++	if not _state.show_circuit_preview():
++		return {"status": &"CIRCUIT_PREVIEW_REJECTED"}
++	_base_preview = preview.duplicate(true)
++	return {"status": &"CIRCUIT_PREVIEW_READY", "validation": validation.duplicate(true), "preview": preview.duplicate(true)}
++
++
++func confirm_preparation(spell_id: StringName) -> Dictionary:
++	if spell_id.is_empty() or _base_preview.is_empty():
++		return {"status": &"PREPARATION_PREVIEW_REQUIRED"}
++	var request = _preparation_request_script.create(_preparation_transaction_id, spell_id, _draft, _base_preview)
++	if request == null:
++		return {"status": &"INVALID_PREPARATION_REQUEST"}
++	var result: Dictionary = _preparation_service.prepare(request, _ledger, _inventory)
++	if StringName(result.get("status", &"")) == &"PREPARED" and not _state.mark_spell_ready():
++		return {"status": &"SPELL_READY_REJECTED"}
++	return result.duplicate(true)
++
++
++func select_prepared_spell(spell_id: StringName) -> bool:
++	var spell: Dictionary = _inventory.spell(spell_id)
++	if StringName(spell.get("status", &"")) != &"READY":
++		return false
++	if not _state.select_prepared_spell(spell_id):
++		return false
++	_selected_spell = spell.duplicate(true)
++	_use_plan.clear()
++	return true
++
++
++func prepare_target_preview(target_keyword: StringName, target: Dictionary, payload: Dictionary) -> Dictionary:
++	if _selected_spell.is_empty() or target_keyword.is_empty():
++		return {"status": &"SPELL_SELECTION_REQUIRED"}
++	if not bool(target.get("target_valid", false)):
++		return {"status": &"INVALID_TARGET"}
++	if not _state.select_target(target_keyword):
++		return {"status": &"INVALID_TARGET"}
++	_use_plan.clear()
++	var target_data: Dictionary = target.duplicate(true)
++	target_data["keyword"] = target_keyword
++	var preview: Dictionary = _calculator.preview(
++		Dictionary(_selected_spell.get("main", {})),
++		Array(_selected_spell.get("auxiliaries", [])),
++		target_data
++	)
++	if not _state.show_final_preview(preview):
++		return {"status": &"FINAL_PREVIEW_REJECTED"}
++	var result_payload: Dictionary = payload.duplicate(true)
++	result_payload["target_valid"] = true
++	result_payload["target_keyword"] = target_keyword
++	result_payload["success_percent"] = preview.get("success_percent", 0)
++	_use_plan = {
++		"target_keyword": target_keyword,
++		"final_preview": preview.duplicate(true),
++		"result_payload": result_payload.duplicate(true),
++	}
++	return {"status": &"FINAL_PREVIEW_READY", "preview": preview.duplicate(true)}
++
++
++func request_use_confirmation() -> bool:
++	return not _use_plan.is_empty() and _state.request_use_confirmation()
++
++
++func confirm_use(use_transaction_id: StringName) -> Dictionary:
++	if _use_results.has(String(use_transaction_id)):
++		return Dictionary(_use_results[String(use_transaction_id)]).duplicate(true)
++	if use_transaction_id.is_empty() or _selected_spell.is_empty() or _use_plan.is_empty() or not _state.can_confirm_use():
++		return {"status": &"USE_CONFIRMATION_REQUIRED"}
++	var request = _use_request_script.create(
++		use_transaction_id,
++		StringName(_selected_spell.get("spell_id", &"")),
++		StringName(_use_plan.get("target_keyword", &"")),
++		Dictionary(_use_plan.get("final_preview", {})),
++		Dictionary(_use_plan.get("result_payload", {}))
++	)
++	if request == null:
++		return {"status": &"INVALID_USE_REQUEST"}
++	var result: Dictionary = _use_service.use(request, _inventory, _mana, _result_ledger)
++	if StringName(result.get("status", &"")) != &"USED":
++		return result
++	if not _state.begin_system_resolution():
++		return {"status": &"SYSTEM_RESOLUTION_REJECTED"}
++	_use_results[String(use_transaction_id)] = result.duplicate(true)
++	return result.duplicate(true)
++
++
++func _as_validator_glyph(glyph: Dictionary) -> Dictionary:
++	var validated: Dictionary = glyph.duplicate(true)
++	var source: Variant = validated.get("source", null)
++	if typeof(source) == TYPE_INT:
++		validated["source"] = &"VAULT" if int(source) == 1 else &"STOCK" if int(source) == 0 else &""
++	return validated
+diff --git a/src/core/workflow/spell_workflow_state.gd b/src/core/workflow/spell_workflow_state.gd
+index 0af9b1b3fc48307ac5990f1b990835c93e2c2ed4..b736cbb693be243d479cc6a35138369c67f48c71 100644
+--- a/src/core/workflow/spell_workflow_state.gd
++++ b/src/core/workflow/spell_workflow_state.gd
+@@ -1,124 +1,125 @@
+-# v2 ???④퀎 二쇰Ц ?먮쫫????겶룻솗?맞룻빐寃??꾩씠瑜??낅┰?곸쑝濡?愿由ы븳??
+-class_name SpellWorkflowState
+-extends RefCounted
+-
+-enum State {
+-	INCIDENT_BRIEF,
+-	GLYPH_DRAWING,
+-	CIRCUIT_EDIT,
+-	CIRCUIT_PREVIEW,
+-	SPELL_READY,
+-	SPELL_USE_TARGET,
+-	SPELL_USE_PREVIEW,
+-	SPELL_USE_CONFIRM,
+-	SYSTEM_RESOLVE,
+-	RESULT_EXPLAIN,
+-	INCIDENT_OVERLAY,
+-}
+-
+-var _state: State = State.INCIDENT_BRIEF
+-var _overlay_return_state: State = State.INCIDENT_BRIEF
+-var _selected_spell_id: StringName = &""
+-var _target_keyword: StringName = &""
+-var _final_preview: Dictionary = {}
+-
+-
+-func current_state() -> State:
+-	return _state
+-
+-
+-func begin_glyph_drawing() -> bool:
+-	return _transition(State.INCIDENT_BRIEF, State.GLYPH_DRAWING)
+-
+-
+-func begin_circuit_edit() -> bool:
+-	return _transition(State.GLYPH_DRAWING, State.CIRCUIT_EDIT)
+-
+-
+-func show_circuit_preview() -> bool:
+-	return _transition(State.CIRCUIT_EDIT, State.CIRCUIT_PREVIEW)
+-
+-
+-func mark_spell_ready() -> bool:
+-	return _transition(State.CIRCUIT_PREVIEW, State.SPELL_READY)
+-
+-
+-func select_prepared_spell(spell_id: StringName) -> bool:
+-	if _state != State.SPELL_READY or spell_id.is_empty():
+-		return false
+-	_selected_spell_id = spell_id
+-	_target_keyword = &""
+-	_final_preview.clear()
+-	_state = State.SPELL_USE_TARGET
+-	return true
+-
+-
+-func select_target(target_keyword: StringName) -> bool:
+-	if _state != State.SPELL_USE_TARGET or target_keyword.is_empty():
+-		return false
+-	_target_keyword = target_keyword
+-	_final_preview.clear()
+-	return true
+-
+-
+-func show_final_preview(preview: Dictionary) -> bool:
+-	if _state != State.SPELL_USE_TARGET or _target_keyword.is_empty():
+-		return false
+-	if not preview.has("success_percent") or not preview.has("final_mana"):
+-		return false
+-	_final_preview = preview.duplicate(true)
+-	_state = State.SPELL_USE_PREVIEW
+-	return true
+-
+-
+-func request_use_confirmation() -> bool:
+-	return _transition(State.SPELL_USE_PREVIEW, State.SPELL_USE_CONFIRM)
+-
+-
+-func can_confirm_use() -> bool:
+-	return _state == State.SPELL_USE_CONFIRM and not _selected_spell_id.is_empty() and not _target_keyword.is_empty() and not _final_preview.is_empty()
+-
+-
+-func begin_system_resolution() -> bool:
+-	if not can_confirm_use():
+-		return false
+-	_state = State.SYSTEM_RESOLVE
+-	return true
+-
+-
+-func show_result_explanation() -> bool:
+-	return _transition(State.SYSTEM_RESOLVE, State.RESULT_EXPLAIN)
+-
+-
+-func open_incident_overlay() -> bool:
+-	if _state == State.SYSTEM_RESOLVE or _state == State.INCIDENT_OVERLAY:
+-		return false
+-	_overlay_return_state = _state
+-	_state = State.INCIDENT_OVERLAY
+-	return true
+-
+-
+-func close_incident_overlay() -> bool:
+-	if _state != State.INCIDENT_OVERLAY:
+-		return false
+-	_state = _overlay_return_state
+-	return true
+-
+-
+-func selected_spell_id() -> StringName:
+-	return _selected_spell_id
+-
+-
+-func target_keyword() -> StringName:
+-	return _target_keyword
+-
+-
+-func final_preview() -> Dictionary:
+-	return _final_preview.duplicate(true)
+-
+-
+-func _transition(expected: State, next_state: State) -> bool:
+-	if _state != expected:
+-		return false
+-	_state = next_state
+-	return true
++# v2 ???④퀎 二쇰Ц ?먮쫫????겶룻솗?맞룻빐寃??꾩씠瑜??낅┰?곸쑝濡?愿由ы븳??
++class_name SpellWorkflowState
++extends RefCounted
++
++enum State {
++	INCIDENT_BRIEF,
++	GLYPH_DRAWING,
++	CIRCUIT_EDIT,
++	CIRCUIT_PREVIEW,
++	SPELL_READY,
++	SPELL_USE_TARGET,
++	SPELL_USE_PREVIEW,
++	SPELL_USE_CONFIRM,
++	SYSTEM_RESOLVE,
++	RESULT_EXPLAIN,
++	INCIDENT_OVERLAY,
++}
++
++var _state: State = State.INCIDENT_BRIEF
++var _overlay_return_state: State = State.INCIDENT_BRIEF
++var _selected_spell_id: StringName = &""
++var _target_keyword: StringName = &""
++var _final_preview: Dictionary = {}
++
++
++func current_state() -> State:
++	return _state
++
++
++func begin_glyph_drawing() -> bool:
++	return _transition(State.INCIDENT_BRIEF, State.GLYPH_DRAWING)
++
++
++func begin_circuit_edit() -> bool:
++	return _transition(State.GLYPH_DRAWING, State.CIRCUIT_EDIT)
++
++
++func show_circuit_preview() -> bool:
++	return _transition(State.CIRCUIT_EDIT, State.CIRCUIT_PREVIEW)
++
++
++func mark_spell_ready() -> bool:
++	return _transition(State.CIRCUIT_PREVIEW, State.SPELL_READY)
++
++
++func select_prepared_spell(spell_id: StringName) -> bool:
++	if _state != State.SPELL_READY or spell_id.is_empty():
++		return false
++	_selected_spell_id = spell_id
++	_target_keyword = &""
++	_final_preview.clear()
++	_state = State.SPELL_USE_TARGET
++	return true
++
++
++func select_target(target_keyword: StringName) -> bool:
++	if target_keyword.is_empty() or (_state != State.SPELL_USE_TARGET and _state != State.SPELL_USE_PREVIEW):
++		return false
++	_target_keyword = target_keyword
++	_final_preview.clear()
++	_state = State.SPELL_USE_TARGET
++	return true
++
++
++func show_final_preview(preview: Dictionary) -> bool:
++	if _state != State.SPELL_USE_TARGET or _target_keyword.is_empty():
++		return false
++	if not preview.has("success_percent") or not preview.has("final_mana"):
++		return false
++	_final_preview = preview.duplicate(true)
++	_state = State.SPELL_USE_PREVIEW
++	return true
++
++
++func request_use_confirmation() -> bool:
++	return _transition(State.SPELL_USE_PREVIEW, State.SPELL_USE_CONFIRM)
++
++
++func can_confirm_use() -> bool:
++	return _state == State.SPELL_USE_CONFIRM and not _selected_spell_id.is_empty() and not _target_keyword.is_empty() and not _final_preview.is_empty()
++
++
++func begin_system_resolution() -> bool:
++	if not can_confirm_use():
++		return false
++	_state = State.SYSTEM_RESOLVE
++	return true
++
++
++func show_result_explanation() -> bool:
++	return _transition(State.SYSTEM_RESOLVE, State.RESULT_EXPLAIN)
++
++
++func open_incident_overlay() -> bool:
++	if _state == State.SYSTEM_RESOLVE or _state == State.INCIDENT_OVERLAY:
++		return false
++	_overlay_return_state = _state
++	_state = State.INCIDENT_OVERLAY
++	return true
++
++
++func close_incident_overlay() -> bool:
++	if _state != State.INCIDENT_OVERLAY:
++		return false
++	_state = _overlay_return_state
++	return true
++
++
++func selected_spell_id() -> StringName:
++	return _selected_spell_id
++
++
++func target_keyword() -> StringName:
++	return _target_keyword
++
++
++func final_preview() -> Dictionary:
++	return _final_preview.duplicate(true)
++
++
++func _transition(expected: State, next_state: State) -> bool:
++	if _state != expected:
++		return false
++	_state = next_state
++	return true
+diff --git a/tests/unit/test_spell_workflow_coordinator.gd b/tests/unit/test_spell_workflow_coordinator.gd
+index 54ac150f8e4efdc00a4dd4cd142523847f7df8e6..047c462a6b005e034fd4ffc7f0d5688103519d79 100644
+--- a/tests/unit/test_spell_workflow_coordinator.gd
++++ b/tests/unit/test_spell_workflow_coordinator.gd
+@@ -1,101 +1,110 @@
+-# v2 coordinator??Stage 2 Preview? Stage 3 ??겶룹궗??遺꾨━瑜?寃利앺븳??
+-extends RefCounted
+-
+-const COORDINATOR_PATH := "res://src/core/workflow/spell_workflow_coordinator.gd"
+-const STATE_PATH := "res://src/core/workflow/spell_workflow_state.gd"
+-const VALIDATOR_PATH := "res://src/core/star/star_circuit_validator.gd"
+-const CALCULATOR_PATH := "res://src/core/star/star_circuit_calculator.gd"
+-const SESSION_PATH := "res://src/core/workflow/circuit_placement_session.gd"
+-const PREPARATION_REQUEST_PATH := "res://src/core/spells/spell_preparation_request.gd"
+-const PREPARATION_SERVICE_PATH := "res://src/core/spells/atomic_spell_preparation_service.gd"
+-const USE_REQUEST_PATH := "res://src/core/spells/spell_use_request.gd"
+-const USE_SERVICE_PATH := "res://src/core/spells/atomic_spell_use_service.gd"
+-const INVENTORY_PATH := "res://src/core/spells/prepared_spell_inventory.gd"
+-const LEDGER_PATH := "res://src/core/resources/resource_reservation_ledger.gd"
+-const STOCK_PATH := "res://src/core/resources/typed_glyph_stock_pool.gd"
+-const VAULT_PATH := "res://src/core/resources/vault_inventory.gd"
+-const MANA_PATH := "res://src/core/resources/mana_pool.gd"
+-const RESULT_LEDGER_PATH := "res://src/core/atomic_result_ledger.gd"
+-const TYPES_PATH := "res://src/core/resources/glyph_resource_types.gd"
+-
+-
+-func _make_ledger():
+-	var Pool = load(STOCK_PATH)
+-	var Vault = load(VAULT_PATH)
+-	var Ledger = load(LEDGER_PATH)
+-	var stock = Pool.create(3)
+-	stock.add_one(&"FLOW")
+-	var vault = Vault.create(1)
+-	var scribe = vault.reserve_for_scribe(&"HEAT", &"seed-heat")
+-	vault.complete_scribe(scribe.reservation_id)
+-	return Ledger.create(stock, vault)
+-
+-
+-func _glyph(glyph_id: StringName, source: int, is_main := false) -> Dictionary:
+-	var glyph := {"glyph_id": glyph_id, "source": source, "mastery": 70, "base_mana": 8, "is_learned": true}
+-	if is_main:
+-		glyph["base_success"] = 74
+-	else:
+-		glyph["special"] = &"NORMAL"
+-	return glyph
+-
+-
+-func run(case) -> void:
+-	case.assert_true(FileAccess.file_exists(COORDINATOR_PATH), "Task 5 coordinator must exist")
+-	if not FileAccess.file_exists(COORDINATOR_PATH):
+-		return
+-
+-	var Coordinator = load(COORDINATOR_PATH)
+-	var State = load(STATE_PATH)
+-	var Validator = load(VALIDATOR_PATH)
+-	var Calculator = load(CALCULATOR_PATH)
+-	var Session = load(SESSION_PATH)
+-	var PreparationRequest = load(PREPARATION_REQUEST_PATH)
+-	var PreparationService = load(PREPARATION_SERVICE_PATH)
+-	var UseRequest = load(USE_REQUEST_PATH)
+-	var UseService = load(USE_SERVICE_PATH)
+-	var Inventory = load(INVENTORY_PATH)
+-	var ManaPool = load(MANA_PATH)
+-	var ResultLedger = load(RESULT_LEDGER_PATH)
+-	var Types = load(TYPES_PATH)
+-	case.assert_true(Coordinator != null and Coordinator.can_instantiate(), "SpellWorkflowCoordinator must compile")
+-	if Coordinator == null or State == null or Validator == null or Calculator == null or Session == null or PreparationRequest == null or PreparationService == null or UseRequest == null or UseService == null or Inventory == null or ManaPool == null or ResultLedger == null:
+-		return
+-
+-	var ledger = _make_ledger()
+-	var inventory = Inventory.new()
+-	var mana = ManaPool.create(50, 50)
+-	var results = ResultLedger.new()
+-	var state = State.new()
+-	var coordinator = Coordinator.create(state, Validator.new(), Calculator.new(), PreparationService, PreparationRequest, UseService, UseRequest, ledger, inventory, mana, results)
+-	case.assert_true(coordinator != null, "coordinator accepts only explicit domain authorities")
+-	if coordinator == null:
+-		return
+-
+-	var placement = Session.create(&"prepare-coordinator", ledger)
+-	placement.place_main(_glyph(&"HEAT", Types.Source.VAULT, true))
+-	placement.place_auxiliary(0, _glyph(&"FLOW", Types.TYPED_STOCK))
+-	case.assert_true(coordinator.configure_preparation(&"prepare-coordinator", placement.draft()), "coordinator accepts a reserved Stage 2 draft")
+-	var base = coordinator.prepare_preview()
+-	case.assert_equal(&"CIRCUIT_PREVIEW_READY", base.status, "Stage 2 creates only immutable circuit preview")
+-	case.assert_equal(&"", base.preview.target_keyword, "Stage 2 preview passes an empty target to calculator")
+-	case.assert_equal(50, mana.current(), "Stage 2 preview spends no mana")
+-	case.assert_equal(State.State.CIRCUIT_PREVIEW, state.current_state(), "Stage 2 remains before spell readiness")
+-
+-	var prepared = coordinator.confirm_preparation(&"spell-coordinator")
+-	case.assert_equal(&"PREPARED", prepared.status, "confirmation consumes glyphs and creates READY spell")
+-	case.assert_equal(50, mana.current(), "Stage 2 preparation still spends no mana")
+-	case.assert_equal(State.State.SPELL_READY, state.current_state(), "prepared spell unlocks Stage 3")
+-	case.assert_true(coordinator.select_prepared_spell(&"spell-coordinator"), "player explicitly selects a prepared spell")
+-	var invalid_target = coordinator.prepare_target_preview(&"FORGED", {"target_valid": false}, {"effect": &"FORGED"})
+-	case.assert_equal(&"INVALID_TARGET", invalid_target.status, "coordinator never promotes an unvalidated target")
+-	var final = coordinator.prepare_target_preview(&"WARD", {"difficulty": 4, "mana_cost": 3, "target_valid": true}, {"effect": &"PROTECT_WARD"})
+-	case.assert_equal(&"FINAL_PREVIEW_READY", final.status, "selected target produces Stage 3 final preview")
+-	case.assert_equal(&"WARD", final.preview.target_keyword, "final preview carries selected target keyword")
+-	case.assert_equal(&"", inventory.spell(&"spell-coordinator").base_preview.target_keyword, "prepared Stage 2 base preview remains target-free")
+-	case.assert_true(coordinator.request_use_confirmation(), "use needs separate explicit confirmation")
+-	var used = coordinator.confirm_use(&"use-coordinator")
+-	case.assert_equal(&"USED", used.status, "confirmed Stage 3 use commits atomically")
+-	case.assert_equal(State.State.SYSTEM_RESOLVE, state.current_state(), "successful use alone enters resolution")
+-	case.assert_true(results.has_result(&"use-coordinator"), "coordinator commits exactly one result")
+-	case.assert_equal(50 - int(final.preview.final_mana), mana.current(), "coordinator spends only final Stage 3 mana")
++# v2 coordinator??Stage 2 Preview? Stage 3 ??겶룹궗??遺꾨━瑜?寃利앺븳??
++extends RefCounted
++
++const COORDINATOR_PATH := "res://src/core/workflow/spell_workflow_coordinator.gd"
++const STATE_PATH := "res://src/core/workflow/spell_workflow_state.gd"
++const VALIDATOR_PATH := "res://src/core/star/star_circuit_validator.gd"
++const CALCULATOR_PATH := "res://src/core/star/star_circuit_calculator.gd"
++const SESSION_PATH := "res://src/core/workflow/circuit_placement_session.gd"
++const PREPARATION_REQUEST_PATH := "res://src/core/spells/spell_preparation_request.gd"
++const PREPARATION_SERVICE_PATH := "res://src/core/spells/atomic_spell_preparation_service.gd"
++const USE_REQUEST_PATH := "res://src/core/spells/spell_use_request.gd"
++const USE_SERVICE_PATH := "res://src/core/spells/atomic_spell_use_service.gd"
++const INVENTORY_PATH := "res://src/core/spells/prepared_spell_inventory.gd"
++const LEDGER_PATH := "res://src/core/resources/resource_reservation_ledger.gd"
++const STOCK_PATH := "res://src/core/resources/typed_glyph_stock_pool.gd"
++const VAULT_PATH := "res://src/core/resources/vault_inventory.gd"
++const MANA_PATH := "res://src/core/resources/mana_pool.gd"
++const RESULT_LEDGER_PATH := "res://src/core/atomic_result_ledger.gd"
++const TYPES_PATH := "res://src/core/resources/glyph_resource_types.gd"
++
++
++func _make_ledger():
++	var Pool = load(STOCK_PATH)
++	var Vault = load(VAULT_PATH)
++	var Ledger = load(LEDGER_PATH)
++	var stock = Pool.create(3)
++	stock.add_one(&"FLOW")
++	var vault = Vault.create(1)
++	var scribe = vault.reserve_for_scribe(&"HEAT", &"seed-heat")
++	vault.complete_scribe(scribe.reservation_id)
++	return Ledger.create(stock, vault)
++
++
++func _glyph(glyph_id: StringName, source: int, is_main := false) -> Dictionary:
++	var glyph := {"glyph_id": glyph_id, "source": source, "mastery": 70, "base_mana": 8, "is_learned": true}
++	if is_main:
++		glyph["base_success"] = 74
++	else:
++		glyph["special"] = &"NORMAL"
++	return glyph
++
++
++func run(case) -> void:
++	case.assert_true(FileAccess.file_exists(COORDINATOR_PATH), "Task 5 coordinator must exist")
++	if not FileAccess.file_exists(COORDINATOR_PATH):
++		return
++
++	var Coordinator = load(COORDINATOR_PATH)
++	var State = load(STATE_PATH)
++	var Validator = load(VALIDATOR_PATH)
++	var Calculator = load(CALCULATOR_PATH)
++	var Session = load(SESSION_PATH)
++	var PreparationRequest = load(PREPARATION_REQUEST_PATH)
++	var PreparationService = load(PREPARATION_SERVICE_PATH)
++	var UseRequest = load(USE_REQUEST_PATH)
++	var UseService = load(USE_SERVICE_PATH)
++	var Inventory = load(INVENTORY_PATH)
++	var ManaPool = load(MANA_PATH)
++	var ResultLedger = load(RESULT_LEDGER_PATH)
++	var Types = load(TYPES_PATH)
++	case.assert_true(Coordinator != null and Coordinator.can_instantiate(), "SpellWorkflowCoordinator must compile")
++	if Coordinator == null or State == null or Validator == null or Calculator == null or Session == null or PreparationRequest == null or PreparationService == null or UseRequest == null or UseService == null or Inventory == null or ManaPool == null or ResultLedger == null:
++		return
++
++	var ledger = _make_ledger()
++	var inventory = Inventory.new()
++	var mana = ManaPool.create(50, 50)
++	var results = ResultLedger.new()
++	var state = State.new()
++	var coordinator = Coordinator.create(state, Validator.new(), Calculator.new(), PreparationService, PreparationRequest, UseService, UseRequest, ledger, inventory, mana, results)
++	case.assert_true(coordinator != null, "coordinator accepts only explicit domain authorities")
++	if coordinator == null:
++		return
++
++	var placement = Session.create(&"prepare-coordinator", ledger)
++	placement.place_main(_glyph(&"HEAT", Types.Source.VAULT, true))
++	placement.place_auxiliary(0, _glyph(&"FLOW", Types.TYPED_STOCK))
++	case.assert_true(coordinator.configure_preparation(&"prepare-coordinator", placement.draft()), "coordinator accepts a reserved Stage 2 draft")
++	var base = coordinator.prepare_preview()
++	case.assert_equal(&"CIRCUIT_PREVIEW_READY", base.status, "Stage 2 creates only immutable circuit preview")
++	case.assert_equal(&"", base.preview.target_keyword, "Stage 2 preview passes an empty target to calculator")
++	case.assert_equal(50, mana.current(), "Stage 2 preview spends no mana")
++	case.assert_equal(State.State.CIRCUIT_PREVIEW, state.current_state(), "Stage 2 remains before spell readiness")
++
++	var prepared = coordinator.confirm_preparation(&"spell-coordinator")
++	case.assert_equal(&"PREPARED", prepared.status, "confirmation consumes glyphs and creates READY spell")
++	case.assert_equal(50, mana.current(), "Stage 2 preparation still spends no mana")
++	case.assert_equal(State.State.SPELL_READY, state.current_state(), "prepared spell unlocks Stage 3")
++	case.assert_true(coordinator.select_prepared_spell(&"spell-coordinator"), "player explicitly selects a prepared spell")
++	var invalid_target = coordinator.prepare_target_preview(&"FORGED", {"target_valid": false}, {"effect": &"FORGED"})
++	case.assert_equal(&"INVALID_TARGET", invalid_target.status, "coordinator never promotes an unvalidated target")
++	var first_final = coordinator.prepare_target_preview(&"WARD", {"difficulty": 4, "mana_cost": 3, "target_valid": true}, {"effect": &"PROTECT_WARD"})
++	case.assert_equal(&"FINAL_PREVIEW_READY", first_final.status, "first valid target produces a Stage 3 final preview")
++	case.assert_equal(&"WARD", first_final.preview.target_keyword, "first final preview carries its selected target keyword")
++	var final = coordinator.prepare_target_preview(&"FROSTBLOOM", {"difficulty": 6, "mana_cost": 5, "target_valid": true}, {"effect": &"FREEZE_FROSTBLOOM"})
++	case.assert_equal(&"FINAL_PREVIEW_READY", final.status, "a second valid target refreshes the unconfirmed final preview")
++	case.assert_equal(&"FROSTBLOOM", Dictionary(final.get("preview", {})).get("target_keyword", &""), "replacement final preview carries the new target keyword")
++	case.assert_equal(&"READY", inventory.spell(&"spell-coordinator").status, "retargeting leaves the prepared spell ready")
++	case.assert_equal(50, mana.current(), "retargeting spends no mana")
++	case.assert_equal({}, results.serialize(), "retargeting commits no result transaction")
++	case.assert_equal(State.State.SPELL_USE_PREVIEW, state.current_state(), "replacement target returns to an unconfirmed final preview")
++	if StringName(final.get("status", &"")) != &"FINAL_PREVIEW_READY":
++		return
++	case.assert_equal(&"", inventory.spell(&"spell-coordinator").base_preview.target_keyword, "prepared Stage 2 base preview remains target-free")
++	case.assert_true(coordinator.request_use_confirmation(), "use needs separate explicit confirmation")
++	var used = coordinator.confirm_use(&"use-coordinator")
++	case.assert_equal(&"USED", used.status, "confirmed Stage 3 use commits atomically")
++	case.assert_equal(State.State.SYSTEM_RESOLVE, state.current_state(), "successful use alone enters resolution")
++	case.assert_true(results.has_result(&"use-coordinator"), "coordinator commits exactly one result")
++	case.assert_equal(50 - int(final.preview.final_mana), mana.current(), "coordinator spends only final Stage 3 mana")
+diff --git a/tests/unit/test_spell_workflow_state.gd b/tests/unit/test_spell_workflow_state.gd
+index 7a76707a9839338c54e8e5b58e67373b2937ac3e..774767bf048744ae6e9cb23270c4cd30d943d56f 100644
+--- a/tests/unit/test_spell_workflow_state.gd
++++ b/tests/unit/test_spell_workflow_state.gd
+@@ -1,46 +1,52 @@
+-# v2 二쇰Ц ?먮쫫 ?곹깭 ?꾩씠? Incident Overlay 蹂듦? 怨꾩빟??寃利앺븳??
+-extends RefCounted
+-
+-const STATE_PATH := "res://src/core/workflow/spell_workflow_state.gd"
+-
+-
+-func run(case) -> void:
+-	case.assert_true(FileAccess.file_exists(STATE_PATH), "Task 5 state machine must exist")
+-	if not FileAccess.file_exists(STATE_PATH):
+-		return
+-
+-	var State = load(STATE_PATH)
+-	case.assert_true(State != null and State.can_instantiate(), "SpellWorkflowState must compile")
+-	if State == null or not State.can_instantiate():
+-		return
+-
+-	var state = State.new()
+-	case.assert_equal(State.State.INCIDENT_BRIEF, state.current_state(), "workflow starts at incident brief")
+-	case.assert_false(state.select_target(&"WARD"), "target selection is rejected before a prepared spell is selected")
+-	case.assert_false(state.can_confirm_use(), "mana use is unavailable before explicit use confirmation")
+-
+-	case.assert_true(state.begin_glyph_drawing(), "incident brief enters glyph drawing")
+-	case.assert_true(state.begin_circuit_edit(), "glyph drawing enters circuit editing")
+-	case.assert_false(state.select_target(&"WARD"), "target selection is rejected during circuit editing")
+-	case.assert_true(state.show_circuit_preview(), "circuit edit enters immutable circuit preview")
+-	case.assert_false(state.select_prepared_spell(&"spell-1"), "prepared spell selection cannot skip Stage 2 readiness")
+-	case.assert_false(state.select_target(&"WARD"), "circuit preview cannot jump directly to target selection")
+-	case.assert_true(state.mark_spell_ready(), "only Stage 2 completion enters spell readiness")
+-	case.assert_true(state.select_prepared_spell(&"spell-1"), "READY prepared spell enters Stage 3 target selection")
+-	case.assert_true(state.select_target(&"WARD"), "explicit Stage 3 target selection is accepted")
+-	case.assert_true(state.show_final_preview({"success_percent": 79, "final_mana": 7}), "target selection produces final preview")
+-	case.assert_false(state.can_confirm_use(), "preview alone cannot spend mana")
+-	case.assert_true(state.request_use_confirmation(), "explicit confirmation state is required before use")
+-	case.assert_true(state.can_confirm_use(), "only explicit confirmation allows use")
+-	case.assert_true(state.begin_system_resolution(), "confirmed use enters system resolution")
+-	case.assert_false(state.open_incident_overlay(), "resolving state cannot be obscured by incident overlay")
+-	case.assert_true(state.show_result_explanation(), "resolution enters result explanation")
+-
+-	var overlay_state = State.new()
+-	overlay_state.begin_glyph_drawing()
+-	overlay_state.begin_circuit_edit()
+-	var prior_state = overlay_state.current_state()
+-	case.assert_true(overlay_state.open_incident_overlay(), "overlay opens from a non-resolving state")
+-	case.assert_equal(State.State.INCIDENT_OVERLAY, overlay_state.current_state(), "overlay is explicit state")
+-	case.assert_true(overlay_state.close_incident_overlay(), "overlay closes")
+-	case.assert_equal(prior_state, overlay_state.current_state(), "overlay restores exact prior state")
++# v2 二쇰Ц ?먮쫫 ?곹깭 ?꾩씠? Incident Overlay 蹂듦? 怨꾩빟??寃利앺븳??
++extends RefCounted
++
++const STATE_PATH := "res://src/core/workflow/spell_workflow_state.gd"
++
++
++func run(case) -> void:
++	case.assert_true(FileAccess.file_exists(STATE_PATH), "Task 5 state machine must exist")
++	if not FileAccess.file_exists(STATE_PATH):
++		return
++
++	var State = load(STATE_PATH)
++	case.assert_true(State != null and State.can_instantiate(), "SpellWorkflowState must compile")
++	if State == null or not State.can_instantiate():
++		return
++
++	var state = State.new()
++	case.assert_equal(State.State.INCIDENT_BRIEF, state.current_state(), "workflow starts at incident brief")
++	case.assert_false(state.select_target(&"WARD"), "target selection is rejected before a prepared spell is selected")
++	case.assert_false(state.can_confirm_use(), "mana use is unavailable before explicit use confirmation")
++
++	case.assert_true(state.begin_glyph_drawing(), "incident brief enters glyph drawing")
++	case.assert_true(state.begin_circuit_edit(), "glyph drawing enters circuit editing")
++	case.assert_false(state.select_target(&"WARD"), "target selection is rejected during circuit editing")
++	case.assert_true(state.show_circuit_preview(), "circuit edit enters immutable circuit preview")
++	case.assert_false(state.select_prepared_spell(&"spell-1"), "prepared spell selection cannot skip Stage 2 readiness")
++	case.assert_false(state.select_target(&"WARD"), "circuit preview cannot jump directly to target selection")
++	case.assert_true(state.mark_spell_ready(), "only Stage 2 completion enters spell readiness")
++	case.assert_true(state.select_prepared_spell(&"spell-1"), "READY prepared spell enters Stage 3 target selection")
++	case.assert_true(state.select_target(&"WARD"), "explicit Stage 3 target selection is accepted")
++	case.assert_true(state.show_final_preview({"success_percent": 79, "final_mana": 7}), "target selection produces final preview")
++	case.assert_true(state.select_target(&"FROSTBLOOM"), "a new target is accepted while its prior preview remains unconfirmed")
++	case.assert_equal(&"FROSTBLOOM", state.target_keyword(), "retargeting replaces the selected keyword")
++	case.assert_true(state.final_preview().is_empty(), "retargeting clears the stale final preview")
++	case.assert_equal(State.State.SPELL_USE_TARGET, state.current_state(), "retargeting returns to target selection without confirmation or resolution")
++	case.assert_false(state.can_confirm_use(), "retargeting cannot confirm or resolve a spell")
++	case.assert_true(state.show_final_preview({"success_percent": 76, "final_mana": 8}), "the replacement target can produce a new final preview")
++	case.assert_false(state.can_confirm_use(), "preview alone cannot spend mana")
++	case.assert_true(state.request_use_confirmation(), "explicit confirmation state is required before use")
++	case.assert_true(state.can_confirm_use(), "only explicit confirmation allows use")
++	case.assert_true(state.begin_system_resolution(), "confirmed use enters system resolution")
++	case.assert_false(state.open_incident_overlay(), "resolving state cannot be obscured by incident overlay")
++	case.assert_true(state.show_result_explanation(), "resolution enters result explanation")
++
++	var overlay_state = State.new()
++	overlay_state.begin_glyph_drawing()
++	overlay_state.begin_circuit_edit()
++	var prior_state = overlay_state.current_state()
++	case.assert_true(overlay_state.open_incident_overlay(), "overlay opens from a non-resolving state")
++	case.assert_equal(State.State.INCIDENT_OVERLAY, overlay_state.current_state(), "overlay is explicit state")
++	case.assert_true(overlay_state.close_incident_overlay(), "overlay closes")
++	case.assert_equal(prior_state, overlay_state.current_state(), "overlay restores exact prior state")

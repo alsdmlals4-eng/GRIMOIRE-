@@ -91,6 +91,15 @@ The detailed source/page ledger, classifications, and migration completion rules
 3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is automated/runtime-smoke verified but Human/player/device/performance is not verified.
 4. Keep `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING` separate; do not treat documentation or automated evidence as Human/Player validation.
 
+## 6.1 Human Blueprint review pair
+
+`GRIMOIRE-HGB-20260830-01`은 장기 1학년 경험을 수업 → 지도 실습 → 통제 응용/축제 → 현장 전투/책임 → 마도서 복기 → 첫 세계 개정으로 연결해 사람이 검수할 수 있도록 만든 **R1 검수 대기 pair**다.
+
+- 사람이 읽는 원본: `docs/planning/GRIMOIRE_HUMAN_GAME_BLUEPRINT_20260830.md`
+- AI/개발/QA 인계 원본: `docs/planning/GRIMOIRE_AI_IMPLEMENTATION_SPEC_20260830.md`
+- 파생 PDF: `output/pdf/grimoire_HUMAN_GAME_BLUEPRINT_20260830.pdf` (생성 후)
+- 이 pair는 최신 사용자 방향에 따라 온실/묘목을 게임 전체가 아닌 **수업 직후 첫 지도 실습 사건**으로 설명한다. 기존 W6/C6 owner는 자동 변경하지 않으며, 최종 검수 뒤 별도 reconciliation unit에서만 조정한다. W6 사람 검증을 우회하거나 장기 Chapter, W7, runtime asset batch의 자동 구현 권한을 만들지 않는다.
+
 ## 7. Reading and update rules
 
 - The repository owns current human and structured canon. No Notion current-canon write or destination readback is allowed.

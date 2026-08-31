@@ -1,7 +1,7 @@
 [
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 4381,
+    "elapsed_us": 2921,
     "expected": "HEAT",
     "fixture_id": "heat-positive",
     "input_variant": "developer_reference",
@@ -13,7 +13,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 4639,
+    "elapsed_us": 2935,
     "expected": "PROTECT",
     "fixture_id": "protect-positive",
     "input_variant": "developer_reference",
@@ -25,7 +25,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 325,
+    "elapsed_us": 202,
     "expected": "FLOW",
     "fixture_id": "flow-positive",
     "input_variant": "developer_reference",
@@ -37,7 +37,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 3851,
+    "elapsed_us": 2587,
     "expected": "FOCUS",
     "fixture_id": "focus-positive",
     "input_variant": "developer_reference",
@@ -49,7 +49,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 3742,
+    "elapsed_us": 2633,
     "expected": "DISPERSE",
     "fixture_id": "disperse-positive",
     "input_variant": "developer_reference",
@@ -61,7 +61,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 6621,
+    "elapsed_us": 4749,
     "expected": "BURST",
     "fixture_id": "burst-positive",
     "input_variant": "developer_reference",
@@ -73,7 +73,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 3611,
+    "elapsed_us": 2717,
     "expected": "HEAT",
     "fixture_id": "heat-stroke-order-swapped",
     "input_variant": "allowed_stroke_order",
@@ -85,7 +85,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 5218,
+    "elapsed_us": 2941,
     "expected": "HEAT",
     "fixture_id": "heat-incomplete",
     "input_variant": "incomplete",
@@ -97,7 +97,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 4901,
+    "elapsed_us": 2625,
     "expected": null,
     "fixture_id": "heat-light-confusing",
     "input_variant": "confusing_unknown",
@@ -109,7 +109,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 387,
+    "elapsed_us": 224,
     "expected": null,
     "fixture_id": "flow-repeat-confusing",
     "input_variant": "confusing_unknown",
@@ -121,7 +121,7 @@
   },
   {
     "confidence_threshold": 0.8,
-    "elapsed_us": 328,
+    "elapsed_us": 206,
     "expected": null,
     "fixture_id": "unknown-zigzag",
     "input_variant": "unknown",

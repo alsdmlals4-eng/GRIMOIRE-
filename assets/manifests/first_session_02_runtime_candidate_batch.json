@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "batch_id": "GR-FIRST-SESSION-RUNTIME-CANDIDATES-20260830-01",
+  "project": "GRIMOIRE: 세계를 다시 쓰는 법",
+  "status": "SUPERSEDED_BY_USER_DIRECTION__GLYPH_OVERLAY_SEPARATION",
+  "creation_route": "AI_GENERATED",
+  "tool": "Codex built-in image generation",
+  "generation_thread": "01a04af4-91c2-78f2-bbbb-9e5110b63de2",
+  "user_authority": "User approved the first-twelve-minutes design and directed image creation on 2026-08-30. This authorizes candidate generation, not final runtime-asset lock.",
+  "project_relation": "CURRENT_GRIMOIRE_FIRST_SESSION_RUNTIME_CANDIDATE_BATCH",
+  "supersession": {
+    "date": "2026-08-30",
+    "authority": "User direction: backgrounds and object targets must be designed without retained glyphs; glyph design must be a separately composited overlay only when needed.",
+    "replacement_record": "assets/manifests/first_session_02_runtime_candidate_layer_separation_02.json",
+    "reason": "The original four candidates embed visible magic-writing or magic-mark cues in their source artwork and therefore cannot represent the revised layer boundary."
+  },
+  "approved_visual_references": [
+    "ART-STYLE-01",
+    "GM-VISUAL-DIRECTION-20260825-01",
+    "GM-VISUAL-TONE-20260828-01",
+    "GR-REF-VIS-ACADEMY-HUB-MAGIC-WRITING-20260830-01",
+    "GR-REF-VIS-CLASS-DIRECT-GLYPH-LEARNING-20260830-01",
+    "GR-REF-VIS-FIRST-GUIDED-GREENHOUSE-PRACTICUM-20260830-01"
+  ],
+  "common_constraints": [
+    "Soft Storybook Cel 2D Hybrid; warm learner-led magic academy; fixed landscape presentation.",
+    "All functional copy, numeric values, controls, and localization remain live Godot UI.",
+    "Direct magic writing is blue-to-blue-violet handwritten air ink, not text emitted from a book.",
+    "No empty decorative UI frames, automatic target/commit signal, 3D exploration, horror framing, waves, logos, or watermarks.",
+    "Source candidate files are not imported by a Godot scene and are not release, store, or marketing assets."
+  ],
+  "license": {
+    "status": "REVIEW_REQUIRED_BEFORE_PROJECT_ASSET_APPROVAL",
+    "terms": "OpenAI Terms of Use and applicable Service Terms; exact underlying model/version is not surfaced by the built-in generation tool.",
+    "input_rights": "Only user-approved GRIMOIRE canon and project-owned prompt direction were used. No third-party or user-provided image was supplied as a generation input.",
+    "commercial_use": "CONDITIONAL",
+    "distribution_in_game_build": "NOT_AUTHORIZED_BY_THIS_CANDIDATE_RECORD",
+    "raw_source_redistribution": "CONDITIONAL",
+    "attribution": "RELEASE_REVIEW_REQUIRED"
+  },
+  "assets": [
+    {
+      "asset_id": "FS-IMG-ADMISSION-001",
+      "coverage_item_id": "GR-VIS-023-FIRST-SESSION-ADMISSION-HALL-RUNTIME-CANDIDATE",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumer_surface": "FirstSessionRoot/AdmissionCeremonyScreen/EnvironmentBackground",
+      "primary_use": "A 90-120 second admissions entry that opens the academy promise without a permanent choice or automatic spell grant.",
+      "source_path": "assets/art/source_candidates/first_session_02/backgrounds/admission/bg_admission_hall_ceremony_candidate_01.png",
+      "sha256": "6601EEEAFBF802F21EE2CDF614C92BC6D1177BCAF44643FB4E43EAE79D02E5F5",
+      "width": 1672,
+      "height": 941,
+      "alpha": false,
+      "state_family_status": "NOT_APPLICABLE_BACKGROUND",
+      "generation_locator": "Codex built-in image generation / exec-6cf26bc1-9e7f-46f6-ad38-0144fbcd1bc1",
+      "planned_promotion_target": "assets/art/backgrounds/academy/bg_admission_hall_ceremony.png",
+      "review_status": "SUPERSEDED_BY_USER_DIRECTION__GLYPH_EMBEDDED_IN_SOURCE",
+      "runtime_validation": "NOT_RUN"
+    },
+    {
+      "asset_id": "FS-IMG-CLASS-001",
+      "coverage_item_id": "GR-VIS-024-FIRST-SESSION-CLASS-WATER-CHANNEL-RUNTIME-CANDIDATE",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumer_surface": "FirstSessionRoot/FirstClassScreen/EnvironmentBackground",
+      "primary_use": "A safe first FLOW-writing class with a readable water-channel response and no professor-provided answer.",
+      "source_path": "assets/art/source_candidates/first_session_02/backgrounds/classroom/bg_classroom_water_channel_candidate_01.png",
+      "sha256": "610D1BC5906AE4B6234F40648DED74E83D6F73CA662B6CD67F03551AAE176881",
+      "width": 1672,
+      "height": 941,
+      "alpha": false,
+      "state_family_status": "NOT_APPLICABLE_BACKGROUND",
+      "generation_locator": "Codex built-in image generation / exec-91d5b691-2be0-47b1-813b-74310c989634",
+      "planned_promotion_target": "assets/art/backgrounds/classroom/bg_classroom_water_channel.png",
+      "review_status": "SUPERSEDED_BY_USER_DIRECTION__GLYPH_EMBEDDED_IN_SOURCE",
+      "runtime_validation": "NOT_RUN"
+    },
+    {
+      "asset_id": "FS-IMG-TARGET-001",
+      "coverage_item_id": "GR-VIS-025-FIRST-PRACTICUM-FROST-SEEDLINGS-RUNTIME-CANDIDATE",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumer_surface": "FirstSessionRoot/FirstPracticumSituationLayer/SeedlingTarget",
+      "primary_use": "One equal-priority, recoverable seedling concern for explicit target selection after circuit preview.",
+      "source_path": "assets/art/source_candidates/first_session_02/targets/greenhouse/target_frost_seedlings_unstable_candidate_01.png",
+      "sha256": "157065488B04E36A30381B1F549414802E984E9211E4F04BA8CD479F0C7E5364",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "state_family_status": "NORMAL_CANDIDATE_ONLY__TARGETED_STATE_REQUIRES_LIVE_UI_OVERLAY",
+      "generation_locator": "Codex built-in image generation / exec-0d4fcbdd-114f-4edf-8f0f-eb88a8ca44de",
+      "planned_promotion_target": "assets/art/targets/greenhouse/target_frost_seedlings_unstable.png",
+      "review_status": "SUPERSEDED_BY_USER_DIRECTION__MAGIC_MARKS_EMBEDDED_IN_SOURCE",
+      "runtime_validation": "NOT_RUN"
+    },
+    {
+      "asset_id": "FS-IMG-TARGET-002",
+      "coverage_item_id": "GR-VIS-026-FIRST-PRACTICUM-GREENHOUSE-SUPPORT-RUNTIME-CANDIDATE",
+      "consumer_kind": "PLANNED_GAME_SURFACE",
+      "consumer_surface": "FirstSessionRoot/FirstPracticumSituationLayer/SupportTarget",
+      "primary_use": "One equal-priority, repairable greenhouse support and lantern concern for explicit target selection after circuit preview.",
+      "source_path": "assets/art/source_candidates/first_session_02/targets/greenhouse/target_greenhouse_support_unstable_candidate_01.png",
+      "sha256": "A68E64703B026005BD6A61AF81D311DDCF25C18F96F578ABBCEE79FB085CE917",
+      "width": 1024,
+      "height": 1536,
+      "alpha": true,
+      "state_family_status": "NORMAL_CANDIDATE_ONLY__TARGETED_STATE_REQUIRES_LIVE_UI_OVERLAY",
+      "generation_locator": "Codex built-in image generation / exec-6ddb8520-f3e7-45a4-a64d-4e031cb1c51c",
+      "planned_promotion_target": "assets/art/targets/greenhouse/target_greenhouse_support_unstable.png",
+      "review_status": "SUPERSEDED_BY_USER_DIRECTION__MAGIC_MARKS_EMBEDDED_IN_SOURCE",
+      "runtime_validation": "NOT_RUN"
+    }
+  ],
+  "promotion_gate": "CLOSED__REPLACED_BY_LAYER_SEPARATION_BATCH_02",
+  "readback": {
+    "workspace_copy": "PASS",
+    "sha256": "PASS",
+    "dimensions": "PASS",
+    "alpha_requirement": "PASS_FOR_TARGETS_ONLY",
+    "scene_binding": "NOT_RUN",
+    "godot_import": "NOT_RUN",
+    "runtime": "NOT_RUN",
+    "human_device_performance_accessibility_export": "NOT_RUN"
+  }
+}

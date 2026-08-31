@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bcqjladjlv8oe"]
+
+[ext_resource type="Script" uid="uid://ckg8bv3porfbt" path="res://src/ui/spell_workflow/components/target_selection_panel.gd" id="1_acxie"]
+
+[node name="TargetSelectionPanel" type="VBoxContainer" unique_id=1497848192]
+script = ExtResource("1_acxie")
+
+[node name="Body" type="VBoxContainer" parent="." unique_id=109141736]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="Body" unique_id=1182655373]
+layout_mode = 2
+text = "Target selection"
+
+[node name="TargetList" type="VBoxContainer" parent="Body" unique_id=2015241079]
+layout_mode = 2
+theme_override_constants/separation = 6

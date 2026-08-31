@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ma21n52eu3u7"]
+
+[ext_resource type="Script" uid="uid://cck6vxxp6hqpw" path="res://src/ui/spell_workflow/components/expected_result_panel.gd" id="1_1pmxa"]
+
+[node name="ExpectedResultPanel" type="VBoxContainer" unique_id=3422477]
+script = ExtResource("1_1pmxa")
+
+[node name="Body" type="VBoxContainer" parent="." unique_id=2079940927]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="Body" unique_id=239167209]
+layout_mode = 2
+text = "Expected Result"
+
+[node name="SuccessLabel" type="Label" parent="Body" unique_id=1414999408]
+layout_mode = 2
+
+[node name="EffectLabel" type="Label" parent="Body" unique_id=1619881881]
+layout_mode = 2
+
+[node name="RisksLabel" type="Label" parent="Body" unique_id=2044454565]
+layout_mode = 2
+
+[node name="FinalManaLabel" type="Label" parent="Body" unique_id=1938814327]
+layout_mode = 2
+
+[node name="TargetKeywordLabel" type="Label" parent="Body" unique_id=777643215]
+layout_mode = 2
+
+[node name="FailureLabel" type="Label" parent="Body" unique_id=1667748374]
+layout_mode = 2

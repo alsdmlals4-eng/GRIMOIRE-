@@ -1,0 +1,120 @@
+{
+    "schema_version":  1,
+    "contract_role":  "TASK8_LOCAL_CANDIDATE_SNAPSHOT",
+    "role":  "primary_v2",
+    "branch":  "feat/task8-spell-use-screen-v2",
+    "head":  "8c611f601aa98397ed1558e92ab207e0e8347a9b",
+    "status_before":  [
+                          " M addons/gut/fonts/AnonymousPro-Bold.ttf.import",
+                          " M addons/gut/fonts/AnonymousPro-BoldItalic.ttf.import",
+                          " M addons/gut/fonts/AnonymousPro-Italic.ttf.import",
+                          " M addons/gut/fonts/AnonymousPro-Regular.ttf.import",
+                          " M addons/gut/fonts/CourierPrime-Bold.ttf.import",
+                          " M addons/gut/fonts/CourierPrime-BoldItalic.ttf.import",
+                          " M addons/gut/fonts/CourierPrime-Italic.ttf.import",
+                          " M addons/gut/fonts/CourierPrime-Regular.ttf.import",
+                          " M addons/gut/fonts/LobsterTwo-Bold.ttf.import",
+                          " M addons/gut/fonts/LobsterTwo-BoldItalic.ttf.import",
+                          " M addons/gut/fonts/LobsterTwo-Italic.ttf.import",
+                          " M addons/gut/fonts/LobsterTwo-Regular.ttf.import",
+                          " M addons/gut/gui/EditorRadioButton.tres",
+                          " M addons/gut/gui/arrow.png.import",
+                          " M addons/gut/gui/play.png.import",
+                          " M addons/gut/icon.png.import",
+                          " M addons/gut/images/Folder.svg.import",
+                          " M addons/gut/images/GutIconV2_base.png.import",
+                          " M addons/gut/images/GutIconV2_no_shine.png.import",
+                          " M addons/gut/images/HSplitContainer.svg.import",
+                          " M addons/gut/images/Script.svg.import",
+                          " M addons/gut/images/VSplitContainer.svg.import",
+                          " M addons/gut/images/eyey.png.import",
+                          " M addons/gut/images/green.png.import",
+                          " M addons/gut/images/red.png.import",
+                          " M addons/gut/images/yellow.png.import",
+                          " M addons/gut/source_code_pro.fnt.import",
+                          " M addons/hera_agent_godot/assets/fonts/cormorant-italic.woff2.import",
+                          " M assets/art/ui/common/academy_corner_ornament.svg.import",
+                          " M assets/art/ui/common/icon_mana.svg.import",
+                          " M assets/art/ui/common/icon_phase_diamond.svg.import",
+                          " M assets/art/ui/common/icon_typed_stock.svg.import",
+                          " M assets/art/ui/common/icon_warning_diamond.svg.import",
+                          " M project.godot",
+                          " M src/core/workflow/spell_workflow_coordinator.gd",
+                          " M src/core/workflow/spell_workflow_state.gd",
+                          " M tests/unit/test_spell_workflow_coordinator.gd",
+                          " M tests/unit/test_spell_workflow_state.gd",
+                          "?? artifacts/foundation-poc/glyph-fixture-rows.json",
+                          "?? artifacts/task8-red/manifest.json",
+                          "?? src/ui/spell_workflow/spell_use_screen.gd",
+                          "?? src/ui/spell_workflow/spell_use_screen.gd.uid",
+                          "?? src/ui/spell_workflow/spell_use_screen.tscn",
+                          "?? tests/gut/integration/test_spell_use_screen.gd",
+                          "?? tests/gut/integration/test_spell_use_screen.gd.uid"
+                      ],
+    "index_sha256_before":  "463da29ad2fbd9526421e5de0babd5d6d4dc05aa5e1b80b396b3a3fcabe0be4d",
+    "content_digest_before":  "5a6c19aa5c0492f3e452de5af5c4ffc9c7f59848b7e75c5c314c9ff293c79875",
+    "working_name_status":  [
+                                "M\tsrc/core/workflow/spell_workflow_coordinator.gd",
+                                "M\tsrc/core/workflow/spell_workflow_state.gd",
+                                "M\ttests/unit/test_spell_workflow_coordinator.gd",
+                                "M\ttests/unit/test_spell_workflow_state.gd"
+                            ],
+    "cached_name_status":  [
+
+                           ],
+    "untracked_paths":  [
+                            "artifacts/foundation-poc/glyph-fixture-rows.json",
+                            "artifacts/task8-red/manifest.json",
+                            "src/ui/spell_workflow/spell_use_screen.gd",
+                            "src/ui/spell_workflow/spell_use_screen.gd.uid",
+                            "src/ui/spell_workflow/spell_use_screen.tscn",
+                            "tests/gut/integration/test_spell_use_screen.gd",
+                            "tests/gut/integration/test_spell_use_screen.gd.uid"
+                        ],
+    "copied_files":  [
+                         {
+                             "path":  "artifacts/foundation-poc/glyph-fixture-rows.json",
+                             "sha256":  "3bda8f1c7203e80ea0f4acd3b2bbfdf861948eed10f26c1099c231988485224f"
+                         },
+                         {
+                             "path":  "artifacts/task8-red/manifest.json",
+                             "sha256":  "f4267db5033f85de3c6efa69c3a0f37638e6332b3bda32d1d9b6e446e4987009"
+                         },
+                         {
+                             "path":  "src/core/workflow/spell_workflow_coordinator.gd",
+                             "sha256":  "265061312c1bfa3c71b9645476c1641c36ab3e051f9073c6120eb815abae4197"
+                         },
+                         {
+                             "path":  "src/core/workflow/spell_workflow_state.gd",
+                             "sha256":  "f57f07050dec1eb2d0932252d47a1fb92ce76578de80a8369c45bd6604c98587"
+                         },
+                         {
+                             "path":  "src/ui/spell_workflow/spell_use_screen.gd",
+                             "sha256":  "266f1e3f7a30cce4d46a8b41e7af87139722603a6b234280e1c4e6bbf03cac1c"
+                         },
+                         {
+                             "path":  "src/ui/spell_workflow/spell_use_screen.gd.uid",
+                             "sha256":  "793c2c5c98f4163e59a1486aef765c0702331732d642f16c6672031d080dd7d2"
+                         },
+                         {
+                             "path":  "src/ui/spell_workflow/spell_use_screen.tscn",
+                             "sha256":  "fc4e113d3fd76a9acaf50faaba13b5c4d4c868966c7289a462803590c8d96ca9"
+                         },
+                         {
+                             "path":  "tests/gut/integration/test_spell_use_screen.gd",
+                             "sha256":  "df66a7e694eacb45c439d58808fbaceda9d7b7064eb8abdfa1d963c8f9a35510"
+                         },
+                         {
+                             "path":  "tests/gut/integration/test_spell_use_screen.gd.uid",
+                             "sha256":  "ecea5869113f5cdb68f90ed63f57787fc4cfe60c4ee086d689ef1fcd0f2dec7e"
+                         },
+                         {
+                             "path":  "tests/unit/test_spell_workflow_coordinator.gd",
+                             "sha256":  "5df0068805f16297e7d817c65f1b8315b90abaabb305272a816d526005eb2323"
+                         },
+                         {
+                             "path":  "tests/unit/test_spell_workflow_state.gd",
+                             "sha256":  "c5472ae46259d9832e846b75d4b942fd608bdfd88fbad5153be1ef9ca8cbf094"
+                         }
+                     ]
+}
