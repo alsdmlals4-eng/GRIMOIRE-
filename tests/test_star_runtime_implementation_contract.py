@@ -57,12 +57,10 @@ class StarRuntimeImplementationContractTests(unittest.TestCase):
         for token in ("Duplicate commit", "Cancel mutates no stock", "Vault main glyph is consumed", "Stock auxiliary is consumed", "NO_MATCHING_TYPED_STOCK"):
             self.assertIn(token, test)
 
-    def test_scene_and_project_are_ready_for_visual_godot_testing(self) -> None:
+    def test_historical_star_harness_is_retained_while_story_front_door_is_default(self) -> None:
         project = self.read("project.godot")
         scene = self.read("src/ui/star_circuit_harness.tscn")
-        product_root = self.read("src/ui/spell_workflow/spell_workflow_product_root.tscn")
-        product_root_uid = product_root.splitlines()[0].split('uid="')[1].split('"')[0]
-        self.assertIn(f'run/main_scene="{product_root_uid}"', project)
+        self.assertIn('run/main_scene="res://src/ui/front_door/story_front_door.tscn"', project)
         self.assertIn('config/features=PackedStringArray("4.7"', project)
         for token in (
             "CenterGlyph", "Vertex0", "Vertex1", "Vertex2", "Vertex3", "Vertex4",

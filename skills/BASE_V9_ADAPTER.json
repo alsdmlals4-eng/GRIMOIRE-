@@ -10,7 +10,7 @@
     "repository": "alsdmlals4-eng/Base"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "c1482f56ef19d37a6dc8f7e2c710b5388e90bbb99636e83d43f5bc5a0d229b82",
+  "canonical_source_sha256": "586a5b72ce0206a70eb06e54b020127e6e94820fd0cfa6d16352dd9f5b879ff7",
   "generated": true,
   "legacy_sheet": {
     "id": "19FftrZ4WzB-CXa9Q-y25iKMhmEs1Ip4Ea3ramf2xKqM",
@@ -21,7 +21,7 @@
   },
   "maturity": {
     "level": 3,
-    "next_gate": "TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING",
+    "next_gate": "CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING",
     "planning": "COMPLETE_FROSTBLOOM_FIRST_SESSION",
     "status": "PARTIAL_FOUNDATION"
   },
@@ -30,8 +30,8 @@
     "execution_profile": "DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION",
     "follow_up_platform": "PC",
     "godot_project_status": "CREATED",
-    "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
-    "main_scene_role": "DEVELOPMENT_PRODUCT_ROOT_ENTRY",
+    "main_scene": "res://src/ui/front_door/story_front_door.tscn",
+    "main_scene_role": "STORY_FRONT_DOOR_ENTRY",
     "name": "GRIMOIRE: 세계를 다시 쓰는 법",
     "orientation": "LANDSCAPE_FIXED",
     "platform_decision": "GM-PLATFORM-02",
@@ -53,7 +53,7 @@
     "full_vertical_slice": "NOT_RUN",
     "human": "NOT_RUN",
     "performance": "NOT_RUN",
-    "runtime": "TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING"
+    "runtime": "CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN"
   },
   "view_name": "BASE_V9_ADAPTER.json",
   "workspace_authority": {

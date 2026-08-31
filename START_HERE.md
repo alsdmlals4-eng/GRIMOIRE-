@@ -28,11 +28,11 @@ notion_migration_state: MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
-current_user_work_scope: FROSTBLOOM_W6_L3_IMPLEMENTATION_CONTRACT_DOCUMENTATION_ONLY
-product_implementation_authorized_by_current_user_work_scope: false
+current_user_work_scope: CIRCLE_CLOCK_CARD_CORE_REPLACEMENT__L2_APPROVED__TASKS_1_TO_7_IMPLEMENTED__TASK8_SAVE_DISPOSITION_PENDING
+product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__L3_CONTRACT_READY__IMPLEMENTATION_AUTHORIZATION_PENDING
+visual_generation_state: FRONT_DOOR_BACKGROUND_LOCKED__CANON_REGISTERED__RUNTIME_IMPLEMENTED__CARD_BATCH_DEFERRED
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -63,13 +63,13 @@ logo_direction: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
 product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
-player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
-player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
-preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-circuit_topology: FIVE_POINT_STAR
-task8_product_unit: TASK8_SPELL_USE_SCREEN
-next_product_task: TASK9_USER_VERTICAL_SLICE_VALIDATION
-next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
+player_facing_spell_flow: WRITE_OR_SELECT_GLYPHS_TO_LAYERED_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT
+player_facing_ux_groups: STORY_EVENT_AND_CARD_DUEL_CONTEXT
+current_product_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
+historical_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+circuit_topology: ROLE_FREE_LAYERED_CIRCLES_1_TO_3__REPLACEMENT_PARTIAL
+next_product_task: TASK8_STAR_RUNTIME_REMOVAL_AFTER_SAVE_DISPOSITION
+next_product_gate: CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -148,6 +148,20 @@ Google Sheets
 Google Sheet와 Notion은 current state writer가 아니다. `GR-NOTION-MIGRATION-20260828-01`은 merged-main readback까지 완료됐으며, Notion은 사용자가 명시적으로 허용한 historical discovery에만 읽을 수 있다. 새 정본은 GitHub repository이며 신규 external canon write는 하지 않는다.
 
 ## 현재 제품 경계
+
+### 최신 사용자 승인 Core Override — Circle / Clock / Card
+
+현재 제품의 기본 진입은 `res://src/ui/front_door/story_front_door.tscn`이며, 플레이어는 허브 선택이 아닌 이야기 흐름으로 입학식부터 진행한다. 새 코어는 역할 없는 1~3겹 서클, 선언된 이야기 행동에서만 진전·감소하는 사건 시계, 그리고 이야기 게이트 뒤에 열리는 마법사 카드 셸이다. 상세 카드 마력 수치와 `7,7,6 / 20`은 확정 규칙이 아니다. 기존 Star Runtime은 실제 사용자 저장 처분이 결정될 때까지 history/compatibility 경계로 보존한다.
+
+```text
+새 기록 / 이어하기 / 설정
+→ 입학식
+→ 수업
+→ 첫 실습: Frostbloom
+→ 이후 이야기 게이트: 결투 · 축제 · 카드
+```
+
+### Historical spell-workflow locator
 
 `GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름**은 다음이다.
 
@@ -274,8 +288,8 @@ FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
 ## Godot 진입점과 Runtime Reality
 
 - 프로젝트 파일: `project.godot`
-- 현재 Main Scene: `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`
-- 역할: `DEVELOPMENT_PRODUCT_ROOT_ENTRY`
+- 현재 Main Scene: `res://src/ui/front_door/story_front_door.tscn`
+- 역할: `STORY_FRONT_DOOR_ENTRY`
 - Renderer: GL Compatibility
 
 Star Circuit Runtime component와 Component Sheets에는 자동화 evidence가 있다. 그러나 현재 전체 제품 구현 판정은 `PARTIAL_FOUNDATION`; Human/Device/Performance/Full Vertical Slice는 계속 `NOT_RUN`이다.

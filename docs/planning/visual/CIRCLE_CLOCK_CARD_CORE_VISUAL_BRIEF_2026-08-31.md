@@ -4,7 +4,7 @@
 brief_id: GR-VISUAL-BRIEF-CIRCLE-CLOCK-CARD-CORE-20260831-01
 decision_id: GM-CIRCLE-CLOCK-CARD-CORE-01
 project_relation: GRIMOIRE_CORE_REPLACEMENT
-status: FRONT_DOOR_CANDIDATE_GENERATED__USER_LOCK_PENDING
+status: FRONT_DOOR_USER_APPROVED__CANON_REGISTERED__IMPLEMENTED
 generation_approval: USER_EXPLICIT_2026-08-31
 mode: final-visual-candidate
 consumer_kind: PLANNED_GAME_SURFACE
@@ -14,7 +14,7 @@ approved_visual_reference_ids:
   - GM-VISUAL-TONE-20260828-01
   - LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 current_core_override: GM-CIRCLE-CLOCK-CARD-CORE-01
-runtime_status: NOT_IMPLEMENTED
+runtime_status: EXACT_GODOT_EDITOR_RENDERED_2026-08-31
 human_review: NOT_RUN
 ```
 
@@ -99,22 +99,29 @@ state_family:
 
 ```yaml
 asset_id: GR-CAND-FRONT-DOOR-BG-01
-state: GENERATED_CANDIDATE
-project_candidate_path: assets/art/source_candidates/circle_clock_card_core/front_door/front_door_admission_academy_candidate_01.png
+state: USER_APPROVED__CANON_REGISTERED__IMPLEMENTED
+original_candidate_repository_path: assets/art/source_candidates/circle_clock_card_core/front_door/front_door_admission_academy_candidate_01.png
+canonical_runtime_path: assets/art/backgrounds/school/bg_school_admission_approach.png
 source_generated_path: C:/Users/user/.codex/generated_images/01a04af4-91c2-78f2-bbbb-9e5110b63de2/exec-76cfe61d-324f-4add-9feb-c3bc12da6339.png
 generator: image_gen
 generated_at: 2026-08-31
 sha256: D002D5E8FE545631F48AC07F2AA4C2F4AB292B587E9476CE39F96276133A5FE0
 bytes: 2540589
 consumer_surface: src/ui/front_door/story_front_door.tscn
-runtime_status: NOT_IMPLEMENTED__USER_LOCK_REQUIRED
-user_lock: PENDING
-visual_qa: PASS_CANDIDATE_SCOPE_ONLY
+runtime_status: IMPLEMENTED__EXACT_EDITOR_RENDERED_1280X720
+user_lock: LOCKED_2026-08-31
+visual_qa: PASS_ASSET_SCOPE_AND_EDITOR_RENDER__HUMAN_UX_NOT_RUN
 ```
 
 검수 관찰:
 
-- 16:9 환경 일러스트이며, 학원 정문·진입로·따뜻한 등불·온실 지붕이 한 장면 안에서 읽힌다.
+- 1672×941의 near-16:9 환경 일러스트이며, 학원 정문·진입로·따뜻한 등불·온실 지붕이 한 장면 안에서 읽힌다.
 - 인물, 읽을 수 있는 기능 텍스트, 수치, 버튼, 로고, 워터마크, 빈 장식 패널이 없다. 그러므로 로고와 새 기록/이어가기 버튼은 live Godot UI로 안전하게 분리할 수 있다.
 - 별형 회로나 부적·패찰형 글자는 없고, 청보라 직접 필기 마력의 짧은 흔적만 환경적인 마법성으로 사용했다.
 - 현재 평가는 후보 구도·제작 경로의 통과일 뿐, 미술 최종 잠금, runtime 적용, 사람 UX 검증 또는 출시 승인을 뜻하지 않는다.
+
+## 사용자 잠금 및 런타임 적용 — 후보 01
+
+2026-08-31 사용자는 스토리 프런트 도어 배경 후보 01을 메인 화면으로 명시 승인했다. 원본 바이트는 SHA-256을 유지한 채 `assets/art/backgrounds/school/bg_school_admission_approach.png`로 승격했고, `src/ui/front_door/story_front_door.tscn`의 `EnvironmentBackground`가 이를 `TextureRect`로 표시한다. 로고, 안내 문구, 새 기록/이야기 이어하기/설정 버튼과 저장 상태는 계속 live Godot UI가 소유한다.
+
+정확한 worktree Godot 4.7.1 편집기에서 1280×720 실행 화면과 새 기록 → 입학식 전환을 확인했다. 이는 편집기 렌더와 입력 경로의 증거일 뿐, 사람 UX, 기기 가독성, 성능, 접근성, export 또는 출시 승인은 아니다.

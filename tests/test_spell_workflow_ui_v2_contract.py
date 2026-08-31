@@ -6,18 +6,20 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class SpellWorkflowUiV2ContractTests(unittest.TestCase):
-    def test_required_core_and_screen_files_exist(self):
+    def test_current_core_and_historical_star_files_exist(self):
         required = [
             "src/core/glyphs/glyph_catalog.gd",
-            "src/core/spells/prepared_spell.gd",
-            "src/core/spells/prepared_spell_inventory.gd",
-            "src/core/workflow/spell_workflow_coordinator.gd",
-            "src/ui/spell_workflow/spell_workflow_root.tscn",
+            "src/core/circle/circle_composition.gd",
+            "src/core/events/event_clock_resolver.gd",
+            "src/core/cards/card_ruleset.gd",
+            "src/core/story/story_progress.gd",
+            "src/ui/front_door/story_front_door.tscn",
+            "src/ui/star_circuit_harness.tscn",
         ]
         for path in required:
             self.assertTrue((ROOT / path).is_file(), path)
 
-    def test_authority_tokens_and_stage_boundaries_are_present(self):
+    def test_current_core_and_historical_star_boundaries_are_present(self):
         combined = "\n".join(
             path.read_text(encoding="utf-8")
             for path in [
@@ -27,10 +29,10 @@ class SpellWorkflowUiV2ContractTests(unittest.TestCase):
             ]
         )
         for token in (
-            "GM-SPELL-WORKFLOW-UI-V2-01",
+            "GM-CIRCLE-CLOCK-CARD-CORE-01",
             "GM-STAR-CIRCUIT-MASTERY-BALANCE-01",
-            "FIVE_POINT_STAR",
-            "MANA_ONLY_AT_SPELL_USE",
+            "ROLE_FREE_LAYERED_CIRCLES_1_TO_3",
+            "CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING",
         ):
             self.assertIn(token, combined)
 

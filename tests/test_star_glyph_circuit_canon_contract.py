@@ -59,7 +59,7 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
         self.assertIn("GM-3X3-CIRCUIT-STOCK-FOCUS-01", status)
         self.assertIn("SUPERSEDED_BY_GM-STAR-CIRCUIT-MASTERY-BALANCE-01", status)
 
-    def test_registry_points_to_main_runtime_completion(self) -> None:
+    def test_registry_preserves_star_provenance_without_calling_it_current_product_state(self) -> None:
         registry = json.loads((ROOT / "docs/DESIGN_DOCUMENT_REGISTRY.json").read_text(encoding="utf-8"))
         encoded = json.dumps(registry, ensure_ascii=False)
         for token in (
@@ -68,8 +68,8 @@ class StarGlyphCircuitCanonContractTests(unittest.TestCase):
             SYNC,
             MAIN_AUTHORITY,
             "src/core/resources/typed_glyph_stock_pool.gd",
-            "STAR_RUNTIME_COMPLETION_AUTOMATED_PASS",
-            "SYNCED_TO_MAIN",
+            "CIRCLE_CLOCK_CARD_CORE_PARTIAL_IMPLEMENTATION__STAR_REMOVAL_PENDING",
+            "GM-CIRCLE-CLOCK-CARD-CORE-01",
         ):
             self.assertIn(token, encoded)
 

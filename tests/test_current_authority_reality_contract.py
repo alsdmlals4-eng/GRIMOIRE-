@@ -25,22 +25,24 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         project_file = ROOT / "project.godot"
         self.assertTrue(project_file.is_file())
         project_text = project_file.read_text(encoding="utf-8")
-        root_scene_text = (ROOT / "src/ui/spell_workflow/spell_workflow_product_root.tscn").read_text(encoding="utf-8")
+        project = self.adapter["project"]
+        main_scene_path = project["main_scene"]
+        root_scene_text = (ROOT / main_scene_path.removeprefix("res://")).read_text(encoding="utf-8")
         root_uid = re.search(r'uid="(uid://[^"]+)"', root_scene_text)
         self.assertIsNotNone(root_uid)
-        self.assertIn(f'run/main_scene="{root_uid.group(1)}"', project_text)
+        accepted_main_settings = (f'run/main_scene="{root_uid.group(1)}"', f'run/main_scene="{main_scene_path}"')
+        self.assertTrue(any(setting in project_text for setting in accepted_main_settings))
 
-        project = self.adapter["project"]
         current = self.adapter["current_state"]
         self.assertEqual("CREATED", project["godot_project_status"])
         self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", project["execution_profile"])
         self.assertEqual("IMPLEMENT_AND_VALIDATE", project["work_mode"])
-        self.assertEqual("res://src/ui/spell_workflow/spell_workflow_product_root.tscn", project["main_scene"])
-        self.assertEqual("DEVELOPMENT_PRODUCT_ROOT_ENTRY", project["main_scene_role"])
+        self.assertEqual("res://src/ui/front_door/story_front_door.tscn", project["main_scene"])
+        self.assertEqual("STORY_FRONT_DOOR_ENTRY", project["main_scene_role"])
         self.assertEqual("PARTIAL_FOUNDATION", current["implementation"])
-        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", current["next_product_gate"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING", current["next_product_gate"])
         self.assertEqual("MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY", current["task9_status"])
-        self.assertEqual("TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING", current["runtime_validation"])
+        self.assertEqual("CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN", current["runtime_validation"])
         self.assertEqual("NOT_RUN", current["human_validation"])
         self.assertEqual("NOT_RUN", current["mobile_device_validation"])
         self.assertEqual("NOT_RUN", current["full_vertical_slice"])
@@ -73,10 +75,10 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertEqual("Mobile", project["primary_platform"])
         self.assertEqual("PC", project["follow_up_platform"])
         self.assertEqual("PARTIAL_FOUNDATION", project["implementation_status"])
-        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", project["next_product_gate"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING", project["next_product_gate"])
         self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", project["execution_profile"])
-        self.assertEqual("TASK9_AUTOMATED_PRODUCT_ROOT_PASS_HUMAN_VALIDATION_PENDING", coverage["godot"])
-        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", coverage["spell_workflow"])
+        self.assertEqual("CIRCLE_CLOCK_PARTIAL_AUTOMATED_RUNTIME_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN", coverage["godot"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING", coverage["spell_workflow"])
         self.assertEqual("COMPLETE_FROSTBLOOM_FIRST_SESSION", coverage["planning"])
         self.assertEqual("APPROVED_SPEC", coverage["asset_spec_01"])
 
@@ -86,14 +88,13 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         queue = load_json("docs/planning/visual/GRIMOIRE_IMAGE_GOAL_QUEUE_2026-08-26.json")
 
         current = coverage["current_runtime_readback"]
-        self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", current["next_product_gate"])
-        self.assertEqual("res://src/ui/spell_workflow/spell_workflow_product_root.tscn", current["main_scene"])
+        self.assertEqual("CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING", current["next_product_gate"])
+        self.assertEqual("res://src/ui/front_door/story_front_door.tscn", current["main_scene"])
         self.assertEqual(6, current["glyph_runtime_asset_count"])
-        self.assertEqual("CURRENT_RUNTIME", current["glyph_consumer_state"])
+        self.assertEqual("LEGACY_RUNTIME_NOT_CURRENT_MAIN", current["glyph_consumer_state"])
         self.assertEqual(
-            "FIELD_BASE_CURRENT_PRODUCT_ROOT_BOUND; "
-            "SCHOOL_AND_BATTLE_CANDIDATES_REMAIN_UNBOUND; "
-            "NATIVE_RESOLUTION_WEBP_CANDIDATES_READY",
+            "LOCKED_ADMISSION_BACKGROUND_CURRENT_FRONT_DOOR_BOUND; "
+            "LEGACY_PRODUCT_ROOT_BACKGROUND_BINDINGS_RETAINED_PENDING_STAR_REMOVAL",
             current["img02_state"],
         )
         self.assertEqual(
@@ -102,7 +103,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         )
 
         glyph_family = next(item for item in checklist["runtime_asset_families"] if item["asset_group_id"] == "GR-RA-01-GLYPH-BASE")
-        self.assertEqual("CURRENT_RUNTIME", glyph_family["consumer_state"])
+        self.assertEqual("LEGACY_RUNTIME_NOT_CURRENT_MAIN", glyph_family["consumer_state"])
         self.assertEqual(6, glyph_family["asset_spec"]["count_cap"])
         self.assertEqual(["heat", "protect", "flow", "focus", "disperse", "burst"], glyph_family["asset_spec"]["base_names"])
 

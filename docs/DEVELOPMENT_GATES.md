@@ -6,7 +6,7 @@ contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 historical_contract_binding: GM-CONTRACT-V4-5-BINDING-01
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
-current_state_sync: TASK9_MERGED_MAIN_DOCUMENTATION_READBACK
+current_state_sync: CIRCLE_CLOCK_CARD_CORE_PARTIAL_REPLACEMENT_PRECOMMIT_READBACK
 dedicated_local_environment_predecessor_sync: GR-SYNC-20260811-20-PROJECT-DEDICATED-LOCAL-ENVIRONMENT
 task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP_HISTORICAL
 task8_current_reverify: docs/planning/TASK8_CURRENT_MAIN_RECONCILIATION_2026-08-27.md
@@ -31,12 +31,12 @@ github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
 repo_wide_actions_supply_chain: REPO_WIDE_ACTIONS_FULL_SHA_PINNING_PASS
 spell_workflow_predecessor_sync: GR-SYNC-20260811-01-SPELL-WORKFLOW-TASK7-CURRENT-STATE
-product_decision: GM-SPELL-WORKFLOW-UI-V2-01
+product_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
 latest_product_main: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
 spell_workflow_predecessor_status: TASK8_MERGED_MAIN_VERIFIED
 spell_workflow_status: TASK9_MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY
 compatibility_next_gate: TASK8_HISTORICAL_RECOVERY_CLOSED
-next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
+next_product_gate: CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING
 task8_recovery_subgate: TASK8_CURRENT_MAIN_LOCAL_VALIDATION_PASS
 task8_local_git_head_baseline: 8c611f601aa98397ed1558e92ab207e0e8347a9b
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
@@ -45,8 +45,9 @@ task8_remote_product_pr: 190_MERGED_MAIN_VERIFIED
 task9_product_commit: db038a4fd964ca037bfe97f6aee5d0cc7d0daf93
 task9_product_pr: 192_MERGED_MAIN_VERIFIED
 parallel_open_pr: LIVE_GITHUB_READBACK_REQUIRED
-preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-circuit_topology: FIVE_POINT_STAR
+current_runtime_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
+current_circuit_topology: ROLE_FREE_LAYERED_CIRCLES_1_TO_3__PARTIAL_REPLACEMENT
+preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01__HISTORICAL_COMPATIBILITY
 tool_authority_decision: GM-GODOT-AUTHORING-GUT-TEST-AUTHORITY-01
 higodot_release: v3.2.0
 higodot_vendor_integrity: PASS_EXACT_TREE_IDENTITY
@@ -59,7 +60,7 @@ gut_formal_adoption: GUT_FORMALLY_ADOPTED
 hera_status: HERA_V1_0_0_EXACT_PAIR_LIVE_CANARY_PASS
 hera_authority: LIVE_QA_AND_OBSERVABILITY_ONLY
 windows_android_shared_core: WINDOWS_ANDROID_SHARED_CORE_STRUCTURAL_PASS
-three_screen_runtime: TASK9_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE_READY
+three_screen_runtime: HISTORICAL_TASK9_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE_READY
 human_validation: NOT_RUN
 device_validation: NOT_RUN
 performance_validation: NOT_RUN
@@ -85,7 +86,9 @@ Sheet와 Notion은 cold-start 선행조건이 아니다. 신규 상태는 GitHub
 
 모든 material work는 fresh external research check와 actual project feasibility recheck를 수행한 뒤 적대적 검토로 권장안·변경을 공격한다. L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop, findings 분류, 관련 회귀, merged-main destination readback까지 요구한다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`.
 
-## Gate 1 — Product core preservation
+## Gate 1 — Historical Star Runtime preservation
+
+아래 Gate는 기존 Star Runtime의 테스트·저장·복구 가능성을 보존하는 경계다. 현재 제품 코어는 `GM-CIRCLE-CLOCK-CARD-CORE-01`이며, Star 제거는 `CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING`을 먼저 닫아야 한다.
 
 ```yaml
 decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
@@ -99,7 +102,9 @@ stock_scope: TYPED_GLYPH_ONLY
 
 활성 3×3 재도입, Universal Stock 임의 대체, 자동 Target/Commit, Best Route, Commit 전 소비, 중복 소비는 차단한다.
 
-## Gate 2 — Current Spell Workflow implementation boundary
+## Gate 2 — Current Circle / Clock / Card implementation boundary
+
+현재 실제 main entry는 `res://src/ui/front_door/story_front_door.tscn`이다. Story Front Door는 새 기록·이어하기·설정만 보이고, 입학식 → 수업 → 첫 실습 → 이후 이야기 게이트로 진행한다. 서클·시계·카드는 현재 부분 구현이며 상세 카드 마력 규칙은 `RULESET_PENDING`이다.
 
 Tasks 3–9는 병합 완료다. Task8 recovery text below is historical provenance; current execution starts at the Task9 human vertical-slice gate.
 
@@ -114,9 +119,9 @@ Tasks 3–9는 병합 완료다. Task8 recovery text below is historical provena
 | 9 | #192 | `db038a4fd964ca037bfe97f6aee5d0cc7d0daf93` | TASK9_MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY |
 
 ```yaml
-current_runtime_entry: res://src/ui/spell_workflow/spell_workflow_product_root.tscn
-current_runtime_role: DEVELOPMENT_PRODUCT_ROOT_ENTRY
-current_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
+current_runtime_entry: res://src/ui/front_door/story_front_door.tscn
+current_runtime_role: STORY_FRONT_DOOR_ENTRY
+current_gate: CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING
 automated_evidence: AVAILABLE_DO_NOT_PROMOTE_TO_HUMAN_DEVICE_PERFORMANCE_OR_EXPORT_PASS
 ```
 
@@ -204,7 +209,7 @@ exact requested GRIMOIRE project/worktree
 
 ## Gate 5 — Product Root / Task9
 
-현재 `project.godot` Main Scene은 `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`, 역할은 `DEVELOPMENT_PRODUCT_ROOT_ENTRY`다. Star Harness는 삭제하지 않고 별도 POC 장면으로 보존한다. 이는 완성 제품 전체 승격을 뜻하지 않는다.
+현재 `project.godot` Main Scene은 `res://src/ui/front_door/story_front_door.tscn`, 역할은 `STORY_FRONT_DOOR_ENTRY`다. Star Harness는 실제 저장 처분 결정을 받을 때까지 별도 historical POC 장면으로 보존한다. 이는 완성 제품 전체 승격을 뜻하지 않는다.
 
 Task9은 다음 matrix와 3-stage E2E를 소유한다.
 
@@ -310,7 +315,7 @@ platform:
 ## Current unresolved delivery limits
 
 ```text
-TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
+CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING
 HIGODOT_EXPECTED_VERSION_FIELD_NOT_SURFACED
 HIGODOT_AUTHORING_RECEIPT_UNVERIFIED_FOR_DIRECT_LOCAL_TOOL_STATE_COMMIT
 AUDIO_VAULT_PATH_UNVERIFIED

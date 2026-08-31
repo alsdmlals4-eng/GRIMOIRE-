@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "GRIMOIRE: 세계를 다시 쓰는 법",
   "requirement_set_id": "GR-VISUAL-ASSET-COVERAGE-20260826-01",
-  "status": "FRONT_DOOR_CANDIDATE_GENERATED__CIRCLE_CLOCK_CARD_CORE_RUNTIME_PENDING",
+  "status": "FRONT_DOOR_LOCKED_AND_IMPLEMENTED__CIRCLE_CLOCK_CARD_CORE_RUNTIME_PENDING",
   "contract": {
     "name": "PROJECT_TOTAL_PLANNING_IMPLEMENTATION_AND_DELIVERY_INSTRUCTION",
     "version": "4.8",
@@ -10,21 +10,21 @@
     "policy": "VISUAL_REQUIREMENT_DELETE_TEST_THEN_VISUAL_ASSET_COVERAGE_AND_ART_STYLE_LOCK"
   },
   "project_stage": "DEMO_FIRST_VERTICAL_SLICE__PARTIAL_FOUNDATION",
-  "active_work_scope": "GM-CIRCLE-CLOCK-CARD-CORE-01_VISUAL_CANDIDATE_PREPARATION",
+  "active_work_scope": "GM-CIRCLE-CLOCK-CARD-CORE-01_FRONT_DOOR_RUNTIME_BINDING",
   "product_implementation_authorized_by_current_work_scope": true,
   "current_runtime_readback": {
-    "readback_date": "2026-08-27",
-    "project_main": "5139bc53ef4ad80131d6b2c76d235d05550cddfa",
-    "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
-    "main_scene_role": "DEVELOPMENT_PRODUCT_ROOT_ENTRY",
-    "task9_status": "MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY",
-    "next_product_gate": "TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING",
+    "readback_date": "2026-08-31",
+    "project_main": "LOCAL_EXACT_WORKTREE_PRECOMMIT_FRONT_DOOR_BINDING",
+    "main_scene": "res://src/ui/front_door/story_front_door.tscn",
+    "main_scene_role": "STORY_FRONT_DOOR_ENTRY",
+    "task9_status": "HISTORICAL_MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY",
+    "next_product_gate": "CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING",
     "glyph_runtime_asset_count": 6,
-    "glyph_consumer_state": "CURRENT_RUNTIME",
+    "glyph_consumer_state": "LEGACY_RUNTIME_NOT_CURRENT_MAIN",
     "glyph_assets": ["glyph_heat.png", "glyph_protect.png", "glyph_flow.png", "glyph_focus.png", "glyph_disperse.png", "glyph_burst.png"],
-    "glyph_runtime_consumer": "src/ui/spell_workflow/spell_workflow_product_root.tscn via glyph_visual_resolver.gd",
-    "img02_state": "FIELD_BASE_CURRENT_PRODUCT_ROOT_BOUND; SCHOOL_AND_BATTLE_CANDIDATES_REMAIN_UNBOUND; NATIVE_RESOLUTION_WEBP_CANDIDATES_READY",
-    "img02_source_candidates": "FIELD_BASE_CURRENT_RUNTIME_BOUND; SCHOOL_AND_BATTLE_CANDIDATES_UNBOUND",
+    "glyph_runtime_consumer": "src/ui/spell_workflow/spell_workflow_product_root.tscn via glyph_visual_resolver.gd (legacy runtime, not current main)",
+    "img02_state": "LOCKED_ADMISSION_BACKGROUND_CURRENT_FRONT_DOOR_BOUND; LEGACY_PRODUCT_ROOT_BACKGROUND_BINDINGS_RETAINED_PENDING_STAR_REMOVAL",
+    "img02_source_candidates": "LOCKED_ADMISSION_BACKGROUND_CURRENT_MAIN_BOUND; LEGACY_PRODUCT_ROOT_CANDIDATES_RETAINED",
     "unrun_evidence": ["HUMAN_NOT_RUN", "DEVICE_NOT_RUN", "PERFORMANCE_NOT_RUN", "WINDOWS_EXPORT_NOT_RUN", "ANDROID_EXPORT_NOT_RUN", "FULL_VERTICAL_SLICE_NOT_RUN"]
   },
   "evidence_ceiling": {
@@ -404,9 +404,9 @@
       "consequence_if_missing": "Weaker story entry, academy identity, and first-screen warmth.",
       "priority": "P1",
       "action": "CREATE",
-      "coverage_status": "GENERATED_CANDIDATE__USER_LOCK_PENDING",
-      "state_family_status": "NORMAL_REQUIRED__OTHER_STATES_NOT_APPLICABLE",
-      "note": "Generated candidate: assets/art/source_candidates/circle_clock_card_core/front_door/front_door_admission_academy_candidate_01.png (SHA-256 D002D5E8FE545631F48AC07F2AA4C2F4AB292B587E9476CE39F96276133A5FE0). Background only; logo, buttons, save state, and all localized text remain live UI. User runtime lock is still pending."
+      "coverage_status": "USER_APPROVED__CANON_REGISTERED__IMPLEMENTED__EDITOR_RENDERED",
+      "state_family_status": "NORMAL_IMPLEMENTED__OTHER_STATES_NOT_APPLICABLE",
+      "note": "User locked 2026-08-31. Candidate bytes were promoted without alteration to assets/art/backgrounds/school/bg_school_admission_approach.png (SHA-256 D002D5E8FE545631F48AC07F2AA4C2F4AB292B587E9476CE39F96276133A5FE0), and StoryFrontDoor/EnvironmentBackground binds it as a live TextureRect. Exact-worktree Godot 4.7.1 rendered it at 1280x720; background only, logo, buttons, save state, and all localized text remain live UI. Human UX, device, performance, accessibility, export, and release evidence remain NOT_RUN."
     },
     {
       "visual_id": "GR-VIS-024-EVENT-CLOCK-LIVE-PRESENTATION",

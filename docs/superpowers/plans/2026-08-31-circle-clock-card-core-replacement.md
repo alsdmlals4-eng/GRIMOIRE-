@@ -345,15 +345,15 @@ Expected: result receipt shows both improvement and remaining risk.
 - Consumes: approved style lock, front-door requirements, card type definitions, and visual ownership rules.
 - Produces: candidate images and provenance. Candidates are never runtime assets before final user lock.
 
-- [ ] **Step 1: Write a concrete brief for four consumers.**
+- [x] **Step 1: Write a concrete brief for four consumers.**
 
 The brief contains one warm academy front-door background with no logo/text; one card-frame/card-back family with no rules text; attack/defense/summon symbolic art with no numeric text; and one student upper-body wizard card. It rejects empty decorative side panels, adult-teacher character reads, 3D exploration, copied card frames, and baked UI values.
 
-- [ ] **Step 2: Generate exactly one candidate per brief, inspect it, and register GENERATED_CANDIDATE.**
+- [x] **Step 2: Generate exactly one front-door candidate, inspect it, and register GENERATED_CANDIDATE.**
 
 Store originals under assets/art/source_candidates/circle_clock_card_core/. Record generator, prompt identifier, SHA-256, consumer, and runtime_status NOT_IMPLEMENTED in the coverage source.
 
-- [ ] **Step 3: Validate assets and provenance.**
+- [x] **Step 3: Validate the front-door candidate asset and provenance.**
 
 ~~~powershell
 Get-ChildItem assets/art/source_candidates/circle_clock_card_core -File
@@ -362,16 +362,27 @@ Get-Content docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json 
 
 Expected: every candidate has one consumer and is not referenced from a runtime scene.
 
-- [ ] **Step 4: Show candidates to the user and obtain final lock or a requested revision.**
+- [x] **Step 4: Show the front-door candidate to the user and obtain final lock.**
 
 Do not copy a candidate into assets/art or reference it in a runtime scene before the user locks that family.
 
-- [ ] **Step 5: Commit brief, candidate provenance, and source candidates.**
+- [x] **Step 5: Commit brief, candidate provenance, and source candidate.**
 
 ~~~powershell
 git add docs/planning/visual/CIRCLE_CLOCK_CARD_CORE_VISUAL_BRIEF_2026-08-31.md docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json assets/art/source_candidates/circle_clock_card_core
 git commit -m "art: add circle clock card visual candidates"
 ~~~
+
+#### Task 6 lock completion — approved front-door runtime binding
+
+User locked candidate 01 on 2026-08-31. The current visual policy permits this one approved family to move from source candidate to canonical runtime asset; candidates 02–04 remain deferred and are not generated in this completion step.
+
+- [x] Promote the byte-identical locked PNG to `assets/art/backgrounds/school/bg_school_admission_approach.png`, retaining generator path, candidate path, SHA-256, and consumer provenance in the visual brief.
+- [x] Add a failing front-door integration assertion for the canonical resource, then verify the resource registry/import path before continuing.
+- [x] Add a second failing assertion that requires a live `EnvironmentBackground` `TextureRect`, then bind the canonical background below the readability veil and above the fallback colour.
+- [x] Reload and save through the exact worktree Godot editor; run the 1280×720 story front door, confirm the live Control hierarchy, click `새 기록 시작`, and verify the resulting admission-prologue tree and error log.
+
+Expected: the admissions background is a normal background-only runtime asset; logo, localized text, actions, save state, and all gameplay UI remain live Controls. Human UX, device, performance, accessibility, export, and release validation remain separate `NOT_RUN` gates.
 
 ### Task 7: Implement the narrative-gated card ruleset shell
 

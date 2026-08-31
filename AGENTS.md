@@ -21,10 +21,10 @@ orientation: LANDSCAPE_FIXED
 product_stage: DEMO_FIRST_VERTICAL_SLICE
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION__W6_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
-current_user_work_scope: FROSTBLOOM_W6_POSTMERGE_EVIDENCE_AND_HUMAN_VALIDATION
+current_user_work_scope: CIRCLE_CLOCK_CARD_CORE_REPLACEMENT__L2_APPROVED__TASKS_1_TO_7_IMPLEMENTED__TASK8_SAVE_DISPOSITION_PENDING
 product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__L3_IMPLEMENTED__NO_RUNTIME_ASSET_BATCH
+visual_generation_state: FRONT_DOOR_BACKGROUND_LOCKED__CANON_REGISTERED__RUNTIME_IMPLEMENTED__CARD_BATCH_DEFERRED
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -47,13 +47,13 @@ w6_decision_loop_merge_commit: 713bfbfc4c16b9ea469f2aa2c313a72bc50e1b67
 post_visual_lock_next_gate: W6_HUMAN_PLAYER_DEVICE_PERFORMANCE_ACCESSIBILITY_EXPORT_FULL_SLICE
 adversarial_research_feasibility_gate: docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md
 adversarial_research_feasibility_gate_status: USER_APPROVED_ACTIVE__REQUIRED_ON_MATERIAL_WORK
-product_decision: GM-SPELL-WORKFLOW-UI-V2-01
-product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
-product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
-player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
-player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
-next_product_task: TASK9_USER_VERTICAL_SLICE_VALIDATION
-next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
+product_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
+product_decision_overlay: docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md
+product_decision_revision: 2026-08-31-USER_APPROVED_CORE_REPLACEMENT
+player_facing_spell_flow: WRITE_OR_SELECT_GLYPHS_TO_LAYERED_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT
+player_facing_ux_groups: STORY_EVENT_AND_CARD_DUEL_CONTEXT
+next_product_task: TASK8_STAR_RUNTIME_REMOVAL_AFTER_SAVE_DISPOSITION
+next_product_gate: CIRCLE_CLOCK_TASK8_SAVE_DISPOSITION_PENDING
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -108,7 +108,24 @@ numeric_status: PLAYTEST_TUNING_REQUIRED
 15. Visual candidate production은 coverage·current canon·actual/planned consumer·rights boundary를 먼저 읽는다. 2026-08-28 사용자 사전 승인에 따라 후보는 이미지별 재승인 없이 `TEXT_BRIEF → GENERATE_CANDIDATE → QA_AND_RECORD`로 진행한다. 한 번에 하나의 후보 또는 그 후보의 명시적 보정만 생성한다. `PROJECT_ASSET_APPROVED`, `VISUAL_DIRECTION_LOCK`, runtime 사용, production batch 확장은 사용자 확정 전 자동 승격하지 않는다.
 16. 모든 실질 작업은 `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`를 따른다. fresh external research check와 actual implementation-feasibility recheck, 적대적 공격/검증을 권장·write 전에 수행한다. L1 기획·implementation·PR·정본 교정에는 최소 5회의 full-scope loop와 post-merge readback을 적용한다.
 
-## 프로젝트 코어
+## 현재 제품 코어 — Circle / Clock / Card
+
+최신 사용자 승인 `GM-CIRCLE-CLOCK-CARD-CORE-01`은 아래를 현재 제품의 플레이어 노출 코어로 둔다. 구현 상태는 `PARTIAL_REPLACEMENT`; 기존 Star Runtime의 실제 사용자 저장 처분은 아직 승인되지 않아 제거 작업은 시작하지 않는다.
+
+```yaml
+story_entry: STORY_FRONT_DOOR_ENTRY
+front_door: NEW_RECORD__RESUME__SETTINGS_ONLY
+glyph_topology: ROLE_FREE_LAYERED_CIRCLES_1_TO_3
+spell_flow: WRITE_OR_SELECT_GLYPHS_TO_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT
+event_clock: DECLARED_STORY_ACTIONS_ONLY__NEVER_MENU_DIALOGUE_OR_WALL_TIME
+card_shell: STORY_GATED__WIZARD_ATTACK_SPELL_DEFENSE_SPELL_SUMMON
+card_ruleset: DETAIL_PENDING__NO_FIXED_7_7_6_OR_20_DEFAULT
+star_runtime: HISTORICAL_COMPATIBILITY__SAVE_DISPOSITION_PENDING
+```
+
+## Historical Star Runtime core — preservation boundary
+
+아래 Star Circuit 내용은 보존된 구현·테스트·저장 호환성의 역사적 경계다. 현재 Main Scene이나 신규 플레이어 코어가 아니며, 실제 저장 처분에 대한 사용자 결정 전에는 삭제·마이그레이션·자동 변환하지 않는다.
 
 > 조사 → 의도 → `FIVE_POINT_STAR` 회로 → 회로 Preview → 대상 키워드 → 최종 성공률·Mana·위험 Preview → 명시 Commit → 결과·대가 → 복기.
 
@@ -139,8 +156,8 @@ commit: EXPLICIT_EXACTLY_ONCE
 ## Godot 현실
 
 - 프로젝트 파일: `project.godot`
-- 현재 Main Scene: `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`
-- Main Scene 역할: `DEVELOPMENT_PRODUCT_ROOT_ENTRY`
+- 현재 Main Scene: `res://src/ui/front_door/story_front_door.tscn`
+- Main Scene 역할: `STORY_FRONT_DOOR_ENTRY`
 - 권장 엔진 계열: Godot `4.7.1`
 - Renderer: GL Compatibility
 
@@ -227,7 +244,7 @@ Spell Visual은 다음을 추가로 따른다.
 
 - 글자는 세로 패찰·부적·수집 카드보다 **직접 쓰인 문자**로 보여야 한다.
 - 획과 필기감, 빛나는 잉크/마력 흔적을 우선한다.
-- FIVE_POINT_STAR에는 패찰을 꽂기보다 글자를 직접 놓거나 쓰는 느낌을 우선한다.
+- Historical Star Runtime의 FIVE_POINT_STAR 기록은 유지하되, 새 서클에는 글자를 직접 놓거나 쓰는 느낌을 우선한다.
 - `PreparedSpell`의 기본 플레이어 결과 라벨은 `준비 주문`보다 **완성 주문 / 완성 주문 이름**을 우선한다.
 - 완성 주문 선택 뒤 대상 지정은 가능하면 게임 장면에서 직접 수행하고 필요한 Preview 뒤 `시전`한다.
 - 실제 주문 이름 생성 문법/로컬라이징 알고리즘은 아직 별도 설계 대상이다.

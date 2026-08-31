@@ -4,9 +4,9 @@
 runtime_main_sync: LIVE_ORIGIN_MAIN_2026-08-31_PRE_CORE_REPLACEMENT
 runtime_main_authority_commit: d384c454768a8aa3b0adb939e0b035ac2afa426e
 latest_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
-canon_status: USER_APPROVED_L2__IMPLEMENTATION_PLAN_READY
-product_implementation: STAR_RUNTIME_REPLACEMENT_AUTHORIZED_NOT_STARTED
-runtime_validation: NEW_CORE_NOT_RUN
+canon_status: USER_APPROVED_L2__PARTIAL_IMPLEMENTATION__STAR_REMOVAL_PENDING
+product_implementation: CIRCLE_CLOCK_CARD_CORE_PARTIAL_IMPLEMENTATION__STAR_REMOVAL_PENDING
+runtime_validation: PARTIAL_REPLACEMENT_AUTOMATED_GODOT_AND_EDITOR_RENDER_PASS__HUMAN_NOT_RUN
 ```
 
 ## 시작 경로
@@ -37,11 +37,13 @@ Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GA
 - `tests/test_runner.gd`
 - `tools/run_star_runtime.py`
 
-## Godot — Planned Core Replacement
+## Godot — Current Core-Replacement Slice
 
 - `docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md`
-- role-free layered-circle core, event-clock core, card ruleset shell, and story-led front door: `NOT_STARTED`
-- image candidates for the front door and cards: `NOT_RUN`
+- role-free layered-circle core, event-clock core, narrative-gated card ruleset shell, and story-led front door: `PARTIAL_IMPLEMENTATION`
+- default entry: `res://src/ui/front_door/story_front_door.tscn` (`새 기록 시작` → admission); the original Star Runtime remains historical compatibility code until the separate save disposition and scoped removal gate
+- locked admissions background: `assets/art/backgrounds/school/bg_school_admission_approach.png` is runtime-bound as a live `TextureRect`; remaining card images are not generated
+- Human/device/performance/accessibility/export/full-slice evidence: `NOT_RUN`
 
 ## GR-TEST-033
 
