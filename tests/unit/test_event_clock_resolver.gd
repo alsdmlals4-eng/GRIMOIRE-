@@ -148,10 +148,14 @@ func run(case) -> void:
         case.assert_equal(2, no_clock_snapshot.get("threat_segments", 0), "%s leaves threat segments unchanged" % kind)
         case.assert_equal([&"seed-a", &"seed-z"], no_clock_snapshot.get("resolved_action_ids", []), "%s never records an action id" % kind)
 
-    for kind in [&"MENU_OPEN", &"PAUSED"]:
+    # Breaks if any non-clock kind consults a pre-resolved id before returning no change.
+    for kind in non_clock_kinds:
         var pre_resolved_non_clock: Dictionary = resolver.resolve(boundary_state, {"action_id": &"seed-a", "kind": kind})
         case.assert_equal(&"NO_CLOCK_CHANGE", pre_resolved_non_clock.get("status", &""), "%s ignores a pre-resolved action id" % kind)
-        case.assert_equal([&"seed-a", &"seed-z"], pre_resolved_non_clock.get("state_snapshot", {}).get("resolved_action_ids", []), "%s leaves the existing ledger unchanged" % kind)
+        var pre_resolved_snapshot: Dictionary = pre_resolved_non_clock.get("state_snapshot", {})
+        case.assert_equal(3, pre_resolved_snapshot.get("goal_segments", 0), "%s with a pre-resolved id leaves goal segments unchanged" % kind)
+        case.assert_equal(2, pre_resolved_snapshot.get("threat_segments", 0), "%s with a pre-resolved id leaves threat segments unchanged" % kind)
+        case.assert_equal([&"seed-a", &"seed-z"], pre_resolved_snapshot.get("resolved_action_ids", []), "%s leaves the existing ledger unchanged" % kind)
 
     var no_clock_id: Dictionary = resolver.resolve(boundary_state, {"action_id": &"story-after-menu", "kind": &"MENU_OPEN"})
     case.assert_equal(&"NO_CLOCK_CHANGE", no_clock_id.get("status", &""), "Menu action id is not consumed")
