@@ -10,20 +10,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python tools/generate_project_operating_views.py --check
-      - run: python -m unittest tests.test_base_v9_adoption
-      - run: python -m unittest tests.test_current_authority_reality_contract -v
-      - run: python -m unittest tests.test_task2_user_approval_canon -v
-      - run: python -m unittest tests.test_task3_continuous_entry_canon -v
-      - run: python -m unittest tests.test_star_glyph_circuit_canon_contract -v
-      - run: python -m unittest tests.test_star_runtime_implementation_contract -v
-      - run: python -m unittest tests.test_star_runtime_completion_contract -v
-      - run: python -m unittest tests.test_world_character_three_year_story_contract -v
-      - run: python -m unittest tests.test_year_one_growth_economy_test_values_contract -v
-      - run: python -m unittest tests.test_frostbloom_internal_vertical_slice_contract -v
-      - run: python -m unittest tests.test_frostbloom_first_session_handoff_buffer_contract -v
-      - run: python -m unittest tests.test_frostbloom_planning_pointer_closeout_contract -v
-      - run: python -m unittest tests.test_prework_benchmark_industry_research_contract -v
-      - run: python -m unittest tests.test_frostbloom_internal_graybox_pack_contract -v
+      - name: Run current Python contract suite
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
       - name: Validate JSON
         run: |
           python - <<'PY'
@@ -101,11 +89,13 @@ jobs:
           if grep -E '^(src/|scenes/|data/|assets/|addons/|project\.godot$)' changed.txt; then
             echo "product implementation detected; enforcing runtime implementation gates"
             test -f project.godot
-            test -f .github/workflows/validate-star-runtime-poc.yml
-            test -f tests/test_star_runtime_implementation_contract.py
-            test -f tests/test_star_runtime_completion_contract.py
-            python -m unittest tests.test_star_runtime_implementation_contract -v
-            python -m unittest tests.test_star_runtime_completion_contract -v
+            test -f .github/workflows/validate-circle-clock-story-runtime.yml
+            test -f tests/test_runner.gd
+            test -f tests/unit/test_no_star_runtime_guard.gd
+            test ! -d src/core/star
+            test ! -d src/core/spells
+            test ! -d src/core/workflow
+            test ! -d src/ui/spell_workflow
             ! find src -type f \( -path '*/stage2/*' -o -name 'stage2_*' \) | grep .
           else
             echo "planning-only change; product implementation paths absent"

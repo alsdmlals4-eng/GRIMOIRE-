@@ -7,8 +7,7 @@
   "languages": ["GDScript", "Python", "Markdown", "JSON"],
   "source_roots": ["src/", "data/", "assets/", "tests/", "docs/"],
   "test_commands": [
-    {"command_id": "UNIVERSAL_LOOP_VISUAL_PILOT", "argv": ["python", "-m", "unittest", "tests.test_universal_loop_visual_pilot", "-v"], "working_directory": ".", "timeout_seconds": 600, "network": "DENIED"},
-    {"command_id": "EXISTING_VISUAL_PLATFORM_CONTRACT", "argv": ["python", "-m", "unittest", "tests.test_visual_platform_gate_sequencing", "-v"], "working_directory": ".", "timeout_seconds": 600, "network": "DENIED"}
+    {"command_id": "CURRENT_VISUAL_PLATFORM_CONTRACT", "argv": ["python", "-m", "unittest", "tests.test_visual_platform_gate_sequencing", "-v"], "working_directory": ".", "timeout_seconds": 600, "network": "DENIED"}
   ],
   "runtime_commands": [],
   "build_commands": [],

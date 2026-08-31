@@ -11,7 +11,7 @@
   "coverage_ledger_path": "REQUIREMENT_COVERAGE_LEDGER.json",
   "active_run_path": "ACTIVE_LOOP_RUN.json",
   "immutable_run_path": "runs/GR_VISUAL_SHADOW_001.json",
-  "protected_surfaces": ["PROJECT_CORE", "STAR_CIRCUIT_UX", "MOBILE_LAYOUT", "ACCESSIBILITY", "ART_DIRECTION"],
+  "protected_surfaces": ["PROJECT_CORE", "CIRCLE_CLOCK_STORY_UX", "MOBILE_LAYOUT", "ACCESSIBILITY", "ART_DIRECTION"],
   "semantic_resource_domains": ["VISUAL_UI_CANON_OPERATIONS"],
   "capabilities": ["GITHUB_CANON", "REQUIREMENT_COVERAGE", "GODOT_GDSCRIPT", "GITHUB_ART_BIBLE", "RUNTIME_CAPTURE"],
   "context_isolation": {

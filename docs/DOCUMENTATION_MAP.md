@@ -25,17 +25,9 @@ Current core-replacement owner: `docs/superpowers/specs/2026-08-31-circle-clock-
 
 Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. Every material work unit runs fresh external research, actual project feasibility recheck, and adversarial review before a recommendation or write. L1 planning, implementation, PR, and canon correction require five full-scope loops and post-merge readback.
 
-## Godot — Historical Star Runtime (removed from current runtime)
+## Godot — Superseded Star Runtime
 
-- `project.godot`
-- `src/ui/star_circuit_harness.tscn`
-- `src/core/star/`
-- `src/core/resources/typed_glyph_stock_pool.gd`
-- `src/core/resources/focus_scribing_session.gd`
-- `src/ui/focus_scribing_overlay.tscn`
-- `data/testing/frostbloom_star_ux_map.json`
-- `tests/test_runner.gd`
-- `tools/run_star_runtime.py`
+별 회로 전용 source·scene·test·capture tool·physical validation pack은 `edac7c3` 이후 현재 checkout에 남기지 않는다. 구현과 실행 증거는 Git history의 historical provenance이며, 현행 작업·실행·저장 migration의 입력으로 사용하지 않는다. 사용자 소유 legacy Star save는 repository 밖 `user://` 영역에 **읽기 전용 compatibility-only**로 보존되며, 현재 Circle story가 변환·이동·삭제하지 않는다.
 
 ## Godot — Current Circle / Clock / Card Slice
 
@@ -45,16 +37,9 @@ Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GA
 - locked admissions background: `assets/art/backgrounds/school/bg_school_admission_approach.png` is runtime-bound as a live `TextureRect`; remaining card images are not generated
 - Human/device/performance/accessibility/export/full-slice evidence: `NOT_RUN`
 
-## GR-TEST-033
+## GR-TEST-033 — Superseded
 
-- `docs/superpowers/specs/2026-08-06-star-circuit-physical-validation-design.md`
-- `docs/superpowers/plans/2026-08-06-star-circuit-physical-validation-implementation-plan.md`
-- `docs/validation/GR_TEST_033_STAR_PHYSICAL_RUNBOOK.md`
-- `docs/validation/GR_TEST_033_MODERATOR_SCRIPT.md`
-- `docs/validation/GR_TEST_033_DEVICE_PREFLIGHT.md`
-- `tools/analyze_gr_test_033.py`
-- `docs/planning/sync/GR-SYNC-20260806-04-STAR-PHYSICAL-VALIDATION-READY.md`
-- `docs/planning/sync/GR-SYNC-20260806-05-STAR-PHYSICAL-VALIDATION-MAIN.md`
+별 회로 physical pack은 현행 Circle/Clock UX를 검증하지 못하므로 실행 파일·CI·runbook을 유지하지 않는다. 사람·기기 검증은 `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`의 새 관찰 프로토콜로 다시 준비한다.
 
 ## 출시·권리
 

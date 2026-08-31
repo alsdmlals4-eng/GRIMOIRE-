@@ -19,9 +19,9 @@
       "docs/operations/loop/REQUIREMENT_COVERAGE_LEDGER.json",
       "docs/operations/loop/ACTIVE_LOOP_RUN.json",
       "docs/operations/loop/runs/GR_VISUAL_SHADOW_001.json",
-      "tests/test_universal_loop_visual_pilot.py"
+      "tests/test_visual_platform_gate_sequencing.py"
     ],
-    "tests": ["tests/test_universal_loop_visual_pilot.py", "tests/test_visual_platform_gate_sequencing.py", ".github/workflows/validate-universal-loop-visual-pilot.yml"],
+    "tests": ["tests/test_visual_platform_gate_sequencing.py", ".github/workflows/validate-universal-loop-visual-pilot.yml"],
     "evidence": ["E1_STATIC", "E2_TEST"]
   }]
 }
