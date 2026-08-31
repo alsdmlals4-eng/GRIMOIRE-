@@ -28,6 +28,7 @@ func run(case) -> void:
 
     case.assert_equal([&"HEAT"], catalog.metadata(&"HEAT").get("meaning_tags", []), "HEAT keeps its semantic tag")
     case.assert_equal([&"INTENSIFY"], catalog.metadata(&"HEAT").get("method_tags", []), "HEAT keeps its method tag")
+    case.assert_false(catalog.has_method("is_main"), "GlyphCatalog exposes no Main-glyph classification API")
     case.assert_equal(&"AMPLIFY", catalog.normalize_id(&"BURST"), "legacy BURST normalizes to AMPLIFY")
     case.assert_equal([
         &"HEAT", &"FLOW", &"PROTECT", &"FOCUS", &"DISPERSE",

@@ -46,9 +46,16 @@ func run(case) -> void:
     case.assert_equal(2, ambiguous.candidate_buttons.size(), "ambiguous state exposes candidate buttons")
     for button in ambiguous.candidate_buttons:
         case.assert_true(not String(button.label).is_empty(), "candidate label is non-empty")
-        case.assert_true(String(button.label).contains("·"), "candidate label includes Korean name and role")
+        case.assert_equal("열 · 강화" if button.glyph_id == &"HEAT" else "흐름 · 전환", button.label, "candidate label presents the glyph method without a role")
         case.assert_true(button.has("shape_key"), "candidate button is not color-only")
         case.assert_true(button.has("glyph_id"), "candidate button carries semantic glyph id")
+        case.assert_true(button.has("meaning_tags"), "candidate button carries meaning tags")
+        case.assert_true(button.has("method_tags"), "candidate button carries method tags")
+        case.assert_false(button.has("role_icon_key"), "candidate button exposes no role icon classification")
+        case.assert_false(button.has("role_label"), "candidate button exposes no role label")
+        case.assert_false(String(button.label).contains("핵심"), "candidate label does not classify a Main glyph")
+        case.assert_false(String(button.label).contains("보조"), "candidate label does not classify an Auxiliary glyph")
+        case.assert_false(String(button.label).contains("미분류"), "candidate label does not fall back to an unknown role")
         case.assert_false(String(button.label).contains("%"), "numeric success probability is not shown")
 
     var stale: Dictionary = view_model_script.from_result({
