@@ -314,7 +314,7 @@ Godot/Godot AI의 설치·exact pin·port 정책은 r5.4와 current Base owner�
 ```text
 0. current authority → current Base → adapter validator → L1+ receipt → ADOPT/ADAPT/REJECT reuse preflight
 1. `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`의 human/device/accessibility observation을 준비·실행
-2. `GR-STORY-ARC-BLUEPRINT-01`의 [flow/wireframe 설계](docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md)와 [implementation plan](docs/superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md)을 따라 입학식 → 수업 → 첫 실습 → 결투/축제 gate를 순서대로 구현. 결투 환경 후보 02는 final visual lock 전 runtime에 바인드하지 않음
+2. `GR-STORY-ARC-BLUEPRINT-01`의 [flow/wireframe 설계](docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md)와 [implementation plan](docs/superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md)을 따라 구현된 입학식 → 수업 → 첫 실습 → 결투/축제 route와 [runtime receipt](docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md)를 fresh-read. 결투 환경 후보 02는 final lock 뒤 canonical runtime art로 바인드됐으며, festival-specific art·1920×1080·Human/Device evidence는 별도 gate다.
 3. 카드 상세 마력/턴/승패 규칙은 `RULESET_PENDING`으로 보존하고, 사용자의 상세 룰 결정 후 구현
 4. current-task PR exact-head checks → authorized merge → merged-main readback
 ```

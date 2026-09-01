@@ -10,7 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 BENCHMARK_PATH = ROOT / "docs/planning/benchmarks/2026-09-01-story-led-academy-reverse-engineering.md"
 BLUEPRINT_PATH = ROOT / "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md"
 PLAN_PATH = ROOT / "docs/superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md"
-CANDIDATE_PATH = ROOT / "assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_02_unmarked_environment_only.png"
+CANONICAL_ENVIRONMENT_PATH = ROOT / "assets/art/backgrounds/academy/bg_duel_practice_cloister.png"
+LEGACY_CANDIDATE_PATH = ROOT / "assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_02_unmarked_environment_only.png"
 MANIFEST_PATH = ROOT / "assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json"
 RECEIPT_PATH = ROOT / "docs/contracts/receipts/2026-09-01-story-arc-blueprint-work-contract-receipt.json"
 REGISTRY_PATH = ROOT / "docs/DESIGN_DOCUMENT_REGISTRY.json"
@@ -62,22 +63,25 @@ class StoryArcBlueprintContractTests(unittest.TestCase):
         self.assertIn("SCREEN-04", text)
         self.assertIn("```mermaid", text)
 
-    def test_candidate_is_environment_only_and_cannot_be_mistaken_for_a_runtime_asset(self) -> None:
+    def test_user_locked_environment_is_canonical_runtime_art_and_remains_environment_only(self) -> None:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
 
-        self.assertTrue(CANDIDATE_PATH.is_file())
-        self.assertEqual("GENERATED_CANDIDATE", manifest["status"])
+        self.assertTrue(CANONICAL_ENVIRONMENT_PATH.is_file())
+        self.assertFalse(LEGACY_CANDIDATE_PATH.exists())
+        self.assertEqual("USER_APPROVED__CANON_REGISTERED__IMPLEMENTED__RUNTIME_BOUND", manifest["status"])
         self.assertEqual("ENVIRONMENT_BACKGROUND", manifest["visual_layer"])
-        self.assertEqual("USER_FINAL_LOCK_REQUIRED", manifest["promotion_gate"])
+        self.assertEqual("USER_FINAL_LOCK_OBSERVED_2026-09-01", manifest["promotion_gate"])
         self.assertEqual("res://src/ui/story/duel_practicum_root.tscn", manifest["planned_consumer"])
-        self.assertFalse(manifest["runtime_bound"])
+        self.assertEqual("res://src/ui/story/duel_practicum_root.tscn::DuelPracticumRoot/EnvironmentBackground", manifest["runtime_consumer"])
+        self.assertTrue(manifest["runtime_bound"])
         self.assertIn("no baked text", manifest["constraints"])
         self.assertIn("no glyph", manifest["constraints"])
         self.assertIn("no character", manifest["constraints"])
         self.assertEqual(
-            hashlib.sha256(CANDIDATE_PATH.read_bytes()).hexdigest().upper(),
+            hashlib.sha256(CANONICAL_ENVIRONMENT_PATH.read_bytes()).hexdigest().upper(),
             manifest["file"]["sha256"],
         )
+        self.assertEqual("assets/art/backgrounds/academy/bg_duel_practice_cloister.png", manifest["file"]["path"])
 
     def test_plan_and_receipt_keep_card_detail_rules_and_human_evidence_out_of_scope(self) -> None:
         plan = PLAN_PATH.read_text(encoding="utf-8")
@@ -99,7 +103,7 @@ class StoryArcBlueprintContractTests(unittest.TestCase):
             registry["story_arc_blueprint"]["design"],
         )
         self.assertEqual(
-            "GENERATED_CANDIDATE",
+            "USER_APPROVED__CANON_REGISTERED__IMPLEMENTED__RUNTIME_BOUND",
             registry["story_arc_blueprint"]["duel_environment_candidate_state"],
         )
 

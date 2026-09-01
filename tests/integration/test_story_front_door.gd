@@ -3,6 +3,7 @@ extends RefCounted
 const PATH := "res://src/ui/front_door/story_front_door.gd"
 const SCENE_PATH := "res://src/ui/front_door/story_front_door.tscn"
 const PROLOGUE_SCENE_PATH := "res://src/ui/story/admission_prologue.tscn"
+const STORY_PROGRESS_PATH := "res://src/core/story/story_progress.gd"
 const BACKGROUND_PATH := "res://assets/art/backgrounds/school/bg_school_admission_approach.png"
 const LEGACY_CANDIDATE_PATH := "res://assets/art/source_candidates/circle_clock_card_core/front_door/front_door_admission_academy_candidate_01.png"
 const LOCKED_BACKGROUND_SHA256 := "D002D5E8FE545631F48AC07F2AA4C2F4AB292B587E9476CE39F96276133A5FE0"
@@ -23,9 +24,11 @@ func run(case) -> void:
 
     var front_door_scene = load(SCENE_PATH)
     var front_door_script = load(PATH)
+    var story_progress_script = load(STORY_PROGRESS_PATH)
     case.assert_true(front_door_scene is PackedScene, "Story front door scene loads")
     case.assert_true(front_door_script != null, "Story front door script loads")
-    if not front_door_scene is PackedScene or front_door_script == null:
+    case.assert_true(story_progress_script != null, "Story progress script loads for admission handoff")
+    if not front_door_scene is PackedScene or front_door_script == null or story_progress_script == null:
         return
 
     var front_door = front_door_scene.instantiate()
@@ -100,7 +103,14 @@ func run(case) -> void:
         case.assert_equal(["ContinueNarrativeButton"], visible_buttons, "Admission prologue exposes exactly one visible action")
         prologue.configure(new_record.get("progress", null))
         var continuation: Dictionary = prologue.continue_narrative()
-        case.assert_equal(&"FIRST_EVENT_ROUTE", continuation.get("status", &""), "Admission continue advances only to the first event route")
+        case.assert_equal(&"FIRST_CLASS_ROUTE", continuation.get("status", &""), "Admission continue advances only to the first-class route")
+        prologue.configure(story_progress_script.create_new())
+        var class_handoff_owner := Node.new()
+        var class_handoff: Dictionary = prologue.handoff_first_class(class_handoff_owner)
+        case.assert_equal(&"FIRST_CLASS_HANDOFF_READY", class_handoff.get("status", &""), "Admission stages the concrete first-class handoff before changing scenes")
+        var class_progress = story_progress_script.consume_first_class_handoff(class_handoff_owner)
+        case.assert_true(class_progress != null and class_progress.current_beat() == &"FIRST_CLASS", "Admission handoff preserves the valid first-class progress object")
+        class_handoff_owner.free()
         prologue.free()
 
     front_door.free()

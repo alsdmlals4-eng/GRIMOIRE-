@@ -29,6 +29,7 @@ signal glyph_selection_changed(selected_glyph_ids: Array)
 signal circle_preview_requested(preview: Dictionary)
 signal target_selection_changed(target_id: StringName)
 signal commit_requested(action_id: StringName)
+signal duel_practicum_route_requested(progress, route_path: String)
 
 
 func _ready() -> void:
@@ -96,7 +97,7 @@ func select_target(target_id: StringName) -> Dictionary:
         return {"status": &"PREPARED_ACTION_ALREADY_RESOLVED"}
     if StringName(_circle_preview.get("status", &"")) != &"PREVIEW_READY":
         return {"status": &"PREVIEW_REQUIRED"}
-    if target_id != &"FROST_SEEDLINGS":
+    if target_id != _event_target_id():
         return {"status": &"TARGET_UNAVAILABLE"}
     _selected_target_id = target_id
     target_selection_changed.emit(target_id)
@@ -168,9 +169,24 @@ func result_receipt_text() -> String:
     return "" if receipt_label == null else receipt_label.text
 
 
+func continue_to_duel_practicum() -> Dictionary:
+    if not _has_first_event_progress():
+        return {"status": &"FIRST_EVENT_PROGRESS_REQUIRED"}
+    if not _prepared_action_consumed:
+        return {"status": &"FIRST_PRACTICUM_UNRESOLVED"}
+    return _story_progress.advance_from_first_practicum()
+
+
+func handoff_duel_practicum(handoff_owner: Node) -> Dictionary:
+    var continuation := continue_to_duel_practicum()
+    if StringName(continuation.get("status", &"")) != &"DUEL_PRACTICUM_ROUTE":
+        return continuation
+    return StoryProgress.stage_duel_practicum_handoff(continuation.get("progress", null), handoff_owner)
+
+
 func _ensure_runtime() -> void:
     if _event_definition == null:
-        _event_definition = load(EVENT_RESOURCE_PATH)
+        _event_definition = load(_event_resource_path())
     if _clock_state == null:
         _clock_state = EventClockState.new()
     if _clock_resolver == null:
@@ -240,7 +256,7 @@ func _resolve_previewed_action(action_id: StringName) -> Dictionary:
 
 func _next_prepared_action_id() -> StringName:
     _commit_serial += 1
-    return StringName("frost-action-%d" % _commit_serial)
+    return StringName("%s-%d" % [_prepared_action_prefix(), _commit_serial])
 
 
 func _clear_preview_and_target() -> void:
@@ -266,13 +282,16 @@ func _has_first_event_progress() -> bool:
 func _connect_controls() -> void:
     var writing_panel = get_node_or_null(NodePath("Content/Body/GlyphWritingPanel"))
     if writing_panel != null:
+        if writing_panel.has_method("configure_context_hint"):
+            writing_panel.configure_context_hint(_writing_hint())
         if writing_panel.has_method("configure_allowed_glyphs"):
-            writing_panel.configure_allowed_glyphs([&"HEAT", &"PROTECT"])
+            writing_panel.configure_allowed_glyphs(_allowed_glyph_ids())
         if writing_panel.has_signal("glyph_accepted") and not writing_panel.glyph_accepted.is_connected(_on_glyph_accepted):
             writing_panel.glyph_accepted.connect(_on_glyph_accepted)
     _connect_button(&"Content/Body/ActionPanel/PreviewButton", request_circle_preview)
-    _connect_button(&"Content/Body/ActionPanel/TargetButton", func(): select_target(&"FROST_SEEDLINGS"))
+    _connect_button(&"Content/Body/ActionPanel/TargetButton", func(): select_target(_event_target_id()))
     _connect_button(&"Content/Body/ActionPanel/CommitButton", request_commit)
+    _connect_button(&"Content/Body/ActionPanel/ContinueToDuelButton", _on_continue_to_duel_pressed)
 
 
 func _connect_button(node_path: StringName, callback: Callable) -> void:
@@ -285,6 +304,17 @@ func _on_glyph_accepted(glyph_id: StringName) -> void:
     select_glyph(glyph_id)
 
 
+func _on_continue_to_duel_pressed() -> void:
+    var handoff_owner: Node = get_tree().root if get_tree() != null else null
+    var continuation := handoff_duel_practicum(handoff_owner)
+    if StringName(continuation.get("status", &"")) != &"DUEL_PRACTICUM_HANDOFF_READY":
+        return
+    var route_path := String(continuation.get("route_path", ""))
+    duel_practicum_route_requested.emit(_story_progress, route_path)
+    if ResourceLoader.exists(route_path) and get_tree() != null:
+        get_tree().change_scene_to_file(route_path)
+
+
 func _render_flow_state() -> void:
     var preview_ready := StringName(_circle_preview.get("status", &"")) == &"PREVIEW_READY"
     var progress_ready := _has_first_event_progress()
@@ -293,6 +323,7 @@ func _render_flow_state() -> void:
     var commit_button := get_node_or_null(NodePath("Content/Body/ActionPanel/CommitButton")) as Button
     var preview_status := get_node_or_null(NodePath("Content/Body/ActionPanel/PreviewStatus")) as Label
     var composition_status := get_node_or_null(NodePath("Content/Body/ActionPanel/GlyphCompositionStatus")) as Label
+    var continue_button := get_node_or_null(NodePath("Content/Body/ActionPanel/ContinueToDuelButton")) as Button
     if preview_button != null:
         preview_button.disabled = not progress_ready or _selected_glyph_ids.is_empty()
     if target_button != null:
@@ -308,7 +339,30 @@ func _render_flow_state() -> void:
         for glyph_id in _selected_glyph_ids:
             glyph_names.append(String(GlyphCatalog.metadata(glyph_id).get("name", glyph_id)))
         composition_status.text = "서클 글자: %s" % (" · ".join(glyph_names) if not glyph_names.is_empty() else "아직 없음")
+    if continue_button != null:
+        continue_button.visible = progress_ready
+        continue_button.disabled = not _prepared_action_consumed
 
 
 func _is_first_event_progress(progress) -> bool:
     return progress != null and progress.has_method("current_beat") and progress.call("current_beat") == StoryProgress.FIRST_EVENT
+
+
+func _event_resource_path() -> String:
+    return EVENT_RESOURCE_PATH
+
+
+func _allowed_glyph_ids() -> Array[StringName]:
+    return [&"HEAT", &"PROTECT"]
+
+
+func _event_target_id() -> StringName:
+    return &"FROST_SEEDLINGS"
+
+
+func _prepared_action_prefix() -> String:
+    return "frost-action"
+
+
+func _writing_hint() -> String:
+    return "서리 묘목을 다룰 글자를 허공에 새기세요. 인식 뒤에도 직접 사용을 확정해야 합니다."

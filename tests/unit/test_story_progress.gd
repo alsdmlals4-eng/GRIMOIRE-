@@ -2,6 +2,10 @@ extends RefCounted
 
 const PATH := "res://src/core/story/story_progress.gd"
 const ADMISSION_SCENE_PATH := "res://src/ui/story/admission_prologue.tscn"
+const FIRST_CLASS_SCENE_PATH := "res://src/ui/story/first_class_root.tscn"
+const FIRST_EVENT_SCENE_PATH := "res://src/ui/story/story_event_root.tscn"
+const DUEL_PRACTICUM_SCENE_PATH := "res://src/ui/story/duel_practicum_root.tscn"
+const FESTIVAL_CANOPY_SCENE_PATH := "res://src/ui/story/festival_canopy_root.tscn"
 
 
 func run(case) -> void:
@@ -26,8 +30,28 @@ func run(case) -> void:
     for forbidden_action in [&"LESSON", &"PRACTICUM", &"DUEL", &"FESTIVAL", &"CARD_ARCHIVE", &"EVENT_ARCHIVE"]:
         case.assert_false(front_door_actions.has(forbidden_action), "Front door never offers %s mode selection" % forbidden_action)
 
-    # Breaks if the admission action skips the story route or exposes an arbitrary scene jump.
+    # Breaks if the admission action skips the first-class narrative beat.
     var advanced: Dictionary = progress.advance_from_admission()
-    case.assert_equal(&"FIRST_EVENT_ROUTE", advanced.get("status", &""), "Admission continues through the first event route")
-    case.assert_equal(&"FIRST_EVENT", progress.current_beat(), "Admission continuation advances the narrative beat")
-    case.assert_equal("res://src/ui/story/story_event_root.tscn", progress.next_scene_path(), "Admission continuation targets the first event route")
+    case.assert_equal(&"FIRST_CLASS_ROUTE", advanced.get("status", &""), "Admission continues through the first-class route")
+    case.assert_equal(&"FIRST_CLASS", progress.current_beat(), "Admission continuation advances only to the first class")
+    case.assert_equal(FIRST_CLASS_SCENE_PATH, progress.next_scene_path(), "Admission continuation targets the first-class route")
+    case.assert_true(ResourceLoader.exists(progress.next_scene_path()), "First-class route loads")
+
+    # Breaks if the first class can be skipped before the greenhouse practicum.
+    var practicum: Dictionary = progress.advance_from_class()
+    case.assert_equal(&"FIRST_EVENT_ROUTE", practicum.get("status", &""), "First class routes only to the first practicum")
+    case.assert_equal(&"FIRST_EVENT", progress.current_beat(), "First class advances to the first practicum beat")
+    case.assert_equal(FIRST_EVENT_SCENE_PATH, progress.next_scene_path(), "First practicum keeps the existing Circle/Clock root")
+
+    # Breaks if the supervised duel or festival are selectable from an earlier beat.
+    var duel: Dictionary = progress.advance_from_first_practicum()
+    case.assert_equal(&"DUEL_PRACTICUM_ROUTE", duel.get("status", &""), "Resolved first practicum routes to supervised duel practice")
+    case.assert_equal(&"DUEL_PRACTICUM", progress.current_beat(), "First practicum advances to the duel beat")
+    case.assert_equal(DUEL_PRACTICUM_SCENE_PATH, progress.next_scene_path(), "Duel beat loads the dedicated practicum scene")
+    case.assert_true(ResourceLoader.exists(progress.next_scene_path()), "Duel practicum scene loads")
+
+    var festival: Dictionary = progress.advance_from_duel_practicum()
+    case.assert_equal(&"FESTIVAL_CANOPY_ROUTE", festival.get("status", &""), "Supervised duel routes to the festival canopy")
+    case.assert_equal(&"FESTIVAL_CANOPY", progress.current_beat(), "Duel advances to the festival beat")
+    case.assert_equal(FESTIVAL_CANOPY_SCENE_PATH, progress.next_scene_path(), "Festival beat loads the closing story scene")
+    case.assert_true(ResourceLoader.exists(progress.next_scene_path()), "Festival canopy scene loads")

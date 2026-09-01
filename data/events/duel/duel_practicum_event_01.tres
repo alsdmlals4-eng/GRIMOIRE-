@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/core/events/event_clock_definition.gd" id="1_event_definition"]
+
+[resource]
+resource_name = "Supervised Duel Practicum Event 01"
+script = ExtResource("1_event_definition")
+metadata/goal_label = "수호 결계 안정"
+metadata/threat_label = "집중 흔들림"
+event_id = &"DUEL_PRACTICUM_EVENT_01"
+goal_clock_id = &"DUEL_WARD_STABILITY"
+threat_clock_id = &"DUEL_FOCUS_PRESSURE"
+goal_segment_count = 4
+threat_segment_count = 4
+action_resolutions = [{
+"target_id": &"DUEL_WARD",
+"method_tags": [&"WARD"],
+"goal_delta": 1,
+"threat_delta": 1,
+"visible_consequence_tags": [&"WARD_STABLE", &"FOCUS_WAVERS"]
+}]

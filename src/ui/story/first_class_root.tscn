@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://src/ui/story/first_class_root.gd" id="1_class_root"]
+[ext_resource type="Texture2D" path="res://assets/art/backgrounds/school/bg_school_common.webp" id="2_school_background"]
+[ext_resource type="PackedScene" path="res://src/ui/glyph_writing/circle_glyph_writing_panel.tscn" id="3_glyph_writing"]
+
+[node name="FirstClassRoot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_class_root")
+
+[node name="SafeBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.027, 0.082, 0.14, 1)
+
+[node name="EnvironmentBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_school_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ReadabilityVeil" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.04, 0.09, 0.15, 0.48)
+
+[node name="LessonPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -300.0
+offset_right = 420.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"AcademyPanelModal"
+
+[node name="Lesson" type="VBoxContainer" parent="LessonPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Location" type="Label" parent="LessonPanel/Lesson"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.86, 0.94, 1)
+text = "입학 첫 수업 · 서클 기초"
+horizontal_alignment = 1
+
+[node name="Heading" type="Label" parent="LessonPanel/Lesson"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "글자를 허공에 새기고, 겹친 원 안에서 의미를 고른다"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Body" type="Label" parent="LessonPanel/Lesson"]
+layout_mode = 2
+text = "교수는 정답을 주지 않습니다. 직접 쓴 글자와 그 글자를 놓는 방법이 주문의 의도를 만듭니다. 다음은 온실에서 그 원리를 시험할 첫 실습입니다."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GlyphWritingPanel" parent="LessonPanel/Lesson" instance=ExtResource("3_glyph_writing")]
+layout_mode = 2
+
+[node name="ContinueToPracticumButton" type="Button" parent="LessonPanel/Lesson"]
+custom_minimum_size = Vector2(340, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"AcademyButtonPrimary"
+text = "온실 첫 실습으로"
+disabled = true

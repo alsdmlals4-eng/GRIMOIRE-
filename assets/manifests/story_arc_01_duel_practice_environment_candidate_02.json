@@ -2,15 +2,16 @@
   "schema_version": 1,
   "asset_id": "GR-CAND-STORY-ARC-DUEL-ENV-02",
   "name": "First supervised duel practice cloister environment candidate 02 unmarked",
-  "status": "GENERATED_CANDIDATE",
+  "status": "USER_APPROVED__CANON_REGISTERED__IMPLEMENTED__RUNTIME_BOUND",
   "created_on": "2026-09-01",
   "visual_layer": "ENVIRONMENT_BACKGROUND",
   "planned_consumer": "res://src/ui/story/duel_practicum_root.tscn",
   "planned_consumer_surface": "DuelPracticumRoot/EnvironmentBackground",
-  "runtime_bound": false,
-  "promotion_gate": "USER_FINAL_LOCK_REQUIRED",
+  "runtime_consumer": "res://src/ui/story/duel_practicum_root.tscn::DuelPracticumRoot/EnvironmentBackground",
+  "runtime_bound": true,
+  "promotion_gate": "USER_FINAL_LOCK_OBSERVED_2026-09-01",
   "file": {
-    "path": "assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_02_unmarked_environment_only.png",
+    "path": "assets/art/backgrounds/academy/bg_duel_practice_cloister.png",
     "format": "PNG",
     "sha256": "3D16DBCC5015550914CD420498DE3C2DCD85783E6EE8D819E04D6D5A2E1B4EFF",
     "size_bytes": 2296731,
@@ -22,6 +23,12 @@
     "input_images": "GR-CAND-STORY-ARC-DUEL-ENV-01 environment-only candidate; no third-party image",
     "brief_owner": "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md",
     "rights_scope": "PROJECT_OWNED_GENERATED_CANDIDATE__RELEASE_REVIEW_REQUIRED"
+  },
+  "promotion": {
+    "user_final_lock": "USER_APPROVED_CURRENT_THREAD_2026-09-01",
+    "canonicalization": "MOVED_WITHOUT_BYTE_CHANGE_FROM_APPROVED_CANDIDATE_PATH",
+    "runtime_import": "GODOT_4_7_1_EXACT_PROJECT_REIMPORTED_2026-09-01",
+    "runtime_binding": "DuelPracticumRoot/EnvironmentBackground TextureRect; MOUSE_FILTER_IGNORE; STRETCH_KEEP_ASPECT_COVERED"
   },
   "constraints": "environment only; no baked text; no glyph; no functional magic circle/target/ring/emblem; no character; no player hand; no card; no scoreboard; no logo; no watermark; no combat impact; no functional UI",
   "composition_contract": {
@@ -39,7 +46,6 @@
       "distinct from greenhouse and classroom"
     ],
     "remaining_review": [
-      "user final visual lock",
       "runtime crop/readability at 1280x720 and 1920x1080",
       "release similarity and rights review"
     ]

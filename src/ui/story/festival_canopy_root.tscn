@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/ui/story/festival_canopy_root.gd" id="1_festival_root"]
+[ext_resource type="Texture2D" path="res://assets/art/backgrounds/school/bg_school_common.webp" id="2_school_background"]
+
+[node name="FestivalCanopyRoot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_festival_root")
+
+[node name="SafeBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.027, 0.082, 0.14, 1)
+
+[node name="EnvironmentBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_school_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ReadabilityVeil" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.04, 0.08, 0.14, 0.5)
+
+[node name="ClosingPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -155.0
+offset_right = 430.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"AcademyPanelModal"
+
+[node name="Festival" type="VBoxContainer" parent="ClosingPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Location" type="Label" parent="ClosingPanel/Festival"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.86, 0.94, 1)
+text = "입학 축제 · 빛의 차양 아래"
+horizontal_alignment = 1
+
+[node name="Heading" type="Label" parent="ClosingPanel/Festival"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "오늘 새긴 글자들은, 이제 당신의 기록이 된다"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Body" type="Label" parent="ClosingPanel/Festival"]
+layout_mode = 2
+text = "첫 수업의 망설임, 온실의 균열, 결투 실습의 집중이 한 줄의 기록으로 이어집니다. 축제는 다음 사건을 기다리는 쉼표입니다."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CompletionNotice" type="Label" parent="ClosingPanel/Festival"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.82, 0.7, 1)
+horizontal_alignment = 1
+autowrap_mode = 2
+visible = false
+
+[node name="ConfirmFirstSessionButton" type="Button" parent="ClosingPanel/Festival"]
+custom_minimum_size = Vector2(280, 54)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"AcademyButtonPrimary"
+text = "첫 장 기록하기"

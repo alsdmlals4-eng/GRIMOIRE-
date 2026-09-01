@@ -165,19 +165,19 @@ status: CONDITIONAL
 notes: CANON_REGISTERED_PLANNING_REFERENCE_ONLY. This record does not promote the image to a Godot runtime asset, does not establish an asset batch, and does not change Human/Device/Performance/Accessibility/Export validation from NOT_RUN.
 ```
 
-## Supervised Duel Practice Cloister Environment Candidate 02 — 2026-09-01
+## Supervised Duel Practice Cloister Environment 02 — 2026-09-01
 
 ```yaml
 asset_id: GR-CAND-STORY-ARC-DUEL-ENV-02
 category: OTHER
-name: Supervised duel practice cloister environment candidate 02 unmarked
+name: Supervised duel practice cloister environment 02 unmarked
 project: GRIMOIRE
 creation_route: AI_GENERATED
 creator_or_vendor: Codex built-in image generation
-source_url_or_path: assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_02_unmarked_environment_only.png
+source_url_or_path: assets/art/backgrounds/academy/bg_duel_practice_cloister.png
 source_checked_at: 2026-09-01
 acquired_or_created_at: 2026-09-01
-license_or_contract: OpenAI Terms of Use and applicable Service Terms; generated-candidate review scope only
+license_or_contract: OpenAI Terms of Use and applicable Service Terms; user-locked runtime-use scope with release review still required
 license_version_or_terms_date: Terms of Use published 2026-01-01; Service Terms updated 2026-06-12; checked 2026-09-01
 commercial_use: CONDITIONAL
 distribution_in_game_build: CONDITIONAL
@@ -190,7 +190,7 @@ ai_model_service_version: Codex built-in image generation; exact underlying mode
 ai_terms_checked_at: 2026-09-01
 ai_input_rights: Generation used only a project-owned original environmental brief. No third-party or user-provided image was supplied as a generation input.
 ai_output_terms: As between the user and OpenAI, Terms of Use assign OpenAI's rights in Output to the user to the extent permitted by applicable law; output can be non-unique and the user remains responsible for input rights and output use.
-contract_scope: Environment-only correction candidate for a future supervised student duel-practice scene. It excludes character identity, card rules, combat tuning, target semantics, glyph/circle/clock UI, runtime import, shipping, store, and marketing use. It supersedes candidate 01 for review because candidate 01's floor rings and wall emblem could be confused with live game state.
+contract_scope: User-locked environment-only background for the supervised student duel-practice scene. It excludes character identity, card rules, combat tuning, target semantics, glyph/circle/clock UI, shipping, store, and marketing use. It supersedes candidate 01 because candidate 01's floor rings and wall emblem could be confused with live game state.
 voice_clone_or_ai_training_rights: NOT_APPLICABLE
 reference_sources:
   - docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md
@@ -198,20 +198,20 @@ reference_sources:
   - docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
 reference_brief: Warm navy-and-gold magical academy cloister at dusk for supervised student duel practice. Keep an open central floor for live target, layered circle, direct air-writing, Goal/Threat Clock, dialogue, and explicit cast UI. The background is environment-only.
 forbidden_expression: No direct third-party image input, tracing, copied character identity/costume/silhouette, logo, watermark, baked functional text/numbers/buttons, glyph, magic circle, playable card, combat HUD, attack impact, scoreboard, weapon, killing, horror framing, 3D exploration presentation, or fixed tactical answer.
-final_asset_record: PNG candidate; SHA-256 3D16DBCC5015550914CD420498DE3C2DCD85783E6EE8D819E04D6D5A2E1B4EFF; repository candidate path above; not canon and not bound to a Godot Scene.
-reference_similarity_status: REVIEW_REQUIRED
-shipping_and_marketing_usage: NOT_AUTHORIZED_BY_THIS_RECORD; complete user final lock plus release rights and similarity review before any shipping/store/marketing use.
+final_asset_record: Canonical runtime PNG; SHA-256 3D16DBCC5015550914CD420498DE3C2DCD85783E6EE8D819E04D6D5A2E1B4EFF; moved without byte change from the approved candidate; bound to DuelPracticumRoot/EnvironmentBackground.
+reference_similarity_status: PASS_FOR_RUNTIME_USE__RELEASE_REVIEW_REQUIRED
+shipping_and_marketing_usage: NOT_AUTHORIZED_BY_THIS_RECORD; complete release rights and similarity review before any shipping/store/marketing use.
 proof_reference:
   - assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json
   - docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
   - https://openai.com/policies/row-terms-of-use/
   - https://openai.com/policies/service-terms/
 secure_original_location: C:/Users/user/.codex/generated_images/01a04af4-91c2-78f2-bbbb-9e5110b63de2/exec-a84e1780-cccc-4d39-96df-8f41a3707846.png
-redacted_excerpt: GENERATED_CANDIDATE only; open central practice floor; no readable functional text; user final visual lock required.
-reviewed_by: Codex visual QA
+redacted_excerpt: USER_FINAL_LOCK_2026-09-01; open central practice floor; no readable functional text; runtime background only.
+reviewed_by: Codex visual QA plus user final visual lock
 reviewed_at: 2026-09-01
-status: GENERATED_CANDIDATE
-notes: This record does not grant canon registration, runtime import/binding, production asset batch, or Human/Device/Performance/Accessibility/Export validation. Candidate 02 was specifically corrected to keep the background's floor and wall free of circle/target/emblem semantics; user final visual review remains required before use.
+status: CONDITIONAL
+notes: USER_APPROVED__CANON_REGISTERED__IMPLEMENTED__RUNTIME_BOUND. The exact worktree Godot 4.7.1 runtime binds this environment with live UI layers on top. Candidate 02 was specifically corrected to keep the floor and wall free of circle/target/emblem semantics. This record does not create a production asset batch or Human/Device/Performance/Accessibility/Export validation.
 ```
 
 ## Class Direct Glyph Learning Planning Reference — 2026-08-30

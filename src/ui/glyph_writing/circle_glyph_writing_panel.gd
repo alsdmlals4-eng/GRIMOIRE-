@@ -44,6 +44,12 @@ func configure_allowed_glyphs(glyph_ids: Array) -> void:
     _render_state(&"학습한 글자를 직접 새기세요.")
 
 
+func configure_context_hint(hint: String) -> void:
+    var hint_label := get_node_or_null(NodePath("Hint")) as Label
+    if hint_label != null and not hint.is_empty():
+        hint_label.text = hint
+
+
 func submit_strokes(strokes: Array) -> Dictionary:
     _input_revision += 1
     _latest_candidates.clear()

@@ -68,6 +68,7 @@ func run(case) -> void:
 
     var first_event_progress = story_progress_script.create_new()
     first_event_progress.advance_from_admission()
+    first_event_progress.advance_from_class()
     var compound_role_cards: Array = []
     for compound_id in [&"MAIN_HEAT", &"AUX_PROTECT", &"CENTER_FLOW", &"STAR_SUMMON"]:
         compound_role_cards.append(_make_compound_role_card(card_definition_script, circle_composition_script, compound_id))

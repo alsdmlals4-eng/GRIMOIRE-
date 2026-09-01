@@ -35,13 +35,17 @@ func run(case) -> void:
     root.configure(wrong_progress)
     case.assert_equal(&"FIRST_EVENT_PROGRESS_REQUIRED", root.select_glyph(&"HEAT").get("status", &""), "Admission beat cannot operate the first event")
 
-    # Breaks if admission advances without handing the valid progress object to the event root.
+    # Breaks if admission can bypass first class before handing valid progress to the event root.
     var admission = admission_scene.instantiate()
     admission._ready()
     admission.configure(story_progress_script.create_new())
     var handoff_owner := Node.new()
-    var handoff: Dictionary = admission.handoff_first_event(handoff_owner)
-    case.assert_equal(&"FIRST_EVENT_HANDOFF_READY", handoff.get("status", &""), "Admission creates one explicit transient handoff")
+    var class_continuation: Dictionary = admission.continue_narrative()
+    case.assert_equal(&"FIRST_CLASS_ROUTE", class_continuation.get("status", &""), "Admission first hands control to the class route")
+    var event_continuation: Dictionary = class_continuation.get("progress", null).advance_from_class()
+    case.assert_equal(&"FIRST_EVENT_ROUTE", event_continuation.get("status", &""), "Only the first class can unlock the practicum route")
+    var handoff: Dictionary = story_progress_script.stage_first_event_handoff(event_continuation.get("progress", null), handoff_owner)
+    case.assert_equal(&"FIRST_EVENT_HANDOFF_READY", handoff.get("status", &""), "First class creates one explicit transient practicum handoff")
     var event_progress = story_progress_script.consume_first_event_handoff(handoff_owner)
     case.assert_true(event_progress != null and event_progress.current_beat() == &"FIRST_EVENT", "Handoff yields only valid FIRST_EVENT progress")
     root.configure(event_progress)
@@ -86,7 +90,10 @@ func run(case) -> void:
     case.assert_equal(1, root.goal_clock_segments(), "Matching semantic method advances the goal")
     case.assert_equal(1, root.threat_clock_segments(), "Matching method retains the threat consequence")
     case.assert_true(commit_button.disabled, "Resolved preparation locks the live Commit button")
-
+    var continue_button := root.get_node_or_null(NodePath("Content/Body/ActionPanel/ContinueToDuelButton")) as Button
+    case.assert_true(continue_button != null, "Resolved practicum exposes one narrative continuation to the supervised duel")
+    if continue_button != null:
+        case.assert_false(continue_button.disabled, "Duel continuation is enabled only after the first practicum resolves")
     var clock_view = root.get_node_or_null(NodePath("Content/Body/ActionPanel/EventClockView"))
     case.assert_equal("1/6", clock_view.goal_count_text(), "Goal clock exposes an accessible live count")
     case.assert_equal("1/4", clock_view.threat_count_text(), "Threat clock exposes an accessible live count")
@@ -109,6 +116,13 @@ func run(case) -> void:
     case.assert_equal(1, root.goal_clock_segments(), "Repeated receipt leaves goal unchanged")
     case.assert_equal(1, root.threat_clock_segments(), "Repeated receipt leaves threat unchanged")
     case.assert_true(commit_button.disabled, "Repeated commit attempt keeps the live Commit button locked")
+
+    var duel_owner := Node.new()
+    var duel_handoff: Dictionary = root.handoff_duel_practicum(duel_owner)
+    case.assert_equal(&"DUEL_PRACTICUM_HANDOFF_READY", duel_handoff.get("status", &""), "Resolved practicum stages an explicit supervised-duel handoff")
+    var duel_progress = story_progress_script.consume_duel_practicum_handoff(duel_owner)
+    case.assert_true(duel_progress != null and duel_progress.current_beat() == &"DUEL_PRACTICUM", "Only the resolved practicum yields duel progress")
+    duel_owner.free()
     root.free()
 
 
