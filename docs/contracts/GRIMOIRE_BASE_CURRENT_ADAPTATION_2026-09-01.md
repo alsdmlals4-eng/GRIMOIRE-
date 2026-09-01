@@ -180,7 +180,31 @@ This update identifies no repeatable, cross-project implementation with stronger
 | 2 — Base drift | Does recording fresh Base main silently upgrade GRIMOIRE from its adopted v9.4.3 pin? | It could be misread that way without an explicit decision boundary. | Recorded Base `19355b7` as `READ_AND_PROJECT_ADAPTED`; retained v9.4.3 and required a separate equivalence/migration gate for a pin change. |
 | 3 — product/save scope | Could contract cleanup mutate Card rules, the main-scene namespace, Star assets, or the user-owned legacy save? | `project.godot` still has a historical product name, which may affect the `user://` namespace if changed. | No runtime, asset, card, or save change was made. Deferred project-name/save namespace work to a dedicated compatibility decision. |
 | 4 — derived-view integrity | Can adapter metadata and generated dashboard/skill views diverge after the new Base observation is added? | Yes if generated outputs are hand-edited or left stale. | Updated only `skills/PROJECT_BASE_ADAPTER.json`, regenerated all four derived views, ran generator `--check`, and passed the project operating-contract validator. |
-| 5 — evidence/PR closure | Do passing documents or local automation imply player, device, accessibility, or release approval? | No; the governance update has no new product behavior and unverified evidence must not be promoted. | Kept Human/Device/Performance/Accessibility/Export/Full Slice as `NOT_RUN`; re-ran static contracts and the existing headless Circle/Clock regression only as machine evidence. Exact new PR-head checks remain the delivery gate. |
+| 5 — evidence/PR closure | Do passing documents or local automation imply player, device, accessibility, or release approval? | No; the governance update has no new product behavior and unverified evidence must not be promoted. | Kept Human/Device/Performance/Accessibility/Export/Full Slice as `NOT_RUN`; re-ran static contracts and the existing headless Circle/Clock regression only as machine evidence. The first corrected PR head passed its exact-head checks; this record remains subject to the final documentation head below. |
+
+## Exact-head delivery readback
+
+```yaml
+workstream_pr: 253
+url: https://github.com/alsdmlals4-eng/GRIMOIRE-/pull/253
+first_corrected_exact_head: 7b68ad92b8ccd2040a96dce0ac1b9294bf108f48
+first_corrected_exact_head_checks:
+  authority_entry_gate: PASS
+  ci_gate: PASS
+  circle_clock_story_runtime: PASS
+  current_state_sync: PASS
+  godot_toolchain: PASS
+  adversarial_gate: PASS
+  shared_core_windows_and_ubuntu: PASS
+  visual_shadow_windows_and_ubuntu: PASS
+  external_adapter_and_contracts: PASS
+  hera_v1_pair_canary: PASS
+  higodot_and_gut_formal_gates: EXPECTED_SKIP__NO_PROTECTED_GODOT_SOURCE_MUTATION
+merge_status: DRAFT_OPEN__NOT_REQUESTED_BY_USER
+local_remote_branch_parity: VERIFIED_AT_FIRST_CORRECTED_HEAD
+```
+
+This record does not treat the earlier `18f751f` authority-gate failure as a pass. Its root cause was the alteration of exact historical Task8 key values; `7b68ad9` restored those keys and added a separate historical-interpretation field. The final documentation commit after this readback must independently pass its exact-head checks.
 
 ## Evidence limits and deferred decisions
 
