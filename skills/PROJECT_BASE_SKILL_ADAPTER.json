@@ -17,7 +17,7 @@
     "version": "9.4.3"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "deda456898fe42b40b7c0b88b535fd272ca33f8a80c0d4fcf9ef5a4ed3f6ee5c",
+  "canonical_source_sha256": "7311f2ec40af6822269924d380c9964684389fb93ca883537d501c0cb11ae69c",
   "current_truth_sources": [
     "docs/ACTIVE_CONTEXT.md",
     "docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md",
@@ -27,6 +27,8 @@
     "docs/planning/CANON_AUTHORITY_REALITY_SYNC_2026-08-21.md",
     "docs/planning/sync/GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC.md",
     "docs/planning/CURRENT_UNRESOLVED_GATES.md",
+    "docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md",
+    "docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json",
     "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "docs/DEVELOPMENT_GATES.md",
     "docs/DOCUMENTATION_MAP.md",
@@ -218,10 +220,12 @@
     "human": "NOT_RUN",
     "implementation_feasibility": "ACTUAL_PROJECT_EVIDENCE_REQUIRED",
     "json_parse": "REQUIRED",
+    "l1plus_work_contract_receipt": "REQUIRED_AFTER_ADAPTER_VALIDATION",
     "mobile": "NOT_RUN",
     "pc_input": "NOT_RUN",
     "performance": "NOT_RUN",
-    "registry_hash": "REQUIRED"
+    "registry_hash": "REQUIRED",
+    "work_contract_receipt_owner": "docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json"
   },
   "view_name": "PROJECT_BASE_SKILL_ADAPTER.json",
   "workspace_authority": {

@@ -21,6 +21,12 @@ base_repository: "https://github.com/alsdmlals4-eng/Base"
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 base_loading_policy: BASE_OWNER_PROGRESSIVE_LOAD
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
+base_current_adaptation: docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md
+base_current_adaptation_receipt: docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json
+base_current_main_observed: 19355b7ef065a21d0f2b685c7d9be64a4a3970f8
+base_current_adaptation_status: READ_AND_PROJECT_ADAPTED
+base_project_pin: v9.4.3
+base_pin_upgrade: NOT_AUTOMATIC__SEPARATE_EQUIVALENCE_AND_MIGRATION_GATE_REQUIRED
 project_fact_policy: PROJECT_CANON_AND_ACTUAL_IMPLEMENTATION_FIRST
 fresh_read_bootstrap_policy: PROJECT_GITHUB_REPOSITORY_ONLY_RECONSTRUCTION_REQUIRED
 entry_state_reconciliation_policy: REQUIRED_BEFORE_MATERIAL_MUTATION
@@ -62,6 +68,8 @@ same_decision_revision_rule: GM-CONTRACT-V4-8-BINDING-01_PRESERVED
 
 v4.5, v4.4, v4.3 binding 문서는 삭제하지 않는다. 모두 역사 provenance로 보존하고 current contract authority만 v4.8 r5.4로 전진한다. 기존 v4.8 r2 내용과 `GR-SYNC-20260824-35-V4-8-AUTHORITY-SYNC`는 predecessor provenance로 보존한다.
 
+2026-09-01의 `GM-BASE-CURRENT-ADAPTATION-20260901-01`은 v4.8 binding을 대체하는 새 Base version lock이 아니라, 최신 Base `main`을 이 프로젝트의 Circle/Clock/Card 정본과 맞춰 적용하는 운영 overlay다. L1 이상 작업은 project-local validator와 work-contract receipt를 통과해야 하며, `v9.4.3` adopted pin의 교체는 별도 equivalence/migration decision 없이는 금지한다. 상세 owner: `docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md`; receipt: `docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json`.
+
 ## 2. 프로젝트 현재 불변식
 
 ```yaml
@@ -76,9 +84,9 @@ main_scene_role: STORY_FRONT_DOOR_ENTRY
 product_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
 circuit_topology: ROLE_FREE_LAYERED_CIRCLES_1_TO_3__TASK8_STAR_RUNTIME_REMOVED
 next_product_gate: CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK
-task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
-task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
-task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
+task8_recovery_state: HISTORICAL_COMPATIBILITY_ONLY__MERGED_MAIN_LINEAGE
+task8_recovery_subgate: HISTORICAL_COMPATIBILITY_ONLY
+task8_recovery_predecessor_gate: HISTORICAL_COMPATIBILITY_ONLY__TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 task8_product_commit: 68211069eb3b778fb43e68f3fbd049c8a0ac2733
 task8_remote_product_branch: codex/task8-spell-use-reconcile-v320-20260827
 task8_remote_product_pr: 190
@@ -95,7 +103,7 @@ visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
 
 현재 POC/Component PASS를 완성형 첫 세션 또는 전체 제품 PASS로 승격하지 않는다. Task9 Product Root는 자동화 가능한 범위에서 main 병합까지 완료됐으며, 사람·기기·성능·출시 검증은 다음 사용자 검증 게이트로 남는다.
 
-## 3. Task8 복구 경계
+## 3. Task8 복구 경계 — `HISTORICAL_COMPATIBILITY_ONLY`
 
 Task8은 기존 Task5 Stage3 atomic target/use authority의 thin UI consumer다. 새 Mana/inventory/result/rollback/transaction authority를 만들지 않는다.
 
@@ -123,7 +131,7 @@ GODOT_RUN: NOT_RUN / BLOCKED_NO_LOCAL_ACCESS
 FRESH_TASK8_COMPATIBILITY: NOT_RUN
 ```
 
-보존 성공은 current-main 호환성·fresh HiGodot/GUT/Hera·product PR readiness를 증명하지 않는다. 제품 구현이 다시 명시적으로 승인되면 별도 clean reconciliation worktree와 fresh exact-project evidence부터 시작한다.
+보존 성공은 당시 current-main 호환성·fresh HiGodot/GUT/Hera·product PR readiness를 증명하지 않는다. Task8은 현재 제품의 next execution gate가 아니다. 새 product work는 현재 Circle/Clock/Card owner와 `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`에서 시작한다.
 
 ## 4. Workspace authority
 

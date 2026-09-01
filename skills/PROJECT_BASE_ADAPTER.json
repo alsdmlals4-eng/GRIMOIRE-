@@ -10,6 +10,16 @@
     "repository": "alsdmlals4-eng/Base",
     "version": "9.4.3"
   },
+  "base_current_refresh": {
+    "latest_completed_main": "19355b7ef065a21d0f2b685c7d9be64a4a3970f8",
+    "observed_at": "2026-09-01",
+    "status": "READ_AND_PROJECT_ADAPTED",
+    "adopted_release_lock": "v9.4.3",
+    "adaptation_owner": "docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md",
+    "work_contract_receipt": "docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json",
+    "pin_upgrade": "NOT_AUTOMATIC__SEPARATE_EQUIVALENCE_AND_MIGRATION_GATE_REQUIRED",
+    "project_identity_rule": "CURRENT_CIRCLE_CLOCK_CARD_DECISION_OVERRIDES_STALE_BASE_PROJECT_PROFILE_REFERENCE"
+  },
   "base_v94_contract": {
     "external_ai_worktree": {
       "actual_external_ai_worktree_execution": "NOT_RUN",
@@ -98,6 +108,8 @@
     "current_project_audit": "docs/planning/CANON_AUTHORITY_REALITY_SYNC_2026-08-21.md",
     "current_sync_receipt": "docs/planning/sync/GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC.md",
     "current_unresolved_gates": "docs/planning/CURRENT_UNRESOLVED_GATES.md",
+    "base_current_adaptation": "docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md",
+    "work_contract_receipt": "docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json",
     "design_document_registry": "docs/DESIGN_DOCUMENT_REGISTRY.json",
     "development_gates": "docs/DEVELOPMENT_GATES.md",
     "documentation_map": "docs/DOCUMENTATION_MAP.md",
@@ -325,6 +337,8 @@
     "full_vertical_slice": "NOT_RUN",
     "generated_views": "CURRENT",
     "generator_check": "REQUIRED",
+    "l1plus_work_contract_receipt": "REQUIRED_AFTER_ADAPTER_VALIDATION",
+    "work_contract_receipt_owner": "docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json",
     "godot_runtime": "CIRCLE_CLOCK_TASK8_STAR_REMOVED__AUTOMATED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN",
     "godot_static": "AVAILABLE_PROJECT_CREATED",
     "human": "NOT_RUN",

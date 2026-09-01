@@ -12,6 +12,11 @@ task8_continuation_sync: GR-SYNC-20260812-21-TASK8-HANDOFF-BCP_HISTORICAL
 task8_current_reverify: docs/planning/TASK8_CURRENT_MAIN_RECONCILIATION_2026-08-27.md
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_MAIN_BEFORE_WORK
 base_project_pin: v9.4.3
+base_current_adaptation: docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md
+base_current_adaptation_receipt: docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json
+base_current_main_observed: 19355b7ef065a21d0f2b685c7d9be64a4a3970f8
+base_current_adaptation_status: READ_AND_PROJECT_ADAPTED
+base_pin_upgrade: NOT_AUTOMATIC__SEPARATE_EQUIVALENCE_AND_MIGRATION_GATE_REQUIRED
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
 workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
@@ -74,7 +79,7 @@ full_vertical_slice: FULL_VERTICAL_SLICE_NOT_RUN
 ```text
 latest user instruction
 → AGENTS / START_HERE / ACTIVE_CONTEXT / active contract
-→ repository current domain owner / PROJECT_BASE_ADAPTER / Registry
+→ GRIMOIRE_BASE_CURRENT_ADAPTATION / PROJECT_BASE_ADAPTER / Registry
 → historical locator only when needed for discovery
 → actual project.godot / code / Scene / Resource / Test
 → fresh Base main + relevant owner
@@ -82,11 +87,26 @@ latest user instruction
 
 Sheet와 Notion은 cold-start 선행조건이 아니다. 신규 상태는 GitHub branch/PR → exact-head verification → merge → merged-main readback → repository destination readback으로 닫는다.
 
+## Gate 0.25 — Current Base adaptation and L1+ receipt
+
+`READ_AND_PROJECT_ADAPTED`는 Base 최신 `main`을 읽었다는 뜻이며, project pin을 자동으로 교체했다는 뜻이 아니다. `v9.4.3` pin은 별도의 equivalence/migration gate가 통과할 때까지 유지한다.
+
+```text
+project-local operating-contract validator
+→ PINNED_BASE_RECEIPT_VALIDATION_REQUIRED
+→ docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json 형식의 L1+ receipt
+→ REUSE_FIRST_PREFLIGHT_REQUIRED (ADOPT / ADAPT / REJECT)
+→ hygiene inventory (ACTIVE_OWNER / COMPATIBILITY / ARCHIVE / OBSOLETE_CANDIDATE / UNKNOWN_UNVERIFIED)
+→ write / verification / exact-head PR gate
+```
+
+현행 project adaptation owner는 `docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md`다. generated adapter view는 `tools/generate_project_operating_views.py`로만 갱신하며 hand-edit하지 않는다.
+
 ## Gate 0.5 — Adversarial / external research / feasibility
 
 모든 material work는 fresh external research check와 actual project feasibility recheck를 수행한 뒤 적대적 검토로 권장안·변경을 공격한다. L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop, findings 분류, 관련 회귀, merged-main destination readback까지 요구한다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`.
 
-## Gate 1 — Historical Star save preservation (Task8 completed)
+## Gate 1 — Historical Star save preservation (Task8 completed, `HISTORICAL_COMPATIBILITY_ONLY`)
 
 현재 제품 코어는 `GM-CIRCLE-CLOCK-CARD-CORE-01`이며, legacy Star 저장은 보존하고 자동 변환·삭제·이동하지 않는다. Task8은 실제 저장의 읽기 전용 preflight, 새 코어의 자동 검증, scoped Star consumer scan, exact-worktree editor 관찰 뒤 Star Runtime code/scene/test consumer를 제거했다. 삭제된 runtime은 Git history와 historical documentation으로만 남는다.
 

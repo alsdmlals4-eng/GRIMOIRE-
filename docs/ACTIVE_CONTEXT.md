@@ -23,6 +23,11 @@ task8_current_reconciliation_receipt: docs/planning/TASK8_CURRENT_MAIN_RECONCILI
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
+base_current_adaptation: docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md
+base_current_adaptation_receipt: docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json
+base_current_main_observed: 19355b7ef065a21d0f2b685c7d9be64a4a3970f8
+base_current_adaptation_status: READ_AND_PROJECT_ADAPTED
+base_pin_upgrade: NOT_AUTOMATIC__SEPARATE_EQUIVALENCE_AND_MIGRATION_GATE_REQUIRED
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION__W6_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS
 current_user_work_scope: CIRCLE_CLOCK_CARD_CORE_REPLACEMENT__L2_APPROVED__TASK8_STAR_RUNTIME_REMOVED__LEGACY_SAVE_PRESERVED__MENU_UTILITIES_IMPLEMENTED
@@ -319,7 +324,7 @@ CUT
 - baked functional text/numbers/state truth
 ```
 
-## 최근 Spell Visual 검토 결과
+## Historical Spell Visual / Task8 review — `HISTORICAL_COMPATIBILITY_ONLY`
 
 Stage2 시안은 FIVE_POINT_STAR 흐름을 읽는 데는 유효했지만, 처음 생성본의 글자가 세로 패찰/부적처럼 보이는 문제가 있었다. 후속 수정에서 사용자는 이전 글자 작성 시안의 **간략한 직접 필기형 마법 문자**를 재사용하는 방향을 승인했다.
 
@@ -331,7 +336,7 @@ Stage2 시안은 FIVE_POINT_STAR 흐름을 읽는 데는 유효했지만, 처음
 - `대상 / 시전`은 게임 장면과 연결된 두 번째 UX 덩어리로 취급한다.
 - 사용자 메시지는 새 이미지 생성 요청이 아니므로 이 work unit에서 추가 이미지를 만들지 않는다.
 
-## Spell Workflow 내부 authority
+## Historical Spell Workflow 내부 authority — `HISTORICAL_COMPATIBILITY_ONLY`
 
 ```yaml
 task3:
@@ -368,7 +373,7 @@ TASK8_RECEIPT_HERA_REVIEW_PR
 TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
 ```
 
-현재 continuation state:
+Historical continuation state:
 
 ```yaml
 product_status_historical: TASK8_LOCAL_ACCEPTANCE_PASS_UNMERGED
@@ -442,31 +447,32 @@ PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 
 
 `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`와 `CURRENT_UNRESOLVED_GATES.md`는 v4.5 시기의 장기 machine snapshot을 보존한다. v4.8 thin-adapter 전환 후에는 **HISTORICAL_COMPATIBILITY_SNAPSHOT**으로만 사용하고 새 current decision/gate를 기록하지 않는다.
 
-현재 authority chain:
+## Current authority chain
 
 ```text
 사용자 최신 지시
 → AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
+→ docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md
+→ docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json
 → docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
-→ docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
-→ docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
+→ docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md
+→ docs/DEVELOPMENT_GATES.md
 → task/domain-specific current owner
 → actual code/data/Scene/Resource/Test/runtime evidence
 ```
 
+새 L1 이상 작업은 `PROJECT_BASE_ADAPTER`의 Base validator를 먼저 실행한 뒤, 위 receipt 형식으로 `REUSE_FIRST_PREFLIGHT_REQUIRED`와 hygiene inventory를 기록한다. 적용 pin `v9.4.3`은 최신 Base 관찰값 때문에 자동으로 바꾸지 않는다.
+
 ## 제품 구현을 다시 시작할 때의 순서
 
 ```text
-1. TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
-2. fresh exact-project HiGodot readback + primary v2 recovery / secondary parity comparison
-3. 새 player-facing overlay를 Task8 UI 용어·동선에 매핑하고 기존 Stage3 authority와 충돌 없는지 확인
-4. fresh Task8 GUT + predecessor/full runner + Hera source-delta + exact-path adversarial review
-5. Task8 product PR / exact-head CI / merge / merged-main readback
-6. Task9 Product Root + responsive/E2E integration
-7. 대표 00~10분 Human Slice
-8. 10~23 → 46분 증거 확장
+0. current authority → current Base → project adapter validation → L1+ receipt → reuse preflight
+1. `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`의 사람·기기·접근성 관찰 프로토콜을 준비하고 실행한다.
+2. story admission → lesson → first practicum → duel/festival gates의 다음 서사 단위를, 현행 Circle/Clock core와 실제 consumer에 맞춰 설계·승인·구현한다.
+3. 카드의 상세 마력·턴·승패 규칙은 `RULESET_PENDING`을 유지하고, 사용자가 상세 룰을 제공하거나 별도 결정을 승인한 뒤에만 구현한다.
+4. current-task PR의 exact-head checks → authorized merge → merged-main readback으로 닫는다.
 ```
 
 ## 완료로 주장하지 않는 항목

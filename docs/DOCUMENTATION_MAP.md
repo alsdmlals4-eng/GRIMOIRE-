@@ -7,11 +7,18 @@ latest_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
 canon_status: USER_APPROVED_L2__TASK8_STAR_RUNTIME_REMOVED__MACHINE_VERIFIED__EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN
 product_implementation: CIRCLE_CLOCK_CARD_CORE_PARTIAL_IMPLEMENTATION__TASK8_STAR_RUNTIME_REMOVED
 runtime_validation: CIRCLE_CLOCK_TASK8_STAR_REMOVED__AUTOMATED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN
+base_current_adaptation: docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md
+base_current_adaptation_receipt: docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json
+base_current_main_observed: 19355b7ef065a21d0f2b685c7d9be64a4a3970f8
+base_current_adaptation_status: READ_AND_PROJECT_ADAPTED
+base_pin_upgrade: NOT_AUTOMATIC__SEPARATE_EQUIVALENCE_AND_MIGRATION_GATE_REQUIRED
 ```
 
 ## 시작 경로
 
-`AGENTS → START_HERE → ACTIVE_CONTEXT → active v4.8 binding → repository domain owner → current Product Root/validation evidence → Runtime·Tests`.
+`AGENTS → START_HERE → ACTIVE_CONTEXT → current Base adaptation + L1+ receipt → active v4.8 binding → Circle/Clock/Card owner → repository domain owner → current Product Root/validation evidence → Runtime·Tests`.
+
+`docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md`은 Base 최신 상태를 GRIMOIRE의 현행 정본에 맞게 적용하는 thin overlay이며, `docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json`은 이 L3 governance work의 reusable preflight/hygiene 증거다. Base latest main 관찰값은 adopted `v9.4.3` pin을 자동으로 바꾸지 않는다.
 
 `CURRENT_CONFIRMED_DECISIONS.md`, `CURRENT_UNRESOLVED_GATES.md`, and `CANON_SYNC_STATE.json` are v4.5-era historical compatibility snapshots; they are discovery inputs, not current state writers. The current canon/fun/visual audit is `docs/planning/audits/2026-08-28-grimoire-canon-fun-visual-audit.md`.
 
