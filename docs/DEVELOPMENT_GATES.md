@@ -155,7 +155,7 @@ automated_evidence: AVAILABLE_DO_NOT_PROMOTE_TO_HUMAN_DEVICE_PERFORMANCE_OR_EXPO
 - implementation sequence: `docs/superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md`
 - researched functional comparison: `docs/planning/benchmarks/2026-09-01-story-led-academy-reverse-engineering.md`
 - L1 research/feasibility/adversarial receipt: `docs/contracts/receipts/2026-09-01-story-arc-blueprint-work-contract-receipt.json`
-- human-readable derived view: `output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf` (Markdown owner only; PDF source SHA/render evidence is the adjacent manifest)
+- human-readable derived view: `output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf` (32-page detailed review edition; Markdown owner only; PDF source SHA/all-page render evidence is the adjacent manifest)
 - L1 PDF publication receipt: `docs/contracts/receipts/2026-09-02-story-arc-blueprint-pdf-publication-work-contract-receipt.json`
 - supervised duel environment candidate manifest: `assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json`
 

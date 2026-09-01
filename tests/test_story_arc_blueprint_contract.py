@@ -102,7 +102,14 @@ class StoryArcBlueprintContractTests(unittest.TestCase):
             hashlib.sha256(pdf_path.read_bytes()).hexdigest().upper(),
             manifest["pdf"]["sha256"],
         )
-        self.assertGreaterEqual(manifest["pdf"]["page_count"], 5)
+        # The public review PDF must remain a genuinely detailed counterpart to
+        # the long-form planning blueprint, not collapse again into a short
+        # status summary.  The single canonical Markdown source still owns the
+        # rules; this asserts the derived reader view has enough room to expose
+        # the concrete screens, gates, inputs, and evidence boundaries.
+        self.assertGreaterEqual(manifest["pdf"]["page_count"], 32)
+        self.assertEqual("DETAILED_REVIEW_EDITION", manifest["publication_profile"]["edition"])
+        self.assertEqual(32, manifest["publication_profile"]["page_count_target"])
         self.assertEqual("ALL_PAGES_RENDERED_AND_VISUALLY_INSPECTED", manifest["render_validation"]["status"])
         self.assertEqual(
             PDF_PUBLICATION_RECEIPT_PATH.relative_to(ROOT).as_posix(),

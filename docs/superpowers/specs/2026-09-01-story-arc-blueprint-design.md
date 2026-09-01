@@ -11,6 +11,7 @@ implementation_plan: docs/superpowers/plans/2026-09-01-story-arc-blueprint-imple
 runtime_receipt: docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md
 human_pdf_derivative: output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf
 human_pdf_manifest: output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.manifest.json
+human_pdf_publication_profile: DETAILED_REVIEW_EDITION__32_A4_LANDSCAPE_PAGES
 ```
 
 ## 1. 플레이어 약속과 경계
@@ -210,6 +211,6 @@ Shared existing core
 
 ## 9. 현재 완료 상태·다음 단계
 
-입학식 → 첫 수업 → 첫 실습 → 결투 연습 → 축제의 첫 세션 route와 결투 환경 02는 구현·자동 검증·1280×720 editor-runtime 관찰까지 완료됐다. 이 문서는 사람이 빠르게 확인할 수 있도록 같은 내용을 파생 PDF로도 제공하지만, Markdown 원본이 정본이며 PDF의 source SHA·render evidence는 manifest가 소유한다.
+입학식 → 첫 수업 → 첫 실습 → 결투 연습 → 축제의 첫 세션 route와 결투 환경 02는 구현·자동 검증·1280×720 editor-runtime 관찰까지 완료됐다. 이 문서는 사람이 빠르게 확인할 수 있도록 같은 내용을 **32페이지 상세 검토판** 파생 PDF로도 제공하지만, Markdown 원본이 정본이며 PDF의 source SHA·render evidence는 manifest가 소유한다.
 
 다음 안전 작업은 1920×1080 crop, 실제 Human/Device/Accessibility/Performance/Export 검증을 별도 증거로 수집하는 일이다. 카드 상세 규칙·턴·마력·승패는 계속 `RULESET_PENDING`이며, 새 카드 artwork·festival 전용 배경처럼 실제 소비처가 생긴 이미지는 위 후보 정책으로 준비하되 제품 의미·final lock과 runtime binding을 자동으로 확정하지 않는다.

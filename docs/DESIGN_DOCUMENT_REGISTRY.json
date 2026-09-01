@@ -156,6 +156,8 @@
       "manifest": "output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.manifest.json",
       "kind": "HUMAN_GDD_PDF_DERIVED_VIEW",
       "state": "DERIVED__SOURCE_SHA_RECORDED__RENDER_VALIDATED",
+      "publication_profile": "DETAILED_REVIEW_EDITION__32_A4_LANDSCAPE_PAGES",
+      "review_scope": "CURRENT_STORY_ARC_SCREEN_STATE_INPUT_FLOW_ASSET_RUNTIME_AND_EVIDENCE_REVIEW",
       "work_contract_receipt": "docs/contracts/receipts/2026-09-02-story-arc-blueprint-pdf-publication-work-contract-receipt.json"
     },
     "duel_environment_candidate_manifest": "assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json",

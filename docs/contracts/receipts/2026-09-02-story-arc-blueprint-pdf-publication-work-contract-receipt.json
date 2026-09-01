@@ -5,6 +5,13 @@
   "approval_reference": "사용자 최신 지시: 앞으로 필요하다고 판단되는 이미지는 별도 승인받지말고 제작해. 권장안대로 진행해. 그리고 블루프린트도 pdf로 볼 수 있게해줘.",
   "approval_state": "REUSED_APPROVAL",
   "continuous_work_state": "CONTINUOUS_WORK_ACTIVE",
+  "density_correction_revision": {
+    "user_feedback": "사용자 최신 지시: 너무 빈약하잖아 이전보다 퇴행했어 다시 좀 더 상세하게 만들어.",
+    "problem_observed": "The current derived view had 7 pages while the retained long-horizon human blueprint has 32 pages; the short view did not expose screen-level states, input gates, recovery paths, concrete consumers, or evidence boundaries at comparable review density.",
+    "selected_correction": "Replace the seven-page summary-only derived view with one 32-page DETAILED_REVIEW_EDITION derived from the same canonical Markdown owner and actual runtime sources.",
+    "scope_guard": "No gameplay rule, card detailed rule, runtime scene, save format, or production asset state is newly authorized by the PDF density correction.",
+    "verification_target": "All 32 final pages must be raster rendered and visually inspected; source/PDF SHA binding and tagged/screen-reader NOT_RUN boundary remain explicit."
+  },
   "base_current_main": "1bc9c0cbc679f1d88cf1652d48df9273ba234401",
   "base_current_main_subject": "fix: accept clean generated view line endings",
   "project_branch_head_before_build": "5b4d2cf239a129d9b39ebeb5d3df37f5c9d5f7a7",
@@ -141,9 +148,9 @@
       },
       {
         "loop": 4,
-        "attack": "Inspect the external PDF instead of trusting its generator or file presence.",
-        "evidence": "Poppler 150-DPI render of all 7 pages, visual inspection of all final-content pages, PDF metadata/page-count check, and manifest source/PDF hash readback.",
-        "result": "PASS__SEVEN_PAGES_READABLE_AFTER_LAYOUT_CORRECTION"
+        "attack": "Inspect the external PDF instead of trusting its generator or file presence, and challenge whether the detailed revision is still a summary in disguise.",
+        "evidence": "Poppler 150-DPI render of all 32 pages, visual inspection of pages 1 through 32, PDF metadata/page-count check, detailed-review manifest profile, and manifest source/PDF hash readback.",
+        "result": "PASS__THIRTY_TWO_PAGE_DETAILED_REVIEW_EDITION_READABLE"
       },
       {
         "loop": 5,
@@ -164,7 +171,7 @@
       "game Accessibility/Performance/Export validation",
       "card detailed rules supplied by user"
     ],
-    "next_state": "PDF_PUBLICATION_COMPLETE__CONTINUE_EXISTING_GAME_IMPLEMENTATION_AND_EVIDENCE_QUEUE"
+    "next_state": "DETAILED_PDF_PUBLICATION_COMPLETE__CONTINUE_EXISTING_GAME_IMPLEMENTATION_AND_EVIDENCE_QUEUE"
   },
   "reuse_learning_handoff": {
     "selected_modules": [
