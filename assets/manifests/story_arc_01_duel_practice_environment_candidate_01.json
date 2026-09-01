@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "asset_id": "GR-CAND-STORY-ARC-DUEL-ENV-01",
+  "name": "First supervised duel practice cloister environment candidate 01",
+  "status": "REJECTED_CANDIDATE__RETAINED_FOR_PROVENANCE",
+  "created_on": "2026-09-01",
+  "visual_layer": "ENVIRONMENT_BACKGROUND",
+  "planned_consumer": "res://src/ui/story/duel_practicum_root.tscn",
+  "planned_consumer_surface": "DuelPracticumRoot/EnvironmentBackground",
+  "runtime_bound": false,
+  "promotion_gate": "NO_PROMOTION__CANDIDATE_02_REPLACES_FOR_REVIEW",
+  "file": {
+    "path": "assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_01_environment_only.png",
+    "format": "PNG",
+    "sha256": "1BD51F0C20990CB46B2961B994B2371CEF39BAA70BA743C7E697A20E211618CD",
+    "size_bytes": 2278989,
+    "aspect": "16:9_LANDSCAPE"
+  },
+  "provenance": {
+    "creation_route": "OpenAI Image Generation built-in",
+    "source_storage": "C:/Users/user/.codex/generated_images/01a04af4-91c2-78f2-bbbb-9e5110b63de2/exec-a84e1780-cccc-4d39-96df-8f41a3707846.png",
+    "input_images": "NONE",
+    "brief_owner": "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md",
+    "rights_scope": "PROJECT_OWNED_GENERATED_CANDIDATE__RELEASE_REVIEW_REQUIRED"
+  },
+  "constraints": "environment only; no baked text; no glyph; no character; no player hand; no card; no scoreboard; no logo; no watermark; no combat impact; no functional UI",
+  "composition_contract": {
+    "layer_order": "EnvironmentBackground -> SituationTargets -> OptionalMagicWritingOverlay -> LiveDialogueAndEventUI",
+    "reserved_space": "central practice floor remains usable for a live target, layered circles, goal/threat clocks, and explicit cast controls",
+    "input_rule": "background must use MOUSE_FILTER_IGNORE when eventually bound"
+  },
+  "review": {
+    "candidate_qa": "REJECTED_FOR_LIVE_UI_AMBIGUITY",
+    "observed_strengths": [
+      "calm open centre for live state",
+      "warm navy/gold academy continuity",
+      "no baked readable functional text",
+      "distinct from greenhouse and classroom"
+    ],
+    "remaining_review": [
+      "architectural floor rings and a wall emblem can be confused with live Circle/target state",
+      "candidate 02 replacement review"
+    ]
+  }
+}

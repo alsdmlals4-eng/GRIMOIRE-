@@ -162,6 +162,12 @@ android_device: NOT_RUN
 
 카드 마력의 `7·7·6 / 20`은 **마력 20이 남은 한 장면의 설명 예시**다. 고정 밸런스·기본 배분·검증·소비 규칙이 아니며, 실제 마력 분배와 소비는 상세 카드 룰 결정 전까지 `RULESET_PENDING`으로 둔다.
 
+### 2026-09-01 스토리 아크 블루프린트·결투 연습 환경 후보
+
+사용자는 `GR-STORY-ARC-BLUEPRINT-01`의 벤치마크 → 블루프린트 → 필요한 이미지/UI 후보 준비 순서를 승인했다. [스토리 아크 블루프린트 설계](superpowers/specs/2026-09-01-story-arc-blueprint-design.md)는 입학식 → 첫 수업 → 첫 실습 → 결투 연습 → 축제를 `StoryProgress`가 순서대로 여는 플로우, 네 기준 화면 와이어프레임, 공용 서클·시계 상태 계약과 Godot 소비처를 소유한다. [12종 공식 출처 벤치마크](planning/benchmarks/2026-09-01-story-led-academy-reverse-engineering.md)는 외부 작품의 고유 표현을 복제하지 않고 기능 패턴만 `ADOPT / ADAPT / REJECT`로 판정한다. 구현 순서·hard stop은 [implementation plan](superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md), scope/research/적대적 검토 기록은 [L1 receipt](contracts/receipts/2026-09-01-story-arc-blueprint-work-contract-receipt.json)가 소유한다.
+
+결투 연습 환경 후보 `GR-CAND-STORY-ARC-DUEL-ENV-02`는 환경만 담은 `GENERATED_CANDIDATE`다. manifest는 `assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json`, source candidate는 `assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_02_unmarked_environment_only.png`이며, `DuelPracticumRoot/EnvironmentBackground`의 **계획된** 소비처만 가진다. 후보 01은 live 서클/표적처럼 읽힐 수 있는 바닥 고리·벽 장식 때문에 `REJECTED_CANDIDATE__RETAINED_FOR_PROVENANCE`로 남겼다. 후보 02는 그 기능적 오인을 제거한 보정본이다. 아직 Scene import·runtime bind·canon 승격을 하지 않았고, 최종 잠금은 `USER_FINAL_LOCK_REQUIRED`다. 카드의 상세 규칙도 계속 `RULESET_PENDING`이며, 이 블루프린트는 현재 `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`를 대체하거나 Human/Device/Performance/Accessibility/Export 상태를 승격하지 않는다.
+
 아래에 남은 별형 관련 설명과 W6 구현 증거는 **현재 구현의 역사·실제 상태**를 보존하기 위한 것이며, 새 제품 방향의 authority가 아니다. 사용자는 실제 legacy Star 저장을 보존하고, 삭제·이동·자동 변환 없이 새 경험을 새 기록에서 시작하도록 승인했다. 2026-09-01 Task8은 저장을 읽기 전용으로 재확인한 뒤 Star runtime 코드·씬·전용 테스트·소비처를 제거했고, 새 서클/시계 이야기 화면의 자동 및 exact-worktree editor 관찰을 완료했다. receipt: `docs/validation/CIRCLE_CLOCK_TASK8_STAR_REMOVAL_IMPLEMENTATION_RECEIPT_2026-09-01.md`. 사람/기기/성능/출시 검증을 수행하지 않은 상태는 계속 `NOT_RUN`이다.
 
 2026-08-26 사용자는 Visual 시안 검토 뒤 `GM-SPELL-WORKFLOW-UI-V2-01`의 플레이어 노출 흐름을 다음처럼 단순화하는 방향을 명시적으로 승인했다.

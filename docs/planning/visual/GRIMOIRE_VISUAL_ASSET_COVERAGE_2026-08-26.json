@@ -435,6 +435,20 @@
       "coverage_status": "BRIEF_READY",
       "state_family_status": "FRAME_NORMAL_LOCKED_SELECTED_DISABLED_REQUIRED__WIZARD_ART_DEFERRED",
       "note": "Functional card name, cost, rules, rarity, and status remain live UI. Candidates need user lock before runtime use."
+    },
+    {
+      "visual_id": "GR-VIS-026-SUPERVISED-DUEL-PRACTICE-ENVIRONMENT-CANDIDATE",
+      "type": "PLANNED_GAME_SCENE_REFERENCE",
+      "purpose": "Give the future supervised student duel-practice story beat a distinct warm academy environment without baking Circle, Clock, target, dialogue, or card semantics into the art.",
+      "implementation_consumer": "res://src/ui/story/duel_practicum_root.tscn (planned: DuelPracticumRoot/EnvironmentBackground)",
+      "existing_asset_or_reference": "GR-CAND-STORY-ARC-DUEL-ENV-02 / assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json",
+      "delete_test": "The planned scene can operate on a plain background, but it would lose the distinct academy-practice context needed to distinguish a safe student duel from the first greenhouse practicum.",
+      "consequence_if_missing": "Future duel practice has weaker narrative location, visual differentiation, and protected live UI space.",
+      "priority": "P1",
+      "action": "CREATE",
+      "coverage_status": "GENERATED_CANDIDATE__USER_FINAL_LOCK_REQUIRED__RUNTIME_NOT_BOUND",
+      "state_family_status": "ENVIRONMENT_ONLY__LIVE_UI_AND_TARGET_LAYERS_SEPARATE",
+      "note": "Candidate 02 is a generated unmarked environment-only PNG. Candidate 01 is rejected and retained only for provenance because its floor rings and wall emblem could read as live game state. Candidate 02 must not be imported/bound or promoted to a production asset before a user final visual lock, runtime crop/readability verification, and release similarity/rights review."
     }
   ],
   "intentionally_not_needed": [

@@ -100,6 +100,8 @@ The detailed source/page ledger, classifications, and migration completion rules
 - 파생 PDF: `output/pdf/grimoire_HUMAN_GAME_BLUEPRINT_20260830.pdf` (생성 후)
 - 이 pair는 최신 사용자 방향에 따라 온실/묘목을 게임 전체가 아닌 **수업 직후 첫 지도 실습 사건**으로 설명한다. 기존 W6/C6 owner는 자동 변경하지 않으며, 최종 검수 뒤 별도 reconciliation unit에서만 조정한다. W6 사람 검증을 우회하거나 장기 Chapter, W7, runtime asset batch의 자동 구현 권한을 만들지 않는다.
 
+`GR-STORY-ARC-BLUEPRINT-01`은 이 장기 방향의 당장 다음 5개 비트를 실행 가능한 첫 단위로 내렸다. [플로우·와이어프레임 설계](superpowers/specs/2026-09-01-story-arc-blueprint-design.md)와 [구현 계획](superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md)은 입학식 → 수업 → 첫 실습 → 결투 연습 → 축제를 순서대로 연결한다. 결투 환경 후보 02는 `GENERATED_CANDIDATE`이며, manifest와 asset provenance는 존재하지만 runtime에는 아직 바인드되지 않았다. 후보 01은 UI 오인 위험을 발견해 provenance용으로만 보존했다. 카드 상세 규칙과 모든 Human/Device/Performance/Accessibility/Export 증거는 계속 별도 gate다.
+
 ## 7. Reading and update rules
 
 - The repository owns current human and structured canon. No Notion current-canon write or destination readback is allowed.

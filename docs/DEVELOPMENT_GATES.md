@@ -147,6 +147,18 @@ current_gate_observation_state: PREPARED_NOT_RUN
 automated_evidence: AVAILABLE_DO_NOT_PROMOTE_TO_HUMAN_DEVICE_PERFORMANCE_OR_EXPORT_PASS
 ```
 
+## Gate 2.1 — Story arc blueprint and visual-candidate boundary
+
+`GR-STORY-ARC-BLUEPRINT-01`은 입학식 → 첫 수업 → 첫 실습 → 결투 연습 → 축제를 `StoryProgress`가 순서대로 여는 다음 narrative slice의 **설계·구현 순서·후보 준비** 상태다. owner는 다음과 같다.
+
+- design / flow / wireframes: `docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md`
+- implementation sequence: `docs/superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md`
+- researched functional comparison: `docs/planning/benchmarks/2026-09-01-story-led-academy-reverse-engineering.md`
+- L1 research/feasibility/adversarial receipt: `docs/contracts/receipts/2026-09-01-story-arc-blueprint-work-contract-receipt.json`
+- supervised duel environment candidate manifest: `assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json`
+
+`GR-CAND-STORY-ARC-DUEL-ENV-02`는 `GENERATED_CANDIDATE`이고 `runtime_bound: false`다. 후보 01은 live state와 오인될 수 있는 바닥 고리/벽 장식 때문에 provenance만 남긴 rejected candidate다. 사용자의 final visual lock 전에는 `DuelPracticumRoot` Scene import/bind, production asset 승격, 후보 확장 생성, Human/Device/Performance/Accessibility/Export PASS 주장을 하지 않는다. 카드 archive는 이야기 소유 read-only 상태를 유지하며, 카드 상세 턴/마력/승패 규칙과 독립 카드 결투 route는 `RULESET_PENDING`으로 유지한다. 이 gate는 `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`의 현재 human/device evidence 요구를 대체하지 않는다.
+
 W6 L2 user review and the L3 implementation-plan document are complete. Executing the one W6 contract is a distinct gate: `W6_L3_IMPLEMENTATION_AUTHORIZATION_REQUIRED`. It may reuse the Task9 Product Root foundation but must not treat Task9 automation as W6 or Human evidence.
 
 Task8은 Task5 Stage3의 thin UI consumer였으며, 다음 compatibility locator는 기존 consumer 검색을 위해 역사적으로 유지한다.

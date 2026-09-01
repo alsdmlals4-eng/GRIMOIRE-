@@ -1,0 +1,64 @@
+{
+  "work_level": "L1",
+  "work_unit": "GR-STORY-ARC-BLUEPRINT-01",
+  "approval_reference": "사용자 최신 지시: 권장안대로 진행하고 이후 작업순서에 따라 블루프린트(와이어프레임, 플로우 맵 등) 작업을 시작하고, 벤치마킹과 필요한 이미지/UI 제작을 진행한다.",
+  "base_current_main": "19355b7ef065a21d0f2b685c7d9be64a4a3970f8",
+  "project_branch_head_before_build": "f7857f9efd41b8f6abd11ce1d940642e60da0975",
+  "benchmark_preflight_receipt": {
+    "state": "PASS",
+    "owner": "docs/planning/benchmarks/2026-09-01-story-led-academy-reverse-engineering.md",
+    "entries": [
+      {"title": "Volcano Princess", "disposition": "ADAPT"},
+      {"title": "I Was a Teenage Exocolonist", "disposition": "ADAPT"},
+      {"title": "Potion Permit", "disposition": "ADAPT"},
+      {"title": "Fire Emblem: Three Houses", "disposition": "ADAPT"},
+      {"title": "Persona 5 Royal", "disposition": "ADAPT"},
+      {"title": "GWENT", "disposition": "ADAPT"},
+      {"title": "Shadowverse", "disposition": "ADAPT"},
+      {"title": "Magical Diary: Horse Hall", "disposition": "ADAPT"},
+      {"title": "Little Witch in the Woods", "disposition": "ADAPT"},
+      {"title": "Whimel Academy", "disposition": "REJECT_AS_CURRENT_RULE"},
+      {"title": "Academagia", "disposition": "REJECT_AS_CURRENT_SCOPE"},
+      {"title": "Hogwarts Legacy", "disposition": "REJECT_EXPRESSION__ADAPT_PRINCIPLE"}
+    ]
+  },
+  "context_configuration_hygiene": {
+    "scope": "L1 blueprint, plan, benchmark, contract test, and one environment-only candidate. No runtime Scene, GDScript, card rule, save, Base, or legacy-save mutation.",
+    "inventory": [
+      {"path": "src/ui/front_door/story_front_door.tscn", "classification": "ACTIVE_OWNER", "references_and_consumers": "project.godot entry and Story Front Door tests"},
+      {"path": "src/ui/story/admission_prologue.tscn", "classification": "ACTIVE_OWNER", "references_and_consumers": "story handoff"},
+      {"path": "src/ui/story/story_event_root.tscn", "classification": "ACTIVE_OWNER", "references_and_consumers": "first current Circle/Clock event"},
+      {"path": "src/ui/cards/card_archive_screen.tscn", "classification": "ACTIVE_OWNER", "references_and_consumers": "story-owned read-only card archive"},
+      {"path": "assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_01_environment_only.png", "classification": "REJECTED_CANDIDATE__RETAINED_FOR_PROVENANCE", "references_and_consumers": "no runtime consumer; rejected because architectural marks could be mistaken for live state"},
+      {"path": "assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_02_unmarked_environment_only.png", "classification": "CANDIDATE_PENDING_FINAL_LOCK", "references_and_consumers": "planned-only until user final visual lock"},
+      {"path": "C:/Users/user/AppData/Roaming/Godot/app_userdata/GRIMOIRE Star Circuit Runtime POC/grimoire_campaign_anchor.json", "classification": "COMPATIBILITY", "references_and_consumers": "user-owned preserved legacy save; no writes"}
+    ]
+  },
+  "implementation_feasibility_recheck": {
+    "status": "PARTIAL",
+    "actual_project_evidence": [
+      "project.godot runs StoryFrontDoor as the current main scene.",
+      "StoryFrontDoor -> AdmissionPrologue -> StoryEventRoot is editor-observed and deterministic-test covered.",
+      "CircleComposition, EventClockState/Resolver/View, direct glyph writing, and story-owned CardArchiveScreen exist in the exact worktree.",
+      "FirstClassRoot, DuelPracticumRoot, FestivalCanopyRoot, and a chapter route definition do not yet exist."
+    ],
+    "limit": "The blueprint is implementable through existing seams, but future scenes, target-resolution runtime renders, and all human/device/accessibility/performance/export evidence are not yet executed."
+  },
+  "adversarial_review_loops": [
+    {"loop": 1, "finding": "A new blueprint could turn the front door back into an activity hub.", "disposition": "MUST_FIX", "correction": "Flow begins only from StoryFrontDoor and preserves no activity-mode buttons."},
+    {"loop": 2, "finding": "The greenhouse can be misread as the entire product.", "disposition": "MUST_FIX", "correction": "Class, duel, and festival are explicit sequential beats and their separate visual consumers are named."},
+    {"loop": 3, "finding": "Card inspiration could silently manufacture the user-deferred rules.", "disposition": "MUST_FIX", "correction": "Every card path retains RULESET_PENDING and no independent duel route."},
+    {"loop": 4, "finding": "A generated background could appear final or contain functional state.", "disposition": "MUST_FIX", "correction": "Manifest fixes GENERATED_CANDIDATE, no baked text/glyph/character, false runtime_bound, and USER_FINAL_LOCK_REQUIRED."},
+    {"loop": 5, "finding": "Documents could overclaim actual playable coverage or human proof.", "disposition": "MUST_FIX", "correction": "Current/plan/candidate states are separated and evidence ceiling remains planning/candidate only."}
+  ],
+  "reuse_learning_handoff": {
+    "selected_modules": ["StoryFrontDoor", "AdmissionPrologue", "StoryEventRoot", "CircleComposition", "EventClock", "CardArchiveScreen", "existing planning references"],
+    "reuse_mode": "ADAPT_EXISTING_PROJECT_CONSUMERS__NO_NEW_BASE_MODULE",
+    "project_paths_changed": ["blueprint", "benchmark", "plan", "candidate manifest", "contract test"],
+    "evidence_ceiling": "PLANNING_AND_CANDIDATE_READY__RUNTIME_NOT_BOUND",
+    "rollback": "Revert this work-unit commit; generated candidate is unbound and has no save/runtime consumer.",
+    "project_only_lessons": ["Environment-only assets keep glyph/clock/UI semantics live.", "A story-gated card archive can prepare identity without inventing card combat rules."],
+    "base_promotion_candidates": ["NO_NEW_REUSE_LEARNING"]
+  },
+  "evidence_ceiling": "PLANNING_AND_CANDIDATE_READY__RUNTIME_NOT_BOUND"
+}

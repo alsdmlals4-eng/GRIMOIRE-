@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "asset_id": "GR-CAND-STORY-ARC-DUEL-ENV-02",
+  "name": "First supervised duel practice cloister environment candidate 02 unmarked",
+  "status": "GENERATED_CANDIDATE",
+  "created_on": "2026-09-01",
+  "visual_layer": "ENVIRONMENT_BACKGROUND",
+  "planned_consumer": "res://src/ui/story/duel_practicum_root.tscn",
+  "planned_consumer_surface": "DuelPracticumRoot/EnvironmentBackground",
+  "runtime_bound": false,
+  "promotion_gate": "USER_FINAL_LOCK_REQUIRED",
+  "file": {
+    "path": "assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_02_unmarked_environment_only.png",
+    "format": "PNG",
+    "sha256": "3D16DBCC5015550914CD420498DE3C2DCD85783E6EE8D819E04D6D5A2E1B4EFF",
+    "size_bytes": 2296731,
+    "aspect": "16:9_LANDSCAPE"
+  },
+  "provenance": {
+    "creation_route": "OpenAI Image Generation built-in; explicit correction of candidate 01",
+    "source_storage": "C:/Users/user/.codex/generated_images/01a04af4-91c2-78f2-bbbb-9e5110b63de2/exec-db980762-c80e-43d1-92ea-03aea2c8d228.png",
+    "input_images": "GR-CAND-STORY-ARC-DUEL-ENV-01 environment-only candidate; no third-party image",
+    "brief_owner": "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md",
+    "rights_scope": "PROJECT_OWNED_GENERATED_CANDIDATE__RELEASE_REVIEW_REQUIRED"
+  },
+  "constraints": "environment only; no baked text; no glyph; no functional magic circle/target/ring/emblem; no character; no player hand; no card; no scoreboard; no logo; no watermark; no combat impact; no functional UI",
+  "composition_contract": {
+    "layer_order": "EnvironmentBackground -> SituationTargets -> OptionalMagicWritingOverlay -> LiveDialogueAndEventUI",
+    "reserved_space": "plain central practice floor remains usable for a live target, layered circles, goal/threat clocks, and explicit cast controls",
+    "input_rule": "background must use MOUSE_FILTER_IGNORE when eventually bound"
+  },
+  "review": {
+    "candidate_qa": "PASS_FOR_REVIEW_ONLY",
+    "observed_strengths": [
+      "calm plain central floor for live state",
+      "warm navy/gold academy continuity",
+      "no baked readable functional text",
+      "no apparent functional circle, target, emblem, or glyph",
+      "distinct from greenhouse and classroom"
+    ],
+    "remaining_review": [
+      "user final visual lock",
+      "runtime crop/readability at 1280x720 and 1920x1080",
+      "release similarity and rights review"
+    ]
+  }
+}
