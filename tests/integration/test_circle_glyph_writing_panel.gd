@@ -15,8 +15,25 @@ func run(case) -> void:
     if not scene is PackedScene:
         return
 
+    var host := Control.new()
+    var tree := Engine.get_main_loop() as SceneTree
+    tree.root.add_child(host)
     var panel = scene.instantiate()
+    host.add_child(panel)
     panel.configure_allowed_glyphs([&"HEAT", &"PROTECT"])
+    var canvas = panel.get_node_or_null(NodePath("WritingSurface/StrokeCanvas"))
+    case.assert_true(canvas != null and canvas.has_method("reference_glyph_id"), "Every direct-writing panel exposes the currently shown glyph diagram")
+    if canvas != null and canvas.has_method("reference_glyph_id"):
+        case.assert_equal(&"HEAT", canvas.reference_glyph_id(), "The first allowed glyph diagram is visible before the player draws")
+    var guide_button := panel.get_node_or_null(NodePath("CandidateActions/Candidate0Button")) as Button
+    case.assert_true(guide_button != null and guide_button.visible and guide_button.text == "도안: 열", "The first available glyph diagram has an explicit live guide selector")
+    var protect_guide_button := panel.get_node_or_null(NodePath("CandidateActions/Candidate1Button")) as Button
+    if protect_guide_button != null:
+        protect_guide_button.pressed.emit()
+    if canvas != null and canvas.has_method("reference_glyph_id"):
+        case.assert_equal(&"PROTECT", canvas.reference_glyph_id(), "Pressing the live protect guide selector switches the visible canonical glyph diagram")
+    var empty_result: Dictionary = panel.submit_strokes([])
+    case.assert_equal(&"NO_STROKES_CAPTURED", empty_result.get("status", &""), "An empty canvas explains input capture failure instead of claiming an unavailable event glyph")
     var accepted_ids: Array[StringName] = []
     panel.glyph_accepted.connect(func(glyph_id: StringName): accepted_ids.append(glyph_id))
 
@@ -35,7 +52,7 @@ func run(case) -> void:
     case.assert_equal(&"GLYPH_ACCEPTED", protect_accepted.get("status", &""), "Second glyph needs its own explicit acceptance")
     case.assert_equal(&"PROTECT", protect_accepted.get("glyph_id", &""), "Second glyph accepts PROTECT without Main or Auxiliary roles")
     case.assert_equal([&"HEAT", &"PROTECT"], accepted_ids, "Two separately accepted direct writings remain ordered player inputs")
-    panel.free()
+    host.queue_free()
 
 
 func _load_strokes(path: String) -> Array[PackedVector2Array]:

@@ -50,14 +50,14 @@ human_device_release_evidence: NOT_RUN
 | Direct glyph panel says greenhouse seedlings in the duel | 1280×720 runtime screenshot and duel test | CORRECTED — shared panel receives a duel-specific practice-ward hint |
 | Class/festival frames look like empty ornamental windows or hide the class continuation below the viewport | runtime screenshots at 1280×720 | CORRECTED — panel hierarchy and dimensions tightened; the direct-glyph gate and continuation now render together within the lesson panel |
 | Runtime error/warning is hidden by headless test success | Hera exact-editor diagnostics after final captures | PASS — 0 errors, 0 warnings |
-| Temporary screenshots/import sidecars consume project space | `artifacts/runtime/.gdignore` and exact stale-file cleanup | PASS — only three final evidence captures remain; they are not Godot runtime assets |
+| Temporary screenshots/import sidecars consume project space | `artifacts/runtime/.gdignore` and exact stale-file cleanup | PASS — only four final evidence captures remain; they are not Godot runtime assets |
 
 ## Consolidated evidence
 
 | Check | Result |
 | --- | --- |
 | `git diff --check` | PASS — no whitespace error reported |
-| Godot headless test runner | PASS — 34 suites, 1,434 assertions, 0 failures |
+| Godot headless test runner | PASS — 34 suites, 1,450 assertions, 0 failures |
 | Story-arc Python contract | PASS — 4 tests, 0 failures |
 | JSON parse: manifest / visual coverage / registry | PASS |
 | Hera runtime capture and diagnostics | PASS at 1280×720; exact editor diagnostics clean |
@@ -69,3 +69,21 @@ human_device_release_evidence: NOT_RUN
 - Festival-specific visual art is not locked; the festival intentionally reuses the existing canonical academy environment.
 - Card detailed rules remain awaiting user authority.
 - Release rights/similarity review remains conditional for the generated duel environment.
+
+## Direct glyph input repair addendum — 2026-09-01
+
+```yaml
+scope: glyph_capture__touch_coordinate_space__recognition_handoff__live_reference_guide
+required_full_scope_loops: 5
+completed_full_scope_loops: 5
+external_research: ADAPT_OFFICIAL_GODOT_INPUT_COORDINATE_AND_EMULATION_GUIDANCE
+human_touch_validation: NOT_RUN
+```
+
+| Loop | Full-scope attack | Finding | Disposition / evidence |
+| --- | --- | --- | --- |
+| 1 | A visible writing canvas may record no usable mouse stroke | The old `1.0` de-duplication threshold was evaluated after normalisation, so normal movement was discarded | `MUST_FIX`: a `0.002` normalised threshold plus canvas regression verifies a stored multi-point mouse stroke |
+| 2 | Touch drawing may use a different coordinate system than mouse drawing | Screen touch positions are viewport-relative rather than Control-local | `MUST_FIX`: canvas-transform conversion and a nonzero-origin viewport-touch regression preserve `0.20, 0.80 → 0.80, 0.80` local coordinates |
+| 3 | One physical touch may produce a second emulated mouse stroke | Default emulation can send paired input routes to a custom canvas | `MUST_FIX`: canvas owns one physical pointer source and ignores `DEVICE_ID_EMULATION`; regression injects conflicting emulated mouse coordinates |
+| 4 | Captured strokes can look correct yet fail recognition at the type boundary | `$N` accepts `PackedVector2Array`; old canvas snapshots returned generic arrays | `MUST_FIX`: submitted runtime strokes are packed and the exact editor path reaches `열 후보` from the visible guide |
+| 5 | A guide can become a decorative image that drifts from permitted/recognised glyphs | A static raster would not reflect the event's actual allowed vocabulary or canonical recognition template | `MUST_FIX`: live guide is rendered from the first canonical template for the selected allowed glyph; no new raster asset, baked gameplay text, auto-selection, threshold relaxation, target, or cast was introduced |
