@@ -97,6 +97,8 @@
     {"path":"docs/contracts/receipts/2026-09-01-story-arc-blueprint-work-contract-receipt.json","feature_id":"GR-STORY-ARC-BLUEPRINT-01","status":"L1_WORK_CONTRACT_RECEIPT__PLANNING_AND_CANDIDATE_READY"},
     {"path":"docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md","feature_id":"GR-STORY-ARC-BLUEPRINT-01","status":"IMPLEMENTED__MACHINE_VERIFIED__EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN"},
     {"path":"docs/validation/STORY_ARC_FIRST_SESSION_ADVERSARIAL_REVIEW_2026-09-01.md","feature_id":"GR-STORY-ARC-BLUEPRINT-01","status":"FIVE_FULL_SCOPE_LOOPS_COMPLETED__RESIDUAL_HUMAN_DEVICE_RISKS_OPEN"},
+    {"path":"docs/contracts/receipts/2026-09-02-story-arc-blueprint-pdf-publication-work-contract-receipt.json","feature_id":"GR-STORY-ARC-BLUEPRINT-01","status":"L1_WORK_CONTRACT_RECEIPT__DERIVED_PDF_PUBLICATION"},
+    {"path":"output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf","feature_id":"GR-STORY-ARC-BLUEPRINT-01","status":"HUMAN_GDD_PDF_DERIVED_VIEW__SOURCE_SHA_RECORDED__RENDER_VALIDATED"},
     {"path":"docs/validation/CIRCLE_CLOCK_FRONT_DOOR_RUNTIME_RECEIPT_2026-08-31.md","decision_id":"GM-CIRCLE-CLOCK-CARD-CORE-01","feature_id":"FTR-CIRCLE-CLOCK-CARD-CORE-01","status":"EXACT_EDITOR_AND_AUTOMATED_EVIDENCE__HUMAN_NOT_RUN"},
     {"path":"docs/validation/CIRCLE_CLOCK_TASK8_STAR_REMOVAL_IMPLEMENTATION_RECEIPT_2026-09-01.md","decision_id":"GM-CIRCLE-CLOCK-CARD-CORE-01","feature_id":"FTR-CIRCLE-CLOCK-CARD-CORE-01","status":"TASK8_AUTOMATED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN"},
     {"path":"docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md","decision_id":"GM-CIRCLE-CLOCK-CARD-CORE-01","feature_id":"FTR-CIRCLE-CLOCK-CARD-CORE-01","gate_id":"CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK","status":"PREPARED_NOT_RUN"},
@@ -149,6 +151,13 @@
     "work_contract_receipt": "docs/contracts/receipts/2026-09-01-story-arc-blueprint-work-contract-receipt.json",
     "runtime_receipt": "docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md",
     "adversarial_review": "docs/validation/STORY_ARC_FIRST_SESSION_ADVERSARIAL_REVIEW_2026-09-01.md",
+    "human_pdf_publication": {
+      "pdf": "output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf",
+      "manifest": "output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.manifest.json",
+      "kind": "HUMAN_GDD_PDF_DERIVED_VIEW",
+      "state": "DERIVED__SOURCE_SHA_RECORDED__RENDER_VALIDATED",
+      "work_contract_receipt": "docs/contracts/receipts/2026-09-02-story-arc-blueprint-pdf-publication-work-contract-receipt.json"
+    },
     "duel_environment_candidate_manifest": "assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json",
     "duel_environment_rejected_candidate_manifest": "assets/manifests/story_arc_01_duel_practice_environment_candidate_01.json",
     "duel_environment_candidate_state": "USER_APPROVED__CANON_REGISTERED__IMPLEMENTED__RUNTIME_BOUND",

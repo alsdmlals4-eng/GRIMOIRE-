@@ -149,12 +149,14 @@ automated_evidence: AVAILABLE_DO_NOT_PROMOTE_TO_HUMAN_DEVICE_PERFORMANCE_OR_EXPO
 
 ## Gate 2.1 — Story arc blueprint and visual-candidate boundary
 
-`GR-STORY-ARC-BLUEPRINT-01`은 입학식 → 첫 수업 → 첫 실습 → 결투 연습 → 축제를 `StoryProgress`가 순서대로 여는 다음 narrative slice의 **설계·구현 순서·후보 준비** 상태다. owner는 다음과 같다.
+`GR-STORY-ARC-BLUEPRINT-01`은 입학식 → 첫 수업 → 첫 실습 → 결투 연습 → 축제를 `StoryProgress`가 순서대로 여는 첫 narrative vertical slice의 **구현·자동 검증·1280×720 editor-runtime 관찰** 상태다. Human/Device/Accessibility/Performance/Export는 별도 gate로 남는다. owner는 다음과 같다.
 
 - design / flow / wireframes: `docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md`
 - implementation sequence: `docs/superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md`
 - researched functional comparison: `docs/planning/benchmarks/2026-09-01-story-led-academy-reverse-engineering.md`
 - L1 research/feasibility/adversarial receipt: `docs/contracts/receipts/2026-09-01-story-arc-blueprint-work-contract-receipt.json`
+- human-readable derived view: `output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf` (Markdown owner only; PDF source SHA/render evidence is the adjacent manifest)
+- L1 PDF publication receipt: `docs/contracts/receipts/2026-09-02-story-arc-blueprint-pdf-publication-work-contract-receipt.json`
 - supervised duel environment candidate manifest: `assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json`
 
 현 대화에서 사용자가 final visual lock한 `GR-CAND-STORY-ARC-DUEL-ENV-02`는 `USER_APPROVED__CANON_REGISTERED__IMPLEMENTED__RUNTIME_BOUND`이다. PNG는 바이트 변경 없이 `assets/art/backgrounds/academy/bg_duel_practice_cloister.png`로 승격됐고, `DuelPracticumRoot/EnvironmentBackground`가 `MOUSE_FILTER_IGNORE`와 aspect-covered stretch로 소비한다. StoryProgress의 입학식 → 수업 → 첫 실습 → 감독 결투 실습 → 축제 route, 두 실습의 live Circle/Clock 소비, 34-suite automated PASS와 1280×720 editor-runtime 관찰은 `docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md`가 소유한다. 후보 01은 live state와 오인될 수 있는 바닥 고리/벽 장식 때문에 provenance만 남긴 rejected candidate다. 카드 archive는 이야기 소유 read-only 상태를 유지하며, 카드 상세 턴/마력/승패 규칙과 독립 카드 결투 route는 `RULESET_PENDING`으로 유지한다. 이 gate는 `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`의 현재 human/device evidence 요구를 대체하지 않으며, Human/Device/Performance/Accessibility/Export PASS는 여전히 주장하지 않는다.

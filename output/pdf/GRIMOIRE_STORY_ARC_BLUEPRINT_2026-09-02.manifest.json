@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "HUMAN_GDD_PDF_DERIVED_VIEW",
+  "state": "DERIVED__SOURCE_SHA_RECORDED__RENDER_VALIDATED",
+  "source": {
+    "path": "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md",
+    "sha256": "873FC308015B604D63DD0F87AAB07372ED4D32823118DB4B0BF7B313019E6003",
+    "sha256_algorithm": "SHA256_UTF8_LF_NORMALIZED",
+    "authority": "CANONICAL_MARKDOWN_OWNER"
+  },
+  "pdf": {
+    "path": "output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf",
+    "sha256": "2ACFAAF396860A1DBBB635EF2446C8833D12B29E4447B005985522419F78E10F",
+    "size_bytes": 3533805,
+    "page_count": 7,
+    "page_size": "A4_LANDSCAPE",
+    "title": "GRIMOIRE 첫 세션 스토리 아크 블루프린트",
+    "tagged_pdf": false
+  },
+  "generator": {
+    "path": "tools/build_story_arc_blueprint_pdf.py",
+    "runtime": "Codex workspace bundled Python 26.826.12353 with ReportLab 4.4.9",
+    "font": "Malgun Gothic / Malgun Gothic Bold",
+    "operation_marker": "create/pdf expected-output-count=1"
+  },
+  "runtime_evidence_reused": [
+    "artifacts/runtime/2026-09-01-first-class-glyph-input-runtime-1280x720.png",
+    "artifacts/runtime/2026-09-01-duel-practicum-1280x720-v2.png",
+    "artifacts/runtime/2026-09-01-festival-canopy-1280x720-v3.png",
+    "docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md"
+  ],
+  "render_validation": {
+    "status": "ALL_PAGES_RENDERED_AND_VISUALLY_INSPECTED",
+    "renderer": "Poppler pdftoppm",
+    "dpi": 150,
+    "page_count_rendered": 7,
+    "visual_review": "PASS_AFTER_TWO_LAYOUT_CORRECTIONS",
+    "corrections": [
+      "Page 1 current-state text panel expanded to avoid overflow.",
+      "Page 7 evidence rows and provenance panel separated to avoid overlap."
+    ],
+    "final_page_review": {
+      "updated_and_inspected": [1, 7],
+      "unchanged_after_final_regeneration": [2, 3, 4, 5, 6],
+      "all_pages_inspected_across_final_content_lineage": true
+    }
+  },
+  "evidence_boundary": {
+    "pdf_visual_render": "VERIFIED",
+    "tagged_pdf_reading_order": "NOT_RUN",
+    "screen_reader": "NOT_RUN",
+    "game_human_device_accessibility_performance_export": "NOT_RUN",
+    "note": "This human PDF is a presentation artifact and does not promote the cited Godot evidence beyond its original runtime receipt."
+  }
+}

@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -15,9 +18,97 @@ LEGACY_CANDIDATE_PATH = ROOT / "assets/art/source_candidates/story_arc_01/backgr
 MANIFEST_PATH = ROOT / "assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json"
 RECEIPT_PATH = ROOT / "docs/contracts/receipts/2026-09-01-story-arc-blueprint-work-contract-receipt.json"
 REGISTRY_PATH = ROOT / "docs/DESIGN_DOCUMENT_REGISTRY.json"
+PDF_BUILDER_PATH = ROOT / "tools/build_story_arc_blueprint_pdf.py"
+PDF_PUBLICATION_RECEIPT_PATH = ROOT / "docs/contracts/receipts/2026-09-02-story-arc-blueprint-pdf-publication-work-contract-receipt.json"
 
 
 class StoryArcBlueprintContractTests(unittest.TestCase):
+    def test_pdf_publication_builder_accepts_the_current_story_arc_inputs(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_path = Path(temp_dir) / "story-arc-blueprint.pdf"
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(PDF_BUILDER_PATH),
+                    "--check-inputs",
+                    "--output",
+                    str(output_path),
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+        self.assertEqual(
+            0,
+            result.returncode,
+            msg=f"story-arc PDF source validation failed:\n{result.stdout}\n{result.stderr}",
+        )
+        self.assertIn("SOURCE_INPUTS_VALID", result.stdout)
+
+    def test_pdf_publication_builder_keeps_source_hash_stable_across_clean_crlf_checkout(self) -> None:
+        expected_hash = hashlib.sha256(
+            BLUEPRINT_PATH.read_text(encoding="utf-8")
+            .replace("\r\n", "\n")
+            .replace("\r", "\n")
+            .encode("utf-8")
+        ).hexdigest().upper()
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            crlf_source = Path(temp_dir) / "story-arc-blueprint-crlf.md"
+            crlf_source.write_text(
+                BLUEPRINT_PATH.read_text(encoding="utf-8")
+                .replace("\r\n", "\n")
+                .replace("\r", "\n")
+                .replace("\n", "\r\n"),
+                encoding="utf-8",
+                newline="",
+            )
+            result = subprocess.run(
+                [sys.executable, str(PDF_BUILDER_PATH), "--check-inputs", "--source", str(crlf_source)],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        self.assertIn(f"SOURCE_INPUTS_VALID source_sha256={expected_hash}", result.stdout)
+
+    def test_human_pdf_derivative_stays_hash_bound_to_the_story_arc_source(self) -> None:
+        registry = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
+        story_arc = registry["story_arc_blueprint"]
+        self.assertIn("human_pdf_publication", story_arc)
+        publication = story_arc["human_pdf_publication"]
+        pdf_path = ROOT / publication["pdf"]
+        manifest_path = ROOT / publication["manifest"]
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+        self.assertTrue(pdf_path.is_file())
+        self.assertEqual("HUMAN_GDD_PDF_DERIVED_VIEW", publication["kind"])
+        self.assertEqual("DERIVED__SOURCE_SHA_RECORDED__RENDER_VALIDATED", publication["state"])
+        self.assertEqual(
+            hashlib.sha256(
+                BLUEPRINT_PATH.read_text(encoding="utf-8")
+                .replace("\r\n", "\n")
+                .replace("\r", "\n")
+                .encode("utf-8")
+            ).hexdigest().upper(),
+            manifest["source"]["sha256"],
+        )
+        self.assertEqual("SHA256_UTF8_LF_NORMALIZED", manifest["source"]["sha256_algorithm"])
+        self.assertEqual(
+            hashlib.sha256(pdf_path.read_bytes()).hexdigest().upper(),
+            manifest["pdf"]["sha256"],
+        )
+        self.assertGreaterEqual(manifest["pdf"]["page_count"], 5)
+        self.assertEqual("ALL_PAGES_RENDERED_AND_VISUALLY_INSPECTED", manifest["render_validation"]["status"])
+        self.assertEqual(
+            PDF_PUBLICATION_RECEIPT_PATH.relative_to(ROOT).as_posix(),
+            publication["work_contract_receipt"],
+        )
+
     def test_benchmark_covers_twelve_official_sources_without_copying_their_expression(self) -> None:
         text = BENCHMARK_PATH.read_text(encoding="utf-8")
 
@@ -50,7 +141,8 @@ class StoryArcBlueprintContractTests(unittest.TestCase):
             "WRITE_OR_SELECT_GLYPHS_TO_LAYERED_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT",
             "RULESET_PENDING",
             "IMPLEMENTED",
-            "PLANNED",
+            "MACHINE_VERIFIED",
+            "EDITOR_RUNTIME_OBSERVED",
             "EventClock",
             "DuelPracticumRoot",
             "FestivalCanopyRoot",
