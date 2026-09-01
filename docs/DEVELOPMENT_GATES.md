@@ -142,6 +142,8 @@ Tasks 3–9는 병합 완료다. Task8 recovery text below is historical provena
 current_runtime_entry: res://src/ui/front_door/story_front_door.tscn
 current_runtime_role: STORY_FRONT_DOOR_ENTRY
 current_gate: CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK
+current_gate_observation_owner: docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md
+current_gate_observation_state: PREPARED_NOT_RUN
 automated_evidence: AVAILABLE_DO_NOT_PROMOTE_TO_HUMAN_DEVICE_PERFORMANCE_OR_EXPORT_PASS
 ```
 
@@ -249,6 +251,8 @@ Task9 Product Root는 병합·자동화 검증까지 완료됐으며, 현재 다
 ## Gate 6 — Human Reality Gate
 
 자동 CI/Headless/Editor/GUT/Hera를 Human evidence로 바꾸지 않는다.
+
+`CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`의 실행 owner는 `docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md`다. Story Front Door → AdmissionPrologue → StoryEventRoot의 실제 consumer를 관찰하되, `PREPARED_NOT_RUN` 문서와 editor 관찰을 Human/Device/Accessibility PASS로 승격하지 않는다.
 
 권장 증거 확장 순서:
 

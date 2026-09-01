@@ -32,6 +32,8 @@ Current core-replacement owner: `docs/superpowers/specs/2026-08-31-circle-clock-
 
 Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. Every material work unit runs fresh external research, actual project feasibility recheck, and adversarial review before a recommendation or write. L1 planning, implementation, PR, and canon correction require five full-scope loops and post-merge readback.
 
+Current Circle/Clock human/device/accessibility observation owner: `docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md`. It is a `PREPARED_NOT_RUN` protocol bound to Story Front Door → admission → first event; its matching L1 receipt is `docs/contracts/receipts/2026-09-01-circle-clock-human-device-accessibility-precheck-work-contract-receipt.json`. Existing editor/automated evidence is only the preparation baseline, never a human/device/accessibility PASS.
+
 ## Godot — Superseded Star Runtime
 
 별 회로 전용 source·scene·test·capture tool·physical validation pack은 `edac7c3` 이후 현재 checkout에 남기지 않는다. 구현과 실행 증거는 Git history의 historical provenance이며, 현행 작업·실행·저장 migration의 입력으로 사용하지 않는다. 사용자 소유 legacy Star save는 repository 밖 `user://` 영역에 **읽기 전용 compatibility-only**로 보존되며, 현재 Circle story가 변환·이동·삭제하지 않는다.
@@ -43,6 +45,7 @@ Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GA
 - default entry: `res://src/ui/front_door/story_front_door.tscn` (`새 기록 시작` → admission; `도감` is read-only; `종료` is confirmed); original Star Runtime code is removed while its legacy user save remains untouched and unconverted
 - locked admissions background: `assets/art/backgrounds/school/bg_school_admission_approach.png` is runtime-bound as a live `TextureRect`; remaining card images are not generated
 - Human/device/performance/accessibility/export/full-slice evidence: `NOT_RUN`
+- Human/device/accessibility precheck: `PREPARED_NOT_RUN`; the actual-person and actual-device records have not been collected.
 
 ## GR-TEST-033 — Superseded
 

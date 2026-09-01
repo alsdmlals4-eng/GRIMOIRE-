@@ -198,7 +198,7 @@ android_device: NOT_RUN
 - 다음 W6 evidence gate: **W6_HUMAN_PLAYER_DEVICE_PERFORMANCE_ACCESSIBILITY_EXPORT_FULL_SLICE** — 자동화와 1280×720 런타임 스모크는 main에 병합됐지만, 사람/플레이어·기기·성능·접근성·export·full slice 검증은 아직 `NOT_RUN`이다. 이 gate는 기존 제품 gate `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`를 대체하지 않는다.
 - Notion: **RETIRED_AS_CURRENT_CANON_AND_WORK_SURFACE__MIGRATION_COMPLETE** — GitHub repository가 사람용·구조화된 정본을 모두 소유한다. `GR-NOTION-MIGRATION-20260828-01`은 PR #238 merged main `1a30b9e0715b1d19e56e24f256f695b869369ca2` readback으로 완료됐다. Notion은 historical discovery-only이며 routine read/write/delete/archive/export/destination readback은 금지한다. owner: `docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md`.
 - 적대적·조사·구현가능성 게이트: **USER_APPROVED_ACTIVE** — 모든 material work는 fresh external research check, actual implementation-feasibility recheck, adversarial attack/validate를 거친다. L1 기획·implementation·PR·정본 교정은 최소 다섯 번의 full-scope loop와 post-merge readback을 요구한다. owner: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md`. W6의 현재 판정은 `PARTIAL_EVIDENCED__MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS`; 사용자 L2 review, changed-head execution과 main readback은 완료됐고 Human/Player evidence는 남아 있다.
-- 현재 교체 후 gate: **CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK** — Star runtime은 제거됐고 legacy Star 저장은 자동 변환·삭제·이동 없이 보존됐다. 다음 검증은 새 이야기 루트의 사람/기기/성능/접근성·export·full-slice를 별도 증거로 수집하는 일이다.
+- 현재 교체 후 gate: **CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK** — Star runtime은 제거됐고 legacy Star 저장은 자동 변환·삭제·이동 없이 보존됐다. `docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md`은 Story Front Door → 입학식 → 첫 사건의 실제 consumer를 묶은 `PREPARED_NOT_RUN` 실행 스크립트다. 1280×720 editor 관찰은 준비 근거일 뿐, 사람/기기/성능/접근성·export·full-slice는 별도 증거로 수집하며 여전히 `NOT_RUN`이다.
 - 이미지 후보 생성: **USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY** — canon·consumer·rights preflight 후 후보는 재승인 없이 생성하며, final lock·runtime use·production batch만 사용자 확정이 필요하다.
 - Google Sheet 신규 canon write: **FORBIDDEN / MIGRATION_ONLY**
 - unrelated open PR: **READ_ONLY**
@@ -469,7 +469,7 @@ PR #151 `feat(ui): build GRIMOIRE component sheets A-D`는 **병합 완료**된 
 
 ```text
 0. current authority → current Base → project adapter validation → L1+ receipt → reuse preflight
-1. `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`의 사람·기기·접근성 관찰 프로토콜을 준비하고 실행한다.
+1. `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`의 사람·기기·접근성 관찰 프로토콜은 `docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md`로 준비됐다. 다음은 실제 사람·실제 기기 세션을 실행하고, 실행한 축만 evidence receipt에 기록하는 일이다.
 2. story admission → lesson → first practicum → duel/festival gates의 다음 서사 단위를, 현행 Circle/Clock core와 실제 consumer에 맞춰 설계·승인·구현한다.
 3. 카드의 상세 마력·턴·승패 규칙은 `RULESET_PENDING`을 유지하고, 사용자가 상세 룰을 제공하거나 별도 결정을 승인한 뒤에만 구현한다.
 4. current-task PR의 exact-head checks → authorized merge → merged-main readback으로 닫는다.

@@ -67,7 +67,7 @@ The visual candidate policy is user-preauthorized for a single candidate/refinem
 | Core systems | direct glyph input, 1–3 role-free layered circles, explicit target/cast, event clocks, narrative-gated card shell | replacement is partial and automated/editor evidence is not Human/player/device/performance quality |
 | Runtime visuals | common UI SVGs, six glyph PNGs, and greenhouse field base have consumers | visual completeness/readability is not proven |
 | Automated evidence | automated/component evidence exists; fresh exact checks must be run per change | not Human/player/device/performance proof |
-| Human usability / Player Experience | `NOT_RUN` | user validation remains required |
+| Human usability / Player Experience | `NOT_RUN` | Circle/Clock precheck script is `PREPARED_NOT_RUN`; actual-person evidence remains required |
 | Work quality gate | `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md` | every material change requires fresh research, actual feasibility review, and adversarial review |
 
 ## 5. Repository domain map
@@ -89,7 +89,7 @@ The detailed source/page ledger, classifications, and migration completion rules
 1. W6 L2 Spec과 L3 implementation은 사용자 승인 범위에서 구현됐고, Issue #242는 PR #245 merge `713bfbf`로 닫혔다. 현재 정확한 변경점 evidence는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
 2. 다음 W6 evidence gate는 Human/Player, device, performance, accessibility, export, full-slice 검증이다. 사람 관찰은 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_HUMAN_OBSERVATION_SCRIPT_2026-08-29.md`로 준비됐지만 아직 실행되지 않았다. W7, production asset batch, Task8 recovery는 범위 밖이다.
 3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is automated/runtime-smoke verified but Human/player/device/performance is not verified.
-4. `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`가 현재 다음 gate다. Task8은 실제 legacy Star 저장을 자동 변환·이동·삭제하지 않고 보존한 채 historical Star Runtime code/scene/test consumer를 제거했다. 자동·editor 관찰을 Human/Player/Device validation으로 승격하지 않는다.
+4. `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`가 현재 다음 gate다. `docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md`은 새 기록 → 입학식 → 첫 사건의 실제 runtime consumer와 physical device/accessibility 기록 항목을 묶은 `PREPARED_NOT_RUN` 스크립트다. Task8은 실제 legacy Star 저장을 자동 변환·이동·삭제하지 않고 보존한 채 historical Star Runtime code/scene/test consumer를 제거했다. 자동·editor 관찰을 Human/Player/Device validation으로 승격하지 않는다.
 
 ## 6.1 Human Blueprint review pair
 

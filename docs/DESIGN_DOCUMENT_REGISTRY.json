@@ -47,6 +47,8 @@
     "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md",
     "docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md",
     "docs/DEVELOPMENT_GATES.md",
+    "docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md",
+    "docs/contracts/receipts/2026-09-01-circle-clock-human-device-accessibility-precheck-work-contract-receipt.json",
     "project.godot",
     "src/",
     "tests/"
@@ -63,6 +65,8 @@
     "docs/DEVELOPMENT_GATES.md",
     "docs/validation/CIRCLE_CLOCK_FRONT_DOOR_RUNTIME_RECEIPT_2026-08-31.md",
     "docs/validation/CIRCLE_CLOCK_TASK8_STAR_REMOVAL_IMPLEMENTATION_RECEIPT_2026-09-01.md",
+    "docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md",
+    "docs/contracts/receipts/2026-09-01-circle-clock-human-device-accessibility-precheck-work-contract-receipt.json",
     "docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md",
     "project.godot",
     "tests/test_runner.gd"
@@ -78,6 +82,8 @@
     {"path":"docs/superpowers/plans/2026-08-31-circle-clock-card-core-replacement.md","decision_id":"GM-CIRCLE-CLOCK-CARD-CORE-01","feature_id":"FTR-CIRCLE-CLOCK-CARD-CORE-01","status":"CURRENT_IMPLEMENTATION_PLAN"},
     {"path":"docs/validation/CIRCLE_CLOCK_FRONT_DOOR_RUNTIME_RECEIPT_2026-08-31.md","decision_id":"GM-CIRCLE-CLOCK-CARD-CORE-01","feature_id":"FTR-CIRCLE-CLOCK-CARD-CORE-01","status":"EXACT_EDITOR_AND_AUTOMATED_EVIDENCE__HUMAN_NOT_RUN"},
     {"path":"docs/validation/CIRCLE_CLOCK_TASK8_STAR_REMOVAL_IMPLEMENTATION_RECEIPT_2026-09-01.md","decision_id":"GM-CIRCLE-CLOCK-CARD-CORE-01","feature_id":"FTR-CIRCLE-CLOCK-CARD-CORE-01","status":"TASK8_AUTOMATED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_NOT_RUN"},
+    {"path":"docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md","decision_id":"GM-CIRCLE-CLOCK-CARD-CORE-01","feature_id":"FTR-CIRCLE-CLOCK-CARD-CORE-01","gate_id":"CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK","status":"PREPARED_NOT_RUN"},
+    {"path":"docs/contracts/receipts/2026-09-01-circle-clock-human-device-accessibility-precheck-work-contract-receipt.json","decision_id":"GM-CIRCLE-CLOCK-CARD-CORE-01","gate_id":"CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK","status":"L1_WORK_CONTRACT_RECEIPT__PREPARED_NOT_RUN"},
     {"path":"docs/DEVELOPMENT_GATES.md","status":"ACTIVE_GATE_AUTHORITY_VALIDATION_OVERLAY"},
     {"path":"docs/planning/FROSTBLOOM_W6_DECISION_LOOP_VERTICAL_SLICE_01_FEATURE_DESIGN_SPEC_2026-08-28.md","feature_id":"FTR-FROSTBLOOM-W6-DECISION-LOOP-01","status":"USER_APPROVED_L2__L3_MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS"},
     {"path":"docs/planning/FROSTBLOOM_W6_DECISION_LOOP_01_TRACEABILITY_PACKET_2026-08-28.md","feature_id":"FTR-FROSTBLOOM-W6-DECISION-LOOP-01","status":"USER_APPROVED_L3__MERGED_MAIN_AUTOMATED_RUNTIME_SMOKE_PASS__PARTIAL_EVIDENCED"},
@@ -121,6 +127,9 @@
     "automated_runner": "tests/test_runner.gd",
     "no_star_guard": "tests/unit/test_no_star_runtime_guard.gd",
     "implementation_receipt": "docs/validation/CIRCLE_CLOCK_TASK8_STAR_REMOVAL_IMPLEMENTATION_RECEIPT_2026-09-01.md",
+    "human_device_accessibility_precheck": "docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md",
+    "human_device_accessibility_precheck_receipt": "docs/contracts/receipts/2026-09-01-circle-clock-human-device-accessibility-precheck-work-contract-receipt.json",
+    "human_device_accessibility_state": "PREPARED_NOT_RUN",
     "human_device_performance_state": "NOT_RUN"
   },
   "decision_contracts": {
@@ -165,6 +174,7 @@
     "circle_clock_task8_failures": 0,
     "circle_clock_task8_headless_scene_smoke": "PASS",
     "circle_clock_task8_exact_editor_runtime": "FRONT_DOOR_AND_STORY_EVENT_UI_OBSERVED",
+    "circle_clock_human_device_accessibility_precheck": "PREPARED_NOT_RUN",
     "legacy_star_physical_execution": "NOT_RUN__HISTORICAL_RUNTIME_REMOVED",
     "planning_base_adversarial_run": 31065294443,
     "godot_toolchain_run": 31065294442,
