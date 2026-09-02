@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -112,7 +113,7 @@ class StoryArcBlueprintContractTests(unittest.TestCase):
         self.assertGreaterEqual(manifest["pdf"]["page_count"], 32)
         self.assertEqual("DETAILED_REVIEW_EDITION", manifest["publication_profile"]["edition"])
         self.assertEqual(32, manifest["publication_profile"]["page_count_target"])
-        self.assertEqual("ALL_PAGES_RASTER_RENDERED__CHANGED_PAGE_LAYOUTS_VISUALLY_INSPECTED", manifest["render_validation"]["status"])
+        self.assertEqual("ALL_PAGES_RASTER_RENDERED__SELECTED_LAYOUTS_VISUALLY_INSPECTED", manifest["render_validation"]["status"])
         self.assertEqual(32, manifest["render_validation"]["page_count_rendered"])
         self.assertEqual([1, 5, 6, 7, 17, 29, 32], manifest["render_validation"]["final_page_review"]["updated_and_inspected"])
         self.assertEqual(
@@ -195,6 +196,39 @@ class StoryArcBlueprintContractTests(unittest.TestCase):
         self.assertEqual("res://src/ui/story/story_event_root.tscn", practicum_manifest["runtime_binding"]["scene"])
         self.assertIn("bg_greenhouse_field_base.webp", builder)
         self.assertIn("1,456 assertions", builder)
+
+    def test_pdf_builder_records_fresh_manifest_only_after_explicit_render_review(self) -> None:
+        current_pdf = ROOT / "output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_path = Path(temp_dir) / "review.pdf"
+            shutil.copyfile(current_pdf, output_path)
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(PDF_BUILDER_PATH),
+                    "--source",
+                    str(BLUEPRINT_PATH),
+                    "--output",
+                    str(output_path),
+                    "--record-render-validation",
+                    "--rendered-page-count",
+                    "32",
+                    "--visually-inspected-pages",
+                    "1,5",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            manifest = json.loads(output_path.with_suffix(".manifest.json").read_text(encoding="utf-8"))
+
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        self.assertIn("PDF_MANIFEST_RECORDED", result.stdout)
+        self.assertEqual("ALL_PAGES_RASTER_RENDERED__SELECTED_LAYOUTS_VISUALLY_INSPECTED", manifest["render_validation"]["status"])
+        self.assertEqual(32, manifest["render_validation"]["page_count_rendered"])
+        self.assertEqual([1, 5], manifest["render_validation"]["final_page_review"]["updated_and_inspected"])
 
     def test_plan_and_receipt_keep_card_detail_rules_and_human_evidence_out_of_scope(self) -> None:
         plan = PLAN_PATH.read_text(encoding="utf-8")

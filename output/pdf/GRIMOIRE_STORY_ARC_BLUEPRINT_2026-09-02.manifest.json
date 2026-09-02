@@ -19,7 +19,7 @@
   },
   "generator": {
     "path": "tools/build_story_arc_blueprint_pdf.py",
-    "runtime": "Codex workspace bundled Python 26.826.12353 with ReportLab 4.4.9",
+    "runtime": "Bundled workspace Python with ReportLab for rendering; external Poppler raster review recorded separately",
     "font": "Malgun Gothic / Malgun Gothic Bold",
     "operation_marker": "edit/pdf expected-output-count=1"
   },
@@ -42,29 +42,23 @@
     "docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md"
   ],
   "render_validation": {
-    "status": "ALL_PAGES_RASTER_RENDERED__CHANGED_PAGE_LAYOUTS_VISUALLY_INSPECTED",
+    "status": "ALL_PAGES_RASTER_RENDERED__SELECTED_LAYOUTS_VISUALLY_INSPECTED",
     "renderer": "Poppler pdftoppm",
     "dpi": 150,
     "page_count_rendered": 32,
-    "visual_review": "PASS__PAGES_1_5_6_7_17_29_32_VISUALLY_INSPECTED__UNCHANGED_PAGES_RETAIN_PRIOR_APPROVED_LAYOUT",
-    "corrections": [
-      "Replaced the seven-page summary-only review view with a 32-page detailed screen, state, input, system, asset, and evidence review edition.",
-      "Added an explicit direct-glyph-input runtime evidence page while retaining background/live-UI separation and current rule boundaries.",
-      "Reused the existing tracked greenhouse field base at StoryEventRoot and added the exact 1280x720 practicum runtime capture to the detailed PDF.",
-      "Updated the concrete runtime evidence to 34 suites / 1,456 assertions and corrected the page-6/page-32 layout after raster inspection.",
-      "Rendered every final page at 150 DPI; visually inspected every changed layout page and retained the prior-reviewed static layout for unchanged pages."
-    ],
+    "visual_review": "PASS__EXPLICIT_REVIEW_PAGE_SET_RECORDED",
     "final_page_review": {
-      "updated_and_inspected": [1, 5, 6, 7, 17, 29, 32],
+      "updated_and_inspected": [
+        1,
+        5,
+        6,
+        7,
+        17,
+        29,
+        32
+      ],
       "all_pages_rendered": true,
-      "unchanged_layout_pages_retain_prior_review": [2, 3, 4, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31],
-      "inspection_result": "NO_CLIPPED_OR_OVERLAPPING_TEXT_OR_MISSING_CONTENT_OBSERVED_IN_CHANGED_LAYOUT_PAGES",
-      "final_regeneration": {
-        "reason": "The canonical Markdown owner, StoryEventRoot environment binding, runtime receipt, and detailed static renderer received the matching practicum-environment correction.",
-        "all_pages_rerendered": true,
-        "direct_final_visual_inspection": [1, 5, 6, 7, 17, 29, 32],
-        "layout_change_scope": "Changed pages receive the greenhouse runtime capture, current verification count, asset-status row, implementation detail, and compact final evidence cards. All other pages were rerendered with the updated source SHA footer and retain their prior-reviewed static layout."
-      }
+      "inspection_result": "NO_CLIPPED_OR_OVERLAPPING_TEXT_OR_MISSING_CONTENT_OBSERVED_IN_EXPLICIT_REVIEW_PAGE_SET"
     }
   },
   "evidence_boundary": {

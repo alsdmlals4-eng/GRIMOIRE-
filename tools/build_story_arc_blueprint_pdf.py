@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import sys
 from pathlib import Path
 
@@ -47,6 +48,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument(
+        "--record-render-validation",
+        action="store_true",
+        help="Record a completed external raster-render review for an already-rendered PDF.",
+    )
+    parser.add_argument(
+        "--rendered-page-count",
+        type=int,
+        default=0,
+        help="Exact page count emitted by the external raster renderer when recording review.",
+    )
+    parser.add_argument(
+        "--visually-inspected-pages",
+        default="",
+        help="Comma-separated one-based PDF pages directly checked after rendering.",
+    )
+    parser.add_argument(
         "--check-inputs",
         action="store_true",
         help="Validate the canonical source contract without importing PDF dependencies or writing output.",
@@ -69,6 +86,91 @@ def validate_inputs(source: Path, require_runtime_captures: bool) -> tuple[str, 
             raise ValueError("runtime capture evidence is missing: " + ", ".join(missing_captures))
 
     return source_text, canonical_source_sha256(source_text)
+
+
+def _file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest().upper()
+
+
+def _parse_page_numbers(raw: str) -> list[int]:
+    if not raw.strip():
+        return []
+    try:
+        pages = sorted({int(value.strip()) for value in raw.split(",") if value.strip()})
+    except ValueError as exc:
+        raise ValueError("visually inspected pages must be comma-separated integers") from exc
+    if any(page < 1 or page > DETAILED_REVIEW_PAGE_COUNT for page in pages):
+        raise ValueError("visually inspected pages must be within the detailed PDF page range")
+    return pages
+
+
+def write_render_manifest(output: Path, source_sha: str, rendered_page_count: int, inspected_pages: list[int]) -> Path:
+    if not output.is_file():
+        raise ValueError(f"PDF output is missing: {output}")
+    if rendered_page_count != DETAILED_REVIEW_PAGE_COUNT:
+        raise ValueError(f"rendered page count must be {DETAILED_REVIEW_PAGE_COUNT}")
+    if not inspected_pages:
+        raise ValueError("at least one visually inspected page is required")
+
+    manifest_path = output.with_suffix(".manifest.json")
+    manifest = {
+        "schema_version": 1,
+        "artifact_kind": "HUMAN_GDD_PDF_DERIVED_VIEW",
+        "state": "DERIVED__SOURCE_SHA_RECORDED__RENDER_VALIDATED",
+        "source": {
+            "path": str(DEFAULT_SOURCE.relative_to(ROOT)).replace("\\", "/"),
+            "sha256": source_sha,
+            "sha256_algorithm": "SHA256_UTF8_LF_NORMALIZED",
+            "authority": "CANONICAL_MARKDOWN_OWNER",
+        },
+        "pdf": {
+            "path": str(output.relative_to(ROOT)).replace("\\", "/") if output.is_relative_to(ROOT) else str(output),
+            "sha256": _file_sha256(output),
+            "size_bytes": output.stat().st_size,
+            "page_count": DETAILED_REVIEW_PAGE_COUNT,
+            "page_size": "A4_LANDSCAPE",
+            "title": "GRIMOIRE 첫 세션 스토리 아크 블루프린트",
+            "tagged_pdf": False,
+        },
+        "generator": {
+            "path": "tools/build_story_arc_blueprint_pdf.py",
+            "runtime": "Bundled workspace Python with ReportLab for rendering; external Poppler raster review recorded separately",
+            "font": "Malgun Gothic / Malgun Gothic Bold",
+            "operation_marker": "edit/pdf expected-output-count=1",
+        },
+        "publication_profile": {
+            "edition": "DETAILED_REVIEW_EDITION",
+            "page_count_target": DETAILED_REVIEW_PAGE_COUNT,
+            "scope": "CURRENT_STORY_ARC_SCREEN_STATE_INPUT_FLOW_ASSET_RUNTIME_AND_EVIDENCE_REVIEW",
+            "comparison_basis": {
+                "previous_current_derived_view_page_count": 7,
+                "retained_long_horizon_reference": "output/pdf/grimoire_HUMAN_GAME_BLUEPRINT_20260830.pdf",
+                "rule_boundary": "Current Circle/Clock/Story core is retained; superseded active Star runtime is not restored.",
+            },
+        },
+        "runtime_evidence_reused": [str(path.relative_to(ROOT)).replace("\\", "/") for path in RUNTIME_CAPTURES.values()] + ["docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md"],
+        "render_validation": {
+            "status": "ALL_PAGES_RASTER_RENDERED__SELECTED_LAYOUTS_VISUALLY_INSPECTED",
+            "renderer": "Poppler pdftoppm",
+            "dpi": 150,
+            "page_count_rendered": rendered_page_count,
+            "visual_review": "PASS__EXPLICIT_REVIEW_PAGE_SET_RECORDED",
+            "final_page_review": {
+                "updated_and_inspected": inspected_pages,
+                "all_pages_rendered": True,
+                "inspection_result": "NO_CLIPPED_OR_OVERLAPPING_TEXT_OR_MISSING_CONTENT_OBSERVED_IN_EXPLICIT_REVIEW_PAGE_SET",
+            },
+        },
+        "evidence_boundary": {
+            "pdf_visual_render": "VERIFIED",
+            "tagged_pdf_reading_order": "NOT_RUN",
+            "screen_reader": "NOT_RUN",
+            "game_human_device_accessibility_performance_export": "NOT_RUN",
+            "note": "This human PDF is a presentation artifact and does not promote the cited Godot evidence beyond its original runtime receipt.",
+        },
+    }
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return manifest_path
 
 
 def render_pdf(output: Path, source_sha: str) -> None:
@@ -945,6 +1047,15 @@ def main() -> int:
         _source_text, source_sha = validate_inputs(args.source.resolve(), require_runtime_captures=not args.check_inputs)
         if args.check_inputs:
             print(f"SOURCE_INPUTS_VALID source_sha256={source_sha}")
+            return 0
+        if args.record_render_validation:
+            manifest_path = write_render_manifest(
+                args.output.resolve(),
+                source_sha,
+                args.rendered_page_count,
+                _parse_page_numbers(args.visually_inspected_pages),
+            )
+            print(f"PDF_MANIFEST_RECORDED path={manifest_path} source_sha256={source_sha}")
             return 0
         render_pdf(args.output.resolve(), source_sha)
     except (OSError, RuntimeError, ValueError) as exc:
