@@ -165,6 +165,42 @@ status: CONDITIONAL
 notes: CANON_REGISTERED_PLANNING_REFERENCE_ONLY. This record does not promote the image to a Godot runtime asset, does not establish an asset batch, and does not change Human/Device/Performance/Accessibility/Export validation from NOT_RUN.
 ```
 
+## Guided Field Practicum Greenhouse Environment Reuse — 2026-09-02
+
+```yaml
+asset_id: bg_greenhouse_field_base
+category: ENVIRONMENT
+name: Guided field practicum greenhouse environment base
+project: GRIMOIRE
+creation_route: AI_GENERATED
+creator_or_vendor: Codex built-in image generation
+source_url_or_path: assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp
+source_checked_at: 2026-09-02
+acquired_or_created_at: 2026-08-26
+license_or_contract: Existing project-local generated candidate record; release-rights promotion remains unverified
+commercial_use: REVIEW_REQUIRED
+distribution_in_game_build: REVIEW_REQUIRED
+raw_source_redistribution: NOT_AUTHORIZED
+modification: CONDITIONAL
+attribution: NOT_CONFIRMED_FOR_RELEASE
+platform_or_territory_restrictions: RELEASE_REVIEW_REQUIRED
+open_source_notice_or_source_obligation: NOT_APPLICABLE
+ai_model_service_version: Codex built-in image generation; exact underlying model/version not surfaced
+ai_input_rights: Generation route records an environment-only project brief with no third-party or user-provided image input.
+contract_scope: Approved GUIDED_FIELD_PRACTICUM environment-only consumer in StoryEventRoot. It excludes character identity, card rules, combat tuning, glyph/circle/clock semantics, baked text, shipping, store, and marketing use.
+reference_sources:
+  - assets/manifests/background_greenhouse_field_base.json
+  - docs/planning/visual/FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md
+  - docs/contracts/receipts/2026-09-02-story-event-greenhouse-environment-reuse-work-contract-receipt.json
+final_asset_record: Existing tracked WebP; SHA-256 F7E52D06C80785EEF08D4CCE16C45292AD66293D0F6670D7C729F8AE50C977B4; reused without byte change at StoryEventRoot/EnvironmentBackground.
+reference_similarity_status: NOT_REVIEWED_FOR_RELEASE
+shipping_and_marketing_usage: NOT_AUTHORIZED_BY_THIS_RECORD; complete release rights and similarity review before any shipping/store/marketing use.
+reviewed_by: Codex asset-consumer and provenance readback
+reviewed_at: 2026-09-02
+status: CONDITIONAL
+notes: Existing runtime reuse only. This record does not promote the candidate to a final asset lock, establish a production batch, or change Human/Device/Performance/Accessibility/Export validation from NOT_RUN.
+```
+
 ## Supervised Duel Practice Cloister Environment 02 — 2026-09-01
 
 ```yaml

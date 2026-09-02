@@ -1,0 +1,161 @@
+{
+  "work_level": "L1",
+  "work_unit": "GRIMOIRE_STORY_EVENT_GREENHOUSE_ENVIRONMENT_REUSE_2026-09-02",
+  "direction_anchor": "기능적으로 구현된 첫 실습을 기존 승인 온실 현장 환경으로 읽히게 하되, 기능 텍스트와 입력은 모두 live UI로 유지한다.",
+  "approval_reference": "사용자 최신 지시: 좋아 권장안대로 진행하자 작업 계속 진행해.",
+  "approval_state": "REUSED_APPROVAL__NO_NEW_IMAGE_GENERATION_OR_ASSET_PROMOTION",
+  "continuous_work_state": "CONTINUOUS_WORK_ACTIVE",
+  "base_current_main": "aaa94caf5772c262f023dd9e80fd4b8bbffd85db",
+  "base_current_main_subject": "fix: bind balance sweep metrics to the full seed sample (#827)",
+  "project_branch_head_before_build": "b96d9968a23b5dbe6bf15715a086b8f1013f38ff",
+  "decision_question": "첫 실습의 빈 안전 배경을 새 그림 생성 없이 어떻게 장소성 있는 화면으로 바꾸면서 글자 입력과 시계 상호작용을 보존하는가?",
+  "intended_outcome": "승인된 GUIDED_FIELD_PRACTICUM 환경을 StoryEventRoot의 입력-투명한 aspect-covered 배경으로 재사용하고, 모든 상태와 조작은 live Control layer로 남긴다.",
+  "benchmark_preflight_receipt": {
+    "state": "REUSED_EVIDENCE",
+    "entries": [
+      {
+        "source_and_evidence": "docs/planning/visual/FROSTBLOOM_FIRST_SESSION_ENVIRONMENT_SCENE_CONTRACT_2026-08-26.md; assets/manifests/background_greenhouse_field_base.json",
+        "observed_pattern": "GUIDED_FIELD_PRACTICUM에는 bg_greenhouse_field_base가 이미 지정되었고, 배경에는 텍스트·HUD·기능 상태를 굽지 않는 계약이 존재한다.",
+        "project_fit_and_difference": "ADOPT 기존 byte-identical WebP를 한 개의 실제 소비처에만 재사용한다. 조사 복귀와 전투 소비처는 열지 않는다.",
+        "disposition": "ADOPT"
+      },
+      {
+        "source_and_evidence": "Godot 4.7 TextureRect and Control documentation checked 2026-09-02",
+        "observed_pattern": "STRETCH_KEEP_ASPECT_COVERED fills a Control while preserving aspect ratio, and MOUSE_FILTER_IGNORE forwards pointer input through a visual layer.",
+        "project_fit_and_difference": "ADAPT a TextureRect beneath a translucent live veil so the visual fills fixed landscape without intercepting direct glyph writing or buttons.",
+        "disposition": "ADAPT"
+      },
+      {
+        "source_and_evidence": "StoryEventRoot 1280x720 pre-change runtime capture and existing field-base manifest",
+        "observed_pattern": "The functional event used a dark fallback despite an approved field environment being available; generating a duplicate background would add storage and provenance debt.",
+        "project_fit_and_difference": "REJECT a new decorative or text-bearing generated background because there is no missing consumer or state family requiring it.",
+        "disposition": "REJECT"
+      }
+    ]
+  },
+  "context_configuration_hygiene": {
+    "scope": "One existing environment binding, one contract test, exact runtime evidence, owner/provenance updates, and derived PDF refresh only. No card rules, combat tuning, save migration, new generated image, source-asset byte rewrite, Base pin, or unrelated PR mutation.",
+    "inventory": [
+      {
+        "path": "assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Tracked IMG-02 field-base export; asset manifest records generated-candidate source and release-rights review boundary.",
+        "references_and_consumers": "SpellWorkflowProductRoot existing backdrop and StoryEventRoot guided practicum EnvironmentBackground only."
+      },
+      {
+        "path": "assets/manifests/background_greenhouse_field_base.json",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Asset ID, hash, license posture, planned/current consumer, and runtime binding record.",
+        "references_and_consumers": "Visual asset coverage, environment consumer contract, rights record, and first-practicum runtime receipt."
+      },
+      {
+        "path": "src/ui/story/story_event_root.tscn",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Current Godot first-practicum scene owner.",
+        "references_and_consumers": "StoryProgress authored handoff, GUT integration test, direct editor runtime, and Story Arc blueprint."
+      },
+      {
+        "path": "assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_01_environment_only.png.import",
+        "classification": "OBSOLETE_CANDIDATE",
+        "owner_or_provenance": "Godot-generated import sidecar for the rejected duel candidate; no content, manifest, or runtime consumer owns it.",
+        "references_and_consumers": "No runtime reference after exact consumer scan; safe exact cleanup after editor shutdown.",
+        "removal_proposed": true,
+        "references_and_consumers_zero_before_removal": true,
+        "git_recoverable_removal_and_readback": true
+      }
+    ]
+  },
+  "system_blueprint_entry": "REUSE_VERIFIED_ENVIRONMENT_CONTRACT_BEFORE_GENERATING_A_NEW_BACKGROUND",
+  "implementation_feasibility_recheck": {
+    "status": "PASS",
+    "actual_project_evidence": [
+      "StoryEventRoot already has direct glyph, preview, target, explicit-cast, and EventClock consumers with a full-viewport SafeBackground.",
+      "The tracked WebP resource and import file resolve in Godot 4.7.1; its manifest has the exact field-practicum consumer contract and SHA-256.",
+      "The new TextureRect is input-transparent and uses aspect-covered layout below a mouse-transparent readability veil and all functional Controls.",
+      "TDD red run failed only for the missing practicum EnvironmentBackground; green run passed 34 suites / 1,456 assertions with the exact path, input, and layout assertions."
+    ],
+    "limit": "The observed 1280x720 editor state is machine/editor evidence only. Human writing, physical touch, device crop, accessibility, performance, export, release rights, and card rules remain unverified."
+  },
+  "adversarial_review_loops": [
+    {
+      "loop": 1,
+      "finding": "A background could intercept mouse/touch and break direct glyph input.",
+      "disposition": "MUST_FIX",
+      "correction": "Use MOUSE_FILTER_IGNORE and assert it in the StoryEventRoot integration test."
+    },
+    {
+      "loop": 2,
+      "finding": "A fixed-size raster could leave blank framing in a fixed landscape viewport.",
+      "disposition": "MUST_FIX",
+      "correction": "Use STRETCH_KEEP_ASPECT_COVERED and assert the exact enum rather than relying on visual default behavior."
+    },
+    {
+      "loop": 3,
+      "finding": "A reused field image could be mistaken for new artwork or final release promotion.",
+      "disposition": "MUST_FIX",
+      "correction": "Record exact unchanged SHA, reuse-only status, conditional rights, source candidate provenance, and no-new-image scope."
+    },
+    {
+      "loop": 4,
+      "finding": "Readable gameplay content could be baked into or obscured by environmental art.",
+      "disposition": "MUST_FIX",
+      "correction": "Place a mouse-transparent live readability veil between the environment and Content, leaving text, guide, clocks, buttons, target, and result nodes live."
+    },
+    {
+      "loop": 5,
+      "finding": "A code-only result could omit real Godot editor/runtime evidence or leave generated clutter.",
+      "disposition": "MUST_FIX",
+      "correction": "Reload and save through the exact Godot editor, run/capture/diagnose StoryEventRoot, preserve one runtime evidence image, and remove only verified untracked import/UID/temp byproducts."
+    }
+  ],
+  "post_change_adversarial_completion": {
+    "status": "FIVE_FULL_SCOPE_LOOPS_COMPLETED__CLEAN_REVIEW_EXIT",
+    "full_scope": [
+      "existing asset ownership, hash, license, and actual consumer contract",
+      "scene layer order and live input safety",
+      "TDD red/green runtime-component regression",
+      "Godot editor reload/save, 1280x720 capture, diagnostics, and clipping readback",
+      "documentation, PDF derivation, cleanup boundary, and remote synchronization"
+    ]
+  },
+  "remaining_work_recalculation": {
+    "status": "PASS",
+    "required_work_remaining_for_this_change": 0,
+    "deferred_project_gates": [
+      "1920x1080 and device crop/readability review",
+      "Human/player glyph-writing observation",
+      "mobile touch and accessibility validation",
+      "performance/export validation",
+      "release rights and similarity review",
+      "user-provided detailed card rules"
+    ],
+    "next_state": "FIRST_PRACTICUM_ENVIRONMENT_REUSED__MACHINE_VERIFIED__EDITOR_RUNTIME_OBSERVED__CONTINUE_STORY_VERTICAL_SLICE_EVIDENCE_QUEUE"
+  },
+  "reuse_learning_handoff": {
+    "selected_modules": [
+      "GUIDED_FIELD_PRACTICUM environment contract",
+      "background_greenhouse_field_base asset manifest",
+      "StoryEventRoot live glyph/clock workflow",
+      "TextureRect and Control input semantics",
+      "Story Arc derived PDF publication pipeline"
+    ],
+    "reuse_mode": "EXISTING_TRACKED_ENVIRONMENT__NEW_SINGLE_RUNTIME_CONSUMER__NO_ASSET_BYTE_CHANGE",
+    "project_paths_changed": [
+      "StoryEventRoot scene and integration test",
+      "field-base asset manifest and rights record",
+      "story blueprint/current-context/gate/registry/runtime receipt",
+      "derived human PDF and manifest",
+      "one runtime evidence capture"
+    ],
+    "evidence_ceiling": "MACHINE_VERIFIED_AND_EDITOR_RUNTIME_OBSERVED_ONLY__HUMAN_DEVICE_ACCESSIBILITY_PERFORMANCE_EXPORT_RELEASE_NOT_RUN",
+    "rollback": "Revert the one feature commit. The tracked WebP, its source candidate, the previous scene fallback, user saves, and all unrelated assets remain recoverable and untouched.",
+    "project_only_lessons": [
+      "When a contract-approved environment has a concrete missing consumer, prefer byte-identical reuse over duplicate image generation.",
+      "Environment quality and functional transparency improve together when background, veil, and live input layers are explicitly testable."
+    ],
+    "base_promotion_candidates": [
+      "NO_NEW_SHARED_BASE_PROMOTION_CANDIDATE__PROJECT_SPECIFIC_GODOT_SCENE_AND_ASSET_CONSUMER_PATTERN"
+    ]
+  },
+  "evidence_ceiling": "MACHINE_VERIFIED_AND_EDITOR_RUNTIME_OBSERVED__HUMAN_DEVICE_ACCESSIBILITY_PERFORMANCE_EXPORT_RELEASE_NOT_RUN"
+}

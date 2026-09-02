@@ -189,14 +189,14 @@
       "type": "ENVIRONMENT_MASTER_AND_STATE_OVERLAYS",
       "purpose": "Anchor Frostbloom greenhouse location, readable hazards, and before/after world state",
       "implementation_consumer": "FROSTBLOOM_FIRST_SESSION_SCENES",
-      "existing_asset_or_reference": "Approved references plus three persisted IMG-02 source candidates; bg_greenhouse_field_base is bound by the current-main Product Root while school and battle candidates remain unbound",
+      "existing_asset_or_reference": "Approved references plus three persisted IMG-02 source candidates; the existing tracked bg_greenhouse_field_base WebP is bound by the current-main Product Root and StoryEventRoot guided practicum while school and battle candidates remain unbound",
       "delete_test": "Generic backgrounds would preserve mechanics but erase place identity and weaken cause/effect readability.",
       "consequence_if_missing": "Weak world memory and unclear environmental consequences.",
       "priority": "P1",
-      "action": "CREATE",
-      "coverage_status": "PARTIAL_RUNTIME",
-      "state_family_status": "PARTIAL",
-      "note": "Task11 binds bg_greenhouse_field_base to SpellWorkflowProductRoot / EnvironmentBackground. It is not a first-session Field, Dialogue, or Battle Scene; bg_school_common and bg_greenhouse_battle_arena remain unbound."
+      "action": "REUSE",
+      "coverage_status": "PARTIAL_RUNTIME__GUIDED_PRACTICUM_BOUND",
+      "state_family_status": "PARTIAL__FIELD_BASE_REUSED_WITH_LIVE_UI_OVERLAY",
+      "note": "Task11 binds bg_greenhouse_field_base to SpellWorkflowProductRoot / EnvironmentBackground. 2026-09-02 reuses the same tracked WebP unchanged at StoryEventRoot / EnvironmentBackground for the approved GUIDED_FIELD_PRACTICUM consumer; TextureRect ignores input and uses aspect-covered stretch under a live readability veil. It does not claim investigation-return, Battle, human, device, performance, or release completion; bg_school_common and bg_greenhouse_battle_arena remain unbound."
     },
     {
       "visual_id": "GR-VIS-009-FIRST-SESSION-CHARACTERS",

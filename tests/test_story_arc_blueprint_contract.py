@@ -14,8 +14,10 @@ BENCHMARK_PATH = ROOT / "docs/planning/benchmarks/2026-09-01-story-led-academy-r
 BLUEPRINT_PATH = ROOT / "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md"
 PLAN_PATH = ROOT / "docs/superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md"
 CANONICAL_ENVIRONMENT_PATH = ROOT / "assets/art/backgrounds/academy/bg_duel_practice_cloister.png"
+PRACTICUM_ENVIRONMENT_PATH = ROOT / "assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp"
 LEGACY_CANDIDATE_PATH = ROOT / "assets/art/source_candidates/story_arc_01/backgrounds/duel/bg_duel_practice_cloister_candidate_02_unmarked_environment_only.png"
 MANIFEST_PATH = ROOT / "assets/manifests/story_arc_01_duel_practice_environment_candidate_02.json"
+PRACTICUM_ENVIRONMENT_MANIFEST_PATH = ROOT / "assets/manifests/background_greenhouse_field_base.json"
 RECEIPT_PATH = ROOT / "docs/contracts/receipts/2026-09-01-story-arc-blueprint-work-contract-receipt.json"
 REGISTRY_PATH = ROOT / "docs/DESIGN_DOCUMENT_REGISTRY.json"
 PDF_BUILDER_PATH = ROOT / "tools/build_story_arc_blueprint_pdf.py"
@@ -110,7 +112,9 @@ class StoryArcBlueprintContractTests(unittest.TestCase):
         self.assertGreaterEqual(manifest["pdf"]["page_count"], 32)
         self.assertEqual("DETAILED_REVIEW_EDITION", manifest["publication_profile"]["edition"])
         self.assertEqual(32, manifest["publication_profile"]["page_count_target"])
-        self.assertEqual("ALL_PAGES_RENDERED_AND_VISUALLY_INSPECTED", manifest["render_validation"]["status"])
+        self.assertEqual("ALL_PAGES_RASTER_RENDERED__CHANGED_PAGE_LAYOUTS_VISUALLY_INSPECTED", manifest["render_validation"]["status"])
+        self.assertEqual(32, manifest["render_validation"]["page_count_rendered"])
+        self.assertEqual([1, 5, 6, 7, 17, 29, 32], manifest["render_validation"]["final_page_review"]["updated_and_inspected"])
         self.assertEqual(
             PDF_PUBLICATION_RECEIPT_PATH.relative_to(ROOT).as_posix(),
             publication["work_contract_receipt"],
@@ -181,6 +185,16 @@ class StoryArcBlueprintContractTests(unittest.TestCase):
             manifest["file"]["sha256"],
         )
         self.assertEqual("assets/art/backgrounds/academy/bg_duel_practice_cloister.png", manifest["file"]["path"])
+
+    def test_first_practicum_pdf_and_asset_record_show_the_live_greenhouse_reuse(self) -> None:
+        practicum_manifest = json.loads(PRACTICUM_ENVIRONMENT_MANIFEST_PATH.read_text(encoding="utf-8"))
+        builder = PDF_BUILDER_PATH.read_text(encoding="utf-8")
+
+        self.assertTrue(PRACTICUM_ENVIRONMENT_PATH.is_file())
+        self.assertIn("StoryEventRoot / EnvironmentBackground (current guided practicum runtime; 2026-09-02)", practicum_manifest["used_in_screens"])
+        self.assertEqual("res://src/ui/story/story_event_root.tscn", practicum_manifest["runtime_binding"]["scene"])
+        self.assertIn("bg_greenhouse_field_base.webp", builder)
+        self.assertIn("1,456 assertions", builder)
 
     def test_plan_and_receipt_keep_card_detail_rules_and_human_evidence_out_of_scope(self) -> None:
         plan = PLAN_PATH.read_text(encoding="utf-8")

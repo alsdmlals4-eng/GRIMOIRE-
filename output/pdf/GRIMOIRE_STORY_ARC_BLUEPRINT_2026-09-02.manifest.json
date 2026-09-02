@@ -4,14 +4,14 @@
   "state": "DERIVED__SOURCE_SHA_RECORDED__RENDER_VALIDATED",
   "source": {
     "path": "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md",
-    "sha256": "44510E6DAAFA3BA28220E84F4D9141B3B2062AC5DF3D758FB7E0609103B3D8A7",
+    "sha256": "3E07D88AEDD2C0833ACD7C0ECADF594AE391F4BDC49C3D6CFAC1D54645EA2034",
     "sha256_algorithm": "SHA256_UTF8_LF_NORMALIZED",
     "authority": "CANONICAL_MARKDOWN_OWNER"
   },
   "pdf": {
     "path": "output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf",
-    "sha256": "7900DFCFAF4103EF6657C3ECA2C17078DB34A4DF6CBE10F3C2286BA067940AE4",
-    "size_bytes": 4567752,
+    "sha256": "6689CDF252425B126BD6201F5608AF0C1D2388040D3F2C5768EB009CA12898A6",
+    "size_bytes": 5030048,
     "page_count": 32,
     "page_size": "A4_LANDSCAPE",
     "title": "GRIMOIRE 첫 세션 스토리 아크 블루프린트",
@@ -38,28 +38,32 @@
     "artifacts/runtime/2026-09-01-first-class-glyph-gate-1280x720.png",
     "artifacts/runtime/2026-09-01-duel-practicum-1280x720-v2.png",
     "artifacts/runtime/2026-09-01-festival-canopy-1280x720-v3.png",
+    "artifacts/runtime/2026-09-02-story-event-greenhouse-environment-runtime-1280x720.png",
     "docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md"
   ],
   "render_validation": {
-    "status": "ALL_PAGES_RENDERED_AND_VISUALLY_INSPECTED",
+    "status": "ALL_PAGES_RASTER_RENDERED__CHANGED_PAGE_LAYOUTS_VISUALLY_INSPECTED",
     "renderer": "Poppler pdftoppm",
     "dpi": 150,
     "page_count_rendered": 32,
-    "visual_review": "PASS__ALL_32_PAGES_VISUALLY_INSPECTED",
+    "visual_review": "PASS__PAGES_1_5_6_7_17_29_32_VISUALLY_INSPECTED__UNCHANGED_PAGES_RETAIN_PRIOR_APPROVED_LAYOUT",
     "corrections": [
       "Replaced the seven-page summary-only review view with a 32-page detailed screen, state, input, system, asset, and evidence review edition.",
       "Added an explicit direct-glyph-input runtime evidence page while retaining background/live-UI separation and current rule boundaries.",
-      "Rendered every final page at 150 DPI and visually inspected pages 1 through 32 for clipped, overlapping, or missing content."
+      "Reused the existing tracked greenhouse field base at StoryEventRoot and added the exact 1280x720 practicum runtime capture to the detailed PDF.",
+      "Updated the concrete runtime evidence to 34 suites / 1,456 assertions and corrected the page-6/page-32 layout after raster inspection.",
+      "Rendered every final page at 150 DPI; visually inspected every changed layout page and retained the prior-reviewed static layout for unchanged pages."
     ],
     "final_page_review": {
-      "updated_and_inspected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32],
-      "all_pages_inspected_across_final_content_lineage": true,
-      "inspection_result": "NO_CLIPPED_OR_OVERLAPPING_TEXT_OR_MISSING_PAGE_OBSERVED",
+      "updated_and_inspected": [1, 5, 6, 7, 17, 29, 32],
+      "all_pages_rendered": true,
+      "unchanged_layout_pages_retain_prior_review": [2, 3, 4, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31],
+      "inspection_result": "NO_CLIPPED_OR_OVERLAPPING_TEXT_OR_MISSING_CONTENT_OBSERVED_IN_CHANGED_LAYOUT_PAGES",
       "final_regeneration": {
-        "reason": "The canonical Markdown owner received the matching detailed-PDF publication-profile annotation after the first 32-page visual review.",
+        "reason": "The canonical Markdown owner, StoryEventRoot environment binding, runtime receipt, and detailed static renderer received the matching practicum-environment correction.",
         "all_pages_rerendered": true,
-        "direct_final_visual_spot_check": [1, 15, 32],
-        "layout_change_scope": "Renderer source consumes Markdown only as the footer source SHA; detailed page content remains static canonical-bound rendering code. The final re-render changes the recorded source SHA footer, not the reviewed page layout."
+        "direct_final_visual_inspection": [1, 5, 6, 7, 17, 29, 32],
+        "layout_change_scope": "Changed pages receive the greenhouse runtime capture, current verification count, asset-status row, implementation detail, and compact final evidence cards. All other pages were rerendered with the updated source SHA footer and retain their prior-reviewed static layout."
       }
     }
   },

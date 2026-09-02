@@ -47,7 +47,7 @@ WRITE_OR_SELECT_GLYPHS_TO_LAYERED_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RE
 | --- | --- | --- | --- |
 | 시작 화면 | 구현됨 / `IMPLEMENTED` | `StoryFrontDoor` / `story_front_door.tscn` | 새 기록·이어하기·도감·설정·종료를 유지한다. 활동 선택 버튼은 추가하지 않는다. |
 | 입학식 | 구현됨 / `IMPLEMENTED` | `AdmissionPrologue` / `admission_prologue.tscn` | 짧은 약속 장면으로 유지하고, 목표 플로우에서는 수업으로 넘긴다. |
-| 첫 사건 | 구현됨 / `IMPLEMENTED` | `StoryEventRoot` / `story_event_root.tscn` | 현재 서리꽃 실습의 글자·Preview·대상·시전·시계를 재사용한다. 목표 플로우에서는 수업 이후의 첫 실습이다. |
+| 첫 사건 | 구현됨 / `IMPLEMENTED__MACHINE_VERIFIED__EDITOR_RUNTIME_OBSERVED` | `StoryEventRoot` / `story_event_root.tscn` | 현재 서리꽃 실습의 글자·Preview·대상·시전·시계와 기존 온실 현장 환경을 재사용한다. 목표 플로우에서는 수업 이후의 첫 실습이다. |
 | 공용 사건 시계 | 구현됨 / `IMPLEMENTED` | `EventClockState`, `EventClockResolver`, `EventClockView` | Goal/Threat를 라이브 UI로 유지한다. 배경에 숫자를 구워 넣지 않는다. |
 | 카드 기록 | 구현됨 / `IMPLEMENTED` | `CardArchiveScreen` | 이야기 해금 카드만 보여 주고, `RULESET_PENDING` 동안 결투 시작을 막는다. |
 | 첫 수업 | 구현됨 / `IMPLEMENTED__MACHINE_VERIFIED__EDITOR_RUNTIME_OBSERVED` | `FirstClassRoot` / `first_class_root.tscn` | 직접 글자 쓰기의 안전한 첫 성공을 실제 스토리 순서에 둔다. |
@@ -153,7 +153,7 @@ flowchart LR
 | --- | --- | --- | --- | --- | --- |
 | SIT-001 | 입학식 | P0 | 새 기록 → 첫 수업 | 시계 없음; 약속 전달 | 입학 전경 `IMPLEMENTED` |
 | SIT-002 | 첫 수업 | P0 | 입학식 → 첫 실습 | 안전한 Goal만; 실패가 파국이 되지 않는 관찰 | 수업 장면 `IMPLEMENTED`; planning reference는 방향 검수용 |
-| SIT-003 | 첫 실습 | P0 | 첫 수업 → 결투 연습 | Goal/Threat 동시, 명시 Preview/Target/Cast | 기존 첫 사건 `IMPLEMENTED`; 온실 레퍼런스 재사용 |
+| SIT-003 | 첫 실습 | P0 | 첫 수업 → 결투 연습 | Goal/Threat 동시, 명시 Preview/Target/Cast | 기존 첫 사건·온실 환경 `IMPLEMENTED__MACHINE_VERIFIED__EDITOR_RUNTIME_OBSERVED`; live UI 분리 유지 |
 | SIT-004 | 결투 연습 | P1 | 실습 복기 → 축제 | 상대 의도 파악 Goal, 과한 대응/연습장 불안정 Threat | 환경 02 `USER_APPROVED__CANON_REGISTERED__IMPLEMENTED__RUNTIME_BOUND` |
 | SIT-005 | 축제 | P1 | 결투 복기 → 다음 장 | 공동 복구 Goal, 준비 지연 Threat; 비전투 | 축제 장면 `IMPLEMENTED`; planning reference는 방향 검수용 |
 
@@ -195,7 +195,7 @@ Shared existing core
 | --- | --- | --- | --- | --- |
 | 시작 | `bg_school_admission_approach.png` | 없음 | `StoryFrontDoor/EnvironmentBackground` | `IMPLEMENTED` |
 | 수업 | `bg_school_common.webp` + class direct-glyph planning reference | 실제 장면은 텍스트·글자·UI를 배경 위 live layer로 둔다 | `FirstClassRoot/EnvironmentBackground` | `IMPLEMENTED`; reference는 planning only |
-| 실습 | first guided greenhouse reference + 현재 EventClock UI | 기존 사건 화면의 실제 레이어 확인 | `StoryEventRoot` | current runtime + reference |
+| 실습 | `bg_greenhouse_field_base.webp` + 현재 EventClock UI | 기존 tracked WebP 환경 아래에 글자·시계·대상·시전 live layer를 둔다 | `StoryEventRoot/EnvironmentBackground` | `IMPLEMENTED__MACHINE_VERIFIED__EDITOR_RUNTIME_OBSERVED`; 새 배경 생성 없음 |
 | 결투 | canonical cloister 02 | 환경만; 대상/글자/UI는 별도 라이브 레이어 | `DuelPracticumRoot/EnvironmentBackground` | `USER_APPROVED__CANON_REGISTERED__IMPLEMENTED__RUNTIME_BOUND` |
 | 축제 | `bg_school_common.webp` + festival light-thread canopy reference | 실제 장면은 live state를 우선하고 festival 전용 새 raster는 소비처 확정 때만 후보 제작 | `FestivalCanopyRoot/EnvironmentBackground` | `IMPLEMENTED`; reference는 planning only |
 | 카드 | `GR-VIS-025` card-frame brief | frame normal/locked/selected/disabled; wizard art는 보류 | `CardArchiveScreen` | `BRIEF_READY` |
@@ -211,6 +211,6 @@ Shared existing core
 
 ## 9. 현재 완료 상태·다음 단계
 
-입학식 → 첫 수업 → 첫 실습 → 결투 연습 → 축제의 첫 세션 route와 결투 환경 02는 구현·자동 검증·1280×720 editor-runtime 관찰까지 완료됐다. 이 문서는 사람이 빠르게 확인할 수 있도록 같은 내용을 **32페이지 상세 검토판** 파생 PDF로도 제공하지만, Markdown 원본이 정본이며 PDF의 source SHA·render evidence는 manifest가 소유한다.
+입학식 → 첫 수업 → 첫 실습 → 결투 연습 → 축제의 첫 세션 route, 결투 환경 02, 그리고 기존 온실 현장 환경의 첫 실습 runtime 재사용은 구현·자동 검증·1280×720 editor-runtime 관찰까지 완료됐다. 이 문서는 사람이 빠르게 확인할 수 있도록 같은 내용을 **32페이지 상세 검토판** 파생 PDF로도 제공하지만, Markdown 원본이 정본이며 PDF의 source SHA·render evidence는 manifest가 소유한다.
 
 다음 안전 작업은 1920×1080 crop, 실제 Human/Device/Accessibility/Performance/Export 검증을 별도 증거로 수집하는 일이다. 카드 상세 규칙·턴·마력·승패는 계속 `RULESET_PENDING`이며, 새 카드 artwork·festival 전용 배경처럼 실제 소비처가 생긴 이미지는 위 후보 정책으로 준비하되 제품 의미·final lock과 runtime binding을 자동으로 확정하지 않는다.

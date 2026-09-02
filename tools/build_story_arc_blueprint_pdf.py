@@ -18,6 +18,7 @@ REQUIRED_SOURCE_TOKENS = (
     "AdmissionPrologue",
     "FirstClassRoot",
     "StoryEventRoot",
+    "bg_greenhouse_field_base",
     "DuelPracticumRoot",
     "FestivalCanopyRoot",
     "WRITE_OR_SELECT_GLYPHS_TO_LAYERED_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT",
@@ -29,6 +30,7 @@ RUNTIME_CAPTURES = {
     "first_class_gate": ROOT / "artifacts/runtime/2026-09-01-first-class-glyph-gate-1280x720.png",
     "duel": ROOT / "artifacts/runtime/2026-09-01-duel-practicum-1280x720-v2.png",
     "festival": ROOT / "artifacts/runtime/2026-09-01-festival-canopy-1280x720-v3.png",
+    "story_event": ROOT / "artifacts/runtime/2026-09-02-story-event-greenhouse-environment-runtime-1280x720.png",
 }
 
 DETAILED_REVIEW_PAGE_COUNT = 32
@@ -219,7 +221,7 @@ def render_pdf(output: Path, source_sha: str) -> None:
     )
     section_label("현재 상태", margin + 22, 333)
     draw_text_block(
-        "첫 세션 route와 결투 연습 배경 02는 구현·자동 검증·1280×720 에디터 관찰까지 완료. "
+        "첫 세션 route, 기존 온실 환경의 첫 실습 재사용, 결투 연습 배경 02는 구현·자동 검증·1280×720 에디터 관찰까지 완료. "
         "Human / Device / Accessibility / Performance / Export는 아직 실행하지 않았다.",
         margin + 22,
         310,
@@ -415,14 +417,14 @@ def render_pdf(output: Path, source_sha: str) -> None:
     draw_header("실제 화면 증거", "1280×720 editor-runtime captures — 사람/기기 검수는 별도")
     section_label("첫 수업 — 글자 도안을 보고 직접 쓴다", margin, page_height - 84)
     fit_image(RUNTIME_CAPTURES["first_class"], margin, 310, 360, 202)
-    section_label("결투 연습 — 환경은 배경, 서클·시계·대상은 live UI", 444, page_height - 84)
-    fit_image(RUNTIME_CAPTURES["duel"], 444, 310, 360, 202)
+    section_label("첫 실습 — 온실은 배경, 글자·시계·대상은 live UI", 444, page_height - 84)
+    fit_image(RUNTIME_CAPTURES["story_event"], 444, 310, 360, 202)
     rounded_box(margin, 102, page_width - margin * 2, 165, pale_gold, gold, 10)
     section_label("이미지와 기능 UI를 분리한 이유", margin + 20, 239)
     y = 217
     y = draw_bullet("첫 수업은 직접 글자 쓰기 패널에 도안을 함께 보여 주어, 입력 방법을 추측하지 않게 한다.", margin + 20, y, page_width - margin * 2 - 40)
-    y = draw_bullet("결투 배경 02에는 글자·표적·시계·수치·카드·캐릭터를 굽지 않았다. 같은 배경 위에 상황에 맞는 live state를 겹친다.", margin + 20, y - 6, page_width - margin * 2 - 40)
-    draw_bullet("학생끼리의 결투는 처치 전투가 아닌 안전한 대응 연습이다. 카드 상세 게임과 결합하지 않는다.", margin + 20, y - 6, page_width - margin * 2 - 40)
+    y = draw_bullet("첫 실습은 기존 온실 환경을 바이트 변경 없이 재사용하고, 입력을 가로채지 않는 TextureRect·veil·live Control 순서로 장소성과 조작성을 함께 보장한다.", margin + 20, y - 6, page_width - margin * 2 - 40)
+    draw_bullet("결투는 별도 environment-only 자산과 같은 live UI 원칙을 사용한다. 학생끼리의 안전한 대응 연습이며 카드 상세 게임과 결합하지 않는다.", margin + 20, y - 6, page_width - margin * 2 - 40)
     draw_footer(5)
     pdf.showPage()
 
@@ -433,9 +435,9 @@ def render_pdf(output: Path, source_sha: str) -> None:
     section_label("자산 상태", 518, 452)
     asset_rows = [
         ("결투 cloister 02", "USER_APPROVED · CANON_REGISTERED · IMPLEMENTED · RUNTIME_BOUND"),
+        ("첫 실습 field base", "existing WebP reused · StoryEventRoot runtime bound · rights review pending"),
         ("수업/축제 계획 레퍼런스", "planning reference only · live UI owns all text/state"),
-        ("카드 frame/art", "BRIEF_READY · card rules remain RULESET_PENDING"),
-        ("새 필요 이미지", "consumer · rights · layer preflight 뒤 candidate를 즉시 제작"),
+        ("카드/새 필요 이미지", "card rules remain RULESET_PENDING · candidate는 consumer·rights·layer preflight 뒤에만 제작"),
     ]
     row_y = 417
     for heading, status in asset_rows:
@@ -464,7 +466,7 @@ def render_pdf(output: Path, source_sha: str) -> None:
     draw_header("현재 검증 범위와 다음 안전 작업", "PDF 발행은 게임의 Human/Device 검수를 대체하지 않는다")
     rows = [
         ("문서/정본", "Markdown source와 registry 상태를 actual runtime receipt에 맞춰 정정", "이번 PDF와 hash manifest로 검증"),
-        ("자동/에디터", "34 GUT suites · 1,450 assertions · 1280×720 editor capture", "기존 runtime receipt가 소유"),
+        ("자동/에디터", "34 GUT suites · 1,456 assertions · 1280×720 editor capture", "runtime receipt와 첫 실습 배경 결속 검증이 소유"),
         ("PDF 렌더", "모든 페이지 raster render와 시각 검수", "이번 publication manifest가 소유"),
         ("다음 우선", "1920×1080 crop · 실제 Human/Device/Accessibility/Performance/Export", "별도 evidence gate로 진행"),
         ("카드", "story-owned archive만 구현 · ruleset is pending", "사용자가 상세 룰을 제공한 뒤 별도 설계/검증"),
@@ -703,11 +705,11 @@ def render_pdf(output: Path, source_sha: str) -> None:
         "온실과 서리 묘목은 첫 번째 실습 사건이다. 이 장면은 수업에서 익힌 글자와 서클/시계 사고를 처음 묶어 보되, 게임의 메인이 온실에 갇히지 않도록 이후 결투 연습과 축제로 명확히 연결한다.",
         [
             ("사건 맥락", "FROST_SEEDLINGS는 현재 실습의 유일한 대상이다. 플레이어는 수업에서 본 HEAT/PROTECT를 바탕으로 묘목을 돌볼 방법을 준비한다."),
-            ("화면의 역할", "왼쪽/중앙 환경은 사건을 보이고, 글자 입력·서클 Preview·대상·시전·Goal/Threat은 별도 live UI가 맡는다. 배경에 숫자나 기능 텍스트를 굽지 않는다."),
+            ("화면의 역할", "기존 bg_greenhouse_field_base.webp가 StoryEventRoot/EnvironmentBackground를 채운다. 그 위에서 글자 입력·서클 Preview·대상·시전·Goal/Threat은 별도 live UI가 맡는다. 배경에 숫자나 기능 텍스트를 굽지 않는다."),
             ("진행 순서", "글자 선택 또는 입력 → 서클 Preview → 대상 지정 → 명시 시전 → 시계 결과/복기. 앞 단계가 없으면 뒤 행동 버튼은 활성화되지 않는다."),
             ("다음 장면", "실습 행동이 한 번 해결되면 결투 연습으로 handoff한다. 실습을 반복 파밍하거나 여러 사건 중 하나를 고르는 구조는 이 첫 세션 범위에 넣지 않는다."),
         ],
-        "Runtime owner: src/ui/story/story_event_root.gd · resource: res://data/events/frostbloom/frostbloom_event_01.tres · target: FROST_SEEDLINGS",
+        "Runtime owner: StoryEventRoot/EnvironmentBackground (existing WebP, MOUSE_FILTER_IGNORE, aspect-covered) · event: frostbloom_event_01.tres · target: FROST_SEEDLINGS",
     )
 
     # Page 18 — target selection.
@@ -884,7 +886,7 @@ def render_pdf(output: Path, source_sha: str) -> None:
         [
             ("학생 표현", "대화용 캐릭터는 학생다운 상반신 일러스트를 사용한다. SD 이동은 보류하며, 이동은 단순 2D 장면 전환/배경/지도 카드 방향을 유지한다."),
             ("필요 이미지", "새 이미지는 실제 consumer, 권리/provenance, 레이어 분리, 화면 상태군을 먼저 확인한 뒤 candidate를 제작한다. 생성 성공과 사용자 final lock/runtime binding을 같은 상태로 쓰지 않는다."),
-            ("현재 승인 자산", "결투 클로이스터 환경 후보 02는 final lock 후 정본 등록·runtime bound까지 완료된 환경 전용 자산이다. 수업/축제 레퍼런스는 planning reference와 live UI 경계가 유지된다."),
+            ("현재 환경 결속", "기존 bg_greenhouse_field_base.webp는 바이트 변경 없이 첫 실습 StoryEventRoot에 재사용됐다. 결투 클로이스터 환경 후보 02는 final lock 후 정본 등록·runtime bound까지 완료됐다. 두 화면 모두 기능 UI를 배경과 분리한다."),
             ("PDF의 역할", "이 문서의 도형/와이어프레임은 수정 가능한 설계 설명이다. 실제 게임 배경을 대신하는 벡터 그림이나 새 게임 raster asset로 사용하지 않는다."),
         ],
         "Visual state model: NEEDED → BRIEF_READY → GENERATED_CANDIDATE → REVIEWED → USER_APPROVED → CANON_REGISTERED → IMPLEMENTED → RUNTIME_VERIFIED",
@@ -927,10 +929,10 @@ def render_pdf(output: Path, source_sha: str) -> None:
         "detailed PDF published; product Human/Device gates remain separate",
         "이번 상세판은 32개 페이지 전체를 렌더해 검수하는 문서 산출물이다. 게임의 다음 안전 작업은 해상도/입력/접근성/성능/내보내기와 카드 상세 룰 설계를 실제 플레이 조건에서 별도로 증명하는 것이다.",
         [
-            ("이번 PDF 검증", "source SHA와 PDF SHA를 manifest에 기록하고, 모든 페이지를 raster render하여 시각 검수한다. 이는 PDF layout 증거이며 게임 runtime/Human PASS가 아니다."),
-            ("기존 runtime 증거", "story-arc runtime receipt는 34 GUT suites, 1,450 assertions, 1280×720 editor captures를 소유한다. 해당 숫자는 이 PDF 생성이 새로 만든 검증이 아니라 기존 증거의 범위다."),
-            ("우선 남은 검증", "1920×1080/모바일 crop, 실제 마우스·터치 입력, 텍스트 대비/포커스, 성능, export와 사람 플레이 흐름을 실행하고 결과를 PASS/NOT_RUN/실패로 분리한다."),
-            ("다음 제품 결정", "카드 상세 룰을 사용자가 제공한 뒤 별도 설계·벤치마킹·wireframe·data contract·테스트를 시작한다. 그 전에는 RULESET_PENDING을 유지하고 가짜 대결을 만들지 않는다."),
+            ("이번 PDF 검증", "source/PDF SHA와 32페이지 render count를 manifest로 묶는다. 이는 PDF layout 증거이며 game runtime/Human PASS가 아니다."),
+            ("기존 runtime 증거", "runtime receipt는 34 suites, 1,456 assertions, 1280×720 capture를 소유한다. 온실 배경의 입력 투명성도 포함되며 PDF 생성은 새 게임 증거가 아니다."),
+            ("우선 남은 검증", "1920×1080/모바일 crop, 실제 마우스·터치, 대비/포커스, 성능, export와 사람 플레이 흐름을 PASS/NOT_RUN/실패로 분리한다."),
+            ("다음 제품 결정", "사용자가 카드 상세 룰을 주면 benchmark·wireframe·data contract·test를 별도 L1로 시작한다. 그 전에는 RULESET_PENDING을 유지한다."),
         ],
         "Publication provenance: adjacent .manifest.json records source/PDF SHA-256 and page count · PR #253 remains the review surface; user final visual/UX acceptance is not implied.",
     )

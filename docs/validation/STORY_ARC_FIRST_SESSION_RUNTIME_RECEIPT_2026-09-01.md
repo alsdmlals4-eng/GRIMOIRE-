@@ -51,11 +51,27 @@ release_rights_state: CONDITIONAL__RELEASE_SIMILARITY_AND_RIGHTS_REVIEW_REQUIRED
 
 Candidate 01 remains `REJECTED_CANDIDATE__RETAINED_FOR_PROVENANCE`; it was not imported or bound.
 
+## First practicum existing-environment reuse — 2026-09-02
+
+```yaml
+asset_id: bg_greenhouse_field_base
+consumer_contract: GM-FROSTBLOOM-FIRST-SESSION-ENVIRONMENT-CONSUMERS-01 / GUIDED_FIELD_PRACTICUM
+canonical_path: assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp
+sha256: F7E52D06C80785EEF08D4CCE16C45292AD66293D0F6670D7C729F8AE50C977B4
+asset_write: NONE__EXISTING_TRACKED_WEBP_REUSED_WITHOUT_BYTE_CHANGE
+consumer: res://src/ui/story/story_event_root.tscn::StoryEventRoot/EnvironmentBackground
+runtime_binding: TextureRect + MOUSE_FILTER_IGNORE + STRETCH_KEEP_ASPECT_COVERED + live ReadabilityVeil
+editor_runtime: OBSERVED_1280X720_2026_09_02__NO_CLIPPING__DIAGNOSTICS_CLEAN
+human_device_performance_accessibility_export_release: NOT_RUN
+```
+
+The former fallback-only practicum was visually under-specified even though its approved greenhouse field environment already had a concrete consumer contract. The implementation therefore reuses the tracked asset unchanged; labels, glyph guide, buttons, target state, clock values, and results remain live `Control` nodes. It does not create a new image candidate, promote a new asset, add a combat state, or imply final delivery or release-rights approval.
+
 ## Automated evidence
 
 | Check | Result | Evidence |
 | --- | --- | --- |
-| Godot headless suite | PASS | 34 suites, 1,450 assertions, 0 failures |
+| Godot headless suite | PASS | 34 suites, 1,456 assertions, 0 failures |
 | Story-arc blueprint contract | PASS | 4 Python checks, 0 failures |
 | Exact editor diagnostics after final runtime capture | PASS | 0 errors, 0 warnings |
 | Candidate byte identity | PASS | Canonical PNG SHA-256 equals manifest SHA-256 |
@@ -67,6 +83,7 @@ Godot 4.7.1 exact worktree editor PID 16236 ran the following 1280×720 scene ob
 | Scene | Observed live nodes / state | Capture |
 | --- | --- | --- |
 | `FirstClassRoot` | environment layer, direct glyph input/recognition/acceptance, locked continuation button; later guide/input repair includes on-canvas `HEAT` guide and accepted-glyph feedback | `artifacts/runtime/2026-09-01-first-class-glyph-gate-1280x720.png`; `artifacts/runtime/2026-09-01-first-class-glyph-input-runtime-1280x720.png` |
+| `StoryEventRoot` | existing greenhouse field environment, live direct-glyph guide/input, disabled Preview/target/cast, and two live event clocks; no input interception or clipping | `artifacts/runtime/2026-09-02-story-event-greenhouse-environment-runtime-1280x720.png` |
 | `DuelPracticumRoot` | canonical environment, direct glyph panel, Preview/target/cast controls, two 4-segment live clocks | `artifacts/runtime/2026-09-01-duel-practicum-1280x720-v2.png` |
 | `FestivalCanopyRoot` | reusable canonical academy environment, closing copy, one first-session confirmation button | `artifacts/runtime/2026-09-01-festival-canopy-1280x720-v3.png` |
 
@@ -98,7 +115,7 @@ The guide is a functional live `Control` rendering of the canonical glyph-templa
 
 - Godot documents `InputEventMouse.position` as Control-local in `_gui_input`, while `InputEventScreenTouch.position` is in viewport coordinates. The implementation adapts the latter through the canvas transform instead of changing the recognizer threshold. Sources checked 2026-09-01: https://docs.godotengine.org/en/4.7/tutorials/inputs/mouse_and_input_coordinates.html and https://docs.godotengine.org/en/4.7/classes/class_inputeventscreentouch.html
 - Godot's default touch-to-mouse emulation can be useful for standard controls. The canvas therefore filters only emulated duplicate events instead of globally disabling the setting and risking ordinary button touch behaviour. Source checked 2026-09-01: https://docs.godotengine.org/en/4.7/classes/class_projectsettings.html
-- Headless regression: 34 suites, 1,450 assertions, 0 failures. New coverage verifies normalised mouse retention, viewport-touch conversion, emulated mouse de-duplication, submitted `PackedVector2Array` data, empty-canvas recovery feedback, an initial visible `HEAT` guide, and a pressed `도안: 보호` selector that switches the guide to the canonical `PROTECT` template.
+- Headless regression: 34 suites, 1,456 assertions, 0 failures. New coverage verifies normalised mouse retention, viewport-touch conversion, emulated mouse de-duplication, submitted `PackedVector2Array` data, empty-canvas recovery feedback, an initial visible `HEAT` guide, a pressed `도안: 보호` selector that switches the guide to the canonical `PROTECT` template, and the practicum environment's exact asset path/input transparency/aspect-covered layout.
 - Exact-worktree Godot 4.7.1 editor observation: a synthetic mouse path matching the visible `HEAT` guide produced two packed strokes, `글자 인식` produced `열 후보`, and explicit candidate selection plus `글자로 사용` produced the accepted-glyph message. Editor diagnostics after capture: 0 errors, 0 warnings.
 
 This establishes machine and editor-runtime behaviour only. It does not establish human handwriting tolerance, physical touch ergonomics, accessibility, target-device behaviour, or release readiness.
@@ -111,6 +128,7 @@ This establishes machine and editor-runtime behaviour only. It does not establis
 | First class initially had no glyph-acceptance gate, and its first corrected continuation button exceeded the 1280×720 viewport | Added the real direct glyph panel, block continuation until `glyph_accepted`, then placed the button inside the compact lesson panel | The first class must teach the core loop before the greenhouse practicum and must not crop its sole next action | A player writes → recognizes → accepts before progressing, and the complete lesson flow fits the observed landscape viewport |
 | Festival `PanelContainer` children were split across siblings | Moved all closing content into one vertical container and reduced the panel height | Runtime render hid the festival copy behind an invalid container layout and then left excess empty space | Text, notice, and button render together without a blank panel |
 | Direct glyph drawing appeared not to register and an on-screen drawing could not reach the recognizer | Repaired normalised point retention, viewport-touch conversion, emulation de-duplication, packed-stroke handoff, and event-specific live guide rendering | A player needs to see the permitted glyph and have direct writing actually become a recognition candidate | The write → recognize → explicitly use path is observable in the first-class runtime instead of appearing to fail silently |
+| First practicum used only a dark safe fallback while its approved greenhouse field environment had no concrete `StoryEventRoot` consumer | Reused the existing tracked field-base WebP as an input-transparent aspect-covered environment, then placed a live readability veil and all functional Controls above it | The core first practicum read as an unfinished blue panel despite having a defined environment consumer; duplicate image generation would add storage and provenance debt | The scene now reads as a place without baking gameplay truth into art or weakening text/input legibility |
 
 ## Remaining verification and next safe work
 

@@ -3,6 +3,7 @@ extends RefCounted
 const ROOT_SCENE_PATH := "res://src/ui/story/story_event_root.tscn"
 const ADMISSION_SCENE_PATH := "res://src/ui/story/admission_prologue.tscn"
 const STORY_PROGRESS_PATH := "res://src/core/story/story_progress.gd"
+const PRACTICUM_BACKGROUND_PATH := "res://assets/art/backgrounds/greenhouse/bg_greenhouse_field_base.webp"
 const HEAT_FIXTURE_PATH := "res://tests/fixtures/glyphs/heat-positive.json"
 const PROTECT_FIXTURE_PATH := "res://tests/fixtures/glyphs/protect-positive.json"
 
@@ -10,7 +11,8 @@ const PROTECT_FIXTURE_PATH := "res://tests/fixtures/glyphs/protect-positive.json
 func run(case) -> void:
     case.assert_true(ResourceLoader.exists(ROOT_SCENE_PATH), "Story event root scene exists")
     case.assert_true(ResourceLoader.exists(ADMISSION_SCENE_PATH), "Admission scene exists for the transient handoff")
-    if not ResourceLoader.exists(ROOT_SCENE_PATH) or not ResourceLoader.exists(ADMISSION_SCENE_PATH):
+    case.assert_true(ResourceLoader.exists(PRACTICUM_BACKGROUND_PATH), "Guided practicum environment asset exists")
+    if not ResourceLoader.exists(ROOT_SCENE_PATH) or not ResourceLoader.exists(ADMISSION_SCENE_PATH) or not ResourceLoader.exists(PRACTICUM_BACKGROUND_PATH):
         return
 
     var root_scene = load(ROOT_SCENE_PATH)
@@ -25,6 +27,14 @@ func run(case) -> void:
     var root = root_scene.instantiate()
     root._ready()
     _assert_live_controls(case, root)
+    var environment_background := root.get_node_or_null(NodePath("EnvironmentBackground")) as TextureRect
+    case.assert_true(environment_background != null, "First practicum owns the approved greenhouse environment as a live texture layer")
+    if environment_background != null:
+        case.assert_true(environment_background.texture != null, "First practicum environment texture is bound")
+        if environment_background.texture != null:
+            case.assert_equal(PRACTICUM_BACKGROUND_PATH, environment_background.texture.resource_path, "First practicum reuses the field-practicum environment asset")
+        case.assert_equal(Control.MOUSE_FILTER_IGNORE, environment_background.mouse_filter, "First practicum environment does not intercept writing or action input")
+        case.assert_equal(TextureRect.STRETCH_KEEP_ASPECT_COVERED, environment_background.stretch_mode, "First practicum environment covers the landscape viewport without a blank frame")
 
     # Breaks if preview or commit can happen without the one transient FIRST_EVENT handoff.
     case.assert_equal(&"FIRST_EVENT_PROGRESS_REQUIRED", root.select_glyph(&"HEAT").get("status", &""), "Glyph selection rejects absent progress")
