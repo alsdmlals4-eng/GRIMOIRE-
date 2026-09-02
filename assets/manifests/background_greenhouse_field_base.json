@@ -31,13 +31,19 @@
     "modification_allowed": true,
     "redistribution_allowed": false
   },
-  "status": "EXPORTED_CANDIDATE",
+  "status": "EXPORTED_CANDIDATE__RUNTIME_REUSED__RELEASE_RIGHTS_REVIEW_REQUIRED",
   "approved_by": "User preauthorized automatic image candidates on 2026-08-26",
   "approved_at": "2026-08-26",
   "used_in_screens": [
-    "FirstSessionPracticumScene / EnvironmentBackground (planned)",
+    "StoryEventRoot / EnvironmentBackground (current guided practicum runtime; 2026-09-02)",
     "FrostbloomInvestigationScene / EnvironmentBackground (planned)",
     "SpellWorkflowProductRoot / EnvironmentBackground (current runtime; Task11)"
   ],
-  "runtime_validation": "HERA_1280X720_PRODUCT_ROOT_RENDER_NO_CLIPPING_DIAGNOSTICS_CLEAN; HUMAN_DEVICE_PERFORMANCE_EXPORT_NOT_RUN"
+  "runtime_binding": {
+    "scene": "res://src/ui/story/story_event_root.tscn",
+    "node": "StoryEventRoot/EnvironmentBackground",
+    "binding": "TextureRect; MOUSE_FILTER_IGNORE; STRETCH_KEEP_ASPECT_COVERED; live ReadabilityVeil and functional Controls above",
+    "asset_byte_change": false
+  },
+  "runtime_validation": "HERA_1280X720_PRODUCT_ROOT_AND_STORY_EVENT_RENDER_NO_CLIPPING_DIAGNOSTICS_CLEAN; HUMAN_DEVICE_PERFORMANCE_EXPORT_NOT_RUN"
 }

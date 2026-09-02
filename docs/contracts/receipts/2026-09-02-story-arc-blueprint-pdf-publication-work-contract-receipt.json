@@ -1,0 +1,201 @@
+{
+  "work_level": "L1",
+  "work_unit": "GRIMOIRE_STORY_ARC_BLUEPRINT_PDF_PUBLICATION_2026-09-02",
+  "direction_anchor": "검증된 첫 세션 스토리 아크 원본을 유지한 채, 실제 구현 상태와 정확히 일치하는 사람이 읽는 파생 PDF를 발행한다.",
+  "approval_reference": "사용자 최신 지시: 앞으로 필요하다고 판단되는 이미지는 별도 승인받지말고 제작해. 권장안대로 진행해. 그리고 블루프린트도 pdf로 볼 수 있게해줘.",
+  "approval_state": "REUSED_APPROVAL",
+  "continuous_work_state": "CONTINUOUS_WORK_ACTIVE",
+  "density_correction_revision": {
+    "user_feedback": "사용자 최신 지시: 너무 빈약하잖아 이전보다 퇴행했어 다시 좀 더 상세하게 만들어.",
+    "problem_observed": "The current derived view had 7 pages while the retained long-horizon human blueprint has 32 pages; the short view did not expose screen-level states, input gates, recovery paths, concrete consumers, or evidence boundaries at comparable review density.",
+    "selected_correction": "Replace the seven-page summary-only derived view with one 32-page DETAILED_REVIEW_EDITION derived from the same canonical Markdown owner and actual runtime sources.",
+    "scope_guard": "No gameplay rule, card detailed rule, runtime scene, save format, or production asset state is newly authorized by the PDF density correction.",
+    "verification_target": "All 32 final pages must be raster rendered and visually inspected; source/PDF SHA binding and tagged/screen-reader NOT_RUN boundary remain explicit."
+  },
+  "base_current_main": "1bc9c0cbc679f1d88cf1652d48df9273ba234401",
+  "base_current_main_subject": "fix: accept clean generated view line endings",
+  "project_branch_head_before_build": "5b4d2cf239a129d9b39ebeb5d3df37f5c9d5f7a7",
+  "decision_question": "어떤 PDF가 현재 구현된 입학식 → 첫 수업 → 첫 실습 → 결투 연습 → 축제 흐름을 중복 정본 없이 가장 정확히 전달하는가?",
+  "intended_outcome": "Markdown 정본에서만 파생되고, source/PDF SHA와 page-render 검수가 기록된 사람이 읽는 블루프린트 PDF.",
+  "benchmark_preflight_receipt": {
+    "state": "PASS",
+    "entries": [
+      {
+        "source_and_evidence": "docs/planning/GRIMOIRE_HUMAN_GAME_BLUEPRINT_20260830.md 및 output/pdf/grimoire_HUMAN_GAME_BLUEPRINT_20260830.pdf",
+        "observed_pattern": "장기 1학년 경험을 보는 human-oriented PDF는 유용하지만, 2026-09-02 실제 첫 세션 구현 상태를 소유하지 않는다.",
+        "project_fit_and_difference": "REJECT 그것을 덮어쓰거나 재발행하는 방안. 장기 R1 검수 대기 문서와 현재 vertical slice의 책임을 섞지 않는다.",
+        "disposition": "REJECT"
+      },
+      {
+        "source_and_evidence": "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md, docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md, artifacts/runtime/2026-09-01-*-1280x720*.png",
+        "observed_pattern": "현재 first-session flow, wireframe, real runtime capture, implementation and evidence ceiling already have one Markdown owner and real consumers.",
+        "project_fit_and_difference": "ADOPT 원본 Markdown을 유지하고 PDF는 그 내용을 읽기 좋게 렌더하는 보조 뷰로만 둔다. 새로운 게임 규칙, 화면 의미, 이미지 asset state는 만들지 않는다.",
+        "disposition": "ADOPT"
+      },
+      {
+        "source_and_evidence": "C:/Users/user/Documents/GitHub/Base/skills/managing-design-documents/SKILL.md and W3C WAI PDF3 https://www.w3.org/WAI/WCAG21/Techniques/pdf/PDF3",
+        "observed_pattern": "파생 문서는 source ownership, source hash, render inspection을 분리해야 하며, 복잡한 PDF는 논리 읽기 순서/태그 검수를 별도로 해야 한다.",
+        "project_fit_and_difference": "ADAPT 제목 metadata, 일관된 페이지 순서, 실제 text layers, all-page raster render inspection을 사용한다. tagged-PDF assistive-technology audit는 현재 도구와 사람 검수 없이 PASS로 승격하지 않는다.",
+        "disposition": "ADAPT"
+      }
+    ]
+  },
+  "context_configuration_hygiene": {
+    "scope": "L1 canonical-state correction, human PDF derived view, source/PDF manifest, contract tests, and publication receipt only. No Godot scene, GDScript, save, card rule, runtime asset, Base pin, legacy-save, or unrelated PR mutation.",
+    "inventory": [
+      {
+        "path": "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "GR-STORY-ARC-BLUEPRINT-01 canonical human-facing design owner",
+        "references_and_consumers": "Story arc registry, implementation plan, PROJECT_HOME, active context, tests, and the derived PDF source hash"
+      },
+      {
+        "path": "docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Exact-worktree Godot 4.7.1 automated/editor-runtime evidence receipt",
+        "references_and_consumers": "Current implementation status, capture provenance, and evidence ceiling consumed by the blueprint and PDF"
+      },
+      {
+        "path": "output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "HUMAN_GDD_PDF_DERIVED_VIEW generated from the active story-arc Markdown source",
+        "references_and_consumers": "PROJECT_HOME, DOCUMENTATION_MAP, DEVELOPMENT_GATES, DESIGN_DOCUMENT_REGISTRY, human review"
+      },
+      {
+        "path": "output/pdf/grimoire_HUMAN_GAME_BLUEPRINT_20260830.pdf",
+        "classification": "COMPATIBILITY",
+        "owner_or_provenance": "Long-horizon first-year R1 human blueprint view",
+        "references_and_consumers": "PROJECT_HOME long-term planning review; retained because it has a different owner and user-review status"
+      },
+      {
+        "path": "assets/art/backgrounds/academy/bg_duel_practice_cloister.png",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "GR-CAND-STORY-ARC-DUEL-ENV-02 user-locked environment-only runtime asset",
+        "references_and_consumers": "DuelPracticumRoot environment background; reused screenshot context only, no image bytes changed"
+      }
+    ]
+  },
+  "system_blueprint_entry": "REUSE_EXISTING_BLUEPRINT_BEFORE_CREATING_NEW__EXISTING_STORY_ARC_BLUEPRINT_RENDERED_AS_DERIVED_VIEW",
+  "implementation_feasibility_recheck": {
+    "status": "PASS",
+    "actual_project_evidence": [
+      "project.godot still enters StoryFrontDoor and does not expose activity-select buttons.",
+      "StoryProgress, FirstClassRoot, StoryEventRoot, DuelPracticumRoot, and FestivalCanopyRoot are implemented current consumers.",
+      "The runtime receipt owns 34 GUT suites / 1,450 assertions and 1280x720 editor-runtime captures; this work does not reclassify those as Human or Device evidence.",
+      "The output can reuse canonical flow text, wireframes, and existing runtime captures without generating a new game image or adding a runtime consumer."
+    ],
+    "limit": "The PDF is a document artifact. Godot runtime, actual device, accessibility assistive-technology, performance, export, and release are not exercised by this work."
+  },
+  "adversarial_review_loops": [
+    {
+      "loop": 1,
+      "finding": "A new PDF could create a second active game-design source.",
+      "disposition": "MUST_FIX",
+      "correction": "Registry, source header, manifest, and PDF footer identify the Markdown file as the sole owner and the PDF as a derived view."
+    },
+    {
+      "loop": 2,
+      "finding": "The old blueprint's planned labels could make the new PDF report an obsolete implementation state.",
+      "disposition": "MUST_FIX",
+      "correction": "Source rows are reconciled to the runtime receipt: class, duel, and festival are IMPLEMENTED with machine/editor evidence, while human/device remain NOT_RUN."
+    },
+    {
+      "loop": 3,
+      "finding": "Automatic image generation could be misread as automatic final asset promotion.",
+      "disposition": "MUST_FIX",
+      "correction": "The current user instruction is recorded as candidate-generation preauthorization only; final lock, runtime binding, production batch, rights, and release evidence stay distinct."
+    },
+    {
+      "loop": 4,
+      "finding": "A PDF page could visually look complete while omitting the story sequence, direct glyph input, or card-rule boundary.",
+      "disposition": "MUST_FIX",
+      "correction": "The renderer validates the source inputs and includes the mandatory sequential flow, live glyph guide/input, Circle/Clock, and RULESET_PENDING boundary."
+    },
+    {
+      "loop": 5,
+      "finding": "A generated PDF could be stale, unreadable, or mistaken for accessibility proof.",
+      "disposition": "MUST_FIX",
+      "correction": "Tests bind an LF-normalized UTF-8 source SHA and raw PDF SHA; every page is rendered and visually inspected. Tagged-PDF/screen-reader validation is explicitly NOT_RUN."
+    }
+  ],
+  "post_change_adversarial_completion": {
+    "status": "FIVE_FULL_SCOPE_LOOPS_COMPLETED__CLEAN_REVIEW_EXIT",
+    "full_scope": [
+      "canonical source and runtime evidence",
+      "registry, context, gate, and human-entry consumers",
+      "PDF artifact, manifest, and render output",
+      "candidate-image approval and rights boundaries",
+      "test, line-ending, and stale-reference regressions"
+    ],
+    "loops": [
+      {
+        "loop": 1,
+        "attack": "Treat the PDF as an independent active GDD and search for an unregistered or competing owner.",
+        "evidence": "design source header, DESIGN_DOCUMENT_REGISTRY human_pdf_publication object, PROJECT_HOME/DOCUMENTATION_MAP links, and the hash-binding contract test.",
+        "result": "PASS__PDF_IS_DERIVED_VIEW_ONLY"
+      },
+      {
+        "loop": 2,
+        "attack": "Compare every first-session status claim against the runtime receipt and seek residual planned/candidate labels in active consumers.",
+        "evidence": "active story-arc stale-status scan across source, registry, ACTIVE_CONTEXT, DEVELOPMENT_GATES, DOCUMENTATION_MAP, and PROJECT_HOME.",
+        "result": "PASS__NO_ACTIVE_STALE_STATUS_REFERENCE"
+      },
+      {
+        "loop": 3,
+        "attack": "Interpret standing candidate-generation approval as automatic asset lock, binding, or card-rule authorization.",
+        "evidence": "source scope/exclusions, duel environment manifest, rights record, registry state, and RULESET_PENDING contract test.",
+        "result": "PASS__CANDIDATE_GENERATION_REMAINS_SEPARATE_FROM_FINAL_PROMOTION"
+      },
+      {
+        "loop": 4,
+        "attack": "Inspect the external PDF instead of trusting its generator or file presence, and challenge whether the detailed revision is still a summary in disguise.",
+        "evidence": "Poppler 150-DPI render of all 32 pages, visual inspection of pages 1 through 32, PDF metadata/page-count check, detailed-review manifest profile, and manifest source/PDF hash readback.",
+        "result": "PASS__THIRTY_TWO_PAGE_DETAILED_REVIEW_EDITION_READABLE"
+      },
+      {
+        "loop": 5,
+        "attack": "Simulate a clean Windows CRLF checkout and verify that it cannot create a false source-hash stale result.",
+        "evidence": "core.autocrlf=true observation, raw-versus-CRLF SHA reproduction, Base 1bc9c0c generated-view line-ending pattern, and the dedicated CRLF contract test.",
+        "result": "PASS__SOURCE_SHA256_UTF8_LF_NORMALIZED"
+      }
+    ]
+  },
+  "remaining_work_recalculation": {
+    "status": "PASS",
+    "required_work_remaining_for_this_publication": 0,
+    "deferred_project_gates": [
+      "1920x1080 crop review",
+      "Human validation",
+      "mobile Device validation",
+      "PDF tagged-reading-order and screen-reader review",
+      "game Accessibility/Performance/Export validation",
+      "card detailed rules supplied by user"
+    ],
+    "next_state": "DETAILED_PDF_PUBLICATION_COMPLETE__CONTINUE_EXISTING_GAME_IMPLEMENTATION_AND_EVIDENCE_QUEUE"
+  },
+  "reuse_learning_handoff": {
+    "selected_modules": [
+      "GR-STORY-ARC-BLUEPRINT-01 Markdown owner",
+      "STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01",
+      "existing StoryFrontDoor/FirstClass/Duel/Festival runtime captures",
+      "existing human-PDF publication distinction"
+    ],
+    "reuse_mode": "RENDER_FROM_EXISTING_CANONICAL_OWNER__NO_NEW_GAMEPLAY_OR_VISUAL_ASSET_SCOPE",
+    "project_paths_changed": [
+      "canonical story-arc status source",
+      "derived PDF publication tool/output/manifest",
+      "registry and human-entry links",
+      "contract test and L1 receipt"
+    ],
+    "evidence_ceiling": "PDF_RENDER_AND_HASH_VALIDATION_ONLY__EXISTING_GODOT_EVIDENCE_REFERENCED__HUMAN_DEVICE_ACCESSIBILITY_PERFORMANCE_EXPORT_NOT_RUN",
+    "rollback": "Revert the single publication commit; the canonical Markdown owner and prior long-horizon human blueprint remain intact. No user save, runtime scene, or asset bytes are touched.",
+    "project_only_lessons": [
+      "A current vertical-slice PDF must derive from the current feature owner rather than reissue a longer-horizon GDD.",
+      "Candidate generation speed and canonical asset promotion remain separate states even under standing generation approval."
+    ],
+    "base_promotion_candidates": [
+      "NO_NEW_SHARED_BASE_PROMOTION_CANDIDATE__PROJECT_SPECIFIC_DERIVED_VIEW_PATTERN_ONLY"
+    ]
+  },
+  "evidence_ceiling": "PDF_RENDER_VALIDATED__TAGGED_PDF_SCREEN_READER_REVIEW_NOT_RUN__GAME_HUMAN_DEVICE_ACCESSIBILITY_PERFORMANCE_EXPORT_NOT_RUN"
+}

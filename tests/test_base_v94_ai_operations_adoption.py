@@ -32,8 +32,8 @@ class TestBaseV94Grimoire(unittest.TestCase):
             {"magic-writing-recovery", "art-style-decision-gate"},
             {route["route_id"] for route in adapter["routing"]["project_routes"]},
         )
-        self.assertEqual("PLANNING_ONLY_PROFILE", adapter["project"]["execution_profile"])
-        self.assertEqual("NOT_STARTED", adapter["current_state"]["implementation"])
+        self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", adapter["project"]["execution_profile"])
+        self.assertEqual("PARTIAL_FOUNDATION", adapter["current_state"]["implementation"])
 
     def test_contracts(self) -> None:
         ai = (ROOT / "docs/AI_WORKFLOW.md").read_text(encoding="utf-8")

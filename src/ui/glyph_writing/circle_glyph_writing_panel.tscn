@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/ui/glyph_writing/circle_glyph_writing_panel.gd" id="1_writing_panel"]
+[ext_resource type="PackedScene" path="res://src/ui/glyph_writing/glyph_stroke_canvas.tscn" id="2_stroke_canvas"]
+
+[node name="CircleGlyphWritingPanel" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("1_writing_panel")
+
+[node name="Heading" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "글자 새기기"
+
+[node name="Hint" type="Label" parent="."]
+layout_mode = 2
+text = "서리 묘목을 다룰 글자를 허공에 새기세요. 인식 뒤에도 직접 사용을 확정해야 합니다."
+autowrap_mode = 2
+
+[node name="WritingSurface" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 148)
+layout_mode = 2
+theme_type_variation = &"AcademyPanel"
+
+[node name="StrokeCanvas" parent="WritingSurface" instance=ExtResource("2_stroke_canvas")]
+layout_mode = 2
+
+[node name="WritingActions" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RecognizeButton" type="Button" parent="WritingActions"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"AcademyButton"
+text = "글자 인식"
+
+[node name="ClearCanvasButton" type="Button" parent="WritingActions"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"AcademyButton"
+text = "획 지우기"
+
+[node name="RecognitionMessage" type="Label" parent="."]
+layout_mode = 2
+autowrap_mode = 2
+text = "획을 직접 그린 뒤 인식해 보세요."
+
+[node name="CandidateActions" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Candidate0Button" type="Button" parent="CandidateActions"]
+custom_minimum_size = Vector2(128, 42)
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+visible = false
+
+[node name="Candidate1Button" type="Button" parent="CandidateActions"]
+custom_minimum_size = Vector2(128, 42)
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+visible = false
+
+[node name="Candidate2Button" type="Button" parent="CandidateActions"]
+custom_minimum_size = Vector2(128, 42)
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+visible = false
+
+[node name="UseCandidateButton" type="Button" parent="CandidateActions"]
+custom_minimum_size = Vector2(160, 42)
+layout_mode = 2
+theme_type_variation = &"AcademyButtonPrimary"
+text = "글자로 사용"
+disabled = true

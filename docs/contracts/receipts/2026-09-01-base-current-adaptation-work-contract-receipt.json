@@ -1,0 +1,89 @@
+{
+  "work_level": "L3",
+  "work_unit": "GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01",
+  "approval_reference": "사용자 최신 지시: base를 상세하게 프레쉬 리드하고 그에 맞춰서 작업순서, 구조, 계약 등을 갱신한다 (base를 따르되 프로젝트에 맞게 변형해서 사용)",
+  "base_current_main": "19355b7ef065a21d0f2b685c7d9be64a4a3970f8",
+  "project_branch_head_before_build": "4c91ae7430b5582fa38e9da99e196f87a7508aa9",
+  "benchmark_preflight_receipt": {
+    "state": "PASS",
+    "entries": [
+      {
+        "source_and_evidence": "Base origin/main 19355b7ef065a21d0f2b685c7d9be64a4a3970f8; AGENTS.md; docs/OPERATING_MODEL.md; docs/WORK_MODE_AND_SKILL_ROUTING.md; docs/PLANNING_FIRST_GRILL_ME_BATCH_POLICY.md; docs/LONG_HORIZON_WORK_EXECUTION_POLICY.md; docs/BASE_SHARED_SKILL_ADAPTER_CONTRACT.md.",
+        "observed_pattern": "Base separates current-project authority from reusable process: L1+ work records a receipt, compares alternatives, protects historical material by consumer evidence, validates the exact PR head, and distinguishes contract, automated, runtime, and human evidence.",
+        "project_fit_and_difference": "ADAPT the lifecycle, evidence ceiling, receipt, and legacy classification gates while retaining GRIMOIRE's repository paths, Godot 4.7.1 adapter, Circle/Clock/Card product decision, user-approved visual policy, and repository-only Notion retirement.",
+        "disposition": "ADAPT"
+      },
+      {
+        "source_and_evidence": "GRIMOIRE AGENTS.md, START_HERE.md, docs/ACTIVE_CONTEXT.md, docs/DEVELOPMENT_GATES.md, docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md, docs/DESIGN_DOCUMENT_REGISTRY.json, project.godot, Circle/Clock/Card source and tests; current branch 4c91ae7430b5582fa38e9da99e196f87a7508aa9; Draft PR #253; origin/main d384c454768a8aa3b0adb939e0b035ac2afa426e.",
+        "observed_pattern": "The current story front door, role-free circles, declared-action clocks, and narrative-gated card shell are implemented and machine/editor-observed, but startup documents still mix those current owners with historical Star/Task8 prose that can be misread as active implementation direction.",
+        "project_fit_and_difference": "ADOPT a single current-entry order and a scoped legacy classification. Preserve user-owned Star save provenance and historical decisions, but prevent them from acting as current build instructions or migration authority.",
+        "disposition": "ADOPT"
+      },
+      {
+        "source_and_evidence": "Base docs/knowledge/game-development/reuse/adoption/PROJECT_WORK_REUSE_HANDOFF.json and profiles/GRIMOIRE.json, read at Base main 19355b7ef065a21d0f2b685c7d9be64a4a3970f8; Base current reuse registry.",
+        "observed_pattern": "The accumulated Base GRIMOIRE profile still names FIVE_POINT_STAR as project-owned identity and marks reusable module implementations as reference/planned rather than current product truth.",
+        "project_fit_and_difference": "REJECT using the stale Base profile as GRIMOIRE product canon. Treat it as reusable-pattern input only and record Circle/Clock/Card as the current project-owned product decision in the project adapter.",
+        "disposition": "REJECT"
+      },
+      {
+        "source_and_evidence": "GitHub Docs, Available rules for rulesets, read 2026-09-01: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets.",
+        "observed_pattern": "Rulesets can require pull requests and passing status checks, and a strict required-check configuration may require an updated base before merge.",
+        "project_fit_and_difference": "ADAPT this as a live GitHub readback rule: inspect the current PR head, merge state, checks, and repository rules before merge; do not infer repository protection from stale local documentation.",
+        "disposition": "ADAPT"
+      }
+    ]
+  },
+  "context_configuration_hygiene": {
+    "scope": "GRIMOIRE L3 project-governance update only: entry documents, operating contract, project adapter metadata, current design registry, work-contract receipt, and their direct validators. Godot product code, assets, card balance, story content, external legacy save, unrelated open PRs, and Base repository files are excluded.",
+    "inventory": [
+      {
+        "path": "AGENTS.md",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Project top-level execution authority; current Circle/Clock/Card scope is present but historical Star instructions require active/historical separation.",
+        "references_and_consumers": "First repository read, project router, every project work session."
+      },
+      {
+        "path": "START_HERE.md",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Project bootstrap entry; contains both current Circle/Clock and historical Spell Workflow sections.",
+        "references_and_consumers": "Referenced by AGENTS.md, current work start, and documentation map."
+      },
+      {
+        "path": "docs/ACTIVE_CONTEXT.md",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Current state and active gate owner; historical Task8 sections need explicit non-active framing.",
+        "references_and_consumers": "Referenced by AGENTS.md, START_HERE.md, project adapter, and current work routing."
+      },
+      {
+        "path": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Existing active project binding that must retain its pinned v9.4.3 adoption while linking to the fresh-current adaptation record.",
+        "references_and_consumers": "Referenced by AGENTS.md, START_HERE.md, development gates, and contract tests."
+      },
+      {
+        "path": "skills/PROJECT_BASE_ADAPTER.json",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Canonical project adapter; its v9.4.3 release lock remains adopted and its fresh-current observation must be project-local metadata.",
+        "references_and_consumers": "Operating-contract validator, generated compatibility views, PR CI, and project skill routing."
+      },
+      {
+        "path": "docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Current user-approved Circle/Clock/Card product decision owner.",
+        "references_and_consumers": "Active Context, documentation map, front-door/circle/clock/card runtime source, tests, and PR #253."
+      },
+      {
+        "path": "docs/planning/STAR_GLYPH_CIRCUIT_MASTERY_BALANCE_01_APPROVAL_2026-08-06.md",
+        "classification": "COMPATIBILITY",
+        "owner_or_provenance": "Superseded Star decision retained as historical provenance and legacy-save context.",
+        "references_and_consumers": "Design document registry, historical audit, and save-preservation receipt; no current runtime consumer."
+      },
+      {
+        "path": "C:/Users/user/AppData/Roaming/Godot/app_userdata/GRIMOIRE Star Circuit Runtime POC/grimoire_campaign_anchor.json",
+        "classification": "COMPATIBILITY",
+        "owner_or_provenance": "User-owned legacy Star save; confirmed read-only in the 2026-09-01 removal receipt.",
+        "references_and_consumers": "No current runtime migration consumer; must not be moved, deleted, or auto-converted by this governance update."
+      }
+    ]
+  }
+}

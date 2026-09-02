@@ -1,10 +1,13 @@
-# Spell 마법 글자·별형 회로 문법 — 최신 책임 원본
+# Spell 마법 글자·별형 회로 문법 — 역사 책임 원본
 
 ## 문서 상태
 
 ```yaml
-status: ACTIVE_RESPONSIBILITY_SOURCE_MAIN
+status: SUPERSEDED_HISTORY__RUNTIME_REMOVAL_AUTHORIZED
 decision_id: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+superseded_by: GM-CIRCLE-CLOCK-CARD-CORE-01
+current_owner: docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md
+superseded_at: 2026-08-31
 sync_id: GR-SYNC-20260806-01
 main_authority_commit: 6ee87a452ebb5793fb6739249287dfd537f4ee89
 merged_pull_request: 68
@@ -19,6 +22,8 @@ mobile_validation: NOT_RUN
 human_validation: NOT_RUN
 numeric_status: USER_APPROVED_PROTOTYPE_BASELINE_PLAYTEST_REQUIRED
 ```
+
+> 2026-08-31 최신 사용자 결정으로 이 문서의 별형 회로, Main/Auxiliary 역할, 별형 runtime 흐름은 새 제품 방향에서 폐기됐다. 이 문서는 과거 구현·승인·검증 provenance만 보존한다. 새 시스템은 `공용 서클 · 사건 시계 · 마도 카드 코어 교체 설계`가 책임진다.
 
 ## 핵심 정의
 

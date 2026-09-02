@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "HUMAN_GDD_PDF_DERIVED_VIEW",
+  "state": "DERIVED__SOURCE_SHA_RECORDED__RENDER_VALIDATED",
+  "source": {
+    "path": "docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md",
+    "sha256": "3E07D88AEDD2C0833ACD7C0ECADF594AE391F4BDC49C3D6CFAC1D54645EA2034",
+    "sha256_algorithm": "SHA256_UTF8_LF_NORMALIZED",
+    "authority": "CANONICAL_MARKDOWN_OWNER"
+  },
+  "pdf": {
+    "path": "output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf",
+    "sha256": "6689CDF252425B126BD6201F5608AF0C1D2388040D3F2C5768EB009CA12898A6",
+    "size_bytes": 5030048,
+    "page_count": 32,
+    "page_size": "A4_LANDSCAPE",
+    "title": "GRIMOIRE 첫 세션 스토리 아크 블루프린트",
+    "tagged_pdf": false
+  },
+  "generator": {
+    "path": "tools/build_story_arc_blueprint_pdf.py",
+    "runtime": "Bundled workspace Python with ReportLab for rendering; external Poppler raster review recorded separately",
+    "font": "Malgun Gothic / Malgun Gothic Bold",
+    "operation_marker": "edit/pdf expected-output-count=1"
+  },
+  "publication_profile": {
+    "edition": "DETAILED_REVIEW_EDITION",
+    "page_count_target": 32,
+    "scope": "CURRENT_STORY_ARC_SCREEN_STATE_INPUT_FLOW_ASSET_RUNTIME_AND_EVIDENCE_REVIEW",
+    "comparison_basis": {
+      "previous_current_derived_view_page_count": 7,
+      "retained_long_horizon_reference": "output/pdf/grimoire_HUMAN_GAME_BLUEPRINT_20260830.pdf",
+      "rule_boundary": "Current Circle/Clock/Story core is retained; superseded active Star runtime is not restored."
+    }
+  },
+  "runtime_evidence_reused": [
+    "artifacts/runtime/2026-09-01-first-class-glyph-input-runtime-1280x720.png",
+    "artifacts/runtime/2026-09-01-first-class-glyph-gate-1280x720.png",
+    "artifacts/runtime/2026-09-01-duel-practicum-1280x720-v2.png",
+    "artifacts/runtime/2026-09-01-festival-canopy-1280x720-v3.png",
+    "artifacts/runtime/2026-09-02-story-event-greenhouse-environment-runtime-1280x720.png",
+    "docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md"
+  ],
+  "render_validation": {
+    "status": "ALL_PAGES_RASTER_RENDERED__SELECTED_LAYOUTS_VISUALLY_INSPECTED",
+    "renderer": "Poppler pdftoppm",
+    "dpi": 150,
+    "page_count_rendered": 32,
+    "visual_review": "PASS__EXPLICIT_REVIEW_PAGE_SET_RECORDED",
+    "final_page_review": {
+      "updated_and_inspected": [
+        1,
+        5,
+        6,
+        7,
+        17,
+        29,
+        32
+      ],
+      "all_pages_rendered": true,
+      "inspection_result": "NO_CLIPPED_OR_OVERLAPPING_TEXT_OR_MISSING_CONTENT_OBSERVED_IN_EXPLICIT_REVIEW_PAGE_SET"
+    }
+  },
+  "evidence_boundary": {
+    "pdf_visual_render": "VERIFIED",
+    "tagged_pdf_reading_order": "NOT_RUN",
+    "screen_reader": "NOT_RUN",
+    "game_human_device_accessibility_performance_export": "NOT_RUN",
+    "note": "This human PDF is a presentation artifact and does not promote the cited Godot evidence beyond its original runtime receipt."
+  }
+}

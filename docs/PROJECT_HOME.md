@@ -16,9 +16,9 @@ authoritative_bootstrap: AGENTS.md -> START_HERE.md -> docs/ACTIVE_CONTEXT.md ->
 
 | 항목 | 현재 정본 |
 | --- | --- |
-| 핵심 판타지 | 마법 글자의 의미를 배우고 직접 주문을 설계해, 이해 가능한 현장 문제의 규칙을 바꾸는 마법학교 성장 경험. |
-| Player Promise | 플레이어가 관찰한 근거를 바탕으로 글자와 FIVE_POINT_STAR 회로를 작성하고, 무엇을 먼저 지킬지 고른 뒤, 결과·대가·미확인을 기록으로 이해한다. |
-| 플레이어 노출 흐름 | **글자 → 주문 → 대상 → 시전**. 내부는 typed Glyph Stock, PreparedSpell, Stage 2/3, atomic transaction을 유지한다. |
+| 핵심 판타지 | 마법 글자의 의미를 배우고 공용 글자 서클을 겹쳐, 이해 가능한 현장 문제의 규칙을 바꾸는 마법학교 성장 경험. |
+| Player Promise | 플레이어가 관찰한 근거를 바탕으로 글자 1~3개를 역할 없는 서클로 조합하고, 무엇을 먼저 지킬지 고른 뒤, 시계로 드러나는 결과·대가·미확인을 기록으로 이해한다. |
+| 플레이어 노출 흐름 | **글자 → 서클 → 대상 → 시전 → 시계 결과**. Star Runtime 코드는 제거됐고 실제 legacy Star 저장은 자동 변환 없이 historical compatibility 자료로 보존한다. |
 | 학습 루프 | 수업/관찰 → 글자·회로 설계 → Preview → 명시 대상/시전 → 실제 변화·대가 → Grimoire 기록 → 다음 질문. |
 | 보호할 강점 | 직접 쓰는 글자, 명시 commit, 관찰 근거와 미확인의 분리, 선택의 실제 결과 보존, global success grade 금지. |
 | 현재 제품 단계 | `PARTIAL_FOUNDATION`; Task9 Product Root는 merged main이지만 Human/Device/Performance/Full Slice는 `NOT_RUN`. |
@@ -29,12 +29,12 @@ Frostbloom의 첫 major 해결에서 플레이어는 **희귀 서리 묘목** �
 
 ```text
 Known 2 / Unknown 2 / Lens 1
-→ 직접 쓴 글자 + FIVE_POINT_STAR로 완성 주문
+→ 직접 쓴 글자 + 역할 없는 1~3겹 서클로 완성 주문
 → 묘목 또는 구조 선택
 → 확인된 개선 / 남는 위험 / 미확인 / Mana를 읽음
 → 명시 시전
 → 실제 개선 / 포기한 가치 / 남은 미확인을 receipt로 확인
-→ W7 및 후속 조사의 다음 질문
+→ 사건 시계의 변화와 다음 이야기 질문
 ```
 
 - 현재 W6 범위는 사용자가 고른 A안, **짧은 decision-loop vertical slice**다.
@@ -63,11 +63,11 @@ The visual candidate policy is user-preauthorized for a single candidate/refinem
 
 | Layer | confirmed state | boundary |
 | --- | --- | --- |
-| Product Root | `res://src/ui/spell_workflow/spell_workflow_product_root.tscn` is the main development entry and binds the W6 typed context Resource | development foundation; the W6 loop is merged-main automated/runtime-smoke evidence, not Human/device proof |
-| Core systems | direct glyph input, FIVE_POINT_STAR circuit, explicit target/cast, atomic result receipt, W6 typed context Resource | W6 automated and runtime-smoke evidence exists; it does not prove Human/player/device/performance quality |
+| Story Front Door | `res://src/ui/front_door/story_front_door.tscn` is the default story-led entry and binds the locked admissions environment | New Record starts admission; no class/practicum/duel/festival hub is exposed; Human/device proof remains separate |
+| Core systems | direct glyph input, 1–3 role-free layered circles, explicit target/cast, event clocks, narrative-gated card shell | replacement is partial and automated/editor evidence is not Human/player/device/performance quality |
 | Runtime visuals | common UI SVGs, six glyph PNGs, and greenhouse field base have consumers | visual completeness/readability is not proven |
 | Automated evidence | automated/component evidence exists; fresh exact checks must be run per change | not Human/player/device/performance proof |
-| Human usability / Player Experience | `NOT_RUN` | user validation remains required |
+| Human usability / Player Experience | `NOT_RUN` | Circle/Clock precheck script is `PREPARED_NOT_RUN`; actual-person evidence remains required |
 | Work quality gate | `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md` | every material change requires fresh research, actual feasibility review, and adversarial review |
 
 ## 5. Repository domain map
@@ -89,7 +89,7 @@ The detailed source/page ledger, classifications, and migration completion rules
 1. W6 L2 Spec과 L3 implementation은 사용자 승인 범위에서 구현됐고, Issue #242는 PR #245 merge `713bfbf`로 닫혔다. 현재 정확한 변경점 evidence는 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_IMPLEMENTATION_RECEIPT_2026-08-29.md`가 소유한다.
 2. 다음 W6 evidence gate는 Human/Player, device, performance, accessibility, export, full-slice 검증이다. 사람 관찰은 `docs/validation/W6_FROSTBLOOM_DECISION_LOOP_HUMAN_OBSERVATION_SCRIPT_2026-08-29.md`로 준비됐지만 아직 실행되지 않았다. W7, production asset batch, Task8 recovery는 범위 밖이다.
 3. Before every material recommendation or change, run the adversarial/research/feasibility gate; W6 is automated/runtime-smoke verified but Human/player/device/performance is not verified.
-4. Keep `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING` separate; do not treat documentation or automated evidence as Human/Player validation.
+4. `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`가 현재 다음 gate다. `docs/validation/CIRCLE_CLOCK_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01.md`은 새 기록 → 입학식 → 첫 사건의 실제 runtime consumer와 physical device/accessibility 기록 항목을 묶은 `PREPARED_NOT_RUN` 스크립트다. Task8은 실제 legacy Star 저장을 자동 변환·이동·삭제하지 않고 보존한 채 historical Star Runtime code/scene/test consumer를 제거했다. 자동·editor 관찰을 Human/Player/Device validation으로 승격하지 않는다.
 
 ## 6.1 Human Blueprint review pair
 
@@ -99,6 +99,8 @@ The detailed source/page ledger, classifications, and migration completion rules
 - AI/개발/QA 인계 원본: `docs/planning/GRIMOIRE_AI_IMPLEMENTATION_SPEC_20260830.md`
 - 파생 PDF: `output/pdf/grimoire_HUMAN_GAME_BLUEPRINT_20260830.pdf` (생성 후)
 - 이 pair는 최신 사용자 방향에 따라 온실/묘목을 게임 전체가 아닌 **수업 직후 첫 지도 실습 사건**으로 설명한다. 기존 W6/C6 owner는 자동 변경하지 않으며, 최종 검수 뒤 별도 reconciliation unit에서만 조정한다. W6 사람 검증을 우회하거나 장기 Chapter, W7, runtime asset batch의 자동 구현 권한을 만들지 않는다.
+
+`GR-STORY-ARC-BLUEPRINT-01`은 이 장기 방향의 당장 다음 5개 비트를 실제 첫 vertical slice로 구현했다. [플로우·와이어프레임 설계](superpowers/specs/2026-09-01-story-arc-blueprint-design.md)와 [구현 계획](superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md)의 입학식 → 수업 → 첫 실습 → 결투 연습 → 축제 route는 `StoryProgress`에서 순차 강제된다. 사람이 읽기 쉬운 [파생 블루프린트 PDF](../output/pdf/GRIMOIRE_STORY_ARC_BLUEPRINT_2026-09-02.pdf)는 같은 Markdown 원본의 보조 뷰이며, PDF 자체가 새 정본이 아니다. 승인된 기존 온실 현장 환경은 바이트 변경 없이 `StoryEventRoot/EnvironmentBackground`에 재사용됐고, 사용자가 final lock한 결투 환경 후보 02는 canonical runtime art로 승격되어 `DuelPracticumRoot/EnvironmentBackground`에 결속됐다. 후보 01은 UI 오인 위험 때문에 provenance용 rejected candidate로 보존한다. 실제 code/test/editor 관찰과 남은 1920×1080·Human/Device 검증은 [runtime receipt](validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md)가 소유한다. 카드 상세 규칙과 모든 Human/Device/Performance/Accessibility/Export 증거는 계속 별도 gate다.
 
 ## 7. Reading and update rules
 

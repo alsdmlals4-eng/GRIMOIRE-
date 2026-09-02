@@ -4,7 +4,6 @@ const SERVICE_PATH := "res://src/input/glyph_recognition_service.gd"
 const REPOSITORY_PATH := "res://src/input/glyph_template_repository.gd"
 const VOCABULARY_PATH := "res://data/glyphs/v1/glyph_vocabulary_v1.json"
 const TEMPLATE_DIRECTORY := "res://data/glyphs/v1/slice_templates"
-const OUTPUT_PATH := "res://artifacts/foundation-poc/glyph-fixture-rows.json"
 const CONFIDENCE_THRESHOLD := 0.80
 const MARGIN_THRESHOLD := 0.10
 
@@ -69,13 +68,6 @@ func run(case) -> void:
     rows.append(unknown_row)
     case.assert_true(unknown_row.status in ["LOW_CONFIDENCE_REQUIRES_RETRY", "AMBIGUOUS_CANDIDATES_REQUIRE_SELECTION", "NO_VALID_INPUT"], "unknown input is not accepted")
 
-    var output_directory: String = ProjectSettings.globalize_path(OUTPUT_PATH.get_base_dir())
-    DirAccess.make_dir_recursive_absolute(output_directory)
-    var output_file = FileAccess.open(OUTPUT_PATH, FileAccess.WRITE)
-    case.assert_true(output_file != null, "fixture rows output opens")
-    if output_file != null:
-        output_file.store_string(JSON.stringify(rows, "  "))
-        output_file.close()
     case.assert_equal(11, rows.size(), "integration emits eleven synthetic fixture rows")
 
 

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/core/cards/card_ruleset.gd" id="1_card_ruleset"]
+
+[resource]
+resource_name = "Narrative Card Ruleset Shell"
+script = ExtResource("1_card_ruleset")

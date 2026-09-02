@@ -3,6 +3,19 @@ extends RefCounted
 
 const GlyphCatalog = preload("res://src/core/glyphs/glyph_catalog.gd")
 
+const METHOD_LABELS := {
+    &"INTENSIFY": "강화",
+    &"REDIRECT": "전환",
+    &"WARD": "보호막",
+    &"TEMPER": "온도 조절",
+    &"REPAIR": "수복",
+    &"FOCUS": "집중",
+    &"SCATTER": "분산",
+    &"ANCHOR": "고정",
+    &"SUSTAIN": "지속",
+    &"AMPLIFY": "증폭",
+}
+
 
 static func from_result(result: Dictionary, selected_glyph_id: StringName, stroke_count: int) -> Dictionary:
     var normalized_selected_id := GlyphCatalog.normalize_id(selected_glyph_id)
@@ -74,12 +87,14 @@ static func _candidate_buttons(candidates: Array) -> Array[Dictionary]:
             continue
         var glyph_id := GlyphCatalog.normalize_id(candidate.glyph_id())
         var meta := _metadata(glyph_id)
-        var role := StringName(meta.get("role", &""))
+        var meaning_tags: Array = Array(meta.get("meaning_tags", [])).duplicate()
+        var method_tags: Array = Array(meta.get("method_tags", [])).duplicate()
         buttons.append({
             "glyph_id": glyph_id,
-            "label": "%s · %s" % [meta.get("name", ""), _role_label(role)],
+            "label": "%s · %s" % [meta.get("name", ""), _method_label(method_tags)],
             "shape_key": meta.get("shape_key", &"GLYPH_UNKNOWN"),
-            "role_icon_key": &"ROLE_MAIN" if role == &"MAIN" else &"ROLE_SUPPORT",
+            "meaning_tags": meaning_tags,
+            "method_tags": method_tags,
             "input_revision": int(candidate.input_revision()),
         })
     return buttons
@@ -91,16 +106,13 @@ static func _metadata(glyph_id: StringName) -> Dictionary:
         return meta
     return {
         "name": String(glyph_id),
-        "role": &"UNKNOWN",
+        "meaning_tags": [],
+        "method_tags": [],
         "shape_key": &"GLYPH_UNKNOWN",
     }
 
 
-static func _role_label(role: StringName) -> String:
-    match role:
-        &"MAIN":
-            return "핵심"
-        &"AUX":
-            return "보조"
-        _:
-            return "미분류"
+static func _method_label(method_tags: Array) -> String:
+    if method_tags.is_empty():
+        return "방법 확인"
+    return String(METHOD_LABELS.get(StringName(method_tags[0]), "방법 확인"))

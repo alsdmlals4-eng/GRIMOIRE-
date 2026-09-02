@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GRIMOIRE Star Circuit Runtime POC"
-run/main_scene="uid://dj14w6clxafqv"
+run/main_scene="res://src/ui/front_door/story_front_door.tscn"
 config/features=PackedStringArray("4.7")
 
 [autoload]

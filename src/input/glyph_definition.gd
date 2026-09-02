@@ -4,16 +4,13 @@ extends RefCounted
 const REQUIRED_FIELDS: Array[String] = [
     "id",
     "name_ko",
-    "role",
     "meaning",
     "preferred_strokes",
     "slice_enabled",
 ]
-const VALID_ROLES: Array[String] = ["MAIN", "SUPPORT"]
 
 var _glyph_id: StringName = &""
 var _name_ko: String = ""
-var _role: StringName = &""
 var _meaning: String = ""
 var _preferred_strokes: int = 0
 var _slice_enabled: bool = false
@@ -22,13 +19,14 @@ var _ornament_is_recognition_input: bool = false
 
 
 static func from_dict(data: Dictionary) -> Dictionary:
+    if data.has("role"):
+        return _invalid("RETIRED_ROLE_FIELD")
     for field_name in REQUIRED_FIELDS:
         if not data.has(field_name):
             return _invalid("MISSING_%s" % field_name.to_upper())
 
     var id_value := String(data.get("id", ""))
     var name_value := String(data.get("name_ko", ""))
-    var role_value := String(data.get("role", ""))
     var meaning_value := String(data.get("meaning", ""))
     var strokes_value := int(data.get("preferred_strokes", 0))
     var slice_value = data.get("slice_enabled")
@@ -37,8 +35,6 @@ static func from_dict(data: Dictionary) -> Dictionary:
         return _invalid("INVALID_ID")
     if name_value.strip_edges().is_empty():
         return _invalid("EMPTY_NAME")
-    if not VALID_ROLES.has(role_value):
-        return _invalid("INVALID_ROLE")
     if meaning_value.strip_edges().is_empty():
         return _invalid("EMPTY_MEANING")
     if strokes_value < 1 or strokes_value > 3:
@@ -52,7 +48,6 @@ static func from_dict(data: Dictionary) -> Dictionary:
     var value = script.new()
     value._glyph_id = StringName(id_value)
     value._name_ko = name_value
-    value._role = StringName(role_value)
     value._meaning = meaning_value
     value._preferred_strokes = strokes_value
     value._slice_enabled = bool(slice_value)
@@ -69,24 +64,12 @@ func name_ko() -> String:
     return _name_ko
 
 
-func role() -> StringName:
-    return _role
-
-
 func meaning() -> String:
     return _meaning
 
 
 func preferred_strokes() -> int:
     return _preferred_strokes
-
-
-func is_main() -> bool:
-    return _role == &"MAIN"
-
-
-func is_support() -> bool:
-    return _role == &"SUPPORT"
 
 
 func is_slice_enabled() -> bool:

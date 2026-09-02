@@ -20,7 +20,6 @@ func run(case) -> void:
     var parsed = definition_script.from_dict({
         "id": "HEAT",
         "name_ko": "열",
-        "role": "MAIN",
         "meaning": "온도 상승·가열",
         "preferred_strokes": 2,
         "slice_enabled": true,
@@ -30,28 +29,28 @@ func run(case) -> void:
     case.assert_equal(&"OK", parsed.get("status", &""), "valid definition parses")
     if parsed.get("status", &"") == &"OK":
         var value = parsed.get("value")
-        case.assert_true(value.is_main(), "HEAT is Main")
-        case.assert_false(value.is_support(), "HEAT is not Support")
+        case.assert_false(value.has_method("role"), "Role-free glyph definition exposes no role classification")
+        case.assert_false(value.has_method("is_main"), "Role-free glyph definition exposes no Main classification")
+        case.assert_false(value.has_method("is_support"), "Role-free glyph definition exposes no Support classification")
         case.assert_true(value.is_slice_enabled(), "HEAT is Slice enabled")
         case.assert_equal(&"HEAT", value.glyph_id(), "glyph id is immutable read value")
         case.assert_equal(2, value.preferred_strokes(), "preferred stroke count is preserved")
 
-    var invalid_role = definition_script.from_dict({
+    var retired_role = definition_script.from_dict({
         "id": "HEAT",
         "name_ko": "열",
-        "role": "UNKNOWN",
+        "role": "MAIN",
         "meaning": "온도 상승·가열",
         "preferred_strokes": 2,
         "slice_enabled": true,
         "shape_description": "shape",
         "ornament_is_recognition_input": false,
     })
-    case.assert_equal(&"INVALID_GLYPH_DEFINITION", invalid_role.get("status", &""), "invalid role is rejected")
+    case.assert_equal(&"INVALID_GLYPH_DEFINITION", retired_role.get("status", &""), "retired role field is rejected")
 
     var invalid_id = definition_script.from_dict({
         "id": "Heat-1",
         "name_ko": "열",
-        "role": "MAIN",
         "meaning": "온도 상승·가열",
         "preferred_strokes": 2,
         "slice_enabled": true,
@@ -63,7 +62,6 @@ func run(case) -> void:
     var invalid_strokes = definition_script.from_dict({
         "id": "HEAT",
         "name_ko": "열",
-        "role": "MAIN",
         "meaning": "온도 상승·가열",
         "preferred_strokes": 4,
         "slice_enabled": true,
@@ -82,15 +80,15 @@ func run(case) -> void:
     if typeof(registry) != TYPE_DICTIONARY:
         return
 
-    case.assert_equal(1, int(registry.get("schema_version", 0)), "registry schema version")
-    case.assert_equal("GM-GLYPH-VOCABULARY-V1-01", String(registry.get("decision_id", "")), "registry decision id")
+    case.assert_equal(2, int(registry.get("schema_version", 0)), "role-free registry schema version")
+    case.assert_equal("GM-CIRCLE-CLOCK-CARD-CORE-01", String(registry.get("decision_id", "")), "role-free registry decision id")
+    case.assert_false(registry.has("main"), "Registry does not retain Main glyph grouping")
+    case.assert_false(registry.has("support"), "Registry does not retain Support glyph grouping")
 
     var entries: Array = registry.get("entries", [])
     case.assert_equal(20, entries.size(), "registry contains exactly twenty entries")
 
     var unique_ids := {}
-    var main_count := 0
-    var support_count := 0
     var slice_ids: Array[StringName] = []
     for entry_variant in entries:
         case.assert_true(typeof(entry_variant) == TYPE_DICTIONARY, "each registry entry is a dictionary")
@@ -101,17 +99,12 @@ func run(case) -> void:
         case.assert_equal(&"OK", result.get("status", &""), "registry entry validates: %s" % entry.get("id", ""))
         var glyph_id := StringName(entry.get("id", ""))
         unique_ids[glyph_id] = true
-        if entry.get("role", "") == "MAIN":
-            main_count += 1
-        elif entry.get("role", "") == "SUPPORT":
-            support_count += 1
+        case.assert_false(entry.has("role"), "Registry entry has no retired role: %s" % glyph_id)
         if bool(entry.get("slice_enabled", false)):
             slice_ids.append(glyph_id)
         case.assert_false(bool(entry.get("ornament_is_recognition_input", true)), "ornament is display-only: %s" % glyph_id)
 
     case.assert_equal(20, unique_ids.size(), "all glyph ids are unique")
-    case.assert_equal(10, main_count, "ten Main glyphs")
-    case.assert_equal(10, support_count, "ten Support glyphs")
     case.assert_equal(6, slice_ids.size(), "exactly six Slice glyphs")
 
     var expected_slice: Array[StringName] = [&"HEAT", &"PROTECT", &"FLOW", &"FOCUS", &"DISPERSE", &"BURST"]

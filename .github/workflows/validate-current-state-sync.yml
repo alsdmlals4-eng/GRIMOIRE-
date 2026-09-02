@@ -1,4 +1,4 @@
-name: Validate Spell Workflow Current-State Sync
+name: Validate Task8 Legacy Save Preservation
 on: [pull_request]
 
 jobs:
@@ -11,7 +11,6 @@ jobs:
           python-version: '3.12'
       - run: >-
           python -m unittest
-          tests.test_spell_workflow_current_state_sync
           tests.test_task8_handoff_bcp_continuation
           tests.test_task8_remote_local_reverify
           tests.test_task8_local_recovery_probe_contract

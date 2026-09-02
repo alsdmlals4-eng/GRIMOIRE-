@@ -1,0 +1,2 @@
+# Published PDF views are binary artifacts. Keep source and binary checks separate.
+*.pdf binary

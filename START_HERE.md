@@ -10,6 +10,10 @@ contract_revision: 2026-08-26-r5.4-superset-final
 contract_binding_decision: GM-CONTRACT-V4-8-BINDING-01
 contract_binding_sync: GR-SYNC-20260826-36-V4-8-R5-4-VISUAL-COVERAGE
 contract_binding_path: docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
+base_current_adaptation: docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md
+base_current_adaptation_receipt: docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json
+base_current_main_observed: 19355b7ef065a21d0f2b685c7d9be64a4a3970f8
+base_current_adaptation_status: READ_AND_PROJECT_ADAPTED
 current_governance_overlay: GM-REPOSITORY-ONLY-HUMAN-CANON-20260828-01
 current_governance_overlay_owner: docs/planning/REPOSITORY_ONLY_HUMAN_CANON_NOTION_RETIREMENT_2026-08-28.md
 project_main_authority: LIVE_GITHUB_DEFAULT_BRANCH_READBACK
@@ -18,6 +22,7 @@ authority_sync_pr_predecessor: 158
 base_snapshot_policy: ALWAYS_REFETCH_CURRENT_COMPLETED_MAIN
 adapter_policy: THIN_ADAPTER_DO_NOT_DUPLICATE_BASE_CANON
 base_project_pin: v9.4.3
+base_pin_upgrade: NOT_AUTOMATIC__SEPARATE_EQUIVALENCE_AND_MIGRATION_GATE_REQUIRED
 planning: COMPLETE_FROSTBLOOM_FIRST_SESSION
 implementation: PARTIAL_FOUNDATION
 workspace_human_canon: REPOSITORY_HUMAN_FACING_CANON
@@ -28,11 +33,11 @@ notion_migration_state: MERGED_MAIN_READ_BACK__GR_NOTION_MIGRATION_20260828_01
 google_sheets: MIGRATION_ONLY_UNTIL_REMOVAL
 github_actions_decision: GM-PUBLIC-REPO-FREE-GITHUB-ACTIONS-01
 repo_wide_actions_full_sha: PASS
-current_user_work_scope: FROSTBLOOM_W6_L3_IMPLEMENTATION_CONTRACT_DOCUMENTATION_ONLY
-product_implementation_authorized_by_current_user_work_scope: false
+current_user_work_scope: CIRCLE_CLOCK_CARD_CORE_REPLACEMENT__L2_APPROVED__TASK8_STAR_RUNTIME_REMOVED__LEGACY_SAVE_PRESERVED__MENU_UTILITIES_IMPLEMENTED
+product_implementation_authorized_by_current_user_work_scope: true
 visual_asset_coverage: docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
 visual_asset_coverage_status: CURRENT_PREFLIGHT_COMPLETE
-visual_generation_state: FROSTBLOOM_W6_PLANNING_REFERENCE_LOCKED__L3_CONTRACT_READY__IMPLEMENTATION_AUTHORIZATION_PENDING
+visual_generation_state: FRONT_DOOR_BACKGROUND_LOCKED__CANON_REGISTERED__RUNTIME_IMPLEMENTED__CARD_BATCH_DEFERRED
 visual_candidate_generation_policy: USER_PREAUTHORIZED_GENERATE_CANDIDATE__FINAL_LOCK_ONLY
 visual_tone_overlay: GM-VISUAL-TONE-20260828-01
 visual_tone_owner: docs/planning/visual/GRIMOIRE_WARM_ACADEMY_TONE_LOCK_2026-08-28.md
@@ -63,13 +68,13 @@ logo_direction: LOGO_01_FIXED_AS_DEFAULT_VISUAL_DIRECTION
 product_decision: GM-SPELL-WORKFLOW-UI-V2-01
 product_decision_overlay: docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
 product_decision_revision: 2026-08-26-PLAYER-FACING-SIMPLIFICATION
-player_facing_spell_flow: GLYPH_TO_SPELL_TO_TARGET_TO_CAST
-player_facing_ux_groups: SPELL_BUILD_AND_SPELL_CAST
-preserved_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
-circuit_topology: FIVE_POINT_STAR
-task8_product_unit: TASK8_SPELL_USE_SCREEN
-next_product_task: TASK9_USER_VERTICAL_SLICE_VALIDATION
-next_product_gate: TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING
+player_facing_spell_flow: WRITE_OR_SELECT_GLYPHS_TO_LAYERED_CIRCLES_TO_TARGET_TO_EXPLICIT_CAST_TO_CLOCK_RESULT
+player_facing_ux_groups: STORY_EVENT_AND_CARD_DUEL_CONTEXT
+current_product_decision: GM-CIRCLE-CLOCK-CARD-CORE-01
+historical_runtime_decision: GM-STAR-CIRCUIT-MASTERY-BALANCE-01
+circuit_topology: ROLE_FREE_LAYERED_CIRCLES_1_TO_3__TASK8_STAR_RUNTIME_REMOVED
+next_product_task: CIRCLE_CLOCK_STORY_VERTICAL_SLICE_HUMAN_DEVICE_ACCESSIBILITY_VALIDATION
+next_product_gate: CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK
 task8_recovery_state: TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVED_PASS
 task8_recovery_subgate: TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
 task8_recovery_predecessor_gate: TASK8_LOCAL_WORKTREE_DELTA_RECOVERY_REQUIRED
@@ -116,7 +121,23 @@ android_export: NOT_RUN
 android_device: NOT_RUN
 ```
 
-`v4.8 r5.4 / GM-CONTRACT-V4-8-BINDING-01`이 현재 프로젝트 실행 계약이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
+`v4.8 r5.4 / GM-CONTRACT-V4-8-BINDING-01`은 계속 project binding이다. 그 위에 [최신 Base 적응 작업 계약](docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md)이 2026-09-01 Base main read와 GRIMOIRE-specific work order를 소유한다. 해당 L3 receipt는 `docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json`이다. v4.5 이하 binding은 역사 provenance로 보존하며 current authority로 사용하지 않는다. Base의 과거 SHA도 영구 authority가 아니고 새 실질 work unit마다 latest completed Base `main`과 필요한 owner를 다시 읽는다.
+
+## 새 material work의 빠른 시작 순서
+
+```text
+latest user instruction
+→ AGENTS.md
+→ START_HERE.md + ACTIVE_CONTEXT.md
+→ Base-current adaptation + v4.8 binding
+→ project adapter validator
+→ live project main / same-goal PR / direct runtime consumer
+→ scoped benchmark + hygiene receipt
+→ pinned Base receipt validator PASS
+→ approved work contract / build / review / exact-head delivery
+```
+
+`REUSE_FIRST_PREFLIGHT_REQUIRED`와 `PINNED_BASE_RECEIPT_VALIDATION_REQUIRED`는 L1+의 시작 Gate다. Base main을 읽는 것은 project v9.4.3 pin을 자동 교체하지 않으며, 새 제품 규칙·카드 수치·save migration의 승인을 만들지 않는다.
 
 2026-08-26 사용자는 `GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름 간략화**와 후속 Task8·Task9 Godot 제품 구현을 승인했다. Task9 Product Root는 PR #192로 `db038a4` main에 병합됐고, 후속 PR #197/#205/#208/#210은 UI hierarchy, Academy visual surface, 직접 글자 입력 안내, 결과 영수증 표시만 교정했다. `6377cbcf31958fc2b3215d7a9603dfa5f0199c04`은 canon audit의 pre-merge baseline이며, 실제 live `main`은 항상 GitHub에서 fresh-read한다. 다음 게이트는 사람·플레이어·기기·성능·출시 검증을 과장하지 않는 `TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING`이다.
 
@@ -149,45 +170,23 @@ Google Sheet와 Notion은 current state writer가 아니다. `GR-NOTION-MIGRATIO
 
 ## 현재 제품 경계
 
-`GM-SPELL-WORKFLOW-UI-V2-01`의 **플레이어 노출 흐름**은 다음이다.
+### 최신 사용자 승인 Core Override — Circle / Clock / Card
+
+현재 제품의 기본 진입은 `res://src/ui/front_door/story_front_door.tscn`이며, 플레이어는 허브 선택이 아닌 이야기 흐름으로 입학식부터 진행한다. 새 코어는 역할 없는 1~3겹 서클, 선언된 이야기 행동에서만 진전·감소하는 사건 시계, 그리고 이야기 게이트 뒤에 열리는 마법사 카드 셸이다. 상세 카드 마력 수치와 `7,7,6 / 20`은 확정 규칙이 아니다. 실제 legacy Star 저장은 보존하고 자동 변환·삭제·이동하지 않으며, 새 서클 경험은 새 기록에서 시작한다.
 
 ```text
-글자
-→ 주문
-→ 대상
-→ 시전
+새 기록 / 유효 기록 이어하기 / 도감(읽기 전용) / 설정 / 종료 확인
+→ 입학식
+→ 수업
+→ 첫 실습: Frostbloom
+→ 이후 이야기 게이트: 결투 · 축제 · 카드
 ```
 
-화면 경험은 두 덩어리로 묶는다.
+### Historical spell-workflow locator — `HISTORICAL_COMPATIBILITY_ONLY`
 
-```text
-주문 만들기
-= 글자 선택·작성
-+ FIVE_POINT_STAR 회로 조합
-+ 완성 주문 이름 확인
+`GM-SPELL-WORKFLOW-UI-V2-01`, Task3–Task9, `PreparedSpell`, Star Circuit terminology, and Task8 recovery branches remain audit/rollback provenance. They are not the current player flow, product implementation instruction, or save-migration route. The current flow is **글자 → 1~3 겹 서클 → 대상 → 명시 시전 → 사건 시계 결과**; its product owner is `docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md`.
 
-주문 쓰기
-= 게임 장면에서 대상 지정
-+ 필요한 최종 Preview
-+ 명시 시전
-```
-
-`Stock / PreparedSpell / Stage2 / Stage3 / Main / Auxiliary`는 구현·데이터·테스트 내부 용어로 계속 유지하지만 기본 플레이어 UI의 주 용어로 먼저 가르치지 않는다. `PreparedSpell`의 기본 플레이어 표현은 **완성 주문 / 완성 주문 이름**, Stage3의 기본 플레이어 표현은 **대상 / 시전**이다.
-
-현재까지 병합된 제품 계층:
-
-- Task 3 / PR #104 — immutable `PreparedSpell` + exactly-once inventory
-- Task 4 / PR #105 — Stage 2 placement + atomic glyph preparation
-- Task 5 / PR #106 — Stage 3 explicit target/use atomic transaction
-- Task 6 / PR #108 — glyph drawing workflow screen
-- Task 7 / PR #110 — circuit placement workflow screen (`TASK7_MERGED_MAIN_VERIFIED`)
-- PR #151 — Component Sheets A–D + reusable semantic UI pack (`MERGED_MAIN_VERIFIED`)
-
-내부 authority는 바꾸지 않는다. Task8은 계속 Task5 Stage3 authority의 thin UI consumer이며 새 target/use/Mana/inventory/result/rollback authority를 만들지 않는다. 자동 Target·자동 시전·회로 자동 최적화도 금지한다.
-
-현재 revision owner:
-
-`docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`
+Use historical Spell Workflow material only when a direct consumer, regression fixture, or legacy save investigation specifically requires it. Do not recreate Star runtime or let a historical card/mana value become a live rule.
 
 ## 현재 Visual 정본
 
@@ -274,8 +273,8 @@ FRESH_GITHUB_CONNECTOR_READBACK_REQUIRED_BEFORE_REMOTE_WRITE
 ## Godot 진입점과 Runtime Reality
 
 - 프로젝트 파일: `project.godot`
-- 현재 Main Scene: `res://src/ui/spell_workflow/spell_workflow_product_root.tscn`
-- 역할: `DEVELOPMENT_PRODUCT_ROOT_ENTRY`
+- 현재 Main Scene: `res://src/ui/front_door/story_front_door.tscn`
+- 역할: `STORY_FRONT_DOOR_ENTRY`
 - Renderer: GL Compatibility
 
 Star Circuit Runtime component와 Component Sheets에는 자동화 evidence가 있다. 그러나 현재 전체 제품 구현 판정은 `PARTIAL_FOUNDATION`; Human/Device/Performance/Full Vertical Slice는 계속 `NOT_RUN`이다.
@@ -297,10 +296,12 @@ Godot/Godot AI의 설치·exact pin·port 정책은 r5.4와 current Base owner�
 → AGENTS.md
 → START_HERE.md
 → docs/ACTIVE_CONTEXT.md
+→ docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md
+→ docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json
 → docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md
-→ docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md
-→ docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json
-→ current Visual / domain owner
+→ docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md
+→ docs/DEVELOPMENT_GATES.md
+→ current domain owner
 → actual code/data/Scene/Resource/Test/runtime evidence
 ```
 
@@ -308,17 +309,14 @@ Godot/Godot AI의 설치·exact pin·port 정책은 r5.4와 current Base owner�
 
 ## 제품 구현을 다시 시작할 때의 순서
 
-현재 기획/Visual work와 별개로, 사용자가 구현을 명시적으로 재개하면 제품 순서는 다음을 유지한다.
+새 material work는 먼저 project-local operating-contract validator, current Base adaptation, L1+ work-contract receipt, reuse preflight를 거친다. Base latest observation은 adopted `v9.4.3` pin을 자동 교체하지 않는다. 그 다음 제품 구현은 다음 순서를 따른다.
 
 ```text
-1. TASK8_CLEAN_RECONCILIATION_WORKTREE_REQUIRED
-2. fresh exact-project HiGodot readback + primary v2 recovery / secondary parity comparison
-3. 새 플레이어 용어 overlay를 Task8 UI에 매핑하고 기존 Stage3 authority와 충돌 없는지 확인
-4. fresh Task8 GUT + predecessor/full runner + Hera source-delta + exact-path adversarial review
-5. Task8 product PR / exact-head CI / merge / merged-main readback
-6. Task9 Product Root + responsive/E2E integration
-7. 대표 00~10분 Human Slice
-8. 10~23 → 46분 증거 확장
+0. current authority → current Base → adapter validator → L1+ receipt → ADOPT/ADAPT/REJECT reuse preflight
+1. `CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK`의 human/device/accessibility observation을 준비·실행
+2. `GR-STORY-ARC-BLUEPRINT-01`의 [flow/wireframe 설계](docs/superpowers/specs/2026-09-01-story-arc-blueprint-design.md)와 [implementation plan](docs/superpowers/plans/2026-09-01-story-arc-blueprint-implementation.md)을 따라 구현된 입학식 → 수업 → 첫 실습 → 결투/축제 route와 [runtime receipt](docs/validation/STORY_ARC_FIRST_SESSION_RUNTIME_RECEIPT_2026-09-01.md)를 fresh-read. 결투 환경 후보 02는 final lock 뒤 canonical runtime art로 바인드됐으며, festival-specific art·1920×1080·Human/Device evidence는 별도 gate다.
+3. 카드 상세 마력/턴/승패 규칙은 `RULESET_PENDING`으로 보존하고, 사용자의 상세 룰 결정 후 구현
+4. current-task PR exact-head checks → authorized merge → merged-main readback
 ```
 
 ## 현재 완료로 주장하지 않는 항목
@@ -343,10 +341,10 @@ RUNTIME_VISUAL_COMPLETE_NOT_PROVEN
 1. `AGENTS.md`
 2. `START_HERE.md`
 3. `docs/ACTIVE_CONTEXT.md`
-4. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md`
-5. `docs/planning/SPELL_WORKFLOW_PLAYER_FACING_SIMPLIFICATION_2026-08-26.md`
-6. `docs/planning/visual/GRIMOIRE_VISUAL_ASSET_COVERAGE_2026-08-26.json`
-7. `docs/planning/visual/GRIMOIRE_VISUAL_DIRECTION_APPROVAL_2026-08-25.json`
-8. `docs/planning/visual/GRIMOIRE_REPRESENTATIVE_SCREENS_2026-08-25.json`
+4. `docs/contracts/GRIMOIRE_BASE_CURRENT_ADAPTATION_2026-09-01.md`
+5. `docs/contracts/receipts/2026-09-01-base-current-adaptation-work-contract-receipt.json`
+6. `docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md`
+7. `docs/superpowers/specs/2026-08-31-circle-clock-card-core-replacement-design.md`
+8. `docs/DEVELOPMENT_GATES.md`
 9. 현재 목표의 분야별 owner / actual code·Scene·Resource·Test
 10. `CURRENT_*` machine snapshot — historical compatibility lookup only

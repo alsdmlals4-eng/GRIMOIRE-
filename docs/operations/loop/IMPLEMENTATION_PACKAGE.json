@@ -15,7 +15,7 @@
     "docs/operations/loop/REQUIREMENT_COVERAGE_LEDGER.json",
     "docs/operations/loop/ACTIVE_LOOP_RUN.json",
     "docs/operations/loop/runs/GR_VISUAL_SHADOW_001.json",
-    "tests/test_universal_loop_visual_pilot.py"
+    "tests/test_visual_platform_gate_sequencing.py"
   ],
   "forbidden_paths": ["src/", "assets/", "data/", "addons/", "project.godot", "docs/planning/"],
   "visual_impact": "EXISTING_LOCKED",
@@ -23,7 +23,7 @@
   "required_evidence_levels": ["E1_STATIC", "E2_TEST"],
   "resource_locks": ["VISUAL_UI_CANON_OPERATIONS"],
   "acceptance_criteria": [
-    "Local Visual Lock contract passes.",
+    "Current visual-platform contract passes.",
     "Existing visual-platform structural contract remains green.",
     "Pinned unmodified Base M2 to M3 SHADOW pipeline returns SHADOW_COMPLETE with visual drift NO_DRIFT.",
     "All actual pilot outputs are mapped and no product/visual authority path changes."

@@ -1,31 +1,7 @@
 {
-  "schema_version": 1,
-  "decision_id": "GM-GLYPH-VOCABULARY-V1-01",
+  "schema_version": 2,
+  "decision_id": "GM-CIRCLE-CLOCK-CARD-CORE-01",
   "runtime_scope": "SLICE_GLYPHS_6",
-  "main": [
-    "HEAT",
-    "COLD",
-    "WATER",
-    "WIND",
-    "LIGHT",
-    "SHADOW",
-    "PROTECT",
-    "LIFE",
-    "IMPACT",
-    "PURIFY"
-  ],
-  "support": [
-    "FLOW",
-    "FOCUS",
-    "DISPERSE",
-    "BURST",
-    "ANCHOR",
-    "SUSTAIN",
-    "DELAY",
-    "REPEAT",
-    "PROJECT",
-    "ABSORB"
-  ],
   "slice": [
     "HEAT",
     "PROTECT",
@@ -38,7 +14,6 @@
     {
       "id": "HEAT",
       "name_ko": "열",
-      "role": "MAIN",
       "meaning": "온도 상승·가열",
       "preferred_strokes": 2,
       "slice_enabled": true,
@@ -49,7 +24,6 @@
     {
       "id": "COLD",
       "name_ko": "냉기",
-      "role": "MAIN",
       "meaning": "온도 하강·결빙",
       "preferred_strokes": 3,
       "slice_enabled": false,
@@ -60,7 +34,6 @@
     {
       "id": "WATER",
       "name_ko": "물",
-      "role": "MAIN",
       "meaning": "액체·습윤·세척",
       "preferred_strokes": 1,
       "slice_enabled": false,
@@ -71,7 +44,6 @@
     {
       "id": "WIND",
       "name_ko": "바람",
-      "role": "MAIN",
       "meaning": "공기 이동·압력 이동",
       "preferred_strokes": 2,
       "slice_enabled": false,
@@ -82,7 +54,6 @@
     {
       "id": "LIGHT",
       "name_ko": "빛",
-      "role": "MAIN",
       "meaning": "조명·노출·광선",
       "preferred_strokes": 2,
       "slice_enabled": false,
@@ -93,7 +64,6 @@
     {
       "id": "SHADOW",
       "name_ko": "어둠",
-      "role": "MAIN",
       "meaning": "차광·은폐·감쇠",
       "preferred_strokes": 1,
       "slice_enabled": false,
@@ -104,7 +74,6 @@
     {
       "id": "PROTECT",
       "name_ko": "보호",
-      "role": "MAIN",
       "meaning": "차단·완충·방벽",
       "preferred_strokes": 2,
       "slice_enabled": true,
@@ -115,7 +84,6 @@
     {
       "id": "LIFE",
       "name_ko": "생명",
-      "role": "MAIN",
       "meaning": "회복·성장·활성",
       "preferred_strokes": 2,
       "slice_enabled": false,
@@ -126,7 +94,6 @@
     {
       "id": "IMPACT",
       "name_ko": "충격",
-      "role": "MAIN",
       "meaning": "순간 힘·타격·진동",
       "preferred_strokes": 1,
       "slice_enabled": false,
@@ -137,7 +104,6 @@
     {
       "id": "PURIFY",
       "name_ko": "정화",
-      "role": "MAIN",
       "meaning": "오염·저주·이물 제거",
       "preferred_strokes": 2,
       "slice_enabled": false,
@@ -148,7 +114,6 @@
     {
       "id": "FLOW",
       "name_ko": "흐름",
-      "role": "SUPPORT",
       "meaning": "효과를 경로로 전달",
       "preferred_strokes": 1,
       "slice_enabled": true,
@@ -159,7 +124,6 @@
     {
       "id": "FOCUS",
       "name_ko": "집중",
-      "role": "SUPPORT",
       "meaning": "범위·출력을 한 점에 수렴",
       "preferred_strokes": 2,
       "slice_enabled": true,
@@ -170,7 +134,6 @@
     {
       "id": "DISPERSE",
       "name_ko": "분산",
-      "role": "SUPPORT",
       "meaning": "여러 방향·대상으로 나눔",
       "preferred_strokes": 2,
       "slice_enabled": true,
@@ -181,7 +144,6 @@
     {
       "id": "BURST",
       "name_ko": "폭발",
-      "role": "SUPPORT",
       "meaning": "축적 효과를 순간 방출",
       "preferred_strokes": 3,
       "slice_enabled": true,
@@ -192,7 +154,6 @@
     {
       "id": "ANCHOR",
       "name_ko": "고정",
-      "role": "SUPPORT",
       "meaning": "위치·상태를 붙잡음",
       "preferred_strokes": 1,
       "slice_enabled": false,
@@ -203,7 +164,6 @@
     {
       "id": "SUSTAIN",
       "name_ko": "지속",
-      "role": "SUPPORT",
       "meaning": "효과 시간을 유지",
       "preferred_strokes": 1,
       "slice_enabled": false,
@@ -214,7 +174,6 @@
     {
       "id": "DELAY",
       "name_ko": "지연",
-      "role": "SUPPORT",
       "meaning": "발동을 뒤로 미룸",
       "preferred_strokes": 1,
       "slice_enabled": false,
@@ -225,7 +184,6 @@
     {
       "id": "REPEAT",
       "name_ko": "반복",
-      "role": "SUPPORT",
       "meaning": "효과를 다시 실행",
       "preferred_strokes": 2,
       "slice_enabled": false,
@@ -236,7 +194,6 @@
     {
       "id": "PROJECT",
       "name_ko": "투사",
-      "role": "SUPPORT",
       "meaning": "효과를 한 방향으로 발사",
       "preferred_strokes": 2,
       "slice_enabled": false,
@@ -247,7 +204,6 @@
     {
       "id": "ABSORB",
       "name_ko": "흡수",
-      "role": "SUPPORT",
       "meaning": "외부 효과를 안으로 받아들임",
       "preferred_strokes": 2,
       "slice_enabled": false,

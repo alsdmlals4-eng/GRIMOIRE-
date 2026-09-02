@@ -1,0 +1,120 @@
+{
+  "work_level": "L1",
+  "work_unit": "CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK_2026-09-01",
+  "approval_reference": "사용자 최신 지시: 좋아 진행해. 기존 권장안인 CIRCLE_CLOCK_POST_TASK8_HUMAN_DEVICE_ACCESSIBILITY_PRECHECK을 현행 Story Front Door/Circle/Clock runtime에 맞춰 계속 진행한다.",
+  "base_current_main": "19355b7ef065a21d0f2b685c7d9be64a4a3970f8",
+  "project_branch_head_before_build": "7d6845c834c743729133a0df258597de2da19242",
+  "benchmark_preflight_receipt": {
+    "state": "PASS",
+    "entries": [
+      {
+        "source_and_evidence": "W3C WCAG 2.2 Understanding Target Size (Minimum), checked 2026-09-01: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+        "observed_pattern": "Pointer target의 최소 크기 또는 간격은 오입력과 물리적 정밀도 부담을 줄이는 원칙이며, Web CSS pixel 기준이다.",
+        "project_fit_and_difference": "ADAPT physical device observation으로 target_size_and_spacing, 오입력, display/text scale을 기록한다. Web WCAG 준수나 특정 dp 값 PASS를 주장하지 않는다.",
+        "disposition": "ADAPT"
+      },
+      {
+        "source_and_evidence": "Godot Control documentation, checked 2026-09-01: https://docs.godotengine.org/en/stable/classes/class_control.html; Godot UI Containers documentation: https://docs.godotengine.org/en/stable/tutorials/ui/gui_containers.html",
+        "observed_pattern": "Control은 focus_mode와 accessibility name/description을 제공하고, anchors/Containers는 multiple-resolution layout의 구현 수단이다.",
+        "project_fit_and_difference": "ADOPT current Control node와 existing automated contract를 device/input observation의 출발점으로 사용한다. API 존재, editor screenshot, headless layout matrix를 screen reader/device PASS로 바꾸지 않는다.",
+        "disposition": "ADOPT"
+      },
+      {
+        "source_and_evidence": "Actual project fresh read 2026-09-01: project.godot; src/ui/front_door/story_front_door.tscn; src/ui/story/admission_prologue.tscn; src/ui/story/story_event_root.tscn; src/ui/components/event_clock_view.gd; tests/integration/test_story_front_door.gd; tests/integration/test_story_event_root.gd; tests/integration/test_mobile_safe_root.gd; exact worktree Godot 4.7.1 editor observation at 1280x720.",
+        "observed_pattern": "Runtime consumer is story-led: Story Front Door -> AdmissionPrologue -> StoryEventRoot. First event exposes direct glyph writing, explicit Preview/target/cast, and simultaneous 0/6 goal plus 0/4 threat clocks; automated contracts already protect some state and layout properties.",
+        "project_fit_and_difference": "ADOPT the actual scene/node flow as the observation script. REJECT historical Star physical pack and generic W6 preservation-choice script as the current Circle/Clock evidence owner.",
+        "disposition": "ADOPT"
+      }
+    ]
+  },
+  "context_configuration_hygiene": {
+    "scope": "L1 validation-preparation only: current runtime-bound human/device/accessibility observation runbook, its receipt, authoritative routes, and a static contract test. No Godot source/scene/asset/card-rule/runtime behavior change, no legacy-save write, no Base change, and no unrelated PR action.",
+    "inventory": [
+      {
+        "path": "res://src/ui/front_door/story_front_door.tscn",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Story-led default entry.",
+        "references_and_consumers": "project.godot default run, Story Front Door tests, observation runbook."
+      },
+      {
+        "path": "res://src/ui/story/admission_prologue.tscn",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "Admission handoff scene between record start and first event.",
+        "references_and_consumers": "Story Front Door integration test, StoryEvent handoff, observation runbook."
+      },
+      {
+        "path": "res://src/ui/story/story_event_root.tscn",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "First Circle/Clock event scene.",
+        "references_and_consumers": "direct glyph input, Preview/target/cast, EventClockView, integration test, observation runbook."
+      },
+      {
+        "path": "docs/validation/W6_FROSTBLOOM_DECISION_LOOP_HUMAN_OBSERVATION_SCRIPT_2026-08-29.md",
+        "classification": "ACTIVE_OWNER",
+        "owner_or_provenance": "W6 target-priority observation script.",
+        "references_and_consumers": "Retained evidence owner for W6 only; not the Circle/Clock story precheck."
+      },
+      {
+        "path": "C:/Users/user/AppData/Roaming/Godot/app_userdata/GRIMOIRE Star Circuit Runtime POC/grimoire_campaign_anchor.json",
+        "classification": "COMPATIBILITY",
+        "owner_or_provenance": "User-owned legacy Star save preserved read-only.",
+        "references_and_consumers": "No current Circle story migration consumer; excluded from observation and writes."
+      }
+    ]
+  },
+  "implementation_feasibility_recheck": {
+    "status": "VERIFIED",
+    "actual_runtime_evidence": [
+      "Godot 4.7.1 exact-worktree editor opened C:/Users/user/Documents/GitHub/Ninza/GRIMOIRE-/.worktrees/p.",
+      "Story Front Door live UI tree and 1280x720 screenshot analysis were nonblank with no observed clipping; New Record route was invoked.",
+      "AdmissionPrologue live UI exposed 입학의 아침 and ContinueNarrativeButton; route advanced to StoryEventRoot.",
+      "StoryEventRoot live UI exposed direct glyph writing, Preview, target, commit, and the 0/6 goal plus 0/4 threat clocks; editor diagnostics were 0 errors and 0 warnings.",
+      "Godot 4.7.1 headless custom runner was re-executed through a Windows Start-Process argument vector and exited 0. The user://logs/godot.log timestamp refreshed and its final JSON reported 31 suites, 1,370 assertions, 0 failures. A direct PowerShell native invocation produced only startup text without a fresh script log, so it is not counted as runtime evidence.",
+      "Custom game QA discovery reported no project-defined QA methods, so the protocol uses current live nodes and requires human evidence rather than inventing a QA API."
+    ],
+    "limit": "This verifies that the observation surface exists in the actual editor/worktree, not that an actual person, physical device, assistive technology, performance run, export, or full vertical slice was validated."
+  },
+  "adversarial_review_loops": [
+    {
+      "loop": 1,
+      "full_scope_attack": "A generic human script could validate the historical Star or W6 target-priority flow rather than the active story-led Circle/Clock runtime.",
+      "finding": "Current consumer flow is Story Front Door -> AdmissionPrologue -> StoryEventRoot, and its first interaction is direct glyph writing followed by explicit Preview/target/cast.",
+      "disposition": "MUST_FIX",
+      "correction": "Bind every observation step and evidence record to the actual scenes/nodes; reject the retired Star pack as current owner.",
+      "result": "corrected"
+    },
+    {
+      "loop": 2,
+      "full_scope_attack": "Editor screenshots, static accessibility_name assertions, and headless layout tests could be misreported as player/device/accessibility evidence.",
+      "finding": "Each confirms only a technical surface, not comprehension, touch precision, screen-reader behavior, or a physical device.",
+      "disposition": "MUST_FIX",
+      "correction": "Set PREPARED_NOT_RUN ceiling, require an actual person or physical device session, and keep every evidence axis separate.",
+      "result": "corrected"
+    },
+    {
+      "loop": 3,
+      "full_scope_attack": "Copying Web WCAG dimensions into the game could falsely claim conformance or force a layout without observing its runtime effect.",
+      "finding": "W3C target guidance is useful but CSS-pixel-specific; Godot APIs are implementation mechanisms, not a device verdict.",
+      "disposition": "MUST_FIX",
+      "correction": "ADAPT target size/spacing to repeatable physical-device observation and record display/text scale, focus, and assistive-service state.",
+      "result": "corrected"
+    },
+    {
+      "loop": 4,
+      "full_scope_attack": "The protocol might manufacture card rules, clock balance, a hidden best target, or new story content while trying to make the session testable.",
+      "finding": "Card detailed rules remain RULESET_PENDING and the first event must preserve explicit player choice rather than an answer key.",
+      "disposition": "MUST_FIX",
+      "correction": "Exclude card rule values/content changes and ask non-leading questions about goals, threats, Preview, target, and cast.",
+      "result": "corrected"
+    },
+    {
+      "loop": 5,
+      "full_scope_attack": "Observation preparation could mutate production assets, runtime behavior, legacy save data, or collect personal data without adding valid validation evidence.",
+      "finding": "No new asset consumer is required, legacy Star save has no current migration consumer, and raw participant wording can be retained without identifiers.",
+      "disposition": "MUST_FIX",
+      "correction": "Forbid runtime edits during observation, preserve legacy save untouched, require consent/path-only capture records, and keep findings as a later work unit.",
+      "result": "corrected"
+    }
+  ],
+  "evidence_ceiling": "PREPARED_NOT_RUN"
+}

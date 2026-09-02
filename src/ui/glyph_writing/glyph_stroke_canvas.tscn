@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/ui/glyph_writing/glyph_stroke_canvas.gd" id="1_flttg"]
+
+[node name="GlyphStrokeCanvas" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_flttg")

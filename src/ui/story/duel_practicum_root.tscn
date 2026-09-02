@@ -1,0 +1,129 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://src/ui/story/duel_practicum_root.gd" id="1_duel_root"]
+[ext_resource type="Texture2D" path="res://assets/art/backgrounds/academy/bg_duel_practice_cloister.png" id="2_duel_background"]
+[ext_resource type="PackedScene" path="res://src/ui/components/event_clock_view.tscn" id="3_clock_view"]
+[ext_resource type="PackedScene" path="res://src/ui/glyph_writing/circle_glyph_writing_panel.tscn" id="4_glyph_writing"]
+
+[node name="DuelPracticumRoot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_duel_root")
+
+[node name="SafeBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.027, 0.082, 0.14, 1)
+
+[node name="EnvironmentBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_duel_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ReadabilityVeil" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.025, 0.06, 0.12, 0.54)
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 32.0
+offset_right = -52.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Heading" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "감독 결투 실습"
+
+[node name="Situation" type="Label" parent="Content"]
+layout_mode = 2
+text = "상대 학생의 주문을 이기기보다, 수호 결계를 유지하며 집중의 흔들림을 읽어냅니다."
+autowrap_mode = 2
+
+[node name="Body" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 22
+
+[node name="GlyphWritingPanel" parent="Content/Body" instance=ExtResource("4_glyph_writing")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ActionPanel" type="VBoxContainer" parent="Content/Body"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GlyphCompositionStatus" type="Label" parent="Content/Body/ActionPanel"]
+layout_mode = 2
+text = "서클 글자: 아직 없음"
+
+[node name="PreviewButton" type="Button" parent="Content/Body/ActionPanel"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+text = "회로 Preview 보기"
+disabled = true
+
+[node name="PreviewStatus" type="Label" parent="Content/Body/ActionPanel"]
+layout_mode = 2
+autowrap_mode = 2
+visible = false
+
+[node name="TargetButton" type="Button" parent="Content/Body/ActionPanel"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_type_variation = &"AcademyButton"
+text = "연습 수호 결계 대상 지정"
+disabled = true
+
+[node name="CommitButton" type="Button" parent="Content/Body/ActionPanel"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_type_variation = &"AcademyButtonPrimary"
+text = "시전"
+disabled = true
+
+[node name="EventClockView" parent="Content/Body/ActionPanel" instance=ExtResource("3_clock_view")]
+layout_mode = 2
+
+[node name="ResultReceipt" type="Label" parent="Content/Body/ActionPanel"]
+layout_mode = 2
+autowrap_mode = 2
+
+[node name="ContinueToDuelButton" type="Button" parent="Content/Body/ActionPanel"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_type_variation = &"AcademyButtonPrimary"
+text = "입학 축제의 뜰로"
+disabled = true
