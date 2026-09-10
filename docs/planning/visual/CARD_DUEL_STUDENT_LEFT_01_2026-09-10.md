@@ -1,5 +1,41 @@
 # 첫 학생 상반신 기본 포즈 — 후보 및 기술 검수
 
+## 최신 교정: 이전 승인 캐릭터 기준 복원
+
+사용자는 새 후보보다 제공한 전신 이미지가 어울린다고 했으며, 이어 `이전에 승인된 캐릭터 시안들도 확인하고 그거 기준으로 만들어`라고 지시했다. 직전 새 갈색 머리/금색 테두리 후보를 승인한 것으로 해석하지 않는다. 아래 최초 후보와 제작 계획은 SUPERSEDED_REFERENCE_ONLY다.
+
+### 실제 승인 기록 대조
+
+read-only source: `.worktrees/codex-first-session-r2-runtime/assets/manifests/year_one_03_walk_player_candidates.json`. 이 역사 작업공간의 미병합 코드나 변경은 흡수하지 않았다. 이미지 파일을 직접 열고 해시를 대조했다. 과거 기록은 최신 사용자 지시에 따라 외형 기준을 찾는 증거로만 소비한다.
+
+| 과거 ID | 실제 기록/판단 | 새 작업 반영 |
+|---|---|---|
+| 003 | 제공한 전신 이미지와 SHA-256 `41DC23542BFF22B9060C6C265CCBA3597170197C29A7C12343CA534D348595A9` 동일. 전신 대화 방향은 이후 상반신으로 대체됨 | 체격·소박한 학생 분위기 참고. 전신 runtime 복원 안 함 |
+| 006 | SD USER_APPROVED, runtime ON_HOLD | 보류 유지, 이동 구현 안 함 |
+| 007 | 너무 성숙하다고 판단되어 REVISION_REQUIRED | 제작 기준 제외 |
+| 008 | USER_APPROVED_VISUAL_MASTER. 얼굴·표정·머리·포즈·의상·스카프·노트·상반신 선택 기록 | 첫 학생 외형의 우선 기준 |
+| 009 | 알파는 있었지만 USER_REJECTED__AI_LIKE | 제작 기준 제외 |
+| 010 | 008 외형 유지 알파 보정 실패 | 기술 실패 참고. 다른 얼굴 대체 근거 아님 |
+
+008 원본을 현재 프로젝트 `assets/reference/visual/GRIMOIRE_student_008_approved_appearance_reference.png`에 reference-only로 보존했다. 원본과 SHA-256 `C2F2B49DDAB026C8FCE38CB0BC8A87842F197E2D18543812A26A9BD461BB908E` 일치. 새 runtime 자산 등록이 아니다. 과거 승인 기준이 main에 없는 상태를 새 디자인으로 채워버린 것이 이번 작업 오류였으며, 현재 Active Context와 이 owner를 교정했다.
+
+### 새 검토본
+
+- 파일: `output/imagegen/card-duel/student-approved-008-background-review-01.png`.
+- 1024×1536, Format24bppRgb, SHA-256 `E951A09A6743974F56B2332018C2BF4511FB0E9105B486583964FC198B10063C`.
+- source: built-in image_gen `exec-9407105c-fc4c-446c-9fee-34611b7ddf02.png`; 입력은 승인 008 원본만. 모델 버전 미제공.
+- 목적: 008의 외형을 유지한 단색 배경 검토. OPAQUE_REVIEW_ONLY / USER_REVIEW_PENDING. 투명화 요청을 성공했다고 주장하지 않는다.
+- 육안: 얼굴·머리·책을 든 자세·가죽끈·의상 계열 유지. 완전한 픽셀 동일 편집은 아니며 배경에 약한 명암이 남아 있어 균일 단색 조건은 부분 충족. runtime 알파·경계·표시 크기 검수는 미완료.
+- 사용자가 이전 승인 확인을 요청하기 전 생성한 `exec-568cc642-2964-4860-87fc-0368744f9f88.png`는 보류하고 프로젝트에 복사하지 않았다. 추가 새 외형 기준으로 사용하지 않는다.
+
+```text
+Identity-preserving edit of this exact previously user-approved upper-body student portrait. Preserve the character EXACTLY: same gentle youthful rounded face, brown eyes, tousled muted brown hair shape and cowlick, small smile, head tilt, pose, navy coat, teal scarf and tassels, ivory shirt, narrow muted trim, brown diagonal shoulder strap, notebook held against chest, hand pose, button placement, illustration style and upper-body composition. Do not redesign, beautify, mature, exaggerate eyes, change proportions or switch clothing. Change ONLY the baked checkerboard behind the character into a completely uniform light warm-gray solid background. No lighting changes on the character, no halo, no new shadow, no texture or gradient in the background. Keep the original portrait framing and resolution/aspect as closely as possible, full hair and both shoulders visible. No new objects, no cards, no spell effects, no text, no symbol. This output is explicitly an OPAQUE review image, not a transparent runtime sprite. The approved character's identity takes priority over polish.
+```
+
+5회 교정 검토: (1) 최신 사용자 선호와 역사 승인 구분, (2) 003/008 실제 파일 해시·외형 대조, (3) 성숙한007/AI-like009/직전 새 디자인 제외, (4) 알파 실패와 외형 승인을 분리, (5) 원본 read-only 보존·현재 owner/Active Context 연결. 이 결과는 새로운 게임 규칙·모션·runtime·main 통합 완료가 아니다.
+
+다음 포즈는 승인 008의 정체성을 유지한다. 기본 대화에서는 책을 든 자세를 보존하고 결투용 준비/시전/방어에서는 소품 이동을 명시 설계한 뒤 만든다. '빈손이 구현하기 쉽다'는 이유로 승인된 책/의상/외형을 조용히 제거하지 않는다.
+
 ## 범위·정본·현재 판정
 
 - 최신 사용자: 배경 `확정할게 진행해`. 배경 USER_APPROVED와 이 학생의 확정은 별도다.

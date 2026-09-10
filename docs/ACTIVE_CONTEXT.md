@@ -2,6 +2,8 @@
 
 ## 2026-09-10 재기획 진입
 
+최신 사용자 지시로 이전 승인 캐릭터 시안을 재확인했다. 첫 학생 기준은 역사 manifest의 **Y1-IMG-WALK-PLAYER-008 USER_APPROVED_VISUAL_MASTER**이며, 현재 참조 파일은 `assets/reference/visual/GRIMOIRE_student_008_approved_appearance_reference.png`다. 사용자 제공 전신 그림은 003과 해시가 같으며 학생 비율 참고, 007/009는 거부·수정 대상으로 유지. 직전 신규 얼굴 후보는 대체 기준에서 제외한다. [학생 owner의 최신 교정 절](planning/visual/CARD_DUEL_STUDENT_LEFT_01_2026-09-10.md)을 먼저 읽는다. 새 008 기반 검토본은 불투명/사용자 검토 전이고 runtime·모션 미완료다. 아래 '얼굴 사용자 확인 전'은 직전 후보에 대한 역사 상태다.
+
 분리 배경 `output/imagegen/card-duel/duel-background-candidate-01.png`는 사용자 `확정할게 진행해`로 USER_APPROVED다. 1672×941, 원본 해시 유지. [화면 후보 기록](planning/visual/CARD_DUEL_SURFACE_CANDIDATE_01_2026-09-10.md)이 승인 owner다. [첫 학생 기본 포즈 후보](planning/visual/CARD_DUEL_STUDENT_LEFT_01_2026-09-10.md)를 생성했으나 생성본/배경제거 보정본 모두 RGB로 실제 알파가 없어 TECHNICAL_REVISION_REQUIRED다. 얼굴/의상/포즈도 사용자 확인 전이며 runtime에는 넣지 않았다. 새 화면·모션·카드 자산 연결은 미완료다.
 
 후속 `권장안대로 계속 진행해`로 학생 비율·따뜻한 연습실·남색/금색 방향을 채택하며 중앙 별 장식은 제외한다. [도메인 구현 계획](superpowers/plans/2026-09-10-card-duel-domain-implementation.md)의 규칙/동시 판정/매치·저장 재개가 작업 브랜치에 구현됐다. Godot headless 54 suites / 2153 assertions / 0 failures, stderr empty. [검증 기록](validation/CARD_DUEL_DOMAIN_2026-09-10.md)을 읽는다. 시험 수치는 조정 가능하며 PDF는 발행 당시 DESIGN_REVIEW 상태를 보존한다. 다음은 분리 아트·카드 선택/명시 시전 UI·스토리 handoff 패키지다. 새 UI/runtime 화면·Human·Device는 NOT_RUN, main 병합도 미완료다.
