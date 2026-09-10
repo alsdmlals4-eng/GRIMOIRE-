@@ -37,6 +37,8 @@
 | 최종 GREEN | 54 suites / 2153 assertions / 0 failures; exit 0, stderr empty |
 | diff | git diff --check: exit 0; 기존 fixture는 커밋 제외 |
 
+구현 커밋 `a46374a27595eea835dd3761684eb5b25432b0e0` 이후 동일 검사를 다시 실행해 같은 2153 assertions / 0 failures / stderr 0 bytes를 확인하고 원격 작업 브랜치로 push했다. 검사 환경에는 보존한 사용자 fixture 수정이 있으므로 이것은 clean exact-HEAD CI 증거가 아닌 현재 로컬 작업 상태의 검증이다. 별도 clean PR 검증은 남아 있다.
+
 테스트 실행기의 exit 0만으로는 script error를 검출하지 못하는 반례를 관찰했다. 최종 결과는 failure 수뿐 아니라 stderr empty와 실행 assertion 수를 대조했다. 위 실행 로그는 task-local `.tooling/card-duel-*.log`에 생성했으며 기획/게임 자산 정본이 아니다.
 
 ## 5회 전체 범위 검토·학습
