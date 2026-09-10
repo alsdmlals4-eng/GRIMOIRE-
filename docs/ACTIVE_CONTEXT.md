@@ -2,6 +2,8 @@
 
 ## 2026-09-10 재기획 진입
 
+최신 사용자 확정: 결투 외 실습·온실·축제에서도 같은 글자를 조합해 주문을 쓴다. 사건에서는 무작위 손패 없이 배운 글자를 선택한다. `세부규칙은 네가 권장안대로 잡아줘`에 따라 [공통 주문·사건·결투 규칙](superpowers/specs/2026-09-10-shared-spell-rules-design.md)을 설계 기준으로 작성했다. 상태 SPECIFIED_RECOMMENDED_BASELINE, 새 구현/Human NOT_RUN. 이미지·알파 분리·모션 제작은 보류한다. 아래 아트 우선 순서와 기존 공격/방어 수치를 공통 규칙으로 해석하지 않는다. 다음 작업은 주문 반응표·결투 수치 정합화와 사건 명세이며, 기존 코드/저장/이미지는 보존한다.
+
 최신 사용자 지시로 이전 승인 캐릭터 시안을 재확인했다. 첫 학생 기준은 역사 manifest의 **Y1-IMG-WALK-PLAYER-008 USER_APPROVED_VISUAL_MASTER**이며, 현재 참조 파일은 `assets/reference/visual/GRIMOIRE_student_008_approved_appearance_reference.png`다. 사용자 제공 전신 그림은 003과 해시가 같으며 학생 비율 참고, 007/009는 거부·수정 대상으로 유지. 직전 신규 얼굴 후보는 대체 기준에서 제외한다. [학생 owner의 최신 교정 절](planning/visual/CARD_DUEL_STUDENT_LEFT_01_2026-09-10.md)을 먼저 읽는다. 새 008 기반 검토본은 불투명/사용자 검토 전이고 runtime·모션 미완료다. 아래 '얼굴 사용자 확인 전'은 직전 후보에 대한 역사 상태다.
 
 분리 배경 `output/imagegen/card-duel/duel-background-candidate-01.png`는 사용자 `확정할게 진행해`로 USER_APPROVED다. 1672×941, 원본 해시 유지. [화면 후보 기록](planning/visual/CARD_DUEL_SURFACE_CANDIDATE_01_2026-09-10.md)이 승인 owner다. [첫 학생 기본 포즈 후보](planning/visual/CARD_DUEL_STUDENT_LEFT_01_2026-09-10.md)를 생성했으나 생성본/배경제거 보정본 모두 RGB로 실제 알파가 없어 TECHNICAL_REVISION_REQUIRED다. 얼굴/의상/포즈도 사용자 확인 전이며 runtime에는 넣지 않았다. 새 화면·모션·카드 자산 연결은 미완료다.
