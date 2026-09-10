@@ -2,7 +2,7 @@
 
 ## 2026-09-10 재기획 진입
 
-분리 배경 후보 `output/imagegen/card-duel/duel-background-candidate-01.png`를 생성·검수했다. 1672×941, 인물/카드/기능 글자/중앙 별 없음. [화면 후보 기록의 후속 배경 절](planning/visual/CARD_DUEL_SURFACE_CANDIDATE_01_2026-09-10.md)이 소비처·프롬프트·해시·검수 owner다. USER_LOCK_PENDING이며 새 Godot 화면·아트 runtime 적용은 아직 없다. 다음 단계는 배경 확정 후 학생 상반신·평면 카드·UI 연결이다.
+분리 배경 `output/imagegen/card-duel/duel-background-candidate-01.png`는 사용자 `확정할게 진행해`로 USER_APPROVED다. 1672×941, 원본 해시 유지. [화면 후보 기록](planning/visual/CARD_DUEL_SURFACE_CANDIDATE_01_2026-09-10.md)이 승인 owner다. [첫 학생 기본 포즈 후보](planning/visual/CARD_DUEL_STUDENT_LEFT_01_2026-09-10.md)를 생성했으나 생성본/배경제거 보정본 모두 RGB로 실제 알파가 없어 TECHNICAL_REVISION_REQUIRED다. 얼굴/의상/포즈도 사용자 확인 전이며 runtime에는 넣지 않았다. 새 화면·모션·카드 자산 연결은 미완료다.
 
 후속 `권장안대로 계속 진행해`로 학생 비율·따뜻한 연습실·남색/금색 방향을 채택하며 중앙 별 장식은 제외한다. [도메인 구현 계획](superpowers/plans/2026-09-10-card-duel-domain-implementation.md)의 규칙/동시 판정/매치·저장 재개가 작업 브랜치에 구현됐다. Godot headless 54 suites / 2153 assertions / 0 failures, stderr empty. [검증 기록](validation/CARD_DUEL_DOMAIN_2026-09-10.md)을 읽는다. 시험 수치는 조정 가능하며 PDF는 발행 당시 DESIGN_REVIEW 상태를 보존한다. 다음은 분리 아트·카드 선택/명시 시전 UI·스토리 handoff 패키지다. 새 UI/runtime 화면·Human·Device는 NOT_RUN, main 병합도 미완료다.
 

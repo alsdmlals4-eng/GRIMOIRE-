@@ -12,7 +12,7 @@
 - output: `output/imagegen/card-duel/duel-background-candidate-01.png`, 1672×941 PNG.
 - SHA-256: `8445F4409DA8CB388F1157D9CF1CE41C1222746F3818D48FF71325EC1F4F6F36`.
 - source: built-in image_gen, `exec-0408980d-d4f2-4070-96a1-3d36f6521b1a.png`. 도구 제공 모델 버전 없음. 기존 그림은 육안 참고만 하고 파일 입력으로 전달하지 않았다.
-- status: GENERATED_CANDIDATE / REVIEWED / USER_LOCK_PENDING. 정본 runtime 자산·상업 권리·Godot 적용·모바일 검증은 미완료.
+- status: USER_APPROVED / RUNTIME_NOT_IMPLEMENTED. 최신 사용자 `확정할게 진행해`는 이 배경의 최종 시각 채택 승인이다. 위 파일/해시를 승인 원본으로 유지하며 불필요한 복제본을 만들지 않는다. runtime 등록·상업 권리·Godot 적용·모바일 검증은 미완료.
 - Keep: 승인된 따뜻한 연습실/남색/절제된 금색/부드러운 채색. Avoid: 별·회로·기능 글자·인물·카드·효과·빈 장식창. Do Not Drift: 새 카드 시스템과 분리 레이어.
 
 ### 도구 선택·화면 연결
@@ -37,7 +37,7 @@ Create one NEW original 16:9 landscape environment-only background asset candida
 4. 제작/모션/권리: 단일 정지 PNG, 모델 생성 원본 복사 후 크기/해시 확인. 별도 레이어·모션 완성으로 오인하지 않음. 외부 게임 그림 입력 없음, release rights NOT_RUN.
 5. 정본/완료: 이전 합성 후보를 덮어쓰지 않음. 새 배경은 최종 승인 전이며 runtime consumer에 등록하지 않음. main 통합과 UX/Human/Device도 미완료.
 
-권장: 배경 후보 채택 후 학생 상반신과 평면 카드 자산을 이어 만들고, Spec 07의 선택→미리보기→명시 시전→결과 UI에 연결한다. image conversation gate에 따라 이번 후보 결과를 제시하고 최종 lock 전 다음 자산 연쇄 생성이나 runtime 승격은 하지 않는다.
+후속 결정: 배경은 사용자 확정 완료. 학생 상반신과 평면 카드 자산을 이어 만들고, Spec 07의 선택→미리보기→명시 시전→결과 UI에 연결한다. 위 5회 검토의 승인 대기 표현은 생성 당시 관찰이며 현재 승인 상태를 덮어쓰지 않는다.
 
 ## 목적·상태
 
