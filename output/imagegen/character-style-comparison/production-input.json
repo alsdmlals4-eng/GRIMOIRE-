@@ -1,0 +1,11 @@
+{
+  "status": "STYLE_COMPARISON_ONLY_USER_REVIEW_PENDING",
+  "consumer": "Character art-direction review, not runtime",
+  "left": "Non-pixel cel illustration",
+  "right": "Pixel-art appearance comparison; pixel grid and palette not production-verified",
+  "reference": "assets/reference/visual/GRIMOIRE_student_008_approved_appearance_reference.png",
+  "output": "student-cel-vs-pixel-01.png",
+  "route": "BUILT_IN_IMAGE_GEN",
+  "aseprite": "NOT_RUN_FOR_COMPARISON",
+  "prompt": "Create ONE side-by-side art-direction comparison sheet, landscape, two equal panels, of the SAME original young magic academy student from the reference. Reference is IDENTITY AND COSTUME ONLY, not shading style. Same waist-up crop and scale in both panels, same gentle small smile, head angle and pose, tousled muted brown hair with cowlick, brown eyes, youthful rounded schoolboy face, navy simple coat, teal scarf, ivory shirt, brown shoulder strap, brown notebook held against chest. Entire hair and shoulders visible. Both panels plain identical warm ivory background, no scenery. LEFT panel: clean non-pixel 2D animation cel illustration, expressive slightly irregular dark drawn contour, simple big hair clumps, broad FLAT color shapes, exactly a base tone and one firm-edged shadow for each material, exceptionally restrained highlights. No soft airbrush gradients, no painterly texture, no luminous glossy hair, no realistic skin shading, no ornament overload. Charming individual drawn character not immaculate generic rendered model. RIGHT panel: genuinely visibly coarse pixel-art portrait look with crisp square pixel clusters, as if carefully authored around 128x160 then nearest-neighbor enlarged, limited palette, stepped contours, no smoothing, no pixelation filter applied to a painting. Same character proportions NOT chibi or SD. Keep equivalent detail priorities and identical outfit for fair comparison. No captions or text or numbers, no logos, no UI, no checkerboard, no frames or extra heads. This is a style-review comparison image, not a claimed production sprite sheet."
+}
