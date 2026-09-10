@@ -1,5 +1,44 @@
 # 카드 결투 화면 후보 01 — 생성·검수 기록
 
+## 후속 분리 배경 후보 — 2026-09-10
+
+최신 사용자 `권장안대로 작업 계속 진행해`로 승인된 분리 제작을 이어갔다. 기존 합성 그림은 방향 참고로 유지하고, 배경을 새로 생성했다. 이 절은 배경 후보의 owner이며 아래 합성 화면의 승인 상태와 구분한다.
+
+- requirement_id: CARD_DUEL_BACKGROUND_01; coverage: Environment / room visual, REQUIREMENT_LINKED.
+- consumer_kind: PLANNED_GAME_SURFACE; planned consumer: `src/ui/card_duel/`의 Background TextureRect. 해당 씬은 아직 없으며 구현 완료가 아니다.
+- primary_use: 첫 연습 결투에서 상반신 인물·선택 카드·예상 결과·손패의 뒤에 놓는 환경.
+- Delete Test: 기존 합성 시안에는 인물/카드/중앙 별이 구워져 있어 독립 배경으로 쓸 수 없다. 단순 crop이나 빈 단색 화면으로 최종 자산을 대체하지 않는다.
+- state_family: STATIC_NORMAL_ONLY. 별도 hover/pressed/피격/파괴 상태는 이 배경의 consumer에 불필요. VFX와 인물 반응은 다른 레이어가 소유한다.
+- output: `output/imagegen/card-duel/duel-background-candidate-01.png`, 1672×941 PNG.
+- SHA-256: `8445F4409DA8CB388F1157D9CF1CE41C1222746F3818D48FF71325EC1F4F6F36`.
+- source: built-in image_gen, `exec-0408980d-d4f2-4070-96a1-3d36f6521b1a.png`. 도구 제공 모델 버전 없음. 기존 그림은 육안 참고만 하고 파일 입력으로 전달하지 않았다.
+- status: GENERATED_CANDIDATE / REVIEWED / USER_LOCK_PENDING. 정본 runtime 자산·상업 권리·Godot 적용·모바일 검증은 미완료.
+- Keep: 승인된 따뜻한 연습실/남색/절제된 금색/부드러운 채색. Avoid: 별·회로·기능 글자·인물·카드·효과·빈 장식창. Do Not Drift: 새 카드 시스템과 분리 레이어.
+
+### 도구 선택·화면 연결
+
+이미지 모델로 신규 배경을 만들었다. Aseprite는 이번 정지 배경에 프레임·셀 편집 필요가 없어 NOT_APPLICABLE이며, 불필요한 aseprite 복사본/atlas를 만들지 않았다. 향후 학생 준비→시전→방어/결과→복귀 상태군에서 정렬·duration·PNG/JSON export를 검토한다. Aseprite 기능 발견과 실제 모션 제작은 별개다.
+
+Godot TextureRect의 비율 유지·크롭 방식을 공식 문서로 확인했다. ADOPT: 화면 전체 배경과 별도 UI 노드. ADAPT: 1280×720을 우선 검증하고 다른 가로 비율은 중요 영역 가림 확인. REJECT: 비율을 무조건 늘리거나 한 장의 배경에 UI/인물/효과를 굽기. 예정 설정은 EXPAND_IGNORE_SIZE, KEEP_ASPECT_COVERED, mouse_filter=IGNORE이며 실제 엔진 검증 전이다. 하단 약 40% 남색 면은 UI 안전 영역 후보이지 실기 가독성 PASS가 아니다.
+
+근거 fresh-read: [Godot TextureRect](https://docs.godotengine.org/en/stable/classes/class_texturerect.html), [Aseprite Animation](https://www.aseprite.org/docs/animation/). 최신 Base conversation owner는 후보 선제 제작/최종 lock 분리를 허용한다. 참조 문서의 오래된 Notion 작업면 설명은 프로젝트 repository-only 정책으로 대체하여 Notion 호출하지 않았다. Base v9.4.3 pin은 유지했다.
+
+### 생성 프롬프트
+
+```text
+Create one NEW original 16:9 landscape environment-only background asset candidate for GRIMOIRE, a warm 2D magical academy card-duel game. Soft hand-painted storybook cel illustration, coherent gently simplified shapes and warm afternoon light. An airy academy practice classroom with tall arched windows, cream stone, warm wood, restrained bookshelves at far sides, soft blue sky and distant original school architecture outside. Navy accents and muted antique brass, inviting school atmosphere, no grimdark. Composition: eye level seated at a broad practice table; environment visible across upper 52 percent, quiet uncluttered navy cloth tabletop across lower 48 percent. The table is entirely plain matte navy with soft restrained texture and only natural wood edges, NO gold inset border, NO motif, NO radial diagram, NO star, NO compass, NO rune, NO circle. Keep center and lower foreground low-detail and low-contrast for separately rendered flat cards and live UI. Keep side upper areas comparatively calm for separate student bust overlays. Back window brightness soft, not blown out. No dramatic perspective card slots, no frames, no empty UI panels or buttons. Absolutely no people, no silhouettes, no character portraits, no cards, no open book in foreground, no floating objects, no spells, no particles, no light trails, no text, no pseudo-text, no writing on book spines, no numbers, no labels, no logos, no heraldic emblems or franchise symbols anywhere. Closed books on distant shelves may be plain colored shapes. Not greenhouse, no vegetation theme. No photorealism, no 3D rendering, no pixel art. High quality cohesive painted game background, not a UI mockup, not a poster. Single flat opaque PNG environment only; no claim of layers or animation.
+```
+
+### 5회 검토와 현재 판단
+
+1. 의도/범위: 기존 시안을 분리 배경으로 재제작. 새 핵심 규칙·인물 정체성 추가 없음.
+2. 금지 요소: 눈에 보이는 중앙 별/회로/기능 글자/카드/인물/비어 있는 장식창 없음. 책 등 최소 장식은 남아 있으나 읽을 수 있는 기능 글자 아님.
+3. 사용처/형태: 넓은 남색 탁상 확보. 실제 카드 배치·상단 창 밝기와 결과 표시의 대비는 runtime에서 확인해야 함.
+4. 제작/모션/권리: 단일 정지 PNG, 모델 생성 원본 복사 후 크기/해시 확인. 별도 레이어·모션 완성으로 오인하지 않음. 외부 게임 그림 입력 없음, release rights NOT_RUN.
+5. 정본/완료: 이전 합성 후보를 덮어쓰지 않음. 새 배경은 최종 승인 전이며 runtime consumer에 등록하지 않음. main 통합과 UX/Human/Device도 미완료.
+
+권장: 배경 후보 채택 후 학생 상반신과 평면 카드 자산을 이어 만들고, Spec 07의 선택→미리보기→명시 시전→결과 UI에 연결한다. image conversation gate에 따라 이번 후보 결과를 제시하고 최종 lock 전 다음 자산 연쇄 생성이나 runtime 승격은 하지 않는다.
+
 ## 목적·상태
 
 - project: GRIMOIRE; requirement: CARD_DUEL_SURFACE_01; priority: P0_FIRST_SCREEN_REVIEW.
