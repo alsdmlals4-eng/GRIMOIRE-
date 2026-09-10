@@ -1,0 +1,57 @@
+# GRIMOIRE 재기획 접수와 Aseprite 임시 작업 승인
+
+## 현재 사용자 결정
+
+- 2026-09-10: current-authority read order로 프로젝트를 다시 읽고 기획부터 재검토한다. 기존 이미지는 새 제작의 참고자료로만 사용하며 새 이미지를 제작한다.
+- 같은 날 `허용`: Aseprite 처리에 한해 `C:/Users/user/.local/share/aseprite-local/candidates`의 GRIMOIRE 전용 하위 폴더를 임시 작업에 사용할 수 있다. 필요한 결과와 증거는 프로젝트로 회수하고 임시 복사본을 정리한다.
+- 이전 이미지의 승인 이력은 역사 증거로 보존한다. 이력 자체를 지우거나 기존 실행 씬의 이미지를 일괄 제거하는 승인이 아니다. 새 제작에 옛 이미지 잠금을 자동 승계하지 않는다.
+- 기획 재검토는 특정 새 그림체, 카드 상세 규칙, 이동 방식 또는 기존 코드 전면 폐기를 자동 확정하지 않는다.
+
+## Fresh-read 결과와 적용 범위
+
+프로젝트 main `d384c454768a8aa3b0adb939e0b035ac2afa426e`와 Base main `2f93e872d9ed4fa18018ac759b01acd7d34e9b58`을 fetch 후 확인했다. 이 값은 이번 관찰의 출처이며 다음 작업의 영구 실행 권한이 아니다.
+
+- 프로젝트의 v9.4.3 version lock을 유지했다. 프로젝트 operating-contract validator는 `OPERATING_CONTRACT_VALID`, 19 routes, generated views `CURRENT`를 반환했다.
+- main에는 별형 Product Root가 있고, 서클·시계·스토리 구현은 열린 Draft PR #253의 `6f92a4c5d50c5b6cb75598b8ee627ab79ba99076`에 있다. 미병합 구현과 병합된 구현을 구별한다.
+- 열린 PR #249, #187, #166도 확인했다. 이번 접수는 이 PR들의 수정·흡수·병합을 수행하지 않는다.
+- main의 기존 `artifacts/foundation-poc/glyph-fixture-rows.json` 수정은 보존한다.
+- 기존 AGENTS/START_HERE/Active Context의 승인·단계 정보는 새 재기획 완료를 뜻하지 않는다. 새 작업 방향은 이 사용자 결정이 소유하며, 옛 코드와 문서는 실태 및 비교 증거다.
+
+## 적용한 Base owner
+
+최신 원격 파일에서 다음을 읽었다. 프로젝트 계약 전체를 최신 Base로 교체하지 않는다.
+
+- `docs/knowledge/game-development/ART_DIRECTION_AND_ASSET_PLANNING_GUIDE.md`, 특히 Aseprite 조건부 도구 선택.
+- `skills/designing-art-prompts-and-technique-cards/SKILL.md`.
+- 같은 Skill의 `references/sprite-pose-sequence-controls.md` 및 `references/effect-stage-compositing-controls.md`.
+- `skills/managing-project-intake-and-work-contract/SKILL.md`와 `templates/planning/EXECUTION_SEQUENCE_PLAN.md`.
+
+공식 기능 근거: https://www.aseprite.org/docs/cli/ 및 https://www.aseprite.org/docs/animation/ (2026-09-10 조회). 이미지/JSON export와 프레임 편집 기능은 제작 수단이며 현재 게임 애니메이션 완성 증거가 아니다.
+
+## 승인된 임시 처리 경계와 호출 증거
+
+- 작업 폴더: `C:/Users/user/.local/share/aseprite-local/candidates/grimoire-replanning-20260910-01`.
+- 사용 지침: `C:/Users/user/.local/share/aseprite-local/LOCAL_USAGE.md`.
+- transport: 현재 세션의 native `aseprite-candidates` MCP.
+- executable version readback: `Aseprite 1.3.18.5-dev`.
+- `create_canvas` → `get_sprite_info`: 성공. 16×16 RGB, 1 frame, 1 visible layer, duration 100 ms, tags 없음.
+- 시험 파일 SHA-256: `0547BE7F8303FF064ED7E2ACD11F9E3D9207C983B2AC67C2E5E4E0804B99E7B3`.
+- 이 크기와 duration은 도구 시험값이다. 게임 제작 규격·동작 속도로 채택하지 않는다.
+- 상태: `CLIENT_DISCOVERED`, `CALL_VERIFIED`. 실제 이미지 import/export 상태군 작업은 `TASK_VERIFIED` 미도달.
+- 시험 파일은 호출 증거 기록 후 제거한다. 새 그림 제작이나 애니메이션 완성을 주장하지 않는다.
+
+## 이어갈 제작 순서
+
+1. 핵심 플레이 경험과 장기 학교생활 구조를 재검토하고, 기존 결정별 유지·수정·재검토 근거를 작성한다.
+2. 새 화면 흐름과 와이어프레임을 만든다. 각 화면의 입력·결과·회복과 실제 이미지 소비처를 지정한다.
+3. 새 아트 방향을 비교하고 실제 장면용 이미지·캐릭터 핵심 포즈를 이미지 모델로 제작한다. Aseprite 사용 자체로 픽셀 아트를 확정하지 않는다.
+4. 포즈 제작 전 연출을 조사하고 준비·실행·접점·결과별 반응·복귀, 시선·실루엣·소품·카메라·크롭을 설계한다.
+5. 필요한 경우 Aseprite로 복사본의 레이어·프레임·duration을 정리하고 PNG+JSON을 내보낸다. 파일마다 source hash, frame/state, pivot/offset, export 설정, 결과 hash를 기록한다.
+6. Godot 소비처에서 실제 입력·판정·피드백과 연결한다. 애니메이션 누락·중단이 자원·저장·진행 결과를 바꾸지 않도록 한다.
+7. 이펙트 OFF/ON, 실제 표시 크기, 밝고 어두운 배경, 반복·전환을 검수한다. 이미지 후보·최종 승인·엔진 적용·사람 검수 상태를 구분한다.
+
+배경·캐릭터·이펙트·기능 텍스트를 각각 제어한다. 핵심 포즈를 검토한 뒤 중간 프레임으로 확장하며, 정지 이미지들을 시트로 묶었다는 사실만으로 동작 제작 완료를 주장하지 않는다.
+
+## 현재 완료 범위
+
+임시 경로 승인 기록과 Aseprite 기본 호출 확인까지 완료했다. 전체 재기획, 새 아트 방향 확정, 새 이미지·모션 제작, Godot 통합은 후속 작업이다. 이 접수 기록은 기존 기획서나 PDF를 새 완성본으로 대체하지 않는다.

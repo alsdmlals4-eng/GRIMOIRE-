@@ -1,5 +1,9 @@
 # GRIMOIRE Active Context
 
+## 2026-09-10 재기획 진입
+
+최신 사용자 방향·Aseprite 임시 경로 승인·확인된 main/PR 차이·후속 제작 순서는 [재기획 접수 기록](planning/REPLANNING_INTAKE_2026-09-10.md)이 소유한다. 아래 기존 기획 완료와 시각 잠금은 과거 작업의 상태이며 새 재기획의 완료 상태가 아니다.
+
 ```yaml
 project: "GRIMOIRE: 세계를 다시 쓰는 법"
 repository: alsdmlals4-eng/GRIMOIRE-
