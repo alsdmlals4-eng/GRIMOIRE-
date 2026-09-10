@@ -2,6 +2,8 @@
 
 ## 2026-09-10 재기획 진입
 
+제한 조합 A는 후속 사용자 승인으로 상세 설계 기준이 됐다. [대표 결투 블루프린트](superpowers/specs/2026-09-10-card-duel-blueprint.md)와 `output/pdf/GRIMOIRE_CARD_DUEL_BLUEPRINT_2026-09-10.pdf`를 검토한다. 새로 제안한 턴·승패·덱·시간·수치는 DESIGN_REVIEW이며, 실제 이미지·새 Runtime은 아직 제작/검증하지 않았다.
+
 현재 조사 산출물은 [카드 결투 재기획 검토](planning/CARD_DUEL_REPLANNING_RESEARCH_2026-09-10.md)다. 카드 조합 중심·마법사 종류 카드 제외는 최신 사용자 방향이며, 10개 비교 사례에서 도출한 제한 조합·시계·서클 개선안은 검토 권장안이다. 새 카드 코어 Runtime/Human 검증은 NOT_RUN이다.
 
 최신 사용자 방향·Aseprite 임시 경로 승인·확인된 main/PR 차이·후속 제작 순서는 [재기획 접수 기록](planning/REPLANNING_INTAKE_2026-09-10.md)이 소유한다. 아래 기존 기획 완료와 시각 잠금은 과거 작업의 상태이며 새 재기획의 완료 상태가 아니다.
