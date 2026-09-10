@@ -5,7 +5,7 @@
 - project: GRIMOIRE; requirement: CARD_DUEL_SURFACE_01; priority: P0_FIRST_SCREEN_REVIEW.
 - consumer_kind: PLANNED_GAME_SURFACE. consumer: 첫 연습 결투의 학생 상반신·카드 손패·두 장 구성 영역.
 - current spec: `docs/superpowers/specs/2026-09-10-card-duel-blueprint.md`, 특히 07/08. 상세 규칙 승인: 최신 사용자 `권장안대로 진행`.
-- 이미지 상태: GENERATED_CANDIDATE / REVIEWED / REVISION_REQUIRED_BEFORE_RUNTIME. 사용자 시각 최종 승인·정본 자산 등록·runtime 적용은 아님.
+- 이미지 상태: USER_APPROVED_DIRECTION_REFERENCE / REVISION_REQUIRED_BEFORE_RUNTIME. 후속 `좋아 권장안대로 계속 진행해`로 학생 비율·따뜻한 연습실·남색/금색 방향을 채택한다. 중앙 별 장식은 제외한다. 합성 PNG 자체의 정본 runtime 자산 등록·적용은 아니며, 배경/인물/카드/효과/텍스트를 분리 제작한다.
 - 파일: `output/imagegen/card-duel/duel-surface-candidate-01.png`.
 - SHA-256: `84A27722D6573535D33D8F1267EC9CD9799C9F32CF62D761E673A94E51FE0D17`.
 - 생성 방식: built-in image_gen. 정확한 모델 버전은 도구에서 제공되지 않아 기록하지 않는다. 새 생성이며 기존 이미지 파일을 생성 입력으로 전달하지 않았다.

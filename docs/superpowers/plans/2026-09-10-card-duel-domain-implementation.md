@@ -128,6 +128,12 @@ assert(match.apply(state, {"command_id":"bad", "expected_revision":-1,"kind":"CA
 
 ## 검토 기록과 현재 상태
 
+### 2026-09-10 실행 결과
+
+Task 1/2/3의 코드와 테스트를 기존 실행기에 등록했다. 실제 RED → GREEN과 후속 손상 데이터 검사를 수행했다. 최종 54 suites / 2153 assertions / 0 failures / stderr empty. 상세 증거와 미검증 범위는 `docs/validation/CARD_DUEL_DOMAIN_2026-09-10.md`가 소유한다. 아래 원래 체크리스트는 작성 당시 실행 절차로 보존하며 현재 진행 상태는 이 절이 우선한다.
+
+계획 대비 절차 조정: 상호 의존하는 새 테스트 등록을 포함해 세 모듈을 하나의 검증된 변경 묶음으로 커밋한다. 기존 사용자 fixture 변경은 제외한다. RNG 상태와 seed는 JSON 정밀도 손실을 피하기 위해 10진 문자열로 저장한다. `opponent(state)`는 UI가 동일한 예고를 소비하도록 추가한 읽기 전용 접근자다. 새 이미지·메인 씬 교체·게임 전체 완료는 포함하지 않는다.
+
 5회 자체 검토: (1) 최신 규칙 승인과 시각 승인 분리, (2) 기존 main/PR와 경로 충돌 점검, (3) 조합·해소 수식과 Spec 대조, (4) 중복/저장/RNG 복구 경계, (5) UI·이미지·스토리 미포함을 전체 완료로 오인하지 않도록 패키지 경계 명시.
 
-이 계획의 테스트 예시는 실행 전이다. 구현·Runtime·Human·Device는 NOT_RUN. 현재 프로젝트 validator만 OPERATING_CONTRACT_VALID. 새 Base 계약이나 새로운 공용 스킬을 만들지 않는다.
+계획 작성 당시 테스트 예시는 실행 전이었다. 현재 도메인 구현·Godot headless 검증은 위 실행 결과를 따른다. 화면 Runtime·Human·Device는 NOT_RUN. 프로젝트 validator는 OPERATING_CONTRACT_VALID이며 Base v9.4.3 pin을 유지한다. 새 Base 계약이나 새로운 공용 스킬을 만들지 않는다.

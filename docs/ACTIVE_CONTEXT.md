@@ -2,9 +2,9 @@
 
 ## 2026-09-10 재기획 진입
 
-후속 `권장안대로 진행`으로 대표 결투 상세 권장 규칙이 채택됐다. 시험 수치는 조정 가능하며 PDF는 발행 당시 DESIGN_REVIEW 상태를 보존한다. [도메인 구현 계획](superpowers/plans/2026-09-10-card-duel-domain-implementation.md)과 [첫 화면 후보 검수](planning/visual/CARD_DUEL_SURFACE_CANDIDATE_01_2026-09-10.md)를 이어 읽는다. 후보는 runtime 승인 자산이 아니며 새 카드 코드 구현은 NOT_RUN이다.
+후속 `권장안대로 계속 진행해`로 학생 비율·따뜻한 연습실·남색/금색 방향을 채택하며 중앙 별 장식은 제외한다. [도메인 구현 계획](superpowers/plans/2026-09-10-card-duel-domain-implementation.md)의 규칙/동시 판정/매치·저장 재개가 작업 브랜치에 구현됐다. Godot headless 54 suites / 2153 assertions / 0 failures, stderr empty. [검증 기록](validation/CARD_DUEL_DOMAIN_2026-09-10.md)을 읽는다. 시험 수치는 조정 가능하며 PDF는 발행 당시 DESIGN_REVIEW 상태를 보존한다. 다음은 분리 아트·카드 선택/명시 시전 UI·스토리 handoff 패키지다. 새 UI/runtime 화면·Human·Device는 NOT_RUN, main 병합도 미완료다.
 
-제한 조합 A는 후속 사용자 승인으로 상세 설계 기준이 됐다. [대표 결투 블루프린트](superpowers/specs/2026-09-10-card-duel-blueprint.md)와 `output/pdf/GRIMOIRE_CARD_DUEL_BLUEPRINT_2026-09-10.pdf`를 검토한다. 새로 제안한 턴·승패·덱·시간·수치는 DESIGN_REVIEW이며, 실제 이미지·새 Runtime은 아직 제작/검증하지 않았다.
+제한 조합 A 및 대표 결투 상세 규칙은 후속 사용자 승인으로 구현 기준이 됐다. [대표 결투 블루프린트](superpowers/specs/2026-09-10-card-duel-blueprint.md)와 `output/pdf/GRIMOIRE_CARD_DUEL_BLUEPRINT_2026-09-10.pdf`를 검토한다. PDF의 DESIGN_REVIEW는 발행 당시 상태다. [첫 화면 후보](planning/visual/CARD_DUEL_SURFACE_CANDIDATE_01_2026-09-10.md)는 분리 제작 참고 자료이며 새 런타임 자산이 아니다.
 
 현재 조사 산출물은 [카드 결투 재기획 검토](planning/CARD_DUEL_REPLANNING_RESEARCH_2026-09-10.md)다. 카드 조합 중심·마법사 종류 카드 제외는 최신 사용자 방향이며, 10개 비교 사례에서 도출한 제한 조합·시계·서클 개선안은 검토 권장안이다. 새 카드 코어 Runtime/Human 검증은 NOT_RUN이다.
 
