@@ -1,0 +1,89 @@
+{
+  "document_role": "BLUEPRINT_ASSET_PRODUCTION_INPUT",
+  "status": "CANDIDATE_FINAL_REVIEW_PENDING",
+  "creation_route": "BUILT_IN_IMAGE_GEN",
+  "model_version": "NOT_PROVIDED",
+  "final_approval": "NOT_RUN",
+  "runtime": "NOT_RUN",
+  "local_cutout": {
+    "tool": "rembg 2.0.84 / u2netp",
+    "assets": [
+      "peer-style-alpha.png",
+      "tutor-alpha.png"
+    ],
+    "authority": "Earlier user-approved local alpha separation; current preparation authorization",
+    "source_preserved": true
+  },
+  "assets": [
+    {
+      "id": "main",
+      "path": "output/imagegen/blueprint-20260911/main.png",
+      "prompt": "Use case: illustration-story. Asset type: GRIMOIRE actual 2D game background, main menu and academy arrival, landscape 16:9. Create a warm welcoming original magic academy entrance courtyard in soft storybook cel-shaded 2D illustration with restrained watercolor texture, navy slate roofs, warm cream stone, teal accents, brass trims, morning sunlight, leafy trees. A modest magical school not monumental royal palace: arched double door, timber gallery, quiet stone steps and courtyard. View at eye level, clear layered depth. Right two-thirds architecture, left third a calm dark leafy shaded area suitable for separately rendered menu lettering, no baked panel. Foreground clear and low detail. No characters, no text, no lettering, no runes, no logo, no floating symbols, no five-point stars, no cards, no UI frames, no photorealism, no 3D render. Reusable background with all functionality and labels overlaid by engine. High-quality consistent 2D painted game environment.",
+      "consumer": "Academy background layer",
+      "status": "GENERATED_CANDIDATE"
+    },
+    {
+      "id": "classroom",
+      "path": "output/imagegen/blueprint-20260911/classroom.png",
+      "prompt": "Use case: illustration-story. Asset type: production 2D background for GRIMOIRE magic academy classroom, wide 16:9. Soft storybook cel illustration, hand-painted subtle texture, warm cream stone and wood, navy and muted teal fabric, brass instruments. Eye-level view of a welcoming modest academy teaching room, arched morning windows, bookshelves with no lettering, three readable work stations across middle ground: empty wooden left desk for heating vessel overlay, center demonstration table, right shelving. Lower quarter clear warm wood floor for overlaid UI, no foreground furniture clipping, readable shapes not excessive detail. No people, no text or symbols, no letters, no runes, no baked UI, no stars, no card pictures, no photorealistic or 3D aesthetic. Environment only; interactive objects and state effects added as separate game layers. Consistent with a youthful magic student in navy coat and teal scarf.",
+      "consumer": "Academy background layer",
+      "status": "GENERATED_CANDIDATE"
+    },
+    {
+      "id": "greenhouse",
+      "path": "output/imagegen/blueprint-20260911/greenhouse.png",
+      "prompt": "Use case: illustration-story. Asset type: GRIMOIRE production 2D greenhouse background 16:9. A warm modest magic school greenhouse, curved aged brass and glass roof, soft green leaves and blue-white flowers, wood workbenches left and right, central clear stone walkway with eye-level perspective. Empty work surface at middle right for separately overlaid experiment device, open foreground for UI. Gentle afternoon sunlight, navy/teal accents, restrained brass, soft storybook cel-shading with watercolor texture, visually consistent with a cozy hand-painted 2D academy classroom. No people, no creatures, no text, no lettering or labels, no symbols, no floating runes, no UI, no magical effects or smoke baked into background. Do not put the active experiment device into this background: its open/closed and pollen states will be independent sprites. Clean readable shapes, no photorealism, not 3D render.",
+      "consumer": "Academy background layer",
+      "status": "GENERATED_CANDIDATE"
+    },
+    {
+      "id": "festival",
+      "path": "output/imagegen/blueprint-20260911/festival.png",
+      "prompt": "Use case: illustration-story. Asset type: production 2D background GRIMOIRE academy first festival stage courtyard at golden twilight 16:9. Soft storybook cel-shading painted texture matching warm cream-stone school, navy slate roofs, teal cloth and brass. Modest small raised wooden stage at right midground, empty workbench left with unobstructed space for a separate lamp and decoration sprites, pennants high overhead, lantern posts no writing, leafy trees, quiet warmth and celebration without crowd. Middle ground clearly readable and lower quarter not cluttered for engine dialogue overlay. No people, no text, letters, runes, emblems, no UI, no five-point stars, no spell effects, no photorealism or 3D. This is a reusable background layer, not a finished screenshot, leave target objects and changing light effects to other layers.",
+      "consumer": "Academy background layer",
+      "status": "GENERATED_CANDIDATE"
+    },
+    {
+      "id": "player",
+      "path": "output/imagegen/blueprint-20260911/player.png",
+      "prompt": "Use case: illustration-story. Asset type: GRIMOIRE production upper-body character portrait PNG with genuine transparent alpha background. Input reference is approved appearance, preserve identity closely: very youthful student round gentle face, brown eyes, short tousled brown hair and cowlick, navy coat with narrow muted brass trim, teal scarf, ivory shirt, brown diagonal leather strap, small brown notebook held at chest with same hand pose. Crop waist-up only, all hair shoulders and elbows in frame, face slight turn to viewer right, warm modest smile. Soft storybook cel shading with delicate texture, same shape language as reference. Do NOT make adult mature model, no sharp jaw, no glamour, no SD/chibi, no legs. Remove the checkerboard entirely and output actual transparency, no white or gray background, no baked checkerboard, no halo, no shadow outside silhouette, no text, no magic, no frame. Entire background must have alpha zero. This is an independent game portrait for dialogue and duel, not a screenshot.",
+      "consumer": "DialogueView/DuelView portrait",
+      "status": "GENERATED_CANDIDATE"
+    },
+    {
+      "id": "peer",
+      "path": "output/imagegen/blueprint-20260911/peer.png",
+      "prompt": "Use case: illustration-story. Asset type: GRIMOIRE game portrait, youthful academy classmate, waist-up only. Original teenage student with soft youthful face, short dark blue-black bob hair, gray-green eyes, modest friendly attentive expression. Same warm soft storybook cel-shading, navy school coat with restrained brass piping, ivory shirt, muted burgundy scarf, small workbook tucked at waist, practical school clothing. Three-quarter view toward viewer left, all head hair shoulders elbows visible, no legs, no glamour, no adult sharp jaw, no chibi. Clean uniform solid very light gray background for game cutout preparation, no cast shadow, no gradient, no text, runes, props beyond workbook, or frame. Anatomically clear hands. One character only, production portrait artwork not a game screenshot.",
+      "consumer": "DialogueView/DuelView portrait",
+      "status": "GENERATED_CANDIDATE"
+    },
+    {
+      "id": "tutor",
+      "path": "output/imagegen/blueprint-20260911/tutor.png",
+      "prompt": "Use case: illustration-story. Asset type: original GRIMOIRE guiding teacher game portrait, waist-up isolated. The input is ONLY a STYLE reference for clean soft anime storybook cel shading, not the identity. Design a kind middle-aged woman professor, ash-brown hair loosely tied back, gentle perceptive eyes, round thin brass glasses, modest navy academic coat, ivory blouse, muted teal neck ribbon, small notebook. Friendly calm mentor, not elderly witch stereotype, no hat, no staff. Face aimed slightly left. Simplified clean 2D linework and soft CEL shading like the input, do not use realistic skin rendering or painterly Western portrait texture. Full head shoulders elbows visible, lower body cropped at waist. Uniform flat light-gray background with no cast shadows for separate cutout. No text, labels, symbols, frame, card, scene or magic effects.",
+      "consumer": "DialogueView/DuelView portrait",
+      "status": "GENERATED_CANDIDATE"
+    },
+    {
+      "id": "glyphs",
+      "path": "output/imagegen/blueprint-20260911/glyphs.png",
+      "prompt": "Use case: illustration-story. Asset type: single production texture atlas for GRIMOIRE four glyph illustrations, exactly 2 columns by 2 rows of equal square cells on one square canvas. Each cell full-bleed same dark navy ink-paper background, no outer margin and no gutters. Top left a simple glowing amber ember brush mark, top right a pale teal flowing wind brush stroke, bottom left an ivory-blue protective arcing barrier brush mark, bottom right a small gold-teal inward gathering spiral brush mark. Hand-drawn luminous ink, simple graceful 2D storybook painted linework, not circular spell diagrams. Keep each motif centered within central 65 percent of its cell with a quiet navy perimeter. Four visually distinct symbols readable at small size. No text, no letters from real alphabets, no numerals, no labels, no card borders, no stars, no characters, no mockup. These are tile artworks for actual hand cards, selector chips and codex; engine adds names/cost separately. Square output.",
+      "consumer": "GlyphSelector/CardArt/Codex",
+      "status": "GENERATED_CANDIDATE"
+    },
+    {
+      "id": "ui",
+      "path": "output/imagegen/blueprint-20260911/ui.png",
+      "prompt": "Use case: ui-mockup. Asset type: one actual production dialogue panel texture for GRIMOIRE 2D magic school game, not a screenshot. Wide horizontal rectangle about 3:1 aspect ratio. Entire canvas is the panel: full-bleed deep navy subtly textured paper, thin restrained double-line antique gold border inset 3 percent, tiny simple leaf-and-ink nib flourishes only at four corners, no star motifs. Large completely empty readable center 85 percent of panel, small centered empty nameplate integrated into the top border. Crisp flat orthographic front view; modest elegant warm storybook visual novel UI. No letters, no numbers, no buttons inside, no icons, no characters, no background outside panel, no shadows outside, no watermark, no fake example text. Border must remain visually usable for nine-slice conversion, center low contrast and quiet. This is the isolated reusable panel art; all name/dialogue/choices are separate engine labels.",
+      "consumer": "DialogueView/ReceiptPanel",
+      "status": "GENERATED_CANDIDATE"
+    },
+    {
+      "id": "props",
+      "path": "output/imagegen/blueprint-20260911/props.png",
+      "prompt": "Use case: illustration-story. Asset type: single GRIMOIRE 2D prop STATE ATLAS on transparent background, 4 columns by 2 rows of equal cells, square overall canvas. Eight isolated game objects, each centered with generous clear margins and identical scale within state pairs. Top row: (1) small rounded brass-and-glass heating vessel cold, (2) same vessel warm amber luminous core, (3) small brass experiment canister hinged lid OPEN, (4) EXACT SAME canister lid CLOSED. Bottom row: (1) small one-way brass mesh collection box empty, (2) same box with a little pale pollen inside, (3) small table lantern unlit, (4) same lantern warm amber lit. Soft painted storybook cel shading, navy teal brass palette, gentle readable shapes. No text, no labels, no numbers, no grid lines, no table, no scene background. True transparent alpha, no checkerboard, no shadows connecting cells. These are actual independent scene sprite states, not explanatory diagrams.",
+      "consumer": "EventView target state layers",
+      "status": "GENERATED_CANDIDATE"
+    }
+  ]
+}

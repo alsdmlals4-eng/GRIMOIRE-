@@ -1,0 +1,269 @@
+{
+  "status": "CANDIDATE_REGIONS_RUNTIME_NOT_RUN",
+  "coordinate_system": "top-left pixel x,y,width,height",
+  "sheets": [
+    {
+      "file": "glyphs.png",
+      "cols": 2,
+      "rows": 2,
+      "ids": [
+        "ember",
+        "wind",
+        "ward",
+        "gather"
+      ],
+      "size": [
+        1254,
+        1254
+      ],
+      "regions": [
+        {
+          "id": "ember",
+          "region": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "wind",
+          "region": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "ward",
+          "region": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "gather",
+          "region": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        }
+      ]
+    },
+    {
+      "file": "props.png",
+      "cols": 4,
+      "rows": 2,
+      "ids": [
+        "vessel_cold",
+        "vessel_warm",
+        "device_open",
+        "device_closed",
+        "collector_empty",
+        "collector_loaded",
+        "lamp_off",
+        "lamp_on"
+      ],
+      "size": [
+        1254,
+        1254
+      ],
+      "regions": [
+        {
+          "id": "vessel_cold",
+          "region": [
+            0,
+            0,
+            313,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "vessel_warm",
+          "region": [
+            313,
+            0,
+            314,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "device_open",
+          "region": [
+            627,
+            0,
+            313,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "device_closed",
+          "region": [
+            940,
+            0,
+            314,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "collector_empty",
+          "region": [
+            0,
+            627,
+            313,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "collector_loaded",
+          "region": [
+            313,
+            627,
+            314,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "lamp_off",
+          "region": [
+            627,
+            627,
+            313,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "lamp_on",
+          "region": [
+            940,
+            627,
+            314,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vfx.png",
+      "cols": 2,
+      "rows": 2,
+      "ids": [
+        "pollen",
+        "wind",
+        "heat",
+        "veil"
+      ],
+      "size": [
+        1254,
+        1254
+      ],
+      "regions": [
+        {
+          "id": "pollen",
+          "region": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "wind",
+          "region": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "heat",
+          "region": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        },
+        {
+          "id": "veil",
+          "region": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "pivot_normalized": [
+            0.5,
+            0.9
+          ]
+        }
+      ]
+    }
+  ]
+}

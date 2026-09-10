@@ -1,0 +1,216 @@
+{
+  "document_id": "GRIMOIRE_HUMAN_BLUEPRINT_20260911",
+  "state": "DESIGN_REVIEW",
+  "pages": 58,
+  "source_sha256": "847fcf759f70b4ba8dc47589378151a9291b8eb4938a9a3bf3e8a3e882292146",
+  "rules_sha256": "01255a88a5ebd6030c72584df7afee696e50763e169b14ea0d379b9758e88dc4",
+  "research_sha256": "5747c7280315f1cfe73e13591fb9fc6132c224a7934eec86e515a9855e9d68a0",
+  "generator_sha256": "b8ddf820f1333c58f25ea4272d02fa5942268eab2c77e513bc5fe94963015e82",
+  "pdf_sha256": "4e7695daf084dbf938cb2d2d445abc3e04cc7b005ffb469369fe134dee11934a",
+  "assets": [
+    {
+      "id": "main",
+      "path": "output/imagegen/blueprint-20260911/main.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "724cdb2dccc89e6b3c04df4fb03a75d5048eb2235569775f175a78a146d3905e",
+      "alpha_zero": 0,
+      "alpha_extrema": null,
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "classroom",
+      "path": "output/imagegen/blueprint-20260911/classroom.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "89816ebb3b8740ec141ebd9107f4a86c1ed27332994a75ad94f05a0597f8d192",
+      "alpha_zero": 0,
+      "alpha_extrema": null,
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "greenhouse",
+      "path": "output/imagegen/blueprint-20260911/greenhouse.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "2743965347ee9af70665ed5db1fc0cb1c77e3ce36dfe30d9ca1eb79bff394678",
+      "alpha_zero": 0,
+      "alpha_extrema": null,
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "festival",
+      "path": "output/imagegen/blueprint-20260911/festival.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "7686e0c1ec69eb515a0178a699dbbcb5a713a0644a2c70e9f8108795ce9469bd",
+      "alpha_zero": 0,
+      "alpha_extrema": null,
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "player",
+      "path": "output/imagegen/blueprint-20260911/player.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "4dd75c0b032c07849cf3cba4dba367572c85a3d180a6ef2ed51313f72517f652",
+      "alpha_zero": 604361,
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "glyphs",
+      "path": "output/imagegen/blueprint-20260911/glyphs.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "sha256": "b450d353886a1d9c7e782c96813434000856858a49c4ed1d9656986310a45502",
+      "alpha_zero": 0,
+      "alpha_extrema": null,
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "props",
+      "path": "output/imagegen/blueprint-20260911/props.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "sha256": "ef9d16047d817df4cdaa36f50d33c8288588064afe6a87454d6d364af94ccb88",
+      "alpha_zero": 960880,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "ui",
+      "path": "output/imagegen/blueprint-20260911/ui.png",
+      "size": [
+        2172,
+        724
+      ],
+      "mode": "RGB",
+      "sha256": "469ba21f2353c419194608ade40f1f22e5901e8a4a5340b1f862849d523cfd35",
+      "alpha_zero": 0,
+      "alpha_extrema": null,
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "vfx",
+      "path": "output/imagegen/blueprint-20260911/vfx.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "sha256": "1af39a85df4c1ce21d1bc99bc1dd1698b4b1e71c5feb653ed57e63b89ddfb4ca",
+      "alpha_zero": 729315,
+      "alpha_extrema": [
+        0,
+        253
+      ],
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "clock",
+      "path": "output/imagegen/blueprint-20260911/clock.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "sha256": "53b16a47122bd2ec3aeea9cc0d4e080b6a6da51687624a71eb1ede7821b9acd7",
+      "alpha_zero": 570553,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "peer",
+      "path": "output/imagegen/blueprint-20260911/peer-style-alpha.png",
+      "size": [
+        1145,
+        1374
+      ],
+      "mode": "RGBA",
+      "sha256": "88fb38a4e3decf563a299e6ee992032bfe33b44866c8a78735b032e7bb52eac5",
+      "alpha_zero": 734629,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "tutor",
+      "path": "output/imagegen/blueprint-20260911/tutor-alpha.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "43fee6bf70583afc2b360c27b7999a2aec727380f81002bfcf792ff90e253e67",
+      "alpha_zero": 558881,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "status": "GENERATED_CANDIDATE",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "duel",
+      "path": "output/imagegen/card-duel/duel-background-candidate-01.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "8445f4409da8cb388f1157d9cf1ce41c1222746f3818d48ff71325ec1f4f6f36",
+      "alpha_zero": 0,
+      "alpha_extrema": null,
+      "status": "USER_APPROVED_BACKGROUND_ONLY",
+      "runtime": "NOT_RUN"
+    }
+  ],
+  "render_review": "CODEX_RENDER_REVIEWED_58_PAGES",
+  "render_review_receipt": "docs/validation/HUMAN_BLUEPRINT_20260911.md",
+  "human_review": "NOT_RUN",
+  "runtime": "NOT_RUN"
+}

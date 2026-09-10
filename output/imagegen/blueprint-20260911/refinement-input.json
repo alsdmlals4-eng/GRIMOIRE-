@@ -1,0 +1,24 @@
+{
+  "refinement": {
+    "source": "peer.png",
+    "reference": "assets/reference/visual/GRIMOIRE_student_008_approved_appearance_reference.png",
+    "output": "peer-style.png",
+    "cutout": "peer-style-alpha.png",
+    "prompt": "Identity-and-style correction for GRIMOIRE classmate portrait. Image1 is edit target: keep the same youthful girl, bob-shaped dark navy hair, gray-green eyes, burgundy scarf, navy coat, workbook and pose. Image2 is STYLE ONLY: match its simplified clean anime linework, flat soft storybook cel shading, larger expressive eyes and minimal nose rendering. Remove the realistic painterly face shading of Image1; keep the student distinctly youthful. Waist-up isolated character, all hair shoulders elbows visible. Genuine alpha transparent background, no gray/white/checker background, no lettering or UI, no extra props, no new identity or adult model look. Preserve color assignments and coat silhouette.",
+    "status": "GENERATED_CANDIDATE"
+  },
+  "vfx": {
+    "output": "vfx.png",
+    "prompt": "Use case: illustration-story. Asset type: GRIMOIRE production VFX texture atlas, four equal square cells in exact 2 by 2 grid, transparent alpha background. Top left a soft sparse floating pale-gold pollen cloud without container; top right a clean pale-teal curved wind ribbon flowing from left to right; bottom left a small soft amber heat shimmer glow around a tiny ember; bottom right a translucent pale-blue arcing protective veil. Each effect is isolated within its own cell with 15 percent transparent margins, not touching adjacent cell. Hand-painted soft 2D cel-style compatible with storybook magic academy, modest luminosity, no explosive particles or heavy bloom. No text, numbers, letters, runes, stars, labels, borders, checkerboard or objects. These static textures will be separately animated by engine opacity/scale/movement based on already resolved events. Not an animation sheet and not four time frames.",
+    "consumer": "EventView/SpellPresentation separate static effect textures",
+    "status": "GENERATED_CANDIDATE",
+    "frames": 1
+  },
+  "aseprite": {
+    "source": "glyphs.png",
+    "editable": "glyphs.aseprite",
+    "receipt": "glyphs-aseprite-export.json",
+    "frames": 1,
+    "note": "Raw single-frame export receipt; atlas-regions.json owns four logical tiles. Not motion frames."
+  }
+}

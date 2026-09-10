@@ -1,0 +1,2 @@
+# Keep this source-bound PDF byte-identical across Windows checkouts.
+output/pdf/GRIMOIRE_HUMAN_BLUEPRINT_20260911.pdf binary

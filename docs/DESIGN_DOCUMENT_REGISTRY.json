@@ -64,6 +64,17 @@
     "tests/test_runner.gd"
   ],
   "canonical_documents": [
+    {
+      "path": "docs/superpowers/specs/2026-09-11-human-blueprint.md",
+      "document_id": "GRIMOIRE_HUMAN_BLUEPRINT_20260911",
+      "status": "DESIGN_REVIEW_USER_FINAL_APPROVAL_PENDING",
+      "responsibility": "Human overview, first academy chapter content, screen and implementation handoff; existing spell rules composed from their owner",
+      "publication_policy": "milestone_sync",
+      "output_pdf": "output/pdf/GRIMOIRE_HUMAN_BLUEPRINT_20260911.pdf",
+      "publication_manifest": "output/pdf/GRIMOIRE_HUMAN_BLUEPRINT_20260911.manifest.json",
+      "generator": "tools/build_human_blueprint_pdf.py",
+      "composed_sources": ["docs/superpowers/specs/2026-09-10-shared-spell-rules-design.md", "docs/planning/CARD_DUEL_REPLANNING_RESEARCH_2026-09-10.md"]
+    },
     {"path":"AGENTS.md","status":"ACTIVE_TOP_LEVEL_AUTHORITY_VALIDATION_OVERLAY"},
     {"path":"START_HERE.md","status":"ACTIVE_ENTRYPOINT_VALIDATION_OVERLAY"},
     {"path":"docs/ACTIVE_CONTEXT.md","status":"ACTIVE_CONTEXT_VALIDATION_OVERLAY"},

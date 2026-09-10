@@ -1,0 +1,7 @@
+{
+  "prompt": "Use case ui-mockup. One isolated production UI frame for GRIMOIRE magic school game: a simple circular antique brass bezel, perfectly front facing, thin restrained double rim with tiny leaf/nib detail at cardinal corners, deep navy empty circular interior. Square canvas with true alpha transparency outside circular rim, no checkerboard. No tick marks, no wedges, no divisions, no numerals, no letters, no stars, no hands, no clock numbers. This is a neutral frame for a programmable segmented danger clock: the game draws exact six sectors and center value separately. Soft hand-painted 2D storybook cel style, navy teal muted gold, crisp readable at 160 pixels. Rim within central 85 percent of image, balanced symmetric thickness, no photorealism, no heavy light bloom.",
+  "path": "clock.png",
+  "consumer": "EventClock decorative frame; native state-driven sectors and labels",
+  "status": "GENERATED_CANDIDATE",
+  "runtime": "NOT_RUN"
+}
