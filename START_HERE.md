@@ -1,5 +1,9 @@
 # GRIMOIRE 시작 지점
 
+## 2026-09-10 새 기획 진입
+
+최신 방향은 [재기획 접수](docs/planning/REPLANNING_INTAKE_2026-09-10.md), 이번 기존 요소 감사와 제안은 [카드 결투 재기획 조사](docs/planning/CARD_DUEL_REPLANNING_RESEARCH_2026-09-10.md)를 읽는다. 아래 그리기·별형·과거 기획 완료 상태는 새 카드 중심 기획의 승인·구현 상태가 아니다.
+
 ## 현재 상태
 
 ```yaml
