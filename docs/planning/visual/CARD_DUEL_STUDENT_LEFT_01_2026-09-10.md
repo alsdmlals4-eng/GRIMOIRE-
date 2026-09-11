@@ -1,5 +1,13 @@
 # 첫 학생 상반신 기본 포즈 — 후보 및 기술 검수
 
+## 최신 교정: 첫 번째 후보의 그림체 유지, 동작·소품으로 개성
+
+사용자는 직전 세 생성 출력 중 2번 `peer-anime-02.png`와 3번 `tutor-anime-01.png`가 맞지 않는다고 하고, 1번 `exec-c0352214-3640-4205-bdb6-a8d21ca0326e.png`의 그림체를 유지하도록 지시했다. 사용자 선택이 앞선 AI의 유사성 판단보다 우선한다. 1번을 `output/imagegen/character-style-comparison/peer-anime-01-style-anchor.png`로 회수하고 STYLE_REFERENCE_USER_SELECTED로 기록한다. 이 선택은 그 인물 전체 외형·runtime 자동 승인과 다르다. 기존 주인공 외형 승인은 유지한다.
+
+새 PEER/TUTOR는 1번만 스타일 입력으로 사용하고 미채택 2·3번은 입력에서 제외한다. PEER는 작은 실습 표본병을 관찰하는 자세, TUTOR는 펼친 수업 기록과 펜으로 설명하는 자세로 구별한다. 이는 기존 역할의 시각 후보이지 아이템 기능·새 게임 규칙 확정이 아니다. 최신 파일·프롬프트·QA는 같은 폴더 `supporting-cast-personality-input.json`을 따른다. 이전 두 후보는 SUPERSEDED_USER_REVISION_REQUESTED다.
+
+현재 검토 파일은 `peer-personality-01.png` / `tutor-personality-01.png`. 두 파일 모두1015×1550 RGB로 디코드·해시 확인. 시선/표본병 동작과 펼친 기록/펜 동작은 반영됐다. 소매 가장자리 잘림과 교수 연령감은 검토·보정 대상으로 남는다. 최종 사용자 승인/알파/표정군/runtime/PDF 갱신은 미완료다.
+
 ## 사용자 확정: 애니메이션풍 주인공과 다른 인물 우선 제작
 
 `오 좋아 지금 캐릭맘에든다`와 `좋아 승인하고 다른 캐릭터들도 먼저 만들어줘`로 `student-anime-reference-01.png`의 주인공 외형·그림체를 USER_APPROVED로 확정했다. canonical visual anchor locator는 아래 동일 파일/해시이며 별도 복사본을 만들지 않는다. 역할은 첫 장 PLAYER의 DialogueView/DuelView planned portrait. 실제 runtime consumer 연결은 아직 없다.

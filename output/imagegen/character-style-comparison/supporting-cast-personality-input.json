@@ -1,0 +1,58 @@
+{
+  "project": "GRIMOIRE",
+  "status": "GENERATED_CANDIDATES_USER_REVIEW_PENDING",
+  "route": "BUILT_IN_IMAGE_GEN",
+  "model_version": "NOT_PROVIDED",
+  "user_direction": "Keep first displayed peer candidate style; revise second and third using composition/action/props.",
+  "style_anchor": {
+    "path": "peer-anime-01-style-anchor.png",
+    "sha256": "C564875BB954138A997E6BFA5C3CC00EF708E7EDD4018A6E1AD22615BB73879B",
+    "selection": "USER_SELECTED_STYLE_ONLY"
+  },
+  "excluded_inputs": [
+    "peer-anime-02.png",
+    "tutor-anime-01.png"
+  ],
+  "consumer_kind": "PLANNED_GAME_SURFACE",
+  "consumers": [
+    "DialogueView PEER",
+    "DialogueView TUTOR",
+    "DuelView PEER"
+  ],
+  "runtime": "NOT_APPLIED_NOT_RUN",
+  "aseprite": "NOT_USED",
+  "assets": [
+    {
+      "id": "PEER",
+      "path": "peer-personality-01.png",
+      "size": [
+        1015,
+        1550
+      ],
+      "format": "RGB",
+      "sha256": "7E40230A91307290BFC640071BC188ABEE7310E46AD3588F1F34E88EFBD34555",
+      "prompt": "One original GRIMOIRE classmate upper-body game portrait. The attached image is the USER SELECTED definitive ART STYLE reference. Match it very closely: slender elegant anime facial proportions, precise gray irises, sharp fine eyelashes, confident delicate dark contours, dense fine hair strands, cool layered cel shadows and luminous soft skin, rich polished navy cloth. Do not simplify into round cute storybook illustration, no watercolor. Keep that exact degree of refined anime polish but create personality with pose and props. Teenage female magic academy student, short layered ink-blue hair with one side tucked and a small plain brass hair clip, gray-green eyes, curious animated half-smile. Body in three-quarter angle toward viewer RIGHT, face slightly lifted toward a small corked clear glass sample vial she holds near her eye at shoulder height, elbow bent; eyes focused on vial rather than camera. Vial contains a few pale blue botanical petals, no labels, no glow. Other hand rests on her waist, no book. Practical navy school jacket and short cape, white shirt, burgundy neck ribbon, subtle brass trim in same academy clothing family. Asymmetric lively silhouette; the short cape drapes behind the lifted arm, no dramatic wind. Artful but natural anatomy, two hands only, clearly separated fingers. Entire head and shoulders and both elbows WITHIN canvas; camera backed out to waist-up portrait with at least 7 percent empty background above and at sides. No legs, no scenery, no UI, no letters, no magic circle, no watermark. Flat pale blue-gray opaque background. Beautiful finished premium anime RPG portrait in exactly the attached image's rendering language, not a redesign of style. One character only, no collage.",
+      "review": "Vial observation gaze/action and hand on waist present. Outer sleeves clipped; full-silhouette margin correction required before cutout."
+    },
+    {
+      "id": "TUTOR",
+      "path": "tutor-personality-01.png",
+      "size": [
+        1015,
+        1550
+      ],
+      "format": "RGB",
+      "sha256": "03F17970C4964A8609ADBE54D546B8DC2AE3AF76D965E9BEEE922258613D69EC",
+      "prompt": "One original GRIMOIRE guiding professor upper-body portrait. SINGLE attached image is the exact USER APPROVED ART STYLE reference, not this professor's identity. Closely match its sophisticated anime draftsmanship and finish: slender elegant faces, beautifully precise eyes, sharp delicate eyelashes, thin confident contours, dimensional layered cool cel shadows, individual fine hair strands and rich navy fabric. No soft round storybook style, no watercolor, no Western comic or realistic portrait. Different person: poised adult female academy professor, visibly older than student through composed narrower hazel eyes and slightly mature facial proportions, ash-brown hair in a loose long side braid over one shoulder, slender brass oval glasses. Calm knowing smile while explaining something interesting, expression lively and observant, not identical to student. Upper body angled toward viewer LEFT, head turned toward viewer as if addressing a student; balanced poised shoulders. Left forearm supports an OPEN leather-bound teaching notebook horizontally at waist/chest level, right hand holds a simple brass fountain pen above open blank pages in mid-explanation, elegant natural finger pose. Ivory blouse with high neat collar, fitted dark navy academic waistcoat, long open navy faculty robe with restrained gold piping and teal inner lining, small teal ribbon at throat. No closed book hugged to chest, no touching glasses. Faculty robe and braid distinguish silhouette from student; expressive scholarly gesture makes her personality clear. Entire head, hair, shoulders, elbows, book and pen must fit inside portrait with 8 percent empty margin above and both sides; waist-up only, no legs. Plain pale blue-gray OPAQUE background, no environment, no text, no readable notebook marks, no effects or magic circles, no UI, no watermark. One beautiful finished anime game portrait consistent with attached image, not a comparative sheet.",
+      "review": "Open journal, pen and long side braid provide distinct gesture/silhouette. Adult age readability is a user-review item; sleeves and hair margin need correction before cutout."
+    }
+  ],
+  "validation": {
+    "external_research": "NOT_MATERIAL: user-selected style correction of existing roles, no new externally grounded gameplay or rights claim.",
+    "feasibility": "PARTIAL: planned portrait consumers unchanged; RGB candidate not final texture",
+    "user_approval": "PENDING",
+    "release_rights": "NOT_VERIFIED",
+    "retention": "Prior images retained as revision history, not current candidates",
+    "lesson": "Separate stylistic similarity from identity variation: user chose first attempt rejected by AI. Keep anchor fixed and vary pose/prop/gaze; avoid reintroducing rejected older rendering."
+  }
+}

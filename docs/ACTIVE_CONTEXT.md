@@ -2,6 +2,8 @@
 
 ## 후속 캐릭터 그림체 재검토
 
+최신 사용자: 직전 1번 이미지의 그림체를 유지하고 구도·동작·소품으로 다른 인물의 개성을 살린다. 2번 동료 보정본과 3번 교수는 미채택/수정 요청. `peer-anime-01-style-anchor.png`를 새 supporting cast 스타일 기준으로 회수했고, 표본병 관찰 PEER/기록과 펜으로 설명하는 TUTOR 후보를 제작한다. 주인공 승인 유지, 새 인물 후보/소품 기능/runtime 미승인. 상세 최신 상태는 학생 외형 owner 및 `supporting-cast-personality-input.json` 참조.
+
 최신 사용자 확정: `student-anime-reference-01.png`는 주인공 외형·그림체 승인본이다. 이전 아래 승인 대기는 해소됐다. 다른 인물 우선 요청에 따라 첫 장 PEER/TUTOR 두 기본 상반신 후보를 같은 애니메이션풍으로 제작한다. 새 인물은 검토 전, 주인공 여백/알파/표정군·모든 새 초상 runtime은 미완료다. 최신 결과는 학생 외형 owner와 `output/imagegen/character-style-comparison/supporting-cast-production-input.json`을 따른다.
 
 최신 제공 참고 4장에 따라 정교한 애니메이션풍 학생 후보 `student-anime-reference-01.png`를 제작했다. 2번의 비율·채색과 4번의 선화·표정을 주 참고로 사용했다. 직전 `student-redesign-01.png`는 사용자 거부. 현재 후보는 불투명 배경 스타일 검토본이며 여백 교정·알파·표정군·runtime은 미완료다. 최종 사용자 승인 전이며 [학생 외형 owner](planning/visual/CARD_DUEL_STUDENT_LEFT_01_2026-09-10.md)가 최신 이미지/해시/한계를 소유한다.
