@@ -1,5 +1,14 @@
 # 첫 학생 상반신 기본 포즈 — 후보 및 기술 검수
 
+## 최신: 사용자 제공 애니메이션풍 참고 기반 후보
+
+직전 `student-redesign-01.png`는 USER_REJECTED다. 사용자 제공 4장 중 2번의 학생다운 비율·채색과 4번의 선화·표정을 주 참고로 새로운 `output/imagegen/character-style-comparison/student-anime-reference-01.png`를 이미지 모델로 제작했다. Aseprite 미사용. 참고 인물 자체·고유 복장·종교 소품의 이식을 지시하지 않았다. 상세 입력/프롬프트는 같은 폴더 `anime-reference-production-input.json`에 기록했다.
+
+- SHA-256: `84479897283B7807083EDC0027B3C75407BBDD29CE03E4C4EB05354966E0ABE0`.
+- 상태: GENERATED_CANDIDATE / USER_REVIEW_PENDING. 최종 외형 승인·정본 등록·runtime 적용 없음.
+- 육안 확인: 선명한 애니메이션 선화와 층진 음영, 남색·청록 교복, 책을 든 상반신. 머리 위와 양 어깨 여백이 좁아 그대로 production cutout으로 사용할 수 없다. 현재는 불투명 배경 스타일 검토본이며 승인 후 프레이밍·알파·표정 상태 작업이 필요하다.
+- 과거 동화책풍과 신규 조끼 후보는 미채택 이력이다. 아래 역사 승인/제작 메모를 최신 스타일 확정으로 해석하지 않는다. 기존 PDF는 이번 후보를 포함하지 않는다.
+
 ## 최신 사용자: 캐릭터부터 새로 설계
 
 앞선 두 시안이 같아 보인다는 피드백에 따라 기존008 이미지를 입력하지 않고 새 후보 `output/imagegen/character-style-comparison/student-redesign-01.png`를 제작했다. 짧은 검은 머리/작은 눈/두드러진 눈썹, 조끼·짧은 망토·황토색 리본, 카드를 든 자세로 얼굴·의상·실루엣을 함께 변경했다. 이는 새 주인공 후보이지 최종 인물 설정이나 사용자 승인본이 아니다. 아래008 보존 규칙은 이번 신규 설계의 제약으로 승계하지 않는다.

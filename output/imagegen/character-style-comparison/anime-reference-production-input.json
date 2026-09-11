@@ -1,0 +1,20 @@
+{
+  "status": "GENERATED_CANDIDATE_USER_REVIEW_PENDING",
+  "route": "BUILT_IN_IMAGE_GEN",
+  "output": "student-anime-reference-01.png",
+  "references": [
+    {
+      "path": "C:/Users/user/Desktop/취미/이미지/54b4f46f9be8a851ffe7082de1c21e1a.jpg",
+      "role": "Style reference: youthful anime proportions and shading; not identity"
+    },
+    {
+      "path": "C:/Users/user/Desktop/취미/이미지/807e15000392a7349e1bfbd5b8e7c3b0.jpg",
+      "role": "Style reference: expressive linework; no religious props or identity transfer"
+    }
+  ],
+  "background": "OPAQUE_STYLE_REVIEW",
+  "aseprite": "NOT_USED",
+  "runtime": "NOT_APPLIED_NOT_RUN",
+  "visual_review": "Anime linework and shading present; portrait is tight at hair top and shoulders. Not yet production cutout; edge margins and alpha remain required after style selection.",
+  "prompt": "Use case: stylized-concept. Create ONE entirely original magic academy boy character illustration for a narrative game dialogue portrait. The supplied images are STYLE references, NOT characters to reproduce: first reference guides youthful anime facial proportions and sophisticated clean cel painting; second reference guides elegant expressive linework and confident facial acting. Do not copy their identity, costume, religious objects, staff, pose or setting.\nPortrait canvas, upper body only from head through waist, entire head and both shoulders visible, slight three-quarter angle, eye-level camera. Beautiful youthful student around 16-17, slender ordinary student build, appealing refined anime face, expressive blue-gray eyes with carefully drawn irises, small understated nose, relaxed subtle confident smile rather than a broad grin. Soft layered dark ash-brown hair, natural asymmetrical bangs and a few fine flyaway strands. Original navy academy short cape with teal inner collar, ivory collared shirt, narrow dark tie and a small simple brass clasp, restrained fine gold piping. One hand loosely holding a closed slim notebook against his lower torso, other arm relaxed. Clear clothing construction, beautiful folds, deliberate varied line weight, softly layered but decisive anime shadows, sophisticated cool and warm reflected light, premium Japanese fantasy RPG character illustration finish. Prioritize a compelling well-drawn face and silhouette, not accessory density.\nPlain pale blue-gray opaque background for character style review. No scene, no magic effects, no text, no UI, no cards, no watermark. No pixel art, no rough gouache or scratchy storybook texture, no Western comic face, no tiny beady eyes, no broad square adult jaw, no chibi, no plastic 3D rendering, no ornate hat, no jewelry overload. This is a new character design, not a repaint of any previous character."
+}

@@ -1,5 +1,5 @@
 {
-  "status": "GENERATED_CANDIDATE_USER_REVIEW_PENDING",
+  "status": "USER_REJECTED",
   "route": "BUILT_IN_IMAGE_GEN",
   "reference_images": [],
   "output": "student-redesign-01.png",
