@@ -145,6 +145,25 @@ SWOT 행동: S 같은 마법의 전이→수업/사건에 같은 작용 사용; 
 
 ## 11. 대상 반응 계약 v0.2
 
+### 2026-09-12 후속: 장면 등록 데이터 평가
+
+`spell_semantics.gd.assess_scene(kinds, learned, objects, target_id, destination_id="")`를 추가했다. 기존 `assess`는 완전 상태를 받는 저수준 평가로 유지하고, 새 진입점은 장면 소유 `objects`에서 선택한 대상/목적지를 조회한다. UI에서 넘긴 `path_open`/`full` 같은 합성 값으로 경로·용량을 우회하지 않는다. 아직 실제 게임 장면이 이 API를 호출하지 않는다.
+
+- `objects`는 안정 문자열 ID → Dictionary이며 각 record의 `id`와 key가 일치해야 한다.
+- 이동·전환·운반은 명시한 서로 다른 목적지와 `source.routes[destination_id] == true`를 요구한다. 누락/문자열 true는 닫힌 경로다.
+- 목적지 `blocked`, `audience`는 필수 boolean. 관객 방향은 가능한 위험으로 경고하며 자동 취소하지 않는다.
+- 국소 모으기는 양쪽의 비어 있지 않은 동일 `zone`과 비어 있는 수용점을 요구한다. 픽셀 거리나 자동 목적지 선택은 사용하지 않는다.
+- 수용점은 정수 `capture_load`, `capture_capacity`와 boolean `receiver_open`을 제공한다. 0 ≤ load ≤ capacity, 0용량은 사용 불가. 운반은 목적지 `capture_ready == true`도 요구한다. 일부 적재된 수집함은 운반 가능하지만 국소 모으기의 빈 수용점은 아니다.
+- 결과는 허용 시 `destination_id`를 포함한다. 조회/평가만 하며 적재량·온도·마력·시간·저장을 바꾸지 않는다. 원본 변경 후 재호출하면 새 상태로 평가한다. 오래된 quote는 유효한 commit 권한이 아니며 시전 시 반드시 재평가해야 한다.
+
+검증: 같은 Godot runner에서 252 assertions/0 failures(기존150 + 장면 경계102), Python 진단4 tests PASS. 누락 기능 RED→구현 GREEN을 확인했다. 정상 운반, 목적지 누락/동일/ID불일치, 경로 위조, 포화·0용량·잘못된 타입, 국소/원격, 무변화 비용, 위험 경고와 원본 비변경을 포함한다. 이 값은 전체 결투/사건/Human PASS가 아니다.
+
+2026-09-12 외부 재조회: [Godot Dictionary](https://docs.godotengine.org/en/stable/classes/class_dictionary.html). ADOPT: 참조 공유를 피하는 독립 평가 복사본. ADAPT: 장면 등록 데이터에서 조건을 계산. REJECT: UI가 안전 플래그를 직접 확정하거나 평가 단계에서 자원을 소비. 추가 유료 도구/플러그인 없음. 구현 가능성은 순수 평가 API에 한해 VERIFIED, 장면·효과·시전 통합은 PARTIAL.
+
+전체 범위 검토 5회(매회 승인 의미/consumer/복구/비용/외부 근거/증거 상한 대조): ① 기존 별형/구 결투와 분리 확인; ② 평탄화된 경로/용량 위조를 MUST_FIX로 분류해 등록 객체 조회 적용; ③ 누락·오타입 안전 상태를 MUST_FIX로 분류해 무소비 거절/반례 추가; ④ 무변화 비용·관객/재확산 경고·재평가/원본 비변경 회귀 확인; ⑤ 실제 검색에서 UI consumer 부재와 본책 계획 경로 drift를 확인해 상태/경로 교정. Base pin9.4.3·19 routes CURRENT 유지. 원격 main과 현재 작업 branch는 별개이며 병합/CI/새 화면 검증을 주장하지 않는다.
+
+참조 영향: 이 절과 Active Context는 현재 상태로 갱신, 본책 구현 경로를 `src/core/shared_spell/`로 교정. 기존150 PASS는 당시 기록으로 유지한다. 기존 PDF는 9/11 발행 시점의 검토본으로, 이번 구현 증거/경로 교정이 포함된 최신본이 아니다. 다음은 실제 효과와 명시 시전 거래·사건 시간·새 화면 연결이다.
+
 ### 2026-09-12 구현: 공통 구성과 대상 평가 경계
 
 `src/core/shared_spell/spell_semantics.gd`에 `compose(kinds, learned)`와 `assess(kinds, learned, target)`를 구현했다. 단독4+조합6의 이름/안정 action ID/시험 비용을 공유한다. `compose`는 순서 독립, 중복/3장/미학습/알 수 없는 글자를 거절한다. `assess`는 INVALID/VALID_NO_CHANGE/VALID_CHANGE와 경고만 반환하며 대상 Dictionary/마력/시간/저장을 변경하지 않는다. 완전 상태 판정용이고 미발견 정보를 가린 사용자용 preview가 아니다.

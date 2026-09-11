@@ -1,5 +1,13 @@
 # GRIMOIRE Active Context
 
+## 2026-09-12 편집기 확인 후 장면 대상 평가 확장
+
+사용자 `좋아 계속 진행해`에 따라 다음 승인 단위인 장면 대상 평가를 구현했다. `spell_semantics.assess_scene`은 등록 객체의 목적지·경로·용량·국소 관계·위험을 확인한다. 규격/회귀/한계는 공통 규칙11절이 소유한다. Godot252 assertions/0 failures, Python4 tests PASS. 실제 효과/명시 시전/시간/저장/새 카드 UI는 아직 미연결이며 전체 완료가 아니다.
+
+직전 편집기 확인에서는 기존 Product Root의 스크롤, 사건 설명 열기/복귀, 후보 없음/다시 그리기 안내를 실제 클릭 확인했다. 관찰 패널 겹침과 하단 핵심 버튼 배치를 확인했고, 새 카드 조작은 존재하지 않는다. 캡처는 `artifacts/local-validation/grimoire-editor-verified-20260912.png`(로컬)다. 새 API의 게임 화면 검증과 기존 UI 입력 확인을 혼동하지 않는다.
+
+현재 main `d384c454` / 작업 시작 branch `6c602bdf`, 열린 Draft253/249/187/166 read-only 재확인. Base remote `d830c0f6`와 pin9.4.3 계약 검사 CURRENT. 사용자 fixture 및 Godot 자동 import/uid 파일은 보존했다. 다음은 효과 해소·명시 시전 거래를 구현한 뒤 실제 장면 데이터/카드 화면에 연결하는 작업이다. PDF는9/11 검토 발행본이며 최신 구현 증거는 이 문서/공통 규칙을 따른다.
+
 ## 2026-09-12 공통 주문 구성·대상 평가 구현
 
 `src/core/shared_spell/spell_semantics.gd`의 compose/assess 구현. 10주문 공유 의미, 순서 독립, 미학습/중복/대상 부적합 무소비 거절, 무변화 비용 quote, 위험 경고를 처리한다. 실제 효과·시간·마력 차감·발견 정보 필터·저장은 아직 연결하지 않았다. 신규112+구 결투 회귀38=150 Godot headless assertions PASS, Python 진단4 methods PASS. 실행 명령/데이터 키/책임 경계는 공통 규칙11절이 소유한다.

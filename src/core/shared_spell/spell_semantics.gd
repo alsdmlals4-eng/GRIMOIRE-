@@ -88,6 +88,69 @@ func assess(kinds: Array, learned: Array, target: Dictionary) -> Dictionary:
         result.warnings.append("REDISPERSION_RISK")
     return result
 
+func assess_scene(kinds: Array, learned: Array, objects: Dictionary,
+        target_id: String, destination_id: String = "") -> Dictionary:
+    # Scene-owned registry, not UI-supplied flattened conditions. This is still
+    # a pure complete-state quote, never a commit or discovery-filtered preview.
+    var spell := compose(kinds, learned)
+    if spell.status != "OK":
+        return spell
+    if not _registered(objects, target_id):
+        return _invalid("UNKNOWN_TARGET")
+    var target: Dictionary = objects[target_id].duplicate(true)
+    var action: String = spell.action
+    var needs_destination := action in ["PUSH", "REDIRECT", "TRANSPORT", "GATHER_LOCAL"]
+    if not needs_destination:
+        if destination_id != "":
+            return _invalid("UNEXPECTED_DESTINATION")
+        return assess(kinds, learned, target)
+    if not _registered(objects, destination_id):
+        return _invalid("UNKNOWN_DESTINATION")
+    if target_id == destination_id:
+        return _invalid("SAME_DESTINATION")
+    var destination: Dictionary = objects[destination_id]
+    # Missing safety data is unknown, not an implicitly safe destination.
+    if not destination.get("blocked") is bool or not destination.get("audience") is bool:
+        return _invalid("INVALID_DESTINATION_STATE")
+    if destination.blocked:
+        return _invalid("DESTINATION_BLOCKED")
+    target["destination"] = destination_id
+    target["toward_audience"] = destination.audience
+    target["destination_blocked"] = false
+    if action == "GATHER_LOCAL":
+        if not target.get("zone") is String or target.zone.is_empty() or not destination.get("zone") is String:
+            return _invalid("MISSING_LOCALITY")
+        target["remote"] = target.zone != destination.zone
+    else:
+        var routes = target.get("routes")
+        if not routes is Dictionary or not _flag(routes, destination_id):
+            return _invalid("ROUTE_UNAVAILABLE")
+        target["path_open"] = true
+        target["exit_open"] = true
+    if action in ["TRANSPORT", "GATHER_LOCAL"]:
+        var capacity = destination.get("capture_capacity")
+        var amount = destination.get("capture_load")
+        if not capacity is int or not amount is int:
+            return _invalid("INVALID_CAPACITY")
+        if capacity < 0 or amount < 0 or amount > capacity:
+            return _invalid("INVALID_CAPACITY")
+        if not destination.get("receiver_open") is bool:
+            return _invalid("INVALID_RECEIVER_STATE")
+        target["capture_ready"] = _flag(destination, "capture_ready")
+        target["full"] = amount >= capacity
+        target["local_receiver_empty"] = amount == 0 and capacity > 0
+        target["receiver_open"] = destination.receiver_open
+    var result := assess(kinds, learned, target)
+    if result.status != "INVALID":
+        result["destination_id"] = destination_id
+    return result
+
+func _registered(objects: Dictionary, object_id: String) -> bool:
+    if object_id.is_empty() or not objects.get(object_id) is Dictionary:
+        return false
+    var record: Dictionary = objects[object_id]
+    return record.get("id") is String and record.id == object_id
+
 func _flag(target: Dictionary, key: String) -> bool:
     # Missing/ill-typed flags fail closed, not truthy strings such as "false".
     return target.get(key, false) is bool and target.get(key, false) == true

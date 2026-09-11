@@ -12,6 +12,12 @@ func _init() -> void:
         quit(1)
         return
     var rules = script.new()
+    case.assert_true(rules.has_method("assess_scene"), "scene assessment resolves real destination and capacity")
+    if not rules.has_method("assess_scene"):
+        print(JSON.stringify({"failures": case.failure_count(), "messages": case.failures()}))
+        quit(1)
+        return
+    _test_scene_assessment(case, rules)
     var rows := [
         [["EMBER"], "HEAT_POINT", {"heatable": true}],
         [["WIND"], "PUSH", {"light": true, "path_open": true, "destination": "B"}],
@@ -81,3 +87,82 @@ func _init() -> void:
     preload("res://tests/unit/test_card_duel_rules.gd").new().run(case)
     print(JSON.stringify({"assertions": case.assertion_count(), "failures": case.failure_count(), "messages": case.failures()}))
     quit(0 if case.failure_count() == 0 else 1)
+
+func _test_scene_assessment(case, rules) -> void:
+    var learned := ["EMBER", "WIND", "WARD", "GATHER"]
+    var objects := {
+        "cloud": {"id": "cloud", "airborne_light": true, "light": true,
+            "gatherable": true, "zone": "bench", "routes": {"filter": true}},
+        "filter": {"id": "filter", "zone": "bench", "capture_ready": true,
+            "capture_load": 0, "capture_capacity": 3, "blocked": false,
+            "receiver_open": false, "audience": false},
+        "vessel": {"id": "vessel", "heatable": true},
+    }
+    var before := objects.duplicate(true)
+    var good: Dictionary = rules.assess_scene(["WIND", "GATHER"], learned, objects, "cloud", "filter")
+    case.assert_equal("VALID_CHANGE", good.status, "registered empty filter accepts transport")
+    case.assert_equal("filter", good.get("destination_id"), "result binds selected destination")
+    case.assert_equal(before, objects, "assessment cannot change source registry")
+    case.assert_equal("VALID_CHANGE", rules.assess_scene(["EMBER"], learned, objects, "vessel").status, "single target spell needs no destination")
+    case.assert_equal("VALID_CHANGE", rules.assess_scene(["GATHER"], learned, objects, "cloud", "filter").status, "local gathering uses actual empty receiver")
+    for key in ["capture_load", "capture_capacity"]:
+        for bad in [-1, "3", true, 0.5, null]:
+            var invalid := objects.duplicate(true)
+            invalid.filter[key] = bad
+            _assert_scene_invalid(case, rules.assess_scene(["GATHER", "WIND"], learned, invalid, "cloud", "filter"), "ill-typed or negative capacity")
+    var full := objects.duplicate(true)
+    full.filter.capture_load = 3
+    full.cloud["full"] = false
+    _assert_scene_invalid(case, rules.assess_scene(["WIND", "GATHER"], learned, full, "cloud", "filter"), "source cannot override full receiver")
+    var blocked := objects.duplicate(true)
+    blocked.filter.blocked = true
+    _assert_scene_invalid(case, rules.assess_scene(["WIND"], learned, blocked, "cloud", "filter"), "blocked destination prevents movement")
+    var route := objects.duplicate(true)
+    route.cloud.routes.filter = false
+    route.cloud["path_open"] = true
+    _assert_scene_invalid(case, rules.assess_scene(["WIND"], learned, route, "cloud", "filter"), "stale flattened route cannot bypass closed route")
+    route.cloud.routes.filter = "true"
+    _assert_scene_invalid(case, rules.assess_scene(["WIND"], learned, route, "cloud", "filter"), "route booleans are strict")
+    var remote := objects.duplicate(true)
+    remote.filter.zone = "stage"
+    _assert_scene_invalid(case, rules.assess_scene(["GATHER"], learned, remote, "cloud", "filter"), "local gather cannot cross zones")
+    for destination in ["", "missing", "cloud"]:
+        _assert_scene_invalid(case, rules.assess_scene(["WIND"], learned, objects, "cloud", destination), "explicit real distinct destination required")
+    var wrong_id := objects.duplicate(true)
+    wrong_id.filter.id = "elsewhere"
+    _assert_scene_invalid(case, rules.assess_scene(["WIND"], learned, wrong_id, "cloud", "filter"), "registry key and stable id must agree")
+    var risky := objects.duplicate(true)
+    risky.filter.audience = true
+    var warned: Dictionary = rules.assess_scene(["WIND"], learned, risky, "cloud", "filter")
+    case.assert_equal("VALID_CHANGE", warned.status, "dangerous destination warns rather than auto cancels")
+    case.assert_true("AUDIENCE_RISK" in warned.warnings, "audience comes from destination")
+    var empty := objects.duplicate(true)
+    empty.cloud["empty"] = true
+    case.assert_equal("VALID_NO_CHANGE", rules.assess_scene(["WIND", "GATHER"], learned, empty, "cloud", "filter").status, "empty source remains no-change quote")
+    for key in ["blocked", "audience", "receiver_open", "capture_ready"]:
+        var missing := objects.duplicate(true)
+        missing.filter.erase(key)
+        _assert_scene_invalid(case, rules.assess_scene(["WIND", "GATHER"], learned, missing, "cloud", "filter"), "missing destination " + key)
+    var malformed := objects.duplicate(true)
+    malformed.filter = 3
+    _assert_scene_invalid(case, rules.assess_scene(["WIND"], learned, malformed, "cloud", "filter"), "non-object destination")
+    _assert_scene_invalid(case, rules.assess_scene(["EMBER"], learned, objects, "missing"), "unregistered source")
+    _assert_scene_invalid(case, rules.assess_scene(["EMBER"], [], objects, "vessel"), "scene path preserves learned gate")
+    _assert_scene_invalid(case, rules.assess_scene(["EMBER"], learned, objects, "vessel", "filter"), "irrelevant destination rejected")
+    var zero := objects.duplicate(true)
+    zero.filter.capture_capacity = 0
+    _assert_scene_invalid(case, rules.assess_scene(["WIND", "GATHER"], learned, zero, "cloud", "filter"), "zero-capacity receiver is full")
+    var occupied := objects.duplicate(true)
+    occupied.filter.capture_load = 1
+    _assert_scene_invalid(case, rules.assess_scene(["GATHER"], learned, occupied, "cloud", "filter"), "local gathering needs empty receiver")
+    case.assert_equal("VALID_CHANGE", rules.assess_scene(["WIND", "GATHER"], learned, occupied, "cloud", "filter").status, "transport permits spare nonempty capacity")
+    occupied.filter.receiver_open = true
+    case.assert_true("REDISPERSION_RISK" in rules.assess_scene(["WIND", "GATHER"], learned, occupied, "cloud", "filter").warnings, "destination outlet warning")
+    objects.filter.capture_load = 3
+    _assert_scene_invalid(case, rules.assess_scene(["WIND", "GATHER"], learned, objects, "cloud", "filter"), "reassessment uses changed registry, not cached quote")
+    case.assert_equal("VALID_CHANGE", good.status, "old quote remains detached, caller must reassess at commit")
+
+func _assert_scene_invalid(case, result: Dictionary, label: String) -> void:
+    case.assert_equal("INVALID", result.status, label)
+    case.assert_equal(0, result.cost, label + " no mana")
+    case.assert_equal(0, result.time, label + " no time")

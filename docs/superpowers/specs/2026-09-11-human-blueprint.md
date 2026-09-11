@@ -335,7 +335,7 @@ GDC Slay the Spire 발표 개요는 지표와 커뮤니티 피드백의 병행�
 | 경로·상태 | 역할·변경 계획 |
 |---|---|
 | src/core/card_duel/ (기존) | 구 수치 도메인. 새 의미 회귀를 먼저 만들고 버전 분리 |
-| src/core/spell_semantics/ (신규 계획) | 글자 조합, 대상 조건, 반응 ID. UI 의존 없음 |
+| src/core/shared_spell/ (부분 구현) | 글자 조합·대상/목적지 평가 구현. 효과 해소·시전/UI 연결은 미구현. 공통 규칙11절의 최신 증거 참조 |
 | src/core/story_events/ (신규 계획) | 행동 시간, 시계, 목표/대가, 도움·중단 |
 | src/core/story_progress/ (신규 계획) | 노드 이동과 사실/보상 장부 |
 | src/ui/academy/ (신규 계획) | MainMenu, Dialogue, EventView, DuelView, Codex |
