@@ -407,6 +407,16 @@ SWOT 행동: S 같은 마법의 전이→수업/사건에 같은 작용 사용; 
 
 ## 17. 제한 산술 진단과 다음 구현 단위
 
+### 2026-09-12 실행 증거
+
+`tools/spell_balance_diagnostic.py`와 `tests/test_spell_balance_diagnostic.py`를 구현했다. Python313의 `python.exe -B -m unittest discover -s tests -p test_spell_balance_diagnostic.py -v` 결과 4 methods PASS: 아래9개 산술 사례와 초기 손패 검사를 재현한다. 최초 모듈 누락/후속 opening_counts 누락으로 각각 RED를 확인한 뒤 구현해 GREEN으로 전환했다. 런타임 게임 규칙이 아니라 비음수 입력 전용 독립 진단이다.
+
+초기 물리 손패70개 중 직접 공격 글자 없음1, GATHER와 EMBER 동시 보유41, EMBER 두 장 보유15. 41/15는 겹칠 수 있는 집합이며 상호배타 확률이나 미래 시전 보장이 아니다. [Python 공식 combinations](https://docs.python.org/3/library/itertools.html#itertools.combinations)를 재조회해 같은 종류의 카드도 위치가 다르면 다른 물리 카드로 세는 방식과 대조했다. 테스트 기대값은 기존 계획의 독립 산술값을 사용했다.
+
+5회 검토: (1) 수치 owner와 구 Godot 효과를 분리, (2) 물리 카드 인덱스와 종류별 손패 분포 혼동 방지, (3) 미래 드로우 정보 비모델링, (4) 소비·생존·조기 종료·저장 비모델링, (5) 4 methods/9사례/70손패와 제품·Human 검증을 구분. 수치 변경/상대 패턴 추가/게임 코드 변경 없음. Godot suite/runtime/Human NOT_RUN, BALANCE_REWORK_REQUIRED 유지. -B로 새 Python 캐시를 생성하지 않았다. 기본 shell 출력 누락은 명시 Windows PowerShell과 UTF-8 출력으로 우회했으며 shell 설정 파일은 수정하지 않았다.
+
+이 아래9/10 기록은 최초 관찰 이력이다. 독립 진단 계획은 완료됐고 다음 제품 단위는 본책34절의 공통 의미·10주문이다. 전체 매치 검증은 적법 매 교환 손패, 드로우/정돈, 생존/조기 종료, 만료, 동시 승패, 재개 동일성을 포함해야 한다.
+
 2026-09-10 도구 내 JavaScript로 아래 9사례를 열거했다. `max(0, attack - guard)` 기반 산술 진단이며 기존 Godot 판정기를 실행한 것이 아니다. 손패 적법성, 드로우, 양측 생존, 초과 피해, 저장과 전체 승률은 제외한다. 16절 선택 가치 검사의 일부만 실행됐으며 전체 상태는 PARTIAL이다.
 
 | 조건 | 비교 A | 비교 B | 산술 결과 |
