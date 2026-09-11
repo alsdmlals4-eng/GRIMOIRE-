@@ -1,5 +1,11 @@
 # GRIMOIRE Active Context
 
+## 2026-09-12 공통 주문 구성·대상 평가 구현
+
+`src/core/shared_spell/spell_semantics.gd`의 compose/assess 구현. 10주문 공유 의미, 순서 독립, 미학습/중복/대상 부적합 무소비 거절, 무변화 비용 quote, 위험 경고를 처리한다. 실제 효과·시간·마력 차감·발견 정보 필터·저장은 아직 연결하지 않았다. 신규112+구 결투 회귀38=150 Godot headless assertions PASS, Python 진단4 methods PASS. 실행 명령/데이터 키/책임 경계는 공통 규칙11절이 소유한다.
+
+다음 구현: 장면 대상 데이터가 실제 목적지/경로/수용량을 공급하는 adapter와 효과 해소·명시 시전 거래. 이후 결투 지속효과/사건 시간 처리·스토리·UI 연결. 아래 첫 제품 단위 중 구성/대상 평가만 완료이며 전체10주문 시전 완료가 아니다. 다른 프로젝트 Hera 편집기는 read-only 확인 후 그대로 두었고 Godot 화면/입력 검증은 NOT_RUN이다. 새 임시 파일/이미지 생성이나 삭제 없음.
+
 ## 2026-09-12 구현 재개: 남은 업무와 첫 완료 단위
 
 사용자 `프로젝트에서 남은 구현 업무 확인하고 진행해`에 따라 현재 main/열린 PR/새 본책/실제 duel_rules를 fresh-read했다. main은 구형 Star POC, 현재 branch의 duel_rules도 새 의미/지속 효과와 다르다. Draft253/249/187/166은 read-only 유지, 임의 흡수 없음. 이미지 승인은 그대로 보존한다.

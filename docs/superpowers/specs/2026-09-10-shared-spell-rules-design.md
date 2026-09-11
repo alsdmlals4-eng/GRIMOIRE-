@@ -145,6 +145,18 @@ SWOT 행동: S 같은 마법의 전이→수업/사건에 같은 작용 사용; 
 
 ## 11. 대상 반응 계약 v0.2
 
+### 2026-09-12 구현: 공통 구성과 대상 평가 경계
+
+`src/core/shared_spell/spell_semantics.gd`에 `compose(kinds, learned)`와 `assess(kinds, learned, target)`를 구현했다. 단독4+조합6의 이름/안정 action ID/시험 비용을 공유한다. `compose`는 순서 독립, 중복/3장/미학습/알 수 없는 글자를 거절한다. `assess`는 INVALID/VALID_NO_CHANGE/VALID_CHANGE와 경고만 반환하며 대상 Dictionary/마력/시간/저장을 변경하지 않는다. 완전 상태 판정용이고 미발견 정보를 가린 사용자용 preview가 아니다.
+
+내부 대상 계약: `id`는 장면의 안정 ID, 성질은 표의 영어 키에 해당하는 boolean. 누락/boolean 아닌 필수 성질은 차단한다. `temperature`는 cold/warm/hot/overheated, `destination`은 이동/전환/운반 목적지 ID. `path_open`, `exit_open`, `capture_ready`, `local_receiver_empty`, `boundary_intact`는 실제 장면이 검증하여 공급해야 한다. 이번 모듈은 목적지 객체를 검색하거나 경로·용량을 직접 계산하지 않는다. `closed`, `empty`, `full`, `destination_blocked`, `remote`, `wide_area`, `heavy`는 상태/제약. 위험 플래그는 heat_sensitive/dry/volatile/toward_audience/receiver_open. 이름/문자열 유사도 판정은 없다.
+
+반환값의 비용/시간은 quote이며 INVALID는0/0, 무변화 허용 시전도1~2/1을 제시한다. 명시 commit·원자적 소비·실제 효과·지속시간·발견 필터링은 후속 해소기/시전 서비스 책임이다. `VALID_CHANGE`는 반응 가능 분류이지 이미 상태를 바꿨다는 뜻이 아니다. 장막 갱신은 시간 처리가 필요한 후속 단계이며 단순 완료 상태와 혼동하지 않는다.
+
+검증: Godot4.7.1 `--headless --path . --script tests/run_shared_spell_tests.gd` 150 assertions/0 failures(새 평가112 + 구 결투 규칙 회귀38), Python 진단4 methods PASS. 최초 모듈 부재 RED 확인 후 구현했다. GDScript 타입 추론 오류와 예약어 trait 사용을 교정했다. [Godot Dictionary 공식](https://docs.godotengine.org/en/stable/classes/class_dictionary.html)의 참조 공유 특성을 대조해 반환값/대상 비변경 검사를 포함했다. 다른 프로젝트 편집기가 감지되어 조작하지 않았으며 GRIMOIRE의 로컬 엔진으로만 headless 검사를 실행했다.
+
+검토5축: (1) 새 의미/구 피해 숫자 분리, (2) 선택 순서·미학습/무효 차단, (3) 무변화와 유해 변화 구별, (4) 순수 평가/소비·저장·가림 정보 경계, (5) Godot 자동 검사와 실제 화면/Human 분리. 게임 main 연결·UI 입력·전체 사건·전체 결투·기기·Human NOT_RUN. 기존 코드/저장/승인 이미지/사용자 fixture를 변경하지 않았다.
+
 이번 후속 사용자 `좋아 계속 진행해`에 따라 구체화한 권장 시험 명세다. 11~14절은 앞 절의 추상 예시를 구체화하며, 기존 저장·코드·PDF를 변경하지 않는다.
 
 세 상태를 구분한다: INVALID는 조합/거리/대상 조건 불일치로 무소비 차단, VALID_NO_CHANGE는 적합하나 이미 완료된 상태로 변화 없음과 비용을 경고, VALID_CHANGE는 유익/유해 변화 모두 포함한다. 기본 UI는 무변화 시전을 권하지 않지만 강제 자동 취소하지 않는다. 모든 허용 시전은 비용과 시간을 쓴다.
