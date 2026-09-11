@@ -2,10 +2,18 @@
 
 import unittest
 
-from tools.spell_balance_diagnostic import damage, focus_pair
+from tools.spell_balance_diagnostic import damage, focus_pair, opening_counts
 
 
 class ArithmeticTests(unittest.TestCase):
+    def test_opening_counts(self):
+        self.assertEqual(opening_counts(), {
+            "total": 70,
+            "no_direct_glyph": 1,
+            "gather_and_ember": 41,
+            "two_embers": 15,
+        })
+
     def test_heat_boundaries(self):
         self.assertEqual(
             [(damage(h, 4), damage(h, 5)) for h in (3, 4, 5, 6)],
