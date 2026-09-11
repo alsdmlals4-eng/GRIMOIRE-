@@ -1,5 +1,11 @@
 # 첫 학생 상반신 기본 포즈 — 후보 및 기술 검수
 
+## 2026-09-12 두 인물 승인 및 미채택 파일 격리
+
+사용자 `승인`으로 `peer-personality-01.png`와 `tutor-personality-01.png`의 외형·그림체·동작을 승인했다. 동일 경로와 `supporting-cast-personality-input.json`의 SHA-256으로 visual anchor를 등록한다. 여백 보정/알파/표정군/runtime 검증은 승인 완료에 포함하지 않는다.
+
+이 문서 아래의 미채택 시안 경로는 역사 locator다. 삭제 가능한 원본은 `.cleanup-review/2026-09-12/` 아래 원래 상대 경로로 격리했으며 목록은 `docs/validation/CLEANUP_REVIEW_20260912.json`이 소유한다. 과거 경로가 현재 존재한다고 가정하지 않는다. 사용자 직접 삭제 후에도 프롬프트/판정/해시/복구 커밋은 보존한다. 승인본과 스타일 참고는 이동하지 않았다.
+
 ## 최신 교정: 첫 번째 후보의 그림체 유지, 동작·소품으로 개성
 
 사용자는 직전 세 생성 출력 중 2번 `peer-anime-02.png`와 3번 `tutor-anime-01.png`가 맞지 않는다고 하고, 1번 `exec-c0352214-3640-4205-bdb6-a8d21ca0326e.png`의 그림체를 유지하도록 지시했다. 사용자 선택이 앞선 AI의 유사성 판단보다 우선한다. 1번을 `output/imagegen/character-style-comparison/peer-anime-01-style-anchor.png`로 회수하고 STYLE_REFERENCE_USER_SELECTED로 기록한다. 이 선택은 그 인물 전체 외형·runtime 자동 승인과 다르다. 기존 주인공 외형 승인은 유지한다.

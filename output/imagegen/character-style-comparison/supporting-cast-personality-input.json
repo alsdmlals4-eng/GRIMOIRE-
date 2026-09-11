@@ -1,6 +1,8 @@
 {
   "project": "GRIMOIRE",
-  "status": "GENERATED_CANDIDATES_USER_REVIEW_PENDING",
+  "status": "USER_APPROVED_APPEARANCE_POSE_AND_STYLE",
+  "approval_source": "2026-09-12 user: 승인. 삭제해도 되는건 따로 폴더에 정리",
+  "approval_limit": "Appearance/pose approval only; alpha margins runtime and release remain unverified",
   "route": "BUILT_IN_IMAGE_GEN",
   "model_version": "NOT_PROVIDED",
   "user_direction": "Keep first displayed peer candidate style; revise second and third using composition/action/props.",

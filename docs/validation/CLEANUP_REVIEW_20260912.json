@@ -1,0 +1,792 @@
+{
+  "date": "2026-09-12",
+  "status": "STAGED_FOR_USER_DELETION_NOT_DELETED",
+  "verification": "111 source/destination SHA-256 matches; original paths absent; zero physical deletes; holding directory ignored by Git; no runtime source changed",
+  "root": ".cleanup-review/2026-09-12",
+  "files": [
+    {
+      "original": "output/imagegen/character-style-comparison/student-cel-vs-pixel-01.png",
+      "destination": ".cleanup-review/2026-09-12/output/imagegen/character-style-comparison/student-cel-vs-pixel-01.png",
+      "bytes": 1560483,
+      "sha256": "F2B0D13B97FD14900B8692CF342E734A4A922B4920D73A09BDA9D5A6E7791203",
+      "reason": "USER_REJECTED_OR_SUPERSEDED_IMAGE"
+    },
+    {
+      "original": "output/imagegen/character-style-comparison/student-redesign-01.png",
+      "destination": ".cleanup-review/2026-09-12/output/imagegen/character-style-comparison/student-redesign-01.png",
+      "bytes": 1667908,
+      "sha256": "56CD6241A9F7A71D9D036BD8E2CDAF67B2A7AA20D02BF741A655ECE7CFA032B1",
+      "reason": "USER_REJECTED_OR_SUPERSEDED_IMAGE"
+    },
+    {
+      "original": "output/imagegen/character-style-comparison/student-storybook-01.png",
+      "destination": ".cleanup-review/2026-09-12/output/imagegen/character-style-comparison/student-storybook-01.png",
+      "bytes": 2460165,
+      "sha256": "CE65AA0DD4E710BE91951A8D14828E3FFEDE4F63ABDEEC5D09536F15510F5583",
+      "reason": "USER_REJECTED_OR_SUPERSEDED_IMAGE"
+    },
+    {
+      "original": "output/imagegen/character-style-comparison/student-storybook-review-01.png",
+      "destination": ".cleanup-review/2026-09-12/output/imagegen/character-style-comparison/student-storybook-review-01.png",
+      "bytes": 2197352,
+      "sha256": "BB39098867CF6186413C13E0CF0438F571B03F8F13E23CC37E165C81155DB961",
+      "reason": "USER_REJECTED_OR_SUPERSEDED_IMAGE"
+    },
+    {
+      "original": "output/imagegen/character-style-comparison/peer-anime-02.png",
+      "destination": ".cleanup-review/2026-09-12/output/imagegen/character-style-comparison/peer-anime-02.png",
+      "bytes": 1931250,
+      "sha256": "DA8293A374A4785388F81806C428E9DD0D0F1A20C192167902B1DC3E1CADA440",
+      "reason": "USER_REJECTED_OR_SUPERSEDED_IMAGE"
+    },
+    {
+      "original": "output/imagegen/character-style-comparison/tutor-anime-01.png",
+      "destination": ".cleanup-review/2026-09-12/output/imagegen/character-style-comparison/tutor-anime-01.png",
+      "bytes": 2156882,
+      "sha256": "6E6D913344CF0482E3AB20794D9100DBAC1FB4BAC57185A1385AA00A798CD9C5",
+      "reason": "USER_REJECTED_OR_SUPERSEDED_IMAGE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-01.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-01.png",
+      "bytes": 141374,
+      "sha256": "2788147B81F187857AA4279E0E18E6DBF88BD1F649B3E229A3E8844F93D02EB3",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-02.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-02.png",
+      "bytes": 281209,
+      "sha256": "225D124DF2DFDBC667F3E04A00C5F15E7EEBF59D48ACA5B679AC10818A6446F2",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-03.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-03.png",
+      "bytes": 307420,
+      "sha256": "A2BA7CE9005C379011027E59DE578CF4C56829332728E4044747516CD933C929",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-04.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-04.png",
+      "bytes": 285134,
+      "sha256": "D72010B54FB1FE95B696D538A1A30446889C22E5F68D52E80CE9831591136AF4",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-05.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-05.png",
+      "bytes": 251813,
+      "sha256": "3F5CBF063A5CE44D22976F0D459C7B8FE674BD8C65D73B8E2C0CBCC33FB94012",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-06.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-06.png",
+      "bytes": 273199,
+      "sha256": "6254B4D0C242D3E5D9FB8F9F15E93FBC983262F64F37A75846C8D9AFD0C95AD9",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-07.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-07.png",
+      "bytes": 330279,
+      "sha256": "49BC988EA47343C238A3A5F3ADD69F2C567BFD412DA419FE1212A18BAEDECDC1",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-08.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-08.png",
+      "bytes": 258491,
+      "sha256": "CC4D12AB99A2D2F7CAFAE22096AD19549453B64C31A9BB4E23F780CED3F75734",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-09.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-09.png",
+      "bytes": 133717,
+      "sha256": "C68E36767B69BE54D79D4C0B856810B683B19C540BF2CB46206DB6A1A043DC16",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-10.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-10.png",
+      "bytes": 380569,
+      "sha256": "27D9E80A2F2BA6A7A3117BDE8E85EA23FA7C448302279FA2E87E0AEBD3BD0246",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/base_learning_pdf/rendered/page-11.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/base_learning_pdf/rendered/page-11.png",
+      "bytes": 212652,
+      "sha256": "3F1F97D11993C96C0F10472E76212AD16B5DB2B408AA6F2004B53FEC69BE8BFD",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-01.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-01.png",
+      "bytes": 1101332,
+      "sha256": "30A700DA7AD3D58C49623169A287D68FEC4E8AA5277C47493B64445DF8C7D56D",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-02.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-02.png",
+      "bytes": 105080,
+      "sha256": "BC596952EE41879F2B11A6C39C6AF9DE64FCEF4F62072B0ABB063FF1F4780184",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-03.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-03.png",
+      "bytes": 713346,
+      "sha256": "954944F15C4C3FF6FDB877598F7CF40B5F3E201EDA662FF81205B19D99974BAF",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-04.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-04.png",
+      "bytes": 85767,
+      "sha256": "4AFCF42B67D538AB429C2294EE1AE04D056ED93026B8553951DF1039BEB4FB54",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-05.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-05.png",
+      "bytes": 97399,
+      "sha256": "0D1B7EB66E8BB3782BCA5FDF6FA132CB0C99DB5973EF4965DFF0FE8C66B85896",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-06.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-06.png",
+      "bytes": 102692,
+      "sha256": "D87AB63CEA1DD60EC4C397967B596A83ECB3E94F1A3F9058EEAF6A2DEC427C7B",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-07.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-07.png",
+      "bytes": 74714,
+      "sha256": "2CF771DAE944A0034A649341688459BB27D7BDBBEC923BEFC4A2AE50F9EA0B4F",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-08.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-08.png",
+      "bytes": 105958,
+      "sha256": "EDEB05FDA575640B152C1C4C8AC3DCBEECCD52365A81084A8F44A2BDCDB56101",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-09.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-09.png",
+      "bytes": 93146,
+      "sha256": "FDCDCA3ED348D1E9D61039F26B7F924E04935E63A24E1ABF0AA885A1759A2A92",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-10.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-10.png",
+      "bytes": 74384,
+      "sha256": "760B9803DC1AA0FBC37C3031041F25A1A4CE88A9FC9805BE49B1445CDC1EFAEA",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-11.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-11.png",
+      "bytes": 81780,
+      "sha256": "0CB2801AE9CDB2E7FEBC88CA77DEEA72F60FAFBA05EF048172221DDAF1C60242",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-12.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-12.png",
+      "bytes": 75139,
+      "sha256": "1F188DE0186C9A558F3B6437234AF2E8C886A3C3759BCF4AC08C5A3491254778",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-13.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-13.png",
+      "bytes": 769453,
+      "sha256": "9764B01CFC8D54B1480930C6CC6664AA40AB64FFEB089D9EEDF6824FD2FF4509",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-14.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-14.png",
+      "bytes": 71845,
+      "sha256": "79DA697E8D38701E6752B33A126F7595C9BFDA6DE51357FD06D0C41ADF724B92",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-15.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-15.png",
+      "bytes": 87825,
+      "sha256": "AEB33AF427DCE6E7C3961444078629DCC3A71BB9230A35A351DF78B9E17D8162",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-16.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-16.png",
+      "bytes": 83889,
+      "sha256": "F344FA0A78987A28C30CBC9EEA24572838A8C2E0360D8077FF2A1BB59CD8F17C",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-17.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-17.png",
+      "bytes": 78452,
+      "sha256": "2B0E83B680A19E9548C2AB3616E56616FEC3088E6D4C3C7967745202A837D140",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-18.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-18.png",
+      "bytes": 92405,
+      "sha256": "B30E21337FD9E7F2C671C37ACC738AD18E409C2747B7941E1196A4831236A5F1",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-19.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-19.png",
+      "bytes": 82431,
+      "sha256": "E58F8533B395FBC835B505F5CBF3B93B2EC5460E28CA49E9F6619E058A063871",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-20.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-20.png",
+      "bytes": 85880,
+      "sha256": "3D8AF8DDFE121FD71197B9AF2FE621C70F11D08E2AE22E680077311BA4907275",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-21.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-21.png",
+      "bytes": 114809,
+      "sha256": "667E619D75149D38C28D07623AED23F52B3B64C72DC2F3FE6A1F17BFFA12BF29",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-22.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-22.png",
+      "bytes": 93971,
+      "sha256": "CE21D8151D493393159CF17894ADB52BAFDBB213FC099B3C07C9F42899675F46",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-23.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-23.png",
+      "bytes": 109936,
+      "sha256": "481B8CDB92224A71EED187C46976D0DE615CBEF99DEA50B3204BBB7248D80CA4",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-24.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-24.png",
+      "bytes": 77675,
+      "sha256": "777D0ABCBF6361FF386EE90013F0EC50AA914A13875AF76A1BCCCF04D0A25564",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-25.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-25.png",
+      "bytes": 75437,
+      "sha256": "DCD61610159303050539CFF2099CC52852E088B8806EDEE85593EE350CC9E485",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-26.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-26.png",
+      "bytes": 90043,
+      "sha256": "C84AF7C556662B5C77A8BEAEF37E4E1077B65EC80A5D7EC27E8F90C0F655AFB0",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-27.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-27.png",
+      "bytes": 73851,
+      "sha256": "41582119A302D0A24BE6DF60B3895A7C4CF1C96761F5E59B8270F3BF21A6A222",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_blueprint_render/page-28.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_blueprint_render/page-28.png",
+      "bytes": 99954,
+      "sha256": "E9DC6A9918A94A06FB6AD26E9F3E86A31F5E4D37B9D26D4ADF357E3BF2A70FA8",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/contact-sheet.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/contact-sheet.png",
+      "bytes": 698343,
+      "sha256": "C7FCD2DFA3DC7A9A4C353C50A2313FE28C761684A424877F8AB2C8550032A536",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-01.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-01.png",
+      "bytes": 801922,
+      "sha256": "8174B9267043795F9E303E8F2D77EED970FC9847218F332E845FC05DC729E2C4",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-02.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-02.png",
+      "bytes": 795701,
+      "sha256": "39222DB4024E64A9D10087EFB48E67EDE5854E03ABCEB4F83CD74E1775541875",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-03.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-03.png",
+      "bytes": 807815,
+      "sha256": "1915C85FBD96C226338F68A75A1CB82100EC2B4FDFBCEEB7B4CCE489BF501104",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-04.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-04.png",
+      "bytes": 884861,
+      "sha256": "248BA09D9EBCD2488DCB620CB51AF8DF89A20CA4B1E51CFD22D6B445C28BB7B4",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-05.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-05.png",
+      "bytes": 942305,
+      "sha256": "0FB39A2639F56EF4C67C4FE9BC8ECAFEFDAB54AF44E2AF82DDACD896984154A6",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-06.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-06.png",
+      "bytes": 90895,
+      "sha256": "4F20D04F09C282795A481C6DBDD4F06C7A925617C3AB648BFF60C920B51A266C",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-07.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-07.png",
+      "bytes": 548200,
+      "sha256": "E044D9C280C8131A190BE7FDA8693E7E1F62F8DBCB49DA4B492203A86A314425",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-08.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-08.png",
+      "bytes": 74042,
+      "sha256": "4A5AAF19EE247D404EF6DB8C4A3DF240EAEF8CDBF56A7E229578E7750218ABB9",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-09.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-09.png",
+      "bytes": 83668,
+      "sha256": "B8B364F93CA7CFAD1D5A5E50D3FAC1A115A12ADD3FF8C03C09B748BE73F4CCED",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-10.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-10.png",
+      "bytes": 88431,
+      "sha256": "5D5C34FC36FD118988085FB102D7B03346621FEAC544C74B0FE40931879E7CDD",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-11.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-11.png",
+      "bytes": 66261,
+      "sha256": "3A9963870D79F9C1325E0B74DCC0247F8ADB74FE18D56C385D6615180EE762D1",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-12.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-12.png",
+      "bytes": 90999,
+      "sha256": "0D6C5408A761FE218979605B4F400E5ED84DA0B4AD1774DE5F531162343DF848",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-13.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-13.png",
+      "bytes": 79965,
+      "sha256": "C17A57FA5425EF467DD79AF73FE05AECD624963A01CE67671FAED61A29A551CE",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-14.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-14.png",
+      "bytes": 64772,
+      "sha256": "728151C0D8604BDE975EA98560D587E4EA7244DB860E6A74C28279D74244F1E2",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-15.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-15.png",
+      "bytes": 73270,
+      "sha256": "A842D420C22489BE88B254C7825EC2A5B4E6A912B2270A17BDF9900B0855A3FA",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-16.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-16.png",
+      "bytes": 65504,
+      "sha256": "070C7B60E723AA4A3429DDC874005E97CBF616FEFB66464E11A3CA4099D9F0DE",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-17.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-17.png",
+      "bytes": 595108,
+      "sha256": "7204982CA6418F7D93E7E2FDB551D92F30B260120A0C9605B3739AB8B33A2B13",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-18.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-18.png",
+      "bytes": 62321,
+      "sha256": "E7C9F7F67E12972777605B67982D1330B6829D1D242138549F12221437946106",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-19.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-19.png",
+      "bytes": 75972,
+      "sha256": "8550383B478D8D1E1B9E3E31ECC7A81E28D4688AA0633075798FBABA4748C917",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-20.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-20.png",
+      "bytes": 74772,
+      "sha256": "BC8DE5C89FF9BC8254C948A03EA5CFAF5836A85B380CCD3129A0C3B5259999EC",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-21.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-21.png",
+      "bytes": 70119,
+      "sha256": "51A209C2CC961BB6E0D0558F418DC8B36BB49619F2CB5F197AF7182410EB63A0",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-22.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-22.png",
+      "bytes": 78983,
+      "sha256": "F996F72A261BEC7988785EF6641C2F1EDDA99B38848486A0BC00A19A5A4E92AC",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-23.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-23.png",
+      "bytes": 71565,
+      "sha256": "6D92EC1A50BA3DD5870E504973160F0B6340B880CFF606F380F5EBAAEB974F5E",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-24.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-24.png",
+      "bytes": 75538,
+      "sha256": "B94E395AB28F8412A660551B4EEC0946559371E32FD29F4572AA2C1038EB28D2",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-25.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-25.png",
+      "bytes": 101286,
+      "sha256": "40B81BAC9DB9E39C63472DD788080BF6F49930BB26AD163AA601A9DD40FFAD0A",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-26.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-26.png",
+      "bytes": 81019,
+      "sha256": "F73DD0107652B513A26258E20E6F39825F35E41FDC1B3BA86C5AB19B9F82B143",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-27.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-27.png",
+      "bytes": 95553,
+      "sha256": "22DF054B06E3040ABF9A266E734021D1C77AB029268C65BABE6EDB8B48B8B204",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-28.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-28.png",
+      "bytes": 67831,
+      "sha256": "50CF1BB90362C5A2C18B1FBD738DC06BE332B6140C04F835DE939BE134D069A9",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-29.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-29.png",
+      "bytes": 65782,
+      "sha256": "83D4BB43795306FE8A5A50D2A115AE68ADB4888378A568069E6FF60B238E852E",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-30.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-30.png",
+      "bytes": 78011,
+      "sha256": "8F920F41CA721B5144588B5AA3311C3DF0ACC590359B5920F96E150ABCB38A7A",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-31.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-31.png",
+      "bytes": 65306,
+      "sha256": "23F174758872355E6E3C36D49FC3A6D279A1DB4DC37FF44F6B96B6F73B0B6F45",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render/page-32.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render/page-32.png",
+      "bytes": 86703,
+      "sha256": "4A78179C406160034944462CF9770E5213DB0C9C13418C3151A09344CBD964FB",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-01.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-01.png",
+      "bytes": 801922,
+      "sha256": "8174B9267043795F9E303E8F2D77EED970FC9847218F332E845FC05DC729E2C4",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-02.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-02.png",
+      "bytes": 579291,
+      "sha256": "CA58D58D666866E15E1D7F85C87DF1C1099FD95756D625517F32BCA6256DD84D",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-03.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-03.png",
+      "bytes": 588529,
+      "sha256": "A7EC6F1CD0B69E5926CF99B127B7A3488FA6BD2B058F532FDE8C2599BC2E3A28",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-04.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-04.png",
+      "bytes": 639954,
+      "sha256": "408550B6E57E8563461CB4029C609BB47EA4402DCF4CAA49ACFE2BAFB4E199A7",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-05.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-05.png",
+      "bytes": 681486,
+      "sha256": "5F2F8A684D95B62D630363F865079D09C046EE3222169426587453FB3D878D08",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-06.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-06.png",
+      "bytes": 90895,
+      "sha256": "4F20D04F09C282795A481C6DBDD4F06C7A925617C3AB648BFF60C920B51A266C",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-07.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-07.png",
+      "bytes": 548200,
+      "sha256": "E044D9C280C8131A190BE7FDA8693E7E1F62F8DBCB49DA4B492203A86A314425",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-08.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-08.png",
+      "bytes": 74042,
+      "sha256": "4A5AAF19EE247D404EF6DB8C4A3DF240EAEF8CDBF56A7E229578E7750218ABB9",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-09.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-09.png",
+      "bytes": 83668,
+      "sha256": "B8B364F93CA7CFAD1D5A5E50D3FAC1A115A12ADD3FF8C03C09B748BE73F4CCED",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-10.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-10.png",
+      "bytes": 88431,
+      "sha256": "5D5C34FC36FD118988085FB102D7B03346621FEAC544C74B0FE40931879E7CDD",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-11.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-11.png",
+      "bytes": 66261,
+      "sha256": "3A9963870D79F9C1325E0B74DCC0247F8ADB74FE18D56C385D6615180EE762D1",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-12.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-12.png",
+      "bytes": 90999,
+      "sha256": "0D6C5408A761FE218979605B4F400E5ED84DA0B4AD1774DE5F531162343DF848",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-13.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-13.png",
+      "bytes": 79965,
+      "sha256": "C17A57FA5425EF467DD79AF73FE05AECD624963A01CE67671FAED61A29A551CE",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-14.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-14.png",
+      "bytes": 64772,
+      "sha256": "728151C0D8604BDE975EA98560D587E4EA7244DB860E6A74C28279D74244F1E2",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-15.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-15.png",
+      "bytes": 73270,
+      "sha256": "A842D420C22489BE88B254C7825EC2A5B4E6A912B2270A17BDF9900B0855A3FA",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-16.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-16.png",
+      "bytes": 65504,
+      "sha256": "070C7B60E723AA4A3429DDC874005E97CBF616FEFB66464E11A3CA4099D9F0DE",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-17.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-17.png",
+      "bytes": 595108,
+      "sha256": "7204982CA6418F7D93E7E2FDB551D92F30B260120A0C9605B3739AB8B33A2B13",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-18.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-18.png",
+      "bytes": 62321,
+      "sha256": "E7C9F7F67E12972777605B67982D1330B6829D1D242138549F12221437946106",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-19.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-19.png",
+      "bytes": 75972,
+      "sha256": "8550383B478D8D1E1B9E3E31ECC7A81E28D4688AA0633075798FBABA4748C917",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-20.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-20.png",
+      "bytes": 74772,
+      "sha256": "BC8DE5C89FF9BC8254C948A03EA5CFAF5836A85B380CCD3129A0C3B5259999EC",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-21.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-21.png",
+      "bytes": 70119,
+      "sha256": "51A209C2CC961BB6E0D0558F418DC8B36BB49619F2CB5F197AF7182410EB63A0",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-22.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-22.png",
+      "bytes": 78983,
+      "sha256": "F996F72A261BEC7988785EF6641C2F1EDDA99B38848486A0BC00A19A5A4E92AC",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-23.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-23.png",
+      "bytes": 71565,
+      "sha256": "6D92EC1A50BA3DD5870E504973160F0B6340B880CFF606F380F5EBAAEB974F5E",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-24.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-24.png",
+      "bytes": 75538,
+      "sha256": "B94E395AB28F8412A660551B4EEC0946559371E32FD29F4572AA2C1038EB28D2",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-25.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-25.png",
+      "bytes": 101286,
+      "sha256": "40B81BAC9DB9E39C63472DD788080BF6F49930BB26AD163AA601A9DD40FFAD0A",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-26.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-26.png",
+      "bytes": 81019,
+      "sha256": "F73DD0107652B513A26258E20E6F39825F35E41FDC1B3BA86C5AB19B9F82B143",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-27.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-27.png",
+      "bytes": 95553,
+      "sha256": "22DF054B06E3040ABF9A266E734021D1C77AB029268C65BABE6EDB8B48B8B204",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-28.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-28.png",
+      "bytes": 67831,
+      "sha256": "50CF1BB90362C5A2C18B1FBD738DC06BE332B6140C04F835DE939BE134D069A9",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-29.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-29.png",
+      "bytes": 65782,
+      "sha256": "83D4BB43795306FE8A5A50D2A115AE68ADB4888378A568069E6FF60B238E852E",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-30.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-30.png",
+      "bytes": 78011,
+      "sha256": "8F920F41CA721B5144588B5AA3311C3DF0ACC590359B5920F96E150ABCB38A7A",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-31.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-31.png",
+      "bytes": 65306,
+      "sha256": "23F174758872355E6E3C36D49FC3A6D279A1DB4DC37FF44F6B96B6F73B0B6F45",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/grimoire_hgb_20260830_render_v2/page-32.png",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/grimoire_hgb_20260830_render_v2/page-32.png",
+      "bytes": 86703,
+      "sha256": "4A78179C406160034944462CF9770E5213DB0C9C13418C3151A09344CBD964FB",
+      "reason": "SUPERSEDED_PDF_RENDER_DERIVATIVE"
+    },
+    {
+      "original": "tmp/pdfs/__pycache__/build_grimoire_human_blueprint.cpython-312.pyc",
+      "destination": ".cleanup-review/2026-09-12/tmp/pdfs/__pycache__/build_grimoire_human_blueprint.cpython-312.pyc",
+      "bytes": 72869,
+      "sha256": "DF6CF85F1FD3A5F60B52DA464F0F0A3C0E5020FAE9487AF8067C5752E0021D41",
+      "reason": "REGENERABLE_PYTHON_CACHE"
+    }
+  ],
+  "count": 111,
+  "bytes": 34067240,
+  "rollback_commit": "74704526080f8fe28f7fce812371b16251a89878",
+  "scope": "Verified project output/imagegen rejected character images and tmp PDF raster derivatives/cache. User source references, approved assets, historical producer scripts, current PDF source assets, .git, .godot, .worktrees, .asset-vault, .tooling and user dirty fixture preserved.",
+  "external_research": "NOT_MATERIAL local file provenance and dependency audit",
+  "runtime": "NOT_RUN_NO_RUNTIME_FILES_CHANGED",
+  "deletion_authority": "USER_MANUAL_ONLY"
+}

@@ -8,3 +8,6 @@ artifacts/gut-validation/
 
 # Local asset vault
 .asset-vault/
+
+# User-managed deletion staging; never re-add retired payloads.
+.cleanup-review/

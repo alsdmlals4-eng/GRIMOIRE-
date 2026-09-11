@@ -1,5 +1,11 @@
 # GRIMOIRE Active Context
 
+## 2026-09-12 현재 승인과 정리 방식
+
+PEER `peer-personality-01.png`와 TUTOR `tutor-personality-01.png` 외형·동작·그림체 사용자 승인 완료. runtime·알파·여백·표정군은 미완료. 아래 이전 승인 대기 기록은 역사 상태다.
+
+앞으로 삭제 가능한 작업 파일은 의존성·승인 자산·복구 가능성을 확인한 뒤 `.cleanup-review/<date>/`로 이동하고 사용자에게 폴더 링크를 준다. 자동 물리 삭제하지 않는다. 이번111개/34,067,240 bytes의 원경로/해시/이유는 `docs/validation/CLEANUP_REVIEW_20260912.json` 참조. Git/Godot 제외 폴더이며 원문 보존 기록·승인 이미지·PDF 원본과 생성 소스·사용자 dirty fixture·미병합 worktree는 보존한다.
+
 ## 후속 캐릭터 그림체 재검토
 
 최신 사용자: 직전 1번 이미지의 그림체를 유지하고 구도·동작·소품으로 다른 인물의 개성을 살린다. 2번 동료 보정본과 3번 교수는 미채택/수정 요청. `peer-anime-01-style-anchor.png`를 새 supporting cast 스타일 기준으로 회수했고, 표본병 관찰 PEER/기록과 펜으로 설명하는 TUTOR 후보를 제작한다. 주인공 승인 유지, 새 인물 후보/소품 기능/runtime 미승인. 상세 최신 상태는 학생 외형 owner 및 `supporting-cast-personality-input.json` 참조.
