@@ -1,5 +1,7 @@
 {
-  "status": "GENERATED_CANDIDATE_USER_REVIEW_PENDING",
+  "status": "USER_APPROVED_APPEARANCE_AND_STYLE",
+  "approval_source": "User: 오 좋아 지금 캐릭맘에든다; 좋아 승인하고 다른 캐릭터들도 먼저 만들어줘",
+  "approval_scope": "Protagonist appearance and character style anchor; no runtime or unseen expression approval",
   "route": "BUILT_IN_IMAGE_GEN",
   "output": "student-anime-reference-01.png",
   "references": [

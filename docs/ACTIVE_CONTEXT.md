@@ -2,6 +2,8 @@
 
 ## 후속 캐릭터 그림체 재검토
 
+최신 사용자 확정: `student-anime-reference-01.png`는 주인공 외형·그림체 승인본이다. 이전 아래 승인 대기는 해소됐다. 다른 인물 우선 요청에 따라 첫 장 PEER/TUTOR 두 기본 상반신 후보를 같은 애니메이션풍으로 제작한다. 새 인물은 검토 전, 주인공 여백/알파/표정군·모든 새 초상 runtime은 미완료다. 최신 결과는 학생 외형 owner와 `output/imagegen/character-style-comparison/supporting-cast-production-input.json`을 따른다.
+
 최신 제공 참고 4장에 따라 정교한 애니메이션풍 학생 후보 `student-anime-reference-01.png`를 제작했다. 2번의 비율·채색과 4번의 선화·표정을 주 참고로 사용했다. 직전 `student-redesign-01.png`는 사용자 거부. 현재 후보는 불투명 배경 스타일 검토본이며 여백 교정·알파·표정군·runtime은 미완료다. 최종 사용자 승인 전이며 [학생 외형 owner](planning/visual/CARD_DUEL_STUDENT_LEFT_01_2026-09-10.md)가 최신 이미지/해시/한계를 소유한다.
 
 사용자는 이번 프로젝트에서 Aseprite/도트 방향을 사용하지 않는다. 이전 동화책풍·비교/블루프린트 캐릭터는 최종 채택하지 않는다. 카드 세로형 일러스트/손패 겹치기 조합/단독 시전 방향은 유지. 기존58쪽 PDF는 발행 당시 검토본이고 새 캐릭터의 최종 승인을 뜻하지 않는다.

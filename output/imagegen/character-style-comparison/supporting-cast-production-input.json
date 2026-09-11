@@ -1,0 +1,83 @@
+{
+  "project": "GRIMOIRE",
+  "date": "2026-09-11",
+  "status": "GENERATED_CANDIDATES_USER_REVIEW_PENDING",
+  "method": "BUILT_IN_IMAGE_GEN",
+  "model_version": "NOT_PROVIDED",
+  "aseprite": "NOT_USED",
+  "approval_authority": "User explicitly approved protagonist and requested other characters first; bounded first-chapter PEER and TUTOR",
+  "style_anchor": {
+    "path": "student-anime-reference-01.png",
+    "sha256": "84479897283B7807083EDC0027B3C75407BBDD29CE03E4C4EB05354966E0ABE0",
+    "status": "USER_APPROVED_APPEARANCE_AND_STYLE"
+  },
+  "scope": {
+    "canon": "docs/superpowers/specs/2026-09-11-human-blueprint.md#first-chapter-cast",
+    "consumer_kind": "PLANNED_GAME_SURFACE",
+    "consumer": "DialogueView portrait; PEER also DuelView opponent portrait",
+    "role": "IDENTITY_EMOTIONAL",
+    "priority": "P1_CLARITY",
+    "delete_test": "No new-style speaker portraits means first-chapter dialogue lacks consistent distinct people.",
+    "disposition": "CREATE_CUSTOM_CANDIDATES",
+    "state_family": "BASE_ONLY_IN_THIS_USER_REQUEST; expressions and actions deferred until appearance selection",
+    "new_names": "NOT_ASSIGNED",
+    "runtime": "NOT_APPLIED_NOT_RUN",
+    "coverage": "REQUIREMENT_LINKED_NOT_RUNTIME_COVERED"
+  },
+  "references": [
+    "output/imagegen/character-style-comparison/student-anime-reference-01.png",
+    "output/imagegen/blueprint-20260911/peer-style-alpha.png",
+    "output/imagegen/blueprint-20260911/tutor-alpha.png"
+  ],
+  "assets": [
+    {
+      "id": "PEER",
+      "file": "peer-anime-02.png",
+      "sha256": "DA8293A374A4785388F81806C428E9DD0D0F1A20C192167902B1DC3E1CADA440",
+      "size": [
+        1024,
+        1536
+      ],
+      "format": "RGB_OPAQUE",
+      "status": "USER_REVIEW_PENDING",
+      "prompt": "Create one original female classmate portrait for GRIMOIRE. REFERENCE ROLES: Image 1 (short bob girl with burgundy scarf) supplies her DISTINCT appearance/silhouette and schoolgirl demeanor. Image 2 (boy with teal cape) supplies ONLY refined thin linework, precise anime shading, rendering quality; NEVER copy his face, fluffy hairstyle, head tilt or costume layout. Upgrade the girl to the same premium anime RPG illustration finish. Waist-up, upright head, looking slightly left, pale gray-green eyes with rounded almond contours, soft oval face and gently rounded chin, small closed mouth warm smile. Smooth chin-length blue-black BOB with a clean curved hem, short straight eyebrow-length bangs with a small side opening, tucked behind one ear. NOT fluffy spiky shag hairstyle. Youthful 16-17-year-old female peer, not adult glamour. Navy tailored school jacket with brass piping, white shirt, BURGUNDY SCARF softly wrapped at neck, NO high teal cape collar. Slim workbook tucked under left arm near waist, right hand loosely grasping the workbook lower edge, pose different from boy. Elegant controlled anime painting with beautifully finished eyes/hair/fabric, not Western comic, no rough watercolor. Single upperbody on plain pale blue-gray opaque background. Pull camera BACK: whole silhouette from head to waist with 10 percent empty margin on top and both sides. All shoulders/elbows visible, arms not clipped. No legs, no text, UI, magic, hat, staff, cleavage or watermark. This is a different person, not the boy with changed scarf.",
+      "qa": "Distinct bob and burgundy scarf; head and elbows visible. Slightly softer face rendering than protagonist; human style comparison pending."
+    },
+    {
+      "id": "TUTOR",
+      "file": "tutor-anime-01.png",
+      "sha256": "6E6D913344CF0482E3AB20794D9100DBAC1FB4BAC57185A1385AA00A798CD9C5",
+      "size": [
+        1024,
+        1536
+      ],
+      "format": "RGB_OPAQUE",
+      "status": "USER_REVIEW_PENDING_TECHNICAL_REVISION_REQUIRED",
+      "prompt": "One GRIMOIRE female guiding professor upper-body dialogue portrait. Reference1 is APPROVED art style anchor ONLY: match this refined clean anime linework and rich controlled cel painting. Reference2 is the older teacher candidate for identity cues: tied ash brown hair, brass round glasses, navy academic outfit. Redesign/render this teacher coherently with approved first-reference style, NOT with the student's teenage face. An attractive dignified woman approximately 40-45, perceptive warm hazel eyes, slightly narrower calmer eyes than student, subtly mature face with gentle fine smile lines, no exaggerated wrinkles. Ash brown hair in a tidy low loose bun with side swept fringe, round fine brass glasses, composed warm small smile. Navy academic robe with tailored ivory blouse and a muted teal neck ribbon, narrow understated brass edging, a slightly longer clean stole/lapel silhouette distinct from student's short cape. No cleavage, no glamorous pose. Upright relaxed posture turned slightly viewer left, one hand resting over a closed slim brown teaching journal held near waist, other hand lightly touching glasses rim in a natural thoughtful gesture. This is a teacher who asks students why and keeps practical work safe. Entire head hair shoulders elbows and hands fit inside image with generous 10 percent empty margin above and on sides, waist-up only, NO legs. Neutral plain pale blue-gray opaque background, no scenery, no effects, no letters, no UI, no stars, no hat, no staff. Sophisticated attractive anime visual novel game character finish; not photorealistic, not Western comic, no rough storybook texture, not pixel art or 3D. One character only, never a comparison board.",
+      "qa": "Glasses, tied hair and robe distinguish teacher; intended 40-45 age is not reliably conveyed. Hair/top and sleeves/side margins too narrow; portrait review only, framing correction required before runtime."
+    }
+  ],
+  "rejected_attempt": {
+    "id": "PEER_01",
+    "status": "SELF_REVIEW_REVISION_REQUIRED_SUPERSEDED",
+    "reason": "Face and hair too close to protagonist; corrected instead of promoted.",
+    "raw_source": "C:/Users/user/.codex/generated_images/01a04af4-91c2-78f2-bbbb-9e5110b63de2/exec-c0352214-3640-4205-bdb6-a8d21ca0326e.png",
+    "project_copy": "NOT_CREATED_UNUSED_CANDIDATE",
+    "prompt": "Use case: stylized-concept. ONE original GRIMOIRE academy classmate upper-body dialogue portrait, a new character in exactly the same polished anime RPG illustration family as the attached APPROVED protagonist. Input is STYLE/UNIFORM reference ONLY, not identity. Match fine confident linework, elegant layered cel painting, restrained light and realistic cloth folds within anime drawing. New character: teenage female student around 16-17 with short dark blue-black chin-length bob tucked behind one ear, soft gray-green eyes, attentive bright expression and a small friendly slightly mischievous smile. Distinct rounded youthful face, no adult glamour. Practical navy academy coat and short shoulder cape, ivory collared shirt, modest burgundy neck scarf, subtle brass trim matching the school but not duplicating protagonist's outfit. Holds a slim workbook against her side with one hand; other hand relaxed in a small open conversational gesture, natural anatomy. She is the classmate who practices duels, helps with experiments and festival setup, not a wizard-type playing card. Three-quarter pose facing slightly viewer left. Full upper body through waist only, no legs. Entire head, hair, both shoulders, both elbows and hands INSIDE frame, generous 8 percent background margin above hair and beside silhouette; do not crop shoulders. Plain uniform pale blue-gray OPAQUE background, no scenery or effects. Beautiful finished anime game character art, not western comic, not watercolor, not pixel art, not rough storybook, not 3D. No UI, no lettering, no watermark, no magic circle, no card frame, no hat or staff, no cleavage. One character only."
+  },
+  "validation": {
+    "external_research": "NOT_MATERIAL: this pass applies an explicitly approved style to existing cast, adds no externally grounded design or rights claim.",
+    "feasibility": "PARTIAL: planned DialogueView/DuelView in blueprint; current project.godot still legacy star POC and no new portrait wiring.",
+    "files": "Decoded with System.Drawing; dimensions RGB and SHA256 readback",
+    "rights": "Existing generated project candidates used; original style-anchor third-party references remain reference-only. Commercial/release rights not verified.",
+    "base": "Project-local validator OPERATING_CONTRACT_VALID 9.4.3; Base origin/main 2f93e872d9ed4fa18018ac759b01acd7d34e9b58 unchanged after fetch",
+    "open_prs": "253,249,187,166 read-only; no PR changes",
+    "quality_review": [
+      "Scope and canon: existing PEER/TUTOR roles only; no new names or mechanics",
+      "Identity and style: first PEER rejected for anchor face cloning, correction made",
+      "Framing and decode: RGB confirmed; teacher margins inadequate, no alpha claim",
+      "Recovery and rights: no old asset deletion or runtime replacement; external references not shipped",
+      "Completion and delivery: protagonist approval separate from two candidates; runtime, expressions, release remain unverified"
+    ]
+  }
+}

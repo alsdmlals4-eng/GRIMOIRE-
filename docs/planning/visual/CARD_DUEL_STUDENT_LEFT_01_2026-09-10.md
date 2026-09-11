@@ -1,11 +1,22 @@
 # 첫 학생 상반신 기본 포즈 — 후보 및 기술 검수
 
+## 사용자 확정: 애니메이션풍 주인공과 다른 인물 우선 제작
+
+`오 좋아 지금 캐릭맘에든다`와 `좋아 승인하고 다른 캐릭터들도 먼저 만들어줘`로 `student-anime-reference-01.png`의 주인공 외형·그림체를 USER_APPROVED로 확정했다. canonical visual anchor locator는 아래 동일 파일/해시이며 별도 복사본을 만들지 않는다. 역할은 첫 장 PLAYER의 DialogueView/DuelView planned portrait. 실제 runtime consumer 연결은 아직 없다.
+
+선명한 애니메이션 선화·층진 명암·남색/청록/아이보리 의상 언어를 다른 인물의 스타일 기준으로 사용한다. 외형을 복제하지 않는다. 사용자 요청에 따라 주인공 여백/알파/표정 변형보다 첫 장 PEER/TUTOR 기본형 후보를 먼저 제작한다. 같은 폴더 `supporting-cast-production-input.json`이 두 후보의 입력·상태·검수 기록을 소유한다. 새 인물 고유 이름과 장편 설정을 추가 확정하지 않는다.
+
+- PEER: `peer-anime-02.png`, 단발·회녹색 눈·버건디 스카프. 첫 생성은 주인공 얼굴과 너무 유사해 보정했다. 이 보정본이 현재 검토 대상이다.
+- TUTOR: `tutor-anime-01.png`, 묶은 회갈색 머리·둥근 안경·청록 리본·교수 로브. 기획한 중년 연령감은 아직 약하며 위/양옆 프레이밍 여백 교정이 필요하다.
+- 두 파일 모두 1024×1536 RGB 불투명 배경 후보. 원본 해시·전체 프롬프트·기술 검사·검토 한계는 위 JSON 참조. 사용자 최종 외형 승인, 투명화, 표정/시전 상태, runtime, PDF 갱신은 미완료다.
+- 재사용 교훈: 주인공만 스타일 입력으로 쓰면 얼굴·자세까지 복제될 수 있어, 기존 인물 참고와 스타일 기준의 역할을 분리했다. 이 사례만으로 Base 공용 방법의 성능을 입증했다고 보지 않으며 Base 변경은 하지 않았다.
+
 ## 최신: 사용자 제공 애니메이션풍 참고 기반 후보
 
 직전 `student-redesign-01.png`는 USER_REJECTED다. 사용자 제공 4장 중 2번의 학생다운 비율·채색과 4번의 선화·표정을 주 참고로 새로운 `output/imagegen/character-style-comparison/student-anime-reference-01.png`를 이미지 모델로 제작했다. Aseprite 미사용. 참고 인물 자체·고유 복장·종교 소품의 이식을 지시하지 않았다. 상세 입력/프롬프트는 같은 폴더 `anime-reference-production-input.json`에 기록했다.
 
 - SHA-256: `84479897283B7807083EDC0027B3C75407BBDD29CE03E4C4EB05354966E0ABE0`.
-- 상태: GENERATED_CANDIDATE / USER_REVIEW_PENDING. 최종 외형 승인·정본 등록·runtime 적용 없음.
+- 상태: USER_APPROVED_APPEARANCE_AND_STYLE / CANON_REGISTERED_VISUAL_ANCHOR. runtime 적용 없음. 알파·프레이밍·표정군은 별도 준비 단계다.
 - 육안 확인: 선명한 애니메이션 선화와 층진 음영, 남색·청록 교복, 책을 든 상반신. 머리 위와 양 어깨 여백이 좁아 그대로 production cutout으로 사용할 수 없다. 현재는 불투명 배경 스타일 검토본이며 승인 후 프레이밍·알파·표정 상태 작업이 필요하다.
 - 과거 동화책풍과 신규 조끼 후보는 미채택 이력이다. 아래 역사 승인/제작 메모를 최신 스타일 확정으로 해석하지 않는다. 기존 PDF는 이번 후보를 포함하지 않는다.
 
