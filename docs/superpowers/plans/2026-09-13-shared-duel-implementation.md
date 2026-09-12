@@ -74,4 +74,14 @@ Before UI implementation, prepare wireframe and approved-asset consumer inventor
 
 ## Delivery boundary
 
+## Task4 — Spell-card meaning and illustration candidate (2026-09-13)
+
+User clarified improvement loops include comparable-game research, design linkage and implementation, not only bug fixes. Start with a representative EMBER illustration candidate; prepare meanings for all four existing glyphs. No new glyph alphabet or gameplay values introduced. Current consumers are shared_duel_screen Card and event_session_screen selection; candidate art is NOT automatically wired before final art approval.
+
+Research: https://shadowverse.com/gameguide/ distinguishes one-shot spell effects; https://www.playgwent.com/en/join emphasizes illustrated cards; https://www.playgwent.com/en/faq describes learning combinations. ADOPT spell readability, ADAPT strong narrative illustration to shared actions across school incidents and duels, REJECT importing factions/units/round economy or making illustrations imply new rules.
+
+Plan: (1) inspect approved anime anchor and semantic consumer; (2) generate one portrait EMBER art candidate using image model, no baked letters/numbers/frame; (3) retain exact prompt/provenance and explain all four glyph meanings; (4) after selected direction, produce remaining family and separate UI frame/text states; (5) connect approved assets, test overlap/cancel/cast and story context. No default-main or balance changes during candidate preparation.
+
+Meaning brief: EMBER = small localized heat, not explosion; WIND = move light objects/flow, not teleport; WARD = interrupt passage across a boundary, not universal invulnerability; GATHER = gather nearby scattered material into a receiver, not create material. Canonical action IDs remain owned by spell_semantics.gd. Illustrated props are visual examples, not new inventory items or guaranteed legal targets.
+
 Task1 automated evidence is not Task2/3, runtime, fun, mobile or release evidence. Update Active Context and spec as each real deliverable is verified. Fetch/pull/push only current branch and preserve user fixture/import files.

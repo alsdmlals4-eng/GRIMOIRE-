@@ -1,0 +1,26 @@
+{
+  "status": "GENERATED_CANDIDATE_USER_REVIEW_PENDING",
+  "asset": "ember-candidate-01.png",
+  "sha256": "44F0A2346033F7FB2590DDFCC4B3ED71E6469741B079BCB73341896062A5C30F",
+  "generator": "built-in image_gen",
+  "prompt": "Use case: illustration-story. Asset type: portrait full-bleed spell-card illustration for GRIMOIRE, a story-driven magic academy game. Create ONE original illustration, no mockup, no grid. The reference image is ONLY the approved clean anime linework, restrained layered cel shading, navy/teal/ivory school-world material language; do NOT reproduce the character or include a portrait. Subject: EMBER, the magical word meaning small localized heat. Close-up on a single small living amber ember suspended just above a shallow antique brass practice bowl on an academy worktable, warming its center. Clear tiny flame silhouette and warm reflected rim, a restrained fine curl of heat and a few ember particles, carefully controlled beginner spell, NOT fireball or explosion. Background softly simplified cool navy/teal academy workbench, one out-of-focus notebook at far edge with NO writing visible. Illustration should fill a tall 2:3 canvas, strong readable focal shape in upper-middle and quieter dark lower fifth for future separately-rendered UI overlay. Beautiful confident Japanese fantasy game illustration matching reference line discipline, graphic shadow planes, selective tactile highlights, not photorealistic, not 3D, not airbrushed blurry AI gloss. No human figures, no hands, no readable or invented lettering, no runes, no magic circle, no pentagram, no symbols, no text, no numbers, no UI border, no watermark. This is production-oriented card art only; functional labels will be separate engine text.",
+  "reference": "output/imagegen/character-style-comparison/student-anime-reference-01.png",
+  "meaning_owner": "src/core/shared_spell/spell_semantics.gd",
+  "planned_consumers": [
+    "src/ui/shared_duel/shared_duel_screen.gd",
+    "src/ui/event_session/event_session_screen.gd"
+  ],
+  "runtime_applied": false,
+  "qa": {
+    "visual": "Single contained flame and practice bowl readable; no baked text. Flame larger than tiny ember and material shading more painterly than character anchor: review limits.",
+    "dimensions": "1024x1536",
+    "final_art_approval": "PENDING",
+    "mobile_thumbnail": "NOT_RUN"
+  },
+  "cards": {
+    "EMBER": "작은 지점에 열을 일으키는 글자",
+    "WIND": "가벼운 대상이나 흐름을 움직이는 글자",
+    "WARD": "경계를 가로지르는 통과를 막는 글자",
+    "GATHER": "가까이 흩어진 것을 한곳에 모으는 글자"
+  }
+}
