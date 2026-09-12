@@ -258,7 +258,34 @@ SWOT 행동: S 같은 마법의 전이→수업/사건에 같은 작용 사용; 
 
 ## 13. 첫 세 사건의 상태 명세
 
-공통: `ONGOING / SOLVED / ASSISTED / STOPPED` 결과, result_id당 이야기 반영 한 번. 목표와 위험 동시 완료는 `SOLVED`에 consequence를 추가한다. 도움으로 해결하면 `ASSISTED`, 자발적 중단은 `STOPPED`. 시도 재시작은 시도 상태만 초기화하고 이미 받은 보상/발견을 되돌리거나 복제하지 않는다. 아래 ID는 설계용이며 runtime 데이터 생성은 아직 하지 않았다.
+공통: `ONGOING / SOLVED / ASSISTED / STOPPED` 결과, result_id당 이야기 반영 한 번. 목표와 위험 동시 완료는 `SOLVED`에 consequence를 추가한다. 도움으로 해결하면 `ASSISTED`, 자발적 중단은 `STOPPED`. 시도 재시작은 시도 상태만 초기화하고 이미 받은 보상/발견을 되돌리거나 복제하지 않는다. 아래 세 ID의 실행 정의는 2026-09-12 `src/core/shared_spell/event_definitions.gd`에 구현했다. 전체 이야기/보상 연결은 아직 없다.
+
+### 2026-09-12 실행 연결과 조사 반영
+
+검증 증거: Godot 관련5 runners 415 assertions/0 failures, Python4 tests PASS. 새 사건60/저장12/UI21, 기존 공유252/효과70으로 분리한다. 실제 GRIMOIRE 편집기에서 수업→온실→축제 해결, PC native drag 조합, 저장 후 변경→재개 복원을 확인했다. diagnostics error0/warning0. `artifacts/local-validation/event-{drag-preview,greenhouse-solved,festival-solved}-20260912.png`는 로컬 관찰 자료이며 최종 아트/사용자 플레이 평가가 아니다. 기본 main/전체 서사/보상 result_id 중복방지/모바일/Human/export는 이 검증 범위 밖이다.
+
+결과 receipt의 `object_changes`는 label/property/before/after로 실제 대상 변화를 기록한다. UI는 온도·위치·닫힘·수집량과 임시 효과 만료를 미리보기 및 결과에 함께 보여 준다. 저장 로딩은 세션/receipt 타입과 consequences 문자열을 검증하며 object_changes의 기간값도 정수로 확인한다. 독립 검토에서 누락된 실제 변화/기간 표시와 잘못된 consequences 값을 발견했고, 실패 회귀 검사 후 수정했다. 1280×720 긴 결과에서도 하단 실행/저장 버튼을 유지하도록 상세 영역만 스크롤한다.
+
+`event_session.gd.start(event_id,attempt_id)`, `act(state,command)`, `preview(state,command)`가 실제 실행 진입점이다. 결과는 APPLIED/REPLAY/REJECTED이며 사건 종료 상태는 state.outcome으로 분리한다. 공통 주문 상태를 spell_state로 포함하고 외부 receipts는 일반 행동까지 포함한 전체 사건 결과, 내부 receipts는 주문 효과만 소유한다. UI는 event_session을 호출하며, 도메인 파일 존재만으로 실행 완료를 주장하지 않는다.
+
+명령: id/expected_revision/kind. CAST에는 glyphs/target_id/destination_id가 추가된다. CLOSE_LEAK/CLEAN/COOL/LOCK/PLACE/WAIT는 마력0·행동1, HELP/STOP은 마력0·행동0이지만 revision을 전진시켜 오래된 선택을 무효화한다. 읽기/선택/preview는 원본을 변경하지 않는다. 전체 효과와 시간 결과를 같은 reducer로 미리 계산해 실제 명시 실행 결과와 대조한다. 이 세 교육 사건의 정보는 공개이며 향후 미발견 정보는 별도 필터가 필요하다.
+
+수업의 overheated는 일반 식히기 두 번으로 warm에 도달하도록 hot→warm 규칙을 확장했다. 온실 위험은 수집/손상→누출 시간→상하한→목표와 폐쇄 대가 순서다. 목적지 capacity를 넘기는 시전은 무소비 거절한다. 장막 만료값은 행동 시작 시점과 비교하여 생성/다음 행동 모두 보호한다. 축제의 물리 장식 위치와 잠금은 영구 상태이며 임시 막기로 대체하지 않는다. 도움/중단 뒤에도 결과 확인 후 다음 사건으로 이동한다. 현재 세 사건 순서는 **기능 검증용 축약 흐름**이고 입학식·대화·결투가 포함된 완성된 첫 장 순서를 대체하지 않는다.
+
+새 씬 `src/ui/event_session/event_session_screen.tscn`은 사건 처리의 실제 consumer다. 글자 버튼 한 장 선택 또는 서로 다른 두 장 드래그 겹치기, 대상/목적지 선택, 취소, 미리보기, 명시 실행, 일반 행동, 도움/중단, 결과 후 다음 사건을 지원한다. 현재 버튼/문자는 기능 검증 UI이며 사용자 카드 아트 방향을 폐기하거나 최종 디자인으로 승인받은 것이 아니다. 기본 main과 구형 자산/저장은 보존했다. 위험은 숫자와 6개 상태 표시를 함께 사용하며 최종 원형 시계 아트는 아직 미적용이다.
+
+새 검증판 저장은 `event_save.gd`와 프로젝트 내부 `artifacts/local-validation/event-session-progress/event-0.save`, `event-1.save` 두 파일이 소유한다. 매 저장 시 이전 정상 슬롯을 남기고 다른 슬롯에 쓰고 다시 읽어 확인한다. header/SHA-256/schema/자료형/사건-진행순서/결과를 검사하여 최신 유효 세대를 읽는다. 손상된 최신 슬롯은 이전 슬롯으로 복구한다. checksum은 손상 감지이며 부정 조작 방지 인증이 아니다. Godot Variant 직렬화는 object 복원을 허용하지 않는다. 최대2MiB로 제한하며 전체 장기 저장/자동저장/내보내기 저장 경로는 별도다. 새 슬롯은 구형 저장을 마이그레이션하지 않는다.
+
+벤치마크·개발 실무(2026-09-12 공식 재조회):
+
+| 출처 | 채택/변형 | 제외와 한계 | 실제 연결 |
+|---|---|---|---|
+| [Into the Breach 공식](https://www.subsetgames.com/itb.html) | ADAPT: 행동 예고→확정 전 결과/비용/위험 예고 | 적의 미래 패턴이나 전투 격자 복제 안 함 | preview가 실제 act와 같은 상태 결과 계산 |
+| [Cultist Simulator 제작사 회고](https://weatherfactory.biz/cultist-simulator-the-retrospective/) | ADAPT: 작은 플레이 가능 버전과 반복 검수, 초반 안내를 조기 구현 | 튜토리얼 부재를 그대로 채택하지 않음 | 수업→온실→축제 검증판과 한 장/두 장/취소/도움 안내 |
+| [Blades 공식 시계](https://bladesinthedark.com/progress-clocks) | ADAPT: 해결 방법 아닌 상황에 위험 시계 연결 | TRPG 효과량/주사위/실시간 강제 진행 복제 안 함 | 누출 원인·잔여 꽃가루·위험 수치를 분리 |
+| [Godot 직렬화 공식](https://docs.godotengine.org/en/stable/tutorials/io/binary_serialization_api.html) | ADOPT: 숫자 자료형을 보존하는 Variant 데이터 직렬화 | 문서에4.7 미갱신 안내 있음; 실제4.7.1 왕복 테스트로 보완 | 두 슬롯 저장/복원/손상/재전송 검사 |
+
+개발사의 공개 회고·설명에 근거한 조사이며 해당 게임의 내부 소스/개발환경을 직접 역공학하거나 현재 게임의 재미를 입증한 것은 아니다. 독창성 가설은 동일 주문을 결투와 학교생활 상황에 다르게 응용하고 원인/결과를 배우는 경험이다. 새 테스트/기능을 이 가설의 Human PASS로 승격하지 않는다.
 
 ### LESSON_HEAT_01 — 대상을 읽는 수업
 

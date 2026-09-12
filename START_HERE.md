@@ -1,5 +1,11 @@
 # GRIMOIRE 시작 지점
 
+## 현재 구현 진입 — 2026-09-12
+
+현재 사용자 승인으로 구현·개선을 연속 진행한다. 최신 상태는 [Active Context](docs/ACTIVE_CONTEXT.md), 사건 실행 계획은 [세 사건 플레이 루프](docs/superpowers/plans/2026-09-12-event-playable-loop.md)다. 새 검증용 실행 씬은 `res://src/ui/event_session/event_session_screen.tscn`이며 수업→온실→축제, 조합/명시 시전/시계/도움/저장 복귀를 연결한다. 기본 main은 아직 구형 Product Root로 보존했다. 새 씬의 기능 검증은 최종 아트·전체 스토리·모바일·Human·출시 완료를 의미하지 않는다.
+
+아래 9/11 PDF의 '최종 승인 전'은 발행 당시 기록이다. 최신 구현 허가는 현재 사용자 지시와 Active Context를 따르고, PDF를 최신 코드 증거로 취급하지 않는다.
+
 ## 2026-09-11 사람용 검토본
 
 [사람용 블루프린트](docs/superpowers/specs/2026-09-11-human-blueprint.md)는 현재 상세 검토 진입점이다. PDF는 `output/pdf/GRIMOIRE_HUMAN_BLUEPRINT_20260911.pdf`. 첫 학교생활 장과 공통 규칙·실제 자산 후보를 포함하며 최종 승인 전이다. 문서 발행은 새 게임 구현·Human PASS가 아니다.

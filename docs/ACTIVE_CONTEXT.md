@@ -1,5 +1,15 @@
 # GRIMOIRE Active Context
 
+## 2026-09-12 연속 구현: 세 사건 플레이·저장·실제 조작 검증
+
+최신 사용자 지시에 따라 Base/current authority를 다시 읽고 벤치마킹→구현→회귀→실제 조작→교정 루프를 수행했다. `event_definitions/event_session/event_save`와 `src/ui/event_session/event_session_screen.tscn`이 수업→온실→축제, 단독/조합 주문, 대상/목적지, 명시 실행, 위험 시계, 일반 행동, 도움/중단, 결과 확인, 새 저장/재개를 연결한다. 규칙·저장 책임은 공통 규칙13절, 실행 단위는 `docs/superpowers/plans/2026-09-12-event-playable-loop.md`가 소유한다.
+
+최종 재실행: Godot 관련5 runners 415 assertions/0 failures(252+70+60+12+21), Python4 tests PASS, 프로젝트 operating contract CURRENT(pin9.4.3). 정확한 GRIMOIRE 편집기21468/실행50976에서 수업→온실→축제 해결을 확인했고 진단 error0/warning0이다. 실제 PC 마우스 드래그 조합과 저장 후 변경→불러오기 복원도 별도 관찰했다. 로컬 증거는 `artifacts/local-validation/event-drag-preview-20260912.png`, `event-greenhouse-solved-20260912.png`, `event-festival-solved-20260912.png`다. 이는 자동 조작 runtime 증거이며 독립 플레이어/모바일/출시 검증이 아니다.
+
+독립 읽기 전용 검토의 결과 변화·만료 표시 누락과 잘못된 저장 consequences 값 통과를 실패 검사로 재현하고 수정했다. 긴 결과로 720px 화면 하단 버튼이 밀리는 문제도 회귀 검사 후 상세 영역 스크롤로 교정했다. 현재 화면은 기능 검증판이며 최종 카드 아트/원형 시계/캐릭터/전체 스토리/새 결투는 미적용이다. 저장은 프로젝트 내부 개발용 두 슬롯이며 구형 저장을 건드리지 않는다.
+
+다음 안전 순서: 새 결투의 지속효과·적법 손패·교환/종료/저장 재현을 현행 명세와 연결 → 학교생활의 이야기·보상 연결 → 승인 아트/메인 통합 → 모바일/Human 검증. 현재 단위는 첫 세 사건 조작 검증이고 전체 게임 완료가 아니다. 구 main, 사용자 fixture, 자동 생성된 범위 밖 파일과 다른 Draft PR은 보존했다. Base 최신 공용2회 검토와 프로젝트5회 계약 드리프트는 pin 유지로 처리했다. 아래 기록의 '사건/저장/UI 미연결'은 이전 관찰이며 본 항목으로 갱신된다. PDF는9/11 검토본 그대로다.
+
 ## 2026-09-12 재개: 사건 주문 효과와 원자적 시전
 
 사용자 `작업재개`로 직전 후속 범위를 계속했다. `src/core/shared_spell/event_spell_cast.gd`가 등록 대상 재평가, 10종 효과, 마력/행동/개정번호의 일괄 변경, 동일 요청 재전송/충돌/오래된 상태 거절을 처리한다. 구형 재고 기반 시전 서비스는 보존하고 기존 `AtomicResultLedger`를 재사용했다. 데이터 계약·효과·만료·증거 상한은 공통 규칙11절이 소유한다.
