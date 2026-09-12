@@ -25,18 +25,16 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         project_file = ROOT / "project.godot"
         self.assertTrue(project_file.is_file())
         project_text = project_file.read_text(encoding="utf-8")
-        root_scene_text = (ROOT / "src/ui/spell_workflow/spell_workflow_product_root.tscn").read_text(encoding="utf-8")
-        root_uid = re.search(r'uid="(uid://[^"]+)"', root_scene_text)
-        self.assertIsNotNone(root_uid)
-        self.assertIn(f'run/main_scene="{root_uid.group(1)}"', project_text)
+        self.assertIn('run/main_scene="res://src/ui/story/story_menu.tscn"', project_text)
+        self.assertTrue((ROOT / "src/ui/story/story_menu.tscn").is_file())
 
         project = self.adapter["project"]
         current = self.adapter["current_state"]
         self.assertEqual("CREATED", project["godot_project_status"])
         self.assertEqual("DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION", project["execution_profile"])
         self.assertEqual("IMPLEMENT_AND_VALIDATE", project["work_mode"])
-        self.assertEqual("res://src/ui/spell_workflow/spell_workflow_product_root.tscn", project["main_scene"])
-        self.assertEqual("DEVELOPMENT_PRODUCT_ROOT_ENTRY", project["main_scene_role"])
+        self.assertEqual("res://src/ui/story/story_menu.tscn", project["main_scene"])
+        self.assertEqual("FIRST_CHAPTER_STORY_MENU_ENTRY", project["main_scene_role"])
         self.assertEqual("PARTIAL_FOUNDATION", current["implementation"])
         self.assertEqual("TASK9_USER_VERTICAL_SLICE_VALIDATION_PENDING", current["next_product_gate"])
         self.assertEqual("MERGED_MAIN_AUTOMATED_VERTICAL_SLICE_READY", current["task9_status"])

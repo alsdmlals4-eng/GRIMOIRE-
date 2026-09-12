@@ -1,5 +1,9 @@
 # GRIMOIRE 작업 규칙 — 최상위 권위
 
+## 현재 기본 실행 진입점 — 2026-09-13
+
+`project.godot` 기본 실행은 `res://src/ui/story/story_menu.tscn` (`FIRST_CHAPTER_STORY_MENU_ENTRY`)이다. 새 게임/이어하기→S00-S08 이야기, 마지막 기록→메인 복귀를 연결한다. 구 Product Root는 삭제하지 않은 독립 회귀 씬이며 아래 역사 Main Scene 설명을 현행 진입점으로 해석하지 않는다. Base pin/게임 규칙/최종 아트 승인 상태는 변경하지 않는다. 현재 세부 완료·미완료는 Active Context 상단이 소유한다.
+
 ## 최신 구현 연속 진행 지시 — 2026-09-12
 
 사용자는 Base fresh-read 뒤 벤치마킹·실무조사·구현·개선 루프를 별도 일반 승인 대기 없이 계속 진행하도록 지시했다. 현재 실행 상태는 `docs/ACTIVE_CONTEXT.md` 맨 위와 `docs/superpowers/specs/2026-09-10-shared-spell-rules-design.md`가 소유한다. 아래 과거 W6/별형/기획 승인 대기 수치는 현행 카드·공통 주문 재기획의 구현 권한이나 완료 상태를 덮어쓰지 않는다. 위험 변경·정본 파괴·다른 PR 흡수·최종 이미지 승인·보호 main 우회는 이 지시로 승인하지 않는다. 현재 Base pin은 유지하고 새 공용 정책과의 드리프트를 기록한다.

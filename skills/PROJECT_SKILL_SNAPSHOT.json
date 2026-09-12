@@ -97,7 +97,7 @@
     }
   ],
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "c1482f56ef19d37a6dc8f7e2c710b5388e90bbb99636e83d43f5bc5a0d229b82",
+  "canonical_source_sha256": "fde435ebb51ee7d4c3456825f8c5aed9ab029752a0d41bf01bea486adbcc3554",
   "effective_routes": {
     "analyzing-and-refining-game-concepts": {
       "route_id": "analyzing-and-refining-game-concepts",

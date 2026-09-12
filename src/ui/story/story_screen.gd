@@ -1,4 +1,5 @@
 extends Control
+signal main_requested
 ## Functional first-chapter story sequence; final presentation remains separate.
 const Flow = preload("res://src/core/shared_spell/story_flow.gd")
 const Store = preload("res://src/core/shared_spell/story_save.gd")
@@ -14,7 +15,7 @@ var dialogue_notice: Label
 var save_message := "이야기 연결 구현판 · S00~S08 · 최종 연출/프로필/메인 통합 미완료"
 
 func _ready() -> void:
-    story = flow.create()
+    if story.is_empty(): story = flow.create()
     _render()
 
 func advance_story(expected_stage: int) -> void:
@@ -109,6 +110,8 @@ func _render() -> void:
         _button(box,"원인부터 생각했어요",choose_reflection.bind("CAUSE"))
         _button(box,"위험부터 줄이려 했어요",choose_reflection.bind("RISK"))
         if story.get("reflection","") != "": _button(box,"후속 실습으로",advance_story.bind(5))
+    elif story.stage == 8 and main_requested.has_connections():
+        _button(box,"메인으로",func(): main_requested.emit())
     _button(box,"이야기 이어하기",load_story)
 
 func choose_reflection(choice: String) -> void:

@@ -62,7 +62,8 @@ class StarRuntimeImplementationContractTests(unittest.TestCase):
         scene = self.read("src/ui/star_circuit_harness.tscn")
         product_root = self.read("src/ui/spell_workflow/spell_workflow_product_root.tscn")
         product_root_uid = product_root.splitlines()[0].split('uid="')[1].split('"')[0]
-        self.assertIn(f'run/main_scene="{product_root_uid}"', project)
+        self.assertTrue(product_root_uid.startswith("uid://"))  # Preserved legacy scene, no longer the main entry.
+        self.assertIn('run/main_scene="res://src/ui/story/story_menu.tscn"', project)
         self.assertIn('config/features=PackedStringArray("4.7"', project)
         for token in (
             "CenterGlyph", "Vertex0", "Vertex1", "Vertex2", "Vertex3", "Vertex4",

@@ -1,5 +1,13 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 기본 메인과 이야기 저장 진입 통합
+
+기본 main은 `res://src/ui/story/story_menu.tscn`으로 갱신했다. 새 게임은 stage0 저장 성공 후 진입, 기존 유효 저장은 플레이어 대체 확인/취소, 손상만 있는 저장은 보존·차단한다. 이어하기는 매번 유효 저장을 다시 읽고 정확한 story state를 StoryScreen에 전달한다. 마지막 기록의 메인 복귀 연결. 설정/도감은 아직 미구현 표기, 기능용 기본 UI이며 최종 아트 승격 없음. 구 Product Root는 독립 회귀 씬으로 보존했다.
+
+메인14+기존 공유규칙/사건/결투/이야기 12 runners1054 assertions0 failures; 구54 suites2153 assertions0 failures; Python 운영/구성20 tests PASS. Base pin9.4.3/19routes validator CURRENT. 실제 editor11900/runtime4372: 기본실행→이어하기→S08→메인, 새게임 확인→취소로 기존 기록 유지, diagnostics0/0. 캡처 artifacts/local-validation/story-main-entry-20260913.png. 실패 저장경로/손상 bytes 보존은 headless UI 검증. 최초 잘못된 폴더 시험에서 엔진 error가 발생했으며 파일인 상위 경로를 사전 거절해 최종 재실행은 clean.
+
+현재 adapter의 main path/role와 파생4개뷰, AGENTS/START/메인 고정 테스트를 함께 갱신했다. legacy Task9/W6 시각 readback은 해당 과거 component 증거이며 새 메인 아트로 승계하지 않는다. 실행가능성 PARTIAL(메뉴기능검증), Human/mobile/export/performance/출시 NOT_RUN. 다음 안전 작업은 도감의 공통 글자 뜻/실제 사용 기록 연결, 설정 consumer, 진행 중 메뉴 접근/미시전 선택 보존이다.
+
 ## 2026-09-13 저장 안내 후속 교정
 
 대화 장면의 이어하기 실패는 상태만 바꾸고 화면 Label을 갱신하지 않던 결함을 RED 재현 후 수정했다. 대화/활동 모두 기존 저장 알림 경로를 사용한다. 실패 시 현재 진행 보존과 표시를 테스트했고 storyscreen22/storyflow27/eventsave12 총61 assertions0 failures를 재실행했다. 저장 형식/규칙/기존 파일 변경 없음. 직전 전체1038 검사와 별도 후속 회귀 결과이며 전체 재실행1040으로 혼동하지 않는다. 최종 화면을 다시 실행해 이어하기와 diagnostics 확인. 실패 분기의 실제 기기 조작은 NOT_RUN; headless UI 검증이다.
