@@ -223,6 +223,10 @@ SWOT 행동: S 같은 마법의 전이→수업/사건에 같은 작용 사용; 
 
 ## 12. 입문 결투 시험 변환표
 
+2026-09-13 구현: `src/core/shared_spell/duel_spell_exchange.gd.resolve(state,glyphs,opponent)`가 본 절의 한 교환을 계산한다. 공통 compose를 사용하고 입력은 변경하지 않는다. player_barrier/opponent_barrier1..16, focus/suppression0..1을 입력하며 OK/state/receipt 또는 REJECTED/reason을 반환한다. opponent의 attack/guard는 비음수 정수(방어적 입력 상한1000000; 게임 수치 잠금 아님), nature와 guard_kind는 명시한다. 양측 결계0은 종료 결과이므로 다음 resolve 입력으로 받지 않는다. 손패/비용 차감/중복 거래/저장/화면은 별도 매치 책임이며 아직 미연결이다.
+
+집중과 억제의 1은 다음 교환에서 한 번 적용 가능한 상태다. 기존 억제와 모으는 바람 재시전이 겹쳐도 현재 흐름방패 제거는 최대3이며 기간만 갱신한다. 흐름방패가 없는 교환에도 기존 억제는 종료한다. 신규77 assertions/0 failures, 사건·공유 회귀415/0 failures. 이 증거는 순수 계산까지이며 FIRST_DUEL_1이나 새 결투 runtime/밸런스 PASS가 아니다. 구현 계획은 `../plans/2026-09-13-shared-duel-implementation.md`다.
+
 결계 최대16, 덱8(각2), 손패4, 교환예산2는 유지한다. 단독 비용1/조합2. 예산 잔액은 이월되지 않는다. 이 수치는 아래 새로운 효과의 밸런스 PASS를 의미하지 않는다.
 
 공격에는 `heat`, `flow`, `fixed_pulse` 중 하나의 성질이 붙는다. 숫자 옆에 한국어 성질을 표시한다. 상대 고정 패턴은 흐름4/방어0 → 열3/흐름방패3 → 고정파동5/방어0 반복 후보다. 공격·방어·성질을 전부 예고하고 선택 후 바꾸지 않는다. 모든 일반 방어는 남아 있는 공격량을 막으며, 흐름방패만 별도로 해제 가능하다.

@@ -1,5 +1,11 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 계획 선행: 새 결투 한 교환 판정
+
+사용자는 앞으로 구현/수정 계획을 먼저 작성하도록 지시했고, 첫 연습 결투 계획 진행을 승인했다. `docs/superpowers/plans/2026-09-13-shared-duel-implementation.md`를 코드 전에 작성했다. 첫 단위 `src/core/shared_spell/duel_spell_exchange.gd`는 공통 compose를 소비하여 10주문, 성질 조건, 집중/억제 만료, 복구 선적용, 반격/동시 피해를 독립 복사본으로 계산한다. 기존 FIRST_DUEL_1/저장/main은 변경하지 않았다.
+
+신규77 assertions와 기존415 assertions, 총492/0 failures. 서비스 부재와 억제 재시전 중첩 오류의 RED→GREEN을 확인했다. 억제 중 재시전은 현재 제거량 최대3, 다음 교환 기간만 갱신한다. 아직 hand/transaction/save/UI consumer와 미연결이므로 실제 새 결투 한 판/runtime PASS가 아니다. 다음은 계획Task2를 세부화하여 물리 카드 보존·정돈·드로우·원자적 명령·버전별 저장을 연결한다. Task3의 화면은 와이어프레임/자산 확인이 먼저다. 이번 새 이미지/삭제/기존 사용자 변경 없음.
+
 ## 2026-09-12 연속 구현: 세 사건 플레이·저장·실제 조작 검증
 
 최신 사용자 지시에 따라 Base/current authority를 다시 읽고 벤치마킹→구현→회귀→실제 조작→교정 루프를 수행했다. `event_definitions/event_session/event_save`와 `src/ui/event_session/event_session_screen.tscn`이 수업→온실→축제, 단독/조합 주문, 대상/목적지, 명시 실행, 위험 시계, 일반 행동, 도움/중단, 결과 확인, 새 저장/재개를 연결한다. 규칙·저장 책임은 공통 규칙13절, 실행 단위는 `docs/superpowers/plans/2026-09-12-event-playable-loop.md`가 소유한다.
