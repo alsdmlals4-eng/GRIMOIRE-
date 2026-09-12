@@ -74,6 +74,18 @@ Before UI implementation, prepare wireframe and approved-asset consumer inventor
 
 ## Delivery boundary
 
+## Task5 — Persistent last-exchange review
+
+Delivered: screen23/session459/exchange77 assertions0 failures; observed missing review RED1. Live editor11900 selection/cast and save/wait/load restore verified, final runtime15960 diagnostics0/0; screenshot duel-review-20260913.png. Scroll120 keeps footer720 including long warning test. Official ITB direct read timed out; official search excerpt subsequently confirmed announced attacks. No art promotion, save schema, rule or main change. Native drag/mobile/Human not rerun. Receipt presentation is implemented/runtime-observed, not full story completion.
+
+User authorizes continuous bounded implementation without routine approval. Existing receipt already owns damage/block/redirect/repair values but screen hides them after cast. Add a separate fixed-height scrollable last-exchange Label in shared_duel_screen.gd; derive text from last command and its stored receipt, not new arithmetic or new save fields. Preserve preview, legacy main, art candidate status and dirty user files.
+
+- [ ] Extend run_duel_screen_tests.gd: real redirect cast must show returned3/received1; save/wait/load restores review; STOP cannot show old damage; retry clears review; footer remains720. Missing review is expected RED.
+- [ ] Implement receipt rendering using session.commands.back().id and session.receipts[id]. CAST shows actual raw incoming damage, opponent damage, blocked/redirected/restored, opponent shield absorption, focus used and warnings. Explicitly label raw damage as before barrier floor so overkill is not called actual barrier reduction. WAIT/TIDY describe no spell and incoming damage; STOP no damage. No future action/outcome claims.
+- [ ] Run screen/session/exchange regression and actual editor controls, diagnostics and screenshot. Scroll fixed120px rather than expand layout. Check no session mutation by read, stale review after load/retry, pending preview separation, terminal controls and screen fit.
+
+Research continuation: Into the Breach's previously documented announced-threat approach motivates keeping intent and outcome separately readable; fresh official-page request timed out, do not claim new source readback. This is an ADAPT presentation decision, not imported gameplay or new balance evidence. Reusable local lesson: display authoritative receipts, never recompute combat in UI. Five review passes cover owner/schema, receipt branches, save/retry lifecycle, layout/input and final regression; not five independent human reviews.
+
 ## Task4 — Spell-card meaning and illustration candidate (2026-09-13)
 
 ### Current override — magical writing, not effect illustration

@@ -1,5 +1,15 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 연속 개선: 결투 직전 실행 복기
+
+일반 승인 없이 개선/구현을 계속하라는 최신 지시에 따라 Task5 계획→RED→구현→검증을 수행했다. shared_duel_screen.gd가 저장된 마지막 command/receipt로 별도120px scroll 복기를 표시한다. 피해/차단/반격/복구/집중 사용/상대 방패 흡수/비용과 무복구 경고를 표시하며 preview/저장/중단/재연습과 분리한다. 피해 수치는 남은 결계를 넘는 값도 포함한다고 명시, 새 계산이나 save schema 없음. rune candidate02 최종 확정과 runtime 적용은 이 기능 개선과 별개다.
+
+신규 검사 포함 화면23 + session459 + exchange77 =559 assertions/0 failures. 복기 consumer 부재 RED1을 확인했다. GRIMOIRE editor11900에서 실제 선택·시전·저장→대기→이어하기로 복기 복원 확인; 마지막 문구 수정 뒤 runtime15960 재실행/이어하기/캡처, diagnostics errors0 warnings0. artifacts/local-validation/duel-review-20260913.png 는1280x720 실화면. 이번 native drag/mobile/Human/performance/fullgame은 NOT_RUN. 다른 사건 테스트는 이번 변경에서 재실행하지 않았다.
+
+조사: Into the Breach 공식 페이지 직접 요청 timeout 후 검색의 공식 원문 발췌로 공격 예고 설명 재확인. ADAPT 예고와 결과를 분리해 판단을 돕기; 다른 게임 규칙/최적해 안내는 도입하지 않음. 로컬 학습: 기존 authoritative receipt를 표시하고 UI에서 전투를 재계산하지 않는다. Base pin9.4.3 validator CURRENT 유지. 기존 사용자 fixture/project.godot/import와 다른 PR/main은 변경 대상으로 삼지 않았다.
+
+다음 안전 순서: 남은 결투 결과/이야기 진입 연결을 현재 스토리 owner와 대조해 계획 → 공통 글자 카드 설명을 사건/결투에서 일관되게 표시 → 룬 자산 상태군/모바일 가독성 → 승인 자산 통합. 아직 기본main은 구형이고 전체 스토리 연결/카드 최종아트/모바일/출시 준비는 완료되지 않았다.
+
 ## 최신 사용자 교정 — 마법 글자 중심 카드
 
 최신: 사용자 '더 마법적이고 신비한 느낌, 마법문자/룬 참조'로 candidate01 재작업 요청. 계획 교정→박물관/도서관 자료 조사→이미지 모델 candidate02 제작. `output/imagegen/spell-glyphs-20260913/glyph-family-candidate-02.png` 및 production-record-02.json이 현행 검토 후보다. 원본 문자/주문 내용 복사 없이 분지 획/말단 고리/작은 보조 부호를 참고했다. BM 직접 페이지403으로 검색 발췌만, BL은 catalogue 설명만 확인했으며 고문서 이미지 직접 검수라고 주장하지 않는다. 금속 같은 재질, 불씨/모으기의 마름모 공통성, 작은 크기 가독성은 검토점. 후보01은 재작업 요청 상태로 교정하고 보존. 게임 코드/runtime/main 변경 없음.
