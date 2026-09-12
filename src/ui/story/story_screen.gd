@@ -10,6 +10,7 @@ var story: Dictionary = {}
 var save_folder := "res://artifacts/local-validation/story-progress"
 var activity_view: Control
 var story_copy: Label
+var dialogue_notice: Label
 var save_message := "이야기 연결 구현판 · S00~S08 · 최종 연출/프로필/메인 통합 미완료"
 
 func _ready() -> void:
@@ -51,6 +52,7 @@ func load_story() -> void:
     _render()
 
 func _notice() -> void:
+    if is_instance_valid(dialogue_notice): dialogue_notice.text = save_message
     if not is_instance_valid(activity_view): return
     if activity_view.get_meta("duel",false): activity_view.notice.text = save_message
     else: activity_view.save_notice.text = save_message
@@ -60,6 +62,7 @@ func _render() -> void:
         remove_child(child)
         child.queue_free()
     activity_view = null
+    dialogue_notice = null
     if story.stage in Flow.ACTIVITIES:
         activity_view = DuelScreen.instantiate() if story.stage == 3 else EventScreen.instantiate()
         activity_view.set_meta("duel",story.stage == 3)
@@ -96,10 +99,10 @@ func _render() -> void:
     story_copy.add_theme_font_size_override("font_size",24)
     story_copy.text = _copy()
     scroll.add_child(story_copy)
-    var status := Label.new()
-    status.text = save_message
-    status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    box.add_child(status)
+    dialogue_notice = Label.new()
+    dialogue_notice.text = save_message
+    dialogue_notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    box.add_child(dialogue_notice)
     if story.stage < 5:
         _button(box,"입학 안내 확인" if story.stage == 0 else "첫 수업으로",advance_story.bind(story.stage))
     elif story.stage == 5:

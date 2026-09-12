@@ -16,6 +16,14 @@ func _run() -> void:
     root.size = Vector2i(1280,720)
     root.add_child(screen)
     await process_frame
+    var fresh: Dictionary = screen.story.duplicate(true)
+    var normal_folder: String = screen.save_folder
+    screen.save_folder = "res://src/ui/story/story_screen.gd/no-save"
+    screen.load_story()
+    c.assert_equal(fresh,screen.story,"failed dialogue load preserves current story")
+    var notices = screen.find_children("*","Label",true,false)
+    c.assert_true(notices.any(func(label): return label.text.contains("정상 이야기 저장이 없습니다")),"dialogue load failure is visible")
+    screen.save_folder = normal_folder
     screen.advance_story(0)
     screen.advance_story(1)
     await process_frame

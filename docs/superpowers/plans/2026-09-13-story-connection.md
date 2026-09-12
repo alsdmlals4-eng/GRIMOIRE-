@@ -21,6 +21,12 @@ Follow-up within S05: Blueprint explicitly requires '원인부터 / 위험부터
 
 ## Next loop: LAB_SAMPLE_02 and S06-S08
 
+## Follow-up: dialogue save notification regression
+
+Root cause: `_notice` only updates embedded activity labels; dialogue status is a render-local label, so failed load returns without refreshing it. Reproduce using a non-directory save path without modifying any real saves. Add RED visible-label assertion and current-state preservation assertion, retain dialogue label as screen state, reset its reference during rendering, update it from the existing notice path. No save schema or gameplay changes. Re-run story UI and flow/store regressions.
+
+Verified: RED22 assertions/1 visible-notice failure; GREEN storyscreen22+storyflow27+eventsave12=61 assertions/0 failures. Runtime scene restarted and normal continue rechecked; failed-load path verified by headless UI only.
+
 Delivered: lab17 + storyflow27 + storyscreen20 + existing related974 =1038 assertions, all0 failures. Actual lab WARD→MOVE_SAMPLE→STOP_DEVICE keeps hazard2, mana1 and preserved sample; festival EMBER lamp→WIND decorations/stage→LOCK reaches S08. Final runtime32020 restart/load diagnostics0/0. Final record keeps solved/help/stopped separate and does not claim art/profile/main return completed. Default main unchanged. Eleven runners listed in Active Context. Previous provisional S05 boundary superseded; developer save schema accepts earlier stage5 records via optional reflection default. No legacy save migration.
 
 Before code, port Blueprint24 to shared rule owner. Add extra event definition without changing existing three IDS sequence. event_session handles STOP_DEVICE/MOVE_SAMPLE and hazard protection using existing spell effects, records closed/location changes and intervention consequences. No new spell rule.
