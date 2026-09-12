@@ -45,7 +45,7 @@ Interfaces: scene owns current session, selection, preview and explicit confirm.
 - [x] Implement readable functional controls with text separate from art; approved/new-art assets are not assumed production-ready. UI is labeled an implementation preview, not final art.
 - [x] Save only new schema to a project-local ignored runtime path; no legacy slot overwrite. Reload must validate before adopting and reject corrupted data without destroying current state.
 - [x] Open the exact GRIMOIRE Godot editor, run the new scene, click representative path and inspect errors/screenshot. Existing main, unrelated editor instances and user files preserved.
-- [ ] Run all affected tests; update implementation/runtimes separately. Fetch/pull current branch, selective commit/push, exact remote readback. No whole-game/CI/main/Human PASS without evidence.
+- [x] Run all affected tests; update implementation/runtimes separately. Fetch/pull current branch, selective commit/push, exact remote readback. No whole-game/CI/main/Human PASS without evidence.
 
 ## Remaining scope after this plan
 
@@ -60,3 +60,4 @@ New duel rules, full story/save rewards, final approved-art integration, mobile/
 - Independent read-only reviewer identified omitted target/expiry display and insufficient consequences element validation; both were regression-tested and corrected, then readback reviewed. Reviewer did not execute tests or certify runtime.
 - Learning retained here: use one reducer for preview and commit; persist the complete event receipt, not just spell effects; test worst-case result length; tool input recording does not prove native drag. Base promotion deferred until reusable cross-project evidence. No paid tools, new asset approval, old-main replacement or deletion.
 - Delivery remains branch-scoped. No main merge, CI, mobile, human, accessibility, performance or export PASS is inferred.
+- Product commit `f2daf9f482a2663581d219075c81460109a11ed3` was pushed and fetched back with identical local/remote branch HEAD. Live branch CI list was empty; main remains `d384c454768a8aa3b0adb939e0b035ac2afa426e`. Draft253/249/187/166 untouched. User fixture delta and unrelated generated files remain outside this commit.
