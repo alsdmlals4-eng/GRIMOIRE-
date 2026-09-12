@@ -1,4 +1,9 @@
 extends Control
+signal story_checkpoint(snapshot: Dictionary)
+signal story_finished
+signal story_save_requested
+signal story_load_requested
+var story_mode := false
 ## Playable event implementation preview. Not final art or the full story root.
 
 const SessionRules = preload("res://src/core/shared_spell/event_session.gd")
@@ -53,7 +58,8 @@ var next_button: Button
 var glyph_buttons: Array[Button] = []
 
 func _ready() -> void:
-    session = engine.start(Definitions.IDS[0], "preview-" + str(Time.get_ticks_usec()))
+    if session.is_empty():
+        session = engine.start(Definitions.IDS[0], "preview-" + str(Time.get_ticks_usec()))
     _build()
     _render()
 
@@ -174,9 +180,13 @@ func confirm_action() -> void:
         selected.clear()
         action_kind = "CAST"
         destination_id = ""
+        if story_mode: story_checkpoint.emit(session.duplicate(true))
     _render()
 
 func continue_story() -> void:
+    if story_mode:
+        if session.outcome != "ONGOING": story_finished.emit()
+        return
     if session.outcome == "ONGOING" or story_index >= Definitions.IDS.size() - 1:
         return
     story_index += 1
@@ -185,11 +195,17 @@ func continue_story() -> void:
     cancel_selection()
 
 func save_progress() -> void:
+    if story_mode:
+        story_save_requested.emit()
+        return
     var saved: Dictionary = SaveStore.new().save_progress(save_folder,
         {"story_index": story_index, "session": session, "last_receipt": last_receipt})
     save_notice.text = "진행 저장 완료 · 프로젝트 내부의 두 복구 슬롯을 사용합니다." if saved.status == "SAVED" else "저장 실패 · 현재 플레이 상태는 유지됩니다: " + saved.reason
 
 func load_progress() -> void:
+    if story_mode:
+        story_load_requested.emit()
+        return
     var loaded: Dictionary = SaveStore.new().load_progress(save_folder)
     if loaded.status != "LOADED":
         save_notice.text = "사용 가능한 저장이 없습니다. 현재 플레이 상태는 유지합니다."
@@ -210,6 +226,8 @@ func _render() -> void:
     if not is_instance_valid(header):
         return
     header.text = "%d / 3  %s    |    마력 %d    행동 %d    %s" % [story_index + 1, session.title, session.spell_state.mana, session.spell_state.elapsed_actions, OUTCOMES[session.outcome]]
+    if story_mode:
+        header.text = "이야기 · %s    |    마력 %d    행동 %d    %s" % [session.title,session.spell_state.mana,session.spell_state.elapsed_actions,OUTCOMES[session.outcome]]
     for button in glyph_buttons:
         button.set_pressed_no_signal(button.glyph in selected)
         button.disabled = session.outcome != "ONGOING"

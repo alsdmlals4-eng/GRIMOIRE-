@@ -1,5 +1,9 @@
 # GRIMOIRE 시작 지점
 
+## 현재 이야기 연결 진입 — 2026-09-13
+
+`res://src/ui/story/story_screen.tscn`은 입학 안내→수업→안내 결투→온실→복기를 연결한 새 기능 검증 씬이다. 자동 저장/이어하기와 실제 결과 기반 복기를 지원한다. 실행 상태는 `docs/ACTIVE_CONTEXT.md`, 계획은 `docs/superpowers/plans/2026-09-13-story-connection.md`. default main은 아직 변경하지 않았으며 후속 과제/축제 연결과 최종 아트/모바일/Human은 미완료다. 아래 세 사건 독립 화면은 별도 시험 진입점으로 유지한다.
+
 ## 현재 구현 진입 — 2026-09-12
 
 현재 사용자 승인으로 구현·개선을 연속 진행한다. 최신 상태는 [Active Context](docs/ACTIVE_CONTEXT.md), 사건 실행 계획은 [세 사건 플레이 루프](docs/superpowers/plans/2026-09-12-event-playable-loop.md)다. 새 검증용 실행 씬은 `res://src/ui/event_session/event_session_screen.tscn`이며 수업→온실→축제, 조합/명시 시전/시계/도움/저장 복귀를 연결한다. 기본 main은 아직 구형 Product Root로 보존했다. 새 씬의 기능 검증은 최종 아트·전체 스토리·모바일·Human·출시 완료를 의미하지 않는다.

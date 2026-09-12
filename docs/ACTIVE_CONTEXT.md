@@ -1,5 +1,13 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 이야기 연결 S00-S05
+
+`src/ui/story/story_screen.tscn`에 입학 안내/소개→수업→안내 결투→온실→복기를 연결했다. 기존 사건/결투 화면은 story_mode의 명시 signal로 재사용하며 독립 실행 경로는 유지한다. story_flow/story_save는 현재 활동과 이전 실제 결과를 새 전용 두 슬롯에 저장한다. 중단/도움도 다음으로 진행하되 승리/해결로 위장하지 않는다. 복기 접근 설명은 명시 선택·저장하며 행동 사실/보상과 분리한다. 아직 default main/최종 아트/프로필 편집/후속 S06-S08 연결은 미완료다.
+
+8 runners687 assertions0 failures: story flow21, story screen14, duel screen23/session459/exchange77, event screen21/session60/save12. 최초 모듈/화면/선택 부재 RED, 저장 알림 덮임 RED 후 교정. 장면 교체 시 이전 child에 새 stage 알림을 보낸 script error는 actual child metadata로 교정하고 전체 재실행 오류0. 실제 editor11900에서 입학→수업 불씨 해결→결투 중단→온실 도움→복기, 최종runtime26212에서 이어하기/설명 선택을 확인했다. diagnostics0/0, capture artifacts/local-validation/story-bridge-review-20260913.png. Human/mobile/performance/full chapter은 NOT_RUN. 공식 ink 자료에서 narrative-state/UI 분리를 ADAPT, 외부 엔진은 추가하지 않았다.
+
+추가 탐색에서 Human Blueprint24절에 LAB_SAMPLE_02의 구체적 표가 존재함을 확인했다. 따라서 계획 초안의 'S06 미명세'는 탐색 중 잠정 판단이며 최신 결론은 '문서 명세 존재, runtime 미구현'이다. 다음 루프는 이 표를 공통 규칙 owner와 대조해 시료 과제 구현 후 축제/장 마무리 연결이다.
+
 ## 2026-09-13 연속 개선: 결투 직전 실행 복기
 
 일반 승인 없이 개선/구현을 계속하라는 최신 지시에 따라 Task5 계획→RED→구현→검증을 수행했다. shared_duel_screen.gd가 저장된 마지막 command/receipt로 별도120px scroll 복기를 표시한다. 피해/차단/반격/복구/집중 사용/상대 방패 흡수/비용과 무복구 경고를 표시하며 preview/저장/중단/재연습과 분리한다. 피해 수치는 남은 결계를 넘는 값도 포함한다고 명시, 새 계산이나 save schema 없음. rune candidate02 최종 확정과 runtime 적용은 이 기능 개선과 별개다.

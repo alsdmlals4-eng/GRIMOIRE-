@@ -1,4 +1,9 @@
 extends Control
+signal story_checkpoint(snapshot: Dictionary)
+signal story_finished
+signal story_save_requested
+signal story_load_requested
+var story_mode := false
 ## Functional practice entry. Approved environment, provisional text cards.
 const Duel = preload("res://src/core/shared_spell/duel_session.gd")
 const Save = preload("res://src/core/shared_spell/duel_save.gd")
@@ -22,7 +27,7 @@ class Card extends Button:
         paired.emit(card_id,data.duel_card)
 
 var rules = Duel.new()
-var session: Dictionary
+var session: Dictionary = {}
 var quote: Dictionary = {}
 var selection: Array = []
 var action_kind := "CAST"
@@ -35,9 +40,10 @@ var hand: HBoxContainer
 var confirm: Button
 var retry: Button
 var review: Label
+var story_next: Button
 
 func _ready() -> void:
-    session = rules.create(17)
+    if session.is_empty(): session = rules.create(17)
     theme = Theme.new()
     theme.default_font_size = 20
     var bg := TextureRect.new()
@@ -87,6 +93,8 @@ func _ready() -> void:
     _button(actions,"저장",save_progress)
     _button(actions,"이어하기",load_progress)
     retry = _button(actions,"다시 연습",restart)
+    retry.visible = not story_mode
+    if story_mode: story_next = _button(actions,"결과 확인 후 다음 장면",continue_story)
     _render()
 
 func select_card(id: int) -> void:
@@ -120,14 +128,21 @@ func confirm_action() -> void:
     var result: Dictionary = rules.apply(session,_command())
     if result.status != "APPLIED": return
     session = result.state
+    if story_mode: story_checkpoint.emit(session.duplicate(true))
     notice.text = "실행 완료 · " + OUTCOMES[session.outcome]
     cancel_selection()
 
 func save_progress() -> void:
+    if story_mode:
+        story_save_requested.emit()
+        return
     var result: Dictionary = Save.new().save_progress(ProjectSettings.globalize_path(save_folder),{"session":session})
     notice.text = "저장 완료" if result.status == "SAVED" else "저장 실패 · 현재 진행은 유지됩니다."
 
 func load_progress() -> void:
+    if story_mode:
+        story_load_requested.emit()
+        return
     var result: Dictionary = Save.new().load_progress(ProjectSettings.globalize_path(save_folder))
     if result.status != "LOADED":
         notice.text = "불러올 정상 저장이 없습니다. 현재 진행은 유지됩니다."
@@ -137,6 +152,7 @@ func load_progress() -> void:
     cancel_selection()
 
 func restart() -> void:
+    if story_mode: return
     if session.outcome == "ONGOING": return
     session = rules.create(int(Time.get_unix_time_from_system()),false)
     notice.text = "재연습 · 일반 추첨 손패 · 저장은 직접 선택할 때만 변경됩니다."
@@ -150,6 +166,7 @@ func _render() -> void:
     quote = rules.preview(session,_command())
     confirm.disabled = quote.get("status") != "APPLIED"
     retry.disabled = session.outcome == "ONGOING"
+    if story_next != null: story_next.disabled = session.outcome == "ONGOING"
     if session.outcome != "ONGOING":
         details.text = OUTCOMES[session.outcome] + "\n연습 결과를 확인했습니다. 다시 연습하거나 저장할 수 있습니다."
     elif quote.get("status") == "APPLIED":
@@ -171,6 +188,9 @@ func _render() -> void:
         card.pressed.connect(select_card.bind(id))
         card.paired.connect(select_pair)
         hand.add_child(card)
+
+func continue_story() -> void:
+    if story_mode and session.outcome != "ONGOING": story_finished.emit()
 
 func _render_review() -> void:
     if session.commands.is_empty():
