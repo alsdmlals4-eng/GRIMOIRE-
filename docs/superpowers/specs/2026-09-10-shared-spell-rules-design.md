@@ -300,6 +300,10 @@ SWOT 행동: S 같은 마법의 전이→수업/사건에 같은 작용 사용; 
 - 마력0: 식히기/교수 도움/중단 가능. 무료 읽기 반복은 아무 값도 바꾸지 않는다.
 - 복기: 사용 주문과 실제 대상 변화, 표본 보존 여부. 주문 사용횟수 보상 없음.
 
+### LAB_SAMPLE_02 — 후속 시료 과제 실행 상세
+
+Human Blueprint24의 권장 표를 실행 owner로 구체화한다. 기존 온실은 교체하지 않는다. 시작 hazard2/6, mana2, device.closed=false, sample.location_id=device. 즉시 장치정지(STOP_DEVICE)는 일반1행동, closed=true, 독립 안전 종료; sample이 내부면 처리중단 사실을 기록한다. MOVE_SAMPLE은 일반1행동, location=safe; 이동 시작시 blocked 효과가 없으면 위험+2, 이미 safe이면 무소비 거절. 가동 중 보호 없는 시간행동은 위험+1. 막기는 기존 BLOCK 효과(생성+다음 행동) 그대로 사용한다. 위험6은 교수개입/장치정지/ASSISTED, 이미 보존한 시료는 되돌리지 않는다. HELP/STOP도 장치를 정지시키지만 독립해결로 승격하지 않는다. 누적 위험은 기록용으로 남기며 장치정지 뒤 더 증가하지 않는다. 별도 금전/점수 보상이나 새 글자는 없다. 위험5/마력0 비교 fixture는 튜닝 검사이며 일반 시작값 교체가 아니다.
+
 ### GREENHOUSE_LEAK_01 — 원인과 잔여 위험
 
 - 시작: 마력6, leak=open, cloud=present, capture_load=0, capture_capacity=3, hazard=2/6. 수집함은 닫힌 통이 아니라 일방향 필터 입구가 열려 있고 유출은 막힌 장치(`capture_ready`)다. 이전 '닫힌 수집함' 표현을 이 의미로 구체화한다.

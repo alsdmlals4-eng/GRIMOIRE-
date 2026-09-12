@@ -1,30 +1,32 @@
 extends RefCounted
-## Fixed S00-S05 adapter; no new rewards, narrative engine or legacy migration.
+## Fixed first-chapter adapter; no numeric rewards or legacy migration.
 const Events = preload("res://src/core/shared_spell/event_session.gd")
 const Duel = preload("res://src/core/shared_spell/duel_session.gd")
-const EVENT_IDS := {2:"LESSON_HEAT_01",4:"GREENHOUSE_LEAK_01"}
+const EVENT_IDS := {2:"LESSON_HEAT_01",4:"GREENHOUSE_LEAK_01",6:"LAB_SAMPLE_02",7:"FESTIVAL_LIGHTS_01"}
+const ACTIVITIES := [2,3,4,6,7]
 
 func create() -> Dictionary:
     return {"schema":"GRIMOIRE_STORY_BRIDGE_1","stage":0,"activity":{},"results":{}}
 
 func valid(s: Dictionary) -> bool:
-    if s.get("schema") != "GRIMOIRE_STORY_BRIDGE_1" or not s.get("stage") is int or s.stage < 0 or s.stage > 5:
+    if s.get("schema") != "GRIMOIRE_STORY_BRIDGE_1" or not s.get("stage") is int or s.stage < 0 or s.stage > 8:
         return false
     if not s.get("activity") is Dictionary or not s.get("results") is Dictionary:
         return false
-    if s.get("reflection","") not in ["","CAUSE","RISK"] or (s.stage != 5 and s.get("reflection","") != ""): return false
+    if s.get("reflection","") not in ["","CAUSE","RISK"] or (s.stage < 5 and s.get("reflection","") != ""): return false
+    if s.stage > 5 and s.get("reflection","") == "": return false
     var required: Array = []
-    for stage in [2,3,4]:
+    for stage in ACTIVITIES:
         if stage < s.stage:
             required.append(str(stage))
             if not s.results.get(str(stage)) is Dictionary or not _valid_activity(stage,s.results[str(stage)]): return false
             if s.results[str(stage)].outcome == "ONGOING": return false
     if s.results.size() != required.size(): return false
-    if s.stage in [2,3,4]: return _valid_activity(s.stage,s.activity)
+    if s.stage in ACTIVITIES: return _valid_activity(s.stage,s.activity)
     return s.activity.is_empty()
 
 func checkpoint(s: Dictionary, activity: Dictionary) -> Dictionary:
-    if not valid(s) or s.stage not in [2,3,4] or not _valid_activity(s.stage,activity): return _reject()
+    if not valid(s) or s.stage not in ACTIVITIES or not _valid_activity(s.stage,activity): return _reject()
     if s.activity.outcome != "ONGOING" and s.activity != activity: return _reject()
     if s.stage == 3:
         if activity.seed != s.activity.seed or activity.tutorial != s.activity.tutorial or activity.revision < s.activity.revision: return _reject()
@@ -38,10 +40,11 @@ func checkpoint(s: Dictionary, activity: Dictionary) -> Dictionary:
     return {"status":"OK","state":next}
 
 func advance(s: Dictionary, expected_stage: int) -> Dictionary:
-    if not valid(s) or s.stage != expected_stage or s.stage == 5: return _reject()
-    if s.stage in [2,3,4] and s.activity.outcome == "ONGOING": return _reject()
+    if not valid(s) or s.stage != expected_stage or s.stage == 8: return _reject()
+    if s.stage == 5 and s.get("reflection","") == "": return _reject()
+    if s.stage in ACTIVITIES and s.activity.outcome == "ONGOING": return _reject()
     var next := s.duplicate(true)
-    if s.stage in [2,3,4]: next.results[str(s.stage)] = s.activity.duplicate(true)
+    if s.stage in ACTIVITIES: next.results[str(s.stage)] = s.activity.duplicate(true)
     next.stage += 1
     next.activity = {}
     if next.stage == 3: next.activity = Duel.new().create(17)

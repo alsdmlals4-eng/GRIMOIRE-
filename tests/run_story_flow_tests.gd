@@ -54,5 +54,21 @@ func _initialize() -> void:
     c.assert_equal("SAVED",store.save_progress(folder,{"story":s}).status,"story saves")
     c.assert_equal(s,store.load_progress(folder).payload.story,"story roundtrip")
     c.assert_equal("REJECTED",store.save_progress(folder,{"story":bad}).status,"invalid progress cannot save")
+    var continued: Dictionary = flow.advance(s,5)
+    c.assert_equal("OK",continued.status,"chosen reflection continues to lab")
+    if continued.status != "OK":
+        print(JSON.stringify({"assertions":c.assertion_count(),"failures":c.failure_count(),"messages":c.failures()}))
+        quit(1)
+        return
+    s = continued.state
+    c.assert_equal("LAB_SAMPLE_02",s.activity.event_id,"lab before festival")
+    result = events.act(s.activity,{"id":"safe","expected_revision":0,"kind":"STOP_DEVICE"})
+    s = flow.advance(flow.checkpoint(s,result.state).state,6).state
+    c.assert_equal("FESTIVAL_LIGHTS_01",s.activity.event_id,"festival follows lab")
+    result = events.act(s.activity,{"id":"help","expected_revision":0,"kind":"HELP"})
+    s = flow.advance(flow.checkpoint(s,result.state).state,7).state
+    c.assert_equal(8,s.stage,"final record reached")
+    c.assert_true(flow.valid(s),"final record validates completed prefix")
+    c.assert_equal("SAVED",store.save_progress(folder,{"story":s}).status,"final record saves")
     print(JSON.stringify({"assertions":c.assertion_count(),"failures":c.failure_count(),"messages":c.failures()}))
     quit(1 if c.failure_count() else 0)

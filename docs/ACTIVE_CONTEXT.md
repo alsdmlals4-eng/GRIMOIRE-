@@ -1,5 +1,15 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 연속 루프2: 후속 시료 과제→축제→마무리
+
+최신 구현은 `src/ui/story/story_screen.tscn`의 S00-S08 기능 연결이다. Blueprint24의 LAB_SAMPLE_02를 공통 규칙13절에 구체화하고 별도 사건으로 구현했다. 기존 세 사건 IDS/독립 화면 순서는 보존했다. 위험2/마력2, 즉시정지/막기/시료이동/시간누출/위험6교수개입을 처리한다. 교체 가능한 시료 처리 중단과 보존을 구분하고 이미 보존한 시료를 개입으로 지우지 않는다. S05명시 설명→S06시료→S07축제→S08실행기록, 자동저장/이어하기를 연결했다. 아래 S05까지라는 기록은 이전 검증 시점이다.
+
+최종11 runners1038 assertions0 failures: lab17/storyflow27/storyscreen20/duelscreen23/duelsession459/exchange77/eventscreen21/eventsession60/eventsave12/eventcast70/shared252. 기능 부재/설명 부재/저장 알림/결과별 마무리 대사 RED를 확인 후 교정했다. 중간 수정에서 나온 script error는 최종 실행에서0. 실제 editor11900: S00입학→수업불씨해결→결투중단→온실도움→설명선택→시료 막기/이동/정지(위험2,마력1,보존)→축제 불씨/바람/잠금→S08 확인. final runtime32020 재실행/이어하기/diagnostics0/0. 캡처 `artifacts/local-validation/story-lab-preserved-20260913.png`, `story-final-record-20260913.png`.
+
+상태는 기능 구현/기계 검증/자동 조작PC runtime까지. 시료 고위험 분기는headless검증, 최종모바일/플레이어 재미/접근성/성능/출시/전체장편게임 PASS가 아니다. 입학·복기·마무리는 기능 text UI이며 최종아트/프로필편집/대사로그/메인복귀/다음학기 미완료. defaultmain과 구저장, 사용자 fixture/project.godot, 다른PR은 보존했다. Base pin9.4.3/19routes CURRENT, 최신Base로 임의이동 없음.
+
+다음 안전 작업: 새 이야기 화면의 메인/이어하기 진입 통합을 기존 메뉴 owner와 대조, 공통 문자 설명/룬 자산 상태군, 저장 실패·중단 복구 강화, 첫장 화면정보 밀도/모바일 점검. 기본 메뉴에서 활동 선택 모드로 바꾸지 않는다. 새 이야기 보상/관계 수치/장편내용을 완료로 주장하지 않는다.
+
 ## 2026-09-13 이야기 연결 S00-S05
 
 `src/ui/story/story_screen.tscn`에 입학 안내/소개→수업→안내 결투→온실→복기를 연결했다. 기존 사건/결투 화면은 story_mode의 명시 signal로 재사용하며 독립 실행 경로는 유지한다. story_flow/story_save는 현재 활동과 이전 실제 결과를 새 전용 두 슬롯에 저장한다. 중단/도움도 다음으로 진행하되 승리/해결로 위장하지 않는다. 복기 접근 설명은 명시 선택·저장하며 행동 사실/보상과 분리한다. 아직 default main/최종 아트/프로필 편집/후속 S06-S08 연결은 미완료다.

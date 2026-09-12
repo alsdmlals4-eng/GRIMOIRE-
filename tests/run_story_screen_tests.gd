@@ -62,6 +62,26 @@ func _run() -> void:
     await process_frame
     c.assert_equal(saved,screen.story,"autosaved story restores")
     c.assert_true(screen.story_copy.text.contains("후속"),"review does not claim full chapter done")
+    screen.advance_story(5)
+    await process_frame
+    c.assert_true(is_instance_valid(screen.activity_view),"lab embeds existing event UI")
+    if not is_instance_valid(screen.activity_view):
+        print(JSON.stringify({"assertions":c.assertion_count(),"failures":c.failure_count(),"messages":c.failures()}))
+        quit(1)
+        return
+    c.assert_equal("LAB_SAMPLE_02",screen.activity_view.session.event_id,"lab identity")
+    screen.activity_view.select_manual("STOP_DEVICE")
+    screen.activity_view.confirm_action()
+    screen.activity_view.continue_story()
+    await process_frame
+    c.assert_equal("FESTIVAL_LIGHTS_01",screen.activity_view.session.event_id,"festival reached without mode menu")
+    screen.activity_view.select_manual("HELP")
+    screen.activity_view.confirm_action()
+    screen.activity_view.continue_story()
+    await process_frame
+    c.assert_equal(8,screen.story.stage,"final record UI")
+    c.assert_true(screen.story_copy.text.contains("시료 처리 중단") and screen.story_copy.text.contains("축제"),"ending preserves tradeoff and festival outcome")
+    c.assert_true(screen.story_copy.text.contains("담당자"),"assisted festival gets outcome appropriate dialogue")
     screen.queue_free()
     await process_frame
     print(JSON.stringify({"assertions":c.assertion_count(),"failures":c.failure_count(),"messages":c.failures()}))

@@ -12,10 +12,10 @@ const SaveStore = preload("res://src/core/shared_spell/event_save.gd")
 const GLYPH_NAMES := {"EMBER": "불씨", "WIND": "바람", "WARD": "막기", "GATHER": "모으기"}
 const OUTCOMES := {"ONGOING": "진행 중", "SOLVED": "독립 해결", "ASSISTED": "도움으로 마무리", "STOPPED": "안전하게 중단"}
 const MANUAL := {"COOL": "안전하게 식히기", "CLOSE_LEAK": "덮개 닫기", "CLEAN": "수동 청소",
-    "LOCK": "작업 구역 잠금", "PLACE": "장식 수동 배치", "WAIT": "한 행동 기다리기", "HELP": "도움 요청", "STOP": "안전 중단"}
+    "LOCK": "작업 구역 잠금", "PLACE": "장식 수동 배치", "WAIT": "한 행동 기다리기", "HELP": "도움 요청", "STOP": "안전 중단", "STOP_DEVICE":"장치 즉시 정지", "MOVE_SAMPLE":"시료 안전 용기로 옮기기"}
 const CAUSES := {"CLOUD_COLLECTED": "꽃가루 수집", "LEAK_TIME": "열린 장치에서 재누출", "HEAT_DAMAGE": "가열에 의한 손상",
-    "MANUAL_CLEANUP": "수동 청소", "ALREADY_CLOSED": "이미 닫힌 덮개"}
-const CONSEQUENCES := {"SAMPLE_DAMAGED": "표본 손상 기록", "DEVICE_DAMAGED": "장치 손상 기록", "AREA_CLOSED": "온실 구역 잠정 폐쇄", "AUDIENCE_UNSAFE": "관객 안전 문제로 담당자 개입"}
+    "MANUAL_CLEANUP": "수동 청소", "ALREADY_CLOSED": "이미 닫힌 덮개", "UNPROTECTED_TRANSFER":"보호 없는 시료 이동", "LAB_LEAK_TIME":"가동 장치의 누출 시간"}
+const CONSEQUENCES := {"SAMPLE_DAMAGED": "표본 손상 기록", "DEVICE_DAMAGED": "장치 손상 기록", "AREA_CLOSED": "온실 구역 잠정 폐쇄", "AUDIENCE_UNSAFE": "관객 안전 문제로 담당자 개입", "SAMPLE_PROCESS_INTERRUPTED":"교체 가능한 시료의 처리를 중단했습니다.", "LAB_INTERVENTION":"교수가 장치를 정지했습니다. 이미 보존한 시료는 유지됩니다."}
 const REASONS := {"UNKNOWN_TARGET": "대상을 선택하세요.", "UNKNOWN_DESTINATION": "목적지를 선택하세요.",
     "INVALID_COUNT": "글자를 한 장 또는 두 장 선택하세요.", "INSUFFICIENT_MANA": "마력이 부족합니다. 일반 행동이나 도움을 이용하세요.",
     "LEAK_STILL_OPEN": "누출 덮개를 닫아야 수동 청소할 수 있습니다.", "NOT_TOO_HOT": "지금은 식힐 필요가 없습니다.",
@@ -244,6 +244,7 @@ func _render() -> void:
         _button(target_buttons, "목적지 선택 해제", select_destination.bind(""))
     _clear(manual_buttons)
     var kinds: Array = ["COOL"] if story_index == 0 else (["CLOSE_LEAK", "CLEAN", "WAIT"] if story_index == 1 else ["COOL", "LOCK", "PLACE"])
+    if session.event_id == "LAB_SAMPLE_02": kinds = ["STOP_DEVICE","MOVE_SAMPLE","WAIT"]
     kinds.append_array(["HELP", "STOP"])
     for kind in kinds:
         var button := _button(manual_buttons, ("✓ " if action_kind == kind else "") + MANUAL[kind], select_manual.bind(kind))
@@ -257,6 +258,9 @@ func _render() -> void:
     confirm.disabled = quote.status != "APPLIED"
     next_button.disabled = session.outcome == "ONGOING" or story_index >= 2
     next_button.text = "첫 세 사건 검증 종료" if story_index == 2 and session.outcome != "ONGOING" else "결과 확인 후 다음 장면"
+    if story_mode:
+        next_button.disabled = session.outcome == "ONGOING"
+        next_button.text = "결과 확인 후 다음 장면"
     if quote.status == "APPLIED":
         preview_text.text = "실행 전 미리보기\n" + _receipt_text(quote.receipt)
     else:
@@ -274,6 +278,9 @@ func _facts(state: Dictionary) -> String:
     var objects: Dictionary = state.spell_state.objects
     var temperatures := {"cold": "차가움", "warm": "따뜻함", "hot": "뜨거움", "overheated": "과열"}
     match state.event_id:
+        "LAB_SAMPLE_02":
+            var remaining: int = maxi(0,objects.device.get("effects",{}).get("blocked",0)-state.spell_state.elapsed_actions)
+            return "목표: 장치를 안전하게 정지하기\n위험 %d / 6 · 임시 보호 남은 %d행동\n장치: %s · 시료: %s\n즉시 정지는 안전하지만 내부 시료 처리가 중단됩니다.\n보호 없이 옮기면 위험+2, 가동 중 보호 없는 행동은 추가+1.\n위험6이면 교수 개입. 이미 보존한 시료는 유지됩니다." % [state.hazard,remaining,"정지" if objects.device.closed else "가동", "보존" if objects.sample.location_id == "safe" else "장치 내부"]
         "LESSON_HEAT_01":
             return "목표: 용기를 따뜻하게 만들기\n용기: %s  ·  표본: %s\n너무 뜨거우면 안전 받침에서 식힐 수 있습니다." % [temperatures[objects.vessel.temperature], "손상" if objects.sample.get("damaged", false) else "온전함"]
         "GREENHOUSE_LEAK_01":
@@ -289,7 +296,7 @@ func _facts(state: Dictionary) -> String:
 
 func _receipt_text(receipt: Dictionary) -> String:
     var text := "마력 %d → %d  ·  행동 %d → %d  ·  %s" % [receipt.mana_before, receipt.mana_after, receipt.actions_before, receipt.actions_after, OUTCOMES[receipt.outcome]]
-    if session.event_id == "GREENHOUSE_LEAK_01":
+    if session.event_id in ["GREENHOUSE_LEAK_01","LAB_SAMPLE_02"]:
         text += "\n위험 %d → %d" % [receipt.hazard_before, receipt.hazard_after]
     for change in receipt.changes:
         text += "  /  %s %+d" % [CAUSES.get(change.cause, change.cause), change.delta]
@@ -310,7 +317,7 @@ func _value_text(value: Variant) -> String:
         return "없음"
     if value is bool:
         return "예" if value else "아니요"
-    var values := {"cold": "차가움", "warm": "따뜻함", "hot": "뜨거움", "overheated": "과열", "stage": "무대", "floor": "바닥", "audience": "관객 방향"}
+    var values := {"cold": "차가움", "warm": "따뜻함", "hot": "뜨거움", "overheated": "과열", "stage": "무대", "floor": "바닥", "audience": "관객 방향", "device":"장치 내부", "safe":"안전 용기"}
     return str(values.get(value, value))
 
 func _label(parent: Node, value: String, font_size: int) -> Label:

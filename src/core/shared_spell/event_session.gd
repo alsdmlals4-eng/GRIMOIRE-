@@ -5,7 +5,7 @@ extends RefCounted
 const Definitions = preload("res://src/core/shared_spell/event_definitions.gd")
 const Spell = preload("res://src/core/shared_spell/event_spell_cast.gd")
 const Ledger = preload("res://src/core/atomic_result_ledger.gd")
-const KINDS := ["CAST", "CLOSE_LEAK", "CLEAN", "COOL", "LOCK", "PLACE", "WAIT", "HELP", "STOP"]
+const KINDS := ["CAST", "CLOSE_LEAK", "CLEAN", "COOL", "LOCK", "PLACE", "WAIT", "HELP", "STOP", "STOP_DEVICE", "MOVE_SAMPLE"]
 
 func start(event_id: String, attempt_id: String) -> Dictionary:
     return Definitions.new().start(event_id, attempt_id)
@@ -67,7 +67,20 @@ func act(state: Dictionary, command: Dictionary) -> Dictionary:
 
 func _manual(state: Dictionary, kind: String, changes: Array) -> String:
     var objects: Dictionary = state.spell_state.objects
+    if state.event_id == "LAB_SAMPLE_02" and kind in ["HELP","STOP"]:
+        objects.device.closed = true
+        if objects.sample.location_id != "safe": _consequence(state,"SAMPLE_PROCESS_INTERRUPTED")
     match kind:
+        "STOP_DEVICE":
+            if state.event_id != "LAB_SAMPLE_02": return "ACTION_NOT_AVAILABLE"
+            objects.device.closed = true
+            if objects.sample.location_id != "safe": _consequence(state,"SAMPLE_PROCESS_INTERRUPTED")
+        "MOVE_SAMPLE":
+            if state.event_id != "LAB_SAMPLE_02": return "ACTION_NOT_AVAILABLE"
+            if objects.sample.location_id == "safe": return "SAMPLE_ALREADY_SAFE"
+            objects.sample.location_id = "safe"
+            if objects.device.get("effects",{}).get("blocked",-1) <= state.spell_state.elapsed_actions:
+                _hazard(state,2,"UNPROTECTED_TRANSFER",changes)
         "HELP":
             state.outcome = "ASSISTED"
         "STOP":
@@ -128,6 +141,16 @@ func _time_and_goal(state: Dictionary, action_start: int, changes: Array) -> voi
     var objects: Dictionary = state.spell_state.objects
     var solved := false
     match state.event_id:
+        "LAB_SAMPLE_02":
+            var protected: bool = objects.device.get("effects",{}).get("blocked",-1) > action_start
+            if not objects.device.closed and not protected: _hazard(state,1,"LAB_LEAK_TIME",changes)
+            state.hazard = clampi(state.hazard,0,6)
+            solved = objects.device.closed
+            if state.hazard == 6 and not solved:
+                objects.device.closed = true
+                _consequence(state,"LAB_INTERVENTION")
+                if objects.sample.location_id != "safe": _consequence(state,"SAMPLE_PROCESS_INTERRUPTED")
+                state.outcome = "ASSISTED"
         "LESSON_HEAT_01":
             solved = objects.vessel.temperature == "warm"
         "GREENHOUSE_LEAK_01":

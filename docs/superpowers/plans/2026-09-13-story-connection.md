@@ -18,3 +18,13 @@ Architecture: story_flow.gd owns stage0..5, current activity snapshot and comple
 Five review axes: canonical order, state/terminal/prefix validation, autosave ownership and failure reporting, embedded controls/layout, runtime/regression. This is partial first-chapter functional integration, not final visuals, S06-S08, default-menu replacement, Human/mobile/release completion.
 
 Follow-up within S05: Blueprint explicitly requires '원인부터 / 위험부터 생각했다' choice. Add optional reflection field (empty default supports earlier bridge development saves), allowed only stage5 and never inferred from spells. Flow.reflect returns copied state; UI choices call it and autosave. Report it as player's explanation, not objective action-order evidence or relationship reward. Add RED missing reflect and tests for early/unknown rejection, explicit choice and restore. Keep the S06 boundary open.
+
+## Next loop: LAB_SAMPLE_02 and S06-S08
+
+Delivered: lab17 + storyflow27 + storyscreen20 + existing related974 =1038 assertions, all0 failures. Actual lab WARD→MOVE_SAMPLE→STOP_DEVICE keeps hazard2, mana1 and preserved sample; festival EMBER lamp→WIND decorations/stage→LOCK reaches S08. Final runtime32020 restart/load diagnostics0/0. Final record keeps solved/help/stopped separate and does not claim art/profile/main return completed. Default main unchanged. Eleven runners listed in Active Context. Previous provisional S05 boundary superseded; developer save schema accepts earlier stage5 records via optional reflection default. No legacy save migration.
+
+Before code, port Blueprint24 to shared rule owner. Add extra event definition without changing existing three IDS sequence. event_session handles STOP_DEVICE/MOVE_SAMPLE and hazard protection using existing spell effects, records closed/location changes and intervention consequences. No new spell rule.
+
+- [ ] RED test start absent; immediate stop safe with specimen interrupted; WARD→move→stop preserves hazard2 and specimen; high risk5/mana0 move yields ASSISTED hazard6 with specimen preserved; duplicate command no extra time, HELP safe termination.
+- [ ] Integrate event UI explicit lab manual actions/facts/warnings; story flow extends6 lab7 festival8 ending only after reflection chosen. Validate old bridge stage5 saves with optional reflection; completed prefix adds6/7 and final stage8. No story rewards added; ending marks first functional chapter sequence only, profile/art/full-quality gates remain.
+- [ ] Extend flow/UI tests complete S05 choice→S06→S07→S08 and saved endpoint. Actual live play normal lab branch and festival through final record, regression all affected runners. Defaultmain unchanged.
