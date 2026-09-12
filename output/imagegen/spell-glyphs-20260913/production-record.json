@@ -1,0 +1,28 @@
+{
+  "status": "GENERATED_CANDIDATE_USER_REVIEW_PENDING",
+  "file": "glyph-family-candidate-01.png",
+  "sha256": "29744FC6EC669278A68565A0F0A848260B1A9966F8E9C2887D67B65D8401C6C9",
+  "generator": "built-in image_gen",
+  "prompt": "Use case: stylized-concept. ONE cohesive fictional magical writing specimen sheet for GRIMOIRE magic academy game, NOT four separate illustrations or card mockups. Landscape canvas, four equally spaced columns on a single flat deep midnight navy background. Exactly one large original invented written character per column, ordered left to right EMBER, WIND, WARD, GATHER. No labels anywhere. All four characters in identical pale ivory broad-nib ink, subtly luminous edges but crisp solid stroke cores. They must look like real handwritten letters of one original fantasy calligraphic script: 3 to 5 confident economical strokes each, thick-thin nib modulation, tapered starts and ends, slight right lean, disciplined shared cap-height, no enclosed circular seals, no existing alphabet copied. First letter EMBER: compact rising hooked stem and two short offset strokes suggesting released concentrated energy, NOT a literal flame. Second WIND: elongated flowing curved stem with two short following strokes suggesting direction, NOT wind icon or feather. Third WARD: upright angular stem intercepted by a firm cross-stroke and inward terminal, NOT a shield picture. Fourth GATHER: two inward-reaching curved strokes meeting a short central descending stem, NOT a bowl or magnet. Each should be unmistakably different in silhouette in monochrome, balanced weight, generous negative space and comfortable margins, no marks between columns. Sophisticated penned fantasy manuscript lettering, purposeful and readable as characters rather than ornate sigils. No Latin or Korean text, no digits, no tiny decorative pseudo-writing, no borders, no cards, no people, no objects, no stars, no pentagrams, no elemental illustrations, no gradients per character, no UI, no watermark. This is a visual alphabet family candidate sheet, not a functional diagram.",
+  "correction_prompt": "Edit the provided magical writing specimen. Preserve the navy background, ivory broad-nib calligraphic style, four-column layout and the second, third and fourth glyphs unchanged. Change ONLY the leftmost glyph (EMBER): it is too similar to the second tall flowing glyph. Replace it with a compact angular zigzag-like penned letter of three confident strokes: a short sharply rising diagonal joined to a descending central hook, plus one short separate horizontal accent near its lower left. Its width should be comparable to its height, with no tall flowing main stem and NO two leaf-like side strokes. It must read as original fantasy writing not a literal flame, lightning bolt icon, Latin letter or numeral. Preserve visual weight and crisp ivory ink. Keep no labels, frames or extra glyphs. No other changes.",
+  "reading_order": [
+    "EMBER",
+    "WIND",
+    "WARD",
+    "GATHER"
+  ],
+  "role": "four-character visual writing specimen; not runtime atlas",
+  "meaning_owner": "src/core/shared_spell/spell_semantics.gd",
+  "runtime_applied": false,
+  "qa": {
+    "inspected": true,
+    "correction": "First draft EMBER/WIND silhouettes too similar; replaced EMBER only.",
+    "remaining": [
+      "EMBER angular shape may suggest lightning; meaning label required and user review pending.",
+      "Individual alpha exports, consistent crop/pivot, thumbnail readability and combination preview not verified.",
+      "Generated marks not claimed unique across all real writing systems."
+    ],
+    "functional_text": "Separate engine labels; no numbers or explanatory labels baked in."
+  },
+  "rules_boundary": "Existing order-normalized recipes unchanged; no handwriting input or added gameplay alphabet."
+}

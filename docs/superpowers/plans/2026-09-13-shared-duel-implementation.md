@@ -76,6 +76,16 @@ Before UI implementation, prepare wireframe and approved-asset consumer inventor
 
 ## Task4 — Spell-card meaning and illustration candidate (2026-09-13)
 
+### Current override — magical writing, not effect illustration
+
+User explicitly corrected the visual premise and approved proceeding: cards carry magical written characters; combining characters makes a spell. Earlier EMBER bowl/flame picture is NOT the card face direction. Preserve that unselected file without runtime promotion or deletion. No drawing-input mechanic or new order-sensitive recipe introduced.
+
+Before generation: create one coherent four-character writing specimen (EMBER/WIND/WARD/GATHER in reading order), shared broad-nib ink, sparse strokes, comparable visual weight, distinct silhouette without color reliance. This is a review sheet, NOT a runtime-ready atlas. Character marks are art; localized names/cost/rules remain engine text. Use navy/ivory academy language, not existing franchises' runes, pictorial flame/shield icons, star circuits or pseudo-text wallpaper.
+
+Research ADOPT: compositional meaning and recognisable building blocks from developer interview https://www.gamedeveloper.com/business/road-to-the-igf-inkle-s-i-heaven-s-vault-i- . ADAPT to known spell meanings, not translation uncertainty. REJECT copied letterforms, hidden recipe/order changes, forced handwriting. Feasibility: existing GLYPHS/RECIPES and physical Card IDs remain owners; eventual TextureRect glyph art plus independent labels, pair preview displays original two shapes without obscuring them. Validate individual glyph alpha/crop, small-size distinction and native input after final approval; this specimen alone proves none of those.
+
+Sequence: generate specimen → inspect shapes/meaning mapping → user art review → individual transparent glyph exports and separate card UI → unchanged compose/cancel/cast tests and runtime preview. Combination baseline follows existing order-normalized semantics; decorative joining must not imply order-specific power.
+
 User clarified improvement loops include comparable-game research, design linkage and implementation, not only bug fixes. Start with a representative EMBER illustration candidate; prepare meanings for all four existing glyphs. No new glyph alphabet or gameplay values introduced. Current consumers are shared_duel_screen Card and event_session_screen selection; candidate art is NOT automatically wired before final art approval.
 
 Research: https://shadowverse.com/gameguide/ distinguishes one-shot spell effects; https://www.playgwent.com/en/join emphasizes illustrated cards; https://www.playgwent.com/en/faq describes learning combinations. ADOPT spell readability, ADAPT strong narrative illustration to shared actions across school incidents and duels, REJECT importing factions/units/round economy or making illustrations imply new rules.
