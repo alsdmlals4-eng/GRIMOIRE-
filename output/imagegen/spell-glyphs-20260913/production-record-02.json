@@ -1,0 +1,26 @@
+{
+  "status": "GENERATED_CANDIDATE_USER_REVIEW_PENDING",
+  "file": "glyph-family-candidate-02.png",
+  "supersedes": "glyph-family-candidate-01.png",
+  "sha256": "864C7A548AD82BE14027E094D992AC7863EED21E2D7B25272DBCD518E1A64C80",
+  "prompt": "Create ONE landscape visual specimen of four mysterious ORIGINAL arcane written characters for GRIMOIRE, left to right EMBER WIND WARD GATHER. Revision of previous too-simple fantasy calligraphy: radically more occult manuscript / runic inscription feeling, NOT just adding glow to ordinary letters. Four evenly spaced individual characters, no card frames or labels, flat deep midnight navy backdrop. Thin-to-medium crisp antique pale gold strokes with restrained icy cyan inner luminescence. Each glyph a compact intentional complex written sign made from 6-9 disciplined strokes: strong runic main stem, angular branching ligatures, one tiny open-ring terminal and a few short offset diacritical ticks integrated into its structure. Shared writing grammar but strongly distinct silhouettes. EMBER narrow upward branching asymmetrical fork with central lozenge and interrupted lower stem; WIND wide oblique hooked branches sweeping laterally with staggered ticks; WARD firm upright paired boundary stems bridged by stepped crossbars and one angular inner enclosure; GATHER inward reaching mirrored hooks around a central lozenge with a descending collector stroke. Shapes feel inscribed by a scholar to encode a spell, elegant and genuinely enigmatic, neither simple logo nor recognisable Latin letters. Take general structural inspiration from historic angular runic lettering and early-modern magical manuscript characters, but invent forms, do not copy actual alphabets, religious seals, inscriptions or any franchise. No giant surrounding magic circles, no pentagrams, no stars, no literal flame/wind/shield/magnet icons, no random background alphabet, no heavy bloom, no illustration, no people, no numbers, no explanatory words. Each character must remain a readable dark/light silhouette; do not turn them into overdecorated mandalas. One same-scale row, generous margins.",
+  "generator": "built-in image_gen",
+  "reading_order": [
+    "EMBER",
+    "WIND",
+    "WARD",
+    "GATHER"
+  ],
+  "sources": [
+    {
+      "url": "https://www.britishmuseum.org/collection/object/H_1857-0623-1",
+      "access": "search excerpt only; direct page 403"
+    },
+    {
+      "url": "https://searcharchives.bl.uk/catalog/040-002048098",
+      "access": "catalogue read; manuscript page images not inspected"
+    }
+  ],
+  "runtime_applied": false,
+  "qa": "Visually inspected. More branched sign structure and terminal rings. Gold texture reads partly metallic rather than ink; EMBER/GATHER still share central diamond. Thumbnail, alpha and final human approval not verified. Research is not a guarantee of historical accuracy or global shape uniqueness."
+}
