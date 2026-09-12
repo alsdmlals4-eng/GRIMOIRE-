@@ -3,6 +3,7 @@ extends Control
 const Store = preload("res://src/core/shared_spell/story_save.gd")
 const Flow = preload("res://src/core/shared_spell/story_flow.gd")
 const Story = preload("res://src/ui/story/story_screen.tscn")
+const Codex = preload("res://src/core/shared_spell/story_codex.gd")
 var save_folder := "res://artifacts/local-validation/story-progress"
 var story_view: Control
 var continue_button: Button
@@ -121,7 +122,7 @@ func _menu() -> void:
     if continue_button.disabled:
         continue_button.text = "이어하기 · 유효한 저장 없음"
     _button(box,"설정 · 연결 준비 중",func(): pass).disabled = true
-    _button(box,"도감 · 연결 준비 중",func(): pass).disabled = true
+    _button(box,"도감",open_codex)
     if OS.get_name() not in ["Android","iOS","Web"]:
         _button(box,"종료",func(): get_tree().quit())
 
@@ -133,3 +134,41 @@ func _button(parent: Node, caption: String, callback: Callable) -> Button:
     button.pressed.connect(callback)
     parent.add_child(button)
     return button
+
+func open_codex() -> void:
+    if new_pending: return
+    var saved := _saved()
+    var model: Dictionary = Codex.new().build(saved.payload.story if saved.status == "LOADED" else {})
+    _clear()
+    var margin := MarginContainer.new()
+    margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    for side in ["left","right","top","bottom"]: margin.add_theme_constant_override("margin_"+side,32)
+    add_child(margin)
+    var box := VBoxContainer.new()
+    box.add_theme_constant_override("separation",16)
+    margin.add_child(box)
+    var title := Label.new()
+    title.text = "글자 도감 · 배운 뜻과 사용 기록"
+    title.add_theme_font_size_override("font_size",30)
+    box.add_child(title)
+    var scroll := ScrollContainer.new()
+    scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+    scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    box.add_child(scroll)
+    var content := Label.new()
+    content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    content.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    content.add_theme_font_size_override("font_size",24)
+    var lines := PackedStringArray(["읽기는 시간·마력·손패를 바꾸지 않습니다. 기록은 숙련이나 성공 판정이 아니라 실제 시전 이력입니다.",""])
+    for row in model.glyphs:
+        lines.append(row.name + " — " + row.meaning if row.learned else "아직 배우지 않은 글자 · 첫 수업에서 뜻을 배웁니다.")
+        lines.append("")
+    lines.append("사용한 주문")
+    if model.spells.is_empty(): lines.append("아직 시전 기록이 없습니다. 미리보기만으로 발견 기록이 생기지 않습니다.")
+    for spell in model.spells:
+        lines.append("\n" + spell.name)
+        for usage in spell.uses:
+            lines.append("• %s / %s\n  %s" % [usage.context,usage.target,usage.fact])
+    content.text = "\n".join(lines)
+    scroll.add_child(content)
+    _button(box,"메인으로",show_menu)

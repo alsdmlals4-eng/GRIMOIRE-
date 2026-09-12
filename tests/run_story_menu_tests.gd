@@ -44,6 +44,19 @@ func _run() -> void:
     await process_frame
     c.assert_equal(0,menu.story_view.story.stage,"new stage0 saved before entry")
     menu.show_menu()
+    c.assert_true(menu.has_method("open_codex"),"main menu opens readable codex")
+    if not menu.has_method("open_codex"):
+        menu.queue_free()
+        await process_frame
+        print(JSON.stringify({"assertions":c.assertion_count(),"failures":c.failure_count(),"messages":c.failures()}))
+        quit(1)
+        return
+    var store = preload("res://src/core/shared_spell/story_save.gd").new()
+    var before_read: Dictionary = store.load_progress(ProjectSettings.globalize_path(menu.save_folder))
+    menu.open_codex()
+    c.assert_true(menu.find_children("*","Label",true,false).any(func(label): return label.text.contains("아직 배우지")),"prelesson codex explains locked letters")
+    menu.show_menu()
+    c.assert_equal(before_read,store.load_progress(ProjectSettings.globalize_path(menu.save_folder)),"codex reading does not rewrite save or RNG")
     menu.save_folder = "res://src/ui/story/story_menu.gd/not-a-directory"
     menu.request_new()
     c.assert_true(not is_instance_valid(menu.story_view),"failed save does not enter new story")

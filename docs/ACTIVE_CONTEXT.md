@@ -1,5 +1,11 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 도감 후속 루프
+
+story_codex.gd는 검증된 이야기의 배운 글자와 실제 주문 receipts를 읽기 전용으로 집계한다. 첫 수업 전 잠금, 학습만으로 조합 공개 안 함, 미리보기 기록 안 함, 사건/결투 사용 맥락과 대상/비용/위험 표시. 이름은 기존 Semantics owner를 소비한다. 조합 ID와 명령이 어긋난 기록을 그대로 노출하던 RED를 추가하고 불일치를 제외했다. 손상 검출 강화이지 악의적 전체 저장 변조 방지 증거는 아니다. 메뉴의 도감을 실제 scroll view와 메인 복귀에 연결했다. 읽기100회 입력상태 불변, 도감 방문 전후 저장 generation/payload 동일.
+
+7 runners612 assertions0failures(codex15/menu17/storyscreen22/storyflow27/eventsession60/eventsave12/duelsession459). 실제 editor11900/runtime30916 도감 열기/화면 확인/메인/이어하기, diagnostics0/0, capture artifacts/local-validation/story-codex-20260913.png. 현재 글자/기록 text view이며 카드/룬 이미지 최종 적용, 설정/진행 중 도감 진입, Human/mobile/export는 미완료. Magicka/Heaven's Vault 공식 설명을 ADAPT하고 원소 개수/언어/아트는 복제하지 않았다. 세부 계획과 검토는 story-main-entry.md Loop2.
+
 ## 2026-09-13 기본 메인과 이야기 저장 진입 통합
 
 기본 main은 `res://src/ui/story/story_menu.tscn`으로 갱신했다. 새 게임은 stage0 저장 성공 후 진입, 기존 유효 저장은 플레이어 대체 확인/취소, 손상만 있는 저장은 보존·차단한다. 이어하기는 매번 유효 저장을 다시 읽고 정확한 story state를 StoryScreen에 전달한다. 마지막 기록의 메인 복귀 연결. 설정/도감은 아직 미구현 표기, 기능용 기본 UI이며 최종 아트 승격 없음. 구 Product Root는 독립 회귀 씬으로 보존했다.
