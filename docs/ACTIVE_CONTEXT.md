@@ -1,5 +1,11 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 새 결투 매치·손패·스냅샷 연결
+
+승인된 계획Task2를 먼저 세부화한 뒤 `src/core/shared_spell/duel_session.gd`와 테스트를 구현했다. 학습용 네 글자 손패, 일반 seeded 손패, 단독/조합 시전, 보충/재순환, 정돈, 대기/중단, 중복 요청 replay와 충돌/stale 거절, 집중/억제 저장 상태를 연결했다. restore는 동일 규칙/엔진의 초기 상태부터 명령을 재현해 전체 snapshot과 비교한다. 반환값은 독립 복사본이며 preview도 같은 전이 함수를 사용한다.
+
+신규459 assertions/0 failures: 실제 로컬 binary 파일 roundtrip,12 seeded 대기/정돈 및20 seeded 합법 시전 경로의 카드 보존/상태 재현, 승리 경로와 terminal 차단. 이것은 headless match 검증이며 실제 플레이 화면/Human/balance PASS가 아니다. 개발용 snapshot 저장만 확인했고 두 슬롯 crash-safe 사용자 저장 연결, 장기 로그 성능, 엔진 변경 migration은 남는다. 다음 계획Task3은 와이어프레임/승인 자산 consumer 검토 후 실제 결투 화면과 저장 UI를 연결한다. 구 main/구 저장/다른 PR/사용자 변경은 보존했다.
+
 ## 2026-09-13 계획 선행: 새 결투 한 교환 판정
 
 사용자는 앞으로 구현/수정 계획을 먼저 작성하도록 지시했고, 첫 연습 결투 계획 진행을 승인했다. `docs/superpowers/plans/2026-09-13-shared-duel-implementation.md`를 코드 전에 작성했다. 첫 단위 `src/core/shared_spell/duel_spell_exchange.gd`는 공통 compose를 소비하여 10주문, 성질 조건, 집중/억제 만료, 복구 선적용, 반격/동시 피해를 독립 복사본으로 계산한다. 기존 FIRST_DUEL_1/저장/main은 변경하지 않았다.
