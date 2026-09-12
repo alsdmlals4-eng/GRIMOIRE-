@@ -145,6 +145,32 @@ SWOT 행동: S 같은 마법의 전이→수업/사건에 같은 작용 사용; 
 
 ## 11. 대상 반응 계약 v0.2
 
+### 2026-09-12 후속: 사건 효과·시전 스냅샷
+
+`src/core/shared_spell/event_spell_cast.gd.cast(state, command)`를 구현했다. 직전 사용자가 승인한 효과/명시 시전 후속 범위를 재사용하며 새 게임 의미나 구형 저장 마이그레이션을 승인받은 것으로 확대하지 않는다. 기존 `AtomicResultLedger`는 재사용, `AtomicSpellUseService`는 PreparedSpell/구형 재고에 묶여 있어 보존, 새 이벤트 스냅샷 adapter를 채택했다. 결투 손패 소비의 대체 서비스는 아니다.
+
+| 입력/결과 | 계약 |
+|---|---|
+| state | schema=`GRIMOIRE_EVENT_CAST_1`, 비어 있지 않은 attempt_id, 비음수 정수 revision/mana/elapsed_actions, learned 배열, objects/receipts 사전 |
+| command | 비어 있지 않은 id/target_id, destination_id 문자열(불필요 시 빈 값), glyphs 배열, expected_revision 정수 |
+| CAST | 원본을 수정하지 않은 새 state와 독립 receipt. 비용·행동·개정번호·객체 효과·장부가 함께 반환 |
+| REPLAY | 같은 ID와 동일한 의도(글자 순서 정규화)의 기존 receipt, **현재** state. 이전 상태로 되돌리지 않음 |
+| REJECTED | ID 충돌/오래된 revision/잘못된 자료/대상 부적합/마력 부족. 효과·비용·시간 변경 없음 |
+
+재전송의 동일 의도에는 attempt_id, 정규화 글자, 대상/목적지, 원래 expected_revision을 포함한다. 사용자가 상태를 새로 보고 다시 선택한 시전에는 새 command ID를 발급해야 한다. state 소유자는 CAST 결과를 하나의 새 스냅샷으로 교체해야 하며, UI가 장부/개정번호를 임의로 만드는 구조는 허용하지 않는다. 이 서비스만으로 디스크 원자 저장이나 여러 프로세스 동시 쓰기를 보장하지 않는다.
+
+실제 효과: 불씨/온기 흐름은 `cold→warm→hot→overheated` 한 단계, 응축 불씨는 두 단계(상한 overheated)다. 첫 수업의 cold→warm/cold→hot 명세를 일반 가열 상태로 구체화한 시험 규칙이며 최종 밸런스 잠금은 아니다. DAMAGE_RISK 대상은 damaged=true. 바람은 location_id, 흐름 전환은 redirected_to를 명시 목적지로 기록한다. 모으기/모으는 바람은 비어 있지 않은 하나의 소스 묶음을 empty=true로 만들고 목적지 capture_load를1 증가시킨다. 물리량/질량 시뮬레이션이 아니다. 물리 이동 애니메이션·경로 재작성은 아직 없다.
+
+막기/온기 장막/봉합 장막은 effects의 blocked/heat_retained/leak_suppressed에 생성 직전 elapsed_actions+2를 저장한다. 재시전은 현재 행동 기준으로 갱신하며 누적하지 않는다. 영구 closed나 원인 제거와 구분한다. `effect_active(state,id,effect)`는 **다음 행동 시작 시점** 활성 여부다. 향후 사건 해소기는 해당 행동의 위험 판정에서 receipt.actions_before와 결과 effects의 만료값을 비교해야 생성 행동과 다음 행동까지 보호되고, 두 번째 행동 뒤 반환 상태에서는 만료된다. 아직 이 위험 판정 소비처는 구현하지 않았다.
+
+적법하지만 이미 빈 소스/닫힌 경계/포화 온도 등 실제 변경이 없으면 VALID_NO_CHANGE 영수증과 비용을 남긴다. 저수준 assess_scene은 적합성 quote이며 실제 효과 후 무변화 재분류가 추가될 수 있다. 미래 사용자 preview는 이 차이를 숨기지 않도록 같은 효과 simulation을 무소비로 재사용해야 한다. 현재 이 API를 UI preview로 직접 노출하지 않는다. 과열·분산·관객·재확산 경고 중 damaged 이외의 사건별 결과는 후속 시계/목표 엔진에서 연결해야 한다.
+
+검증 명령: Godot4.7.1 `--headless --path . --script tests/run_event_cast_tests.gd`. 신규70 assertions/0 failures; 기존 `tests/run_shared_spell_tests.gd`252 assertions/0 failures. 정상10종, 무변화 유료 시전, 피해, 만료/갱신, 중복·충돌·과거 재전송, 순서 독립, 스냅샷/영수증 참조 분리, 잘못된 입력, 마력 부족, 막힌 경로/포화 수용점, 과열/포화 가열을 검사했다. 서비스 없음과 포화 결과 오분류의 RED→GREEN을 각각 확인했다. 실제 화면/전체 사건/디스크 저장/Human·기기 검증은 NOT_RUN.
+
+외부 재조회: [Godot Dictionary 공식 문서](https://docs.godotengine.org/en/stable/classes/class_dictionary.html)의 참조 공유/duplicate 계약을 ADOPT했다. ADAPT는 기존 결과 장부+독립 이벤트 스냅샷, REJECT는 구형 별형 재고 강제 이식/입력 스냅샷 직접 변경/실패 뒤 부분 차감이다. 추가 유료 도구/이미지/공용 Base 계약 변경 없음.
+
+5회 전체 범위 자체 검토(매회 승인/실제 consumer/기존 구조/실패 복구/검증 상한 확인): ① 구형 서비스 직접 재사용의 재고 결합 확인→장부만 재사용; ② 동일 요청·오래된 revision·가변 참조 공격→충돌/재전송/독립 복사 검사; ③ 효과·무변화·위험 대조→포화 온도의 거짓 변화 표시를 실패 검사 후 교정; ④ 만료/재시전/목적지 상태 공격→기간 갱신·막힌 경로·용량 검증; ⑤ 실행 소비처/저장/시계/PDF 최신성 확인→구현 경계를 본 절과 Active Context에 갱신. 공용 학습은 '새 규칙에서는 기존 장부를 재사용하되 구형 재고 결합을 가져오지 않는다'로 프로젝트에 기록했고, 타 프로젝트 반복 증거 전 Base 승격은 보류한다. main 미병합이므로 post-merge readback/CI를 PASS로 주장하지 않는다.
+
 ### 2026-09-12 후속: 장면 등록 데이터 평가
 
 `spell_semantics.gd.assess_scene(kinds, learned, objects, target_id, destination_id="")`를 추가했다. 기존 `assess`는 완전 상태를 받는 저수준 평가로 유지하고, 새 진입점은 장면 소유 `objects`에서 선택한 대상/목적지를 조회한다. UI에서 넘긴 `path_open`/`full` 같은 합성 값으로 경로·용량을 우회하지 않는다. 아직 실제 게임 장면이 이 API를 호출하지 않는다.
