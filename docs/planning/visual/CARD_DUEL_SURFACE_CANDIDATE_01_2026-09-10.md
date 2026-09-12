@@ -1,5 +1,9 @@
 # 카드 결투 화면 후보 01 — 생성·검수 기록
 
+## 2026-09-13 승인 배경 runtime 연결
+
+아래 승인 원본 배경의 SHA256을 재확인해 `src/ui/shared_duel/shared_duel_screen.gd`의 Background TextureRect에 연결했다. 원본 복제/변형 없음. EXPAND_IGNORE_SIZE / KEEP_ASPECT_COVERED / mouse_filter IGNORE. 1280x720 실제 실행에서 환경 비율과 별도 글자/UI를 확인했다. 상태 USER_APPROVED → IMPLEMENTED → RUNTIME_VERIFIED(PC 해당 viewport 한정). 카드/캐릭터/모션/상업 권리/모바일은 이 상태로 승격하지 않는다. 아래 runtime 미구현 표현은 이전 기록이다.
+
 ## 후속 분리 배경 후보 — 2026-09-10
 
 최신 사용자 `권장안대로 작업 계속 진행해`로 승인된 분리 제작을 이어갔다. 기존 합성 그림은 방향 참고로 유지하고, 배경을 새로 생성했다. 이 절은 배경 후보의 owner이며 아래 합성 화면의 승인 상태와 구분한다.

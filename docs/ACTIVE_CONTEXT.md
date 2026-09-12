@@ -1,5 +1,13 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 결투 화면·저장 UI·직접 조작
+
+계획Task3의 배치/입력/자산 소비처를 먼저 작성하고 `src/ui/shared_duel/shared_duel_screen.tscn`을 구현했다. 승인 연습실 배경을 원본 경로에서 사용, 기능 글자/수치는 별도 노드다. 캐릭터 알파·카드 일러스트는 미완료로 유지한다. `duel_save.gd`는 기존 두 슬롯 envelope와 checksum을 재사용하고 새 결투 snapshot 검증을 특수화한다. 전용 개발 폴더를 사용하며 기존 사건/구형 저장은 공유하지 않는다.
+
+신규 화면/저장12 assertions, 관련 총963 assertions/0 failures. 그리모어 편집기11900/게임16444에서 실제 선택·시전·저장 후 변경·이어하기 복원, 대기로 패배·재연습을 확인했다. Computer Use의 정확한 게임 창에서 native drag로 모으기+불씨→응축 불씨 preview를 확인했으며 자동 시전/수치 소비 없음. 최종 diagnostics error0/warning0. 로컬 캡처 `artifacts/local-validation/shared-duel-drag-preview-20260913.png`, `shared-duel-loss-20260913.png`, `shared-duel-retry-20260913.png`. 밝은 배경 위 글자 대비를 개선했다.
+
+현재 범위는 기능 연습 화면. 실제 화면 승리 경로, 모바일 touch/접근성/성능/Human/balance는 미검증이다. 기본 main은 구형 유지, 다음은 카드 일러스트/승인 초상 준비 및 결투 결과 상세 복기·이야기/메인 연결 계획이다. 저장은 개발 폴더이고 export user path 미완료. 사용자 변경/다른 PR/기존 저장 보존, 삭제 없음.
+
 ## 2026-09-13 새 결투 매치·손패·스냅샷 연결
 
 승인된 계획Task2를 먼저 세부화한 뒤 `src/core/shared_spell/duel_session.gd`와 테스트를 구현했다. 학습용 네 글자 손패, 일반 seeded 손패, 단독/조합 시전, 보충/재순환, 정돈, 대기/중단, 중복 요청 replay와 충돌/stale 거절, 집중/억제 저장 상태를 연결했다. restore는 동일 규칙/엔진의 초기 상태부터 명령을 재현해 전체 snapshot과 비교한다. 반환값은 독립 복사본이며 preview도 같은 전이 함수를 사용한다.

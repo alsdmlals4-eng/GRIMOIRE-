@@ -54,6 +54,22 @@ Before code, expand this task against current duel_match.gd full consumer/restor
 
 ## Task3 — Screen/asset and practice loop (dependent follow-up)
 
+### Planned input layout before implementation
+
+1280x720 landscape: top status (my barrier / exchange / foe barrier); upper-middle announced foe attack and shield; middle selected spell and exact predicted outcome; lower hand of four physical cards; bottom persistent cast/cancel/tidy/wait/stop/save/load controls. Selection and drop never cast. Result state disables actions and exposes explicit retry. This is a functional practice entry, not main/story replacement.
+
+Assets: approved background `output/imagegen/card-duel/duel-background-candidate-01.png`, SHA2568445F4409DA8CB388F1157D9CF1CE41C1222746F3818D48FF71325EC1F4F6F36, consumed without duplication by Background TextureRect. Character owner still records alpha/framing pending: do not insert opaque reference portraits. Card illustration family not approved/runtime-ready: functional text cards explicitly labeled, no invented vector illustration; final art remains separate.
+
+Create `src/ui/shared_duel/shared_duel_screen.gd/.tscn`, `src/core/shared_spell/duel_save.gd`, `tests/run_duel_screen_tests.gd`. Save reuses existing two-slot file envelope in a dedicated duel folder via payload-validator specialization; old event folders never shared. Save packet contains snapshot plus latest receipt sourced from that snapshot. Development storage only; export user path integration later.
+
+- [ ] RED missing screen/store; selection/cancel no revision change; pair quote; explicit confirm once; tidy requires one; stop disables cast; save/change/load equality; corrupt newest fallback; footer720.
+- [ ] Implement screen as pure session consumer with physical-card drop IDs and user-readable rejection reasons; no duplicated combat arithmetic.
+- [ ] Run exact GRIMOIRE editor, inspect image and representative controls; diagnostics and relevant regression suites. Report native drag separately from programmatic drop.
+
+Task3 partial delivery: functional screen and dedicated two-slot save consumer implemented, new12 assertions and full affected963 assertions pass. Screen-missing RED observed before implementation. Actual editor11900/runtime16444: click selection/cast, save/change/load, loss/retry; native mouse drag selects GATHER+EMBER without auto-cast. Readability improved after screenshot review. Approved background hash confirmed and owner updated; card art/portrait/motion still pending. Godot Control drag/drop and TextureRect KEEP_ASPECT_COVERED official documentation rechecked. ADOPT native drag callbacks, ADAPT existing semantic selection to physical IDs, REJECT baked text or new art approval inference. No default-main replacement.
+
+Remaining gates intentionally open: final card/portrait states, detailed post-cast review/story handoff, actual-screen WIN path, mobile/Human/performance/export save path. Functional screen is not final visual approval. Five bounded passes: owner/asset inspection, input contract, save payload isolation, runtime readability correction, native input/final regression. Not five independent player reviews. Computer Use initially captured occluding surface; activated exact returned game window and re-observed before input, never used occluded coordinates.
+
 Before UI implementation, prepare wireframe and approved-asset consumer inventory. Hand and opponent preview remain visually separate; no baked labels. Needed states: idle/selected/combination/invalid/cast/result. Reuse approved portraits/background only after alpha/space/provenance checks; new images remain candidates until approval. Actual Godot checks must include native overlap, cancel, explicit cast, completion and save/resume; mobile/Human separately. Keep old main until integration evidence.
 
 ## Delivery boundary
