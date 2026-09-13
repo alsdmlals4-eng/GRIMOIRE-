@@ -1,5 +1,11 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 사용자 참조 기반 대화 구도 교정
+
+최신 방향은 화면 전체 배경 위에 여러 인물이 함께 서고 하단 공통 대화창이 겹치는 RPG 구도다. 좌우 액자/가운데 설명창은 최종 방향에서 폐기한다(기존 실행 코드는 전환 전 상태로 보존). 새 `output/imagegen/dialogue-stage-20260913/classroom-composition-candidate-01.png`는 승인 인물3종 기반 구도 시안이며 runtime 적용/최종아트 승인 아님. 글자 없는 하단 창을 포함한 합성 이미지라 배경·인물·UI 분리 자산을 대신할 수 없다.
+
+투명 atlas 생성은 RGB 체크무늬 출력으로 실패했고 runtime 적용을 차단했다. 관련 실패본은 `.cleanup-review/20260913-dialogue-alpha/`에 두었으며 사용자 삭제 대상이다. 상세 제작/기술 한계는 같은 후보 폴더 PRODUCTION_RECORD.md. 신규 미술 자산이 필요한 변경으로 실제 Godot 레이어 교체는 아직 미완료다. 이전 framed illustration PASS를 새 구도 구현 PASS로 해석하지 않는다.
+
 ## 2026-09-13 대화 삽화 실제 연결
 
 최종5 runners83 assertions0failures 재실행 완료. 동료까지 실제 대사 전환/그림 교체 캡처 확인; 세 인물 PC 표시 증거 확보. 원본 파일은 수정하지 않았다.
