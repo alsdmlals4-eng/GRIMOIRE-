@@ -1,5 +1,15 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 남은 작업 설계·구현 명세 준비
+
+최신 사용자 요청은 남은 작업과 각 작업의 설계·구현 명세 준비다. 게임 코드를 추가 구현하지 않고 [잔여 작업 실행 명세](superpowers/plans/2026-09-14-remaining-work-design-implementation.md)를 작성했다. W01 저장 실패 진행 차단→W02 개발/배포 저장 분리→W03 자산 분리→W04 공통 대화→W05 사건→W06 결투→W07 이야기/도감→W08 설정/접근성→W09 연출/오디오→W10 본책 동기화→W11 통합 인계, W12 장기 확장 설계로 구분한다. 일반 기술 작업을 다시 승인 대기시키지 않는다.
+
+fresh code read에서 카드 drag는 이미 존재함을 확인했다. 반면 StoryScreen.advance_story는 save_story 결과와 무관하게 화면을 전진시키며 checkpoint 실패 후 추가 행동 잠금도 없어 W01 최우선 보완으로 지정했다. 이 발견은 소스 검토이며 새 RED/runtime 재현은 이번 문서 작업에서 실행하지 않았다. 현재 교실은 승인 합성 그림이며 독립 alpha/표정/다른 장소 새 구도는 미완료다.
+
+관찰 branch head7c396075, origin/main d384c454; Base remote d830c0f6, pin9.4.3 유지. 다른 open PR은 read-only. 본책 9월11일의 main/구현 지도/인물 수/저장 제안은 현재 브랜치와 차이가 있어 최신 읽기 안내를 추가했다. PDF는 당시 스냅샷이며 이번 계획을 포함한 최신 발행본이 아니다. 계획은 source_only 작업 지시서로 등록하고 기존 GDD를 복제하지 않는다. 문서 준비와 W01–W12 실행/기기/Human/출시 완료를 구분한다.
+
+이번 문서 검증: 운영 계약 OPERATING_CONTRACT_VALID(9.4.3/19routes/CURRENT), 관련 Python 계약3 tests OK, 계획12작업/50체크항목/내부 링크 누락0/registry등록1개, diff whitespace 검사 통과. 새 게임 코드 변경·Godot 재실행·모바일·Human·PDF 재발행·main 병합은 수행하지 않았다. 저장 실패 소스 발견을 수정 완료로 올리지 않는다.
+
 ## 2026-09-13 승인 교실 구도 플레이 연결
 
 사용자 `딱 좋네 진행해`로 classroom-composition-candidate-01 구도 승인. stage1 교실에 한정해 승인 합성 장면을 임시 표시하고 story_classroom_view.gd의 독립 Godot 하단 이름/대사/이전다음/안내/메뉴를 연결했다. 나머지 장소는 이 교실 그림을 재사용하지 않는다. 이 중간 구현은 배경/인물이 아직 합쳐져 있으므로 actor별 강조/표정/등퇴장은 미완료이며 완전한 레이어 분리로 주장하지 않는다. 실패한 RGB 체크무늬 atlas는 사용하지 않았다.

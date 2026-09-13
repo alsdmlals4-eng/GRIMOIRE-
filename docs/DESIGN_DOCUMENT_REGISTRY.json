@@ -65,6 +65,18 @@
   ],
   "canonical_documents": [
     {
+      "path": "docs/superpowers/plans/2026-09-14-remaining-work-design-implementation.md",
+      "document_id": "GRIMOIRE_REMAINING_WORK_EXECUTION_20260914",
+      "status": "SPECIFIED_RECOMMENDED_EXECUTION_PLAN",
+      "responsibility": "Remaining-work execution instructions and acceptance contracts; references existing Human Blueprint and shared spell rule owners without replacing game canon",
+      "publication_policy": "source_only",
+      "output_pdf": null,
+      "output_docx": null,
+      "publication_manifest": null,
+      "generator": null,
+      "diagram_policy": "none"
+    },
+    {
       "path": "docs/superpowers/specs/2026-09-11-human-blueprint.md",
       "document_id": "GRIMOIRE_HUMAN_BLUEPRINT_20260911",
       "status": "DESIGN_REVIEW_USER_FINAL_APPROVAL_PENDING",
