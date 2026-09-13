@@ -3,6 +3,7 @@ signal story_checkpoint(snapshot: Dictionary)
 signal story_finished
 signal story_save_requested
 signal story_load_requested
+signal story_menu_requested
 var story_mode := false
 ## Functional practice entry. Approved environment, provisional text cards.
 const Duel = preload("res://src/core/shared_spell/duel_session.gd")
@@ -61,7 +62,11 @@ func _ready() -> void:
     var layout := VBoxContainer.new()
     layout.add_theme_constant_override("separation",12)
     margin.add_child(layout)
-    header = _label(layout,28)
+    var title_row := HBoxContainer.new()
+    layout.add_child(title_row)
+    header = _label(title_row,28)
+    header.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    if story_mode: _button(title_row,"메뉴",func(): story_menu_requested.emit())
     notice = _label(layout,16)
     notice.text = "연습 결투 구현판 · 카드 일러스트/초상 미적용 · 학습용 손패"
     announced = _label(layout,24)

@@ -17,6 +17,9 @@ func _run() -> void:
     root.add_child(screen)
     await process_frame
     var fresh: Dictionary = screen.story.duplicate(true)
+    c.assert_true(screen.find_child("Speaker",true,false) != null,"dialogue has a dedicated speaker plate")
+    c.assert_true(screen.find_child("Narration",true,false) != null,"scene narration is separate from speech")
+    c.assert_true(not screen.story_copy.text.contains("연결되지") and not screen.story_copy.text.contains("구현판"),"player prose excludes production status")
     var normal_folder: String = screen.save_folder
     screen.save_folder = "res://src/ui/story/story_screen.gd/no-save"
     screen.load_story()

@@ -7,6 +7,7 @@ const Codex = preload("res://src/core/shared_spell/story_codex.gd")
 const Preferences = preload("res://src/core/shared_spell/story_preferences.gd")
 var save_folder := "res://artifacts/local-validation/story-progress"
 var story_view: Control
+var suspended_story: Control
 var continue_button: Button
 var new_pending := false
 var message := "첫 학교생활 · 기능 연결판 / 최종 화면 연출 제작 중"
@@ -23,6 +24,7 @@ func _has_slots() -> bool:
     return false
 
 func request_new() -> void:
+    if is_instance_valid(suspended_story): return
     var saved := _saved()
     if saved.status == "LOADED":
         new_pending = true
@@ -68,6 +70,9 @@ func _start_new() -> void:
 
 func continue_story() -> void:
     if new_pending: return
+    if is_instance_valid(suspended_story):
+        resume_story()
+        return
     var saved := _saved()
     if saved.status != "LOADED":
         message = "정상 이야기 저장이 없습니다. 손상된 파일은 덮어쓰지 않습니다."
@@ -77,6 +82,7 @@ func continue_story() -> void:
 
 func _clear() -> void:
     for child in get_children():
+        if child == suspended_story: continue
         remove_child(child)
         child.queue_free()
     story_view = null
@@ -88,7 +94,37 @@ func _enter(state: Dictionary) -> void:
     story_view.story = state.duplicate(true)
     story_view.save_folder = save_folder
     story_view.main_requested.connect(show_menu)
+    story_view.pause_requested.connect(open_pause)
     add_child(story_view)
+
+func open_pause() -> void:
+    if not is_instance_valid(story_view): return
+    suspended_story = story_view
+    suspended_story.hide()
+    suspended_story.process_mode = Node.PROCESS_MODE_DISABLED
+    message = "잠시 책장을 덮습니다. 돌아오면 고르던 글자와 대상이 그대로 남습니다."
+    _menu()
+
+func resume_story() -> void:
+    if not is_instance_valid(suspended_story): return
+    _clear()
+    story_view = suspended_story
+    suspended_story = null
+    story_view.process_mode = Node.PROCESS_MODE_INHERIT
+    story_view.show()
+    story_view.refresh_preferences()
+
+func save_and_main() -> void:
+    if not is_instance_valid(suspended_story): return
+    if not suspended_story.save_story():
+        message = "저장하지 못했습니다. 플레이로 돌아가 다시 시도할 수 있습니다."
+        _menu()
+        return
+    remove_child(suspended_story)
+    suspended_story.queue_free()
+    suspended_story = null
+    message = "진행을 기록했습니다. 이어하기로 같은 장면에 돌아갈 수 있습니다."
+    show_menu()
 
 func show_menu() -> void:
     new_pending = false
@@ -113,6 +149,12 @@ func _menu() -> void:
     notice.custom_minimum_size.y = 64
     notice.add_theme_font_size_override("font_size",22)
     box.add_child(notice)
+    if is_instance_valid(suspended_story):
+        _button(box,"플레이로 돌아가기",resume_story)
+        _button(box,"설정",open_settings)
+        _button(box,"도감",open_codex)
+        _button(box,"진행 저장 후 메인으로 · 미시전 선택 초기화",save_and_main)
+        return
     if new_pending:
         _button(box,"취소 · 기존 이야기 유지",cancel_new).grab_focus()
         _button(box,"기록을 대체하고 새 게임",confirm_new)
@@ -139,7 +181,8 @@ func _button(parent: Node, caption: String, callback: Callable) -> Button:
 func open_codex() -> void:
     if new_pending: return
     var saved := _saved()
-    var model: Dictionary = Codex.new().build(saved.payload.story if saved.status == "LOADED" else {})
+    var current: Dictionary = suspended_story.story if is_instance_valid(suspended_story) else (saved.payload.story if saved.status == "LOADED" else {})
+    var model: Dictionary = Codex.new().build(current)
     _clear()
     var margin := MarginContainer.new()
     margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

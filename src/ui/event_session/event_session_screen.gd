@@ -3,6 +3,7 @@ signal story_checkpoint(snapshot: Dictionary)
 signal story_finished
 signal story_save_requested
 signal story_load_requested
+signal story_menu_requested
 var story_mode := false
 ## Playable event implementation preview. Not final art or the full story root.
 
@@ -79,7 +80,11 @@ func _build() -> void:
     margin.add_child(layout)
     theme = Theme.new()
     theme.default_font_size = 20
-    header = _label(layout, "", 26)
+    var title_row := HBoxContainer.new()
+    layout.add_child(title_row)
+    header = _label(title_row, "", 26)
+    header.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    if story_mode: _button(title_row,"메뉴",func(): story_menu_requested.emit())
     save_notice = _label(layout, "사건 플레이 검증판 · 최종 아트/전체 이야기 미적용 · 선택과 읽기는 무료입니다.", 16)
     var body := HBoxContainer.new()
     body.size_flags_vertical = Control.SIZE_EXPAND_FILL
