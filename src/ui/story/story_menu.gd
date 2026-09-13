@@ -5,7 +5,7 @@ const Flow = preload("res://src/core/shared_spell/story_flow.gd")
 const Story = preload("res://src/ui/story/story_screen.tscn")
 const Codex = preload("res://src/core/shared_spell/story_codex.gd")
 const Preferences = preload("res://src/core/shared_spell/story_preferences.gd")
-var save_folder := "res://artifacts/local-validation/story-progress"
+var save_folder := preload("res://src/core/shared_spell/story_storage_paths.gd").folder("story-progress", OS.has_feature("editor"))
 var story_view: Control
 var suspended_story: Control
 var continue_button: Button
@@ -94,6 +94,9 @@ func continue_story() -> void:
         _menu()
         return
     _enter(saved.payload.story)
+    if saved.get("recovery", false):
+        story_view.save_message = "일부 기록을 읽지 못해 정상 보관된 기록을 펼쳤습니다. 마지막 행동은 포함되지 않을 수 있습니다."
+        story_view._notice()
 
 func _clear() -> void:
     for child in get_children():

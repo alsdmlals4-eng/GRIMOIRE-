@@ -4,6 +4,7 @@ func _initialize() -> void:
 func _run() -> void:
     var c = preload("res://tests/test_case.gd").new()
     var screen = preload("res://src/ui/story/story_screen.tscn").instantiate()
+    screen.save_folder = "res://artifacts/local-validation/story-classroom-tests"
     screen.story = preload("res://src/core/shared_spell/story_flow.gd").new().advance(preload("res://src/core/shared_spell/story_flow.gd").new().create(),0).state
     root.size = Vector2i(1280,720)
     root.add_child(screen)

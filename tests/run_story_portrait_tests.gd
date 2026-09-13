@@ -5,6 +5,7 @@ func _run() -> void:
     var c = preload("res://tests/test_case.gd").new()
     root.size = Vector2i(1280,720)
     var screen = preload("res://src/ui/story/story_screen.tscn").instantiate()
+    screen.save_folder = "res://artifacts/local-validation/story-portrait-tests"
     root.add_child(screen)
     await process_frame
     var left = screen.find_child("PlayerIllustration",true,false)

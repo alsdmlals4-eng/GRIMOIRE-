@@ -35,14 +35,20 @@ func save_progress(folder: String, payload: Dictionary) -> Dictionary:
 
 func load_progress(folder: String) -> Dictionary:
     var best: Dictionary = {}
+    var diagnostics: Array[String] = []
     for slot in range(2):
-        var candidate := _read(folder.path_join("event-" + str(slot) + ".save"))
+        var path := folder.path_join("event-" + str(slot) + ".save")
+        var candidate := _read(path)
+        if candidate.is_empty() and FileAccess.file_exists(path):
+            diagnostics.append("INVALID_OR_UNREADABLE_SLOT_%d" % slot)
         if not candidate.is_empty() and candidate.generation > best.get("generation", -1):
             best = candidate
             best.slot = slot
     if best.is_empty():
-        return {"status": "REJECTED", "reason": "NO_VALID_SAVE"}
+        return {"status": "REJECTED", "reason": "NO_VALID_SAVE", "recovery": false, "diagnostics": diagnostics}
     best.status = "LOADED"
+    best.recovery = not diagnostics.is_empty()
+    best.diagnostics = diagnostics
     return best
 
 func _read(path: String) -> Dictionary:

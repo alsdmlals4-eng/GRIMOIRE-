@@ -14,7 +14,7 @@ const DuelScreen = preload("res://src/ui/shared_duel/shared_duel_screen.tscn")
 const OUTCOMES := {"SOLVED":"독립 해결","ASSISTED":"도움 요청/개입","STOPPED":"중단","WIN":"승리","LOSS":"패배","DRAW":"무승부"}
 var flow = Flow.new()
 var story: Dictionary = {}
-var save_folder := "res://artifacts/local-validation/story-progress"
+var save_folder := preload("res://src/core/shared_spell/story_storage_paths.gd").folder("story-progress", OS.has_feature("editor"))
 var activity_view: Control
 var story_copy: Label
 var dialogue_notice: Label
@@ -96,6 +96,8 @@ func load_story() -> void:
     dialogue_index = 0
     records_open = false
     save_message = "이야기 이어하기 완료 · 현재 장면과 결과를 복원했습니다."
+    if result.get("recovery", false):
+        save_message = "일부 기록을 읽지 못해 정상 보관된 기록을 펼쳤습니다. 마지막 행동은 포함되지 않을 수 있습니다."
     _render()
 
 func _notice() -> void:
@@ -189,12 +191,12 @@ func _render() -> void:
     box.add_child(narration)
     var turns: Array = Dialogue.turns(story)
     dialogue_index = clampi(dialogue_index,0,turns.size()-1)
-    var current_speaker: String = turns[dialogue_index].speaker
+    var current_speaker: String = turns[dialogue_index].speaker_id
     var cast_row := HBoxContainer.new()
     cast_row.size_flags_vertical = Control.SIZE_EXPAND_FILL
     cast_row.add_theme_constant_override("separation",16)
     box.add_child(cast_row)
-    Portraits.add_portrait(cast_row,"나",current_speaker == "나" and not records_open,"PlayerIllustration",records_open)
+    Portraits.add_portrait(cast_row,"PLAYER",current_speaker == "PLAYER" and not records_open,"PlayerIllustration",records_open)
     var dialogue_panel := PanelContainer.new()
     dialogue_panel.theme_type_variation = "AcademyPanel"
     dialogue_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL

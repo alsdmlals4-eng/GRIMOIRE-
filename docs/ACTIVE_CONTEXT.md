@@ -1,5 +1,29 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 W02 저장·실제 export / W04 대화 식별자 / W03 후보 검수
+
+최신 사용자는 잔여 명세 순서로 벤치마킹→구체화→구현→검증/교정을 일반 승인 대기 없이 계속하도록 요청했다. [실행 명세](superpowers/plans/2026-09-14-remaining-work-design-implementation.md)의 최초 문서-only 문구를 현행 구현 권한으로 교정했다. Base pin9.4.3/계약 유지; validator19routes/CURRENT. 작업 branch는 codex/replanning-intake-20260910, 시작58e0cb3; origin/main d384c45와 다름. live open PR253/249/187/166은 read-only 유지.
+
+W02 구현: story_storage_paths.gd는 editor 세션의 프로젝트 내부 저장과 export의 user://grimoire를 구분한다. 이야기/사건/결투/설정 소비처 연결, 기존 save_folder 시험 주입 유지. 두 슬롯 로더는 recovery/diagnostics를 추가하며 손상 파일이 최신이라고 단정하지 않는다. 메뉴·이야기·독립 사건/결투에 정상 보관본 복원 안내. 두 슬롯 무효 시 메뉴는 새 게임 덮어쓰기를 차단한다. 저장 schema/마력/시계/카드 규칙은 불변.
+
+W04 선행 구현: DialogueLine Resource, PLAYER/PEER/TUTOR/NARRATOR, 명시적 line_id/text_key, 표정/배치/선택 메타데이터. 현행 Dialogue.turns()와 인물 그림/강조 consumer가 고정 ID를 사용한다. 원문은 story_dialogue.gd 한 곳 유지. Resource를 읽거나 수정해도 story와 다음 읽기에 영향 없음. 공통 DialogueStage 씬과 독립 인물 레이어/표정은 아직 미구현이며 이번 데이터 연결을 전체 W04 완료로 올리지 않는다.
+
+배포 중 발견/교정: 최초 selected-scene export는 내부 preload 누락과 Hera UID autoload로 실행 실패했다. 현재는 실제 정적 참조32개를 export preset에 명시하고 tools/check_chapter_export.py로 누락/불필요 포함을 검사한다. grimoire_export_guard는 export 메모리 snapshot에서 Hera 검사 autoload만 제거·복원하고 디스크 project.godot은 저장하지 않는다. godot_ai의 기존 export guard는 자체 helper 제거. vendor addon 수정 없음. Export template의 --script 미지원으로 멈춘 본 작업 시험 프로세스2개만 종료하고 별도 storage_qa feature/preset/씬으로 전환했다. 일반 메뉴 진입은 그대로다.
+
+실제 Godot4.7.1 Windows export QA: 새 게임/교실 저장(write)→프로세스 종료→새 프로세스의 이어하기(read) 모두 exported=true/failures=[]; 두 editor autoload 부재 확인. QA 저장은 user://grimoire/export-storage-probe-20260914 전용이며 플레이어 story-progress는 사용하지 않는다. 일반 Windows Chapter Verification build도 최종 headless 부팅 오류 없이 확인했다. 재실행 OpenGL1280×720 캡처 artifacts/local-validation/w02-export-continue-20260914.png. 일반 파일 artifacts/local-validation/windows-chapter/GRIMOIRE.exe와 .pck는 내부 검증용이며 출시 승인 아님. Export editor 종료 시45 ObjectDB/22 resources leak 경고·오류는 별도 미해결 관찰; export process를 완전 clean으로 표시하지 않는다.
+
+검증: 최종 관련21 Godot runners1384 assertions0failures (기존19/1272 + storage23 + identity89). 인물/교실/대화 테스트의 save_folder 누락을 후속 발견해 시험 전용으로 분리한 뒤 관련3 runners27 assertions 재통과 및 기본 개발 저장 파일 hash 불변을 확인했다. **수정 전 인물 테스트는 기본 개발 경로에 쓸 수 있었으며, 이번 턴 시작 전 저장 원본 불변은 입증하지 못했다.** 출처 불명 백업 복원이나 저장 삭제는 하지 않았다. 테스트 격리 이후의 증거만 불변 PASS다. 실제 editor8604/runtime45148에서 손상복구 안내 확인; 재시작 runtime34228에서 다음 대사 클릭·진단0errors0warnings. Hera CLI1.0.0은 --pid를 지원하지 않으므로 단일 runtime 응답 pid를 대조했다.
+
+W03: 승인 주인공 원본으로 단일 alpha 분리/여백 보정 후보1개 제작. RGB1015×1549 체크무늬/alpha 없음으로 REJECTED_FOR_RUNTIME. `.cleanup-review/20260914-dialogue-alpha/player-cutout-rejected-rgb.png`에 사용자 삭제 검토 사본; 원본·기존 승인본 삭제/교체 없음. hash/정규화 프롬프트/consumer는 output/imagegen/dialogue-stage-20260913/PRODUCTION_RECORD.md. 동일 실패 방식 연쇄 생성 및 미승인 API fallback 하지 않음. 현재 승인 합성/불투명 portrait 유지.
+
+조사: Griftlands/Sorcery!/Mages of Mystralia와 ink/Godot Resources/data paths/export 공식 원문 재조회. ADOPT/ADAPT/REJECT는 기존 CARD_DUEL_REPLANNING_RESEARCH_2026-09-10.md 상단에 반영. 공통 주문과 사건 결과에 반응하는 서사를 유지하고, 새 middleware/무제한 조합/전면 저장 교체는 배제했다. 현업 엔진 내부 구현이나 재미·FPS 최적임을 입증한 것은 아니다.
+
+적대적 검토5회(매회 현재 권위·소비처·범위·복구·권리·완료 상한 대조): ① 저장 경로·손상 슬롯→RED/복구 안내/bytes 보존 ② 실제 export→의존성 누락/도구 참조 발견·정적 참조 목록과 guard ③ export CLI 가정→지원 help 확인·독립 QA 씬/실제 재실행 ④ 대사 이름 결합→고정 ID/원문 호환/읽기 불변·그림 consumer ⑤ alpha 실패·시험 저장 간섭→후보 미적용/삭제 검토·시험 경로 분리/수정 후 hash 확인. 자동화·학습은 프로젝트 테스트/closure 검사로 고정; Base 공용 승격은 아직 검증되지 않아 하지 않았다.
+
+남은 순서: W03 실제 분리 자산 확보와 W04 공통 대화 무대→W05 사건 장면→W06 결투 가독성→W07 후속 서사/도감→W08 접근성/설정→W09 소리/모션→W10 본책/PDF→W11 전체 통합·모바일·Human·main/출시 검증→W12 장기 확장. 도구의 실제 alpha 한계와 export editor 종료 누수, 수정 전 개발 저장 보존 불명은 열린 위험이다. 일반 구현 승인은 유지되지만 최종 아트/모바일/Human/전체 게임/출시 PASS는 아니다.
+
+독립 코드 리뷰(requesting-code-review skill에 따른 범위 한정 읽기 전용 리뷰)는 Critical/Important 제품 결함 없음, 두 검증 개선을 지적했다. export closure 검사기를 일반+QA 두 preset의 누락/불필요/중복/feature까지 검사하도록 교정(Python1 test RED→GREEN), export QA 캡처 저장 반환값을 검사하고 JSON/exitcode에 반영했다. 재빌드된 실제 QA 실행에서 잘못된 capture 경로→CAPTURE_WRITE_FAILED/exit1, 정상경로→failures=[]/exit0 확인. 후속 읽기 전용 재검토도 차단 이슈 없음. 게임 전체·main·출시 코드 리뷰로 확대하지 않는다. 최종 Base remote 재fetch 결과 d830c0f6로 동일.
+
 ## 2026-09-14 W01 저장 실패 진행 경계 구현
 
 사용자 `좋아 권장안대로 작업진행해`에 따라 잔여 명세 W01을 실행했다. StoryScreen은 다음 장면/복기 선택 후보를 먼저 저장한 후 공개한다. 이미 해소된 사건/결투의 저장이 실패하면 해당 결과를 메모리에 유지하고 이후 확정/다음 장면/불러오기/새 게임/일반 종료를 차단한다. `저장 다시 시도`는 같은 payload만 저장하며 act/apply/Flow 진행을 반복하지 않는다. 오류창 안에 메뉴 버튼을 두어 읽기·설정·도감 접근을 유지한다. save schema/수치/기존 정상 저장은 변경하지 않았다.

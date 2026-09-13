@@ -1,5 +1,21 @@
 # GRIMOIRE 카드 결투 재기획 — 기존 요소 감사·벤치마크·개선안
 
+## 2026-09-14 구현 루프 재조회: 저장·대화·배포
+
+아래 과거10작품 조사를 전면 새 조사로 계산하지 않는다. 이번에는 공식 원문을 다시 연 Griftlands/Sorcery!/Mages of Mystralia와 엔진/서사 도구 문서를 현재 consumer에 대조했다. 개발사 내부 코드나 플레이어 재미를 직접 역공학했다고 주장하지 않는다.
+
+| 원문에서 확인한 사실 | 판정과 현재 구현 적용 | 제외/반증 기준 |
+|---|---|---|
+| [Griftlands](https://www.klei.com/games/griftlands): 카드 선택·전투·협상·인간관계를 연결 | ADAPT: 결과와 대화가 같은 이야기 상태를 읽는 현재 Flow 유지 | 모든 대화를 카드 전투로 만들거나 별도 협상 덱 추가하지 않음 |
+| [Sorcery!](https://www.inklestudios.com/sorcery/): 행동에 반응하는 서사, 전투와 마법 | ADAPT: 원인/위험 복기와 실제 종료 결과에 맞는 대사를 고정 ID로 구별 | 분기 수가 많다는 이유로 무제한 콘텐츠 확장·성공 평가 금지 |
+| [Mages of Mystralia](https://store.steampowered.com/app/529660/Mages_of_Mystralia/): 직접 설계한 주문을 적과 지형 문제에 사용 | ADAPT: 사건/결투 공통 주문 의미 유지, 화면 연출만 분리 | 새로운 별형 회로나 공간 룬 UI 복제 금지 |
+| [ink](https://www.inklestudios.com/ink/): 서사 작성·시험·내보내기 도구 | ADAPT: 텍스트 정본과 표현 Resource 분리, 기존 이야기 회귀 검사 | 현재 첫 장을 전면 ink로 이식하는 비용/이중 저장은 REJECT |
+| [Godot Resources](https://docs.godotengine.org/en/stable/tutorials/scripting/resources.html): Node 행동과 Resource 데이터 분리, Inspector 지원 | ADOPT: DialogueLine Resource; Flow/Store는 포함하지 않음 | 이름 문자열로 그림을 고르지 않음; 실제 소비처 없는 복잡한 대화 엔진 만들지 않음 |
+| [Godot data paths](https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html): export에서 user:// 쓰기 | ADOPT: 개발 res://와 export user:// 분리 | 개발 저장 자동 이동/삭제와 power-loss 완전 보장 REJECT |
+| [Godot exporting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_projects.html): preset·template·리소스 선택·export 실행 | ADAPT: 실제 정적 참조32개 목록+누락 검사+독립 export 재실행 시험 | 파일 생성 exit0만 PASS로 판정하지 않음; 첫 export preload 누락을 실제 실행으로 발견·교정 |
+
+최적화 판단: 현재 첫 장에는 추가 서비스/대규모 middleware보다 기존 두 슬롯과 Flow를 재사용하는 것이 변경 범위와 호환성 위험이 작다. 이는 구조상 비용 판단이며 FPS/매출/재미 최적임을 측정한 결과가 아니다. 다음 측정은 W04 읽기/조작, W05–W06 주문 의도와 실제 선택의 차이, W11 기기 성능이다.
+
 최신 후속: [공통 주문 규칙 v0.3](../superpowers/specs/2026-09-10-shared-spell-rules-design.md)의 15절이 이번 공식 자료 재조회와 손패/보상/학습/입력 판단을 소유한다. 아래 10작품 비교는 기존 조사 기록이며 새 기획에서는 결투 밖 무작위 손패를 쓰지 않는다. 아래 미승인 표시는 당시 상태다.
 
 상태: `RESEARCHED / DESIGN_RECOMMENDATION`. 사용자 확정 방향과 아래 제안을 분리한다. 새 전투 구현·이미지 승인·재미 검증 완료 문서가 아니다. 조사일: 2026-09-10.

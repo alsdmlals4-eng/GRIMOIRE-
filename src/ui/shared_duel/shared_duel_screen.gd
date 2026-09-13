@@ -37,7 +37,7 @@ var session: Dictionary = {}
 var quote: Dictionary = {}
 var selection: Array = []
 var action_kind := "CAST"
-var save_folder := "res://artifacts/local-validation/shared-duel-progress"
+var save_folder := preload("res://src/core/shared_spell/story_storage_paths.gd").folder("shared-duel-progress", OS.has_feature("editor"))
 var header: Label
 var announced: Label
 var details: Label
@@ -160,6 +160,8 @@ func load_progress() -> void:
         return
     session = result.payload.session
     notice.text = "이어하기 완료 · 손패와 결투 상태를 복원했습니다."
+    if result.get("recovery", false):
+        notice.text = "일부 기록을 읽지 못해 정상 보관된 기록을 펼쳤습니다. 마지막 행동은 포함되지 않을 수 있습니다."
     cancel_selection()
 
 func restart() -> void:

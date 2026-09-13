@@ -4,6 +4,7 @@ func _initialize() -> void:
 func _run() -> void:
     var c = preload("res://tests/test_case.gd").new()
     var screen = preload("res://src/ui/story/story_screen.tscn").instantiate()
+    screen.save_folder = "res://artifacts/local-validation/story-conversation-tests"
     root.add_child(screen)
     await process_frame
     c.assert_true(screen.has_method("next_dialogue"),"reading advances dialogue, not whole scene")

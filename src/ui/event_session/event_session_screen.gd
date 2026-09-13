@@ -51,7 +51,7 @@ var destination_id := ""
 var action_kind := "CAST"
 var story_index := 0
 var last_receipt: Dictionary = {}
-var save_folder := "res://artifacts/local-validation/event-session-progress"
+var save_folder := preload("res://src/core/shared_spell/story_storage_paths.gd").folder("event-session-progress", OS.has_feature("editor"))
 var save_notice: Label
 var header: Label
 var facts: Label
@@ -227,6 +227,8 @@ func load_progress() -> void:
     last_receipt = loaded.payload.last_receipt
     cancel_selection()
     save_notice.text = "이어하기 완료 · 저장된 마력, 시계, 행동과 결과를 복원했습니다."
+    if loaded.get("recovery", false):
+        save_notice.text = "일부 기록을 읽지 못해 정상 보관된 기록을 펼쳤습니다. 마지막 행동은 포함되지 않을 수 있습니다."
 
 func _command() -> Dictionary:
     var command := {"id": "ui-" + str(session.spell_state.revision), "expected_revision": session.spell_state.revision, "kind": action_kind}

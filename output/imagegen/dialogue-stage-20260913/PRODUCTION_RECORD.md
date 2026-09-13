@@ -1,5 +1,13 @@
 # Shared-stage dialogue composition candidate
 
+## 2026-09-14 W03 single-player cutout brief
+
+Consumer: W04 DialogueStage LEFT/PLAYER, current portrait fallback in src/ui/story/story_portraits.gd. One neutral upper-body character only; not an atlas. Edit target is approved student-anime-reference-01.png (identity/style/book/costume preserved). Required: actual transparent alpha, head/shoulder/forearm margins, no background/frame/text, waist-up crop. Request built-in image model background extraction and limited outpainting of clipped edges. Do not key a painted checkerboard or promote RGB as transparent. Candidate must pass alpha/edges/identity review before registration; current approved opaque portrait remains runtime fallback. No new pose/expression family or character redesign authorized by this technical extraction.
+
+Result: REJECTED_FOR_RUNTIME. Built-in image model output exec-0e817418-534f-4306-bcb6-e1ec803d62ab.png, decoded RGB1015×1549 with no alpha; checkerboard painted into RGB, sides still clipped. SHA256 F8AF3CB572B46B6C75D15B999BBA01848DBDC9E7C2A993CA5FD4D256ED6558B6. Workspace copy: `.cleanup-review/20260914-dialogue-alpha/player-cutout-rejected-rgb.png`. Original tool output preserved; no source image removed. No runtime/catalog/final approval promotion. One bounded attempt only; do not repeat the same failed method or silently use paid API fallback.
+
+Prompt: “Use case: background-extraction / identity-preserve. Edit target: approved GRIMOIRE student portrait. One isolated waist-up character, genuinely transparent alpha, not checkerboard or solid backdrop. Remove pale blue background only; preserve youthful face, expression, slate blue eyes, charcoal hair, navy/teal cloak, white shirt, tie, gold trim/brooch, hand/book/pose. Extend clipped head/shoulder/sleeve edges to 6% top/side margins. No legs, sheet, atlas, scenery, frame, text, effects, shadow or gray halo. Preserve crisp anime linework and layered shading. LEFT actor in RPG bottom-dialogue stage.” Model version not returned. Exact long prompt is in the tool-call history; this normalized brief preserves all constraints.
+
 ## Approval and interim consumer update
 
 User `딱 좋네 진행해` approves shown composition. Current consumer src/ui/story/story_classroom_view.gd uses this exact plate ONLY stage1 classroom as an explicitly temporary composite, with independent live Godot text/buttons. This supersedes candidate-only state below for this bounded use, not for arbitrary locations/independent portraits. SHA256 0224C5F36E511EF5C2601D3118280F165A421C9F3130F9B070C3EC57E4043EBB. Background/actors/frame still flattened; true per-actor layer separation remains pending. RGB checkerboard still rejected.

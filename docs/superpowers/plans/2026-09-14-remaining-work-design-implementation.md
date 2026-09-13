@@ -1,6 +1,8 @@
 # GRIMOIRE 남은 작업 설계·구현 계획
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. 사용자 요청에 따라 이번 작성은 명세 준비이며 게임 코드 구현이 아니다. 별도 지시 없는 병렬 에이전트 실행은 하지 않는다.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. 최초 작성은 명세 준비였으며, 최신 사용자 지시로 순차 구현·개선이 승인됐다. 일반 기술 선택의 재승인 대기 없이 진행한다. 별도 지시 없는 병렬 에이전트 실행은 하지 않는다.
+
+2026-09-14 실행 readback: W01 완료(브랜치/PC 범위), W02 경로·복구·실제 export 저장/재실행 검증 완료. W03 단일 인물 alpha 재시도도 RGB 체크무늬로 실패하여 미적용. W04 고정 화자/대사 Resource 연결은 구현했지만 공통 Stage/독립 인물 레이어는 아직 미완료다. 아래 최초 지도보다 이 실행 기록과 Active Context 상단이 우선한다. 게임 전체/모바일/출시/main 완료가 아니다.
 
 **Goal:** 이미 연결된 첫 학교생활 장을 저장 안전성·공통 대화·주문 화면·자산·검증까지 완성하고, 장기 게임 확장에 필요한 후속 설계 경계를 명확히 한다.
 
@@ -144,10 +146,12 @@ c.assert_equal(before, screen.story, "failed transition must not publish next sc
 
 구 개발 저장의 자동 이동 없음. 기존 슬롯 포맷 유지. 이후 사용자가 가져오기를 원할 때만 원본 사본/검증/목적지 비어 있음/재읽기 절차를 제공한다. 쓰기 원자성은 두 슬롯+readback을 기준으로 설명하고 모든 플랫폼 power-loss 원자성 보장이라는 표현을 사용하지 않는다.
 
-- [ ] `root(true)`는 프로젝트 안, `root(false)`는 `user://`, 테스트 주입 경로가 우선인 실패 검사를 만든다.
-- [ ] 정상2/손상1/손상2/부분쓰기/용량초과/설정슬롯 독립 검사를 확장한다.
-- [ ] 경로 선택과 복구 안내만 구현하고 payload 의미는 변경하지 않는다.
-- [ ] PC export 새 게임→종료→재실행→이어하기를 검사한다. 모바일은 W11. 원본 개발 저장 hash 불변 확인 후 commit한다.
+- [x] `root(true)`는 프로젝트 안, `root(false)`는 `user://`, 테스트 주입 경로가 우선인 실패 검사를 만든다.
+- [x] 정상2/손상1/손상2/부분쓰기/용량초과/설정슬롯 독립 검사를 확장한다.
+- [x] 경로 선택과 복구 안내만 구현하고 payload 의미는 변경하지 않는다.
+- [x] PC export의 별도 QA entry에서 실제 메뉴 새 게임→저장→프로세스 종료→재실행→이어하기를 검사한다. 모바일은 W11. 인물 테스트의 기본 개발 저장 사용을 발견·분리했고, 수정 후 재실행 hash 불변을 확인했다. 수정 전 원본 불변은 입증하지 못했다.
+
+Export 구현 추가: `export_presets.cfg`는 일반 검증용32개 정적 리소스와 별도 Storage QA preset을 구분한다. `tools/check_chapter_export.py`로 현재 코드가 참조하는 정적 리소스 누락/불필요 포함을 검사한다(동적 경로 일반 증명 아님). `addons/grimoire_export_guard/`는 export snapshot에서 Hera autoload만 빼고 복원한다. 기존 godot_ai exporter는 자체 helper를 제외한다. vendor addon 수정 없음. QA preset만 `storage_qa` feature로 `tests/export_storage_probe.tscn`을 시작하며 일반 메뉴는 변경하지 않는다. export template에는 `--script`가 없으므로 별도 QA 씬을 사용한다. 출력/로그는 `artifacts/local-validation/windows-chapter/`, `windows-storage-qa/`에 있다. 검증 저장은 `user://grimoire/export-storage-probe-20260914`에 한정한다. 내보내기 editor 종료의 resource leak 경고는 미해결이며 실행 성공과 분리한다.
 
 **완료:** export I/O 경로 검증, 실패 이유·복구 여부가 플레이어에게 표시됨. 정상 상태의 “자동 저장 완료” 알림이 대사를 매번 가리지 않음.
 
@@ -168,9 +172,9 @@ c.assert_equal(before, screen.story, "failed transition must not publish next sc
 
 처음부터 모든 표정 변형을 대량 생성하지 않는다. 기본 3인 분리 성공→필요 대사의 우려/안도 순서. neutral 그림을 밝기만 바꾼 것을 새 표정 자산으로 집계하지 않는다. 그림은 이미지 모델 사용; 단순 상태 tint/focus/배치는 엔진 기능이고 삽화 대체 제작이 아니다.
 
-- [ ] 승인 원본/consumer/대사별 필요 상태를 확인하고 한 후보 제작 brief를 기록한다.
-- [ ] 실제 alpha 채널, 모서리 투명도, RGB에 구워진 체크무늬, 안전 여백, hash와 크기를 검사한다.
-- [ ] 실패 후보는 runtime 미등록, 검증된 실패본만 사용자 삭제 검토 폴더로 안내한다.
+- [x] 승인 원본/consumer/대사별 필요 상태를 확인하고 한 후보 제작 brief를 기록한다.
+- [x] 실제 alpha 채널, RGB에 구워진 체크무늬, 안전 여백, hash와 크기를 검사한다. 이번 후보는 alpha 부재로 실패; 투명 가장자리 검수는 진행 불가.
+- [x] 실패 후보는 runtime 미등록, 검증된 실패본만 사용자 삭제 검토 폴더로 안내한다.
 - [ ] 사용자 최종 선정 후 provenance/상태/consumer 등록, 실제 Godot 두 배경 합성 검수한다.
 
 **완료:** `USER_APPROVED`, `CANON_REGISTERED`, `IMPLEMENTED`, `RUNTIME_VERIFIED`를 각각 입증. 기술 분리 실패 시 S01 임시 승인 합성은 유지하되 다른 장소/표정 완성으로 확대하지 않는다. 새 미술 승인 대기는 코드 안전 작업 W01/W02를 막지 않는다.
@@ -205,6 +209,7 @@ DialogueStage (Control)
 읽기 위치는 현행 계약 유지: 같은 실행의 메뉴 왕복 보존, 저장 로드는 해당 장면 첫 줄. line_id 도입은 현재 단계의 UI cursor 안정화용이지 저장 schema 확장이 아니다. 이전 대사/기록 읽기는 시계나 발견 기록을 만들지 않는다. 아직 안 본 대사·미래 선택을 기록에 노출하지 않는다.
 
 - [ ] 테스트에서 `present()` 전후 story deep-copy 동일, narrator/3인/빈 slot/잘못된 speaker의 안전 fallback을 검사한다.
+- [x] 선행 단계: `dialogue_line.gd` Resource와 고정 speaker/line/text ID를 현행 `turns()`에 연결한다. 인물 그림 선택·강조는 한국어 이름 대신 ID를 사용한다. 89 assertions: 원문 일치/ID 고유성/복기 분기/unknown fallback/읽기 불변/Resource 변경 격리. 공통 Stage 또는 표정 구현 완료를 뜻하지 않는다.
 - [ ] S00/S01/S05/S08을 같은 Stage로 연결하되 승인된 장소별 배경만 사용한다.
 - [ ] 24/28/32px, 이전/다음, CAUSE/RISK, 메뉴 왕복, 기록 복귀 후 포커스 복원을 검증한다.
 - [ ] 1280×720/낮은 가로 해상도에서 이름·대사·선택이 잘리지 않는 actual capture를 남기고 commit한다.
