@@ -47,6 +47,18 @@ Pause implementation first readback: 12 assertions, zero failures. Full regressi
 
 ## Dialogue presentation follow-up (latest user direction)
 
+### Conversation turn implementation
+
+Delivered review:169 assertions0failures across9 related runners; actual runtime34528 next/back-menu/record-close flow and screenshot inspected,0errors0warnings. Five reviews: current actor approvals read without promotion; stage5/8 outcome facts retained in records; reading has no domain writes and pause retains cursor; explicit last-turn choices/no auto-advance; tests include different CAUSE/RISK reply and saved story equality. Reload restarts dialogue (not exact-line persistence); disclosed in Active Context. No final art/mobile claim. Prior total-copy tests now exercise the separately opened real record view instead of requiring every result inside speech.
+
+Latest user asks for characters talking directly to each other. Bounded existing StoryScreen extension: add story_dialogue.gd presentation-only turns(story), with speaker/text rows for stages0/1/5/8. Speaker alternates player/peer/tutor; reflection CAUSE/RISK produces player response followed by distinct tutor reply. Use current outcome for closing dialogue. UI holds dialogue_index and records_open outside gameplay save; menu resume retains index, reload starts current conversation again without reward. Next/previous read does not save or mutate story. Stage advance and reflection choices only appear after last turn; records toggle separate from speech. Existing outcome copy remains record consumer. No portraits promoted, no relationship points, no auto advance/typewriter/input capture. Explicit Buttons retain keyboard focus and max32px body scroll.
+
+ADOPT Ren'Py speaker/say separation (https://www.renpy.org/doc/html/dialogue.html); ADAPT Sorcery action-responsive narrative (https://www.inklestudios.com/sorcery/); REJECT engine migration and copied dialogue/art. Source review, not direct gameplay claim.
+
+- [ ] RED run_story_conversation_tests.gd: next changes speaker/body without story mutation; end clamps; previous restores; records separate and same cursor; real lesson/review branch choice response; pause/reload boundary.
+- [ ] Implement presentation rows and StoryScreen navigation, reset only scene/load/explicit reflection. Move outcome assertions to actual records view, retain current event flow tests.
+- [ ] Godot runtime next/back/records/menu;32px and viewport checks. Full affected tests, docs and branch push/readback. Five reviews: authority, narrative facts, no gameplay mutation, input/layout, regression/delivery ceiling.
+
 Replace status-report presentation with location, short narration, named speaker, dialogue and explicit choices. Reuse existing GrimoireThemeFactory navy/brass functional theme; no candidate art promotion. Separate production caveats into this development record, preserve actual outcome facts and failure notices. Official ink documentation https://www.inklestudios.com/ink/ ADAPT prose plus explicit narrative choices; REJECT new scripting-engine migration for this presentation change. Tests must detect separate speaker/narration and prohibit development-status prose; existing result/branch tests remain. No rule/save-schema change. First pass addresses story dialogue; event help/preview prose and final illustrated frame remain follow-up, not falsely complete.
 
 Latest user reiterates entire-game completion, not stopping after isolated features. Next bounded connection: open menu from dialogue/event/duel, read codex/change dialogue settings and return to exact same screen instance. Do not rebuild activity or save UI draft as executed gameplay.

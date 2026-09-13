@@ -6,6 +6,7 @@ const Flow = preload("res://src/core/shared_spell/story_flow.gd")
 const Store = preload("res://src/core/shared_spell/story_save.gd")
 const Preferences = preload("res://src/core/shared_spell/story_preferences.gd")
 const AcademyTheme = preload("res://src/ui/theme/grimoire_theme_factory.gd")
+const Dialogue = preload("res://src/ui/story/story_dialogue.gd")
 const EventScreen = preload("res://src/ui/event_session/event_session_screen.tscn")
 const DuelScreen = preload("res://src/ui/shared_duel/shared_duel_screen.tscn")
 const OUTCOMES := {"SOLVED":"독립 해결","ASSISTED":"도움 요청/개입","STOPPED":"중단","WIN":"승리","LOSS":"패배","DRAW":"무승부"}
@@ -16,6 +17,8 @@ var activity_view: Control
 var story_copy: Label
 var dialogue_notice: Label
 var save_message := ""
+var dialogue_index := 0
+var records_open := false
 
 func _ready() -> void:
     theme = AcademyTheme.create_theme()
@@ -26,6 +29,8 @@ func advance_story(expected_stage: int) -> void:
     var result: Dictionary = flow.advance(story,expected_stage)
     if result.status != "OK": return
     story = result.state
+    dialogue_index = 0
+    records_open = false
     save_story()
 
     _render()
@@ -59,6 +64,8 @@ func load_story() -> void:
         _notice()
         return
     story = result.payload.story
+    dialogue_index = 0
+    records_open = false
     save_message = "이야기 이어하기 완료 · 현재 장면과 결과를 복원했습니다."
     _render()
 
@@ -125,7 +132,9 @@ func _render() -> void:
     dialogue_panel.add_child(dialogue)
     var speaker := Label.new()
     speaker.name = "Speaker"
-    speaker.text = {0:"나",1:"지도교수",5:"지도교수",8:"동료 학생"}[story.stage]
+    var turns: Array = Dialogue.turns(story)
+    dialogue_index = clampi(dialogue_index,0,turns.size()-1)
+    speaker.text = "실습 기록" if records_open else turns[dialogue_index].speaker
     speaker.add_theme_font_size_override("font_size",24)
     speaker.add_theme_color_override("font_color",AcademyTheme.LINE_GOLD_ACTIVE)
     dialogue.add_child(speaker)
@@ -137,12 +146,22 @@ func _render() -> void:
     story_copy.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     story_copy.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     story_copy.add_theme_font_size_override("font_size",Preferences.new().load_size(save_folder))
-    story_copy.text = _copy()
+    story_copy.text = _copy() if records_open else turns[dialogue_index].text
     scroll.add_child(story_copy)
     dialogue_notice = Label.new()
     dialogue_notice.text = save_message
     dialogue_notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     box.add_child(dialogue_notice)
+    var reading := HBoxContainer.new()
+    box.add_child(reading)
+    if records_open:
+        _button(reading,"대화로 돌아가기",toggle_records)
+        return
+    if dialogue_index > 0: _button(reading,"이전 대사",previous_dialogue)
+    _button(reading,"실습 기록" if story.stage >= 5 else "안내 다시 읽기",toggle_records)
+    if dialogue_index < turns.size()-1:
+        _button(reading,"다음 대사",next_dialogue)
+        return
     if story.stage < 5:
         _button(box,"입학 안내 확인" if story.stage == 0 else "첫 수업으로",advance_story.bind(story.stage))
     elif story.stage == 5:
@@ -157,7 +176,24 @@ func choose_reflection(choice: String) -> void:
     var result: Dictionary = flow.reflect(story,choice)
     if result.status != "OK": return
     story = result.state
+    dialogue_index = 0
+    records_open = false
     save_story()
+    _render()
+
+func next_dialogue() -> void:
+    if story.stage in Flow.ACTIVITIES or records_open: return
+    dialogue_index = mini(dialogue_index+1,Dialogue.turns(story).size()-1)
+    _render()
+
+func previous_dialogue() -> void:
+    if story.stage in Flow.ACTIVITIES or records_open: return
+    dialogue_index = maxi(0,dialogue_index-1)
+    _render()
+
+func toggle_records() -> void:
+    if story.stage in Flow.ACTIVITIES: return
+    records_open = not records_open
     _render()
 
 func _copy() -> String:

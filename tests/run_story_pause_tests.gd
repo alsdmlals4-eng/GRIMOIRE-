@@ -17,6 +17,11 @@ func _run() -> void:
         quit(1)
         return
     menu.request_new()
+    menu.story_view.next_dialogue()
+    var dialogue_line: String = menu.story_view.story_copy.text
+    menu.open_pause()
+    menu.resume_story()
+    c.assert_equal(dialogue_line,menu.story_view.story_copy.text,"pause resume preserves current spoken line")
     menu.story_view.advance_story(0)
     menu.story_view.advance_story(1)
     await process_frame

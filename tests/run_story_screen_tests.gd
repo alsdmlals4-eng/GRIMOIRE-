@@ -58,6 +58,7 @@ func _run() -> void:
     screen.activity_view.continue_story()
     await process_frame
     c.assert_equal(5,screen.story.stage,"greenhouse leads to review")
+    screen.toggle_records()
     c.assert_true(screen.story_copy.text.contains("도움") and screen.story_copy.text.contains("중단"),"review uses actual results")
     c.assert_true(screen.has_method("choose_reflection"),"review choice has UI consumer")
     if not screen.has_method("choose_reflection"):
@@ -66,12 +67,23 @@ func _run() -> void:
         return
     c.assert_equal("",screen.story.get("reflection",""),"no automatic explanation")
     screen.choose_reflection("CAUSE")
+    c.assert_equal("나",screen.find_child("Speaker",true,false).text,"chosen explanation is spoken by player")
+    screen.next_dialogue()
+    c.assert_equal("지도교수",screen.find_child("Speaker",true,false).text,"professor responds to player explanation")
+    c.assert_true(screen.story_copy.text.contains("원인"),"CAUSE gets cause-specific response")
+    var cause_reply: String = screen.story_copy.text
+    screen.choose_reflection("RISK")
+    screen.next_dialogue()
+    c.assert_true(screen.story_copy.text != cause_reply and screen.story_copy.text.contains("위험"),"RISK gets different relevant response")
+    screen.choose_reflection("CAUSE")
+    screen.toggle_records()
     c.assert_true(screen.story_copy.text.contains("내 설명: 원인"),"explicit choice is shown as self report")
     var saved: Dictionary = screen.story.duplicate(true)
     screen.story = screen.flow.create()
     screen.load_story()
     await process_frame
     c.assert_equal(saved,screen.story,"autosaved story restores")
+    screen.toggle_records()
     c.assert_true(screen.story_copy.text.contains("후속"),"review does not claim full chapter done")
     screen.advance_story(5)
     await process_frame
@@ -91,6 +103,8 @@ func _run() -> void:
     screen.activity_view.continue_story()
     await process_frame
     c.assert_equal(8,screen.story.stage,"final record UI")
+    c.assert_true(screen.story_copy.text.contains("담당자"),"assisted closing dialogue follows actual result")
+    screen.toggle_records()
     c.assert_true(screen.story_copy.text.contains("시료 처리 중단") and screen.story_copy.text.contains("축제"),"ending preserves tradeoff and festival outcome")
     c.assert_true(screen.story_copy.text.contains("담당자"),"assisted festival gets outcome appropriate dialogue")
     screen.queue_free()
