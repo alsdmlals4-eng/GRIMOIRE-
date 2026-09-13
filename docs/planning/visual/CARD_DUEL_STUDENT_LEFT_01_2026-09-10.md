@@ -1,5 +1,19 @@
 # 첫 학생 상반신 기본 포즈 — 후보 및 기술 검수
 
+## 2026-09-13 승인 삽화의 대화 화면 연결
+
+최종 추가 readback: 같은 runtime36256에서 교수→주인공→교수→동료 실제 전환 후 `story-illustrations-peer-20260913.png`를 캡처·직접 확인했다. PEER도 PC RUNTIME_VERIFIED로 갱신하며 아래 최초 MACHINE_VERIFIED 표기는 검수 순서의 이전 관찰이다.
+
+사용자 최신 지시 `삽화 일러스트도 넣어서 대화하는 느낌을 내야해`로 기존 승인 3종의 대화 화면 사용을 구현했다. `src/ui/story/story_portraits.gd`가 원본 PNG를 직접 preload하고 StoryScreen의 실제 화자와 직전 상대에 따라 왼쪽 PLAYER/오른쪽 PEER 또는 TUTOR를 표시한다. RGB 원본을 aspect-fit 프레임으로 사용하며 알파 제거/미러/잘라내기/새 표정 생성은 하지 않는다. 말하는 중 이름표·강조 프레임과 듣는 인물 dim은 UI 상태이며 새 이미지 승인이 아니다.
+
+| 원본 (output/imagegen/character-style-comparison/) | SHA-256 | 실제 소비 상태 |
+| --- | --- | --- |
+| student-anime-reference-01.png | 84479897283B7807083EDC0027B3C75407BBDD29CE03E4C4EB05354966E0ABE0 | PLAYER / IMPLEMENTED / PC RUNTIME_VERIFIED |
+| peer-personality-01.png | 7E40230A91307290BFC640071BC188ABEE7310E46AD3588F1F34E88EFBD34555 | PEER / IMPLEMENTED / MACHINE_VERIFIED |
+| tutor-personality-01.png | 03F17970C4964A8609ADBE54D546B8DC2AE3AF76D965E9BEEE922258613D69EC | TUTOR / IMPLEMENTED / PC RUNTIME_VERIFIED |
+
+editor11900/runtime36256 실제 교수→주인공 화자 전환,32px 설정→복귀,1280x720 화면 확인. 캡처 `artifacts/local-validation/story-illustrations-tutor-20260913.png`, `story-illustrations-player-20260913.png`, `story-illustrations-large-20260913.png`. 동료 mapping/texture load는 자동 시험 확인; 동료 PC 최종 캡처와 모바일은 별도. 원본 자체의 잘린 소매/머리 여백은 새로 복구한 것이 아니며 화면은 추가 crop하지 않는다. 투명 cutout·입모양·눈깜빡임·새 표정·출시권리/기기/Human PASS는 주장하지 않는다. 아래 runtime 미적용 기록은 당시의 역사 상태다.
+
 ## 2026-09-12 두 인물 승인 및 미채택 파일 격리
 
 사용자 `승인`으로 `peer-personality-01.png`와 `tutor-personality-01.png`의 외형·그림체·동작을 승인했다. 동일 경로와 `supporting-cast-personality-input.json`의 SHA-256으로 visual anchor를 등록한다. 여백 보정/알파/표정군/runtime 검증은 승인 완료에 포함하지 않는다.

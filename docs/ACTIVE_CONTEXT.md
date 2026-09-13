@@ -1,5 +1,13 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 대화 삽화 실제 연결
+
+최종5 runners83 assertions0failures 재실행 완료. 동료까지 실제 대사 전환/그림 교체 캡처 확인; 세 인물 PC 표시 증거 확보. 원본 파일은 수정하지 않았다.
+
+최신 사용자 요청으로 승인 주인공/동료/교수 삽화를 StoryScreen에 연결했다. 왼쪽 주인공/가운데 대사/오른쪽 현재 대화 상대, 화자에 맞는 밝기와 이름표 강조. 기존 RGB 원본 프레임 재사용이며 새 이미지 생성·투명화·표정 승인 없음. 실제 경로/hash/consumer와 증거 경계는 visual/CARD_DUEL_STUDENT_LEFT_01_2026-09-10.md 상단이 소유한다. 첫 검수의 작은 크기·nearest 축소 문제를 width280/linear 표시로 교정했다. 읽기/선택/기록/마력/저장 규칙은 유지한다. 반응 선택은 가로 배치해 삽화와 대사 공간을 확보했다.
+
+Godot editor11900/runtime36256 교수/주인공 화자 전환, 설정32px→복귀→24px 복원 확인; screenshot tutor/player/large 직접 검수, diagnostics0/0. portrait9/conversation11/storyscreen30/menu20/pause13=83 assertions0failures(최종 재실행 대상). 최종 미술/모바일/입모양·표정 변화·기기 검증은 미완료다.
+
 ## 2026-09-13 직접 대화 진행
 
 최종 관련9 runners169 assertions0failures. 대사별 화자/응답, 읽기 상태 불변, 기록 열기/닫기, 메뉴 복귀 읽기 위치, CAUSE/RISK 응답 차이와 실제 결과 기록을 검증했다. 전체 회귀/모바일/최종 portrait UI 검증으로 확대 해석하지 않는다.

@@ -7,6 +7,7 @@ const Store = preload("res://src/core/shared_spell/story_save.gd")
 const Preferences = preload("res://src/core/shared_spell/story_preferences.gd")
 const AcademyTheme = preload("res://src/ui/theme/grimoire_theme_factory.gd")
 const Dialogue = preload("res://src/ui/story/story_dialogue.gd")
+const Portraits = preload("res://src/ui/story/story_portraits.gd")
 const EventScreen = preload("res://src/ui/event_session/event_session_screen.tscn")
 const DuelScreen = preload("res://src/ui/shared_duel/shared_duel_screen.tscn")
 const OUTCOMES := {"SOLVED":"독립 해결","ASSISTED":"도움 요청/개입","STOPPED":"중단","WIN":"승리","LOSS":"패배","DRAW":"무승부"}
@@ -103,10 +104,10 @@ func _render() -> void:
     add_child(page)
     var margin := MarginContainer.new()
     margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    for side in ["left","right","top","bottom"]: margin.add_theme_constant_override("margin_"+side,48)
+    for side in ["left","right","top","bottom"]: margin.add_theme_constant_override("margin_"+side,24)
     page.add_child(margin)
     var box := VBoxContainer.new()
-    box.add_theme_constant_override("separation",24)
+    box.add_theme_constant_override("separation",12)
     margin.add_child(box)
     var title_row := HBoxContainer.new()
     box.add_child(title_row)
@@ -123,17 +124,26 @@ func _render() -> void:
     narration.add_theme_font_size_override("font_size",24)
     narration.add_theme_color_override("font_color",AcademyTheme.TEXT_SECONDARY)
     box.add_child(narration)
+    var turns: Array = Dialogue.turns(story)
+    dialogue_index = clampi(dialogue_index,0,turns.size()-1)
+    var current_speaker: String = turns[dialogue_index].speaker
+    var cast_row := HBoxContainer.new()
+    cast_row.size_flags_vertical = Control.SIZE_EXPAND_FILL
+    cast_row.add_theme_constant_override("separation",16)
+    box.add_child(cast_row)
+    Portraits.add_portrait(cast_row,"나",current_speaker == "나" and not records_open,"PlayerIllustration",records_open)
     var dialogue_panel := PanelContainer.new()
     dialogue_panel.theme_type_variation = "AcademyPanel"
     dialogue_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-    box.add_child(dialogue_panel)
+    dialogue_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    cast_row.add_child(dialogue_panel)
+    var partner: String = Portraits.partner(turns,dialogue_index)
+    Portraits.add_portrait(cast_row,partner,current_speaker == partner and not records_open,"PartnerIllustration",records_open)
     var dialogue := VBoxContainer.new()
     dialogue.add_theme_constant_override("separation",16)
     dialogue_panel.add_child(dialogue)
     var speaker := Label.new()
     speaker.name = "Speaker"
-    var turns: Array = Dialogue.turns(story)
-    dialogue_index = clampi(dialogue_index,0,turns.size()-1)
     speaker.text = "실습 기록" if records_open else turns[dialogue_index].speaker
     speaker.add_theme_font_size_override("font_size",24)
     speaker.add_theme_color_override("font_color",AcademyTheme.LINE_GOLD_ACTIVE)
@@ -162,15 +172,17 @@ func _render() -> void:
     if dialogue_index < turns.size()-1:
         _button(reading,"다음 대사",next_dialogue)
         return
+    var choices := HBoxContainer.new()
+    box.add_child(choices)
     if story.stage < 5:
-        _button(box,"입학 안내 확인" if story.stage == 0 else "첫 수업으로",advance_story.bind(story.stage))
+        _button(choices,"입학 안내 확인" if story.stage == 0 else "첫 수업으로",advance_story.bind(story.stage))
     elif story.stage == 5:
-        _button(box,"원인부터 생각했어요",choose_reflection.bind("CAUSE"))
-        _button(box,"위험부터 줄이려 했어요",choose_reflection.bind("RISK"))
-        if story.get("reflection","") != "": _button(box,"후속 실습으로",advance_story.bind(5))
+        _button(choices,"원인부터 생각했어요",choose_reflection.bind("CAUSE"))
+        _button(choices,"위험부터 줄이려 했어요",choose_reflection.bind("RISK"))
+        if story.get("reflection","") != "": _button(choices,"후속 실습으로",advance_story.bind(5))
     elif story.stage == 8 and main_requested.has_connections():
-        _button(box,"메인으로",func(): main_requested.emit())
-    if not pause_requested.has_connections(): _button(box,"이야기 이어하기",load_story)
+        _button(choices,"메인으로",func(): main_requested.emit())
+    if not pause_requested.has_connections(): _button(choices,"이야기 이어하기",load_story)
 
 func choose_reflection(choice: String) -> void:
     var result: Dictionary = flow.reflect(story,choice)
