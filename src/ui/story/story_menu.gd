@@ -13,7 +13,21 @@ var new_pending := false
 var message := "첫 학교생활 · 기능 연결판 / 최종 화면 연출 제작 중"
 
 func _ready() -> void:
+    get_tree().auto_accept_quit = false
     show_menu()
+
+func _notification(what: int) -> void:
+    if what == NOTIFICATION_WM_CLOSE_REQUEST: request_exit()
+
+func request_exit() -> bool:
+    var active: Control = suspended_story if is_instance_valid(suspended_story) else story_view
+    if is_instance_valid(active) and active.persistence_blocked:
+        if active == story_view: open_pause()
+        message = "현재 결과가 저장되지 않아 종료하지 않았습니다. 플레이로 돌아가 저장을 다시 시도하세요."
+        _menu()
+        return false
+    get_tree().quit()
+    return true
 
 func _saved() -> Dictionary:
     return Store.new().load_progress(ProjectSettings.globalize_path(save_folder))
@@ -24,6 +38,7 @@ func _has_slots() -> bool:
     return false
 
 func request_new() -> void:
+    if is_instance_valid(story_view) and story_view.persistence_blocked: return
     if is_instance_valid(suspended_story): return
     var saved := _saved()
     if saved.status == "LOADED":
@@ -127,6 +142,9 @@ func save_and_main() -> void:
     show_menu()
 
 func show_menu() -> void:
+    if is_instance_valid(story_view) and story_view.persistence_blocked:
+        open_pause()
+        return
     new_pending = false
     _menu()
 
@@ -167,7 +185,7 @@ func _menu() -> void:
     _button(box,"설정",open_settings)
     _button(box,"도감",open_codex)
     if OS.get_name() not in ["Android","iOS","Web"]:
-        _button(box,"종료",func(): get_tree().quit())
+        _button(box,"종료",request_exit)
 
 func _button(parent: Node, caption: String, callback: Callable) -> Button:
     var button := Button.new()

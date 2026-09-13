@@ -95,6 +95,8 @@
 
 ### W01. 저장 실패 시 멈추는 진행 경계
 
+2026-09-14 실행: 구현·관련 자동 검사·PC 오류/재시도 화면 확인. 현재 증거와 한계는 Active Context의 W01 절을 읽는다. 모바일/강제 종료/보호 main 통합까지 완료한 상태는 아니다.
+
 **현재 → 이유:** `StoryScreen.advance_story()`는 상태를 바꾸고 `save_story()` 실패 여부와 관계없이 `_render()`한다. `_checkpoint()`도 실패 이후 다음 행동을 잠그지 않는다. 파일 checksum이 있어도 화면의 진행 안전성은 별도다.
 
 **Modify:** `src/ui/story/story_screen.gd`, `story_menu.gd`; `src/ui/event_session/event_session_screen.gd`; `src/ui/shared_duel/shared_duel_screen.gd`.
@@ -112,7 +114,7 @@
 
 실제 디스크 기록 자체가 불가능한 상태에서 강제 종료되면 마지막 정상 저장 이후 진행 손실은 피할 수 없다. 이를 성공 저장으로 표기하지 않는 것이 계약이다. 중복 시전 방지는 기존 command ID/revision을 유지한다. `_checkpoint` 신호 뒤 자식 화면이 알림을 덮어쓰지 못하도록 오류 표시는 부모 전용 영역에서 유지한다.
 
-- [ ] 테스트에 아래 실패 상황을 추가하고 현재 구현에서 실패함을 확인한다.
+- [x] 테스트에 아래 실패 상황을 추가하고 현재 구현에서 실패함을 확인한다.
 
 ```gdscript
 # run_story_screen_tests.gd 안의 기존 screen/c 활용; 경로는 읽기 전용 실패 주입 fixture.
@@ -123,9 +125,9 @@ c.assert_equal(before, screen.story, "failed transition must not publish next sc
 # 추가 검사는 정상 경로 복원 후 retry_save() 2회에도 stage가 한 번만 변하는지 확인.
 ```
 
-- [ ] 후보 상태 저장→공개와 이미 소비된 상태의 잠금→재저장을 구분해 구현한다.
-- [ ] 사건 시전/결투 시전/도움/중단 각각 실패 후 revision·마력·카드·receipt가 추가 변경되지 않는지 검증한다.
-- [ ] 재시도 성공·재실패·더블클릭·메뉴 왕복·장면 종료 실패를 검사하고 변경 파일만 commit한다.
+- [x] 후보 상태 저장→공개와 이미 소비된 상태의 잠금→재저장을 구분해 구현한다.
+- [x] 사건 시전/결투 시전/도움/중단 각각 실패 후 revision·마력·카드·receipt가 추가 변경되지 않는지 검증한다.
+- [x] 재시도 성공·재실패·더블클릭·메뉴 왕복·장면 종료 실패를 검사하고 변경 파일만 commit한다.
 
 **완료:** 실패 중 다음 유료 행동/장면 이동 0회, 정상 재시도 후 정확히 한 번 진행. 저장 권한의 실제 모바일 실패 검증은 W11로 남긴다. 롤백은 기존 정상 저장을 유지한 코드 revert이며 저장 파일 삭제가 아니다.
 

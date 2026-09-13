@@ -5,6 +5,11 @@ signal story_save_requested
 signal story_load_requested
 signal story_menu_requested
 var story_mode := false
+var persistence_blocked := false
+
+func set_persistence_blocked(blocked: bool) -> void:
+    persistence_blocked = blocked
+    _render()
 ## Playable event implementation preview. Not final art or the full story root.
 
 const SessionRules = preload("res://src/core/shared_spell/event_session.gd")
@@ -176,6 +181,7 @@ func cancel_selection() -> void:
     _render()
 
 func confirm_action() -> void:
+    if persistence_blocked: return
     if session.outcome != "ONGOING":
         return
     var result: Dictionary = engine.act(session, _command())
@@ -189,6 +195,7 @@ func confirm_action() -> void:
     _render()
 
 func continue_story() -> void:
+    if persistence_blocked: return
     if story_mode:
         if session.outcome != "ONGOING": story_finished.emit()
         return
@@ -260,11 +267,11 @@ func _render() -> void:
     selected_text.text = "선택: " + (" + ".join(names) if action_kind == "CAST" else MANUAL.get(action_kind, action_kind))
     facts.text = _facts(session)
     quote = engine.preview(session, _command())
-    confirm.disabled = quote.status != "APPLIED"
+    confirm.disabled = persistence_blocked or quote.status != "APPLIED"
     next_button.disabled = session.outcome == "ONGOING" or story_index >= 2
     next_button.text = "첫 세 사건 검증 종료" if story_index == 2 and session.outcome != "ONGOING" else "결과 확인 후 다음 장면"
     if story_mode:
-        next_button.disabled = session.outcome == "ONGOING"
+        next_button.disabled = persistence_blocked or session.outcome == "ONGOING"
         next_button.text = "결과 확인 후 다음 장면"
     if quote.status == "APPLIED":
         preview_text.text = "실행 전 미리보기\n" + _receipt_text(quote.receipt)

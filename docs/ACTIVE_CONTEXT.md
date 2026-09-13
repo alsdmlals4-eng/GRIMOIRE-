@@ -1,5 +1,21 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 W01 저장 실패 진행 경계 구현
+
+사용자 `좋아 권장안대로 작업진행해`에 따라 잔여 명세 W01을 실행했다. StoryScreen은 다음 장면/복기 선택 후보를 먼저 저장한 후 공개한다. 이미 해소된 사건/결투의 저장이 실패하면 해당 결과를 메모리에 유지하고 이후 확정/다음 장면/불러오기/새 게임/일반 종료를 차단한다. `저장 다시 시도`는 같은 payload만 저장하며 act/apply/Flow 진행을 반복하지 않는다. 오류창 안에 메뉴 버튼을 두어 읽기·설정·도감 접근을 유지한다. save schema/수치/기존 정상 저장은 변경하지 않았다.
+
+구현: `src/ui/story/story_screen.gd`, `story_menu.gd`, `src/ui/event_session/event_session_screen.gd`, `src/ui/shared_duel/shared_duel_screen.gd`. 새 `tests/run_story_persistence_tests.gd`는 실제 파일 저장+실패 주입으로 장면 이동, 네 사건/결투의 CAST/HELP/STOP, reflection 후보, repeated retry, save generation, parent/child 동일 결과, 메뉴 왕복/종료 안전을 검사한다. 최초 RED는 실패 저장에도 stage0→1 공개와 retry 부재2건. 중간 fixture의 event expected_revision 위치 오류와 반복 실행의 새게임 대체 확인 누락을 교정한 뒤 새140 assertions PASS. 실제 화면에서 메뉴가 오류창에 가려지는 문제도 RED 추가 후 창 안 메뉴로 수정했다.
+
+최종19 runners1272 assertions0failures: persistence140/screen30/menu20/pause13/conversation11/classroom7/portrait9/eventscreen21/duelscreen23/storyflow27/eventsave12/sharedspell252/eventcast70/eventsession60/duelexchange77/duelsession459/labsample17/codex15/preferences9. 전체 legacy/CI/모바일/Human 검증으로 확대하지 않는다. 운영 계약9.4.3/19routes/CURRENT와 diff 검사 통과.
+
+실제 Godot4.7.1 editor8604, runtime29572에서 프로젝트 내부 `w01-live-save` 검증 저장을 사용했다. 실패 경로→오류 표시→오류창 메뉴→플레이 복귀→정상 경로 복원→재시도 확인, diagnostics0errors0warnings. 캡처 `artifacts/local-validation/w01-save-failure-20260914.png`, `w01-save-recovered-20260914.png` 1280×720. Hera CLI1.0.0은 skill의 --pid 문법을 지원하지 않아 해당 editor의 단일 game instance와 매 응답 pid를 대조했다. text=메뉴는 가려진 기존 버튼을 택해 실패했고, 실제 오류창 버튼 경로 클릭으로 성공을 별도 확인했다. 최종 인계 시 검증용 실행은 종료하고 기본 메인으로 재시작한다.
+
+외부 확인: [Godot FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html), 2026-09-14. ADAPT: 파일 성공/실패와 화면 상태 공개를 분리하고 기존 flush/readback 유지. REJECT: 강제 종료나 디스크 장애에서 미저장 진행의 영구 복구 보장. 새 비용/자산/플러그인 설치 없음.
+
+적대적 검토5회(매회 권위·사용자 의도·소비처·회복·권리·증거 상한 전체 대조): ① 저장 실패 stage 공개를 RED로 재현→후보 저장 경계 ② 확정된 행동 rollback으로 비용/결과 지워질 위험→메모리 결과 보존·추가 행동 잠금 ③ reflection/load/menu/quit 우회→부모/자식 guard와 검증 ④ 오류창 메뉴 가림→실제화면 재현/검사/명시 메뉴 추가 ⑤ 반복 시험 저장/원격main/기기 증거 혼동→테스트 대체확인·branch 한정·NOT_RUN 분리. Simplify: 기존 StoryScreen 경계 사용, 별도 service/저장 장부 없음. Style: 기존 테마/한국어 안내 재사용. Domain: 시전 의미/시계/수치 불변. Safety: 사용자 저장/다른 PR/dirty fixture 보존.
+
+다음 안전 작업은 W02 개발/배포 저장 위치 분리와 손상 복구 표시다. W03 alpha 자산·W04 공통 대화는 별도 잔여다. 모바일 I/O/앱 강제 종료, 전체 legacy/CI, main 병합·post-merge, 최종 아트·Human·출시는 NOT_RUN. 공용 개선은 아직 Base 승격하지 않고 프로젝트의 재현 테스트로 먼저 고정했다.
+
 ## 2026-09-14 남은 작업 설계·구현 명세 준비
 
 최신 사용자 요청은 남은 작업과 각 작업의 설계·구현 명세 준비다. 게임 코드를 추가 구현하지 않고 [잔여 작업 실행 명세](superpowers/plans/2026-09-14-remaining-work-design-implementation.md)를 작성했다. W01 저장 실패 진행 차단→W02 개발/배포 저장 분리→W03 자산 분리→W04 공통 대화→W05 사건→W06 결투→W07 이야기/도감→W08 설정/접근성→W09 연출/오디오→W10 본책 동기화→W11 통합 인계, W12 장기 확장 설계로 구분한다. 일반 기술 작업을 다시 승인 대기시키지 않는다.

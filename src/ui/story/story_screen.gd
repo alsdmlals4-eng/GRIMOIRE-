@@ -21,6 +21,8 @@ var dialogue_notice: Label
 var save_message := ""
 var dialogue_index := 0
 var records_open := false
+var persistence_blocked := false
+var pending_transition: Dictionary = {}
 
 func _ready() -> void:
     theme = AcademyTheme.create_theme()
@@ -28,16 +30,14 @@ func _ready() -> void:
     _render()
 
 func advance_story(expected_stage: int) -> void:
+    if persistence_blocked: return
     var result: Dictionary = flow.advance(story,expected_stage)
     if result.status != "OK": return
-    story = result.state
-    dialogue_index = 0
-    records_open = false
+    pending_transition = result.state.duplicate(true)
     save_story()
 
-    _render()
-
 func _checkpoint(snapshot: Dictionary) -> void:
+    if persistence_blocked: return
     var result: Dictionary = flow.checkpoint(story,snapshot)
     if result.status != "OK":
         save_message = "진행 기록 검증 실패 · 기존 저장은 보존했습니다."
@@ -49,17 +49,44 @@ func _checkpoint(snapshot: Dictionary) -> void:
     _notice.call_deferred()
 
 func save_story() -> bool:
-    var result: Dictionary = Store.new().save_progress(ProjectSettings.globalize_path(save_folder),{"story":story})
-    save_message = "이야기 자동 저장 완료 · 장면과 실제 결과를 함께 보존했습니다." if result.status == "SAVED" else "저장 실패 · 현재 진행은 유지됩니다. 저장을 다시 시도하세요."
+    var payload: Dictionary = pending_transition if not pending_transition.is_empty() else story
+    var result: Dictionary = persist_payload({"story":payload.duplicate(true)})
+    persistence_blocked = result.get("status") != "SAVED"
+    save_message = "이야기 자동 저장 완료 · 장면과 실제 결과를 함께 보존했습니다." if not persistence_blocked else "저장 실패 · 현재 결과를 보존하고 다음 행동을 멈췄습니다. 저장을 다시 시도하세요."
+    if not persistence_blocked and not pending_transition.is_empty():
+        story = pending_transition
+        pending_transition = {}
+        dialogue_index = 0
+        records_open = false
+        _render()
+    if is_instance_valid(activity_view):
+        activity_view.set_persistence_blocked(persistence_blocked)
     _notice()
+    return not persistence_blocked
 
-    return result.status == "SAVED"
+func persist_payload(payload: Dictionary) -> Dictionary:
+    var folder := ProjectSettings.globalize_path(save_folder).simplify_path()
+    var parent := folder
+    while not DirAccess.dir_exists_absolute(parent):
+        if FileAccess.file_exists(parent):
+            return {"status":"REJECTED","reason":"DIRECTORY_UNWRITABLE"}
+        var next := parent.get_base_dir()
+        if next == parent: break
+        parent = next
+    return Store.new().save_progress(folder,payload)
+
+func retry_save() -> bool:
+    if not persistence_blocked: return true
+    return save_story()
 
 func refresh_preferences() -> void:
     if not is_instance_valid(activity_view) and is_instance_valid(story_copy):
         story_copy.add_theme_font_size_override("font_size",Preferences.new().load_size(save_folder))
 
 func load_story() -> void:
+    if persistence_blocked:
+        _notice()
+        return
     var result: Dictionary = Store.new().load_progress(ProjectSettings.globalize_path(save_folder))
     if result.status != "LOADED":
         save_message = "정상 이야기 저장이 없습니다. 현재 진행을 유지합니다."
@@ -72,12 +99,41 @@ func load_story() -> void:
     _render()
 
 func _notice() -> void:
+    var error_panel := get_node_or_null("PersistenceError")
+    if not persistence_blocked:
+        if error_panel != null:
+            remove_child(error_panel)
+            error_panel.queue_free()
+    elif error_panel == null:
+        var panel := PanelContainer.new()
+        panel.name = "PersistenceError"
+        panel.theme_type_variation = "AcademyPanelModal"
+        panel.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+        panel.offset_left = 20
+        panel.offset_right = -20
+        panel.offset_top = 16
+        panel.z_index = 20
+        add_child(panel)
+        var box := VBoxContainer.new()
+        panel.add_child(box)
+        var warning := Label.new()
+        warning.text = "현재 결과가 아직 저장되지 않았습니다.\n저장 재시도 전에는 다음 행동을 할 수 없습니다. 강제 종료하면 마지막 정상 저장 이후의 진행을 잃을 수 있습니다."
+        warning.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+        warning.add_theme_font_size_override("font_size",24)
+        box.add_child(warning)
+        var actions := HBoxContainer.new()
+        box.add_child(actions)
+        _button(actions,"저장 다시 시도",retry_save)
+        if pause_requested.has_connections(): _button(actions,"메뉴",func(): pause_requested.emit())
+    for button in find_children("*","Button",true,false):
+        if button.get_meta("story_mutation",false): button.disabled = persistence_blocked
     if is_instance_valid(dialogue_notice): dialogue_notice.text = save_message
     if not is_instance_valid(activity_view): return
     if activity_view.get_meta("duel",false): activity_view.notice.text = save_message
     else: activity_view.save_notice.text = save_message
 
 func _render() -> void:
+    _notice.call_deferred()
     for child in get_children():
         remove_child(child)
         child.queue_free()
@@ -97,6 +153,7 @@ func _render() -> void:
         activity_view.story_load_requested.connect(load_story)
         activity_view.story_menu_requested.connect(func(): pause_requested.emit())
         add_child(activity_view)
+        activity_view.set_persistence_blocked(persistence_blocked)
         _notice()
         return
     if story.stage == 1:
@@ -191,13 +248,11 @@ func _render() -> void:
     if not pause_requested.has_connections(): _button(choices,"이야기 이어하기",load_story)
 
 func choose_reflection(choice: String) -> void:
+    if persistence_blocked: return
     var result: Dictionary = flow.reflect(story,choice)
     if result.status != "OK": return
-    story = result.state
-    dialogue_index = 0
-    records_open = false
+    pending_transition = result.state.duplicate(true)
     save_story()
-    _render()
 
 func next_dialogue() -> void:
     if story.stage in Flow.ACTIVITIES or records_open: return
@@ -238,4 +293,6 @@ func _button(parent: Node, caption: String, callback: Callable) -> void:
     button.custom_minimum_size.y = 52
     button.add_theme_font_size_override("font_size",24)
     button.pressed.connect(callback)
+    button.set_meta("story_mutation",callback.get_method() in [&"advance_story",&"choose_reflection"])
+    if button.get_meta("story_mutation"): button.disabled = persistence_blocked
     parent.add_child(button)

@@ -5,6 +5,11 @@ signal story_save_requested
 signal story_load_requested
 signal story_menu_requested
 var story_mode := false
+var persistence_blocked := false
+
+func set_persistence_blocked(blocked: bool) -> void:
+    persistence_blocked = blocked
+    if is_instance_valid(header): _render()
 ## Functional practice entry. Approved environment, provisional text cards.
 const Duel = preload("res://src/core/shared_spell/duel_session.gd")
 const Save = preload("res://src/core/shared_spell/duel_save.gd")
@@ -129,6 +134,7 @@ func _command() -> Dictionary:
     return {"id":"ui-"+str(session.revision),"revision":session.revision,"kind":action_kind,"ids":selection.duplicate()}
 
 func confirm_action() -> void:
+    if persistence_blocked: return
     if quote.get("status") != "APPLIED": return
     var result: Dictionary = rules.apply(session,_command())
     if result.status != "APPLIED": return
@@ -157,6 +163,7 @@ func load_progress() -> void:
     cancel_selection()
 
 func restart() -> void:
+    if persistence_blocked: return
     if story_mode: return
     if session.outcome == "ONGOING": return
     session = rules.create(int(Time.get_unix_time_from_system()),false)
@@ -169,9 +176,9 @@ func _render() -> void:
     var foe: Dictionary = rules.opponent(session)
     announced.text = "상대 예고: %s 공격 %d · 방어 %d    |    집중 %d · 방패 억제 %d" % [NATURES[foe.nature],foe.attack,foe.guard,session.focus,session.suppression]
     quote = rules.preview(session,_command())
-    confirm.disabled = quote.get("status") != "APPLIED"
+    confirm.disabled = persistence_blocked or quote.get("status") != "APPLIED"
     retry.disabled = session.outcome == "ONGOING"
-    if story_next != null: story_next.disabled = session.outcome == "ONGOING"
+    if story_next != null: story_next.disabled = persistence_blocked or session.outcome == "ONGOING"
     if session.outcome != "ONGOING":
         details.text = OUTCOMES[session.outcome] + "\n연습 결과를 확인했습니다. 다시 연습하거나 저장할 수 있습니다."
     elif quote.get("status") == "APPLIED":
@@ -195,6 +202,7 @@ func _render() -> void:
         hand.add_child(card)
 
 func continue_story() -> void:
+    if persistence_blocked: return
     if story_mode and session.outcome != "ONGOING": story_finished.emit()
 
 func _render_review() -> void:
