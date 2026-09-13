@@ -1,5 +1,13 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 설정 후속 루프
+
+메인 설정에 대화 본문 크기24/28/32px를 연결했다. story_preferences.gd가 기존 두 슬롯 저장을 별도 preferences 하위 폴더로 재사용하고 StoryScreen 본문이 실제 설정을 읽는다. ConfigFile 직접 덮어쓰기 초안은 구현 전에 철회했다. 잘못된 값은 거절하고 최신 슬롯 손상 시 이전 유효 설정으로 복구한다. 이야기 저장/RNG/마력/시간은 변경하지 않는다. 설정 화면에 사건/결투 UI 확대·음량/모션은 미완료라고 명시했다. XAG101의 모든 핵심 텍스트 확대 기준을 아직 충족하지 않는 부분 구현이다.
+
+최종6 runners105 assertions0failures(preferences9/menu20/storyscreen22/storyflow27/codex15/eventsave12), validator9.4.3/19routes CURRENT. editor11900/runtime7640 설정32→메인→이어하기→실제32px본문/스크롤/선택버튼 확인, 캡처 artifacts/local-validation/story-large-dialogue-20260913.png, diagnostics0/0. 관찰 뒤24로 복구. 오래된 '메인 통합 미완료' 화면 문구를 교정하고 마지막 실행을 재시작했다. 새 게임 대체 확인은 사용자 개발 승인이 아니라 플레이어 저장 안전 동작이다. 전체 게임/아트/Human/mobile/export/performance 미완료는 그대로다.
+
+남은 안전 작업: 진행 중 설정/도감 접근과 아직 시전하지 않은 선택 복원, 사건/결투 본문 확대 범위, 스크롤/읽기 편의, 승인 아트 consumer 연결. 별도 일반 승인 없이 현행 계획을 구체화하고 테스트 우선 구현한다. 새 보상/관계 수치/마법사 카드/별형/그리기 입력은 추가하지 않는다.
+
 ## 2026-09-13 도감 후속 루프
 
 story_codex.gd는 검증된 이야기의 배운 글자와 실제 주문 receipts를 읽기 전용으로 집계한다. 첫 수업 전 잠금, 학습만으로 조합 공개 안 함, 미리보기 기록 안 함, 사건/결투 사용 맥락과 대상/비용/위험 표시. 이름은 기존 Semantics owner를 소비한다. 조합 ID와 명령이 어긋난 기록을 그대로 노출하던 RED를 추가하고 불일치를 제외했다. 손상 검출 강화이지 악의적 전체 저장 변조 방지 증거는 아니다. 메뉴의 도감을 실제 scroll view와 메인 복귀에 연결했다. 읽기100회 입력상태 불변, 도감 방문 전후 저장 generation/payload 동일.

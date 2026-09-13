@@ -4,6 +4,7 @@ const Store = preload("res://src/core/shared_spell/story_save.gd")
 const Flow = preload("res://src/core/shared_spell/story_flow.gd")
 const Story = preload("res://src/ui/story/story_screen.tscn")
 const Codex = preload("res://src/core/shared_spell/story_codex.gd")
+const Preferences = preload("res://src/core/shared_spell/story_preferences.gd")
 var save_folder := "res://artifacts/local-validation/story-progress"
 var story_view: Control
 var continue_button: Button
@@ -121,7 +122,7 @@ func _menu() -> void:
     continue_button.disabled = _saved().status != "LOADED"
     if continue_button.disabled:
         continue_button.text = "이어하기 · 유효한 저장 없음"
-    _button(box,"설정 · 연결 준비 중",func(): pass).disabled = true
+    _button(box,"설정",open_settings)
     _button(box,"도감",open_codex)
     if OS.get_name() not in ["Android","iOS","Web"]:
         _button(box,"종료",func(): get_tree().quit())
@@ -171,4 +172,35 @@ func open_codex() -> void:
             lines.append("• %s / %s\n  %s" % [usage.context,usage.target,usage.fact])
     content.text = "\n".join(lines)
     scroll.add_child(content)
+    _button(box,"메인으로",show_menu)
+
+func choose_text_size(size: int) -> void:
+    if new_pending: return
+    message = "대화 본문 글자 크기를 저장했습니다." if Preferences.new().save_size(save_folder,size) else "설정을 저장하지 못했습니다. 기존 유효 설정으로 표시합니다."
+    open_settings()
+
+func open_settings() -> void:
+    if new_pending: return
+    var current_size: int = Preferences.new().load_size(save_folder)
+    _clear()
+    var margin := MarginContainer.new()
+    margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    for side in ["left","right","top","bottom"]: margin.add_theme_constant_override("margin_"+side,48)
+    add_child(margin)
+    var box := VBoxContainer.new()
+    box.add_theme_constant_override("separation",20)
+    margin.add_child(box)
+    var description := Label.new()
+    description.text = "설정 · 대화 본문 글자 크기\n현재 %d px · 입학/복기/마무리 대화에 적용\n사건·결투 UI 확대, 음량·모션 설정은 아직 연결되지 않았습니다.\n%s" % [current_size,message]
+    description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    description.add_theme_font_size_override("font_size",24)
+    box.add_child(description)
+    var sample := Label.new()
+    sample.text = "같은 글자라도 어디에 쓰느냐에 따라 달라집니다."
+    sample.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    sample.add_theme_font_size_override("font_size",current_size)
+    box.add_child(sample)
+    for size in Preferences.SIZES:
+        var button := _button(box,"%d px%s" % [size," · 선택됨" if size == current_size else ""],choose_text_size.bind(size))
+        button.disabled = size == current_size
     _button(box,"메인으로",show_menu)

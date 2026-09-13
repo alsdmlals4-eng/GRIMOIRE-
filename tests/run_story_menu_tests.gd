@@ -57,6 +57,20 @@ func _run() -> void:
     c.assert_true(menu.find_children("*","Label",true,false).any(func(label): return label.text.contains("아직 배우지")),"prelesson codex explains locked letters")
     menu.show_menu()
     c.assert_equal(before_read,store.load_progress(ProjectSettings.globalize_path(menu.save_folder)),"codex reading does not rewrite save or RNG")
+    c.assert_true(menu.has_method("choose_text_size"),"settings has actual dialogue font consumer")
+    if not menu.has_method("choose_text_size"):
+        menu.queue_free()
+        await process_frame
+        print(JSON.stringify({"assertions":c.assertion_count(),"failures":c.failure_count(),"messages":c.failures()}))
+        quit(1)
+        return
+    menu.choose_text_size(32)
+    menu.show_menu()
+    menu.continue_story()
+    await process_frame
+    c.assert_equal(32,menu.story_view.story_copy.get_theme_font_size("font_size"),"chosen large text reaches dialogue body")
+    c.assert_equal(before_read,store.load_progress(ProjectSettings.globalize_path(menu.save_folder)),"font setting leaves story slots untouched")
+    menu.show_menu()
     menu.save_folder = "res://src/ui/story/story_menu.gd/not-a-directory"
     menu.request_new()
     c.assert_true(not is_instance_valid(menu.story_view),"failed save does not enter new story")

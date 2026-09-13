@@ -3,6 +3,7 @@ signal main_requested
 ## Functional first-chapter story sequence; final presentation remains separate.
 const Flow = preload("res://src/core/shared_spell/story_flow.gd")
 const Store = preload("res://src/core/shared_spell/story_save.gd")
+const Preferences = preload("res://src/core/shared_spell/story_preferences.gd")
 const EventScreen = preload("res://src/ui/event_session/event_session_screen.tscn")
 const DuelScreen = preload("res://src/ui/shared_duel/shared_duel_screen.tscn")
 const OUTCOMES := {"SOLVED":"독립 해결","ASSISTED":"도움 요청/개입","STOPPED":"중단","WIN":"승리","LOSS":"패배","DRAW":"무승부"}
@@ -12,7 +13,7 @@ var save_folder := "res://artifacts/local-validation/story-progress"
 var activity_view: Control
 var story_copy: Label
 var dialogue_notice: Label
-var save_message := "이야기 연결 구현판 · S00~S08 · 최종 연출/프로필/메인 통합 미완료"
+var save_message := "이야기 연결 구현판 · S00~S08 · 최종 연출/프로필 제작 중"
 
 func _ready() -> void:
     if story.is_empty(): story = flow.create()
@@ -97,7 +98,7 @@ func _render() -> void:
     story_copy = Label.new()
     story_copy.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     story_copy.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    story_copy.add_theme_font_size_override("font_size",24)
+    story_copy.add_theme_font_size_override("font_size",Preferences.new().load_size(save_folder))
     story_copy.text = _copy()
     scroll.add_child(story_copy)
     dialogue_notice = Label.new()
@@ -127,9 +128,9 @@ func _copy() -> String:
         var festival: Dictionary = story.results["7"]
         var sample_result := "시료 보존" if lab.spell_state.objects.sample.location_id == "safe" else "시료 처리 중단"
         var closing: String = {"SOLVED":"축제 준비를 마쳤네. 바뀐 것과 지켜 둔 것을 기록해 두자.","ASSISTED":"담당자에게 맡긴 부분도 기록해 두자. 다음에는 같이 살펴보자.","STOPPED":"이번에는 준비를 멈췄구나. 남은 일을 기록해 두자."}[festival.outcome]
-        return "동료 학생\n“%s”\n\n첫 학교생활의 실행 기록\n수업: %s\n안내 결투: %s\n온실: %s\n후속 실습: %s · %s\n축제 준비: %s\n\n이 기록은 저장되어 이어하기로 다시 읽을 수 있습니다. 재진입으로 보상을 지급하지 않습니다.\n\n기능 연결 S00~S08 도달 기록입니다. 최종 입학/축제 연출, 프로필 편집, 메인 복귀, 다음 장과 모바일 검증은 아직 완료되지 않았습니다." % [closing,OUTCOMES[story.results["2"].outcome],OUTCOMES[story.results["3"].outcome],OUTCOMES[story.results["4"].outcome],OUTCOMES[lab.outcome],sample_result,OUTCOMES[festival.outcome]]
+        return "동료 학생\n“%s”\n\n첫 학교생활의 실행 기록\n수업: %s\n안내 결투: %s\n온실: %s\n후속 실습: %s · %s\n축제 준비: %s\n\n이 기록은 저장되어 이어하기로 다시 읽을 수 있습니다. 재진입으로 보상을 지급하지 않습니다.\n\n기능 연결 S00~S08 도달 기록입니다. 최종 입학/축제 연출, 프로필 편집, 다음 장과 모바일 검증은 아직 완료되지 않았습니다." % [closing,OUTCOMES[story.results["2"].outcome],OUTCOMES[story.results["3"].outcome],OUTCOMES[story.results["4"].outcome],OUTCOMES[lab.outcome],sample_result,OUTCOMES[festival.outcome]]
     if story.stage == 0:
-        return "나\n교문을 지나기 전에 안내를 읽었다. 이 학교에서는 글자를 배우고, 그 뜻을 연결해 주문을 만든다.\n\n안내\n먼저 안전한 수업, 동료와의 안내 결투, 온실 실습으로 이어집니다. 선택과 읽기는 시간을 소비하지 않습니다.\n\n현재는 기본 호칭 ‘나’를 사용합니다. 이름/설정 편집과 입학 장면의 최종 아트는 아직 연결되지 않았습니다."
+        return "나\n교문을 지나기 전에 안내를 읽었다. 이 학교에서는 글자를 배우고, 그 뜻을 연결해 주문을 만든다.\n\n안내\n먼저 안전한 수업, 동료와의 안내 결투, 온실 실습으로 이어집니다. 선택과 읽기는 시간을 소비하지 않습니다.\n\n현재는 기본 호칭 ‘나’를 사용합니다. 이름 편집과 입학 장면의 최종 아트는 아직 연결되지 않았습니다."
     if story.stage == 1:
         return "지도교수\n“같은 글자라도 어디에 쓰느냐에 따라 해야 할 일이 달라집니다.”\n\n불씨는 작은 열, 바람은 움직임, 막기는 경계, 모으기는 한곳으로 모으는 작용입니다.\n\n“용기는 따뜻하게, 옆의 표본은 그대로. 먼저 무엇을 살펴보겠어요?”\n\n수업 뒤에는 동료와 연습합니다. 승리뿐 아니라 도움이나 중단도 사실대로 기록하고 다음 이야기로 이어집니다."
     var lesson: Dictionary = story.results["2"]
