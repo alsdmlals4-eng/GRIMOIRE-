@@ -8,6 +8,7 @@ const Preferences = preload("res://src/core/shared_spell/story_preferences.gd")
 const AcademyTheme = preload("res://src/ui/theme/grimoire_theme_factory.gd")
 const Dialogue = preload("res://src/ui/story/story_dialogue.gd")
 const Portraits = preload("res://src/ui/story/story_portraits.gd")
+const Classroom = preload("res://src/ui/story/story_classroom_view.gd")
 const EventScreen = preload("res://src/ui/event_session/event_session_screen.tscn")
 const DuelScreen = preload("res://src/ui/shared_duel/shared_duel_screen.tscn")
 const OUTCOMES := {"SOLVED":"독립 해결","ASSISTED":"도움 요청/개입","STOPPED":"중단","WIN":"승리","LOSS":"패배","DRAW":"무승부"}
@@ -97,6 +98,11 @@ func _render() -> void:
         activity_view.story_menu_requested.connect(func(): pause_requested.emit())
         add_child(activity_view)
         _notice()
+        return
+    if story.stage == 1:
+        var classroom_turns: Array = Dialogue.turns(story)
+        dialogue_index = clampi(dialogue_index,0,classroom_turns.size()-1)
+        Classroom.build(self,classroom_turns)
         return
     var page := PanelContainer.new()
     page.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

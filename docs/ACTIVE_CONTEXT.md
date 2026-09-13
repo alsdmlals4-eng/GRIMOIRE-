@@ -1,5 +1,11 @@
 # GRIMOIRE Active Context
 
+## 2026-09-13 승인 교실 구도 플레이 연결
+
+사용자 `딱 좋네 진행해`로 classroom-composition-candidate-01 구도 승인. stage1 교실에 한정해 승인 합성 장면을 임시 표시하고 story_classroom_view.gd의 독립 Godot 하단 이름/대사/이전다음/안내/메뉴를 연결했다. 나머지 장소는 이 교실 그림을 재사용하지 않는다. 이 중간 구현은 배경/인물이 아직 합쳐져 있으므로 actor별 강조/표정/등퇴장은 미완료이며 완전한 레이어 분리로 주장하지 않는다. 실패한 RGB 체크무늬 atlas는 사용하지 않았다.
+
+관련6 runners90 assertions0failures, editor11900/runtime36112 하단 대화 실제 캡처 story-bottom-dialogue-20260913.png 확인. 첫 texture preload 실패는 신규PNG import 부재였고 import 후 테스트 clean. headless import 종료 시 plugin resource leak 경고/오류가 발생한 점은 별도 엔진/플러그인 종료 관찰이며 무시해 PASS로 바꾸지 않는다. 플레이 테스트 출력은 별도 clean 확인. 모바일/독립 캐릭터 레이어/다른 장면 새 구도는 잔여 작업.
+
 ## 2026-09-13 사용자 참조 기반 대화 구도 교정
 
 최신 방향은 화면 전체 배경 위에 여러 인물이 함께 서고 하단 공통 대화창이 겹치는 RPG 구도다. 좌우 액자/가운데 설명창은 최종 방향에서 폐기한다(기존 실행 코드는 전환 전 상태로 보존). 새 `output/imagegen/dialogue-stage-20260913/classroom-composition-candidate-01.png`는 승인 인물3종 기반 구도 시안이며 runtime 적용/최종아트 승인 아님. 글자 없는 하단 창을 포함한 합성 이미지라 배경·인물·UI 분리 자산을 대신할 수 없다.

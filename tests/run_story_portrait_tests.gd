@@ -21,8 +21,8 @@ func _run() -> void:
         c.assert_true(left.modulate.r > right.modulate.r,"player reply transfers emphasis")
         c.assert_equal(before,screen.story,"portrait changes do not alter gameplay")
         screen.advance_story(0)
-        right = screen.find_child("PartnerIllustration",true,false)
-        c.assert_true(right.texture.resource_path.ends_with("tutor-personality-01.png"),"professor speech selects approved tutor")
+        right = screen.find_child("FullSceneIllustration",true,false)
+        c.assert_true(right != null,"classroom uses user approved shared-stage composition")
         await process_frame
         c.assert_true(right.get_global_rect().end.y <= 720,"portrait within viewport")
         c.assert_true(screen.story_copy.size.x >= 400,"portrait leaves readable dialogue width")

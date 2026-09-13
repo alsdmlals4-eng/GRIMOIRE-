@@ -1,5 +1,9 @@
 # Shared-stage dialogue composition candidate
 
+## Approval and interim consumer update
+
+User `딱 좋네 진행해` approves shown composition. Current consumer src/ui/story/story_classroom_view.gd uses this exact plate ONLY stage1 classroom as an explicitly temporary composite, with independent live Godot text/buttons. This supersedes candidate-only state below for this bounded use, not for arbitrary locations/independent portraits. SHA256 0224C5F36E511EF5C2601D3118280F165A421C9F3130F9B070C3EC57E4043EBB. Background/actors/frame still flattened; true per-actor layer separation remains pending. RGB checkerboard still rejected.
+
 User layout authority: 2026-09-13 attached codex-clipboard-44f24b01-94f2-433b-92e4-95281e9f0905.png and `우리도 이렇게할거야`. Layout reference only; its characters, setting and text are not game canon.
 
 Current target: continuous academy backdrop, large unframed characters sharing stage, one translucent navy/gold dialogue overlay on bottom approximately25%, nameplate on upper-left. Remove side portrait frames and center report panel. Speaker text and choices remain Godot Controls; background/characters/frame must be separate in runtime.
