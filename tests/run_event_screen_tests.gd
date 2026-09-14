@@ -13,6 +13,35 @@ func _run() -> void:
         root.add_child(screen)
         await process_frame
         var before: Dictionary = screen.session.duplicate(true)
+        var drop_button = screen.glyph_buttons[1]
+        check.assert_true(not drop_button._can_drop_data(Vector2.ZERO,{"spell_glyph":"EMBER"}),"foreign drag without current-screen context is rejected")
+        screen.session.spell_state.learned.erase("WARD")
+        screen.select_glyph("EMBER")
+        screen.select_glyph("WARD")
+        check.assert_equal(["EMBER"],screen.selected,"unlearned tap preserves current selection")
+        screen.select_pair("EMBER","WARD")
+        check.assert_equal(["EMBER"],screen.selected,"unlearned pair preserves current selection")
+        screen.session = before.duplicate(true)
+        screen.cancel_selection()
+        var payload := {"spell_glyph":"EMBER","context":drop_button.drag_context.duplicate(true)}
+        check.assert_true(drop_button._can_drop_data(Vector2.ZERO,payload),"current-screen learned pair accepts drag")
+        drop_button._drop_data(Vector2.ZERO,payload)
+        check.assert_equal(["WIND","EMBER"],screen.selected,"drop uses the same pair selection path")
+        var pair_before = screen.selected.duplicate()
+        screen.select_glyph("GATHER")
+        check.assert_equal(pair_before,screen.selected,"third glyph cannot replace a selected pair")
+        payload.context.revision -= 1
+        check.assert_true(not drop_button._can_drop_data(Vector2.ZERO,payload),"stale action drag is rejected")
+        drop_button._drop_data(Vector2.ZERO,payload)
+        check.assert_equal(pair_before,screen.selected,"direct stale drop also preserves selection")
+        payload.context = drop_button.drag_context.duplicate(true)
+        payload.context.screen += 1
+        check.assert_true(not drop_button._can_drop_data(Vector2.ZERO,payload),"other screen drag is rejected even with same glyph")
+        payload.context = drop_button.drag_context.duplicate(true)
+        payload.spell_glyph = "WIND"
+        check.assert_true(not drop_button._can_drop_data(Vector2.ZERO,payload),"same glyph drop is rejected")
+        check.assert_equal(before,screen.session,"all rejected input and valid pair selection cost nothing")
+        screen.cancel_selection()
         screen.select_target("vessel")
         screen.select_pair("EMBER", "GATHER")
         check.assert_true("뜨거움" in screen.preview_text.text, "focus preview exposes actual hot result before spending")

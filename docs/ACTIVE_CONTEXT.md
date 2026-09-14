@@ -1,5 +1,9 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 W05 사건 글자 입력 경계 교정
+
+시계 연결 후 카드 입력에서 미학습 tap/pair와 출처 없는 drag가 선택을 바꾸는 RED3 재현. SpellButton은 화면 instance/attempt/revision을 담은 payload만 받으며 drop 단계에서도 재검증한다. 미학습 글자는 표시를 비활성화하고 선택 함수에서도 거부한다. 세 번째 글자/동일 글자 drop/다른 화면/오래된 revision 거부와 무소비, 유효 drag→기존 pair 경로를 검사. 4 runners224 assertions0failures(event41/story30/pause13/persistence140). 수치·소비 reducer·저장 schema 불변. 이것은 Godot drag handler 자동검사이며 실제 손가락 drag·화면밖 release·다중터치 성공 증거가 아니다. 다음은 W05 실제 대상 장면 배치와 반응 표시, 저해상도 입력 검수. 기존 승인 자산과 unrelated dirty fixture 보존.
+
 ## 2026-09-14 W05 위험 시계 현재값·예고 분리
 
 7e6561b 후속. EventClockView를 사건 화면의 실제 reducer quote에 연결했다. 온실/시료에만 현재 위험 6분할 기능 게이지와 예고 before→after, 작용 delta/시간 delta를 표시한다. 수업/축제에는 없는 위험 시계를 만들지 않는다. 원형은 최종 삽화가 아닌 기능 게이지이며 새 이미지·최종 아트 승격 없음. 선택·재표시는 core를 변경하지 않고 명시 시전 이후에만 현재 칸을 갱신한다. 요청 delta 합과 실제 결과가 다른 0/6 경계는 상하한 보정으로 명시하며 규칙/저장 schema는 유지한다.

@@ -33,15 +33,18 @@ const REASONS := {"UNKNOWN_TARGET": "대상을 선택하세요.", "UNKNOWN_DESTI
 class SpellButton extends Button:
     signal pair_requested(first: String, second: String)
     var glyph: String
+    var drag_context: Dictionary = {}
+    var learned: Array = []
     func _get_drag_data(_position: Vector2) -> Variant:
+        if disabled: return null
         var label := Label.new()
         label.text = text
         set_drag_preview(label)
-        return {"spell_glyph": glyph}
+        return {"spell_glyph": glyph,"context":drag_context.duplicate(true)}
     func _can_drop_data(_position: Vector2, data: Variant) -> bool:
-        return data is Dictionary and data.get("spell_glyph") is String and data.spell_glyph != glyph
+        return not disabled and data is Dictionary and data.get("context") == drag_context and data.get("spell_glyph") in learned and data.spell_glyph != glyph
     func _drop_data(_position: Vector2, data: Variant) -> void:
-        pair_requested.emit(glyph, data.spell_glyph)
+        if _can_drop_data(_position,data): pair_requested.emit(glyph, data.spell_glyph)
 
 var engine = SessionRules.new()
 var session: Dictionary = {}
@@ -149,7 +152,7 @@ func _build() -> void:
     next_button = _button(footer, "결과 확인 후 다음 장면", continue_story)
 
 func select_glyph(glyph: String) -> void:
-    if glyph not in GLYPH_NAMES or session.outcome != "ONGOING":
+    if glyph not in GLYPH_NAMES or glyph not in session.spell_state.learned or session.outcome != "ONGOING":
         return
     action_kind = "CAST"
     if glyph in selected:
@@ -159,7 +162,7 @@ func select_glyph(glyph: String) -> void:
     _render()
 
 func select_pair(first: String, second: String) -> void:
-    if first not in GLYPH_NAMES or second not in GLYPH_NAMES or first == second or session.outcome != "ONGOING":
+    if first not in GLYPH_NAMES or second not in GLYPH_NAMES or first not in session.spell_state.learned or second not in session.spell_state.learned or first == second or session.outcome != "ONGOING":
         return
     action_kind = "CAST"
     selected = [first, second]
@@ -248,7 +251,9 @@ func _render() -> void:
         header.text = "이야기 · %s    |    마력 %d    행동 %d    %s" % [session.title,session.spell_state.mana,session.spell_state.elapsed_actions,OUTCOMES[session.outcome]]
     for button in glyph_buttons:
         button.set_pressed_no_signal(button.glyph in selected)
-        button.disabled = session.outcome != "ONGOING"
+        button.disabled = session.outcome != "ONGOING" or button.glyph not in session.spell_state.learned
+        button.learned = session.spell_state.learned.duplicate()
+        button.drag_context = {"screen":get_instance_id(),"attempt":session.spell_state.attempt_id,"revision":session.spell_state.revision}
     _clear(target_buttons)
     for id in session.spell_state.objects:
         var object: Dictionary = session.spell_state.objects[id]
