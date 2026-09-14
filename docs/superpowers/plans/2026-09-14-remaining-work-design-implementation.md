@@ -1,5 +1,7 @@
 # GRIMOIRE 남은 작업 설계·구현 계획
 
+2026-09-14 후속: W03 주인공 크로마키→실제 alpha 후보 확보(최종 승인/소비처 교체는 별도). W04 공통 DialogueStage를 S00/S01/S05/S08에 연결하고 읽기/기록/선택/작은 logical viewport를 검증했다. 독립3인slot·표정·새 배경·포커스 복원·32px 전체조합은 아직 남는다. 최신 상세 증거는 Active Context 상단; 아래 최초 스냅샷을 완료 상태로 사용하지 않는다.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. 최초 작성은 명세 준비였으며, 최신 사용자 지시로 순차 구현·개선이 승인됐다. 일반 기술 선택의 재승인 대기 없이 진행한다. 별도 지시 없는 병렬 에이전트 실행은 하지 않는다.
 
 2026-09-14 실행 readback: W01 완료(브랜치/PC 범위), W02 경로·복구·실제 export 저장/재실행 검증 완료. W03 단일 인물 alpha 재시도도 RGB 체크무늬로 실패하여 미적용. W04 고정 화자/대사 Resource 연결은 구현했지만 공통 Stage/독립 인물 레이어는 아직 미완료다. 아래 최초 지도보다 이 실행 기록과 Active Context 상단이 우선한다. 게임 전체/모바일/출시/main 완료가 아니다.

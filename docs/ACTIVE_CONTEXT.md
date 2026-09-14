@@ -1,5 +1,19 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 W04 공통 하단 대화 무대 실제 연결
+
+후속 최종 검증: 키보드 포커스 소실 RED2를 추가하고 표시 문자열 대신 dialogue_action ID로 복원. 빠른 연속 읽기에서 분리된 이전 Stage의 deferred focus 호출 오류를 is_inside_tree/queued-for-deletion guard로 교정. 최종9 runners265 assertions0failures 및 오류 로그 없음, export closure34 valid. 최종 gate runtime33068 캡처 `artifacts/local-validation/dialogue-stage-gate-final-20260914.png`에서 남색 fallback/하단대화 배치 확인. 아래 gate 미검증/포커스 미완료 언급은 이 후속 증거로 대체되며, 메뉴 전체 키보드·기기 입력 QA나 독립3인/표정/32px 전체조합까지 완료한 것은 아니다.
+
+최신 사용자는 시안에서 멈추지 말고 남은 구현 순서로 계속하라고 재확인했다. 작업 HEAD3606f7d 기준으로 `dialogue_stage.gd/.tscn`을 신설하고 StoryScreen의 S00/S01/S05/S08을 같은 무대로 연결했다. 무대는 본문·화자·기록·이전/다음·선택·메뉴 신호만 소유하고 기존 StoryScreen이 Flow/저장을 소유한다. 원문은 기존 story_dialogue, line_id/Resource 유지. 선택은 기존 마지막 대사 이후에만 표시하고 저장 실패 시 mutation 버튼 차단. 교실 승인 합성은 S01만 유지; 다른 장면은 승인 불투명 초상+기존 남색 패널을 임시 사용한다. 크로마키 후보 자동 승격/새 그림 생성은 하지 않았다.
+
+표시 교정: 하단 전체 폭 본문 스크롤, 기록 확장, HFlowContainer 선택지, 선택지 있음/낮은 화면 높이에서 패널 확대. 중앙 상태판처럼 본문을 두던 중복 renderer를 제거하고 기존 classroom/portrait helper는 보존했다. 이전 위치/다음 위치·저장 schema·마력/시계 의미 불변. 복기·마지막 기록도 실제 story integration tests 경유. 전체 3인 독립 slot/표정·최종 배경·포커스 복원은 미완료이므로 W04 전체 완료가 아니다.
+
+검증: 새 common-stage RED2→GREEN12, 마지막 대사/선택/작은 viewport RED12→패널 높이 교정 및 실제 logical canvas 설정→GREEN24. 중간 Dictionary를 Resource present에 전달한 타입 오류는 turns.line과 원문 해석 분리로 수정; 해당 시험 PID20796만 종료. 기존 회귀에서 Narration 누락1건을 발견해 복원. 최종9 runners263 assertions0failures(24/11/7/9/30/13/20/9/140), export closure34 resources/2presets valid, Python export unit1 PASS. 테스트/런타임 저장은 전용 artifacts/local-validation 경로 주입; 기존 사용자 fixture delta 보존.
+
+Live Godot: Hera fresh instances로 GRIMOIRE editor8604 확인(다른 프로젝트 editor에는 변경 없음), 실제 runtime41416에서 다음 대사→기록→복귀→다음→입학 확인→교실 클릭 확인,1280x720 캡처 `artifacts/local-validation/dialogue-stage-gate-20260914.png`, `dialogue-stage-classroom-20260914.png`, diagnostics0errors0warnings. Gate 캡처 이후 회색 clear 배경을 기존 AcademyPanel로 교정했으므로 gate 캡처는 그 직전 중간 상태다. 최종 gate 재캡처 전까지 최종 gate visual은 미검증. Headless logical1024x576에서 대사 최소1행 및 버튼 화면 내 유지 확인; 실제 모바일/32px 전체조합/Human/출시 NOT_RUN. 내보내기 목록에 새 scene/script 추가했으나 이번 턴 새 Windows export는 재생성하지 않았다.
+
+조사 재열람: Ren'Py dialogue https://www.renpy.org/doc/html/dialogue.html 의 화자/본문 분리를 ADAPT, Godot ScrollContainer https://docs.godotengine.org/en/stable/classes/class_scrollcontainer.html 의 overflow/focus 흐름을 ADOPT. 엔진 교체/미승인 장면 배경 재사용 REJECT. 검토5회: 권위·승인 자산 경계 / Resource-본문 타입 소비처 / 읽기·저장 회귀 / 마지막선택·논리해상도 overflow / 실제 클릭·export closure. 다음 안전 구현은 W04 키보드 포커스·3인slot 안전fallback과 W05 사건 대상/시계 표시 연결이며 그림 최종 승인을 코드 작업의 일반 대기 사유로 사용하지 않는다.
+
 ## 2026-09-14 W03 크로마키 주인공 후보 확보
 
 최신 계속 진행 지시에 따라 approved PLAYER 원본과 소비처를 재확인하고 크로마키 배경 생성→여백 보정1회→배경 제거 진행. 후보 `output/imagegen/dialogue-stage-20260914/player-neutral-alpha-01.png`: 실제 RGBA1254x1254, 투명925990/부분투명5555/불투명640971px. 좌우 약16.5%, 상단9.1% 여백. 하단 허리 아래 crop은 대화창용. 초록 원본도 같은 폴더에 보존. 기존 승인 일러스트·교실 합성·런타임 연결은 변경하지 않았고 FINAL_APPROVAL_PENDING; 새 시안을 기존 승인으로 자동 승계하지 않는다. 자세한 hash/프롬프트/consumer/실패 및 교정 기록은 기존 dialogue-stage-20260913/PRODUCTION_RECORD.md 상단.

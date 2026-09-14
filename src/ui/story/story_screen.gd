@@ -23,6 +23,7 @@ var dialogue_index := 0
 var records_open := false
 var persistence_blocked := false
 var pending_transition: Dictionary = {}
+var dialogue_focus_id := ""
 
 func _ready() -> void:
     theme = AcademyTheme.create_theme()
@@ -135,6 +136,9 @@ func _notice() -> void:
     else: activity_view.save_notice.text = save_message
 
 func _render() -> void:
+    var focused := get_viewport().gui_get_focus_owner()
+    if focused != null and is_ancestor_of(focused):
+        dialogue_focus_id = focused.get_meta("dialogue_action","")
     _notice.call_deferred()
     for child in get_children():
         remove_child(child)
@@ -158,97 +162,53 @@ func _render() -> void:
         activity_view.set_persistence_blocked(persistence_blocked)
         _notice()
         return
-    if story.stage == 1:
-        var classroom_turns: Array = Dialogue.turns(story)
-        dialogue_index = clampi(dialogue_index,0,classroom_turns.size()-1)
-        Classroom.build(self,classroom_turns)
-        return
-    var page := PanelContainer.new()
-    page.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    page.theme_type_variation = "AcademyPanel"
-    add_child(page)
-    var margin := MarginContainer.new()
-    margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    for side in ["left","right","top","bottom"]: margin.add_theme_constant_override("margin_"+side,24)
-    page.add_child(margin)
-    var box := VBoxContainer.new()
-    box.add_theme_constant_override("separation",12)
-    margin.add_child(box)
-    var title_row := HBoxContainer.new()
-    box.add_child(title_row)
-    var title := Label.new()
-    title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    title.text = {0:"교문 앞 · 입학 안내",1:"입학식 · 같은 글자, 다른 쓰임",5:"첫 실습 뒤 · 기록을 함께 읽다",8:"축제 뒤 · 첫 학교생활 기록"}[story.stage]
-    title.add_theme_font_size_override("font_size",30)
-    title_row.add_child(title)
-    if pause_requested.has_connections(): _button(title_row,"메뉴",func(): pause_requested.emit())
-    var narration := Label.new()
-    narration.name = "Narration"
-    narration.text = {0:"교문 너머에서 종소리가 들린다. 나는 품에 안은 책을 고쳐 쥐었다.",1:"교수가 빈 용기와 작은 표본을 나란히 놓았다. 강의실이 조용해졌다.",5:"교수는 실습 기록을 펼치고, 내가 말을 꺼내기를 기다렸다.",8:"축제 준비를 마친 교정. 동료가 내 옆에 앉아 오늘의 기록을 들여다본다."}[story.stage]
-    narration.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    narration.add_theme_font_size_override("font_size",24)
-    narration.add_theme_color_override("font_color",AcademyTheme.TEXT_SECONDARY)
-    box.add_child(narration)
+    _render_dialogue()
+
+func _render_dialogue() -> void:
     var turns: Array = Dialogue.turns(story)
     dialogue_index = clampi(dialogue_index,0,turns.size()-1)
-    var current_speaker: String = turns[dialogue_index].speaker_id
-    var cast_row := HBoxContainer.new()
-    cast_row.size_flags_vertical = Control.SIZE_EXPAND_FILL
-    cast_row.add_theme_constant_override("separation",16)
-    box.add_child(cast_row)
-    Portraits.add_portrait(cast_row,"PLAYER",current_speaker == "PLAYER" and not records_open,"PlayerIllustration",records_open)
-    var dialogue_panel := PanelContainer.new()
-    dialogue_panel.theme_type_variation = "AcademyPanel"
-    dialogue_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-    dialogue_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    cast_row.add_child(dialogue_panel)
-    var partner: String = Portraits.partner(turns,dialogue_index)
-    Portraits.add_portrait(cast_row,partner,current_speaker == partner and not records_open,"PartnerIllustration",records_open)
-    var dialogue := VBoxContainer.new()
-    dialogue.add_theme_constant_override("separation",16)
-    dialogue_panel.add_child(dialogue)
-    var speaker := Label.new()
-    speaker.name = "Speaker"
-    speaker.text = "실습 기록" if records_open else turns[dialogue_index].speaker
-    speaker.add_theme_font_size_override("font_size",24)
-    speaker.add_theme_color_override("font_color",AcademyTheme.LINE_GOLD_ACTIVE)
-    dialogue.add_child(speaker)
-    var scroll := ScrollContainer.new()
-    scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-    scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-    dialogue.add_child(scroll)
-    story_copy = Label.new()
-    story_copy.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    story_copy.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    story_copy.add_theme_font_size_override("font_size",Preferences.new().load_size(save_folder))
-    story_copy.text = _copy() if records_open else turns[dialogue_index].text
-    scroll.add_child(story_copy)
-    dialogue_notice = Label.new()
-    dialogue_notice.text = save_message
-    dialogue_notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    box.add_child(dialogue_notice)
-    var reading := HBoxContainer.new()
-    box.add_child(reading)
-    if records_open:
-        _button(reading,"대화로 돌아가기",toggle_records)
-        return
-    if dialogue_index > 0: _button(reading,"이전 대사",previous_dialogue)
-    _button(reading,"실습 기록" if story.stage >= 5 else "안내 다시 읽기",toggle_records)
-    if dialogue_index < turns.size()-1:
-        _button(reading,"다음 대사",next_dialogue)
-        return
-    var choices := HBoxContainer.new()
-    box.add_child(choices)
-    if story.stage < 5:
-        _button(choices,"입학 안내 확인" if story.stage == 0 else "첫 수업으로",advance_story.bind(story.stage))
-    elif story.stage == 5:
-        _button(choices,"원인부터 생각했어요",choose_reflection.bind("CAUSE"))
-        _button(choices,"위험부터 줄이려 했어요",choose_reflection.bind("RISK"))
-        if story.get("reflection","") != "": _button(choices,"후속 실습으로",advance_story.bind(5))
-    elif story.stage == 8 and main_requested.has_connections():
-        _button(choices,"메인으로",func(): main_requested.emit())
-    if not pause_requested.has_connections(): _button(choices,"이야기 이어하기",load_story)
+    var choices: Array = []
+    if dialogue_index == turns.size()-1 and not records_open:
+        if story.stage < 5:
+            choices.append({"id":"ADVANCE","text":"입학 안내 확인" if story.stage == 0 else "첫 수업으로"})
+        elif story.stage == 5:
+            choices.append({"id":"CAUSE","text":"원인부터 생각했어요"})
+            choices.append({"id":"RISK","text":"위험부터 줄이려 했어요"})
+            if story.get("reflection","") != "": choices.append({"id":"ADVANCE","text":"후속 실습으로"})
+        elif story.stage == 8 and main_requested.has_connections():
+            choices.append({"id":"MAIN","text":"메인으로","mutates":false})
+        if not pause_requested.has_connections():
+            choices.append({"id":"LOAD","text":"이야기 이어하기","mutates":false})
+    var stage = preload("res://src/ui/story/dialogue_stage.tscn").instantiate()
+    add_child(stage)
+    stage.next_requested.connect(next_dialogue)
+    stage.previous_requested.connect(previous_dialogue)
+    stage.records_requested.connect(toggle_records)
+    stage.pause_requested.connect(func(): pause_requested.emit())
+    stage.choice_requested.connect(_dialogue_choice)
+    stage.configure({
+        "composite":Classroom.PLATE if story.stage == 1 else null,
+        "title":{0:"교문 앞 · 입학 안내",1:"입학식 · 같은 글자, 다른 쓰임",5:"첫 실습 뒤 · 기록을 함께 읽다",8:"축제 뒤 · 첫 학교생활 기록"}[story.stage],
+        "narration":{0:"교문 너머에서 종소리가 들린다. 나는 품에 안은 책을 고쳐 쥐었다.",1:"",5:"교수는 실습 기록을 펼치고, 내가 말을 꺼내기를 기다렸다.",8:"축제 준비를 마친 교정. 동료가 내 옆에 앉아 오늘의 기록을 들여다본다."}[story.stage],
+        "speaker_id":turns[dialogue_index].speaker_id,"text":turns[dialogue_index].text,
+        "partner":Portraits.partner(turns,dialogue_index),
+        "records":records_open,"menu":pause_requested.has_connections(),
+        "previous":dialogue_index>0,"next":dialogue_index<turns.size()-1,
+        "records_label":"실습 기록" if story.stage>=5 else "안내 다시 읽기",
+        "choices":choices,"blocked":persistence_blocked})
+    stage.present(turns[dialogue_index].line,Preferences.new().load_size(save_folder))
+    if records_open: stage.show_records(_copy(),"실습 기록" if story.stage>=5 else "수업 안내")
+    stage.set_notice(save_message)
+    story_copy = stage.body
+    dialogue_notice = stage.notice
+    stage.restore_focus.call_deferred(dialogue_focus_id)
 
+func _dialogue_choice(choice_id: String) -> void:
+    match choice_id:
+        "CAUSE","RISK": choose_reflection(choice_id)
+        "ADVANCE": advance_story(story.stage)
+        "MAIN": main_requested.emit()
+        "LOAD": load_story()
 func choose_reflection(choice: String) -> void:
     if persistence_blocked: return
     var result: Dictionary = flow.reflect(story,choice)
