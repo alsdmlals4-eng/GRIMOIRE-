@@ -1,5 +1,11 @@
 # Shared-stage dialogue composition candidate
 
+## 2026-09-14 user-directed chroma workflow
+
+Latest user instruction: new images use a chroma-key background, followed by background removal. For W03/W04 isolated actors, generate a new solid key-color source using the image model; select a saturated color absent from the face, hair, costume and props. Preserve the approved identity, upper-body framing and margins. Remove only the deliberately generated chroma background; retain original RGB and derived RGBA siblings with hashes, prompt, settings and consumer. Inspect on light/dark backdrops for spill, holes in props, edge loss, alpha range and partially transparent pixels. True location backdrops stay separate from isolated foreground layers. This changes the extraction method, not the character design or final approval boundary.
+
+Previous painted-checkerboard RGB failures remain rejected; this instruction does not make them keyable sources. No new chroma source or successful cutout is claimed by this policy entry. Next safe asset work is one PLAYER neutral upper-body chroma candidate, then key removal/QA; peer/tutor follow only after the method passes. Monthly evidence publication separately records dates and artifact states without treating generation as implementation.
+
 ## 2026-09-14 W03 single-player cutout brief
 
 Consumer: W04 DialogueStage LEFT/PLAYER, current portrait fallback in src/ui/story/story_portraits.gd. One neutral upper-body character only; not an atlas. Edit target is approved student-anime-reference-01.png (identity/style/book/costume preserved). Required: actual transparent alpha, head/shoulder/forearm margins, no background/frame/text, waist-up crop. Request built-in image model background extraction and limited outpainting of clipped edges. Do not key a painted checkerboard or promote RGB as transparent. Candidate must pass alpha/edges/identity review before registration; current approved opaque portrait remains runtime fallback. No new pose/expression family or character redesign authorized by this technical extraction.

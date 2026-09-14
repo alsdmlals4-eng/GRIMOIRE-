@@ -1,5 +1,15 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 작업 재개 · 크로마키 지침 / 월간 증빙집
+
+최신 사용자는 이미지 생성 시 크로마키 배경→배경 제거를 지시하고, 블루프린트와 별도의 프로젝트명 월간 AI 활용 작업일지·증빙집을 지정된 9월 증빙서류 폴더에 요청했다. AGENTS와 기존 대화 이미지 production record에 제작 정책 반영. 기존 RGB 체크무늬 실패본은 여전히 거절 상태이며 새 알파 제작 성공을 주장하지 않는다.
+
+월간 증빙 생성기: `tools/build_ai_work_evidence.py`. 로컬 검토본/입력 발췌/출력 manifest는 `artifacts/local-validation/monthly-evidence/2026-09/`; 발행 경로는 AGENTS 최신 절이 소유한다. 현재 HEAD 5c20dec와 9월 Git 이력, 선택 사용자 입력 원문(byte offset/레코드 hash), 기존 실행 캡처를 파생 보고서로 연결한다. 과거 작업 사후 정리, 커밋/기록/캡처/발행 시각, 재실행하지 않은 검증 상태를 분리한다. 실제 메일·협약서 원문은 확인하지 않았으며 결제 PDF는 존재만 확인, 비용 배분/적격성/계정 식별은 미확인. 개인정보 가능 자료는 공개 Git에서 제외한다. 새 게임 기능·main 병합·기기/사람/출시 검증은 이 문서 작업으로 승격하지 않는다.
+
+Fresh read: origin fetch; 열린 PR253/249/187/166 read-only, 기존 사용자 fixture 변경과 미추적 UID/import 보존. 프로젝트 validator OPERATING_CONTRACT_VALID/19routes/CURRENT; Base pin9.4.3 유지. 후속 제품 순서는 아래 W03/W04부터 유지한다.
+
+발행 결과: `GRIMOIRE_2026-09_AI활용_작업일지_증빙집_v1.0.pdf`를 지정 폴더에 복사/readback 완료. 19쪽, 9월10~14일 Git 변경51건, 선택 입력 발췌와 실행 화면6장. 부속 sources.json은 로컬 원본 입력72레코드(9월1/2일 참고 입력 포함; 본문 작업 범위10~14일), commit author/committer 시각, 캡처hash/정확한 시각 미확인을 보존. publication.json과 수집 시점 context.md 동반. PDF SHA256 e7d5af80e421784b5e2ef38d39c3d9ee537d74d5bab7e11590b7ad3687790006. PDF/원본목록/생성기/Context 해시,72개 입력 byte-offset·레코드hash,6개 캡처hash 검증 PASS. Poppler19쪽 렌더 후 Codex 전 페이지 시각 확인; Human NOT_RUN. 기존 발행본 재실행 시 overwrite 거부(exit1) 확인. 시험 미실행 결과를 본 턴 PASS로 승격하지 않음. 로컬 검토본·렌더는 사용자 삭제 검토 폴더 `.cleanup-review/20260914-monthly-evidence-render-review/`에 이동하며 원본 캡처·세션·최종 외부 발행본은 유지한다. 생성기의 날짜별 해설은 이번 9월 자료용이므로 다음 월 발행 전 해당 월 책임 기록을 fresh-read하여 갱신한다.
+
 ## 2026-09-14 W02 저장·실제 export / W04 대화 식별자 / W03 후보 검수
 
 최신 사용자는 잔여 명세 순서로 벤치마킹→구체화→구현→검증/교정을 일반 승인 대기 없이 계속하도록 요청했다. [실행 명세](superpowers/plans/2026-09-14-remaining-work-design-implementation.md)의 최초 문서-only 문구를 현행 구현 권한으로 교정했다. Base pin9.4.3/계약 유지; validator19routes/CURRENT. 작업 branch는 codex/replanning-intake-20260910, 시작58e0cb3; origin/main d384c45와 다름. live open PR253/249/187/166은 read-only 유지.
