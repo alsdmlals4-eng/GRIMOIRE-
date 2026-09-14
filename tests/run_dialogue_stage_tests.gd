@@ -47,5 +47,47 @@ func _run() -> void:
         root.content_scale_size = Vector2i(1280,720)
     screen.queue_free()
     await process_frame
+    var standalone = preload("res://src/ui/story/dialogue_stage.tscn").instantiate()
+    var review_lines = preload("res://src/ui/story/story_dialogue.gd").lines({"stage":5,"reflection":""})
+    for review_line in review_lines:
+        c.assert_equal({"LEFT":"PLAYER","CENTER":"TUTOR","RIGHT":"PEER"},review_line.actor_slots,"review keeps both witnesses present across speakers")
+    root.add_child(standalone)
+    standalone.configure({"text":"긴 대사입니다. ".repeat(150),"records":false,"previous":false,"next":true,"records_label":"기록","choices":[],"blocked":false})
+    var resource = preload("res://src/ui/story/dialogue_line.gd").new()
+    resource.actor_slots = {"LEFT":"PLAYER","CENTER":"TUTOR","RIGHT":"PEER"}
+    resource.speaker_id = "TUTOR"
+    resource.portrait_state = "missing_expression"
+    standalone.present(resource,32)
+    await process_frame
+    var portraits = standalone.find_children("*Illustration","TextureRect",true,false)
+    c.assert_equal(3,portraits.size(),"resource actor slots display three independent actors")
+    var center = standalone.find_child("CenterIllustration",true,false)
+    c.assert_true(center != null,"center slot is consumed")
+    if center != null:
+        c.assert_equal(preload("res://src/ui/story/story_portraits.gd").ART.TUTOR,center.texture,"missing expression uses approved neutral art")
+        c.assert_equal(Color.WHITE,center.modulate,"current speaker is emphasized")
+    resource.speaker_id = "NARRATOR"
+    for viewport_size in [Vector2i(1280,720),Vector2i(1024,576)]:
+        root.size = viewport_size
+        root.content_scale_size = viewport_size
+        for font_size in [24,28,32]:
+            standalone.present(resource,font_size)
+            await process_frame
+            await process_frame
+            c.assert_equal(font_size,standalone.body.get_theme_font_size("font_size"),"requested readable text size is used")
+            c.assert_true(standalone.scroll.size.y >= font_size,"long dialogue retains a readable line")
+            for actor in standalone.find_children("*Illustration","TextureRect",true,false):
+                c.assert_true(actor.get_global_rect().end.x <= viewport_size.x,"three actor slots remain within viewport")
+            for button in standalone.find_children("*","Button",true,false):
+                c.assert_true(button.get_global_rect().end.y <= viewport_size.y,"reading controls remain reachable at every text size")
+    standalone.present(resource,24)
+    c.assert_equal("",standalone.speaker.text,"narration has no invented speaker")
+    for portrait in standalone.find_children("*Illustration","TextureRect",true,false):
+        c.assert_true(portrait.modulate != Color.WHITE,"narration clears previous speaker emphasis")
+    resource.actor_slots = {"LEFT":"UNKNOWN","CENTER":"","RIGHT":"PEER","EXTRA":"PLAYER"}
+    standalone.present(resource,28)
+    c.assert_equal(1,standalone.find_children("*Illustration","TextureRect",true,false).size(),"unknown and unsupported slots never invent actors")
+    standalone.queue_free()
+    await process_frame
     print(JSON.stringify({"assertions":c.assertion_count(),"failures":c.failure_count(),"messages":c.failures()}))
     quit(1 if c.failure_count() else 0)

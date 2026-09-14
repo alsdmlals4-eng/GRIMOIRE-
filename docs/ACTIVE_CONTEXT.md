@@ -1,5 +1,13 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 W04 독립 3인 slot·내레이션 안전 연결
+
+시작 HEAD087b865. DialogueStage가 DialogueLine.actor_slots의 LEFT/CENTER/RIGHT를 실제 소비한다. 복기 장면은 교수·동료를 화자마다 교체하지 않고 함께 유지한다. 알 수 없는 인물/빈 slot/지원하지 않는 slot은 그림을 만들지 않으며 내레이션은 강조를 해제한다. 없는 표정은 기존 승인 neutral 불투명 원본으로 fallback; 새 alpha 후보 승격 없음. S01 승인 합성은 그대로 유지한다.
+
+검증: 3인 consumer RED2 및 복기 roster RED4 재현 뒤 교정. 9 runners278 assertions0failures 후 text-size/viewport matrix를 확장하여 dialogue-stage81 assertions0failures(다른8 runners239와 합계320). 1280x720/1024x576 ×24/28/32px 긴 본문·인물 가로경계·읽기 버튼 확인. 새 창에서도 작은 논리 화면에서 panel 재생성/회귀는 기존 사례가 검사한다. 실제 GRIMOIRE editor8604/runtime39056에 저장 경로를 검증용으로 주입하고 stage5 표시 fixture로 3인 무대 캡처 `artifacts/local-validation/dialogue-three-slots-20260914.png` 시각 확인; 이것은 순차 본편 완주가 아니다. diagnostics0errors0warnings, export closure34/2presets valid. 전체 모바일/Human/최종표정·alpha 아트/export 재빌드/main 병합 NOT_RUN.
+
+Ren'Py 공식 dialogue 문서(https://www.renpy.org/doc/html/dialogue.html) 재열람: 화자/내레이션 분리와 이미지 속성 연결 ADAPT, 엔진 교체 REJECT. 검토5회: 현재 Resource owner / 실제 복기 소비처 / unknown·표정 승인 경계 / 읽기·저장 회귀 / native 화면과 export 의존성. W05 다음 확인: 현재 receipt.changes는 clamp 이전 요청 delta를 기록하므로 효과/시간 합계를 실제 hazard 차이라고 무조건 표시하면 틀릴 수 있다. 다음 시계 표시 구현에서 실제 before/after와 요청 변화·상하한 보정을 구분해야 하며 core 수치를 조용히 바꾸지 않는다.
+
 ## 2026-09-14 W04 공통 하단 대화 무대 실제 연결
 
 후속 최종 검증: 키보드 포커스 소실 RED2를 추가하고 표시 문자열 대신 dialogue_action ID로 복원. 빠른 연속 읽기에서 분리된 이전 Stage의 deferred focus 호출 오류를 is_inside_tree/queued-for-deletion guard로 교정. 최종9 runners265 assertions0failures 및 오류 로그 없음, export closure34 valid. 최종 gate runtime33068 캡처 `artifacts/local-validation/dialogue-stage-gate-final-20260914.png`에서 남색 fallback/하단대화 배치 확인. 아래 gate 미검증/포커스 미완료 언급은 이 후속 증거로 대체되며, 메뉴 전체 키보드·기기 입력 QA나 독립3인/표정/32px 전체조합까지 완료한 것은 아니다.

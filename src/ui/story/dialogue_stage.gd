@@ -13,9 +13,12 @@ var navigation: HFlowContainer
 var choices: HFlowContainer
 var scroll: ScrollContainer
 var resolved_text := ""
+var actors: HBoxContainer
+var reading_records := false
 
 func configure(options: Dictionary) -> void:
     resolved_text = options.get("text", "")
+    reading_records = options.get("records", false)
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     mouse_filter = Control.MOUSE_FILTER_IGNORE
     var composite: Texture2D = options.get("composite")
@@ -36,19 +39,13 @@ func configure(options: Dictionary) -> void:
         backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
         add_child(backdrop)
         var cast := HBoxContainer.new()
+        actors = cast
         cast.name = "Actors"
         cast.anchor_left = 0.08
         cast.anchor_right = 0.92
         cast.anchor_top = 0.14
         cast.anchor_bottom = 0.69
         add_child(cast)
-        var active: String = options.get("speaker_id", "NARRATOR")
-        Portraits.add_portrait(cast,"PLAYER",active == "PLAYER","PlayerIllustration",options.records)
-        var gap := Control.new()
-        gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-        cast.add_child(gap)
-        var partner: String = options.get("partner", "")
-        if partner != "": Portraits.add_portrait(cast,partner,active == partner,"PartnerIllustration",options.records)
     var header := HBoxContainer.new()
     header.anchor_left = 0.04
     header.anchor_right = 0.96
@@ -128,6 +125,24 @@ func present(line: Resource, font_size: int) -> void:
     speaker.text = preload("res://src/ui/story/story_dialogue.gd").speaker_name(line.speaker_id)
     body.text = resolved_text
     body.add_theme_font_size_override("font_size",clampi(font_size,24,32))
+    _present_actors(line)
+
+func _present_actors(line: Resource) -> void:
+    # Composite scenes remain intact until independent art is approved.
+    if actors == null: return
+    for child in actors.get_children():
+        actors.remove_child(child)
+        child.queue_free()
+    var names := {"LEFT":"PlayerIllustration","CENTER":"CenterIllustration","RIGHT":"PartnerIllustration"}
+    for slot in ["LEFT","CENTER","RIGHT"]:
+        var identity: String = line.actor_slots.get(slot, "")
+        if Portraits.ART.has(identity):
+            # Only neutral originals are approved; absent expressions fall back here.
+            Portraits.add_portrait(actors,identity,identity == line.speaker_id,names[slot],reading_records)
+        if slot != "RIGHT":
+            var gap := Control.new()
+            gap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+            actors.add_child(gap)
 
 func show_records(text: String, caption: String) -> void:
     speaker.text = caption

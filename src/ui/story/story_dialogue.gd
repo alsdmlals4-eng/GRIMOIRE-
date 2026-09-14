@@ -23,19 +23,21 @@ static func lines(story: Dictionary) -> Array:
     var result: Array = []
     var rows := _rows(story)
     var ids := _ids(story)
-    var partner := ""
+    var cast: Array[String] = []
     for row in rows:
-        if row.speaker_id in ["PEER","TUTOR"]:
-            partner = row.speaker_id
-            break
+        if row.speaker_id in ["PEER","TUTOR"] and not cast.has(row.speaker_id):
+            cast.append(row.speaker_id)
     for i in range(rows.size()):
         var line = Line.new()
         line.line_id = ids[i]
         line.text_key = ids[i]
         line.speaker_id = rows[i].speaker_id
         line.actor_slots = {"LEFT":"PLAYER"}
-        if line.speaker_id in ["PEER","TUTOR"]: partner = line.speaker_id
-        if partner != "": line.actor_slots["RIGHT"] = partner
+        if cast.size() == 2:
+            line.actor_slots["CENTER"] = "TUTOR"
+            line.actor_slots["RIGHT"] = "PEER"
+        elif cast.size() == 1:
+            line.actor_slots["RIGHT"] = cast[0]
         result.append(line)
     return result
 
