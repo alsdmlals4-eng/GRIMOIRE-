@@ -1,5 +1,11 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 W05 조합 변경·거절 입력의 선택 보존
+
+f589713 후속. 기존 select_glyph가 3번째 입력을 추가하지 않으면서 action_kind를 CAST로 먼저 바꾸는 원인을 RED3 중1개로 분리 재현했다. 한도 초과는 action 변경 전에 거부하고 버튼의 자체 toggle 상태는 실제 selected로 되돌린다(시각 거짓 선택 RED1→교정). 조합 변경에서는 공통 Semantics.assess_scene의 이유를 소비하여 불필요한 목적지/부적합 대상/가득 찬 수집함을 해제하되 새 대상은 자동 선택하지 않는다. 수집함 오류를 대상 오류로 오인하지 않도록 destination 조건을 먼저 구분했다(가득 찬 receiver RED1). 위험하지만 합법인 가열 대상은 유지하며 마력 부족/무변화/위험 경고를 숨기지 않는다. 경로·locality 등 나머지 상세 invalid 이유는 기존 preview에서 설명하며 전체 선택 자동정리 완료로 확대하지 않는다.
+
+최종5 runners357 assertions0failures(event_presentation133/event_screen41/story_screen30/pause13/persistence140). 입력 경계·순수 assessment/상태 무소비·수신처와 출발점 구분·합법 위험 유지·저장 회귀를 각각 재검토했다. 실제 editor8604/runtime3796에서 불씨+모으기→도움 요청→3번째 바람 클릭 후 action_kind=HELP readback, `artifacts/local-validation/event-third-glyph-help-preserved-20260914.png` 시각 확인, diagnostics0/0. UI 선택만 수행했으며 사용자의 저장은 건드리지 않았다. 좁은 viewport는 자동검사, 실제 기기/손가락/미술/Human/원격 CI/main 통합은 여전히 별도다. 새 임시 문서/이미지/게임 규칙은 추가하지 않았다.
+
 ## 2026-09-14 W05 대상 상태 패널·상세 기록 분리
 
 HEAD5aae846에서 재개. 프로젝트 validator CURRENT/19 routes, origin/main d384c45·Base origin/main d830c0f fresh fetch, pin9.4.3 유지. 열린 PR253/249/187/166 read-only, 사용자 glyph-fixture delta 보존. AgentMemory 도구 미연결은 저장소 Active Context/실제 코드로 대체했으며 임의 세션 복원 주장은 하지 않았다.

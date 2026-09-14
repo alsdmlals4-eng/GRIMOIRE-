@@ -172,11 +172,15 @@ func _build() -> void:
 func select_glyph(glyph: String) -> void:
     if glyph not in GLYPH_NAMES or glyph not in session.spell_state.learned or session.outcome != "ONGOING":
         return
+    if glyph not in selected and selected.size() >= 2:
+        _render()
+        return
     action_kind = "CAST"
     if glyph in selected:
         selected.erase(glyph)
     elif selected.size() < 2:
         selected.append(glyph)
+    _reconcile_selection()
     _render()
 
 func select_pair(first: String, second: String) -> void:
@@ -184,7 +188,23 @@ func select_pair(first: String, second: String) -> void:
         return
     action_kind = "CAST"
     selected = [first, second]
+    _reconcile_selection()
     _render()
+
+func _reconcile_selection() -> void:
+    # Only a real glyph change can invalidate prior selection. Never auto-select.
+    if selected.is_empty(): return
+    var state: Dictionary = session.spell_state
+    var semantics = Semantics.new()
+    var assessment: Dictionary = semantics.assess_scene(selected,state.learned,state.objects,target_id,destination_id)
+    if assessment.get("reason") == "UNEXPECTED_DESTINATION":
+        destination_id = ""
+        assessment = semantics.assess_scene(selected,state.learned,state.objects,target_id,destination_id)
+    var reason: String = assessment.get("reason","")
+    if reason in ["RECEIVER_UNAVAILABLE","TARGET_CONDITION:capture_ready","TARGET_CONDITION:local_receiver_empty"]:
+        destination_id = ""
+    elif reason == "UNKNOWN_TARGET" or reason.begins_with("TARGET_CONDITION:") or reason == "NO_HEAT_TO_RETAIN":
+        target_id = ""
 
 func select_target(id: String) -> void:
     target_id = id
