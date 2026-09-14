@@ -16,6 +16,8 @@ const SessionRules = preload("res://src/core/shared_spell/event_session.gd")
 const Definitions = preload("res://src/core/shared_spell/event_definitions.gd")
 const SaveStore = preload("res://src/core/shared_spell/event_save.gd")
 const ClockView = preload("res://src/ui/event_session/event_clock_view.gd")
+const SceneView = preload("res://src/ui/event_session/event_scene_view.gd")
+const Semantics = preload("res://src/core/shared_spell/spell_semantics.gd")
 const GLYPH_NAMES := {"EMBER": "불씨", "WIND": "바람", "WARD": "막기", "GATHER": "모으기"}
 const OUTCOMES := {"ONGOING": "진행 중", "SOLVED": "독립 해결", "ASSISTED": "도움으로 마무리", "STOPPED": "안전하게 중단"}
 const MANUAL := {"COOL": "안전하게 식히기", "CLOSE_LEAK": "덮개 닫기", "CLEAN": "수동 청소",
@@ -60,9 +62,13 @@ var save_notice: Label
 var header: Label
 var hazard_clock: Control
 var facts: Label
+var goal: Label
+var details_open := false
+var details_toggle: Button
 var preview_text: Label
 var selected_text: Label
-var target_buttons: VBoxContainer
+var scene_view: HFlowContainer
+var clear_destination: Button
 var manual_buttons: HBoxContainer
 var confirm: Button
 var next_button: Button
@@ -95,18 +101,27 @@ func _build() -> void:
     header = _label(title_row, "", 26)
     header.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     if story_mode: _button(title_row,"메뉴",func(): story_menu_requested.emit())
-    save_notice = _label(layout, "사건 플레이 검증판 · 최종 아트/전체 이야기 미적용 · 선택과 읽기는 무료입니다.", 16)
+    save_notice = _label(layout, "대상을 살펴보고 글자를 조합하세요. 시전 전까지 선택과 읽기는 시간을 쓰지 않습니다.", 16)
     var body := HBoxContainer.new()
     body.size_flags_vertical = Control.SIZE_EXPAND_FILL
     body.add_theme_constant_override("separation", 20)
     layout.add_child(body)
+    var scene_scroll := ScrollContainer.new()
+    scene_scroll.name = "SceneScroll"
+    scene_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    scene_scroll.follow_focus = true
+    scene_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    scene_scroll.size_flags_stretch_ratio = 1.1
+    body.add_child(scene_scroll)
     var left := VBoxContainer.new()
-    left.custom_minimum_size.x = 270
-    body.add_child(left)
+    left.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    scene_scroll.add_child(left)
     _label(left, "1. 대상과 목적지", 22)
-    target_buttons = VBoxContainer.new()
-    target_buttons.add_theme_constant_override("separation", 8)
-    left.add_child(target_buttons)
+    scene_view = SceneView.new()
+    scene_view.target_requested.connect(select_target)
+    scene_view.destination_requested.connect(select_destination)
+    left.add_child(scene_view)
+    clear_destination = _button(left,"목적지 선택 해제",select_destination.bind(""))
     hazard_clock = ClockView.new()
     left.add_child(hazard_clock)
     var detail_scroll := ScrollContainer.new()
@@ -133,6 +148,9 @@ func _build() -> void:
         hand.add_child(button)
         glyph_buttons.append(button)
     selected_text = _label(center, "", 20)
+    goal = _label(center,"",22)
+    details_toggle = _button(center,"상세 기록 펼치기",toggle_details)
+    details_toggle.name = "DetailsToggle"
     facts = _label(center, "", 18)
     facts.size_flags_vertical = Control.SIZE_EXPAND_FILL
     preview_text = _label(center, "", 18)
@@ -178,6 +196,10 @@ func select_destination(id: String) -> void:
 
 func select_manual(kind: String) -> void:
     action_kind = kind
+    _render()
+
+func toggle_details() -> void:
+    details_open = not details_open
     _render()
 
 func cancel_selection() -> void:
@@ -254,17 +276,9 @@ func _render() -> void:
         button.disabled = session.outcome != "ONGOING" or button.glyph not in session.spell_state.learned
         button.learned = session.spell_state.learned.duplicate()
         button.drag_context = {"screen":get_instance_id(),"attempt":session.spell_state.attempt_id,"revision":session.spell_state.revision}
-    _clear(target_buttons)
-    for id in session.spell_state.objects:
-        var object: Dictionary = session.spell_state.objects[id]
-        if object.has("capture_capacity"):
-            var destination := _button(target_buttons, ("→ " if destination_id == id else "목적지 · ") + object.label, select_destination.bind(id))
-            destination.disabled = session.outcome != "ONGOING"
-        else:
-            var target := _button(target_buttons, ("✓ " if target_id == id else "대상 · ") + object.label, select_target.bind(id))
-            target.disabled = session.outcome != "ONGOING"
-    if destination_id != "":
-        _button(target_buttons, "목적지 선택 해제", select_destination.bind(""))
+    scene_view.present(session,target_id,destination_id)
+    clear_destination.visible = destination_id != ""
+    clear_destination.disabled = session.outcome != "ONGOING"
     _clear(manual_buttons)
     var kinds: Array = ["COOL"] if story_index == 0 else (["CLOSE_LEAK", "CLEAN", "WAIT"] if story_index == 1 else ["COOL", "LOCK", "PLACE"])
     if session.event_id == "LAB_SAMPLE_02": kinds = ["STOP_DEVICE","MOVE_SAMPLE","WAIT"]
@@ -276,7 +290,14 @@ func _render() -> void:
     for glyph in selected:
         names.append(GLYPH_NAMES[glyph])
     selected_text.text = "선택: " + (" + ".join(names) if action_kind == "CAST" else MANUAL.get(action_kind, action_kind))
+    if action_kind == "CAST":
+        var composed: Dictionary = Semantics.new().compose(selected,session.spell_state.learned)
+        if composed.status == "OK":
+            selected_text.text = composed.name + "  ·  " + " + ".join(names)
     facts.text = _facts(session)
+    goal.text = facts.text.get_slice("\n",0)
+    facts.visible = details_open
+    details_toggle.text = "상세 기록 접기" if details_open else "상세 기록 펼치기"
     quote = engine.preview(session, _command())
     hazard_clock.visible = session.event_id in ["GREENHOUSE_LEAK_01","LAB_SAMPLE_02"]
     var effect_delta := 0

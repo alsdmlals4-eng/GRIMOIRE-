@@ -1,5 +1,17 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 W05 대상 상태 패널·상세 기록 분리
+
+HEAD5aae846에서 재개. 프로젝트 validator CURRENT/19 routes, origin/main d384c45·Base origin/main d830c0f fresh fetch, pin9.4.3 유지. 열린 PR253/249/187/166 read-only, 사용자 glyph-fixture delta 보존. AgentMemory 도구 미연결은 저장소 Active Context/실제 코드로 대체했으며 임의 세션 복원 주장은 하지 않았다.
+
+`EventSceneView`가 네 사건의 대상/목적지12개를 실제 objects ID로 표시·선택한다. 각 패널에서 온도/손상/닫힘/잔여물/위치/수용량/임시 보호를 읽는다. 기존 target button 매 렌더 재생성을 제거하고 동일 대상 Button을 유지해 선택 시 키보드 포커스를 보존한다. SceneScroll은 좁은 화면에서 가로 넘침 없이 모든 대상으로 접근하게 한다. 본문에는 목표/공통 Semantics.compose의 완성 주문 이름/필수 시전 예고를 남기고 반복 상세 facts는 읽기 전용 펼침으로 분리했다. 사건 core·저장·비용·시간·목적지 규칙은 불변. 기능 대상 패널이며 최종 삽화/장면 배경/핫스폿 완성으로 주장하지 않는다.
+
+TDD: consumer 누락 RED4→대상 연결 GREEN66; viewport/보호 회귀에서 남아 있던 목적지 때문에 WARD가 무효였던 시험 fixture를 선택 취소 후 재시도하도록 교정(core 변경 없음). 최종 상세 기록/주문명 RED9→GREEN. 7 runners426 assertions0failures(event_presentation125/event_screen41/story_screen30/story_pause13/story_persistence140/event_session60/lab_sample17). 네 사건 모든ID/포커스/선택 무소비/예고-현재 분리/시전후 온도·시료 위치/임시 보호 만료, 1280x720 및1024x576의 필수 footer·대상 스크롤 접근 확인. export closure36 resources/2presets valid, Python export unit1 PASS, diff whitespace 검사 통과. 새 runner의 원격 CI 실행 및 새 export 바이너리는 아직 NOT_RUN.
+
+실행: GRIMOIRE editor8604/runtime47484에서 상세 펼침/접기, 수업 용기+불씨 시전→온실 모으는바람+꽃가루+수집함 시전→도움→축제 이동을 native 클릭했다. 중간 Hera heartbeat의 editor 미탐지1회는 다른 editor로 우회하지 않고 동일 프로젝트를 fresh 재조회 후 재시도 성공. `artifacts/local-validation/event-object-final-preview-20260914.png`, `event-object-final-festival-20260914.png` 실제1280x720 시각 확인, diagnostics0errors0warnings. 이전 event-object-lesson/greenhouse/collected 캡처는 중간 상태. LAB 시료는 자동 UI시험만이며 native/모바일/Human/최종 아트/출시 NOT_RUN.
+
+외부 비교: Godot FlowContainer https://docs.godotengine.org/en/stable/classes/class_flowcontainer.html 의 가로줄바꿈 ADOPT, BaseButton https://docs.godotengine.org/en/stable/classes/class_basebutton.html 의 toggle와 no-signal 표시 갱신 ADOPT. 공개 타게임 UI 복제·새 rules engine·이미지처럼 그린 primitive 대체 REJECT. 기존 W05 승인 명세의 단계적 정보 표시를 ADAPT. 전 범위 검토5회: ①권위/출처와 core 표시 경계 ②12개ID/목적지 신호 ③예고·실제값/수용량/기간만료 ④포커스·좁은화면/저장불변 ⑤native 캡처·export 참조/증거 상한. Simplify=target 재생성 제거, Style=기존 한글/함수 계약 유지, Domain=실제 state만 표시, Trust=순수 presentation/no save. 다음 안전 작업은 미학습·invalid 대상의 선택 정리, 실제 drag 경계/시료 native, W06 결투 카드 표시. W05 배경·소품 자산/현장 배치와 네 사건 전체분기 native 완주는 미완료다.
+
 ## 2026-09-14 W05 사건 글자 입력 경계 교정
 
 시계 연결 후 카드 입력에서 미학습 tap/pair와 출처 없는 drag가 선택을 바꾸는 RED3 재현. SpellButton은 화면 instance/attempt/revision을 담은 payload만 받으며 drop 단계에서도 재검증한다. 미학습 글자는 표시를 비활성화하고 선택 함수에서도 거부한다. 세 번째 글자/동일 글자 drop/다른 화면/오래된 revision 거부와 무소비, 유효 drag→기존 pair 경로를 검사. 4 runners224 assertions0failures(event41/story30/pause13/persistence140). 수치·소비 reducer·저장 schema 불변. 이것은 Godot drag handler 자동검사이며 실제 손가락 drag·화면밖 release·다중터치 성공 증거가 아니다. 다음은 W05 실제 대상 장면 배치와 반응 표시, 저해상도 입력 검수. 기존 승인 자산과 unrelated dirty fixture 보존.

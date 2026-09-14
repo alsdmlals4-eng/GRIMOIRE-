@@ -1,6 +1,6 @@
 # GRIMOIRE 남은 작업 설계·구현 계획
 
-2026-09-14 후속: W03 주인공 크로마키→실제 alpha 후보 확보(최종 승인/소비처 교체는 별도). W04 공통 DialogueStage를 S00/S01/S05/S08에 연결하고 읽기/기록/선택/작은 logical viewport를 검증했다. 독립3인slot·표정·새 배경·포커스 복원·32px 전체조합은 아직 남는다. 최신 상세 증거는 Active Context 상단; 아래 최초 스냅샷을 완료 상태로 사용하지 않는다.
+2026-09-14 후속: W03 주인공 크로마키→실제 alpha 후보 확보(최종 승인/소비처 교체는 별도). W04 공통 Stage·독립3인slot·neutral fallback·읽기 포커스·24/28/32px matrix 연결/자동 검증; 최종 표정·새 배경·기기/Human은 남는다. W05 현재/예고 위험 시계·입력 출처 경계·네 사건 대상 상태 패널/선택·상세 기록 접기를 구현했다. 대상12개/작은 logical viewport·선택 무소비 및 native 수업→온실→축제 증거는 Active Context 상단. LAB native/터치/장면 삽화/전체분기는 아직 남는다. 아래 최초 스냅샷을 현행 완료 상태로 사용하지 않는다.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. 최초 작성은 명세 준비였으며, 최신 사용자 지시로 순차 구현·개선이 승인됐다. 일반 기술 선택의 재승인 대기 없이 진행한다. 별도 지시 없는 병렬 에이전트 실행은 하지 않는다.
 
@@ -212,7 +212,7 @@ DialogueStage (Control)
 
 - [ ] 테스트에서 `present()` 전후 story deep-copy 동일, narrator/3인/빈 slot/잘못된 speaker의 안전 fallback을 검사한다.
 - [x] 선행 단계: `dialogue_line.gd` Resource와 고정 speaker/line/text ID를 현행 `turns()`에 연결한다. 인물 그림 선택·강조는 한국어 이름 대신 ID를 사용한다. 89 assertions: 원문 일치/ID 고유성/복기 분기/unknown fallback/읽기 불변/Resource 변경 격리. 공통 Stage 또는 표정 구현 완료를 뜻하지 않는다.
-- [ ] S00/S01/S05/S08을 같은 Stage로 연결하되 승인된 장소별 배경만 사용한다.
+- [x] S00/S01/S05/S08을 같은 Stage로 연결하되 승인된 장소별 배경만 사용한다. S01 합성 유지, 나머지는 기존 불투명 초상+기능 패널 fallback이며 최종 배경 완성은 아니다.
 - [ ] 24/28/32px, 이전/다음, CAUSE/RISK, 메뉴 왕복, 기록 복귀 후 포커스 복원을 검증한다.
 - [ ] 1280×720/낮은 가로 해상도에서 이름·대사·선택이 잘리지 않는 actual capture를 남기고 commit한다.
 
@@ -234,7 +234,7 @@ DialogueStage (Control)
 
 사용 예: “모으는 바람 → 꽃가루 → 수집함” 선택 시 수집 효과와 아직 열린 누출원 때문에 행동 후 다시 늘어날 위험을 따로 표시한다. 위험 감소 자체를 사건 해결로 표시하지 않고 core의 goal/outcome을 소비한다.
 
-- [ ] 실제 정의의 모든 target/destination에 화면 hitbox/라벨이 존재하는 실패 검사를 만든다.
+- [x] 실제 정의의 모든 target/destination에 화면 hitbox/라벨이 존재하는 실패 검사를 만든다. event_presentation runner가 4사건12개 대상 ID/목적지 신호/실제 상태/포커스/좁은 화면을 검사한다. 최종 삽화 핫스폿은 별도다.
 - [ ] 탭/drag가 동일 command를 만드는 검사, 화면밖 취소, 스크롤과 drag 구별, 미학습/중복/3번째 거절을 검증한다.
 - [ ] effect_delta와 time_delta의 합이 receipt 변화와 같은지, 도움/중단/동시 목표·위험 종료를 검사한다.
 - [ ] 네 사건에서 독립 해결·도움·중단을 실제 UI로 확인하고 core 회귀와 함께 commit한다.
