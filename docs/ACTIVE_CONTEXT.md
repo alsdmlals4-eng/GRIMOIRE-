@@ -1,5 +1,13 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 W05 위험 시계 현재값·예고 분리
+
+7e6561b 후속. EventClockView를 사건 화면의 실제 reducer quote에 연결했다. 온실/시료에만 현재 위험 6분할 기능 게이지와 예고 before→after, 작용 delta/시간 delta를 표시한다. 수업/축제에는 없는 위험 시계를 만들지 않는다. 원형은 최종 삽화가 아닌 기능 게이지이며 새 이미지·최종 아트 승격 없음. 선택·재표시는 core를 변경하지 않고 명시 시전 이후에만 현재 칸을 갱신한다. 요청 delta 합과 실제 결과가 다른 0/6 경계는 상하한 보정으로 명시하며 규칙/저장 schema는 유지한다.
+
+조사: https://bladesinthedark.com/progress-clocks 의 상황 표시/장애물 기준 ADAPT, 매초 자동 진행/위험 감소=성공 치환 REJECT. 현재 게임의 행동 기반 reducer와 분리한다. 테스트 clock consumer RED1→GREEN, 저점0 수집+재누출=1과 고점5 가열+재누출=6 및 HELP 시간0·재표시 불변 추가. 6 runners290 assertions0failures(event_screen30/story_screen30/pause13/persistence140/event_session60/lab17). 실제 editor8604/runtime30940, 수업 대상/불씨/시전→온실→모으기+바람/꽃가루/수집함까지 native 클릭, preview 캡처 `artifacts/local-validation/event-clock-preview-20260914.png` 시각 확인 후 명시 시전. diagnostics0/0. 캡처에서 마지막 안내 문장이 줄바꿈되어 후속 문구를 짧게 수정; 최종 문구 runtime 재검수는 이어서 수행한다. export closure35 resources/2presets valid. 검토5회: 현행 authority / reducer source / 상하한·도움 반례 / 저장·본편 회귀 / native·export 의존성.
+
+W05 전체 완료는 아니다: 장면 속 대상 배치/상태 자산, 터치 drag 경계, 시료 실제 화면, 저해상도 최종 입력 QA가 남는다. 개발 검증판 설명·facts 중심 레이아웃은 아직 기존 구조다. 보호 main 병합/새 export/Human/기기/출시 미실행. 사용자 fixture와 다른 PR은 보존한다.
+
 ## 2026-09-14 W04 독립 3인 slot·내레이션 안전 연결
 
 시작 HEAD087b865. DialogueStage가 DialogueLine.actor_slots의 LEFT/CENTER/RIGHT를 실제 소비한다. 복기 장면은 교수·동료를 화자마다 교체하지 않고 함께 유지한다. 알 수 없는 인물/빈 slot/지원하지 않는 slot은 그림을 만들지 않으며 내레이션은 강조를 해제한다. 없는 표정은 기존 승인 neutral 불투명 원본으로 fallback; 새 alpha 후보 승격 없음. S01 승인 합성은 그대로 유지한다.

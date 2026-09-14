@@ -32,6 +32,12 @@ func _run() -> void:
         screen.select_target("cloud")
         screen.select_destination("receiver")
         check.assert_equal(1, screen.quote.state.hazard, "screen preview includes renewed leak")
+        var clock = screen.find_child("EventClock",true,false)
+        check.assert_true(clock != null,"hazard events expose a dedicated clock")
+        if clock != null:
+            check.assert_equal(2,clock.current,"preview never fills the current clock")
+            check.assert_true("작용 -2" in clock.summary.text and "시간 +1" in clock.summary.text,"spell relief and elapsed danger stay distinct")
+            check.assert_true("2 → 1" in clock.summary.text,"clock projection uses reducer result")
         await process_frame
         await process_frame
         check.assert_true(screen.confirm.get_global_rect().end.y <= 720, "confirm must remain inside mobile landscape viewport")
@@ -48,6 +54,7 @@ func _run() -> void:
         check.assert_equal("ASSISTED", screen.session.outcome, "help remains an explicit confirmed action")
         screen.continue_story()
         check.assert_equal("FESTIVAL_LIGHTS_01", screen.session.event_id, "help does not block next story")
+        if clock != null: check.assert_true(not clock.visible,"events without hazard never invent a threat clock")
         check.assert_true(screen.has_method("save_progress"), "screen exposes tested local save")
         check.assert_true(screen.has_method("load_progress"), "screen exposes tested local resume")
         if screen.has_method("save_progress") and screen.has_method("load_progress"):
@@ -69,6 +76,26 @@ func _run() -> void:
         await process_frame
         await process_frame
         check.assert_true(screen.confirm.get_global_rect().end.y <= 720, "long consequence receipt cannot push footer offscreen")
+        screen.session = screen.engine.start("GREENHOUSE_LEAK_01", "clock-floor")
+        screen.session.hazard = 0
+        screen.cancel_selection()
+        screen.select_pair("GATHER","WIND")
+        screen.select_target("cloud")
+        screen.select_destination("receiver")
+        if clock != null:
+            check.assert_true("0 → 1" in clock.summary.text and "상하한 보정 +2" in clock.summary.text,"lower bound never displays impossible negative hazard")
+        screen.session = screen.engine.start("GREENHOUSE_LEAK_01", "clock-ceiling")
+        screen.session.hazard = 5
+        screen.cancel_selection()
+        screen.select_glyph("EMBER")
+        screen.select_target("leak")
+        if clock != null:
+            check.assert_true("5 → 6" in clock.summary.text and "상하한 보정 -2" in clock.summary.text,"upper bound reconciles raw effects with actual result")
+        var preview_before = screen.session.duplicate(true)
+        for ignored in range(4): screen._render()
+        check.assert_equal(preview_before,screen.session,"clock redraw cannot advance time or resources")
+        screen.select_manual("HELP")
+        if clock != null: check.assert_true("작용 +0 · 시간 +0" in clock.summary.text,"help preview does not invent elapsed danger")
         screen.queue_free()
         await process_frame
     print(JSON.stringify({"assertions": check.assertion_count(), "failures": check.failure_count(), "messages": check.failures()}))

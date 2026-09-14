@@ -15,6 +15,7 @@ func set_persistence_blocked(blocked: bool) -> void:
 const SessionRules = preload("res://src/core/shared_spell/event_session.gd")
 const Definitions = preload("res://src/core/shared_spell/event_definitions.gd")
 const SaveStore = preload("res://src/core/shared_spell/event_save.gd")
+const ClockView = preload("res://src/ui/event_session/event_clock_view.gd")
 const GLYPH_NAMES := {"EMBER": "불씨", "WIND": "바람", "WARD": "막기", "GATHER": "모으기"}
 const OUTCOMES := {"ONGOING": "진행 중", "SOLVED": "독립 해결", "ASSISTED": "도움으로 마무리", "STOPPED": "안전하게 중단"}
 const MANUAL := {"COOL": "안전하게 식히기", "CLOSE_LEAK": "덮개 닫기", "CLEAN": "수동 청소",
@@ -54,6 +55,7 @@ var last_receipt: Dictionary = {}
 var save_folder := preload("res://src/core/shared_spell/story_storage_paths.gd").folder("event-session-progress", OS.has_feature("editor"))
 var save_notice: Label
 var header: Label
+var hazard_clock: Control
 var facts: Label
 var preview_text: Label
 var selected_text: Label
@@ -102,6 +104,8 @@ func _build() -> void:
     target_buttons = VBoxContainer.new()
     target_buttons.add_theme_constant_override("separation", 8)
     left.add_child(target_buttons)
+    hazard_clock = ClockView.new()
+    left.add_child(hazard_clock)
     var detail_scroll := ScrollContainer.new()
     detail_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
     detail_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -269,6 +273,18 @@ func _render() -> void:
     selected_text.text = "선택: " + (" + ".join(names) if action_kind == "CAST" else MANUAL.get(action_kind, action_kind))
     facts.text = _facts(session)
     quote = engine.preview(session, _command())
+    hazard_clock.visible = session.event_id in ["GREENHOUSE_LEAK_01","LAB_SAMPLE_02"]
+    var effect_delta := 0
+    var time_delta := 0
+    var projected := -1
+    if quote.status == "APPLIED":
+        projected = quote.receipt.hazard_after
+        for change in quote.receipt.changes:
+            if change.cause in ["LEAK_TIME","LAB_LEAK_TIME"]:
+                time_delta += change.delta
+            else:
+                effect_delta += change.delta
+    hazard_clock.present(session.hazard,6,effect_delta,time_delta,projected)
     confirm.disabled = persistence_blocked or quote.status != "APPLIED"
     next_button.disabled = session.outcome == "ONGOING" or story_index >= 2
     next_button.text = "첫 세 사건 검증 종료" if story_index == 2 and session.outcome != "ONGOING" else "결과 확인 후 다음 장면"
