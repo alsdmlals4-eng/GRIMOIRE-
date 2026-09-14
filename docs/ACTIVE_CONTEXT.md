@@ -1,5 +1,11 @@
 # GRIMOIRE Active Context
 
+## 2026-09-14 W03 크로마키 주인공 후보 확보
+
+최신 계속 진행 지시에 따라 approved PLAYER 원본과 소비처를 재확인하고 크로마키 배경 생성→여백 보정1회→배경 제거 진행. 후보 `output/imagegen/dialogue-stage-20260914/player-neutral-alpha-01.png`: 실제 RGBA1254x1254, 투명925990/부분투명5555/불투명640971px. 좌우 약16.5%, 상단9.1% 여백. 하단 허리 아래 crop은 대화창용. 초록 원본도 같은 폴더에 보존. 기존 승인 일러스트·교실 합성·런타임 연결은 변경하지 않았고 FINAL_APPROVAL_PENDING; 새 시안을 기존 승인으로 자동 승계하지 않는다. 자세한 hash/프롬프트/consumer/실패 및 교정 기록은 기존 dialogue-stage-20260913/PRODUCTION_RECORD.md 상단.
+
+자동화: `tools/remove_chroma_background.ps1`은 명시적 초록 크로마키 원본만 처리하고 기존 결과를 덮어쓰지 않는다. PowerShell7 참조 실패 후 Windows powershell.exe5.1로 실제 실행 성공, Core는 명확히 거부. 비크로마키 원본 입력 거부 및 출력 미생성 확인. 흰색/남색 QA 합성에 대한 시각 확인과 alpha/green residual 검사 수행. 미세 머리카락 가장자리의 최종 아트 검수, 게임 무대 적용·Godot 검증은 별도 남는다. 문서/이미지 작업으로 게임 tests/전체 완료를 승격하지 않는다. 다음은 PEER/TUTOR 분리 후보와 W04 대화 무대 연결 준비이며 runtime 교체는 최종 자산 승인 경계를 따른다. 이번 수행일 기록은 월간 증빙집 차기 누적 발행 입력으로 유지; 이미 발행된 v1.0은 덮어쓰지 않았다.
+
 ## 2026-09-14 작업 재개 · 크로마키 지침 / 월간 증빙집
 
 최신 사용자는 이미지 생성 시 크로마키 배경→배경 제거를 지시하고, 블루프린트와 별도의 프로젝트명 월간 AI 활용 작업일지·증빙집을 지정된 9월 증빙서류 폴더에 요청했다. AGENTS와 기존 대화 이미지 production record에 제작 정책 반영. 기존 RGB 체크무늬 실패본은 여전히 거절 상태이며 새 알파 제작 성공을 주장하지 않는다.
