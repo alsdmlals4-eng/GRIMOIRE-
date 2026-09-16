@@ -1,5 +1,13 @@
 # GRIMOIRE Active Context
 
+## 2026-09-16 작업 마무리·월간 일지 누적
+
+최신 사용자 요청 범위는 새 게임 기능 확장이 아닌 현재 작업 마무리와 GitHub 동기화다. 기존 월간 PDF에 9월14일 후속 구현 요약과 9월16일 마무리 요약을 추가한다. 새 작업일지/기획 정본은 만들지 않는다. pypdf 공식 append 방식(https://pypdf.readthedocs.io/en/stable/user/merging-pdfs.html)을 채택하여 기존 페이지를 유지하고, 일반 재발행은 거부하는 기존 기본값을 유지한 채 명시적 `--append-entry`만 허용한다. 중복 재실행 무변경, 다른 월 거절, 원본/출력 해시 검증, 이전 발행 receipt 보존을 추가했다. 원본 개인 프롬프트는 로컬에만 유지한다.
+
+RED: 누적 기능 부재로 4개 시험 실패 → GREEN: 4개 시험 통과. 초기 검사에서 발견한 digest 파일 핸들 미해제도 context manager로 교정했다. 9월16일 재실행: Godot event_presentation133 + story_persistence140 = 273 assertions/0 failures; export unit1 PASS, 36 resources/2presets valid. 운영 계약 CURRENT/19 routes, Base pin9.4.3 유지. origin/main d384c45와 열린 PR253/249/187/166을 fresh-read했으며 다른 PR은 수정하지 않았다. 사용자 glyph-fixture 변경 보존. 이번 native/Human/기기/최종 아트/출시 재검증은 NOT_RUN. 기존 계획의 W05 기능 UI 이후 W06~W12와 최종 자산/기기 검증은 남아 있다.
+
+월간 PDF는 같은 경로에서 19→21페이지로 누적했다. 기존 19페이지 텍스트 동일성 및 원본 목록 보존을 확인하고 새20~21페이지를 렌더해 잘림 없이 확인했다. 렌더 첫 시도는 출력 디렉터리 부재로 실패했고 프로젝트 내부 디렉터리를 만든 뒤 재실행 성공했다. 사용자 요청에 따라 새로운 증빙집 버전은 만들지 않았다. PDF 개인 증빙은 Git 대상이 아니며 최종 원격 동기화 판정은 Git의 실제 HEAD readback으로 한다.
+
 ## 2026-09-14 W05 조합 변경·거절 입력의 선택 보존
 
 f589713 후속. 기존 select_glyph가 3번째 입력을 추가하지 않으면서 action_kind를 CAST로 먼저 바꾸는 원인을 RED3 중1개로 분리 재현했다. 한도 초과는 action 변경 전에 거부하고 버튼의 자체 toggle 상태는 실제 selected로 되돌린다(시각 거짓 선택 RED1→교정). 조합 변경에서는 공통 Semantics.assess_scene의 이유를 소비하여 불필요한 목적지/부적합 대상/가득 찬 수집함을 해제하되 새 대상은 자동 선택하지 않는다. 수집함 오류를 대상 오류로 오인하지 않도록 destination 조건을 먼저 구분했다(가득 찬 receiver RED1). 위험하지만 합법인 가열 대상은 유지하며 마력 부족/무변화/위험 경고를 숨기지 않는다. 경로·locality 등 나머지 상세 invalid 이유는 기존 preview에서 설명하며 전체 선택 자동정리 완료로 확대하지 않는다.

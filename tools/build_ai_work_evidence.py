@@ -8,12 +8,13 @@ from collections import defaultdict
 from datetime import datetime, timezone, timedelta
 import hashlib
 import json
+from io import BytesIO
 from pathlib import Path
 import subprocess
 from xml.sax.saxutils import escape
 
 from PIL import Image as PILImage
-from pypdf import PdfReader
+from pypdf import PdfReader, PdfWriter
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
@@ -26,7 +27,8 @@ KST = timezone(timedelta(hours=9))
 
 
 def digest(path):
-    return hashlib.file_digest(path.open('rb'), 'sha256').hexdigest()
+    with path.open('rb') as handle:
+        return hashlib.file_digest(handle, 'sha256').hexdigest()
 
 
 def git(*args):
@@ -257,12 +259,95 @@ def build(data, output):
     return len(reader.pages)
 
 
+def append_daily(output, entries):
+    """Append dated summaries to the SAME private monthly report; preserve old pages."""
+    source = output.with_suffix('.sources.json')
+    publication = output.with_suffix('.publication.json')
+    originals = {p: p.read_bytes() for p in (output, source, publication)}
+    data = json.loads(originals[source])
+    previous = json.loads(originals[publication])
+    if previous['pdf_sha256'] != digest(output) or previous['source_sha256'] != digest(source):
+        raise ValueError('Evidence hash mismatch; reconcile originals before appending.')
+    additions = []
+    known = data.setdefault('daily_additions', [])
+    stamp = datetime.now(KST).isoformat(timespec='seconds')
+    for day, summary, verification in entries:
+        if datetime.strptime(day, '%Y-%m-%d').strftime('%Y-%m') != data['month']:
+            raise ValueError('Entry date does not belong to this monthly report.')
+        if not summary.strip() or not verification.strip():
+            raise ValueError('Summary and verification boundary are required.')
+        key = hashlib.sha256(json.dumps([day, summary, verification], ensure_ascii=False).encode()).hexdigest()
+        if any(e['id'] == key for e in known + additions):
+            continue
+        additions.append(dict(id=key, day=day, summary=summary, verification=verification,
+                              recorded_at=stamp, source_head=git('rev-parse', 'HEAD')))
+    if not additions:
+        return {'status': 'UNCHANGED', 'pages': previous['pages']}
+    pdfmetrics.registerFont(TTFont('EvidenceKR', 'C:/Windows/Fonts/malgun.ttf'))
+    style = ParagraphStyle('daily', fontName='EvidenceKR', fontSize=11, leading=19,
+                           spaceAfter=15, wordWrap='CJK')
+    title = ParagraphStyle('title', parent=style, fontSize=20, leading=28)
+    story = []
+    for entry in sorted(additions, key=lambda e: e['day']):
+        if story:
+            story.append(PageBreak())
+        for text, fmt in [(f"{entry['day']} | 날짜별 추가 요약", title),
+                          ('기존 월간 작업일지에 누적한 기록입니다. 앞부분은 당시의 보고이며 아래 내용은 후속 변경입니다.', style),
+                          (entry['summary'], style), ('검증 및 남은 경계', title),
+                          (entry['verification'], style),
+                          (f"기록 작성: {stamp}\n원본 HEAD: {entry['source_head']}\n실제 작업일은 제목의 날짜이며 기록 작성일과 구분합니다.", style)]:
+            story.append(Paragraph(escape(text).replace('\n', '<br/>'), fmt))
+    appendix = BytesIO()
+    old_reader = PdfReader(BytesIO(originals[output]))
+    old_count = len(old_reader.pages)
+    def footer(canvas, doc):
+        canvas.setFont('EvidenceKR', 8)
+        canvas.drawString(44, 25, f"GRIMOIRE | {data['month']} 월간 누적 작업일지")
+        canvas.drawRightString(A4[0]-44, 25, str(old_count + doc.page))
+    SimpleDocTemplate(appendix, pagesize=A4, leftMargin=44, rightMargin=44,
+                      topMargin=44, bottomMargin=44).build(story, onFirstPage=footer, onLaterPages=footer)
+    writer = PdfWriter()
+    writer.append(old_reader)
+    writer.append(PdfReader(appendix))
+    result = BytesIO()
+    writer.write(result)
+    checked = PdfReader(result)
+    for index, page in enumerate(old_reader.pages):
+        if page.extract_text() != checked.pages[index].extract_text():
+            raise ValueError('Previous page content changed.')
+    known.extend(additions)
+    source_bytes = json.dumps(data, ensure_ascii=False, indent=2).encode('utf-8')
+    history = previous.get('history', []) + [{k: v for k, v in previous.items() if k != 'history'}]
+    receipt = dict(pdf_sha256=hashlib.sha256(result.getvalue()).hexdigest(),
+                   source_sha256=hashlib.sha256(source_bytes).hexdigest(),
+                   generator_sha256=digest(Path(__file__)), pages=len(checked.pages),
+                   issued_at=stamp, text_check='PASS_OLD_PAGES_PRESERVED',
+                   visual_review='PENDING_APPENDIX', human_review='NOT_RUN', history=history)
+    # All rendering/validation occurs before writes; ordinary write errors roll back.
+    # Abrupt interruption is fail-closed via receipt hashes on the next invocation.
+    try:
+        output.write_bytes(result.getvalue())
+        source.write_bytes(source_bytes)
+        publication.write_text(json.dumps(receipt, ensure_ascii=False, indent=2), encoding='utf-8')
+    except Exception:
+        for path, raw in originals.items():
+            path.write_bytes(raw)
+        raise
+    return {'status': 'APPENDED', 'pages': len(checked.pages), 'added_entries': len(additions)}
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--month', required=True)
-    parser.add_argument('--session', type=Path, required=True)
+    parser.add_argument('--month')
+    parser.add_argument('--session', type=Path)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--append-entry', nargs=3, action='append', metavar=('DATE', 'SUMMARY', 'VERIFICATION'))
     args = parser.parse_args()
+    if args.append_entry:
+        print(json.dumps(append_daily(args.output, args.append_entry), ensure_ascii=False))
+        return
+    if not args.month or not args.session:
+        parser.error('Initial creation requires --month and --session; continuation uses --append-entry.')
     if args.output.exists():
         raise SystemExit('Refusing to overwrite an issued PDF; choose a new version.')
     args.output.parent.mkdir(parents=True, exist_ok=True)
