@@ -3,7 +3,7 @@
   "created_on": "2026-09-20",
   "generator": "built-in image_gen, background removal through image_gen",
   "requirement": "GM-FUN-DUEL: illustrated magic components compose a spell; prepared circles stack without new rules",
-  "consumer": ["src/ui/shared_duel/spell_art.gd", "src/ui/shared_duel/duel_card_view.gd", "src/ui/shared_duel/spell_cast_presentation.gd"],
+  "consumer": ["src/ui/shared_duel/spell_art.gd", "src/ui/shared_duel/duel_card_view.gd", "src/ui/shared_duel/spell_cast_presentation.gd", "src/ui/event_session/event_session_screen.gd"],
   "source_order": ["EMBER", "WIND", "WARD", "GATHER"],
   "combination_order_3_by_2": ["EMBER+WIND", "EMBER+WARD", "EMBER+GATHER", "WARD+WIND", "GATHER+WIND", "GATHER+WARD"],
   "prompt_summary": "Isolated painterly TCG-like magical phenomena, no text or runes: flame, wind vortex, barrier dome, gathering motes. Six integrated combined manifestations: warm breeze, retained-heat dome, compact ember focus, redirected airflow, gathering wind, sealing membrane. Separate gold/teal geometric circle with empty center, no pentagram. Flat magenta source followed by actual transparent RGBA extraction.",

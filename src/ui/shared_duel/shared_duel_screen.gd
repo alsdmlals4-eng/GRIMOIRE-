@@ -92,13 +92,15 @@ func _ready() -> void:
     prepared.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     var review_toggle := _button(opponent_row,"직전 교환 복기",func():
         var panel = information.get_node("ReviewScroll")
-        panel.visible = not panel.visible)
+        panel.visible = not panel.visible
+        prepared_row.visible = not panel.visible
+        details.visible = not panel.visible)
     review_toggle.name = "ReviewToggle"
     review_toggle.custom_minimum_size.y = 32
     var review_scroll := ScrollContainer.new()
     review_scroll.name = "ReviewScroll"
     review_scroll.visible = false
-    review_scroll.custom_minimum_size.y = 62
+    review_scroll.custom_minimum_size.y = 204
     review_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
     information.add_child(review_scroll)
     review = _label(review_scroll,18)
@@ -217,6 +219,9 @@ func restart() -> void:
     cancel_selection()
 
 func _render() -> void:
+    review.get_parent().visible = false
+    prepared.get_parent().visible = true
+    details.visible = true
     _render_review()
     header.text = "연습 결투   내 결계 %d / 16     교환 %d     상대 결계 %d / 16" % [session.player_barrier,session.revision+1,session.opponent_barrier]
     var foe: Dictionary = rules.opponent(session)
@@ -296,18 +301,23 @@ func _render_review() -> void:
     var command: Dictionary = session.commands.back()
     var receipt: Dictionary = session.receipts[command.id]
     var title: String = receipt.get("name",{"WAIT":"대기","TIDY":"한 장 정돈","STOP":"연습 중단"}.get(command.kind,"실행"))
-    review.text = "직전 실행 복기 · %d번째 · %s\n" % [session.revision,title]
+    review.text = "직전 실행 복기 · %d번째\n내 주문 · %s · 비용 %d\n" % [session.revision,title,receipt.cost]
     if command.kind == "STOP":
         review.text += "공격을 주고받지 않고 연습을 중단했습니다."
         return
+    var foe: Dictionary = rules.opponent({"revision":command.revision})
+    review.text += "상대 행동 · %s 공격 %d · 방어 %d\n" % [NATURES[foe.nature],foe.attack,foe.guard]
     review.text += "받는 피해 %d · 상대에게 주는 피해 %d (남은 결계를 넘는 피해 포함)\n" % [receipt.player_damage,receipt.get("opponent_damage",0)]
+    var aftermath := "남은 효과 · 집중 %d · 방패 억제 %d\n결계 결과 · 내 결계 %d / 16 · 상대 결계 %d / 16 · %s" % [session.focus,session.suppression,session.player_barrier,session.opponent_barrier,OUTCOMES[session.outcome]]
     if command.kind != "CAST":
         review.text += "주문 없이 이번 교환을 사용했습니다. 집중과 방패 억제는 만료됩니다."
+        review.text += "\n" + aftermath
         return
     review.text += "막음 %d · 되돌림 %d · 결계 복구 %d · 집중 사용 %d\n" % [receipt.blocked,receipt.redirected,receipt.restored,receipt.focus_used]
     review.text += "상대 방패 제거 %d · 상대가 막은 직접 공격 %d / 반격 %d · 비용 %d" % [receipt.shield_removed,receipt.direct_blocked,receipt.counter_blocked,receipt.cost]
     if "COST_WITHOUT_REPAIR" in receipt.warnings:
         review.text += "\n주의: 결계가 이미 가득 차서 비용을 썼지만 복구량은 0입니다."
+    review.text += "\n" + aftermath
 
 func _label(parent: Node, size_px: int) -> Label:
     var label := Label.new()

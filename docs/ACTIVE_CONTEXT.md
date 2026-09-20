@@ -1,4 +1,20 @@
-# 현재 제품 작업 — 2026-09-20 W05/W06 삽화 주문·써클 연출
+# 현재 제품 작업 — 2026-09-20 사건 주문 표현·결투 복기 후속
+
+기준 HEAD 01521340 이후 승인된 W06/W08/W09 표현 연결을 계속했다. 수업·온실·시료·축제의 학습 마법 선택기에 기존 단독4/조합6 삽화와 공통 준비 써클/시전 표현을 연결했다. 사건은 무작위 손패나 버림패를 도입하지 않으며 APPLIED CAST만 연출한다. 무효 대상·일반 행동·취소는 성공 시전이나 추가 비용을 만들지 않는다. 규칙·저장 schema·엔진·승인 캐릭터·사용자 fixture 변경은 보호했다.
+
+결투 복기: 내 주문 → 해당 교환의 상대 행동 → 남은 효과 → 결계 결과. 다음 교환 예고가 아니라 마지막 command.revision의 상대를 사용한다. 복기를 펼칠 때 준비/예고 영역을 대신하여 더 넓게 보여주고 다음 선택 시 원래 미리보기를 복원한다. 사건의 실행 전 미리보기도 선택적 상세 기록 앞으로 옮겼다. 새 이미지 생성 없이 검증된 개발 후보를 재사용했으며 최종 아트 승인은 여전히 PENDING이다.
+
+검증: 신규 사건/복기 RED10→GREEN, 사건 예고 순서 RED4→GREEN, 복기 가독성 RED3→GREEN. 최종 tests/run_*_tests.gd **27 runners / 1801 assertions / 0 failures**, stderr 오류/경고 없음. artifacts/local-validation/feedback-all-* 및 feedback-layout-red.log, review-layout-red.log. 그중 공통 feedback74, pointer8. 이전24-runner 수치는 다른 실행 목록의 역사 기록이며 이번27개 집계와 혼합하지 않는다. export closure42/2presets PASS, 운영 계약 v9.4.3/19 routes/CURRENT·Base drift 없음. 표적 독립 검토 및 발견된 레이아웃 교정 재검토 새 P1/P2 없음; 전체 검토 예산 재시작 아님.
+
+native: editor43800 프로젝트 경로를 확인했다. 시험 전용 DuelPointerProbe runtime37216/38856/25576에서 held-button press→motion→release 입력으로 겹침·밖에 놓기·취소를 확인했다. 준비/밖에 놓기는 session 불변, 취소 선택[]; 물리 OS 마우스/터치나 Human 검수로 확대하지 않는다. 설치 Hera mouse-motion helper는 button_mask가 없으므로 플러그인을 수정하지 않고 test-only viewport driver를 사용했다. 사건 runtime34676 실제 버튼으로 수업 불씨→용기 SOLVED(마력6→5), 다음 온실 모으기+바람→꽃가루/필터 선택·써클2겹·시전(last_cast_key GATHER+WIND)을 확인했다. 결투 막기+바람→내 결계15/상대13·과거 흐름4와 다음 열3 구분 확인. diagnostics0/0. 캡처: event-two-circles-20260920.png, event-spell-result-20260920.png, duel-exchange-review-20260920.png, pointer-native-prepared-20260920.png (모두 artifacts/local-validation/).
+
+전체 Python 재실행은 **361 tests / 18 failures / 1 error / 2 skipped**로 여전히 실패한다. 이름/로그: artifacts/local-validation/feedback-python-full.log. 기존 역사 운영·도구·구단계·export 기대와 현재 제품 브랜치의 불일치는 별도 정합화 대상이며 삭제하여 PASS로 만들지 않았다. remote CI/main 통합·Windows 재빌드·본편 전분기 native·기기·Human 재미·최종 아트·출시는 완료하지 않았다.
+
+다음: W06 이야기 종료 연계의 시각 검수 → W07 결과에 따른 후속 대화/도감 연결 → W08/W09 사건 무대·대상 삽화·사운드·설정 영속화 → 역사 검사 정합화와 제품 PR 통합. 화면은 아직 최종 사건 배경/대상 미술이 없는 개발 UI이며 공통 주문 표현 연결을 게임 전체 완성으로 보지 않는다. 기존 월간 PDF에 같은 날짜 후속 요약을 누적하여23페이지, 기존22페이지 보존 및 마지막 페이지 렌더 검토 완료. 현재 제품 브랜치만 동기화한다. 다른 PR253/249/187/166은 읽기 전용이며 main62e52e8과 기존 제품 커밋 전체를 이번 소규모 변경으로 무검토 병합하지 않는다.
+
+---
+
+# 직전 구현 기록 — 2026-09-20 W05/W06 삽화 주문·써클 연출
 
 사용자 최신 결정: TCG에 가까운 손패 운용이지만 카드 일러스트는 문자/룬이 아니라 불꽃·기류 등 배경 없는 마법 현상이다. 단독/조합으로 주문을 형상화하고 써클이 겹치는 신비한 시전 경험을 만든다. GM-FUN-DUEL / 기존 shared-spell Spec §7·W06·W09의 표현 slice. 팩/거래/새 경제·성장 써클·새 비용은 범위 밖. 실제 규칙·저장 schema·엔진·승인 캐릭터·사용자 glyph-fixture delta는 불변.
 

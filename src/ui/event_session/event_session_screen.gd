@@ -18,6 +18,8 @@ const SaveStore = preload("res://src/core/shared_spell/event_save.gd")
 const ClockView = preload("res://src/ui/event_session/event_clock_view.gd")
 const SceneView = preload("res://src/ui/event_session/event_scene_view.gd")
 const Semantics = preload("res://src/core/shared_spell/spell_semantics.gd")
+const SpellPresentation = preload("res://src/ui/shared_duel/spell_cast_presentation.gd")
+const SpellArt = preload("res://src/ui/shared_duel/spell_art.gd")
 const GLYPH_NAMES := {"EMBER": "불씨", "WIND": "바람", "WARD": "막기", "GATHER": "모으기"}
 const OUTCOMES := {"ONGOING": "진행 중", "SOLVED": "독립 해결", "ASSISTED": "도움으로 마무리", "STOPPED": "안전하게 중단"}
 const MANUAL := {"COOL": "안전하게 식히기", "CLOSE_LEAK": "덮개 닫기", "CLEAN": "수동 청소",
@@ -73,6 +75,7 @@ var manual_buttons: HBoxContainer
 var confirm: Button
 var next_button: Button
 var glyph_buttons: Array[Button] = []
+var spell_visual: Control
 
 func _ready() -> void:
     if session.is_empty():
@@ -133,28 +136,40 @@ func _build() -> void:
     center.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     center.add_theme_constant_override("separation", 10)
     detail_scroll.add_child(center)
-    _label(center, "2. 글자를 선택하거나 서로 겹치세요", 22)
+    _label(center, "2. 마법을 고르고 겹쳐 주문을 만드세요", 22)
     var hand := HBoxContainer.new()
     hand.add_theme_constant_override("separation", 8)
     center.add_child(hand)
     for glyph in GLYPH_NAMES:
         var button := SpellButton.new()
         button.glyph = glyph
-        button.text = GLYPH_NAMES[glyph] + "\n글자"
-        button.custom_minimum_size = Vector2(104, 76)
+        button.text = GLYPH_NAMES[glyph]
+        button.expand_icon = true
+        button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
+        button.add_theme_constant_override("icon_max_width",70)
+        button.icon = SpellArt.texture_for(glyph)
+        button.custom_minimum_size = Vector2(104, 112)
         button.toggle_mode = true
         button.pressed.connect(select_glyph.bind(glyph))
         button.pair_requested.connect(select_pair)
         hand.add_child(button)
         glyph_buttons.append(button)
-    selected_text = _label(center, "", 20)
+    var preparation_row := HBoxContainer.new()
+    center.add_child(preparation_row)
+    spell_visual = SpellPresentation.new()
+    spell_visual.name = "EventSpellManifestation"
+    preparation_row.add_child(spell_visual)
+    selected_text = _label(preparation_row, "", 20)
+    selected_text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    selected_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     goal = _label(center,"",22)
+    preview_text = _label(center, "", 18)
+    preview_text.custom_minimum_size.y = 96
     details_toggle = _button(center,"상세 기록 펼치기",toggle_details)
     details_toggle.name = "DetailsToggle"
     facts = _label(center, "", 18)
     facts.size_flags_vertical = Control.SIZE_EXPAND_FILL
-    preview_text = _label(center, "", 18)
-    preview_text.custom_minimum_size.y = 96
     _label(layout, "또는 일반 행동 선택 → 결과 미리보기 → 시전 / 실행", 17)
     manual_buttons = HBoxContainer.new()
     manual_buttons.add_theme_constant_override("separation", 8)
@@ -168,6 +183,11 @@ func _build() -> void:
     _button(footer, "진행 저장", save_progress)
     _button(footer, "이어하기", load_progress)
     next_button = _button(footer, "결과 확인 후 다음 장면", continue_story)
+    var reduced := CheckButton.new()
+    reduced.name = "ReducedSpellMotion"
+    reduced.text = "연출 간소화"
+    reduced.toggled.connect(spell_visual.set_reduced_motion)
+    title_row.add_child(reduced)
 
 func select_glyph(glyph: String) -> void:
     if glyph not in GLYPH_NAMES or glyph not in session.spell_state.learned or session.outcome != "ONGOING":
@@ -233,6 +253,7 @@ func confirm_action() -> void:
     if persistence_blocked: return
     if session.outcome != "ONGOING":
         return
+    var cast_glyphs: Array = selected.duplicate() if action_kind == "CAST" else []
     var result: Dictionary = engine.act(session, _command())
     if result.status == "APPLIED":
         session = result.state
@@ -242,6 +263,9 @@ func confirm_action() -> void:
         destination_id = ""
         if story_mode: story_checkpoint.emit(session.duplicate(true))
     _render()
+    if result.status == "APPLIED" and not cast_glyphs.is_empty():
+        var spell: Dictionary = Semantics.new().compose(cast_glyphs,session.spell_state.learned)
+        spell_visual.play_cast(cast_glyphs,spell.name)
 
 func continue_story() -> void:
     if persistence_blocked: return
@@ -307,6 +331,7 @@ func _render() -> void:
         var button := _button(manual_buttons, ("✓ " if action_kind == kind else "") + MANUAL[kind], select_manual.bind(kind))
         button.disabled = session.outcome != "ONGOING"
     var names: Array = []
+    spell_visual.prepare(selected if action_kind == "CAST" and session.outcome == "ONGOING" else [])
     for glyph in selected:
         names.append(GLYPH_NAMES[glyph])
     selected_text.text = "선택: " + (" + ".join(names) if action_kind == "CAST" else MANUAL.get(action_kind, action_kind))
