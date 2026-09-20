@@ -125,6 +125,32 @@ func _run() -> void:
         check.assert_equal(preview_before,screen.session,"clock redraw cannot advance time or resources")
         screen.select_manual("HELP")
         if clock != null: check.assert_true("작용 +0 · 시간 +0" in clock.summary.text,"help preview does not invent elapsed danger")
+        for event_id in ["LESSON_HEAT_01","GREENHOUSE_LEAK_01","LAB_SAMPLE_02","FESTIVAL_LIGHTS_01"]:
+            for ending in ["HELP","STOP"]:
+                screen.session = screen.engine.start(event_id,"branch-"+event_id+ending)
+                screen.last_receipt = {}
+                screen.cancel_selection()
+                var branch_before: Dictionary = screen.session.duplicate(true)
+                screen.select_manual(ending)
+                check.assert_equal(branch_before,screen.session,"ending preview is free: "+event_id+ending)
+                screen.confirm_action()
+                check.assert_equal("ASSISTED" if ending == "HELP" else "STOPPED",screen.session.outcome,"explicit ending branch: "+event_id+ending)
+                var ended: Dictionary = screen.session.duplicate(true)
+                screen.confirm_action()
+                check.assert_equal(ended,screen.session,"terminal ending never repeats: "+event_id+ending)
+        screen.session = screen.engine.start("LAB_SAMPLE_02","ui-lab-preserved")
+        screen.last_receipt = {}
+        screen.cancel_selection()
+        screen.select_target("device")
+        screen.select_glyph("WARD")
+        screen.confirm_action()
+        screen.select_manual("MOVE_SAMPLE")
+        screen.confirm_action()
+        screen.select_manual("STOP_DEVICE")
+        screen.confirm_action()
+        check.assert_equal("SOLVED",screen.session.outcome,"lab UI can preserve specimen and secure device")
+        check.assert_equal("safe",screen.session.spell_state.objects.sample.location_id,"lab UI keeps actual specimen achievement")
+        check.assert_equal(1,screen.session.spell_state.mana,"lab UI charges only one ward")
         screen.queue_free()
         await process_frame
     print(JSON.stringify({"assertions": check.assertion_count(), "failures": check.failure_count(), "messages": check.failures()}))

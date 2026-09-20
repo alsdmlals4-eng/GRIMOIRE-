@@ -1,0 +1,33 @@
+{
+  "status": "GENERATED_RUNTIME_DEVELOPMENT_CANDIDATE_NOT_FINAL_APPROVAL",
+  "created_on": "2026-09-20",
+  "generator": "built-in image_gen, background removal through image_gen",
+  "requirement": "GM-FUN-DUEL: illustrated magic components compose a spell; prepared circles stack without new rules",
+  "consumer": ["src/ui/shared_duel/spell_art.gd", "src/ui/shared_duel/duel_card_view.gd", "src/ui/shared_duel/spell_cast_presentation.gd"],
+  "source_order": ["EMBER", "WIND", "WARD", "GATHER"],
+  "combination_order_3_by_2": ["EMBER+WIND", "EMBER+WARD", "EMBER+GATHER", "WARD+WIND", "GATHER+WIND", "GATHER+WARD"],
+  "prompt_summary": "Isolated painterly TCG-like magical phenomena, no text or runes: flame, wind vortex, barrier dome, gathering motes. Six integrated combined manifestations: warm breeze, retained-heat dome, compact ember focus, redirected airflow, gathering wind, sealing membrane. Separate gold/teal geometric circle with empty center, no pentagram. Flat magenta source followed by actual transparent RGBA extraction.",
+  "process": "Initial element/combination generation did not obey chromakey. Separate image edits produced solid-magenta intermediates, followed by image-tool alpha extraction. Runtime uses AtlasTexture crops and transparent composition, not programmatic repaint. Original external tool outputs remain preserved.",
+  "files": [
+    {"file":"elements-chroma.png","sha256":"a8b83e20bff109c5c3f252f210f9bab02ed97ee3a714741b10d1803324a50cd6","generated_file":"exec-2e40eaa9-fd08-4872-a17c-82eda3a1279c.png"},
+    {"file":"elements-alpha.png","sha256":"19df7ef77f5d1978c781ae0caa0d2b97d1aeb2f5c525816cbce80b474a64711b","generated_file":"exec-69843717-ba3b-40c2-82fd-da79a9addad3.png","size":[1536,1024],"transparent_fraction":0.6351451874},
+    {"file":"combinations-chroma.png","sha256":"ee870930ab0cb6c4b2cf99e575db507e47904a45d3332d9a57a96d326a42a44e","generated_file":"exec-87a77d6b-f580-4e04-86df-b450e94ba1a9.png"},
+    {"file":"combinations-alpha.png","sha256":"92cce68ac6b8295c9a4e353ac4e7a1c026c352fdc539aeba66ef2c5f51066d2e","generated_file":"exec-983bdb92-1c64-4c0a-8e69-5e2cdb94e231.png","size":[1536,1024],"transparent_fraction":0.5019505819},
+    {"file":"circle-chroma.png","sha256":"4f3c405fb6f8f886cc19d7c38b07259dd118c84a41998e910ecf15b6a532c5b7","generated_file":"exec-c6fe0642-c320-4f60-8edc-7794b1545b79.png"},
+    {"file":"circle-alpha.png","sha256":"dc85ea504034b7e09d230f08803245827051849a1cc628ad9b9b5be3e4502a62","generated_file":"exec-524debbe-e013-4622-99fa-d5190c4efebe.png","size":[1254,1254],"transparent_fraction":0.6172503173}
+  ],
+  "qa": {
+    "alpha": "All three runtime files RGBA, genuine alpha0 outside, max254 or255; visible magenta pixels0 for R>180 B>180 G<90 alpha>20",
+    "runtime": "Native 1280x720 preparation inspected. Ring natural-size clipping and quote clipping reproduced and corrected; automated regression added.",
+    "caveat": "Image-tool extraction changes glow/color and is not pixel-identical. Circle source has fine edge speckling; acceptable as a small development preview, not final-art approval. Final polishing and human small-size readability remain pending.",
+    "unused_cleanup_attempt": "exec-2819531b-ee8a-43e4-b80c-14dfbc698128.png did not improve ring edges; not adopted. External original preserved."
+  },
+  "research": [
+    {"url":"https://shadowverse.com/gameguide/cards.php","checked_on":"2026-09-20","use":"Official spell card descriptions and separate artwork reference; no copied art or Spellboost rule adoption"},
+    {"url":"https://hearthstone.blizzard.com/en-us/cards/315-fireball/","checked_on":"2026-09-20","use":"Official spell card library reference; dynamic page extraction limited, not evidence of full visual inspection"}
+  ],
+  "fallback": "Separate Korean name/meaning/cost and receipt remain readable; reduced-motion checkbox keeps static manifestation. No new costs, save fields, unlocks or rules.",
+  "human_fun":"NOT_RUN",
+  "user_final_art_approval":"PENDING",
+  "release":"NOT_RUN"
+}

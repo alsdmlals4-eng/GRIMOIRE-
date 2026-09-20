@@ -1,3 +1,23 @@
+# 현재 제품 작업 — 2026-09-20 W05/W06 삽화 주문·써클 연출
+
+사용자 최신 결정: TCG에 가까운 손패 운용이지만 카드 일러스트는 문자/룬이 아니라 불꽃·기류 등 배경 없는 마법 현상이다. 단독/조합으로 주문을 형상화하고 써클이 겹치는 신비한 시전 경험을 만든다. GM-FUN-DUEL / 기존 shared-spell Spec §7·W06·W09의 표현 slice. 팩/거래/새 경제·성장 써클·새 비용은 범위 밖. 실제 규칙·저장 schema·엔진·승인 캐릭터·사용자 glyph-fixture delta는 불변.
+
+구현: DuelCardView 인스턴스 유지·선택/포커스·드래그 출처/epoch/revision/손패 검증·거절 표시 복구·덱/버림패 수. 두 장 겹침은 준비만 하고 명시 시전으로 처리한다. spell_art.gd는 단독4/조합6의 그림을 기존 recipe ID에 매핑한다. spell_cast_presentation.gd는 준비1/2겹→형상 응축·방출→잔광 소멸, 취소 소멸, 새 입력 시 이전 Tween 중단, 화면 종료 정리를 담당한다. rules.apply APPLIED 뒤 실제 주문 snapshot만 받고 비용·저장·결과 callback은 없다. ‘연출 간소화’는 이번 화면의 정적 표현만 바꾸며 저장 schema를 바꾸지 않는다.
+
+증거: 기준 HEAD d3858001. 신규 RED6→GREEN, viewport 넘침 RED2→GREEN, 이미지 consumer RED2→GREEN. 독립 검토 1회에서 세 번째 Button 자체 toggle 거절 후 표시 불일치 P2를 발견하여 RED1→GREEN. 대비/핵심 예고 노출은 실제 캡처 후 교정. 기존 승인 계보의 전체 검토를 다시 시작하지 않았으며 이번 표적 교정 이후 새 전체 검토를 반복하지 않는다.
+
+Godot 회귀: 최종24 runners, 1630 assertions, 0 failures (artifacts/local-validation/final-run_*). 연출 집중33/손패41/사건 화면68 포함. 앞선23-runner 합계는1597이며 중간 기록1697은 합산 오기로 정정했다. 새 연출 RED1 및 native 써클 natural-size clipping·quote clipping RED3→GREEN. 새 델타의 표적 독립 검토 추가 P1/P2 없음. headless import 종료에서 ObjectDB45/resources22 경고가 한 번 관측됐으나 이후24 runtime runners와 native diagnostics에는 재현되지 않았다. import/plugin teardown 원인 확정이나 영구 해결이라고 주장하지 않는다.
+
+실제 editor43800 GRIMOIRE 경로 확인, 최종 결투 runtime42488: 불씨+바람→온기 흐름 준비→명시 시전, 결계16→13/16→13·교환1→2·사용패2장 교체, 방출 프레임 캡처. 간소화→다시 준비→취소 확인. 이전 LAB runtime19596: 막기→시료 이동→장치 정지 독립 해결·마력1·안전 용기. native는 독립 장면/QA 시작점이며 본편 완주로 확대하지 않는다. diagnostics0/0. 캡처: artifacts/local-validation/spell-final-prepared-20260920.png, spell-cast-frame-20260920.png, spell-cancel-reduced-20260920.png, w05-lab-solved-20260920.png. CLI v1.0.0은 --pid 미지원이므로 editor 지정과 응답 PID/scene을 대조했다. 실제 포인터 drag·모바일·Human 재미는 NOT_RUN.
+
+자산: output/imagegen/spell-manifestation-20260920/production-record.json에 tool/크로마키 원본/RGBA/해시/consumer/배열을 기록했다. 3개 alpha의 가시 magenta0. 추출 시 glow/색이 달라져 픽셀 동일 보존이라고 하지 않는다. 써클 가장자리 미세 점은 개발 후보의 알려진 품질 한계이며 최종 정돈/사람 가독성/최종 미술 승인은 PENDING. 문자 후보03은 최신 방향으로 대체해 consumer/export 제거 후 .cleanup-review/2026-09-20-superseded-rune-candidate/로 이동했다. 직접 삭제하지 않았고 README에 원위치/해시/복구를 남겼다. 기존01·02·승인 자산은 보존. export 정적 closure42 resources/2presets PASS; 크로마키와 폐기 후보는 실행 패키지 미포함. 새 Windows 실행 파일 재빌드 NOT_RUN. 운영 계약 v9.4.3/19 routes/CURRENT, 채택 Base23ecad5 최신 origin/main drift 없음.
+
+전체 Python 검사: 361 tests / 18 failures / 1 error / 2 skipped, 전체 PASS 아님. 9월20일 운영 main의 352개 수치를 현재 게임 브랜치로 복제하지 않는다. 실패는 역사 Base/HiGodot/Sheet/구단계 요구와 충돌하며 export 미존재를 요구하는 구 검사도 현재 브랜치에서 실패한다. 이번 카드 수정과 독립적으로 실제 영향/대체 검증을 판정해야 한다. 상세 이름·출력은 artifacts/local-validation/w06-python-full.log. 검사 삭제나 플러그인/저장/구 규칙 변경으로 녹색을 만들지 않았다.
+
+남은 순서: W06 실제 drag/복기 전달/이야기 종료 시각 → W07 사실 기반 후속 대화·도감 → W08/W09 사건 화면에 공통 표현 적용·접근성 저장·사운드 → W10/W11 본편·기기·제품 PR 통합 → W12 장기 학교생활. 이번 써클은 결투 consumer의 첫 slice이며 모든 사건/모든 연출 완료가 아니다. W05 전체분기 native/터치와 최종 사건 삽화도 남는다. 기존60 제품 커밋과 이번 변경의 main 통합·필수 CI는 미완료; 다른 PR253/249/187/166 읽기 전용. 기존 9월 월간 PDF에 2026-09-20 요약을 추가해22페이지, 마지막 페이지 렌더 검토/기존21페이지 보존. 새 일지/기획 정본은 만들지 않았다. GitHub 동기화는 현재 제품 브랜치 대상이며 main 완료로 확대하지 않는다.
+
+---
+
 # 운영 경량화 배달 확인 — 2026-09-20
 
 PR #254 정상 squash 병합: main `62e52e8323c8f5797319fb7a5959d7df93413fd3`.
