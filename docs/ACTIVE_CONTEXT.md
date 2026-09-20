@@ -1,3 +1,31 @@
+# 운영 경량화 배달 확인 — 2026-09-20
+
+PR #254 정상 squash 병합: main `62e52e8323c8f5797319fb7a5959d7df93413fd3`.
+검토한 candidate `dc56265fc9c831c3aba3d1d896a7330d025dc6cf`와 main 전체 파일 내용 동일.
+원격 14개 검사 SUCCESS, 역사 PR #85 전용 3개 SKIPPED. 미해결 review thread 없음; 보호 우회 없음.
+main readback: 집중 28개 PASS, 운영 계약 CURRENT/19 routes/v9.4.3 PASS. 실제 게임/Human/기기/최종 아트/출시 검증은 이번 작업에서 NOT_RUN.
+기존 게임 브랜치에도 운영 변경을 병합했고, 충돌 난 AGENTS/START는 새 단일 진입점으로 정리했다. generated view는 이 브랜치의 story_menu 진입점을 유지한 adapter에서 재생성했다. 제품 규칙·코드·데이터·씬·자산·엔진·저장 및 사용자 fixture delta는 보존한다.
+게임 브랜치 집중 28개 PASS. 기존 제품 60개 커밋은 main에 흡수하지 않았다. 전체 Python baseline의 17 failure/1 error는 별도 기존 부채이며 이번 지침 변경의 실패가 아니다.
+다음 제품 작업은 아래 2026-09-14 W05 기록과 기존 상세 계획의 남은 항목을 fresh-read한다. 운영 문서 완료를 W06~W12·전체 게임·재미 검수 완료로 승격하지 않는다.
+재미 기준은 UX_UI_SYSTEM.md의 fun-verification-binding에서 기존 기능 Spec·consumer·검증으로 양방향 추적한다. 이 배달 기록/기존 월간 일지에 누적하고 새 증빙집을 만들지 않는다.
+
+---
+
+# 현재 운영 작업 — 2026-09-20
+
+GM-LEAN-OPERATING-20260920: 사용자 승인에 따라 Base #883 경량화와 #885 재미 검증의 선택 채택·로컬 검토 완료.
+책임: [기존 계약의 최신 운영 절](contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md#lean-operating-adoption).
+읽기: AGENTS → START_HERE → 이 상단/현재 제품 승인 원본 → 실제 consumer → 계약 → router/정확한 Base source.
+Base 확인 main: 23ecad5a3084f97c4e5d1e39a9a6d70d1eeb37ef. v9.4.3 release/registry lock 보존.
+승인 범위: 진입 문서·local Skill·출처 읽기·연결 검사·정상 PR 병합·main 재확인. 게임/엔진/저장/자산/설치 플러그인/전역 설정은 변경하지 않는다.
+제품 상태: 기준 main d384c454와 60개 앞선 게임 작업 브랜치는 다르다. 아래 구 snapshot은 역사 정보다. 이번 PR은 게임 브랜치나 #253을 흡수하지 않는다.
+재미 기준: [UX/UI의 현재 연결](UX_UI_SYSTEM.md#fun-verification-binding). 기능별 사람 재미/실행 검증은 NOT_RUN.
+검사: 신규 12개 PASS, 독립 검토 2/2 완료. 전체 352개에서 기존과 동일한 17 failure / 1 error / 2 skipped; 전체 PASS 아님.
+배달: PR #254의 live exact-head CI·병합 상태를 확인한다. 병합됐다면 main readback 후 게임 브랜치 운영 연결만 동기화하며 게임 60개 커밋은 별도다.
+진행 증거와 검토 예산은 기존 계약에 누적하며 작업별 새 일지/PDF를 만들지 않는다.
+
+---
+
 # GRIMOIRE Active Context
 
 ## 2026-09-16 작업 마무리·월간 일지 누적

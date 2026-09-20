@@ -1,3 +1,51 @@
+<a id="lean-operating-adoption"></a>
+
+## 현행 운영 조항 — 2026-09-20 선택 채택
+
+- 결정: GM-LEAN-OPERATING-20260920. 사용자 “승인할게”, 이어 “재미검증기준도 같이 추가해줘”를 이 운영 범위에 적용한다.
+- Base source: [#883](https://github.com/alsdmlals4-eng/Base/pull/883), [#885](https://github.com/alsdmlals4-eng/Base/pull/885); 확인한 최신 main `23ecad5a3084f97c4e5d1e39a9a6d70d1eeb37ef`. 영구 최신 기준이 아니라 이번 채택 출처다. 새 작업에서 원격 drift를 확인하고 필요한 변경만 판단한다.
+- v9.4.3 release/registry lock과 게임·엔진·저장·승인 자산은 유지한다. source revision/owner 경로는 `skills/PROJECT_BASE_ADAPTER.json#/base_policy_adoption`가 소유한다. 생성 snapshot/dashboard는 직접 편집하지 않는다.
+- 채택: current-authority read order, 조건부 최소 로딩, 동일 승인/계획 재사용, UNIFIED_WORK_EXECUTION, 같은 승인 후보 계보 전체 검토 총 2회, 기능 경험→표현→consumer→검증 연결.
+- 선택 비적용: Base 공용 수치·메뉴·장르 예시, 전역/설치 플러그인 수정, release lock 일괄 교체, 새 재미 감독/분석 서버/독립 보고서. 사람 검수가 없다고 승인된 구현을 전부 정지하지 않는다.
+- 기존 handoff-only, 매 단계 5회 전체 검토, 외부 조사 무조건 재수행은 아래 역사 조항보다 이 절이 우선한다. 코드 실행은 승인 범위와 실제 capability로 판단하며 권한 우회는 금지한다. 상위 시스템·도구의 필수 규칙은 바꾸지 않는다.
+- 과거 단계·고정 SHA·옛 승인 대기는 역사 locator다. 같은 소비처의 유효 증거는 재사용하되 변경 영향은 다시 검증한다. 실제 main과 작업 브랜치의 제품 상태를 혼합하지 않는다.
+- 승인된 계획: 진입점/Skill 교정 → 출처 loader·생성 뷰·관련 검사 → 독립 검토·표적 교정 → dedicated PR 정상 병합·main readback → 기존 게임 브랜치에 운영 변경만 반영.
+- 보호: 60개 미병합 게임 커밋, 다른 PR(#253 포함), 사용자 dirty/임시 자산은 흡수·삭제하지 않는다. 추가 비용 0, 공개 Git에 개인 증빙 없음.
+- 현재 본문 아래의 2026-08-26 제품 스냅샷은 역사 호환 내용이다. 제품 의미는 현재 체크아웃의 Active Context·승인 기능 원본·실제 consumer를 함께 확인한다.
+
+### 2026-09-20 배달 readback
+
+PR #254 → main `62e52e8323c8f5797319fb7a5959d7df93413fd3` 정상 병합.
+candidate `dc56265fc9c831c3aba3d1d896a7330d025dc6cf`와 main 파일 tree 일치, exact-head 원격 14 SUCCESS/3 조건부 SKIPPED.
+병합 후 main 집중 28개 PASS 및 운영 validator CURRENT/19 routes. 게임 브랜치의 운영 병합 후 같은 28개 PASS.
+다른 PR/게임 60개 커밋은 미흡수. Human 재미·실제 Godot 조작·기기·최종 아트·출시 NOT_RUN.
+이 후속 기록은 게임 작업 브랜치에서 누적하며 main 병합 사실은 위 실제 PR/commit으로 확인한다. 전체 검토 예산 2/2는 재시작하지 않는다.
+
+### 프로젝트 고유 운영 세부
+
+월간 증빙은 기존 `GRIMOIRE_2026-09_AI활용_작업일지_증빙집_v1.0.pdf`에 날짜별 요약을 누적한다.
+지정 출력은 `C:/Users/user/Documents/증빙서류/9월 증빙서류`; 같은 이름의 `.sources.json`과 `.publication.json`에서 입력과 출력/history 해시를 보존한다.
+게임 작업 브랜치의 기존 `tools/build_ai_work_evidence.py --output <기존 PDF> --append-entry <YYYY-MM-DD> <요약> <검증 경계>`를 사용한다.
+이 도구는 본 운영 PR main에 제품 브랜치와 함께 추가되는 것이 아니다. 없는 checkout에서는 보고서 도구를 임의 재구축하지 않는다.
+실제 제출 사본은 별도로 보존하고 정정 사유를 남긴다. 일반 재발행과 날짜별 누적을 구분하며 이미 확인한 과거 입력·페이지를 삭제하지 않는다.
+분리 이미지의 크로마키 RGB 원본·RGBA 결과·가장자리 QA와 provenance는 기존 자산 production record에 연결한다. 기존 RGB 체크무늬 실패본을 알파 성공으로 승격하지 않는다.
+
+### 검토와 증거 기록
+
+기준 main: `d384c454768a8aa3b0adb939e0b035ac2afa426e`.
+변경 전 전체 Python 회귀: 340개, 17 failure / 1 error / 2 skipped. 구 버전/역사 상태 검사 실패를 이번 게임·플러그인 변경으로 숨기지 않는다.
+출처 loader 신규 회귀 4개는 구현 전 실패 → 구현 후 통과했다. 로컬 Base 본문 변경, 원격 drift, 미승인 경로, 다른 계보를 검사한다.
+스킬 baseline 검토는 본문 출처 불일치·역사 owner 오선택 위험을 확인했으며 실제 에이전트 규칙 위반을 관측했다고 과장하지 않는다.
+전체 검토 사용: 2/2. 독립 검토 1에서 P0/P1 없음, P2 두 건 발견: 빈 읽기 경로의 생성 쓰기 전환과 생성 뷰의 역사 상태 오표시.
+빈 경로 회귀는 RED 확인 후 교정했고, 호환 뷰는 역사 scope·현재 owner·승인 원본 분리를 전파했다. 신규 집중 검사 12개 통과.
+최종 전체 검사 352개에서 17 failure / 1 error / 2 skipped이며 실패 ID 18개가 변경 전과 동일했다. 전체 PASS로 주장하지 않는다.
+독립 검토 2: 38개 파일 후보 검토, 새 P0/P1/P2 없음. 생성 뷰 check와 diff 검사도 통과. 이후 전체 검토를 재시작하지 않고 발견별 교정·필수 CI·main readback으로 진행한다.
+배달 PR: [#254](https://github.com/alsdmlals4-eng/GRIMOIRE-/pull/254). 현재 병합 여부와 exact-head 원격 검사 상태는 live GitHub가 소유한다. 문서의 사전 검사로 병합 후 증거를 대체하지 않는다.
+후속 읽기: PR이 병합됐다면 main의 변경 파일 동일성·운영 validator·신규 12개 회귀를 재확인하고 기존 게임 브랜치의 제품/dirty 상태를 보존한 채 운영 변경만 동기화한다. 원본 작업 로그는 로컬 artifacts/local-validation/lean-20260920/에 누적한다.
+재미 기준은 [기존 UX/UI owner](../UX_UI_SYSTEM.md#fun-verification-binding)에서 프로젝트에 맞게 선택 적용한다. 문서 채택은 게임 재미 검증 완료가 아니다.
+
+---
+
 # GRIMOIRE 프로젝트 계약 v4.8 r5.4 바인딩
 
 ```yaml

@@ -98,7 +98,7 @@ class Task8HandoffBcpContinuationTests(unittest.TestCase):
 
     def test_start_here_and_development_gates_expose_current_codex_reuse_exception(self) -> None:
         for relative_path in (
-            "START_HERE.md",
+            "docs/archive/authority-before-lean/START_HERE.md",
             "docs/DEVELOPMENT_GATES.md",
         ):
             with self.subTest(path=relative_path):

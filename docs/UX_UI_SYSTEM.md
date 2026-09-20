@@ -1,3 +1,54 @@
+<a id="fun-verification-binding"></a>
+
+## 현행 재미·표현 검증 연결 — 2026-09-20
+
+운영 채택: GM-LEAN-OPERATING-20260920 / Base #885.
+공용 원본은 adapter의 adopted source에서 읽는다:
+`skills/analyzing-and-refining-game-concepts/references/concept-evidence-and-gates.md#fun-verification-lifecycle`,
+`docs/knowledge/game-development/EXPERIENCE_TO_PRESENTATION_GUIDE.md`,
+`skills/auditing-and-refining-ui-art/references/project-adapter-contract.md` §10–11.
+기존 v9.4.3 release lock과 승인된 게임 의미·수치·아트는 바꾸지 않는다.
+
+### 적용 원본과 구현 경계
+
+- 경험 원본: 현재 체크아웃의 Active Context가 지시하는 승인된 기능 Spec의 “경험과 경계” 절. 기존 게임 브랜치에서 확인한 원본은 `docs/superpowers/specs/2026-09-10-shared-spell-rules-design.md` §1·5·6·7이다. 이 파일/consumer는 운영 PR 기준 main에는 없으므로 **BRANCH_ONLY / NOT_MERGED_PRODUCT**다.
+- 해당 설계의 “배운 글자의 작용을 다른 대상과 환경에 응용하는 학생” 경험을 검증 질문으로 연결한다. 카드가 선택 도구라는 의미를 유지하고 결투 밖 무작위 손패·필기·별형·체스를 되살리지 않는다.
+- 아래 표는 기존 게임 브랜치에서 관찰한 경로와 다음 제품 작업의 검증 명세다. 본 운영 작업의 게임 실행 결과가 아니다. 현재 main의 구 Product Root/필기 consumer는 별도 레거시 회귀 대상이며 하단 구 UX 상세가 새 카드 요구로 승격되지 않는다.
+- 상태/규칙 값은 기능 Spec·기존 데이터 owner에서 읽는다. 이 문서는 새 비용·시계 속도·효과 시간·재미 점수를 정하지 않는다.
+
+| 연결 ID / 경험 가설 | 실제 owner·소비처(게임 브랜치) | 기계·실행 확인과 사람 질문 / 반증 |
+|---|---|---|
+| GM-FUN-SPELL / 같은 글자의 의미를 이해하고 조합을 선택한다 | `src/core/shared_spell/spell_semantics.gd` → `src/core/shared_spell/event_spell_cast.gd`; `tests/run_shared_spell_tests.gd` | 단독/조합·무효 대상·취소·명시 시전·중복 비용 경계. 사람에게 결과를 보고 왜 이 주문/대상을 골랐는지 묻는다. 조합을 무조건 상위호환으로 이해하거나 UI의 정답만 누르면 반증. |
+| GM-FUN-EVENT / 위험의 원인과 해결의 인과를 이해한다 | `event_definitions.gd`·`event_session.gd` (위 shared_spell 폴더) → 사건 표시 consumer를 변경 직전 추적 | 시간 증가와 완화, 원인 차단, 목표·위험 동시 결과를 따로 검산. 온실은 첫 실습 예시일 뿐 메인 경험 전체가 아님. 기다린 실시간 때문에 위험이 올랐다고 오해하거나 같은 주문 반복밖에 선택이 없다면 반증. |
+| GM-FUN-DUEL / 같은 주문 의미로 상대 행동에 대응한다 | `src/core/shared_spell/duel_spell_exchange.gd` → `src/ui/shared_duel/shared_duel_screen.gd`; `tests/run_duel_spell_exchange_tests.gd` | 공개 예고·허용 선택·실제 결과·저장 복구의 일치. 대응 이유와 다음 선택을 설명하는가? 숨은 정보를 UI가 누설하거나 연출이 판단 신호를 가리면 반증. |
+| GM-FUN-STORY / 학교 학생으로 관계와 사건을 따라간다 | `src/core/shared_spell/story_flow.gd` → `src/ui/story/story_classroom_view.gd`; `tests/run_story_classroom_tests.gd` | 화자·대사·삽화·선택·대화 종료/복귀의 일치. 첫 노출에서 화자·목적·다음 행동을 이해하는가? 시스템 상태 보고처럼 느끼거나 반복 설명/효과가 읽기를 방해하면 반증. |
+
+### 실제 기능 변경마다 최소 연결
+
+기존 Spec/Decision/검증 기록에 **같은 requirement_id → 경험·승인 원본 → 입력/상태/선택 → 규칙 owner → 피드백·자산 → consumer → 확인 방법**을 남긴다.
+화면/검증에서 역으로 같은 요구사항·승인 원본까지 따라가며 파일 존재만으로 연결 완료라 하지 않는다. 아직 없는 경로는 PLANNED다.
+규칙 효과(마력·위험·결과)와 표현 효과(문자·카드 이동·빛·음향)는 분리한다. 표현 callback이 비용·보상을 재계산하거나 성공을 선행 표시하지 않는다.
+정보 공개 시점, 선택/포커스/비활성 이유, 취소·연타·중단·복귀, 실제 표시 크기·긴 한국어·승인 자산 상태군, 반복/동시 효과의 우선순위를 필요한 부분만 명시한다.
+장식이 위험·대상·대사 신호를 가리지 않아야 하며 모션 축소/음소거에서도 필수 정보와 판정은 유지한다. 특정 ms·보상 빈도·공통 합격 점수는 강제하지 않는다.
+
+### 대표 검증과 교정
+
+1. 가장 중요한 가설 하나와 짧은 대표 구간을 고른다. 기준/후보의 exact SHA, 동일 입력/seed·설정·언어·해상도, 관찰 질문·실패/중단 기준을 먼저 정한다.
+2. 첫 플레이의 이해와 반복 플레이의 선택 변주·피로를 나눠 본다. 관찰 행동·자기보고·필요 로그와 반대 증거(counterevidence)를 함께 기록하고 설명/힌트 개입도 남긴다.
+3. 못 봄 → 가림/시선, 오해 → 의미/원인, 이해했지만 지루함 → 규칙·선택/리듬, 반복 피로 → 빈도/콘텐츠, 복귀 파손 → 상태/수명으로 분류한다. 무조건 효과·보상을 키우지 않는다.
+4. KEEP / CHANGE / DEFER / RETEST를 기존 Decision에 연결한다. 핵심 경험·경제·서사·주요 UX·아트·비용·보안·파괴적 변경만 새 판단을 받는다.
+5. L1은 기존 작업 기록의 짧은 연결로 충분하다. L0 운영도구 변경은 이유 있는 NOT_APPLICABLE. 유효한 같은 조건의 근거는 REUSED_EVIDENCE. 새 문서·Skill·분석 서버·가상 플레이어를 만들지 않는다.
+
+**DOC / MACHINE / RUNTIME / HUMAN / USER_APPROVAL / RELEASE를 분리한다.**
+현재 결과: 검증 방법의 선택 채택만 수행. 이 표의 게임 MACHINE/RUNTIME 재실행, 사람 관찰·재미 판정, 접근성/기기/최종 아트/출시는 NOT_RUN.
+자동 테스트·AI 평가만으로 FUN_PASS를 생성하지 않는다. HUMAN 미실행은 필요한 승격에 남기되 승인된 구현 자체를 막지 않는다.
+
+---
+
+## 아래 내용의 역할: 레거시 직접 필기 UX 기록
+
+하단의 직접 작성·인식·구 회로 요구는 해당 레거시 consumer 회귀에서만 선택한다. 현재 카드 기능의 규칙/승인으로 해석하지 않는다.
+
 # GRIMOIRE UX/UI 시스템
 
 > Base 공용 기준: `alsdmlals4-eng/Base`의 `auditing-and-refining-ui-art`  

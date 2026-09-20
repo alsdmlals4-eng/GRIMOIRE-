@@ -21,7 +21,7 @@ HIGODOT_V314_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_4_VENDOR_INTEGRITY.
 HIGODOT_V320_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json"
 HERA_EVIDENCE = ROOT / "docs/validation/HERA_V1_0_0_EXACT_PAIR.json"
 ACTIVE_SURFACES = [
-    ROOT / "START_HERE.md",
+    ROOT / "docs/archive/authority-before-lean/START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
 ]
 PROVENANCE_SURFACES = [

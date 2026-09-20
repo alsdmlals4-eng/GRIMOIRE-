@@ -7,6 +7,8 @@ from html import escape
 import json
 from pathlib import Path
 import sys
+import re
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 ADAPTER_PATH = ROOT / "skills" / "PROJECT_BASE_ADAPTER.json"
@@ -31,6 +33,39 @@ def sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def read_adopted_base_source(base_root: Path, adapter: dict, relative_path: str) -> dict:
+    """Read the adopted Git blob, never the potentially stale working tree."""
+    adoption = adapter["base_policy_adoption"]
+    revision = adoption["source_commit"]
+    if not re.fullmatch(r"[0-9a-f]{40}", revision):
+        raise ValueError("Adopted Base source must be an exact commit")
+    if (not relative_path or relative_path.startswith(("/", "-"))
+            or "\\" in relative_path or ":" in relative_path
+            or any(part in ("", ".", "..") for part in relative_path.split("/"))):
+        raise ValueError("Unsafe Base source path")
+    route_roots = ["skills/" + route["skill_id"] + "/"
+                   for route in adapter.get("routing", {}).get("base_routes", [])]
+    if (relative_path not in adoption["owner_paths"]
+            and not any(relative_path.startswith(prefix) for prefix in route_roots)):
+        raise ValueError("Base source is not an adopted owner or routed skill reference")
+    def git(*args: str) -> bytes:
+        try:
+            return subprocess.check_output(
+                ["git", "-C", str(base_root), *args], stderr=subprocess.PIPE)
+        except subprocess.CalledProcessError as exc:
+            raise ValueError("Base source verification failed: " +
+                             exc.stderr.decode("utf-8", errors="replace")) from exc
+    remote = git("rev-parse", "refs/remotes/origin/main").decode("ascii").strip()
+    git("merge-base", "--is-ancestor", revision, remote)
+    object_type = git("cat-file", "-t", revision + ":" + relative_path).strip()
+    if object_type != b"blob":
+        raise ValueError("Base source must be a file")
+    raw = git("show", revision + ":" + relative_path)
+    return {"source_commit": revision, "path": relative_path,
+            "remote_main": remote, "remote_drift": remote != revision,
+            "sha256": hashlib.sha256(raw).hexdigest(), "text": raw.decode("utf-8")}
+
+
 def dashboard_text(adapter: dict, adapter_hash: str) -> str:
     project = adapter["project"]
     current = adapter["current_state"]
@@ -39,9 +74,9 @@ def dashboard_text(adapter: dict, adapter_hash: str) -> str:
     validation = adapter["validation"]
     rows = [
         ("Base", f"v{release['version']} / {release['repository']}"),
-        ("Current work", current["planning"]),
-        ("Implementation", current["implementation"]),
-        ("Next product gate", current["next_product_gate"]),
+        ("Historical work", current["planning"]),
+        ("Historical implementation", current["implementation"]),
+        ("Historical product gate", current["next_product_gate"]),
         ("Material-work review gate", validation["adversarial_research_feasibility_gate"]),
         ("External research", validation["external_research"]),
         ("Implementation feasibility", validation["implementation_feasibility"]),
@@ -61,7 +96,7 @@ def dashboard_text(adapter: dict, adapter_hash: str) -> str:
 <head>
   <meta charset=\"utf-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <title>{escape(project['repository'])} 운영 현황</title>
+  <title>{escape(project['repository'])} 운영 계약 호환 보기</title>
   <style>
     :root {{ color-scheme: light dark; font-family: system-ui, sans-serif; }}
     body {{ margin: 0 auto; max-width: 72rem; padding: 1.5rem; line-height: 1.55; }}
@@ -73,11 +108,11 @@ def dashboard_text(adapter: dict, adapter_hash: str) -> str:
 <body>
   <header>
     <h1>{escape(project['name'])}</h1>
-    <p>Repository-generated current operating view. Runtime and Human evidence are not implied by this document.</p>
+    <p>Generated compatibility snapshot, not current product authority. Read docs/ACTIVE_CONTEXT.md and actual consumers in this checkout for current progress. Runtime and Human evidence are not implied.</p>
   </header>
   <main>
     <table>
-      <caption>Current authority and evidence ceiling</caption>
+      <caption>Historical product snapshot and preserved evidence ceiling</caption>
       <tbody>
 {row_html}
       </tbody>
@@ -145,6 +180,7 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict | str]:
         "effective_routes": effective,
         "aliases": adapter["routing"]["aliases"],
         "generation_status": "CURRENT",
+        "base_policy_adoption": adapter.get("base_policy_adoption", {}),
     }
 
     current = adapter["current_state"]
@@ -161,6 +197,7 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict | str]:
         "schema_version": 2,
         "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
         "view_name": "BASE_V9_ADAPTER.json",
+        "authority_scope": adapter.get("authority_scope", {}),
         "generated": True,
         "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
         "canonical_source_sha256": adapter_hash,
@@ -203,6 +240,7 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict | str]:
         "schema_version": 2,
         "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
         "view_name": "PROJECT_BASE_SKILL_ADAPTER.json",
+        "authority_scope": adapter.get("authority_scope", {}),
         "generated": True,
         "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
         "canonical_source_sha256": adapter_hash,
@@ -234,7 +272,12 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict | str]:
             "current_work_mode": project["work_mode"],
             "integrated_v9": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md",
         },
-        "current_truth_sources": list(adapter["entrypoints"].values())
+        "current_truth_sources": [
+            "AGENTS.md", "START_HERE.md", "docs/ACTIVE_CONTEXT.md",
+            "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md#lean-operating-adoption",
+            "docs/UX_UI_SYSTEM.md#fun-verification-binding",
+        ],
+        "historical_truth_source_locators": list(adapter["entrypoints"].values())
         + list(adapter["planning_authority"].values()),
         "workspace_authority": adapter["workspace_authority"],
         "legacy_sheet": legacy_sheet,
@@ -253,7 +296,9 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict | str]:
             "product_state": current["implementation"],
         },
         "asset_and_license": {
-            "approved_visual_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
+            "approval_owner": "docs/ACTIVE_CONTEXT.md",
+            "approval_resolution": "READ_CURRENT_TARGET_DECISION_AND_ACTUAL_CONSUMER",
+            "historical_visual_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
             "locked_reference_edit": "PROHIBITED",
             "mass_asset_generation": (
                 "BOUNDED_APPROVED_WORKSTREAM_ONLY"
@@ -275,12 +320,22 @@ def generate(adapter: dict, adapter_hash: str) -> dict[str, dict | str]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--base-root", type=Path)
+    parser.add_argument("--read-base-path")
     args = parser.parse_args()
 
     adapter_text = ADAPTER_PATH.read_text(encoding="utf-8")
     registry_text = REGISTRY_PATH.read_text(encoding="utf-8")
     adapter = json.loads(adapter_text)
     validate_source(adapter, registry_text)
+    if args.read_base_path is not None:
+        if args.base_root is None:
+            parser.error("--read-base-path requires --base-root")
+        # This command is a UTF-8 JSON interface, regardless of Windows locale.
+        sys.stdout.reconfigure(encoding="utf-8")
+        print(canonical_text(read_adopted_base_source(
+            args.base_root, adapter, args.read_base_path)), end="")
+        return 0
     generated = generate(adapter, sha256_text(adapter_text))
 
     failed = False

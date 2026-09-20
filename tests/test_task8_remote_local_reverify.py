@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REVERIFY = ROOT / "docs/planning/TASK8_REMOTE_LOCAL_REVERIFY_2026-08-21.md"
 SYNC34 = ROOT / "docs/planning/sync/GR-SYNC-20260821-34-CANON-AUTHORITY-REALITY-SYNC.md"
 CURRENT_DOCS = [
-    ROOT / "START_HERE.md",
+    ROOT / "docs/archive/authority-before-lean/START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
     ROOT / "docs/DEVELOPMENT_GATES.md",
 ]
