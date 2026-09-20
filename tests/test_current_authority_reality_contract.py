@@ -175,11 +175,12 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE", policy)
 
         self.assertEqual("REQUIRED_ON_MATERIAL_WORK", validation["adversarial_research_feasibility_gate"])
-        self.assertEqual("FRESH_RELEVANT_CHECK_REQUIRED", validation["external_research"])
+        self.assertEqual("REUSE_VALID_EVIDENCE_OR_TARGETED_FRESH_RESEARCH", validation["external_research"])
+        self.assertEqual(2, validation["full_scope_review_budget"])
         self.assertEqual("ACTUAL_PROJECT_EVIDENCE_REQUIRED", validation["implementation_feasibility"])
         self.assertTrue(routing_policy["material_work_requires_adversarial_research_feasibility_gate"])
 
-        for relative_path in ("AGENTS.md", "START_HERE.md", "docs/ACTIVE_CONTEXT.md", "docs/DEVELOPMENT_GATES.md"):
+        for relative_path in ("START_HERE.md", "docs/DEVELOPMENT_GATES.md"):
             text = (ROOT / relative_path).read_text(encoding="utf-8")
             self.assertIn(policy_path, text, relative_path)
 
@@ -196,7 +197,7 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("FULL_VERTICAL_SLICE_NOT_RUN", active)
 
     def test_active_entrypoints_promote_task9_and_quarantine_pre_task9_markers(self) -> None:
-        for relative_path in ("START_HERE.md", "docs/ACTIVE_CONTEXT.md"):
+        for relative_path in ("docs/archive/authority-before-lean/START_HERE.md", "docs/ACTIVE_CONTEXT.md"):
             text = (ROOT / relative_path).read_text(encoding="utf-8")
             self.assertIn("three_screen_runtime: TASK9_PRODUCT_ROOT_AUTOMATED_VERTICAL_SLICE_READY", text)
             self.assertIn("three_screen_runtime_historical: THREE_SCREEN_RUNTIME_AWAITING_TASKS_2_9", text)
@@ -227,8 +228,8 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
         self.assertIn("LOCAL_SYNC: NOT_RUN / BLOCKED_NO_LOCAL_ACCESS", binding)
 
         required_active_docs = [
-            "AGENTS.md",
-            "START_HERE.md",
+            "docs/archive/authority-before-lean/AGENTS.md",
+            "docs/archive/authority-before-lean/START_HERE.md",
             "docs/ACTIVE_CONTEXT.md",
         ]
         for relative_path in required_active_docs:
@@ -249,8 +250,9 @@ class CurrentAuthorityRealityContractTests(unittest.TestCase):
             self.assertNotIn("\ngodot_run: BLOCKED_NO_LOCAL_ACCESS", text, relative_path)
             self.assertNotIn("PR #158 v4.8 authority correction RED→GREEN", text, relative_path)
 
-        agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
-        start = (ROOT / "START_HERE.md").read_text(encoding="utf-8")
+        # Historical binding payload is preserved outside the lean current entry.
+        agents = (ROOT / "docs/archive/authority-before-lean/AGENTS.md").read_text(encoding="utf-8")
+        start = (ROOT / "docs/archive/authority-before-lean/START_HERE.md").read_text(encoding="utf-8")
         active = (ROOT / "docs/ACTIVE_CONTEXT.md").read_text(encoding="utf-8")
         self.assertNotIn("PR #151은 `DO_NOT_TOUCH`", agents)
         self.assertNotIn("parallel_open_pr: PR151_DO_NOT_TOUCH", start)

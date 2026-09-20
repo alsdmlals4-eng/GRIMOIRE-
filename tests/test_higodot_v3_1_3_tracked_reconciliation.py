@@ -10,7 +10,7 @@ STATE = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_3_VENDOR_INTEGRITY.json"
 SYNC = ROOT / "docs/planning/sync/GR-SYNC-20260809-04-HIGODOT-V313-TRACKED-EXACT-RECONCILIATION.md"
 CURRENT_DOCS = [
-    ROOT / "START_HERE.md",
+    ROOT / "docs/archive/authority-before-lean/START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
     ROOT / "docs/DEVELOPMENT_GATES.md",
     ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",

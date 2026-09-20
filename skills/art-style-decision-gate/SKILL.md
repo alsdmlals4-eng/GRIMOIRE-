@@ -1,16 +1,18 @@
 ---
 name: art-style-decision-gate
-description: Prepare, compare, and record GRIMOIRE ART-STYLE-01 evidence before art-bible, asset-specification, or mass asset work. Use when the project needs a visual-direction decision or a status check for that gate.
+description: Use for a new or changed GRIMOIRE visual-direction decision or a specific asset approval-status check, not to reopen an already approved direction.
 ---
 
-# ART-STYLE-01 Decision Gate
+# Targeted Art Direction Gate
 
-Read `docs/ACTIVE_CONTEXT.md`, `docs/planning/CURRENT_CONFIRMED_DECISIONS.md`, `docs/UX_UI_SYSTEM.md`, and the relevant visual-presentation planning source first.
+Read docs/ACTIVE_CONTEXT.md and the current visual Decision/manifest it selects, then the target asset's actual/planned consumer and relevant UX/UI section.
+The old CURRENT_CONFIRMED_DECISIONS machine snapshot and historical ART-STYLE-01 are discovery locators, not current approval authorities.
 
-1. Define no more than the decision question, player-facing visual intent, and evaluation criteria needed for this gate.
-2. Compare candidate directions using readability of magic writing, field-versus-battle separation, character hierarchy, mobile touch legibility, implementation feasibility, licensing, and distinctiveness.
-3. Record `Adopt`, `Adapt`, `Reject`, `Differentiation`, and remaining uncertainty. Do not copy a reference game or template identity.
-4. Keep candidates as planning or review material until an explicit user decision. Generated images are not final assets.
-5. On approval, name the canonical decision record and the next gate. On no approval, retain `ART-STYLE-01` as blocking and do not advance maturity.
+1. Identify the exact asset/style question and existing approval scope. Reuse valid direction and evidence; a new task does not reset approval.
+2. Compare only unresolved alternatives for identity, composition, readability at actual size, Korean text separation, input accessibility, feasibility, rights and distinctiveness.
+3. Record Adopt / Adapt / Reject and uncertainty in the existing visual owner. Preserve character identity and approved assets.
+4. Candidate generation is not final approval. For separated assets use chromakey original → background removal → RGBA/edge QA, keeping provenance and actual consumer.
+5. If this specific decision lacks required approval, hold only its dependent final lock/production. Do not mark the entire project's historical ART-STYLE-01 unresolved or block independent approved work.
+6. For meaningful presentation changes, connect the existing UX/UI fun-verification-binding: intention → states/feedback → consumer → machine/runtime/human questions. Do not copy the whole Base guide.
 
-Do not choose an art direction, alter assets, or claim human/device validation without the required evidence.
+Record source, approval, implementation and evidence separately; no fabricated Human/device or final-art approval.
