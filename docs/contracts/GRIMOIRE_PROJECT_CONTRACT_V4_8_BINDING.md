@@ -13,6 +13,15 @@
 - 보호: 60개 미병합 게임 커밋, 다른 PR(#253 포함), 사용자 dirty/임시 자산은 흡수·삭제하지 않는다. 추가 비용 0, 공개 Git에 개인 증빙 없음.
 - 현재 본문 아래의 2026-08-26 제품 스냅샷은 역사 호환 내용이다. 제품 의미는 현재 체크아웃의 Active Context·승인 기능 원본·실제 consumer를 함께 확인한다.
 
+### 프로젝트 고유 운영 세부
+
+월간 증빙은 기존 `GRIMOIRE_2026-09_AI활용_작업일지_증빙집_v1.0.pdf`에 날짜별 요약을 누적한다.
+지정 출력은 `C:/Users/user/Documents/증빙서류/9월 증빙서류`; 같은 이름의 `.sources.json`과 `.publication.json`에서 입력과 출력/history 해시를 보존한다.
+게임 작업 브랜치의 기존 `tools/build_ai_work_evidence.py --output <기존 PDF> --append-entry <YYYY-MM-DD> <요약> <검증 경계>`를 사용한다.
+이 도구는 본 운영 PR main에 제품 브랜치와 함께 추가되는 것이 아니다. 없는 checkout에서는 보고서 도구를 임의 재구축하지 않는다.
+실제 제출 사본은 별도로 보존하고 정정 사유를 남긴다. 일반 재발행과 날짜별 누적을 구분하며 이미 확인한 과거 입력·페이지를 삭제하지 않는다.
+분리 이미지의 크로마키 RGB 원본·RGBA 결과·가장자리 QA와 provenance는 기존 자산 production record에 연결한다. 기존 RGB 체크무늬 실패본을 알파 성공으로 승격하지 않는다.
+
 ### 검토와 증거 기록
 
 기준 main: `d384c454768a8aa3b0adb939e0b035ac2afa426e`.
