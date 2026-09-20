@@ -1,6 +1,35 @@
 {
   "aliases": [],
   "artifact_role": "PROJECT_SKILL_SNAPSHOT",
+  "base_policy_adoption": {
+    "approval_reuse": "SAME_APPROVED_SCOPE_NO_RESTART",
+    "base_prs": [
+      883,
+      885
+    ],
+    "decision_id": "GM-LEAN-OPERATING-20260920",
+    "full_scope_review_budget": 2,
+    "fun_binding": "docs/UX_UI_SYSTEM.md#fun-verification-binding",
+    "global_settings": "UNCHANGED",
+    "observed_on": "2026-09-20",
+    "owner": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md#lean-operating-adoption",
+    "owner_paths": [
+      "AGENTS.md",
+      "START_HERE.md",
+      "docs/GPT_CODEX_WORKFLOW_POLICY.md",
+      "docs/LONG_HORIZON_WORK_EXECUTION_POLICY.md",
+      "skills/managing-project-intake-and-work-contract/SKILL.md",
+      "docs/knowledge/game-development/EXPERIENCE_TO_PRESENTATION_GUIDE.md",
+      "skills/analyzing-and-refining-game-concepts/references/concept-evidence-and-gates.md",
+      "skills/auditing-and-refining-ui-art/references/project-adapter-contract.md"
+    ],
+    "product_mutation": "NOT_AUTHORIZED_BY_POLICY_ADOPTION",
+    "release_registry_lock": "PRESERVED_V9_4_3",
+    "source_commit": "23ecad5a3084f97c4e5d1e39a9a6d70d1eeb37ef",
+    "source_loading": "EXACT_GIT_BLOB_NO_WORKTREE_FALLBACK",
+    "source_role": "REVIEWED_POLICY_SOURCE_NOT_PERMANENT_LATEST",
+    "status": "USER_APPROVED_SELECTIVE_ADOPTION"
+  },
   "base_registry": {
     "hash_definition": "RAW_FILE_BYTES_SHA256",
     "path": "skills/SKILL_REGISTRY.json",
@@ -97,7 +126,7 @@
     }
   ],
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "c1482f56ef19d37a6dc8f7e2c710b5388e90bbb99636e83d43f5bc5a0d229b82",
+  "canonical_source_sha256": "d5dd41a50af4f514d6f8702b5740e66cc68c10f4244bbf63afe49e52ae3015eb",
   "effective_routes": {
     "analyzing-and-refining-game-concepts": {
       "route_id": "analyzing-and-refining-game-concepts",
@@ -238,7 +267,7 @@
   "project_registry": {
     "hash_definition": "UTF8_TEXT_SHA256_AFTER_PLATFORM_NEWLINE_NORMALIZATION",
     "path": "skills/SKILL_REGISTRY.json",
-    "sha256": "af08f9923a2b537d1ae032eb66f42a93ad227847253bb6b31459b3c310f66c68"
+    "sha256": "966ba9612d6928ce73a06f6003bab2cdd5a66fcdd8a8de7e1053ef77c46d92e7"
   },
   "project_routes": [
     {

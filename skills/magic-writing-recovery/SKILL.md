@@ -1,17 +1,19 @@
 ---
 name: magic-writing-recovery
-description: Recover from mobile magic-letter writing recognition or grammar failures while preserving the player’s intended spell. Use for GRIMOIRE writing UX, input error, undo, retry, and recognition-feedback work.
+description: Use only for explicitly scoped legacy GRIMOIRE stroke-recognition or drawn-circuit regression work with a verified live legacy consumer; not for current card composition.
 ---
 
-# Magic Writing Recovery
+# Legacy Magic Writing Recovery
 
-Read `docs/UX_UI_SYSTEM.md`, `docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md`, and the current decision sources before proposing a change.
+First read current Active Context, the approved task and its actual input consumer.
+If the task is card overlap/composition rather than stroke recognition, do not select this Skill or add drawing requirements. Use current spell rules and the relevant UX/UI owner.
 
-1. Separate input capture, recognition, grammar validation, and resource or state failure; never present them as one vague error.
-2. Preserve the drawn input and show the recognized letter or connection before the player commits a cost.
-3. Offer the smallest reversible recovery: retry the stroke, choose an alternative recognition only when evidence supports it, undo the latest circuit change, or resume from the saved partial circuit.
-4. State the cause, the recoverable action, and the unchanged consequence in Korean plain language.
-5. Do not silently substitute a spell, consume a resource for an uncommitted attempt, or widen recognition tolerance without a validated design decision.
-6. Keep direct writing, stock preparation, and summon boundaries from the canonical planning sources intact.
+For an explicitly approved legacy writing regression, read only the affected portions of docs/UX_UI_SYSTEM.md and docs/planning/MAGIC_LETTER_CIRCUIT_SYSTEM.md, interpreting historical decisions as history.
+1. Distinguish capture, recognition, grammar and resource/state failures.
+2. Preserve the drawn input and show recognition before committed cost.
+3. Prefer reversible retry, justified alternatives, undo and partial recovery.
+4. Explain cause, recovery and unchanged consequences in plain Korean.
+5. Never silently substitute a spell, consume on an uncommitted attempt or alter tolerances without approved rules.
+6. Protect that legacy consumer's existing save/transaction boundaries; do not restore it as the new game's main flow.
 
-Report the failure class, player-visible recovery, required evidence, and any unresolved accessibility or device-validation gate. Runtime or Android success remains `NOT_RUN` until independently tested.
+Record failure class, relevant regression and remaining runtime/device/accessibility evidence. Unexecuted checks are NOT_RUN.

@@ -178,7 +178,7 @@
   "project_registry": {
     "hash_definition": "UTF8_TEXT_SHA256_AFTER_PLATFORM_NEWLINE_NORMALIZATION",
     "path": "skills/SKILL_REGISTRY.json",
-    "sha256": "af08f9923a2b537d1ae032eb66f42a93ad227847253bb6b31459b3c310f66c68"
+    "sha256": "966ba9612d6928ce73a06f6003bab2cdd5a66fcdd8a8de7e1053ef77c46d92e7"
   },
   "protected_baseline": {
     "authority_ref": "refs/remotes/origin/main",
@@ -321,7 +321,7 @@
     "base_v943_first_prompt_adoption": "REQUIRED_ON_PULL_REQUEST",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
     "device": "NOT_RUN",
-    "external_research": "FRESH_RELEVANT_CHECK_REQUIRED",
+    "external_research": "REUSE_VALID_EVIDENCE_OR_TARGETED_FRESH_RESEARCH",
     "full_vertical_slice": "NOT_RUN",
     "generated_views": "CURRENT",
     "generator_check": "REQUIRED",
@@ -333,7 +333,8 @@
     "mobile": "NOT_RUN",
     "pc_input": "NOT_RUN",
     "performance": "NOT_RUN",
-    "registry_hash": "REQUIRED"
+    "registry_hash": "REQUIRED",
+    "full_scope_review_budget": 2
   },
   "workspace_authority": {
     "default_cost_boundary": "ZERO_INCREMENTAL_COST",
@@ -344,5 +345,39 @@
     "notion_policy": "RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE",
     "project_home": "docs/PROJECT_HOME.md",
     "repository_canon": "REPOSITORY_STRUCTURED_AND_RUNTIME_CANON"
+  },
+  "base_policy_adoption": {
+    "status": "USER_APPROVED_SELECTIVE_ADOPTION",
+    "decision_id": "GM-LEAN-OPERATING-20260920",
+    "source_commit": "23ecad5a3084f97c4e5d1e39a9a6d70d1eeb37ef",
+    "observed_on": "2026-09-20",
+    "source_role": "REVIEWED_POLICY_SOURCE_NOT_PERMANENT_LATEST",
+    "base_prs": [
+      883,
+      885
+    ],
+    "release_registry_lock": "PRESERVED_V9_4_3",
+    "owner": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md#lean-operating-adoption",
+    "owner_paths": [
+      "AGENTS.md",
+      "START_HERE.md",
+      "docs/GPT_CODEX_WORKFLOW_POLICY.md",
+      "docs/LONG_HORIZON_WORK_EXECUTION_POLICY.md",
+      "skills/managing-project-intake-and-work-contract/SKILL.md",
+      "docs/knowledge/game-development/EXPERIENCE_TO_PRESENTATION_GUIDE.md",
+      "skills/analyzing-and-refining-game-concepts/references/concept-evidence-and-gates.md",
+      "skills/auditing-and-refining-ui-art/references/project-adapter-contract.md"
+    ],
+    "approval_reuse": "SAME_APPROVED_SCOPE_NO_RESTART",
+    "full_scope_review_budget": 2,
+    "source_loading": "EXACT_GIT_BLOB_NO_WORKTREE_FALLBACK",
+    "fun_binding": "docs/UX_UI_SYSTEM.md#fun-verification-binding",
+    "product_mutation": "NOT_AUTHORIZED_BY_POLICY_ADOPTION",
+    "global_settings": "UNCHANGED"
+  },
+  "authority_scope": {
+    "routing": "CURRENT_ROUTE_IDENTITIES",
+    "product_snapshots": "HISTORICAL_COMPATIBILITY_ONLY_READ_ACTIVE_CONTEXT_AND_ACTUAL_CONSUMER",
+    "policy_owner": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md#lean-operating-adoption"
   }
 }

@@ -245,5 +245,10 @@
     "notion_policy": "RETIRED_HISTORICAL_DISCOVERY_ONLY__NO_ROUTINE_READ_OR_WRITE",
     "project_home": "docs/PROJECT_HOME.md",
     "repository_canon": "REPOSITORY_STRUCTURED_AND_RUNTIME_CANON"
+  },
+  "authority_scope": {
+    "routing": "CURRENT_ROUTE_IDENTITIES",
+    "product_snapshots": "HISTORICAL_COMPATIBILITY_ONLY_READ_ACTIVE_CONTEXT_AND_ACTUAL_CONSUMER",
+    "policy_owner": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md#lean-operating-adoption"
   }
 }

@@ -13,7 +13,7 @@ EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_1_4_VENDOR_INTEGRITY.json"
 V320_EVIDENCE = ROOT / "docs/validation/HIGODOT_V3_2_0_VENDOR_INTEGRITY.json"
 SYNC = ROOT / "docs/planning/sync/GR-SYNC-20260811-19-HIGODOT-V314-TRACKED-EXACT-RECONCILIATION.md"
 CURRENT_DOCS = [
-    ROOT / "START_HERE.md",
+    ROOT / "docs/archive/authority-before-lean/START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
     ROOT / "docs/DEVELOPMENT_GATES.md",
     ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",

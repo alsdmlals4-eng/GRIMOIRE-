@@ -10,8 +10,8 @@ SYNC = "GR-SYNC-20260806-03-STAR-RUNTIME-COMPLETION-MAIN"
 MAIN_AUTHORITY = "6c7b33df7347a151ce18a4bfdbf9ec212a8a4a6b"
 SPEC = "docs/superpowers/specs/2026-08-06-star-glyph-circuit-mastery-balance-design.md"
 ACTIVE_AUTHORITY = (
-    "AGENTS.md",
-    "START_HERE.md",
+    "docs/archive/authority-before-lean/AGENTS.md",
+    "docs/archive/authority-before-lean/START_HERE.md",
     "docs/ACTIVE_CONTEXT.md",
     "docs/DEVELOPMENT_GATES.md",
     "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",

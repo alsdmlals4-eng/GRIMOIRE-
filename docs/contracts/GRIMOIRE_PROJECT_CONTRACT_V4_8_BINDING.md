@@ -1,3 +1,32 @@
+<a id="lean-operating-adoption"></a>
+
+## 현행 운영 조항 — 2026-09-20 선택 채택
+
+- 결정: GM-LEAN-OPERATING-20260920. 사용자 “승인할게”, 이어 “재미검증기준도 같이 추가해줘”를 이 운영 범위에 적용한다.
+- Base source: [#883](https://github.com/alsdmlals4-eng/Base/pull/883), [#885](https://github.com/alsdmlals4-eng/Base/pull/885); 확인한 최신 main `23ecad5a3084f97c4e5d1e39a9a6d70d1eeb37ef`. 영구 최신 기준이 아니라 이번 채택 출처다. 새 작업에서 원격 drift를 확인하고 필요한 변경만 판단한다.
+- v9.4.3 release/registry lock과 게임·엔진·저장·승인 자산은 유지한다. source revision/owner 경로는 `skills/PROJECT_BASE_ADAPTER.json#/base_policy_adoption`가 소유한다. 생성 snapshot/dashboard는 직접 편집하지 않는다.
+- 채택: current-authority read order, 조건부 최소 로딩, 동일 승인/계획 재사용, UNIFIED_WORK_EXECUTION, 같은 승인 후보 계보 전체 검토 총 2회, 기능 경험→표현→consumer→검증 연결.
+- 선택 비적용: Base 공용 수치·메뉴·장르 예시, 전역/설치 플러그인 수정, release lock 일괄 교체, 새 재미 감독/분석 서버/독립 보고서. 사람 검수가 없다고 승인된 구현을 전부 정지하지 않는다.
+- 기존 handoff-only, 매 단계 5회 전체 검토, 외부 조사 무조건 재수행은 아래 역사 조항보다 이 절이 우선한다. 코드 실행은 승인 범위와 실제 capability로 판단하며 권한 우회는 금지한다. 상위 시스템·도구의 필수 규칙은 바꾸지 않는다.
+- 과거 단계·고정 SHA·옛 승인 대기는 역사 locator다. 같은 소비처의 유효 증거는 재사용하되 변경 영향은 다시 검증한다. 실제 main과 작업 브랜치의 제품 상태를 혼합하지 않는다.
+- 승인된 계획: 진입점/Skill 교정 → 출처 loader·생성 뷰·관련 검사 → 독립 검토·표적 교정 → dedicated PR 정상 병합·main readback → 기존 게임 브랜치에 운영 변경만 반영.
+- 보호: 60개 미병합 게임 커밋, 다른 PR(#253 포함), 사용자 dirty/임시 자산은 흡수·삭제하지 않는다. 추가 비용 0, 공개 Git에 개인 증빙 없음.
+- 현재 본문 아래의 2026-08-26 제품 스냅샷은 역사 호환 내용이다. 제품 의미는 현재 체크아웃의 Active Context·승인 기능 원본·실제 consumer를 함께 확인한다.
+
+### 검토와 증거 기록
+
+기준 main: `d384c454768a8aa3b0adb939e0b035ac2afa426e`.
+변경 전 전체 Python 회귀: 340개, 17 failure / 1 error / 2 skipped. 구 버전/역사 상태 검사 실패를 이번 게임·플러그인 변경으로 숨기지 않는다.
+출처 loader 신규 회귀 4개는 구현 전 실패 → 구현 후 통과했다. 로컬 Base 본문 변경, 원격 drift, 미승인 경로, 다른 계보를 검사한다.
+스킬 baseline 검토는 본문 출처 불일치·역사 owner 오선택 위험을 확인했으며 실제 에이전트 규칙 위반을 관측했다고 과장하지 않는다.
+전체 검토 사용: 1/2. 독립 검토 1에서 P0/P1 없음, P2 두 건 발견: 빈 읽기 경로의 생성 쓰기 전환과 생성 뷰의 역사 상태 오표시.
+빈 경로 회귀는 RED 확인 후 교정했고, 호환 뷰는 역사 scope·현재 owner·승인 원본 분리를 전파했다. 신규 집중 검사 12개 통과.
+350개 전체 검사 시점에서 17 failure / 1 error / 2 skipped이며 실패 ID 18개가 변경 전과 동일했다. 전체 PASS로 주장하지 않는다.
+최종 candidate의 전체 회귀·검토 2·CI·병합/main readback은 다음 완료 단계다.
+재미 기준은 [기존 UX/UI owner](../UX_UI_SYSTEM.md#fun-verification-binding)에서 프로젝트에 맞게 선택 적용한다. 문서 채택은 게임 재미 검증 완료가 아니다.
+
+---
+
 # GRIMOIRE 프로젝트 계약 v4.8 r5.4 바인딩
 
 ```yaml

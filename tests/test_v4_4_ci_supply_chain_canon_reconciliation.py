@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 UNRESOLVED = ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md"
 DEVELOPMENT_GATES = ROOT / "docs/DEVELOPMENT_GATES.md"
-CURRENT_DOCS = [ROOT / "START_HERE.md", ROOT / "docs/ACTIVE_CONTEXT.md", ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"]
+CURRENT_DOCS = [ROOT / "docs/archive/authority-before-lean/START_HERE.md", ROOT / "docs/ACTIVE_CONTEXT.md", ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md"]
 CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 STALE_BLOCKER = "CI_MUTABLE_ACTION_TAGS_OUTSIDE_PR85_SCOPE"

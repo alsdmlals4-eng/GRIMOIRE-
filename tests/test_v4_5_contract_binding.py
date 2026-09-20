@@ -10,7 +10,7 @@ BINDING_V48 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md"
 HISTORICAL_V44 = ROOT / "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_4_BINDING.md"
 SYNC = ROOT / "docs/planning/sync/GR-SYNC-20260811-02-CONTRACT-V4-5-R2-BINDING.md"
 ACTIVE_DOCS = [
-    ROOT / "START_HERE.md",
+    ROOT / "docs/archive/authority-before-lean/START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
 ]
 LEGACY_COMPAT_DOCS = [

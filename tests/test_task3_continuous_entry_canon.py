@@ -35,7 +35,7 @@ class Task3ContinuousEntryCanonTests(unittest.TestCase):
 
     def test_current_human_state_supersedes_task3_with_current_task8_merge_subgate(self) -> None:
         for relative_path in (
-            "START_HERE.md",
+            "docs/archive/authority-before-lean/START_HERE.md",
             "docs/ACTIVE_CONTEXT.md",
             "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
             "docs/planning/CURRENT_UNRESOLVED_GATES.md",

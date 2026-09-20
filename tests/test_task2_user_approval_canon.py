@@ -14,7 +14,7 @@ TASK2_MERGED_MAIN = "975b2ad278d07bf9bfa06a9f4c1fc20a9fb1bac0"
 APPROVAL_RECEIPT = ROOT / "docs/planning/sync/GR-SYNC-20260809-01-TASK2-USER-APPROVAL.md"
 TASK2_AUTHORING_RECEIPT = ROOT / "artifacts/higodot/HIGODOT_AUTHORING_RECEIPT_TASK2_2026-08-09.json"
 CURRENT_DOCS = [
-    ROOT / "START_HERE.md",
+    ROOT / "docs/archive/authority-before-lean/START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
     ROOT / "docs/planning/CURRENT_CONFIRMED_DECISIONS.md",
     ROOT / "docs/planning/CURRENT_UNRESOLVED_GATES.md",

@@ -11,8 +11,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OBSERVATION = ROOT / "docs/planning/TASK8_LOCAL_CANDIDATE_PRESERVATION_OBSERVATION_2026-08-24.md"
 ACTIVE = ROOT / "docs/ACTIVE_CONTEXT.md"
-AGENTS = ROOT / "AGENTS.md"
-START = ROOT / "START_HERE.md"
+AGENTS = ROOT / "docs/archive/authority-before-lean/AGENTS.md"
+START = ROOT / "docs/archive/authority-before-lean/START_HERE.md"
 TOOL = ROOT / "tools/task8_prepare_clean_reconciliation.ps1"
 PRIMARY_BRANCH = "feat/task8-spell-use-screen-v2"
 PRIMARY_HEAD = "8c611f601aa98397ed1558e92ab207e0e8347a9b"

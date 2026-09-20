@@ -1,10 +1,17 @@
 {
   "artifact_role": "GENERATED_COMPATIBILITY_VIEW",
   "asset_and_license": {
-    "approved_visual_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
+    "approval_owner": "docs/ACTIVE_CONTEXT.md",
+    "approval_resolution": "READ_CURRENT_TARGET_DECISION_AND_ACTUAL_CONSUMER",
+    "historical_visual_manifest": "docs/planning/visual/ART_STYLE_01_LOCKED_REFERENCE_MANIFEST.json",
     "locked_reference_edit": "PROHIBITED",
     "mass_asset_generation": "BOUNDED_APPROVED_WORKSTREAM_ONLY",
     "third_party_inventory": "docs/ASSET_LICENSE_LEDGER.md"
+  },
+  "authority_scope": {
+    "policy_owner": "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md#lean-operating-adoption",
+    "product_snapshots": "HISTORICAL_COMPATIBILITY_ONLY_READ_ACTIVE_CONTEXT_AND_ACTUAL_CONSUMER",
+    "routing": "CURRENT_ROUTE_IDENTITIES"
   },
   "base_release": {
     "finalization_commit": "0b7c94f38d959efc0fc9442274c60b2e268a3c97",
@@ -17,8 +24,32 @@
     "version": "9.4.3"
   },
   "canonical_source": "skills/PROJECT_BASE_ADAPTER.json",
-  "canonical_source_sha256": "c1482f56ef19d37a6dc8f7e2c710b5388e90bbb99636e83d43f5bc5a0d229b82",
+  "canonical_source_sha256": "d5dd41a50af4f514d6f8702b5740e66cc68c10f4244bbf63afe49e52ae3015eb",
   "current_truth_sources": [
+    "AGENTS.md",
+    "START_HERE.md",
+    "docs/ACTIVE_CONTEXT.md",
+    "docs/contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md#lean-operating-adoption",
+    "docs/UX_UI_SYSTEM.md#fun-verification-binding"
+  ],
+  "engine": {
+    "autoloads": "TRACKED_PROJECT_GODOT",
+    "input_map": "TRACKED_PROJECT_GODOT",
+    "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
+    "main_scene_role": "DEVELOPMENT_PRODUCT_ROOT_ENTRY",
+    "name": "Godot",
+    "project_file": "project.godot",
+    "renderer": "GL_COMPATIBILITY",
+    "version_candidate": "Godot 4.7.1 stable candidate"
+  },
+  "execution_contracts": {
+    "current_execution_profile": "DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION",
+    "current_product_stage": "DEMO_FIRST_VERTICAL_SLICE",
+    "current_work_mode": "IMPLEMENT_AND_VALIDATE",
+    "integrated_v9": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md"
+  },
+  "generated": true,
+  "historical_truth_source_locators": [
     "docs/ACTIVE_CONTEXT.md",
     "docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GATE_2026-08-28.md",
     "AGENTS.md",
@@ -42,23 +73,6 @@
     "docs/planning/GRIMOIRE_PLANNING_CANON_2026-07-31.md",
     "docs/planning/PLATFORM_MOBILE_FIRST_02_2026-08-02.md"
   ],
-  "engine": {
-    "autoloads": "TRACKED_PROJECT_GODOT",
-    "input_map": "TRACKED_PROJECT_GODOT",
-    "main_scene": "res://src/ui/spell_workflow/spell_workflow_product_root.tscn",
-    "main_scene_role": "DEVELOPMENT_PRODUCT_ROOT_ENTRY",
-    "name": "Godot",
-    "project_file": "project.godot",
-    "renderer": "GL_COMPATIBILITY",
-    "version_candidate": "Godot 4.7.1 stable candidate"
-  },
-  "execution_contracts": {
-    "current_execution_profile": "DEMO_FIRST_VERTICAL_SLICE_PARTIAL_FOUNDATION",
-    "current_product_stage": "DEMO_FIRST_VERTICAL_SLICE",
-    "current_work_mode": "IMPLEMENT_AND_VALIDATE",
-    "integrated_v9": "Base:templates/prompts/VERTICAL_SLICE_INTEGRATED_EXECUTION_PROMPT_v9.md"
-  },
-  "generated": true,
   "implementation_permissions": {
     "codex_build": "OPTIONAL_WITH_APPROVED_SCOPE_AND_EXECUTOR",
     "godot_code_scene_resource_data": "PROJECT_TOOL_AUTHORITY_AND_APPROVED_SCOPE_REQUIRED",
@@ -209,7 +223,8 @@
     "base_v943_first_prompt_adoption": "REQUIRED_ON_PULL_REQUEST",
     "ci_gate": "REQUIRED_ON_PULL_REQUEST",
     "device": "NOT_RUN",
-    "external_research": "FRESH_RELEVANT_CHECK_REQUIRED",
+    "external_research": "REUSE_VALID_EVIDENCE_OR_TARGETED_FRESH_RESEARCH",
+    "full_scope_review_budget": 2,
     "full_vertical_slice": "NOT_RUN",
     "generated_views": "CURRENT",
     "generator_check": "REQUIRED",

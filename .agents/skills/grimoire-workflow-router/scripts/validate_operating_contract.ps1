@@ -139,7 +139,9 @@ if ($baseRegistryHash -ne $adapter.base_release.registry_sha256) {
 $routeIds = @{}
 foreach ($route in @($adapter.routing.base_routes)) {
     $routeIds[[string]$route.route_id] = "BASE_SHARED"
-    Assert-PathExists -Path (Join-Path $BaseRoot ("skills\{0}\SKILL.md" -f $route.skill_id)) -Description "Base route $($route.route_id)"
+    $routeBlob = "$($adapter.base_policy_adoption.source_commit):skills/$($route.skill_id)/SKILL.md"
+    & git -C $BaseRoot cat-file -e $routeBlob
+    if ($LASTEXITCODE -ne 0) { throw "Adopted Base route is missing: $routeBlob" }
 }
 foreach ($route in @($adapter.routing.project_routes)) {
     $routeIds[[string]$route.route_id] = "PROJECT_LOCAL"
@@ -157,6 +159,10 @@ if ($LASTEXITCODE -ne 0) {
     throw "Generated operating views have drifted from PROJECT_BASE_ADAPTER.json."
 }
 
+# Verify policy ancestry and owner body without depending on the local checkout.
+& python $generatorPath --base-root $BaseRoot --read-base-path AGENTS.md | Out-Null
+if ($LASTEXITCODE -ne 0) { throw "Adopted Base policy source failed verification." }
+
 [pscustomobject]@{
     status = "OPERATING_CONTRACT_VALID"
     project_root = $projectRoot
@@ -164,4 +170,6 @@ if ($LASTEXITCODE -ne 0) {
     base_release = [string]$adapter.base_release.version
     route_count = $adapterRouteIds.Count
     generated_views = "CURRENT"
+    adopted_policy_source = [string]$adapter.base_policy_adoption.source_commit
+    policy_remote_drift = ($originMain -ne [string]$adapter.base_policy_adoption.source_commit)
 } | ConvertTo-Json -Compress

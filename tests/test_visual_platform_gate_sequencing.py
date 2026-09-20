@@ -15,7 +15,7 @@ CANON = ROOT / "docs/planning/CANON_SYNC_STATE.json"
 AUTHORITY = ROOT / "docs/planning/GODOT_AUTHORING_GUT_AUTHORITY_STATE.json"
 GRILL = ROOT / "docs/planning/GRILL_ME_BATCH_MERGE_STATE.json"
 CURRENT = [
-    ROOT / "START_HERE.md",
+    ROOT / "docs/archive/authority-before-lean/START_HERE.md",
     ROOT / "docs/ACTIVE_CONTEXT.md",
     ROOT / "docs/DEVELOPMENT_GATES.md",
     UNRESOLVED,
