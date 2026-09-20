@@ -1,13 +1,14 @@
 # 현재 운영 작업 — 2026-09-20
 
-GM-LEAN-OPERATING-20260920: 사용자 승인에 따라 Base #883 경량화와 #885 재미 검증을 선택 채택 중.
+GM-LEAN-OPERATING-20260920: 사용자 승인에 따라 Base #883 경량화와 #885 재미 검증의 선택 채택·로컬 검토 완료.
 책임: [기존 계약의 최신 운영 절](contracts/GRIMOIRE_PROJECT_CONTRACT_V4_8_BINDING.md#lean-operating-adoption).
 읽기: AGENTS → START_HERE → 이 상단/현재 제품 승인 원본 → 실제 consumer → 계약 → router/정확한 Base source.
 Base 확인 main: 23ecad5a3084f97c4e5d1e39a9a6d70d1eeb37ef. v9.4.3 release/registry lock 보존.
 승인 범위: 진입 문서·local Skill·출처 읽기·연결 검사·정상 PR 병합·main 재확인. 게임/엔진/저장/자산/설치 플러그인/전역 설정은 변경하지 않는다.
 제품 상태: 기준 main d384c454와 60개 앞선 게임 작업 브랜치는 다르다. 아래 구 snapshot은 역사 정보다. 이번 PR은 게임 브랜치나 #253을 흡수하지 않는다.
 재미 기준: [UX/UI의 현재 연결](UX_UI_SYSTEM.md#fun-verification-binding). 기능별 사람 재미/실행 검증은 NOT_RUN.
-다음: 관련 회귀·독립 검토 → 정상 병합/main readback → 게임 브랜치 운영 연결만 동기화.
+검사: 신규 12개 PASS, 독립 검토 2/2 완료. 전체 352개에서 기존과 동일한 17 failure / 1 error / 2 skipped; 전체 PASS 아님.
+배달: PR #254의 live exact-head CI·병합 상태를 확인한다. 병합됐다면 main readback 후 게임 브랜치 운영 연결만 동기화하며 게임 60개 커밋은 별도다.
 진행 증거와 검토 예산은 기존 계약에 누적하며 작업별 새 일지/PDF를 만들지 않는다.
 
 ---

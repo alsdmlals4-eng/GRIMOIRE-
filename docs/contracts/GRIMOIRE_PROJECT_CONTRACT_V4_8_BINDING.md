@@ -19,10 +19,12 @@
 변경 전 전체 Python 회귀: 340개, 17 failure / 1 error / 2 skipped. 구 버전/역사 상태 검사 실패를 이번 게임·플러그인 변경으로 숨기지 않는다.
 출처 loader 신규 회귀 4개는 구현 전 실패 → 구현 후 통과했다. 로컬 Base 본문 변경, 원격 drift, 미승인 경로, 다른 계보를 검사한다.
 스킬 baseline 검토는 본문 출처 불일치·역사 owner 오선택 위험을 확인했으며 실제 에이전트 규칙 위반을 관측했다고 과장하지 않는다.
-전체 검토 사용: 1/2. 독립 검토 1에서 P0/P1 없음, P2 두 건 발견: 빈 읽기 경로의 생성 쓰기 전환과 생성 뷰의 역사 상태 오표시.
+전체 검토 사용: 2/2. 독립 검토 1에서 P0/P1 없음, P2 두 건 발견: 빈 읽기 경로의 생성 쓰기 전환과 생성 뷰의 역사 상태 오표시.
 빈 경로 회귀는 RED 확인 후 교정했고, 호환 뷰는 역사 scope·현재 owner·승인 원본 분리를 전파했다. 신규 집중 검사 12개 통과.
-350개 전체 검사 시점에서 17 failure / 1 error / 2 skipped이며 실패 ID 18개가 변경 전과 동일했다. 전체 PASS로 주장하지 않는다.
-최종 candidate의 전체 회귀·검토 2·CI·병합/main readback은 다음 완료 단계다.
+최종 전체 검사 352개에서 17 failure / 1 error / 2 skipped이며 실패 ID 18개가 변경 전과 동일했다. 전체 PASS로 주장하지 않는다.
+독립 검토 2: 38개 파일 후보 검토, 새 P0/P1/P2 없음. 생성 뷰 check와 diff 검사도 통과. 이후 전체 검토를 재시작하지 않고 발견별 교정·필수 CI·main readback으로 진행한다.
+배달 PR: [#254](https://github.com/alsdmlals4-eng/GRIMOIRE-/pull/254). 현재 병합 여부와 exact-head 원격 검사 상태는 live GitHub가 소유한다. 문서의 사전 검사로 병합 후 증거를 대체하지 않는다.
+후속 읽기: PR이 병합됐다면 main의 변경 파일 동일성·운영 validator·신규 12개 회귀를 재확인하고 기존 게임 브랜치의 제품/dirty 상태를 보존한 채 운영 변경만 동기화한다. 원본 작업 로그는 로컬 artifacts/local-validation/lean-20260920/에 누적한다.
 재미 기준은 [기존 UX/UI owner](../UX_UI_SYSTEM.md#fun-verification-binding)에서 프로젝트에 맞게 선택 적용한다. 문서 채택은 게임 재미 검증 완료가 아니다.
 
 ---
