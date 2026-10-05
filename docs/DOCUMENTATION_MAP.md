@@ -55,3 +55,12 @@ Current quality gate: `docs/planning/ADVERSARIAL_REVIEW_AND_EXTERNAL_RESEARCH_GA
 - `docs/GAME_RELEASE_COMPLIANCE_EVIDENCE_PACK.md`
 
 실제 Mobile Device·Performance·Screen Reader·Human·Full Slice는 `NOT_RUN`이다.
+
+## 차기 공용 주문법 — v0.3 기획 검토
+
+- 작업 원문: [공용 글자·겹서클 Blueprint v0.3](planning/SHARED_GLYPH_CIRCLE_BLUEPRINT_V0_3.md).
+- 승인 방향 ID: `GM-SHARED-GLYPH-CIRCLE-20260831-01`.
+- 2026-08-31 사용자 방향: 메인/보조 고정 역할 제거, 본편·미니게임 공용 글자, 1학년과 현재 카드게임 최대 3서클, 1서클당 한 겹의 서클 연출.
+- 상태: `USER_APPROVED_DIRECTION / DRAFT_DETAILS / DOCUMENTATION_ONLY`. 이 작업 원문에 승인 방향·검토 수치·실제 구현 경계·이행 대상을 모은다.
+- 기존 star runtime과 위 역사적 검증은 그대로 보존한다. 새 문서가 기존 Scene·Resource·calculator·validator의 변경 또는 실행 PASS를 뜻하지 않는다.
+- 역할 없는 입력·효과·비용·시각·저장으로 이행할 때는 최신 `AGENTS.md`와 실제 consumer를 다시 읽고 해당 owner를 함께 갱신한다. 본편 코드 구현은 이번 문서 작업의 승인 범위가 아니다.
